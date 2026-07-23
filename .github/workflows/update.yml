@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      changed: ${{ steps.check.outputs.changed }}
+      changed: ${{ steps.process.outputs.changed }}
 
     steps:
       - name: Checkout
@@ -59,10 +59,11 @@ jobs:
           chmod +x "$HOME/s2v/Source2Viewer-CLI"
 
       - name: Process customs
+        id: process
         run: |
           set -euo pipefail
-          CHANGED=false
 
+          CHANGED=false
           WORKDIR=$(mktemp -d)
 
           mapfile -t MODS < <(jq -c '.[]' versions.json)
@@ -162,7 +163,12 @@ jobs:
 
             cd "$GITHUB_WORKSPACE"
           done
+
           echo "changed=$CHANGED" >> "$GITHUB_OUTPUT"
+
+      - name: Debug output
+        run: |
+          echo "changed='${{ steps.process.outputs.changed }}'"
 
   watermark:
     name: Apply watermark
@@ -171,8 +177,12 @@ jobs:
     if: needs.update_customs.outputs.changed == 'true'
 
     steps:
+      - name: Debug
+        run: |
+          echo "needs.update_customs.outputs.changed='${{ needs.update_customs.outputs.changed }}'"
+
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -205,16 +215,15 @@ jobs:
               -not -path './.git/*' \
               | while read -r f; do
 
-                  # защита от повторного ватермарка
-                  if head -n 20 "$f" | grep -q "special thanks\|damer\|windguild"; then
-                    continue
-                  fi
+                if head -n 20 "$f" | grep -qi "special thanks\|damer\|windguild"; then
+                  continue
+                fi
 
-                  printf '%s\n\n\n%s' \
-                    "$WATERMARK" \
-                    "$(cat "$f")" > "$f.tmp"
+                printf '%s\n\n\n%s' \
+                  "$WATERMARK" \
+                  "$(cat "$f")" > "$f.tmp"
 
-                  mv "$f.tmp" "$f"
+                mv "$f.tmp" "$f"
               done
 
             if git diff --quiet; then
