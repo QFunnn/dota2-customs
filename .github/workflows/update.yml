@@ -111,10 +111,18 @@ jobs:
             rm -rf "$OUT"
             mkdir -p "$OUT"
 
-            "$HOME/s2v/Source2Viewer-CLI" \
-              -i "$VPK" \
-              -o "$OUT" \
-              -d
+            LOG="$WORKDIR/s2v.log"
+
+            if ! "$HOME/s2v/Source2Viewer-CLI" \
+                -i "$VPK" \
+                -o "$OUT" \
+                -d \
+                >"$LOG" 2>&1; then
+              cat "$LOG"
+              exit 1
+            fi
+
+            rm -f "$LOG"
 
             [[ -n "$(ls -A "$OUT")" ]] || {
               echo "Extraction empty"
@@ -167,7 +175,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Apply watermark
         env:
