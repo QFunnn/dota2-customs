@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      changed: ${{ steps.process.outputs.changed }}
+      branches: ${{ steps.process.outputs.branches }}
 
     steps:
       - name: Checkout
@@ -63,7 +63,7 @@ jobs:
         run: |
           set -euo pipefail
 
-          CHANGED=false
+          UPDATED=()
           WORKDIR=$(mktemp -d)
 
           mapfile -t MODS < <(jq -c '.[]' versions.json)
@@ -158,38 +158,45 @@ jobs:
               git commit -m "action: upload custom"
               git push origin "$BRANCH"
 
-              CHANGED=true
+              UPDATED+=("$BRANCH")
             fi
 
             cd "$GITHUB_WORKSPACE"
           done
 
-          echo "changed=$CHANGED" >> "$GITHUB_OUTPUT"
+          if [[ ${#UPDATED[@]} -eq 0 ]]; then
+            BRANCHES='[]'
+          else
+            BRANCHES=$(printf '%s\n' "${UPDATED[@]}" \
+              | jq -Rsc 'split("\n") | map(select(length > 0))')
+          fi
+
+          echo "branches=$BRANCHES" >> "$GITHUB_OUTPUT"
 
       - name: Debug output
         run: |
-          echo "changed='${{ steps.process.outputs.changed }}'"
+          echo "branches='${{ steps.process.outputs.branches }}'"
 
   watermark:
     name: Apply watermark
     runs-on: ubuntu-latest
     needs: update_customs
-    if: needs.update_customs.outputs.changed == 'true'
+    if: needs.update_customs.outputs.branches != '[]'
 
     steps:
       - name: Debug
         run: |
-          echo "needs.update_customs.outputs.changed='${{ needs.update_customs.outputs.changed }}'"
+          echo "needs.update_customs.outputs.branches='${{ needs.update_customs.outputs.branches }}'"
 
       - name: Checkout
         uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
-      - name: Apply watermark to all branches
+      - name: Apply watermark to updated branches
         env:
           WATERMARK_TEMPLATE: ${{ secrets.LUA_WATERMARK }}
-          GH_TOKEN: ${{ github.token }}
+          BRANCHES_JSON: ${{ needs.update_customs.outputs.branches }}
         run: |
           set -euo pipefail
 
@@ -204,16 +211,19 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          mapfile -t BRANCHES < <(jq -r '.[].branch_name' versions.json)
+          mapfile -t BRANCHES < <(jq -r '.[]' <<< "$BRANCHES_JSON")
 
           for BRANCH in "${BRANCHES[@]}"; do
+            echo "watermarking $BRANCH"
+
             git fetch origin "$BRANCH"
             git checkout -B "$BRANCH" "origin/$BRANCH"
 
             find . \
               \( -name '*.lua' -o -name '*.txt' \) \
               -not -path './.git/*' \
-              | while read -r f; do
+              -print0 \
+              | while IFS= read -r -d '' f; do
 
                 if head -n 20 "$f" | grep -qi "special thanks\|damer\|windguild"; then
                   continue
