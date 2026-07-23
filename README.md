@@ -14,3 +14,8 @@
 | Boss Survival Adventure | [`3746179405`](https://steamcommunity.com/sharedfiles/filedetails/?id=3746179405) | [`boss-survival-adventure`](../../tree/boss-survival-adventure) |
 | Custom Hero Chaos | [`1999002498`](https://steamcommunity.com/sharedfiles/filedetails/?id=1999002498) | [`custom-hero-chaos`](../../tree/custom-hero-chaos) |
 | Dota 1x6 | [`2836965027`](https://steamcommunity.com/sharedfiles/filedetails/?id=2836965027) | [`dota-1x6`](../../tree/dota-1x6) |
+
+### TODO
+Отрефакторить логику дампа кастомок.
+Добавить автоматическое создание мердж-реквеста для обфусцированных кастомок.
+Добавить автоматическую деобфускацию для определенных кастомок.
