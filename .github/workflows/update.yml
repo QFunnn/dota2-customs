@@ -219,22 +219,16 @@ jobs:
             git fetch origin "$BRANCH"
             git checkout -B "$BRANCH" "origin/$BRANCH"
 
-            find . \
-              \( -name '*.lua' -o -name '*.txt' -o -name '*.css' -o -name '*.js' -o -name '*.html' -o -name 'gameevents' \)
-              -not -path './.git/*' \
-              -print0 \
-              | while IFS= read -r -d '' f; do
+            find . -type f -not -path './.git/*' -print0 |
+            while IFS= read -r -d '' f; do
+              grep -Iq . "$f" || continue
 
-                if head -n 20 "$f" | grep -qi "special thanks\|damer\|windguild"; then
-                  continue
-                fi
+              printf '%s\n\n\n%s' \
+                "$WATERMARK" \
+                "$(cat "$f")" > "$f.tmp"
 
-                printf '%s\n\n\n%s' \
-                  "$WATERMARK" \
-                  "$(cat "$f")" > "$f.tmp"
-
-                mv "$f.tmp" "$f"
-              done
+              mv "$f.tmp" "$f"
+            done
 
             if git diff --quiet; then
               echo "No changes in $BRANCH"
