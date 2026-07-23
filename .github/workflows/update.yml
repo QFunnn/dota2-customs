@@ -175,12 +175,17 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Apply watermark
+      - name: Apply watermark to all branches
         env:
           WATERMARK_TEMPLATE: ${{ secrets.LUA_WATERMARK }}
+          GH_TOKEN: ${{ github.token }}
         run: |
+          set -euo pipefail
+
           BUILD="${GITHUB_SHA::7}"
           TIME="$(date -u '+%Y-%m-%d %H:%M:%S UTC')"
 
@@ -189,18 +194,38 @@ jobs:
               -e "s|\${build}|$BUILD|g" \
               -e "s|\${time}|$TIME|g")
 
-          find . \
-            \( -name '*.lua' -o -name '*.txt' \) \
-            -not -path './.git/*' \
-            | while read -r f; do
-                printf '%s\n\n\n%s' "$WATERMARK" "$(cat "$f")" > "$f.tmp"
-                mv "$f.tmp" "$f"
-              done
-
-      - name: Commit
-        run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-            git commit -am "action: add watermark"
-            git push
+          mapfile -t BRANCHES < <(jq -r '.[].branch_name' versions.json)
+
+          for BRANCH in "${BRANCHES[@]}"; do
+            git fetch origin "$BRANCH"
+            git checkout -B "$BRANCH" "origin/$BRANCH"
+
+            find . \
+              \( -name '*.lua' -o -name '*.txt' \) \
+              -not -path './.git/*' \
+              | while read -r f; do
+
+                  # защита от повторного ватермарка
+                  if head -n 20 "$f" | grep -q "special thanks\|damer\|windguild"; then
+                    continue
+                  fi
+
+                  printf '%s\n\n\n%s' \
+                    "$WATERMARK" \
+                    "$(cat "$f")" > "$f.tmp"
+
+                  mv "$f.tmp" "$f"
+              done
+
+            if git diff --quiet; then
+              echo "No changes in $BRANCH"
+              continue
+            fi
+
+            git add -A
+            git commit -m "action: add watermark"
+            git push origin "$BRANCH"
+          done
