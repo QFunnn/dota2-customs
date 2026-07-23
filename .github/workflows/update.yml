@@ -58,14 +58,10 @@ jobs:
 
           chmod +x "$HOME/s2v/Source2Viewer-CLI"
 
-      - name: Init update status
-        id: check
-        run: |
-          echo "changed=false" >> "$GITHUB_OUTPUT"
-
       - name: Process customs
         run: |
           set -euo pipefail
+          CHANGED=false
 
           WORKDIR=$(mktemp -d)
 
@@ -161,11 +157,12 @@ jobs:
               git commit -m "action: upload custom"
               git push origin "$BRANCH"
 
-              echo "changed=true" >> "$GITHUB_OUTPUT"
+              CHANGED=true
             fi
 
             cd "$GITHUB_WORKSPACE"
           done
+          echo "changed=$CHANGED" >> "$GITHUB_OUTPUT"
 
   watermark:
     name: Apply watermark
