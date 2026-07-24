@@ -1,0 +1,79 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.HudRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#CustomerService_qrcode
+{
+	width: 160px;
+	height: fit-children;
+	background-color: rgba(20, 20, 26, 0.824);
+	flow-children: down;
+}
+
+#CustomerService_qrcode #qrcode_main
+{
+	width: 140px;
+	height: 140px;
+	margin: 10px;
+	background-image: url("s2r://panorama/images/custom_game/store/wechat_qrcode_png.vtex");
+	background-size: 100%;
+	visibility: collapse;
+}
+
+#CustomerService_qrcode #qrcode_main.Show
+{
+	visibility: visible;
+}
+
+#CustomerService_qrcode #qrcode_abroad
+{
+	margin: 10px;
+	width: 140px;
+	height: 168px;
+	background-image: url("s2r://panorama/images/custom_game/icon/discord_icon_png.vtex");
+	background-size: 100% 78%;
+	background-repeat: no-repeat;
+	visibility: collapse;
+}
+
+#CustomerService_qrcode #qrcode_abroad Label
+{
+	align: center bottom;
+	color: #dbcda6;
+	font-size: 23px;
+	text-overflow: shrink;
+	text-align: center;
+	text-shadow: 1px 1px 2px 3 #000000;
+	text-decoration: underline;
+	height: 28px;
+}
+
+#CustomerService_qrcode #qrcode_abroad.Show
+{
+	visibility: visible;
+}
+
+#CustomerService_qrcode #qrcode_desc
+{
+	horizontal-align: center;
+	color: #dbcda6;
+	font-size: 18px;
+	text-overflow: shrink;
+	text-align: center;
+	text-shadow: 1px 1px 2px 3 #000000;
+	height: 24px;
+}

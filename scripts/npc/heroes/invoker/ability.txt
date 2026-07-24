@@ -1,0 +1,371 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"invoker_invoke_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_invoker/invoker_invoke_lua"
+		"AbilityTextureName"					"invoker_invoke"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"RequiredLevel"							"1"
+		"MaxLevel"								"7"
+		"AbilityCastRange"						"0"
+		"AbilityCastPoint"						"0"
+		"AbilityCooldown"						"0"
+		"AbilityManaCost"						"0"
+		"AbilityValues"
+		{
+			"all_stats"							"1 2 3 4 5 6 7"
+			"spell_lifesteal"					"6 9 12 15 18 21 24"
+			"bonus_movespeed"					"1.8 3.6 5.4 8.4 9 10.8 12.6"
+			"cooldown_reduction"				"3 6 9 12 15 18 21"
+			"spell_amp"							"3 6 9 12 15 18 21"
+		}
+	}
+	"invoker_sun_strike_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_invoker/invoker_sun_strike_lua"
+		"AbilityTextureName"					"invoker_sun_strike"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"RequiredLevel"							"1"
+		"MaxLevel"								"4"
+		"AbilityCastRange"						"0"
+		"AbilityCastPoint"						"0.05"
+		"AbilityCooldown"						"25"
+		"AbilityManaCost"						"175"
+		"AbilityValues"
+		{
+			"delay"								"1.7"
+			"area_of_effect"					"175"
+			"damage"
+			{
+				"value"							"162 266 370 475"
+				"CalculateSpellDamageTooltip"	"0"
+			}
+			"vision_distance"					"400"
+			"vision_duration"					"4.0"
+			"cataclysm_minimum_distance"		"160"
+			"cataclysm_maximum_distance"		"200"
+			"cataclysm_cooldown"				"90"
+			"cataclysm_limits"					"16"
+		}
+	}
+	"invoker_deafening_blast_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_invoker/invoker_deafening_blast_lua"
+		"AbilityTextureName"					"invoker_deafening_blast"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_NO"
+		"RequiredLevel"							"1"
+		"MaxLevel"								"4"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastRange"						"1000"
+		"AbilityCastPoint"						"0.05"
+		"AbilityCooldown"						"14"
+		"AbilityManaCost"						"175"
+		"AbilityModifierSupportValue"			"0.5"
+		"AbilityValues"
+		{
+			"travel_distance"					"1000"
+			"travel_speed"						"1100"
+			"radius_start"						"175"
+			"radius_end"						"225"
+			"end_vision_duration"				"1.75"
+			"damage"							"60 127 293 360"
+			"knockback_duration"				"0.4 0.74 1.06 1.4"
+			"disarm_duration"					"2 3.25 4.5 5.75"
+			"ring_blast"
+			{
+				"value"							"0"
+				"special_bonus_unique_invoker_2""1"
+			}
+		}
+	}
+	"invoker_cold_snap_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_invoker/invoker_cold_snap_lua"
+		"AbilityTextureName"					"invoker_cold_snap"
+		"FightRecapLevel"						"1"
+		"MaxLevel"								"4"
+		"precache"
+		{
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+			"particle"							"particles/units/heroes/hero_invoker/invoker_cold_snap.vpcf"
+			"particle"							"particles/units/heroes/hero_invoker/invoker_cold_snap_status.vpcf"
+		}
+		"AbilityType"							"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"						"1000"
+		"AbilityCastPoint"						"0.05"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"							"6"
+				"special_bonus_unique_invoker_9""-3"
+			}
+			"duration"
+			{
+				"value"							"4 5 6 7"
+			}
+			"freeze_duration"					"0.4"
+			"freeze_cooldown"					"0.75 0.7 0.65 0.6"
+			"freeze_damage"						"16 30 43 56"
+			"damage_trigger"					"10.0"
+		}
+	}
+	"invoker_ghost_walk_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_invoker/invoker_ghost_walk_lua"
+		"AbilityTextureName"					"invoker_ghost_walk"
+		"FightRecapLevel"						"1"
+		"MaxLevel"								"4"
+		"precache"
+		{
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+			"particle"							"particles/units/heroes/hero_invoker/invoker_ghost_walk.vpcf"
+			"particle"							"particles/units/heroes/hero_invoker/invoker_ghost_walk_debuff.vpcf"
+		}
+		"AbilityType"							"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint"						"0.05"
+		"AbilityCooldown"						"15"
+		"AbilityManaCost"						"150"
+		"AbilityValues"
+		{
+			"duration"							"100.0"
+			"area_of_effect"					"400"
+			"enemy_slow"						"-20 -40 -60 -80"
+			"self_slow"							"-10 10 30 50"
+			"aura_fade_time"					"2.0"
+		}
+	}
+	"invoker_tornado_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_invoker/invoker_tornado_lua"
+		"AbilityTextureName"					"invoker_tornado"
+		"MaxLevel"								"4"
+		"AbilityType"							"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_YES"
+		"AbilityCastRange"						"2000"
+		"AbilityCastPoint"						"0.05"
+		"AbilityManaCost"						"150"
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"							"15"
+				"special_bonus_unique_invoker_3""-6"
+			}
+			"travel_distance"					"1800 2300 2800 3300"
+			"travel_speed"						"1000"
+			"area_of_effect"					"200"
+			"vision_distance"					"200"
+			"end_vision_duration"				"1.75"
+			"lift_duration"
+			{
+				"value"							"1.1 1.6 2.1 2.6"
+			}
+			"base_damage"						"160 235 310 385"
+		}
+	}
+	"invoker_emp_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_invoker/invoker_emp_lua"
+		"AbilityTextureName"					"invoker_emp"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"HasShardUpgrade"						"1"
+		"ShardUpgradeID"				"2"
+		"MaxLevel"								"4"
+		"AbilityCastRange"						"950"
+		"AbilityCastPoint"						"0.05"
+		"AbilityCooldown"						"9"
+		"AbilityManaCost"						"125"
+		"AbilityValues"
+		{
+			"delay"								"2.9"
+			"area_of_effect"					"675"
+			"mana_burned"						"175 300 425 550"
+            "damage_per_mana_pct"                   
+            {
+                "value"         "60"
+                "special_bonus_shard_2" "+50%"
+            }
+            "damage_per_mana_pct_shard"         "60" 
+			                    
+            "drag_speed_shard"	 				"125"
+			"restore_mana_pct"					"25"
+		}
+	}
+	"invoker_alacrity_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_invoker/invoker_alacrity_lua"
+		"AbilityTextureName"					"invoker_alacrity"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"								"4"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetFlags"				"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ALLIES_YES"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_YES"
+		"AbilityCastRange"						"650"
+		"AbilityCastPoint"						"0.05"
+		"AbilityCooldown"						"14"
+		"AbilityManaCost"						"60"
+		"AbilityValues"
+		{
+			"bonus_attack_speed"
+			{
+				"value"							"22 42 62 82"
+				"special_bonus_unique_invoker_5""+30"
+			}
+			"bonus_damage"
+			{
+				"value"							"22 42 62 82"
+				"special_bonus_unique_invoker_5""+30"
+			}
+			"duration"							"9"
+		}
+	}
+	"invoker_chaos_meteor_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_invoker/invoker_chaos_meteor_lua"
+		"AbilityTextureName"					"invoker_chaos_meteor"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_YES"
+		"MaxLevel"								"4"
+		"AbilityCastRange"						"700"
+		"AbilityCastPoint"						"0.05"
+		"AbilityManaCost"						"200"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_CHAOS_METEOR"
+		"AbilityCooldown"						"12"
+		"AbilityModifierSupportValue"			"0.0"
+		"AbilityValues"
+		{
+			"land_time"							"1.3"
+			"area_of_effect"					"275"
+			"travel_distance"					"675 880 1145 1410"
+			"travel_speed"						"300"
+			"damage_interval"
+			{
+				"value"							"0.5"
+				"CalculateSpellDamageTooltip"	"0"
+			}
+			"vision_distance"					"500"
+			"end_vision_duration"				"3.0"
+			"main_damage"						"80 122 163 205"
+			"burn_duration"						"3.0"
+			"burn_dps"
+			{
+				"value"							"15 23 32 40"
+				"CalculateSpellDamageTooltip"	"1"
+			}
+			"bonus_meteor_count"
+			{
+				"value"							"0"
+				"special_bonus_unique_invoker_additional_chaos_meteors""+2"
+			}
+		}
+	}
+	"invoker_forge_spirit_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_invoker/invoker_forge_spirit_lua"
+		"AbilityTextureName"					"invoker_forge_spirit"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"								"4"
+		"AbilityCooldown"						"15"
+		"AbilityManaCost"						"75"
+		"AbilityCastPoint"						"0.05"
+		"AbilityValues"
+		{
+			"spirit_damage"						"32 49 66 82"
+			"spirit_mana"						"150 233 316 400"
+			"spirit_armor"						"1 2 4 6"
+			"spirit_attack_range"				"365 470 580 690"
+			"spirit_hp"							"400 566 733 900"
+			"spirit_duration"					"30 47 63 80"
+			"spirit_count"
+			{
+				"value"			"2"
+				"special_bonus_unique_invoker_11" "+1"
+			}
+			"spirit_attack_speed"
+			{
+				"value"							"0"
+				// "special_bonus_unique_invoker_11""+50"
+			}
+		}
+	}
+	"forged_spirit_melting_strike_lua"
+	{
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_invoker/forged_spirit_melting_strike_lua"
+		"AbilityTextureName"					"forged_spirit_melting_strike"
+		"MaxLevel"								"1"
+		"AbilityValues"
+		{
+			"armor_removed"						"1"
+			"max_armor_removed"					"20"
+			"duration"							"5"
+		}
+	}
+	"invoker_ice_wall_lod"
+	{
+		"BaseClass"								"invoker_ice_wall"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"								"4"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"RequiredLevel"							"1"
+		"AbilityCooldown"						"12"
+		"AbilityManaCost"						"175"
+		"AbilityValues"
+		{
+			"duration"							"3.0 6.0 9.0 12.0"
+			"slow"								"-20 -60 -100 -140"
+			"slow_duration"						"2.0"
+			"damage_per_second"					"20 40 60 80"
+			"wall_place_distance"				"200"
+			"num_wall_elements"					"15"
+			"wall_element_spacing"				"80"
+			"wall_element_radius"				"105"
+		}
+	}
+}

@@ -1,0 +1,44 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/custom_game/actor_confirm.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/util.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/security.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/actor_confirm.vjs_c" />
+	</scripts>
+	<Panel hittest="false">
+		<Panel class="Hidden" id="ActorPanel" hittest="false">
+			<Panel id="ActorPanelTop">
+				<Label id="ActorPanelTopLabel" text="#mark_as_actor" />
+				<Panel id="ActorPlayer">
+					<DOTAAvatarImage id="ActorPlayerImage" steamid="" />
+					<Panel class="HeroInfo">
+						<Label class="PlayerName" id="PlayerName" />
+						<Label class="HeroName" id="HeroName" />
+					</Panel>
+					<Image id="ActorHeroImage" src="" />
+				</Panel>
+			</Panel>
+			<Panel id="ActorPanelDown">
+				<Button id="ActorAcceptButton" hittest="true" onactivate="Confirm()">
+					<Label text="#confirm" />
+				</Button>
+				<Button id="ActorDeclineButton" hittest="true" onactivate="Cancle()">
+					<Label text="#cancle" />
+				</Button>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

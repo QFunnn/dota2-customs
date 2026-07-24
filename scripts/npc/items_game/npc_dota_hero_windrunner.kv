@@ -1,0 +1,4701 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"21"
+	{
+		"name"									"Wind Ranger's Head"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/windrunner/windrunner_head"
+		"item_description"						"#DOTA_Item_Desc_Wind_Rangers_Head"
+		"item_name"								"#DOTA_Item_Wind_Rangers_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/windrunner/windrunner_head.vmdl"
+	}
+	"22"
+	{
+		"name"									"Wind Ranger's Bow"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/windrunner/windrunner_bow"
+		"item_description"						"#DOTA_Item_Desc_Wind_Rangers_Bow"
+		"item_name"								"#DOTA_Item_Wind_Rangers_Bow"
+		"item_type_name"						"#DOTA_WearableType_Bow"
+		"model_player"							"models/heroes/windrunner/windrunner_bow.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"system"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_bot"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_mid"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_top"
+					}
+				}
+			}
+		}
+	}
+	"23"
+	{
+		"name"									"Wind Ranger's Shoulder Pads"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/windrunner/windrunner_shoulderpads"
+		"item_description"						"#DOTA_Item_Desc_Wind_Rangers_Shoulder_Pads"
+		"item_name"								"#DOTA_Item_Wind_Rangers_Shoulder_Pads"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_ShoulderPads"
+		"model_player"							"models/heroes/windrunner/windrunner_shoulderpads.vmdl"
+	}
+	"24"
+	{
+		"name"									"Wind Ranger's Cape"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/windrunner/windrunner_cape"
+		"item_description"						"#DOTA_Item_Desc_Wind_Rangers_Cape"
+		"item_name"								"#DOTA_Item_Wind_Rangers_Cape"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/heroes/windrunner/windrunner_cape.vmdl"
+	}
+	"25"
+	{
+		"name"									"Wind Ranger's Quiver"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/windrunner/windrunner_quiver"
+		"item_description"						"#DOTA_Item_Desc_Wind_Rangers_Quiver"
+		"item_name"								"#DOTA_Item_Wind_Rangers_Quiver"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Quiver"
+		"model_player"							"models/heroes/windrunner/windrunner_quiver.vmdl"
+	}
+	"4180"
+	{
+		"name"									"Nature's Shortbow"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/naturebow"
+		"item_description"						"#DOTA_Item_Desc_Natures_Shortbow"
+		"item_name"								"#DOTA_Item_Natures_Shortbow"
+		"item_type_name"						"#DOTA_WearableType_Bow"
+		"model_player"							"models/items/windrunner/naturebow.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"system"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_bot"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_mid"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_top"
+					}
+				}
+			}
+		}
+	}
+	"4408"
+	{
+		"name"									"Barrel Quiver"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/barrel_quiver_update/barrel_quiver_update"
+		"item_description"						"#DOTA_Item_Desc_Barrel_Quiver"
+		"item_name"								"#DOTA_Item_Barrel_Quiver"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Quiver"
+		"model_player"							"models/items/windrunner/barrel_quiver_update/barrel_quiver_update.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"4426"
+	{
+		"name"									"Bow of the Sun Vine"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/winderunder_bow001/winderunder_bow001"
+		"item_description"						"#DOTA_Item_Desc_Bow_of_the_Sun_Vine"
+		"item_name"								"#DOTA_Item_Bow_of_the_Sun_Vine"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Bow"
+		"model_player"							"models/items/windrunner/winderunder_bow001/winderunder_bow001.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"system"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_bot"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_mid"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_top"
+					}
+				}
+			}
+		}
+	}
+	"4454"
+	{
+		"name"									"Lyralei's Breeze"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/lyraleis_breeze/lyraleis_breeze"
+		"item_description"						"#DOTA_Item_Desc_Lyraleis_Breeze"
+		"item_name"								"#DOTA_Item_Lyraleis_Breeze"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Bow"
+		"model_player"							"models/items/windrunner/lyraleis_breeze/lyraleis_breeze.vmdl"
+		"static_attributes"
+		{
+			"custom powershot"
+			{
+				"attribute_class"				"custom_powershot"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_ATTACK"
+				"modifier"						"lyreleis_breeze"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_CAST_ABILITY_2"
+				"modifier"						"lyreleis_breeze"
+			}
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_OVERRIDE_ABILITY_2"
+				"modifier"						"lyreleis_breeze"
+			}
+			"asset_modifier3"
+			{
+				"type"							"sound"
+				"asset"							"Ability.PowershotPull"
+				"modifier"						"Ability.PowershotPull.Lyralei"
+			}
+			"asset_modifier4"
+			{
+				"type"							"sound"
+				"asset"							"Ability.Powershot"
+				"modifier"						"Ability.Powershot.Alt"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"system"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_bot"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_mid"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_top"
+					}
+				}
+			}
+		}
+	}
+	"4457"
+	{
+		"name"									"Makeshift Hornwood Bow"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/makeshifthornwoodbow_v10/makeshifthornwoodbow_v10"
+		"item_description"						"#DOTA_Item_Desc_Makeshift_Hornwood_Bow"
+		"item_name"								"#DOTA_Item_Makeshift_Hornwood_Bow"
+		"item_type_name"						"#DOTA_WearableType_Bow"
+		"model_player"							"models/items/windrunner/makeshifthornwoodbow_v10/makeshifthornwoodbow_v10.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"system"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_bot"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_mid"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_top"
+					}
+				}
+			}
+		}
+	}
+	"4473"
+	{
+		"name"									"Markswoman's Cap"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/robin_hat/robin_hat"
+		"item_description"						"#DOTA_Item_Desc_Markswomans_Cap"
+		"item_name"								"#DOTA_Item_Markswomans_Cap"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hat"
+		"model_player"							"models/items/windrunner/robin_hat/robin_hat.vmdl"
+	}
+	"4483"
+	{
+		"name"									"Stinger"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"custom powershot"
+			{
+				"attribute_class"				"custom_powershot"
+				"value"							"1"
+			}
+		}
+		"image_inventory"						"econ/items/windrunner/the_stinger/stinger"
+		"item_description"						"#DOTA_Item_Desc_The_Stinger"
+		"item_name"								"#DOTA_Item_Stinger"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Bow"
+		"model_player"							"models/items/windrunner/the_stinger/stinger.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_ATTACK"
+				"modifier"						"stinger"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_CAST_ABILITY_2"
+				"modifier"						"stinger"
+			}
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_OVERRIDE_ABILITY_2"
+				"modifier"						"stinger"
+			}
+			"asset_modifier3"
+			{
+				"type"							"sound"
+				"asset"							"Ability.PowershotPull"
+				"modifier"						"Ability.PowershotPull.Stinger"
+			}
+			"asset_modifier4"
+			{
+				"type"							"sound"
+				"asset"							"Ability.Powershot"
+				"modifier"						"Ability.Powershot.Alt"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"system"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_bot"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_mid"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_top"
+					}
+				}
+			}
+		}
+	}
+	"4495"
+	{
+		"name"									"Shoulderpads of the Falcon"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/shoulderpadfalcon/shoulderpadfalcon"
+		"item_description"						"#DOTA_Item_Desc_Shoulderpads_of_the_Falcon"
+		"item_name"								"#DOTA_Item_Shoulderpads_of_the_Falcon"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/windrunner/shoulderpadfalcon/shoulderpadfalcon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4504"
+	{
+		"name"									"Verdant Coif"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/verdantcoif/verdantcoif"
+		"item_description"						"#DOTA_Item_Desc_Verdant_Coif"
+		"item_name"								"#DOTA_Item_Verdant_Coif"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hood_and_Hair"
+		"model_player"							"models/items/windrunner/verdantcoif/verdantcoif.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4512"
+	{
+		"name"									"Cape of the Wind Leaf"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/windleafcape/windleafcape"
+		"item_description"						"#DOTA_Item_Desc_Cape_of_the_Wind_Leaf"
+		"item_name"								"#DOTA_Item_Cape_of_the_Wind_Leaf"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/windrunner/windleafcape/windleafcape.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4520"
+	{
+		"name"									"Zaru'Kina Protector's Cape"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/zkbackreimp/zkbackreimp"
+		"item_description"						"#DOTA_Item_Desc_ZaruKina_Protector_Cape"
+		"item_name"								"#DOTA_Item_ZaruKina_Protectors_Cape"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/windrunner/zkbackreimp/zkbackreimp.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4521"
+	{
+		"name"									"Zaru'Kina Protector's Bow"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/zkbow2reimp/zkbow2reimp"
+		"item_description"						"#DOTA_Item_Desc_ZaruKina_Protector_Bow"
+		"item_name"								"#DOTA_Item_ZaruKina_Protectors_Bow"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Bow"
+		"model_player"							"models/items/windrunner/zkbow2reimp/zkbow2reimp.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"system"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_bot"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_mid"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_top"
+					}
+				}
+			}
+		}
+	}
+	"4522"
+	{
+		"name"									"Zaru'Kina Protector's Pads"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/zkpads/zkpads"
+		"item_description"						"#DOTA_Item_Desc_ZaruKina_Protector_Pads"
+		"item_name"								"#DOTA_Item_ZaruKina_Protectors_Pads"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/windrunner/zkpads/zkpads.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4548"
+	{
+		"name"									"Zaru'Kina Protector's Hair"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/zarukina_protector_hair/zarukina_protector_hair"
+		"item_description"						"#DOTA_Item_Desc_ZaruKina_Protectors_Hair"
+		"item_name"								"#DOTA_Item_ZaruKina_Protectors_Hair"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/windrunner/zarukina_protector_hair/zarukina_protector_hair.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4549"
+	{
+		"name"									"Bloodwood Arc"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/redwoodarc/redwoodarc"
+		"item_description"						"#DOTA_Item_Desc_Bloodwood_Arc"
+		"item_name"								"#DOTA_Item_Bloodwood_Arc"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Bow"
+		"model_player"							"models/items/windrunner/redwoodarc/redwoodarc.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"system"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_bot"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_mid"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_top"
+					}
+				}
+			}
+		}
+	}
+	"4552"
+	{
+		"name"									"Gilded Falcon Bow"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/wingsweapon2/wingsweapon2"
+		"item_description"						"#DOTA_Item_Desc_Gilded_Falcon_Bow"
+		"item_name"								"#DOTA_Item_Gilded_Falcon_Bow"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Bow"
+		"model_player"							"models/items/windrunner/wingsweapon2/wingsweapon2.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"system"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_bot"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_mid"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_top"
+					}
+				}
+			}
+		}
+	}
+	"4553"
+	{
+		"name"									"Gilded Falcon Quiver"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/featherquiver21/featherquiver21"
+		"item_description"						"#DOTA_Item_Desc_Gilded_Falcon_Quiver"
+		"item_name"								"#DOTA_Item_Gilded_Falcon_Quiver"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Quiver"
+		"model_player"							"models/items/windrunner/featherquiver21/featherquiver21.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"4554"
+	{
+		"name"									"Gilded Falcon Cloak"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/falconcloak/falconcloak"
+		"item_description"						"#DOTA_Item_Desc_Gilded_Falcon_Cloak"
+		"item_name"								"#DOTA_Item_Gilded_Falcon_Cloak"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cloak"
+		"model_player"							"models/items/windrunner/falconcloak/falconcloak.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"4559"
+	{
+		"name"									"Gilded Falcon Helm"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/falconhelm1/falconhelm1"
+		"item_description"						"#DOTA_Item_Desc_Gilded_Falcon_Helm"
+		"item_name"								"#DOTA_Item_Gilded_Falcon_Helm"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/windrunner/falconhelm1/falconhelm1.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4561"
+	{
+		"name"									"Bloodwood Reserve"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/redwoodreserve/redwoodreserve"
+		"item_description"						"#DOTA_Item_Desc_Bloodwood_Reserve"
+		"item_name"								"#DOTA_Item_Bloodwood_Reserve"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Quiver"
+		"model_player"							"models/items/windrunner/redwoodreserve/redwoodreserve.vmdl"
+	}
+	"4562"
+	{
+		"name"									"Gilded Falcon Wings"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/wingsshoulders2/wingsshoulders2"
+		"item_description"						"#DOTA_Item_Desc_Gilded_Falcon_Wings"
+		"item_name"								"#DOTA_Item_Gilded_Falcon_Wings"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/windrunner/wingsshoulders2/wingsshoulders2.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4568"
+	{
+		"name"									"Bow of the Oyoloe"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/snake_bite/snake_bite"
+		"item_description"						"#DOTA_Item_Desc_Bow_of_the_Oyoloe"
+		"item_name"								"#DOTA_Item_Bow_of_the_Oyoloe"
+		"item_type_name"						"#DOTA_WearableType_Bow"
+		"model_player"							"models/items/windrunner/snake_bite/snake_bite.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"system"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_bot"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_mid"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_top"
+					}
+				}
+			}
+		}
+	}
+	"4598"
+	{
+		"name"									"Sparrowhawk Bow"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/wr_sparrow_bowab/wr_sparrow_bowab"
+		"item_description"						"#DOTA_Item_Desc_Sparrowhawk_Bow"
+		"item_name"								"#DOTA_Item_Sparrowhawk_Bow"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Bow"
+		"model_player"							"models/items/windrunner/wr_sparrow_bowab/wr_sparrow_bowab.vmdl"
+		"particle_folder"						"particles/econ/items/windrunner/windrunner_weapon_sparrowhawk"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"static_attributes"
+		{
+			"custom powershot"
+			{
+				"attribute_class"				"custom_powershot"
+				"value"							"1"
+			}
+			"item set anim"
+			{
+				"attribute_class"				"item_set_anim"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_DIE"
+				"modifier"						"sparrowhawk_bow"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_ATTACK"
+				"modifier"						"sparrowhawk_bow"
+			}
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE"
+				"modifier"						"sparrowhawk_bow"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_CAST_ABILITY_2"
+				"modifier"						"sparrowhawk_bow"
+			}
+			"asset_modifier4"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_OVERRIDE_ABILITY_2"
+				"modifier"						"sparrowhawk_bow"
+			}
+			"asset_modifier5"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE_RARE"
+				"modifier"						"sparrowhawk_bow"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_spell_powershot.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windrunner_weapon_sparrowhawk/windrunner_spell_powershot_sparrowhawk.vpcf"
+			}
+			"asset_modifier7"
+			{
+				"type"							"sound"
+				"asset"							"Ability.PowershotPull"
+				"modifier"						"Ability.PowershotPull.Sparrowhawk"
+			}
+			"asset_modifier8"
+			{
+				"type"							"sound"
+				"asset"							"Ability.Powershot"
+				"modifier"						"Ability.Powershot.Alt"
+			}
+			"asset_modifier9"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"system"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_bot"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_mid"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_top"
+					}
+				}
+			}
+		}
+	}
+	"4601"
+	{
+		"name"									"Sparrowhawk Cape"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/sparrowhawk_cape/sparrowhawk_cape"
+		"item_description"						"#DOTA_Item_Desc_Sparrowhawk_Cape"
+		"item_name"								"#DOTA_Item_Sparrowhawk_Cape"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/windrunner/sparrowhawk_cape/sparrowhawk_cape.vmdl"
+		"particle_folder"						"particles/econ/items/windrunner/windrunner_cape_sparrowhawk"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"static_attributes"
+		{
+			"item set anim"
+			{
+				"attribute_class"				"item_set_anim"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_RUN"
+				"modifier"						"sparrowhawk_cape"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_DIE"
+				"modifier"						"sparrowhawk_cape"
+			}
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_CAST_ABILITY_1"
+				"modifier"						"sparrowhawk_cape"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE_RARE"
+				"modifier"						"sparrowhawk_cape"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_windrun.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windrunner_cape_sparrowhawk/windrunner_windrun_sparrowhawk.vpcf"
+			}
+		}
+	}
+	"4603"
+	{
+		"name"									"Sparrowhawk Hood"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/sparrowhawk_hood2/sparrowhawk_hood2"
+		"item_description"						"#DOTA_Item_Desc_Sparrowhawk_Hood"
+		"item_name"								"#DOTA_Item_Sparrowhawk_Hood"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hood"
+		"model_player"							"models/items/windrunner/sparrowhawk_hood2/sparrowhawk_hood2.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"static_attributes"
+		{
+			"item set anim"
+			{
+				"attribute_class"				"item_set_anim"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_DIE"
+				"modifier"						"sparrowhawk_hood"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_CAST_ABILITY_1"
+				"modifier"						"sparrowhawk_hood"
+			}
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_RUN"
+				"modifier"						"sparrowhawk_hood"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE_RARE"
+				"modifier"						"sparrowhawk_hood"
+			}
+		}
+	}
+	"4607"
+	{
+		"name"									"Sparrowhawk Wings"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/sparrowhawk_shoulder/sparrowhawk_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Sparrowhawk_Wings"
+		"item_name"								"#DOTA_Item_Sparrowhawk_Wings"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/windrunner/sparrowhawk_shoulder/sparrowhawk_shoulder.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"static_attributes"
+		{
+			"item set anim"
+			{
+				"attribute_class"				"item_set_anim"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_DIE"
+				"modifier"						"sparrowhawk_shoulder"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_RUN"
+				"modifier"						"sparrowhawk_shoulder"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE_RARE"
+				"modifier"						"sparrowhawk_shoulder"
+			}
+		}
+	}
+	"4619"
+	{
+		"name"									"Sparrowhawk Quiver"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/sparrowhawk_quiver/sparrowhawk_quiver"
+		"item_description"						"#DOTA_Item_Desc_Sparrowhawk_Quiver"
+		"item_name"								"#DOTA_Item_Sparrowhawk_Quiver"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Quiver"
+		"model_player"							"models/items/windrunner/sparrowhawk_quiver/sparrowhawk_quiver.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"static_attributes"
+		{
+			"item set anim"
+			{
+				"attribute_class"				"item_set_anim"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_DIE"
+				"modifier"						"sparrowhawk_quiver"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE"
+				"modifier"						"sparrowhawk_quiver"
+			}
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_ATTACK"
+				"modifier"						"sparrowhawk_quiver"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE_RARE"
+				"modifier"						"sparrowhawk_quiver"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"4831"
+	{
+		"name"									"Featherfall Quiver"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/anuxi_featherfall_quiver/anuxi_featherfall_quiver"
+		"item_description"						"#DOTA_Item_Desc_Featherfall_Quiver"
+		"item_name"								"#DOTA_Item_Featherfall_Quiver"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Quiver"
+		"model_player"							"models/items/windrunner/anuxi_featherfall_quiver/anuxi_featherfall_quiver.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"4832"
+	{
+		"name"									"Featherfall Spaulders"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/anuxi_featherfall_pauldrons/anuxi_featherfall_pauldrons"
+		"item_description"						"#DOTA_Item_Desc_Featherfall_Spaulders"
+		"item_name"								"#DOTA_Item_Featherfall_Spaulders"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Spaulders"
+		"model_player"							"models/items/windrunner/anuxi_featherfall_pauldrons/anuxi_featherfall_pauldrons.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4833"
+	{
+		"name"									"Featherfall Locks"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/anuxi_featherfall_hair/anuxi_featherfall_hair"
+		"item_description"						"#DOTA_Item_Desc_Featherfall_Locks"
+		"item_name"								"#DOTA_Item_Featherfall_Locks"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/windrunner/anuxi_featherfall_hair/anuxi_featherfall_hair.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4834"
+	{
+		"name"									"Featherfall Cloak"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/anuxi_featherfall_cape/anuxi_featherfall_cape"
+		"item_description"						"#DOTA_Item_Desc_Featherfall_Cloak"
+		"item_name"								"#DOTA_Item_Featherfall_Cloak"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cloak"
+		"model_player"							"models/items/windrunner/anuxi_featherfall_cape/anuxi_featherfall_cape.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"4835"
+	{
+		"name"									"Featherfall Bow"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/anuxi_featherfall_bow/anuxi_featherfall_bow"
+		"item_description"						"#DOTA_Item_Desc_Featherfall_Bow"
+		"item_name"								"#DOTA_Item_Featherfall_Bow"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Bow"
+		"model_player"							"models/items/windrunner/anuxi_featherfall_bow/anuxi_featherfall_bow.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"system"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_bot"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_mid"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_top"
+					}
+				}
+			}
+		}
+	}
+	"5278"
+	{
+		"name"									"Cloak of the Northern Wind"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-19"
+		"image_inventory"						"econ/items/windrunner/cloak_of_the_northern_wind/cloak_of_the_northern_wind"
+		"item_description"						"#DOTA_Item_Desc_Cloak_of_the_Northern_Wind"
+		"item_name"								"#DOTA_Item_Cloak_of_the_Northern_Wind"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cloak"
+		"model_player"							"models/items/windrunner/cloak_of_the_northern_wind/cloak_of_the_northern_wind.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5279"
+	{
+		"name"									"Arc of the Northern Wind"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-19"
+		"image_inventory"						"econ/items/windrunner/arc_of_the_northern_wind/arc_of_the_northern_wind"
+		"item_description"						"#DOTA_Item_Desc_Arc_of_the_Northern_Wind"
+		"item_name"								"#DOTA_Item_Arc_of_the_Northern_Wind"
+		"item_type_name"						"#DOTA_WearableType_Bow"
+		"model_player"							"models/items/windrunner/arc_of_the_northern_wind/arc_of_the_northern_wind.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"system"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_bot"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_mid"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_top"
+					}
+				}
+			}
+		}
+	}
+	"5280"
+	{
+		"name"									"Pauldrons of the Northern Wind"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-19"
+		"image_inventory"						"econ/items/windrunner/pauldrons_of_the_northern_wind/pauldrons_of_the_northern_wind"
+		"item_description"						"#DOTA_Item_Desc_Pauldrons_of_the_Northern_Wind"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Northern_Wind"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldron"
+		"model_player"							"models/items/windrunner/pauldrons_of_the_northern_wind/pauldrons_of_the_northern_wind.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5281"
+	{
+		"name"									"Quiver of the Northern Wind"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-19"
+		"image_inventory"						"econ/items/windrunner/quiver_of_the_northern_wind/quiver_of_the_northern_wind"
+		"item_description"						"#DOTA_Item_Desc_Quiver_of_the_Northern_Wind"
+		"item_name"								"#DOTA_Item_Quiver_of_the_Northern_Wind"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Quiver"
+		"model_player"							"models/items/windrunner/quiver_of_the_northern_wind/quiver_of_the_northern_wind.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5282"
+	{
+		"name"									"Circlet of the Northern Wind"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-19"
+		"image_inventory"						"econ/items/windrunner/circlet_of_the_northern_wind/circlet_of_the_northern_wind"
+		"item_description"						"#DOTA_Item_Desc_Circlet_of_the_Northern_Wind"
+		"item_name"								"#DOTA_Item_Circlet_of_the_Northern_Wind"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Headpiece"
+		"model_player"							"models/items/windrunner/circlet_of_the_northern_wind/circlet_of_the_northern_wind.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5390"
+	{
+		"name"									"Mistral Braid"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-10"
+		"image_inventory"						"econ/items/windrunner/mistral_braid/mistral_braid"
+		"item_description"						"#DOTA_Item_Desc_Mistral_Braid"
+		"item_name"								"#DOTA_Item_Mistral_Braid"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Headband"
+		"model_player"							"models/items/windrunner/mistral_braid/mistral_braid.vmdl"
+	}
+	"5580"
+	{
+		"name"									"Windweave Headband"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-09"
+		"image_inventory"						"econ/items/windrunner/windweave_headband/windweave_headband"
+		"item_description"						"#DOTA_Item_Desc_Windweave_Headband"
+		"item_name"								"#DOTA_Item_Windweave_Headband"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Headband"
+		"model_player"							"models/items/windrunner/windweave_headband/windweave_headband.vmdl"
+	}
+	"5674"
+	{
+		"name"									"Raider's Patch"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-09"
+		"image_inventory"						"econ/items/windrunner/hair_rogue/hair_rogue"
+		"item_name"								"#DOTA_Item_Raiders_Patch"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Bandage"
+		"model_player"							"models/items/windrunner/hair_rogue/hair_rogue.vmdl"
+	}
+	"5836"
+	{
+		"name"									"Iguana's Quiver"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-16"
+		"image_inventory"						"econ/items/windrunner/iguanas__quiver/iguanas__quiver"
+		"item_name"								"#DOTA_Item_Iguanas_Quiver"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Quiver"
+		"model_player"							"models/items/windrunner/iguanas__quiver/iguanas__quiver.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5838"
+	{
+		"name"									"Iguana's Bow"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-16"
+		"image_inventory"						"econ/items/windrunner/iguanas_bow_quiver_v/iguanas_bow_quiver_v"
+		"item_name"								"#DOTA_Item_Iguanas_Bow"
+		"item_type_name"						"#DOTA_WearableType_Bow"
+		"model_player"							"models/items/windrunner/iguanas_bow_quiver_v/iguanas_bow_quiver_v.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"system"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_bot"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_mid"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_top"
+					}
+				}
+			}
+		}
+	}
+	"5852"
+	{
+		"name"									"Style of the Grove"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-16"
+		"image_inventory"						"econ/items/windrunner/style_of_the_grove/style_of_the_grove"
+		"item_name"								"#DOTA_Item_Style_of_the_Grove"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/windrunner/style_of_the_grove/style_of_the_grove.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"6037"
+	{
+		"name"									"Quiver of the Wild Wind"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-23"
+		"image_inventory"						"econ/items/windrunner/wild_wind_quiver/wild_wind_quiver"
+		"item_name"								"#DOTA_Item_Quiver_of_the_Wild_Wind"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Quiver"
+		"model_player"							"models/items/windrunner/wild_wind_quiver/wild_wind_quiver.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/24/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"6038"
+	{
+		"name"									"Song of the Wild Wind"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-23"
+		"image_inventory"						"econ/items/windrunner/wild_wind_bow/wild_wind_bow"
+		"item_name"								"#DOTA_Item_Song_of_the_Wild_Wind"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Bow"
+		"model_player"							"models/items/windrunner/wild_wind_bow/wild_wind_bow.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/24/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"system"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_bot"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_mid"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_top"
+					}
+				}
+			}
+		}
+	}
+	"6039"
+	{
+		"name"									"Style of the Wild Wind"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-23"
+		"image_inventory"						"econ/items/windrunner/wild_wind_hair/wild_wind_hair"
+		"item_name"								"#DOTA_Item_Style_of_the_Wild_Wind"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/windrunner/wild_wind_hair/wild_wind_hair.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/24/2014"
+			"price"								"0"
+		}
+	}
+	"6040"
+	{
+		"name"									"Tail of the Wild Wind"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-23"
+		"image_inventory"						"econ/items/windrunner/wild_wind_cape/wild_wind_cape"
+		"item_name"								"#DOTA_Item_Tail_of_the_Wild_Wind"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/windrunner/wild_wind_cape/wild_wind_cape.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/24/2014"
+			"price"								"0"
+		}
+	}
+	"6041"
+	{
+		"name"									"Capelet of the Wild Wind"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-23"
+		"image_inventory"						"econ/items/windrunner/wild_wind_jacket/wild_wind_jacket"
+		"item_name"								"#DOTA_Item_Capelet_of_the_Wild_Wind"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Jacket"
+		"model_player"							"models/items/windrunner/wild_wind_jacket/wild_wind_jacket.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/24/2014"
+			"price"								"0"
+		}
+	}
+	"6687"
+	{
+		"name"									"Sylvan Cascade"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-22"
+		"image_inventory"						"econ/items/windrunner/sylvan_cascade/sylvan_cascade"
+		"item_description"						"#DOTA_Item_Desc_Sylvan_Cascade"
+		"item_name"								"#DOTA_Item_Sylvan_Cascade"
+		"item_rarity"							"immortal"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/windrunner/sylvan_cascade/sylvan_cascade.vmdl"
+		"particle_folder"						"particles/econ/items/windrunner/windrunner_cape_cascade"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2014"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_windrun.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windrunner_cape_cascade/windrunner_windrun_cascade.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_windrun_slow.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windrunner_cape_cascade/windrunner_windrun_slow_cascade.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_windrun_v2.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_windrun_combo_v2.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/windrunner/windrunner_cape_cascade/windrunner_cape_cascade_ambient.vpcf"
+				"system"						"particles/econ/items/windrunner/windrunner_cape_cascade/windrunner_cape_cascade_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_cape"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_windrun.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_windrun_combo.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"6758"
+	{
+		"name"									"Rainmaker"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-21"
+		"image_inventory"						"econ/items/windrunner/rainmaker_bow/rainmaker_bow"
+		"item_description"						"#DOTA_Item_Desc_Rainmaker"
+		"item_name"								"#DOTA_Item_Rainmaker"
+		"item_quality"							"genuine"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Bow"
+		"model_player"							"models/items/windrunner/rainmaker_bow/rainmaker_bow.vmdl"
+		"particle_folder"						"particles/econ/items/windrunner/windrunner_weapon_rainmaker"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_spell_powershot.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windrunner_weapon_rainmaker/windrunner_spell_powershot_rainmaker.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/windrunner/windrunner_weapon_rainmaker/windranger_weapon_rainmaker.vpcf"
+				"system"						"particles/econ/items/windrunner/windrunner_weapon_rainmaker/windranger_weapon_rainmaker.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_bot"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_mid"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_top"
+					}
+				}
+			}
+		}
+	}
+	"6831"
+	{
+		"name"									"Braid of Tranquility"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-24"
+		"image_inventory"						"econ/items/windrunner/tranquility_head/tranquility_head"
+		"item_name"								"#DOTA_Item_Braid_of_Tranquility"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head_"
+		"model_player"							"models/items/windrunner/tranquility_head/tranquility_head.vmdl"
+	}
+	"6835"
+	{
+		"name"									"Bow of Tranquility"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-24"
+		"image_inventory"						"econ/items/windrunner/tranquility_weapon/tranquility_weapon"
+		"item_name"								"#DOTA_Item_Bow_of_Tranquility"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Bow"
+		"model_player"							"models/items/windrunner/tranquility_weapon/tranquility_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"system"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_bot"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_mid"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_top"
+					}
+				}
+			}
+		}
+	}
+	"6836"
+	{
+		"name"									"Cloak of Tranquility"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-24"
+		"image_inventory"						"econ/items/windrunner/tranquility_back/tranquility_back"
+		"item_name"								"#DOTA_Item_Cloak_of_Tranquility"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cloak"
+		"model_player"							"models/items/windrunner/tranquility_back/tranquility_back.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"6837"
+	{
+		"name"									"Quiver of Tranquility"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-24"
+		"image_inventory"						"econ/items/windrunner/tranquility_quiver/tranquility_quiver"
+		"item_name"								"#DOTA_Item_Quiver_of_Tranquility"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Quiver"
+		"model_player"							"models/items/windrunner/tranquility_quiver/tranquility_quiver.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"6838"
+	{
+		"name"									"Sentry of Tranquility"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-24"
+		"image_inventory"						"econ/items/windrunner/tranquility_shoulder/tranquility_shoulder"
+		"item_name"								"#DOTA_Item_Sentry_of_Tranquility"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldron"
+		"model_player"							"models/items/windrunner/tranquility_shoulder/tranquility_shoulder.vmdl"
+	}
+	"7668"
+	{
+		"name"									"Taunt: You Prefer Arrows?"
+		"prefab"								"taunt"
+		"creation_date"							"2016-04-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/taunts/taunt_icon_windrunner_blow_a_kiss"
+		"item_description"						"#DOTA_Item_Desc_Taunt_You_Prefer_Arrows"
+		"item_name"								"#DOTA_Item_Taunt_You_Prefer_Arrows"
+		"item_rarity"							"immortal"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1471158000"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"blowkiss_gesture"
+				"style"							"0"
+				"gesture"						"1"
+			}
+		}
+	}
+	"7923"
+	{
+		"name"									"Cloak of the Battleranger"
+		"prefab"								"wearable"
+		"creation_date"							"2016-05-06"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/windrunner/ti6_windranger_back/ti6_windranger_back"
+		"item_description"						"#DOTA_Item_Desc_Cloak_of_the_Battleranger"
+		"item_name"								"#DOTA_Item_Cloak_of_the_Battleranger"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/windrunner/ti6_windranger_back/ti6_windranger_back.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Cloak_of_the_Battleranger_0"
+					"skin"						"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Cloak_of_the_Battleranger_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17046"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/windrunner/ti6_windranger_back/ti6_windranger_back"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/windrunner/ti6_windranger_back/ti6_windranger_back_style1"
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"7924"
+	{
+		"name"									"Style of the Battleranger"
+		"prefab"								"wearable"
+		"creation_date"							"2016-05-06"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/windrunner/ti6_windranger_head/ti6_windranger_head"
+		"item_description"						"#DOTA_Item_Desc_Style_of_the_Battleranger"
+		"item_name"								"#DOTA_Item_Style_of_the_Battleranger"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/windrunner/ti6_windranger_head/ti6_windranger_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Style_of_the_Battleranger_0"
+					"skin"						"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Style_of_the_Battleranger_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17046"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/windrunner/ti6_windranger_head/ti6_windranger_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/windrunner/ti6_windranger_head/ti6_windranger_head_style1"
+				}
+			}
+		}
+	}
+	"7925"
+	{
+		"name"									"Quiver of the Battleranger"
+		"prefab"								"wearable"
+		"creation_date"							"2016-05-06"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/windrunner/ti6_windranger_offhand/ti6_windranger_offhand"
+		"item_description"						"#DOTA_Item_Desc_Quiver_of_the_Battleranger"
+		"item_name"								"#DOTA_Item_Quiver_of_the_Battleranger"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/windrunner/ti6_windranger_offhand/ti6_windranger_offhand.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Quiver_of_the_Battleranger_0"
+					"skin"						"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Quiver_of_the_Battleranger_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17046"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/windrunner/ti6_windranger_offhand/ti6_windranger_offhand"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/windrunner/ti6_windranger_offhand/ti6_windranger_offhand_style1"
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"7926"
+	{
+		"name"									"Pauldrons of the Battleranger"
+		"prefab"								"wearable"
+		"creation_date"							"2016-05-06"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/windrunner/ti6_windranger_shoulder/ti6_windranger_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Pauldrons_of_the_Battleranger"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Battleranger"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/windrunner/ti6_windranger_shoulder/ti6_windranger_shoulder.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti6"
+				"style"							"0"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Pauldrons_of_the_Battleranger_0"
+					"skin"						"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Pauldrons_of_the_Battleranger_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17046"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti6"
+				"style"							"1"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/windrunner/ti6_windranger_shoulder/ti6_windranger_shoulder"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/windrunner/ti6_windranger_shoulder/ti6_windranger_shoulder_style1"
+				}
+			}
+		}
+	}
+	"7927"
+	{
+		"name"									"Bow of the Battleranger"
+		"prefab"								"wearable"
+		"creation_date"							"2016-05-06"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/windrunner/ti6_windranger_weapon/ti6_windranger_weapon"
+		"item_description"						"#DOTA_Item_Desc_Bow_of_the_Battleranger"
+		"item_name"								"#DOTA_Item_Bow_of_the_Battleranger"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/windrunner/ti6_windranger_weapon/ti6_windranger_weapon.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"modifier"						"particles/econ/items/windrunner/windrunner_battleranger/windrunner_battleranger_bowstring_ambient.vpcf"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/windrunner/windrunner_battleranger/windrunner_battleranger_bow_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/windrunner/windrunner_battleranger/windrunner_battleranger_bow_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_bow"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/windrunner/windrunner_battleranger/windrunner_battleranger_bow_ambient_v2.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/windrunner/windrunner_battleranger/windrunner_battleranger_bow_ambient_v2.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_bow"
+					}
+				}
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"modifier"						"particles/econ/items/windrunner/windrunner_battleranger/windrunner_battleranger_bowstring_ambient.vpcf"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"style"							"1"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Bow_of_the_Battleranger_0"
+					"skin"						"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Bow_of_the_Battleranger_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17046"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/windrunner/ti6_windranger_weapon/ti6_windranger_weapon"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/windrunner/ti6_windranger_weapon/ti6_windranger_weapon_style1"
+				}
+			}
+			"asset_modifier31"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"style"							"0"
+				"system"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_bot"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_mid"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_top"
+					}
+				}
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"style"							"1"
+				"system"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_bot"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_mid"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_top"
+					}
+				}
+			}
+		}
+	}
+	"7978"
+	{
+		"name"									"Peregrine Flight"
+		"prefab"								"wearable"
+		"creation_date"							"2016-06-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/windrunner/ti6_falcon_bow/ti6_falcon_bow_model"
+		"item_description"						"#DOTA_Item_Desc_Peregrine_Flight"
+		"item_name"								"#DOTA_Item_Peregrine_Flight"
+		"item_rarity"							"immortal"
+		"model_player"							"models/items/windrunner/ti6_falcon_bow/ti6_falcon_bow_model.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"falcon"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_powershot_channel_v2.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_powershot_channel_combo_v2.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_spell_powershot.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_spell_powershot_combo.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_spell_powershot_v2.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_spell_powershot_combo.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier4"
+			{
+				"type"							"sound"
+				"asset"							"Ability.Powershot"
+				"modifier"						"Hero_Windrunner.Powershot.FalconBow"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/windrunner/windrunner_ti6/windrunner_falcon_bow_ti6_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/windrunner/windrunner_ti6/windrunner_falcon_bow_ti6_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_mid1"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_fx_top"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_fx_bot"
+					}
+				}
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windrunner_ti6/windrunner_falcon_bowstring.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier7"
+			{
+				"type"							"ability_icon"
+				"asset"							"windrunner_powershot"
+				"modifier"						"windrunner/peregrine_flight/windrunner_powershot"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_powershot_dmg.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windrunner_ti6/windrunner_ti6_powershot_dmg.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_powershot_channel.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_powershot_channel_combo.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+		}
+	}
+	"8252"
+	{
+		"name"									"Featherswing Hair"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/windrunner/deadly_feather_swing_head/deadly_feather_swing_head"
+		"item_name"								"#DOTA_Item_Featherswing_Hair"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/windrunner/deadly_feather_swing_head/deadly_feather_swing_head.vmdl"
+	}
+	"8254"
+	{
+		"name"									"Deadly Featherswing"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/windrunner/deadly_feather_swing_weapon/deadly_feather_swing_weapon"
+		"item_name"								"#DOTA_Item_Deadly_Featherswing"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Bow"
+		"model_player"							"models/items/windrunner/deadly_feather_swing_weapon/deadly_feather_swing_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"system"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_bot"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_mid"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_top"
+					}
+				}
+			}
+		}
+	}
+	"8257"
+	{
+		"name"									"Featherswing Cape"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/windrunner/deadly_feather_swing_back/deadly_feather_swing_back"
+		"item_name"								"#DOTA_Item_Featherswing_Cape"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/windrunner/deadly_feather_swing_back/deadly_feather_swing_back.vmdl"
+	}
+	"8261"
+	{
+		"name"									"Featherswing Quiver"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/windrunner/deadly_feather_swing_offhand/deadly_feather_swing_offhand"
+		"item_name"								"#DOTA_Item_Featherswing_Quiver"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Quiver"
+		"model_player"							"models/items/windrunner/deadly_feather_swing_offhand/deadly_feather_swing_offhand.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"8263"
+	{
+		"name"									"Featherswing Pauldron"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/windrunner/deadly_feather_swing_shoulder/deadly_feather_swing_shoulder"
+		"item_name"								"#DOTA_Item_Featherswing_Pauldron"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldron"
+		"model_player"							"models/items/windrunner/deadly_feather_swing_shoulder/deadly_feather_swing_shoulder.vmdl"
+	}
+	"8581"
+	{
+		"name"									"Falconside"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/armaments_of_the_wind_weapon/armaments_of_the_wind_weapon"
+		"item_name"								"#DOTA_Item_Falconside"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Bow"
+		"model_player"							"models/items/windrunner/armaments_of_the_wind_weapon/armaments_of_the_wind_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"system"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_bot"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_mid"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_top"
+					}
+				}
+			}
+		}
+	}
+	"8582"
+	{
+		"name"									"Pauldrons of Falconside Armor"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/armaments_of_the_wind_shoulder/armaments_of_the_wind_shoulder"
+		"item_name"								"#DOTA_Item_Pauldrons_of_Falconside_Armor"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/windrunner/armaments_of_the_wind_shoulder/armaments_of_the_wind_shoulder.vmdl"
+	}
+	"8583"
+	{
+		"name"									"Cape of Falconside Armor"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/armaments_of_the_wind_back/armaments_of_the_wind_back"
+		"item_name"								"#DOTA_Item_Cape_of_Falconside_Armor"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/windrunner/armaments_of_the_wind_back/armaments_of_the_wind_back.vmdl"
+	}
+	"8584"
+	{
+		"name"									"Tiara of Falconside Armor"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/armaments_of_the_wind_head/armaments_of_the_wind_head"
+		"item_name"								"#DOTA_Item_Tiara_of_Falconside_Armor"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Tiara"
+		"model_player"							"models/items/windrunner/armaments_of_the_wind_head/armaments_of_the_wind_head.vmdl"
+	}
+	"8585"
+	{
+		"name"									"Quiver of Falconside Armor"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/windrunner/armaments_of_the_wind_offhand/armaments_of_the_wind_offhand"
+		"item_name"								"#DOTA_Item_Quiver_of_Falconside_Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Quiver"
+		"model_player"							"models/items/windrunner/armaments_of_the_wind_offhand/armaments_of_the_wind_offhand.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"8911"
+	{
+		"name"									"Tricorn of the Roving Pathfinder"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/windrunner/the_swift_pathfinder_swift_pathfinders_hat_v2/the_swift_pathfinder_swift_pathfinders_hat_v2"
+		"item_name"								"#DOTA_Item_Tricorn_of_the_Roving_Pathfinder"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/windrunner/the_swift_pathfinder_swift_pathfinders_hat_v2/the_swift_pathfinder_swift_pathfinders_hat_v2.vmdl"
+	}
+	"8912"
+	{
+		"name"									"Scarf of the Roving Pathfinder"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/windrunner/the_swift_pathfinder_swift_pathfinders_cape/the_swift_pathfinder_swift_pathfinders_cape"
+		"item_name"								"#DOTA_Item_Scarf_of_the_Roving_Pathfinder"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/windrunner/the_swift_pathfinder_swift_pathfinders_cape/the_swift_pathfinder_swift_pathfinders_cape.vmdl"
+	}
+	"8917"
+	{
+		"name"									"Quiver of the Roving Pathfinder"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/windrunner/the_swift_pathfinder_swift_pathfinders_quiver/the_swift_pathfinder_swift_pathfinders_quiver"
+		"item_name"								"#DOTA_Item_Quiver_of_the_Roving_Pathfinder"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/windrunner/the_swift_pathfinder_swift_pathfinders_quiver/the_swift_pathfinder_swift_pathfinders_quiver.vmdl"
+	}
+	"8921"
+	{
+		"name"									"Mantle of the Roving Pathfinder"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/windrunner/the_swift_pathfinder_swift_pathfinders_coat/the_swift_pathfinder_swift_pathfinders_coat"
+		"item_name"								"#DOTA_Item_Mantle_of_the_Roving_Pathfinder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/windrunner/the_swift_pathfinder_swift_pathfinders_coat/the_swift_pathfinder_swift_pathfinders_coat.vmdl"
+	}
+	"8922"
+	{
+		"name"									"Longbow of the Roving Pathfinder"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/windrunner/the_swift_pathfinder_swift_pathfinders_bow/the_swift_pathfinder_swift_pathfinders_bow"
+		"item_name"								"#DOTA_Item_Longbow_of_the_Roving_Pathfinder"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/windrunner/the_swift_pathfinder_swift_pathfinders_bow/the_swift_pathfinder_swift_pathfinders_bow.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"system"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_bot"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_mid"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_top"
+					}
+				}
+			}
+		}
+	}
+	"8961"
+	{
+		"name"									"Flowersong Breeze"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-02"
+		"image_inventory"						"econ/items/windrunner/orchid_flowersong_back/orchid_flowersong_back"
+		"item_name"								"#DOTA_Item_Flowersong_Breeze"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/windrunner/orchid_flowersong_back/orchid_flowersong_back.vmdl"
+	}
+	"8962"
+	{
+		"name"									"Flowersong Beauty"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-02"
+		"image_inventory"						"econ/items/windrunner/orchid_flowersong_head/orchid_flowersong_head"
+		"item_name"								"#DOTA_Item_Flowersong_Beauty"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/windrunner/orchid_flowersong_head/orchid_flowersong_head.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/windrunner/orchid_flowersong_head/orchid_flowersong_head.vmdl"
+					"name"						"#DOTA_Item_Flowersong_Beauty_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/windrunner/orchid_flowersong_headalt/orchid_flowersong_headalt.vmdl"
+					"name"						"#DOTA_Item_Flowersong_Beauty_Style1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/windrunner/orchid_flowersong_head/orchid_flowersong_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/windrunner/orchid_flowersong_headalt/orchid_flowersong_headalt"
+				}
+			}
+		}
+	}
+	"8964"
+	{
+		"name"									"Flowersong Thorns"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-02"
+		"image_inventory"						"econ/items/windrunner/orchid_flowersong_offhand/orchid_flowersong_offhand"
+		"item_name"								"#DOTA_Item_Flowersong_Thorns"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Quiver"
+		"model_player"							"models/items/windrunner/orchid_flowersong_offhand/orchid_flowersong_offhand.vmdl"
+	}
+	"8965"
+	{
+		"name"									"Flowersong Guard"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-02"
+		"image_inventory"						"econ/items/windrunner/orchid_flowersong_shoulder/orchid_flowersong_shoulder"
+		"item_name"								"#DOTA_Item_Flowersong_Guard"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Guard"
+		"model_player"							"models/items/windrunner/orchid_flowersong_shoulder/orchid_flowersong_shoulder.vmdl"
+	}
+	"8966"
+	{
+		"name"									"Flowersong"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-02"
+		"image_inventory"						"econ/items/windrunner/orchid_flowersong_weapon/orchid_flowersong_weapon"
+		"item_name"								"#DOTA_Item_Flowersong"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Bow"
+		"model_player"							"models/items/windrunner/orchid_flowersong_weapon/orchid_flowersong_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"system"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_bot"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_mid"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_top"
+					}
+				}
+			}
+		}
+	}
+	"12326"
+	{
+		"name"									"Sylvan Vedette"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-05"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/windrunner/windranger_ti8_immortal_shoulders/windranger_ti8_immortal_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Sylvan_Vedette"
+		"item_name"								"#DOTA_Item_Sylvan_Vedette"
+		"item_rarity"							"immortal"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/windrunner/windranger_ti8_immortal_shoulders/windranger_ti8_immortal_shoulders.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1535682268"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"modifier"						"ti8"
+				"asset"							"ALL"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_shackleshot.vpcf"
+				"modifier"						"particles/econ/items/windrunner/wr_ti8_immortal_shoulder/wr_ti8_shackleshot.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_shackleshot_pair_tree.vpcf"
+				"modifier"						"particles/econ/items/windrunner/wr_ti8_immortal_shoulder/wr_ti8_shackleshot_pair_tree.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_shackleshot_pair.vpcf"
+				"modifier"						"particles/econ/items/windrunner/wr_ti8_immortal_shoulder/wr_ti8_shackleshot_pair.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_shackleshot_single.vpcf"
+				"modifier"						"particles/econ/items/windrunner/wr_ti8_immortal_shoulder/wr_ti8_shackleshot_single.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier5"
+			{
+				"type"							"ability_icon"
+				"asset"							"windrunner_shackleshot"
+				"modifier"						"windrunner_shackleshot_ti8immortal"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier6"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Windrunner.ShackleshotBind"
+				"modifier"						"Hero_Windrunner.ShackleshotBind.TI8"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier7"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Windrunner.ShackleshotStun"
+				"modifier"						"Hero_Windrunner.ShackleshotStun.TI8"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/windrunner/wr_ti8_immortal_shoulder/wr_ti8_ambients.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier9"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_shackleshot.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/wr_ti8_shackleshot_combo.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier10"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_shackleshot_v2.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/wr_ti8_shackleshot_combo_v2.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier11"
+			{
+				"type"							"particle_control_point"
+				"asset"							"particles/econ/items/windrunner/wr_ti8_immortal_shoulder/wr_ti8_ambients.vpcf"
+				"control_point_number"			"16"
+				"cp_position"					"255 220 35"
+				"style"							"0"
+			}
+		}
+	}
+	"13804"
+	{
+		"name"									"Cape of the Rising Gale"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-04"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/windrunner/windrunner_arcana/wr_arcana_cape"
+		"item_description"						"#DOTA_Item_Desc_Cape_of_the_Rising_Gale"
+		"item_name"								"#DOTA_Item_Cape_of_the_Rising_Gale"
+		"item_rarity"							"arcana"
+		"item_slot"								"back"
+		"model_player"							"models/items/windrunner/windrunner_arcana/wr_arcana_cape.vmdl"
+		"static_attributes"
+		{
+			"giftable"							"0"
+			"cannot trade"						"1"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"13805"
+	{
+		"name"									"Longbow of the Rising Gale"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-04"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/windrunner/windrunner_arcana/wr_arcana_weapon"
+		"item_description"						"#DOTA_Item_Desc_Windranger_Arcana_Weapon"
+		"item_name"								"#DOTA_Item_Longbow_of_the_Rising_Gale"
+		"item_rarity"							"arcana"
+		"model_player"							"models/items/windrunner/windrunner_arcana/wr_arcana_weapon.vmdl"
+		"static_attributes"
+		{
+			"giftable"							"0"
+			"cannot trade"						"1"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_bowstring_ambient.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_bow_ambient.vpcf"
+			}
+		}
+	}
+	"13806"
+	{
+		"name"									"Compass of the Rising Gale"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-04"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/windrunner/windrunner_arcana/wr_arcana_head"
+		"item_description"						"#DOTA_Item_Desc_Windranger_Arcana_Head"
+		"item_name"								"#DOTA_Item_Compass_of_the_Rising_Gale"
+		"item_rarity"							"arcana"
+		"item_slot"								"head"
+		"model_player"							"models/items/windrunner/windrunner_arcana/wr_arcana_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"						"1"
+			"giftable"							"0"
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Windrunner_Arcana_Style0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Windrunner_Arcana_Style1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"gem"
+						{
+							"def_index"			"3034"
+							"type_field"		"strange_type"
+							"type_value"		"816"
+							"unlock_field"		"strange_value"
+							"unlock_value"		"2500000"
+						}
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"model_skin"
+				"style"							"0"
+				"skin"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"model_skin"
+				"style"							"1"
+				"skin"							"1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"custom_kill_effect"
+				"asset"							"kill"
+				"modifier"						"modifier_windrunner_arcana_kill_effect"
+			}
+			"asset_modifier3"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_hero_windrunner"
+				"modifier"						"models/items/windrunner/windrunner_arcana/wr_arcana_base.vmdl"
+			}
+			"asset_modifier4"
+			{
+				"type"							"arcana_level"
+				"level"							"1"
+				"style"							"0"
+			}
+			"asset_modifier5"
+			{
+				"type"							"arcana_level"
+				"level"							"2"
+				"style"							"1"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier6"
+			{
+				"type"							"default_idle_expression"
+				"asset"							"scenes/windrunner/windrunner_exp_idle_01.vcd"
+				"modifier"						"scenes/windrunner/windrunner_wr_arc_exp_idle_01.vcd"
+			}
+			"asset_modifier7"
+			{
+				"type"							"buff_modifier"
+				"modifier"						"modifier_windrunner_arcana"
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_loadout.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_loadout.vpcf"
+			}
+			"asset_modifier9"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_focusfire_attack.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_focusfire_attack.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier10"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_focusfire_attack.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_focusfire_attack_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier11"
+			{
+				"type"							"particle"
+				"asset"							"particles/items5_fx/javelin_tgt.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_javelin_tgt.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier12"
+			{
+				"type"							"particle"
+				"asset"							"particles/items5_fx/javelin_tgt.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_javelin_tgt_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier13"
+			{
+				"type"							"particle"
+				"asset"							"particles/items5_fx/monkey_king_bar_tgt.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_monkey_king_bar_tgt.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier14"
+			{
+				"type"							"particle"
+				"asset"							"particles/items5_fx/monkey_king_bar_tgt.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_monkey_king_bar_tgt_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier15"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_focusfire_start.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_focusfire_start.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier16"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_focusfire_start.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_focusfire_start_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier17"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_focusfire.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_focusfire.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier18"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_focusfire.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_focusfire_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier19"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_base_attack.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_base_attack.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier20"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_base_attack.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_base_attack_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier21"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier22"
+			{
+				"type"							"particle"
+				"asset"							"particles/items_fx/cyclone.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_item_cyclone.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier23"
+			{
+				"type"							"particle"
+				"asset"							"particles/items_fx/cyclone.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_item_cyclone_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier24"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_tgt_death.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_tgt_death.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier25"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_tgt_death.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_tgt_death_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier26"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"arcana"
+			}
+			"asset_modifier27"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_windrun.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_windrun.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier28"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_windrun.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_windrun_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier29"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/windrunner/windrunner_cape_cascade/windrunner_windrun_cascade.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_windrun_combo.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier30"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/windrunner/windrunner_cape_cascade/windrunner_windrun_cascade.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_windrun_combo_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier31"
+			{
+				"type"							"particle"
+				"asset"							"particles/items_fx/force_staff.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_item_force_staff.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier32"
+			{
+				"type"							"particle"
+				"asset"							"particles/items_fx/force_staff.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_item_force_staff_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier33"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_death.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_death.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier34"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_death.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_death_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier35"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_spell_powershot_channel.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_powershot_channel.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier36"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_spell_powershot_channel.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_powershot_channel_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier37"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/wr_taunt_kiss_heart.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_taunt_kiss_heart.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier38"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/wr_taunt_kiss_heart.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_taunt_kiss_heart_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier39"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/windrunner/windrunner_ti6/windrunner_spell_powershot_channel_ti6.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_powershot_channel_combo.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier40"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/windrunner/windrunner_ti6/windrunner_spell_powershot_channel_ti6.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_powershot_channel_combo_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier41"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_spell_powershot.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_spell_powershot.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier42"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_spell_powershot.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_spell_powershot_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier43"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/windrunner/windrunner_ti6/windrunner_spell_powershot_ti6.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_spell_powershot_combo.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier44"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/windrunner/windrunner_arcana/wr_arc_legs_scrolling.vmdl"
+			}
+			"asset_modifier45"
+			{
+				"type"							"response_criteria"
+				"asset"							"wind_eth_arc"
+			}
+			"asset_modifier46"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_shackleshot.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_shackleshot.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier47"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_shackleshot.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_shackleshot_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier48"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/windrunner/wr_ti8_immortal_shoulder/wr_ti8_shackleshot.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/wr_ti8_shackleshot_combo.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier49"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/windrunner/wr_ti8_immortal_shoulder/wr_ti8_shackleshot.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/wr_ti8_shackleshot_combo_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier50"
+			{
+				"type"							"model"
+				"asset"							"models/items/windrunner/windranger_ti8_immortal_shoulders/windranger_ti8_immortal_shoulders.vmdl"
+				"modifier"						"models/items/windrunner/windranger_ti8_immortal_shoulders/windranger_ti8_immortal_shoulders_arcana_refit.vmdl"
+			}
+			"asset_modifier51"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_focusfire_hit.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_focusfire_hit.vpcf"
+			}
+			"asset_modifier52"
+			{
+				"type"							"model"
+				"asset"							"models/items/windrunner/ti6_windranger_offhand/ti6_windranger_offhand.vmdl"
+				"modifier"						"models/items/windrunner/ti6_windranger_offhand/ti6_wr_offhand_arcana_refit.vmdl"
+			}
+			"asset_modifier53"
+			{
+				"type"							"icon_replacement_hero_minimap"
+				"asset"							"npc_dota_hero_windrunner"
+				"modifier"						"npc_dota_hero_windrunner_alt1"
+				"style"							"0"
+				"force_display"					"1"
+			}
+			"asset_modifier54"
+			{
+				"type"							"icon_replacement_hero_minimap"
+				"asset"							"npc_dota_hero_windrunner"
+				"modifier"						"npc_dota_hero_windrunner_alt2"
+				"style"							"1"
+				"force_display"					"1"
+			}
+			"asset_modifier55"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_ambient_head.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier56"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_ambient_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier57"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_ambient_head_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier58"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_bowstring_ambient.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_bowstring_ambient_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier59"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_bow_ambient.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_bow_ambient_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier60"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_anim_run_rare.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_anim_run_rare_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier61"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_anim_gesture.vpcf"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_anim_gesture_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier62"
+			{
+				"type"							"sound"
+				"asset"							"Ability.Focusfire"
+				"modifier"						"Ability.Focusfire.Arcana"
+			}
+			"asset_modifier63"
+			{
+				"type"							"sound"
+				"asset"							"Ability.PowershotPull"
+				"modifier"						"Ability.PowershotPull.Arcana"
+			}
+			"asset_modifier64"
+			{
+				"type"							"model"
+				"asset"							"models/items/windrunner/sparrowhawk_quiver/sparrowhawk_quiver.vmdl"
+				"modifier"						"models/items/windrunner/sparrowhawk_quiver/sparrowhawk_quiver_refit.vmdl"
+			}
+			"asset_modifier65"
+			{
+				"type"							"model"
+				"asset"							"models/items/windrunner/barrel_quiver_update/barrel_quiver_update.vmdl"
+				"modifier"						"models/items/windrunner/barrel_quiver_update/barrel_quiver_refit.vmdl"
+			}
+			"asset_modifier66"
+			{
+				"type"							"model"
+				"asset"							"models/items/windrunner/wild_wind_quiver/wild_wind_quiver.vmdl"
+				"modifier"						"models/items/windrunner/wild_wind_quiver/wild_wind_quiver_refit.vmdl"
+			}
+			"asset_modifier67"
+			{
+				"type"							"model"
+				"asset"							"models/items/windrunner/anuxi_featherfall_quiver/anuxi_featherfall_quiver.vmdl"
+				"modifier"						"models/items/windrunner/anuxi_featherfall_quiver/anuxi_featherfall_quiver_refit.vmdl"
+			}
+			"asset_modifier68"
+			{
+				"type"							"model"
+				"asset"							"models/items/windrunner/tranquility_quiver/tranquility_quiver.vmdl"
+				"modifier"						"models/items/windrunner/tranquility_quiver/tranquility_quiver_refit.vmdl"
+			}
+			"asset_modifier69"
+			{
+				"type"							"model"
+				"asset"							"models/items/windrunner/deadly_feather_swing_offhand/deadly_feather_swing_offhand.vmdl"
+				"modifier"						"models/items/windrunner/deadly_feather_swing_offhand/deadly_feather_swing_offhand_refit.vmdl"
+			}
+			"asset_modifier70"
+			{
+				"type"							"model"
+				"asset"							"models/items/windrunner/armaments_of_the_wind_offhand/armaments_of_the_wind_offhand.vmdl"
+				"modifier"						"models/items/windrunner/armaments_of_the_wind_offhand/armaments_of_the_wind_offhand_refit.vmdl"
+			}
+			"asset_modifier71"
+			{
+				"type"							"model"
+				"asset"							"models/items/windrunner/featherquiver21/featherquiver21.vmdl"
+				"modifier"						"models/items/windrunner/featherquiver21/featherquiver21_refit.vmdl"
+			}
+			"asset_modifier72"
+			{
+				"type"							"icon_replacement_hero"
+				"asset"							"npc_dota_hero_windrunner"
+				"modifier"						"npc_dota_hero_windrunner_alt1"
+				"style"							"0"
+				"force_display"					"1"
+			}
+			"asset_modifier73"
+			{
+				"type"							"icon_replacement_hero"
+				"asset"							"npc_dota_hero_windrunner"
+				"modifier"						"npc_dota_hero_windrunner_alt2"
+				"style"							"1"
+				"force_display"					"1"
+			}
+			"asset_modifier74"
+			{
+				"type"							"portrait_background_model"
+				"asset"							"models/items/windrunner/windrunner_arcana/wr_arcana_pedestal.vmdl"
+				"style"							"0"
+				"skin"							"0"
+			}
+			"asset_modifier75"
+			{
+				"type"							"portrait_background_model"
+				"asset"							"models/items/windrunner/windrunner_arcana/wr_arcana_pedestal.vmdl"
+				"style"							"1"
+				"skin"							"1"
+			}
+			"asset_modifier76"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_loadout_butterfly_trail.vpcf"
+				"style"							"0"
+				"spawn_in_loadout_only"			"1"
+			}
+			"asset_modifier77"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_loadout_v2_butterfly_trail.vpcf"
+				"style"							"1"
+				"spawn_in_loadout_only"			"1"
+			}
+			"asset_modifier78"
+			{
+				"type"							"model"
+				"asset"							"models/items/windrunner/wr_spriggan_shoulder_of_spriggan/wr_spriggan_shoulder_of_spriggan.vmdl"
+				"modifier"						"models/items/windrunner/ti6_windranger_shoulder/wr_spriggan_shoulder_of_spriggan_arc_refit.vmdl"
+			}
+			"asset_modifier79"
+			{
+				"type"							"model"
+				"asset"							"models/items/windrunner/ti6_windranger_shoulder/ti6_windranger_shoulder.vmdl"
+				"modifier"						"models/items/windrunner/ti6_windranger_shoulder/ti6_windranger_shoulder_arc_refit.vmdl"
+			}
+			"asset_modifier80"
+			{
+				"type"							"model"
+				"asset"							"models/items/windrunner/windranger_ti8_immortal_shoulders/windranger_ti8_immortal_shoulders.vmdl"
+				"modifier"						"models/items/windrunner/windranger_ti8_immortal_shoulders/windranger_ti8_immortal_shoulders_arcana_refit.vmdl"
+			}
+			"asset_modifier81"
+			{
+				"type"							"ability_icon"
+				"asset"							"windrunner_shackleshot"
+				"modifier"						"windrunner_shackleshot_arcana"
+				"style"							"0"
+				"minimum_priority"				"1"
+			}
+			"asset_modifier82"
+			{
+				"type"							"ability_icon"
+				"asset"							"windrunner_shackleshot"
+				"modifier"						"windrunner_shackleshot_arcana_alt"
+				"style"							"1"
+				"minimum_priority"				"1"
+			}
+			"asset_modifier83"
+			{
+				"type"							"ability_icon"
+				"asset"							"windrunner_powershot"
+				"modifier"						"windrunner_powershot_arcana"
+				"style"							"0"
+				"minimum_priority"				"1"
+			}
+			"asset_modifier84"
+			{
+				"type"							"ability_icon"
+				"asset"							"windrunner_powershot"
+				"modifier"						"windrunner_powershot_arcana_alt"
+				"style"							"1"
+				"minimum_priority"				"1"
+			}
+			"asset_modifier85"
+			{
+				"type"							"ability_icon"
+				"asset"							"windrunner_windrun"
+				"modifier"						"windrunner_windrun_arcana"
+				"style"							"0"
+				"minimum_priority"				"1"
+			}
+			"asset_modifier86"
+			{
+				"type"							"ability_icon"
+				"asset"							"windrunner_windrun"
+				"modifier"						"windrunner_windrun_arcana_alt"
+				"style"							"1"
+				"minimum_priority"				"1"
+			}
+			"asset_modifier87"
+			{
+				"type"							"ability_icon"
+				"asset"							"windrunner_focusfire"
+				"modifier"						"windrunner_focusfire_arcana"
+				"style"							"0"
+				"minimum_priority"				"1"
+			}
+			"asset_modifier88"
+			{
+				"type"							"ability_icon"
+				"asset"							"windrunner_focusfire"
+				"modifier"						"windrunner_focusfire_arcana_alt"
+				"style"							"1"
+				"minimum_priority"				"1"
+			}
+			"asset_modifier89"
+			{
+				"type"							"ability_icon"
+				"asset"							"windrunner_focusfire_cancel"
+				"modifier"						"windrunner_focusfire_cancel_arcana"
+				"style"							"0"
+				"minimum_priority"				"1"
+			}
+			"asset_modifier90"
+			{
+				"type"							"ability_icon"
+				"asset"							"windrunner_focusfire_cancel"
+				"modifier"						"windrunner_focusfire_cancel_arcana_alt"
+				"style"							"1"
+				"minimum_priority"				"1"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/windrunner/windrunner_arcana/wr_arcana_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/windrunner/windrunner_arcana/wr_arcana_head_style1"
+				}
+			}
+			"asset_modifier91"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/windrunner/wr_ti8_immortal_shoulder/wr_ti8_ambients.vpcf"
+				"modifier"						"particles/econ/items/windrunner/wr_ti8_immortal_shoulder/wr_ti8_ambients_arcana_alt.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier92"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/windrunner/wr_ti8_immortal_shoulder/wr_ti8_ambients.vpcf"
+				"modifier"						"particles/econ/items/windrunner/wr_ti8_immortal_shoulder/wr_ti8_ambients_arcana_fall.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier93"
+			{
+				"type"							"inventory_icon"
+				"asset"							"force_staff"
+				"modifier"						"force_staff_wr_arcana"
+				"style"							"0"
+			}
+			"asset_modifier94"
+			{
+				"type"							"inventory_icon"
+				"asset"							"force_staff"
+				"modifier"						"force_staff_wr_arcana_alt"
+				"style"							"1"
+			}
+			"asset_modifier95"
+			{
+				"type"							"inventory_icon"
+				"asset"							"cyclone"
+				"modifier"						"cyclone_wr_arcana"
+				"style"							"0"
+			}
+			"asset_modifier96"
+			{
+				"type"							"inventory_icon"
+				"asset"							"cyclone"
+				"modifier"						"cyclone_wr_arcana_alt"
+				"style"							"1"
+			}
+			"asset_modifier97"
+			{
+				"type"							"model"
+				"asset"							"models/items/windrunner/windrunner_arcana/wr_arcana_shoulder_refit_legacy.vmdl"
+				"modifier"						"models/items/windrunner/windrunner_arcana/wr_arcana_shoulder.vmdl"
+			}
+			"asset_modifier98"
+			{
+				"type"							"model"
+				"asset"							"models/items/windrunner/ti6_windranger_back/ti6_windranger_back.vmdl"
+				"modifier"						"models/items/windrunner/ti6_windranger_back/ti6_windranger_back_refit.vmdl"
+			}
+			"asset_modifier99"
+			{
+				"type"							"model"
+				"asset"							"models/items/windrunner/sylvan_cascade/sylvan_cascade.vmdl"
+				"modifier"						"models/items/windrunner/sylvan_cascade/sylvan_cascade_refit.vmdl"
+			}
+			"asset_modifier100"
+			{
+				"type"							"model"
+				"asset"							"models/items/windrunner/falconcloak/falconcloak.vmdl"
+				"modifier"						"models/items/windrunner/falconcloak/falconcloak_refit.vmdl"
+			}
+			"asset_modifier101"
+			{
+				"type"							"model"
+				"asset"							"models/items/windrunner/anuxi_featherfall_cape/anuxi_featherfall_cape.vmdl"
+				"modifier"						"models/items/windrunner/anuxi_featherfall_cape/anuxi_featherfall_cape_refit.vmdl"
+			}
+			"asset_modifier102"
+			{
+				"type"							"model"
+				"asset"							"models/items/windrunner/tranquility_back/tranquility_back.vmdl"
+				"modifier"						"models/items/windrunner/tranquility_back/tranquility_back_refit.vmdl"
+			}
+			"asset_modifier103"
+			{
+				"type"							"model"
+				"asset"							"models/items/windrunner/dplus_blessings_of_the_aranyani_dress/dplus_blessings_of_the_aranyani_dress.vmdl"
+				"modifier"						"models/items/windrunner/dplus_blessings_of_the_aranyani_dress/dplus_blessings_of_the_aranyani_dress_refit.vmdl"
+			}
+			"asset_modifier104"
+			{
+				"type"							"model"
+				"asset"							"models/items/windrunner/dplus_blessings_of_the_aranyani_quiver/dplus_blessings_of_the_aranyani_quiver.vmdl"
+				"modifier"						"models/items/windrunner/dplus_blessings_of_the_aranyani_quiver/dplus_blessings_of_the_aranyani_quiver_refit.vmdl"
+			}
+			"asset_modifier105"
+			{
+				"type"							"model"
+				"asset"							"models/items/windrunner/_song_of_the_blue_bird_quiver/_song_of_the_blue_bird_quiver.vmdl"
+				"modifier"						"models/items/windrunner/_song_of_the_blue_bird_bow/_song_of_the_blue_bird_bow_refit.vmdl"
+			}
+			"asset_modifier106"
+			{
+				"type"							"model"
+				"asset"							"models/items/windrunner/_song_of_the_blue_bird_back/_song_of_the_blue_bird_back.vmdl"
+				"modifier"						"models/items/windrunner/_song_of_the_blue_bird_back/_song_of_the_blue_bird_back_refit.vmdl"
+			}
+			"asset_modifier107"
+			{
+				"type"							"chatwheel"
+				"asset"							"windrunner_wind_laugh_08"
+				"modifier"						"windrunner_wr_arc_laugh_08"
+			}
+			"asset_modifier108"
+			{
+				"type"							"chatwheel"
+				"asset"							"windrunner_wind_lasthit_04"
+				"modifier"						"windrunner_wr_arc_lasthit_04"
+			}
+			"asset_modifier109"
+			{
+				"type"							"chatwheel"
+				"asset"							"windrunner_wind_deny_06"
+				"modifier"						"windrunner_wr_arc_deny_06"
+			}
+			"asset_modifier110"
+			{
+				"type"							"chatwheel"
+				"asset"							"windrunner_wind_kill_11"
+				"modifier"						"windrunner_wr_arc_kill_11_02"
+			}
+			"asset_modifier111"
+			{
+				"type"							"chatwheel"
+				"asset"							"windrunner_wind_ability_shackleshot_01"
+				"modifier"						"windrunner_wr_arc_ability_shackleshot_01_02"
+			}
+			"asset_modifier112"
+			{
+				"type"							"chatwheel"
+				"asset"							"windrunner_wind_kill_06"
+				"modifier"						"windrunner_wr_arc_wheel_all_01"
+				"label"							"#dota_chatwheel_label_windrunner_arcana_3"
+				"message"						"#dota_chatwheel_message_windrunner_arcana_3"
+			}
+			"asset_modifier113"
+			{
+				"type"							"chatwheel"
+				"asset"							"windrunner_wind_lose_06"
+				"modifier"						"windrunner_wr_arc_wheel_all_07"
+				"label"							"#dota_chatwheel_label_windrunner_arcana_4"
+				"message"						"#dota_chatwheel_message_windrunner_arcana_4"
+			}
+			"asset_modifier114"
+			{
+				"type"							"chatwheel"
+				"asset"							"windrunner_wind_attack_04"
+				"modifier"						"windrunner_wr_arc_wheel_deny_03"
+				"label"							"#dota_chatwheel_label_windrunner_arcana_5"
+				"message"						"#dota_chatwheel_message_windrunner_arcana_5"
+			}
+			"asset_modifier115"
+			{
+				"type"							"chatwheel"
+				"asset"							"windrunner_wind_ability_windrun_01"
+				"modifier"						"windrunner_wr_arc_ability_windrun_01"
+			}
+		}
+	}
+	"13807"
+	{
+		"name"									"Armor of the Rising Gale"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-04"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/windrunner/windrunner_arcana/wr_arcana_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Windranger_Arcana_Shoulder"
+		"item_name"								"#DOTA_Item_Armor_of_the_Rising_Gale"
+		"item_rarity"							"arcana"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/windrunner/windrunner_arcana/wr_arcana_shoulder_refit_legacy.vmdl"
+		"static_attributes"
+		{
+			"giftable"							"0"
+			"cannot trade"						"1"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"13808"
+	{
+		"name"									"Quiver of the Rising Gale"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-04"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/windrunner/windrunner_arcana/wr_arcana_quiver"
+		"item_description"						"#DOTA_Item_Desc_Windranger_Arcana_Quiver"
+		"item_name"								"#DOTA_Item_Quiver_of_the_Rising_Gale"
+		"item_rarity"							"arcana"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/windrunner/windrunner_arcana/wr_arcana_quiver.vmdl"
+		"static_attributes"
+		{
+			"giftable"							"0"
+			"cannot trade"						"1"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"18430"
+	{
+		"name"									"Wings of the Papillion Weald"
+		"prefab"								"wearable"
+		"creation_date"							"2020-11-12"
+		"image_inventory"						"econ/items/windrunner/dplus_blessings_of_the_aranyani_wings/dplus_blessings_of_the_aranyani_wings"
+		"item_name"								"#DOTA_Item_Wings_of_the_Papillion_Weald"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/windrunner/dplus_blessings_of_the_aranyani_wings/dplus_blessings_of_the_aranyani_wings.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"18431"
+	{
+		"name"									"Quiver of the Papillion Weald"
+		"prefab"								"wearable"
+		"creation_date"							"2020-11-12"
+		"image_inventory"						"econ/items/windrunner/dplus_blessings_of_the_aranyani_quiver/dplus_blessings_of_the_aranyani_quiver"
+		"item_name"								"#DOTA_Item_Quiver_of_the_Papillion_Weald"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/windrunner/dplus_blessings_of_the_aranyani_quiver/dplus_blessings_of_the_aranyani_quiver.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"18433"
+	{
+		"name"									"Hair of the Papillion Weald"
+		"prefab"								"wearable"
+		"creation_date"							"2020-11-12"
+		"image_inventory"						"econ/items/windrunner/dplus_blessings_of_the_aranyani_hair/dplus_blessings_of_the_aranyani_hair"
+		"item_name"								"#DOTA_Item_Hair_of_the_Papillion_Weald"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/windrunner/dplus_blessings_of_the_aranyani_hair/dplus_blessings_of_the_aranyani_hair.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"18434"
+	{
+		"name"									"Dress of the Papillion Weald"
+		"prefab"								"wearable"
+		"creation_date"							"2020-11-12"
+		"image_inventory"						"econ/items/windrunner/dplus_blessings_of_the_aranyani_dress/dplus_blessings_of_the_aranyani_dress"
+		"item_name"								"#DOTA_Item_Dress_of_the_Papillion_Weald"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/windrunner/dplus_blessings_of_the_aranyani_dress/dplus_blessings_of_the_aranyani_dress.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"18435"
+	{
+		"name"									"Bow of the Papillion Weald"
+		"prefab"								"wearable"
+		"creation_date"							"2020-11-12"
+		"image_inventory"						"econ/items/windrunner/dplus_blessings_of_the_aranyani_bow/dplus_blessings_of_the_aranyani_bow"
+		"item_name"								"#DOTA_Item_Bow_of_the_Papillion_Weald"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/windrunner/dplus_blessings_of_the_aranyani_bow/dplus_blessings_of_the_aranyani_bow.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"system"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_bot"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_mid"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_top"
+					}
+				}
+			}
+		}
+	}
+	"18716"
+	{
+		"name"									" Song of the Bluebird - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/windrunner/_song_of_the_blue_bird_back/_song_of_the_blue_bird_back"
+		"item_name"								"#DOTA_Item__Song_of_the_Bluebird__Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/windrunner/_song_of_the_blue_bird_back/_song_of_the_blue_bird_back.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"18718"
+	{
+		"name"									" Song of the Bluebird - Quiver"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/windrunner/_song_of_the_blue_bird_quiver/_song_of_the_blue_bird_quiver"
+		"item_name"								"#DOTA_Item__Song_of_the_Bluebird__Quiver"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/windrunner/_song_of_the_blue_bird_quiver/_song_of_the_blue_bird_quiver.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"18746"
+	{
+		"name"									" Song of the Bluebird - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/windrunner/_song_of_the_blue_bird_shoulder/_song_of_the_blue_bird_shoulder"
+		"item_name"								"#DOTA_Item__Song_of_the_Bluebird__Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/windrunner/_song_of_the_blue_bird_shoulder/_song_of_the_blue_bird_shoulder.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"18747"
+	{
+		"name"									" Song of the Bluebird - Bow"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/windrunner/_song_of_the_blue_bird_bow/_song_of_the_blue_bird_bow"
+		"item_name"								"#DOTA_Item__Song_of_the_Bluebird__Bow"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/windrunner/_song_of_the_blue_bird_bow/_song_of_the_blue_bird_bow.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"system"						"particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_bot"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_mid"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"bow_top"
+					}
+				}
+			}
+		}
+	}
+	"18748"
+	{
+		"name"									" Song of the Bluebird - Hood"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/windrunner/_song_of_the_blue_bird_head_v2/_song_of_the_blue_bird_head_v2"
+		"item_name"								"#DOTA_Item__Song_of_the_Bluebird__Hood"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/windrunner/_song_of_the_blue_bird_head_v2/_song_of_the_blue_bird_head_v2.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"18749"
+	{
+		"name"									" Song of the Bluebird - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/windrunner/_song_of_the_blue_bird_head/_song_of_the_blue_bird_head"
+		"item_name"								"#DOTA_Item__Song_of_the_Bluebird__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/windrunner/_song_of_the_blue_bird_head/_song_of_the_blue_bird_head.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"20069"
+	{
+		"name"									"Falconer's Design Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Shoulderpads of the Falcon"		"1"
+			"Verdant Coif"						"1"
+			"Cape of the Wind Leaf"				"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Falconers_Design_Set"
+		"item_description"						"#DOTA_Item_Desc_Falconers_Design_Set"
+		"item_name"								"#DOTA_Item_Falconers_Design_Set"
+		"item_rarity"							"uncommon"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Uncommon"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"249"
+		}
+	}
+	"20070"
+	{
+		"name"									"Zaru'Kina Protector's Garb Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Zaru'Kina Protector's Cape"		"1"
+			"Zaru'Kina Protector's Bow"			"1"
+			"Zaru'Kina Protector's Pads"		"1"
+			"Zaru'Kina Protector's Hair"		"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_ZaruKina_Protectors_Garb_Set"
+		"item_description"						"#DOTA_Item_Desc_ZaruKina_Protectors_Garb_Set"
+		"item_name"								"#DOTA_Item_ZaruKina_Protectors_Garb_Set"
+		"item_rarity"							"uncommon"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Uncommon"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"249"
+		}
+	}
+	"20071"
+	{
+		"name"									"Flight of the Sparrowhawk Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Sparrowhawk Bow"					"1"
+			"Sparrowhawk Cape"					"1"
+			"Sparrowhawk Hood"					"1"
+			"Sparrowhawk Quiver"				"1"
+			"Sparrowhawk Wings"					"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Flight_of_the_Sparrowhawk_Set"
+		"item_description"						"#DOTA_Item_Desc_Flight_of_the_Sparrowhawk_Set"
+		"item_name"								"#DOTA_Item_Flight_of_the_Sparrowhawk_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20083"
+	{
+		"name"									"Wind Ranger's Sylvan Bundle"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Nature's Shortbow"					"1"
+			"Barrel Quiver"						"1"
+			"Bow of the Sun Vine"				"1"
+			"Lyralei's Breeze"					"1"
+			"Makeshift Hornwood Bow"			"1"
+			"Markswoman's Cap"					"1"
+			"Stinger"							"1"
+			"Shoulderpads of the Falcon"		"1"
+			"Verdant Coif"						"1"
+			"Cape of the Wind Leaf"				"1"
+			"Zaru'Kina Protector's Bow"			"1"
+			"Zaru'Kina Protector's Cape"		"1"
+			"Zaru'Kina Protector's Hair"		"1"
+			"Zaru'Kina Protector's Pads"		"1"
+			"Bloodwood Arc"						"1"
+			"Bloodwood Reserve"					"1"
+			"Bow of the Oyoloe"					"1"
+			"Sparrowhawk Bow"					"1"
+			"Sparrowhawk Cape"					"1"
+			"Sparrowhawk Hood"					"1"
+			"Sparrowhawk Quiver"				"1"
+			"Sparrowhawk Wings"					"1"
+		}
+		"image_inventory"						"econ/bundles/windrunner_bundle"
+		"item_description"						"#DOTA_Item_Desc_Wind_Rangers_Sylvan_Bundle"
+		"item_name"								"#DOTA_Item_Wind_Rangers_Sylvan_Bundle"
+		"item_rarity"							"rare"
+	}
+	"20113"
+	{
+		"name"									"Wings of the Gilded Falcon Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Gilded Falcon Bow"					"1"
+			"Gilded Falcon Cloak"				"1"
+			"Gilded Falcon Helm"				"1"
+			"Gilded Falcon Quiver"				"1"
+			"Gilded Falcon Wings"				"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Wings_of_the_Gilded_Falcon_Set"
+		"item_description"						"#DOTA_Item_Desc_Wings_of_the_Gilded_Falcon_Set"
+		"item_name"								"#DOTA_Item_Wings_of_the_Gilded_Falcon_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20144"
+	{
+		"name"									"Featherfall"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Featherfall Bow"					"1"
+			"Featherfall Cloak"					"1"
+			"Featherfall Locks"					"1"
+			"Featherfall Quiver"				"1"
+			"Featherfall Spaulders"				"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Featherfall_Set"
+		"item_description"						"#DOTA_Item_Desc_Featherfall"
+		"item_name"								"#DOTA_Item_Featherfall"
+		"item_rarity"							"mythical"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Mythical"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"799"
+		}
+	}
+	"20225"
+	{
+		"name"									"The Northern Wind Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Arc of the Northern Wind"			"1"
+			"Circlet of the Northern Wind"		"1"
+			"Cloak of the Northern Wind"		"1"
+			"Pauldrons of the Northern Wind"	"1"
+			"Quiver of the Northern Wind"		"1"
+		}
+		"creation_date"							"2013-07-23"
+		"image_inventory"						"econ/sets/DOTA_Item_The_Norther_Wind_Set"
+		"item_description"						"#DOTA_Item_Desc_The_Northern_Wind_Set"
+		"item_name"								"#DOTA_Item_The_Northern_Wind_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"7/23/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20261"
+	{
+		"name"									"Redwood Arms Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bloodwood Arc"						"1"
+			"Bloodwood Reserve"					"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Redwood_Arms_Set"
+		"item_description"						"#DOTA_Item_Desc_Redwood_Arms_Set"
+		"item_name"								"#DOTA_Item_Redwood_Arms_Set"
+		"item_rarity"							"mythical"
+	}
+	"20373"
+	{
+		"name"									"Aria of the Wild Wind Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Quiver of the Wild Wind"			"1"
+			"Style of the Wild Wind"			"1"
+			"Song of the Wild Wind"				"1"
+			"Tail of the Wild Wind"				"1"
+			"Capelet of the Wild Wind"			"1"
+			"Aria of the Wild Wind"				"1"
+		}
+		"creation_date"							"2014-01-23"
+		"image_inventory"						"econ/sets/DOTA_Item_Aria_of_the_Wild_Wind_Set"
+		"item_description"						"#DOTA_Item_Desc_Aria_of_the_Wild_Wind_Set"
+		"item_name"								"#DOTA_Item_Aria_of_the_Wild_Wind_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/24/2014"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20578"
+	{
+		"name"									"Array of Tranquility"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bow of Tranquility"				"1"
+			"Braid of Tranquility"				"1"
+			"Cloak of Tranquility"				"1"
+			"Quiver of Tranquility"				"1"
+			"Sentry of Tranquility"				"1"
+			"Array of Tranquility Loading Screen""1"
+		}
+		"creation_date"							"2014-06-24"
+		"image_inventory"						"econ/sets/DOTA_Item_Array_of_Tranquility"
+		"item_description"						"#DOTA_Item_Desc_Array_of_Tranquility"
+		"item_name"								"#DOTA_Item_Array_of_Tranquility"
+		"item_rarity"							"rare"
+	}
+	"20826"
+	{
+		"name"									"Flowersong Tempest"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Flowersong Tempest Loading Screen"	"1"
+			"Flowersong Breeze"					"1"
+			"Flowersong Beauty"					"1"
+			"Flowersong Thorns"					"1"
+			"Flowersong Guard"					"1"
+			"Flowersong"						"1"
+		}
+		"creation_date"							"2015-06-02"
+		"image_inventory"						"econ/loading_screens/orchid_flowersong_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Flowersong_Tempest"
+		"item_name"								"#DOTA_Item_Flowersong_Tempest"
+		"item_rarity"							"mythical"
+	}
+	"20915"
+	{
+		"name"									"Featherswing"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Deadly Featherswing"				"1"
+			"Featherswing Cape"					"1"
+			"Featherswing Hair"					"1"
+			"Featherswing Loading Screen"		"1"
+			"Featherswing Pauldron"				"1"
+			"Featherswing Quiver"				"1"
+		}
+		"creation_date"							"2015-10-09"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/loading_screens/deadly_feather_swing_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Featherswing"
+		"item_name"								"#DOTA_Item_Featherswing"
+		"item_rarity"							"mythical"
+	}
+	"20944"
+	{
+		"name"									"Falconside Armor"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Pauldrons of Falconside Armor"		"1"
+			"Cape of Falconside Armor"			"1"
+			"Tiara of Falconside Armor"			"1"
+			"Quiver of Falconside Armor"		"1"
+			"Falconside Armor Loading Screen"	"1"
+			"Falconside"						"1"
+		}
+		"creation_date"							"2015-12-06"
+		"image_inventory"						"econ/loading_screens/armaments_of_the_wind_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Falconside_Armor"
+		"item_name"								"#DOTA_Item_Falconside_Armor"
+		"item_rarity"							"rare"
+	}
+	"21017"
+	{
+		"name"									"Bindings of the Battleranger"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bow of the Battleranger"			"1"
+			"Quiver of the Battleranger"		"1"
+			"Style of the Battleranger"			"1"
+			"Cloak of the Battleranger"			"1"
+			"Pauldrons of the Battleranger"		"1"
+		}
+		"creation_date"							"2016-05-06"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/bundles/battleranger"
+		"item_description"						"#DOTA_Item_Desc_Bindings_of_the_Battleranger"
+		"item_name"								"#DOTA_Item_Bindings_of_the_Battleranger"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1471133220"
+			}
+		}
+	}
+	"21060"
+	{
+		"name"									"Roving Pathfinder"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Roving Pathfinder Loading Screen"	"1"
+			"Longbow of the Roving Pathfinder"	"1"
+			"Mantle of the Roving Pathfinder"	"1"
+			"Quiver of the Roving Pathfinder"	"1"
+			"Tricorn of the Roving Pathfinder"	"1"
+			"Scarf of the Roving Pathfinder"	"1"
+		}
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/loading_screens/the_swift_pathfinder_swift_pathfinder_loading_screen_v2"
+		"item_description"						"#DOTA_Item_Desc_Swift_Pathfinder"
+		"item_name"								"#DOTA_Item_Roving_Pathfinder"
+		"item_rarity"							"mythical"
+	}
+	"21444"
+	{
+		"name"									"Compass of the Rising Gale Bundle"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Cape of the Rising Gale"			"1"
+			"Quiver of the Rising Gale"			"1"
+			"Armor of the Rising Gale"			"1"
+			"Compass of the Rising Gale"		"1"
+			"Longbow of the Rising Gale"		"1"
+			"Compass of the Rising Gale Loading Screen""1"
+		}
+		"creation_date"							"2020-09-04"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/sets/dota_item_wr_arcana_bundle"
+		"item_description"						"#DOTA_Item_Desc_Compass_of_the_Rising_Gale"
+		"item_name"								"#DOTA_Item_Compass_of_the_Rising_Gale_Bundle"
+		"item_rarity"							"arcana"
+		"static_attributes"
+		{
+			"giftable"							"0"
+			"cannot trade"						"1"
+		}
+	}
+	"21806"
+	{
+		"name"									"Papillion Weald"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bow of the Papillion Weald"		"1"
+			"Dress of the Papillion Weald"		"1"
+			"Hair of the Papillion Weald"		"1"
+			"Papillion Weald Loadingscreen"		"1"
+			"Quiver of the Papillion Weald"		"1"
+			"Wings of the Papillion Weald"		"1"
+		}
+		"creation_date"							"2020-11-12"
+		"image_inventory"						"econ/loading_screens/dplus_blessings_of_the_aranyani_loadingscreen"
+		"item_name"								"#DOTA_Item_Papillion_Weald"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"22287"
+	{
+		"name"									"Song of the Bluebird"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			" Song of the Bluebird - Shoulder"	"1"
+			" Song of the Bluebird - Quiver"	"1"
+			" Song of the Bluebird - Back"		"1"
+			" Song of the Bluebird - Bow"		"1"
+			" Song of the Bluebird - Head"		"1"
+			" Song of the Bluebird - Hood"		"1"
+		}
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/sets/DOTA_Item_Song_of_the_Bluebird"
+		"item_name"								"#DOTA_Item_Song_of_the_Bluebird"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+}

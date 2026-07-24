@@ -1,0 +1,1542 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"498"
+	{
+		"name"									"Enigma's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-04"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Enigmas_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_enigma"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_enigma/enigma_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_enigma/enigma_ambient_eyes.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eyes"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_enigma/enigma_ambient_body.vpcf"
+				"system"						"particles/units/heroes/hero_enigma/enigma_ambient_body.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+				}
+			}
+		}
+	}
+	"559"
+	{
+		"name"									"Enigma Bracers"
+		"prefab"								"default_item"
+		"creation_date"							"2015-04-13"
+		"image_inventory"						"econ/heroes/enigma/arms"
+		"item_description"						"#DOTA_Item_Desc_Enigma_Bracers"
+		"item_name"								"#DOTA_Item_Enigma_Bracers"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+	}
+	"628"
+	{
+		"name"									"Enigma's Head Item"
+		"prefab"								"default_item"
+		"creation_date"							"2016-12-02"
+		"image_inventory"						"econ/heroes/enigma/head"
+		"item_description"						"#DOTA_Item_Desc_Enigmas_Head_Item"
+		"item_name"								"#DOTA_Item_Enigmas_Head_Item"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head_Item"
+	}
+	"629"
+	{
+		"name"									"Enigma's Armor"
+		"prefab"								"default_item"
+		"creation_date"							"2016-12-02"
+		"image_inventory"						"econ/heroes/enigma/armor"
+		"item_description"						"#DOTA_Item_Desc_Enigmas_Armor"
+		"item_name"								"#DOTA_Item_Enigmas_Armor"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+	}
+	"6480"
+	{
+		"name"									"Geodesic Eidolon"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-12"
+		"image_inventory"						"econ/items/enigma/eidolon/geodesic/geodesic_npc_dota_lesser_eidolon"
+		"item_description"						"#DOTA_Item_Desc_Geodesic_Eidolon"
+		"item_name"								"#DOTA_Item_Geodesic_Eidolon"
+		"item_rarity"							"immortal"
+		"item_slot"								"ability2"
+		"item_type_name"						"#DOTA_WearableType_Eidolon"
+		"particle_folder"						"particles/econ/items/enigma/enigma_geodesic"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_lesser_eidolon"
+				"modifier"						"models/items/enigma/eidolon/geodesic/geodesic.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_eidolon"
+				"modifier"						"models/items/enigma/eidolon/geodesic/geodesic.vmdl"
+			}
+			"asset_modifier2"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_greater_eidolon"
+				"modifier"						"models/items/enigma/eidolon/geodesic/geodesic.vmdl"
+			}
+			"asset_modifier3"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_dire_eidolon"
+				"modifier"						"models/items/enigma/eidolon/geodesic/geodesic.vmdl"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_enigma/enigma_eidolon_ambient.vpcf"
+				"modifier"						"particles/econ/items/enigma/enigma_geodesic/enigma_eidelon_geodesic_ambient_null.vpcf"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_enigma/enigma_base_attack_eidolon.vpcf"
+				"modifier"						"particles/econ/items/enigma/enigma_geodesic/enigma_base_attack_eidolon_geodesic.vpcf"
+			}
+			"asset_modifier6"
+			{
+				"type"							"ability_icon"
+				"asset"							"enigma_demonic_conversion"
+				"modifier"						"enigma_demonic_conversion_alt"
+			}
+		}
+	}
+	"8326"
+	{
+		"name"									"World Chasm Artifact"
+		"prefab"								"wearable"
+		"creation_date"							"2015-04-13"
+		"image_inventory"						"econ/items/enigma/world_chasm/world_chasm"
+		"item_description"						"#DOTA_Item_Desc_World_Chasm_Artifact"
+		"item_name"								"#DOTA_Item_World_Chasm_Artifact"
+		"item_rarity"							"immortal"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/enigma/world_chasm/world_chasm.vmdl"
+		"particle_folder"						"particles/econ/items/enigma/enigma_world_chasm"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_enigma' gem_def_index: 3005 } asset_modifier: 133"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1441065600"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_enigma/enigma_blackhole.vpcf"
+				"modifier"						"particles/econ/items/enigma/enigma_world_chasm/enigma_blackhole_ti5.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/status_fx/status_effect_enigma_blackhole_tgt.vpcf"
+				"modifier"						"particles/econ/items/enigma/enigma_world_chasm/status_effect_enigma_blackhole_tgt_ti5.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_enigma/enigma_blackhole_target.vpcf"
+				"modifier"						"particles/econ/items/enigma/enigma_world_chasm/enigma_blackhole_target_ti5.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"chasm"
+			}
+			"asset_modifier4"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Enigma.BlackHole.Cast"
+				"modifier"						"Hero_Enigma.BlackHole.Cast.Chasm"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier5"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/enigma/enigma_world_chasm/enigma_world_chasm_ambient.vpcf"
+				"system"						"particles/econ/items/enigma/enigma_world_chasm/enigma_world_chasm_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_elbow_L"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_elbow_R"
+					}
+					"2"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"enigma_black_hole"
+				"modifier"						"enigma/worldchasm/enigma_black_hole_worldchasm"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+		}
+	}
+	"8637"
+	{
+		"name"									"Enigma's Eidolons"
+		"prefab"								"default_item"
+		"creation_date"							"2015-04-14"
+		"image_inventory"						"econ/heroes/enigma/eidolon"
+		"item_description"						"#DOTA_Item_Desc_Enigmas_Eidolons"
+		"item_name"								"#DOTA_Item_Enigmas_Eidolons"
+		"item_slot"								"ability2"
+		"item_type_name"						"#DOTA_WearableType_Eidolons"
+	}
+	"9288"
+	{
+		"name"									"Bracer of Abyssal Vortex"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/enigma/artifacts_of_crushing_depths_arms/artifacts_of_crushing_depths_arms"
+		"item_name"								"#DOTA_Item_Bracer_of_Abyssal_Vortex"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/enigma/artifacts_of_crushing_depths_arms/artifacts_of_crushing_depths_arms.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9289"
+	{
+		"name"									"Helm of Abyssal Vortex"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/enigma/artifacts_of_crushing_depths_head/artifacts_of_crushing_depths_head"
+		"item_name"								"#DOTA_Item_Helm_of_Abyssal_Vortex"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/enigma/artifacts_of_crushing_depths_head/artifacts_of_crushing_depths_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9290"
+	{
+		"name"									"Armor of Abyssal Vortex"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/enigma/artifacts_of_crushing_depths_armor/artifacts_of_crushing_depths_armor"
+		"item_name"								"#DOTA_Item_Armor_of_Abyssal_Vortex"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/enigma/artifacts_of_crushing_depths_armor/artifacts_of_crushing_depths_armor.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9352"
+	{
+		"name"									"Eidolons of Abyssal Vortex"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/enigma/eidolon/artifacts_of_crushing_depths_eidolon_of_crushing_depths/artifacts_of_crushing_depths_eidolon_of_crushing_depths_npc_dota_eidolon"
+		"item_name"								"#DOTA_Item_Eidolons_of_Abyssal_Vortex"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability2"
+		"item_type_name"						"#DOTA_WearableType_Eidolons"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_eidolon"
+				"modifier"						"models/items/enigma/eidolon/artifacts_of_crushing_depths_eidolon_of_crushing_depths/artifacts_of_crushing_depths_eidolon_of_crushing_depths.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_dire_eidolon"
+				"modifier"						"models/items/enigma/eidolon/artifacts_of_crushing_depths_eidolon_of_crushing_depths/artifacts_of_crushing_depths_eidolon_of_crushing_depths.vmdl"
+			}
+			"asset_modifier2"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_greater_eidolon"
+				"modifier"						"models/items/enigma/eidolon/artifacts_of_crushing_depths_eidolon_of_crushing_depths/artifacts_of_crushing_depths_eidolon_of_crushing_depths.vmdl"
+			}
+			"asset_modifier3"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_lesser_eidolon"
+				"modifier"						"models/items/enigma/eidolon/artifacts_of_crushing_depths_eidolon_of_crushing_depths/artifacts_of_crushing_depths_eidolon_of_crushing_depths.vmdl"
+			}
+		}
+	}
+	"9471"
+	{
+		"name"									"Jewels of Endless Stars"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"image_inventory"						"econ/items/enigma/tentacular_conqueror_head/tentacular_conqueror_head"
+		"item_name"								"#DOTA_Item_Jewels_of_Endless_Stars"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/enigma/tentacular_conqueror_head/tentacular_conqueror_head.vmdl"
+	}
+	"9473"
+	{
+		"name"									"Servants of Endless Stars"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"image_inventory"						"econ/items/enigma/eidolon/tentacular_conqueror_tentacular_conqueror_eidolons/tentacular_conqueror_tentacular_conqueror_eidolons_npc_dota_eidolon"
+		"item_name"								"#DOTA_Item_Servants_of_Endless_Stars"
+		"item_rarity"							"rare"
+		"item_slot"								"ability2"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_eidolon"
+				"modifier"						"models/items/enigma/eidolon/tentacular_conqueror_tentacular_conqueror_eidolons/tentacular_conqueror_tentacular_conqueror_eidolons.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_dire_eidolon"
+				"modifier"						"models/items/enigma/eidolon/tentacular_conqueror_tentacular_conqueror_eidolons/tentacular_conqueror_tentacular_conqueror_eidolons.vmdl"
+			}
+			"asset_modifier2"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_greater_eidolon"
+				"modifier"						"models/items/enigma/eidolon/tentacular_conqueror_tentacular_conqueror_eidolons/tentacular_conqueror_tentacular_conqueror_eidolons.vmdl"
+			}
+			"asset_modifier3"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_lesser_eidolon"
+				"modifier"						"models/items/enigma/eidolon/tentacular_conqueror_tentacular_conqueror_eidolons/tentacular_conqueror_tentacular_conqueror_eidolons.vmdl"
+			}
+		}
+	}
+	"9474"
+	{
+		"name"									"Bracers of Endless Stars"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"image_inventory"						"econ/items/enigma/tentacular_conqueror_arms/tentacular_conqueror_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_Endless_Stars"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/enigma/tentacular_conqueror_arms/tentacular_conqueror_arms.vmdl"
+	}
+	"9476"
+	{
+		"name"									"Armor of Endless Stars"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"image_inventory"						"econ/items/enigma/tentacular_conqueror_armor/tentacular_conqueror_armor"
+		"item_name"								"#DOTA_Item_Armor_of_Endless_Stars"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/enigma/tentacular_conqueror_armor/tentacular_conqueror_armor.vmdl"
+	}
+	"9682"
+	{
+		"name"									"Taunt: Enigmatic Style"
+		"prefab"								"taunt"
+		"creation_date"							"2018-01-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/taunts/DOTA_Item_Enigma_tube_dance"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Enigmatic_Style"
+		"item_name"								"#DOTA_Item_Taunt_Enigmatic_Style"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567296000"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"tube_ti8"
+				"frequency"						"1"
+				"gesture"						"1"
+				"minimum_priority"				"0"
+			}
+		}
+	}
+	"12329"
+	{
+		"name"									"Armguards of Twisted Maelstrom"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/enigma/absolute_zero_updated_arms/absolute_zero_updated_arms"
+		"item_name"								"#DOTA_Item_Armguards_of_Twisted_Maelstrom"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/enigma/absolute_zero_updated_arms/absolute_zero_updated_arms.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1532563200"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/enigma/enigma_absolute_arms/enigma_absolute_arms_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"12330"
+	{
+		"name"									"Armor of Twisted Maelstrom"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/enigma/absolute_zero_updated_armour/absolute_zero_updated_armour"
+		"item_name"								"#DOTA_Item_Armor_of_Twisted_Maelstrom"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/enigma/absolute_zero_updated_armour/absolute_zero_updated_armour.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1532563200"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/enigma/enigma_absolute_armour/enigma_absolute_armour_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_enigma/enigma_ambient_body.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/enigma/enigma_absolute_armour/enigma_absolute_armour_body_ambient.vpcf"
+				"style"							"0"
+			}
+			"skip_model_combine"				"0"
+		}
+	}
+	"12331"
+	{
+		"name"									"Eidelon of Twisted Maelstrom"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/enigma/eidolon/absolute_zero_updated_eidolon/absolute_zero_updated_eidolon_npc_dota_eidolon"
+		"item_name"								"#DOTA_Item_Eidelon_of_Twisted_Maelstrom"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability2"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1532563200"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_eidolon"
+				"modifier"						"models/items/enigma/eidolon/absolute_zero_updated_eidolon/absolute_zero_updated_eidolon.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_dire_eidolon"
+				"modifier"						"models/items/enigma/eidolon/absolute_zero_updated_eidolon/absolute_zero_updated_eidolon.vmdl"
+			}
+			"asset_modifier2"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_greater_eidolon"
+				"modifier"						"models/items/enigma/eidolon/absolute_zero_updated_eidolon/absolute_zero_updated_eidolon.vmdl"
+			}
+			"asset_modifier3"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_lesser_eidolon"
+				"modifier"						"models/items/enigma/eidolon/absolute_zero_updated_eidolon/absolute_zero_updated_eidolon.vmdl"
+			}
+		}
+	}
+	"12332"
+	{
+		"name"									"Eye of Twisted Maelstrom"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/enigma/absolute_zero_updated_head/absolute_zero_updated_head"
+		"item_name"								"#DOTA_Item_Eye_of_Twisted_Maelstrom"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/enigma/absolute_zero_updated_head/absolute_zero_updated_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1532563200"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_enigma/enigma_ambient_eyes.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/enigma/enigma_absolute_head/enigma_absolute_head_ambient_eye.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13020"
+	{
+		"name"									"Eidelon of Mortal Deception"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/enigma/eidolon/ti9_cache_enigma_lord_of_luminaries_eidolons/ti9_cache_enigma_lord_of_luminaries_eidolons_npc_dota_eidolon"
+		"item_name"								"#DOTA_Item_Eidelon_of_Mortal_Deception"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability2"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_eidolon"
+				"modifier"						"models/items/enigma/eidolon/ti9_cache_enigma_lord_of_luminaries_eidolons/ti9_cache_enigma_lord_of_luminaries_eidolons.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_dire_eidolon"
+				"modifier"						"models/items/enigma/eidolon/ti9_cache_enigma_lord_of_luminaries_eidolons/ti9_cache_enigma_lord_of_luminaries_eidolons.vmdl"
+			}
+			"asset_modifier2"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_greater_eidolon"
+				"modifier"						"models/items/enigma/eidolon/ti9_cache_enigma_lord_of_luminaries_eidolons/ti9_cache_enigma_lord_of_luminaries_eidolons.vmdl"
+			}
+			"asset_modifier3"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_lesser_eidolon"
+				"modifier"						"models/items/enigma/eidolon/ti9_cache_enigma_lord_of_luminaries_eidolons/ti9_cache_enigma_lord_of_luminaries_eidolons.vmdl"
+			}
+		}
+	}
+	"13021"
+	{
+		"name"									"Turban of Mortal Deception"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/enigma/ti9_cache_enigma_lord_of_luminaries_head/ti9_cache_enigma_lord_of_luminaries_head"
+		"item_name"								"#DOTA_Item_Turban_of_Mortal_Deception"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/enigma/ti9_cache_enigma_lord_of_luminaries_head/ti9_cache_enigma_lord_of_luminaries_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/enigma/ti9_cache_enigma_lord_head/ti9_cache_enigma_lord_head_ambient.vpcf"
+			}
+		}
+	}
+	"13022"
+	{
+		"name"									"Bracer of Mortal Deception"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/enigma/ti9_cache_enigma_lord_of_luminaries_arms/ti9_cache_enigma_lord_of_luminaries_arms"
+		"item_name"								"#DOTA_Item_Bracer_of_Mortal_Deception"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/enigma/ti9_cache_enigma_lord_of_luminaries_arms/ti9_cache_enigma_lord_of_luminaries_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"13023"
+	{
+		"name"									"Armor of Mortal Deception"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/enigma/ti9_cache_enigma_lord_of_luminaries_armor/ti9_cache_enigma_lord_of_luminaries_armor"
+		"item_name"								"#DOTA_Item_Armor_of_Mortal_Deception"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/enigma/ti9_cache_enigma_lord_of_luminaries_armor/ti9_cache_enigma_lord_of_luminaries_armor.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/enigma/ti9_cache_enigma_lord_armor/ti9_cache_enigma_lord_armor_ambient.vpcf"
+			}
+		}
+	}
+	"13363"
+	{
+		"name"									"Astral Terminus - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/enigma/world_eater_arms/world_eater_arms"
+		"item_name"								"#DOTA_Item_Astral_Terminus__Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/enigma/world_eater_arms/world_eater_arms.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"13400"
+	{
+		"name"									"Astral Terminus - Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/enigma/world_eater_armor/world_eater_armor"
+		"item_name"								"#DOTA_Item_Astral_Terminus__Armor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/enigma/world_eater_armor/world_eater_armor.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/enigma/ti10_world_eater/world_eater_shoulder_ambient.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"world_eater"
+			}
+			"skip_model_combine"				"0"
+		}
+	}
+	"13401"
+	{
+		"name"									"Astral Terminus - Eidolon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/enigma/eidolon/world_eater_eidelon/world_eater_eidelon_npc_dota_eidolon"
+		"item_name"								"#DOTA_Item_Astral_Terminus__Eidolon"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability2"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_eidolon"
+				"modifier"						"models/items/enigma/eidolon/world_eater_eidelon/world_eater_eidelon.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_dire_eidolon"
+				"modifier"						"models/items/enigma/eidolon/world_eater_eidelon/world_eater_eidelon.vmdl"
+			}
+			"asset_modifier2"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_greater_eidolon"
+				"modifier"						"models/items/enigma/eidolon/world_eater_eidelon/world_eater_eidelon.vmdl"
+			}
+			"asset_modifier3"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_lesser_eidolon"
+				"modifier"						"models/items/enigma/eidolon/world_eater_eidelon/world_eater_eidelon.vmdl"
+			}
+		}
+	}
+	"13402"
+	{
+		"name"									"Astral Terminus - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/enigma/world_eater_head/world_eater_head"
+		"item_name"								"#DOTA_Item_Astral_Terminus__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/enigma/world_eater_head/world_eater_head.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/enigma/ti10_world_eater/world_eater_head_ambient.vpcf"
+			}
+		}
+	}
+	"14748"
+	{
+		"name"									"Evolution of the Infinite Eidolon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/enigma/eidolon/enigma_seer_of_infinity_space_eidolon/enigma_seer_of_infinity_space_eidolon_npc_dota_eidolon"
+		"item_name"								"#DOTA_Item_Evolution_of_the_Infinite_Eidolon"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability2"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_eidolon"
+				"modifier"						"models/items/enigma/eidolon/enigma_seer_of_infinity_space_eidolon/enigma_seer_of_infinity_space_eidolon.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_dire_eidolon"
+				"modifier"						"models/items/enigma/eidolon/enigma_seer_of_infinity_space_eidolon/enigma_seer_of_infinity_space_eidolon.vmdl"
+			}
+			"asset_modifier2"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_greater_eidolon"
+				"modifier"						"models/items/enigma/eidolon/enigma_seer_of_infinity_space_eidolon/enigma_seer_of_infinity_space_eidolon.vmdl"
+			}
+			"asset_modifier3"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_lesser_eidolon"
+				"modifier"						"models/items/enigma/eidolon/enigma_seer_of_infinity_space_eidolon/enigma_seer_of_infinity_space_eidolon.vmdl"
+			}
+		}
+	}
+	"14749"
+	{
+		"name"									"Evolution of the Infinite Hood"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/enigma/enigma_seer_of_infinity_space_head/enigma_seer_of_infinity_space_head"
+		"item_name"								"#DOTA_Item_Evolution_of_the_Infinite_Hood"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/enigma/enigma_seer_of_infinity_space_head/enigma_seer_of_infinity_space_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"14750"
+	{
+		"name"									"Evolution of the Infinite Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/enigma/enigma_seer_of_infinity_space_armor/enigma_seer_of_infinity_space_armor"
+		"item_name"								"#DOTA_Item_Evolution_of_the_Infinite_Armor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/enigma/enigma_seer_of_infinity_space_armor/enigma_seer_of_infinity_space_armor.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/enigma/ti10_seer_of_infinity_armor/ti10_enigma_seer_of_infinity_armor.vpcf"
+			}
+		}
+	}
+	"14751"
+	{
+		"name"									"Evolution of the Infinite Bracers"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/enigma/enigma_seer_of_infinity_space_arms/enigma_seer_of_infinity_space_arms"
+		"item_name"								"#DOTA_Item_Evolution_of_the_Infinite_Bracers"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"model_player"							"models/items/enigma/enigma_seer_of_infinity_space_arms/enigma_seer_of_infinity_space_arms.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/enigma/ti10_seer_of_infinity_elbows/ti10_seer_of_infinity_elbows.vpcf"
+			}
+		}
+	}
+	"17692"
+	{
+		"name"									"Dark Keeper Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-23"
+		"image_inventory"						"econ/items/enigma/dark_keeper_arms/dark_keeper_arms"
+		"item_name"								"#DOTA_Item_Vote_Only_Dark_Keeper_Arms"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/enigma/dark_keeper_arms/dark_keeper_arms.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"17693"
+	{
+		"name"									"Dark Keeper Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-23"
+		"image_inventory"						"econ/items/enigma/dark_keeper_armor/dark_keeper_armor"
+		"item_name"								"#DOTA_Item_Vote_Only_Dark_Keeper_Armor"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/enigma/dark_keeper_armor/dark_keeper_armor.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"17694"
+	{
+		"name"									"Dark Keeper Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-23"
+		"image_inventory"						"econ/items/enigma/dark_keeper_head/dark_keeper_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Dark_Keeper_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/enigma/dark_keeper_head/dark_keeper_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"17974"
+	{
+		"name"									"Patterns of the Pristine Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/enigma/life_cycle_armor/life_cycle_armor"
+		"item_name"								"#DOTA_Item_Patterns_of_the_Pristine_Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/enigma/life_cycle_armor/life_cycle_armor.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"17975"
+	{
+		"name"									"Patterns of the Pristine Bracers"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/enigma/life_cycle_arms/life_cycle_arms"
+		"item_name"								"#DOTA_Item_Patterns_of_the_Pristine_Bracers"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/enigma/life_cycle_arms/life_cycle_arms.vmdl"
+	}
+	"17976"
+	{
+		"name"									"Patterns of the Pristine Eidelons"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/enigma/eidolon/life_cycle_life_cycle_eidolons/life_cycle_life_cycle_eidolons_npc_dota_eidolon"
+		"item_name"								"#DOTA_Item_Patterns_of_the_Pristine_Eidelons"
+		"item_rarity"							"rare"
+		"item_slot"								"ability2"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_eidolon"
+				"modifier"						"models/items/enigma/eidolon/life_cycle_life_cycle_eidolons/life_cycle_life_cycle_eidolons.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_dire_eidolon"
+				"modifier"						"models/items/enigma/eidolon/life_cycle_life_cycle_eidolons/life_cycle_life_cycle_eidolons.vmdl"
+			}
+			"asset_modifier2"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_greater_eidolon"
+				"modifier"						"models/items/enigma/eidolon/life_cycle_life_cycle_eidolons/life_cycle_life_cycle_eidolons.vmdl"
+			}
+			"asset_modifier3"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_lesser_eidolon"
+				"modifier"						"models/items/enigma/eidolon/life_cycle_life_cycle_eidolons/life_cycle_life_cycle_eidolons.vmdl"
+			}
+		}
+	}
+	"17977"
+	{
+		"name"									"Patterns of the Pristine Mask"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/enigma/life_cycle_head/life_cycle_head"
+		"item_name"								"#DOTA_Item_Patterns_of_the_Pristine_Mask"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/enigma/life_cycle_head/life_cycle_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"21114"
+	{
+		"name"									"Abyssal Vortex"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bracer of Abyssal Vortex"			"1"
+			"Helm of Abyssal Vortex"			"1"
+			"Armor of Abyssal Vortex"			"1"
+			"Eidolons of Abyssal Vortex"		"1"
+			"Abyssal Vortex Loading Screen"		"1"
+		}
+		"creation_date"							"2017-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/loading_screens/artifacts_of_crushing_depths_artifacts_of_crushing_depths_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Abyssal_Vortex"
+		"item_name"								"#DOTA_Item_Abyssal_Vortex"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21127"
+	{
+		"name"									"Exponent of the Endless Stars"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armor of Endless Stars"			"1"
+			"Bracers of Endless Stars"			"1"
+			"Jewels of Endless Stars"			"1"
+			"Servants of Endless Stars"			"1"
+			"Exponent of the Endless Stars Loading Screen""1"
+		}
+		"creation_date"							"2017-05-17"
+		"image_inventory"						"econ/loading_screens/tentacular_conqueror_tentacular_conqueror_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Exponent_of_the_Endless_Stars"
+		"item_name"								"#DOTA_Item_Exponent_of_the_Endless_Stars"
+		"item_rarity"							"rare"
+	}
+	"21235"
+	{
+		"name"									"Twisted Maelstrom"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Twisted Maelstrom Loading Screen"	"1"
+			"Eye of Twisted Maelstrom"			"1"
+			"Eidelon of Twisted Maelstrom"		"1"
+			"Armor of Twisted Maelstrom"		"1"
+			"Armguards of Twisted Maelstrom"	"1"
+		}
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/loading_screens/absolute_zero_absolute_zero_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Twisted_Maelstrom"
+		"item_name"								"#DOTA_Item_Twisted_Maelstrom"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1532563200"
+			}
+		}
+	}
+	"21331"
+	{
+		"name"									"The Arts of Mortal Deception"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armor of Mortal Deception"			"1"
+			"Bracer of Mortal Deception"		"1"
+			"Turban of Mortal Deception"		"1"
+			"Eidelon of Mortal Deception"		"1"
+		}
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/sets/DOTA_Item_TI9_Cache_Enigma_Lord_of_Luminaries"
+		"item_description"						"#DOTA_Item_Desc_The_Arts_of_Mortal_Deception"
+		"item_name"								"#DOTA_Item_The_Arts_of_Mortal_Deception"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"21379"
+	{
+		"name"									"Astral Terminus"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Astral Terminus Loading Screen"	"1"
+			"Astral Terminus - Head"			"1"
+			"Astral Terminus - Eidolon"			"1"
+			"Astral Terminus - Armor"			"1"
+			"Astral Terminus - Arms"			"1"
+		}
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/loading_screens/world_eater_ls"
+		"item_name"								"#DOTA_Item_Astral_Terminus"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21584"
+	{
+		"name"									"Evolution of the Infinite"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Evolution of the Infinite Bracers"	"1"
+			"Evolution of the Infinite Armor"	"1"
+			"Evolution of the Infinite Hood"	"1"
+			"Evolution of the Infinite Eidolon"	"1"
+		}
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Evolution_of_the_Infinite"
+		"item_name"								"#DOTA_Item_Evolution_of_the_Infinite"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21690"
+	{
+		"name"									"Dark Keeper"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Dark Keeper Head"					"1"
+			"Dark Keeper Armor"					"1"
+			"Dark Keeper Arms"					"1"
+			"Dark Keeper LS"					"1"
+		}
+		"creation_date"							"2020-09-23"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Dark_Keeper"
+		"workshop_accepted"						"0"
+	}
+	"21732"
+	{
+		"name"									"Patterns of the Pristine"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Patterns of the Pristine Mask"		"1"
+			"Patterns of the Pristine Eidelons"	"1"
+			"Patterns of the Pristine Bracers"	"1"
+			"Patterns of the Pristine Armor"	"1"
+		}
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Life_Cycle"
+		"item_name"								"#DOTA_Item_Patterns_of_the_Pristine"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+	}
+}

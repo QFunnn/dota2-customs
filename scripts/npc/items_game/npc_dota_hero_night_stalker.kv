@@ -1,0 +1,1843 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"337"
+	{
+		"name"									"Nightstalker's Wings"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/nightstalker/nightstalker_wings"
+		"item_description"						"#DOTA_Item_Desc_Nightstalkers_Wings"
+		"item_name"								"#DOTA_Item_Nightstalkers_Wings"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/heroes/nightstalker/nightstalker_wings.vmdl"
+		"model_player1"							"models/heroes/nightstalker/nightstalker_wings_night.vmdl"
+	}
+	"338"
+	{
+		"name"									"Nightstalker's Armor"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/nightstalker/nightstalker_legarmor"
+		"item_description"						"#DOTA_Item_Desc_Nightstalkers_Armor"
+		"item_name"								"#DOTA_Item_Nightstalkers_Armor"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_legs"
+		"model_player"							"models/heroes/nightstalker/nightstalker_legarmor.vmdl"
+		"model_player1"							"models/heroes/nightstalker/nightstalker_legarmor_night.vmdl"
+	}
+	"339"
+	{
+		"name"									"Nightstalker's Tail"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/nightstalker/nightstalker_tail"
+		"item_description"						"#DOTA_Item_Desc_Nightstalkers_Tail"
+		"item_name"								"#DOTA_Item_Nightstalkers_Tail"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_tail"
+		"model_player"							"models/heroes/nightstalker/nightstalker_tail.vmdl"
+		"model_player1"							"models/heroes/nightstalker/nightstalker_tail_night.vmdl"
+	}
+	"5083"
+	{
+		"name"									"Strap of Black Nihility"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-27"
+		"image_inventory"						"econ/items/nightstalker/black_nihility_legs/black_nihility_legs"
+		"item_description"						"#DOTA_Item_Desc_Strap_of_Black_Nihility"
+		"item_name"								"#DOTA_Item_Strap_of_Black_Nihility"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/nightstalker/black_nihility/black_nihility_legs.vmdl"
+		"model_player1"							"models/items/nightstalker/black_nihility/black_nihility_night_legs.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+		}
+	}
+	"5085"
+	{
+		"name"									"Talons of Black Nihility"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-27"
+		"image_inventory"						"econ/items/nightstalker/black_nihility_arms/black_nihility_arms"
+		"item_description"						"#DOTA_Item_Desc_Talons_of_Black_Nihility"
+		"item_name"								"#DOTA_Item_Talons_of_Black_Nihility"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Claws"
+		"model_player"							"models/items/nightstalker/black_nihility/black_nihility_arms.vmdl"
+		"model_player1"							"models/items/nightstalker/black_nihility/black_nihility_night_arms.vmdl"
+		"particle_folder"						"particles/econ/items/nightstalker/nightstalker_black_nihility"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/nightstalker/nightstalker_black_nihility/nightstalker_black_nihility_ambient.vpcf"
+				"system"						"particles/econ/items/nightstalker/nightstalker_black_nihility/nightstalker_black_nihility_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_elbow_L"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_elbow_R"
+					}
+				}
+			}
+		}
+	}
+	"5086"
+	{
+		"name"									"Span of Black Nihility"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-27"
+		"image_inventory"						"econ/items/nightstalker/black_nihility_back/black_nihility_back"
+		"item_description"						"#DOTA_Item_Desc_Span_of_Black_Nihility"
+		"item_name"								"#DOTA_Item_Span_of_Black_Nihility"
+		"item_rarity"							"immortal"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/nightstalker/black_nihility/black_nihility_back.vmdl"
+		"model_player1"							"models/items/nightstalker/black_nihility/black_nihility_night_back.vmdl"
+		"particle_folder"						"particles/econ/items/nightstalker/nightstalker_black_nihility"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_nightstalker' gem_def_index: 3005 } asset_modifier: 130"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"portrait_game"
+				"asset"							"models/heroes/nightstalker/nightstalker.vmdl"
+				"modifier"
+				{
+					"PortraitLightPosition"		"16.44 -110.27 207.23"
+					"PortraitLightAngles"		"18.78 89.52 0.00"
+					"PortraitLightFOV"			"80"
+					"PortraitLightDistance"		"145"
+					"PortraitLightColor"		"203 203 203"
+					"PortraitShadowColor"		"48 48 48"
+					"PortraitShadowScale"		"5.000000"
+					"PortraitAmbientColor"		"114 129 155"
+					"PortraitAmbientScale"		"3.750000"
+					"PortraitSpecularColor"		"251 74 84"
+					"PortraitBackgroundTexture"	"materials/vgui/hud/heroportraits/portraitbackground_coolinterior.vmat"
+					"PortraitBackgroundColor1"	"1 1 1"
+					"PortraitBackgroundColor2"	"1 1 1"
+					"PortraitBackgroundColor3"	"1 1 1"
+					"PortraitBackgroundColor4"	"1 1 1"
+					"PortraitLightScale"		"1.000000"
+					"PortraitGroundShadowScale"	"1.500000"
+					"PortraitAmbientDirection"	"-225.860 38.910 284.140"
+					"PortraitAnimationActivity"	"ACT_DOTA_IDLE"
+					"cameras"
+					{
+						"default"
+						{
+							"PortraitPosition"	"118.05 -46.99 154.42"
+							"PortraitAngles"	"355.33 153.36 0.00"
+							"PortraitFOV"		"32"
+							"PortraitFar"		"1000.000000"
+						}
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"portrait_game"
+				"asset"							"models/heroes/nightstalker/nightstalker_night.vmdl"
+				"modifier"
+				{
+					"PortraitLightPosition"		"102.18 -16.52 48.12"
+					"PortraitLightAngles"		"256.07 350.30 0.00"
+					"PortraitLightFOV"			"58"
+					"PortraitLightDistance"		"145"
+					"PortraitLightColor"		"148 148 148"
+					"PortraitShadowColor"		"25 25 25"
+					"PortraitShadowScale"		"5.000000"
+					"PortraitAmbientColor"		"84 104 134"
+					"PortraitAmbientScale"		"1.275000"
+					"PortraitSpecularColor"		"251 74 84"
+					"PortraitBackgroundTexture"	"materials/vgui/hud/heroportraits/portraitbackground_moon.vmat"
+					"PortraitBackgroundColor1"	"1 .8 .8"
+					"PortraitBackgroundColor2"	"1 .8 .8"
+					"PortraitBackgroundColor3"	"1 .8 .8"
+					"PortraitBackgroundColor4"	"1 .8 .8"
+					"PortraitLightScale"		"1.000000"
+					"PortraitGroundShadowScale"	"1.500000"
+					"PortraitAmbientDirection"	"-64.690 -9.110 -406.320"
+					"PortraitAnimationActivity"	"ACT_DOTA_IDLE"
+					"cameras"
+					{
+						"default"
+						{
+							"PortraitPosition"	"228.64 -25.09 177.65"
+							"PortraitAngles"	"15.63 174.33 0.00"
+							"PortraitFOV"		"16"
+							"PortraitFar"		"1000.000000"
+						}
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_night_stalker/nightstalker_void.vpcf"
+				"modifier"						"particles/econ/items/nightstalker/nightstalker_black_nihility/nightstalker_black_nihility_void.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"nihility"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_night_stalker/nightstalker_void_hit.vpcf"
+				"modifier"						"particles/econ/items/nightstalker/nightstalker_black_nihility/nightstalker_black_nihility_void_hit.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/reftononexistentsystem/cannotfindremap/nightstalker_void_cast.vpcf"
+				"modifier"						"particles/reftononexistentsystem/cannotfindremap/nightstalker_black_nihility_void_cast.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_night_stalker/nightstalker_darkness_hero_effect.vpcf"
+				"modifier"						"particles/econ/items/nightstalker/nightstalker_black_nihility/nightstalker_nihility_darkness_hero_effect.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier7"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Nightstalker.Void"
+				"modifier"						"Hero_Nightstalker.Void.Nihility"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/nightstalker/nightstalker_black_nihility/nightstalker_black_nihility_ambient_wing.vpcf"
+				"system"						"particles/econ/items/nightstalker/nightstalker_black_nihility/nightstalker_black_nihility_ambient_wing.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_L"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_R"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_inner_L"
+					}
+					"4"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_inner_R"
+					}
+					"5"
+					{
+						"control_point_index"	"5"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_innerB_L"
+					}
+					"6"
+					{
+						"control_point_index"	"6"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_innerB_R"
+					}
+					"7"
+					{
+						"control_point_index"	"7"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_outer_L"
+					}
+					"8"
+					{
+						"control_point_index"	"8"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_outer_R"
+					}
+				}
+			}
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"night_stalker_void"
+				"modifier"						"night_stalker_void_alt"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+		}
+	}
+	"5087"
+	{
+		"name"									"Sweep of Black Nihility"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-27"
+		"image_inventory"						"econ/items/nightstalker/black_nihility_tail/black_nihility_tail"
+		"item_description"						"#DOTA_Item_Desc_Sweep_of_Black_Nihility"
+		"item_name"								"#DOTA_Item_Sweep_of_Black_Nihility"
+		"item_rarity"							"mythical"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/items/nightstalker/black_nihility/black_nihility_tail.vmdl"
+		"model_player1"							"models/items/nightstalker/black_nihility/black_nihility_night_tail.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+		}
+	}
+	"5088"
+	{
+		"name"									"Crown of Black Nihility"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-27"
+		"image_inventory"						"econ/items/nightstalker/black_nihility_head/black_nihility_head"
+		"item_description"						"#DOTA_Item_Desc_Crown_of_Black_Nihility"
+		"item_name"								"#DOTA_Item_Crown_of_Black_Nihility"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/nightstalker/black_nihility/black_nihility_head.vmdl"
+		"model_player1"							"models/items/nightstalker/black_nihility/black_nihility_night_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+		}
+	}
+	"8661"
+	{
+		"name"									"Nightstalker's Head"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/nightstalker/nightstalker_head"
+		"item_description"						"#DOTA_Item_Desc_Nightstalkers_Head"
+		"item_name"								"#DOTA_Item_Nightstalkers_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+	}
+	"8662"
+	{
+		"name"									"Nightstalker's Arms"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/nightstalker/nightstalker_arms"
+		"item_description"						"#DOTA_Item_Desc_Nightstalkers_Arms"
+		"item_name"								"#DOTA_Item_Nightstalkers_Arms"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+	}
+	"8885"
+	{
+		"name"									"Wings of Unfettered Malevolence"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/nightstalker/evil_eyednightstalker_back/evil_eyednightstalker_back"
+		"item_description"						"#DOTA_Item_Desc_Wings_of_Unfettered_Malevolence"
+		"item_name"								"#DOTA_Item_Wings_of_Unfettered_Malevolence"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/nightstalker/evil_eyednightstalker_back/evil_eyednightstalker_back.vmdl"
+		"model_player1"							"models/items/nightstalker/evil_eyednightstalker_back/evil_eyednightstalker_back_night.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Wings_of_Unfettered_Malevolence_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Wings_of_Unfettered_Malevolence_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"11898"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/nightstalker/nightstalker_evil_eyed_wings/nightstalker_ambient_evil_eyed_wings.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/nightstalker/nightstalker_evil_eyed_wings/nightstalker_ambient_evil_eyed_wings.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_l_tip_01"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_l_tip_02"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_l_tip_03"
+					}
+					"4"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_l_tip_04"
+					}
+					"5"
+					{
+						"control_point_index"	"5"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_r_tip_01"
+					}
+					"6"
+					{
+						"control_point_index"	"6"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_r_tip_02"
+					}
+					"7"
+					{
+						"control_point_index"	"7"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_r_tip_03"
+					}
+					"8"
+					{
+						"control_point_index"	"8"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_r_tip_04"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/nightstalker/evil_eyednightstalker_back/evil_eyednightstalker_back"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/nightstalker/evil_eyednightstalker_back/evil_eyednightstalker_back_style1"
+				}
+			}
+		}
+	}
+	"8886"
+	{
+		"name"									"Bracers of Unfettered Malevolence"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/nightstalker/evil_eyednightstalker_arms/evil_eyednightstalker_arms"
+		"item_description"						"#DOTA_Item_Desc_Bracers_of_Unfettered_Malevolence"
+		"item_name"								"#DOTA_Item_Bracers_of_Unfettered_Malevolence"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/nightstalker/evil_eyednightstalker_arms/evil_eyednightstalker_arms.vmdl"
+		"model_player1"							"models/items/nightstalker/evil_eyednightstalker_arms/evil_eyednightstalker_arms_night.vmdl"
+		"visuals"
+		{
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/nightstalker/evil_eyednightstalker_arms/evil_eyednightstalker_arms"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/nightstalker/evil_eyednightstalker_arms/evil_eyednightstalker_arms_style1"
+				}
+			}
+		}
+	}
+	"8887"
+	{
+		"name"									"Helm of Unfettered Malevolence"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/nightstalker/evil_eyednightstalker_head/evil_eyednightstalker_head"
+		"item_description"						"#DOTA_Item_Desc_Helm_of_Unfettered_Malevolence"
+		"item_name"								"#DOTA_Item_Helm_of_Unfettered_Malevolence"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/nightstalker/evil_eyednightstalker_head/evil_eyednightstalker_head.vmdl"
+		"model_player1"							"models/items/nightstalker/evil_eyednightstalker_head/evil_eyednightstalker_head_night.vmdl"
+	}
+	"8888"
+	{
+		"name"									"Belt of Unfettered Malevolence"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/nightstalker/evil_eyednightstalker_legs/evil_eyednightstalker_legs"
+		"item_description"						"#DOTA_Item_Desc_Belt_of_Unfettered_Malevolence"
+		"item_name"								"#DOTA_Item_Belt_of_Unfettered_Malevolence"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_legs"
+		"model_player"							"models/items/nightstalker/evil_eyednightstalker_legs/evil_eyednightstalker_legs.vmdl"
+		"model_player1"							"models/items/nightstalker/evil_eyednightstalker_legs/evil_eyednightstalker_legs_night.vmdl"
+	}
+	"8889"
+	{
+		"name"									"Tail of Unfettered Malevolence"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/nightstalker/evil_eyednightstalker_tail/evil_eyednightstalker_tail"
+		"item_description"						"#DOTA_Item_Desc_Tail_of_Unfettered_Malevolence"
+		"item_name"								"#DOTA_Item_Tail_of_Unfettered_Malevolence"
+		"item_rarity"							"mythical"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_tail"
+		"model_player"							"models/items/nightstalker/evil_eyednightstalker_tail/evil_eyednightstalker_tail.vmdl"
+		"model_player1"							"models/items/nightstalker/evil_eyednightstalker_tail/evil_eyednightstalker_tail_night.vmdl"
+	}
+	"12280"
+	{
+		"name"									"Endless Nightmare Head"
+		"prefab"								"wearable"
+		"creation_date"							"2018-06-06"
+		"image_inventory"						"econ/items/nightstalker/endless_nightmare_head_v2/endless_nightmare_head_v2"
+		"item_name"								"#DOTA_Item_Endless_Nightmare_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/nightstalker/endless_nightmare_head_v2/endless_nightmare_head_v2.vmdl"
+		"model_player1"							"models/items/nightstalker/endless_nightmare_head_v2/endless_nightmare_head_v2_night.vmdl"
+	}
+	"12281"
+	{
+		"name"									"Endless Nightmare Legs"
+		"prefab"								"wearable"
+		"creation_date"							"2018-06-06"
+		"image_inventory"						"econ/items/nightstalker/endless_nightmare_legs/endless_nightmare_legs"
+		"item_name"								"#DOTA_Item_Endless_Nightmare_Legs"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_legs"
+		"model_player"							"models/items/nightstalker/endless_nightmare_legs/endless_nightmare_legs.vmdl"
+		"model_player1"							"models/items/nightstalker/endless_nightmare_legs/endless_nightmare_legs_night.vmdl"
+	}
+	"12282"
+	{
+		"name"									"Tail of Darkheart Pursuit"
+		"prefab"								"wearable"
+		"creation_date"							"2018-06-06"
+		"image_inventory"						"econ/items/nightstalker/endless_nightmare_tail/endless_nightmare_tail"
+		"item_name"								"#DOTA_Item_Tail_of_Darkheart_Pursuit"
+		"item_rarity"							"mythical"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_tail"
+		"model_player"							"models/items/nightstalker/endless_nightmare_tail/endless_nightmare_tail.vmdl"
+		"model_player1"							"models/items/nightstalker/endless_nightmare_tail/endless_nightmare_tail_night.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"12283"
+	{
+		"name"									"Endless Nightmare Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2018-06-06"
+		"image_inventory"						"econ/items/nightstalker/endless_nightmare_arms/endless_nightmare_arms"
+		"item_name"								"#DOTA_Item_Endless_Nightmare_Arms"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/nightstalker/endless_nightmare_arms/endless_nightmare_arms.vmdl"
+		"model_player1"							"models/items/nightstalker/endless_nightmare_arms/endless_nightmare_arms_night.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"12284"
+	{
+		"name"									"Endless Nightmare Back"
+		"prefab"								"wearable"
+		"creation_date"							"2018-06-06"
+		"image_inventory"						"econ/items/nightstalker/endless_nightmare_back/endless_nightmare_back"
+		"item_name"								"#DOTA_Item_Endless_Nightmare_Back"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/nightstalker/endless_nightmare_back/endless_nightmare_back.vmdl"
+		"model_player1"							"models/items/nightstalker/endless_nightmare_back/endless_nightmare_back_night.vmdl"
+	}
+	"12285"
+	{
+		"name"									"Claws of Darkheart Pursuit"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/nightstalker/endless_nightmare_arms_v2/endless_nightmare_arms_v2"
+		"item_name"								"#DOTA_Item_Claws_of_Darkheart_Pursuit"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/nightstalker/endless_nightmare_arms_v2/endless_nightmare_arms_v2.vmdl"
+		"model_player1"							"models/items/nightstalker/endless_nightmare_arms_v2/endless_nightmare_arms_v2_night.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/nightstalker/nightstalker_endless_arms/nightstalker_endless_arms_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"12286"
+	{
+		"name"									"Wings of Darkheart Pursuit"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/nightstalker/endless_nightmare_back_v2/endless_nightmare_back_v2"
+		"item_name"								"#DOTA_Item_Wings_of_Darkheart_Pursuit"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/nightstalker/endless_nightmare_back_v2/endless_nightmare_back_v2.vmdl"
+		"model_player1"							"models/items/nightstalker/endless_nightmare_back_v2/endless_nightmare_back_v2_night.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/nightstalker/nighhtstalker_endless_back/nightstalker_endless_back_ambient.vpcf"
+				"style"							"0"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"12287"
+	{
+		"name"									"Legs of Darkheart Pursuit"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/nightstalker/endless_nightmare_legs_v2/endless_nightmare_legs_v2"
+		"item_name"								"#DOTA_Item_Legs_of_Darkheart_Pursuit"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_legs"
+		"model_player"							"models/items/nightstalker/endless_nightmare_legs_v2/endless_nightmare_legs_v2.vmdl"
+		"model_player1"							"models/items/nightstalker/endless_nightmare_legs_v2/endless_nightmare_legs_v2_night.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"12288"
+	{
+		"name"									"Head of Darkheart Pursuit"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/nightstalker/endless_nightmare_head_v3/endless_nightmare_head_v3"
+		"item_name"								"#DOTA_Item_Head_of_Darkheart_Pursuit"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/nightstalker/endless_nightmare_head_v3/endless_nightmare_head_v3.vmdl"
+		"model_player1"							"models/items/nightstalker/endless_nightmare_head_v3/endless_nightmare_head_v3_night.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/nightstalker/nightstalker_endless_head_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13776"
+	{
+		"name"									"Shadow of the Dark Age"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"hide_tradecraftdelete"					"1"
+		"image_inventory"						"econ/items/nightstalker/ns_ti10_immortal_arms/ns_ti10_immortal_arms"
+		"item_description"						"#DOTA_Item_Desc_Shadow_of_the_Dark_Age"
+		"item_name"								"#DOTA_Item_Shadow_of_the_Dark_Age"
+		"item_rarity"							"immortal"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/nightstalker/ns_ti10_immortal_arms/ns_ti10_immortal_arms.vmdl"
+		"model_player1"							"models/items/nightstalker/ns_ti10_immortal_arms/ns_ti10_immortal_arms_night.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"ability_icon"
+				"asset"							"night_stalker_crippling_fear"
+				"modifier"						"night_stalker/ns_ti10_immortal_ability_icons/night_stalker_crippling_fear_ti10"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/nightstalker/nightstalker_ti10_silence/nightstalker_ti10_ambient.vpcf"
+				"required_model_variant"		"0"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/nightstalker/nightstalker_ti10_silence/nightstalker_ti10_ambient.vpcf"
+				"required_model_variant"		"1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear_aura.vpcf"
+				"modifier"						"particles/econ/items/nightstalker/nightstalker_ti10_silence/nightstalker_ti10.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier4"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Nightstalker.CripplingFear.Aura"
+				"modifier"						"Hero_Nightstalker.CripplingFear.Aura.TI10"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+		}
+	}
+	"13813"
+	{
+		"name"									"Golden Shadow of the Dark Age"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"hide_tradecraftdelete"					"1"
+		"image_inventory"						"econ/items/nightstalker/ns_ti10_immortal_arms/ns_ti10_immortal_arms1"
+		"item_description"						"#DOTA_Item_Desc_Golden_ns_ti10_immortal_arms"
+		"item_name"								"#DOTA_Item_Golden_Shadow_of_the_Dark_Age"
+		"item_rarity"							"immortal"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/nightstalker/ns_ti10_immortal_arms/ns_ti10_immortal_arms.vmdl"
+		"model_player1"							"models/items/nightstalker/ns_ti10_immortal_arms/ns_ti10_immortal_arms_night.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/nightstalker/nightstalker_ti10_silence/nightstalker_ti10_ambient_gold.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear_aura.vpcf"
+				"modifier"						"particles/econ/items/nightstalker/nightstalker_ti10_silence/nightstalker_ti10_gold.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"skip_model_combine"				"0"
+			"asset_modifier2"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Nightstalker.CripplingFear.Aura"
+				"modifier"						"Hero_Nightstalker.CripplingFear.Aura.TI10"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"skin"								"1"
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"night_stalker_crippling_fear"
+				"modifier"						"night_stalker/ns_ti10_immortal_ability_icons/night_stalker_crippling_fear_ti10_gold"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+		}
+	}
+	"14044"
+	{
+		"name"									"Origin of the Dark Oath - Tail"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/nightstalker/dusk_reaper_tail/dusk_reaper_tail"
+		"item_name"								"#DOTA_Item_Origin_of_the_Dark_Oath__Tail"
+		"item_rarity"							"mythical"
+		"item_slot"								"tail"
+		"model_player"							"models/items/nightstalker/dusk_reaper_tail/dusk_reaper_tail.vmdl"
+		"model_player1"							"models/items/nightstalker/dusk_reaper_tail/dusk_reaper_tail_night.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"14045"
+	{
+		"name"									"Origin of the Dark Oath - Legs"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/nightstalker/dusk_reaper_legs/dusk_reaper_legs"
+		"item_name"								"#DOTA_Item_Origin_of_the_Dark_Oath__Legs"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"model_player"							"models/items/nightstalker/dusk_reaper_legs/dusk_reaper_legs.vmdl"
+		"model_player1"							"models/items/nightstalker/dusk_reaper_legs/dusk_reaper_legs_night.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"14046"
+	{
+		"name"									"Origin of the Dark Oath - Mask"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/nightstalker/dusk_reaper_head/dusk_reaper_head"
+		"item_name"								"#DOTA_Item_Origin_of_the_Dark_Oath__Mask"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/nightstalker/dusk_reaper_head/dusk_reaper_head.vmdl"
+		"model_player1"							"models/items/nightstalker/dusk_reaper_head/dusk_reaper_head_night.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/nightstalker/nightstalker_dusk_reaper/nightstalker_dusk_reaper_head.vpcf"
+				"required_model_variant"		"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/nightstalker/nightstalker_dusk_reaper/nightstalker_dusk_reaper_head_night.vpcf"
+				"required_model_variant"		"1"
+			}
+		}
+	}
+	"14047"
+	{
+		"name"									"Origin of the Dark Oath - Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/nightstalker/dusk_reaper_back/dusk_reaper_back"
+		"item_name"								"#DOTA_Item_Origin_of_the_Dark_Oath__Wings"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"model_player"							"models/items/nightstalker/dusk_reaper_back/dusk_reaper_back.vmdl"
+		"model_player1"							"models/items/nightstalker/dusk_reaper_back/dusk_reaper_back_night.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/nightstalker/nightstalker_dusk_reaper/nightstalker_dusk_reaper_back.vpcf"
+				"required_model_variant"		"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/nightstalker/nightstalker_dusk_reaper/nightstalker_dusk_reaper_back_night.vpcf"
+				"required_model_variant"		"1"
+			}
+		}
+	}
+	"14048"
+	{
+		"name"									"Origin of the Dark Oath - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/nightstalker/dusk_reaper_arms/dusk_reaper_arms"
+		"item_name"								"#DOTA_Item_Origin_of_the_Dark_Oath__Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"model_player"							"models/items/nightstalker/dusk_reaper_arms/dusk_reaper_arms.vmdl"
+		"model_player1"							"models/items/nightstalker/dusk_reaper_arms/dusk_reaper_arms_night.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/nightstalker/nightstalker_dusk_reaper/nightstalker_dusk_reaper_arms.vpcf"
+				"required_model_variant"		"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/nightstalker/nightstalker_dusk_reaper/nightstalker_dusk_reaper_arms_night.vpcf"
+				"required_model_variant"		"1"
+			}
+		}
+	}
+	"14694"
+	{
+		"name"									"Twilight Legions - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/nightstalker/ns_twilight_manticore_head/ns_twilight_manticore_head"
+		"item_name"								"#DOTA_Item_Twilight_Legions__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/nightstalker/ns_twilight_manticore_head/ns_twilight_manticore_head.vmdl"
+		"model_player1"							"models/items/nightstalker/ns_twilight_manticore_head/ns_twilight_manticore_head_night.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+	}
+	"14695"
+	{
+		"name"									"Twilight Legions - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/nightstalker/ns_twilight_manticore_arms/ns_twilight_manticore_arms"
+		"item_name"								"#DOTA_Item_Twilight_Legions__Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"model_player"							"models/items/nightstalker/ns_twilight_manticore_arms/ns_twilight_manticore_arms.vmdl"
+		"model_player1"							"models/items/nightstalker/ns_twilight_manticore_arms/ns_twilight_manticore_arms_night.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+	}
+	"14696"
+	{
+		"name"									"Twilight Legions - Legs"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/nightstalker/ns_twilight_manticore_legs/ns_twilight_manticore_legs"
+		"item_name"								"#DOTA_Item_Twilight_Legions__Legs"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"model_player"							"models/items/nightstalker/ns_twilight_manticore_legs/ns_twilight_manticore_legs.vmdl"
+		"model_player1"							"models/items/nightstalker/ns_twilight_manticore_legs/ns_twilight_manticore_legs_night.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+	}
+	"14697"
+	{
+		"name"									"Twilight Legions - Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/nightstalker/ns_twilight_manticore_back/ns_twilight_manticore_back"
+		"item_name"								"#DOTA_Item_Twilight_Legions__Wings"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"model_player"							"models/items/nightstalker/ns_twilight_manticore_back/ns_twilight_manticore_back.vmdl"
+		"model_player1"							"models/items/nightstalker/ns_twilight_manticore_back/ns_twilight_manticore_back_night.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+	}
+	"14698"
+	{
+		"name"									"Twilight Legions - Tail"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/nightstalker/ns_twilight_manticore_tail/ns_twilight_manticore_tail"
+		"item_name"								"#DOTA_Item_Twilight_Legions__Tail"
+		"item_rarity"							"mythical"
+		"item_slot"								"tail"
+		"model_player"							"models/items/nightstalker/ns_twilight_manticore_tail/ns_twilight_manticore_tail.vmdl"
+		"model_player1"							"models/items/nightstalker/ns_twilight_manticore_tail/ns_twilight_manticore_tail_night.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+	}
+	"17613"
+	{
+		"name"									"Darkness Wailing Tail"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-27"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/nightstalker/darkness_wailing_tail/darkness_wailing_tail"
+		"item_name"								"#DOTA_Item_Darkness_Wailing_Tail"
+		"item_rarity"							"rare"
+		"item_slot"								"tail"
+		"model_player"							"models/items/nightstalker/darkness_wailing_tail/darkness_wailing_tail.vmdl"
+		"model_player1"							"models/items/nightstalker/darkness_wailing_tail/darkness_wailing_tail_night.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"17614"
+	{
+		"name"									"Darkness Wailing Legs"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-27"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/nightstalker/darkness_wailing_legs/darkness_wailing_legs"
+		"item_name"								"#DOTA_Item_Darkness_Wailing_Legs"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"model_player"							"models/items/nightstalker/darkness_wailing_legs/darkness_wailing_legs.vmdl"
+		"model_player1"							"models/items/nightstalker/darkness_wailing_legs/darkness_wailing_legs_night.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"17615"
+	{
+		"name"									"Darkness Wailing Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-27"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/nightstalker/darkness_wailing_head/darkness_wailing_head"
+		"item_name"								"#DOTA_Item_Darkness_Wailing_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/nightstalker/darkness_wailing_head/darkness_wailing_head.vmdl"
+		"model_player1"							"models/items/nightstalker/darkness_wailing_head/darkness_wailing_head_night.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"17616"
+	{
+		"name"									"Darkness Wailing Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-27"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/nightstalker/darkness_wailing_arms/darkness_wailing_arms"
+		"item_name"								"#DOTA_Item_Darkness_Wailing_Arms"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/nightstalker/darkness_wailing_arms/darkness_wailing_arms.vmdl"
+		"model_player1"							"models/items/nightstalker/darkness_wailing_arms/darkness_wailing_arms_night.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"17617"
+	{
+		"name"									"Darkness Wailing Back"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-27"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/nightstalker/darkness_wailing_back/darkness_wailing_back"
+		"item_name"								"#DOTA_Item_Darkness_Wailing_Back"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/nightstalker/darkness_wailing_back/darkness_wailing_back.vmdl"
+		"model_player1"							"models/items/nightstalker/darkness_wailing_back/darkness_wailing_back_night.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"17892"
+	{
+		"name"									"Frightful Revelries Bracers"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/nightstalker/frightstalker_arms/frightstalker_arms"
+		"item_name"								"#DOTA_Item_Frightful_Revelries_Bracers"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/nightstalker/frightstalker_arms/frightstalker_arms.vmdl"
+		"model_player1"							"models/items/nightstalker/frightstalker_arms/frightstalker_arms_night.vmdl"
+	}
+	"17893"
+	{
+		"name"									"Frightful Revelries Tail"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/nightstalker/frightstalker_tail/frightstalker_tail"
+		"item_name"								"#DOTA_Item_Frightful_Revelries_Tail"
+		"item_rarity"							"rare"
+		"item_slot"								"tail"
+		"model_player"							"models/items/nightstalker/frightstalker_tail/frightstalker_tail.vmdl"
+		"model_player1"							"models/items/nightstalker/frightstalker_tail/frightstalker_tail_night.vmdl"
+	}
+	"17894"
+	{
+		"name"									"Frightful Revelries Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/nightstalker/frightstalker_back/frightstalker_back"
+		"item_name"								"#DOTA_Item_Frightful_Revelries_Wings"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/nightstalker/frightstalker_back/frightstalker_back.vmdl"
+		"model_player1"							"models/items/nightstalker/frightstalker_back/frightstalker_back_night.vmdl"
+	}
+	"17895"
+	{
+		"name"									"Frightful Revelries Legs"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/nightstalker/frightstalker_legs/frightstalker_legs"
+		"item_name"								"#DOTA_Item_Frightful_Revelries_Legs"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"model_player"							"models/items/nightstalker/frightstalker_legs/frightstalker_legs.vmdl"
+		"model_player1"							"models/items/nightstalker/frightstalker_legs/frightstalker_legs_night.vmdl"
+	}
+	"17896"
+	{
+		"name"									"Frightful Revelries Hood"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/nightstalker/frightstalker_head/frightstalker_head"
+		"item_name"								"#DOTA_Item_Frightful_Revelries_Hood"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/nightstalker/frightstalker_head/frightstalker_head.vmdl"
+		"model_player1"							"models/items/nightstalker/frightstalker_head/frightstalker_head_night.vmdl"
+	}
+	"18756"
+	{
+		"name"									"Taunt: Party Monster"
+		"prefab"								"taunt"
+		"creation_date"							"2021-05-15"
+		"event_id"								"EVENT_ID_TEAM_FANDOM_FALL_2021"
+		"image_inventory"						"econ/taunts/dota_icon_taunt_night_stalker_2021"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Night_Stalker_2021"
+		"item_name"								"#DOTA_Item_Taunt_Party_Monster"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"taunt_2021"
+				"gesture"						"1"
+			}
+		}
+	}
+	"20789"
+	{
+		"name"									"Black Nihility"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Talons of Black Nihility"			"1"
+			"Crown of Black Nihility"			"1"
+			"Strap of Black Nihility"			"1"
+			"Sweep of Black Nihility"			"1"
+			"Span of Black Nihility"			"1"
+		}
+		"creation_date"							"2015-04-02"
+		"image_inventory"						"econ/sets/black_nihility"
+		"item_description"						"#DOTA_Item_Desc_Black_Nihility"
+		"item_name"								"#DOTA_Item_Black_Nihility"
+		"item_rarity"							"immortal"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+		}
+	}
+	"21055"
+	{
+		"name"									"Unfettered Malevolence"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of Unfettered Malevolence""1"
+			"Tail of Unfettered Malevolence"	"1"
+			"Belt of Unfettered Malevolence"	"1"
+			"Helm of Unfettered Malevolence"	"1"
+			"Bracers of Unfettered Malevolence"	"1"
+			"Wings of Unfettered Malevolence"	"1"
+		}
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/evil_eyednightstalker_evil_eyednightstalker_loading"
+		"item_description"						"#DOTA_Item_Desc_Unfettered_Malevolence"
+		"item_name"								"#DOTA_Item_Unfettered_Malevolence"
+		"item_rarity"							"mythical"
+	}
+	"21229"
+	{
+		"name"									"Endless Nightmare"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Endless Nightmare Head"			"1"
+			"Endless Nightmare Legs"			"1"
+			"Endless Nightmare Arms"			"1"
+			"Endless Nightmare Back"			"1"
+		}
+		"creation_date"							"2018-06-06"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Endless_Nightmare"
+	}
+	"21230"
+	{
+		"name"									"Legends of Darkheart Pursuit"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Legends of Darkheart Pursuit Loading Screen""1"
+			"Head of Darkheart Pursuit"			"1"
+			"Legs of Darkheart Pursuit"			"1"
+			"Wings of Darkheart Pursuit"		"1"
+			"Claws of Darkheart Pursuit"		"1"
+			"Tail of Darkheart Pursuit"			"1"
+		}
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/loading_screens/endless_nightmare_ls_2"
+		"item_description"						"#DOTA_Item_Desc_Legends_of_Darkheart_Pursuit"
+		"item_name"								"#DOTA_Item_Legends_of_Darkheart_Pursuit"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21486"
+	{
+		"name"									"Origin of the Dark Oath"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Origin of the Dark Oath - Arms"	"1"
+			"Origin of the Dark Oath - Wings"	"1"
+			"Origin of the Dark Oath - Mask"	"1"
+			"Origin of the Dark Oath - Legs"	"1"
+			"Origin of the Dark Oath - Tail"	"1"
+		}
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Origin_of_the_Dark_Oath"
+		"item_name"								"#DOTA_Item_Origin_of_the_Dark_Oath"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21576"
+	{
+		"name"									"Twilight Legions"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Twilight Legions - Tail"			"1"
+			"Twilight Legions - Wings"			"1"
+			"Twilight Legions - Legs"			"1"
+			"Twilight Legions - Arms"			"1"
+			"Twilight Legions - Head"			"1"
+		}
+		"creation_date"							"2020-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/sets/DOTA_Item_Vote_Only_NS_Twilight_Manticore"
+		"item_name"								"#DOTA_Item_Twilight_Legions"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+	}
+	"21667"
+	{
+		"name"									"Darkness Wailing"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Darkness Wailing Back"				"1"
+			"Darkness Wailing Arms"				"1"
+			"Darkness Wailing Head"				"1"
+			"Darkness Wailing Legs"				"1"
+			"Darkness Wailing Tail"				"1"
+			"Darkness Wailing Loading Screen"	"1"
+		}
+		"creation_date"							"2020-08-27"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/loading_screens/darkness_wailing_ls"
+		"item_name"								"#DOTA_Item_Darkness_Wailing"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"21715"
+	{
+		"name"									"Frightful Revelries"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Frightful Revelries Tail"			"1"
+			"Frightful Revelries Legs"			"1"
+			"Frightful Revelries Hood"			"1"
+			"Frightful Revelries Wings"			"1"
+			"Frightful Revelries Bracers"		"1"
+		}
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Frightstalker"
+		"item_name"								"#DOTA_Item_Frightful_Revelries"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+	}
+	"22862"
+	{
+		"name"									"Spring Lineage Wings of Unfettered Malevolence"
+		"prefab"								"wearable"
+		"creation_date"							"2022-02-23"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/items/nightstalker/evil_eyednightstalker_back/evil_eyednightstalker_back"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Wings_of_Unfettered_Malevolence"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Wings_of_Unfettered_Malevolence"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/nightstalker/evil_eyednightstalker_back/evil_eyednightstalker_back.vmdl"
+		"model_player1"							"models/items/nightstalker/evil_eyednightstalker_back/evil_eyednightstalker_back_night.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+		"visuals"
+		{
+			"skin"								"2"
+			"skip_model_combine"				"0"
+		}
+	}
+	"22863"
+	{
+		"name"									"Spring Lineage Bracers of Unfettered Malevolence"
+		"prefab"								"wearable"
+		"creation_date"							"2022-02-23"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/items/nightstalker/evil_eyednightstalker_arms/evil_eyednightstalker_arms1"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Bracers_of_Unfettered_Malevolence"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Bracers_of_Unfettered_Malevolence"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/nightstalker/evil_eyednightstalker_arms/evil_eyednightstalker_arms.vmdl"
+		"model_player1"							"models/items/nightstalker/evil_eyednightstalker_arms/evil_eyednightstalker_arms_night.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"22864"
+	{
+		"name"									"Spring Lineage Helm of Unfettered Malevolence"
+		"prefab"								"wearable"
+		"creation_date"							"2022-02-23"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/items/nightstalker/evil_eyednightstalker_head/evil_eyednightstalker_head1"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Helm_of_Unfettered_Malevolence"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Helm_of_Unfettered_Malevolence"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/nightstalker/evil_eyednightstalker_head/evil_eyednightstalker_head.vmdl"
+		"model_player1"							"models/items/nightstalker/evil_eyednightstalker_head/evil_eyednightstalker_head_night.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"22865"
+	{
+		"name"									"Spring Lineage Belt of Unfettered Malevolence"
+		"prefab"								"wearable"
+		"creation_date"							"2022-02-23"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/items/nightstalker/evil_eyednightstalker_legs/evil_eyednightstalker_legs1"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Belt_of_Unfettered_Malevolence"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Belt_of_Unfettered_Malevolence"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Legs"
+		"model_player"							"models/items/nightstalker/evil_eyednightstalker_legs/evil_eyednightstalker_legs.vmdl"
+		"model_player1"							"models/items/nightstalker/evil_eyednightstalker_legs/evil_eyednightstalker_legs_night.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"22866"
+	{
+		"name"									"Spring Lineage Tail of Unfettered Malevolence"
+		"prefab"								"wearable"
+		"creation_date"							"2022-02-23"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/items/nightstalker/evil_eyednightstalker_tail/evil_eyednightstalker_tail1"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Tail_of_Unfettered_Malevolence"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Tail_of_Unfettered_Malevolence"
+		"item_rarity"							"mythical"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/items/nightstalker/evil_eyednightstalker_tail/evil_eyednightstalker_tail.vmdl"
+		"model_player1"							"models/items/nightstalker/evil_eyednightstalker_tail/evil_eyednightstalker_tail_night.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+		"visuals"
+		{
+			"skin"								"1"
+			"skip_model_combine"				"0"
+		}
+	}
+	"22867"
+	{
+		"name"									"Spring Lineage Unfettered Malevolence"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Spring Lineage Wings of Unfettered Malevolence""1"
+			"Spring Lineage Bracers of Unfettered Malevolence""1"
+			"Spring Lineage Helm of Unfettered Malevolence""1"
+			"Spring Lineage Belt of Unfettered Malevolence""1"
+			"Spring Lineage Tail of Unfettered Malevolence""1"
+		}
+		"creation_date"							"2022-02-23"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/sets/DOTA_Item_Spring_Lineage_Unfettered_Malevolence"
+		"item_description"						"#DOTA_Item_Desc_Spring_Lineage_Unfettered_Malevolence"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Unfettered_Malevolence"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+	}
+}

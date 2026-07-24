@@ -1,0 +1,1623 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"594"
+	{
+		"name"									"Monkey King Head"
+		"prefab"								"default_item"
+		"creation_date"							"2016-09-20"
+		"image_inventory"						"econ/heroes/monkey_king/monkey_king_hair"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Monkey_King_Back"
+		"item_name"								"#DOTA_Item_Monkey_King_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/monkey_king/monkey_king_hair.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"608"
+	{
+		"name"									"Monkey King Armor"
+		"prefab"								"default_item"
+		"creation_date"							"2016-09-20"
+		"image_inventory"						"econ/heroes/monkey_king/monkey_king_armor"
+		"item_description"						"#DOTA_Item_Desc_Monkey_King_Armor"
+		"item_name"								"#DOTA_Item_Monkey_King_Armor"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/heroes/monkey_king/monkey_king_armor.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"609"
+	{
+		"name"									"Monkey King Weapon"
+		"prefab"								"default_item"
+		"creation_date"							"2016-09-20"
+		"image_inventory"						"econ/heroes/monkey_king/monkey_king_base_weapon"
+		"item_description"						"#DOTA_Item_Desc_Monkey_King_Weapon"
+		"item_name"								"#DOTA_Item_Monkey_King_Weapon"
+		"model_player"							"models/heroes/monkey_king/monkey_king_base_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"657"
+	{
+		"name"									"Monkey King Shoulders"
+		"prefab"								"default_item"
+		"creation_date"							"2018-01-09"
+		"image_inventory"						"econ/heroes/monkey_king/monkey_king_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Monkey_King_Armor"
+		"item_name"								"#DOTA_Item_Monkey_King_Shoulders"
+		"item_quality"							"unique"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/heroes/monkey_king/monkey_king_shoulders.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"7726"
+	{
+		"name"									"Taunt: Goin' Bananas"
+		"prefab"								"taunt"
+		"creation_date"							"2016-12-12"
+		"image_inventory"						"econ/taunts/dota_icon_taunt_monkey_king_pogo_stick"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Goin_Bananas"
+		"item_name"								"#DOTA_Item_Taunt_Goin_Bananas"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/12/2016"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"pogo_gesture"
+				"style"							"0"
+				"gesture"						"1"
+			}
+		}
+	}
+	"7824"
+	{
+		"name"									"Staff of Gun-Yu of the Crimson Witness"
+		"prefab"								"wearable"
+		"creation_date"							"2017-07-24"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"hide_tradecraftdelete"					"1"
+		"image_inventory"						"econ/items/monkey_king/monkey_king_immortal_weapon/monkey_king_immortal_weapon1"
+		"item_description"						"#DOTA_Item_Desc_Staff_of_GunYu_of_the_Crimson_Witness"
+		"item_name"								"#DOTA_Item_Staff_of_GunYu_of_the_Crimson_Witness"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Wearable"
+		"model_player"							"models/items/monkey_king/monkey_king_immortal_weapon/monkey_king_immortal_weapon.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti7"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/monkey_king/ti7_weapon/mk_ti7_crimson_ambient.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_monkey_king/monkey_king_strike.vpcf"
+				"modifier"						"particles/econ/items/monkey_king/ti7_weapon/mk_ti7_crimson_strike.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_monkey_king/monkey_king_strike_cast.vpcf"
+				"modifier"						"particles/econ/items/monkey_king/ti7_weapon/mk_ti7_crimson_strike_cast.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"sound"
+				"asset"							"Hero_MonkeyKing.Strike.Impact"
+				"modifier"						"Hero_MonkeyKing.Strike.Impact.Immortal"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier5"
+			{
+				"type"							"ability_icon"
+				"asset"							"monkey_king_boundless_strike"
+				"modifier"						"monkey_king_strike_crimson"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"skin"								"1"
+		}
+	}
+	"9050"
+	{
+		"name"									"Great Sage's Reckoning"
+		"prefab"								"wearable"
+		"creation_date"							"2016-12-12"
+		"image_inventory"						"econ/items/monkey_king/monkey_king_arcana_head/monkey_king_arcana"
+		"item_description"						"#DOTA_Item_Desc_Great_Sages_Reckoning"
+		"item_name"								"#DOTA_Item_Great_Sages_Reckoning"
+		"item_rarity"							"arcana"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Arcana_Head_Item"
+		"model_player"							"models/items/monkey_king/monkey_king_arcana_head/mesh/monkey_king_arcana.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/12/2016"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Monkey_King_Arcana_Base"
+					"skin"						"0"
+					"auto_style_rule"			"monkey_king_wukongs_command == 0"
+					"auto_style_reason"			"#DOTA_AutoStyle_Initial_Style_Reason"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Monkey_King_Arcana_Water"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"auto_style_rule"			"monkey_king_wukongs_command == 1"
+					"auto_style_reason"			"#DOTA_Style_Monkey_King_Arcana_Water_Reason"
+				}
+				"2"
+				{
+					"name"						"#DOTA_Style_Monkey_King_Arcana_Death"
+					"skin"						"2"
+					"alternate_icon"			"2"
+					"auto_style_rule"			"monkey_king_wukongs_command == 2"
+					"auto_style_reason"			"#DOTA_Style_Monkey_King_Arcana_Death_Reason"
+				}
+				"3"
+				{
+					"name"						"#DOTA_Style_Monkey_King_Arcana_Fire"
+					"skin"						"3"
+					"alternate_icon"			"3"
+					"auto_style_rule"			"monkey_king_wukongs_command == 3"
+					"auto_style_reason"			"#DOTA_Style_Monkey_King_Arcana_Fire_Reason"
+				}
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"arcana_level"
+				"level"							"1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"chatwheel"
+				"asset"							"monkey_king_monkey_regen_02"
+				"modifier"						"monkey_king_monkey_crown_regen_02"
+			}
+			"asset_modifier3"
+			{
+				"type"							"chatwheel"
+				"asset"							"monkey_king_monkey_ability5_07"
+				"modifier"						"monkey_king_monkey_crown_ability5_07"
+			}
+			"asset_modifier4"
+			{
+				"type"							"chatwheel"
+				"asset"							"monkey_king_monkey_death_01"
+				"modifier"						"monkey_king_monkey_crown_death_01"
+			}
+			"asset_modifier5"
+			{
+				"type"							"chatwheel"
+				"asset"							"monkey_king_monkey_drop_medium_01"
+				"modifier"						"monkey_king_monkey_crown_drop_medium_01"
+			}
+			"asset_modifier6"
+			{
+				"type"							"chatwheel"
+				"asset"							"monkey_king_monkey_deny_brood_01"
+				"modifier"						"monkey_king_monkey_crown_deny_brood_01"
+			}
+			"asset_modifier9"
+			{
+				"type"							"healthbar_offset"
+				"offset"						"220"
+			}
+			"asset_modifier7"
+			{
+				"type"							"chatwheel"
+				"asset"							"monkey_king_monkey_win_02"
+				"modifier"						"monkey_king_monkey_crown_win_02"
+			}
+			"asset_modifier10"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/monkey_king/arcana/monkey_king_arcana_crown_water.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/monkey_king/arcana/monkey_king_arcana_crown_water.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_crownfx"
+					}
+				}
+			}
+			"asset_modifier11"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/monkey_king/arcana/monkey_king_arcana_crown_death.vpcf"
+				"style"							"2"
+				"system"						"particles/econ/items/monkey_king/arcana/monkey_king_arcana_crown_death.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_crownfx"
+					}
+				}
+			}
+			"asset_modifier12"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/monkey_king/arcana/monkey_king_arcana_crown_fire.vpcf"
+				"style"							"3"
+				"system"						"particles/econ/items/monkey_king/arcana/monkey_king_arcana_crown_fire.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_crownfx"
+					}
+				}
+			}
+			"asset_modifier13"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/monkey_king/arcana/monkey_king_arcana_fire.vpcf"
+				"style"							"3"
+				"system"						"particles/econ/items/monkey_king/arcana/monkey_king_arcana_fire.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hand_l"
+					}
+					"4"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hand_r"
+					}
+					"5"
+					{
+						"control_point_index"	"5"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+				}
+			}
+			"asset_modifier14"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/monkey_king/arcana/monkey_king_arcana_death.vpcf"
+				"style"							"2"
+				"system"						"particles/econ/items/monkey_king/arcana/monkey_king_arcana_death.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hand_l"
+					}
+					"4"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hand_r"
+					}
+				}
+			}
+			"asset_modifier21"
+			{
+				"type"							"particle"
+				"modifier"						"particles/econ/items/monkey_king/arcana/water/monkey_king_spring_cast_arcana_water.vpcf"
+				"asset"							"particles/units/heroes/hero_monkey_king/monkey_king_spring_cast.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier22"
+			{
+				"type"							"particle"
+				"modifier"						"particles/econ/items/monkey_king/arcana/death/monkey_king_spring_cast_arcana_death.vpcf"
+				"asset"							"particles/units/heroes/hero_monkey_king/monkey_king_spring_cast.vpcf"
+				"style"							"2"
+			}
+			"asset_modifier23"
+			{
+				"type"							"particle"
+				"modifier"						"particles/econ/items/monkey_king/arcana/fire/monkey_king_spring_cast_arcana_fire.vpcf"
+				"asset"							"particles/units/heroes/hero_monkey_king/monkey_king_spring_cast.vpcf"
+				"style"							"3"
+			}
+			"asset_modifier24"
+			{
+				"type"							"particle"
+				"modifier"						"particles/econ/items/monkey_king/arcana/water/monkey_king_spring_arcana_water.vpcf"
+				"asset"							"particles/units/heroes/hero_monkey_king/monkey_king_spring.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier25"
+			{
+				"type"							"particle"
+				"modifier"						"particles/econ/items/monkey_king/arcana/death/monkey_king_spring_arcana_death.vpcf"
+				"asset"							"particles/units/heroes/hero_monkey_king/monkey_king_spring.vpcf"
+				"style"							"2"
+			}
+			"asset_modifier26"
+			{
+				"type"							"particle"
+				"modifier"						"particles/econ/items/monkey_king/arcana/fire/monkey_king_spring_arcana_fire.vpcf"
+				"asset"							"particles/units/heroes/hero_monkey_king/monkey_king_spring.vpcf"
+				"style"							"3"
+			}
+			"asset_modifier27"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"arcana"
+			}
+			"asset_modifier28"
+			{
+				"type"							"model_skin"
+				"skin"							"1"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"chatwheel"
+				"asset"							"monkey_king_monkey_drop_common_01"
+				"modifier"						"monkey_king_monkey_crown_drop_common_01"
+			}
+			"asset_modifier8"
+			{
+				"type"							"chatwheel"
+				"asset"							"monkey_king_monkey_thanks_03"
+				"modifier"						"monkey_king_monkey_crown_thanks_03"
+			}
+			"asset_modifier15"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_monkey_king/monkey_king_spring_channel.vpcf"
+				"modifier"						"particles/econ/items/monkey_king/arcana/fire/monkey_king_spring_arcana_fire_channel.vpcf"
+				"style"							"3"
+			}
+			"asset_modifier16"
+			{
+				"type"							"response_criteria"
+				"asset"							"mkarc_crown"
+			}
+			"asset_modifier17"
+			{
+				"type"							"sound"
+				"asset"							"Hero_MonkeyKing.Spring.Impact"
+				"modifier"						"Hero_MonkeyKing.Spring.Impact.Water"
+				"style"							"1"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/monkey_king/monkey_king_arcana_head/monkey_king_arcana"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/monkey_king/monkey_king_arcana_head/monkey_king_arcana_style1"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/monkey_king/monkey_king_arcana_head/monkey_king_arcana_style2"
+				}
+				"3"
+				{
+					"icon_path"					"econ/items/monkey_king/monkey_king_arcana_head/monkey_king_arcana_style3"
+				}
+			}
+			"asset_modifier18"
+			{
+				"type"							"ability_icon"
+				"asset"							"monkey_king_primal_spring"
+				"modifier"						"monkey_king/great_sages_reckoning/monkey_king_spring"
+			}
+			"asset_modifier19"
+			{
+				"type"							"ability_icon"
+				"asset"							"monkey_king_tree_dance"
+				"modifier"						"monkey_king/great_sages_reckoning/monkey_king_tree_jump"
+			}
+			"asset_modifier20"
+			{
+				"type"							"icon_replacement_hero_minimap"
+				"asset"							"npc_dota_hero_monkey_king"
+				"modifier"						"npc_dota_hero_monkey_king_alt1"
+				"force_display"					"1"
+			}
+			"asset_modifier40"
+			{
+				"type"							"icon_replacement_hero"
+				"asset"							"npc_dota_hero_monkey_king"
+				"modifier"						"npc_dota_hero_monkey_king_alt1"
+				"force_display"					"1"
+			}
+			"asset_modifier29"
+			{
+				"type"							"portrait_game"
+				"modifier"
+				{
+					"PortraitLightPosition"		"-68.951653 74.213028 247.996246"
+					"PortraitLightAngles"		"39.280415 -38.589352 3.417898"
+					"PortraitLightFOV"			"44.910999"
+					"PortraitLightDistance"		"336"
+					"PortraitLightColor"		"110 197 245"
+					"PortraitLightScale"		"3.493000"
+					"PortraitShadowColor"		"0 42 111"
+					"PortraitShadowScale"		"1.810000"
+					"PortraitGroundShadowScale"	"1.500000"
+					"PortraitAmbientDirection"	"0.984 0.035 0.173"
+					"PortraitAmbientColor"		"84 117 169"
+					"PortraitAmbientScale"		"6.841000"
+					"PortraitSpecularColor"		"251 74 84"
+					"PortraitSpecularDirection"	"0.000000 0.000000 -1.000000"
+					"PortraitSpecularPower"		"16"
+					"PortraitBackgroundColor1"	"1.000000 1.000000 1.000000"
+					"PortraitBackgroundColor2"	"0.701961 0.945098 0.972549"
+					"PortraitBackgroundColor3"	"1.000000 1.000000 1.000000"
+					"PortraitBackgroundColor4"	"0.000000 0.101961 0.619608"
+					"PortraitBackgroundTexture"	"materials/vgui/hud/heroportraits/portraitbackground_underwater.vmat"
+					"PortraitAnimationActivity"	"ACT_DOTA_CAPTURE"
+					"PortraitAnimationCycle"	"0"
+					"PortraitAnimationRate"		"1"
+					"PortraitHideHero"			"0"
+					"PortraitHideParticles"		"0"
+					"PortraitHideDropShadow"	"0"
+					"PortraitDesaturateParticles""0"
+					"PortraitDesaturateHero"	"1"
+					"cameras"
+					{
+						"default"
+						{
+							"PortraitPosition"	"204.506866 -106.975311 194.506866"
+							"PortraitAngles"	"6.490043 151.230469 -13.679993"
+							"PortraitFOV"		"16"
+							"PortraitFar"		"1000"
+						}
+					}
+				}
+				"style"							"1"
+			}
+			"asset_modifier30"
+			{
+				"type"							"portrait_game"
+				"modifier"
+				{
+					"PortraitLightPosition"		"-68.951653 74.213028 247.996246"
+					"PortraitLightAngles"		"39.280415 -38.589352 3.417898"
+					"PortraitLightFOV"			"44.910999"
+					"PortraitLightDistance"		"336"
+					"PortraitLightColor"		"166 176 205"
+					"PortraitLightScale"		"3.691000"
+					"PortraitShadowColor"		"90 0 111"
+					"PortraitShadowScale"		"1.810000"
+					"PortraitGroundShadowScale"	"1.500000"
+					"PortraitAmbientDirection"	"0.984 0.035 0.173"
+					"PortraitAmbientColor"		"95 125 119"
+					"PortraitAmbientScale"		"6.841000"
+					"PortraitSpecularColor"		"251 74 84"
+					"PortraitSpecularDirection"	"0.000000 0.000000 -1.000000"
+					"PortraitSpecularPower"		"16"
+					"PortraitBackgroundColor1"	"1.000000 1.000000 1.000000"
+					"PortraitBackgroundColor2"	"0.705882 0.972549 0.717647"
+					"PortraitBackgroundColor3"	"0.764706 1.000000 0.917647"
+					"PortraitBackgroundColor4"	"0.121569 0.756863 0.321569"
+					"PortraitBackgroundTexture"	"materials/vgui/hud/heroportraits/portraitbackground_graveyard.vmat"
+					"PortraitAnimationActivity"	"ACT_DOTA_CAPTURE"
+					"PortraitAnimationCycle"	"0"
+					"PortraitAnimationRate"		"1"
+					"PortraitHideHero"			"0"
+					"PortraitHideParticles"		"0"
+					"PortraitHideDropShadow"	"0"
+					"PortraitDesaturateParticles""0"
+					"PortraitDesaturateHero"	"1"
+					"cameras"
+					{
+						"default"
+						{
+							"PortraitPosition"	"204.506866 -106.975311 194.506866"
+							"PortraitAngles"	"6.490043 151.230469 -13.679993"
+							"PortraitFOV"		"16"
+							"PortraitFar"		"1000"
+						}
+					}
+				}
+				"style"							"2"
+			}
+			"asset_modifier31"
+			{
+				"type"							"portrait_game"
+				"modifier"
+				{
+					"PortraitLightPosition"		"-68.951653 74.213028 247.996246"
+					"PortraitLightAngles"		"39.280415 -38.589352 3.417898"
+					"PortraitLightFOV"			"44.910999"
+					"PortraitLightDistance"		"336"
+					"PortraitLightColor"		"255 161 0"
+					"PortraitLightScale"		"3.493000"
+					"PortraitShadowColor"		"111 0 0"
+					"PortraitShadowScale"		"1.810000"
+					"PortraitGroundShadowScale"	"1.500000"
+					"PortraitAmbientDirection"	"0.984 0.035 0.173"
+					"PortraitAmbientColor"		"141 127 129"
+					"PortraitAmbientScale"		"6.841000"
+					"PortraitSpecularColor"		"251 74 84"
+					"PortraitSpecularDirection"	"0.000000 0.000000 -1.000000"
+					"PortraitSpecularPower"		"16"
+					"PortraitBackgroundColor1"	"1.000000 1.000000 1.000000"
+					"PortraitBackgroundColor2"	"1.000000 0.847059 0.180392"
+					"PortraitBackgroundColor3"	"0.980392 0.333333 0.333333"
+					"PortraitBackgroundColor4"	"0.619608 0.000000 0.596078"
+					"PortraitBackgroundTexture"	"materials/vgui/hud/heroportraits/portraitbackground_desert.vmat"
+					"PortraitAnimationActivity"	"ACT_DOTA_CAPTURE"
+					"PortraitAnimationCycle"	"0"
+					"PortraitAnimationRate"		"1"
+					"PortraitHideHero"			"0"
+					"PortraitHideParticles"		"0"
+					"PortraitHideDropShadow"	"0"
+					"PortraitDesaturateParticles""0"
+					"PortraitDesaturateHero"	"1"
+					"cameras"
+					{
+						"default"
+						{
+							"PortraitPosition"	"204.506866 -106.975311 194.506866"
+							"PortraitAngles"	"6.490043 151.230469 -13.679993"
+							"PortraitFOV"		"16"
+							"PortraitFar"		"1000"
+						}
+					}
+				}
+				"style"							"3"
+			}
+			"asset_modifier32"
+			{
+				"type"							"response_criteria"
+				"style"							"0"
+				"asset"							"base"
+				"modifier"						"arcana_type"
+			}
+			"asset_modifier33"
+			{
+				"type"							"response_criteria"
+				"style"							"1"
+				"asset"							"water"
+				"modifier"						"arcana_type"
+			}
+			"asset_modifier34"
+			{
+				"type"							"response_criteria"
+				"style"							"2"
+				"asset"							"underworld"
+				"modifier"						"arcana_type"
+			}
+			"asset_modifier35"
+			{
+				"type"							"response_criteria"
+				"style"							"3"
+				"asset"							"fire"
+				"modifier"						"arcana_type"
+			}
+			"asset_modifier36"
+			{
+				"type"							"ability_icon"
+				"asset"							"monkey_king_primal_spring_early"
+				"modifier"						"monkey_king/great_sages_reckoning/monkey_king_spring"
+			}
+			"asset_modifier"
+			{
+				"type"							"chatwheel"
+				"asset"							"monkey_king_monkey_laugh_17"
+				"modifier"						"monkey_king_monkey_crown_laugh_17"
+			}
+		}
+	}
+	"9195"
+	{
+		"name"									"Helm of the Dragon Palace"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-11"
+		"image_inventory"						"econ/items/monkey_king/the_havoc_of_dragon_palacesix_ear_head/the_havoc_of_dragon_palacesix_ear_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Dragon_Palace"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/monkey_king/the_havoc_of_dragon_palacesix_ear_head/the_havoc_of_dragon_palacesix_ear_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9212"
+	{
+		"name"									"Staff of Gun-Yu"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-04"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"hide_tradecraftdelete"					"1"
+		"image_inventory"						"econ/items/monkey_king/monkey_king_immortal_weapon/monkey_king_immortal_weapon"
+		"item_description"						"#DOTA_Item_Desc_Staff_of_GunYu"
+		"item_name"								"#DOTA_Item_Staff_of_GunYu"
+		"item_rarity"							"immortal"
+		"model_player"							"models/items/monkey_king/monkey_king_immortal_weapon/monkey_king_immortal_weapon.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1535796000"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti7"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/monkey_king/ti7_weapon/mk_ti7_immortal_weapon_ambient.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_monkey_king/monkey_king_strike.vpcf"
+				"modifier"						"particles/econ/items/monkey_king/ti7_weapon/mk_ti7_immortal_strike.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_monkey_king/monkey_king_strike_cast.vpcf"
+				"modifier"						"particles/econ/items/monkey_king/ti7_weapon/mk_ti7_immortal_strike_cast.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"sound"
+				"asset"							"Hero_MonkeyKing.Strike.Impact"
+				"modifier"						"Hero_MonkeyKing.Strike.Impact.Immortal"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier5"
+			{
+				"type"							"ability_icon"
+				"asset"							"monkey_king_boundless_strike"
+				"modifier"						"monkey_king_strike_immortal"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+		}
+	}
+	"9399"
+	{
+		"name"									"Trident of the Riptide Raider"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/monkey_king/monkey_king_king_of_the_dark_reef_ti_2017_weapon/monkey_king_king_of_the_dark_reef_ti_2017_weapon"
+		"item_name"								"#DOTA_Item_Trident_of_the_Riptide_Raider"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/monkey_king/monkey_king_king_of_the_dark_reef_ti_2017_weapon/monkey_king_king_of_the_dark_reef_ti_2017_weapon.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9400"
+	{
+		"name"									"Crown of the Riptide Raider"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/monkey_king/monkey_king_king_of_the_dark_reef_ti_2017_head/monkey_king_king_of_the_dark_reef_ti_2017_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Riptide_Raider"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/monkey_king/monkey_king_king_of_the_dark_reef_ti_2017_head/monkey_king_king_of_the_dark_reef_ti_2017_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9401"
+	{
+		"name"									"Armor of the Riptide Raider"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/monkey_king/monkey_king_king_of_the_dark_reef_ti_2017_armor/monkey_king_king_of_the_dark_reef_ti_2017_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Riptide_Raider"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/monkey_king/monkey_king_king_of_the_dark_reef_ti_2017_armor/monkey_king_king_of_the_dark_reef_ti_2017_armor.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9453"
+	{
+		"name"									"Golden Staff of Gun-Yu"
+		"prefab"								"wearable"
+		"creation_date"							"2017-08-03"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"hide_tradecraftdelete"					"1"
+		"image_inventory"						"econ/items/monkey_king/monkey_king_immortal_weapon/monkey_king_immortal_weapon2"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Crimson_Staff_of_GunYu"
+		"item_name"								"#DOTA_Item_Golden_Staff_of_GunYu"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Wearable"
+		"model_player"							"models/items/monkey_king/monkey_king_immortal_weapon/monkey_king_immortal_weapon.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti7"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/monkey_king/ti7_weapon/mk_ti7_golden_immortal_weapon_ambient.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_monkey_king/monkey_king_strike.vpcf"
+				"modifier"						"particles/econ/items/monkey_king/ti7_weapon/mk_ti7_golden_immortal_strike.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_monkey_king/monkey_king_strike_cast.vpcf"
+				"modifier"						"particles/econ/items/monkey_king/ti7_weapon/mk_ti7_golden_immortal_strike_cast.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"sound"
+				"asset"							"Hero_MonkeyKing.Strike.Impact"
+				"modifier"						"Hero_MonkeyKing.Strike.Impact.Immortal"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier5"
+			{
+				"type"							"ability_icon"
+				"asset"							"monkey_king_boundless_strike"
+				"modifier"						"monkey_king_strike_immortal_gold"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"skin"								"2"
+		}
+	}
+	"9463"
+	{
+		"name"									"Armor of the Dragon Palace"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-11"
+		"image_inventory"						"econ/items/monkey_king/the_havoc_of_dragon_palacesix_ear_armor/the_havoc_of_dragon_palacesix_ear_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Dragon_Palace"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/monkey_king/the_havoc_of_dragon_palacesix_ear_armor/the_havoc_of_dragon_palacesix_ear_armor.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9464"
+	{
+		"name"									"Staff of the Dragon Palace"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-11"
+		"image_inventory"						"econ/items/monkey_king/the_havoc_of_dragon_palacesix_ear_weapon/the_havoc_of_dragon_palacesix_ear_weapon"
+		"item_name"								"#DOTA_Item_Staff_of_the_Dragon_Palace"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/monkey_king/the_havoc_of_dragon_palacesix_ear_weapon/the_havoc_of_dragon_palacesix_ear_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9673"
+	{
+		"name"									"Shoulders of the Dragon Palace"
+		"prefab"								"wearable"
+		"creation_date"							"2018-01-09"
+		"image_inventory"						"econ/items/monkey_king/the_havoc_of_dragon_palacesix_ear_armor/the_havoc_of_dragon_palacesix_ear_shoulders"
+		"item_name"								"#DOTA_Item_Shoulders_of_the_Dragon_Palace"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/monkey_king/the_havoc_of_dragon_palacesix_ear_armor/the_havoc_of_dragon_palacesix_ear_shoulders.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9675"
+	{
+		"name"									"Shoulders of the Riptide Raider"
+		"prefab"								"wearable"
+		"creation_date"							"2018-01-10"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/monkey_king/monkey_king_king_of_the_dark_reef_ti_2017_armor/mk_king_of_the_dark_reef_t7_shoulders"
+		"item_name"								"#DOTA_Item_Shoulders_of_the_Riptide_Raider"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/monkey_king/monkey_king_king_of_the_dark_reef_ti_2017_armor/mk_king_of_the_dark_reef_t7_shoulders.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"12693"
+	{
+		"name"									"Staff of the Masks of Mischief"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"image_inventory"						"econ/items/monkey_king/dota_plus_monkey_king_weapon/dota_plus_monkey_king_weapon"
+		"item_name"								"#DOTA_Item_Staff_of_the_Masks_of_Mischief"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/monkey_king/dota_plus_monkey_king_weapon/dota_plus_monkey_king_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/monkey_king/plus_2018/monkey_king_plus_2018_weapon_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"12694"
+	{
+		"name"									"Armor of the Masks of Mischief"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"image_inventory"						"econ/items/monkey_king/dota_plus_monkey_king_armor/dota_plus_monkey_king_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Masks_of_Mischief"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/monkey_king/dota_plus_monkey_king_armor/dota_plus_monkey_king_armor.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/monkey_king/plus_2018/monkey_king_plus_2018_armor_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"12695"
+	{
+		"name"									"Garb of the Masks of Mischief"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"image_inventory"						"econ/items/monkey_king/dota_plus_monkey_king_shoulders/dota_plus_monkey_king_shoulders"
+		"item_name"								"#DOTA_Item_Garb_of_the_Masks_of_Mischief"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/monkey_king/dota_plus_monkey_king_shoulders/dota_plus_monkey_king_shoulders.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/monkey_king/plus_2018/monkey_king_plus_2018_shoulders_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"12696"
+	{
+		"name"									"Crown of the Masks of Mischief"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"image_inventory"						"econ/items/monkey_king/dota_plus_monkey_king_head/dota_plus_monkey_king_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Masks_of_Mischief"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/monkey_king/dota_plus_monkey_king_head/dota_plus_monkey_king_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/monkey_king/plus_2018/monkey_king_plus_2018_head_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13008"
+	{
+		"name"									"Armor of the Demon Trickster"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/monkey_king/mk_ti9_immortal_armor/mk_ti9_immortal_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Demon_Trickster"
+		"item_rarity"							"immortal"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/monkey_king/mk_ti9_immortal_armor/mk_ti9_immortal_armor.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti9_cape"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_monkey_king/monkey_king_furarmy_ring.vpcf"
+				"modifier"						"particles/econ/items/monkey_king/mk_ti9_immortal/mk_ti9_immortal_army_ring.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/status_fx/status_effect_monkey_king_fur_army.vpcf"
+				"modifier"						"particles/econ/items/monkey_king/mk_ti9_immortal/status_effect_mk_ti9_immortal_army.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Monkey_King_Immortal_Base"
+					"skin"						"0"
+					"auto_style_rule"			"monkey_king_wukongs_command == 0"
+					"auto_style_reason"			"#DOTA_AutoStyle_Initial_Style_Reason"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Monkey_King_Immortal_Water"
+					"skin"						"1"
+					"auto_style_rule"			"monkey_king_wukongs_command == 1"
+					"auto_style_reason"			"#DOTA_Style_Monkey_King_Arcana_Water_Reason"
+				}
+				"2"
+				{
+					"name"						"#DOTA_Style_Monkey_King_Immortal_Death"
+					"skin"						"2"
+					"auto_style_rule"			"monkey_king_wukongs_command == 2"
+					"auto_style_reason"			"#DOTA_Style_Monkey_King_Arcana_Death_Reason"
+				}
+				"3"
+				{
+					"name"						"#DOTA_Style_Monkey_King_Immortal_Fire"
+					"skin"						"3"
+					"auto_style_rule"			"monkey_king_wukongs_command == 3"
+					"auto_style_reason"			"#DOTA_Style_Monkey_King_Arcana_Fire_Reason"
+				}
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/monkey_king/mk_ti9_immortal/mk_ti9_immortal_armor_ambient.vpcf"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"monkey_king_wukongs_command"
+				"modifier"						"monkey_king_wukongs_command_ti9"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_monkey_king/monkey_king_fur_army_cast.vpcf"
+				"modifier"						"particles/econ/items/monkey_king/mk_ti9_immortal/mk_ti9_immortal_army_cast.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_monkey_king/monkey_king_fur_army_positions.vpcf"
+				"modifier"						"particles/econ/items/monkey_king/mk_ti9_immortal/mk_ti9_immortal_army_positions.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+		}
+	}
+	"13544"
+	{
+		"name"									"Mask of the Demon Trickster"
+		"prefab"								"wearable"
+		"creation_date"							"2019-08-06"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/monkey_king/mk_ti9_immortal_head/mk_ti9_immortal_head"
+		"item_name"								"#DOTA_Item_Mask_of_the_Demon_Trickster"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/monkey_king/mk_ti9_immortal_head/mk_ti9_immortal_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/monkey_king/mk_ti9_immortal/mk_ti9_immortal_head_ambient.vpcf"
+			}
+		}
+	}
+	"13545"
+	{
+		"name"									"Pauldrons of the Demon Trickster"
+		"prefab"								"wearable"
+		"creation_date"							"2019-08-06"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/monkey_king/mk_ti9_immortal_shoulder/mk_ti9_immortal_shoulder"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Demon_Trickster"
+		"item_rarity"							"immortal"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/monkey_king/mk_ti9_immortal_shoulder/mk_ti9_immortal_shoulder.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/monkey_king/mk_ti9_immortal/mk_ti9_immortal_shoulders_ambient.vpcf"
+			}
+		}
+	}
+	"13546"
+	{
+		"name"									"Staff of the Demon Trickster"
+		"prefab"								"wearable"
+		"creation_date"							"2019-08-06"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/monkey_king/mk_ti9_immortal_weapon/mk_ti9_immortal_weapon"
+		"item_name"								"#DOTA_Item_Staff_of_the_Demon_Trickster"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/monkey_king/mk_ti9_immortal_weapon/mk_ti9_immortal_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/monkey_king/mk_ti9_immortal/mk_ti9_immortal_weapon_ambient.vpcf"
+			}
+		}
+	}
+	"20935"
+	{
+		"name"									"Great Sage's Reckoning Bundle"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Great Sage's Reckoning"			"1"
+			"Great Sage's Reckoning Loading Screen""1"
+			"Taunt: Goin' Bananas"				"1"
+			"Great Sage's Reckoning Emoticon"	"1"
+		}
+		"creation_date"							"2016-12-12"
+		"image_inventory"						"econ/bundles/great_reckoning_arcana_bundle"
+		"item_description"						"#DOTA_Item_Desc_Great_Sages_Reckoning_Bundle"
+		"item_name"								"#DOTA_Item_Great_Sages_Reckoning_Bundle"
+		"item_rarity"							"arcana"
+		"price_info"
+		{
+			"category_tags"						"Bundles"
+			"date"								"12/12/2016"
+			"bundle"							"1"
+			"price"								"3499"
+		}
+	}
+	"21078"
+	{
+		"name"									"Havoc of Dragon Palace"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"The Havoc of Dragon Palace Loading Screen""1"
+			"Staff of the Dragon Palace"		"1"
+			"Armor of the Dragon Palace"		"1"
+			"Helm of the Dragon Palace"			"1"
+			"Shoulders of the Dragon Palace"	"1"
+		}
+		"creation_date"							"2017-09-11"
+		"image_inventory"						"econ/loading_screens/the_havoc_of_dragon_palacesix_ear_the_havoc_of_dragon_palacesix_ear"
+		"item_description"						"#DOTA_Item_Desc_Havoc_of_Dragon_Palace"
+		"item_name"								"#DOTA_Item_Havoc_of_Dragon_Palace"
+		"item_rarity"							"rare"
+	}
+	"21126"
+	{
+		"name"									"Riptide Raider"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Trident of the Riptide Raider"		"1"
+			"Crown of the Riptide Raider"		"1"
+			"Armor of the Riptide Raider"		"1"
+			"Riptide Raider Loading Screen"		"1"
+			"Shoulders of the Riptide Raider"	"1"
+		}
+		"creation_date"							"2017-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/loading_screens/monkey_king_king_of_the_dark_reef_loading_screen_ti_2017"
+		"item_description"						"#DOTA_Item_Desc_Riptide_Raider"
+		"item_name"								"#DOTA_Item_Riptide_Raider"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21283"
+	{
+		"name"									"Masks of Mischief"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Crown of the Masks of Mischief"	"1"
+			"Staff of the Masks of Mischief"	"1"
+			"Armor of the Masks of Mischief"	"1"
+			"Garb of the Masks of Mischief"		"1"
+		}
+		"creation_date"							"2018-12-05"
+		"image_inventory"						"econ/sets/DOTA_Item_Dota_Plus_Monkey_King_Set"
+		"item_name"								"#DOTA_Item_Masks_of_Mischief"
+		"item_rarity"							"mythical"
+		"shards_purchase_price"					"90000"
+	}
+	"21425"
+	{
+		"name"									"Cult of the Demon Trickster"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Staff of the Demon Trickster"		"1"
+			"Mask of the Demon Trickster"		"1"
+			"Armor of the Demon Trickster"		"1"
+			"Pauldrons of the Demon Trickster"	"1"
+		}
+		"creation_date"							"2019-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/sets/DOTA_Item_Cult_of_the_Demon_Trickster"
+		"item_description"						"#DOTA_Item_Desc_Cult_of_the_Demon_Trickster"
+		"item_name"								"#DOTA_Item_Cult_of_the_Demon_Trickster"
+		"item_rarity"							"immortal"
+		"visuals"
+		{
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/sets/DOTA_Item_Cult_of_the_Demon_Trickster"
+				}
+				"1"
+				{
+					"icon_path"					"econ/sets/DOTA_Item_Cult_of_the_Demon_Trickster_style1"
+				}
+				"2"
+				{
+					"icon_path"					"econ/sets/DOTA_Item_Cult_of_the_Demon_Trickster_style2"
+				}
+				"3"
+				{
+					"icon_path"					"econ/sets/DOTA_Item_Cult_of_the_Demon_Trickster_style3"
+				}
+			}
+		}
+	}
+	"22378"
+	{
+		"name"									"Baubles of the Preening King - Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2022-07-27"
+		"image_inventory"						"econ/items/monkey_king/return_of_the_monkey_king_armor_v2/return_of_the_monkey_king_armor_v2"
+		"item_name"								"#DOTA_Item_Baubles_of_the_Preening_King__Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/monkey_king/return_of_the_monkey_king_armor_v2/return_of_the_monkey_king_armor_v2.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"22390"
+	{
+		"name"									"Baubles of the Preening King - Crown"
+		"prefab"								"wearable"
+		"creation_date"							"2022-07-26"
+		"image_inventory"						"econ/items/monkey_king/return_of_the_monkey_king_head/return_of_the_monkey_king_head"
+		"item_name"								"#DOTA_Item_Baubles_of_the_Preening_King__Crown"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/monkey_king/return_of_the_monkey_king_head/return_of_the_monkey_king_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"22392"
+	{
+		"name"									"Baubles of the Preening King - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2022-07-26"
+		"image_inventory"						"econ/items/monkey_king/return_of_the_monkey_king_weapon/return_of_the_monkey_king_weapon"
+		"item_name"								"#DOTA_Item_Baubles_of_the_Preening_King__Weapon"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/monkey_king/return_of_the_monkey_king_weapon/return_of_the_monkey_king_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"22505"
+	{
+		"name"									"Baubles of the Preening King"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Baubles of the Preening King - Shoulder""1"
+			"Baubles of the Preening King Loading Screen""1"
+			"Baubles of the Preening King - Weapon""1"
+			"Baubles of the Preening King - Crown""1"
+			"Baubles of the Preening King - Armor""1"
+		}
+		"creation_date"							"2022-07-26"
+		"image_inventory"						"econ/loading_screens/return_of_the_monkey_king_loading"
+		"item_name"								"#DOTA_Item_Baubles_of_the_Preening_King"
+		"item_rarity"							"rare"
+	}
+	"23702"
+	{
+		"name"									"Tangled Tropics - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2022-06-27"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/monkey_king/path_of_the_jungle_weapon/path_of_the_jungle_weapon"
+		"item_name"								"#DOTA_Item_Tangled_Tropics__Weapon"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/monkey_king/path_of_the_jungle_weapon/path_of_the_jungle_weapon.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"23704"
+	{
+		"name"									"Tangled Tropics - Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2022-06-27"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/monkey_king/path_of_the_jungle_armor/path_of_the_jungle_armor"
+		"item_name"								"#DOTA_Item_Tangled_Tropics__Armor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/monkey_king/path_of_the_jungle_armor/path_of_the_jungle_armor.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"23705"
+	{
+		"name"									"Tangled Tropics - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2022-06-27"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/monkey_king/path_of_the_jungle_shoulder/path_of_the_jungle_shoulder"
+		"item_name"								"#DOTA_Item_Tangled_Tropics__Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/monkey_king/path_of_the_jungle_shoulder/path_of_the_jungle_shoulder.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"23706"
+	{
+		"name"									"Tangled Tropics - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2022-06-27"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/monkey_king/path_of_the_jungle_head/path_of_the_jungle_head"
+		"item_name"								"#DOTA_Item_Tangled_Tropics__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/monkey_king/path_of_the_jungle_head/path_of_the_jungle_head.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"23707"
+	{
+		"name"									"Tangled Tropics"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Tangled Tropics - Head"			"1"
+			"Tangled Tropics - Shoulder"		"1"
+			"Tangled Tropics - Armor"			"1"
+			"Tangled Tropics - Weapon"			"1"
+		}
+		"creation_date"							"2022-06-27"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/sets/DOTA_Item_Path_of_the_Jungle"
+		"item_name"								"#DOTA_Item_Tangled_Tropics"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+	}
+	"23802"
+	{
+		"name"									"Baubles of the Preening King - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2022-07-26"
+		"image_inventory"						"econ/items/monkey_king/return_of_the_monkey_king_shoulders/return_of_the_monkey_king_shoulders"
+		"item_name"								"#DOTA_Item_Baubles_of_the_Preening_King__Shoulder"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/monkey_king/return_of_the_monkey_king_shoulders/return_of_the_monkey_king_shoulders.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+}

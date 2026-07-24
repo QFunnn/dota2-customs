@@ -1,0 +1,916 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+@define rarity_color_1: #b0c3d9;
+@define rarity_color_uncommon: #5e98d9;
+@define rarity_color_2: #4b69ff;
+@define rarity_color_3: #8847ff;
+@define rarity_color_0: #d32ce6;
+@define rarity_color_5: #eb4b4b;
+@define rarity_color_4: #e4ae39;
+@define rarity_color_arcana: #ade55c;
+@define rarity_color_seasonal: #fff34f;
+.CommonGoldNum
+{
+	font-size: 24px;
+	color: #FFCC34;
+}
+
+.CommonButtonBlue
+{
+	width: 197px;
+	height: 54px;
+	background-image: url("s2r://panorama/images/custom_game/common_resource/btnblue_png.vtex");
+}
+
+.CommonButtonBlue Label
+{
+	align: center center;
+	color: #E9E9E9;
+	font-size: 17px;
+	text-shadow: 0px 0px 1px 3 #000000;
+}
+
+.CommonButtonGrey
+{
+	width: 197px;
+	height: 54px;
+	background-image: url("s2r://panorama/images/custom_game/common_resource/btngrey_png.vtex");
+}
+
+.CommonButtonGrey Label
+{
+	align: center center;
+	color: #E9E9E9;
+	font-size: 17px;
+	text-shadow: 0px 0px 1px 3 #000000;
+}
+
+.RarityColor0
+{
+	color: rarity_color_0;
+}
+
+.RarityColor1
+{
+	color: rarity_color_1;
+}
+
+.RarityColor2
+{
+	color: rarity_color_2;
+}
+
+.RarityColor3
+{
+	color: rarity_color_3;
+}
+
+.RarityColor4
+{
+	color: rarity_color_4;
+}
+
+.RarityColor5
+{
+	color: rarity_color_5;
+}
+
+.RarityBorderColor0
+{
+	border-color: rarity_color_0;
+}
+
+.RarityBorderColor1
+{
+	border-color: rarity_color_1;
+}
+
+.RarityBorderColor2
+{
+	border-color: rarity_color_2;
+}
+
+.RarityBorderColor3
+{
+	border-color: rarity_color_3;
+}
+
+.RarityBorderColor4
+{
+	border-color: rarity_color_4;
+}
+
+.RarityBorderColor5
+{
+	border-color: rarity_color_5;
+}
+
+.RarityBGColor0
+{
+	background-color: rarity_color_0;
+}
+
+.RarityBGColor1
+{
+	background-color: rarity_color_1;
+}
+
+.RarityBGColor2
+{
+	background-color: rarity_color_2;
+}
+
+.RarityBGColor3
+{
+	background-color: rarity_color_3;
+}
+
+.RarityBGColor4
+{
+	background-color: rarity_color_4;
+}
+
+.RarityBGColor5
+{
+	background-color: rarity_color_5;
+}
+
+.RarityWashColor0
+{
+	wash-color: rarity_color_0;
+}
+
+.RarityWashColor1
+{
+	wash-color: rarity_color_1;
+}
+
+.RarityWashColor2
+{
+	wash-color: rarity_color_2;
+}
+
+.RarityWashColor3
+{
+	wash-color: rarity_color_3;
+}
+
+.RarityWashColor4
+{
+	wash-color: rarity_color_4;
+}
+
+.RarityWashColor5
+{
+	wash-color: rarity_color_5;
+}
+
+.RarityGradientColor0
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), color-stop(0.5, #ED88FF), to(#A925CA));
+}
+
+.RarityGradientColor1
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#C1C1C1), to(#768594));
+}
+
+.RarityGradientColor2
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#65B0F0), to(#254CCA));
+}
+
+.RarityGradientColor3
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#D482FF), to(#7325CA));
+}
+
+.RarityGradientColor4
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), color-stop(0.5, #FFE982), to(#CA8E25));
+}
+
+.RarityGradientColor5
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), color-stop(0.5, #FF9F70), to(#D53333));
+}
+
+.CustomRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+}
+
+#Draw
+{
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	background-image: url("s2r://panorama/images/custom_game/draw/draw_bg_png.vtex");
+	background-size: 1920px 1080px;
+	background-position: center center;
+}
+
+#Draw.exchangeTab .EOM_PopupBgMask
+{
+	opacity: 1;
+}
+
+#Draw .EOM_PopupBgMask
+{
+	opacity: 0;
+	z-index: -1;
+}
+
+#Draw .EOM_PopupTitle.P2
+{
+	width: 480px;
+	height: 42px;
+	text-overflow: shrink;
+	margin-top: 40px;
+	font-size: 40px;
+	font-weight: normal;
+	text-align: center;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#FFF9D1), to(#C37A44));
+	text-shadow: 0px 0px 2px 4 rgba(0, 0, 0, 0.5);
+	z-index: 1;
+}
+
+#Draw .EOM_Breadcrumb TabButton Label
+{
+	color: #678DC7;
+	text-shadow: 0px 0px 3px 3 #000000;
+	transition-property: color;
+	transition-duration: 0.2s;
+}
+
+#Draw .EOM_Breadcrumb TabButton:selected Label
+{
+	color: white;
+	text-shadow: 0px 0px 3px 3 #678DC7;
+	sound: "ui_rollover_micro";
+}
+
+#Draw .EOM_Breadcrumb TabButton:hover Label
+{
+	color: #B3CCF5;
+}
+
+#Draw .EOM_TextEntry
+{
+	width: 130px;
+	font-size: 16px;
+	height: 26px;
+	padding: 3px 7px 1px 7px;
+	background-color: #060D14;
+	border: 1px solid #394860;
+	vertical-align: center;
+}
+
+#Draw .EOM_TextEntry #PlaceholderText
+{
+	margin-top: 0px;
+	font-size: 16px;
+}
+
+#Draw #Contents #PoolTimeInfo
+{
+	width: 320px;
+	height: 84px;
+	align: right bottom;
+	margin-bottom: 86px;
+	flow-children: down;
+	background-image: url("s2r://panorama/images/custom_game/draw/timer_bg_png.vtex");
+	padding-left: 70px;
+}
+
+#Draw #Contents #PoolTimeInfo #Title
+{
+	width: 170px;
+	height: 20px;
+	horizontal-align: center;
+	margin-top: 13px;
+	flow-children: right;
+}
+
+#Draw #Contents #PoolTimeInfo #Title Image
+{
+	vertical-align: center;
+}
+
+#Draw #Contents #PoolTimeInfo #Title #TitleLabel
+{
+	width: 160px;
+	height: 20px;
+	font-size: 18px;
+	color: #BABABA;
+	text-align: center;
+	text-overflow: shrink;
+	vertical-align: center;
+}
+
+#Draw #Contents #PoolTimeInfo #PoolTimeCountDown
+{
+	width: 185px;
+	height: 27px;
+	horizontal-align: center;
+	margin-top: 6px;
+}
+
+#Draw #Contents #PoolTimeInfo #PoolTimeCountDown #PoolTimeCountDownLabel
+{
+	width: 100%;
+	height: 100%;
+	font-size: 25px;
+	color: #BABABA;
+	text-align: center;
+	text-overflow: shrink;
+}
+
+#Draw #Contents #PoolTimeInfo #NextPoolTitle
+{
+	font-size: 18px;
+	color: #ffff8d;
+}
+
+.PageButton
+{
+	width: 167px;
+	height: 67px;
+	background-size: 150%;
+	margin-top: 60px;
+	vertical-align: top;
+	transition-property: brightness, transform;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.PageButton TextButton
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+}
+
+.PageButton TextButton Label
+{
+	width: 74px;
+	height: 27px;
+	color: white;
+	font-size: 25px;
+	align: center center;
+	text-align: center;
+	text-overflow: shrink;
+}
+
+#PageLeft
+{
+	horizontal-align: left;
+	pre-transform-rotate2d: -180deg;
+	margin-left: 20px;
+}
+
+#PageLeft Label
+{
+	pre-transform-rotate2d: 180deg;
+	margin-left: 30px;
+}
+
+#PageRight
+{
+	align: right center;
+	margin-right: 40px;
+	margin-top: 350px;
+}
+
+.PageButtonRedeem
+{
+	width: 144px;
+	height: 124px;
+	background-image: url("s2r://panorama/images/custom_game/new_draw/r1_btn_redeem_png.vtex");
+	background-size: 100% 100%;
+	transition-property: brightness, transform;
+	transition-duration: 0.2s;
+	border-radius: 50%;
+}
+
+.PageButtonRedeem:hover
+{
+	brightness: 1.2;
+	transform: scale3d(1.05, 1.05, 1);
+}
+
+.PageButtonRedeem:active
+{
+	transform: scale3d(0.95, 0.95, 1);
+}
+
+.PageButtonRedeem Label
+{
+	max-width: 80%;
+	max-height: 80%;
+	margin-left: 30px;
+	text-overflow: shrink;
+	align: left center;
+	text-align: center;
+	color: #E2F0FF;
+	font-size: 22px;
+	font-weight: bold;
+	text-shadow: 0px 2px 4px #000000;
+}
+
+#DrawPage
+{
+	visibility: collapse;
+	transition-property: opacity, transform;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+	opacity: 0;
+	transform: translateX(-300px);
+}
+
+#DrawPage.Show
+{
+	visibility: visible;
+	opacity: 1;
+	transform: translateX(0px);
+}
+
+#DrawPage #PoolBGFullscreen
+{
+	width: 100%;
+	height: 100%;
+	z-index: -2;
+}
+
+#DrawPage #PoolBGMask
+{
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+}
+
+#DrawPage #TreasureListContainer
+{
+	width: 250px;
+	height: 700px;
+}
+
+#DrawPage #TreasureListContainer .BoxItemBannerContainer
+{
+	width: 242px;
+	height: 136px;
+	margin-bottom: 12px;
+	transition-property: brightness, transform;
+	transition-duration: 0.2s;
+}
+
+#DrawPage #TreasureListContainer .BoxItemBannerContainer:hover
+{
+	brightness: 1.2;
+	transform: translateX(5px);
+}
+
+#DrawPage #TreasureListContainer .BoxItemBannerContainer .BoxItemBanner
+{
+	width: 222px;
+	height: 116px;
+	horizontal-align: center;
+	vertical-align: bottom;
+}
+
+#DrawPage #TreasureListContainer .BoxItemBannerContainer .BoxItemBanner .BoxItemImage
+{
+	width: 100%;
+	height: 100%;
+}
+
+#DrawPage #TreasureListContainer .BoxItemBannerContainer .BoxItemBanner .BoxItemSelect
+{
+	width: 100%;
+	height: 100%;
+	visibility: collapse;
+}
+
+#DrawPage #TreasureListContainer .BoxItemBannerContainer .BoxItemBanner.Selected .BoxItemSelect
+{
+	visibility: visible;
+}
+
+#DrawPage #TreasureListContainer .BoxItemBannerContainer .BoxItemTag
+{
+	align: right top;
+	margin-top: 5px;
+	margin-right: 0px;
+	z-index: 3;
+}
+
+#DrawPage #PoolRightInfo
+{
+	width: 380px;
+}
+
+#DrawPage #PoolRightInfo #PoolSkin
+{
+	width: 380px;
+	height: 80px;
+	background-image: url("s2r://panorama/images/custom_game/new_draw/r1_frame_name_png.vtex");
+	background-size: 100% 100%;
+}
+
+#DrawPage #PoolRightInfo #PoolSkin #PoolSkinLabel
+{
+	font-size: 38px;
+	color: white;
+	text-shadow: 0px 0px 4px 4 black;
+	align: right center;
+	margin-right: 35px;
+}
+
+#DrawPage #PoolRightInfo #PoolMovie
+{
+	width: 380px;
+	height: 213px;
+	margin-top: 15px;
+	border: 1px solid #ffffff22;
+	box-shadow: 0px 0px 10px black;
+}
+
+#DrawPage #PoolRightInfo #PoolTimeInfo
+{
+	width: 380px;
+	height: 70px;
+	margin-top: 15px;
+	background-image: url("s2r://panorama/images/custom_game/new_draw/r1_frame_time_png.vtex");
+	background-size: 100% 100%;
+	flow-children: down;
+}
+
+#DrawPage #PoolRightInfo #PoolTimeInfo #Title
+{
+	width: 100%;
+	margin-top: 12px;
+}
+
+#DrawPage #PoolRightInfo #PoolTimeInfo #Title #TitleLabel
+{
+	width: 100%;
+	text-align: center;
+	color: #BABABA;
+	font-size: 16px;
+}
+
+#DrawPage #PoolRightInfo #PoolTimeInfo #PoolTimeCountDown
+{
+	width: 100%;
+	margin-top: 2px;
+}
+
+#DrawPage #PoolRightInfo #PoolTimeInfo #PoolTimeCountDown #PoolTimeCountDownLabel
+{
+	width: 100%;
+	text-align: center;
+	color: #F8E28B;
+	font-size: 22px;
+}
+
+#DrawPage #DrawActionBottom
+{
+	flow-children: right;
+}
+
+#DrawPage #DrawActionBottom #ToggleCost
+{
+	width: fit-children;
+	height: fit-children;
+	transform: translateY(5px);
+	margin-right: 50px;
+	flow-children: down;
+}
+
+#DrawPage #DrawActionBottom #ToggleCost #TokenRadioButton
+{
+	width: fit-children;
+	height: fit-children;
+	flow-children: right;
+	margin-top: 5px;
+}
+
+#DrawPage #DrawActionBottom #ToggleCost #TokenRadioButton.Selected #CheckButton
+{
+	background-color: #6C93D6;
+	border: 2px solid #A2C4FA;
+	box-shadow: #5b62bf77 0px 0px 8px 0px;
+}
+
+#DrawPage #DrawActionBottom #ToggleCost #TokenRadioButton.Selected #TokenName
+{
+	color: #FFFFFF;
+}
+
+#DrawPage #DrawActionBottom #ToggleCost #TokenRadioButton:hover #CheckButton
+{
+	border: 2px solid #697879;
+}
+
+#DrawPage #DrawActionBottom #ToggleCost #TokenRadioButton #CheckButton
+{
+	width: 22px;
+	height: 22px;
+	margin-right: 8px;
+	background-color: black;
+	border: 2px solid #5e686966;
+	vertical-align: center;
+	transition-property: border, background-color, box-shadow;
+	transition-timing-function: ease-in-out;
+	transition-duration: 0.3s;
+}
+
+#DrawPage #DrawActionBottom #ToggleCost #TokenRadioButton #TokenIcon
+{
+	width: 28px;
+	height: 28px;
+	vertical-align: center;
+}
+
+#DrawPage #DrawActionBottom #ToggleCost #TokenRadioButton #TokenName
+{
+	height: 26px;
+	margin-left: 2px;
+	font-size: 20px;
+	color: gray;
+	vertical-align: center;
+	text-overflow: shrink;
+}
+
+#DrawPage #DrawActionBottom #DrawButtons
+{
+	vertical-align: bottom;
+}
+
+#DrawPage #DrawActionBottom #DrawButtons .DrawButtonContainer Button
+{
+	width: 306px;
+	height: 80px;
+	background-size: 100% 100%;
+	transition-property: brightness, transform;
+	transition-duration: 0.1s;
+}
+
+#DrawPage #DrawActionBottom #DrawButtons .DrawButtonContainer Button:hover
+{
+	brightness: 1.2;
+	transform: scale3d(1.02, 1.02, 1);
+}
+
+#DrawPage #DrawActionBottom #DrawButtons .DrawButtonContainer Button:active
+{
+	transform: scale3d(0.98, 0.98, 1);
+}
+
+#DrawPage #DrawActionBottom #DrawButtons .DrawButtonContainer Button Label
+{
+	align: center center;
+	font-size: 24px;
+	color: white;
+	text-shadow: 0px 2px 4px black;
+	font-weight: bold;
+}
+
+#DrawPage #DrawActionBottom #DrawButtons .DrawButtonContainer Button:disabled
+{
+	saturation: 0.2;
+	brightness: 0.5;
+}
+
+#DrawPage #DrawActionBottom #DrawButtons .DrawButtonContainer .DrawBtnBlue
+{
+	background-image: url("s2r://panorama/images/custom_game/new_draw/r1_btn_blue_png.vtex");
+}
+
+#DrawPage #DrawActionBottom #DrawButtons .DrawButtonContainer .DrawBtnYellow
+{
+	background-image: url("s2r://panorama/images/custom_game/new_draw/r1_btn_yellow_png.vtex");
+}
+
+#DrawPage #DrawActionBottom #DrawButtons .DrawButtonContainer .DrawBtnYellow Label
+{
+	color: #FFE6A9;
+}
+
+#DrawPage #DrawActionBottom #DrawButtons .DrawButtonContainer .TokenCost
+{
+	margin-top: 5px;
+}
+
+#DrawPage #DrawActionBottom #DrawButtons .DrawButtonContainer .TokenCost Image
+{
+	width: 24px;
+	height: 24px;
+	vertical-align: center;
+}
+
+#DrawPage #DrawActionBottom #DrawButtons .DrawButtonContainer .TokenCost Label
+{
+	color: white;
+	font-size: 18px;
+	margin-left: 5px;
+	vertical-align: center;
+	text-shadow: 0px 1px 2px black;
+}
+
+#DrawPage #DrawActionBottom #DrawButtons .DrawButtonContainer .TokenCost Label.Insufficient
+{
+	color: #FF5555;
+}
+
+#DrawPage #DrawActionBottom #Preview
+{
+	vertical-align: center;
+	transform: translateY(-px);
+	margin-left: 40px;
+	flow-children: right;
+	transition-property: brightness;
+	transition-duration: 0.2s;
+}
+
+#DrawPage #DrawActionBottom #Preview:hover
+{
+	brightness: 1.5;
+}
+
+#DrawPage #DrawActionBottom #Preview #PreviewIcon
+{
+	width: 20px;
+	height: 20px;
+	vertical-align: center;
+}
+
+#DrawPage #DrawActionBottom #Preview #PreviewLabel
+{
+	font-size: 18px;
+	color: #9EC0E7;
+	margin-left: 5px;
+	vertical-align: center;
+}
+
+#RedeemPage
+{
+	visibility: collapse;
+	transition-property: opacity, transform;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+	opacity: 0;
+	transform: translateX(300px);
+}
+
+#RedeemPage.Show
+{
+	visibility: visible;
+	opacity: 1;
+	transform: translateX(0px);
+}
+
+#RedeemPage #RedeemList
+{
+	width: 1691px;
+	height: 820px;
+	margin-top: 20px;
+	margin-left: 182px;
+	padding-left: 54px;
+	flow-children: right-wrap;
+	overflow: squish scroll;
+}
+
+#RedeemPage #RedeemList #RedeemContainer
+{
+	width: 296px;
+	height: 406px;
+	flow-children: down;
+	background-image: url("s2r://panorama/images/custom_game/new_draw/r1_frame_product_png.vtex");
+	background-size: 100%;
+	margin-right: 23px;
+	margin-bottom: 10px;
+}
+
+#RedeemPage #RedeemList #RedeemContainer #RedeemInfo
+{
+	width: 100%;
+	height: 100%;
+}
+
+#RedeemPage #RedeemList #RedeemContainer #RedeemInfo #itemContainer
+{
+	width: 200px;
+	height: 200px;
+	align: center top;
+	margin-top: 85px;
+	border: 2px solid black;
+}
+
+#RedeemPage #RedeemList #RedeemContainer #RedeemInfo #itemContainer.AlreadyHave
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+#RedeemPage #RedeemList #RedeemContainer #RedeemInfo #itemContainer #itemImage
+{
+	width: 100%;
+	height: 100%;
+}
+
+#RedeemPage #RedeemList #RedeemContainer #RedeemInfo #itemContainer #itemNumber
+{
+	align: right bottom;
+	font-size: 26px;
+	color: white;
+	text-shadow: 0px 0px 1px 3 #000000;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+
+#RedeemPage #RedeemList #RedeemContainer #RedeemInfo #RedeemTimeInfo
+{
+	margin-top: 300px;
+	flow-children: right;
+	horizontal-align: center;
+}
+
+#RedeemPage #RedeemList #RedeemContainer #RedeemInfo #RedeemTimeInfo Label
+{
+	font-size: 20px;
+	color: #A2C5FF;
+}
+
+#RedeemPage #RedeemList #RedeemContainer #RedeemInfo #itemNameLabel
+{
+	horizontal-align: center;
+	font-size: 24px;
+	margin-top: 40px;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#E5E8F2), to(#B5BFDA));
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 1px 3 #000000;
+}
+
+#RedeemPage #RedeemList #RedeemContainer #RedeemInfo #RedeemButton
+{
+	width: 200px;
+	height: 49px;
+	align: center bottom;
+	margin-bottom: 20px;
+	background-image: url("s2r://panorama/images/custom_game/new_draw/r1_btn_yellow_png.vtex");
+	background-size: 100%;
+	transition-duration: 0.2s;
+	transition-property: brightness, transform;
+	transition-timing-function: ease-in-out;
+}
+
+#RedeemPage #RedeemList #RedeemContainer #RedeemInfo #RedeemButton:enabled:hover
+{
+	brightness: 1.5;
+	transform: translateY(-2px);
+}
+
+#RedeemPage #RedeemList #RedeemContainer #RedeemInfo #RedeemButton:disabled
+{
+	saturation: 0.5;
+}
+
+#RedeemPage #RedeemList #RedeemContainer #RedeemInfo #RedeemButton #CostDisplay
+{
+	align: center center;
+	width: fit-children;
+	height: fit-children;
+	flow-children: right;
+}
+
+#RedeemPage #RedeemList #RedeemContainer #RedeemInfo #RedeemButton #CostDisplay #CostIcon
+{
+	width: 32px;
+	height: 32px;
+	vertical-align: center;
+}
+
+#RedeemPage #RedeemList #RedeemContainer #RedeemInfo #RedeemButton #CostDisplay #CostNum
+{
+	width: fit-children;
+	height: 28px;
+	font-size: 24px;
+	text-overflow: shrink;
+	text-align: center;
+	color: white;
+	text-shadow: 0px 0px 2px 3 #000000;
+}

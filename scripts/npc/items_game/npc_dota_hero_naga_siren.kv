@@ -1,0 +1,2647 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"191"
+	{
+		"name"									"Naga Siren's Head"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/siren/siren_hair"
+		"item_description"						"#DOTA_Item_Desc_Naga_Sirens_Hair"
+		"item_name"								"#DOTA_Item_Naga_Sirens_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/siren/siren_hair.vmdl"
+	}
+	"192"
+	{
+		"name"									"Naga Siren's Sword"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/siren/siren_weapon"
+		"item_description"						"#DOTA_Item_Desc_Naga_Sirens_Sword"
+		"item_name"								"#DOTA_Item_Naga_Sirens_Sword"
+		"model_player"							"models/heroes/siren/siren_weapon.vmdl"
+	}
+	"193"
+	{
+		"name"									"Naga Siren's Tail"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/siren/siren_tail"
+		"item_description"						"#DOTA_Item_Desc_Naga_Sirens_Tail"
+		"item_name"								"#DOTA_Item_Naga_Sirens_Tail"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/heroes/siren/siren_tail.vmdl"
+	}
+	"194"
+	{
+		"name"									"Naga Siren's Armor"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/siren/siren_armor"
+		"item_description"						"#DOTA_Item_Desc_Naga_Sirens_Armor"
+		"item_name"								"#DOTA_Item_Naga_Sirens_Armor"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/heroes/siren/siren_armor.vmdl"
+	}
+	"312"
+	{
+		"name"									"Naga Siren's Offhand Sword"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/siren/siren_weapon_offhand"
+		"item_description"						"#DOTA_Item_Desc_Naga_Sirens_Offhand_Sword"
+		"item_name"								"#DOTA_Item_Naga_Sirens_Offhand_Sword"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Offhand_Weapon"
+		"model_player"							"models/heroes/siren/siren_weapon_offhand.vmdl"
+	}
+	"532"
+	{
+		"name"									"Naga Siren's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-08"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Naga_Sirens_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_siren"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_siren/siren_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_siren/siren_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_siren/siren_ambient_lamp.vpcf"
+				"system"						"particles/units/heroes/hero_siren/siren_ambient_lamp.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_lamp"
+					}
+				}
+			}
+		}
+	}
+	"744"
+	{
+		"name"									"Naga Siren's Costume"
+		"prefab"								"default_item"
+		"creation_date"							"2020-10-02"
+		"image_inventory"						"econ/sets/DOTA_Item_Naga_Sirens_Costume"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Centaurs_Costume"
+		"item_name"								"#DOTA_Item_Naga_Sirens_Costume"
+		"item_slot"								"costume"
+		"item_type_name"						"#DOTA_WearableType_Costume"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"4487"
+	{
+		"name"									"Headdress of the Slithereen Nobility"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/siren/anuxi_empress_head/anuxi_empress_head"
+		"item_description"						"#DOTA_Item_Desc_Headdress_of_the_Slithereen_Nobility"
+		"item_name"								"#DOTA_Item_Headdress_of_the_Slithereen_Nobility"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Headdress"
+		"model_player"							"models/items/siren/anuxi_empress_head/anuxi_empress_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"4493"
+	{
+		"name"									"Tail Fins of the Slithereen Nobility"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/siren/anuxi_empress_tail_2/anuxi_empress_tail_2"
+		"item_description"						"#DOTA_Item_Desc_Tail_Fins_of_the_Slithereen_Nobility"
+		"item_name"								"#DOTA_Item_Tail_Fins_of_the_Slithereen_Nobility"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/items/siren/anuxi_empress_tail_2/anuxi_empress_tail_2.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4505"
+	{
+		"name"									"Dress of the Slithereen Nobility"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/siren/anuxi_empress_armour_2/anuxi_empress_armour_2"
+		"item_description"						"#DOTA_Item_Desc_Dress_of_the_Slithereen_Nobility"
+		"item_name"								"#DOTA_Item_Dress_of_the_Slithereen_Nobility"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Dress"
+		"model_player"							"models/items/siren/anuxi_empress_armour_2/anuxi_empress_armour_2.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4506"
+	{
+		"name"									"Maiden of the Slithereen Nobility"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/siren/anuxi_empress_offweap/anuxi_empress_offweap"
+		"item_description"						"#DOTA_Item_Desc_Maiden_of_the_Slithereen_Nobility"
+		"item_name"								"#DOTA_Item_Maiden_of_the_Slithereen_Nobility"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/siren/anuxi_empress_offweap/anuxi_empress_offweap.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4509"
+	{
+		"name"									"Mistress of the Slithereen Nobility"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/siren/anuxi_empress_weapon/anuxi_empress_weapon"
+		"item_description"						"#DOTA_Item_Desc_Mistress_of_the_Slithereen_Nobility"
+		"item_name"								"#DOTA_Item_Mistress_of_the_Slithereen_Nobility"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/siren/anuxi_empress_weapon/anuxi_empress_weapon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4573"
+	{
+		"name"									"Blade of the Slithereen Exile"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/siren/exile_blade/exile_blade"
+		"item_description"						"#DOTA_Item_Desc_Blade_of_the_Slithereen_Exile"
+		"item_name"								"#DOTA_Item_Blade_of_the_Slithereen_Exile"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Heavy_Blade"
+		"model_player"							"models/items/siren/exile_blade/exile_blade.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4578"
+	{
+		"name"									"Helm of the Slithereen Exile"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/siren/exile_helm/exile_helm"
+		"item_description"						"#DOTA_Item_Desc_Helm_of_the_Slithereen_Exile"
+		"item_name"								"#DOTA_Item_Helm_of_the_Slithereen_Exile"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/siren/exile_helm/exile_helm.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4579"
+	{
+		"name"									"Armor of the Slithereen Exile"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/siren/exile_armor/exile_armor"
+		"item_description"						"#DOTA_Item_Desc_Armor_of_the_Slithereen_Exile"
+		"item_name"								"#DOTA_Item_Armor_of_the_Slithereen_Exile"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/siren/exile_armor/exile_armor.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4611"
+	{
+		"name"									"Crimson Riptide"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/siren/offhand_cwave/offhand_cwave"
+		"item_description"						"#DOTA_Item_Desc_Crimson_Riptide"
+		"item_name"								"#DOTA_Item_Crimson_Riptide"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/siren/offhand_cwave/offhand_cwave.vmdl"
+	}
+	"4615"
+	{
+		"name"									"Golden Riptide"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/siren/weapon_wave/weapon_wave"
+		"item_description"						"#DOTA_Item_Desc_Golden_Riptide"
+		"item_name"								"#DOTA_Item_Golden_Riptide"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/siren/weapon_wave/weapon_wave.vmdl"
+	}
+	"4721"
+	{
+		"name"									"Blade of the Slithereen Exile - Off-Hand"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/siren/exile_offhand_weapon/exile_offhand_weapon"
+		"item_description"						"#DOTA_Item_Desc_Blade_of_the_Slithereen_Exile__OffHand"
+		"item_name"								"#DOTA_Item_Blade_of_the_Slithereen_Exile__OffHand"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Heavy_Blade"
+		"model_player"							"models/items/siren/exile_offhand_weapon/exile_offhand_weapon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5322"
+	{
+		"name"									"Breastplate of the Slithereen Knight"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-22"
+		"image_inventory"						"econ/items/siren/breastplate_of_the_slithereen_knight/breastplate_of_the_slithereen_knight"
+		"item_description"						"#DOTA_Item_Desc_Breastplate_of_the_Slithereen_Knight"
+		"item_name"								"#DOTA_Item_Breastplate_of_the_Slithereen_Knight"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/siren/breastplate_of_the_slithereen_knight/breastplate_of_the_slithereen_knight.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5323"
+	{
+		"name"									"Helm of the Slithereen Knight"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-22"
+		"image_inventory"						"econ/items/siren/helm_of_the_slithereen_knight/helm_of_the_slithereen_knight"
+		"item_description"						"#DOTA_Item_Desc_Helm_of_the_Slithereen_Knight"
+		"item_name"								"#DOTA_Item_Helm_of_the_Slithereen_Knight"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/siren/helm_of_the_slithereen_knight/helm_of_the_slithereen_knight.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5324"
+	{
+		"name"									"Bite of the Slithereen Knight - Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-22"
+		"image_inventory"						"econ/items/siren/bite_of_the_slithereen_knight__offhand/bite_of_the_slithereen_knight__offhand"
+		"item_description"						"#DOTA_Item_Desc_Bite_of_the_Slithereen_Knight__OffHand"
+		"item_name"								"#DOTA_Item_Bite_of_the_Slithereen_Knight__OffHand"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Sword"
+		"model_player"							"models/items/siren/bite_of_the_slithereen_knight__offhand/bite_of_the_slithereen_knight__offhand.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5325"
+	{
+		"name"									"Tail of the Slithereen Knight"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-22"
+		"image_inventory"						"econ/items/siren/tail_of_the_slithereen_knight/tail_of_the_slithereen_knight"
+		"item_description"						"#DOTA_Item_Desc_Tail_of_the_Slithereen_Knight"
+		"item_name"								"#DOTA_Item_Tail_of_the_Slithereen_Knight"
+		"item_rarity"							"uncommon"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/items/siren/tail_of_the_slithereen_knight/tail_of_the_slithereen_knight.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5326"
+	{
+		"name"									"Might of the Slithereen Knight"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-22"
+		"image_inventory"						"econ/items/siren/might_of_the_slithereen_knight/might_of_the_slithereen_knight"
+		"item_description"						"#DOTA_Item_Desc_Might_of_the_Slithereen_Knight"
+		"item_name"								"#DOTA_Item_Might_of_the_Slithereen_Knight"
+		"item_type_name"						"#DOTA_WearableType_Sword"
+		"model_player"							"models/items/siren/might_of_the_slithereen_knight/might_of_the_slithereen_knight.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5584"
+	{
+		"name"									"Slashing Quickslicer - Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-01"
+		"image_inventory"						"econ/items/siren/slashing_quickslicer/slashing_quickslicer"
+		"item_description"						"#DOTA_Item_Desc_Slashing_Quickslicer__OffHand"
+		"item_name"								"#DOTA_Item_Slashing_Quickslicer__OffHand"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Sword"
+		"model_player"							"models/items/siren/slashing_quickslicer/slashing_quickslicer.vmdl"
+	}
+	"5585"
+	{
+		"name"									"Slashing Quickslicer"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-01"
+		"image_inventory"						"econ/items/siren/slashing_quickslicer__offhand/slashing_quickslicer__offhand"
+		"item_description"						"#DOTA_Item_Desc_Slashing_Quickslicer"
+		"item_name"								"#DOTA_Item_Slashing_Quickslicer"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Sword"
+		"model_player"							"models/items/siren/slashing_quickslicer__offhand/slashing_quickslicer__offhand.vmdl"
+	}
+	"5710"
+	{
+		"name"									"Dagger of the Outcast"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-17"
+		"image_inventory"						"econ/items/siren/outcast_dagger/outcast_dagger"
+		"item_name"								"#DOTA_Item_Dagger_of_the_Outcast"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Dagger"
+		"model_player"							"models/items/siren/outcast_dagger/outcast_dagger.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5853"
+	{
+		"name"									"Corset of the Outcast"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-16"
+		"image_inventory"						"econ/items/siren/outcast_corset/outcast_corset"
+		"item_name"								"#DOTA_Item_Corset_of_the_Outcast"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/siren/outcast_corset/outcast_corset.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5862"
+	{
+		"name"									"Helm of the Outcast"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-17"
+		"image_inventory"						"econ/items/siren/outcast_helm/outcast_helm"
+		"item_name"								"#DOTA_Item_Helm_of_the_Outcast"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/siren/outcast_helm/outcast_helm.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5863"
+	{
+		"name"									"Trophies of the Outcast"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-17"
+		"image_inventory"						"econ/items/siren/outcast_trophies/outcast_trophies"
+		"item_name"								"#DOTA_Item_Trophies_of_the_Outcast"
+		"item_rarity"							"uncommon"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/items/siren/outcast_trophies/outcast_trophies.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5864"
+	{
+		"name"									"Spear of the Outcast"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-17"
+		"image_inventory"						"econ/items/siren/outcast_spear/outcast_spear"
+		"item_name"								"#DOTA_Item_Spear_of_the_Outcast"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Spear"
+		"model_player"							"models/items/siren/outcast_spear/outcast_spear.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"6423"
+	{
+		"name"									"Armor of the Deep"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-05"
+		"image_inventory"						"econ/items/siren/treasureofthedeep_armor/treasureofthedeep_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Deep"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/siren/treasureofthedeep_armor/treasureofthedeep_armor.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/siren/treasureofthedeep_armor/treasureofthedeep_armor.vmdl"
+					"name"						"#DOTA_Item_Treasure_of_the_Deep_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/siren/treasureofthedeep_armor_s1/treasureofthedeep_armor_s1.vmdl"
+					"name"						"#DOTA_Item_Treasure_of_the_Deep_Style1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/siren/treasureofthedeep_armor/treasureofthedeep_armor"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/siren/treasureofthedeep_armor_s1/treasureofthedeep_armor_s1"
+				}
+			}
+		}
+		"branding"
+		{
+			"corporation_id"					"86745912"
+		}
+	}
+	"6424"
+	{
+		"name"									"Great Helm of the Deep"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-05"
+		"image_inventory"						"econ/items/siren/treasureofthedeep_head/treasureofthedeep_head"
+		"item_name"								"#DOTA_Item_Great_Helm_of_the_Deep"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/siren/treasureofthedeep_head/treasureofthedeep_head.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/siren/treasureofthedeep_head/treasureofthedeep_head.vmdl"
+					"name"						"#DOTA_Item_Treasure_of_the_Deep_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/siren/treasureofthedeep_head_s1/treasureofthedeep_head_s1.vmdl"
+					"name"						"#DOTA_Item_Treasure_of_the_Deep_Style1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/siren/treasureofthedeep_head/treasureofthedeep_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/siren/treasureofthedeep_head_s1/treasureofthedeep_head_s1"
+				}
+			}
+		}
+	}
+	"6425"
+	{
+		"name"									"Vitality Blade of the Deep"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-05"
+		"image_inventory"						"econ/items/siren/treasureofthedeep_offhand/treasureofthedeep_offhand"
+		"item_name"								"#DOTA_Item_Vitality_Blade_of_the_Deep"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/siren/treasureofthedeep_offhand/treasureofthedeep_offhand.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/siren/treasureofthedeep_offhand/treasureofthedeep_offhand.vmdl"
+					"name"						"#DOTA_Item_Treasure_of_the_Deep_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/siren/treasureofthedeep_offhand_s1/treasureofthedeep_offhand_s1.vmdl"
+					"name"						"#DOTA_Item_Treasure_of_the_Deep_Style1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/siren/treasureofthedeep_offhand/treasureofthedeep_offhand"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/siren/treasureofthedeep_offhand_s1/treasureofthedeep_offhand_s1"
+				}
+			}
+		}
+		"branding"
+		{
+			"corporation_id"					"86745912"
+		}
+	}
+	"6426"
+	{
+		"name"									"Clarity Blade of the Deep"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-05"
+		"image_inventory"						"econ/items/siren/treasureofthedeep_weapon/treasureofthedeep_weapon"
+		"item_name"								"#DOTA_Item_Clarity_Blade_of_the_Deep"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/siren/treasureofthedeep_weapon/treasureofthedeep_weapon.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/siren/treasureofthedeep_weapon/treasureofthedeep_weapon.vmdl"
+					"name"						"#DOTA_Item_Treasure_of_the_Deep_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/siren/treasureofthedeep_weapon_s1/treasureofthedeep_weapon_s1.vmdl"
+					"name"						"#DOTA_Item_Treasure_of_the_Deep_Style1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/siren/treasureofthedeep_weapon/treasureofthedeep_weapon"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/siren/treasureofthedeep_weapon_s1/treasureofthedeep_weapon_s1"
+				}
+			}
+		}
+		"branding"
+		{
+			"corporation_id"					"86745912"
+		}
+	}
+	"6427"
+	{
+		"name"									"Angler Tail of the Deep"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-05"
+		"image_inventory"						"econ/items/siren/treasureofthedeep_legs/treasureofthedeep_legs"
+		"item_name"								"#DOTA_Item_Angler_Tail_of_the_Deep"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/items/siren/treasureofthedeep_legs/treasureofthedeep_legs.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/siren/treasureofthedeep_legs/treasureofthedeep_legs.vmdl"
+					"name"						"#DOTA_Item_Treasure_of_the_Deep_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/siren/treasureofthedeep_legs_s1/treasureofthedeep_legs_s1.vmdl"
+					"name"						"#DOTA_Item_Treasure_of_the_Deep_Style1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/siren/treasureofthedeep_legs/treasureofthedeep_legs"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/siren/treasureofthedeep_legs_s1/treasureofthedeep_legs_s1"
+				}
+			}
+		}
+		"branding"
+		{
+			"corporation_id"					"86745912"
+		}
+	}
+	"6673"
+	{
+		"name"									"Cowl of the Consuming Tides"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-19"
+		"image_inventory"						"econ/items/siren/consuming_tides_head/consuming_tides_head"
+		"item_name"								"#DOTA_Item_Cowl_of_the_Consuming_Tides"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Cowl"
+		"model_player"							"models/items/siren/consuming_tides_head/consuming_tides_head.vmdl"
+	}
+	"6674"
+	{
+		"name"									"Cutlass of the Consuming Tides"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-19"
+		"image_inventory"						"econ/items/siren/consuming_tides_weapon/consuming_tides_weapon"
+		"item_name"								"#DOTA_Item_Cutlass_of_the_Consuming_Tides"
+		"item_type_name"						"#DOTA_WearableType_Cutlass"
+		"model_player"							"models/items/siren/consuming_tides_offhand/consuming_tides_offhand.vmdl"
+	}
+	"6675"
+	{
+		"name"									"Offhand Cutlass of the Consuming Tides"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-19"
+		"image_inventory"						"econ/items/siren/consuming_tides_offhand/consuming_tides_offhand"
+		"item_name"								"#DOTA_Item_Offhand_Cutlass_of_the_Consuming_Tides"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Cutlass"
+		"model_player"							"models/items/siren/consuming_tides_weapon/consuming_tides_weapon.vmdl"
+	}
+	"6676"
+	{
+		"name"									"Guard of the Consuming Tides"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-19"
+		"image_inventory"						"econ/items/siren/consuming_tides_armor/consuming_tides_armor"
+		"item_name"								"#DOTA_Item_Guard_of_the_Consuming_Tides"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/siren/consuming_tides_armor/consuming_tides_armor.vmdl"
+	}
+	"6677"
+	{
+		"name"									"Scales of the Consuming Tides"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-19"
+		"image_inventory"						"econ/items/siren/consuming_tides_legs/consuming_tides_legs"
+		"item_name"								"#DOTA_Item_Scales_of_the_Consuming_Tides"
+		"item_rarity"							"uncommon"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/items/siren/consuming_tides_legs/consuming_tides_legs.vmdl"
+	}
+	"7039"
+	{
+		"name"									"Clasp of the Iceborn Trinity"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-04"
+		"image_inventory"						"econ/items/siren/iceborn_armor/iceborn_armor"
+		"item_name"								"#DOTA_Item_Clasp_of_the_Iceborn_Trinity"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/siren/iceborn_armor/iceborn_armor.vmdl"
+		"branding"
+		{
+			"corporation_id"					"84772440"
+		}
+	}
+	"7040"
+	{
+		"name"									"Crown of the Iceborn Trinity"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-04"
+		"image_inventory"						"econ/items/siren/iceborn_head/iceborn_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Iceborn_Trinity"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Crown"
+		"model_player"							"models/items/siren/iceborn_head/iceborn_head.vmdl"
+		"branding"
+		{
+			"corporation_id"					"84772440"
+		}
+	}
+	"7041"
+	{
+		"name"									"Cutlass of the Iceborn Trinity"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-04"
+		"image_inventory"						"econ/items/siren/iceborn_weapon/iceborn_weapon"
+		"item_name"								"#DOTA_Item_Cutlass_of_the_Iceborn_Trinity"
+		"item_rarity"							"uncommon"
+		"model_player"							"models/items/siren/iceborn_weapon/iceborn_weapon.vmdl"
+		"branding"
+		{
+			"corporation_id"					"84772440"
+		}
+	}
+	"7042"
+	{
+		"name"									"Offhand Cutlass of the Iceborn Trinity"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-04"
+		"image_inventory"						"econ/items/siren/iceborn_offhand/iceborn_offhand"
+		"item_name"								"#DOTA_Item_Offhand_Cutlass_of_the_Iceborn_Trinity"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Offhand_Weapon"
+		"model_player"							"models/items/siren/iceborn_offhand/iceborn_offhand.vmdl"
+		"branding"
+		{
+			"corporation_id"					"84772440"
+		}
+	}
+	"7043"
+	{
+		"name"									"Scales of the Iceborn Trinity"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-04"
+		"image_inventory"						"econ/items/siren/iceborn_legs/iceborn_legs"
+		"item_name"								"#DOTA_Item_Scales_of_the_Iceborn_Trinity"
+		"item_rarity"							"uncommon"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/items/siren/iceborn_legs/iceborn_legs.vmdl"
+		"branding"
+		{
+			"corporation_id"					"84772440"
+		}
+	}
+	"7194"
+	{
+		"name"									"The Sabre of the Sea Empress"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-03"
+		"image_inventory"						"econ/items/siren/tempest_weapon/tempest_weapon"
+		"item_name"								"#DOTA_Item_The_Sabre_of_the_Sea_Empress"
+		"model_player"							"models/items/siren/tempest_weapon/tempest_weapon.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"11/9/2014"
+			"price"								"0"
+		}
+	}
+	"7195"
+	{
+		"name"									"Offhand Sea Sabre"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-03"
+		"image_inventory"						"econ/items/siren/tempest_weapon_offhand/tempest_weapon_offhand"
+		"item_name"								"#DOTA_Item_Offhand_Sea_Sabre"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Offhand_Weapon"
+		"model_player"							"models/items/siren/tempest_weapon_offhand/tempest_weapon_offhand.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"11/9/2014"
+			"price"								"0"
+		}
+	}
+	"7196"
+	{
+		"name"									"The Crown of the Sea Empress"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-03"
+		"image_inventory"						"econ/items/siren/tempest_head/tempest_head"
+		"item_name"								"#DOTA_Item_The_Crown_of_the_Sea_Empress"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/siren/tempest_head/tempest_head.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"11/9/2014"
+			"price"								"0"
+		}
+	}
+	"7197"
+	{
+		"name"									"The Coronation Mantle"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-03"
+		"image_inventory"						"econ/items/siren/tempest_armor/tempest_armor"
+		"item_name"								"#DOTA_Item_The_Coronation_Mantle"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/siren/tempest_armor/tempest_armor.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"11/9/2014"
+			"price"								"0"
+		}
+	}
+	"7198"
+	{
+		"name"									"Sea Legs"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-03"
+		"image_inventory"						"econ/items/siren/tempest_legs/tempest_legs"
+		"item_name"								"#DOTA_Item_Sea_Legs"
+		"item_rarity"							"uncommon"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Legs"
+		"model_player"							"models/items/siren/tempest_legs/tempest_legs.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"11/9/2014"
+			"price"								"0"
+		}
+	}
+	"8553"
+	{
+		"name"									"Crown of Prismatic Grace"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/siren/prismatic_empress_head/prismatic_empress_head"
+		"item_name"								"#DOTA_Item_Crown_of_Prismatic_Grace"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Crown"
+		"model_player"							"models/items/siren/prismatic_empress_head/prismatic_empress_head.vmdl"
+	}
+	"8554"
+	{
+		"name"									"Armor of Prismatic Grace"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/siren/prismatic_empress_armor/prismatic_empress_armor"
+		"item_name"								"#DOTA_Item_Armor_of_Prismatic_Grace"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/siren/prismatic_empress_armor/prismatic_empress_armor.vmdl"
+	}
+	"8555"
+	{
+		"name"									"Tail of Prismatic Grace"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/siren/prismatic_empress_legs/prismatic_empress_legs"
+		"item_name"								"#DOTA_Item_Tail_of_Prismatic_Grace"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/items/siren/prismatic_empress_legs/prismatic_empress_legs.vmdl"
+	}
+	"8556"
+	{
+		"name"									"Blade of Prismatic Grace"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/siren/prismatic_empress_weapon/prismatic_empress_weapon"
+		"item_description"						"#DOTA_Item_Desc_Blade_of_Prismatic_Grace"
+		"item_name"								"#DOTA_Item_Blade_of_Prismatic_Grace"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/siren/prismatic_empress_offhand/prismatic_empress_offhand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/naga/naga_prismatic_empress/naga_prismatic_offhand_blade.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/naga/naga_prismatic_empress/naga_prismatic_offhand_blade.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_offhand"
+					}
+				}
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#Blade_of_Prismatic_Grace_Default"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#Blade_of_Prismatic_Grace_Particle"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"price"					"1"
+						"item_def"				"16845"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/siren/prismatic_empress_weapon/prismatic_empress_weapon"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/siren/prismatic_empress_weapon/prismatic_empress_weapon_style1"
+				}
+			}
+		}
+	}
+	"8557"
+	{
+		"name"									"Offhand Blade of Prismatic Grace"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/siren/prismatic_empress_offhand/prismatic_empress_offhand"
+		"item_name"								"#DOTA_Item_Offhand_Blade_of_Prismatic_Grace"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Offhand_Blade"
+		"model_player"							"models/items/siren/prismatic_empress_weapon/prismatic_empress_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/naga/naga_prismatic_empress/naga_prismatic_weapon_blade.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/naga/naga_prismatic_empress/naga_prismatic_weapon_blade.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon"
+					}
+				}
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#Offhand_Blade_of_Prismatic_Grace_Default"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#Offhand_Blade_of_Prismatic_Grace_Particle"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/siren/prismatic_empress_offhand/prismatic_empress_offhand"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/siren/prismatic_empress_offhand/prismatic_empress_offhand_style1"
+				}
+			}
+		}
+	}
+	"8604"
+	{
+		"name"									"Off-Hand Blade of the Partisan Guard"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-28"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/siren/light_of_eleanor_off_hand/light_of_eleanor_off_hand"
+		"item_name"								"#DOTA_Item_OffHand_Blade_of_the_Partisan_Guard"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/siren/light_of_eleanor_off_hand/light_of_eleanor_off_hand.vmdl"
+	}
+	"8605"
+	{
+		"name"									"Tail of the Partisan Guard"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-28"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/siren/light_of_eleanor_legs/light_of_eleanor_legs"
+		"item_name"								"#DOTA_Item_Tail_of_the_Partisan_Guard"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_tail"
+		"model_player"							"models/items/siren/light_of_eleanor_legs/light_of_eleanor_legs.vmdl"
+	}
+	"8606"
+	{
+		"name"									"Dress of the Partisan Guard"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-28"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/siren/light_of_eleanor_armor/light_of_eleanor_armor"
+		"item_name"								"#DOTA_Item_Dress_of_the_Partisan_Guard"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/siren/light_of_eleanor_armor/light_of_eleanor_armor.vmdl"
+	}
+	"8607"
+	{
+		"name"									"Jewels of the Partisan Guard"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-28"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/siren/light_of_eleanor_head/light_of_eleanor_head"
+		"item_name"								"#DOTA_Item_Jewels_of_the_Partisan_Guard"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/siren/light_of_eleanor_head/light_of_eleanor_head.vmdl"
+	}
+	"8701"
+	{
+		"name"									"Blade of the Partisan Guard"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-13"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/siren/light_of_eleanor_weapon/light_of_eleanor_weapon"
+		"item_name"								"#DOTA_Item_Blade_of_the_Partisan_Guard"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/siren/light_of_eleanor_weapon/light_of_eleanor_weapon.vmdl"
+	}
+	"9312"
+	{
+		"name"									"Crown of the Captive Princess"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-20"
+		"image_inventory"						"econ/items/siren/arms_of_the_captive_princess_head/arms_of_the_captive_princess_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Captive_Princess"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Crown"
+		"model_player"							"models/items/siren/arms_of_the_captive_princess_head/arms_of_the_captive_princess_head.vmdl"
+	}
+	"9313"
+	{
+		"name"									"Eternal Jian of Fortune"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-20"
+		"image_inventory"						"econ/items/siren/arms_of_the_captive_princess_offhand/arms_of_the_captive_princess_offhand"
+		"item_name"								"#DOTA_Item_Eternal_Jian_of_Fortune"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Offhand_Sword"
+		"model_player"							"models/items/siren/arms_of_the_captive_princess_offhand/arms_of_the_captive_princess_offhand.vmdl"
+	}
+	"9314"
+	{
+		"name"									"Eternal Jian of Hope"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-20"
+		"image_inventory"						"econ/items/siren/arms_of_the_captive_princess_weapon/arms_of_the_captive_princess_weapon"
+		"item_name"								"#DOTA_Item_Eternal_Jian_of_Hope"
+		"item_type_name"						"#DOTA_WearableType_Sword"
+		"model_player"							"models/items/siren/arms_of_the_captive_princess_weapon/arms_of_the_captive_princess_weapon.vmdl"
+	}
+	"9316"
+	{
+		"name"									"Bindings of the Captive Princess"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-20"
+		"image_inventory"						"econ/items/siren/arms_of_the_captive_princess_legs/arms_of_the_captive_princess_legs"
+		"item_name"								"#DOTA_Item_Bindings_of_the_Captive_Princess"
+		"item_rarity"							"uncommon"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/items/siren/arms_of_the_captive_princess_legs/arms_of_the_captive_princess_legs.vmdl"
+	}
+	"9317"
+	{
+		"name"									"Robes of the Captive Princess"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-20"
+		"image_inventory"						"econ/items/siren/arms_of_the_captive_princess_armor/arms_of_the_captive_princess_armor"
+		"item_name"								"#DOTA_Item_Robes_of_the_Captive_Princess"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Robes"
+		"model_player"							"models/items/siren/arms_of_the_captive_princess_armor/arms_of_the_captive_princess_armor.vmdl"
+	}
+	"9485"
+	{
+		"name"									"Naginata of the Allure Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"image_inventory"						"econ/items/siren/allure_of_the_deep_off_hand/allure_of_the_deep_off_hand"
+		"item_name"								"#DOTA_Item_Naginata_of_the_Allure_OffHand"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/siren/allure_of_the_deep_off_hand/allure_of_the_deep_off_hand.vmdl"
+	}
+	"9486"
+	{
+		"name"									"Naginata of the Allure"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"image_inventory"						"econ/items/siren/allure_of_the_deep_weapon/allure_of_the_deep_weapon"
+		"item_name"								"#DOTA_Item_Naginata_of_the_Allure"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/siren/allure_of_the_deep_weapon/allure_of_the_deep_weapon.vmdl"
+	}
+	"9487"
+	{
+		"name"									"Tail of the Allure"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"image_inventory"						"econ/items/siren/allure_of_the_deep_legs/allure_of_the_deep_legs"
+		"item_name"								"#DOTA_Item_Tail_of_the_Allure"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_legs"
+		"model_player"							"models/items/siren/allure_of_the_deep_legs/allure_of_the_deep_legs.vmdl"
+	}
+	"9488"
+	{
+		"name"									"Dress of the Allure"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"image_inventory"						"econ/items/siren/allure_of_the_deep_armor/allure_of_the_deep_armor"
+		"item_name"								"#DOTA_Item_Dress_of_the_Allure"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/siren/allure_of_the_deep_armor/allure_of_the_deep_armor.vmdl"
+	}
+	"9489"
+	{
+		"name"									"Style of the Allure"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"image_inventory"						"econ/items/siren/allure_of_the_deep_head/allure_of_the_deep_head"
+		"item_name"								"#DOTA_Item_Style_of_the_Allure"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/siren/allure_of_the_deep_head/allure_of_the_deep_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_siren/siren_ambient_lamp.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9637"
+	{
+		"name"									"The Order of Cyprin"
+		"prefab"								"wearable"
+		"creation_date"							"2018-06-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/siren/naga_ti8_immortal_tail/naga_ti8_immortal_tail"
+		"item_description"						"#DOTA_Item_Desc_The_Order_of_Cyprin"
+		"item_name"								"#DOTA_Item_The_Order_of_Cyprin"
+		"item_rarity"							"immortal"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_legs"
+		"model_player"							"models/items/siren/naga_ti8_immortal_tail/naga_ti8_immortal_tail.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567296000"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_siren/naga_siren_riptide.vpcf"
+				"modifier"						"particles/econ/items/naga/naga_ti8_immortal_tail/naga_ti8_immortal_riptide.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier1"
+			{
+				"type"							"ability_icon"
+				"asset"							"naga_siren_rip_tide"
+				"modifier"						"naga_siren_rip_tide_ti8"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti8"
+				"style"							"0"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/naga/naga_ti8_immortal_tail/naga_ti8_immortal_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_siren/siren_ambient.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13790"
+	{
+		"name"									"The Bell of Meranthia"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-03"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/siren/naga_ti10_immortal_head/naga_ti10_immortal_head"
+		"item_description"						"#DOTA_Item_Desc_The_Bell_of_Meranthia"
+		"item_name"								"#DOTA_Item_The_Bell_of_Meranthia"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/siren/naga_ti10_immortal_head/naga_ti10_immortal_head.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_siren/naga_siren_song_aura.vpcf"
+				"modifier"						"particles/econ/items/naga/naga_ti10_immortal_head/naga_ti10_immortal_song.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_siren/siren_ambient_lamp.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"naga_2021"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"naga_siren_song_of_the_siren"
+				"modifier"						"naga_siren/naga_2021_immortal_ability_icon/naga_2021_immortal_song_of_the_siren"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"naga_siren_song_of_the_siren_cancel"
+				"modifier"						"naga_siren/naga_2021_immortal_ability_icon/naga_2021_immortal_song_of_the_siren_cancel"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/naga/naga_ti10_immortal_head/naga_ti10_immortal_ambient.vpcf"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_siren/naga_siren_siren_song_cast.vpcf"
+				"modifier"						"particles/econ/items/naga/naga_ti10_immortal_head/naga_ti10_immortal_song_cast.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_siren/naga_siren_song_debuff.vpcf"
+				"modifier"						"particles/econ/items/naga/naga_ti10_immortal_head/naga_ti10_immortal_song_debuff.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+		}
+	}
+	"17946"
+	{
+		"name"									"The Leech Queen Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/siren/the_leech_queen_armor/the_leech_queen_armor"
+		"item_name"								"#DOTA_Item_The_Leech_Queen_Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/siren/the_leech_queen_armor/the_leech_queen_armor.vmdl"
+	}
+	"17947"
+	{
+		"name"									"The Leech Queen Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/siren/the_leech_queen_head/the_leech_queen_head"
+		"item_name"								"#DOTA_Item_The_Leech_Queen_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/siren/the_leech_queen_head/the_leech_queen_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_siren/siren_ambient_lamp.vpcf"
+				"modifier"						"particles/units/heroes/hero_stormspirit/storm_spirit_null.vpcf"
+			}
+		}
+	}
+	"17948"
+	{
+		"name"									"The Leech Queen Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/siren/the_leech_queen_off_hand/the_leech_queen_off_hand"
+		"item_name"								"#DOTA_Item_The_Leech_Queen_OffHand"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/siren/the_leech_queen_off_hand/the_leech_queen_off_hand.vmdl"
+	}
+	"17949"
+	{
+		"name"									"The Leech Queen Legs"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/siren/the_leech_queen_legs/the_leech_queen_legs"
+		"item_name"								"#DOTA_Item_The_Leech_Queen_Legs"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"model_player"							"models/items/siren/the_leech_queen_legs/the_leech_queen_legs.vmdl"
+	}
+	"17950"
+	{
+		"name"									"The Leech Queen Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/siren/the_leech_queen_weapon/the_leech_queen_weapon"
+		"item_name"								"#DOTA_Item_The_Leech_Queen_Weapon"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/siren/the_leech_queen_weapon/the_leech_queen_weapon.vmdl"
+	}
+	"18316"
+	{
+		"name"									"Naga Siren's Diretide Shimmer Costume"
+		"prefab"								"wearable"
+		"creation_date"							"2020-10-02"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 22:20:00"
+		"image_inventory"						"econ/sets/DOTA_Item_Naga_Sirens_Diretide_Bundle"
+		"item_name"								"#DOTA_Item_Naga_Sirens_Diretide_Shimmer_Costume"
+		"item_rarity"							"seasonal"
+		"item_slot"								"costume"
+		"item_type_name"						"#DOTA_WearableType_Costume"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"model_skin"
+				"skin"							"1"
+			}
+			"skin"								"1"
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/events/diretide_2020/hero_spooky_ambient/hero_spooky_ambient.vpcf"
+			}
+		}
+	}
+	"18352"
+	{
+		"name"									"Naga Siren's Diretide Shimmer Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-10-05"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 22:20:00"
+		"image_inventory"						"econ/heroes/siren/siren_armor1"
+		"item_name"								"#DOTA_Item_Naga_Sirens_Diretide_Shimmer_Armor"
+		"item_rarity"							"seasonal"
+		"item_slot"								"armor"
+		"model_player"							"models/heroes/siren/siren_armor.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"18353"
+	{
+		"name"									"Naga Siren's Diretide Shimmer Hair"
+		"prefab"								"wearable"
+		"creation_date"							"2020-10-05"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 22:20:00"
+		"image_inventory"						"econ/heroes/siren/siren_hair1"
+		"item_name"								"#DOTA_Item_Naga_Sirens_Diretide_Shimmer_Hair"
+		"item_rarity"							"seasonal"
+		"item_slot"								"head"
+		"model_player"							"models/heroes/siren/siren_hair.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"18354"
+	{
+		"name"									"Naga Siren's Diretide Shimmer Tail"
+		"prefab"								"wearable"
+		"creation_date"							"2020-10-05"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 22:20:00"
+		"image_inventory"						"econ/heroes/siren/siren_tail1"
+		"item_name"								"#DOTA_Item_Naga_Sirens_Diretide_Shimmer_Tail"
+		"item_rarity"							"seasonal"
+		"item_slot"								"legs"
+		"model_player"							"models/heroes/siren/siren_tail.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"18355"
+	{
+		"name"									"Naga Siren's Diretide Shimmer Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-10-05"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 22:20:00"
+		"image_inventory"						"econ/heroes/siren/siren_weapon1"
+		"item_name"								"#DOTA_Item_Naga_Sirens_Diretide_Shimmer_Weapon"
+		"item_rarity"							"seasonal"
+		"model_player"							"models/heroes/siren/siren_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"18356"
+	{
+		"name"									"Naga Siren's Diretide Shimmer Offhand Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-10-05"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 22:20:00"
+		"image_inventory"						"econ/heroes/siren/siren_weapon_offhand1"
+		"item_name"								"#DOTA_Item_Naga_Sirens_Diretide_Shimmer_Offhand_Weapon"
+		"item_rarity"							"seasonal"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/heroes/siren/siren_weapon_offhand.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"18878"
+	{
+		"name"									"Lure of the Glimmerguard Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-05-20"
+		"image_inventory"						"econ/items/siren/luminous_warrior_weapon/luminous_warrior_weapon"
+		"item_name"								"#DOTA_Item_Lure_of_the_Glimmerguard_Weapon"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/siren/luminous_warrior_weapon/luminous_warrior_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"18879"
+	{
+		"name"									"Lure of the Glimmerguard Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-05-20"
+		"image_inventory"						"econ/items/siren/luminous_warrior_head/luminous_warrior_head"
+		"item_name"								"#DOTA_Item_Lure_of_the_Glimmerguard_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/siren/luminous_warrior_head/luminous_warrior_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/naga/naga_luminous_warrior_head/naga_luminous_warrior_head_ambient_lamp.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_siren/siren_ambient_lamp.vpcf"
+				"modifier"						"particles/dev/empty_particle.vpcf"
+			}
+		}
+	}
+	"18880"
+	{
+		"name"									"Lure of the Glimmerguard Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2021-05-20"
+		"image_inventory"						"econ/items/siren/luminous_warrior_armor/luminous_warrior_armor"
+		"item_name"								"#DOTA_Item_Lure_of_the_Glimmerguard_Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/siren/luminous_warrior_armor/luminous_warrior_armor.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"18881"
+	{
+		"name"									"Lure of the Glimmerguard Tail"
+		"prefab"								"wearable"
+		"creation_date"							"2021-05-20"
+		"image_inventory"						"econ/items/siren/luminous_warrior_legs/luminous_warrior_legs"
+		"item_name"								"#DOTA_Item_Lure_of_the_Glimmerguard_Tail"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"model_player"							"models/items/siren/luminous_warrior_legs/luminous_warrior_legs.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"18882"
+	{
+		"name"									"Lure of the Glimmerguard Offhand Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-05-20"
+		"image_inventory"						"econ/items/siren/luminous_warrior_offhand/luminous_warrior_offhand"
+		"item_name"								"#DOTA_Item_Lure_of_the_Glimmerguard_Offhand_Weapon"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/siren/luminous_warrior_offhand/luminous_warrior_offhand.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"19668"
+	{
+		"name"									"Princess of the Coral Sea Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/siren/princess_of_the_coral_sea_armor/princess_of_the_coral_sea_armor"
+		"item_name"								"#DOTA_Item_Vote_Only_Princess_of_the_Coral_Sea_Armor"
+		"item_slot"								"armor"
+		"model_player"							"models/items/siren/princess_of_the_coral_sea_armor/princess_of_the_coral_sea_armor.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19669"
+	{
+		"name"									"Princess of the Coral Sea Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/siren/princess_of_the_coral_sea_head/princess_of_the_coral_sea_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Princess_of_the_Coral_Sea_Head"
+		"item_slot"								"head"
+		"model_player"							"models/items/siren/princess_of_the_coral_sea_head/princess_of_the_coral_sea_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19670"
+	{
+		"name"									"Princess of the Coral Sea Legs"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/siren/princess_of_the_coral_sea_legs/princess_of_the_coral_sea_legs"
+		"item_name"								"#DOTA_Item_Vote_Only_Princess_of_the_Coral_Sea_Legs"
+		"item_slot"								"legs"
+		"model_player"							"models/items/siren/princess_of_the_coral_sea_legs/princess_of_the_coral_sea_legs.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19671"
+	{
+		"name"									"Princess of the Coral Sea Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/siren/princess_of_the_coral_sea_off_hand/princess_of_the_coral_sea_off_hand"
+		"item_name"								"#DOTA_Item_Vote_Only_Princess_of_the_Coral_Sea_OffHand"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/siren/princess_of_the_coral_sea_off_hand/princess_of_the_coral_sea_off_hand.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19672"
+	{
+		"name"									"Princess of the Coral Sea Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/siren/princess_of_the_coral_sea_weapon/princess_of_the_coral_sea_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_Princess_of_the_Coral_Sea_Weapon"
+		"model_player"							"models/items/siren/princess_of_the_coral_sea_weapon/princess_of_the_coral_sea_weapon.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"20095"
+	{
+		"name"									"Blades of the Slithereen Exile Pack"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Blade of the Slithereen Exile"		"1"
+			"Blade of the Slithereen Exile - Off-Hand""1"
+		}
+		"image_inventory"						"econ/items/siren/exile_blade/exile_blade"
+		"item_description"						"#DOTA_Item_Desc_Blades_of_the_Slithereen_Exile_Pack"
+		"item_name"								"#DOTA_Item_Blades_of_the_Slithereen_Exile_Pack"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Paired_Weapons"
+	}
+	"20096"
+	{
+		"name"									"The Slithereen Exile Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Blade of the Slithereen Exile"		"1"
+			"Blade of the Slithereen Exile - Off-Hand""1"
+			"Armor of the Slithereen Exile"		"1"
+			"Helm of the Slithereen Exile"		"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_The_Slithereen_Exile_Set"
+		"item_description"						"#DOTA_Item_Desc_The_Slithereen_Exile_Set"
+		"item_name"								"#DOTA_Item_The_Slithereen_Exile_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20134"
+	{
+		"name"									"Designs of the Slithereen Nobility"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Dress of the Slithereen Nobility"	"1"
+			"Headdress of the Slithereen Nobility""1"
+			"Maiden of the Slithereen Nobility"	"1"
+			"Mistress of the Slithereen Nobility""1"
+			"Tail Fins of the Slithereen Nobility""1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Designs_of_the_Slithereen_Nobility_Set"
+		"item_name"								"#DOTA_Item_Designs_of_the_Slithereen_Nobility"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20229"
+	{
+		"name"									"The Slithereen Knight Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Breastplate of the Slithereen Knight""1"
+			"Helm of the Slithereen Knight"		"1"
+			"Tail of the Slithereen Knight"		"1"
+			"Might of the Slithereen Knight"	"1"
+			"Bite of the Slithereen Knight - Off-Hand""1"
+		}
+		"creation_date"							"2013-07-23"
+		"image_inventory"						"econ/sets/DOTA_Item_The_Slithereen_Knight"
+		"item_description"						"#DOTA_Item_Desc_The_Slithereen_Knight"
+		"item_name"								"#DOTA_Item_The_Slithereen_Knight_Set"
+		"item_rarity"							"uncommon"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Uncommon"
+			"category_tags"						"Bundles"
+			"date"								"7/23/2013"
+			"bundle"							"1"
+			"price"								"249"
+		}
+	}
+	"20230"
+	{
+		"name"									"The Might and Bite of a Slithereen Knight"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Might of the Slithereen Knight"	"1"
+			"Bite of the Slithereen Knight - Off-Hand""1"
+		}
+		"creation_date"							"2013-07-23"
+		"image_inventory"						"econ/items/siren/might_of_the_slithereen_knight/might_of_the_slithereen_knight"
+		"item_description"						"#DOTA_Item_Desc_The_Might_and_Bite_of_a_Slithereen_Knight"
+		"item_name"								"#DOTA_Item_The_Might_and_Bite_of_a_Slithereen_Knight"
+	}
+	"20266"
+	{
+		"name"									"Riptide Blades Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Golden Riptide"					"1"
+			"Crimson Riptide"					"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Riptide_Blades_Set"
+		"item_description"						"#DOTA_Item_Desc_Riptide_Blades_Set"
+		"item_name"								"#DOTA_Item_Riptide_Blades_Set"
+		"item_rarity"							"uncommon"
+	}
+	"20293"
+	{
+		"name"									"Slashing Quickslicer Pack"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Slashing Quickslicer"				"1"
+			"Slashing Quickslicer - Off-Hand"	"1"
+		}
+		"creation_date"							"2013-11-01"
+		"image_inventory"						"econ/items/siren/slashing_quickslicer/slashing_quickslicer"
+		"item_description"						"#DOTA_Item_Desc_Slashing_Quickslicer_Pack"
+		"item_name"								"#DOTA_Item_Slashing_Quickslicer_Pack"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Paired_Weapons"
+	}
+	"20340"
+	{
+		"name"									"Outcast of the Deep Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Trophies of the Outcast"			"1"
+			"Corset of the Outcast"				"1"
+			"Dagger of the Outcast"				"1"
+			"Spear of the Outcast"				"1"
+			"Helm of the Outcast"				"1"
+		}
+		"creation_date"							"2013-12-18"
+		"image_inventory"						"econ/sets/DOTA_Item_Outcast_of_the_Deep_Set"
+		"item_description"						"#DOTA_Item_Desc_Outcast_of_the_Deep_Set"
+		"item_name"								"#DOTA_Item_Outcast_of_the_Deep_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"12/18/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20513"
+	{
+		"name"									"Treasure of the Deep"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Angler Tail of the Deep"			"1"
+			"Armor of the Deep"					"1"
+			"Clarity Blade of the Deep"			"1"
+			"Great Helm of the Deep"			"1"
+			"Vitality Blade of the Deep"		"1"
+			"Treasure of the Deep Loading Screen""1"
+		}
+		"creation_date"							"2014-06-05"
+		"image_inventory"						"econ/loading_screens/treasureofthedeep"
+		"item_description"						"#DOTA_Item_Desc_Treasure_of_the_Deep"
+		"item_name"								"#DOTA_Item_Treasure_of_the_Deep"
+		"item_rarity"							"mythical"
+	}
+	"20520"
+	{
+		"name"									"Garb of the Consuming Tides"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Offhand Cutlass of the Consuming Tides""1"
+			"Cutlass of the Consuming Tides"	"1"
+			"Cowl of the Consuming Tides"		"1"
+			"Guard of the Consuming Tides"		"1"
+			"Scales of the Consuming Tides"		"1"
+			"Consuming Tides Loading Screen"	"1"
+		}
+		"creation_date"							"2014-05-19"
+		"image_inventory"						"econ/sets/dota_item_consuming_tides"
+		"item_description"						"#DOTA_Item_Desc_Garb_of_the_Consuming_Tides"
+		"item_name"								"#DOTA_Item_Garb_of_the_Consuming_Tides"
+		"item_rarity"							"rare"
+	}
+	"20644"
+	{
+		"name"									"Iceborn Trinity"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Scales of the Iceborn Trinity"		"1"
+			"Clasp of the Iceborn Trinity"		"1"
+			"Offhand Cutlass of the Iceborn Trinity""1"
+			"Crown of the Iceborn Trinity"		"1"
+			"Cutlass of the Iceborn Trinity"	"1"
+			"Iceborn Trinity Loading Screen"	"1"
+		}
+		"creation_date"							"2014-09-10"
+		"image_inventory"						"econ/sets/dota_item_iceborn_trinity"
+		"item_description"						"#DOTA_Item_Desc_Iceborn_Trinity"
+		"item_name"								"#DOTA_Item_Iceborn_Trinity"
+		"item_rarity"							"mythical"
+	}
+	"20682"
+	{
+		"name"									"Dota Regions: Season 2"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"The Sabre of the Sea Empress"		"1"
+			"Offhand Sea Sabre"					"1"
+			"Sea Legs"							"1"
+			"The Crown of the Sea Empress"		"1"
+			"The Coronation Mantle"				"1"
+			"Dota Regions: Season 2 Ticket"		"1"
+		}
+		"creation_date"							"2014-11-09"
+		"image_inventory"						"econ/leagues/subscriptions_dotaregionsbundle"
+		"item_description"						"#DOTA_Item_Desc_Dota_Regions_Season_2"
+		"item_name"								"#DOTA_Item_Dota_Regions_Season_2"
+	}
+	"20847"
+	{
+		"name"									"Arms of the Captive Princess"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Arms of the Captive Princess Loading Screen""1"
+			"Crown of the Captive Princess"		"1"
+			"Eternal Jian of Fortune"			"1"
+			"Eternal Jian of Hope"				"1"
+			"Bindings of the Captive Princess"	"1"
+			"Robes of the Captive Princess"		"1"
+		}
+		"creation_date"							"2015-06-20"
+		"image_inventory"						"econ/loading_screens/arms_of_the_captive_princess_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Arms_of_the_Captive_Princess"
+		"item_name"								"#DOTA_Item_Arms_of_the_Captive_Princess"
+		"item_rarity"							"rare"
+	}
+	"20939"
+	{
+		"name"									"Prismatic Grace"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Crown of Prismatic Grace"			"1"
+			"Blade of Prismatic Grace"			"1"
+			"Armor of Prismatic Grace"			"1"
+			"Tail of Prismatic Grace"			"1"
+			"Offhand Blade of Prismatic Grace"	"1"
+			"Prismatic Grace Loading Screen"	"1"
+		}
+		"creation_date"							"2015-12-04"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/prismatic_empress_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Prismatic_Grace"
+		"item_name"								"#DOTA_Item_Prismatic_Grace"
+		"item_rarity"							"mythical"
+	}
+	"21048"
+	{
+		"name"									"Procession of the Partisan Guard"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Blade of the Partisan Guard"		"1"
+			"Dress of the Partisan Guard"		"1"
+			"Tail of the Partisan Guard"		"1"
+			"Off-Hand Blade of the Partisan Guard""1"
+			"Procession of the Partisan Guard Loading Screen""1"
+			"Jewels of the Partisan Guard"		"1"
+		}
+		"creation_date"							"2016-04-28"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/loading_screens/light_of_eleanor_light_of_eleanor_loading"
+		"item_description"						"#DOTA_Item_Desc_Procession_of_the_Partisan_Guard"
+		"item_name"								"#DOTA_Item_Procession_of_the_Partisan_Guard"
+		"item_rarity"							"mythical"
+	}
+	"21136"
+	{
+		"name"									"Allure of the Deep"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Style of the Allure"				"1"
+			"Dress of the Allure"				"1"
+			"Tail of the Allure"				"1"
+			"Naginata of the Allure"			"1"
+			"Naginata of the Allure Off-Hand"	"1"
+		}
+		"creation_date"							"2017-05-17"
+		"image_inventory"						"econ/sets/DOTA_Item_Allure_of_the_Deep"
+		"item_description"						"#DOTA_Item_Desc_Allure_of_the_Deep"
+		"item_name"								"#DOTA_Item_Allure_of_the_Deep"
+		"item_rarity"							"rare"
+	}
+	"21726"
+	{
+		"name"									"The Leech Queen"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"The Leech Queen Armor"				"1"
+			"The Leech Queen Head"				"1"
+			"The Leech Queen Off-Hand"			"1"
+			"The Leech Queen Legs"				"1"
+			"The Leech Queen Weapon"			"1"
+		}
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_The_Leech_Queen"
+		"item_name"								"#DOTA_Item_The_Leech_Queen"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+	}
+	"21795"
+	{
+		"name"									"Naga Siren's Diretide Shimmer Bundle"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Naga Siren's Diretide Shimmer Costume""1"
+			"Naga Siren's Diretide Shimmer Armor""1"
+			"Naga Siren's Diretide Shimmer Hair""1"
+			"Naga Siren's Diretide Shimmer Tail""1"
+			"Naga Siren's Diretide Shimmer Weapon""1"
+			"Naga Siren's Diretide Shimmer Offhand Weapon""1"
+		}
+		"creation_date"							"2020-10-05"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 22:20:00"
+		"image_inventory"						"econ/sets/DOTA_Item_Naga_Sirens_Diretide_Bundle"
+		"item_name"								"#DOTA_Item_Naga_Sirens_Diretide_Shimmer_Bundle"
+		"item_rarity"							"seasonal"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"21826"
+	{
+		"name"									"Lure of the Glimmerguard"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Lure of the Glimmerguard Loading Screen""1"
+			"Lure of the Glimmerguard Offhand Weapon""1"
+			"Lure of the Glimmerguard Tail"		"1"
+			"Lure of the Glimmerguard Armor"	"1"
+			"Lure of the Glimmerguard Head"		"1"
+			"Lure of the Glimmerguard Weapon"	"1"
+		}
+		"creation_date"							"2021-05-20"
+		"image_inventory"						"econ/loading_screens/luminous_warrior_ls"
+		"item_name"								"#DOTA_Item_Lure_of_the_Glimmerguard"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"21932"
+	{
+		"name"									"Princess of the Coral Sea"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Princess of the Coral Sea Head"	"1"
+			"Princess of the Coral Sea Armor"	"1"
+			"Princess of the Coral Sea Off-Hand""1"
+			"Princess of the Coral Sea Legs"	"1"
+			"Princess of the Coral Sea Weapon"	"1"
+		}
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Princess_of_the_Coral_Sea"
+		"workshop_accepted"						"0"
+	}
+	"22795"
+	{
+		"name"									"Winter Lineage Allure of the Deep"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Winter Lineage Naginata of the Allure Off-Hand""1"
+			"Winter Lineage Naginata of the Allure""1"
+			"Winter Lineage Tail of the Allure"	"1"
+			"Winter Lineage Dress of the Allure""1"
+			"Winter Lineage Style of the Allure""1"
+		}
+		"creation_date"							"2022-01-24"
+		"event_id"								"EVENT_ID_TEAM_FANDOM_FALL_2021"
+		"image_inventory"						"econ/sets/DOTA_Item_DPC_2022_Allure_of_the_Deep"
+		"item_description"						"#DOTA_Item_Desc_Winter_Lineage_Allure_of_the_Deep"
+		"item_name"								"#DOTA_Item_Winter_Lineage_Allure_of_the_Deep"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"34"
+			}
+		}
+	}
+	"22796"
+	{
+		"name"									"Winter Lineage Naginata of the Allure Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-24"
+		"event_id"								"EVENT_ID_TEAM_FANDOM_FALL_2021"
+		"image_inventory"						"econ/items/siren/allure_of_the_deep_off_hand/allure_of_the_deep_off_hand1"
+		"item_description"						"#DOTA_Item_Desc_Winter_Lineage_Naginata_of_the_Allure_OffHand"
+		"item_name"								"#DOTA_Item_Winter_Lineage_Naginata_of_the_Allure_OffHand"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Offhand_Weapon"
+		"model_player"							"models/items/siren/allure_of_the_deep_off_hand/allure_of_the_deep_off_hand.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"34"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"22797"
+	{
+		"name"									"Winter Lineage Naginata of the Allure"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-24"
+		"event_id"								"EVENT_ID_TEAM_FANDOM_FALL_2021"
+		"image_inventory"						"econ/items/siren/allure_of_the_deep_weapon/allure_of_the_deep_weapon1"
+		"item_description"						"#DOTA_Item_Desc_Winter_Lineage_Naginata_of_the_Allure"
+		"item_name"								"#DOTA_Item_Winter_Lineage_Naginata_of_the_Allure"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/siren/allure_of_the_deep_weapon/allure_of_the_deep_weapon.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"34"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"22798"
+	{
+		"name"									"Winter Lineage Tail of the Allure"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-24"
+		"event_id"								"EVENT_ID_TEAM_FANDOM_FALL_2021"
+		"image_inventory"						"econ/items/siren/allure_of_the_deep_legs/allure_of_the_deep_legs1"
+		"item_description"						"#DOTA_Item_Desc_Winter_Lineage_Tail_of_the_Allure"
+		"item_name"								"#DOTA_Item_Winter_Lineage_Tail_of_the_Allure"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Legs"
+		"model_player"							"models/items/siren/allure_of_the_deep_legs/allure_of_the_deep_legs.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"34"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"22799"
+	{
+		"name"									"Winter Lineage Dress of the Allure"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-24"
+		"event_id"								"EVENT_ID_TEAM_FANDOM_FALL_2021"
+		"image_inventory"						"econ/items/siren/allure_of_the_deep_armor/allure_of_the_deep_armor1"
+		"item_description"						"#DOTA_Item_Desc_Winter_Lineage_Dress_of_the_Allure"
+		"item_name"								"#DOTA_Item_Winter_Lineage_Dress_of_the_Allure"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/siren/allure_of_the_deep_armor/allure_of_the_deep_armor.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"34"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"22800"
+	{
+		"name"									"Winter Lineage Style of the Allure"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-24"
+		"event_id"								"EVENT_ID_TEAM_FANDOM_FALL_2021"
+		"image_inventory"						"econ/items/siren/allure_of_the_deep_head/allure_of_the_deep_head1"
+		"item_description"						"#DOTA_Item_Desc_Winter_Lineage_Style_of_the_Allure"
+		"item_name"								"#DOTA_Item_Winter_Lineage_Style_of_the_Allure"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/siren/allure_of_the_deep_head/allure_of_the_deep_head.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"34"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_siren/siren_ambient_lamp.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+				"style"							"0"
+			}
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"23520"
+	{
+		"name"									"Golden Monarch"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Golden Monarch - Off-Hand"			"1"
+			"Golden Monarch - Crown"			"1"
+			"Golden Monarch - Armor"			"1"
+			"Golden Monarch - Legs"				"1"
+			"Golden Monarch - Weapon"			"1"
+		}
+		"creation_date"							"2022-07-20"
+		"image_inventory"						"econ/sets/DOTA_Item_feathers_of_the_queen_of_the_deep"
+		"item_name"								"#DOTA_Item_Golden_Monarch"
+		"item_rarity"							"rare"
+	}
+	"23723"
+	{
+		"name"									"Golden Monarch - Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2022-07-20"
+		"image_inventory"						"econ/items/siren/feathers_of_the_queen_of_the_deep_off_hand/feathers_of_the_queen_of_the_deep_off_hand"
+		"item_name"								"#DOTA_Item_Golden_Monarch__OffHand"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/siren/feathers_of_the_queen_of_the_deep_off_hand/feathers_of_the_queen_of_the_deep_off_hand.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/naga/feathers_of_the_queen_of_the_deep/feathers_of_the_queen_of_the_deep_off_hand_ambient.vpcf"
+			}
+		}
+	}
+	"23724"
+	{
+		"name"									"Golden Monarch - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2022-07-20"
+		"image_inventory"						"econ/items/siren/feathers_of_the_queen_of_the_deep_weapon/feathers_of_the_queen_of_the_deep_weapon"
+		"item_name"								"#DOTA_Item_Golden_Monarch__Weapon"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/siren/feathers_of_the_queen_of_the_deep_weapon/feathers_of_the_queen_of_the_deep_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/naga/feathers_of_the_queen_of_the_deep/feathers_of_the_queen_of_the_deep_weapon_ambient.vpcf"
+			}
+		}
+	}
+	"23725"
+	{
+		"name"									"Golden Monarch - Legs"
+		"prefab"								"wearable"
+		"creation_date"							"2022-07-20"
+		"image_inventory"						"econ/items/siren/feathers_of_the_queen_of_the_deep_legs/feathers_of_the_queen_of_the_deep_legs"
+		"item_name"								"#DOTA_Item_Golden_Monarch__Legs"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"model_player"							"models/items/siren/feathers_of_the_queen_of_the_deep_legs/feathers_of_the_queen_of_the_deep_legs.vmdl"
+	}
+	"23726"
+	{
+		"name"									"Golden Monarch - Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2022-07-20"
+		"image_inventory"						"econ/items/siren/feathers_of_the_queen_of_the_deep_armor/feathers_of_the_queen_of_the_deep_armor"
+		"item_name"								"#DOTA_Item_Golden_Monarch__Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/siren/feathers_of_the_queen_of_the_deep_armor/feathers_of_the_queen_of_the_deep_armor.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"23727"
+	{
+		"name"									"Golden Monarch - Crown"
+		"prefab"								"wearable"
+		"creation_date"							"2022-07-20"
+		"image_inventory"						"econ/items/siren/feathers_of_the_queen_of_the_deep_head/feathers_of_the_queen_of_the_deep_head"
+		"item_name"								"#DOTA_Item_Golden_Monarch__Crown"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/siren/feathers_of_the_queen_of_the_deep_head/feathers_of_the_queen_of_the_deep_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+}

@@ -1,0 +1,91 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"necrolyte_heartstopper_aura_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_necrolyte/necrolyte_heartstopper_aura_lua"
+		"AbilityTextureName"					"necrolyte_heartstopper_aura"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_NO"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"HasScepterUpgrade"						"1"
+		"AbilityCastRange"						"800"
+		"AbilityValues"
+		{
+			"aura_radius"
+			{
+				"value"							"800"
+				"affected_by_aoe_increase"		"1"
+			}
+			"aura_damage"
+			{
+				"value"							"0.4 0.8 1.2 1.6"
+				"special_bonus_unique_necrophos_2""+0.5"
+			}
+			"health_regen"						"4 5 6 7"
+			"mana_regen"						"4 5 6 7"
+			"hero_multiplier"					"6"
+			"regen_duration"
+			{
+				"value"							"7"
+				"special_bonus_unique_necrophos_heartstopper_regen_duration""+2"
+			}
+			"heal_reduction_pct"
+			{
+				"value"							"0"
+				"special_bonus_unique_necrophos_5""+30"
+			}
+			"heal_regen_to_damage"
+			{
+				"value"							"0"
+				"special_bonus_scepter"			"+60"
+			}
+		}
+	}
+	"necrolyte_reapers_scythe_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_necrolyte/necrolyte_reapers_scythe_lua"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_NO"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"						"2"
+		"AbilitySound"							"Hero_Necrolyte.ReapersScythe.Target"
+		"AbilityTextureName"					"necrolyte_reapers_scythe"
+		"AbilityCastPoint"						"0.45"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCooldown"						"110"
+		"AbilityManaCost"						"250 375 500"
+		"AbilityModifierSupportValue"			"0.1"
+		"AbilityValues"
+		{
+			"damage_per_health"					"0.7 0.8 0.9"
+			"stun_duration"						"1.5 1.5 1.5"
+			"hp_per_kill"						"2 4 6"
+			"mana_per_kill"						"1 2 3"
+			"AbilityCastRange"
+			{
+				"value"							"600"
+				"special_bonus_unique_necrophos_6""+100"
+			}
+			"cd_back"							"2.4"
+			"mana_back"							"2.4"
+		}
+	}
+}

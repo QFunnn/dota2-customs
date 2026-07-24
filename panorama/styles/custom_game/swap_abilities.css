@@ -1,0 +1,487 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.SwapAbilities
+{
+	width: 500px;
+	min-height: 350px;
+	border: 2px solid black;
+	border-radius: 10px;
+	vertical-align: center;
+	horizontal-align: center;
+	background-color: black;
+	visibility: collapse;
+	background-image: url("s2r://panorama/images/textures/miniprofile_rock_psd.vtex");
+}
+
+#page_swap_players
+{
+	width: 100%;
+	flow-children: down;
+	margin-top: 4px;
+}
+
+.Show
+{
+	visibility: visible;
+	sound: "ui_custom_lobby_drawer_slide_in";
+}
+
+.close_button
+{
+	z-index: 10;
+	width: 50px;
+	height: 50px;
+	horizontal-align: right;
+	background-image: url("s2r://panorama/images/icon_x_red_off_png.vtex");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+}
+
+.player_container
+{
+	z-index: -1;
+	horizontal-align: center;
+	width: 98%;
+	padding: 10px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#ffffff02), to(#ffffff04));
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	box-shadow: #000000aa 0px 0px 5px 0px;
+	transition-property: saturation, blur, brightness;
+	transition-duration: 0.3s;
+	tooltip-position: right;
+	tooltip-arrow-position: 5% 17%;
+}
+
+.hero_image
+{
+	width: 100px;
+	height: 50px;
+	margin-left: 5px;
+}
+
+.username
+{
+	margin-left: 110px;
+	font-size: 25px;
+	color: white;
+	text-shadow: 4px 4px 4px #121212;
+}
+
+.player_abilities
+{
+	margin-top: 50px;
+	min-height: 90px;
+	flow-children: right;
+}
+
+.ability_image
+{
+	width: 60px;
+	height: 60px;
+	border: 1px solid black;
+	transition-property: saturation;
+	transition-duration: 0.25s;
+}
+
+.ability_container
+{
+	transition-property: position, saturation, transform, brightness;
+	transition-duration: 0.25s;
+	border: 3px solid transparent;
+	vertical-align: center;
+	margin: 5px;
+	background-image: url("s2r://panorama/images/hud/reborn/ability_bevel_psd.vtex");
+	background-size: contain;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	box-shadow: black 1px 1px 2px 2px;
+	z-index: 20;
+}
+
+.passive_ability
+{
+	box-shadow: inset #000000bb 6px 6px 12px 12px;
+	background-image: none;
+}
+
+.ability_container:hover:not(.Locked) > .ability_image
+{
+	saturation: 1.1;
+}
+
+.Selected
+{
+	border: 3px solid #01df3a;
+	box-shadow: 0px 5px 0px #04b431;
+	transform: translate3d(0, -5px, 0);
+}
+
+.Selected > .ability_image
+{
+	saturation: 1.2;
+}
+
+.Activating
+{
+	animation-name: scalein;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+}
+
+.Removing
+{
+	animation-name: scaleout;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+}
+
+@keyframes 'scalein'
+{
+	from
+	{
+		opacity: 0;
+		transform: scaleX(0.1) scaleY(0.1);
+	}
+	
+	to
+	{
+		opacity: 1;
+		transform: scaleX(1) scaleY(1);
+	}
+	
+}
+
+@keyframes 'scaleout'
+{
+	from
+	{
+		opacity: 1;
+		transform: scaleX(1) scaleY(1);
+	}
+	
+	to
+	{
+		opacity: 0;
+		transform: scaleX(0.1) scaleY(0.1);
+	}
+	
+}
+
+.submit_button
+{
+	z-index: 10;
+	vertical-align: bottom;
+	horizontal-align: center;
+	border: 1px solid black;
+	width: 100px;
+	margin: 10px;
+	margin-bottom: -2px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-top-left-radius: 30px;
+	border-top-right-radius: 30px;
+	box-shadow: fill #002a6644 -4px -4px 8px 9px;
+	background-image: url("s2r://panorama/images/custom_game/extract/background_play_button_2x_png.vtex");
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#5aa15e), to(#87d69533));
+}
+
+.submit_button:enabled .submit_button:hover
+{
+	color: red;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#5aa15e), to(#87d695));
+	box-shadow: fill #414f4daa -4px -4px 8px 8px;
+}
+
+.submit_button:disabled
+{
+	saturation: 0;
+}
+
+.submit_text
+{
+	color: white;
+	font-size: 22px;
+	color: white;
+	horizontal-align: center;
+}
+
+.swap_dialog
+{
+	vertical-align: bottom;
+	horizontal-align: right;
+	width: 300px;
+	height: 170px;
+	border: 1px solid black;
+	background-image: url("s2r://panorama/images/textures/miniprofile_compendium_bg_psd.vtex");
+	transition-property: position;
+	transition-duration: 0.5s;
+	animation-name: movein;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	border-radius: 1px;
+}
+
+@keyframes 'movein'
+{
+	from
+	{
+		opacity: 0;
+		transform: translateX(300px);
+	}
+	
+	to
+	{
+		opacity: 1;
+		transform: translateX(-2px);
+	}
+	
+}
+
+.proposal_title
+{
+	horizontal-align: center;
+	margin-top: 4px;
+	color: white;
+	font-size: 23px;
+	text-shadow: 4px 4px 4px #121212;
+}
+
+.proposed_abilities
+{
+	height: 70%;
+	margin-top: 20px;
+	vertical-align: center;
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.arrow_image
+{
+	transform: rotateZ(90deg);
+	vertical-align: center;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+#swap_proposal_container
+{
+	vertical-align: bottom;
+	horizontal-align: right;
+	flow-children: up;
+	margin-bottom: 15%;
+	margin-right: -2px;
+}
+
+.proposal_name
+{
+	horizontal-align: center;
+	text-shadow: 4px 4px 4px #121212;
+	color: #01df3a;
+	font-size: 18px;
+	margin-top: 30px;
+}
+
+.proposal_button
+{
+	height: 30px;
+	width: 55%;
+	vertical-align: bottom;
+	opacity-mask: url("s2r://panorama/images/masks/topbar_heroslant_right_psd.vtex");
+	transition-property: width, saturation, brightness;
+	transition-duration: 0.25s;
+}
+
+.proposal_button:hover
+{
+	font-size: 20px;
+}
+
+.proposal_button Label
+{
+	vertical-align: center;
+	horizontal-align: center;
+	color: white;
+	font-size: 18px;
+	text-shadow: 2px 4px 4px #121212;
+}
+
+.approve_swap
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#5aa15e), to(#87d69533));
+	horizontal-align: left;
+	margin-left: -8%;
+}
+
+.approve_swap Label
+{
+	margin-left: 15px;
+}
+
+.decline_swap
+{
+	background-image: url("s2r://panorama/images/red_large_off_png.vtex");
+	horizontal-align: right;
+	margin-right: -8%;
+}
+
+.approve_swap:hover
+{
+	z-index: 10;
+	width: 70%;
+	brightness: 2;
+}
+
+.decline_swap:hover
+{
+	z-index: 10;
+	width: 70%;
+	saturation: 1.4;
+	brightness: 3;
+}
+
+.RemovingSwap
+{
+	animation-name: moveout;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+}
+
+@keyframes 'moveout'
+{
+	from
+	{
+		opacity: 1;
+		transform: translateX(0px);
+	}
+	
+	to
+	{
+		opacity: 0;
+		transform: translateX(300px);
+	}
+	
+}
+
+.lock_hero_preview
+{
+	align: center center;
+	width: 30px;
+	height: 30px;
+	opacity: 0;
+	z-index: 10;
+}
+
+#first_hero:not(.caster_showcase)
+{
+	margin-right: 25px;
+}
+
+#second_hero:not(.caster_showcase)
+{
+	margin-left: 25px;
+}
+
+.caster_showcase > #first_hero
+{
+	align: right top;
+	opacity: 1;
+	margin-left: 0;
+	margin-bottom: 0;
+	margin-right: -10px;
+	margin-top: -10px;
+}
+
+.Locked > .ability_image
+{
+	saturation: 0;
+	blur: gaussian(3);
+}
+
+.Locked > .lock_hero_preview
+{
+	opacity: 1;
+}
+
+#swap_timer
+{
+	width: 30px;
+	height: 30px;
+	align: right top;
+	border-radius: 50px;
+	border: 2px solid black;
+}
+
+#swap_timer #swap_timer_FG
+{
+	width: 100%;
+	height: 100%;
+	background-color: green;
+	z-index: 10;
+	transition-property: clip;
+	transition-duration: 0.1s;
+}
+
+#swap_timer #swap_timer_BG
+{
+	width: 100%;
+	height: 100%;
+	background-color: #585858;
+}
+
+.swap_cooldown_container
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	z-index: 10;
+	transition-property: opacity;
+	transition-duration: 1s;
+}
+
+.swap_cooldown > .swap_cooldown_container
+{
+	opacity: 1;
+}
+
+.swap_cooldown_text
+{
+	color: white;
+	font-size: 26px;
+	text-shadow: 0px 0px 6px 6 #000000;
+	width: 100%;
+	text-align: center;
+	vertical-align: center;
+	text-overflow: shrink;
+	z-index: 2;
+}
+
+.swap_cooldown_background
+{
+	transition-property: clip;
+	transition-duration: 0.95s;
+	background-color: #000000dc;
+	width: 100%;
+	height: 100%;
+	brightness: 1.2;
+}
+
+.SameAbilityLocked
+{
+	saturation: 0;
+	brightness: 0.5;
+	blur: gaussian(2);
+}

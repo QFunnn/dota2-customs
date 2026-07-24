@@ -1,0 +1,123 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.NewPopup
+{
+	width: 1006px;
+	height: 644px;
+	border-image: url("s2r://panorama/images/custom_game/newpopup/bg_png.vtex");
+	border-width: 40px 40px 40px 40px;
+	border-image-slice: 40px 40px 40px 40px fill;
+	border-image-repeat: stretch;
+	padding: -35px;
+	align: center center;
+	opacity: 0;
+	transition-duration: 0.2s;
+	transition-property: opacity, transform, pre-transform-scale2d, wash-color;
+	animation-name: PopOut;
+	animation-duration: 0.2s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.NewPopup.EOM_PopupMainShow
+{
+	opacity: 1;
+}
+
+.NewPopup.EOM_PopupMainClose
+{
+	opacity: 0;
+	animation-name: PopOutClose;
+	animation-duration: 0.2s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.NewPopup #NewPopupTitle
+{
+	width: 470px;
+	height: 70px;
+	background-image: url("s2r://panorama/images/custom_game/newpopup/title_bg_png.vtex");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	horizontal-align: center;
+	margin-top: -5px;
+}
+
+.NewPopup #NewPopupTitle Label
+{
+	font-size: 24px;
+	color: #A4C0E1;
+	align: center top;
+	margin-top: 6px;
+}
+
+.NewPopup #NewPopupCloseBtn
+{
+	width: 22px;
+	height: 22px;
+	background-image: url("s2r://panorama/images/custom_game/newpopup/btn_close2_png.vtex");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	align: right top;
+	margin-top: 10px;
+	margin-right: 10px;
+}
+
+.NewPopup #NewPopupCloseBtn:hover
+{
+	brightness: 2;
+}
+
+.NewPopup #NewPopupCloseBtn:active
+{
+	pre-transform-scale2d: 0.95;
+}
+
+@keyframes 'PopOut'
+{
+	0%
+	{
+		pre-transform-scale2d: 0.9;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 1.05;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+@keyframes 'PopOutClose'
+{
+	0%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 1.05;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 0.9;
+	}
+	
+}

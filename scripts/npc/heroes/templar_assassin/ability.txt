@@ -1,0 +1,67 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"templar_assassin_inner_peace_custom"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/templar_assassin/templar_assassin_inner_peace_custom"
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_INNATE_UI"
+		"Innate"						"1"
+		"MaxLevel"						"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.25"	// mostly about the blink
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			"max_attack_range"				
+			{
+				"value"						"0"
+			}
+			
+			"max_hp_regen"					
+			{
+				"value"						"2.7"
+				"hero_levelup"				"+0.3"
+			}
+			"max_mana_regen"		
+			{
+				"value"						"2.2"
+				"hero_levelup"				"+0.2"
+			}
+			"time_until_meditation"			"0.25"
+			"time_until_max_bonus"
+			{
+				"value"						"2.05"
+				"hero_levelup"				"-0.05"
+			}
+			
+			
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+	}
+
+}

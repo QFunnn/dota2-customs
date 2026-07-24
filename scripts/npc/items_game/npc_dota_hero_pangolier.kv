@@ -1,0 +1,1055 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"643"
+	{
+		"name"									"Pangolier's Weapon"
+		"prefab"								"default_item"
+		"creation_date"							"2017-08-17"
+		"image_inventory"						"econ/heroes/pangolier/pangolier_weapon"
+		"item_name"								"#DOTA_Item_Pangoliers_Weapon"
+		"model_player"							"models/heroes/pangolier/pangolier_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_pangolier/pangolier_weapon_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"644"
+	{
+		"name"									"Pangolier's Armor"
+		"prefab"								"default_item"
+		"creation_date"							"2017-08-17"
+		"image_inventory"						"econ/heroes/pangolier/armadillo_armor"
+		"item_name"								"#DOTA_Item_Pangoliers_Armor"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/heroes/pangolier/pangolier_armor.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"645"
+	{
+		"name"									"Pangolier's Head"
+		"prefab"								"default_item"
+		"creation_date"							"2017-08-17"
+		"image_inventory"						"econ/heroes/pangolier/armadillo_head"
+		"item_name"								"#DOTA_Item_Pangolier_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/pangolier/pangolier_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"650"
+	{
+		"name"									"Pangolier's Off-Hand"
+		"prefab"								"default_item"
+		"capabilities"
+		{
+			"nameable"							"1"
+			"can_have_sockets"					"1"
+			"gems_can_be_extracted"				"1"
+			"can_gift_wrap"						"1"
+		}
+		"creation_date"							"2017-10-11"
+		"image_inventory"						"econ/heroes/pangolier/pangolier_off_hand"
+		"item_name"								"#DOTA_Item_Pangoliers_OffHand"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_OffHand_Weapon"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9208"
+	{
+		"name"									"Etienne's Revenge"
+		"prefab"								"wearable"
+		"creation_date"							"2017-10-06"
+		"image_inventory"						"econ/items/pangolier/pangolier_immortal_musket/pangolier_immortal_musket"
+		"item_description"						"#DOTA_Item_Desc_Etiennes_Revenge"
+		"item_name"								"#DOTA_Item_Etiennes_Revenge"
+		"item_rarity"							"immortal"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/pangolier/pangolier_immortal_musket/pangolier_immortal_musket.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"10/29/2017"
+			"price"								"0"
+		}
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_pangolier/pangolier_swashbuckler.vpcf"
+				"modifier"						"particles/econ/items/pangolier/pangolier_immortal_musket/pangolier_immortal_swashbuckler.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"musket"
+				"style"							"0"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/pangolier/pangolier_immortal_musket/pangolier_immortal_musket_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier3"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Pangolier.Swashbuckle"
+				"modifier"						"Hero_Pangolier.Swashbuckle.Musket"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_pangolier/armadillo_swashbuckler_dash.vpcf"
+				"modifier"						"particles/econ/items/pangolier/pangolier_immortal_musket/pangolier_immortal_swashbuckler_dash.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier5"
+			{
+				"type"							"ability_icon"
+				"asset"							"pangolier_swashbuckle"
+				"modifier"						"armadillo/immortal/armadillo_swashbuckle"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+		}
+	}
+	"9461"
+	{
+		"name"									"Taunt: Foolish Gallantry"
+		"prefab"								"taunt"
+		"creation_date"							"2017-09-06"
+		"image_inventory"						"econ/taunts/taunt_icon_pangolier_kritter_kartwheel"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Kritter_Kartwheel"
+		"item_name"								"#DOTA_Item_Taunt_Foolish_Gallantry"
+		"item_rarity"							"immortal"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"10/29/2017"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"bombadillo"
+				"gesture"						"1"
+				"style"							"0"
+			}
+		}
+	}
+	"9848"
+	{
+		"name"									"Blade of the Pitfall Crusader"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/armadillo/ti8_pango_abyss_bat_ranger_weapon/ti8_pango_abyss_bat_ranger_weapon"
+		"item_name"								"#DOTA_Item_Blade_of_the_Pitfall_Crusader"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/armadillo/ti8_pango_abyss_bat_ranger_weapon/ti8_pango_abyss_bat_ranger_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_pangolier/pangolier_weapon_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9849"
+	{
+		"name"									"Armor of the Pitfall Crusader"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/armadillo/ti8_pango_abyss_bat_ranger_armor/ti8_pango_abyss_bat_ranger_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Pitfall_Crusader"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/armadillo/ti8_pango_abyss_bat_ranger_armor/ti8_pango_abyss_bat_ranger_armor.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9850"
+	{
+		"name"									"Cap of the Pitfall Crusader"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/armadillo/ti8_pango_abyss_bat_ranger_head/ti8_pango_abyss_bat_ranger_head"
+		"item_name"								"#DOTA_Item_Cap_of_the_Pitfall_Crusader"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/armadillo/ti8_pango_abyss_bat_ranger_head/ti8_pango_abyss_bat_ranger_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"12324"
+	{
+		"name"									"Mask of the Confidant"
+		"prefab"								"wearable"
+		"creation_date"							"2018-06-29"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/pangolier/pangolier_ti8_immortal_head/pangolier_ti8_immortal_head"
+		"item_description"						"#DOTA_Item_Desc_Mask_of_the_Confidant"
+		"item_name"								"#DOTA_Item_Mask_of_the_Confidant"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/pangolier/pangolier_ti8_immortal_head/pangolier_ti8_immortal_head.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1535682268"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_pangolier/pangolier_tailthump_buff.vpcf"
+				"modifier"						"particles/econ/items/pangolier/pangolier_ti8_immortal/pangolier_ti8_immortal_shield_buff.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier1"
+			{
+				"type"							"ability_icon"
+				"asset"							"pangolier_shield_crash"
+				"modifier"						"armadillo/ti8_immortal_head/pangolier_shield_crash_immortal"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_pangolier/pangolier_tailthump.vpcf"
+				"modifier"						"particles/econ/items/pangolier/pangolier_ti8_immortal/pangolier_ti8_immortal_shield_crash.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_pangolier/pangolier_tailthump_hero.vpcf"
+				"modifier"						"particles/econ/items/pangolier/pangolier_ti8_immortal/pangolier_ti8_immortal_shield_crash.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_pangolier/pangolier_tailthump_cast.vpcf"
+				"modifier"						"particles/econ/items/pangolier/pangolier_ti8_immortal/pangolier_ti8_immortal_shield_crash_cast.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/pangolier/pangolier_ti8_immortal/pangolier_ti8_immortal_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13462"
+	{
+		"name"									"The Song of Swiftguard - Blade"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/pangolier/ti9_cache_pango_etienne_swiftguard_weapon/ti9_cache_pango_etienne_swiftguard_weapon"
+		"item_name"								"#DOTA_Item_The_Song_of_Swiftguard__Blade"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/pangolier/ti9_cache_pango_etienne_swiftguard_weapon/ti9_cache_pango_etienne_swiftguard_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_pangolier/pangolier_weapon_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13463"
+	{
+		"name"									"The Song of Swiftguard - Shield"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/pangolier/ti9_cache_pango_etienne_swiftguard_off_hand/ti9_cache_pango_etienne_swiftguard_off_hand"
+		"item_name"								"#DOTA_Item_The_Song_of_Swiftguard__Shield"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/pangolier/ti9_cache_pango_etienne_swiftguard_off_hand/ti9_cache_pango_etienne_swiftguard_off_hand.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"13464"
+	{
+		"name"									"The Song of Swiftguard - Finery"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/pangolier/ti9_cache_pango_etienne_swiftguard_armor/ti9_cache_pango_etienne_swiftguard_armor"
+		"item_name"								"#DOTA_Item_The_Song_of_Swiftguard__Finery"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/pangolier/ti9_cache_pango_etienne_swiftguard_armor/ti9_cache_pango_etienne_swiftguard_armor.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"13465"
+	{
+		"name"									"The Song of Swiftguard - Helm"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/pangolier/ti9_cache_pango_etienne_swiftguard_head/ti9_cache_pango_etienne_swiftguard_head"
+		"item_name"								"#DOTA_Item_The_Song_of_Swiftguard__Helm"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/pangolier/ti9_cache_pango_etienne_swiftguard_head/ti9_cache_pango_etienne_swiftguard_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"13516"
+	{
+		"name"									"Rapier of the Windward Rogue"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/pangolier/ti9_cache_pango_navigator_weapon/ti9_cache_pango_navigator_weapon"
+		"item_name"								"#DOTA_Item_Rapier_of_the_Windward_Rogue"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/pangolier/ti9_cache_pango_navigator_weapon/ti9_cache_pango_navigator_weapon.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_pangolier/pangolier_weapon_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/pangolier/pangolier_ti9_cache/pangolier_ti9_cache_weapon_ambient.vpcf"
+			}
+		}
+	}
+	"13518"
+	{
+		"name"									"Parrot of the Windward Rogue"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/pangolier/ti9_cache_pango_navigator_off_hand/ti9_cache_pango_navigator_off_hand"
+		"item_name"								"#DOTA_Item_Parrot_of_the_Windward_Rogue"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/pangolier/ti9_cache_pango_navigator_off_hand/ti9_cache_pango_navigator_off_hand.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/pangolier/pangolier_ti9_cache/pangolier_ti9_cache_offhand_ambient.vpcf"
+			}
+		}
+	}
+	"13519"
+	{
+		"name"									"Hat of the Windward Rogue"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/pangolier/ti9_cache_pango_navigator_head/ti9_cache_pango_navigator_head"
+		"item_name"								"#DOTA_Item_Hat_of_the_Windward_Rogue"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/pangolier/ti9_cache_pango_navigator_head/ti9_cache_pango_navigator_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/pangolier/pangolier_ti9_cache/pangolier_ti9_cache_head_ambient.vpcf"
+			}
+		}
+	}
+	"13520"
+	{
+		"name"									"Coat of the Windward Rogue"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/pangolier/ti9_cache_pango_navigator_armor/ti9_cache_pango_navigator_armor"
+		"item_name"								"#DOTA_Item_Coat_of_the_Windward_Rogue"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/pangolier/ti9_cache_pango_navigator_armor/ti9_cache_pango_navigator_armor.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"17970"
+	{
+		"name"									"Blissful Knave Coat"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/pangolier/masked_swordsman_armor/masked_swordsman_armor"
+		"item_name"								"#DOTA_Item_Blissful_Knave_Coat"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/pangolier/masked_swordsman_armor/masked_swordsman_armor.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"17971"
+	{
+		"name"									"Blissful Knave Hat"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/pangolier/masked_swordsman_head/masked_swordsman_head"
+		"item_name"								"#DOTA_Item_Blissful_Knave_Hat"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/pangolier/masked_swordsman_head/masked_swordsman_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"17972"
+	{
+		"name"									"Blissful Knave Dagger"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/pangolier/masked_swordsman_off_hand/masked_swordsman_off_hand"
+		"item_name"								"#DOTA_Item_Blissful_Knave_Dagger"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/pangolier/masked_swordsman_off_hand/masked_swordsman_off_hand.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"17973"
+	{
+		"name"									"Blissful Knave Rapier"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/pangolier/masked_swordsman_weapon/masked_swordsman_weapon"
+		"item_name"								"#DOTA_Item_Blissful_Knave_Rapier"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/pangolier/masked_swordsman_weapon/masked_swordsman_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_pangolier/pangolier_weapon_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"19324"
+	{
+		"name"									"Frozen Falchionaire Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"image_inventory"						"econ/items/pangolier/forest_winter_expedition_weapon/forest_winter_expedition_weapon"
+		"item_name"								"#DOTA_Item_Frozen_Falchionaire_Weapon"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/pangolier/forest_winter_expedition_weapon/forest_winter_expedition_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_pangolier/pangolier_weapon_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"19325"
+	{
+		"name"									"Frozen Falchionaire Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"image_inventory"						"econ/items/pangolier/forest_winter_expedition_off_hand/forest_winter_expedition_off_hand"
+		"item_name"								"#DOTA_Item_Frozen_Falchionaire_OffHand"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/pangolier/forest_winter_expedition_off_hand/forest_winter_expedition_off_hand.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"19326"
+	{
+		"name"									"Frozen Falchionaire Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"image_inventory"						"econ/items/pangolier/forest_winter_expedition_head/forest_winter_expedition_head"
+		"item_name"								"#DOTA_Item_Frozen_Falchionaire_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"model_player"							"models/items/pangolier/forest_winter_expedition_head/forest_winter_expedition_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"19327"
+	{
+		"name"									"Frozen Falchionaire Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"image_inventory"						"econ/items/pangolier/forest_winter_expedition_armor/forest_winter_expedition_armor"
+		"item_name"								"#DOTA_Item_Frozen_Falchionaire_Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"model_player"							"models/items/pangolier/forest_winter_expedition_armor/forest_winter_expedition_armor.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"19641"
+	{
+		"name"									"Foxtail Libertine Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/pangolier/lord_fox_armor/lord_fox_armor"
+		"item_name"								"#DOTA_Item_Foxtail_Libertine_Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"model_player"							"models/items/pangolier/lord_fox_armor/lord_fox_armor.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"19642"
+	{
+		"name"									"Foxtail Libertine Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/pangolier/lord_fox_head/lord_fox_head"
+		"item_name"								"#DOTA_Item_Foxtail_Libertine_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"model_player"							"models/items/pangolier/lord_fox_head/lord_fox_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"19644"
+	{
+		"name"									"Foxtail Libertine Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/pangolier/lord_fox_off_hand/lord_fox_off_hand"
+		"item_name"								"#DOTA_Item_Foxtail_Libertine_OffHand"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/pangolier/lord_fox_off_hand/lord_fox_off_hand.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"19645"
+	{
+		"name"									"Foxtail Libertine Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/pangolier/lord_fox_weapon/lord_fox_weapon"
+		"item_name"								"#DOTA_Item_Foxtail_Libertine_Weapon"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/pangolier/lord_fox_weapon/lord_fox_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/pangolier/pangolier_june_2022/pangolier_june_2022_weapon_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"19808"
+	{
+		"name"									"Moulin Rogue Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/pangolier/moulin_rogue_weapon/moulin_rogue_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_Moulin_Rogue_Weapon"
+		"model_player"							"models/items/pangolier/moulin_rogue_weapon/moulin_rogue_weapon.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_pangolier/pangolier_weapon_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"19809"
+	{
+		"name"									"Moulin Rogue Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/pangolier/moulin_rogue_off_hand/moulin_rogue_off_hand"
+		"item_name"								"#DOTA_Item_Vote_Only_Moulin_Rogue_OffHand"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/pangolier/moulin_rogue_off_hand/moulin_rogue_off_hand.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"19810"
+	{
+		"name"									"Moulin Rogue Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/pangolier/moulin_rogue_head/moulin_rogue_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Moulin_Rogue_Head"
+		"item_slot"								"head"
+		"model_player"							"models/items/pangolier/moulin_rogue_head/moulin_rogue_head.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"19811"
+	{
+		"name"									"Moulin Rogue Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/pangolier/moulin_rogue_armor/moulin_rogue_armor"
+		"item_name"								"#DOTA_Item_Vote_Only_Moulin_Rogue_Armor"
+		"item_slot"								"armor"
+		"model_player"							"models/items/pangolier/moulin_rogue_armor/moulin_rogue_armor.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"21197"
+	{
+		"name"									"Pitfall Crusader"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Pitfall Crusader Loading Screen"	"1"
+			"Cap of the Pitfall Crusader"		"1"
+			"Armor of the Pitfall Crusader"		"1"
+			"Blade of the Pitfall Crusader"		"1"
+		}
+		"creation_date"							"2018-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/loading_screens/ti8_pango_abyss_bat_ranger_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_TI8_Pango_Abyss_Bat_Ranger"
+		"item_name"								"#DOTA_Item_Pitfall_Crusader"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+		}
+	}
+	"21414"
+	{
+		"name"									"The Song of Swiftguard"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"The Song of Swiftguard - Blade"	"1"
+			"The Song of Swiftguard - Shield"	"1"
+			"The Song of Swiftguard - Helm"		"1"
+			"The Song of Swiftguard - Finery"	"1"
+		}
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/sets/DOTA_Item_The_Song_of_Swiftguard"
+		"item_name"								"#DOTA_Item_The_Song_of_Swiftguard"
+		"item_rarity"							"rare"
+	}
+	"21421"
+	{
+		"name"									"Tales of the Windward Rogue"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Coat of the Windward Rogue"		"1"
+			"Hat of the Windward Rogue"			"1"
+			"Parrot of the Windward Rogue"		"1"
+			"Rapier of the Windward Rogue"		"1"
+			"Tales of the Windward Rogue Loading Screen""1"
+		}
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/loading_screens/ti9_cache_pango_navigator_ls"
+		"item_description"						"#DOTA_Item_Desc_Tales_of_the_Windward_Rogue"
+		"item_name"								"#DOTA_Item_Tales_of_the_Windward_Rogue"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"21731"
+	{
+		"name"									"Blissful Knave"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Blissful Knave Coat"				"1"
+			"Blissful Knave Hat"				"1"
+			"Blissful Knave Dagger"				"1"
+			"Blissful Knave Rapier"				"1"
+		}
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Masked_Swordsman"
+		"item_name"								"#DOTA_Item_Blissful_Knave"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+	}
+	"21778"
+	{
+		"name"									"Frozen Falchionaire"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Frozen Falchionaire Armor"			"1"
+			"Frozen Falchionaire Head"			"1"
+			"Frozen Falchionaire Off-Hand"		"1"
+			"Frozen Falchionaire Weapon"		"1"
+		}
+		"creation_date"							"2021-08-17"
+		"image_inventory"						"econ/sets/DOTA_Item_Forest_Winter_Expedition"
+		"item_name"								"#DOTA_Item_Frozen_Falchionaire"
+		"item_rarity"							"rare"
+	}
+	"21927"
+	{
+		"name"									"Foxtail Libertine"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Foxtail Libertine Armor"			"1"
+			"Foxtail Libertine Head"			"1"
+			"Foxtail Libertine Loading Screen"	"1"
+			"Foxtail Libertine Off-Hand"		"1"
+			"Foxtail Libertine Weapon"			"1"
+		}
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/loading_screens/lord_fox_lord_fox_loading"
+		"item_name"								"#DOTA_Item_Foxtail_Libertine"
+		"item_rarity"							"rare"
+	}
+	"21958"
+	{
+		"name"									"Moulin Rogue"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Moulin Rogue Head"					"1"
+			"Moulin Rogue Weapon"				"1"
+			"Moulin Rogue Armor"				"1"
+			"Moulin Rogue Off-Hand"				"1"
+		}
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Moulin_Rogue"
+		"workshop_accepted"						"0"
+	}
+}

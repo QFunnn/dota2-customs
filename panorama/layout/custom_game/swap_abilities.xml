@@ -1,0 +1,68 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/custom_game/swap_abilities.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/swap_abilities.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/security.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="player_container">
+			<Panel class="player_container">
+				<DOTAHeroImage heroimagestyle="landscape" class="hero_image" />
+				<DOTAUserName class="username" />
+				<Panel class="player_abilities" />
+			</Panel>
+		</snippet>
+		<snippet name="ability_container">
+			<Panel class="ability_container">
+				<DOTAAbilityImage class="ability_image" />
+				<DOTAHeroImage heroimagestyle="icon" class="lock_hero_preview" id="first_hero" />
+				<DOTAHeroImage heroimagestyle="icon" class="lock_hero_preview" id="second_hero" />
+				<Panel class="swap_cooldown_container">
+					<Label class="swap_cooldown_text" text="{s:current_cooldown}" />
+					<Panel class="swap_cooldown_background" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="proposal_container">
+			<Panel class="swap_dialog">
+				<Label class="proposal_title" text="#swap_proposed" />
+				<DOTAUserName class="proposal_name" />
+				<Panel class="proposed_abilities" hittest="false">
+					<Panel id="first_ability" />
+					<Image class="arrow_image" src="s2r://panorama/images/control_icons/refresh_psd.vtex" />
+					<Panel id="second_ability" />
+				</Panel>
+				<Button class="proposal_button approve_swap">
+					<Label text="#approve_swap" />
+				</Button>
+				<Button class="proposal_button decline_swap">
+					<Label text="#decline_swap" />
+				</Button>
+				<CircularProgressBar id="swap_timer" min="0" max="20" value="20" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel style="width:100%;height:100%;" hittest="false">
+		<Panel id="page_swap" class="SwapAbilities" onload="UpdateTeamPlayers()">
+			<Button class="close_button" onactivate="HideSwap()" />
+			<Panel id="page_swap_players" />
+			<Button id="ProposeButton" class="submit_button" onactivate="ProposeSwap()">
+				<Label class="submit_text" text="#Swap_Button" />
+			</Button>
+		</Panel>
+		<Panel id="swap_proposal_container" hittest="false" />
+	</Panel>
+</root>

@@ -1,0 +1,2746 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"336"
+	{
+		"name"									"Slark's Weapon"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/slark/weapon"
+		"item_description"						"#DOTA_Item_Desc_Slarks_Weapon"
+		"item_name"								"#DOTA_Item_Slarks_Weapon"
+		"model_player"							"models/heroes/slark/weapon.vmdl"
+	}
+	"353"
+	{
+		"name"									"Slark's Bracers"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/slark/bracer"
+		"item_description"						"#DOTA_Item_Desc_Slarks_Bracers"
+		"item_name"								"#DOTA_Item_Slarks_Bracers"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/heroes/slark/bracer.vmdl"
+	}
+	"354"
+	{
+		"name"									"Slark's Shoulder Armor"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/slark/shoulder"
+		"item_description"						"#DOTA_Item_Desc_Slarks_Shoulder_Armor"
+		"item_name"								"#DOTA_Item_Slarks_Shoulder_Armor"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/heroes/slark/shoulder.vmdl"
+	}
+	"355"
+	{
+		"name"									"Slark's Cape"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/slark/cape"
+		"item_description"						"#DOTA_Item_Desc_Slarks_Cape"
+		"item_name"								"#DOTA_Item_Slarks_Cape"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/heroes/slark/cape.vmdl"
+	}
+	"356"
+	{
+		"name"									"Slark's Hood"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/slark/hood"
+		"item_description"						"#DOTA_Item_Desc_Slarks_Hood"
+		"item_name"								"#DOTA_Item_Slarks_Hood"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/slark/hood.vmdl"
+	}
+	"538"
+	{
+		"name"									"Slark's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-08"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Slarks_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_slark"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_slark/slark_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_slark/slark_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"absorigin_follow"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_jaw"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eyeR"
+					}
+					"4"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eyeL"
+					}
+				}
+			}
+		}
+	}
+	"4530"
+	{
+		"name"									"Shell Slicer"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-06"
+		"image_inventory"						"econ/items/slark/shell_dagger/shell_dagger"
+		"item_description"						"#DOTA_Item_Desc_The_Shell_Slicer"
+		"item_name"								"#DOTA_Item_Shell_Slicer"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Dagger"
+		"model_player"							"models/items/slark/shell_dagger/shell_dagger.vmdl"
+	}
+	"4532"
+	{
+		"name"									"Encore"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-22"
+		"image_inventory"						"econ/items/slark/anuxi_encore_dagger/anuxi_encore_dagger"
+		"item_description"						"#DOTA_Item_Desc_Encore"
+		"item_name"								"#DOTA_Item_Encore"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Slithereen_Dagger"
+		"model_player"							"models/items/slark/anuxi_encore_dagger/anuxi_encore_dagger.vmdl"
+	}
+	"4804"
+	{
+		"name"									"Silent Ripper"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/slark/the_silent_ripper/the_silent_ripper"
+		"item_description"						"#DOTA_Item_Desc_The_Silent_Ripper"
+		"item_name"								"#DOTA_Item_Silent_Ripper"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Dagger"
+		"model_player"							"models/items/slark/the_silent_ripper/the_silent_ripper.vmdl"
+	}
+	"4882"
+	{
+		"name"									"Fishy Frillhawk"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-22"
+		"image_inventory"						"econ/items/slark/fishy_frillhawk/fishy_frillhawk"
+		"item_description"						"#DOTA_Item_Desc_Fishy_Frillhawk"
+		"item_name"								"#DOTA_Item_Fishy_Frillhawk"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Fins"
+		"model_player"							"models/items/slark/fishy_frillhawk/fishy_frillhawk.vmdl"
+	}
+	"5101"
+	{
+		"name"									"Wavecutter"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-05"
+		"image_inventory"						"econ/items/slark/wavecutter/wavecutter"
+		"item_description"						"#DOTA_Item_Desc_wavecutter"
+		"item_name"								"#DOTA_Item_Wavecutter"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Dorsal_Fin"
+		"model_player"							"models/items/slark/wavecutter/wavecutter.vmdl"
+	}
+	"5261"
+	{
+		"name"									"Deep Warden's Prized Scimitar"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-14"
+		"image_inventory"						"econ/items/slark/deep_warden_scimitar/deep_warden_scimitar"
+		"item_description"						"#DOTA_Item_Desc_Deep_Warden_Scimitar"
+		"item_name"								"#DOTA_Item_Deep_Wardens_Prized_Scimitar"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Sword"
+		"model_player"							"models/items/slark/deep_warden_scimitar/deep_warden_scimitar.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5262"
+	{
+		"name"									"Deep Warden's Conch Pauldron"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-14"
+		"image_inventory"						"econ/items/slark/deep_warden_pauldron/deep_warden_pauldron"
+		"item_description"						"#DOTA_Item_Desc_Deep_Wardens_Conch_Pauldron"
+		"item_name"								"#DOTA_Item_Deep_Wardens_Conch_Pauldron"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldron"
+		"model_player"							"models/items/slark/deep_warden_pauldron/deep_warden_pauldron.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5263"
+	{
+		"name"									"Deep Warden's Tooth Bracer"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-14"
+		"image_inventory"						"econ/items/slark/deep_warden_bracer/deep_warden_bracer"
+		"item_description"						"#DOTA_Item_Desc_Deep_Wardens_Tooth_Bracer"
+		"item_name"								"#DOTA_Item_Deep_Wardens_Tooth_Bracer"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracer"
+		"model_player"							"models/items/slark/deep_warden_bracer/deep_warden_bracer.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5264"
+	{
+		"name"									"Deep Warden's Darkray Cape"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-14"
+		"image_inventory"						"econ/items/slark/deep_warden_cape/deep_warden_cape"
+		"item_description"						"#DOTA_Item_Desc_Deep_Warden_Cape"
+		"item_name"								"#DOTA_Item_Deep_Wardens_Darkray_Cape"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/slark/deep_warden_cape/deep_warden_cape.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5265"
+	{
+		"name"									"Deep Warden's Seized Hood"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-14"
+		"image_inventory"						"econ/items/slark/deep_warden_hood/deep_warden_hood"
+		"item_description"						"#DOTA_Item_Desc_Deep_Wardens_Impounded_Hood"
+		"item_name"								"#DOTA_Item_Deep_Wardens_Seized_Hood"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hood"
+		"model_player"							"models/items/slark/deep_warden_hood/deep_warden_hood.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5672"
+	{
+		"name"									"Ancient Imbued Spinal Blade"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-16"
+		"image_inventory"						"econ/items/slark/ancient_imbued_spinal_blade/ancient_imbued_spinal_blade"
+		"item_name"								"#DOTA_Item_Ancient_Imbued_Spinal_Blade"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/slark/ancient_imbued_spinal_blade/ancient_imbued_spinal_blade.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5723"
+	{
+		"name"									"Slicer of the Depths"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-17"
+		"image_inventory"						"econ/items/slark/slicer_of_the_depths/slicer_of_the_depths"
+		"item_description"						"#DOTA_Item_Desc_Slicer_of_the_Depths"
+		"item_name"								"#DOTA_Item_Slicer_of_the_Depths"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/slark/slicer_of_the_depths/slicer_of_the_depths.vmdl"
+	}
+	"5795"
+	{
+		"name"									"Tidal Blade"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-03"
+		"image_inventory"						"econ/items/slark/tidal_blade/tidal_blade"
+		"item_description"						"#DOTA_Item_Desc_Tidal_Blade"
+		"item_name"								"#DOTA_Item_Tidal_Blade"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Dagger"
+		"model_player"							"models/items/slark/tidal_blade/tidal_blade.vmdl"
+	}
+	"6361"
+	{
+		"name"									"Spanky the Daggerfish"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-01"
+		"image_inventory"						"econ/items/slark/spanky_daggerfish/spanky_daggerfish"
+		"item_name"								"#DOTA_Item_Spanky_the_Daggerfish"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/slark/spanky_daggerfish/spanky_daggerfish.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"4/1/2014"
+			"price"								"0"
+		}
+	}
+	"6383"
+	{
+		"name"									"Carapace of the Ocean Conqueror"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-21"
+		"image_inventory"						"econ/items/slark/oceanconquerer_back/oceanconquerer_back"
+		"item_name"								"#DOTA_Item_Carapace_of_the_Ocean_Conqueror"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Carapace"
+		"model_player"							"models/items/slark/oceanconquerer_back/oceanconquerer_back.vmdl"
+	}
+	"6392"
+	{
+		"name"									"Pauldron of the Ocean Conqueror"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-21"
+		"image_inventory"						"econ/items/slark/oceanconquerer_shoulder/oceanconquerer_shoulder"
+		"item_name"								"#DOTA_Item_Pauldron_of_the_Ocean_Conqueror"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldron"
+		"model_player"							"models/items/slark/oceanconquerer_shoulder/oceanconquerer_shoulder.vmdl"
+	}
+	"6405"
+	{
+		"name"									"Crown of the Ocean Conqueror"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-21"
+		"image_inventory"						"econ/items/slark/oceanconquerer_head/oceanconquerer_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Ocean_Conqueror"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Crown"
+		"model_player"							"models/items/slark/oceanconquerer_head/oceanconquerer_head.vmdl"
+	}
+	"6406"
+	{
+		"name"									"Gauntlet of the Ocean Conqueror"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-21"
+		"image_inventory"						"econ/items/slark/oceanconquerer_arms/oceanconquerer_arms"
+		"item_name"								"#DOTA_Item_Gauntlet_of_the_Ocean_Conqueror"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Gauntlet"
+		"model_player"							"models/items/slark/oceanconquerer_arms/oceanconquerer_arms.vmdl"
+	}
+	"6407"
+	{
+		"name"									"Tusk of the Ocean Conqueror"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-21"
+		"image_inventory"						"econ/items/slark/oceanconquerer_weapon/oceanconquerer_weapon"
+		"item_name"								"#DOTA_Item_Tusk_of_the_Ocean_Conqueror"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Tusk"
+		"model_player"							"models/items/slark/oceanconquerer_weapon/oceanconquerer_weapon.vmdl"
+	}
+	"6417"
+	{
+		"name"									"Hook of the Scoundrel"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-22"
+		"image_inventory"						"econ/items/slark/deepscoundrel_arms/deepscoundrel_arms"
+		"item_name"								"#DOTA_Item_Hook_of_the_Scoundrel"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Hook"
+		"model_player"							"models/items/slark/deepscoundrel_arms/deepscoundrel_arms.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"4/22/2014"
+			"price"								"0"
+		}
+	}
+	"6418"
+	{
+		"name"									"Tattered Cloak of the Scoundrel"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-22"
+		"image_inventory"						"econ/items/slark/deepscoundrel_back/deepscoundrel_back"
+		"item_name"								"#DOTA_Item_Tattered_Cloak_of_the_Scoundrel"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cloak"
+		"model_player"							"models/items/slark/deepscoundrel_back/deepscoundrel_back.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"4/22/2014"
+			"price"								"0"
+		}
+	}
+	"6419"
+	{
+		"name"									"Descaler of the Scoundrel"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-22"
+		"image_inventory"						"econ/items/slark/deepscoundrel_weapon/deepscoundrel_weapon"
+		"item_name"								"#DOTA_Item_Descaler_of_the_Scoundrel"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Descaler"
+		"model_player"							"models/items/slark/deepscoundrel_weapon/deepscoundrel_weapon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"4/22/2014"
+			"price"								"0"
+		}
+	}
+	"6420"
+	{
+		"name"									"Jaw of the Scoundrel"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-22"
+		"image_inventory"						"econ/items/slark/deepscoundrel_shoulder/deepscoundrel_shoulder"
+		"item_name"								"#DOTA_Item_Jaw_of_the_Scoundrel"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Jaw"
+		"model_player"							"models/items/slark/deepscoundrel_shoulder/deepscoundrel_shoulder.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"4/22/2014"
+			"price"								"0"
+		}
+	}
+	"6421"
+	{
+		"name"									"Mask of the Scoundrel"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-22"
+		"image_inventory"						"econ/items/slark/deepscoundrel_head/deepscoundrel_head"
+		"item_name"								"#DOTA_Item_Mask_of_the_Scoundrel"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/slark/deepscoundrel_head/deepscoundrel_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"4/22/2014"
+			"price"								"0"
+		}
+	}
+	"6871"
+	{
+		"name"									"Hookblade of Skadi"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-27"
+		"image_inventory"						"econ/items/slark/hookblade_skadi/hookblade_skadi"
+		"item_description"						"#DOTA_Item_Desc_Hookblade_of_Skadi"
+		"item_name"								"#DOTA_Item_Hookblade_of_Skadi"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/slark/hookblade_skadi/hookblade_skadi.vmdl"
+		"particle_folder"						"particles/econ/items/slark/hookblade_of_skadi"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/slark/hookblade_of_skadi/slark_hookblade_skadi_ambient.vpcf"
+				"system"						"particles/econ/items/slark/hookblade_of_skadi/slark_hookblade_skadi_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"7396"
+	{
+		"name"									"The Barb of Skadi"
+		"prefab"								"wearable"
+		"creation_date"							"2014-12-10"
+		"image_inventory"						"econ/items/slark/barb_of_skadi/barb_of_skadi"
+		"item_description"						"#DOTA_Item_Desc_The_Barb_of_Skadi"
+		"item_name"								"#DOTA_Item_The_Barb_of_Skadi"
+		"item_quality"							"genuine"
+		"item_rarity"							"immortal"
+		"model_player"							"models/items/slark/barb_of_skadi/barb_of_skadi.vmdl"
+		"particle_folder"						"particles/econ/items/slark/slark_barb_of_skadi"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_slark/slark_regen.vpcf"
+				"modifier"						"particles/econ/items/slark/slark_barb_of_skadi/slark_regen_barb_of_skadi.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/slark/slark_barb_of_skadi/slark_barb_of_skadi_ambient.vpcf"
+				"system"						"particles/econ/items/slark/slark_barb_of_skadi/slark_barb_of_skadi_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"7400"
+	{
+		"name"									"The Golden Barb of Skadi"
+		"prefab"								"wearable"
+		"creation_date"							"2014-12-15"
+		"image_inventory"						"econ/items/slark/golden_barb_of_skadi/golden_barb_of_skadi"
+		"item_description"						"#DOTA_Item_Desc_Golden_Barb_of_Skadi"
+		"item_name"								"#DOTA_Item_The_Golden_Barb_of_Skadi"
+		"item_quality"							"genuine"
+		"item_rarity"							"immortal"
+		"model_player"							"models/items/slark/golden_barb_of_skadi/golden_barb_of_skadi.vmdl"
+		"particle_folder"						"particles/econ/items/slark/slark_golden_barb_of_skadi"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_slark/slark_regen.vpcf"
+				"modifier"						"particles/econ/items/slark/slark_golden_barb_of_skadi/slark_regen_golden_barb_of_skadi.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/slark/slark_golden_barb_of_skadi/slark_golden_barb_of_skadi_ambient.vpcf"
+				"system"						"particles/econ/items/slark/slark_golden_barb_of_skadi/slark_golden_barb_of_skadi_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"7409"
+	{
+		"name"									"Pale Edge"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-07"
+		"image_inventory"						"econ/items/slark/pale_justice/pale_justice"
+		"item_name"								"#DOTA_Item_Pale_Edge"
+		"item_quality"							"genuine"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/slark/pale_justice/pale_justice.vmdl"
+		"particle_folder"						"particles/econ/items/slark/slark_pale_edge"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/slark/slark_pale_edge/slark_pale_edge_ambient.vpcf"
+				"system"						"particles/econ/items/slark/slark_pale_edge/slark_pale_edge_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_gem"
+					}
+				}
+			}
+		}
+	}
+	"7465"
+	{
+		"name"									"Gilded Edge"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-21"
+		"image_inventory"						"econ/items/slark/gilded_justice/gilded_justice1"
+		"item_name"								"#DOTA_Item_Gilded_Edge"
+		"item_quality"							"genuine"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/slark/pale_justice/pale_justice.vmdl"
+		"particle_folder"						"particles/econ/items/slark/slark_gilded_edge"
+		"visuals"
+		{
+			"skin"								"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/slark/slark_gilded_edge/slark_gilded_edge_ambient.vpcf"
+				"system"						"particles/econ/items/slark/slark_gilded_edge/slark_gilded_edge_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_gem"
+					}
+				}
+			}
+		}
+	}
+	"7667"
+	{
+		"name"									"Taunt: RazorFlip!"
+		"prefab"								"taunt"
+		"creation_date"							"2016-04-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/taunts/taunt_icon_slark_razor_flip"
+		"item_description"						"#DOTA_Item_Desc_Taunt_RazorFlip"
+		"item_name"								"#DOTA_Item_Taunt_RazorFlip"
+		"item_rarity"							"immortal"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1471158000"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"sideflip_gesture"
+				"gesture"						"1"
+				"style"							"0"
+			}
+		}
+	}
+	"7710"
+	{
+		"name"									"Prison Buckler"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-15"
+		"image_inventory"						"econ/items/slark/dark_reef_arms/dark_reef_arms"
+		"item_name"								"#DOTA_Item_Prison_Buckler"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Shield"
+		"model_player"							"models/items/slark/dark_reef_arms/dark_reef_arms.vmdl"
+		"branding"
+		{
+			"team_id"							"46"
+		}
+	}
+	"7711"
+	{
+		"name"									"Shark Fin Cape"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-15"
+		"image_inventory"						"econ/items/slark/dark_reef_back/dark_reef_back"
+		"item_name"								"#DOTA_Item_Shark_Fin_Cape"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/slark/dark_reef_back/dark_reef_back.vmdl"
+		"branding"
+		{
+			"team_id"							"46"
+		}
+	}
+	"7712"
+	{
+		"name"									"Shark Cowl"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-15"
+		"image_inventory"						"econ/items/slark/dark_reef_head/dark_reef_head"
+		"item_name"								"#DOTA_Item_Shark_Cowl"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Headpiece"
+		"model_player"							"models/items/slark/dark_reef_head/dark_reef_head.vmdl"
+		"branding"
+		{
+			"team_id"							"46"
+		}
+	}
+	"7713"
+	{
+		"name"									"Bound Shark Flippers"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-15"
+		"image_inventory"						"econ/items/slark/dark_reef_shoulders/dark_reef_shoulders"
+		"item_name"								"#DOTA_Item_Bound_Shark_Flippers"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder_Pieces"
+		"model_player"							"models/items/slark/dark_reef_shoulders/dark_reef_shoulders.vmdl"
+		"branding"
+		{
+			"team_id"							"46"
+		}
+	}
+	"7714"
+	{
+		"name"									"Prison Shank"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-15"
+		"image_inventory"						"econ/items/slark/dark_reef_weapon/dark_reef_weapon"
+		"item_name"								"#DOTA_Item_Prison_Shank"
+		"item_rarity"							"uncommon"
+		"model_player"							"models/items/slark/dark_reef_weapon/dark_reef_weapon.vmdl"
+		"branding"
+		{
+			"team_id"							"46"
+		}
+	}
+	"7908"
+	{
+		"name"									"Crawblade"
+		"prefab"								"wearable"
+		"creation_date"							"2015-02-06"
+		"image_inventory"						"econ/items/slark/crawblade/crawblade"
+		"item_name"								"#DOTA_Item_Crawblade"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/slark/crawblade/crawblade.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"2/9/2015"
+			"price"								"0"
+		}
+	}
+	"7974"
+	{
+		"name"									"Hydrakan Latch"
+		"prefab"								"wearable"
+		"creation_date"							"2016-06-06"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/slark/hydrakan_latch/mesh/hydrkan_latch_model"
+		"item_description"						"#DOTA_Item_Desc_Hydrakan_Latch"
+		"item_name"								"#DOTA_Item_Hydrakan_Latch"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Latch"
+		"model_player"							"models/items/slark/hydrakan_latch/mesh/hydrkan_latch_model.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"latch"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_slark/slark_essence_shift.vpcf"
+				"modifier"						"particles/econ/items/slark/slark_ti6_blade/slark_ti6_blade_essence_shift.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_slark/slark_pounce_leash.vpcf"
+				"modifier"						"particles/econ/items/slark/slark_ti6_blade/slark_ti6_pounce_leash.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_slark/slark_pounce_ground.vpcf"
+				"modifier"						"particles/econ/items/slark/slark_ti6_blade/slark_ti6_pounce_ground.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_slark/slark_pounce_start.vpcf"
+				"modifier"						"particles/econ/items/slark/slark_ti6_blade/slark_ti6_pounce_start.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_slark/slark_pounce_trail.vpcf"
+				"modifier"						"particles/econ/items/slark/slark_ti6_blade/slark_ti6_pounce_trail.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/slark/slark_ti6_blade/slark_ti6_blade_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/slark/slark_ti6_blade/slark_ti6_blade_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_blade"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_blade_l"
+					}
+				}
+			}
+			"asset_modifier7"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Slark.Pounce.Cast"
+				"modifier"						"Hero_Slark.Pounce.Cast.Immortal"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier8"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Slark.Pounce.Impact"
+				"modifier"						"Hero_Slark.Pounce.Impact.Immortal"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier9"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Slark.Pounce.Leash"
+				"modifier"						"Hero_Slark.Pounce.Leash.Immortal"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"skin"								"0"
+			"asset_modifier10"
+			{
+				"type"							"ability_icon"
+				"asset"							"slark_pounce"
+				"modifier"						"slark/hydrakan_latch/slark_pounce"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+		}
+	}
+	"8002"
+	{
+		"name"									"Golden Hydrakan Latch"
+		"prefab"								"wearable"
+		"creation_date"							"2016-07-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/slark/hydrakan_latch/mesh/hydrkan_latch_model1"
+		"item_description"						"#DOTA_Item_Desc_Golden_Hydrakan_Latch"
+		"item_name"								"#DOTA_Item_Golden_Hydrakan_Latch"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Latch"
+		"model_player"							"models/items/slark/hydrakan_latch/mesh/hydrkan_latch_model.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"latch"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_slark/slark_essence_shift.vpcf"
+				"modifier"						"particles/econ/items/slark/slark_ti6_blade/slark_ti6_blade_essence_shift_gold.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_slark/slark_pounce_leash.vpcf"
+				"modifier"						"particles/econ/items/slark/slark_ti6_blade/slark_ti6_pounce_leash_gold.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_slark/slark_pounce_ground.vpcf"
+				"modifier"						"particles/econ/items/slark/slark_ti6_blade/slark_ti6_pounce_gold_ground.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_slark/slark_pounce_start.vpcf"
+				"modifier"						"particles/econ/items/slark/slark_ti6_blade/slark_ti6_pounce_start_gold.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_slark/slark_pounce_trail.vpcf"
+				"modifier"						"particles/econ/items/slark/slark_ti6_blade/slark_ti6_pounce_trail_gold.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/slark/slark_ti6_blade/slark_ti6_blade_gold_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/slark/slark_ti6_blade/slark_ti6_blade_gold_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_blade"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_blade_l"
+					}
+				}
+			}
+			"asset_modifier7"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Slark.Pounce.Cast"
+				"modifier"						"Hero_Slark.Pounce.Cast.Immortal"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier8"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Slark.Pounce.Impact"
+				"modifier"						"Hero_Slark.Pounce.Impact.Immortal"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier9"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Slark.Pounce.Leash"
+				"modifier"						"Hero_Slark.Pounce.Leash.Immortal"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"skin"								"1"
+			"asset_modifier10"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/slark/slark_ti6_blade/slark_blade_spin.vpcf"
+				"modifier"						"particles/econ/items/slark/slark_ti6_blade/slark_blade_spin_gold.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier11"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/slark/slark_ti6_blade/slark_blade_spin_long.vpcf"
+				"modifier"						"particles/econ/items/slark/slark_ti6_blade/slark_blade_spin_long_gold.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier12"
+			{
+				"type"							"ability_icon"
+				"asset"							"slark_pounce"
+				"modifier"						"slark/gold_hydrakan_latch/slark_pounce"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+		}
+	}
+	"8316"
+	{
+		"name"									"Almond the Frondillo"
+		"prefab"								"wearable"
+		"capabilities"
+		{
+			"nameable"							"1"
+			"can_have_sockets"					"0"
+		}
+		"creation_date"							"2015-03-27"
+		"image_inventory"						"econ/pets/almond_the_frondillo/almond_the_frondillo"
+		"item_description"						"#DOTA_Item_Desc_Axe__Almond_the_Frondillo"
+		"item_name"								"#DOTA_Item_Almond_the_Frondillo"
+		"item_rarity"							"immortal"
+		"item_slot"								"summon"
+		"item_type_name"						"#DOTA_WearableType_Pet"
+		"particle_folder"						"particles/econ/items/pets/pet_frondillo"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1441065600"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"pet"
+				"asset"							"models/pets/armadillo/armadillo.vmdl"
+				"ingame_scale"					"1"
+				"loadout_scale"					"1"
+				"loadout_default_offset"		"0 100 0"
+				"loadout_hero_offsets"
+				{
+					"axe"						"-10 75 0"
+					"bristleback"				"-40 70 0"
+					"centaur"					"-10 75 0"
+					"earthshaker"				"-10 80 0"
+					"juggernaut"				"-10 60 0"
+					"legion_commander"			"-45 80 0"
+					"riki"						"0 75 0"
+					"slark"						"30 80 0"
+					"sven"						"-10 70 0"
+				}
+				"levelup_rule"					"compendiumlevel"
+				"compendium_event_id"			"8"
+				"style"							"0"
+				"skin"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"portrait_background_model"
+				"asset"							"models/heroes/pedestal/pedestal_1_large.vmdl"
+				"style"							"0"
+				"skin"							"0"
+			}
+			"asset_modifier2"
+			{
+				"type"							"pet"
+				"asset"							"models/pets/armadillo/armadillo.vmdl"
+				"ingame_scale"					"1"
+				"loadout_scale"					"1"
+				"loadout_default_offset"		"0 100 0"
+				"loadout_hero_offsets"
+				{
+					"axe"						"-10 75 0"
+					"bristleback"				"-40 70 0"
+					"centaur"					"-10 75 0"
+					"earthshaker"				"-10 80 0"
+					"juggernaut"				"-10 60 0"
+					"legion_commander"			"-45 80 0"
+					"riki"						"0 75 0"
+					"slark"						"30 80 0"
+					"sven"						"-10 70 0"
+				}
+				"levelup_rule"					"compendiumlevel"
+				"compendium_event_id"			"8"
+				"style"							"1"
+				"skin"							"1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"portrait_background_model"
+				"asset"							"models/heroes/pedestal/pedestal_1_large.vmdl"
+				"style"							"1"
+				"skin"							"1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"pet"
+				"asset"							"models/pets/armadillo/armadillo.vmdl"
+				"ingame_scale"					"1"
+				"loadout_scale"					"1"
+				"loadout_default_offset"		"0 100 0"
+				"loadout_hero_offsets"
+				{
+					"axe"						"-10 75 0"
+					"bristleback"				"-40 70 0"
+					"centaur"					"-10 75 0"
+					"earthshaker"				"-10 80 0"
+					"juggernaut"				"-10 60 0"
+					"legion_commander"			"-45 80 0"
+					"riki"						"0 75 0"
+					"slark"						"30 80 0"
+					"sven"						"-10 70 0"
+				}
+				"levelup_rule"					"compendiumlevel"
+				"compendium_event_id"			"8"
+				"style"							"2"
+				"skin"							"2"
+			}
+			"asset_modifier5"
+			{
+				"type"							"portrait_background_model"
+				"asset"							"models/heroes/pedestal/pedestal_1_large.vmdl"
+				"style"							"2"
+				"skin"							"2"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Item_Almond_the_Frondillo"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Item_Almond_the_Frondillo_Red_Upgrade"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"price"					"1"
+						"item_def"				"16585"
+					}
+				}
+				"2"
+				{
+					"name"						"#DOTA_Item_Almond_the_Frondillo_Golden_Upgrade"
+					"skin"						"2"
+					"alternate_icon"			"2"
+					"unlock"
+					{
+						"price"					"1"
+						"item_def"				"16542"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/pets/almond_the_frondillo/almond_the_frondillo"
+				}
+				"1"
+				{
+					"icon_path"					"econ/pets/almond_the_frondillo/almond_the_frondillo_red"
+				}
+				"2"
+				{
+					"icon_path"					"econ/pets/almond_the_frondillo/almond_the_frondillo_gold"
+				}
+			}
+			"skin"								"0"
+			"asset_modifier6"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/pets/pet_frondillo/almond_ambient_gold.vpcf"
+				"style"							"2"
+				"asset"							"npc_dota_companion"
+				"system"						"particles/econ/items/pets/pet_frondillo/almond_ambient_gold.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_almond_fx"
+					}
+				}
+			}
+		}
+	}
+	"8366"
+	{
+		"name"									"All Heroes' Default Pet"
+		"prefab"								"default_item"
+		"creation_date"							"2015-04-14"
+		"item_name"								"#DOTA_Wearable_All_Heroes_DefaultPet"
+		"item_slot"								"summon"
+		"item_type_name"						"#DOTA_WearableType_Base"
+		"image_inventory"						"econ/default_no_item"
+	}
+	"8681"
+	{
+		"name"									"Shell of the Umizar Crawler"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-28"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/slark/deep_sea_dragoon_shoulder/deep_sea_dragoon_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Shell_of_the_Umizar_Crawler"
+		"item_name"								"#DOTA_Item_Shell_of_the_Umizar_Crawler"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/slark/deep_sea_dragoon_shoulder/deep_sea_dragoon_shoulder.vmdl"
+	}
+	"8682"
+	{
+		"name"									"Slasher of the Umizar Crawler"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-28"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/slark/deep_sea_dragoon_weapon/deep_sea_dragoon_weapon"
+		"item_description"						"#DOTA_Item_Desc_Slasher_of_the_Umizar_Crawler"
+		"item_name"								"#DOTA_Item_Slasher_of_the_Umizar_Crawler"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/slark/deep_sea_dragoon_weapon/deep_sea_dragoon_weapon.vmdl"
+	}
+	"8683"
+	{
+		"name"									"Helm of the Umizar Crawler"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-28"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/slark/deep_sea_dragoon_head/deep_sea_dragoon_head"
+		"item_description"						"#DOTA_Item_Desc_Helm_of_the_Umizar_Crawler"
+		"item_name"								"#DOTA_Item_Helm_of_the_Umizar_Crawler"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/slark/deep_sea_dragoon_head/deep_sea_dragoon_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/slark/slark_deep_sea_dragoon/slark_dragoon_tesla.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/slark/slark_deep_sea_dragoon/slark_dragoon_tesla.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+				}
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Deep_Sea_Dragoon_Head_0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Deep_Sea_Dragoon_Head_1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"11898"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/slark/deep_sea_dragoon_head/deep_sea_dragoon_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/slark/deep_sea_dragoon_head/deep_sea_dragoon_head_style1"
+				}
+			}
+		}
+	}
+	"8688"
+	{
+		"name"									"Spikes of the Umizar Crawler"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-28"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/slark/deep_sea_dragoon_back/deep_sea_dragoon_back"
+		"item_description"						"#DOTA_Item_Desc_Spikes_of_the_Umizar_Crawler"
+		"item_name"								"#DOTA_Item_Spikes_of_the_Umizar_Crawler"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/slark/deep_sea_dragoon_back/deep_sea_dragoon_back.vmdl"
+	}
+	"8689"
+	{
+		"name"									"Claw of the Umizar Crawler"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-28"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/slark/deep_sea_dragoon_arms/deep_sea_dragoon_arms"
+		"item_description"						"#DOTA_Item_Desc_Claw_of_the_Umizar_Crawler"
+		"item_name"								"#DOTA_Item_Claw_of_the_Umizar_Crawler"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/slark/deep_sea_dragoon_arms/deep_sea_dragoon_arms.vmdl"
+	}
+	"9164"
+	{
+		"name"									"Sea Rake's Bridle"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-04"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/slark/slark_head_immortal/slark_head_immortal"
+		"item_description"						"#DOTA_Item_Desc_Sea_Rakes_Bridle"
+		"item_name"								"#DOTA_Item_Sea_Rakes_Bridle"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"model_player"							"models/items/slark/slark_head_immortal/slark_head_immortal.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"ability_icon"
+				"asset"							"slark_dark_pact"
+				"modifier"						"slark_dark_pact_immortal"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_slark/slark_dark_pact_start.vpcf"
+				"modifier"						"particles/econ/items/slark/slark_head_immortal/slark_head_immortal_start.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_slark/slark_dark_pact_pulses_body.vpcf"
+				"modifier"						"particles/econ/items/slark/slark_head_immortal/slark_immortal_dark_pact_pulses_body.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_slark/slark_dark_pact_pulses.vpcf"
+				"modifier"						"particles/econ/items/slark/slark_head_immortal/slark_immortal_dark_pact_pulses.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/slark/slark_head_immortal/slark_head_immortal_ambient.vpcf"
+			}
+			"asset_modifier5"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Slark.DarkPact.PreCast"
+				"modifier"						"Hero_Slark.DarkPact.PreCast.Immortal"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier6"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Slark.DarkPact.Cast"
+				"modifier"						"Hero_Slark.DarkPact.Cast.Immortal"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+		}
+	}
+	"9534"
+	{
+		"name"									"Shell Shiv"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-01"
+		"image_inventory"						"econ/items/slark/shivshell_weapon/shivshell_weapon"
+		"item_name"								"#DOTA_Item_Shell_Shiv"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Shiv"
+		"model_player"							"models/items/slark/shivshell_weapon/shivshell_weapon.vmdl"
+	}
+	"9536"
+	{
+		"name"									"Guard of the Shivshell Crawler"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-01"
+		"image_inventory"						"econ/items/slark/shivshell_shoulder/shivshell_shoulder"
+		"item_name"								"#DOTA_Item_Guard_of_the_Shivshell_Crawler"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Guard"
+		"model_player"							"models/items/slark/shivshell_shoulder/shivshell_shoulder.vmdl"
+	}
+	"9537"
+	{
+		"name"									"Gauntlet of the Shivshell Crawler"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-01"
+		"image_inventory"						"econ/items/slark/shivshell_arms/shivshell_arms"
+		"item_name"								"#DOTA_Item_Gauntlet_of_the_Shivshell_Crawler"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Gauntlet"
+		"model_player"							"models/items/slark/shivshell_arms/shivshell_arms.vmdl"
+	}
+	"9538"
+	{
+		"name"									"Fins of the Shivshell Crawler"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-01"
+		"image_inventory"						"econ/items/slark/shivshell_back/shivshell_back"
+		"item_name"								"#DOTA_Item_Fins_of_the_Shivshell_Crawler"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Fins"
+		"model_player"							"models/items/slark/shivshell_back/shivshell_back.vmdl"
+	}
+	"9539"
+	{
+		"name"									"Helm of the Shivshell Crawler"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-01"
+		"image_inventory"						"econ/items/slark/shivshell_head/shivshell_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Shivshell_Crawler"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/slark/shivshell_head/shivshell_head.vmdl"
+	}
+	"13313"
+	{
+		"name"									"Fins of the Lizard King"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/slark/ti9_cache_slark_jungle_rule_back/ti9_cache_slark_jungle_rule_back"
+		"item_name"								"#DOTA_Item_Fins_of_the_Lizard_King"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/slark/ti9_cache_slark_jungle_rule_back/ti9_cache_slark_jungle_rule_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"13314"
+	{
+		"name"									"Jaws of the Lizard King"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/slark/ti9_cache_slark_jungle_rule_head/ti9_cache_slark_jungle_rule_head"
+		"item_name"								"#DOTA_Item_Jaws_of_the_Lizard_King"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/slark/ti9_cache_slark_jungle_rule_head/ti9_cache_slark_jungle_rule_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/slark/slark_ti9_jungle_rule/slark_ti9_jungle_rule_ambient_head.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13315"
+	{
+		"name"									"Pauldron of the Lizard King"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/slark/ti9_cache_slark_jungle_rule_shoulder/ti9_cache_slark_jungle_rule_shoulder"
+		"item_name"								"#DOTA_Item_Pauldron_of_the_Lizard_King"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/slark/ti9_cache_slark_jungle_rule_shoulder/ti9_cache_slark_jungle_rule_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"13316"
+	{
+		"name"									"Weapon of the Lizard King"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/slark/ti9_cache_slark_jungle_rule_weapon/ti9_cache_slark_jungle_rule_weapon"
+		"item_name"								"#DOTA_Item_Weapon_of_the_Lizard_King"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/slark/ti9_cache_slark_jungle_rule_weapon/ti9_cache_slark_jungle_rule_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"13317"
+	{
+		"name"									"Bracer of the Lizard King"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/slark/ti9_cache_slark_jungle_rule_arms/ti9_cache_slark_jungle_rule_arms"
+		"item_name"								"#DOTA_Item_Bracer_of_the_Lizard_King"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/slark/ti9_cache_slark_jungle_rule_arms/ti9_cache_slark_jungle_rule_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/slark/slark_ti9_jungle_rule/slark_ti9_jungle_rule_ambient_ring.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13547"
+	{
+		"name"									"Shadow in the Deep Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2019-08-07"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/slark/slark_fall20_immortal_shoulder/slark_fall20_immortal_shoulder"
+		"item_description"						"#DOTA_Item_Desc_slark_fall20_immortal_shoulder"
+		"item_name"								"#DOTA_Item_Shadow_in_the_Deep_Armor"
+		"item_rarity"							"immortal"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/slark/slark_fall20_immortal_shoulder/slark_fall20_immortal_shoulder.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"fall20_slark"
+				"gesture"						"1"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/slark/slark_fall20_immortal/slark_fall20_shoulder.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_slark/slark_shadow_dance.vpcf"
+				"modifier"						"particles/econ/items/slark/slark_fall20_immortal/slark_fall20_shadow_dance.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"slark_shadow_dance"
+				"modifier"						"slark_fall20_shadow_dance"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_slark/slark_shadow_dance_dummy.vpcf"
+				"modifier"						"particles/econ/items/slark/slark_fall20_immortal/slark_fall20_shadow_dance.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_slark/slark_shadow_dance_dummy_sceptor.vpcf"
+				"modifier"						"particles/econ/items/slark/slark_fall20_immortal/slark_fall20_shadow_dance.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+		}
+	}
+	"13761"
+	{
+		"name"									"Bracer of Tellurian Trespass"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/slark/cavern_crawl_2020_slark_arms/cavern_crawl_2020_slark_arms"
+		"item_description"						"#DOTA_Item_Desc_Cavern_Crawl_2020_Slark_Arms"
+		"item_name"								"#DOTA_Item_Bracer_of_Tellurian_Trespass"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"model_player"							"models/items/slark/cavern_crawl_2020_slark_arms/cavern_crawl_2020_slark_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Slark_TI10_Cavern_Crawl_Arms_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Slark_TI10_Cavern_Crawl_Arms_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17546"
+						"price"					"1"
+					}
+				}
+				"2"
+				{
+					"name"						"#DOTA_Style_Slark_TI10_Cavern_Crawl_Arms_2"
+					"skin"						"2"
+					"alternate_icon"			"2"
+					"unlock"
+					{
+						"item_def"				"17547"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/slark/slark_ti10_caverncrawl/slark_ti10_caverncrawl_arms.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/slark/slark_ti10_caverncrawl/slark_ti10_caverncrawl_arms_style3.vpcf"
+				"style"							"2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/slark/slark_ti10_caverncrawl/slark_ti10_caverncrawl_arm_style2s.vpcf"
+				"style"							"1"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/slark/cavern_crawl_2020_slark_arms/cavern_crawl_2020_slark_arms"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/slark/cavern_crawl_2020_slark_arms/cavern_crawl_2020_slark_arms_style1"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/slark/cavern_crawl_2020_slark_arms/cavern_crawl_2020_slark_arms_style2"
+				}
+			}
+		}
+	}
+	"13762"
+	{
+		"name"									"Apparatus of Tellurian Trespass"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/slark/cavern_crawl_2020_slark_back/cavern_crawl_2020_slark_back"
+		"item_description"						"#DOTA_Item_Desc_Apparatus_of_Tellurian_Trespass"
+		"item_name"								"#DOTA_Item_Apparatus_of_Tellurian_Trespass"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/slark/cavern_crawl_2020_slark_back/cavern_crawl_2020_slark_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Slark_TI10_Cavern_Crawl_Back_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Slark_TI10_Cavern_Crawl_Back_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17546"
+						"price"					"1"
+					}
+				}
+				"2"
+				{
+					"name"						"#DOTA_Style_Slark_TI10_Cavern_Crawl_Back_2"
+					"skin"						"2"
+					"alternate_icon"			"2"
+					"unlock"
+					{
+						"item_def"				"17547"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/slark/slark_ti10_caverncrawl/slark_ti10_caverncrawl_back_glow.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/slark/slark_ti10_caverncrawl/slark_ti10_caverncrawl_back_style3.vpcf"
+				"style"							"2"
+			}
+			"skip_model_combine"				"1"
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/slark/cavern_crawl_2020_slark_back/cavern_crawl_2020_slark_back"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/slark/cavern_crawl_2020_slark_back/cavern_crawl_2020_slark_back_style1"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/slark/cavern_crawl_2020_slark_back/cavern_crawl_2020_slark_back_style2"
+				}
+			}
+		}
+	}
+	"13763"
+	{
+		"name"									"Helm of Tellurian Trespass"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/slark/cavern_crawl_2020_slark_head/cavern_crawl_2020_slark_head"
+		"item_description"						"#DOTA_Item_Desc_Cavern_Crawl_2020_Slark_Head"
+		"item_name"								"#DOTA_Item_Helm_of_Tellurian_Trespass"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"model_player"							"models/items/slark/cavern_crawl_2020_slark_head/cavern_crawl_2020_slark_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Slark_TI10_Cavern_Crawl_Head_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Slark_TI10_Cavern_Crawl_Head_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17546"
+						"price"					"1"
+					}
+				}
+				"2"
+				{
+					"name"						"#DOTA_Style_Slark_TI10_Cavern_Crawl_Head_2"
+					"skin"						"2"
+					"alternate_icon"			"2"
+					"unlock"
+					{
+						"item_def"				"17547"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/slark/slark_ti10_caverncrawl/slark_ti10_caverncrawl_head.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/slark/slark_ti10_caverncrawl/slark_ti10_caverncrawl_head_style3.vpcf"
+				"style"							"2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/slark/slark_ti10_caverncrawl/slark_ti10_caverncrawl_head_style2.vpcf"
+				"style"							"1"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/slark/cavern_crawl_2020_slark_head/cavern_crawl_2020_slark_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/slark/cavern_crawl_2020_slark_head/cavern_crawl_2020_slark_head_style1"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/slark/cavern_crawl_2020_slark_head/cavern_crawl_2020_slark_head_style2"
+				}
+			}
+		}
+	}
+	"13764"
+	{
+		"name"									"Guard of Tellurian Trespass"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/slark/cavern_crawl_2020_slark_shoulder/cavern_crawl_2020_slark_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Cavern_Crawl_2020_Slark_Shoulder"
+		"item_name"								"#DOTA_Item_Guard_of_Tellurian_Trespass"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/slark/cavern_crawl_2020_slark_shoulder/cavern_crawl_2020_slark_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Slark_TI10_Cavern_Crawl_Shoulder_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Slark_TI10_Cavern_Crawl_Shoulder_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17546"
+						"price"					"1"
+					}
+				}
+				"2"
+				{
+					"name"						"#DOTA_Style_Slark_TI10_Cavern_Crawl_Shoulder_2"
+					"skin"						"2"
+					"alternate_icon"			"2"
+					"unlock"
+					{
+						"item_def"				"17547"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/slark/slark_ti10_caverncrawl/slark_ti10_caverncrawl_barnacle_shoulders.vpcf"
+				"style"							"2"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/slark/cavern_crawl_2020_slark_shoulder/cavern_crawl_2020_slark_shoulder"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/slark/cavern_crawl_2020_slark_shoulder/cavern_crawl_2020_slark_shoulder_style1"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/slark/cavern_crawl_2020_slark_shoulder/cavern_crawl_2020_slark_shoulder_style2"
+				}
+			}
+		}
+	}
+	"13765"
+	{
+		"name"									"Blade of Tellurian Trespass"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/slark/cavern_crawl_2020_slark_weapon/cavern_crawl_2020_slark_weapon"
+		"item_description"						"#DOTA_Item_Desc_Blade_of_Tellurian_Trespass"
+		"item_name"								"#DOTA_Item_Blade_of_Tellurian_Trespass"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/slark/cavern_crawl_2020_slark_weapon/cavern_crawl_2020_slark_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Slark_TI10_Cavern_Crawl_Weapon_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Slark_TI10_Cavern_Crawl_Weapon_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17546"
+						"price"					"1"
+					}
+				}
+				"2"
+				{
+					"name"						"#DOTA_Style_Slark_TI10_Cavern_Crawl_Weapon_2"
+					"skin"						"2"
+					"alternate_icon"			"2"
+					"unlock"
+					{
+						"item_def"				"17547"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/slark/slark_ti10_caverncrawl/slark_ti10_caverncrawl_weapon.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/slark/slark_ti10_caverncrawl/slark_ti10_caverncrawl_weapon_style3.vpcf"
+				"style"							"2"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/slark/cavern_crawl_2020_slark_weapon/cavern_crawl_2020_slark_weapon"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/slark/cavern_crawl_2020_slark_weapon/cavern_crawl_2020_slark_weapon_style1"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/slark/cavern_crawl_2020_slark_weapon/cavern_crawl_2020_slark_weapon_style2"
+				}
+			}
+		}
+	}
+	"13882"
+	{
+		"name"									"Bracers of the Abyssal Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-07"
+		"image_inventory"						"econ/items/slark/dplus_shadow_of_the_dark_reef_arms/dplus_shadow_of_the_dark_reef_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Abyssal_Arms"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/slark/dplus_shadow_of_the_dark_reef_arms/dplus_shadow_of_the_dark_reef_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"13979"
+	{
+		"name"									"Back of the Abyssal Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-07"
+		"image_inventory"						"econ/items/slark/dplus_shadow_of_the_dark_reef_back/dplus_shadow_of_the_dark_reef_back"
+		"item_name"								"#DOTA_Item_Back_of_the_Abyssal_Arms"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/slark/dplus_shadow_of_the_dark_reef_back/dplus_shadow_of_the_dark_reef_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"13980"
+	{
+		"name"									"Hood of the Abyssal Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-07"
+		"image_inventory"						"econ/items/slark/dplus_shadow_of_the_dark_reef_head/dplus_shadow_of_the_dark_reef_head"
+		"item_name"								"#DOTA_Item_Hood_of_the_Abyssal_Arms"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/slark/dplus_shadow_of_the_dark_reef_head/dplus_shadow_of_the_dark_reef_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"13981"
+	{
+		"name"									"Shoulder of the Abyssal Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-07"
+		"image_inventory"						"econ/items/slark/dplus_shadow_of_the_dark_reef_shoulder/dplus_shadow_of_the_dark_reef_shoulder"
+		"item_name"								"#DOTA_Item_Shoulder_of_the_Abyssal_Arms"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/slark/dplus_shadow_of_the_dark_reef_shoulder/dplus_shadow_of_the_dark_reef_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"13982"
+	{
+		"name"									"Weapon of the Abyssal Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-07"
+		"image_inventory"						"econ/items/slark/dplus_shadow_of_the_dark_reef_weapon/dplus_shadow_of_the_dark_reef_weapon"
+		"item_name"								"#DOTA_Item_Weapon_of_the_Abyssal_Arms"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/slark/dplus_shadow_of_the_dark_reef_weapon/dplus_shadow_of_the_dark_reef_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"17680"
+	{
+		"name"									"Shadow in the Deep Bracers"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-23"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/slark/katz_slark_arm/katz_slark_arm"
+		"item_description"						"#DOTA_Item_Desc_Shadow_in_the_Deep_Bracers"
+		"item_name"								"#DOTA_Item_Shadow_in_the_Deep_Bracers"
+		"item_rarity"							"immortal"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/slark/katz_slark_arm/katz_slark_arm.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/slark/slark_fall20_immortal/slark_fall20_arm.vpcf"
+			}
+		}
+	}
+	"17681"
+	{
+		"name"									"Shadow in the Deep Back"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-23"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/slark/katz_slark_back/katz_slark_back"
+		"item_description"						"#DOTA_Item_Desc_Shadow_in_the_Deep_Back"
+		"item_name"								"#DOTA_Item_Shadow_in_the_Deep_Back"
+		"item_rarity"							"immortal"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/slark/katz_slark_back/katz_slark_back.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/slark/slark_fall20_immortal/slark_fall20_back.vpcf"
+			}
+		}
+	}
+	"17682"
+	{
+		"name"									"Shadow in the Deep Helm"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-23"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/slark/katz_slark_head/katz_slark_head"
+		"item_description"						"#DOTA_Item_Desc_Shadow_in_the_Deep_Helm"
+		"item_name"								"#DOTA_Item_Shadow_in_the_Deep_Helm"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/slark/katz_slark_head/katz_slark_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/slark/slark_fall20_immortal/slark_fall20_head.vpcf"
+			}
+		}
+	}
+	"17683"
+	{
+		"name"									"Shadow in the Deep Dagger"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-23"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/slark/katz_slark_weapon/katz_slark_weapon"
+		"item_description"						"#DOTA_Item_Desc_Shadow_in_the_Deep_Dagger"
+		"item_name"								"#DOTA_Item_Shadow_in_the_Deep_Dagger"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/slark/katz_slark_weapon/katz_slark_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/slark/slark_fall20_immortal/slark_fall20_weapon.vpcf"
+			}
+		}
+	}
+	"20236"
+	{
+		"name"									"Deep Warden Haul Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Deep Warden's Conch Pauldron"		"1"
+			"Deep Warden's Tooth Bracer"		"1"
+			"Deep Warden's Darkray Cape"		"1"
+			"Deep Warden's Seized Hood"			"1"
+			"Deep Warden's Prized Scimitar"		"1"
+		}
+		"creation_date"							"2013-08-14"
+		"image_inventory"						"econ/sets/DOTA_Item_Deep_Warden_Set"
+		"item_description"						"#DOTA_Item_Desc_Deep_Warden_Haul"
+		"item_name"								"#DOTA_Item_Deep_Warden_Haul_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"8/14/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20485"
+	{
+		"name"									"Ocean Conqueror"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Carapace of the Ocean Conqueror"	"1"
+			"Pauldron of the Ocean Conqueror"	"1"
+			"Crown of the Ocean Conqueror"		"1"
+			"Gauntlet of the Ocean Conqueror"	"1"
+			"Tusk of the Ocean Conqueror"		"1"
+			"Ocean Conqueror Loading Screen"	"1"
+		}
+		"creation_date"							"2014-04-21"
+		"image_inventory"						"econ/sets/DOTA_Item_Ocean_Conquerer"
+		"item_description"						"#DOTA_Item_Desc_Ocean_Conquerer"
+		"item_name"								"#DOTA_Item_Ocean_Conqueror"
+		"item_rarity"							"rare"
+	}
+	"20487"
+	{
+		"name"									"Deep Sea Scoundrel"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Descaler of the Scoundrel"			"1"
+			"Hook of the Scoundrel"				"1"
+			"Jaw of the Scoundrel"				"1"
+			"Mask of the Scoundrel"				"1"
+			"Tattered Cloak of the Scoundrel"	"1"
+		}
+		"creation_date"							"2014-04-22"
+		"image_inventory"						"econ/sets/DOTA_Item_Deep_Sea_Scoundrel"
+		"item_description"						"#DOTA_Item_Desc_Deep_Sea_Scoundrel"
+		"item_name"								"#DOTA_Item_Deep_Sea_Scoundrel"
+		"item_rarity"							"rare"
+	}
+	"20543"
+	{
+		"name"									"Dark Reef Escape"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Prison Buckler"					"1"
+			"Prison Shank"						"1"
+			"Shark Cowl"						"1"
+			"Bound Shark Flippers"				"1"
+			"Shark Fin Cape"					"1"
+			"Dark Reef Escape Loading Screen"	"1"
+		}
+		"creation_date"							"2014-06-06"
+		"image_inventory"						"econ/sets/dota_item_dark_reef_escape"
+		"item_description"						"#DOTA_Item_Desc_Dark_Reef_Escape"
+		"item_name"								"#DOTA_Item_Dark_Reef_Escape"
+		"item_rarity"							"rare"
+		"branding"
+		{
+			"team_id"							"46"
+		}
+	}
+	"20866"
+	{
+		"name"									"Shivshell Crawler"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Shell Shiv"						"1"
+			"Guard of the Shivshell Crawler"	"1"
+			"Gauntlet of the Shivshell Crawler"	"1"
+			"Fins of the Shivshell Crawler"		"1"
+			"Helm of the Shivshell Crawler"		"1"
+			"Shivshell Crawler Loading Screen"	"1"
+		}
+		"creation_date"							"2015-07-09"
+		"image_inventory"						"econ/loading_screens/shivshell_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Shivshell_Crawler"
+		"item_name"								"#DOTA_Item_Shivshell_Crawler"
+		"item_rarity"							"rare"
+	}
+	"21046"
+	{
+		"name"									"Kindred of the Umizar Crawler"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of the Umizar Crawler""1"
+			"Spikes of the Umizar Crawler"		"1"
+			"Helm of the Umizar Crawler"		"1"
+			"Slasher of the Umizar Crawler"		"1"
+			"Shell of the Umizar Crawler"		"1"
+			"Claw of the Umizar Crawler"		"1"
+		}
+		"creation_date"							"2016-04-28"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/deep_sea_dragoon_slark_deep_sea_dragoon_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Kindred_of_the_Umizar_Crawler"
+		"item_name"								"#DOTA_Item_Kindred_of_the_Umizar_Crawler"
+		"item_rarity"							"mythical"
+	}
+	"21385"
+	{
+		"name"									"Appetites of the Lizard King"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Appetites of the Lizard King Loading Screen""1"
+			"Bracer of the Lizard King"			"1"
+			"Weapon of the Lizard King"			"1"
+			"Pauldron of the Lizard King"		"1"
+			"Jaws of the Lizard King"			"1"
+			"Fins of the Lizard King"			"1"
+		}
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/loading_screens/ti9_cache_slark_jungle_rule_ls"
+		"item_description"						"#DOTA_Item_Desc_Appetites_of_the_Lizard_King"
+		"item_name"								"#DOTA_Item_Appetites_of_the_Lizard_King"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"21412"
+	{
+		"name"									"Tellurian Trespass"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Blade of Tellurian Trespass"		"1"
+			"Guard of Tellurian Trespass"		"1"
+			"Helm of Tellurian Trespass"		"1"
+			"Apparatus of Tellurian Trespass"	"1"
+			"Bracer of Tellurian Trespass"		"1"
+		}
+		"creation_date"							"2020-05-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Cavern_Crawl_2020_Slark"
+		"item_description"						"#DOTA_Item_Desc_Tellurian_Trespass"
+		"item_name"								"#DOTA_Item_Tellurian_Trespass"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+		}
+		"visuals"
+		{
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/sets/DOTA_Item_Cavern_Crawl_2020_Slark"
+				}
+				"1"
+				{
+					"icon_path"					"econ/sets/DOTA_Item_Cavern_Crawl_2020_Slark_style1"
+				}
+				"2"
+				{
+					"icon_path"					"econ/sets/DOTA_Item_Cavern_Crawl_2020_Slark_style2"
+				}
+			}
+		}
+	}
+	"21506"
+	{
+		"name"									"Abyssal Arms"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bracers of the Abyssal Arms"		"1"
+			"Back of the Abyssal Arms"			"1"
+			"Hood of the Abyssal Arms"			"1"
+			"Abyssal Arms Loading Screen"		"1"
+			"Shoulder of the Abyssal Arms"		"1"
+			"Weapon of the Abyssal Arms"		"1"
+		}
+		"creation_date"							"2021-02-07"
+		"image_inventory"						"econ/loading_screens/dplus_shadow_of_the_dark_reef_shadow_ls"
+		"item_name"								"#DOTA_Item_Abyssal_Arms"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"21675"
+	{
+		"name"									"Shadow in the Deep"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Shadow in the Deep Bracers"		"1"
+			"Shadow in the Deep Helm"			"1"
+			"Shadow in the Deep Dagger"			"1"
+			"Shadow in the Deep Back"			"1"
+			"Shadow in the Deep Armor"			"1"
+		}
+		"creation_date"							"2020-09-23"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Shadow_in_the_Deep"
+		"item_description"						"#DOTA_Item_Desc_Shadow_in_the_Deep"
+		"item_name"								"#DOTA_Item_Shadow_in_the_Deep"
+		"item_rarity"							"immortal"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+	}
+}

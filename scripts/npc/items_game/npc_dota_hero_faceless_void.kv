@@ -1,0 +1,3927 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"15"
+	{
+		"name"									"Faceless Void's Weapon"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/faceless_void/faceless_void_weapon"
+		"item_description"						"#DOTA_Item_Desc_Faceless_Voids_Weapon"
+		"item_name"								"#DOTA_Item_Faceless_Voids_Weapon"
+		"item_type_name"						"#DOTA_WearableType_Mace"
+		"model_player"							"models/heroes/faceless_void/faceless_void_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"system"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_glow"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"90"
+	{
+		"name"									"Faceless Void's Head"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/faceless_void/faceless_void_head"
+		"item_description"						"#DOTA_Item_Desc_Faceless_Voids_Head"
+		"item_name"								"#DOTA_Item_Faceless_Voids_Head"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/faceless_void/faceless_void_head.vmdl"
+	}
+	"91"
+	{
+		"name"									"Faceless Void's Shoulder"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/faceless_void/faceless_void_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Faceless_Voids_Shoulder"
+		"item_name"								"#DOTA_Item_Faceless_Voids_Shoulder"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/heroes/faceless_void/faceless_void_shoulder.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"92"
+	{
+		"name"									"Faceless Void's Bracer"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/faceless_void/faceless_void_bracer"
+		"item_description"						"#DOTA_Item_Desc_Faceless_Voids_Bracer"
+		"item_name"								"#DOTA_Item_Faceless_Voids_Bracer"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracer"
+		"model_player"							"models/heroes/faceless_void/faceless_void_bracer.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"93"
+	{
+		"name"									"Faceless Void's Belt"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/faceless_void/faceless_void_belt"
+		"item_description"						"#DOTA_Item_Desc_Faceless_Voids_Belt"
+		"item_name"								"#DOTA_Item_Faceless_Voids_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/heroes/faceless_void/faceless_void_belt.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"4005"
+	{
+		"name"									"Timestopper"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/faceless_void/faceless_void_mace"
+		"item_description"						"#DOTA_Wearable_FacelessVoid_Timestopper_Desc"
+		"item_name"								"#DOTA_Item_Timestopper"
+		"item_type_name"						"#DOTA_WearableType_Mace"
+		"model_player"							"models/items/faceless_void/faceless_void_mace.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"system"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_glow"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"4020"
+	{
+		"name"									"Battlefury"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/faceless_void/battlefury/battlefury"
+		"item_description"						"#DOTA_Item_Desc_Battlefury"
+		"item_name"								"#DOTA_Item_Battlefury"
+		"item_quality"							"genuine"
+		"item_rarity"							"legendary"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/faceless_void/battlefury/battlefury.vmdl"
+		"particle_folder"						"particles/econ/items/faceless_void/faceless_void_weapon_bfury"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_weapon_bfury/faceless_void_weapon_glow_bfury.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/items_fx/battlefury_cleave.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_weapon_bfury/faceless_void_weapon_bfury_cleave.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"system"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_glow"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"4157"
+	{
+		"name"									"Bindings of the Rift"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/faceless_void/faceless_void_rift_head"
+		"item_description"						"#DOTA_Item_Desc_Bindings_of_the_Rift"
+		"item_name"								"#DOTA_Item_Bindings_of_the_Rift"
+		"item_rarity"							"uncommon"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/faceless_void/faceless_void_rift_head.vmdl"
+	}
+	"4181"
+	{
+		"name"									"Chronite Armor"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/faceless_void/faceless_void_crystal_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Chronite_Armor"
+		"item_name"								"#DOTA_Item_Chronite_Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/faceless_void/faceless_void_crystal_shoulder.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"system"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_glow"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"4182"
+	{
+		"name"									"Chronite Bracers"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/faceless_void/faceless_void_crystal_bracer"
+		"item_description"						"#DOTA_Item_Desc_Chronite_Bracers"
+		"item_name"								"#DOTA_Item_Chronite_Bracers"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/faceless_void/faceless_void_crystal_bracer.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"4183"
+	{
+		"name"									"Chronite Scepter"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/faceless_void/faceless_void_crystal_weapon"
+		"item_description"						"#DOTA_Item_Desc_Chronite_Scepter"
+		"item_name"								"#DOTA_Item_Chronite_Scepter"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Scepter"
+		"model_player"							"models/items/faceless_void/faceless_void_crystal_weapon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"system"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_glow"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"4184"
+	{
+		"name"									"Voidkeeper's Visage"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/faceless_void/faceless_void_crystal_head"
+		"item_description"						"#DOTA_Item_Desc_Voidkeepers_Visage"
+		"item_name"								"#DOTA_Item_Voidkeepers_Visage"
+		"item_rarity"							"uncommon"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Abomination"
+		"model_player"							"models/items/faceless_void/faceless_void_crystal_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4264"
+	{
+		"name"									"Timebreaker"
+		"prefab"								"wearable"
+		"forced_item_quality"					"vintage"
+		"image_inventory"						"econ/items/faceless_void/green_blessed_mace"
+		"item_description"						"#DOTA_Item_Desc_Timebreaker"
+		"item_name"								"#DOTA_Item_Timebreaker"
+		"item_quality"							"vintage"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Mace"
+		"model_player"							"models/items/faceless_void/green_blessed_mace.vmdl"
+		"particle_folder"						"particles/econ/items/faceless_void/faceless_void_weapon_timebreaker"
+		"static_attributes"
+		{
+			"sithil stash"						"2012"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_weapon_timebreaker/faceless_void_weapon_glow_timebreaker.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"system"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_glow"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"4279"
+	{
+		"name"									"Helm of Claszureme"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/faceless_void/helm_of_claszureme/helm_of_claszureme"
+		"item_description"						"#DOTA_Item_Desc_Helm_of_Claszureme"
+		"item_name"								"#DOTA_Item_Helm_of_Claszureme"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/faceless_void/helm_of_claszureme/helm_of_claszureme.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"4325"
+	{
+		"name"									"Shard of the Rift"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/faceless_void/weapon_rift"
+		"item_description"						"#DOTA_Item_Desc_Shard_of_the_Rift"
+		"item_name"								"#DOTA_Item_Shard_of_the_Rift"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Mace"
+		"model_player"							"models/items/faceless_void/weapon_rift.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"system"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_glow"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"4334"
+	{
+		"name"									"Epoch"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/faceless_void/facelessvoid_epoch/facelessvoid_epoch"
+		"item_description"						"#DOTA_Item_Desc_Epoch"
+		"item_name"								"#DOTA_Item_Epoch"
+		"item_type_name"						"#DOTA_WearableType_Mace"
+		"model_player"							"models/items/faceless_void/facelessvoid_epoch/facelessvoid_epoch.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"system"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_glow"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"4437"
+	{
+		"name"									"Infectious Amalgamate"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/faceless_void/head_alien/head_alien"
+		"item_description"						"#DOTA_Item_Desc_Infectuous_Amalgamate"
+		"item_name"								"#DOTA_Item_Infectious_Amalgamate"
+		"item_rarity"							"uncommon"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/faceless_void/head_alien/head_alien.vmdl"
+	}
+	"4596"
+	{
+		"name"									"Belt of Claszureme"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/faceless_void/claz_belt/claz_belt"
+		"item_description"						"#DOTA_Item_Desc_Belt_of_Claszureme"
+		"item_name"								"#DOTA_Item_Belt_of_Claszureme"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/faceless_void/claz_belt/claz_belt.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"4597"
+	{
+		"name"									"Bracers of Claszureme"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/faceless_void/claz_bracer/claz_bracer"
+		"item_description"						"#DOTA_Item_Desc_Bracers_of_Claszureme"
+		"item_name"								"#DOTA_Item_Bracers_of_Claszureme"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/faceless_void/claz_bracer/claz_bracer.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"4599"
+	{
+		"name"									"Shoulders of Claszureme"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/faceless_void/claz_shoulder/claz_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Shoulders_of_Claszureme"
+		"item_name"								"#DOTA_Item_Shoulders_of_Claszureme"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/faceless_void/claz_shoulder/claz_shoulder.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"5059"
+	{
+		"name"									"Girdpiece of the Acolyte of Clasz"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-14"
+		"image_inventory"						"econ/items/faceless_void/acolyte_belt/acolyte_belt"
+		"item_description"						"#DOTA_Item_Desc_Girdpiece_of_the_Acolyte_of_Clasz"
+		"item_name"								"#DOTA_Item_Girdpiece_of_the_Acolyte_of_Clasz"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/faceless_void/acolyte_belt/acolyte_belt.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"5060"
+	{
+		"name"									"Mantle of the Acolyte of Clasz"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-14"
+		"image_inventory"						"econ/items/faceless_void/acolyte_cowl/acolyte_cowl"
+		"item_description"						"#DOTA_Item_Desc_Mantle_of_the_Acolyte_of_Clasz"
+		"item_name"								"#DOTA_Item_Mantle_of_the_Acolyte_of_Clasz"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/faceless_void/acolyte_cowl/acolyte_cowl.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"5061"
+	{
+		"name"									"Gauntlets of the Acolyte of Clasz"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-14"
+		"image_inventory"						"econ/items/faceless_void/acolyte_gauntlet/acolyte_gauntlet"
+		"item_description"						"#DOTA_Item_Desc_Gauntlets_of_the_Acolyte_of_Clasz"
+		"item_name"								"#DOTA_Item_Gauntlets_of_the_Acolyte_of_Clasz"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Gauntlets"
+		"model_player"							"models/items/faceless_void/acolyte_gauntlet/acolyte_gauntlet.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"5062"
+	{
+		"name"									"Time-Mace of the Acolyte of Clasz"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-14"
+		"image_inventory"						"econ/items/faceless_void/acolyte_mace/acolyte_mace"
+		"item_description"						"#DOTA_Item_Desc_TimeMace_of_the_Acolyte_of_Clasz"
+		"item_name"								"#DOTA_Item_TimeMace_of_the_Acolyte_of_Clasz"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Mace"
+		"model_player"							"models/items/faceless_void/acolyte_mace/acolyte_mace.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"system"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_glow"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"5063"
+	{
+		"name"									"Headwraps of the Acolyte of Clasz"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-14"
+		"image_inventory"						"econ/items/faceless_void/acolyte_hood/acolyte_hood"
+		"item_description"						"#DOTA_Item_Desc_Headwraps_of_the_Acolyte_of_Clasz"
+		"item_name"								"#DOTA_Item_Headwraps_of_the_Acolyte_of_Clasz"
+		"item_rarity"							"rare"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Headwraps"
+		"model_player"							"models/items/faceless_void/acolyte_hood/acolyte_hood.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5381"
+	{
+		"name"									"Viridus Crusher"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-30"
+		"image_inventory"						"econ/items/faceless_void/viridus_weapon/viridus_weapon"
+		"item_description"						"#DOTA_Item_Desc_Viridus_Crusher"
+		"item_name"								"#DOTA_Item_Viridus_Crusher"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/faceless_void/viridus_weapon/viridus_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/faceless_void/faceless_void_weapon_viridus"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_weapon_viridus/faceless_void_weapon_glow_viridus.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"system"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_glow"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"5382"
+	{
+		"name"									"Viridus Claw"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-30"
+		"image_inventory"						"econ/items/faceless_void/viridus_claw/viridus_claw"
+		"item_description"						"#DOTA_Item_Desc_Viridus_Claw"
+		"item_name"								"#DOTA_Item_Viridus_Claw"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers_and_Hand_Armor"
+		"model_player"							"models/items/faceless_void/viridus_claw/viridus_claw.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"viridi_set"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"5383"
+	{
+		"name"									"Viridus Leggings"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-30"
+		"image_inventory"						"econ/items/faceless_void/viridus_leggings/viridus_leggings"
+		"item_description"						"#DOTA_Item_Desc_Viridus_Leggings"
+		"item_name"								"#DOTA_Item_Viridus_Leggings"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Leggings_and_Girdpiece"
+		"model_player"							"models/items/faceless_void/viridus_leggings/viridus_leggings.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"5384"
+	{
+		"name"									"Viridus Spine"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-30"
+		"image_inventory"						"econ/items/faceless_void/viridus_spine/viridus_spine"
+		"item_description"						"#DOTA_Item_Desc_Viridus_Spine"
+		"item_name"								"#DOTA_Item_Viridus_Spine"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Spine_Spikes_and_Bicep_Guards"
+		"model_player"							"models/items/faceless_void/viridus_spine/viridus_spine.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"5559"
+	{
+		"name"									"Mattock of Distortion"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-24"
+		"image_inventory"						"econ/items/faceless_void/turn_of_distortion/turn_of_distortion"
+		"item_description"						"#DOTA_Item_Desc_Mattock_of_Distortion"
+		"item_name"								"#DOTA_Item_Mattock_of_Distortion"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/faceless_void/turn_of_distortion/turn_of_distortion.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"5861"
+	{
+		"name"									"Bracers of the Tentacular Timelord"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-07"
+		"image_inventory"						"econ/items/faceless_void/timelord_bracers/timelord_bracers"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Tentacular_Timelord"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/faceless_void/timelord_bracers/timelord_bracers.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"5868"
+	{
+		"name"									"Primal Form of the Tentacular Timelord"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-07"
+		"image_inventory"						"econ/items/faceless_void/timelord_head/timelord_head"
+		"item_name"								"#DOTA_Item_Primal_Form_of_the_Tentacular_Timelord"
+		"item_rarity"							"rare"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/faceless_void/timelord_head/timelord_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"timelord_head"
+			}
+			"skip_model_combine"				"0"
+		}
+	}
+	"5896"
+	{
+		"name"									"Armor of the Tentacular Timelord"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-07"
+		"image_inventory"						"econ/items/faceless_void/timelord_shoulders/timelord_shoulders"
+		"item_name"								"#DOTA_Item_Armor_of_the_Tentacular_Timelord"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/faceless_void/timelord_shoulders/timelord_shoulders.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"5897"
+	{
+		"name"									"Skirt of the Tentacular Timelord"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-07"
+		"image_inventory"						"econ/items/faceless_void/timelord_skirt/timelord_skirt"
+		"item_name"								"#DOTA_Item_Skirt_of_the_Tentacular_Timelord"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Skirt"
+		"model_player"							"models/items/faceless_void/timelord_skirt/timelord_skirt.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"5898"
+	{
+		"name"									"Mace of the Tentacular Timelord"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-07"
+		"image_inventory"						"econ/items/faceless_void/timelord_weapon/timelord_weapon"
+		"item_name"								"#DOTA_Item_Mace_of_the_Tentacular_Timelord"
+		"model_player"							"models/items/faceless_void/timelord_weapon/timelord_weapon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"system"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_glow"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"6280"
+	{
+		"name"									"Ancient Link"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-12"
+		"image_inventory"						"econ/items/faceless_void/ancientcultist_weapon/ancientcultist_weapon"
+		"item_name"								"#DOTA_Item_Ancient_Link"
+		"model_player"							"models/items/faceless_void/ancientcultist_weapon/ancientcultist_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"system"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_glow"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"6281"
+	{
+		"name"									"Ancient Bonds"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-12"
+		"image_inventory"						"econ/items/faceless_void/ancientcultist_arms/ancientcultist_arms"
+		"item_name"								"#DOTA_Item_Ancient_Bonds"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bonds"
+		"model_player"							"models/items/faceless_void/ancientcultist_arms/ancientcultist_arms.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"6282"
+	{
+		"name"									"Ancient Cage"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-12"
+		"image_inventory"						"econ/items/faceless_void/ancientcultist_belt/ancientcultist_belt"
+		"item_name"								"#DOTA_Item_Ancient_Cage"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Cage"
+		"model_player"							"models/items/faceless_void/ancientcultist_belt/ancientcultist_belt.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"6283"
+	{
+		"name"									"Ancient Knots"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-12"
+		"image_inventory"						"econ/items/faceless_void/ancientcultist_shoulder/ancientcultist_shoulder"
+		"item_name"								"#DOTA_Item_Ancient_Knots"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Knots"
+		"model_player"							"models/items/faceless_void/ancientcultist_shoulder/ancientcultist_shoulder.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"6284"
+	{
+		"name"									"Ancient Crown"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-12"
+		"image_inventory"						"econ/items/faceless_void/ancientcultist_head/ancientcultist_head"
+		"item_name"								"#DOTA_Item_Ancient_Crown"
+		"item_rarity"							"rare"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Crown"
+		"model_player"							"models/items/faceless_void/ancientcultist_head/ancientcultist_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"6576"
+	{
+		"name"									"Perceptions of the Eternal Mind"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-12"
+		"forced_item_quality"					"genuine"
+		"image_inventory"						"econ/items/faceless_void/pw_facelesshead/pw_faceless_head"
+		"item_name"								"#DOTA_Item_Perceptions_of_the_Eternal_Mind"
+		"item_quality"							"genuine"
+		"item_rarity"							"mythical"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/faceless_void/pw_facelesshead/pw_faceless_head.vmdl"
+		"particle_folder"						"particles/econ/items/faceless_void/faceless_void_head_eternalmind"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_head_eternalmind/faceless_void_head_eternalmind.vpcf"
+				"system"						"particles/econ/items/faceless_void/faceless_void_head_eternalmind/faceless_void_head_eternalmind.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+				}
+			}
+		}
+	}
+	"6921"
+	{
+		"name"									"Voidhammer"
+		"prefab"								"wearable"
+		"creation_date"							"2014-08-05"
+		"image_inventory"						"econ/items/faceless_void/voidhammer/voidhammer"
+		"item_name"								"#DOTA_Item_Voidhammer"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Hammer"
+		"model_player"							"models/items/faceless_void/voidhammer/voidhammer.vmdl"
+		"particle_folder"						"particles/econ/items/faceless_void/faceless_void_weapon_voidhammer"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"8/5/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_weapon_voidhammer/faceless_void_weapon_voidhammer.vpcf"
+				"system"						"particles/econ/items/faceless_void/faceless_void_weapon_voidhammer/faceless_void_weapon_voidhammer.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_glow"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"system"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_glow"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"7377"
+	{
+		"name"									"Helm of the Endless Plane"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/faceless_void/elements_of_oblivion_head/elements_of_oblivion_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Endless_Plane"
+		"item_rarity"							"uncommon"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/faceless_void/elements_of_oblivion_head/elements_of_oblivion_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"7378"
+	{
+		"name"									"Pauldron of the Endless Plane"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/faceless_void/elements_of_oblivion_shoulder/elements_of_oblivion_shoulder"
+		"item_name"								"#DOTA_Item_Pauldron_of_the_Endless_Plane"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldron"
+		"model_player"							"models/items/faceless_void/elements_of_oblivion_shoulder/elements_of_oblivion_shoulder.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"7379"
+	{
+		"name"									"Mace of the Endless Plane"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/faceless_void/elements_of_oblivion_weapon/elements_of_oblivion_weapon"
+		"item_name"								"#DOTA_Item_Mace_of_the_Endless_Plane"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Mace"
+		"model_player"							"models/items/faceless_void/elements_of_oblivion_weapon/elements_of_oblivion_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"system"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_glow"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"7571"
+	{
+		"name"									"Mace of Aeons"
+		"prefab"								"wearable"
+		"creation_date"							"2016-02-21"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/faceless_void/mace_of_aeons/mace_of_aeons"
+		"item_description"						"#DOTA_Item_Desc_Mace_of_Aeons"
+		"item_name"								"#DOTA_Item_Mace_of_Aeons"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Mace"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/faceless_void/mace_of_aeons/mace_of_aeons.vmdl"
+		"static_attributes"
+		{
+			"international tag"					"2016"
+			"can_equip_as_ability_effects"		"4"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/faceless_void_chronosphere.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_mace_of_aeons/fv_chronosphere_aeons.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_mace_of_aeons/fv_ambient_mace_aeons_v3.vpcf"
+				"style"							"2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_mace_of_aeons/fv_ambient_mace_aeons.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/faceless_void/faceless_void_mace_of_aeons/fv_ambient_mace_aeons.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_plate_01"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_plate_02"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_plate_03"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_sphere"
+					}
+					"4"
+					{
+						"control_point_index"	"10"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_gem_01"
+					}
+					"5"
+					{
+						"control_point_index"	"11"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_gem_02"
+					}
+					"6"
+					{
+						"control_point_index"	"12"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_gem_03"
+					}
+				}
+			}
+			"asset_modifier3"
+			{
+				"type"							"sound"
+				"asset"							"Hero_FacelessVoid.Chronosphere"
+				"modifier"						"Hero_FacelessVoid.Chronosphere.MaceOfAeons"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"faceless_void_chronosphere"
+				"modifier"						"faceless_void/maceofaeons/faceless_void_chronosphere"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_chronosphere.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_chronosphere_combined.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_chronosphere_v2.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_chronosphere_combined_v2.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Mace_of_Aeons_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Mace_of_Aeons_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+				}
+				"2"
+				{
+					"name"						"#DOTA_Style_Mace_of_Aeons_2"
+					"skin"						"2"
+					"alternate_icon"			"2"
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_mace_of_aeons/fv_ambient_mace_aeons_v2.vpcf"
+				"style"							"1"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/faceless_void/mace_of_aeons/mace_of_aeons"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/faceless_void/mace_of_aeons/mace_of_aeons_style1"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/faceless_void/mace_of_aeons/mace_of_aeons_style2"
+				}
+			}
+		}
+	}
+	"7816"
+	{
+		"name"									"Bracers of Aeons"
+		"prefab"								"wearable"
+		"creation_date"							"2017-07-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/faceless_void/bracers_of_aeons/bracers_of_aeons"
+		"item_description"						"#DOTA_Item_Desc_Bracers_of_Aeons"
+		"item_name"								"#DOTA_Item_Bracers_of_Aeons"
+		"item_rarity"							"immortal"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/faceless_void/bracers_of_aeons/bracers_of_aeons.vmdl"
+		"static_attributes"
+		{
+			"giftable"							"1"
+			"can_equip_as_ability_effects"		"2"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/faceless_void_timedialate.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_bracers_of_aeons/fv_bracers_of_aeons_timedialate.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti7"
+				"style"							"0"
+			}
+			"asset_modifier2"
+			{
+				"type"							"ability_icon"
+				"asset"							"faceless_void_time_dilation"
+				"modifier"						"faceless_void/brancerofaeons/faceless_void_time_dilation"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/faceless_void_dialatedebuf.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_bracers_of_aeons/fv_bracers_of_aeons_dialatedebuf.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_bracers_of_aeons/fv_bracers_of_aeons_ambient.vpcf"
+				"required_arcana_level"			"0"
+				"style"							"0"
+			}
+			"asset_modifier5"
+			{
+				"type"							"sound"
+				"asset"							"Hero_FacelessVoid.TimeDilation.Cast"
+				"modifier"						"Hero_FacelessVoid.TimeDilation.Cast.ti7"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_dialate.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_dialate_combined.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_dialate_v2.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_dialate_combined_v2.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_bracers_of_aeons/fv_bracers_of_aeons_ambient_refit.vpcf"
+				"required_arcana_level"			"1"
+				"style"							"0"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Bracers_of_Aeons_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Bracers_of_Aeons_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+				}
+				"2"
+				{
+					"name"						"#DOTA_Style_Bracers_of_Aeons_2"
+					"skin"						"2"
+					"alternate_icon"			"2"
+				}
+			}
+			"asset_modifier9"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_bracers_of_aeons/fv_bracers_of_aeons_ambient_refit_v2.vpcf"
+				"required_arcana_level"			"1"
+				"style"							"1"
+			}
+			"asset_modifier10"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_bracers_of_aeons/fv_bracers_of_aeons_ambient_refit_v3.vpcf"
+				"required_arcana_level"			"1"
+				"style"							"2"
+			}
+			"asset_modifier11"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_bracers_of_aeons/fv_bracers_of_aeons_ambient_refit.vpcf"
+				"required_arcana_level"			"2"
+				"style"							"0"
+			}
+			"asset_modifier12"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_bracers_of_aeons/fv_bracers_of_aeons_ambient_refit_v2.vpcf"
+				"required_arcana_level"			"2"
+				"style"							"1"
+			}
+			"asset_modifier13"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_bracers_of_aeons/fv_bracers_of_aeons_ambient_refit_v3.vpcf"
+				"required_arcana_level"			"2"
+				"style"							"2"
+			}
+			"asset_modifier14"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_bracers_of_aeons/fv_bracers_of_aeons_ambient_v2.vpcf"
+				"required_arcana_level"			"0"
+				"style"							"1"
+			}
+			"asset_modifier15"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_bracers_of_aeons/fv_bracers_of_aeons_ambient_v3.vpcf"
+				"required_arcana_level"			"0"
+				"style"							"2"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/faceless_void/bracers_of_aeons/bracers_of_aeons"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/faceless_void/bracers_of_aeons/bracers_of_aeons_style1"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/faceless_void/bracers_of_aeons/bracers_of_aeons_style2"
+				}
+			}
+		}
+	}
+	"7829"
+	{
+		"name"									"Taunt: Timeless Classic"
+		"prefab"								"taunt"
+		"creation_date"							"2017-01-14"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/taunts/taunt_icon_faceless_funky_feetz"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Timeless_Classic"
+		"item_name"								"#DOTA_Item_Taunt_Timeless_Classic"
+		"item_rarity"							"rare"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"funky_gesture"
+				"style"							"0"
+				"gesture"						"1"
+			}
+		}
+	}
+	"7996"
+	{
+		"name"									"Bracers of Aeons of the Crimson Witness"
+		"prefab"								"wearable"
+		"creation_date"							"2017-08-02"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/faceless_void/bracers_of_aeons/bracers_of_aeons1"
+		"item_description"						"#DOTA_Item_Desc_Bracers_of_Aeons_Crimson_Witness"
+		"item_name"								"#DOTA_Item_Bracers_of_Aeons_of_the_Crimson_Witness"
+		"item_rarity"							"immortal"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/faceless_void/bracers_of_aeons/bracers_of_aeons.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"		"2"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/faceless_void_timedialate.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_bracers_of_aeons/fv_bracers_of_aeons_red_timedialate.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti7"
+				"style"							"0"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/faceless_void_dialatedebuf.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_bracers_of_aeons/fv_bracers_of_aeons_dialatedebuf_red.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_bracers_of_aeons/fv_bracers_of_aeons_red_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier4"
+			{
+				"type"							"sound"
+				"asset"							"Hero_FacelessVoid.TimeDilation.Cast"
+				"modifier"						"Hero_FacelessVoid.TimeDilation.Cast.ti7"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier5"
+			{
+				"type"							"ability_icon"
+				"asset"							"faceless_void_time_dilation"
+				"modifier"						"faceless_void/brancerofaeons/faceless_void_time_dilation_crimson"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/faceless_void_backtrack.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_bracers_of_aeons/fv_bracers_of_aeons_red_backtrack.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_dialate.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_dialate_combined_crimson.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_dialate_v2.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_dialate_combined_v2_crimson.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"skin"								"3"
+		}
+	}
+	"8268"
+	{
+		"name"									"Jewel of Aeons"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-25"
+		"image_inventory"						"econ/items/faceless_void/jewel_of_aeons/jewel_of_aeons1"
+		"item_description"						"#DOTA_Item_Desc_Jewel_of_Aeons"
+		"item_name"								"#DOTA_Item_Jewel_of_Aeons"
+		"item_rarity"							"immortal"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder_Guard"
+		"model_player"							"models/items/faceless_void/jewel_of_aeons/jewel_of_aeons.vmdl"
+		"particle_folder"						"particles/econ/items/faceless_void/faceless_void_jewel_of_aeons"
+		"static_attributes"
+		{
+			"international tag"					"2015"
+			"static socket 1"					"socket { required_hero: 'npc_dota_hero_sven' gem_def_index: 3005 } asset_modifier: 136"
+			"can_equip_as_ability_effects"		"1"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"aeons"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/faceless_void_time_walk.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_jewel_of_aeons/fv_time_walk_jewel.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/faceless_void_time_walk_slow.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_jewel_of_aeons/fv_time_walk_slow_jewel.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/faceless_void_time_walk_preimage.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_jewel_of_aeons/fv_time_walk_preimage_jewel.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/faceless_void_time_walk_debuff.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_jewel_of_aeons/fv_time_walk_debuff_jewel.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier5"
+			{
+				"type"							"sound"
+				"asset"							"Hero_FacelessVoid.TimeWalk"
+				"modifier"						"Hero_FacelessVoid.TimeWalk.Aeons"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_jewel_of_aeons/fv_ambient_aeons.vpcf"
+				"required_arcana_level"			"0"
+				"style"							"0"
+				"system"						"particles/econ/items/faceless_void/faceless_void_jewel_of_aeons/fv_ambient_aeons.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_jewel_of_aeons/fv_core_ambient_aeons.vpcf"
+				"system"						"particles/econ/items/faceless_void/faceless_void_jewel_of_aeons/fv_core_ambient_aeons.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_r"
+					}
+				}
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_walk.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_walk_combined.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier9"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_walk_preimage.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_walk_preimage_combined.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier10"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_walk_v2.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_walk_combined_v2.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier11"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_walk_preimage_v2.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_walk_preimage_combined_v2.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier12"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_jewel_of_aeons/fv_ambient_aeons_refit.vpcf"
+				"required_arcana_level"			"1"
+				"style"							"0"
+			}
+			"asset_modifier13"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_jewel_of_aeons/fv_ambient_aeons_refit_v2.vpcf"
+				"required_arcana_level"			"1"
+				"style"							"1"
+			}
+			"asset_modifier14"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_jewel_of_aeons/fv_ambient_aeons_refit.vpcf"
+				"required_arcana_level"			"2"
+				"style"							"0"
+			}
+			"asset_modifier15"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_jewel_of_aeons/fv_ambient_aeons_refit_v2.vpcf"
+				"required_arcana_level"			"2"
+				"style"							"1"
+			}
+			"asset_modifier16"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_jewel_of_aeons/fv_ambient_aeons_v2.vpcf"
+				"required_arcana_level"			"0"
+				"style"							"1"
+			}
+			"asset_modifier17"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_jewel_of_aeons/fv_ambient_aeons_refit_v3.vpcf"
+				"required_arcana_level"			"2"
+				"style"							"2"
+			}
+			"asset_modifier18"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_jewel_of_aeons/fv_ambient_aeons_refit_v3.vpcf"
+				"required_arcana_level"			"1"
+				"style"							"2"
+			}
+			"asset_modifier19"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_jewel_of_aeons/fv_ambient_aeons_v3.vpcf"
+				"required_arcana_level"			"0"
+				"style"							"2"
+			}
+			"skip_model_combine"				"1"
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Jewel_of_Aeons_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Jewel_of_Aeons_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+				}
+				"2"
+				{
+					"name"						"#DOTA_Style_Jewel_of_Aeons_2"
+					"skin"						"2"
+					"alternate_icon"			"2"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/faceless_void/jewel_of_aeons/jewel_of_aeons1"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/faceless_void/jewel_of_aeons/jewel_of_aeons1_style1"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/faceless_void/jewel_of_aeons/jewel_of_aeons1_style2"
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"ability_icon"
+				"asset"							"faceless_void_time_walk"
+				"modifier"						"faceless_void/jewelofaeons/faceless_void_time_walk_1"
+			}
+		}
+	}
+	"8317"
+	{
+		"name"									"Belt of the Endless Plane"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/faceless_void/elements_of_oblivion_belt/elements_of_oblivion_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Endless_Plane"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/faceless_void/elements_of_oblivion_belt/elements_of_oblivion_belt.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"8374"
+	{
+		"name"									"Bracers of the Endless Plane"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/faceless_void/elements_of_oblivion_arms/elements_of_oblivion_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Endless_Plane"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/faceless_void/elements_of_oblivion_arms/elements_of_oblivion_arms.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"9142"
+	{
+		"name"									"Pauldrons of the Emerald Age"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-02"
+		"image_inventory"						"econ/items/faceless_void/void_armor_of_the_emerald_age_shoulder/void_armor_of_the_emerald_age_shoulder"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Emerald_Age"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/faceless_void/void_armor_of_the_emerald_age_shoulder/void_armor_of_the_emerald_age_shoulder.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"9143"
+	{
+		"name"									"Belt of the Emerald Age"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-02"
+		"image_inventory"						"econ/items/faceless_void/void_armor_of_the_emerald_age_belt/void_armor_of_the_emerald_age_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Emerald_Age"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/faceless_void/void_armor_of_the_emerald_age_belt/void_armor_of_the_emerald_age_belt.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"9144"
+	{
+		"name"									"Visage of the Emerald Age"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-02"
+		"image_inventory"						"econ/items/faceless_void/void_armor_of_the_emerald_age_body_head/void_armor_of_the_emerald_age_body_head"
+		"item_name"								"#DOTA_Item_Visage_of_the_Emerald_Age"
+		"item_rarity"							"rare"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Body_Head"
+		"model_player"							"models/items/faceless_void/void_armor_of_the_emerald_age_body_head/void_armor_of_the_emerald_age_body_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"9145"
+	{
+		"name"									"Bracers of the Emerald Age"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-02"
+		"image_inventory"						"econ/items/faceless_void/void_armor_of_the_emerald_age_arms/void_armor_of_the_emerald_age_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Emerald_Age"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/faceless_void/void_armor_of_the_emerald_age_arms/void_armor_of_the_emerald_age_arms.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"9146"
+	{
+		"name"									"Implement of the Emerald Age"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-02"
+		"image_inventory"						"econ/items/faceless_void/void_armor_of_the_emerald_age_weapon/void_armor_of_the_emerald_age_weapon"
+		"item_name"								"#DOTA_Item_Implement_of_the_Emerald_Age"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/faceless_void/void_armor_of_the_emerald_age_weapon/void_armor_of_the_emerald_age_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"system"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_glow"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"10064"
+	{
+		"name"									"Expired Timeless Treasure of Claszureme"
+		"prefab"								"retired_treasure_chest"
+		"associated_item"						"15003"
+		"expiration_date"						"2014-06-01 00:00:00"
+		"image_inventory"						"econ/tools/treasure_chest_faceless_void"
+		"item_description"						"#DOTA_Item_Desc_Treasure_Chest"
+		"item_name"								"#DOTA_Item_Expired_Timeless_Treasure_of_Claszureme"
+		"static_attributes"
+		{
+			"treasure loot list"
+			{
+				"attribute_class"				"treasure loot list"
+				"value"							"treasure_chest_15_hero_faceless_void"
+			}
+		}
+		"tool"
+		{
+			"type"								"supply_crate"
+		}
+	}
+	"12655"
+	{
+		"name"									"Pauldrons of Nezzureem"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/faceless_void/shards_of_nezzureem_shoulder/shards_of_nezzureem_shoulder"
+		"item_name"								"#DOTA_Item_Pauldrons_of_Nezzureem"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/faceless_void/shards_of_nezzureem_shoulder/shards_of_nezzureem_shoulder.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"12656"
+	{
+		"name"									"Arms of Nezzureem"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/faceless_void/shards_of_nezzureem_arms/shards_of_nezzureem_arms"
+		"item_name"								"#DOTA_Item_Arms_of_Nezzureem"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/faceless_void/shards_of_nezzureem_arms/shards_of_nezzureem_arms.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"12657"
+	{
+		"name"									"Belt of Nezzureem"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/faceless_void/shards_of_nezzureem_belt/shards_of_nezzureem_belt"
+		"item_name"								"#DOTA_Item_Belt_of_Nezzureem"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/faceless_void/shards_of_nezzureem_belt/shards_of_nezzureem_belt.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"12658"
+	{
+		"name"									"Mace of Nezzureem"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/faceless_void/shards_of_nezzureem_weapon/shards_of_nezzureem_weapon"
+		"item_name"								"#DOTA_Item_Mace_of_Nezzureem"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/faceless_void/shards_of_nezzureem_weapon/shards_of_nezzureem_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"system"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_glow"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"12659"
+	{
+		"name"									"Crown of Nezzureem"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/faceless_void/shards_of_nezzureem_body_head/shards_of_nezzureem_body_head"
+		"item_name"								"#DOTA_Item_Crown_of_Nezzureem"
+		"item_rarity"							"rare"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Body_Head"
+		"model_player"							"models/items/faceless_void/shards_of_nezzureem_body_head/shards_of_nezzureem_body_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"14485"
+	{
+		"name"									"Claszureme Incursion Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/faceless_void/fv_primordial_conservator_weapon/fv_primordial_conservator_weapon"
+		"item_name"								"#DOTA_Item_Claszureme_Incursion_Weapon"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/faceless_void/fv_primordial_conservator_weapon/fv_primordial_conservator_weapon.vmdl"
+		"static_attributes"
+		{
+			"international tag"					"2020"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			"cannot trade"						"1"
+			"not marketable"					"1"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_primordial_conservator/faceless_void_primordial_conservator_weapon.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"14486"
+	{
+		"name"									"Claszureme Incursion Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/faceless_void/fv_primordial_conservator_shoulder/fv_primordial_conservator_shoulder"
+		"item_name"								"#DOTA_Item_Claszureme_Incursion_Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/faceless_void/fv_primordial_conservator_shoulder/fv_primordial_conservator_shoulder.vmdl"
+		"static_attributes"
+		{
+			"international tag"					"2020"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			"cannot trade"						"1"
+			"not marketable"					"1"
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_primordial_conservator/faceless_void_primordial_conservator_shoulder.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"14487"
+	{
+		"name"									"Claszureme Incursion Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/faceless_void/fv_primordial_conservator_body_head/fv_primordial_conservator_body_head"
+		"item_name"								"#DOTA_Item_Claszureme_Incursion_Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"body_head"
+		"model_player"							"models/items/faceless_void/fv_primordial_conservator_body_head/fv_primordial_conservator_body_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"					"2020"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			"cannot trade"						"1"
+			"not marketable"					"1"
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_primordial_conservator/faceless_void_primordial_conservator_head.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"14488"
+	{
+		"name"									"Claszureme Incursion Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/faceless_void/fv_primordial_conservator_belt/fv_primordial_conservator_belt"
+		"item_name"								"#DOTA_Item_Claszureme_Incursion_Belt"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"model_player"							"models/items/faceless_void/fv_primordial_conservator_belt/fv_primordial_conservator_belt.vmdl"
+		"static_attributes"
+		{
+			"international tag"					"2020"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			"cannot trade"						"1"
+			"not marketable"					"1"
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_primordial_conservator/faceless_void_primordial_conservator_belt_glow.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"14489"
+	{
+		"name"									"Claszureme Incursion Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/faceless_void/fv_primordial_conservator_arms/fv_primordial_conservator_arms"
+		"item_name"								"#DOTA_Item_Claszureme_Incursion_Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"model_player"							"models/items/faceless_void/fv_primordial_conservator_arms/fv_primordial_conservator_arms.vmdl"
+		"static_attributes"
+		{
+			"international tag"					"2020"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			"cannot trade"						"1"
+			"not marketable"					"1"
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_primordial_conservator/faceless_void_primordial_conservator_arms.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"14647"
+	{
+		"name"									"Augur of Oblivion - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/faceless_void/fv_the_hollow_shoulder/fv_the_hollow_shoulder"
+		"item_name"								"#DOTA_Item_Augur_of_Oblivion__Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/faceless_void/fv_the_hollow_shoulder/fv_the_hollow_shoulder.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_cc_2021/faceless_void_cc_2021_shoulder.vpcf"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_FV_The_hollow_Shoulder_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_FV_The_hollow_Shoulder_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"22522"
+						"price"					"1"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/faceless_void/fv_the_hollow_shoulder/fv_the_hollow_shoulder"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/faceless_void/fv_the_hollow_shoulder/fv_the_hollow_shoulder_style1"
+				}
+			}
+		}
+	}
+	"14648"
+	{
+		"name"									"Augur of Oblivion - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/faceless_void/fv_the_hollow_weapon/fv_the_hollow_weapon"
+		"item_name"								"#DOTA_Item_Augur_of_Oblivion__Weapon"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/faceless_void/fv_the_hollow_weapon/fv_the_hollow_weapon.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_cc_2021/faceless_void_cc_2021_weapon.vpcf"
+				"style"							"0"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_FV_The_hollow_Weapon_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_FV_The_hollow_Weapon_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"22522"
+						"price"					"1"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_cc_2021/faceless_void_cc_2021_weapon_v2.vpcf"
+				"style"							"1"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/faceless_void/fv_the_hollow_weapon/fv_the_hollow_weapon"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/faceless_void/fv_the_hollow_weapon/fv_the_hollow_weapon_style1"
+				}
+			}
+		}
+	}
+	"14649"
+	{
+		"name"									"Augur of Oblivion - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/faceless_void/fv_the_hollow_arms/fv_the_hollow_arms"
+		"item_name"								"#DOTA_Item_Augur_of_Oblivion__Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"model_player"							"models/items/faceless_void/fv_the_hollow_arms/fv_the_hollow_arms.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_cc_2021/faceless_void_cc_2021_arms.vpcf"
+				"style"							"0"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_FV_The_hollow_Arms_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_FV_The_hollow_Arms_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"22522"
+						"price"					"1"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_cc_2021/faceless_void_cc_2021_arms_v2.vpcf"
+				"style"							"1"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/faceless_void/fv_the_hollow_arms/fv_the_hollow_arms"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/faceless_void/fv_the_hollow_arms/fv_the_hollow_arms_style1"
+				}
+			}
+		}
+	}
+	"14650"
+	{
+		"name"									"Augur of Oblivion - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/faceless_void/fv_the_hollow_body_head/fv_the_hollow_body_head"
+		"item_name"								"#DOTA_Item_Augur_of_Oblivion__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"body_head"
+		"model_player"							"models/items/faceless_void/fv_the_hollow_body_head/fv_the_hollow_body_head.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_cc_2021/faceless_void_cc_2021_head.vpcf"
+				"style"							"0"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_FV_The_hollow_Body__Head_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_FV_The_hollow_Body__Head_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"22522"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_cc_2021/faceless_void_cc_2021_head_v2.vpcf"
+				"style"							"1"
+			}
+			"skip_model_combine"				"1"
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/faceless_void/fv_the_hollow_body_head/fv_the_hollow_body_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/faceless_void/fv_the_hollow_body_head/fv_the_hollow_body_head_style1"
+				}
+			}
+		}
+	}
+	"14651"
+	{
+		"name"									"Augur of Oblivion - Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/faceless_void/fv_the_hollow_belt/fv_the_hollow_belt"
+		"item_name"								"#DOTA_Item_Augur_of_Oblivion__Belt"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"model_player"							"models/items/faceless_void/fv_the_hollow_belt/fv_the_hollow_belt.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_cc_2021/faceless_void_cc_2021_belt.vpcf"
+				"style"							"0"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_FV_The_hollow_Belt_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_FV_The_hollow_Belt_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"22522"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_cc_2021/faceless_void_cc_2021_belt_v2.vpcf"
+				"style"							"1"
+			}
+			"skip_model_combine"				"1"
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/faceless_void/fv_the_hollow_belt/fv_the_hollow_belt"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/faceless_void/fv_the_hollow_belt/fv_the_hollow_belt_style1"
+				}
+			}
+		}
+	}
+	"17749"
+	{
+		"name"									"Frozen Void Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-23"
+		"image_inventory"						"econ/items/faceless_void/frozen_void_shoulder/frozen_void_shoulder"
+		"item_name"								"#DOTA_Item_Frozen_Void_Shoulder"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/faceless_void/frozen_void_shoulder/frozen_void_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"						"1"
+			"not marketable"					"1"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"17750"
+	{
+		"name"									"Frozen Void Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-23"
+		"image_inventory"						"econ/items/faceless_void/frozen_void_belt/frozen_void_belt"
+		"item_name"								"#DOTA_Item_Frozen_Void_Belt"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/faceless_void/frozen_void_belt/frozen_void_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"						"1"
+			"not marketable"					"1"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"17751"
+	{
+		"name"									"Frozen Void Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-23"
+		"image_inventory"						"econ/items/faceless_void/frozen_void_body_head/frozen_void_body_head"
+		"item_name"								"#DOTA_Item_Frozen_Void_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"body_head"
+		"model_player"							"models/items/faceless_void/frozen_void_body_head/frozen_void_body_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"						"1"
+			"not marketable"					"1"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"17752"
+	{
+		"name"									"Frozen Void Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-23"
+		"image_inventory"						"econ/items/faceless_void/frozen_void_arms/frozen_void_arms"
+		"item_name"								"#DOTA_Item_Frozen_Void_Arms"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/faceless_void/frozen_void_arms/frozen_void_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"						"1"
+			"not marketable"					"1"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"17754"
+	{
+		"name"									"Frozen Void Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-23"
+		"image_inventory"						"econ/items/faceless_void/frozen_void_weapon/frozen_void_weapon"
+		"item_name"								"#DOTA_Item_Frozen_Void_Weapon"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/faceless_void/frozen_void_weapon/frozen_void_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"						"1"
+			"not marketable"					"1"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"system"						"particles/units/heroes/hero_faceless_void/faceless_void_weapon_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_glow"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"18033"
+	{
+		"name"									"Claszian Apostasy Head"
+		"prefab"								"wearable"
+		"creation_date"							"2022-08-22"
+		"image_inventory"						"econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana"
+		"item_description"						"#DOTA_Item_Desc_Claszian_Apostasy_Head"
+		"item_name"								"#DOTA_Item_Claszian_Apostasy_Head"
+		"item_rarity"							"arcana"
+		"item_slot"								"body_head"
+		"static_attributes"
+		{
+			"giftable"							"0"
+			"cannot trade"						"1"
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_FacelessVoid_Arcana_Style0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_FacelessVoid_Arcana_Style1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"gem"
+						{
+							"def_index"			"3042"
+							"type_field"		"strange_type"
+							"type_value"		"278"
+							"unlock_field"		"strange_value"
+							"unlock_value"		"250"
+						}
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"buff_modifier"
+				"modifier"						"modifier_faceless_void_arcana"
+			}
+			"asset_modifier1"
+			{
+				"type"							"custom_kill_effect"
+				"asset"							"kill"
+				"modifier"						"modifier_faceless_void_arcana_kill_effect"
+			}
+			"asset_modifier2"
+			{
+				"type"							"model_skin"
+				"style"							"0"
+				"skin"							"0"
+			}
+			"asset_modifier3"
+			{
+				"type"							"model_skin"
+				"style"							"1"
+				"skin"							"1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"arcana_level"
+				"level"							"1"
+				"style"							"0"
+			}
+			"asset_modifier5"
+			{
+				"type"							"arcana_level"
+				"level"							"2"
+				"style"							"1"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier6"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_hero_faceless_void"
+				"modifier"						"models/items/faceless_void/faceless_void_arcana/faceless_void_arcana_base.vmdl"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/faceless_void_time_lock_bash.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_lock_tentacle_bash.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/faceless_void_time_walk.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_walk.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier9"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/faceless_void_time_walk_preimage.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_walk_preimage.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier10"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier11"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/faceless_void_chronosphere.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_chronosphere.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier12"
+			{
+				"type"							"particle"
+				"asset"							"particles/items_fx/chain_lightning.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_maelstrom_item.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier13"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/faceless_void_timedialate.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_dialate.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier14"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/faceless_void_dialatedebuf.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_dialate_debuff.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier15"
+			{
+				"type"							"particle"
+				"asset"							"particles/msg_fx/msg_deny.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_deny.vpcf"
+			}
+			"asset_modifier16"
+			{
+				"type"							"particle"
+				"asset"							"particles/items2_fx/mask_of_madness.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_mask_of_madness.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier17"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/faceless_void/faceless_void_jewel_of_aeons/fv_time_walk_preimage_jewel.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_walk_preimage_combined.vpcf"
+			}
+			"asset_modifier18"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/faceless_void/faceless_void_jewel_of_aeons/fv_time_walk_jewel.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_walk_combined.vpcf"
+			}
+			"asset_modifier19"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/faceless_void/faceless_void_mace_of_aeons/fv_chronosphere_aeons.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_chronosphere_combined.vpcf"
+			}
+			"asset_modifier20"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/faceless_void_loadout.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+			}
+			"asset_modifier21"
+			{
+				"type"							"portrait_background_model"
+				"asset"							"models/items/faceless_void/faceless_void_arcana/faceless_void_arcana_pedestal.vmdl"
+				"style"							"0"
+			}
+			"asset_modifier22"
+			{
+				"type"							"portrait_background_model"
+				"asset"							"models/items/faceless_void/faceless_void_arcana/faceless_void_arcana_pedestal.vmdl"
+				"style"							"1"
+				"skin"							"1"
+			}
+			"asset_modifier23"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/hero_faceless_void_taunt.vpcf"
+				"modifier"						"particles/econ/taunts/faceless_void/faceless_void_taunt/fv_arc_base_taunt.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier24"
+			{
+				"type"							"response_criteria"
+				"asset"							"fv_arcana_vo"
+			}
+			"asset_modifier25"
+			{
+				"type"							"default_idle_expression"
+				"asset"							"scenes/faceless_void/faceless_void_exp_idle_01.vcd"
+				"modifier"						"scenes/faceless_void/faceless_void_arcana_idle_01.vcd"
+			}
+			"asset_modifier26"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_ambient_belt.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_ambient_belt_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier27"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_ambient_shoulder.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_ambient_shoulder_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier28"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_ambient_bracer.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_ambient_bracer_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier29"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_ambient_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier30"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_weapon_ambient.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_weapon_ambient_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier31"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_loadout_spawn_back_perturb.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_loadout_spawn_v2_back_perturb.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier32"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/faceless_void_time_lock_bash.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_lock_v2_tentacle_bash.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier33"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_loadout_tentacle_setup.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_loadout_v2_tentacle_setup.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier34"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/faceless_void_timedialate.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_dialate_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier35"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/faceless_void_time_walk.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_walk_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier36"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/faceless_void_time_walk_preimage.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_walk_v2_preimage.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier37"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/faceless_void_chronosphere.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_chronosphere_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier38"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/faceless_void_dialatedebuf.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_dialate_v2_debuff.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier39"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_game_spawn.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_game_spawn_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier40"
+			{
+				"type"							"particle"
+				"asset"							"particles/items2_fx/mjollnir_shield.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_mjollnir_shield.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier41"
+			{
+				"type"							"particle"
+				"asset"							"particles/items_fx/chain_lightning.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_maelstrom_v2_item.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier42"
+			{
+				"type"							"particle"
+				"asset"							"particles/items2_fx/mjollnir_shield.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_mjollnir_shield_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier43"
+			{
+				"type"							"particle"
+				"asset"							"particles/items2_fx/mask_of_madness.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_mask_of_madness_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier44"
+			{
+				"type"							"ability_icon"
+				"asset"							"faceless_void_chronosphere"
+				"modifier"						"faceless_void/arcana/faceless_void_chronosphere_arcana"
+				"style"							"0"
+			}
+			"asset_modifier45"
+			{
+				"type"							"ability_icon"
+				"asset"							"faceless_void_time_dilation"
+				"modifier"						"faceless_void/arcana/faceless_void_time_dilation_arcana"
+				"style"							"0"
+			}
+			"asset_modifier46"
+			{
+				"type"							"ability_icon"
+				"asset"							"faceless_void_time_lock"
+				"modifier"						"faceless_void/arcana/faceless_void_time_lock_arcana"
+				"style"							"0"
+			}
+			"asset_modifier47"
+			{
+				"type"							"ability_icon"
+				"asset"							"faceless_void_time_walk"
+				"modifier"						"faceless_void/arcana/faceless_void_time_walk_arcana"
+				"style"							"0"
+			}
+			"asset_modifier48"
+			{
+				"type"							"ability_icon"
+				"asset"							"faceless_void_time_walk_reverse"
+				"modifier"						"faceless_void/arcana/faceless_void_time_walk_reverse_arcana"
+				"style"							"0"
+			}
+			"asset_modifier49"
+			{
+				"type"							"icon_replacement_hero"
+				"asset"							"npc_dota_hero_faceless_void"
+				"modifier"						"npc_dota_hero_faceless_void_alt1"
+				"style"							"0"
+				"force_display"					"1"
+			}
+			"asset_modifier50"
+			{
+				"type"							"icon_replacement_hero"
+				"asset"							"npc_dota_hero_faceless_void"
+				"modifier"						"npc_dota_hero_faceless_void_alt2"
+				"style"							"1"
+				"force_display"					"1"
+			}
+			"asset_modifier51"
+			{
+				"type"							"inventory_icon"
+				"asset"							"mask_of_madness"
+				"modifier"						"mask_of_madness_faceless_void_arcana_alt1"
+				"style"							"0"
+			}
+			"asset_modifier52"
+			{
+				"type"							"inventory_icon"
+				"asset"							"mask_of_madness"
+				"modifier"						"mask_of_madness_faceless_void_arcana_alt2"
+				"style"							"1"
+			}
+			"asset_modifier53"
+			{
+				"type"							"inventory_icon"
+				"asset"							"maelstrom"
+				"modifier"						"maelstrom_faceless_void_arcana_alt1"
+				"style"							"0"
+			}
+			"asset_modifier54"
+			{
+				"type"							"inventory_icon"
+				"asset"							"maelstrom"
+				"modifier"						"maelstrom_faceless_void_arcana_alt2"
+				"style"							"1"
+			}
+			"asset_modifier55"
+			{
+				"type"							"inventory_icon"
+				"asset"							"mjollnir"
+				"modifier"						"mjollnir_faceless_void_arcana_alt1"
+				"style"							"0"
+			}
+			"asset_modifier56"
+			{
+				"type"							"inventory_icon"
+				"asset"							"mjollnir"
+				"modifier"						"mjollnir_faceless_void_arcana_alt2"
+				"style"							"1"
+			}
+			"asset_modifier57"
+			{
+				"type"							"icon_replacement_hero_minimap"
+				"asset"							"npc_dota_hero_faceless_void"
+				"modifier"						"npc_dota_hero_faceless_void_alt1"
+				"style"							"0"
+				"force_display"					"1"
+			}
+			"asset_modifier58"
+			{
+				"type"							"icon_replacement_hero_minimap"
+				"asset"							"npc_dota_hero_faceless_void"
+				"modifier"						"npc_dota_hero_faceless_void_alt2"
+				"style"							"1"
+				"force_display"					"1"
+			}
+			"asset_modifier59"
+			{
+				"type"							"model"
+				"asset"							"models/heroes/faceless_void/faceless_void_bracer.vmdl"
+				"modifier"						"models/heroes/faceless_void/faceless_void_bracer_refit.vmdl"
+			}
+			"asset_modifier60"
+			{
+				"type"							"model"
+				"asset"							"models/heroes/faceless_void/faceless_void_belt.vmdl"
+				"modifier"						"models/heroes/faceless_void/faceless_void_belt_refit.vmdl"
+			}
+			"asset_modifier61"
+			{
+				"type"							"model"
+				"asset"							"models/heroes/faceless_void/faceless_void_shoulder.vmdl"
+				"modifier"						"models/heroes/faceless_void/faceless_void_shoulder_refit.vmdl"
+			}
+			"asset_modifier62"
+			{
+				"type"							"model"
+				"asset"							"models/items/faceless_void/viridus_claw/viridus_claw.vmdl"
+				"modifier"						"models/items/faceless_void/viridus_claw/viridus_claw_refit.vmdl"
+			}
+			"asset_modifier63"
+			{
+				"type"							"model"
+				"asset"							"models/items/faceless_void/viridus_leggings/viridus_leggings.vmdl"
+				"modifier"						"models/items/faceless_void/viridus_leggings/viridus_leggings_refit.vmdl"
+			}
+			"asset_modifier64"
+			{
+				"type"							"model"
+				"asset"							"models/items/faceless_void/timelord_bracers/timelord_bracers.vmdl"
+				"modifier"						"models/items/faceless_void/timelord_bracers/timelord_bracers_refit.vmdl"
+			}
+			"asset_modifier65"
+			{
+				"type"							"model"
+				"asset"							"models/items/faceless_void/timelord_shoulders/timelord_shoulders.vmdl"
+				"modifier"						"models/items/faceless_void/timelord_shoulders/timelord_shoulders_refit.vmdl"
+			}
+			"asset_modifier66"
+			{
+				"type"							"model"
+				"asset"							"models/items/faceless_void/shards_of_nezzureem_arms/shards_of_nezzureem_arms.vmdl"
+				"modifier"						"models/items/faceless_void/shards_of_nezzureem_arms/shards_of_nezzureem_arms_refit.vmdl"
+			}
+			"asset_modifier67"
+			{
+				"type"							"model"
+				"asset"							"models/items/faceless_void/shards_of_nezzureem_shoulder/shards_of_nezzureem_shoulder.vmdl"
+				"modifier"						"models/items/faceless_void/shards_of_nezzureem_shoulder/shards_of_nezzureem_shoulder_refit.vmdl"
+			}
+			"asset_modifier68"
+			{
+				"type"							"model"
+				"asset"							"models/items/faceless_void/void_armor_of_the_emerald_age_arms/void_armor_of_the_emerald_age_arms.vmdl"
+				"modifier"						"models/items/faceless_void/void_armor_of_the_emerald_age_arms/void_armor_of_the_emerald_age_arms_refit.vmdl"
+			}
+			"asset_modifier69"
+			{
+				"type"							"model"
+				"asset"							"models/items/faceless_void/frozen_void_shoulder/frozen_void_shoulder.vmdl"
+				"modifier"						"models/items/faceless_void/frozen_void_shoulder/frozen_void_shoulder_refit.vmdl"
+			}
+			"asset_modifier70"
+			{
+				"type"							"model"
+				"asset"							"models/items/faceless_void/frozen_void_arms/frozen_void_arms.vmdl"
+				"modifier"						"models/items/faceless_void/frozen_void_arms/frozen_void_arms_refit.vmdl"
+			}
+			"asset_modifier71"
+			{
+				"type"							"model"
+				"asset"							"models/items/faceless_void/elements_of_oblivion_shoulder/elements_of_oblivion_shoulder.vmdl"
+				"modifier"						"models/items/faceless_void/elements_of_oblivion_shoulder/elements_of_oblivion_shoulder_refit.vmdl"
+			}
+			"asset_modifier72"
+			{
+				"type"							"model"
+				"asset"							"models/items/faceless_void/elements_of_oblivion_arms/elements_of_oblivion_arms.vmdl"
+				"modifier"						"models/items/faceless_void/elements_of_oblivion_arms/elements_of_oblivion_arms_refit.vmdl"
+			}
+			"asset_modifier73"
+			{
+				"type"							"model"
+				"asset"							"models/items/faceless_void/fv_primordial_conservator_arms/fv_primordial_conservator_arms.vmdl"
+				"modifier"						"models/items/faceless_void/fv_primordial_conservator_arms/fv_primordial_conservator_arms_refit.vmdl"
+			}
+			"asset_modifier74"
+			{
+				"type"							"model"
+				"asset"							"models/items/faceless_void/fv_primordial_conservator_belt/fv_primordial_conservator_belt.vmdl"
+				"modifier"						"models/items/faceless_void/fv_primordial_conservator_belt/fv_primordial_conservator_belt_refit.vmdl"
+			}
+			"asset_modifier75"
+			{
+				"type"							"model"
+				"asset"							"models/items/faceless_void/faceless_void_crystal_bracer.vmdl"
+				"modifier"						"models/items/faceless_void/faceless_void_crystal_bracer_refit.vmdl"
+			}
+			"asset_modifier76"
+			{
+				"type"							"model"
+				"asset"							"models/items/faceless_void/faceless_void_crystal_shoulder.vmdl"
+				"modifier"						"models/items/faceless_void/faceless_void_crystal_shoulder_refit.vmdl"
+			}
+			"asset_modifier77"
+			{
+				"type"							"model"
+				"asset"							"models/items/faceless_void/fv_the_hollow_arms/fv_the_hollow_arms.vmdl"
+				"modifier"						"models/items/faceless_void/fv_the_hollow_arms/fv_the_hollow_arms_refit.vmdl"
+			}
+			"asset_modifier78"
+			{
+				"type"							"model"
+				"asset"							"models/items/faceless_void/fv_the_hollow_shoulder/fv_the_hollow_shoulder.vmdl"
+				"modifier"						"models/items/faceless_void/fv_the_hollow_shoulder/fv_the_hollow_shoulder_refit.vmdl"
+			}
+			"asset_modifier79"
+			{
+				"type"							"model"
+				"asset"							"models/items/faceless_void/ancientcultist_arms/ancientcultist_arms.vmdl"
+				"modifier"						"models/items/faceless_void/ancientcultist_arms/ancientcultist_arms_refit.vmdl"
+			}
+			"asset_modifier80"
+			{
+				"type"							"model"
+				"asset"							"models/items/faceless_void/claz_bracer/claz_bracer.vmdl"
+				"modifier"						"models/items/faceless_void/claz_bracer/claz_bracer_refit.vmdl"
+			}
+			"asset_modifier81"
+			{
+				"type"							"model"
+				"asset"							"models/items/faceless_void/acolyte_gauntlet/acolyte_gauntlet.vmdl"
+				"modifier"						"models/items/faceless_void/acolyte_gauntlet/acolyte_gauntlet_refit.vmdl"
+			}
+			"asset_modifier82"
+			{
+				"type"							"model"
+				"asset"							"models/items/faceless_void/acolyte_cowl/acolyte_cowl.vmdl"
+				"modifier"						"models/items/faceless_void/acolyte_cowl/acolyte_cowl_refit.vmdl"
+			}
+			"asset_modifier83"
+			{
+				"type"							"model"
+				"asset"							"models/items/faceless_void/acolyte_belt/acolyte_belt.vmdl"
+				"modifier"						"models/items/faceless_void/acolyte_belt/acolyte_belt_refit.vmdl"
+			}
+			"asset_modifier84"
+			{
+				"type"							"model"
+				"asset"							"models/items/faceless_void/bracers_of_aeons/bracers_of_aeons.vmdl"
+				"modifier"						"models/items/faceless_void/bracers_of_aeons/bracers_of_aeons_refit.vmdl"
+			}
+			"asset_modifier85"
+			{
+				"type"							"model"
+				"asset"							"models/items/faceless_void/jewel_of_aeons/jewel_of_aeons.vmdl"
+				"modifier"						"models/items/faceless_void/jewel_of_aeons/jewel_of_aeons_refit.vmdl"
+			}
+			"asset_modifier86"
+			{
+				"type"							"sound"
+				"asset"							"Hero_FacelessVoid.Chronosphere"
+				"modifier"						"Hero_FacelessVoid.Chronosphere.ti11"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_alt1"
+				}
+			}
+			"asset_modifier87"
+			{
+				"type"							"ability_icon"
+				"asset"							"faceless_void_chronosphere"
+				"modifier"						"faceless_void/arcana/faceless_void_chronosphere_arcana_alt1"
+				"style"							"1"
+			}
+			"asset_modifier88"
+			{
+				"type"							"ability_icon"
+				"asset"							"faceless_void_time_dilation"
+				"modifier"						"faceless_void/arcana/faceless_void_time_dilation_arcana_alt1"
+				"style"							"1"
+			}
+			"asset_modifier89"
+			{
+				"type"							"ability_icon"
+				"asset"							"faceless_void_time_lock"
+				"modifier"						"faceless_void/arcana/faceless_void_time_lock_arcana_alt1"
+				"style"							"1"
+			}
+			"asset_modifier90"
+			{
+				"type"							"ability_icon"
+				"asset"							"faceless_void_time_walk"
+				"modifier"						"faceless_void/arcana/faceless_void_time_walk_arcana_alt1"
+				"style"							"1"
+			}
+			"asset_modifier91"
+			{
+				"type"							"ability_icon"
+				"asset"							"faceless_void_time_walk_reverse"
+				"modifier"						"faceless_void/arcana/faceless_void_time_walk_reverse_arcana_alt1"
+				"style"							"1"
+			}
+			"asset_modifier92"
+			{
+				"type"							"chatwheel"
+				"asset"							"faceless_void_face_laugh_07"
+				"modifier"						"faceless_void_fv_arc_laugh_04"
+				"label"							"#dota_chatwheel_label_faceless_void_arcana_laugh"
+				"message"						"#dota_chatwheel_message_faceless_void_arcana_laugh"
+			}
+			"asset_modifier93"
+			{
+				"type"							"chatwheel"
+				"asset"							"faceless_void_face_win_03"
+				"modifier"						"faceless_void_fv_arc_wheel_thanks_01"
+				"label"							"#dota_chatwheel_label_faceless_void_arcana_thank"
+				"message"						"#dota_chatwheel_message_faceless_void_arcana_thank"
+			}
+			"asset_modifier94"
+			{
+				"type"							"chatwheel"
+				"asset"							"faceless_void_face_lose_03"
+				"modifier"						"faceless_void_fv_arc_wheel_all_01"
+				"label"							"#dota_chatwheel_label_faceless_void_arcana_deny"
+				"message"						"#dota_chatwheel_message_faceless_void_arcana_deny"
+			}
+			"asset_modifier95"
+			{
+				"type"							"chatwheel"
+				"asset"							"faceless_void_face_kill_01"
+				"modifier"						"faceless_void_fv_arc_wheel_all_02"
+				"label"							"#dota_chatwheel_label_faceless_void_arcana_1"
+				"message"						"#dota_chatwheel_message_faceless_void_arcana_1"
+			}
+			"asset_modifier96"
+			{
+				"type"							"chatwheel"
+				"asset"							"faceless_void_face_kill_11"
+				"modifier"						"faceless_void_fv_arc_wheel_all_03"
+				"label"							"#dota_chatwheel_label_faceless_void_arcana_2"
+				"message"						"#dota_chatwheel_message_faceless_void_arcana_2"
+			}
+			"asset_modifier97"
+			{
+				"type"							"chatwheel"
+				"asset"							"faceless_void_face_ability_chronos_failure_08"
+				"modifier"						"faceless_void_fv_arc_wheel_all_06"
+				"label"							"#dota_chatwheel_label_faceless_void_arcana_3"
+				"message"						"#dota_chatwheel_message_faceless_void_arcana_3"
+			}
+			"asset_modifier98"
+			{
+				"type"							"chatwheel"
+				"asset"							"faceless_void_face_rare_03"
+				"modifier"						"faceless_void_fv_arc_wheel_all_12"
+				"label"							"#dota_chatwheel_label_faceless_void_arcana_4"
+				"message"						"#dota_chatwheel_message_faceless_void_arcana_4"
+			}
+			"asset_modifier99"
+			{
+				"type"							"chatwheel"
+				"asset"							"faceless_void_face_ability_chronos_failure_07"
+				"modifier"						"faceless_void_fv_arc_wheel_deny_01"
+				"label"							"#dota_chatwheel_label_faceless_void_arcana_5"
+				"message"						"#dota_chatwheel_message_faceless_void_arcana_5"
+			}
+			"asset_modifier100"
+			{
+				"type"							"chatwheel"
+				"asset"							"faceless_void_face_ability_timewalk_01"
+				"modifier"						"faceless_void_fv_arc_wheel_deny_02"
+				"label"							"#dota_chatwheel_label_faceless_void_arcana_6"
+				"message"						"#dota_chatwheel_message_faceless_void_arcana_6"
+			}
+			"asset_modifier101"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/faceless_void/faceless_void_bracers_of_aeons/fv_bracers_of_aeons_red_ambient.vpcf"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_bracers_of_aeons/fv_bracers_of_aeons_red_ambient_refit.vpcf"
+			}
+		}
+	}
+	"20019"
+	{
+		"name"									"Chronite Defense Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Chronite Armor"					"1"
+			"Chronite Bracers"					"1"
+			"Chronite Scepter"					"1"
+			"Voidkeeper's Visage"				"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Chronite_Defense_Set"
+		"item_description"						"#DOTA_Bundle_Desc_Faceless_Void_Chronite"
+		"item_name"								"#DOTA_Item_Chronite_Defense_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20054"
+	{
+		"name"									"Dials of Claszureme Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Helm of Claszureme"				"1"
+			"Belt of Claszureme"				"1"
+			"Bracers of Claszureme"				"1"
+			"Shoulders of Claszureme"			"1"
+			"Epoch"								"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Dials_of_Claszureme_Set"
+		"item_description"						"#DOTA_Item_Desc_Dials_of_Claszureme_Set"
+		"item_name"								"#DOTA_Item_Dials_of_Claszureme_Set"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Common"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"249"
+		}
+	}
+	"20192"
+	{
+		"name"									"Acolyte of Clasz Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Headwraps of the Acolyte of Clasz"	"1"
+			"Time-Mace of the Acolyte of Clasz"	"1"
+			"Gauntlets of the Acolyte of Clasz"	"1"
+			"Mantle of the Acolyte of Clasz"	"1"
+			"Girdpiece of the Acolyte of Clasz"	"1"
+		}
+		"creation_date"							"2013-06-14"
+		"image_inventory"						"econ/sets/DOTA_Item_Acolyte_of_Clasz_Set"
+		"item_description"						"#DOTA_Item_Desc_Acolyte_of_Clasz_Set"
+		"item_name"								"#DOTA_Item_Acolyte_of_Clasz_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"6/14/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20269"
+	{
+		"name"									"Viridi Inanitas Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Viridus Claw"						"1"
+			"Viridus Leggings"					"1"
+			"Viridus Spine"						"1"
+			"Viridus Crusher"					"1"
+		}
+		"creation_date"							"2013-09-30"
+		"image_inventory"						"econ/sets/DOTA_Item_Viridi_Inanitas_Set"
+		"item_description"						"#DOTA_Item_Desc_Viridi_Inanitas_Set"
+		"item_name"								"#DOTA_Item_Viridi_Inanitas_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"9/30/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20346"
+	{
+		"name"									"The Tentacular Timelord Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armor of the Tentacular Timelord"	"1"
+			"Bracers of the Tentacular Timelord""1"
+			"Mace of the Tentacular Timelord"	"1"
+			"Primal Form of the Tentacular Timelord""1"
+			"Skirt of the Tentacular Timelord"	"1"
+		}
+		"creation_date"							"2014-01-07"
+		"image_inventory"						"econ/sets/DOTA_Item_The_Tentacular_Timelord_Set"
+		"item_description"						"#DOTA_Item_Desc_The_Tentacular_Timelord_Set"
+		"item_name"								"#DOTA_Item_The_Tentacular_Timelord_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/7/2014"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20434"
+	{
+		"name"									"Ancient Cultist"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Ancient Bonds"						"1"
+			"Ancient Cage"						"1"
+			"Ancient Crown"						"1"
+			"Ancient Link"						"1"
+			"Ancient Knots"						"1"
+		}
+		"creation_date"							"2014-03-12"
+		"image_inventory"						"econ/sets/DOTA_Item_Ancient_Cultist"
+		"item_name"								"#DOTA_Item_Ancient_Cultist"
+		"item_rarity"							"rare"
+	}
+	"20805"
+	{
+		"name"									"Elements of the Endless Plane"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Elements of the Endless Plane Loading Screen""1"
+			"Helm of the Endless Plane"			"1"
+			"Pauldron of the Endless Plane"		"1"
+			"Mace of the Endless Plane"			"1"
+			"Belt of the Endless Plane"			"1"
+			"Bracers of the Endless Plane"		"1"
+		}
+		"creation_date"							"2015-12-02"
+		"image_inventory"						"econ/loading_screens/elements_of_oblivion_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Elements_of_the_Endless_Plane"
+		"item_name"								"#DOTA_Item_Elements_of_the_Endless_Plane"
+		"item_rarity"							"rare"
+	}
+	"21094"
+	{
+		"name"									"Misgivings of the Emerald Age"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Misgivings of the Emerald Age Loading Screen""1"
+			"Bracers of the Emerald Age"		"1"
+			"Belt of the Emerald Age"			"1"
+			"Visage of the Emerald Age"			"1"
+			"Pauldrons of the Emerald Age"		"1"
+			"Implement of the Emerald Age"		"1"
+		}
+		"creation_date"							"2017-02-03"
+		"image_inventory"						"econ/loading_screens/void_armor_of_the_emerald_age_loadingscreen_void_armor_of_the_emerald_age"
+		"item_name"								"#DOTA_Item_Misgivings_of_the_Emerald_Age"
+		"item_rarity"							"rare"
+	}
+	"21276"
+	{
+		"name"									"The Corruption of Nezzureem"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Crown of Nezzureem"				"1"
+			"Mace of Nezzureem"					"1"
+			"Belt of Nezzureem"					"1"
+			"Arms of Nezzureem"					"1"
+			"Pauldrons of Nezzureem"			"1"
+			"The Corruption of Nezzureem Loading Screen""1"
+		}
+		"creation_date"							"2018-09-12"
+		"image_inventory"						"econ/loading_screens/shards_of_nezzureem_loadingscreen"
+		"item_name"								"#DOTA_Item_The_Corruption_of_Nezzureem"
+		"item_rarity"							"rare"
+	}
+	"21567"
+	{
+		"name"									"Claszureme Incursion"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Claszureme Incursion Arms"			"1"
+			"Claszureme Incursion Belt"			"1"
+			"Claszureme Incursion Head"			"1"
+			"Claszureme Incursion Shoulder"		"1"
+			"Claszureme Incursion Weapon"		"1"
+		}
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_FV_Primordial_Conservator"
+		"item_name"								"#DOTA_Item_Claszureme_Incursion"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"21625"
+	{
+		"name"									"Augur of Oblivion"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Augur of Oblivion - Belt"			"1"
+			"Augur of Oblivion - Head"			"1"
+			"Augur of Oblivion - Arms"			"1"
+			"Augur of Oblivion - Weapon"		"1"
+			"Augur of Oblivion - Shoulder"		"1"
+		}
+		"creation_date"							"2020-05-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/sets/dota_item_augur_of_oblivion"
+		"item_name"								"#DOTA_Item_Augur_of_Oblivion"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21677"
+	{
+		"name"									"Frozen Void"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Frozen Void Weapon"				"1"
+			"Frozen Void Arms"					"1"
+			"Frozen Void Belt"					"1"
+			"Frozen Void Shoulder"				"1"
+			"Frozen Void Loading Screen"		"1"
+			"Frozen Void Head"					"1"
+		}
+		"creation_date"							"2020-09-23"
+		"image_inventory"						"econ/loading_screens/frozen_void_frozen_void_ls"
+		"item_name"								"#DOTA_Item_Frozen_Void"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"15000"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"22822"
+	{
+		"name"									"Claszian Apostasy Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2022-08-22"
+		"image_inventory"						"econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_weapon"
+		"item_description"						"#DOTA_Item_Desc_Claszian_Apostasy_Weapon"
+		"item_name"								"#DOTA_Item_Claszian_Apostasy_Weapon"
+		"item_rarity"							"arcana"
+		"model_player"							"models/items/faceless_void/faceless_void_arcana/faceless_void_arcana_weapon.vmdl"
+		"static_attributes"
+		{
+			"giftable"							"0"
+			"cannot trade"						"1"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_weapon_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"22823"
+	{
+		"name"									"Claszian Apostasy Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2022-08-22"
+		"image_inventory"						"econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Claszian_Apostasy_Shoulder"
+		"item_name"								"#DOTA_Item_Claszian_Apostasy_Shoulder"
+		"item_rarity"							"arcana"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/faceless_void/faceless_void_arcana/faceless_void_arcana_shoulder.vmdl"
+		"static_attributes"
+		{
+			"giftable"							"0"
+			"cannot trade"						"1"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_ambient_shoulder.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"22824"
+	{
+		"name"									"Claszian Apostasy Bracers"
+		"prefab"								"wearable"
+		"creation_date"							"2022-08-22"
+		"image_inventory"						"econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_bracer"
+		"item_description"						"#DOTA_Item_Desc_Claszian_Apostasy_Bracers"
+		"item_name"								"#DOTA_Item_Claszian_Apostasy_Bracers"
+		"item_rarity"							"arcana"
+		"item_slot"								"arms"
+		"model_player"							"models/items/faceless_void/faceless_void_arcana/faceless_void_arcana_bracer.vmdl"
+		"static_attributes"
+		{
+			"giftable"							"0"
+			"cannot trade"						"1"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_ambient_bracer.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"style"							"0"
+			}
+		}
+	}
+	"22825"
+	{
+		"name"									"Claszian Apostasy Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2022-08-22"
+		"image_inventory"						"econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_belt"
+		"item_description"						"#DOTA_Item_Desc_Claszian_Apostasy_Belt"
+		"item_name"								"#DOTA_Item_Claszian_Apostasy_Belt"
+		"item_rarity"							"arcana"
+		"item_slot"								"belt"
+		"model_player"							"models/items/faceless_void/faceless_void_arcana/faceless_void_arcana_belt.vmdl"
+		"static_attributes"
+		{
+			"giftable"							"0"
+			"cannot trade"						"1"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_ambient_belt.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"22826"
+	{
+		"name"									"Claszian Apostasy"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Claszian Apostasy Belt"			"1"
+			"Claszian Apostasy Bracers"			"1"
+			"Claszian Apostasy Shoulder"		"1"
+			"Claszian Apostasy Weapon"			"1"
+			"Claszian Apostasy Head"			"1"
+		}
+		"creation_date"							"2022-08-22"
+		"image_inventory"						"econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana"
+		"item_description"						"#DOTA_Item_Desc_Claszian_Apostasy"
+		"item_name"								"#DOTA_Item_Claszian_Apostasy"
+		"item_rarity"							"arcana"
+		"static_attributes"
+		{
+			"giftable"							"0"
+			"cannot trade"						"1"
+		}
+	}
+}

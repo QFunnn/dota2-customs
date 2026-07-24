@@ -1,0 +1,2587 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"323"
+	{
+		"name"									"Spectre's Head"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/spectre/spectre_hat"
+		"item_description"						"#DOTA_Item_Desc_Spectres_Head"
+		"item_name"								"#DOTA_Item_Spectres_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/spectre/spectre_hat.vmdl"
+	}
+	"324"
+	{
+		"name"									"Spectre's Dress"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/spectre/spectre_dress"
+		"item_description"						"#DOTA_Item_Desc_Spectres_Dress"
+		"item_name"								"#DOTA_Item_Spectres_Dress"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/heroes/spectre/spectre_dress.vmdl"
+	}
+	"325"
+	{
+		"name"									"Spectre's Shoulders"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/spectre/spectre_wings"
+		"item_description"						"#DOTA_Item_Desc_Spectres_Shoulders"
+		"item_name"								"#DOTA_Item_Spectres_Shoulders"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/heroes/spectre/spectre_wings.vmdl"
+	}
+	"395"
+	{
+		"name"									"Spectre's weapon"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/spectre/spectre_weapon"
+		"item_description"						"#DOTA_Item_Desc_Spectres_weapon"
+		"item_name"								"#DOTA_Item_Spectres_weapon"
+		"model_player"							"models/heroes/spectre/spectre_weapon.vmdl"
+	}
+	"539"
+	{
+		"name"									"Spectre's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-08"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Spectres_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_spectre"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_spectre/spectre_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_spectre/spectre_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+		}
+	}
+	"579"
+	{
+		"name"									"Spectre's Miscellaneous"
+		"prefab"								"default_item"
+		"creation_date"							"2015-05-20"
+		"image_inventory"						"econ/heroes/spectre/spectre_misc"
+		"item_description"						"#DOTA_Item_Desc_Spectres_Miscellaneous"
+		"item_name"								"#DOTA_Item_Spectres_Miscellaneous"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Misc"
+	}
+	"580"
+	{
+		"name"									"Spectre's Default Voice"
+		"prefab"								"default_item"
+		"creation_date"							"2015-05-20"
+		"image_inventory"						"econ/heroes/spectre/spectre_default_voice"
+		"item_description"						"#DOTA_Item_Desc_Spectres_Default_Voice"
+		"item_name"								"#DOTA_Item_Spectres_Default_Voice"
+		"item_slot"								"voice"
+		"item_type_name"						"#DOTA_WearableType_Voice"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"announcer_preview"
+				"asset"							"sounds/vo/spectre/spec_spawn_03.vsnd"
+				"modifier"						"#DOTA_Announcer_Preview_Spectre_Voice_Default_01"
+			}
+			"asset_modifier1"
+			{
+				"type"							"announcer_preview"
+				"asset"							"sounds/vo/spectre/spec_firstblood_01.vsnd"
+				"modifier"						"#DOTA_Announcer_Preview_Spectre_Voice_Default_02"
+			}
+			"asset_modifier2"
+			{
+				"type"							"announcer_preview"
+				"asset"							"sounds/vo/spectre/spec_underattack_01.vsnd"
+				"modifier"						"#DOTA_Announcer_Preview_Spectre_Voice_Default_03"
+			}
+			"asset_modifier3"
+			{
+				"type"							"announcer_preview"
+				"asset"							"sounds/vo/spectre/spec_win_02.vsnd"
+				"modifier"						"#DOTA_Announcer_Preview_Spectre_Voice_Default_04"
+			}
+		}
+	}
+	"4899"
+	{
+		"name"									"Blade of the Ephemeral Haunt"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-25"
+		"image_inventory"						"econ/items/spectre/tr_weapon/tr_weapon"
+		"item_description"						"#DOTA_Item_Desc_Blade_of_the_Ephemeral_Haunt"
+		"item_name"								"#DOTA_Item_Blade_of_the_Ephemeral_Haunt"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/spectre/tr_weapon/tr_weapon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4900"
+	{
+		"name"									"Wings of the Ephemeral Haunt"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-25"
+		"image_inventory"						"econ/items/spectre/tr_shoulder/tr_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Wings_of_the_Ephemeral_Haunt"
+		"item_name"								"#DOTA_Item_Wings_of_the_Ephemeral_Haunt"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/spectre/tr_shoulder/tr_shoulder.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4901"
+	{
+		"name"									"Sleeves of the Ephemeral Haunt"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-25"
+		"image_inventory"						"econ/items/spectre/tr_misc/tr_misc"
+		"item_description"						"#DOTA_Item_Desc_Sleeves_of_the_Ephemeral_Haunt"
+		"item_name"								"#DOTA_Item_Sleeves_of_the_Ephemeral_Haunt"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Sleeves"
+		"model_player"							"models/items/spectre/tr_misc/tr_misc.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4902"
+	{
+		"name"									"Horns of the Ephemeral Haunt"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-25"
+		"image_inventory"						"econ/items/spectre/tr_head/tr_head"
+		"item_description"						"#DOTA_Item_Desc_Horns_of_the_Ephemeral_Haunt"
+		"item_name"								"#DOTA_Item_Horns_of_the_Ephemeral_Haunt"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Horns"
+		"model_player"							"models/items/spectre/tr_head/tr_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4903"
+	{
+		"name"									"Dress of the Ephemeral Haunt"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-25"
+		"image_inventory"						"econ/items/spectre/tr_belt/tr_belt"
+		"item_description"						"#DOTA_Item_Desc_Dress_of_the_Ephemeral_Haunt"
+		"item_name"								"#DOTA_Item_Dress_of_the_Ephemeral_Haunt"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Dress"
+		"model_player"							"models/items/spectre/tr_belt/tr_belt.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5175"
+	{
+		"name"									"Possessed Blade"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international tag"
+				"value"							"2013"
+			}
+		}
+		"creation_date"							"2013-07-19"
+		"image_inventory"						"econ/items/spectre/possessed_blade/possessed_blade"
+		"item_description"						"#DOTA_Item_Desc_Possessed_Blade"
+		"item_name"								"#DOTA_Item_Possessed_Blade"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/spectre/possessed_blade/possessed_blade.vmdl"
+	}
+	"5182"
+	{
+		"name"									"Spectral Light"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international tag"
+				"value"							"2013"
+			}
+		}
+		"creation_date"							"2013-07-19"
+		"image_inventory"						"econ/items/spectre/spectral_light/spectral_light"
+		"item_description"						"#DOTA_Item_Desc_Spectral_Light"
+		"item_name"								"#DOTA_Item_Spectral_Light"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/spectre/spectral_light/spectral_light.vmdl"
+	}
+	"5311"
+	{
+		"name"									"Belt of the Eternal Light"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-20"
+		"image_inventory"						"econ/items/spectre/belt_of_the_eternal_light/belt_of_the_eternal_light"
+		"item_description"						"#DOTA_Item_Desc_Belt_of_the_Eternal_Light"
+		"item_name"								"#DOTA_Item_Belt_of_the_Eternal_Light"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/spectre/belt_of_the_eternal_light/belt_of_the_eternal_light.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5312"
+	{
+		"name"									"Teeth of the Eternal Light"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-20"
+		"image_inventory"						"econ/items/spectre/teeth_of_the_eternal_light/teeth_of_the_eternal_light"
+		"item_description"						"#DOTA_Item_Desc_Teeth_of_the_Eternal_Light"
+		"item_name"								"#DOTA_Item_Teeth_of_the_Eternal_Light"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/spectre/teeth_of_the_eternal_light/teeth_of_the_eternal_light.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5313"
+	{
+		"name"									"Chestpiece of the Eternal Light"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-20"
+		"image_inventory"						"econ/items/spectre/chestpiece_of_the_eternal_light/chestpiece_of_the_eternal_light"
+		"item_description"						"#DOTA_Item_Desc_Chestpiece_of_the_Eternal_Light"
+		"item_name"								"#DOTA_Item_Chestpiece_of_the_Eternal_Light"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/spectre/chestpiece_of_the_eternal_light/chestpiece_of_the_eternal_light.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5314"
+	{
+		"name"									"Encasement of the Eternal Light"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-20"
+		"image_inventory"						"econ/items/spectre/encasement_of_the_eternal_light/encasement_of_the_eternal_light"
+		"item_description"						"#DOTA_Item_Desc_Encasement_of_the_Eternal_Light"
+		"item_name"								"#DOTA_Item_Encasement_of_the_Eternal_Light"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/spectre/encasement_of_the_eternal_light/encasement_of_the_eternal_light.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5315"
+	{
+		"name"									"Plume of the Eternal Light"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-20"
+		"image_inventory"						"econ/items/spectre/plume_of_the_eternal_light/plume_of_the_eternal_light"
+		"item_description"						"#DOTA_Item_Desc_Plume_of_the_Eternal_Light"
+		"item_name"								"#DOTA_Item_Plume_of_the_Eternal_Light"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Epaulettes"
+		"model_player"							"models/items/spectre/plume_of_the_eternal_light/plume_of_the_eternal_light.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5368"
+	{
+		"name"									"Robes of Malicious Efflorescence"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-19"
+		"image_inventory"						"econ/items/spectre/malicious_belt/malicious_belt"
+		"item_description"						"#DOTA_Item_Desc_Robes_of_The_Malicious_Efflorescence"
+		"item_name"								"#DOTA_Item_Robes_of_Malicious_Efflorescence"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Robes"
+		"model_player"							"models/items/spectre/malicious_belt/malicious_belt.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5369"
+	{
+		"name"									"Blades of Malicious Efflorescence"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-19"
+		"image_inventory"						"econ/items/spectre/malicious_weapon/malicious_weapon"
+		"item_description"						"#DOTA_Item_Desc_Blades_of_The_Malicious_Efflorescence"
+		"item_name"								"#DOTA_Item_Blades_of_Malicious_Efflorescence"
+		"model_player"							"models/items/spectre/malicious_weapon/malicious_weapon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5370"
+	{
+		"name"									"Horns of Malicious Efflorescence"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-19"
+		"image_inventory"						"econ/items/spectre/malicious_head/malicious_head"
+		"item_description"						"#DOTA_Item_Desc_Horns_of_The_Malicious_Efflorescence"
+		"item_name"								"#DOTA_Item_Horns_of_Malicious_Efflorescence"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Headpiece"
+		"model_player"							"models/items/spectre/malicious_head/malicious_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5371"
+	{
+		"name"									"Bracers of Malicious Efflorescence"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-19"
+		"image_inventory"						"econ/items/spectre/malicious_bracers_misc/malicious_bracers_misc"
+		"item_description"						"#DOTA_Item_Desc_Bracers_of_the_Malicious_Efflorescence"
+		"item_name"								"#DOTA_Item_Bracers_of_Malicious_Efflorescence"
+		"item_rarity"							"uncommon"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/spectre/malicious_bracers_misc/malicious_bracers_misc.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5372"
+	{
+		"name"									"Wings of Malicious Efflorescence"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-19"
+		"image_inventory"						"econ/items/spectre/malicious_shoulder/malicious_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Wings_of_the_Malicious_Efflorescence"
+		"item_name"								"#DOTA_Item_Wings_of_Malicious_Efflorescence"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/spectre/malicious_shoulder/malicious_shoulder.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5602"
+	{
+		"name"									"Seething Orbit"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-28"
+		"image_inventory"						"econ/items/spectre/spectral_blade/spectral_blade"
+		"item_name"								"#DOTA_Item_Seething_Orbit"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/spectre/spectral_blade/spectral_blade.vmdl"
+	}
+	"5835"
+	{
+		"name"									"Blade of the Abyss"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-16"
+		"image_inventory"						"econ/items/spectre/blade_of_the_abyss/blade_of_the_abyss"
+		"item_name"								"#DOTA_Item_Blade_of_the_Abyss"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/spectre/blade_of_the_abyss/blade_of_the_abyss.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"6185"
+	{
+		"name"									"Phasma Phasmatis Head"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-25"
+		"image_inventory"						"econ/items/spectre/phasma_head/phasma_head"
+		"item_name"								"#DOTA_Item_Phasma_Phasmatis_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/spectre/phasma_head/phasma_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/26/2014"
+			"price"								"0"
+		}
+	}
+	"6186"
+	{
+		"name"									"Phasma Phasmatis Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-25"
+		"image_inventory"						"econ/items/spectre/phasma_shoulders/phasma_shoulders"
+		"item_name"								"#DOTA_Item_Phasma_Phasmatis_Shoulders"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/spectre/phasma_shoulders/phasma_shoulders.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/26/2014"
+			"price"								"0"
+		}
+	}
+	"6187"
+	{
+		"name"									"Phasma Phasmatis Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-25"
+		"image_inventory"						"econ/items/spectre/phasma_belt/phasma_belt"
+		"item_name"								"#DOTA_Item_Phasma_Phasmatis_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/spectre/phasma_belt/phasma_belt.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/26/2014"
+			"price"								"0"
+		}
+	}
+	"6188"
+	{
+		"name"									"Phasma Phasmatis Blade"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-25"
+		"image_inventory"						"econ/items/spectre/phasma_weapon/phasma_weapon"
+		"item_name"								"#DOTA_Item_Phasma_Phasmatis_Blade"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/spectre/phasma_weapon/phasma_weapon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/26/2014"
+			"price"								"0"
+		}
+	}
+	"6722"
+	{
+		"name"									"Shadow of the Volatile Firmament"
+		"prefab"								"wearable"
+		"creation_date"							"2014-08-14"
+		"image_inventory"						"econ/items/spectre/darkgabriel_belt/darkgabriel_belt"
+		"item_name"								"#DOTA_Item_Shadow_of_the_Volatile_Firmament"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Dress"
+		"model_player"							"models/items/spectre/darkgabriel_belt/darkgabriel_belt.vmdl"
+	}
+	"6725"
+	{
+		"name"									"Shoulders of the Volatile Firmament"
+		"prefab"								"wearable"
+		"creation_date"							"2014-08-14"
+		"image_inventory"						"econ/items/spectre/darkgabriel_shoulder/darkgabriel_shoulder"
+		"item_name"								"#DOTA_Item_Shoulders_of_the_Volatile_Firmament"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/spectre/darkgabriel_shoulder/darkgabriel_shoulder.vmdl"
+	}
+	"6726"
+	{
+		"name"									"Bracer of the Volatile Firmament"
+		"prefab"								"wearable"
+		"creation_date"							"2014-08-14"
+		"image_inventory"						"econ/items/spectre/darkgabriel_misc/darkgabriel_misc"
+		"item_name"								"#DOTA_Item_Bracer_of_the_Volatile_Firmament"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Misc"
+		"model_player"							"models/items/spectre/darkgabriel_misc/darkgabriel_misc.vmdl"
+	}
+	"6727"
+	{
+		"name"									"Blade of the Volatile Firmament"
+		"prefab"								"wearable"
+		"creation_date"							"2014-08-14"
+		"image_inventory"						"econ/items/spectre/darkgabriel_weapon/darkgabriel_weapon"
+		"item_name"								"#DOTA_Item_Blade_of_the_Volatile_Firmament"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/spectre/darkgabriel_weapon/darkgabriel_weapon.vmdl"
+	}
+	"6728"
+	{
+		"name"									"Helm of the Volatile Firmament"
+		"prefab"								"wearable"
+		"creation_date"							"2014-08-14"
+		"image_inventory"						"econ/items/spectre/darkgabriel_head/darkgabriel_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Volatile_Firmament"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/spectre/darkgabriel_head/darkgabriel_head.vmdl"
+	}
+	"6894"
+	{
+		"name"									"Soul Diffuser"
+		"prefab"								"wearable"
+		"creation_date"							"2014-07-02"
+		"image_inventory"						"econ/items/spectre/spectre_diffusal"
+		"item_description"						"#DOTA_Item_Desc_Soul_Diffuser"
+		"item_name"								"#DOTA_Item_Soul_Diffuser"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/spectre/spectre_diffusal.vmdl"
+		"particle_folder"						"particles/econ/items/spectre/spectre_weapon_diffusal"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spectre/spectre_desolate.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_weapon_diffusal/spectre_desolate_diffusal.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spectre/spectre_weapon_diffusal/spectre_diffusal_v3_ambient.vpcf"
+				"style"							"2"
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spectre/spectre_weapon_diffusal/spectre_diffusal_v2_ambient.vpcf"
+				"style"							"1"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Soul_Diffuser_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Soul_Diffuser_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+				}
+				"2"
+				{
+					"name"						"#DOTA_Style_Soul_Diffuser_2"
+					"skin"						"2"
+					"alternate_icon"			"2"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/spectre/spectre_diffusal"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/spectre/spectre_diffusal_style1"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/spectre/spectre_diffusal_style2"
+				}
+			}
+		}
+	}
+	"7517"
+	{
+		"name"									"Conservator's Vanguard"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-19"
+		"image_inventory"						"econ/items/spectre/dotapit_s3_spectral_guardian_belt/dotapit_s3_spectral_guardian_belt"
+		"item_name"								"#DOTA_Item_Conservators_Vanguard"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/spectre/dotapit_s3_spectral_guardian_belt/dotapit_s3_spectral_guardian_belt.vmdl"
+	}
+	"7518"
+	{
+		"name"									"Conservator's Headguard"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-19"
+		"image_inventory"						"econ/items/spectre/dotapit_s3_spectral_guardian_head/dotapit_s3_spectral_guardian_head"
+		"item_name"								"#DOTA_Item_Conservators_Headguard"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/spectre/dotapit_s3_spectral_guardian_head/dotapit_s3_spectral_guardian_head.vmdl"
+	}
+	"7519"
+	{
+		"name"									"Conservator's Bracers"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-19"
+		"image_inventory"						"econ/items/spectre/dotapit_s3_spectral_guardian_armor/dotapit_s3_spectral_guardian_armor"
+		"item_name"								"#DOTA_Item_Conservators_Bracers"
+		"item_rarity"							"uncommon"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/spectre/dotapit_s3_spectral_guardian_armor/dotapit_s3_spectral_guardian_armor.vmdl"
+	}
+	"7520"
+	{
+		"name"									"Conservator's Shoulderguard"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-19"
+		"image_inventory"						"econ/items/spectre/dotapit_s3_spectral_guardian_shoulder/dotapit_s3_spectral_guardian_shoulder"
+		"item_name"								"#DOTA_Item_Conservators_Shoulderguard"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/spectre/dotapit_s3_spectral_guardian_shoulder/dotapit_s3_spectral_guardian_shoulder.vmdl"
+	}
+	"7521"
+	{
+		"name"									"Conservator's Blade"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-19"
+		"image_inventory"						"econ/items/spectre/dotapit_s3_spectral_guardian_weapon/dotapit_s3_spectral_guardian_weapon"
+		"item_name"								"#DOTA_Item_Conservators_Blade"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/spectre/dotapit_s3_spectral_guardian_weapon/dotapit_s3_spectral_guardian_weapon.vmdl"
+	}
+	"7860"
+	{
+		"name"									"Mercurial's Call"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-29"
+		"image_inventory"						"econ/items/spectre/mercurials_call_voice/mercurials_call_voice"
+		"item_description"						"#DOTA_Item_Desc_Mercurials_Call"
+		"item_name"								"#DOTA_Item_Mercurials_Call"
+		"item_rarity"							"immortal"
+		"item_slot"								"voice"
+		"item_type_name"						"#DOTA_WearableType_Alternate_Hero_Voice"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"response_criteria"
+				"asset"							"compendium2014"
+			}
+			"asset_modifier1"
+			{
+				"type"							"announcer_preview"
+				"asset"							"sounds/vo/spectre/spec_redux_spawn_05.vsnd"
+				"modifier"						"#DOTA_Announcer_Preview_Spectre_Voice_Redux_01"
+			}
+			"asset_modifier2"
+			{
+				"type"							"announcer_preview"
+				"asset"							"sounds/vo/spectre/spec_redux_firstblood_02.vsnd"
+				"modifier"						"#DOTA_Announcer_Preview_Spectre_Voice_Redux_02"
+			}
+			"asset_modifier3"
+			{
+				"type"							"announcer_preview"
+				"asset"							"sounds/vo/spectre/spec_redux_levelup_01.vsnd"
+				"modifier"						"#DOTA_Announcer_Preview_Spectre_Voice_Redux_03"
+			}
+			"asset_modifier4"
+			{
+				"type"							"announcer_preview"
+				"asset"							"sounds/vo/spectre/spec_redux_kill_10.vsnd"
+				"modifier"						"#DOTA_Announcer_Preview_Spectre_Voice_Redux_04"
+			}
+			"asset_modifier5"
+			{
+				"type"							"announcer_preview"
+				"asset"							"sounds/vo/spectre/spec_redux_respawn_03.vsnd"
+				"modifier"						"#DOTA_Announcer_Preview_Spectre_Voice_Redux_05"
+			}
+			"asset_modifier6"
+			{
+				"type"							"announcer_preview"
+				"asset"							"sounds/vo/spectre/spec_redux_win_01.vsnd"
+				"modifier"						"#DOTA_Announcer_Preview_Spectre_Voice_Redux_06"
+			}
+			"asset_modifier7"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_SPAWN"
+				"modifier"						"ti4"
+				"style"							"0"
+			}
+			"asset_modifier8"
+			{
+				"type"							"chatwheel"
+				"asset"							"spectre_spec_laugh_13"
+				"modifier"						"spectre_spec_redux_laugh_10"
+			}
+			"asset_modifier9"
+			{
+				"type"							"chatwheel"
+				"asset"							"spectre_spec_ability_haunt_01"
+				"modifier"						"spectre_spec_redux_haunt_01"
+			}
+			"asset_modifier10"
+			{
+				"type"							"chatwheel"
+				"asset"							"spectre_spec_deny_01"
+				"modifier"						"spectre_spec_redux_deny_01"
+			}
+			"asset_modifier11"
+			{
+				"type"							"chatwheel"
+				"asset"							"spectre_spec_death_07"
+				"modifier"						"spectre_spec_redux_death_07"
+			}
+			"asset_modifier12"
+			{
+				"type"							"chatwheel"
+				"asset"							"spectre_spec_lasthit_01"
+				"modifier"						"spectre_spec_redux_lasthit_01"
+			}
+			"asset_modifier13"
+			{
+				"type"							"chatwheel"
+				"asset"							"spectre_spec_doubdam_02"
+				"modifier"						"spectre_spec_redux_doubdam_02"
+			}
+			"asset_modifier14"
+			{
+				"type"							"chatwheel"
+				"asset"							"spectre_spec_kill_02"
+				"modifier"						"spectre_spec_redux_kill_02"
+			}
+			"asset_modifier15"
+			{
+				"type"							"chatwheel"
+				"asset"							"spectre_spec_kill_01"
+				"modifier"						"spectre_spec_redux_kill_01"
+			}
+		}
+	}
+	"8721"
+	{
+		"name"									"Blade of Flowing Entropy"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-19"
+		"image_inventory"						"econ/items/spectre/entropy_weapon/entropy_weapon"
+		"item_name"								"#DOTA_Item_Blade_of_Flowing_Entropy"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/spectre/entropy_weapon/entropy_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"8722"
+	{
+		"name"									"Tabard of Flowing Entropy"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-19"
+		"image_inventory"						"econ/items/spectre/entropy_belt/entropy_belt"
+		"item_name"								"#DOTA_Item_Tabard_of_Flowing_Entropy"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Robes"
+		"model_player"							"models/items/spectre/entropy_belt/entropy_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"8723"
+	{
+		"name"									"Crown of Flowing Entropy"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-19"
+		"image_inventory"						"econ/items/spectre/entropy_head/entropy_head"
+		"item_name"								"#DOTA_Item_Crown_of_Flowing_Entropy"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Headress"
+		"model_player"							"models/items/spectre/entropy_head/entropy_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"8724"
+	{
+		"name"									"Bracers of Flowing Entropy"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-19"
+		"image_inventory"						"econ/items/spectre/entropy_misc/entropy_misc"
+		"item_name"								"#DOTA_Item_Bracers_of_Flowing_Entropy"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Scarf"
+		"model_player"							"models/items/spectre/entropy_misc/entropy_misc.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"8725"
+	{
+		"name"									"Mantle of Flowing Entropy"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-19"
+		"image_inventory"						"econ/items/spectre/entropy_shoulders/entropy_shoulders"
+		"item_name"								"#DOTA_Item_Mantle_of_Flowing_Entropy"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Collar"
+		"model_player"							"models/items/spectre/entropy_shoulders/entropy_shoulders.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"8913"
+	{
+		"name"									"Flow of the Flowering Shade"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-29"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/spectre/phantasmal_disruptions_belt/phantasmal_disruptions_belt"
+		"item_description"						"#DOTA_Item_Desc_Flow_of_the_Flowering_Shade"
+		"item_name"								"#DOTA_Item_Flow_of_the_Flowering_Shade"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Dress"
+		"model_player"							"models/items/spectre/phantasmal_disruptions_belt/phantasmal_disruptions_belt.vmdl"
+		"branding"
+		{
+			"corporation_id"					"88508515"
+		}
+	}
+	"8914"
+	{
+		"name"									"Drape of the Flowering Shade"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-29"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/spectre/phantasmal_disruptions_shoulder/phantasmal_disruptions_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Drape_of_the_Flowering_Shade"
+		"item_name"								"#DOTA_Item_Drape_of_the_Flowering_Shade"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Drape"
+		"model_player"							"models/items/spectre/phantasmal_disruptions_shoulder/phantasmal_disruptions_shoulder.vmdl"
+		"branding"
+		{
+			"corporation_id"					"88508515"
+		}
+	}
+	"8915"
+	{
+		"name"									"Edge of the Flowering Shade"
+		"prefab"								"wearable"
+		"branding"
+		{
+			"corporation_id"					"88508515"
+		}
+		"creation_date"							"2015-05-29"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/spectre/phantasmal_disruptions_weapon/phantasmal_disruptions_weapon"
+		"item_description"						"#DOTA_Item_Desc_Edge_of_the_Flowering_Shade"
+		"item_name"								"#DOTA_Item_Edge_of_the_Flowering_Shade"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/spectre/phantasmal_disruptions_weapon/phantasmal_disruptions_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/spectre/spectre_phantasmal"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spectre/spectre_phantasmal/spectre_phantasmal_weapon_base_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/spectre/spectre_phantasmal/spectre_phantasmal_weapon_base_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spectre/spectre_phantasmal/spectre_phantasmal_weapon_ambient.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/spectre/spectre_phantasmal/spectre_phantasmal_weapon_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon"
+					}
+				}
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#Flowering_Shade_Weapon_Default"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#Flowering_Shade_Weapon_Particle"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"price"					"1"
+						"item_def"				"16735"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/spectre/phantasmal_disruptions_weapon/phantasmal_disruptions_weapon"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/spectre/phantasmal_disruptions_weapon/phantasmal_disruptions_weapon_particle"
+				}
+			}
+			"skin"								"0"
+		}
+	}
+	"8916"
+	{
+		"name"									"Crest of the Flowering Shade"
+		"prefab"								"wearable"
+		"branding"
+		{
+			"corporation_id"					"88508515"
+		}
+		"creation_date"							"2015-05-29"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/spectre/phantasmal_disruptions_head/phantasmal_disruptions_head"
+		"item_description"						"#DOTA_Item_Desc_Crest_of_the_Flowering_Shade"
+		"item_name"								"#DOTA_Item_Crest_of_the_Flowering_Shade"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/spectre/phantasmal_disruptions_head/phantasmal_disruptions_head.vmdl"
+		"particle_folder"						"particles/econ/items/spectre/spectre_phantasmal"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spectre/spectre_phantasmal/spectre_phantasmal_head_ambient.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/spectre/spectre_phantasmal/spectre_phantasmal_head_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+				}
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#Flowering_Shade_Head_Default"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#Flowering_Shade_Head_Particle"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"price"					"1"
+						"item_def"				"16735"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/spectre/phantasmal_disruptions_head/phantasmal_disruptions_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/spectre/phantasmal_disruptions_head/phantasmal_disruptions_head_particle"
+				}
+			}
+			"skin"								"0"
+		}
+	}
+	"9129"
+	{
+		"name"									"Transversant Soul"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-20"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/spectre/immortal_shoulders/immortal_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Transversant_Soul"
+		"item_name"								"#DOTA_Item_Transversant_Soul"
+		"item_rarity"							"immortal"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/spectre/immortal_shoulders/immortal_shoulders.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1535796000"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"spectre_ti7_immortal"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spectre/spectre_spectral_dagger.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_transversant_soul/spectre_transversant_spectral_dagger.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Spectre.DaggerCast"
+				"modifier"						"Hero_Spectre.DaggerCast.ti7"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"spectre_spectral_dagger"
+				"modifier"						"spectre/immortal/spectre_spectral_dagger"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spectre/spectre_spectral_dagger_tracking.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_transversant_soul/spectre_transversant_spectral_dagger_tracking.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spectre/spectre_shadow_path_owner.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_transversant_soul/spectre_transversant_spectral_dagger_path_owner.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spectre/spectre_transversant_soul/spectre_transversant_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spectre/spectre_transversant_soul/spectre_transversant_ambient_v2.vpcf"
+				"style"							"1"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Transversant_Soul_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Transversant_Soul_1"
+					"skin"						"2"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/spectre/immortal_shoulders/immortal_shoulders"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/spectre/immortal_shoulders/immortal_shoulders_style1"
+				}
+			}
+		}
+	}
+	"9204"
+	{
+		"name"									"Transversant Soul of the Crimson Witness"
+		"prefab"								"wearable"
+		"creation_date"							"2017-08-02"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/spectre/immortal_shoulders/immortal_shoulders1"
+		"item_description"						"#DOTA_Item_Desc_Transversant_Soul_of_the_Crimson_Witness"
+		"item_name"								"#DOTA_Item_Transversant_Soul_of_the_Crimson_Witness"
+		"item_rarity"							"immortal"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/spectre/immortal_shoulders/immortal_shoulders.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"spectre_ti7_immortal"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spectre/spectre_spectral_dagger.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_transversant_soul/spectre_ti7_crimson_spectral_dagger.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Spectre.DaggerCast"
+				"modifier"						"Hero_Spectre.DaggerCast.ti7"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"spectre_spectral_dagger"
+				"modifier"						"spectre/immortal/spectre_crimson_spectral_dagger"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spectre/spectre_spectral_dagger_tracking.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_transversant_soul/spectre_ti7_crimson_spectral_dagger_tracking.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spectre/spectre_shadow_path_owner.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_transversant_soul/spectre_ti7_crimson_spectral_dagger_path_owner.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spectre/spectre_transversant_soul/spectre_ti7_golden_transversant_ambient.vpcf"
+				"style"							"0"
+			}
+			"skin"								"1"
+		}
+	}
+	"9512"
+	{
+		"name"									"Blade of Enduring Solitude"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-18"
+		"image_inventory"						"econ/items/spectre/haunted_hunting_weapon/haunted_hunting_weapon"
+		"item_name"								"#DOTA_Item_Blade_of_Enduring_Solitude"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/spectre/haunted_hunting_weapon/haunted_hunting_weapon.vmdl"
+	}
+	"9513"
+	{
+		"name"									"Mantle of Enduring Solitude"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-18"
+		"image_inventory"						"econ/items/spectre/haunted_hunting_shoulder/haunted_hunting_shoulder"
+		"item_name"								"#DOTA_Item_Mantle_of_Enduring_Solitude"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/spectre/haunted_hunting_shoulder/haunted_hunting_shoulder.vmdl"
+	}
+	"9514"
+	{
+		"name"									"Bracer of Enduring Solitude"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-18"
+		"image_inventory"						"econ/items/spectre/haunted_hunting_misc/haunted_hunting_misc"
+		"item_name"								"#DOTA_Item_Bracer_of_Enduring_Solitude"
+		"item_rarity"							"rare"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Misc"
+		"model_player"							"models/items/spectre/haunted_hunting_misc/haunted_hunting_misc.vmdl"
+	}
+	"9515"
+	{
+		"name"									"Crown of Enduring Solitude"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-18"
+		"image_inventory"						"econ/items/spectre/haunted_hunting_head/haunted_hunting_head"
+		"item_name"								"#DOTA_Item_Crown_of_Enduring_Solitude"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/spectre/haunted_hunting_head/haunted_hunting_head.vmdl"
+	}
+	"9516"
+	{
+		"name"									"Belt of Enduring Solitude"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-18"
+		"image_inventory"						"econ/items/spectre/haunted_hunting_belt/haunted_hunting_belt"
+		"item_name"								"#DOTA_Item_Belt_of_Enduring_Solitude"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/spectre/haunted_hunting_belt/haunted_hunting_belt.vmdl"
+	}
+	"9662"
+	{
+		"name"									"Phantom Advent"
+		"prefab"								"wearable"
+		"creation_date"							"2021-06-24"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/spectre/spectre_arcana/spectre_arcana_head"
+		"item_description"						"#DOTA_Item_Desc_Phantom_Advent"
+		"item_name"								"#DOTA_Item_Phantom_Advent"
+		"item_rarity"							"arcana"
+		"item_slot"								"head"
+		"model_player"							"models/items/spectre/spectre_arcana/spectre_arcana_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"						"1"
+			"giftable"							"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Spectre_Arcana_Style0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Spectre_Arcana_Style1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"gem"
+						{
+							"def_index"			"3036"
+							"type_field"		"strange_type"
+							"type_value"		"273"
+							"unlock_field"		"strange_value"
+							"unlock_value"		"100"
+						}
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"red"
+				"style"							"1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"custom_kill_effect"
+				"asset"							"kill"
+				"modifier"						"modifier_spectre_arcana_kill_effect"
+			}
+			"asset_modifier2"
+			{
+				"type"							"model_skin"
+				"style"							"0"
+				"skin"							"0"
+			}
+			"asset_modifier3"
+			{
+				"type"							"model_skin"
+				"style"							"1"
+				"skin"							"1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"arcana_level"
+				"level"							"1"
+				"style"							"0"
+			}
+			"asset_modifier5"
+			{
+				"type"							"arcana_level"
+				"level"							"2"
+				"style"							"1"
+			}
+			"asset_modifier6"
+			{
+				"type"							"buff_modifier"
+				"modifier"						"modifier_spectre_arcana"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spectre/spectre_ambient.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier8"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_hero_spectre"
+				"modifier"						"models/items/spectre/spectre_arcana/spectre_arcana_base.vmdl"
+			}
+			"asset_modifier9"
+			{
+				"type"							"default_idle_expression"
+				"asset"							"scenes/spectre/spectre_exp_idle_01.vcd"
+				"modifier"						"scenes/spectre/spectre_arc_exp_idle_01.vcd"
+			}
+			"asset_modifier10"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_ambient_head.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier11"
+			{
+				"type"							"particle"
+				"asset"							"particles/items_fx/blademail.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_blademail.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier12"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spectre/spectre_desolate.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_desolate.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier13"
+			{
+				"type"							"particle"
+				"asset"							"particles/items2_fx/radiance_owner.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_radiance_owner_body.vpcf"
+			}
+			"asset_modifier14"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spectre/spectre_death.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_death.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier15"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spectre/spectre_tgt_death.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_minigame_death_target.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier16"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spectre/spectre_caster_death.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_minigame_caster.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier817"
+			{
+				"type"							"healthbar_offset"
+				"offset"						"250"
+			}
+			"asset_modifier18"
+			{
+				"type"							"particle"
+				"asset"							"particles/msg_fx/msg_deny.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_msg_deny.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier19"
+			{
+				"type"							"particle"
+				"asset"							"particles/status_fx/status_effect_illusion.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_status_effect_illusion.vpcf"
+			}
+			"asset_modifier20"
+			{
+				"type"							"particle"
+				"asset"							"particles/generic_gameplay/illusion_killed.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_illusion_killed.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier21"
+			{
+				"type"							"particle"
+				"asset"							"particles/generic_gameplay/illusion_created.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_illusion_created.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier22"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spectre/spectre_dispersion.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_dispersion.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier23"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_ambient_v2_head.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier24"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/spectre/spectre_arcana/spectre_arcana_ambient_shoulder.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_ambient_v2_shoulder.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier25"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/spectre/spectre_arcana/spectre_arcana_ambient_bracers.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_ambient_v2_bracers.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier26"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/spectre/spectre_arcana/spectre_arcana_weapon_ambient.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_v2_weapon_ambient.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier27"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/spectre/spectre_arcana/spectre_arcana_ambient_floating_blade.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_ambient_v2_floating_blade.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier28"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spectre/spectre_ambient.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_ambient_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier29"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/spectre/spectre_arcana/spectre_arcana_ambient_skirt.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_ambient_skirt_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier30"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/spectre/spectre_arcana/spectre_arcana_loadout_spawn_dagger.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_loadout_v2_spawn_dagger.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier31"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/spectre/spectre_arcana/spectre_arcana_loadout_spawn_dagger_start.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_loadout_spawn_dagger_v2_start.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier32"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/spectre/spectre_arcana/spectre_arcana_loadout_spawn.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_loadout_spawn_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier33"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spectre/spectre_desolate.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_v2_desolate.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier34"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spectre/spectre_dispersion.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_v2_dispersion.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier35"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spectre/spectre_spectral_dagger.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_v2_spectral_dagger.vpcf"
+				"style"							"1"
+				"minimum_priority"				"1"
+			}
+			"asset_modifier36"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spectre/spectre_spectral_dagger.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_spectral_dagger.vpcf"
+				"style"							"0"
+				"minimum_priority"				"1"
+			}
+			"asset_modifier37"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spectre/spectre_spectral_dagger_tracking.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_spectral_dagger_tracking.vpcf"
+				"style"							"0"
+				"minimum_priority"				"1"
+			}
+			"asset_modifier38"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spectre/spectre_shadow_path_owner.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_shadow_path_owner.vpcf"
+				"style"							"0"
+				"minimum_priority"				"1"
+			}
+			"asset_modifier39"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spectre/spectre_spectral_dagger_tracking.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_v2_spectral_dagger_tracking.vpcf"
+				"style"							"1"
+				"minimum_priority"				"1"
+			}
+			"asset_modifier40"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spectre/spectre_shadow_path_owner.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_v2_shadow_path_owner.vpcf"
+				"style"							"1"
+				"minimum_priority"				"1"
+			}
+			"asset_modifier41"
+			{
+				"type"							"particle"
+				"asset"							"particles/items_fx/blademail.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_blademail_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier42"
+			{
+				"type"							"particle"
+				"asset"							"particles/generic_gameplay/illusion_created.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_illusion_created_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier43"
+			{
+				"type"							"particle"
+				"asset"							"particles/generic_gameplay/illusion_killed.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_illusion_killed_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier44"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spectre/spectre_death.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_death_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier45"
+			{
+				"type"							"particle"
+				"asset"							"particles/msg_fx/msg_deny.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_msg_deny_v2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier46"
+			{
+				"type"							"portrait_background_model"
+				"asset"							"models/items/spectre/spectre_arcana/spectre_arcana_pedestal.vmdl"
+				"style"							"0"
+			}
+			"asset_modifier47"
+			{
+				"type"							"portrait_background_model"
+				"asset"							"models/items/spectre/spectre_arcana/spectre_arcana_pedestal.vmdl"
+				"style"							"1"
+				"skin"							"1"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/spectre/spectre_arcana/spectre_arcana_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/spectre/spectre_arcana/spectre_arcana_head_style1"
+				}
+			}
+			"asset_modifier48"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_pedestal.vpcf"
+				"style"							"0"
+				"spawn_in_loadout_only"			"1"
+			}
+			"asset_modifier49"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_pedestal_v2.vpcf"
+				"style"							"1"
+				"spawn_in_loadout_only"			"1"
+			}
+			"asset_modifier50"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/spectre/spectre_arcana/spectre_arcana_minigame_death_target.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_minigame_v2_death_target.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier51"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/spectre/spectre_arcana/spectre_arcana_minigame_caster.vpcf"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_minigame_v2_caster.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier52"
+			{
+				"type"							"ability_icon"
+				"asset"							"spectre_desolate"
+				"modifier"						"spectre/spectre_arcana/spectre_desolate_arcana"
+				"style"							"0"
+			}
+			"asset_modifier53"
+			{
+				"type"							"ability_icon"
+				"asset"							"spectre_dispersion"
+				"modifier"						"spectre/spectre_arcana/spectre_dispersion_arcana"
+				"minimum_priority"				"1"
+				"style"							"0"
+			}
+			"asset_modifier54"
+			{
+				"type"							"ability_icon"
+				"asset"							"spectre_haunt"
+				"modifier"						"spectre/spectre_arcana/spectre_haunt_arcana"
+				"style"							"0"
+			}
+			"asset_modifier55"
+			{
+				"type"							"ability_icon"
+				"asset"							"spectre_reality"
+				"modifier"						"spectre/spectre_arcana/spectre_reality_arcana"
+				"style"							"0"
+				"minimum_priority"				"1"
+			}
+			"asset_modifier56"
+			{
+				"type"							"ability_icon"
+				"asset"							"spectre_spectral_dagger"
+				"modifier"						"spectre/spectre_arcana/spectre_spectral_dagger_arcana"
+				"minimum_priority"				"1"
+				"style"							"0"
+			}
+			"asset_modifier57"
+			{
+				"type"							"icon_replacement_hero"
+				"asset"							"npc_dota_hero_spectre"
+				"modifier"						"npc_dota_hero_spectre_alt1"
+				"style"							"0"
+				"force_display"					"1"
+			}
+			"asset_modifier58"
+			{
+				"type"							"icon_replacement_hero"
+				"asset"							"npc_dota_hero_spectre"
+				"modifier"						"npc_dota_hero_spectre_alt2"
+				"style"							"1"
+				"force_display"					"1"
+			}
+			"asset_modifier59"
+			{
+				"type"							"inventory_icon"
+				"asset"							"radiance"
+				"modifier"						"radiance_spectre_arcana_alt1"
+				"style"							"0"
+			}
+			"asset_modifier60"
+			{
+				"type"							"inventory_icon"
+				"asset"							"radiance_inactive"
+				"modifier"						"radiance_spectre_arcana_alt1_inactive"
+				"style"							"0"
+			}
+			"asset_modifier61"
+			{
+				"type"							"inventory_icon"
+				"asset"							"blade_mail"
+				"modifier"						"blade_mail_spectre_arcana_alt1"
+				"style"							"0"
+			}
+			"asset_modifier62"
+			{
+				"type"							"icon_replacement_hero_minimap"
+				"asset"							"npc_dota_hero_spectre"
+				"modifier"						"npc_dota_hero_spectre_alt1"
+				"style"							"0"
+				"force_display"					"1"
+			}
+			"asset_modifier63"
+			{
+				"type"							"icon_replacement_hero_minimap"
+				"asset"							"npc_dota_hero_spectre"
+				"modifier"						"npc_dota_hero_spectre_alt2"
+				"style"							"1"
+				"force_display"					"1"
+			}
+			"asset_modifier64"
+			{
+				"type"							"ability_icon"
+				"asset"							"spectre_desolate"
+				"modifier"						"spectre/spectre_arcana/spectre_desolate_arcana_alt"
+				"style"							"1"
+			}
+			"asset_modifier65"
+			{
+				"type"							"ability_icon"
+				"asset"							"spectre_dispersion"
+				"modifier"						"spectre/spectre_arcana/spectre_dispersion_arcana_alt"
+				"style"							"1"
+				"minimum_priority"				"1"
+			}
+			"asset_modifier66"
+			{
+				"type"							"ability_icon"
+				"asset"							"spectre_haunt"
+				"modifier"						"spectre/spectre_arcana/spectre_haunt_arcana_alt"
+				"style"							"1"
+			}
+			"asset_modifier67"
+			{
+				"type"							"ability_icon"
+				"asset"							"spectre_reality"
+				"modifier"						"spectre/spectre_arcana/spectre_reality_arcana_alt"
+				"style"							"1"
+				"minimum_priority"				"1"
+			}
+			"asset_modifier68"
+			{
+				"type"							"ability_icon"
+				"asset"							"spectre_spectral_dagger"
+				"modifier"						"spectre/spectre_arcana/spectre_spectral_dagger_arcana_alt"
+				"style"							"1"
+				"minimum_priority"				"1"
+			}
+			"asset_modifier69"
+			{
+				"type"							"inventory_icon"
+				"asset"							"blade_mail"
+				"modifier"						"blade_mail_spectre_arcana_alt2"
+				"style"							"1"
+			}
+			"asset_modifier70"
+			{
+				"type"							"inventory_icon"
+				"asset"							"radiance"
+				"modifier"						"radiance_spectre_arcana_alt2"
+				"style"							"1"
+			}
+			"asset_modifier71"
+			{
+				"type"							"inventory_icon"
+				"asset"							"radiance_inactive"
+				"modifier"						"radiance_spectre_arcana_alt2_inactive"
+				"style"							"1"
+			}
+			"asset_modifier72"
+			{
+				"type"							"ability_icon"
+				"asset"							"spectre_haunt_single"
+				"modifier"						"spectre/spectre_arcana/spectre_haunt_single"
+				"minimum_priority"				"1"
+				"style"							"0"
+			}
+			"asset_modifier73"
+			{
+				"type"							"ability_icon"
+				"asset"							"spectre_haunt_single"
+				"modifier"						"spectre/spectre_arcana/spectre_haunt_single_alt"
+				"style"							"1"
+				"minimum_priority"				"1"
+			}
+		}
+	}
+	"9663"
+	{
+		"name"									"Phantom Advent - Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2021-06-24"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/spectre/spectre_arcana/spectre_arcana_shoulder"
+		"item_name"								"#DOTA_Item_Phantom_Advent__Shoulders"
+		"item_rarity"							"arcana"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/spectre/spectre_arcana/spectre_arcana_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"						"1"
+			"giftable"							"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_ambient_shoulder.vpcf"
+			}
+		}
+	}
+	"12312"
+	{
+		"name"									"Phantom Advent - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-06-24"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/spectre/spectre_arcana/spectre_arcana_weapon"
+		"item_name"								"#DOTA_Item_Phantom_Advent__Weapon"
+		"item_rarity"							"arcana"
+		"model_player"							"models/items/spectre/spectre_arcana/spectre_arcana_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"						"1"
+			"giftable"							"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_weapon_ambient.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Spectre.Attack"
+				"modifier"						"Hero_Spectre.Attack.Arcana"
+			}
+		}
+	}
+	"12313"
+	{
+		"name"									"Phantom Advent - Bracers"
+		"prefab"								"wearable"
+		"creation_date"							"2021-06-24"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/spectre/spectre_arcana/spectre_arcana_misc"
+		"item_name"								"#DOTA_Item_Phantom_Advent__Bracers"
+		"item_rarity"							"arcana"
+		"item_slot"								"misc"
+		"model_player"							"models/items/spectre/spectre_arcana/spectre_arcana_misc.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"						"1"
+			"giftable"							"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_ambient_bracers.vpcf"
+			}
+		}
+	}
+	"12314"
+	{
+		"name"									"Phantom Advent - Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2021-06-24"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/spectre/spectre_arcana/spectre_arcana_skirt"
+		"item_name"								"#DOTA_Item_Phantom_Advent__Belt"
+		"item_rarity"							"arcana"
+		"item_slot"								"belt"
+		"model_player"							"models/items/spectre/spectre_arcana/spectre_arcana_skirt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"						"1"
+			"giftable"							"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spectre/spectre_arcana/spectre_arcana_ambient_skirt.vpcf"
+			}
+		}
+	}
+	"14352"
+	{
+		"name"									"Dimensional Seep Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"image_inventory"						"econ/items/spectre/spec_symbiotic_oddity_weapon/spec_symbiotic_oddity_weapon"
+		"item_name"								"#DOTA_Item_Dimensional_Seep_Weapon"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/spectre/spec_symbiotic_oddity_weapon/spec_symbiotic_oddity_weapon.vmdl"
+	}
+	"14353"
+	{
+		"name"									"Dimensional Seep Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"image_inventory"						"econ/items/spectre/spec_symbiotic_oddity_shoulder/spec_symbiotic_oddity_shoulder"
+		"item_name"								"#DOTA_Item_Dimensional_Seep_Shoulder"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/spectre/spec_symbiotic_oddity_shoulder/spec_symbiotic_oddity_shoulder.vmdl"
+	}
+	"14354"
+	{
+		"name"									"Dimensional Seep Misc"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"image_inventory"						"econ/items/spectre/spec_symbiotic_oddity_misc/spec_symbiotic_oddity_misc"
+		"item_name"								"#DOTA_Item_Dimensional_Seep_Misc"
+		"item_rarity"							"rare"
+		"item_slot"								"misc"
+		"model_player"							"models/items/spectre/spec_symbiotic_oddity_misc/spec_symbiotic_oddity_misc.vmdl"
+	}
+	"14355"
+	{
+		"name"									"Dimensional Seep Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"image_inventory"						"econ/items/spectre/spec_symbiotic_oddity_head/spec_symbiotic_oddity_head"
+		"item_name"								"#DOTA_Item_Dimensional_Seep_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"model_player"							"models/items/spectre/spec_symbiotic_oddity_head/spec_symbiotic_oddity_head.vmdl"
+	}
+	"14356"
+	{
+		"name"									"Dimensional Seep Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"image_inventory"						"econ/items/spectre/spec_symbiotic_oddity_belt/spec_symbiotic_oddity_belt"
+		"item_name"								"#DOTA_Item_Dimensional_Seep_Belt"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"model_player"							"models/items/spectre/spec_symbiotic_oddity_belt/spec_symbiotic_oddity_belt.vmdl"
+	}
+	"18508"
+	{
+		"name"									"Taunt: Ghostriding"
+		"prefab"								"taunt"
+		"creation_date"							"2021-02-15"
+		"image_inventory"						"econ/taunts/dota_icon_taunt_spectre_2021"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Ghostrider"
+		"item_name"								"#DOTA_Item_Taunt_Ghostriding"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"2021_taunt"
+				"gesture"						"1"
+			}
+		}
+	}
+	"18750"
+	{
+		"name"									"Phantom Advent - Voice"
+		"prefab"								"wearable"
+		"creation_date"							"2021-06-24"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/spectre/spectre_arcana/spectre_arcana_voice"
+		"item_name"								"#DOTA_Item_Phantom_Advent__Voice"
+		"item_rarity"							"arcana"
+		"item_slot"								"voice"
+		"static_attributes"
+		{
+			"cannot trade"						"1"
+			"giftable"							"0"
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"response_criteria"
+				"asset"							"spec_arc_low"
+			}
+			"asset_modifier1"
+			{
+				"type"							"chatwheel"
+				"asset"							"spectre_spec_laugh_13"
+				"modifier"						"spectre_spectre_wwa_laugh_13"
+				"label"							"#dota_chatwheel_label_spectre_arcana_laugh"
+				"message"						"#dota_chatwheel_message_spectre_arcana_laugh"
+			}
+			"asset_modifier2"
+			{
+				"type"							"chatwheel"
+				"asset"							"spectre_spec_ability_haunt_01"
+				"modifier"						"spectre_spectre_wwa_wheel_thanks_01"
+				"label"							"#dota_chatwheel_label_spectre_arcana_thank"
+				"message"						"#dota_chatwheel_message_spectre_arcana_thank"
+			}
+			"asset_modifier3"
+			{
+				"type"							"chatwheel"
+				"asset"							"spectre_spec_deny_01"
+				"modifier"						"spectre_spectre_wwa_wheel_deny_03"
+				"label"							"#dota_chatwheel_label_spectre_arcana_deny"
+				"message"						"#dota_chatwheel_message_spectre_arcana_deny"
+			}
+			"asset_modifier4"
+			{
+				"type"							"chatwheel"
+				"asset"							"spectre_spec_death_07"
+				"modifier"						"spectre_spectre_wwa_wheel_all_01"
+				"label"							"#dota_chatwheel_label_spectre_arcana_1"
+				"message"						"#dota_chatwheel_message_spectre_arcana_1"
+			}
+			"asset_modifier5"
+			{
+				"type"							"chatwheel"
+				"asset"							"spectre_spec_lasthit_01"
+				"modifier"						"spectre_spectre_wwa_wheel_all_09"
+				"label"							"#dota_chatwheel_label_spectre_arcana_2"
+				"message"						"#dota_chatwheel_message_spectre_arcana_2"
+			}
+			"asset_modifier6"
+			{
+				"type"							"chatwheel"
+				"asset"							"spectre_spec_doubdam_02"
+				"modifier"						"spectre_spectre_wwa_rival_199"
+				"label"							"#dota_chatwheel_label_spectre_arcana_3"
+				"message"						"#dota_chatwheel_message_spectre_arcana_3"
+			}
+			"asset_modifier7"
+			{
+				"type"							"chatwheel"
+				"asset"							"spectre_spec_kill_02"
+				"modifier"						"spectre_spectre_wwa_levelup_14"
+				"label"							"#dota_chatwheel_label_spectre_arcana_4"
+				"message"						"#dota_chatwheel_message_spectre_arcana_4"
+			}
+			"asset_modifier8"
+			{
+				"type"							"chatwheel"
+				"asset"							"spectre_spec_kill_01"
+				"modifier"						"spectre_spectre_wwa_lasthit_07"
+				"label"							"#dota_chatwheel_label_spectre_arcana_5"
+				"message"						"#dota_chatwheel_message_spectre_arcana_5"
+			}
+			"asset_modifier9"
+			{
+				"type"							"chatwheel"
+				"asset"							"spectre_spec_respawn_04"
+				"modifier"						"spectre_spectre_wwa_respawn_10"
+				"label"							"#dota_chatwheel_label_spectre_arcana_6"
+				"message"						"#dota_chatwheel_message_spectre_arcana_6"
+			}
+		}
+	}
+	"20154"
+	{
+		"name"									"The Ephemeral Haunt Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Blade of the Ephemeral Haunt"		"1"
+			"Dress of the Ephemeral Haunt"		"1"
+			"Horns of the Ephemeral Haunt"		"1"
+			"Sleeves of the Ephemeral Haunt"	"1"
+			"Wings of the Ephemeral Haunt"		"1"
+		}
+		"creation_date"							"2013-03-26"
+		"image_inventory"						"econ/sets/DOTA_Item_The_Ephemeral_Haunt_Set"
+		"item_description"						"#DOTA_Item_Desc_The_Ephemeral_Haunt_Set"
+		"item_name"								"#DOTA_Item_The_Ephemeral_Haunt_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"3/26/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20224"
+	{
+		"name"									"The Eternal Light Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Belt of the Eternal Light"			"1"
+			"Chestpiece of the Eternal Light"	"1"
+			"Encasement of the Eternal Light"	"1"
+			"Plume of the Eternal Light"		"1"
+			"Teeth of the Eternal Light"		"1"
+		}
+		"creation_date"							"2013-07-23"
+		"image_inventory"						"econ/sets/DOTA_Item_The_Eternal_Light"
+		"item_description"						"#DOTA_Item_Desc_The_Eternal_Light"
+		"item_name"								"#DOTA_Item_The_Eternal_Light_Set"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Common"
+			"category_tags"						"Bundles"
+			"date"								"7/23/2013"
+			"bundle"							"1"
+			"price"								"249"
+		}
+	}
+	"20235"
+	{
+		"name"									"Malicious Efflorescence Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Blades of Malicious Efflorescence"	"1"
+			"Bracers of Malicious Efflorescence""1"
+			"Horns of Malicious Efflorescence"	"1"
+			"Robes of Malicious Efflorescence"	"1"
+			"Wings of Malicious Efflorescence"	"1"
+		}
+		"creation_date"							"2013-08-20"
+		"image_inventory"						"econ/sets/DOTA_Item_Malicious_Efflorescence_Set"
+		"item_description"						"#DOTA_Item_Desc_Malicious_Efflorescence_Set"
+		"item_name"								"#DOTA_Item_Malicious_Efflorescence_Set"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"8/20/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20413"
+	{
+		"name"									"Phasma Phasmatis"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Phasma Phasmatis Belt"				"1"
+			"Phasma Phasmatis Blade"			"1"
+			"Phasma Phasmatis Head"				"1"
+			"Phasma Phasmatis Shoulders"		"1"
+		}
+		"creation_date"							"2014-02-25"
+		"image_inventory"						"econ/sets/DOTA_Item_Phasma_Phasmatis"
+		"item_description"						"#DOTA_Item_Desc_Phasma_Phasmatis"
+		"item_name"								"#DOTA_Item_Phasma_Phasmatis"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"2/26/2014"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20620"
+	{
+		"name"									"Volatile Firmament"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Volatile Firmament Loading Screen"	"1"
+			"Bracer of the Volatile Firmament"	"1"
+			"Blade of the Volatile Firmament"	"1"
+			"Shoulders of the Volatile Firmament""1"
+			"Shadow of the Volatile Firmament"	"1"
+			"Helm of the Volatile Firmament"	"1"
+		}
+		"creation_date"							"2014-08-14"
+		"image_inventory"						"econ/loading_screens/darkgabriel"
+		"item_description"						"#DOTA_Item_Desc_Volatile_Firmament"
+		"item_name"								"#DOTA_Item_Volatile_Firmament"
+		"item_rarity"							"rare"
+	}
+	"20726"
+	{
+		"name"									"Spectral Conservator"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Conservator's Blade"				"1"
+			"Conservator's Headguard"			"1"
+			"Conservator's Shoulderguard"		"1"
+			"Conservator's Vanguard"			"1"
+			"Conservator's Bracers"				"1"
+		}
+		"creation_date"							"2015-01-22"
+		"image_inventory"						"econ/loading_screens/dotapit_s3_spectre"
+		"item_description"						"#DOTA_Item_Desc_Spectral_Conservator"
+		"item_name"								"#DOTA_Item_Spectral_Conservator"
+		"item_rarity"							"mythical"
+		"shards_purchase_price"					"2500"
+	}
+	"20808"
+	{
+		"name"									"Flowing Entropy"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Flowing Entropy Loading Screen"	"1"
+			"Mantle of Flowing Entropy"			"1"
+			"Blade of Flowing Entropy"			"1"
+			"Tabard of Flowing Entropy"			"1"
+			"Crown of Flowing Entropy"			"1"
+			"Bracers of Flowing Entropy"		"1"
+		}
+		"creation_date"							"2015-05-20"
+		"image_inventory"						"econ/loading_screens/entropy_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Flowing_Entropy"
+		"item_name"								"#DOTA_Item_Flowing_Entropy"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"20895"
+	{
+		"name"									"Flowering Shade"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Crest of the Flowering Shade"		"1"
+			"Drape of the Flowering Shade"		"1"
+			"Edge of the Flowering Shade"		"1"
+			"Flow of the Flowering Shade"		"1"
+			"Flowering Shade Loading Screen"	"1"
+		}
+		"creation_date"							"2015-09-10"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/loading_screens/phantasmal_disruptions_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Flowering_Shade"
+		"item_name"								"#DOTA_Item_Flowering_Shade"
+		"item_rarity"							"mythical"
+		"branding"
+		{
+			"corporation_id"					"88508515"
+		}
+	}
+	"21145"
+	{
+		"name"									"Enduring Solitude"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Enduring Solitude Loading Screen"	"1"
+			"Belt of Enduring Solitude"			"1"
+			"Crown of Enduring Solitude"		"1"
+			"Bracer of Enduring Solitude"		"1"
+			"Mantle of Enduring Solitude"		"1"
+			"Blade of Enduring Solitude"		"1"
+		}
+		"creation_date"							"2017-10-25"
+		"image_inventory"						"econ/loading_screens/haunted_hunting_newhaunted_hunting_loadingscreen"
+		"item_name"								"#DOTA_Item_Enduring_Solitude"
+		"item_rarity"							"rare"
+	}
+	"21361"
+	{
+		"name"									"Phantom Advent Bundle"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Phantom Advent - Voice"			"1"
+			"Phantom Advent"					"1"
+			"Phantom Advent - Shoulders"		"1"
+			"Phantom Advent - Weapon"			"1"
+			"Phantom Advent - Bracers"			"1"
+			"Phantom Advent - Belt"				"1"
+		}
+		"creation_date"							"2021-06-24"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/spectre/spectre_arcana/spectre_arcana_bundle"
+		"item_description"						"#DOTA_Item_Desc_Phantom_Advent_Bundle"
+		"item_name"								"#DOTA_Item_Phantom_Advent_Bundle"
+		"item_rarity"							"arcana"
+		"static_attributes"
+		{
+			"cannot trade"						"1"
+			"giftable"							"0"
+		}
+	}
+	"21545"
+	{
+		"name"									"Dimensional Seep"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Dimensional Seep Belt"				"1"
+			"Dimensional Seep Head"				"1"
+			"Dimensional Seep Misc"				"1"
+			"Dimensional Seep Shoulder"			"1"
+			"Dimensional Seep Weapon"			"1"
+		}
+		"creation_date"							"2020-05-16"
+		"image_inventory"						"econ/sets/DOTA_Item_Symbiotic_Oddity"
+		"item_name"								"#DOTA_Item_Dimensional_Seep"
+		"item_rarity"							"rare"
+	}
+}

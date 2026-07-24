@@ -1,0 +1,87 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"spectre_desolate"
+	{
+		"AbilityValues"
+		{
+			"radius"							"0"
+		}
+	}
+	"spectre_suffering_specter"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_spectre/spectre_suffering_specter"
+		"AbilityTextureName"					"spectre_suffering_specter"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_NO"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PHYSICAL"
+		"FightRecapLevel"						"2"
+		"HasScepterUpgrade"						"1"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastGestureSlot"				"DEFAULT"
+		"AbilityCastPoint"						"0.3 0.3 0.3"
+		"AbilityCooldown"						"80 60 40"
+		"AbilityManaCost"						"150"
+		"AbilityValues"
+		{
+			"save_pct"
+			{
+				"value"							"12 19 26"
+				"special_bonus_unique_spectre_4""+5"
+			}
+			"save_time"							"6"
+			"base_damage"						"350 475 600"
+			"bonus_health_pct"					"10 23 36"
+			"speed"								"1700"
+			"radius"
+			{
+				"value"							"275"
+				"affected_by_aoe_increase"		"1"
+			}
+			"penalty_distance"					"2000"
+			"penalty_damage_max_pct"			"80"
+			"AbilityCastRange"					"1200"
+		}
+	}
+	"spectre_haunted_night"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_spectre/spectre_haunted_night"
+		"AbilityTextureName"					"spectre_haunted_night"
+		"AbilityType"							"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_NO"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PHYSICAL"
+		"FightRecapLevel"						"2"
+		"IsGrantedByScepter"					"1"
+		"MaxLevel"								"1"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastGestureSlot"				"DEFAULT"
+		"AbilityCastPoint"						"0.3 0.3 0.3"
+		"AbilityCooldown"						"180"
+		"AbilityManaCost"						"150"
+		"AbilityValues"
+		{
+			"night_duration"					"10"
+		}
+	}
+}

@@ -1,0 +1,2294 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"441"
+	{
+		"name"									"Vengeful Spirit's Hair"
+		"prefab"								"default_item"
+		"creation_date"							"2013-03-25"
+		"image_inventory"						"econ/heroes/vengeful/vengeful_hair"
+		"item_description"						"#DOTA_Item_Desc_Vengeful_Hair"
+		"item_name"								"#DOTA_Item_Vengeful_Spirits_Hair"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/vengeful/vengeful_hair.vmdl"
+	}
+	"442"
+	{
+		"name"									"Vengeful Spirit's Weapon"
+		"prefab"								"default_item"
+		"creation_date"							"2013-03-25"
+		"image_inventory"						"econ/heroes/vengeful/vengeful_weapon"
+		"item_description"						"#DOTA_Item_Desc_Vengeful_Spirit_Weapon"
+		"item_name"								"#DOTA_Item_Vengeful_Spirits_Weapon"
+		"model_player"							"models/heroes/vengeful/vengeful_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"445"
+	{
+		"name"									"Vengeful Spirit's Upper Armor"
+		"prefab"								"default_item"
+		"creation_date"							"2013-03-25"
+		"image_inventory"						"econ/heroes/vengeful/vengeful_upperbody"
+		"item_description"						"#DOTA_Item_Desc_Vengeful_Spirit_Shoulders_and_Arms"
+		"item_name"								"#DOTA_Item_Vengeful_Spirits_Upper_Armor"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/heroes/vengeful/vengeful_upperbody.vmdl"
+	}
+	"447"
+	{
+		"name"									"Vengeful Spirit's Legs"
+		"prefab"								"default_item"
+		"creation_date"							"2013-03-25"
+		"image_inventory"						"econ/heroes/vengeful/vengeful_lowerbody"
+		"item_description"						"#DOTA_Item_Desc_Vengeful_Lower_Body"
+		"item_name"								"#DOTA_Item_Vengeful_Spirits_Legs"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Legs"
+		"model_player"							"models/heroes/vengeful/vengeful_lowerbody.vmdl"
+	}
+	"517"
+	{
+		"name"									"Vengeful Spirit's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-05"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vengeful_Spirits_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_vengeful"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_vengeful/vengeful_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_vengeful/vengeful_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_uppertorso"
+					}
+				}
+			}
+		}
+	}
+	"5344"
+	{
+		"name"									"Scree'auk's Talon"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-23"
+		"image_inventory"						"econ/items/vengeful/vengeful_immortal_weapon/vengeful_immortal_weapon"
+		"item_description"						"#DOTA_Item_Desc_Screeauks_Talon"
+		"item_name"								"#DOTA_Item_Screeauks_Talon"
+		"item_rarity"							"immortal"
+		"model_player"							"models/items/vengeful/vengeful_immortal_weapon/vengeful_immortal_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/vengeful/vengeful_weapon_talon"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_ATTACK"
+				"modifier"						"immortal"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_CAST_ABILITY_2"
+				"modifier"						"immortal"
+			}
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_vengeful/vengeful_wave_of_terror.vpcf"
+				"modifier"						"particles/econ/items/vengeful/vengeful_weapon_talon/vengeful_wave_of_terror_weapon_talon.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/vengeful/vengeful_weapon_talon/vengeful_weapon_talon_ambient.vpcf"
+				"system"						"particles/econ/items/vengeful/vengeful_weapon_talon/vengeful_weapon_talon_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"6256"
+	{
+		"name"									"Helm of the Fallen Princess"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-11"
+		"image_inventory"						"econ/items/vengefulspirit/fallenprincess_head/fallenprincess_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Fallen_Princess"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/vengefulspirit/fallenprincess_head/fallenprincess_head.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/vengefulspirit/fallenprincess_head/fallenprincess_head.vmdl"
+					"name"						"#DOTA_Item_Fallen_Princess_Head_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/vengefulspirit/fallenprincess_head_s1/fallenprincess_head_s1.vmdl"
+					"name"						"#DOTA_Item_Fallen_Princess_Head_Style1"
+					"alternate_icon"			"1"
+				}
+				"2"
+				{
+					"model_player"				"models/items/vengefulspirit/fallenprincess_head_s2/fallenprincess_head_s2.vmdl"
+					"name"						"#DOTA_Item_Fallen_Princess_Head_Style2"
+					"alternate_icon"			"2"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/vengefulspirit/fallenprincess_head/fallenprincess_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/vengefulspirit/fallenprincess_head_s1/fallenprincess_head_s1"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/vengefulspirit/fallenprincess_head_s2/fallenprincess_head_s2"
+				}
+			}
+		}
+	}
+	"6257"
+	{
+		"name"									"Wings of the Fallen Princess"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-11"
+		"image_inventory"						"econ/items/vengefulspirit/fallenprincess_shoulders/fallenprincess_shoulders"
+		"item_name"								"#DOTA_Item_Wings_of_the_Fallen_Princess"
+		"item_rarity"							"legendary"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/vengefulspirit/fallenprincess_shoulders/fallenprincess_shoulders.vmdl"
+		"particle_folder"						"particles/econ/items/vengeful/vengeful_wing_fallenprincess"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/vengefulspirit/fallenprincess_shoulders/fallenprincess_shoulders.vmdl"
+					"name"						"#DOTA_Item_Fallen_Princess_Shoulders_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/vengefulspirit/fallenprincess_shoulders_s1/fallenprincess_shoulders_s1.vmdl"
+					"name"						"#DOTA_Item_Fallen_Princess_Shoulders_Style1"
+					"alternate_icon"			"1"
+				}
+				"2"
+				{
+					"model_player"				"models/items/vengefulspirit/fallenprincess_shoulders_s2/fallenprincess_shoulders_s2.vmdl"
+					"name"						"#DOTA_Item_Fallen_Princess_Shoulders_Style2"
+					"alternate_icon"			"2"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/vengefulspirit/fallenprincess_shoulders/fallenprincess_shoulders"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/vengefulspirit/fallenprincess_shoulders_s1/fallenprincess_shoulders_s1"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/vengefulspirit/fallenprincess_shoulders_s2/fallenprincess_shoulders_s2"
+				}
+			}
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/vengeful/vengeful_wing_fallenprincess/venge_wingsoffallenprincess_ambient.vpcf"
+				"system"						"particles/econ/items/vengeful/vengeful_wing_fallenprincess/venge_wingsoffallenprincess_ambient.vpcf"
+				"attach_type"					"absorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+		}
+	}
+	"6258"
+	{
+		"name"									"Talon of the Fallen Princess"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-11"
+		"image_inventory"						"econ/items/vengefulspirit/fallenprincess_weapon/fallenprincess_weapon"
+		"item_name"								"#DOTA_Item_Talon_of_the_Fallen_Princess"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Talon"
+		"model_player"							"models/items/vengefulspirit/fallenprincess_weapon/fallenprincess_weapon.vmdl"
+	}
+	"6259"
+	{
+		"name"									"Legs of the Fallen Princess"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-11"
+		"image_inventory"						"econ/items/vengefulspirit/fallenprincess_legs/fallenprincess_legs"
+		"item_name"								"#DOTA_Item_Legs_of_the_Fallen_Princess"
+		"item_rarity"							"uncommon"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Legs"
+		"model_player"							"models/items/vengefulspirit/fallenprincess_legs/fallenprincess_legs.vmdl"
+	}
+	"6515"
+	{
+		"name"									"Cape of the Banished Princess"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-23"
+		"image_inventory"						"econ/items/vengefulspirit/banished_princess_cape/banished_princess_cape"
+		"item_name"								"#DOTA_Item_Cape_of_the_Banished_Princess"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/vengefulspirit/banished_princess_cape/banished_princess_cape.vmdl"
+	}
+	"6516"
+	{
+		"name"									"Style of the Banished Princess"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-23"
+		"image_inventory"						"econ/items/vengefulspirit/banished_princess_head/banished_princess_head"
+		"item_name"								"#DOTA_Item_Style_of_the_Banished_Princess"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/vengefulspirit/banished_princess_head/banished_princess_head.vmdl"
+	}
+	"6517"
+	{
+		"name"									"Leggings of the Banished Princess"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-23"
+		"image_inventory"						"econ/items/vengefulspirit/banished_princess_legs/banished_princess_legs"
+		"item_name"								"#DOTA_Item_Leggings_of_the_Banished_Princess"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Leggings"
+		"model_player"							"models/items/vengefulspirit/banished_princess_legs/banished_princess_legs.vmdl"
+	}
+	"6518"
+	{
+		"name"									"Weapon of the Banished Princess"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-23"
+		"image_inventory"						"econ/items/vengefulspirit/banished_princess_weapon/banished_princess_weapon"
+		"item_name"								"#DOTA_Item_Weapon_of_the_Banished_Princess"
+		"item_rarity"							"uncommon"
+		"model_player"							"models/items/vengefulspirit/banished_princess_weapon/banished_princess_weapon.vmdl"
+	}
+	"6641"
+	{
+		"name"									"Crown of the Merciless"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-12"
+		"image_inventory"						"econ/items/vengefulspirit/crownmerciless_head/crownmerciless_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Merciless"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Crown"
+		"model_player"							"models/items/vengefulspirit/crownmerciless_head/crownmerciless_head.vmdl"
+	}
+	"7109"
+	{
+		"name"									"Dreadhawk Blade"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-12"
+		"image_inventory"						"econ/items/vengefulspirit/dreadhawk_weapon/dreadhawk_weapon"
+		"item_name"								"#DOTA_Item_Dreadhawk_Blade"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/vengefulspirit/dreadhawk_weapon/dreadhawk_weapon.vmdl"
+	}
+	"7110"
+	{
+		"name"									"Dreadhawk Leggings"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-12"
+		"image_inventory"						"econ/items/vengefulspirit/dreadhawk_legs/dreadhawk_legs"
+		"item_name"								"#DOTA_Item_Dreadhawk_Leggings"
+		"item_rarity"							"uncommon"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Leggings"
+		"model_player"							"models/items/vengefulspirit/dreadhawk_legs/dreadhawk_legs.vmdl"
+	}
+	"7111"
+	{
+		"name"									"Dreadhawk Harness"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-12"
+		"image_inventory"						"econ/items/vengefulspirit/dreadhawk_shoulder/dreadhawk_shoulder"
+		"item_name"								"#DOTA_Item_Dreadhawk_Harness"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Harness"
+		"model_player"							"models/items/vengefulspirit/dreadhawk_shoulder/dreadhawk_shoulder.vmdl"
+	}
+	"7112"
+	{
+		"name"									"Dreadhawk Headdress"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-12"
+		"image_inventory"						"econ/items/vengefulspirit/dreadhawk_head/dreadhawk_head"
+		"item_name"								"#DOTA_Item_Dreadhawk_Headdress"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Headdress"
+		"model_player"							"models/items/vengefulspirit/dreadhawk_head/dreadhawk_head.vmdl"
+	}
+	"7510"
+	{
+		"name"									"Bodice of Regal Ruin"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-30"
+		"image_inventory"						"econ/items/vengefulspirit/regal_ruin_shoulder/regal_ruin_shoulder"
+		"item_name"								"#DOTA_Item_Bodice_of_Regal_Ruin"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Bodice"
+		"model_player"							"models/items/vengefulspirit/regal_ruin_shoulder/regal_ruin_shoulder.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"7523"
+	{
+		"name"									"Sash of Regal Ruin"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-30"
+		"image_inventory"						"econ/items/vengefulspirit/regal_ruin_legs/regal_ruin_legs"
+		"item_name"								"#DOTA_Item_Sash_of_Regal_Ruin"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Sash"
+		"model_player"							"models/items/vengefulspirit/regal_ruin_legs/regal_ruin_legs.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"7524"
+	{
+		"name"									"Style of Regal Ruin"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-30"
+		"image_inventory"						"econ/items/vengefulspirit/regal_ruin_head/regal_ruin_head"
+		"item_name"								"#DOTA_Item_Style_of_Regal_Ruin"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/vengefulspirit/regal_ruin_head/regal_ruin_head.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"7537"
+	{
+		"name"									"Prong of Regal Ruin"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-30"
+		"image_inventory"						"econ/items/vengefulspirit/regal_ruin_weapon/regal_ruin_weapon"
+		"item_name"								"#DOTA_Item_Prong_of_Regal_Ruin"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/vengefulspirit/regal_ruin_weapon/regal_ruin_weapon.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"7595"
+	{
+		"name"									"Taunt: The Royal Raspberry"
+		"prefab"								"taunt"
+		"creation_date"							"2016-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/taunts/taunt_icon_vengeful_lady_chicken_dance"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Lady_Chicken_Dance"
+		"item_name"								"#DOTA_Item_Taunt_The_Royal_Raspberry"
+		"item_rarity"							"immortal"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1471158000"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"chicken_gesture"
+				"style"							"0"
+				"gesture"						"1"
+			}
+		}
+	}
+	"7796"
+	{
+		"name"									"Umbral Skirt"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-23"
+		"image_inventory"						"econ/items/vengefulspirit/huangs_umbra_skirt/huangs_umbra_skirt"
+		"item_description"						"#DOTA_Item_Desc_Umbral_Skirt"
+		"item_name"								"#DOTA_Item_Umbral_Skirt"
+		"item_rarity"							"uncommon"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Skirt"
+		"model_player"							"models/items/vengefulspirit/huangs_umbra_skirt/huangs_umbra_skirt.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_vengefulspirit' gem_def_index: 3005 } asset_modifier: 110"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"vengefulspirit_nether_swap"
+				"modifier"						"vengefulspirit/huangs_umbra_icons/vengefulspirit_nether_swap"
+			}
+		}
+	}
+	"7797"
+	{
+		"name"									"Umbral Virtue"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-23"
+		"image_inventory"						"econ/items/vengefulspirit/huangs_umbra_head/huangs_umbra_head"
+		"item_description"						"#DOTA_Item_Desc_Umbral_Virtue"
+		"item_name"								"#DOTA_Item_Umbral_Virtue"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Headdress"
+		"model_player"							"models/items/vengefulspirit/huangs_umbra_head/huangs_umbra_head.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_vengefulspirit' gem_def_index: 3005 } asset_modifier: 108"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"vengefulspirit_wave_of_terror"
+				"modifier"						"vengefulspirit/huangs_umbra_icons/vengefulspirit_wave_of_terror"
+			}
+		}
+	}
+	"7798"
+	{
+		"name"									"Umbral Glaive"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-23"
+		"image_inventory"						"econ/items/vengefulspirit/huangs_umbra_weapon/huangs_umbra_weapon"
+		"item_description"						"#DOTA_Item_Desc_Umbral_Glaive"
+		"item_name"								"#DOTA_Item_Umbral_Glaive"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Glaive"
+		"model_player"							"models/items/vengefulspirit/huangs_umbra_weapon/huangs_umbra_weapon.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_vengefulspirit' gem_def_index: 3005 } asset_modifier: 107"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"vengefulspirit_magic_missile"
+				"modifier"						"vengefulspirit/huangs_umbra_icons/vengefulspirit_magic_missile"
+			}
+		}
+	}
+	"7799"
+	{
+		"name"									"Umbral Duty"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-23"
+		"image_inventory"						"econ/items/vengefulspirit/huangs_umbra_shoulders/huangs_umbra_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Umbral_Duty"
+		"item_name"								"#DOTA_Item_Umbral_Duty"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/vengefulspirit/huangs_umbra_shoulders/huangs_umbra_shoulders.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_vengefulspirit' gem_def_index: 3005 } asset_modifier: 109"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"vengefulspirit_command_aura"
+				"modifier"						"vengefulspirit/huangs_umbra_icons/vengefulspirit_command_aura"
+			}
+		}
+	}
+	"8616"
+	{
+		"name"									"Adornment of Omen's Embrace"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-25"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/vengefulspirit/forsaken_wings_shoulder/forsaken_wings_shoulder"
+		"item_name"								"#DOTA_Item_Adornment_of_Omens_Embrace"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Adornment"
+		"model_player"							"models/items/vengefulspirit/forsaken_wings_shoulder/forsaken_wings_shoulder.vmdl"
+	}
+	"8617"
+	{
+		"name"									"Crest of Omen's Embrace"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-25"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/vengefulspirit/forsaken_wings_head/forsaken_wings_head"
+		"item_name"								"#DOTA_Item_Crest_of_Omens_Embrace"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Crest"
+		"model_player"							"models/items/vengefulspirit/forsaken_wings_head/forsaken_wings_head.vmdl"
+	}
+	"8618"
+	{
+		"name"									"Katar of Omen's Embrace"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-25"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/vengefulspirit/forsaken_wings_weapon/forsaken_wings_weapon"
+		"item_name"								"#DOTA_Item_Katar_of_Omens_Embrace"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Katar"
+		"model_player"							"models/items/vengefulspirit/forsaken_wings_weapon/forsaken_wings_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"8619"
+	{
+		"name"									"Skirt of Omen's Embrace"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-25"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/vengefulspirit/forsaken_wings_legs/forsaken_wings_legs"
+		"item_name"								"#DOTA_Item_Skirt_of_Omens_Embrace"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Skirt"
+		"model_player"							"models/items/vengefulspirit/forsaken_wings_legs/forsaken_wings_legs.vmdl"
+	}
+	"8918"
+	{
+		"name"									"Sigil of Echoes"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-29"
+		"image_inventory"						"econ/items/vengefulspirit/echoes_eyrie_shoulder/echoes_eyrie_shoulder"
+		"item_name"								"#DOTA_Item_Sigil_of_Echoes"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/vengefulspirit/echoes_eyrie_shoulder/echoes_eyrie_shoulder.vmdl"
+	}
+	"8919"
+	{
+		"name"									"Helm of Echoes"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-29"
+		"image_inventory"						"econ/items/vengefulspirit/echoes_eyrie_head/echoes_eyrie_head"
+		"item_name"								"#DOTA_Item_Helm_of_Echoes"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/vengefulspirit/echoes_eyrie_head/echoes_eyrie_head.vmdl"
+		"particle_folder"						"particles/econ/items/vengeful/vengeful_echoes_eyrie"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/vengeful/vengeful_echoes_eyrie/vengeful_echoes_eyrie_head.vpcf"
+				"system"						"particles/econ/items/vengeful/vengeful_echoes_eyrie/vengeful_echoes_eyrie_head.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+				}
+			}
+		}
+	}
+	"8920"
+	{
+		"name"									"Greaves of Echoes"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-29"
+		"image_inventory"						"econ/items/vengefulspirit/echoes_eyrie_legs/echoes_eyrie_legs"
+		"item_name"								"#DOTA_Item_Greaves_of_Echoes"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Legs"
+		"model_player"							"models/items/vengefulspirit/echoes_eyrie_legs/echoes_eyrie_legs.vmdl"
+	}
+	"8994"
+	{
+		"name"									"Wrath of Echoes"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-03"
+		"image_inventory"						"econ/items/vengefulspirit/echoes_eyrie_weapon/echoes_eyrie_weapon"
+		"item_name"								"#DOTA_Item_Wrath_of_Echoes"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/vengefulspirit/echoes_eyrie_weapon/echoes_eyrie_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/vengeful/vengeful_echoes_eyrie"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/vengeful/vengeful_echoes_eyrie/vengeful_echoes_eyrie_weapon.vpcf"
+				"system"						"particles/econ/items/vengeful/vengeful_echoes_eyrie/vengeful_echoes_eyrie_weapon.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_energy"
+					}
+				}
+			}
+		}
+	}
+	"9749"
+	{
+		"name"									"Mournful Reverie"
+		"prefab"								"wearable"
+		"creation_date"							"2018-03-29"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/vengefulspirit/vs_ti8_immortal_shoulder/vs_ti8_immortal_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Mournful_Reverie"
+		"item_name"								"#DOTA_Item_Mournful_Reverie"
+		"item_rarity"							"immortal"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/vengefulspirit/vs_ti8_immortal_shoulder/vs_ti8_immortal_shoulder.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567296000"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/vengeful/vs_ti8_immortal_shoulder/vs_ti8_immortal_shoulder_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_vengeful/vengeful_magic_missle.vpcf"
+				"modifier"						"particles/econ/items/vengeful/vs_ti8_immortal_shoulder/vs_ti8_immortal_magic_missle.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier2"
+			{
+				"type"							"sound"
+				"asset"							"Hero_VengefulSpirit.MagicMissile"
+				"modifier"						"Hero_VengefulSpirit.MagicMissile.TI8"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"sound"
+				"asset"							"Hero_VengefulSpirit.MagicMissileImpact"
+				"modifier"						"Hero_VengefulSpirit.MagicMissileImpact.TI8"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"vengefulspirit_magic_missile"
+				"modifier"						"vengefulspirit/ti8_immortal_back/vengefulspirit_magic_missile_immortal"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+		}
+	}
+	"9889"
+	{
+		"name"									"Helmet of Flightless Fury"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-25"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/vengefulspirit/flightless_fury_head/flightless_fury_head"
+		"item_name"								"#DOTA_Item_Helmet_of_Flightless_Fury"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/vengefulspirit/flightless_fury_head/flightless_fury_head.vmdl"
+	}
+	"9890"
+	{
+		"name"									"Armor of Flightless Fury"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-25"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/vengefulspirit/flightless_fury_shoulder/flightless_fury_shoulder"
+		"item_name"								"#DOTA_Item_Armor_of_Flightless_Fury"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/vengefulspirit/flightless_fury_shoulder/flightless_fury_shoulder.vmdl"
+	}
+	"9891"
+	{
+		"name"									"Blade of Flightless Fury"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-25"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/vengefulspirit/flightless_fury_weapon/flightless_fury_weapon"
+		"item_description"						"#DOTA_Item_Desc_Blade_of_Flightless_Fury"
+		"item_name"								"#DOTA_Item_Blade_of_Flightless_Fury"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/vengefulspirit/flightless_fury_weapon/flightless_fury_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/vengeful/vengeful_flightless/vengeful_flightless_weapon_ambient.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/vengeful/vengeful_flightless/vengeful_flightless_weapon_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#Blade_of_Flightless_Fury_Default"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#Blade_of_Flightless_Fury_Particle"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"price"					"1"
+						"item_def"				"16735"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/vengefulspirit/flightless_fury_weapon/flightless_fury_weapon"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/vengefulspirit/flightless_fury_weapon/flightless_fury_weapon_particle"
+				}
+			}
+			"skin"								"0"
+		}
+	}
+	"9892"
+	{
+		"name"									"Greaves of Flightless Fury"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-25"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/vengefulspirit/flightless_fury_legs/flightless_fury_legs"
+		"item_name"								"#DOTA_Item_Greaves_of_Flightless_Fury"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Greaves"
+		"model_player"							"models/items/vengefulspirit/flightless_fury_legs/flightless_fury_legs.vmdl"
+	}
+	"12420"
+	{
+		"name"									"Crimson Mournful Reverie"
+		"prefab"								"wearable"
+		"creation_date"							"2018-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/vengefulspirit/vs_ti8_immortal_shoulder/vs_ti8_immortal_shoulder1"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Mournful_Reverie"
+		"item_name"								"#DOTA_Item_Crimson_Mournful_Reverie"
+		"item_rarity"							"immortal"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/vengefulspirit/vs_ti8_immortal_shoulder/vs_ti8_immortal_shoulder.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/vengeful/vs_ti8_immortal_shoulder/vs_ti8_immortal_shoulder_crimson_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_vengeful/vengeful_magic_missle.vpcf"
+				"modifier"						"particles/econ/items/vengeful/vs_ti8_immortal_shoulder/vs_ti8_immortal_magic_missle_crimson.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier2"
+			{
+				"type"							"sound"
+				"asset"							"Hero_VengefulSpirit.MagicMissile"
+				"modifier"						"Hero_VengefulSpirit.MagicMissile.TI8"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"sound"
+				"asset"							"Hero_VengefulSpirit.MagicMissileImpact"
+				"modifier"						"Hero_VengefulSpirit.MagicMissileImpact.TI8"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"vengefulspirit_magic_missile"
+				"modifier"						"vengefulspirit/ti8_immortal_back/vengefulspirit_magic_missile_immortal_crimson"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"skin"								"1"
+		}
+	}
+	"13868"
+	{
+		"name"									"Dark Spirit Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/vengefulspirit/dark_spirit_head/dark_spirit_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Dark_Spirit_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/vengefulspirit/dark_spirit_head/dark_spirit_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"13869"
+	{
+		"name"									"Dark Spirit Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/vengefulspirit/dark_spirit_shoulder/dark_spirit_shoulder"
+		"item_name"								"#DOTA_Item_Vote_Only_Dark_Spirit_Shoulder"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/vengefulspirit/dark_spirit_shoulder/dark_spirit_shoulder.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"13870"
+	{
+		"name"									"Dark Spirit Legs"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/vengefulspirit/dark_spirit_legs/dark_spirit_legs"
+		"item_name"								"#DOTA_Item_Vote_Only_Dark_Spirit_Legs"
+		"item_slot"								"legs"
+		"model_player"							"models/items/vengefulspirit/dark_spirit_legs/dark_spirit_legs.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"13871"
+	{
+		"name"									"Dark Spirit Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/vengefulspirit/dark_spirit_weapon/dark_spirit_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_Dark_Spirit_Weapon"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/vengefulspirit/dark_spirit_weapon/dark_spirit_weapon.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"14319"
+	{
+		"name"									"Vision of the Seraph Scion - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/vengefulspirit/venge_lost_seraph_weapon/venge_lost_seraph_weapon"
+		"item_name"								"#DOTA_Item_Vision_of_the_Seraph_Scion__Weapon"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/vengefulspirit/venge_lost_seraph_weapon/venge_lost_seraph_weapon.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Venge_Lost_Seraph_Style_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Venge_Lost_Seraph_Style_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"gem"
+						{
+							"def_index"			"3040"
+							"type_field"		"strange_type"
+							"type_value"		"276"
+							"unlock_field"		"strange_value"
+							"unlock_value"		"150"
+						}
+					}
+				}
+				"2"
+				{
+					"name"						"#DOTA_Style_Venge_Lost_Seraph_Style_2"
+					"skin"						"2"
+					"alternate_icon"			"2"
+					"unlock"
+					{
+						"gem"
+						{
+							"def_index"			"3040"
+							"type_field"		"strange_type"
+							"type_value"		"276"
+							"unlock_field"		"strange_value"
+							"unlock_value"		"300"
+						}
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/vengefulspirit/venge_lost_seraph_weapon/venge_lost_seraph_weapon"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/vengefulspirit/venge_lost_seraph_weapon/venge_lost_seraph_weapon_style1"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/vengefulspirit/venge_lost_seraph_weapon/venge_lost_seraph_weapon_style2"
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/vengeful/vengeful_2021_lost_seraph/vengeful_2021_lost_seraph_weapon_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/vengeful/vengeful_2021_lost_seraph/vengeful_2021_lost_seraph_weapon_ambient_style1.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/vengeful/vengeful_2021_lost_seraph/vengeful_2021_lost_seraph_weapon_ambient_style2.vpcf"
+				"style"							"2"
+			}
+		}
+	}
+	"14320"
+	{
+		"name"									"Vision of the Seraph Scion - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/vengefulspirit/venge_lost_seraph_shoulder/venge_lost_seraph_shoulder"
+		"item_name"								"#DOTA_Item_Vision_of_the_Seraph_Scion__Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/vengefulspirit/venge_lost_seraph_shoulder/venge_lost_seraph_shoulder.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Venge_Lost_Seraph_Style_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Venge_Lost_Seraph_Style_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"gem"
+						{
+							"def_index"			"3040"
+							"type_field"		"strange_type"
+							"type_value"		"276"
+							"unlock_field"		"strange_value"
+							"unlock_value"		"150"
+						}
+					}
+				}
+				"2"
+				{
+					"name"						"#DOTA_Style_Venge_Lost_Seraph_Style_2"
+					"skin"						"2"
+					"alternate_icon"			"2"
+					"unlock"
+					{
+						"gem"
+						{
+							"def_index"			"3040"
+							"type_field"		"strange_type"
+							"type_value"		"276"
+							"unlock_field"		"strange_value"
+							"unlock_value"		"300"
+						}
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/vengefulspirit/venge_lost_seraph_shoulder/venge_lost_seraph_shoulder"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/vengefulspirit/venge_lost_seraph_shoulder/venge_lost_seraph_shoulder_style1"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/vengefulspirit/venge_lost_seraph_shoulder/venge_lost_seraph_shoulder_style2"
+				}
+			}
+		}
+	}
+	"14321"
+	{
+		"name"									"Vision of the Seraph Scion - Legs"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/vengefulspirit/venge_lost_seraph_legs/venge_lost_seraph_legs"
+		"item_name"								"#DOTA_Item_Vision_of_the_Seraph_Scion__Legs"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"model_player"							"models/items/vengefulspirit/venge_lost_seraph_legs/venge_lost_seraph_legs.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Venge_Lost_Seraph_Style_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Venge_Lost_Seraph_Style_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"gem"
+						{
+							"def_index"			"3040"
+							"type_field"		"strange_type"
+							"type_value"		"276"
+							"unlock_field"		"strange_value"
+							"unlock_value"		"150"
+						}
+					}
+				}
+				"2"
+				{
+					"name"						"#DOTA_Style_Venge_Lost_Seraph_Style_2"
+					"skin"						"2"
+					"alternate_icon"			"2"
+					"unlock"
+					{
+						"gem"
+						{
+							"def_index"			"3040"
+							"type_field"		"strange_type"
+							"type_value"		"276"
+							"unlock_field"		"strange_value"
+							"unlock_value"		"300"
+						}
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/vengefulspirit/venge_lost_seraph_legs/venge_lost_seraph_legs"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/vengefulspirit/venge_lost_seraph_legs/venge_lost_seraph_legs_style1"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/vengefulspirit/venge_lost_seraph_legs/venge_lost_seraph_legs_style2"
+				}
+			}
+		}
+	}
+	"14322"
+	{
+		"name"									"Vision of the Seraph Scion - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/vengefulspirit/venge_lost_seraph_head/venge_lost_seraph_head"
+		"item_name"								"#DOTA_Item_Vision_of_the_Seraph_Scion__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/vengefulspirit/venge_lost_seraph_head/venge_lost_seraph_head.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Venge_Lost_Seraph_Style_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Venge_Lost_Seraph_Style_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"gem"
+						{
+							"def_index"			"3040"
+							"type_field"		"strange_type"
+							"type_value"		"276"
+							"unlock_field"		"strange_value"
+							"unlock_value"		"150"
+						}
+					}
+				}
+				"2"
+				{
+					"name"						"#DOTA_Style_Venge_Lost_Seraph_Style_2"
+					"skin"						"2"
+					"alternate_icon"			"2"
+					"unlock"
+					{
+						"gem"
+						{
+							"def_index"			"3040"
+							"type_field"		"strange_type"
+							"type_value"		"276"
+							"unlock_field"		"strange_value"
+							"unlock_value"		"300"
+						}
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/vengefulspirit/venge_lost_seraph_head/venge_lost_seraph_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/vengefulspirit/venge_lost_seraph_head/venge_lost_seraph_head_style1"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/vengefulspirit/venge_lost_seraph_head/venge_lost_seraph_head_style2"
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/vengeful/vengeful_2021_lost_seraph/vengeful_2021_lost_seraph_head_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/vengeful/vengeful_2021_lost_seraph/vengeful_2021_lost_seraph_head_ambient_style1.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/vengeful/vengeful_2021_lost_seraph/vengeful_2021_lost_seraph_head_ambient_style2.vpcf"
+				"style"							"2"
+			}
+		}
+	}
+	"17762"
+	{
+		"name"									"Vestments of the Alary Dive Boots"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-23"
+		"image_inventory"						"econ/items/vengefulspirit/fallen_valkyrie_legs/fallen_valkyrie_legs"
+		"item_name"								"#DOTA_Item_Vestments_of_the_Alary_Dive_Boots"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"model_player"							"models/items/vengefulspirit/fallen_valkyrie_legs/fallen_valkyrie_legs.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"17763"
+	{
+		"name"									"Vestments of the Alary Dive Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-23"
+		"image_inventory"						"econ/items/vengefulspirit/fallen_valkyrie_weapon/fallen_valkyrie_weapon"
+		"item_name"								"#DOTA_Item_Vestments_of_the_Alary_Dive_Weapon"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/vengefulspirit/fallen_valkyrie_weapon/fallen_valkyrie_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"17764"
+	{
+		"name"									"Vestments of the Alary Dive Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-23"
+		"image_inventory"						"econ/items/vengefulspirit/fallen_valkyrie_shoulder/fallen_valkyrie_shoulder"
+		"item_name"								"#DOTA_Item_Vestments_of_the_Alary_Dive_Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/vengefulspirit/fallen_valkyrie_shoulder/fallen_valkyrie_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"17765"
+	{
+		"name"									"Vestments of the Alary Dive Helm"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-23"
+		"image_inventory"						"econ/items/vengefulspirit/fallen_valkyrie_head/fallen_valkyrie_head"
+		"item_name"								"#DOTA_Item_Vestments_of_the_Alary_Dive_Helm"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/vengefulspirit/fallen_valkyrie_head/fallen_valkyrie_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"18231"
+	{
+		"name"									"Contessa's Creed Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-29"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/vengefulspirit/dark_arts_countess_weapon/dark_arts_countess_weapon"
+		"item_name"								"#DOTA_Item_Contessas_Creed_Weapon"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/vengefulspirit/dark_arts_countess_weapon/dark_arts_countess_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/vengeful/vs_fall20_dark_arts/vs_fall20_dark_arts_weapon_ambient.vpcf"
+			}
+		}
+	}
+	"18232"
+	{
+		"name"									"Contessa's Creed Dress"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-29"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/vengefulspirit/dark_arts_countess_legs/dark_arts_countess_legs"
+		"item_name"								"#DOTA_Item_Contessas_Creed_Dress"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"model_player"							"models/items/vengefulspirit/dark_arts_countess_legs/dark_arts_countess_legs.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/vengeful/vs_fall20_dark_arts/vs_fall20_dark_arts_legs_ambient.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"dark_arts"
+			}
+		}
+	}
+	"18233"
+	{
+		"name"									"Contessa's Creed Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-29"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/vengefulspirit/dark_arts_countess_shoulder/dark_arts_countess_shoulder"
+		"item_name"								"#DOTA_Item_Contessas_Creed_Shoulders"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/vengefulspirit/dark_arts_countess_shoulder/dark_arts_countess_shoulder.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/vengeful/vs_fall20_dark_arts/vs_fall20_dark_arts_shoulder_ambient.vpcf"
+			}
+		}
+	}
+	"18234"
+	{
+		"name"									"Contessa's Creed Hat"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-29"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/vengefulspirit/dark_arts_countess_head/dark_arts_countess_head"
+		"item_name"								"#DOTA_Item_Contessas_Creed_Hat"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/vengefulspirit/dark_arts_countess_head/dark_arts_countess_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/vengeful/vs_fall20_dark_arts/vs_fall20_dark_arts_head_ambient.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_vengeful/vengeful_ambient.vpcf"
+				"modifier"						"particles/econ/items/vengeful/vs_fall20_dark_arts/vs_fall20_dark_arts_ambient_alt.vpcf"
+			}
+		}
+	}
+	"19248"
+	{
+		"name"									"Dark Reclamation - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-09"
+		"image_inventory"						"econ/items/vengefulspirit/dark_throne_weapon/dark_throne_weapon"
+		"item_name"								"#DOTA_Item_Dark_Reclamation__Weapon"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/vengefulspirit/dark_throne_weapon/dark_throne_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"19249"
+	{
+		"name"									"Dark Reclamation - Legs"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-09"
+		"image_inventory"						"econ/items/vengefulspirit/dark_throne_legs/dark_throne_legs"
+		"item_name"								"#DOTA_Item_Dark_Reclamation__Legs"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"model_player"							"models/items/vengefulspirit/dark_throne_legs/dark_throne_legs.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"19250"
+	{
+		"name"									"Dark Reclamation - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-09"
+		"image_inventory"						"econ/items/vengefulspirit/dark_throne_head/dark_throne_head"
+		"item_name"								"#DOTA_Item_Dark_Reclamation__Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/vengefulspirit/dark_throne_head/dark_throne_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"19251"
+	{
+		"name"									"Dark Reclamation - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-09"
+		"image_inventory"						"econ/items/vengefulspirit/dark_throne_shoulder/dark_throne_shoulder"
+		"item_name"								"#DOTA_Item_Dark_Reclamation__Shoulder"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/vengefulspirit/dark_throne_shoulder/dark_throne_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"20430"
+	{
+		"name"									"Vestments of the Fallen Princess"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Helm of the Fallen Princess"		"1"
+			"Legs of the Fallen Princess"		"1"
+			"Talon of the Fallen Princess"		"1"
+			"Wings of the Fallen Princess"		"1"
+			"Vestments of the Fallen Princess Loading Screen""1"
+		}
+		"creation_date"							"2014-03-11"
+		"image_inventory"						"econ/loading_screens/fallenprincess"
+		"item_description"						"#DOTA_Item_Desc_Vestments_of_the_Fallen_Princess"
+		"item_name"								"#DOTA_Item_Vestments_of_the_Fallen_Princess"
+		"item_rarity"							"legendary"
+	}
+	"20528"
+	{
+		"name"									"Resentment of the Banished Princess"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Cape of the Banished Princess"		"1"
+			"Leggings of the Banished Princess"	"1"
+			"Style of the Banished Princess"	"1"
+			"Weapon of the Banished Princess"	"1"
+			"Resentment of the Banished Princess Loading Screen""1"
+		}
+		"creation_date"							"2014-05-26"
+		"image_inventory"						"econ/sets/dota_item_banished_princess"
+		"item_description"						"#DOTA_Item_Desc_Resentment_of_the_Banished_Princess"
+		"item_name"								"#DOTA_Item_Resentment_of_the_Banished_Princess"
+		"item_rarity"							"rare"
+	}
+	"20562"
+	{
+		"name"									"Promo Vestments of the Fallen Princess"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Helm of the Fallen Princess"		"1"
+			"Legs of the Fallen Princess"		"1"
+			"Talon of the Fallen Princess"		"1"
+			"Wings of the Fallen Princess"		"1"
+			"Vestments of the Fallen Princess Loading Screen""1"
+		}
+		"creation_date"							"2014-06-18"
+		"image_inventory"						"econ/loading_screens/fallenprincess"
+		"item_description"						"#DOTA_Item_Desc_Genuine_Vestments_of_the_Fallen_Princess"
+		"item_name"								"#DOTA_Item_Promo_Vestments_of_the_Fallen_Princess"
+		"item_quality"							"genuine"
+		"item_rarity"							"legendary"
+	}
+	"20653"
+	{
+		"name"									"Dreadhawk Armor"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Dreadhawk Blade"					"1"
+			"Dreadhawk Headdress"				"1"
+			"Dreadhawk Leggings"				"1"
+			"Dreadhawk Harness"					"1"
+			"Dreadhawk Armor Loading Screen"	"1"
+		}
+		"creation_date"							"2014-09-16"
+		"image_inventory"						"econ/loading_screens/dreadhawk"
+		"item_description"						"#DOTA_Item_Desc_Dreadhawk_Armor"
+		"item_name"								"#DOTA_Item_Dreadhawk_Armor"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"2500"
+	}
+	"20744"
+	{
+		"name"									"Blessing of the Crested Umbra"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Blessing of the Crested Umbra Loading Screen""1"
+			"Umbral Duty"						"1"
+			"Umbral Glaive"						"1"
+			"Umbral Skirt"						"1"
+			"Umbral Virtue"						"1"
+		}
+		"creation_date"							"2015-02-14"
+		"image_inventory"						"econ/loading_screens/huangs_umbra_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Blessing_of_the_Crested_Umbra"
+		"item_name"								"#DOTA_Item_Blessing_of_the_Crested_Umbra"
+		"item_rarity"							"rare"
+	}
+	"20828"
+	{
+		"name"									"Echoes of the Eyrie"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Helm of Echoes"					"1"
+			"Sigil of Echoes"					"1"
+			"Greaves of Echoes"					"1"
+			"Echoes of the Eyrie Loading Screen""1"
+			"Wrath of Echoes"					"1"
+		}
+		"creation_date"							"2015-06-03"
+		"image_inventory"						"econ/loading_screens/echoes_eyrie_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Echoes_of_the_Eyrie"
+		"item_name"								"#DOTA_Item_Echoes_of_the_Eyrie"
+		"item_rarity"							"mythical"
+	}
+	"20870"
+	{
+		"name"									"Regal Ruin"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Style of Regal Ruin"				"1"
+			"Bodice of Regal Ruin"				"1"
+			"Sash of Regal Ruin"				"1"
+			"Prong of Regal Ruin"				"1"
+			"Regal Ruin Loading Screen"			"1"
+		}
+		"creation_date"							"2015-07-30"
+		"image_inventory"						"econ/loading_screens/regal_ruin_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Regal_Ruin"
+		"item_name"								"#DOTA_Item_Regal_Ruin"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"15000"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"20923"
+	{
+		"name"									"Flightless Fury"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Helmet of Flightless Fury"			"1"
+			"Armor of Flightless Fury"			"1"
+			"Greaves of Flightless Fury"		"1"
+			"Blade of Flightless Fury"			"1"
+			"Flightless Fury Loading Screen"	"1"
+		}
+		"creation_date"							"2015-10-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/loading_screens/flightless_fury_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Flightless_Fury"
+		"item_name"								"#DOTA_Item_Flightless_Fury"
+		"item_rarity"							"mythical"
+	}
+	"20950"
+	{
+		"name"									"Omen's Embrace"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Omen's Embrace Loading Screen"		"1"
+			"Skirt of Omen's Embrace"			"1"
+			"Katar of Omen's Embrace"			"1"
+			"Adornment of Omen's Embrace"		"1"
+			"Crest of Omen's Embrace"			"1"
+		}
+		"creation_date"							"2015-12-07"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/forsaken_wings_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Omens_Embrace"
+		"item_name"								"#DOTA_Item_Omens_Embrace"
+		"item_rarity"							"mythical"
+	}
+	"21243"
+	{
+		"name"									"Dark Spirit"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Dark Spirit Head"					"1"
+			"Dark Spirit Shoulder"				"1"
+			"Dark Spirit Legs"					"1"
+			"Dark Spirit Weapon"				"1"
+		}
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Dark_Spirit"
+		"workshop_accepted"						"0"
+	}
+	"21538"
+	{
+		"name"									"Vision of the Seraph Scion"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Vision of the Seraph Scion - Head"	"1"
+			"Vision of the Seraph Scion - Legs"	"1"
+			"Vision of the Seraph Scion - Shoulder""1"
+			"Vision of the Seraph Scion - Weapon""1"
+		}
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/sets/dota_item_vision_of_the_seraph_scion_style2"
+		"item_name"								"#DOTA_Item_Vision_of_the_Seraph_Scion"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/vengefulspirit/venge_lost_seraph_head/venge_lost_seraph_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/vengefulspirit/venge_lost_seraph_head/venge_lost_seraph_head_style1"
+				}
+				"2"
+				{
+					"icon_path"					"econ/sets/DOTA_Item_Vision_of_the_Seraph_Scion_style2"
+				}
+			}
+		}
+	}
+	"21687"
+	{
+		"name"									"Vestments of the Alary Dive"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Vestments of the Alary Dive Helm"	"1"
+			"Vestments of the Alary Dive Armor"	"1"
+			"Vestments of the Alary Dive Weapon""1"
+			"Vestments of the Alary Dive Boots"	"1"
+			"Vestments of the Alary Dive Loading Screen""1"
+		}
+		"creation_date"							"2020-09-23"
+		"image_inventory"						"econ/loading_screens/fallen_valkyrie_fallen_ls"
+		"item_name"								"#DOTA_Item_Vestments_of_the_Alary_Dive"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"15000"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"21782"
+	{
+		"name"									"Contessa's Creed"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Contessa's Creed Hat"				"1"
+			"Contessa's Creed Shoulders"		"1"
+			"Contessa's Creed Dress"			"1"
+			"Contessa's Creed Weapon"			"1"
+			"Contessa's Creed Loading Screen"	"1"
+		}
+		"creation_date"							"2020-09-29"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Contessas_Creed"
+		"item_name"								"#DOTA_Item_Contessas_Creed"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+	}
+	"21858"
+	{
+		"name"									"Dark Reclamation"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Dark Reclamation - Weapon"			"1"
+			"Dark Reclamation - Legs"			"1"
+			"Dark Reclamation - Head"			"1"
+			"Dark Reclamation - Shoulder"		"1"
+		}
+		"creation_date"							"2021-08-09"
+		"image_inventory"						"econ/sets/DOTA_Item_Dark_Throne"
+		"item_name"								"#DOTA_Item_Dark_Reclamation"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"22868"
+	{
+		"name"									"Spring Lineage Helmet of Flightless Fury"
+		"prefab"								"wearable"
+		"creation_date"							"2022-02-23"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/items/vengefulspirit/flightless_fury_head/flightless_fury_head1"
+		"item_description"						"#DOTA_Item_Desc_Spring_Lineage_Helmet_of_Flightless_Fury"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Helmet_of_Flightless_Fury"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/vengefulspirit/flightless_fury_head/flightless_fury_head.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"22869"
+	{
+		"name"									"Spring Lineage Armor of Flightless Fury"
+		"prefab"								"wearable"
+		"creation_date"							"2022-02-23"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/items/vengefulspirit/flightless_fury_shoulder/flightless_fury_shoulder1"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Armor_of_Flightless_Fury"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Armor_of_Flightless_Fury"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/vengefulspirit/flightless_fury_shoulder/flightless_fury_shoulder.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+		"visuals"
+		{
+			"skin"								"1"
+			"skip_model_combine"				"0"
+		}
+	}
+	"22870"
+	{
+		"name"									"Spring Lineage Blade of Flightless Fury"
+		"prefab"								"wearable"
+		"creation_date"							"2022-02-23"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/items/vengefulspirit/flightless_fury_weapon/flightless_fury_weapon1"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Blade_of_Flightless_Fury"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Blade_of_Flightless_Fury"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/vengefulspirit/flightless_fury_weapon/flightless_fury_weapon.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"22871"
+	{
+		"name"									"Spring Lineage Greaves of Flightless Fury"
+		"prefab"								"wearable"
+		"creation_date"							"2022-02-23"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/items/vengefulspirit/flightless_fury_legs/flightless_fury_legs1"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Greaves_of_Flightless_Fury"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Greaves_of_Flightless_Fury"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Greaves"
+		"model_player"							"models/items/vengefulspirit/flightless_fury_legs/flightless_fury_legs.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+		"visuals"
+		{
+			"skin"								"1"
+			"skip_model_combine"				"0"
+		}
+	}
+	"22872"
+	{
+		"name"									"Spring Lineage Flightless Fury"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Spring Lineage Helmet of Flightless Fury""1"
+			"Spring Lineage Armor of Flightless Fury""1"
+			"Spring Lineage Blade of Flightless Fury""1"
+			"Spring Lineage Greaves of Flightless Fury""1"
+		}
+		"creation_date"							"2022-02-23"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/sets/DOTA_Item_Spring_Lineage_Flightless_Fury"
+		"item_description"						"#DOTA_Item_Desc_Spring_Lineage_Flightless_Fury"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Flightless_Fury"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+	}
+	"23303"
+	{
+		"name"									"Shadows of the Fall Head"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-19"
+		"image_inventory"						"econ/items/vengefulspirit/shadows_of_the_fall/shadows_of_the_fall_hair"
+		"item_name"								"#DOTA_Item_Shadows_of_the_Fall_Head"
+		"item_slot"								"head"
+		"model_player"							"models/items/vengefulspirit/dark_valkyrie_head/dark_valkyrie_head.vmdl"
+	}
+	"23304"
+	{
+		"name"									"Shadows of the Fall Legs"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-19"
+		"image_inventory"						"econ/items/vengefulspirit/shadows_of_the_fall/shadows_of_the_fall_lowerbody"
+		"item_name"								"#DOTA_Item_Shadows_of_the_Fall_Legs"
+		"item_slot"								"legs"
+		"model_player"							"models/items/vengefulspirit/dark_valkyrie_legs/dark_valkyrie_legs.vmdl"
+	}
+	"23305"
+	{
+		"name"									"Shadows of the Fall Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-19"
+		"image_inventory"						"econ/items/vengefulspirit/shadows_of_the_fall/shadows_of_the_fall_upperbody"
+		"item_name"								"#DOTA_Item_Shadows_of_the_Fall_Shoulder"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/vengefulspirit/dark_valkyrie_shoulder/dark_valkyrie_shoulder.vmdl"
+	}
+	"23306"
+	{
+		"name"									"Shadows of the Fall Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-19"
+		"image_inventory"						"econ/items/vengefulspirit/shadows_of_the_fall/shadows_of_the_fall_weapon"
+		"item_name"								"#DOTA_Item_Shadows_of_the_Fall_Weapon"
+		"model_player"							"models/items/vengefulspirit/dark_valkyrie_weapon/dark_valkyrie_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"23307"
+	{
+		"name"									"Shadows of the Fall"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Shadows of the Fall Weapon"		"1"
+			"Shadows of the Fall Shoulder"		"1"
+			"Shadows of the Fall Legs"			"1"
+			"Shadows of the Fall Head"			"1"
+		}
+		"creation_date"							"2022-05-19"
+		"image_inventory"						"econ/sets/dota_item_shadows_of_the_fall"
+		"item_name"								"#DOTA_Item_Shadows_of_the_Fall"
+	}
+}

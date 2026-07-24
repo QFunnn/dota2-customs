@@ -1,0 +1,899 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"546"
+	{
+		"name"									"Oracle's Armor"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-30"
+		"image_inventory"						"econ/heroes/oracle/armor"
+		"item_name"								"#DOTA_Item_Oracles_Armor"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"model_player"							"models/heroes/oracle/armor.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_oracle/oracle_ambient_armor.vpcf"
+			}
+		}
+	}
+	"547"
+	{
+		"name"									"Oracle's Back Item"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-30"
+		"image_inventory"						"econ/heroes/oracle/back_item"
+		"item_name"								"#DOTA_Item_Oracles_Back_Item"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"model_player"							"models/heroes/oracle/back_item.vmdl"
+	}
+	"548"
+	{
+		"name"									"Oracle's Head Item"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-30"
+		"image_inventory"						"econ/heroes/oracle/head_item"
+		"item_name"								"#DOTA_Item_Oracles_Head_Item"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"model_player"							"models/heroes/oracle/head_item.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_oracle/oracle_ambient_head.vpcf"
+			}
+		}
+	}
+	"549"
+	{
+		"name"									"Oracle's Weapon"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-30"
+		"image_inventory"						"econ/heroes/oracle/weapon"
+		"item_name"								"#DOTA_Item_Oracles_Weapon"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"model_player"							"models/heroes/oracle/weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_oracle/oracle_ambient_weapon.vpcf"
+			}
+		}
+	}
+	"550"
+	{
+		"name"									"Oracle's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-10-08"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Oracles_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_oracle"
+	}
+	"9232"
+	{
+		"name"									"Alluvion Prophecy"
+		"prefab"								"wearable"
+		"creation_date"							"2017-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/oracle/ti7_immortal_weapon/oracle_ti7_immortal_weapon"
+		"item_description"						"#DOTA_Item_Desc_Alluvion_Prophecy"
+		"item_name"								"#DOTA_Item_Alluvion_Prophecy"
+		"item_rarity"							"immortal"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/oracle/ti7_immortal_weapon/oracle_ti7_immortal_weapon.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti7"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_oracle/oracle_fortune_cast_tgt.vpcf"
+				"modifier"						"particles/econ/items/oracle/oracle_fortune_ti7/oracle_fortune_ti7_cast_tgt.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_oracle/oracle_fortune_prj.vpcf"
+				"modifier"						"particles/econ/items/oracle/oracle_fortune_ti7/oracle_fortune_ti7_proj.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_oracle/oracle_fortune_purge.vpcf"
+				"modifier"						"particles/econ/items/oracle/oracle_fortune_ti7/oracle_fortune_ti7_purge.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_oracle/oracle_fortune_aoe.vpcf"
+				"modifier"						"particles/econ/items/oracle/oracle_fortune_ti7/oracle_fortune_ti7_aoe.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_oracle/oracle_fortune_channel.vpcf"
+				"modifier"						"particles/econ/items/oracle/oracle_fortune_ti7/oracle_fortune_ti7_channel.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier6"
+			{
+				"type"							"ability_icon"
+				"asset"							"oracle_fortunes_end"
+				"modifier"						"oracle/immortal/oracle_fortunes_end"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/oracle/oracle_fortune_ti7/oracle_fortune_ti7_ambient.vpcf"
+			}
+		}
+	}
+	"9668"
+	{
+		"name"									"Taunt: Time and Space Jam"
+		"prefab"								"taunt"
+		"creation_date"							"2018-01-04"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/taunts/dota_icon_taunt_oracle_2021"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Time_and_Space_Jam"
+		"item_name"								"#DOTA_Item_Taunt_Time_and_Space_Jam"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1662026400"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"2021_taunt"
+				"gesture"						"1"
+				"style"							"0"
+			}
+		}
+	}
+	"12600"
+	{
+		"name"									"Weapon of the Crystal Path"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/oracle/the_labyrinth_overseer_weapon/the_labyrinth_overseer_weapon"
+		"item_name"								"#DOTA_Item_Weapon_of_the_Crystal_Path"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/oracle/the_labyrinth_overseer_weapon/the_labyrinth_overseer_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_oracle/oracle_ambient_weapon.vpcf"
+			}
+		}
+	}
+	"12601"
+	{
+		"name"									"Helm of the Crystal Path"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/oracle/the_labyrinth_overseer_head/the_labyrinth_overseer_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Crystal_Path"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/oracle/the_labyrinth_overseer_head/the_labyrinth_overseer_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_oracle/oracle_ambient_head.vpcf"
+			}
+		}
+	}
+	"12602"
+	{
+		"name"									"Armor of the Crystal Path"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/oracle/the_labyrinth_overseer_armor/the_labyrinth_overseer_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Crystal_Path"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/oracle/the_labyrinth_overseer_armor/the_labyrinth_overseer_armor.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_oracle/oracle_ambient_armor.vpcf"
+			}
+		}
+	}
+	"12603"
+	{
+		"name"									"Adornments of the Crystal Path"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/oracle/the_labyrinth_overseer_back/the_labyrinth_overseer_back"
+		"item_name"								"#DOTA_Item_Adornments_of_the_Crystal_Path"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/oracle/the_labyrinth_overseer_back/the_labyrinth_overseer_back.vmdl"
+	}
+	"13417"
+	{
+		"name"									"Domain of the Sleepless Augur"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/oracle/ti9_cache_oracle_augury_prophet_back/ti9_cache_oracle_augury_prophet_back"
+		"item_name"								"#DOTA_Item_Domain_of_the_Sleepless_Augur"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/oracle/ti9_cache_oracle_augury_prophet_back/ti9_cache_oracle_augury_prophet_back.vmdl"
+	}
+	"13418"
+	{
+		"name"									"Refinement of the Sleepless Augur"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/oracle/ti9_cache_oracle_augury_prophet_armor/ti9_cache_oracle_augury_prophet_armor"
+		"item_name"								"#DOTA_Item_Refinement_of_the_Sleepless_Augur"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/oracle/ti9_cache_oracle_augury_prophet_armor/ti9_cache_oracle_augury_prophet_armor.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_oracle/oracle_ambient_armor.vpcf"
+			}
+		}
+	}
+	"13419"
+	{
+		"name"									"Visage of the Sleepless Augur"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/oracle/ti9_cache_oracle_augury_prophet_head/ti9_cache_oracle_augury_prophet_head"
+		"item_name"								"#DOTA_Item_Visage_of_the_Sleepless_Augur"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/oracle/ti9_cache_oracle_augury_prophet_head/ti9_cache_oracle_augury_prophet_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_oracle/oracle_ambient_head.vpcf"
+			}
+		}
+	}
+	"13420"
+	{
+		"name"									"Quill of the Sleepless Augur"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/oracle/ti9_cache_oracle_augury_prophet_weapon/ti9_cache_oracle_augury_prophet_weapon"
+		"item_name"								"#DOTA_Item_Quill_of_the_Sleepless_Augur"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/oracle/ti9_cache_oracle_augury_prophet_weapon/ti9_cache_oracle_augury_prophet_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_oracle/oracle_ambient_weapon.vpcf"
+			}
+		}
+	}
+	"13422"
+	{
+		"name"									"Orb of the Hierophant"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/oracle/ti9_cache_oracle_grand_hierophant_weapon/ti9_cache_oracle_grand_hierophant_weapon"
+		"item_name"								"#DOTA_Item_Orb_of_the_Hierophant"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/oracle/ti9_cache_oracle_grand_hierophant_weapon/ti9_cache_oracle_grand_hierophant_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/oracle/ti9_cache_oracle_grand_hierophant/ti9_cache_oracle_ambient_weapon_weapon.vpcf"
+			}
+		}
+	}
+	"13423"
+	{
+		"name"									"Dress of the Hierophant"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/oracle/ti9_cache_oracle_grand_hierophant_armor/ti9_cache_oracle_grand_hierophant_armor"
+		"item_name"								"#DOTA_Item_Dress_of_the_Hierophant"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/oracle/ti9_cache_oracle_grand_hierophant_armor/ti9_cache_oracle_grand_hierophant_armor.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_oracle/oracle_ambient_armor.vpcf"
+			}
+		}
+	}
+	"13424"
+	{
+		"name"									"Mask of the Hierophant"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/oracle/ti9_cache_oracle_grand_hierophant_head/ti9_cache_oracle_grand_hierophant_head"
+		"item_name"								"#DOTA_Item_Mask_of_the_Hierophant"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/oracle/ti9_cache_oracle_grand_hierophant_head/ti9_cache_oracle_grand_hierophant_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/oracle/ti9_cache_oracle_grand_hierophant/ti9_cache_oracle_grand_hierophant_head_ambient.vpcf"
+			}
+		}
+	}
+	"13425"
+	{
+		"name"									"Back of the Hierophant"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/oracle/ti9_cache_oracle_grand_hierophant_back/ti9_cache_oracle_grand_hierophant_back"
+		"item_name"								"#DOTA_Item_Back_of_the_Hierophant"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/oracle/ti9_cache_oracle_grand_hierophant_back/ti9_cache_oracle_grand_hierophant_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/oracle/ti9_cache_oracle_grand_hierophant/oracle_hierophant_back_ambient.vpcf"
+				"style"							"0"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"13911"
+	{
+		"name"									"Silence of the Starweaver - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/oracle/stargazer_final_prophecy_back/stargazer_final_prophecy_back"
+		"item_name"								"#DOTA_Item_Silence_of_the_Starweaver__Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"model_player"							"models/items/oracle/stargazer_final_prophecy_back/stargazer_final_prophecy_back.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/oracle/oracle_final_prophecy/oracle_final_prophecy_back.vpcf"
+			}
+		}
+	}
+	"13912"
+	{
+		"name"									"Silence of the Starweaver - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/oracle/stargazer_final_prophecy_weapon/stargazer_final_prophecy_weapon"
+		"item_name"								"#DOTA_Item_Silence_of_the_Starweaver__Weapon"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/oracle/stargazer_final_prophecy_weapon/stargazer_final_prophecy_weapon.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/oracle/oracle_final_prophecy/oracle_final_prophecy_weapon.vpcf"
+			}
+		}
+	}
+	"13913"
+	{
+		"name"									"Silence of the Starweaver - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/oracle/stargazer_final_prophecy_head/stargazer_final_prophecy_head"
+		"item_name"								"#DOTA_Item_Silence_of_the_Starweaver__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/oracle/stargazer_final_prophecy_head/stargazer_final_prophecy_head.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_oracle/oracle_ambient_head.vpcf"
+			}
+		}
+	}
+	"13914"
+	{
+		"name"									"Silence of the Starweaver - Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/oracle/stargazer_final_prophecy_armor/stargazer_final_prophecy_armor"
+		"item_name"								"#DOTA_Item_Silence_of_the_Starweaver__Armor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"model_player"							"models/items/oracle/stargazer_final_prophecy_armor/stargazer_final_prophecy_armor.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_oracle/oracle_ambient_armor.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/oracle/oracle_final_prophecy/oracle_final_prophecy_arm.vpcf"
+			}
+		}
+	}
+	"14744"
+	{
+		"name"									"Eye of the Fateweaver Orb"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/oracle/oracle_the_fate_fiddler_weapon/oracle_the_fate_fiddler_weapon"
+		"item_name"								"#DOTA_Item_Eye_of_the_Fateweaver_Orb"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/oracle/oracle_the_fate_fiddler_weapon/oracle_the_fate_fiddler_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_oracle/oracle_ambient_weapon.vpcf"
+			}
+		}
+	}
+	"14745"
+	{
+		"name"									"Eye of the Fateweaver Hood"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/oracle/oracle_the_fate_fiddler_head/oracle_the_fate_fiddler_head"
+		"item_name"								"#DOTA_Item_Eye_of_the_Fateweaver_Hood"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"model_player"							"models/items/oracle/oracle_the_fate_fiddler_head/oracle_the_fate_fiddler_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_oracle/oracle_ambient_head.vpcf"
+			}
+		}
+	}
+	"14746"
+	{
+		"name"									"Eye of the Fateweaver Back"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/oracle/oracle_the_fate_fiddler_back/oracle_the_fate_fiddler_back"
+		"item_name"								"#DOTA_Item_Eye_of_the_Fateweaver_Back"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"model_player"							"models/items/oracle/oracle_the_fate_fiddler_back/oracle_the_fate_fiddler_back.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"14747"
+	{
+		"name"									"Eye of the Fateweaver Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/oracle/oracle_the_fate_fiddler_armor/oracle_the_fate_fiddler_armor"
+		"item_name"								"#DOTA_Item_Eye_of_the_Fateweaver_Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"model_player"							"models/items/oracle/oracle_the_fate_fiddler_armor/oracle_the_fate_fiddler_armor.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_oracle/oracle_ambient_armor.vpcf"
+			}
+		}
+	}
+	"14954"
+	{
+		"name"									"Sagas of the Cymurrin Sage"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"hide_tradecraftdelete"					"1"
+		"image_inventory"						"econ/items/oracle/oracle_ti10_immortal_head/oracle_ti10_immortal_head"
+		"item_description"						"#DOTA_Item_Desc_Sagas_of_the_Cymurrin_Sage"
+		"item_name"								"#DOTA_Item_Sagas_of_the_Cymurrin_Sage"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/oracle/oracle_ti10_immortal_head/oracle_ti10_immortal_head.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/oracle/oracle_ti10_immortal/oracle_ti10_immortal_ambient.vpcf"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_oracle/oracle_purifyingflames_hit.vpcf"
+				"modifier"						"particles/econ/items/oracle/oracle_ti10_immortal/oracle_ti10_immortal_purifyingflames_hit.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf"
+				"modifier"						"particles/econ/items/oracle/oracle_ti10_immortal/oracle_ti10_immortal_purifyingflames.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_oracle/oracle_purifyingflames_cast.vpcf"
+				"modifier"						"particles/econ/items/oracle/oracle_ti10_immortal/oracle_ti10_immortal_purifyingflames_cast.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"oracle_purifying_flames"
+				"modifier"						"oracle/immortal_head_ti10/oracle_purifying_flames_immortal"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+		}
+	}
+	"21266"
+	{
+		"name"									"Clarity of the Crystal Path"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Adornments of the Crystal Path"	"1"
+			"Armor of the Crystal Path"			"1"
+			"Helm of the Crystal Path"			"1"
+			"Weapon of the Crystal Path"		"1"
+		}
+		"creation_date"							"2018-09-12"
+		"image_inventory"						"econ/sets/DOTA_Item_Clarity_of_the_Crystal_Path"
+		"item_description"						"#DOTA_Item_Desc_Clarity_of_the_Crystal_Path"
+		"item_name"								"#DOTA_Item_Clarity_of_the_Crystal_Path"
+		"item_rarity"							"uncommon"
+	}
+	"21405"
+	{
+		"name"									"Whispers of the Sleepless Augur"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Refinement of the Sleepless Augur"	"1"
+			"Domain of the Sleepless Augur"		"1"
+			"Visage of the Sleepless Augur"		"1"
+			"Whispers of the Sleepless Augur Loading Screen""1"
+			"Quill of the Sleepless Augur"		"1"
+		}
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/loading_screens/ti9_cache_oracle_augury_prophet_ls"
+		"item_name"								"#DOTA_Item_Whispers_of_the_Sleepless_Augur"
+		"item_rarity"							"rare"
+	}
+	"21406"
+	{
+		"name"									"Riddle of the Hierophant"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Riddle of the Hierophant Loading Screen""1"
+			"Back of the Hierophant"			"1"
+			"Mask of the Hierophant"			"1"
+			"Dress of the Hierophant"			"1"
+			"Orb of the Hierophant"				"1"
+		}
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/loading_screens/ti9_cache_oracle_grand_hierophant_ls"
+		"item_description"						"#DOTA_Item_Desc_Riddle_of_the_Hierophant"
+		"item_name"								"#DOTA_Item_Riddle_of_the_Hierophant"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"21463"
+	{
+		"name"									"Silence of the Starweaver"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Silence of the Starweaver - Armor"	"1"
+			"Silence of the Starweaver - Back"	"1"
+			"Silence of the Starweaver - Head"	"1"
+			"Silence of the Starweaver - Weapon""1"
+		}
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/sets/DOTA_Item_Silence_of_the_Starweaver"
+		"item_name"								"#DOTA_Item_Silence_of_the_Starweaver"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21583"
+	{
+		"name"									"Eye of the Fateweaver"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Eye of the Fateweaver Back"		"1"
+			"Eye of the Fateweaver Armor"		"1"
+			"Eye of the Fateweaver Hood"		"1"
+			"Eye of the Fateweaver Loading Screen""1"
+			"Eye of the Fateweaver Orb"			"1"
+		}
+		"creation_date"							"2020-05-17"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Oracle_Fate_Fiddler"
+		"item_name"								"#DOTA_Item_Eye_of_the_Fateweaver"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+	}
+}

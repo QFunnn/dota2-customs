@@ -1,0 +1,364 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.HudRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#Settings_root
+{
+	width: 100%;
+	height: 100%;
+	transform: translatey(-90px) translatex(-90px);
+	transition: transform 0.3s ease-in-out 0s, opacity 0.25s ease-in-out 0s;
+	opacity: 0;
+}
+
+#Settings_root.Show
+{
+	transform: translatey(0px) translatex(0px);
+	opacity: 1;
+}
+
+#Settings_main
+{
+	width: fit-children;
+	height: fit-children;
+	align: center center;
+	flow-children: down;
+	min-width: 880px;
+	padding-top: 4px;
+	padding-bottom: 20px;
+}
+
+#Settings_main #Settings_title
+{
+	width: 100%;
+	height: 50px;
+}
+
+#Settings_main #Settings_title #Settings_title_text
+{
+	align: center center;
+	text-align: center;
+	color: white;
+	font-size: 24px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}
+
+#Settings_main #Settings_title #Hud_settings_close_button
+{
+	align: right center;
+	width: 40px;
+	height: 40px;
+	background-image: url("s2r://panorama/images/eom_design/icon/tui3/btn_close_png.vtex");
+	background-size: 100%;
+}
+
+#Settings_main #Settings_title #Hud_settings_close_button:hover
+{
+	brightness: 2;
+}
+
+#Settings_main #Settings_content
+{
+	width: 100%;
+	height: 320px;
+	flow-children: right;
+}
+
+#Settings_main #Settings_content #Settings_content_left
+{
+	width: 50%;
+	height: 100%;
+}
+
+#Settings_main #Settings_content #Settings_content_left #Settings_basic
+{
+	align: center center;
+	flow-children: down;
+	width: 80%;
+	height: 80%;
+}
+
+#Settings_main #Settings_content #Settings_content_left #Settings_basic #Settings_auto_watch_duel
+{
+	width: 200px;
+	height: 70px;
+}
+
+#Settings_main #Settings_content #Settings_content_left #Settings_basic #Settings_auto_watch_duel Label
+{
+	vertical-align: center;
+	text-align: left;
+	color: white;
+	font-size: 20px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}
+
+#Settings_main #Settings_content #Settings_content_left #Settings_basic #Settings_auto_watch_duel Label:hover
+{
+	brightness: 1.5;
+}
+
+#Settings_main #Settings_content #Settings_content_left #Settings_basic #Settings_auto_watch_jungle
+{
+	width: 200px;
+	height: 50px;
+}
+
+#Settings_main #Settings_content #Settings_content_left #Settings_basic #Settings_auto_watch_jungle Label
+{
+	vertical-align: center;
+	text-align: left;
+	color: white;
+	font-size: 20px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}
+
+#Settings_main #Settings_content #Settings_content_left #Settings_basic #Settings_auto_watch_jungle Label:hover
+{
+	brightness: 1.5;
+}
+
+#Settings_main #Settings_content #Settings_content_left #Settings_basic #Settings_barrageOpacity
+{
+	width: fit-children;
+	height: fit-children;
+	flow-children: down;
+}
+
+#Settings_main #Settings_content #Settings_content_left #Settings_basic #Settings_barrageOpacity #Settings_barrageOpacity_labels
+{
+	width: 100%;
+	height: 60px;
+}
+
+#Settings_main #Settings_content #Settings_content_left #Settings_basic #Settings_barrageOpacity #Settings_barrageOpacity_labels #barrageOpacity_text_left
+{
+	align: left center;
+	text-align: left;
+	color: white;
+	font-size: 20px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+	height: 24px;
+	width: 110px;
+}
+
+#Settings_main #Settings_content #Settings_content_left #Settings_basic #Settings_barrageOpacity #Settings_barrageOpacity_labels #barrageOpacity_text_left:hover
+{
+	brightness: 1.1;
+}
+
+#Settings_main #Settings_content #Settings_content_left #Settings_basic #Settings_barrageOpacity #Settings_barrageOpacity_labels #barrageOpacity_text_right
+{
+	align: right center;
+	text-align: right;
+	color: white;
+	font-size: 20px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+	height: 24px;
+	width: 70px;
+}
+
+#Settings_main #Settings_content #Settings_content_left #Settings_basic #Settings_barrageOpacity #Settings_barrageOpacity_labels #barrageOpacity_text_right:hover
+{
+	brightness: 1.1;
+}
+
+#Settings_main #Settings_content #Settings_content_left #Settings_basic #Settings_barrageOpacity #Settings_barrageOpacitySlider
+{
+	width: 350px;
+	height: 34px;
+}
+
+#Settings_main #Settings_content #Settings_content_right
+{
+	width: 50%;
+	height: 100%;
+}
+
+#Settings_main #Settings_content #Settings_content_right #Settings_ability_banned
+{
+	width: 90%;
+	height: 90%;
+	align: center center;
+	flow-children: down;
+}
+
+#Settings_main #Settings_content #Settings_content_right #Settings_ability_banned #Settings_ability_banned_title
+{
+	width: 100%;
+	height: 40px;
+}
+
+#Settings_main #Settings_content #Settings_content_right #Settings_ability_banned #Settings_ability_banned_title Label
+{
+	align: left center;
+	text-align: center;
+	color: white;
+	font-size: 20px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}
+
+#Settings_main #Settings_content #Settings_content_right #Settings_ability_banned #ability_banned_list
+{
+	width: 374px;
+	height: fit-children;
+	flow-children: right-wrap;
+}
+
+#Settings_main #Settings_content #Settings_content_right #Settings_ability_banned #ability_banned_list .ability_banned
+{
+	width: 54px;
+	height: 54px;
+	margin: 4px;
+}
+
+#Settings_main #Settings_content #Settings_content_right #Settings_ability_banned #ability_banned_list .ability_banned .ability_banned_img
+{
+	saturation: 0.2;
+}
+
+#Settings_main #Settings_content #Settings_content_right #Settings_ability_banned #ability_banned_list .ability_banned .ability_banned_overlay
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/settings/abilitybanned_png.vtex");
+	background-size: 100%;
+}
+
+#Settings_main #Settings_abilities
+{
+	width: fit-children;
+	height: fit-children;
+	flow-children: down;
+}
+
+#Settings_main #Settings_abilities #Settings_abilities_title
+{
+	width: 600px;
+	height: 30px;
+	padding-left: 60px;
+}
+
+#Settings_main #Settings_abilities #Settings_abilities_title Label
+{
+	text-align: center;
+	color: white;
+	font-size: 24px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}
+
+#Settings_main #Settings_abilities #Settings_abilitylist
+{
+	width: fit-children;
+	height: 200px;
+	flow-children: right;
+	padding-left: 30px;
+	padding-right: 30px;
+	overflow: squish scroll;
+}
+
+#Settings_main #Settings_abilities #Settings_abilitylist .abilityContainer
+{
+	width: 120px;
+	height: 180px;
+}
+
+#Settings_main #Settings_abilities #Settings_abilitylist .abilityContainer .BindingRowLabel
+{
+	width: 0px;
+	opacity: 0;
+	padding: 0px;
+	margin: 0px;
+}
+
+#Settings_main #Settings_abilities #Settings_abilitylist .abilityContainer #KebBinderContainer
+{
+	align: center bottom;
+	width: 60px;
+	height: 32px;
+}
+
+#Settings_main #Settings_abilities #Settings_abilitylist .abilityContainer #KebBinderContainer #EOM_KeyBinder
+{
+	align: center center;
+	width: 60px;
+}
+
+#Settings_main #Settings_abilities #Settings_abilitylist .abilityContainer #KebBinderContainer #EOM_KeyBinder #LabelFXContainer
+{
+	width: 60px;
+}
+
+#Settings_main #Settings_abilities #Settings_abilitylist .abilityContainer .ability_keybind_defult
+{
+	width: 60px;
+	height: 30px;
+	background-color: #2b2f30;
+	align: center bottom;
+}
+
+#Settings_main #Settings_abilities #Settings_abilitylist .abilityContainer .ability_keybind_defult Label
+{
+	align: center center;
+}
+
+#Settings_main #Settings_abilities #Settings_abilitylist .abilityContainer .abilityPanel
+{
+	width: 90px;
+	height: 90px;
+	align: center center;
+}
+
+#Settings_main #Settings_abilities #Settings_abilitylist .abilityContainer .abilityPanel .ability_banned_img
+{
+	align: center center;
+	height: 80px;
+	width: 80px;
+}
+
+#Settings_ability_drag_img
+{
+	width: 80px;
+	height: 80px;
+}
+
+#CustomHotkeyContainer
+{
+	width: 14px;
+	height: 14px;
+	border: 1px solid black;
+	box-shadow: fill #000000aa 1px 1px 6px 0px;
+	align: left top;
+	background-color: #212726;
+	margin-top: 94px;
+	z-index: 1;
+}
+
+#CustomHotkeyContainer Label
+{
+	color: white;
+	font-size: 12px;
+	horizontal-align: center;
+	margin-left: 2px;
+}

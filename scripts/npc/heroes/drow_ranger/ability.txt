@@ -1,0 +1,87 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"drow_ranger_trueshot_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityTextureName"					"drow_ranger_trueshot"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_3"
+		"AbilityCastRange"						"0"
+		"AbilityCastPoint"						"0 0 0 0"
+		"ScriptFile"							"heroes/hero_drow_ranger/drow_ranger_trueshot_lua"
+		"AbilityCooldown"						"100"
+		"AbilityDuration"						"30.0"
+		"AbilityValues"
+		{
+			"trueshot_ranged_damage"			"20 40 60 80"
+			"radius"							"1200"
+		}
+	}
+	"drow_ranger_marksmanship_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_drow_ranger/drow_ranger_marksmanship"
+		"AbilityTextureName"					"drow_ranger_marksmanship"
+		"FightRecapLevel"						"1"
+		"MaxLevel"								"3"
+		"HasScepterUpgrade"						"1"
+		"precache"
+		{
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_drowranger.vsndevts"
+			"particle"							"particles/units/heroes/hero_drow/drow_marksmanship.vpcf"
+			"particle"							"particles/units/heroes/hero_drow/drow_marksmanship_start.vpcf"
+		}
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityCastRange"						"400"
+		"AbilityValues"
+		{
+			"chance"
+			{
+				"value"							"20 30 40"
+				"special_bonus_unique_drow_ranger_3""+12"
+			}
+			"bonus_damage"
+			{
+				"value"							"40 60 80"
+				"CalculateSpellDamageTooltip"	"0"
+			}
+			"agility_multiplier"
+			{
+				"value"							"25 35 45"
+				"CalculateSpellDamageTooltip"	"0"
+			}
+			"agility_range"						"1200"
+			"split_count"
+			{
+				"value"							"2"
+				"RequiresScepter"				"1"
+			}
+			"split_range"
+			{
+				"value"							"375"
+				"RequiresScepter"				"1"
+			}
+			"damage_reduction_scepter"
+			{
+				"value"							"50"
+				"RequiresScepter"				"1"
+				"CalculateSpellDamageTooltip"	"0"
+			}
+			"disable_range"						"400"
+		}
+	}
+}

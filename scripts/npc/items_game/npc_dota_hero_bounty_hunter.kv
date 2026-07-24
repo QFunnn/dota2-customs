@@ -1,0 +1,4090 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"50"
+	{
+		"name"									"Bounty Hunter's Weapon"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/bounty_hunter/bounty_hunter_rweapon"
+		"item_description"						"#DOTA_Item_Desc_Bounty_Hunters_Weapon"
+		"item_name"								"#DOTA_Item_Bounty_Hunters_Weapon"
+		"model_player"							"models/heroes/bounty_hunter/bounty_hunter_rweapon.vmdl"
+	}
+	"51"
+	{
+		"name"									"Bounty Hunter's Offhand Weapon"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/bounty_hunter/bounty_hunter_lweapon"
+		"item_description"						"#DOTA_Item_Desc_Bounty_Hunters_Offhand_Weapon"
+		"item_name"								"#DOTA_Item_Bounty_Hunters_Offhand_Weapon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Offhand_Weapon"
+		"model_player"							"models/heroes/bounty_hunter/bounty_hunter_lweapon.vmdl"
+	}
+	"52"
+	{
+		"name"									"Bounty Hunter's Back"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/bounty_hunter/bounty_hunter_backpack"
+		"item_description"						"#DOTA_Item_Desc_Bounty_Hunters_Back"
+		"item_name"								"#DOTA_Item_Bounty_Hunters_Back"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/heroes/bounty_hunter/bounty_hunter_backpack.vmdl"
+	}
+	"53"
+	{
+		"name"									"Bounty Hunter's Armor"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/bounty_hunter/bounty_hunter_pads"
+		"item_description"						"#DOTA_Item_Desc_Bounty_Hunters_Armor"
+		"item_name"								"#DOTA_Item_Bounty_Hunters_Armor"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/heroes/bounty_hunter/bounty_hunter_pads.vmdl"
+	}
+	"54"
+	{
+		"name"									"Bounty Hunter's Shoulder"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/bounty_hunter/bounty_hunter_bweapon"
+		"item_description"						"#DOTA_Item_Desc_Bounty_Hunters_Shoulder"
+		"item_name"								"#DOTA_Item_Bounty_Hunters_Shoulder"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/heroes/bounty_hunter/bounty_hunter_bweapon.vmdl"
+	}
+	"55"
+	{
+		"name"									"Bounty Hunter's Bandana"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/bounty_hunter/bounty_hunter_bandana"
+		"item_description"						"#DOTA_Item_Desc_Bounty_Hunters_Bandana"
+		"item_name"								"#DOTA_Item_Bounty_Hunters_Bandana"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/bounty_hunter/bounty_hunter_bandana.vmdl"
+	}
+	"564"
+	{
+		"name"									"Bounty Hunter's Arms"
+		"prefab"								"default_item"
+		"creation_date"							"2015-05-20"
+		"image_inventory"						"econ/heroes/bounty_hunter/bounty_hunter_arms"
+		"item_description"						"#DOTA_Item_Desc_Bounty_Hunters_Arms"
+		"item_name"								"#DOTA_Item_Bounty_Hunters_Arms"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+	}
+	"4001"
+	{
+		"name"									"Pangolin Shoulder Armor"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/pangolin_shoulder_armor"
+		"item_description"						"#DOTA_Item_Desc_Pangolin_Shoulder_Armor"
+		"item_name"								"#DOTA_Item_Pangolin_Shoulder_Armor"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/bounty_hunter/pangolin_shoulder_armor.vmdl"
+	}
+	"4169"
+	{
+		"name"									"Shuriken of the Hidden Hunter"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/bounty_hunter_shuriken"
+		"item_description"						"#DOTA_Item_Desc_Shuriken_of_the_Hidden_Hunter"
+		"item_name"								"#DOTA_Item_Shuriken_of_the_Hidden_Hunter"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shuriken"
+		"model_player"							"models/items/bounty_hunter/bounty_hunter_shuriken.vmdl"
+		"particle_folder"						"particles/econ/items/bounty_hunter/bounty_hunter_shuriken_hidden"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_suriken_toss.vpcf"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_shuriken_hidden/bounty_hunter_suriken_toss_hidden_hunter.vpcf"
+				"frequency"						"1"
+			}
+		}
+	}
+	"4170"
+	{
+		"name"									"Harvester of the Hidden Hunter"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/bounty_hunter_harvester"
+		"item_description"						"#DOTA_Item_Desc_Harvester_of_the_Hidden_Hunter"
+		"item_name"								"#DOTA_Item_Harvester_of_the_Hidden_Hunter"
+		"item_type_name"						"#DOTA_WearableType_Mancatcher"
+		"model_player"							"models/items/bounty_hunter/bounty_hunter_harvester.vmdl"
+		"particle_folder"						"particles/econ/items/bounty_hunter/bounty_hunter_weapon_right_hidden_hunter"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r.vpcf"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_weapon_right_hidden_hunter/bounty_hunter_hand_r_hunter.vpcf"
+			}
+		}
+	}
+	"4171"
+	{
+		"name"									"Cleaver of the Hidden Hunter"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/bounty_hunter_scimitar"
+		"item_description"						"#DOTA_Item_Desc_Cleaver_of_the_Hidden_Hunter"
+		"item_name"								"#DOTA_Item_Cleaver_of_the_Hidden_Hunter"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Sword"
+		"model_player"							"models/items/bounty_hunter/bounty_hunter_scimitar.vmdl"
+		"particle_folder"						"particles/econ/items/bounty_hunter/bounty_hunter_weapon_left_hidden_hunter"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l.vpcf"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_weapon_left_hidden_hunter/bounty_hunter_hand_l_hunter.vpcf"
+			}
+		}
+	}
+	"4178"
+	{
+		"name"									"Hardened Hunter's Bracer"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/bounty_hunter_lightleather_bracer"
+		"item_description"						"#DOTA_Item_Desc_Hardened_Hunters_Bracer"
+		"item_name"								"#DOTA_Item_Hardened_Hunters_Bracer"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracer"
+		"model_player"							"models/items/bounty_hunter/bounty_hunter_lightleather_bracer.vmdl"
+	}
+	"4179"
+	{
+		"name"									"Hardened Hunter's Armor"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/bounty_hunter_lightleather_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Hardened_Hunters_Armor"
+		"item_name"								"#DOTA_Item_Hardened_Hunters_Armor"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/bounty_hunter/bounty_hunter_lightleather_shoulder.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"model_skin"
+				"skin"							"1"
+			}
+		}
+	}
+	"4187"
+	{
+		"name"									"Creeper's Cruel Painsaw"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/bounty_hunter_saw"
+		"item_description"						"#DOTA_Item_Desc_Creepers_Cruel_Painsaw"
+		"item_name"								"#DOTA_Item_Creepers_Cruel_Painsaw"
+		"item_type_name"						"#DOTA_WearableType_Saw"
+		"model_player"							"models/items/bounty_hunter/bounty_hunter_saw.vmdl"
+		"particle_folder"						"particles/econ/items/bounty_hunter/bounty_hunter_weapon_right_creeper"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r.vpcf"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_weapon_right_creeper/bounty_hunter_hand_r_creeper.vpcf"
+			}
+		}
+	}
+	"4188"
+	{
+		"name"									"Creeper's Cruel Hook"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/bounty_hunter_hook"
+		"item_description"						"#DOTA_Item_Desc_Creepers_Cruel_Hook"
+		"item_name"								"#DOTA_Item_Creepers_Cruel_Hook"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Hook"
+		"model_player"							"models/items/bounty_hunter/bounty_hunter_hook.vmdl"
+		"particle_folder"						"particles/econ/items/bounty_hunter/bounty_hunter_weapon_left_creeper"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l.vpcf"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_weapon_left_creeper/bounty_hunter_hand_l_creeper.vpcf"
+			}
+		}
+	}
+	"4189"
+	{
+		"name"									"Creeper's Cruel Shuriken"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/bounty_hunter_blade"
+		"item_description"						"#DOTA_Item_Desc_Creepers_Cruel_Shuriken"
+		"item_name"								"#DOTA_Item_Creepers_Cruel_Shuriken"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shuriken"
+		"model_player"							"models/items/bounty_hunter/bounty_hunter_blade.vmdl"
+		"particle_folder"						"particles/econ/items/bounty_hunter/bounty_hunter_shuriken_creeper"
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_suriken_toss.vpcf"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_shuriken_creeper/bounty_hunter_suriken_toss_creepers_cruel.vpcf"
+				"frequency"						"1"
+			}
+		}
+	}
+	"4195"
+	{
+		"name"									"Hardened Hunter's Mask"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/bounty_hunter_lightleather_head"
+		"item_description"						"#DOTA_Item_Desc_Hardened_Hunters_Mask"
+		"item_name"								"#DOTA_Item_Hardened_Hunters_Mask"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/bounty_hunter/bounty_hunter_lightleather_head.vmdl"
+	}
+	"4230"
+	{
+		"name"									"Pangolin Carapace"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/pangolin_armor"
+		"item_description"						"#DOTA_Item_Desc_Pangolin_Carapace"
+		"item_name"								"#DOTA_Item_Pangolin_Carapace"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/bounty_hunter/pangolin_armor.vmdl"
+	}
+	"4231"
+	{
+		"name"									"Pangolin Scarf"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/pangolin_scarf"
+		"item_description"						"#DOTA_Item_Desc_Pangolin_Scarf"
+		"item_name"								"#DOTA_Item_Pangolin_Scarf"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/bounty_hunter/pangolin_scarf.vmdl"
+	}
+	"4273"
+	{
+		"name"									"Shuriken of the Reaper"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/reaper_shuriken"
+		"item_description"						"#DOTA_Item_Desc_Shuriken_of_the_Reaper"
+		"item_name"								"#DOTA_Item_Shuriken_of_the_Reaper"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shuriken"
+		"model_player"							"models/items/bounty_hunter/reaper_shuriken.vmdl"
+	}
+	"4274"
+	{
+		"name"									"Bladed-Staff of the Reaper"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/reaper_longsword"
+		"item_description"						"#DOTA_Item_Desc_BladedStaff_of_the_Reaper"
+		"item_name"								"#DOTA_Item_BladedStaff_of_the_Reaper"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/bounty_hunter/reaper_longsword.vmdl"
+		"particle_folder"						"particles/econ/items/bounty_hunter/bounty_hunter_weapon_right_reaper"
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r.vpcf"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_weapon_right_reaper/bounty_hunter_hand_r_reaper.vpcf"
+			}
+		}
+	}
+	"4275"
+	{
+		"name"									"Makeshift Sword of the Reaper"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/reaper_sword"
+		"item_description"						"#DOTA_Item_Desc_Makeshift_Sword_of_the_Reaper"
+		"item_name"								"#DOTA_Item_Makeshift_Sword_of_the_Reaper"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Sword"
+		"model_player"							"models/items/bounty_hunter/reaper_sword.vmdl"
+		"particle_folder"						"particles/econ/items/bounty_hunter/bounty_hunter_weapon_left_reaper"
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l.vpcf"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_weapon_left_reaper/bounty_hunter_hand_l_reaper.vpcf"
+			}
+		}
+	}
+	"4276"
+	{
+		"name"									"Qaldin Assassin's Dagger"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/qaldin_offhand/qaldin_offhand"
+		"item_description"						"#DOTA_Item_Desc_Qaldin_Assassins_Dagger"
+		"item_name"								"#DOTA_Item_Qaldin_Assassins_Dagger"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Dagger"
+		"model_player"							"models/items/bounty_hunter/qaldin_offhand/qaldin_offhand.vmdl"
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_l.vsnap"
+				"modifier"						"particles/econ/items/bounty_hunter/qaldin_l.vsnap"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l_local.vpcf"
+			}
+		}
+	}
+	"4277"
+	{
+		"name"									"Qaldin Assassin's Slicer"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/qaldin_weapon/qaldin_weapon"
+		"item_description"						"#DOTA_Item_Desc_Qaldin_Assassins_Slicer"
+		"item_name"								"#DOTA_Item_Qaldin_Assassins_Slicer"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Mancatcher"
+		"model_player"							"models/items/bounty_hunter/qaldin_weapon/qaldin_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_r.vsnap"
+				"modifier"						"particles/econ/items/bounty_hunter/qaldin_r.vsnap"
+			}
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r_local.vpcf"
+			}
+		}
+	}
+	"4278"
+	{
+		"name"									"Qaldin Assassin's Glaive"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/qaldin_assassins_glaive/qaldin_assassins_glaive"
+		"item_description"						"#DOTA_Item_Desc_Qaldin_Assassins_Glaive"
+		"item_name"								"#DOTA_Item_Qaldin_Assassins_Glaive"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shuriken"
+		"model_player"							"models/items/bounty_hunter/qaldin_assassins_glaive/qaldin_assassins_glaive.vmdl"
+	}
+	"4306"
+	{
+		"name"									"Master Assassin's Shuriken"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/shuriken_assasin"
+		"item_description"						"#DOTA_Item_Desc_Master_Assassins_Shuriken"
+		"item_name"								"#DOTA_Item_Master_Assassins_Shuriken"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shuriken"
+		"model_player"							"models/items/bounty_hunter/shuriken_assasin.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4307"
+	{
+		"name"									"Master Assassin's Tails"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/cape_assasin"
+		"item_description"						"#DOTA_Item_Desc_Master_Assassins_Tails"
+		"item_name"								"#DOTA_Item_Master_Assassins_Tails"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Robe"
+		"model_player"							"models/items/bounty_hunter/cape_assasin.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"4308"
+	{
+		"name"									"Master Assassin's Shoulders"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/shoulder_assasin"
+		"item_description"						"#DOTA_Item_Desc_Master_Assassins_Shoulders"
+		"item_name"								"#DOTA_Item_Master_Assassins_Shoulders"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/bounty_hunter/shoulder_assasin.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4309"
+	{
+		"name"									"Master Assassin's Mask"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/mask_assasin"
+		"item_description"						"#DOTA_Item_Desc_Master_Assassins_Mask"
+		"item_name"								"#DOTA_Item_Master_Assassins_Mask"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/bounty_hunter/mask_assasin.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4310"
+	{
+		"name"									"Master Assassin's Mancatcher"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/weapon_assasin"
+		"item_description"						"#DOTA_Item_Desc_Master_Assassins_Mancatcher"
+		"item_name"								"#DOTA_Item_Master_Assassins_Mancatcher"
+		"item_type_name"						"#DOTA_WearableType_Mancatcher"
+		"model_player"							"models/items/bounty_hunter/weapon_assasin.vmdl"
+		"particle_folder"						"particles/econ/items/bounty_hunter/bounty_hunter_weapon_right_master_assassin"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r.vpcf"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_weapon_right_master_assassin/bounty_hunter_hand_r_master_assassin.vpcf"
+			}
+		}
+	}
+	"4311"
+	{
+		"name"									"Master Assassin's Grim Cutter"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/offhand_assasin"
+		"item_description"						"#DOTA_Item_Desc_Master_Assassins_Grim_Cutter"
+		"item_name"								"#DOTA_Item_Master_Assassins_Grim_Cutter"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Sword"
+		"model_player"							"models/items/bounty_hunter/offhand_assasin.vmdl"
+		"particle_folder"						"particles/econ/items/bounty_hunter/bounty_hunter_weapon_left_master_assassin"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l.vpcf"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_weapon_left_master_assassin/bounty_hunter_hand_l_master_assassin.vpcf"
+			}
+		}
+	}
+	"4313"
+	{
+		"name"									"Trap Jaw"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/back_jawtrap"
+		"item_description"						"#DOTA_Item_Desc_Trap_Jaw"
+		"item_name"								"#DOTA_Item_Trap_Jaw"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Booby_Trap"
+		"model_player"							"models/items/bounty_hunter/back_jawtrap.vmdl"
+	}
+	"4375"
+	{
+		"name"									"Sacrificial Shortblade"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/bountyhunter_knife/bountyhunter_knife"
+		"item_description"						"#DOTA_Item_Desc_Sacrificial_Shortblade"
+		"item_name"								"#DOTA_Item_Sacrificial_Shortblade"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/bounty_hunter/bountyhunter_knife/bountyhunter_knife.vmdl"
+		"particle_folder"						"particles/econ/items/bounty_hunter/bounty_hunter_weapon_left_generic"
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_l.vsnap"
+				"modifier"						"particles/econ/items/bounty_hunter/sacrificial_short_blade.vsnap"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l_local.vpcf"
+			}
+		}
+	}
+	"4384"
+	{
+		"name"									"Mask of the Crimson Cut-throat"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/mask_v2/mask_v2"
+		"item_description"						"#DOTA_Item_Desc_Mask_of_the_Crimson_Cutthroat"
+		"item_name"								"#DOTA_Item_Mask_of_the_Crimson_Cutthroat"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/bounty_hunter/mask_v2/mask_v2.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4385"
+	{
+		"name"									"Guard of the Crimson Cut-throat"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/bh_back001/bh_back001"
+		"item_description"						"#DOTA_Item_Desc_Guard_of_the_Crimson_Cutthroat"
+		"item_name"								"#DOTA_Item_Guard_of_the_Crimson_Cutthroat"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Shield"
+		"model_player"							"models/items/bounty_hunter/bh_back001/bh_back001.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4452"
+	{
+		"name"									"Mancatcher of the Crimson Cut-throat"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/lg_weapon_v2/lg_weapon_v2"
+		"item_description"						"#DOTA_Item_Desc_Mancatcher_of_the_Crimson_Cutthroat"
+		"item_name"								"#DOTA_Item_Mancatcher_of_the_Crimson_Cutthroat"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Mancatcher"
+		"model_player"							"models/items/bounty_hunter/lg_weapon_v2/lg_weapon_v2.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier2"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_r.vsnap"
+				"modifier"						"particles/econ/items/bounty_hunter/crimson_cut_throat_r.vsnap"
+			}
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r_local.vpcf"
+			}
+		}
+	}
+	"4465"
+	{
+		"name"									"Pads of the Crimson Cut-throat"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/pads/pads"
+		"item_description"						"#DOTA_Item_Desc_Pads_of_the_Crimson_Cutthroat"
+		"item_name"								"#DOTA_Item_Pads_of_the_Crimson_Cutthroat"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Pads"
+		"model_player"							"models/items/bounty_hunter/pads/pads.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4469"
+	{
+		"name"									"Blade of the Crimson Cut-throat"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/poniard_of_the_crimson_cut-throat/poniard_of_the_crimson_cut-throat"
+		"item_description"						"#DOTA_Item_Desc_Blade_of_the_Crimson_Cutthroat"
+		"item_name"								"#DOTA_Item_Blade_of_the_Crimson_Cutthroat"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/bounty_hunter/poniard_of_the_crimson_cut_throat/poniard_of_the_crimson_cut_throat.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l_local.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_l.vsnap"
+				"modifier"						"particles/models/items/bounty_hunter/poniard_of_the_crimson_cut_throat/poniard_of_the_crimson_cut_throat.vsnap"
+			}
+		}
+	}
+	"4486"
+	{
+		"name"									"Shuriken of the Crimson Cut-throat"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/shuriken_of_the_crimson_cut-throat/shuriken_of_the_crimson_cut-throat"
+		"item_description"						"#DOTA_Item_Desc_Shuriken_of_the_Crimson_Cutthroat"
+		"item_name"								"#DOTA_Item_Shuriken_of_the_Crimson_Cutthroat"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shuriken"
+		"model_player"							"models/items/bounty_hunter/shuriken_of_the_crimson_cut-throat/shuriken_of_the_crimson_cut-throat.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4589"
+	{
+		"name"									"Wraps of the Seasoned Veteran"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-22"
+		"image_inventory"						"econ/items/bounty_hunter/seasoned_wraps/seasoned_wraps"
+		"item_description"						"#DOTA_Item_Desc_Wraps_of_the_Seasoned_Veteran"
+		"item_name"								"#DOTA_Item_Wraps_of_the_Seasoned_Veteran"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Wrap"
+		"model_player"							"models/items/bounty_hunter/seasoned_wraps/seasoned_wraps.vmdl"
+	}
+	"4735"
+	{
+		"name"									"Mask of Dark Ferocity"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2012"
+			}
+		}
+		"image_inventory"						"econ/items/bounty_hunter/headhunter_mask/headhunter_mask"
+		"item_description"						"#DOTA_Item_Desc_Mask_of_Dark_Ferocity"
+		"item_name"								"#DOTA_Item_Mask_of_Dark_Ferocity"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask_and_Eye_Patch"
+		"model_player"							"models/items/bounty_hunter/headhunter_mask/headhunter_mask.vmdl"
+	}
+	"4826"
+	{
+		"name"									"Mask of Distant Sands"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/immortal_warrior_mask/immortal_warrior_mask"
+		"item_description"						"#DOTA_Item_Desc_Mask_of_Distant_Sands"
+		"item_name"								"#DOTA_Item_Mask_of_Distant_Sands"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/bounty_hunter/immortal_warrior_mask/immortal_warrior_mask.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4827"
+	{
+		"name"									"Armor of Distant Sands"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/immortal_warrior_armor/immortal_warrior_armor"
+		"item_description"						"#DOTA_Item_Desc_Armor_of_Distant_Sands"
+		"item_name"								"#DOTA_Item_Armor_of_Distant_Sands"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/bounty_hunter/immortal_warrior_armor/immortal_warrior_armor.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4828"
+	{
+		"name"									"Shuriken of Distant Sands"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/immortal_warrior_shuriken/immortal_warrior_shuriken"
+		"item_description"						"#DOTA_Item_Desc_Shuriken_of_Distant_Sands"
+		"item_name"								"#DOTA_Item_Shuriken_of_Distant_Sands"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shuriken"
+		"model_player"							"models/items/bounty_hunter/immortal_warrior_shuriken/immortal_warrior_shuriken.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4829"
+	{
+		"name"									"Long Blade of Distant Sands"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/immortal_warrior_blades/immortal_warrior_blades"
+		"item_description"						"#DOTA_Item_Desc_Long_Blade_of_Distant_Sands"
+		"item_name"								"#DOTA_Item_Long_Blade_of_Distant_Sands"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/bounty_hunter/immortal_warrior_blades/immortal_warrior_blades.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_r.vsnap"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_immortal_blade.vsnap"
+			}
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r_local.vpcf"
+			}
+		}
+	}
+	"4830"
+	{
+		"name"									"Short Blade of Distant Sands"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/bounty_hunter/immortal_warrior_knife/immortal_warrior_knife"
+		"item_description"						"#DOTA_Item_Desc_Short_Blade_of_Distant_Sands"
+		"item_name"								"#DOTA_Item_Short_Blade_of_Distant_Sands"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Knife"
+		"model_player"							"models/items/bounty_hunter/immortal_warrior_knife/immortal_warrior_knife.vmdl"
+		"particle_folder"						"particles/econ/items/bounty_hunter/bounty_hunter_weapon_left_generic"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_l.vsnap"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_immortal_knife.vsnap"
+			}
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l_local.vpcf"
+			}
+		}
+	}
+	"5096"
+	{
+		"name"									"Flying Desolation"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-05"
+		"image_inventory"						"econ/items/bounty_hunter/flying_desolation/flying_desolation"
+		"item_description"						"#DOTA_Item_Desc_flying_desolation"
+		"item_name"								"#DOTA_Item_Flying_Desolation"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shuriken"
+		"model_player"							"models/items/bounty_hunter/flying_desolation/flying_desolation.vmdl"
+	}
+	"5479"
+	{
+		"name"									"Pack of the Blood Stained Sands"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-04"
+		"image_inventory"						"econ/items/bounty_hunter/pack_of_the_blood_stained_sands/pack_of_the_blood_stained_sands"
+		"item_description"						"#DOTA_Item_Desc_Pack_of_the_Blood_Stained_Sands"
+		"item_name"								"#DOTA_Item_Pack_of_the_Blood_Stained_Sands"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Backpack"
+		"model_player"							"models/items/bounty_hunter/pack_of_the_blood_stained_sands/pack_of_the_blood_stained_sands.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5480"
+	{
+		"name"									"Pads of the Blood Stained Sands"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-04"
+		"image_inventory"						"econ/items/bounty_hunter/pads_of_the_blood_stained_sands/pads_of_the_blood_stained_sands"
+		"item_description"						"#DOTA_Item_Desc_Pads_of_the_Blood_Stained_Sands"
+		"item_name"								"#DOTA_Item_Pads_of_the_Blood_Stained_Sands"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/bounty_hunter/pads_of_the_blood_stained_sands/pads_of_the_blood_stained_sands.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5481"
+	{
+		"name"									"Cowl of the Blood Stained Sands"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-04"
+		"image_inventory"						"econ/items/bounty_hunter/cowl_of_the_blood_stained_sands/cowl_of_the_blood_stained_sands"
+		"item_description"						"#DOTA_Item_Desc_Cowl_of_the_Blood_Stained_Sands"
+		"item_name"								"#DOTA_Item_Cowl_of_the_Blood_Stained_Sands"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hood"
+		"model_player"							"models/items/bounty_hunter/cowl_of_the_blood_stained_sands/cowl_of_the_blood_stained_sands.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5482"
+	{
+		"name"									"Blade of the Blood Stained Sands"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-04"
+		"image_inventory"						"econ/items/bounty_hunter/blade_of_the_blood_stained_sands/blade_of_the_blood_stained_sands"
+		"item_description"						"#DOTA_Item_Desc_Blade_of_the_Blood_Stained_Sands"
+		"item_name"								"#DOTA_Item_Blade_of_the_Blood_Stained_Sands"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Offhand_blade"
+		"model_player"							"models/items/bounty_hunter/blade_of_the_blood_stained_sands/blade_of_the_blood_stained_sands.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_l.vsnap"
+				"modifier"						"particles/models/items/bounty_hunter/blade_of_the_blood_stained_sands/blade_of_the_blood_stained_sands.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l_local.vpcf"
+			}
+		}
+	}
+	"5483"
+	{
+		"name"									"Shuriken of the Blood Stained Sands"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-04"
+		"image_inventory"						"econ/items/bounty_hunter/shuriken_of_the_blood_stained_sands/shuriken_of_the_blood_stained_sands"
+		"item_description"						"#DOTA_Item_Desc_Shuriken_of_the_Blood_Stained_Sands"
+		"item_name"								"#DOTA_Item_Shuriken_of_the_Blood_Stained_Sands"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shuriken"
+		"model_player"							"models/items/bounty_hunter/shuriken_of_the_blood_stained_sands/shuriken_of_the_blood_stained_sands.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5484"
+	{
+		"name"									"Pike of the Blood Stained Sands"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-04"
+		"image_inventory"						"econ/items/bounty_hunter/pike_of_the_blood_stained_sands/pike_of_the_blood_stained_sands"
+		"item_description"						"#DOTA_Item_Desc_Pike_of_the_Blood_Stained_Sands"
+		"item_name"								"#DOTA_Item_Pike_of_the_Blood_Stained_Sands"
+		"item_rarity"							"uncommon"
+		"model_player"							"models/items/bounty_hunter/pike_of_the_blood_stained_sands/pike_of_the_blood_stained_sands.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_r.vsnap"
+				"modifier"						"particles/models/items/bounty_hunter/pike_of_the_blood_stained_sands/pike_of_the_blood_stained_sands.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r_local.vpcf"
+			}
+		}
+	}
+	"5610"
+	{
+		"name"									"Dark Tracer"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"diretide tag"
+			{
+				"attribute_class"				"diretide_tag"
+				"value"							"2013"
+			}
+		}
+		"creation_date"							"2013-11-05"
+		"image_inventory"						"econ/items/bounty_hunter/dark_tracer/dark_tracer"
+		"item_description"						"#DOTA_Item_Desc_Dark_Tracer"
+		"item_name"								"#DOTA_Item_Dark_Tracer"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/bounty_hunter/dark_tracer/dark_tracer.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_l.vsnap"
+				"modifier"						"particles/models/items/bounty_hunter/dark_tracer/dark_tracer.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l_local.vpcf"
+			}
+		}
+	}
+	"5685"
+	{
+		"name"									"Second Disciple's Bastion"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-19"
+		"image_inventory"						"econ/items/bounty_hunter/the_second_disciples_bastion/the_second_disciples_bastion"
+		"item_description"						"#DOTA_Item_Desc_The_Second_Disciples_Bastion"
+		"item_name"								"#DOTA_Item_Second_Disciples_Bastion"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/bounty_hunter/the_second_disciples_bastion/the_second_disciples_bastion.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5686"
+	{
+		"name"									"Second Disciple's Veil"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-19"
+		"image_inventory"						"econ/items/bounty_hunter/the_second_disciples_veil/the_second_disciples_veil"
+		"item_description"						"#DOTA_Item_Desc_The_Second_Disciples_Veil"
+		"item_name"								"#DOTA_Item_Second_Disciples_Veil"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/bounty_hunter/the_second_disciples_veil/the_second_disciples_veil.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5687"
+	{
+		"name"									"Second Disciple's Dagger"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-19"
+		"image_inventory"						"econ/items/bounty_hunter/the_second_disciples_dagger/the_second_disciples_dagger"
+		"item_description"						"#DOTA_Item_Desc_The_Second_Disciples_Dagger"
+		"item_name"								"#DOTA_Item_Second_Disciples_Dagger"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Dagger"
+		"model_player"							"models/items/bounty_hunter/the_second_disciples_dagger/the_second_disciples_dagger.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_l.vsnap"
+				"modifier"						"particles/models/items/bounty_hunter/the_second_disciples_dagger/the_second_disciples_dagger.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l_local.vpcf"
+			}
+		}
+	}
+	"5688"
+	{
+		"name"									"Second Disciple's Chakram"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-19"
+		"image_inventory"						"econ/items/bounty_hunter/the_second_disciples_chakram/the_second_disciples_chakram"
+		"item_description"						"#DOTA_Item_Desc_The_Second_Disciples_Chakram"
+		"item_name"								"#DOTA_Item_Second_Disciples_Chakram"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"model_player"							"models/items/bounty_hunter/the_second_disciples_chakram/the_second_disciples_chakram.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5689"
+	{
+		"name"									"Second Disciple's Blade"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-19"
+		"image_inventory"						"econ/items/bounty_hunter/the_second_disciples_blade/the_second_disciples_blade"
+		"item_description"						"#DOTA_Item_Desc_The_Second_Disciples_Blade"
+		"item_name"								"#DOTA_Item_Second_Disciples_Blade"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/bounty_hunter/the_second_disciples_blade/the_second_disciples_blade.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_r.vsnap"
+				"modifier"						"particles/models/items/bounty_hunter/the_second_disciples_blade/the_second_disciples_blade.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r_local.vpcf"
+			}
+		}
+	}
+	"5695"
+	{
+		"name"									"Second Disciple's Satchel"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-19"
+		"image_inventory"						"econ/items/bounty_hunter/the_second_disciples_satchel/the_second_disciples_satchel"
+		"item_description"						"#DOTA_Item_Desc_The_Second_Disciples_Satchel"
+		"item_name"								"#DOTA_Item_Second_Disciples_Satchel"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Backpack"
+		"model_player"							"models/items/bounty_hunter/the_second_disciples_satchel/the_second_disciples_satchel.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"6219"
+	{
+		"name"									"Armor of Corruption"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-03"
+		"image_inventory"						"econ/items/bounty_hunter/corruption_armor/corruption_armor"
+		"item_name"								"#DOTA_Item_Armor_of_Corruption"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/bounty_hunter/corruption_armor/corruption_armor.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"3/3/2014"
+			"price"								"0"
+		}
+	}
+	"6220"
+	{
+		"name"									"Mask of Corruption"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-03"
+		"image_inventory"						"econ/items/bounty_hunter/corruption_mask/corruption_mask"
+		"item_name"								"#DOTA_Item_Mask_of_Corruption"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/bounty_hunter/corruption_mask/corruption_mask.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"3/3/2014"
+			"price"								"0"
+		}
+	}
+	"6221"
+	{
+		"name"									"Dagger of Corruption"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-03"
+		"image_inventory"						"econ/items/bounty_hunter/corruption_offhand/corruption_offhand"
+		"item_name"								"#DOTA_Item_Dagger_of_Corruption"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Dagger"
+		"model_player"							"models/items/bounty_hunter/corruption_offhand/corruption_offhand.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"3/3/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_l.vsnap"
+				"modifier"						"particles/models/items/bounty_hunter/corruption_offhand/corruption_offhand.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l_local.vpcf"
+			}
+		}
+	}
+	"6222"
+	{
+		"name"									"Shuriken of Corruption"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-03"
+		"image_inventory"						"econ/items/bounty_hunter/corruption_shoulder/corruption_shoulder"
+		"item_name"								"#DOTA_Item_Shuriken_of_Corruption"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shuriken"
+		"model_player"							"models/items/bounty_hunter/corruption_shoulder/corruption_shoulder.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"3/3/2014"
+			"price"								"0"
+		}
+	}
+	"6223"
+	{
+		"name"									"Pike of Corruption"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-03"
+		"image_inventory"						"econ/items/bounty_hunter/corruption_weapon/corruption_weapon"
+		"item_name"								"#DOTA_Item_Pike_of_Corruption"
+		"item_type_name"						"#DOTA_WearableType_Pike"
+		"model_player"							"models/items/bounty_hunter/corruption_weapon/corruption_weapon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"3/3/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_r.vsnap"
+				"modifier"						"particles/models/items/bounty_hunter/corruption_weapon/corruption_weapon.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r_local.vpcf"
+			}
+		}
+	}
+	"6302"
+	{
+		"name"									"Djinn Slayer Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-15"
+		"image_inventory"						"econ/items/bounty_hunter/djinnslayer_armor/djinnslayer_armor"
+		"item_name"								"#DOTA_Item_Djinn_Slayer_Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/bounty_hunter/djinnslayer_armor/djinnslayer_armor.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2015"
+			"price"								"0"
+		}
+	}
+	"6303"
+	{
+		"name"									"Djinn Slayer Hook Staff"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-15"
+		"image_inventory"						"econ/items/bounty_hunter/djinnslayer_weapon/djinnslayer_weapon"
+		"item_name"								"#DOTA_Item_Djinn_Slayer_Hook_Staff"
+		"model_player"							"models/items/bounty_hunter/djinnslayer_weapon/djinnslayer_weapon.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2015"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_r.vsnap"
+				"modifier"						"particles/models/items/bounty_hunter/djinnslayer_weapon/djinnslayer_weapon.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r_local.vpcf"
+			}
+		}
+	}
+	"6304"
+	{
+		"name"									"Djinn Slayer Shuriken"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-15"
+		"image_inventory"						"econ/items/bounty_hunter/djinnslayer_shoulder/djinnslayer_shoulder"
+		"item_name"								"#DOTA_Item_Djinn_Slayer_Shuriken"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shuriken"
+		"model_player"							"models/items/bounty_hunter/djinnslayer_shoulder/djinnslayer_shoulder.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2015"
+			"price"								"0"
+		}
+	}
+	"6305"
+	{
+		"name"									"Djinn Slayer Scarf"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-15"
+		"image_inventory"						"econ/items/bounty_hunter/djinnslayer_head/djinnslayer_head"
+		"item_name"								"#DOTA_Item_Djinn_Slayer_Scarf"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Scarf"
+		"model_player"							"models/items/bounty_hunter/djinnslayer_head/djinnslayer_head.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2015"
+			"price"								"0"
+		}
+	}
+	"6306"
+	{
+		"name"									"Djinn Slayer Dagger"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-15"
+		"image_inventory"						"econ/items/bounty_hunter/djinnslayer_offhand/djinnslayer_offhand"
+		"item_name"								"#DOTA_Item_Djinn_Slayer_Dagger"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Dagger"
+		"model_player"							"models/items/bounty_hunter/djinnslayer_offhand/djinnslayer_offhand.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2015"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_l.vsnap"
+				"modifier"						"particles/models/items/bounty_hunter/djinnslayer_offhand/djinnslayer_offhand.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l_local.vpcf"
+			}
+		}
+	}
+	"6307"
+	{
+		"name"									"Djinn Slayer Backpack"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-15"
+		"image_inventory"						"econ/items/bounty_hunter/djinnslayer_back/djinnslayer_back"
+		"item_name"								"#DOTA_Item_Djinn_Slayer_Backpack"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Backpack"
+		"model_player"							"models/items/bounty_hunter/djinnslayer_back/djinnslayer_back.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2015"
+			"price"								"0"
+		}
+	}
+	"6525"
+	{
+		"name"									"Hood of the Twin Blades"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-28"
+		"image_inventory"						"econ/items/bounty_hunter/twinblades_head/twinblades_head"
+		"item_name"								"#DOTA_Item_Hood_of_the_Twin_Blades"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hood"
+		"model_player"							"models/items/bounty_hunter/twinblades_head/twinblades_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"ability_icon"
+				"asset"							"bounty_hunter_wind_walk"
+				"modifier"						"bounty_hunter_twinblade_wind_walk"
+			}
+		}
+		"branding"
+		{
+			"corporation_id"					"90045009"
+		}
+	}
+	"6527"
+	{
+		"name"									"Backpack of the Twin Blades"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-28"
+		"image_inventory"						"econ/items/bounty_hunter/twinblades_back/twinblades_back"
+		"item_name"								"#DOTA_Item_Backpack_of_the_Twin_Blades"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Backpack"
+		"model_player"							"models/items/bounty_hunter/twinblades_back/twinblades_back.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"ability_icon"
+				"asset"							"bounty_hunter_track"
+				"modifier"						"bounty_hunter_twinblade_track"
+			}
+		}
+		"branding"
+		{
+			"corporation_id"					"90045009"
+		}
+	}
+	"6528"
+	{
+		"name"									"Lesser Twin Blade"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-28"
+		"image_inventory"						"econ/items/bounty_hunter/twinblades_offhand/twinblades_offhand"
+		"item_name"								"#DOTA_Item_Lesser_Twin_Blade"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_OffHand"
+		"model_player"							"models/items/bounty_hunter/twinblades_offhand/twinblades_offhand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_l.vsnap"
+				"modifier"						"particles/models/items/bounty_hunter/twinblades_offhand/twinblades_offhand.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l_local.vpcf"
+			}
+		}
+		"branding"
+		{
+			"corporation_id"					"90045009"
+		}
+	}
+	"6529"
+	{
+		"name"									"Boomerang of the Twin Blades"
+		"prefab"								"wearable"
+		"branding"
+		{
+			"corporation_id"					"90045009"
+		}
+		"creation_date"							"2014-05-28"
+		"image_inventory"						"econ/items/bounty_hunter/twinblades_shoulder/twinblades_shoulder"
+		"item_name"								"#DOTA_Item_Boomerang_of_the_Twin_Blades"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Boomerang"
+		"model_player"							"models/items/bounty_hunter/twinblades_shoulder/twinblades_shoulder.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"ability_icon"
+				"asset"							"bounty_hunter_shuriken_toss"
+				"modifier"						"bounty_hunter_twinblade_shuriken_toss"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_CAST_ABILITY_1"
+				"modifier"						"twinblade_shuriken_toss_injured"
+			}
+		}
+	}
+	"6537"
+	{
+		"name"									"Armor of the Twin Blades"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-28"
+		"image_inventory"						"econ/items/bounty_hunter/twinblades_armor/twinblades_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Twin_Blades"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/bounty_hunter/twinblades_armor/twinblades_armor.vmdl"
+		"branding"
+		{
+			"corporation_id"					"90045009"
+		}
+	}
+	"6543"
+	{
+		"name"									"Greater Twin Blade"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-28"
+		"image_inventory"						"econ/items/bounty_hunter/twinblades_weapon/twinblades_weapon"
+		"item_name"								"#DOTA_Item_Greater_Twin_Blade"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/bounty_hunter/twinblades_weapon/twinblades_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_r.vsnap"
+				"modifier"						"particles/models/items/bounty_hunter/twinblades_weapon/twinblades_weapon.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r_local.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_SPAWN"
+				"modifier"						"twinblade_spawn"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE"
+				"modifier"						"twinblade_idle"
+			}
+			"asset_modifier4"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_ATTACK"
+				"modifier"						"twinblade_attack"
+			}
+			"asset_modifier5"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_DIE"
+				"modifier"						"twinblade_death"
+			}
+			"asset_modifier6"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_CAST_ABILITY_1"
+				"modifier"						"twinblade_shuriken_toss"
+			}
+			"asset_modifier7"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_DISABLED"
+				"modifier"						"twinblade_stun"
+			}
+			"asset_modifier8"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_ATTACK"
+				"modifier"						"twinblade_attack_b"
+			}
+			"asset_modifier9"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_ATTACK"
+				"modifier"						"twinblade_attack_c"
+			}
+			"asset_modifier10"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_RUN"
+				"modifier"						"twinblade_run"
+			}
+			"asset_modifier11"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_CAST_ABILITY_4"
+				"modifier"						"twinblade_track"
+			}
+			"asset_modifier12"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_ATTACK"
+				"modifier"						"twinblade_attack_d"
+			}
+			"asset_modifier13"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE_RARE"
+				"modifier"						"twinblade_idle_rare"
+			}
+			"asset_modifier14"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_ATTACK_EVENT"
+				"modifier"						"twinblade_jinada"
+			}
+			"asset_modifier15"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_ATTACK"
+				"modifier"						"twinblade_injured_attack_b"
+			}
+			"asset_modifier16"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_ATTACK_EVENT"
+				"modifier"						"twinblade_jinada_injured"
+			}
+			"asset_modifier17"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_RUN"
+				"modifier"						"twinblade_run_injured"
+			}
+			"asset_modifier18"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE"
+				"modifier"						"twinblade_idle_injured"
+			}
+			"asset_modifier19"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_CAST_ABILITY_4"
+				"modifier"						"twinblade_track_injured"
+			}
+			"asset_modifier20"
+			{
+				"type"							"ability_icon"
+				"asset"							"bounty_hunter_jinada"
+				"modifier"						"bounty_hunter_twinblade_jinada"
+			}
+		}
+		"branding"
+		{
+			"corporation_id"					"90045009"
+		}
+	}
+	"6688"
+	{
+		"name"									"Cape of the Hunter"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-23"
+		"image_inventory"						"econ/items/bounty_hunter/hunternoname_back/hunternoname_back"
+		"item_name"								"#DOTA_Item_Cape_of_the_Hunter"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/bounty_hunter/hunternoname_back/hunternoname_back.vmdl"
+		"branding"
+		{
+			"corporation_id"					"86723143"
+		}
+	}
+	"6689"
+	{
+		"name"									"Pistol Blade of the Hunter"
+		"prefab"								"wearable"
+		"branding"
+		{
+			"corporation_id"					"86723143"
+		}
+		"creation_date"							"2014-05-23"
+		"image_inventory"						"econ/items/bounty_hunter/hunternoname_offhand/hunternoname_offhand"
+		"item_name"								"#DOTA_Item_Pistol_Blade_of_the_Hunter"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/bounty_hunter/hunternoname_offhand/hunternoname_offhand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_l.vsnap"
+				"modifier"						"particles/models/items/bounty_hunter/hunternoname_offhand/hunternoname_offhand.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l_local.vpcf"
+			}
+		}
+	}
+	"6690"
+	{
+		"name"									"Rifle Blade of the Hunter"
+		"prefab"								"wearable"
+		"branding"
+		{
+			"corporation_id"					"86723143"
+		}
+		"creation_date"							"2014-05-23"
+		"image_inventory"						"econ/items/bounty_hunter/hunternoname_weapon/hunternoname_weapon"
+		"item_name"								"#DOTA_Item_Rifle_Blade_of_the_Hunter"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/bounty_hunter/hunternoname_weapon/hunternoname_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_r.vsnap"
+				"modifier"						"particles/models/items/bounty_hunter/hunternoname_weapon/hunternoname_weapon.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r_local.vpcf"
+			}
+		}
+	}
+	"6691"
+	{
+		"name"									"Shuriken of the Hunter"
+		"prefab"								"wearable"
+		"branding"
+		{
+			"corporation_id"					"86723143"
+		}
+		"creation_date"							"2014-05-23"
+		"image_inventory"						"econ/items/bounty_hunter/hunternoname_shoulder/hunternoname_shoulder"
+		"item_name"								"#DOTA_Item_Shuriken_of_the_Hunter"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shuriken"
+		"model_player"							"models/items/bounty_hunter/hunternoname_shoulder/hunternoname_shoulder.vmdl"
+	}
+	"6692"
+	{
+		"name"									"Hat of the Hunter"
+		"prefab"								"wearable"
+		"branding"
+		{
+			"corporation_id"					"86723143"
+		}
+		"creation_date"							"2014-05-23"
+		"image_inventory"						"econ/items/bounty_hunter/hunternoname_head/hunternoname_head"
+		"item_name"								"#DOTA_Item_Hat_of_the_Hunter"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hat"
+		"model_player"							"models/items/bounty_hunter/hunternoname_head/hunternoname_head.vmdl"
+	}
+	"6693"
+	{
+		"name"									"Armor of the Hunter"
+		"prefab"								"wearable"
+		"branding"
+		{
+			"corporation_id"					"86723143"
+		}
+		"creation_date"							"2014-05-23"
+		"image_inventory"						"econ/items/bounty_hunter/hunternoname_armor/hunternoname_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Hunter"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/bounty_hunter/hunternoname_armor/hunternoname_armor.vmdl"
+	}
+	"6970"
+	{
+		"name"									"Beaulieu Ring"
+		"prefab"								"wearable"
+		"creation_date"							"2014-07-09"
+		"image_inventory"						"econ/items/bounty_hunter/beaulieu_ring/beaulieu_ring"
+		"item_name"								"#DOTA_Item_Beaulieu_Ring"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/bounty_hunter/beaulieu_ring/beaulieu_ring.vmdl"
+	}
+	"7861"
+	{
+		"name"									"Blade of the Hunter's Glory"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-05"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/bounty_hunter/gold_ripperbounty_hunter_off_hand/gold_ripperbounty_hunter_off_hand"
+		"item_description"						"#DOTA_Item_Desc_Blade_of_the_Hunters_Glory"
+		"item_name"								"#DOTA_Item_Blade_of_the_Hunters_Glory"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/bounty_hunter/gold_ripperbounty_hunter_off_hand/gold_ripperbounty_hunter_off_hand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_l.vsnap"
+				"modifier"						"particles/models/items/bounty_hunter/gold_ripperbounty_hunter_off_hand/gold_ripperbounty_hunter_off_hand_fx.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l_local.vpcf"
+			}
+		}
+	}
+	"7862"
+	{
+		"name"									"Buckler of the Hunter's Glory"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-05"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/bounty_hunter/gold_ripperbounty_hunter_shoulder/gold_ripperbounty_hunter_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Buckler_of_the_Hunters_Glory"
+		"item_name"								"#DOTA_Item_Buckler_of_the_Hunters_Glory"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/bounty_hunter/gold_ripperbounty_hunter_shoulder/gold_ripperbounty_hunter_shoulder.vmdl"
+	}
+	"7863"
+	{
+		"name"									"Scythe of the Hunter's Glory"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-05"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/bounty_hunter/gold_ripperbounty_hunter_weapon/gold_ripperbounty_hunter_weapon"
+		"item_description"						"#DOTA_Item_Desc_Scythe_of_the_Hunters_Glory"
+		"item_name"								"#DOTA_Item_Scythe_of_the_Hunters_Glory"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/bounty_hunter/gold_ripperbounty_hunter_weapon/gold_ripperbounty_hunter_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_r.vsnap"
+				"modifier"						"particles/models/items/bounty_hunter/gold_ripperbounty_hunter_weapon/gold_ripperbounty_hunter_weapon_fx.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r_local.vpcf"
+			}
+		}
+	}
+	"7864"
+	{
+		"name"									"Helm of the Hunter's Glory"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-05"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/bounty_hunter/gold_ripperbounty_hunter_head/gold_ripperbounty_hunter_head"
+		"item_description"						"#DOTA_Item_Desc_Helm_of_the_Hunters_Glory"
+		"item_name"								"#DOTA_Item_Helm_of_the_Hunters_Glory"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/bounty_hunter/gold_ripperbounty_hunter_head/gold_ripperbounty_hunter_head.vmdl"
+	}
+	"7865"
+	{
+		"name"									"Cape of the Hunter's Glory"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-05"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/bounty_hunter/gold_ripperbounty_hunter_back/gold_ripperbounty_hunter_back"
+		"item_description"						"#DOTA_Item_Desc_Cape_of_the_Hunters_Glory"
+		"item_name"								"#DOTA_Item_Cape_of_the_Hunters_Glory"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/bounty_hunter/gold_ripperbounty_hunter_back/gold_ripperbounty_hunter_back.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"7866"
+	{
+		"name"									"Armor of the Hunter's Glory"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-05"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/bounty_hunter/gold_ripperbounty_hunter_armor/gold_ripperbounty_hunter_armor"
+		"item_description"						"#DOTA_Item_Desc_Armor_of_the_Hunters_Glory"
+		"item_name"								"#DOTA_Item_Armor_of_the_Hunters_Glory"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/bounty_hunter/gold_ripperbounty_hunter_armor/gold_ripperbounty_hunter_armor.vmdl"
+	}
+	"7934"
+	{
+		"name"									"Hunter's Hoard"
+		"prefab"								"wearable"
+		"creation_date"							"2016-05-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/bounty_hunter/ti6_hunters_hoard/mesh/ti6_hunters_hoard_model"
+		"item_description"						"#DOTA_Item_Desc_Hunters_Hoard"
+		"item_name"								"#DOTA_Item_Hunters_Hoard"
+		"item_rarity"							"immortal"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Pack"
+		"model_player"							"models/items/bounty_hunter/ti6_hunters_hoard/mesh/ti6_hunters_hoard_model.vmdl"
+		"particle_folder"						"particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"hoard"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_hunters_hoard/bounty_hunter_hoard_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/bounty_hunter/bounty_hunter_hunters_hoard/bounty_hunter_hoard_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_back"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_haste.vpcf"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_hunters_hoard/bounty_hunter_hoard_track_haste.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_shield.vpcf"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_hunters_hoard/bounty_hunter_hoard_shield.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_trail.vpcf"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_hunters_hoard/bounty_hunter_hoard_track_trail.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_cast.vpcf"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_hunters_hoard/bounty_hunter_hoard.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_reward.vpcf"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_hunters_hoard/bounty_hunter_hoard_track_reward.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier7"
+			{
+				"type"							"ability_icon"
+				"asset"							"bounty_hunter_track"
+				"modifier"						"bounty_hunter/hunters_hoard/bounty_hunter_track"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+		}
+	}
+	"8009"
+	{
+		"name"									"Hunter's Hoard of the Crimson Witness"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-01"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/bounty_hunter/ti6_hunters_hoard/mesh/ti6_hunters_hoard_model1"
+		"item_description"						"#DOTA_Item_Desc_Hunters_Hoard_of_the_Crimson_Witness"
+		"item_name"								"#DOTA_Item_Hunters_Hoard_of_the_Crimson_Witness"
+		"item_quality"							"genuine"
+		"item_rarity"							"immortal"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Pack"
+		"model_player"							"models/items/bounty_hunter/ti6_hunters_hoard/mesh/ti6_hunters_hoard_model.vmdl"
+		"particle_folder"						"particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"hoard"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_hunters_hoard/bounty_hunter_hoard_witness_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/bounty_hunter/bounty_hunter_hunters_hoard/bounty_hunter_hoard_witness_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_back"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_haste.vpcf"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_hunters_hoard/bounty_hunter_hoard_track_haste.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_shield.vpcf"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_hunters_hoard/bounty_hunter_hoard_shield.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_trail.vpcf"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_hunters_hoard/bounty_hunter_hoard_track_trail.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_cast.vpcf"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_hunters_hoard/bounty_hunter_hoard.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_reward.vpcf"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_hunters_hoard/bounty_hunter_hoard_track_reward.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"skin"								"1"
+			"asset_modifier7"
+			{
+				"type"							"ability_icon"
+				"asset"							"bounty_hunter_track"
+				"modifier"						"bounty_hunter/hunters_hoard/bounty_hunter_track"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+		}
+	}
+	"8424"
+	{
+		"name"									"Dagger of the Giant Hunter"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/bounty_hunter/bounty_scout_offhand/bounty_scout_offhand"
+		"item_name"								"#DOTA_Item_Dagger_of_the_Giant_Hunter"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Dagger"
+		"model_player"							"models/items/bounty_hunter/bounty_scout_offhand/bounty_scout_offhand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_l.vsnap"
+				"modifier"						"particles/models/items/bounty_hunter/bounty_scout_offhand/bounty_scout_offhand.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l_local.vpcf"
+			}
+		}
+	}
+	"8433"
+	{
+		"name"									"Shuriken of the Giant Hunter"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/bounty_hunter/bounty_scout_shoulder/bounty_scout_shoulder"
+		"item_name"								"#DOTA_Item_Shuriken_of_the_Giant_Hunter"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shuriken"
+		"model_player"							"models/items/bounty_hunter/bounty_scout_shoulder/bounty_scout_shoulder.vmdl"
+	}
+	"8439"
+	{
+		"name"									"Tools of the Giant Hunter"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/bounty_hunter/bounty_scout_back/bounty_scout_back"
+		"item_name"								"#DOTA_Item_Tools_of_the_Giant_Hunter"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Tools"
+		"model_player"							"models/items/bounty_hunter/bounty_scout_back/bounty_scout_back.vmdl"
+	}
+	"8458"
+	{
+		"name"									"Tonfa of the Giant Hunter"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/bounty_hunter/bounty_scout_weapon/bounty_scout_weapon"
+		"item_name"								"#DOTA_Item_Tonfa_of_the_Giant_Hunter"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Tonfa"
+		"model_player"							"models/items/bounty_hunter/bounty_scout_weapon/bounty_scout_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_r.vsnap"
+				"modifier"						"particles/models/items/bounty_hunter/bounty_scout_weapon/bounty_scout_weapon.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r_local.vpcf"
+			}
+		}
+	}
+	"8461"
+	{
+		"name"									"Plate of the Giant Hunter"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/bounty_hunter/bounty_scout_armor/bounty_scout_armor"
+		"item_name"								"#DOTA_Item_Plate_of_the_Giant_Hunter"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Plate"
+		"model_player"							"models/items/bounty_hunter/bounty_scout_armor/bounty_scout_armor.vmdl"
+	}
+	"8464"
+	{
+		"name"									"Mask of the Giant Hunter"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/bounty_hunter/bounty_scout_head/bounty_scout_head"
+		"item_name"								"#DOTA_Item_Mask_of_the_Giant_Hunter"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/bounty_hunter/bounty_scout_head/bounty_scout_head.vmdl"
+	}
+	"8948"
+	{
+		"name"									"Guard of the First Hunt"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-20"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/bounty_hunter/the_ursine_hunter_armor/the_ursine_hunter_armor"
+		"item_description"						"#DOTA_Item_Desc_Guard_of_the_First_Hunt"
+		"item_name"								"#DOTA_Item_Guard_of_the_First_Hunt"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/bounty_hunter/the_ursine_hunter_armor/the_ursine_hunter_armor.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_The_Ursine_Hunter_Armor_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_The_Ursine_Hunter_Armor_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17170"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/bounty_hunter/the_ursine_hunter_armor/the_ursine_hunter_armor"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/bounty_hunter/the_ursine_hunter_armor/the_ursine_hunter_armor_style1"
+				}
+			}
+		}
+	}
+	"8949"
+	{
+		"name"									"Vest of the First Hunt"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-20"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/bounty_hunter/the_ursine_hunter_back/the_ursine_hunter_back"
+		"item_description"						"#DOTA_Item_Desc_Vest_of_the_First_Hunt"
+		"item_name"								"#DOTA_Item_Vest_of_the_First_Hunt"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/bounty_hunter/the_ursine_hunter_back/the_ursine_hunter_back.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_The_Ursine_Hunter_Back_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_The_Ursine_Hunter_Back_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17170"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/bounty_hunter/the_ursine_hunter_back/the_ursine_hunter_back"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/bounty_hunter/the_ursine_hunter_back/the_ursine_hunter_back_style1"
+				}
+			}
+		}
+	}
+	"8950"
+	{
+		"name"									"Skull of the First Hunt"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-20"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/bounty_hunter/the_ursine_hunter_head/the_ursine_hunter_head"
+		"item_description"						"#DOTA_Item_Desc_Skull_of_the_First_Hunt"
+		"item_name"								"#DOTA_Item_Skull_of_the_First_Hunt"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/bounty_hunter/the_ursine_hunter_head/the_ursine_hunter_head.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_The_Ursine_Hunter_Head_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_The_Ursine_Hunter_Head_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17170"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/bounty_hunter/the_ursine_hunter_head/the_ursine_hunter_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/bounty_hunter/the_ursine_hunter_head/the_ursine_hunter_head_style1"
+				}
+			}
+		}
+	}
+	"8951"
+	{
+		"name"									"Spear of the First Hunt"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-20"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/bounty_hunter/the_ursine_hunter_weapon/the_ursine_hunter_weapon"
+		"item_description"						"#DOTA_Item_Desc_Spear_of_the_First_Hunt"
+		"item_name"								"#DOTA_Item_Spear_of_the_First_Hunt"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/bounty_hunter/the_ursine_hunter_weapon/the_ursine_hunter_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_r.vsnap"
+				"modifier"						"particles/models/items/bounty_hunter/the_ursine_hunter_weapon/the_ursine_hunter_weapon_fx.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r_local.vpcf"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_The_Ursine_Hunter_Weapon_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_The_Ursine_Hunter_Weapon_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17170"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/bounty_hunter/the_ursine_hunter_weapon/the_ursine_hunter_weapon"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/bounty_hunter/the_ursine_hunter_weapon/the_ursine_hunter_weapon_style1"
+				}
+			}
+		}
+	}
+	"8952"
+	{
+		"name"									"Bone Knife of the First Hunt"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-20"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/bounty_hunter/the_ursine_hunter_off_hand/the_ursine_hunter_off_hand"
+		"item_description"						"#DOTA_Item_Desc_Bone_Knife_of_the_First_Hunt"
+		"item_name"								"#DOTA_Item_Bone_Knife_of_the_First_Hunt"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/bounty_hunter/the_ursine_hunter_off_hand/the_ursine_hunter_off_hand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_l.vsnap"
+				"modifier"						"particles/models/items/bounty_hunter/the_ursine_hunter_off_hand/the_ursine_hunter_off_hand_fx.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l_local.vpcf"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_The_Ursine_Hunter_OffHand_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_The_Ursine_Hunter_OffHand_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17170"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/bounty_hunter/the_ursine_hunter_off_hand/the_ursine_hunter_off_hand"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/bounty_hunter/the_ursine_hunter_off_hand/the_ursine_hunter_off_hand_style1"
+				}
+			}
+		}
+	}
+	"8953"
+	{
+		"name"									"Mark of the First Hunt"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-20"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/bounty_hunter/the_ursine_hunter_shoulder/the_ursine_hunter_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Mark_of_the_First_Hunt"
+		"item_name"								"#DOTA_Item_Mark_of_the_First_Hunt"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/bounty_hunter/the_ursine_hunter_shoulder/the_ursine_hunter_shoulder.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_ursine/bounty_hunter_usrine_eyes_base.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/bounty_hunter/bounty_hunter_ursine/bounty_hunter_usrine_eyes_base.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_back"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_ursine/bounty_hunter_usrine_eyes.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/bounty_hunter/bounty_hunter_ursine/bounty_hunter_usrine_eyes.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_back"
+					}
+				}
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_The_Ursine_Hunter_Shoulder_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_The_Ursine_Hunter_Shoulder_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17170"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/bounty_hunter/the_ursine_hunter_shoulder/the_ursine_hunter_shoulder"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/bounty_hunter/the_ursine_hunter_shoulder/the_ursine_hunter_shoulder_style1"
+				}
+			}
+		}
+	}
+	"10032"
+	{
+		"name"									"Expired Treasure of the Pangolin Guildmasters"
+		"prefab"								"retired_treasure_chest"
+		"associated_item"						"15003"
+		"expiration_date"						"2014-06-01 00:00:00"
+		"image_inventory"						"econ/tools/treasure_chest_bounty_hunter"
+		"item_description"						"#DOTA_Item_Desc_Treasure_Chest"
+		"item_name"								"#DOTA_Item_Expired_Treasure_of_the_Pangolin_Guildmasters"
+		"static_attributes"
+		{
+			"treasure loot list"
+			{
+				"attribute_class"				"treasure loot list"
+				"value"							"treasure_chest_6_hero_bountyhunter"
+			}
+		}
+		"tool"
+		{
+			"type"								"supply_crate"
+		}
+	}
+	"12639"
+	{
+		"name"									"Last Resort of the Outlaw Huntsman"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/bounty_hunter/desperado_in_the_shade_shoulder/desperado_in_the_shade_shoulder"
+		"item_name"								"#DOTA_Item_Last_Resort_of_the_Outlaw_Huntsman"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/bounty_hunter/desperado_in_the_shade_shoulder/desperado_in_the_shade_shoulder.vmdl"
+	}
+	"12640"
+	{
+		"name"									"Holdout of the Outlaw Huntsman"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/bounty_hunter/desperado_in_the_shade_off_hand/desperado_in_the_shade_off_hand"
+		"item_name"								"#DOTA_Item_Holdout_of_the_Outlaw_Huntsman"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/bounty_hunter/desperado_in_the_shade_off_hand/desperado_in_the_shade_off_hand.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_l.vsnap"
+				"modifier"						"particles/models/items/bounty_hunter/desperado_in_the_shade_off_hand/desperado_in_the_shade_off_hand_fx.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l_local.vpcf"
+			}
+		}
+	}
+	"12641"
+	{
+		"name"									"Blade of the Outlaw Huntsman"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/bounty_hunter/desperado_in_the_shade_weapon/desperado_in_the_shade_weapon"
+		"item_name"								"#DOTA_Item_Blade_of_the_Outlaw_Huntsman"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/bounty_hunter/desperado_in_the_shade_weapon/desperado_in_the_shade_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_r.vsnap"
+				"modifier"						"particles/models/items/bounty_hunter/desperado_in_the_shade_weapon/desperado_in_the_shade_weapon_fx.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r_local.vpcf"
+			}
+		}
+	}
+	"12642"
+	{
+		"name"									"Tools of the Outlaw Huntsman"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/bounty_hunter/desperado_in_the_shade_back/desperado_in_the_shade_back"
+		"item_name"								"#DOTA_Item_Tools_of_the_Outlaw_Huntsman"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/bounty_hunter/desperado_in_the_shade_back/desperado_in_the_shade_back.vmdl"
+	}
+	"12643"
+	{
+		"name"									"Leathers of the Outlaw Huntsman"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/bounty_hunter/desperado_in_the_shade_armor/desperado_in_the_shade_armor"
+		"item_name"								"#DOTA_Item_Leathers_of_the_Outlaw_Huntsman"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/bounty_hunter/desperado_in_the_shade_armor/desperado_in_the_shade_armor.vmdl"
+	}
+	"12644"
+	{
+		"name"									"Hat of the Outlaw Huntsman"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/bounty_hunter/desperado_in_the_shade_head/desperado_in_the_shade_head"
+		"item_name"								"#DOTA_Item_Hat_of_the_Outlaw_Huntsman"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/bounty_hunter/desperado_in_the_shade_head/desperado_in_the_shade_head.vmdl"
+	}
+	"13081"
+	{
+		"name"									"Tines of Tybara"
+		"prefab"								"wearable"
+		"creation_date"							"2019-06-02"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/bounty_hunter/bh_ti9_immortal_weapon/bh_ti9_immortal_weapon"
+		"item_description"						"#DOTA_Item_Desc_Tines_of_Tybara"
+		"item_name"								"#DOTA_Item_Tines_of_Tybara"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/bounty_hunter/bh_ti9_immortal_weapon/bh_ti9_immortal_weapon.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567332000"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r.vpcf"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_ti9_immortal/bh_ti9_immortal_jinada_active_r.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti9"
+			}
+			"asset_modifier2"
+			{
+				"type"							"ability_icon"
+				"asset"							"bounty_hunter_jinada"
+				"modifier"						"bounty_hunter_jinada_ti9"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_ti9_immortal/bh_ti9_immortal_weapon.vpcf"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_jinada.vpcf"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_ti9_immortal/bh_ti9_immortal_jinada.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+		}
+	}
+	"13774"
+	{
+		"name"									"Taunt: The Gold Dip"
+		"prefab"								"taunt"
+		"creation_date"							"2020-09-16"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/taunts/dota_icon_taunt_bounty_hunter_goldpiles"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Bountiful_Riches"
+		"item_name"								"#DOTA_Item_Taunt_The_Gold_Dip"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1662026400"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"goldpiles_taunt"
+				"gesture"						"1"
+			}
+		}
+	}
+	"14026"
+	{
+		"name"									"Trappings of the Old-Timers - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/bounty_hunter/old_man_gondar_weapon/old_man_gondar_weapon"
+		"item_name"								"#DOTA_Item_Trappings_of_the_OldTimers__Weapon"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/bounty_hunter/old_man_gondar_weapon/old_man_gondar_weapon.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_r.vsnap"
+				"modifier"						"particles/models/items/bounty_hunter/old_man_gondar_weapon/old_man_gondar_weapon_fx.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r.vpcf"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_cc_2021/bounty_hunter_cc_2021_jinada_active.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_cc_2021/bounty_hunter_cc_2021_weapon.vpcf"
+				"style"							"0"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Old_Man_Gondar_Weapon_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Old_Man_Gondar_Weapon_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"22524"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_cc_2021/bounty_hunter_cc_2021_weapon_v2.vpcf"
+				"style"							"1"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/bounty_hunter/old_man_gondar_weapon/old_man_gondar_weapon"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/bounty_hunter/old_man_gondar_weapon/old_man_gondar_weapon_style1"
+				}
+			}
+		}
+	}
+	"14027"
+	{
+		"name"									"Trappings of the Old-Timers - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/bounty_hunter/old_man_gondar_shoulder/old_man_gondar_shoulder"
+		"item_name"								"#DOTA_Item_Trappings_of_the_OldTimers__Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/bounty_hunter/old_man_gondar_shoulder/old_man_gondar_shoulder.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_cc_2021/bounty_hunter_cc_2021_shoulder.vpcf"
+				"style"							"0"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Old_Man_Gondar_Shoulder_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Old_Man_Gondar_Shoulder_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"22524"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_cc_2021/bounty_hunter_cc_2021_shoulder_v2.vpcf"
+				"style"							"1"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/bounty_hunter/old_man_gondar_shoulder/old_man_gondar_shoulder"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/bounty_hunter/old_man_gondar_shoulder/old_man_gondar_shoulder_style1"
+				}
+			}
+		}
+	}
+	"14028"
+	{
+		"name"									"Trappings of the Old-Timers - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/bounty_hunter/old_man_gondar_head/old_man_gondar_head"
+		"item_name"								"#DOTA_Item_Trappings_of_the_OldTimers__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/bounty_hunter/old_man_gondar_head/old_man_gondar_head.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_cc_2021/bounty_hunter_cc_2021_head.vpcf"
+				"style"							"0"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Old_Man_Gondar_Head_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Old_Man_Gondar_Head_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"22524"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_cc_2021/bounty_hunter_cc_2021_head_v2.vpcf"
+				"style"							"1"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/bounty_hunter/old_man_gondar_head/old_man_gondar_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/bounty_hunter/old_man_gondar_head/old_man_gondar_head_style1"
+				}
+			}
+		}
+	}
+	"14029"
+	{
+		"name"									"Trappings of the Old-Timers - Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/bounty_hunter/old_man_gondar_off_hand/old_man_gondar_off_hand"
+		"item_name"								"#DOTA_Item_Trappings_of_the_OldTimers__OffHand"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/bounty_hunter/old_man_gondar_off_hand/old_man_gondar_off_hand.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_l.vsnap"
+				"modifier"						"particles/models/items/bounty_hunter/old_man_gondar_off_hand/old_man_gondar_off_hand_fx.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l.vpcf"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_cc_2021/bounty_hunter_cc_2021_jinada_offhand_active.vpcf"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Old_Man_Gondar_OffHand_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Old_Man_Gondar_OffHand_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"22524"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/bounty_hunter/old_man_gondar_off_hand/old_man_gondar_off_hand"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/bounty_hunter/old_man_gondar_off_hand/old_man_gondar_off_hand_style1"
+				}
+			}
+		}
+	}
+	"14030"
+	{
+		"name"									"Trappings of the Old-Timers - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/bounty_hunter/old_man_gondar_back/old_man_gondar_back"
+		"item_name"								"#DOTA_Item_Trappings_of_the_OldTimers__Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"model_player"							"models/items/bounty_hunter/old_man_gondar_back/old_man_gondar_back.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Old_Man_Gondar_Back_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Old_Man_Gondar_Back_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"22524"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/bounty_hunter/old_man_gondar_back/old_man_gondar_back"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/bounty_hunter/old_man_gondar_back/old_man_gondar_back_style1"
+				}
+			}
+		}
+	}
+	"14031"
+	{
+		"name"									"Trappings of the Old-Timers - Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/bounty_hunter/old_man_gondar_armor/old_man_gondar_armor"
+		"item_name"								"#DOTA_Item_Trappings_of_the_OldTimers__Armor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"model_player"							"models/items/bounty_hunter/old_man_gondar_armor/old_man_gondar_armor.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Old_Man_Gondar_Armor_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Old_Man_Gondar_Armor_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"22524"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/bounty_hunter/old_man_gondar_armor/old_man_gondar_armor"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/bounty_hunter/old_man_gondar_armor/old_man_gondar_armor_style1"
+				}
+			}
+		}
+	}
+	"14272"
+	{
+		"name"									"Heartless Hunt - Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/bounty_hunter/maniac_off_hand/maniac_off_hand"
+		"item_name"								"#DOTA_Item_Heartless_Hunt__OffHand"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/bounty_hunter/maniac_off_hand/maniac_off_hand.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_l.vsnap"
+				"modifier"						"particles/models/items/bounty_hunter/maniac_off_hand/maniac_off_hand_fx.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l_local.vpcf"
+			}
+		}
+	}
+	"14282"
+	{
+		"name"									"Heartless Hunt - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/bounty_hunter/maniac_weapon/maniac_weapon"
+		"item_name"								"#DOTA_Item_Heartless_Hunt__Weapon"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/bounty_hunter/maniac_weapon/maniac_weapon.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/bounty_hunter/bounty_hunter_weapon_r.vsnap"
+				"modifier"						"particles/models/items/bounty_hunter/maniac_weapon/maniac_weapon_fx.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r.vpcf"
+				"modifier"						"particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r_local.vpcf"
+			}
+		}
+	}
+	"14283"
+	{
+		"name"									"Heartless Hunt - Fowl"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/bounty_hunter/maniac_shoulder/maniac_shoulder"
+		"item_name"								"#DOTA_Item_Heartless_Hunt__Fowl"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/bounty_hunter/maniac_shoulder/maniac_shoulder.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_maniac_shoulders/bh_maniac_shoulders_ambient.vpcf"
+			}
+		}
+	}
+	"14284"
+	{
+		"name"									"Heartless Hunt - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/bounty_hunter/maniac_back/maniac_back"
+		"item_name"								"#DOTA_Item_Heartless_Hunt__Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"model_player"							"models/items/bounty_hunter/maniac_back/maniac_back.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"14285"
+	{
+		"name"									"Heartless Hunt - Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/bounty_hunter/maniac_armor/maniac_armor"
+		"item_name"								"#DOTA_Item_Heartless_Hunt__Armor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"model_player"							"models/items/bounty_hunter/maniac_armor/maniac_armor.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"14286"
+	{
+		"name"									"Heartless Hunt - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/bounty_hunter/maniac_head/maniac_head"
+		"item_name"								"#DOTA_Item_Heartless_Hunt__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/bounty_hunter/maniac_head/maniac_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/bounty_hunter/bounty_hunter_maniac_head/bh_maniac_head_ambient.vpcf"
+			}
+		}
+	}
+	"20030"
+	{
+		"name"									"Trappings of the Pangolin Guild Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Shuriken of the Hidden Hunter"		"1"
+			"Harvester of the Hidden Hunter"	"1"
+			"Cleaver of the Hidden Hunter"		"1"
+			"Pangolin Carapace"					"1"
+			"Pangolin Scarf"					"1"
+			"Pangolin Shoulder Armor"			"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Trappings_of_the_Pangolin_Guild_Set"
+		"item_description"						"#DOTA_Bundle_Desc_Bounty_Hunter_Pangolin"
+		"item_name"								"#DOTA_Item_Trappings_of_the_Pangolin_Guild_Set"
+		"item_rarity"							"rare"
+	}
+	"20038"
+	{
+		"name"									"Hardened Hunter's Gear Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Hardened Hunter's Armor"			"1"
+			"Hardened Hunter's Mask"			"1"
+			"Shuriken of the Reaper"			"1"
+			"Bladed-Staff of the Reaper"		"1"
+			"Makeshift Sword of the Reaper"		"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Hardened_Hunters_Gear_Set"
+		"item_description"						"#DOTA_Bundle_Desc_Bounty_Hunter_Hardened"
+		"item_name"								"#DOTA_Item_Hardened_Hunters_Gear_Set"
+		"item_rarity"							"uncommon"
+	}
+	"20045"
+	{
+		"name"									"The Master Assassin Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Master Assassin's Shuriken"		"1"
+			"Master Assassin's Shoulders"		"1"
+			"Master Assassin's Mask"			"1"
+			"Master Assassin's Mancatcher"		"1"
+			"Master Assassin's Grim Cutter"		"1"
+			"Master Assassin's Tails"			"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_The_Master_Assassin_Set"
+		"item_description"						"#DOTA_Bundle_Desc_Bounty_Hunter_Master_Assassin"
+		"item_name"								"#DOTA_Item_The_Master_Assassin_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20049"
+	{
+		"name"									"Bounty Hunter's Big Bundle"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Shuriken of the Hidden Hunter"		"1"
+			"Harvester of the Hidden Hunter"	"1"
+			"Cleaver of the Hidden Hunter"		"1"
+			"Creeper's Cruel Painsaw"			"1"
+			"Creeper's Cruel Hook"				"1"
+			"Creeper's Cruel Shuriken"			"1"
+			"Shuriken of the Reaper"			"1"
+			"Makeshift Sword of the Reaper"		"1"
+			"Bladed-Staff of the Reaper"		"1"
+			"Trap Jaw"							"1"
+			"Master Assassin's Shuriken"		"1"
+			"Master Assassin's Shoulders"		"1"
+			"Master Assassin's Mask"			"1"
+			"Master Assassin's Mancatcher"		"1"
+			"Master Assassin's Grim Cutter"		"1"
+			"Master Assassin's Tails"			"1"
+			"Pangolin Carapace"					"1"
+			"Pangolin Scarf"					"1"
+			"Pangolin Shoulder Armor"			"1"
+			"Hardened Hunter's Armor"			"1"
+			"Hardened Hunter's Bracer"			"1"
+			"Hardened Hunter's Mask"			"1"
+		}
+		"image_inventory"						"econ/bundles/bountyhunter_bundle"
+		"item_description"						"#DOTA_Bundle_Desc_Bounty_Hunter_Big_Bundle"
+		"item_name"								"#DOTA_Bundle_Bounty_Hunter_Big_Bundle"
+		"item_rarity"							"rare"
+	}
+	"20060"
+	{
+		"name"									"The Crimson Cut-throat Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Mask of the Crimson Cut-throat"	"1"
+			"Guard of the Crimson Cut-throat"	"1"
+			"Mancatcher of the Crimson Cut-throat""1"
+			"Pads of the Crimson Cut-throat"	"1"
+			"Shuriken of the Crimson Cut-throat""1"
+			"Blade of the Crimson Cut-throat"	"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_The_Crimson_Cutthroat_Set"
+		"item_description"						"#DOTA_Item_Desc_The_Crimson_Cutthroat_Set"
+		"item_name"								"#DOTA_Item_The_Crimson_Cutthroat_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20143"
+	{
+		"name"									"Hunter in Distant Sands Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armor of Distant Sands"			"1"
+			"Mask of Distant Sands"				"1"
+			"Shuriken of Distant Sands"			"1"
+			"Long Blade of Distant Sands"		"1"
+			"Short Blade of Distant Sands"		"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Hunter_in_Distant_Sands_Set"
+		"item_description"						"#DOTA_Item_Desc_Hunter_in_Distant_Sands_Set"
+		"item_name"								"#DOTA_Item_Hunter_in_Distant_Sands_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20257"
+	{
+		"name"									"Black Blades of the Qaldin Assassin Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Qaldin Assassin's Dagger"			"1"
+			"Qaldin Assassin's Glaive"			"1"
+			"Qaldin Assassin's Slicer"			"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Black_Blades_of_the_Qaldin_Assassin_Set"
+		"item_description"						"#DOTA_Item_Desc_Black_Blades_of_the_Qaldin_Assassin_Set"
+		"item_name"								"#DOTA_Item_Black_Blades_of_the_Qaldin_Assassin_Set"
+		"item_rarity"							"rare"
+	}
+	"20262"
+	{
+		"name"									"The Creeper's Cruelty Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Creeper's Cruel Hook"				"1"
+			"Creeper's Cruel Painsaw"			"1"
+			"Creeper's Cruel Shuriken"			"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_The_Creepers_Cruelty_Set"
+		"item_description"						"#DOTA_Item_Desc_The_Creepers_Cruelty_Set"
+		"item_name"								"#DOTA_Item_The_Creepers_Cruelty_Set"
+		"item_rarity"							"rare"
+	}
+	"20270"
+	{
+		"name"									"Hunter of the Blood Stained Sands Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Blade of the Blood Stained Sands"	"1"
+			"Cowl of the Blood Stained Sands"	"1"
+			"Pack of the Blood Stained Sands"	"1"
+			"Pads of the Blood Stained Sands"	"1"
+			"Shuriken of the Blood Stained Sands""1"
+			"Pike of the Blood Stained Sands"	"1"
+		}
+		"creation_date"							"2013-10-04"
+		"image_inventory"						"econ/sets/DOTA_Item_Hunter_of_the_Blood_Stained_Sands_Set"
+		"item_description"						"#DOTA_Item_Desc_Hunter_of_the_Blood_Stained_Sands_Set"
+		"item_name"								"#DOTA_Item_Hunter_of_the_Blood_Stained_Sands_Set"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Common"
+			"category_tags"						"Bundles"
+			"date"								"10/4/2013"
+			"bundle"							"1"
+			"price"								"249"
+		}
+	}
+	"20313"
+	{
+		"name"									"The Second Disciple Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Second Disciple's Bastion"			"1"
+			"Second Disciple's Veil"			"1"
+			"Second Disciple's Dagger"			"1"
+			"Second Disciple's Chakram"			"1"
+			"Second Disciple's Blade"			"1"
+			"Second Disciple's Satchel"			"1"
+		}
+		"creation_date"							"2013-11-19"
+		"image_inventory"						"econ/sets/DOTA_Item_The_Second_Disciple"
+		"item_description"						"#DOTA_Item_Desc_The_Second_Disciple"
+		"item_name"								"#DOTA_Item_The_Second_Disciple_Set"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Common"
+			"category_tags"						"Bundles"
+			"date"								"11/19/2013"
+			"bundle"							"1"
+			"price"								"249"
+		}
+	}
+	"20420"
+	{
+		"name"									"Corruption"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armor of Corruption"				"1"
+			"Dagger of Corruption"				"1"
+			"Pike of Corruption"				"1"
+			"Shuriken of Corruption"			"1"
+			"Mask of Corruption"				"1"
+		}
+		"creation_date"							"2014-03-03"
+		"image_inventory"						"econ/sets/DOTA_Item_Corruption"
+		"item_name"								"#DOTA_Item_Corruption"
+		"item_rarity"							"rare"
+	}
+	"20464"
+	{
+		"name"									"Djinn Slayer"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Djinn Slayer Armor"				"1"
+			"Djinn Slayer Backpack"				"1"
+			"Djinn Slayer Dagger"				"1"
+			"Djinn Slayer Hook Staff"			"1"
+			"Djinn Slayer Scarf"				"1"
+			"Djinn Slayer Shuriken"				"1"
+			"Djinn Slayer Loading Screen"		"1"
+		}
+		"creation_date"							"2014-04-15"
+		"image_inventory"						"econ/sets/DOTA_Item_Djinn_Slayer"
+		"item_description"						"#DOTA_Item_Desc_Djinn_Slayer"
+		"item_name"								"#DOTA_Item_Djinn_Slayer"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"category_tags"						"Bundles"
+			"date"								"12/16/2015"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20532"
+	{
+		"name"									"Twin Blades Assassin"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armor of the Twin Blades"			"1"
+			"Backpack of the Twin Blades"		"1"
+			"Boomerang of the Twin Blades"		"1"
+			"Greater Twin Blade"				"1"
+			"Hood of the Twin Blades"			"1"
+			"Lesser Twin Blade"					"1"
+			"Twin Blades Loading Screen"		"1"
+		}
+		"creation_date"							"2014-05-28"
+		"image_inventory"						"econ/loading_screens/twinblades"
+		"item_description"						"#DOTA_Item_Desc_Twin_Blades_Assassin"
+		"item_name"								"#DOTA_Item_Twin_Blades_Assassin"
+		"item_rarity"							"mythical"
+	}
+	"20533"
+	{
+		"name"									"Hunter with No Name"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Cape of the Hunter"				"1"
+			"Pistol Blade of the Hunter"		"1"
+			"Rifle Blade of the Hunter"			"1"
+			"Shuriken of the Hunter"			"1"
+			"Hat of the Hunter"					"1"
+			"Armor of the Hunter"				"1"
+			"Hunter with No Name Loading Screen""1"
+		}
+		"creation_date"							"2014-05-28"
+		"image_inventory"						"econ/loading_screens/hunternoname"
+		"item_description"						"#DOTA_Item_Desc_Hunter_with_No_Name"
+		"item_name"								"#DOTA_Item_Hunter_with_No_Name"
+		"item_rarity"							"rare"
+	}
+	"20931"
+	{
+		"name"									"Giant Hunter"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Giant Hunter Loading Screen"		"1"
+			"Mask of the Giant Hunter"			"1"
+			"Plate of the Giant Hunter"			"1"
+			"Tonfa of the Giant Hunter"			"1"
+			"Tools of the Giant Hunter"			"1"
+			"Shuriken of the Giant Hunter"		"1"
+			"Dagger of the Giant Hunter"		"1"
+		}
+		"creation_date"							"2015-11-03"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/loading_screens/bounty_scout_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Giant_Hunter"
+		"item_name"								"#DOTA_Item_Giant_Hunter"
+		"item_rarity"							"mythical"
+	}
+	"21004"
+	{
+		"name"									"Hunter's Glory"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Cape of the Hunter's Glory"		"1"
+			"Helm of the Hunter's Glory"		"1"
+			"Blade of the Hunter's Glory"		"1"
+			"Buckler of the Hunter's Glory"		"1"
+			"Scythe of the Hunter's Glory"		"1"
+			"Armor of the Hunter's Glory"		"1"
+			"Loading Screen of the Hunter's Glory""1"
+		}
+		"creation_date"							"2017-01-11"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/loading_screens/gold_ripperbounty_hunter_gold_ripperbounty_hunter_loading"
+		"item_description"						"#DOTA_Item_Desc_Hunters_Glory"
+		"item_name"								"#DOTA_Item_Hunters_Glory"
+		"item_rarity"							"mythical"
+	}
+	"21063"
+	{
+		"name"									"Kit of the First Hunt"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Spear of the First Hunt"			"1"
+			"Loading Screen of the First Hunt"	"1"
+			"Skull of the First Hunt"			"1"
+			"Vest of the First Hunt"			"1"
+			"Bone Knife of the First Hunt"		"1"
+			"Mark of the First Hunt"			"1"
+			"Guard of the First Hunt"			"1"
+		}
+		"creation_date"							"2016-09-20"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/the_ursine_hunter_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Kit_of_the_First_Hunt"
+		"item_name"								"#DOTA_Item_Kit_of_the_First_Hunt"
+		"item_rarity"							"mythical"
+	}
+	"21274"
+	{
+		"name"									"Creed of the Outlaw Huntsman"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Hat of the Outlaw Huntsman"		"1"
+			"Leathers of the Outlaw Huntsman"	"1"
+			"Tools of the Outlaw Huntsman"		"1"
+			"Blade of the Outlaw Huntsman"		"1"
+			"Holdout of the Outlaw Huntsman"	"1"
+			"Last Resort of the Outlaw Huntsman""1"
+			"Creed of the Outlaw Huntsman Loading Screen""1"
+		}
+		"creation_date"							"2018-09-12"
+		"image_inventory"						"econ/loading_screens/desperado_in_the_shade_loading_screan"
+		"item_name"								"#DOTA_Item_Creed_of_the_Outlaw_Huntsman"
+		"item_rarity"							"rare"
+	}
+	"21483"
+	{
+		"name"									"Trappings of the Old-Timers"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Trappings of the Old-Timers - Weapon""1"
+			"Trappings of the Old-Timers - Shoulder""1"
+			"Trappings of the Old-Timers - Head""1"
+			"Trappings of the Old-Timers - Off-Hand""1"
+			"Trappings of the Old-Timers - Back""1"
+			"Trappings of the Old-Timers - Armor""1"
+		}
+		"creation_date"							"2020-05-11"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/sets/dota_item_trappings_of_the_oldtimers"
+		"item_name"								"#DOTA_Item_Trappings_of_the_OldTimers"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/bounty_hunter/old_man_gondar_weapon/old_man_gondar_weapon"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/bounty_hunter/old_man_gondar_weapon/old_man_gondar_weapon_style1"
+				}
+			}
+		}
+	}
+	"21533"
+	{
+		"name"									"Heartless Hunt"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Heartless Hunt - Head"				"1"
+			"Heartless Hunt - Armor"			"1"
+			"Heartless Hunt - Back"				"1"
+			"Heartless Hunt - Weapon"			"1"
+			"Heartless Hunt - Off-Hand"			"1"
+			"Heartless Hunt - Fowl"				"1"
+		}
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Heartless_Hunt"
+		"item_name"								"#DOTA_Item_Heartless_Hunt"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+}

@@ -1,0 +1,2571 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"126"
+	{
+		"name"									"Gyrocopter's Bottles"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/gyro/gyro_bottles"
+		"item_description"						"#DOTA_Item_Desc_Gyrocopters_Bottles"
+		"item_name"								"#DOTA_Item_Gyrocopters_Bottles"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/heroes/gyro/gyro_bottles.vmdl"
+	}
+	"131"
+	{
+		"name"									"Gyrocopter's head"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_description"						"#DOTA_Item_Desc_Gyrocopters_head"
+		"item_name"								"#DOTA_Item_Gyrocopters_head"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Body_Head"
+		"model_player"							"models/heroes/gyro/gyro_head.vmdl"
+	}
+	"176"
+	{
+		"name"									"Gyrocopter's Goggles"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/gyro/gyro_goggles"
+		"item_description"						"#DOTA_Item_Desc_Gyrocopters_Goggles"
+		"item_name"								"#DOTA_Item_Gyrocopters_Goggles"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/gyro/gyro_goggles.vmdl"
+	}
+	"177"
+	{
+		"name"									"Gyrocopter's Guns"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/gyro/gyro_guns"
+		"item_description"						"#DOTA_Item_Desc_Gyrocopters_Guns"
+		"item_name"								"#DOTA_Item_Gyrocopters_Guns"
+		"model_player"							"models/heroes/gyro/gyro_guns.vmdl"
+	}
+	"178"
+	{
+		"name"									"Gyrocopter's Propeller"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/gyro/gyro_propeller"
+		"item_description"						"#DOTA_Item_Desc_Gyrocopters_Propeller"
+		"item_name"								"#DOTA_Item_Gyrocopters_Propeller"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Propeller"
+		"model_player"							"models/heroes/gyro/gyro_propeller.vmdl"
+	}
+	"179"
+	{
+		"name"									"Gyrocopter's Homing Missile"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/gyro/gyro_missile"
+		"item_description"						"#DOTA_Item_Desc_Gyrocopters_Homing_Missile"
+		"item_name"								"#DOTA_Item_Gyrocopters_Homing_Missile"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Offhand_Weapon"
+		"model_player"							"models/heroes/gyro/gyro_missile.vmdl"
+	}
+	"527"
+	{
+		"name"									"Gyrocopter's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-08"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Gyrocopters_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_gyrocopter"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_gyrocopter/gyro_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_gyrocopter/gyro_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_prop2"
+					}
+					"1"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_exhaust"
+					}
+					"2"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_prop1"
+					}
+				}
+			}
+		}
+	}
+	"5967"
+	{
+		"name"									"Gatling Cannon of the Dragon Emperor"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-20"
+		"image_inventory"						"econ/items/gyrocopter/gatling_cannon_of_the_dragon_emperor/gatling_cannon_of_the_dragon_emperor"
+		"item_name"								"#DOTA_Item_Gatling_Cannon_of_the_Dragon_Emperor"
+		"item_rarity"							"uncommon"
+		"model_player"							"models/items/gyrocopter/gatling_cannon_of_the_dragon_emperor/gatling_cannon_of_the_dragon_emperor.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/3/2014"
+			"price"								"0"
+		}
+	}
+	"5968"
+	{
+		"name"									"Emerging Dragon"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-20"
+		"image_inventory"						"econ/items/gyrocopter/emerging_dragon/emerging_dragon"
+		"item_name"								"#DOTA_Item_Emerging_Dragon"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/gyrocopter/emerging_dragon/emerging_dragon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/3/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_gyrocopter_homing_missile"
+				"modifier"						"models/items/gyrocopter/emerging_dragon/emerging_dragon.vmdl"
+			}
+		}
+	}
+	"5971"
+	{
+		"name"									"Emerging Dragon Missile"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-21"
+		"image_inventory"						"econ/items/gyrocopter/emerging_dragon_missile/emerging_dragon_missile"
+		"item_name"								"#DOTA_Item_Emerging_Dragon_Missile"
+		"item_rarity"							"uncommon"
+		"item_slot"								"ability2"
+		"item_type_name"						"#DOTA_WearableType_Ability_Modifier"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_gyrocopter_homing_missile"
+				"modifier"						"models/items/gyrocopter/emerging_dragon_attack/emerging_dragon_attack.vmdl"
+			}
+		}
+	}
+	"6036"
+	{
+		"name"									"Hat of Fortune"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-23"
+		"image_inventory"						"econ/items/gyrocopter/dragon_emperor_hat/dragon_emperor_hat"
+		"item_name"								"#DOTA_Item_Hat_of_Fortune"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hat"
+		"model_player"							"models/items/gyrocopter/dragon_emperor_hat/dragon_emperor_hat.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/3/2014"
+			"price"								"0"
+		}
+	}
+	"6897"
+	{
+		"name"									"Rainmaker Rocket"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-16"
+		"image_inventory"						"econ/items/gyrocopter/rainmaker_offhand/rainmaker_offhand"
+		"item_name"								"#DOTA_Item_Rainmaker_Rocket"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Bomb"
+		"model_player"							"models/items/gyrocopter/rainmaker_offhand/rainmaker_offhand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_gyrocopter_homing_missile"
+				"modifier"						"models/items/gyrocopter/rainmaker_offhand/rainmaker_offhand.vmdl"
+			}
+		}
+	}
+	"6898"
+	{
+		"name"									"Bonnet of the Rainmaker"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-16"
+		"image_inventory"						"econ/items/gyrocopter/rainmaker_misc/rainmaker_misc"
+		"item_name"								"#DOTA_Item_Bonnet_of_the_Rainmaker"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Bonnet"
+		"model_player"							"models/items/gyrocopter/rainmaker_misc/rainmaker_misc.vmdl"
+	}
+	"6899"
+	{
+		"name"									"Wings of the Rainmaker"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-16"
+		"image_inventory"						"econ/items/gyrocopter/rainmaker_weapon/rainmaker_weapon"
+		"item_name"								"#DOTA_Item_Wings_of_the_Rainmaker"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/gyrocopter/rainmaker_weapon/rainmaker_weapon.vmdl"
+	}
+	"6903"
+	{
+		"name"									"Chassis of the Rainmaker"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-16"
+		"image_inventory"						"econ/items/gyrocopter/rainmaker_back/rainmaker_back"
+		"item_name"								"#DOTA_Item_Chassis_of_the_Rainmaker"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Chassis"
+		"model_player"							"models/items/gyrocopter/rainmaker_back/rainmaker_back.vmdl"
+	}
+	"6965"
+	{
+		"name"									"Mine of the Swooping Elder"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/gyrocopter/flying_dutchman_offhand/flying_dutchman_offhand"
+		"item_name"								"#DOTA_Item_Mine_of_the_Swooping_Elder"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Mine"
+		"model_player"							"models/items/gyrocopter/flying_dutchman_offhand/flying_dutchman_offhand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_gyrocopter_homing_missile"
+				"modifier"						"models/items/gyrocopter/flying_dutchman_offhand/flying_dutchman_offhand.vmdl"
+			}
+		}
+	}
+	"7121"
+	{
+		"name"									"Olde Cap of the Rainmaker"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-16"
+		"image_inventory"						"econ/items/gyrocopter/rainmaker_head/rainmaker_head"
+		"item_name"								"#DOTA_Item_Olde_Cap_of_the_Rainmaker"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Cap"
+		"model_player"							"models/items/gyrocopter/rainmaker_head/rainmaker_head.vmdl"
+	}
+	"7761"
+	{
+		"name"									"Propellor of the Airborne Assault Craft"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-02"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/gyrocopter/g17_flying_fortress_misc/g17_flying_fortress_misc"
+		"item_name"								"#DOTA_Item_Propellor_of_the_Airborne_Assault_Craft"
+		"item_rarity"							"mythical"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Propellor"
+		"model_player"							"models/items/gyrocopter/g17_flying_fortress_misc/g17_flying_fortress_misc.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"7762"
+	{
+		"name"									"Turret of the Airborne Assault Craft"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-02"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/gyrocopter/g17_flying_fortress_back/g17_flying_fortress_back"
+		"item_name"								"#DOTA_Item_Turret_of_the_Airborne_Assault_Craft"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Turret"
+		"model_player"							"models/items/gyrocopter/g17_flying_fortress_back/g17_flying_fortress_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"7763"
+	{
+		"name"									"Gatling Guns of the Airborne Assault Craft"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-02"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/gyrocopter/g17_flying_fortress_weapon/g17_flying_fortress_weapon"
+		"item_name"								"#DOTA_Item_Gatling_Guns_of_the_Airborne_Assault_Craft"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Guns"
+		"model_player"							"models/items/gyrocopter/g17_flying_fortress_weapon/g17_flying_fortress_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"7764"
+	{
+		"name"									"Pilot's Hat of the Airborne Assault Craft"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-02"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/gyrocopter/g17_flying_fortress_head/g17_flying_fortress_head"
+		"item_name"								"#DOTA_Item_Pilots_Hat_of_the_Airborne_Assault_Craft"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hat"
+		"model_player"							"models/items/gyrocopter/g17_flying_fortress_head/g17_flying_fortress_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"7765"
+	{
+		"name"									"Homing Missile of the Airborne Assault Craft"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-02"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/gyrocopter/g17_flying_fortress_offhand/g17_flying_fortress_offhand"
+		"item_name"								"#DOTA_Item_Homing_Missile_of_the_Airborne_Assault_Craft"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Missile"
+		"model_player"							"models/items/gyrocopter/g17_flying_fortress_offhand/g17_flying_fortress_offhand.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_gyrocopter_homing_missile"
+				"modifier"						"models/items/gyrocopter/g17_flying_fortress_offhand/g17_flying_fortress_offhand.vmdl"
+			}
+		}
+	}
+	"7822"
+	{
+		"name"									"Sky-High Warship Bomb"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-14"
+		"image_inventory"						"econ/items/gyrocopter/skyhigh_bomb_offhand/skyhigh_bomb_offhand"
+		"item_name"								"#DOTA_Item_SkyHigh_Warship_Bomb"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Bomb"
+		"model_player"							"models/items/gyrocopter/skyhigh_bomb_missle/skyhigh_bomb.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"ability_icon"
+				"asset"							"gyrocopter_homing_missile"
+				"modifier"						"gyrocopter_skyhigh_homing_missile"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"ability_icon"
+				"asset"							"gyrocopter_rocket_barrage"
+				"modifier"						"gyrocopter_skyhigh_rocket_barrage"
+			}
+			"asset_modifier3"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_gyrocopter_homing_missile"
+				"modifier"						"models/items/gyrocopter/skyhigh_bomb_missle/skyhigh_bomb.vmdl"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+		}
+		"branding"
+		{
+			"team_id"							"111474"
+		}
+	}
+	"7823"
+	{
+		"name"									"Sky-High Warship Munitions"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-14"
+		"image_inventory"						"econ/items/gyrocopter/skyhigh_back/skyhigh_back"
+		"item_name"								"#DOTA_Item_SkyHigh_Warship_Munitions"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Ammunition"
+		"model_player"							"models/items/gyrocopter/skyhigh_back/skyhigh_back.vmdl"
+		"branding"
+		{
+			"team_id"							"111474"
+		}
+	}
+	"7825"
+	{
+		"name"									"Sky-High Warship Helmet"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-14"
+		"image_inventory"						"econ/items/gyrocopter/skyhigh_head/skyhigh_head"
+		"item_name"								"#DOTA_Item_SkyHigh_Warship_Helmet"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/gyrocopter/skyhigh_head/skyhigh_head.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/gyrocopter/skyhigh_head/skyhigh_head.vmdl"
+					"name"						"#DOTA_Item_Sky_High_Helmet_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/gyrocopter/skyhigh_head_alt/skyhigh_head_alt.vmdl"
+					"name"						"#DOTA_Item_Sky_High_Helmet_Style1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/gyrocopter/skyhigh_head/skyhigh_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/gyrocopter/skyhigh_head_alt/skyhigh_head_alt"
+				}
+			}
+			"asset_modifier0"
+			{
+				"type"							"ability_icon"
+				"asset"							"gyrocopter_call_down"
+				"modifier"						"gyrocopter_skyhigh_call_down"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier1"
+			{
+				"type"							"ability_icon"
+				"asset"							"gyrocopter_rocket_barrage"
+				"modifier"						"gyrocopter_skyhigh_rocket_barrage"
+			}
+		}
+		"branding"
+		{
+			"team_id"							"111474"
+		}
+	}
+	"7827"
+	{
+		"name"									"Sky-High Warship Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-14"
+		"image_inventory"						"econ/items/gyrocopter/skyhigh_wing_guns_weapon/skyhigh_wing_guns_weapon"
+		"item_name"								"#DOTA_Item_SkyHigh_Warship_Wings"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Wings_and_Guns"
+		"model_player"							"models/items/gyrocopter/skyhigh_wing_guns_weapon/skyhigh_wing_guns_weapon.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"ability_icon"
+				"asset"							"gyrocopter_flak_cannon"
+				"modifier"						"gyrocopter_skyhigh_flak_cannon"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier1"
+			{
+				"type"							"ability_icon"
+				"asset"							"gyrocopter_rocket_barrage"
+				"modifier"						"gyrocopter_skyhigh_rocket_barrage"
+			}
+		}
+		"branding"
+		{
+			"team_id"							"111474"
+		}
+	}
+	"7828"
+	{
+		"name"									"Sky-High Warship Propeller"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-14"
+		"image_inventory"						"econ/items/gyrocopter/skyhigh_propeller/skyhigh_propeller"
+		"item_name"								"#DOTA_Item_SkyHigh_Warship_Propeller"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Propeller"
+		"model_player"							"models/items/gyrocopter/skyhigh_propeller/skyhigh_propeller.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/gyrocopter/skyhigh_propeller/skyhigh_propeller.vmdl"
+					"name"						"#DOTA_Item_Sky_High_Propeller_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/gyrocopter/skyhigh_propeller_alt/skyhigh_propeller_alt.vmdl"
+					"name"						"#DOTA_Item_Sky_High_Propeller_Style1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/gyrocopter/skyhigh_propeller/skyhigh_propeller"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/gyrocopter/skyhigh_propeller_alt/skyhigh_propeller_alt"
+				}
+			}
+		}
+		"branding"
+		{
+			"team_id"							"111474"
+		}
+	}
+	"8203"
+	{
+		"name"									"Taunt: Do a Barrel Roll!"
+		"prefab"								"taunt"
+		"creation_date"							"2015-03-12"
+		"image_inventory"						"econ/taunts/taunt_icon_gyrocopter_barrel_roll"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Do_a_Barrel_Roll"
+		"item_name"								"#DOTA_Item_Taunt_Do_a_Barrel_Roll"
+		"item_rarity"							"rare"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"taunt_roll_gesture"
+				"gesture"						"1"
+			}
+		}
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+		}
+	}
+	"8273"
+	{
+		"name"									"Artillery of the Dwarf Gyrocopter"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/gyrocopter/dwarven_gyrocopter_weapon/dwarven_gyrocopter_weapon"
+		"item_name"								"#DOTA_Item_Artillery_of_the_Dwarf_Gyrocopter"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Artillery"
+		"model_player"							"models/items/gyrocopter/dwarven_gyrocopter_weapon/dwarven_gyrocopter_weapon.vmdl"
+	}
+	"8275"
+	{
+		"name"									"Helm of the Dwarf Gyrocopter"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/gyrocopter/dwarven_gyrocopter_head/dwarven_gyrocopter_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Dwarf_Gyrocopter"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/gyrocopter/dwarven_gyrocopter_head/dwarven_gyrocopter_head.vmdl"
+	}
+	"8279"
+	{
+		"name"									"Hull of the Dwarf Gyrocopter"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/gyrocopter/dwarven_gyrocopter_back/dwarven_gyrocopter_back"
+		"item_name"								"#DOTA_Item_Hull_of_the_Dwarf_Gyrocopter"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Hull"
+		"model_player"							"models/items/gyrocopter/dwarven_gyrocopter_back/dwarven_gyrocopter_back.vmdl"
+	}
+	"8308"
+	{
+		"name"									"Turret of the Dwarf Gyrocopter"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/gyrocopter/dwarven_gyrocopter_misc/dwarven_gyrocopter_misc"
+		"item_name"								"#DOTA_Item_Turret_of_the_Dwarf_Gyrocopter"
+		"item_rarity"							"uncommon"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Turret"
+		"model_player"							"models/items/gyrocopter/dwarven_gyrocopter_misc/dwarven_gyrocopter_misc.vmdl"
+	}
+	"8318"
+	{
+		"name"									"Missile of the Dwarf Gyrocopter"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/gyrocopter/dwarven_gyrocopter_off_hand/dwarven_gyrocopter_off_hand"
+		"item_name"								"#DOTA_Item_Missile_of_the_Dwarf_Gyrocopter"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Missile"
+		"model_player"							"models/items/gyrocopter/dwarven_gyrocopter_off_hand/dwarven_gyrocopter_off_hand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_gyrocopter_homing_missile"
+				"modifier"						"models/items/gyrocopter/dwarven_gyrocopter_off_hand/dwarven_gyrocopter_off_hand.vmdl"
+			}
+		}
+	}
+	"8378"
+	{
+		"name"									"Cannons of the Swooping Elder"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/gyrocopter/flying_dutchman_weapon/flying_dutchman_weapon"
+		"item_name"								"#DOTA_Item_Cannons_of_the_Swooping_Elder"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Cannons"
+		"model_player"							"models/items/gyrocopter/flying_dutchman_weapon/flying_dutchman_weapon.vmdl"
+	}
+	"8381"
+	{
+		"name"									"Tricon of the Swooping Elder"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/gyrocopter/flying_dutchman_head/flying_dutchman_head"
+		"item_name"								"#DOTA_Item_Tricon_of_the_Swooping_Elder"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Tricon"
+		"model_player"							"models/items/gyrocopter/flying_dutchman_head/flying_dutchman_head.vmdl"
+	}
+	"8383"
+	{
+		"name"									"Prow of the Swooping Elder"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/gyrocopter/flying_dutchman_misc/flying_dutchman_misc"
+		"item_name"								"#DOTA_Item_Prow_of_the_Swooping_Elder"
+		"item_rarity"							"mythical"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Prow"
+		"model_player"							"models/items/gyrocopter/flying_dutchman_misc/flying_dutchman_misc.vmdl"
+	}
+	"8385"
+	{
+		"name"									"Mast of the Swooping Elder"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/gyrocopter/flying_dutchman_back/flying_dutchman_back"
+		"item_name"								"#DOTA_Item_Mast_of_the_Swooping_Elder"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Mast"
+		"model_player"							"models/items/gyrocopter/flying_dutchman_back/flying_dutchman_back.vmdl"
+	}
+	"8432"
+	{
+		"name"									"Iron Artillery of the Dwarf Gyrocopter"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/gyrocopter/dwarven_gyrocopter_weapon/dwarven_gyrocopter_weapon1"
+		"item_name"								"#DOTA_Item_Iron_Artillery_of_the_Dwarf_Gyrocopter"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/gyrocopter/dwarven_gyrocopter_weapon/dwarven_gyrocopter_weapon.vmdl"
+		"visuals"
+		{
+			"skin"								"1"
+		}
+	}
+	"8434"
+	{
+		"name"									"Iron Helm of the Dwarf Gyrocopter"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/gyrocopter/dwarven_gyrocopter_head/dwarven_gyrocopter_head1"
+		"item_name"								"#DOTA_Item_Iron_Helm_of_the_Dwarf_Gyrocopter"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/gyrocopter/dwarven_gyrocopter_head/dwarven_gyrocopter_head.vmdl"
+		"visuals"
+		{
+			"skin"								"1"
+		}
+	}
+	"8437"
+	{
+		"name"									"Iron Hull of the Dwarf Gyrocopter"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/gyrocopter/dwarven_gyrocopter_back/dwarven_gyrocopter_back1"
+		"item_name"								"#DOTA_Item_Iron_Hull_of_the_Dwarf_Gyrocopter"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/gyrocopter/dwarven_gyrocopter_back/dwarven_gyrocopter_back.vmdl"
+		"visuals"
+		{
+			"skin"								"1"
+		}
+	}
+	"8457"
+	{
+		"name"									"Iron Turret of the Dwarf Gyrocopter"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/gyrocopter/dwarven_gyrocopter_misc/dwarven_gyrocopter_misc1"
+		"item_name"								"#DOTA_Item_Iron_Turret_of_the_Dwarf_Gyrocopter"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Misc"
+		"model_player"							"models/items/gyrocopter/dwarven_gyrocopter_misc/dwarven_gyrocopter_misc.vmdl"
+		"visuals"
+		{
+			"skin"								"1"
+		}
+	}
+	"8459"
+	{
+		"name"									"Iron Missile of the Dwarf Gyrocopter"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/gyrocopter/dwarven_gyrocopter_off_hand/dwarven_gyrocopter_off_hand1"
+		"item_name"								"#DOTA_Item_Iron_Missile_of_the_Dwarf_Gyrocopter"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/gyrocopter/dwarven_gyrocopter_off_hand/dwarven_gyrocopter_off_hand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_gyrocopter_homing_missile"
+				"modifier"						"models/items/gyrocopter/dwarven_gyrocopter_off_hand/dwarven_gyrocopter_off_hand.vmdl"
+			}
+			"skin"								"1"
+		}
+	}
+	"9137"
+	{
+		"name"									"Wings of the Gunboat Hegemon"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-02"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/gyrocopter/flamed_falcon_patrol_weapon/flamed_falcon_patrol_weapon"
+		"item_name"								"#DOTA_Item_Wings_of_the_Gunboat_Hegemon"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/gyrocopter/flamed_falcon_patrol_weapon/flamed_falcon_patrol_weapon.vmdl"
+	}
+	"9138"
+	{
+		"name"									"Missile of the Gunboat Hegemon"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-02"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/gyrocopter/flamed_falcon_patrol_off_hand/flamed_falcon_patrol_off_hand"
+		"item_name"								"#DOTA_Item_Missile_of_the_Gunboat_Hegemon"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/gyrocopter/flamed_falcon_patrol_off_hand/flamed_falcon_patrol_off_hand.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_gyrocopter_homing_missile"
+				"modifier"						"models/items/gyrocopter/flamed_falcon_patrol_off_hand/flamed_falcon_patrol_off_hand.vmdl"
+			}
+		}
+	}
+	"9139"
+	{
+		"name"									"Propeller of the Gunboat Hegemon"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-02"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/gyrocopter/flamed_falcon_patrol_misc/flamed_falcon_patrol_misc"
+		"item_name"								"#DOTA_Item_Propeller_of_the_Gunboat_Hegemon"
+		"item_rarity"							"mythical"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Misc"
+		"model_player"							"models/items/gyrocopter/flamed_falcon_patrol_misc/flamed_falcon_patrol_misc.vmdl"
+	}
+	"9140"
+	{
+		"name"									"Goggles of the Gunboat Hegemon"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-02"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/gyrocopter/flamed_falcon_patrol_head/flamed_falcon_patrol_head"
+		"item_name"								"#DOTA_Item_Goggles_of_the_Gunboat_Hegemon"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/gyrocopter/flamed_falcon_patrol_head/flamed_falcon_patrol_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"9141"
+	{
+		"name"									"Hull of the Gunboat Hegemon"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-02"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/gyrocopter/flamed_falcon_patrol_back/flamed_falcon_patrol_back"
+		"item_name"								"#DOTA_Item_Hull_of_the_Gunboat_Hegemon"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/gyrocopter/flamed_falcon_patrol_back/flamed_falcon_patrol_back.vmdl"
+	}
+	"9261"
+	{
+		"name"									"Atomic Ray Thrusters"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-18"
+		"image_inventory"						"econ/items/gyrocopter/immortal_guns/immortal_guns"
+		"item_description"						"#DOTA_Item_Desc_Atomic_Ray_Thrusters"
+		"item_name"								"#DOTA_Item_Atomic_Ray_Thrusters"
+		"item_rarity"							"immortal"
+		"model_player"							"models/items/gyrocopter/immortal_guns/immortal_guns.vmdl"
+		"override_attack_attachments"			"1"
+		"particle_folder"						"particles/econ/items/gyrocopter/hero_gyrocopter_atomic"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_gyrocopter' gem_def_index: 3005 } asset_modifier: 160"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"guns"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_gyrocopter/gyro_rocket_barrage.vpcf"
+				"modifier"						"particles/econ/items/gyrocopter/hero_gyrocopter_atomic/gyro_rocket_barrage_atomic.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Gyrocopter.Rocket_Barrage.Launch"
+				"modifier"						"Hero_Gyrocopter.ART_Barrage.Launch"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/gyrocopter/hero_gyrocopter_atomic/gyro_atomic_ray_ambient.vpcf"
+				"system"						"particles/econ/items/gyrocopter/hero_gyrocopter_atomic/gyro_atomic_ray_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"gyrocopter_rocket_barrage"
+				"modifier"						"gyrocopter/atomic_ray_thrusters/atomicraythrusters_rocket_barrage"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+		}
+	}
+	"9394"
+	{
+		"name"									"Subfin Cannons of the Mechalodon Interdictor"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/gyrocopter/submersible_aircraft_08_weapon/submersible_aircraft_08_weapon"
+		"item_name"								"#DOTA_Item_Subfin_Cannons_of_the_Mechalodon_Interdictor"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/gyrocopter/submersible_aircraft_08_weapon/submersible_aircraft_08_weapon.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9395"
+	{
+		"name"									"Torpedo of the Mechalodon Interdictor"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/gyrocopter/submersible_aircraft_08_off_hand/submersible_aircraft_08_off_hand"
+		"item_name"								"#DOTA_Item_Torpedo_of_the_Mechalodon_Interdictor"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/gyrocopter/submersible_aircraft_08_off_hand/submersible_aircraft_08_off_hand.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_gyrocopter_homing_missile"
+				"modifier"						"models/items/gyrocopter/submersible_aircraft_08_off_hand/submersible_aircraft_08_off_hand.vmdl"
+			}
+		}
+	}
+	"9396"
+	{
+		"name"									"Cutter of the Mechalodon Interdictor"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/gyrocopter/submersible_aircraft_08_misc/submersible_aircraft_08_misc"
+		"item_name"								"#DOTA_Item_Cutter_of_the_Mechalodon_Interdictor"
+		"item_rarity"							"mythical"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Misc"
+		"model_player"							"models/items/gyrocopter/submersible_aircraft_08_misc/submersible_aircraft_08_misc.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9397"
+	{
+		"name"									"Mask of the Mechalodon Interdictor"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/gyrocopter/submersible_aircraft_08_head/submersible_aircraft_08_head"
+		"item_name"								"#DOTA_Item_Mask_of_the_Mechalodon_Interdictor"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/gyrocopter/submersible_aircraft_08_head/submersible_aircraft_08_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9398"
+	{
+		"name"									"Tailfin of the Mechalodon Interdictor"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/gyrocopter/submersible_aircraft_08_back/submersible_aircraft_08_back"
+		"item_name"								"#DOTA_Item_Tailfin_of_the_Mechalodon_Interdictor"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/gyrocopter/submersible_aircraft_08_back/submersible_aircraft_08_back.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+		}
+	}
+	"9428"
+	{
+		"name"									"Golden Atomic Ray Thrusters"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-29"
+		"image_inventory"						"econ/items/gyrocopter/immortal_guns/immortal_guns_gold"
+		"item_description"						"#DOTA_Item_Desc_Golden_Atomic_Ray_Thrusters"
+		"item_name"								"#DOTA_Item_Golden_Atomic_Ray_Thrusters"
+		"item_rarity"							"immortal"
+		"model_player"							"models/items/gyrocopter/immortal_guns/immortal_guns_gold.vmdl"
+		"override_attack_attachments"			"1"
+		"particle_folder"						"particles/econ/items/gyrocopter/hero_gyrocopter_atomic_gold"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_gyrocopter' gem_def_index: 3005 } asset_modifier: 161"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"guns"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_gyrocopter/gyro_rocket_barrage.vpcf"
+				"modifier"						"particles/econ/items/gyrocopter/hero_gyrocopter_atomic_gold/gyro_rocket_barrage_atomic_gold.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Gyrocopter.Rocket_Barrage.Launch"
+				"modifier"						"Hero_Gyrocopter.ART_Barrage.Launch"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/gyrocopter/hero_gyrocopter_atomic_gold/gyro_atomic_ray_ambient_gold.vpcf"
+				"system"						"particles/econ/items/gyrocopter/hero_gyrocopter_atomic_gold/gyro_atomic_ray_ambient_gold.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"gyrocopter_rocket_barrage"
+				"modifier"						"gyrocopter/atomic_ray_thrusters/atomicraythrusters_golden_rocket_barrage"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+		}
+	}
+	"9571"
+	{
+		"name"									"Present of Portent Payload"
+		"prefab"								"wearable"
+		"creation_date"							"2017-12-02"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/gyrocopter/gyros_gift_copter_off_hand_bluesnow/gyros_gift_copter_off_hand_bluesnow"
+		"item_name"								"#DOTA_Item_Present_of_Portent_Payload"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/gyrocopter/gyros_gift_copter_off_hand_bluesnow/gyros_gift_copter_off_hand_bluesnow.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_gyrocopter_homing_missile"
+				"modifier"						"models/items/gyrocopter/gyros_gift_copter_off_hand_bluesnow/gyros_gift_copter_off_hand_bluesnow.vmdl"
+			}
+		}
+	}
+	"9576"
+	{
+		"name"									"Weapons of Portent Payload"
+		"prefab"								"wearable"
+		"creation_date"							"2017-12-02"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/gyrocopter/gyros_gift_copter_weapon_bluesnow/gyros_gift_copter_weapon_bluesnow"
+		"item_name"								"#DOTA_Item_Weapons_of_Portent_Payload"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/gyrocopter/gyros_gift_copter_weapon_bluesnow/gyros_gift_copter_weapon_bluesnow.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+	}
+	"9577"
+	{
+		"name"									"Head of Portent Payload"
+		"prefab"								"wearable"
+		"creation_date"							"2017-12-02"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/gyrocopter/gyros_gift_copter_head_bluesnow/gyros_gift_copter_head_bluesnow"
+		"item_name"								"#DOTA_Item_Head_of_Portent_Payload"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/gyrocopter/gyros_gift_copter_head_bluesnow/gyros_gift_copter_head_bluesnow.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+	}
+	"9578"
+	{
+		"name"									"Stern of Portent Payload"
+		"prefab"								"wearable"
+		"creation_date"							"2017-12-02"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/gyrocopter/gyros_gift_copter_back_bluesnow/gyros_gift_copter_back_bluesnow"
+		"item_name"								"#DOTA_Item_Stern_of_Portent_Payload"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/gyrocopter/gyros_gift_copter_back_bluesnow/gyros_gift_copter_back_bluesnow.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+	}
+	"9579"
+	{
+		"name"									"Engine of Portent Payload"
+		"prefab"								"wearable"
+		"creation_date"							"2017-12-02"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/gyrocopter/gyros_gift_copter_misc_bluesnow/gyros_gift_copter_misc_bluesnow"
+		"item_name"								"#DOTA_Item_Engine_of_Portent_Payload"
+		"item_rarity"							"rare"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Misc"
+		"model_player"							"models/items/gyrocopter/gyros_gift_copter_misc_bluesnow/gyros_gift_copter_misc_bluesnow.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+	}
+	"9827"
+	{
+		"name"									"Armaments of the Vespidun Hunter-Killer"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/gyrocopter/ti8_gyro_digger_wasp_copter_weapon/ti8_gyro_digger_wasp_copter_weapon"
+		"item_name"								"#DOTA_Item_Armaments_of_the_Vespidun_HunterKiller"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/gyrocopter/ti8_gyro_digger_wasp_copter_weapon/ti8_gyro_digger_wasp_copter_weapon.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/gyrocopter/gyro_ti8_wasp/gyro_ti8_wasp_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9828"
+	{
+		"name"									"Payload of the Vespidun Hunter-Killer"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/gyrocopter/ti8_gyro_digger_wasp_copter_off_hand/ti8_gyro_digger_wasp_copter_off_hand"
+		"item_name"								"#DOTA_Item_Payload_of_the_Vespidun_HunterKiller"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/gyrocopter/ti8_gyro_digger_wasp_copter_off_hand/ti8_gyro_digger_wasp_copter_off_hand.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_gyrocopter_homing_missile"
+				"modifier"						"models/items/gyrocopter/ti8_gyro_digger_wasp_copter_off_hand/ti8_gyro_digger_wasp_copter_off_hand.vmdl"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/gyrocopter/gyro_ti8_wasp/gyro_ti8_bomb_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9829"
+	{
+		"name"									"Cone of the Vespidun Hunter-Killer"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/gyrocopter/ti8_gyro_digger_wasp_copter_misc/ti8_gyro_digger_wasp_copter_misc"
+		"item_name"								"#DOTA_Item_Cone_of_the_Vespidun_HunterKiller"
+		"item_rarity"							"mythical"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Misc"
+		"model_player"							"models/items/gyrocopter/ti8_gyro_digger_wasp_copter_misc/ti8_gyro_digger_wasp_copter_misc.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/gyrocopter/gyro_ti8_wasp/gyro_ti8_drill_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9830"
+	{
+		"name"									"Head of the Vespidun Hunter-Killer"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/gyrocopter/ti8_gyro_digger_wasp_copter_head/ti8_gyro_digger_wasp_copter_head"
+		"item_name"								"#DOTA_Item_Head_of_the_Vespidun_HunterKiller"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/gyrocopter/ti8_gyro_digger_wasp_copter_head/ti8_gyro_digger_wasp_copter_head.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+		}
+	}
+	"9831"
+	{
+		"name"									"Propellers of the Vespidun Hunter-Killer"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/gyrocopter/ti8_gyro_digger_wasp_copter_back/ti8_gyro_digger_wasp_copter_back"
+		"item_name"								"#DOTA_Item_Propellers_of_the_Vespidun_HunterKiller"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/gyrocopter/ti8_gyro_digger_wasp_copter_back/ti8_gyro_digger_wasp_copter_back.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+		}
+	}
+	"13112"
+	{
+		"name"									"TI9 Cache Gyro Airborne Machete Back"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"image_inventory"						"econ/items/gyrocopter/ti9_cache_gyro_airborne_machete_back/ti9_cache_gyro_airborne_machete_back"
+		"item_name"								"#DOTA_Item_Vote_Only_TI9_Cache_Gyro_Airborne_Machete_Back"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/gyrocopter/ti9_cache_gyro_airborne_machete_back/ti9_cache_gyro_airborne_machete_back.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"13113"
+	{
+		"name"									"TI9 Cache Gyro Airborne Machete Head"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"image_inventory"						"econ/items/gyrocopter/ti9_cache_gyro_airborne_machete_head/ti9_cache_gyro_airborne_machete_head"
+		"item_name"								"#DOTA_Item_Vote_Only_TI9_Cache_Gyro_Airborne_Machete_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/gyrocopter/ti9_cache_gyro_airborne_machete_head/ti9_cache_gyro_airborne_machete_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"13114"
+	{
+		"name"									"TI9 Cache Gyro Airborne Machete Misc"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"image_inventory"						"econ/items/gyrocopter/ti9_cache_gyro_airborne_machete_misc/ti9_cache_gyro_airborne_machete_misc"
+		"item_name"								"#DOTA_Item_Vote_Only_TI9_Cache_Gyro_Airborne_Machete_Misc"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Misc"
+		"model_player"							"models/items/gyrocopter/ti9_cache_gyro_airborne_machete_misc/ti9_cache_gyro_airborne_machete_misc.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"13115"
+	{
+		"name"									"TI9 Cache Gyro Airborne Machete Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"image_inventory"						"econ/items/gyrocopter/ti9_cache_gyro_airborne_machete_off_hand/ti9_cache_gyro_airborne_machete_off_hand"
+		"item_name"								"#DOTA_Item_Vote_Only_TI9_Cache_Gyro_Airborne_Machete_OffHand"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/gyrocopter/ti9_cache_gyro_airborne_machete_off_hand/ti9_cache_gyro_airborne_machete_off_hand.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_gyrocopter_homing_missile"
+				"modifier"						"models/items/gyrocopter/ti9_cache_gyro_airborne_machete_off_hand/ti9_cache_gyro_airborne_machete_off_hand.vmdl"
+			}
+		}
+	}
+	"13116"
+	{
+		"name"									"TI9 Cache Gyro Airborne Machete Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"image_inventory"						"econ/items/gyrocopter/ti9_cache_gyro_airborne_machete_weapon/ti9_cache_gyro_airborne_machete_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_TI9_Cache_Gyro_Airborne_Machete_Weapon"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/gyrocopter/ti9_cache_gyro_airborne_machete_weapon/ti9_cache_gyro_airborne_machete_weapon.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14256"
+	{
+		"name"									"Vicious Gyrosphere Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/gyrocopter/vicious_gyrosphere_back/vicious_gyrosphere_back"
+		"item_name"								"#DOTA_Item_Vote_Only_Vicious_Gyrosphere_Back"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/gyrocopter/vicious_gyrosphere_back/vicious_gyrosphere_back.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14257"
+	{
+		"name"									"Vicious Gyrosphere Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/gyrocopter/vicious_gyrosphere_off_hand/vicious_gyrosphere_off_hand"
+		"item_name"								"#DOTA_Item_Vote_Only_Vicious_Gyrosphere_OffHand"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/gyrocopter/vicious_gyrosphere_off_hand/vicious_gyrosphere_off_hand.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14258"
+	{
+		"name"									"Vicious Gyrosphere Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/gyrocopter/vicious_gyrosphere_head/vicious_gyrosphere_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Vicious_Gyrosphere_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/gyrocopter/vicious_gyrosphere_head/vicious_gyrosphere_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14259"
+	{
+		"name"									"Vicious Gyrosphere Misc"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/gyrocopter/vicious_gyrosphere_misc/vicious_gyrosphere_misc"
+		"item_name"								"#DOTA_Item_Vote_Only_Vicious_Gyrosphere_Misc"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_misc"
+		"model_player"							"models/items/gyrocopter/vicious_gyrosphere_misc/vicious_gyrosphere_misc.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14260"
+	{
+		"name"									"Vicious Gyrosphere Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/gyrocopter/vicious_gyrosphere_weapon/vicious_gyrosphere_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_Vicious_Gyrosphere_Weapon"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/gyrocopter/vicious_gyrosphere_weapon/vicious_gyrosphere_weapon.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14479"
+	{
+		"name"									"Owlwatch Commander Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/gyrocopter/gyro_allied_commander_weapon/gyro_allied_commander_weapon"
+		"item_name"								"#DOTA_Item_Owlwatch_Commander_Wings"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/gyrocopter/gyro_allied_commander_weapon/gyro_allied_commander_weapon.vmdl"
+	}
+	"14480"
+	{
+		"name"									"Owlwatch Commander Missile"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/gyrocopter/gyro_allied_commander_off_hand/gyro_allied_commander_off_hand"
+		"item_name"								"#DOTA_Item_Owlwatch_Commander_Missile"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/gyrocopter/gyro_allied_commander_off_hand/gyro_allied_commander_off_hand.vmdl"
+		"disable_hero_portrait_override"		"1"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_gyrocopter_homing_missile"
+				"modifier"						"models/items/gyrocopter/gyro_allied_commander_off_hand/gyro_allied_commander_off_hand.vmdl"
+			}
+		}
+	}
+	"14481"
+	{
+		"name"									"Owlwatch Commander Stern"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/gyrocopter/gyro_allied_commander_misc/gyro_allied_commander_misc"
+		"item_name"								"#DOTA_Item_Owlwatch_Commander_Stern"
+		"item_rarity"							"rare"
+		"item_slot"								"misc"
+		"model_player"							"models/items/gyrocopter/gyro_allied_commander_misc/gyro_allied_commander_misc.vmdl"
+	}
+	"14483"
+	{
+		"name"									"Owlwatch Commander Helm"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/gyrocopter/gyro_allied_commander_head/gyro_allied_commander_head"
+		"item_name"								"#DOTA_Item_Owlwatch_Commander_Helm"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"model_player"							"models/items/gyrocopter/gyro_allied_commander_head/gyro_allied_commander_head.vmdl"
+	}
+	"14484"
+	{
+		"name"									"Owlwatch Commander Propeller"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/gyrocopter/gyro_allied_commander_back/gyro_allied_commander_back"
+		"item_name"								"#DOTA_Item_Owlwatch_Commander_Propeller"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"model_player"							"models/items/gyrocopter/gyro_allied_commander_back/gyro_allied_commander_back.vmdl"
+	}
+	"14967"
+	{
+		"name"									"B.U.S.T.E.R"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-16"
+		"disable_hero_portrait_override"		"1"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"hide_tradecraftdelete"					"1"
+		"image_inventory"						"econ/items/gyrocopter/gyro_ti10_immortal_missile/gyro_ti10_immortal_missile"
+		"item_description"						"#DOTA_Item_Desc_BUSTER"
+		"item_name"								"#DOTA_Item_BUSTER"
+		"item_rarity"							"immortal"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/gyrocopter/gyro_ti10_immortal_missile/gyro_ti10_immortal_missile.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti10"
+			}
+			"asset_modifier1"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_gyrocopter_homing_missile"
+				"modifier"						"models/items/gyrocopter/gyro_ti10_immortal_missile/gyro_ti10_immortal_missile.vmdl"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"ability_icon"
+				"asset"							"gyrocopter_homing_missile"
+				"modifier"						"gyrocopter/gyro_ti10_immortal_ability_icon/gyro_ti10_immortal_missile"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Gyrocopter.HomingMissile"
+				"modifier"						"Hero_Gyrocopter.HomingMissile.TI10"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier4"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Gyrocopter.HomingMissile.Enemy"
+				"modifier"						"Hero_Gyrocopter.HomingMissile.Enemy.TI10"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/gyrocopter/gyro_ti10_immortal_missile/gyro_ti10_immortal_ambient.vpcf"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_gyrocopter/gyro_guided_missile.vpcf"
+				"modifier"						"particles/econ/items/gyrocopter/gyro_ti10_immortal_missile/gyro_ti10_immortal_missile.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_target.vpcf"
+				"modifier"						"particles/econ/items/gyrocopter/gyro_ti10_immortal_missile/gyro_ti10_immortal_missile_target.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_gyrocopter/gyro_homing_missile_fuse.vpcf"
+				"modifier"						"particles/econ/items/gyrocopter/gyro_ti10_immortal_missile/gyro_ti10_immortal_missle_fuse.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier9"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_explosion.vpcf"
+				"modifier"						"particles/econ/items/gyrocopter/gyro_ti10_immortal_missile/gyro_ti10_immortal_missile_explosion.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+		}
+	}
+	"17993"
+	{
+		"name"									"Sailfish Commandos Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/gyrocopter/sailfish_commandos_back/sailfish_commandos_back"
+		"item_name"								"#DOTA_Item_Vote_Only_Sailfish_Commandos_Back"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/gyrocopter/sailfish_commandos_back/sailfish_commandos_back.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"17994"
+	{
+		"name"									"Sailfish Commandos Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/gyrocopter/sailfish_commandos_head/sailfish_commandos_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Sailfish_Commandos_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/gyrocopter/sailfish_commandos_head/sailfish_commandos_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"17995"
+	{
+		"name"									"Sailfish Commandos Misc"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/gyrocopter/sailfish_commandos_misc/sailfish_commandos_misc"
+		"item_name"								"#DOTA_Item_Vote_Only_Sailfish_Commandos_Misc"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_misc"
+		"model_player"							"models/items/gyrocopter/sailfish_commandos_misc/sailfish_commandos_misc.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"17996"
+	{
+		"name"									"Sailfish Commandos Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/gyrocopter/sailfish_commandos_off_hand/sailfish_commandos_off_hand"
+		"item_name"								"#DOTA_Item_Vote_Only_Sailfish_Commandos_OffHand"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/gyrocopter/sailfish_commandos_off_hand/sailfish_commandos_off_hand.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"18014"
+	{
+		"name"									"Sailfish Commandos Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/gyrocopter/sailfish_commandos_weapon/sailfish_commandos_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_Sailfish_Commandos_Weapon"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/gyrocopter/sailfish_commandos_weapon/sailfish_commandos_weapon.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"18974"
+	{
+		"name"									"Arcane Inverter - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/gyrocopter/thunderbolt_quadcopter_weapon/thunderbolt_quadcopter_weapon"
+		"item_name"								"#DOTA_Item_Arcane_Inverter__Weapon"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/gyrocopter/thunderbolt_quadcopter_weapon/thunderbolt_quadcopter_weapon.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/gyrocopter/gyro_quadcopter/gyro_quadcopter_weapon.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"18975"
+	{
+		"name"									"Arcane Inverter - Missile"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/gyrocopter/thunderbolt_quadcopter_off_hand/thunderbolt_quadcopter_off_hand"
+		"item_name"								"#DOTA_Item_Arcane_Inverter__Missile"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/gyrocopter/thunderbolt_quadcopter_off_hand/thunderbolt_quadcopter_off_hand.vmdl"
+		"disable_hero_portrait_override"		"1"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/gyrocopter/gyro_quadcopter/gyro_quadcopter_bomb.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_gyrocopter_homing_missile"
+				"modifier"						"models/items/gyrocopter/thunderbolt_quadcopter_off_hand/thunderbolt_quadcopter_off_hand.vmdl"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_gyrocopter/gyro_guided_missile.vpcf"
+				"modifier"						"particles/econ/items/gyrocopter/gyro_quadcopter/gyro_quadcopter_missile.vpcf"
+			}
+		}
+	}
+	"18976"
+	{
+		"name"									"Arcane Inverter - Misc"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/gyrocopter/thunderbolt_quadcopter_misc/thunderbolt_quadcopter_misc"
+		"item_name"								"#DOTA_Item_Arcane_Inverter__Misc"
+		"item_rarity"							"mythical"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_misc"
+		"model_player"							"models/items/gyrocopter/thunderbolt_quadcopter_misc/thunderbolt_quadcopter_misc.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/gyrocopter/gyro_quadcopter/gyro_quadcopter_misc.vpcf"
+			}
+		}
+	}
+	"18978"
+	{
+		"name"									"Arcane Inverter - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/gyrocopter/thunderbolt_quadcopter_head/thunderbolt_quadcopter_head"
+		"item_name"								"#DOTA_Item_Arcane_Inverter__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/gyrocopter/thunderbolt_quadcopter_head/thunderbolt_quadcopter_head.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"18979"
+	{
+		"name"									"Arcane Inverter - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/gyrocopter/thunderbolt_quadcopter_back/thunderbolt_quadcopter_back"
+		"item_name"								"#DOTA_Item_Arcane_Inverter__Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/gyrocopter/thunderbolt_quadcopter_back/thunderbolt_quadcopter_back.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_gyrocopter/gyro_ambient.vpcf"
+				"modifier"						"particles/econ/items/gyrocopter/gyro_quadcopter/gyro_quadcopter_null.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/gyrocopter/gyro_quadcopter/gyro_quadcopter_back.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"20361"
+	{
+		"name"									"Armaments of the Dragon Emperor DO NOT USE"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Emerging Dragon"					"1"
+			"Gatling Cannon of the Dragon Emperor""1"
+			"Emerging Dragon Missile"			"1"
+			"Hat of Fortune"					"1"
+		}
+		"creation_date"							"2014-01-20"
+		"image_inventory"						"econ/sets/DOTA_Item_Armaments_of_the_Dragon_Emperor_Set"
+		"item_description"						"#DOTA_Item_Desc_Armaments_of_the_Dragon_Emperor_Set"
+		"item_name"								"#DOTA_Item_Armaments_of_the_Dragon_Emperor_DO_NOT_USE"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"20649"
+	{
+		"name"									"Armaments of the Dragon Emperor Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Emerging Dragon"					"1"
+			"Gatling Cannon of the Dragon Emperor""1"
+			"Hat of Fortune"					"1"
+		}
+		"creation_date"							"2014-09-11"
+		"image_inventory"						"econ/sets/DOTA_Item_Armaments_of_the_Dragon_Emperor_Set"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Armaments_of_the_Dragon_Emperor_DO_NOT_USE"
+		"item_name"								"#DOTA_Item_Armaments_of_the_Dragon_Emperor_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"2/3/2014"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20656"
+	{
+		"name"									"Rainmaker MK.VII"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bonnet of the Rainmaker"			"1"
+			"Chassis of the Rainmaker"			"1"
+			"Olde Cap of the Rainmaker"			"1"
+			"Wings of the Rainmaker"			"1"
+			"Rainmaker Loading Screen"			"1"
+			"Rainmaker Rocket"					"1"
+		}
+		"creation_date"							"2014-09-16"
+		"image_inventory"						"econ/loading_screens/rainmaker"
+		"item_description"						"#DOTA_Item_Desc_Rainmaker_MKVII"
+		"item_name"								"#DOTA_Item_Rainmaker_MKVII"
+		"item_rarity"							"mythical"
+		"shards_purchase_price"					"2000"
+	}
+	"20713"
+	{
+		"name"									"Sky-High Warship"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Sky-High Warship Bomb"				"1"
+			"Sky-High Warship Helmet"			"1"
+			"Sky-High Warship Munitions"		"1"
+			"Sky-High Warship Propeller"		"1"
+			"Sky-High Warship Wings"			"1"
+			"Sky-High Warship Loading Screen"	"1"
+		}
+		"creation_date"							"2014-05-14"
+		"image_inventory"						"econ/sets/dota_item_skyhigh_warship"
+		"item_description"						"#DOTA_Item_Desc_SkyHigh_Warship"
+		"item_name"								"#DOTA_Item_SkyHigh_Warship"
+		"item_rarity"							"rare"
+		"branding"
+		{
+			"team_id"							"111474"
+		}
+	}
+	"20897"
+	{
+		"name"									"Airborne Assault Craft"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Propellor of the Airborne Assault Craft""1"
+			"Turret of the Airborne Assault Craft""1"
+			"Gatling Guns of the Airborne Assault Craft""1"
+			"Pilot's Hat of the Airborne Assault Craft""1"
+			"Homing Missile of the Airborne Assault Craft""1"
+			"Airborne Assault Craft Loading Screen""1"
+		}
+		"creation_date"							"2015-09-15"
+		"image_inventory"						"econ/loading_screens/g17_flying_fortress_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Airborne_Assault_Craft"
+		"item_name"								"#DOTA_Item_Airborne_Assault_Craft"
+		"item_rarity"							"mythical"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"20928"
+	{
+		"name"									"Swooping Elder"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Cannons of the Swooping Elder"		"1"
+			"Tricon of the Swooping Elder"		"1"
+			"Mast of the Swooping Elder"		"1"
+			"Prow of the Swooping Elder"		"1"
+			"Swooping Elder Loading Screen"		"1"
+			"Mine of the Swooping Elder"		"1"
+		}
+		"creation_date"							"2015-11-03"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/loading_screens/flying_dutchman_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Swooping_Elder"
+		"item_name"								"#DOTA_Item_Swooping_Elder"
+		"item_rarity"							"mythical"
+	}
+	"21028"
+	{
+		"name"									"Dwarf Gyrocopter"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Dwarf Gyrocopter Loading Screen"	"1"
+			"Artillery of the Dwarf Gyrocopter"	"1"
+			"Helm of the Dwarf Gyrocopter"		"1"
+			"Hull of the Dwarf Gyrocopter"		"1"
+			"Turret of the Dwarf Gyrocopter"	"1"
+			"Missile of the Dwarf Gyrocopter"	"1"
+		}
+		"creation_date"							"2016-09-01"
+		"image_inventory"						"econ/loading_screens/dwarven_gyrocopter_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Dwarf_Gyrocopter"
+		"item_name"								"#DOTA_Item_Dwarf_Gyrocopter"
+		"item_rarity"							"uncommon"
+	}
+	"21029"
+	{
+		"name"									"Iron Dwarf Gyrocopter"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Iron Artillery of the Dwarf Gyrocopter""1"
+			"Iron Helm of the Dwarf Gyrocopter"	"1"
+			"Iron Hull of the Dwarf Gyrocopter"	"1"
+			"Iron Turret of the Dwarf Gyrocopter""1"
+			"Iron Missile of the Dwarf Gyrocopter""1"
+			"Dwarf Gyrocopter Loading Screen"	"1"
+		}
+		"creation_date"							"2016-09-01"
+		"image_inventory"						"econ/loading_screens/dwarven_gyrocopter_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Iron_Dwarf_Gyrocopter"
+		"item_name"								"#DOTA_Item_Iron_Dwarf_Gyrocopter"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+	}
+	"21093"
+	{
+		"name"									"Gunboat Hegemon"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Gunboat Hegemon Loading Screen"	"1"
+			"Goggles of the Gunboat Hegemon"	"1"
+			"Wings of the Gunboat Hegemon"		"1"
+			"Hull of the Gunboat Hegemon"		"1"
+			"Propeller of the Gunboat Hegemon"	"1"
+			"Missile of the Gunboat Hegemon"	"1"
+		}
+		"creation_date"							"2017-02-03"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/loading_screens/flamed_falcon_patrol_flamed_falcon_patrol_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Gunboat_Hegemon"
+		"item_name"								"#DOTA_Item_Gunboat_Hegemon"
+		"item_rarity"							"mythical"
+	}
+	"21125"
+	{
+		"name"									"Mechalodon Interdictor"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Subfin Cannons of the Mechalodon Interdictor""1"
+			"Cutter of the Mechalodon Interdictor""1"
+			"Mask of the Mechalodon Interdictor""1"
+			"Mechalodon Interdictor Loading Screen""1"
+			"Torpedo of the Mechalodon Interdictor""1"
+			"Tailfin of the Mechalodon Interdictor""1"
+		}
+		"creation_date"							"2017-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/loading_screens/submersible_aircraft_08_submersible_aircraft_08_loading"
+		"item_description"						"#DOTA_Item_Desc_Mechalodon_Interdictor"
+		"item_name"								"#DOTA_Item_Mechalodon_Interdictor"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21161"
+	{
+		"name"									"Portent Payload"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of Portent Payload"	"1"
+			"Engine of Portent Payload"			"1"
+			"Stern of Portent Payload"			"1"
+			"Head of Portent Payload"			"1"
+			"Weapons of Portent Payload"		"1"
+			"Present of Portent Payload"		"1"
+		}
+		"creation_date"							"2017-12-05"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/loading_screens/gyros_gift_copter_loading_screen_blue_snow"
+		"item_name"								"#DOTA_Item_Portent_Payload"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+	}
+	"21193"
+	{
+		"name"									"Vespidun Hunter-Killer"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Vespidun Hunter-Killer Loading Screen""1"
+			"Propellers of the Vespidun Hunter-Killer""1"
+			"Head of the Vespidun Hunter-Killer""1"
+			"Cone of the Vespidun Hunter-Killer""1"
+			"Payload of the Vespidun Hunter-Killer""1"
+			"Armaments of the Vespidun Hunter-Killer""1"
+		}
+		"creation_date"							"2018-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/loading_screens/ti8_gyro_digger_wasp_copter_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Vespidun_HunterKiller"
+		"item_name"								"#DOTA_Item_Vespidun_HunterKiller"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+		}
+	}
+	"21348"
+	{
+		"name"									"TI9 Cache Gyro Airborne Machete"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"TI9 Cache Gyro Airborne Machete Back""1"
+			"TI9 Cache Gyro Airborne Machete Head""1"
+			"TI9 Cache Gyro Airborne Machete Misc""1"
+			"TI9 Cache Gyro Airborne Machete Off-Hand""1"
+			"TI9 Cache Gyro Airborne Machete Weapon""1"
+			"TI9 Cache Gyro Airborne Machete LS""1"
+		}
+		"creation_date"							"2019-05-14"
+		"image_inventory"						"econ/loading_screens/ti9_cache_gyro_airborne_machete_ls"
+		"item_name"								"#DOTA_Item_Vote_Only_TI9_Cache_Gyro_Airborne_Machete"
+		"workshop_accepted"						"0"
+	}
+	"21525"
+	{
+		"name"									"Vicious Gyrosphere"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Vicious Gyrosphere Back"			"1"
+			"Vicious Gyrosphere Off-Hand"		"1"
+			"Vicious Gyrosphere Head"			"1"
+			"Vicious Gyrosphere Misc"			"1"
+			"Vicious Gyrosphere Weapon"			"1"
+		}
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Vicious_Gyrosphere"
+		"workshop_accepted"						"0"
+	}
+	"21566"
+	{
+		"name"									"Owlwatch Commander"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Owlwatch Commander Propeller"		"1"
+			"Owlwatch Commander Helm"			"1"
+			"Owlwatch Commander Loading Screen"	"1"
+			"Owlwatch Commander Stern"			"1"
+			"Owlwatch Commander Missile"		"1"
+			"Owlwatch Commander Wings"			"1"
+		}
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Gyro_Allied_Commander"
+		"item_name"								"#DOTA_Item_Owlwatch_Commander"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+	}
+	"21640"
+	{
+		"name"									"Sailfish Commandos"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Sailfish Commandos Back"			"1"
+			"Sailfish Commandos Head"			"1"
+			"Sailfish Commandos Misc"			"1"
+			"Sailfish Commandos Off-Hand"		"1"
+			"Sailfish Commandos Weapon"			"1"
+			"Sailfish Commandos LS"				"1"
+		}
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Sailfish_Commandos"
+		"workshop_accepted"						"0"
+	}
+	"21830"
+	{
+		"name"									"Arcane Inverter"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Arcane Inverter - Back"			"1"
+			"Arcane Inverter - Head"			"1"
+			"Arcane Inverter - Misc"			"1"
+			"Arcane Inverter - Weapon"			"1"
+			"Arcane Inverter - Missile"			"1"
+		}
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/sets/DOTA_Item_Arcane_Inverter"
+		"item_name"								"#DOTA_Item_Arcane_Inverter"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"24670"
+	{
+		"name"									"B.U.S.T.E.R of the Crimson Witness"
+		"prefab"								"wearable"
+		"creation_date"							"2022-09-28"
+		"disable_hero_portrait_override"		"1"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/gyrocopter/gyro_ti10_immortal_missile/gyro_ti10_immortal_missile1"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_BUSTER"
+		"item_name"								"#DOTA_Item_BUSTER_of_the_Crimson_Witness"
+		"item_rarity"							"immortal"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Offhand_Weapon"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/gyrocopter/gyro_ti10_immortal_missile/gyro_ti10_immortal_missile.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti10"
+			}
+			"asset_modifier1"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_gyrocopter_homing_missile"
+				"modifier"						"models/items/gyrocopter/gyro_ti10_immortal_missile/gyro_ti10_immortal_missile.vmdl"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"ability_icon"
+				"asset"							"gyrocopter_homing_missile"
+				"modifier"						"gyrocopter/gyro_ti10_immortal_ability_icon/gyro_ti10_immortal_missile_crimson"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Gyrocopter.HomingMissile"
+				"modifier"						"Hero_Gyrocopter.HomingMissile.TI10"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier4"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Gyrocopter.HomingMissile.Enemy"
+				"modifier"						"Hero_Gyrocopter.HomingMissile.Enemy.TI10"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/gyrocopter/gyro_ti10_immortal_missile/gyro_ti10_immortal_ambient_crimson.vpcf"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_gyrocopter/gyro_guided_missile.vpcf"
+				"modifier"						"particles/econ/items/gyrocopter/gyro_ti10_immortal_missile/gyro_ti10_immortal_crimson_missile.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_target.vpcf"
+				"modifier"						"particles/econ/items/gyrocopter/gyro_ti10_immortal_missile/gyro_ti10_immortal_missile_target_crimson.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_gyrocopter/gyro_homing_missile_fuse.vpcf"
+				"modifier"						"particles/econ/items/gyrocopter/gyro_ti10_immortal_missile/gyro_ti10_immortal_missle_fuse_crimson.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier9"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_explosion.vpcf"
+				"modifier"						"particles/econ/items/gyrocopter/gyro_ti10_immortal_missile/gyro_ti10_immortal_crimson_missile_explosion.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"skin"								"1"
+		}
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"		"2"
+		}
+	}
+}

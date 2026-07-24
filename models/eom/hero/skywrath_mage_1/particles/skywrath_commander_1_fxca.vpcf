@@ -1,0 +1,92 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf60:version{cd92a366-0b0d-4811-a18d-f6d472d19709} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 0
+	m_flConstantRadius = 15.0
+	m_ConstantColor = [ 250, 204, 92, 255 ]
+	m_nConstantSequenceNumber = 5
+	m_flNoDrawTimeToGoToSleep = 2.0
+	m_bShouldSort = false
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iControlPoint = 10
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 20
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_back_01"
+					m_entityName = "self_with_wearables"
+				},
+				{
+					m_iControlPoint = 21
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_back_02"
+					m_entityName = "self_with_wearables"
+				},
+				{
+					m_iControlPoint = 22
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_back_03"
+					m_entityName = "self_with_wearables"
+				},
+				{
+					m_iControlPoint = 23
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_back_04"
+					m_entityName = "self_with_wearables"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/eom/hero/skywrath_mage_1/skywrath_mage_1.vmdl"
+				m_sequenceName = "skywrath_mage_idle"
+				m_hitboxSetName = "default"
+				m_bShouldDrawAttachmentNames = true
+			}
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetParentControlPointsToChildCP"
+			m_nChildControlPoint = 10
+			m_nNumControlPoints = 4
+			m_nFirstSourcePoint = 20
+			m_bSetOrientation = true
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"models/eom/hero/skywrath_mage_1/particles/skywrath_commander_1_fxca0.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/skywrath_mage_1/particles/skywrath_commander_1_fxca0.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/skywrath_mage_1/particles/skywrath_commander_1_fxca0.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/skywrath_mage_1/particles/skywrath_commander_1_fxca0.vpcf"
+		},
+	]
+}

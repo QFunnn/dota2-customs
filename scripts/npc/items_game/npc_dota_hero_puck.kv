@@ -1,0 +1,1255 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"370"
+	{
+		"name"									"Puck's Wings"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/puck/puck_wings"
+		"item_description"						"#DOTA_Item_Desc_Pucks_Wings"
+		"item_name"								"#DOTA_Item_Pucks_Wings"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/heroes/puck/puck_wings.vmdl"
+	}
+	"371"
+	{
+		"name"									"Puck's Tail"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/puck/puck_tail"
+		"item_description"						"#DOTA_Item_Desc_Pucks_Tail"
+		"item_name"								"#DOTA_Item_Pucks_Tail"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_tail"
+		"model_player"							"models/heroes/puck/puck_tail.vmdl"
+	}
+	"372"
+	{
+		"name"									"Puck's Head"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/puck/puck_horns"
+		"item_description"						"#DOTA_Item_Desc_Pucks_Antennae"
+		"item_name"								"#DOTA_Item_Pucks_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/puck/puck_horns.vmdl"
+	}
+	"510"
+	{
+		"name"									"Puck's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-05"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Pucks_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_puck"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_puck/puck_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_puck/puck_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"5338"
+	{
+		"name"									"Aether-Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-23"
+		"image_inventory"						"econ/items/puck/fairy_wing"
+		"item_description"						"#DOTA_Item_Desc_AetherWings"
+		"item_name"								"#DOTA_Item_AetherWings"
+		"item_quality"							"genuine"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/puck/fairy_wing.vmdl"
+		"particle_folder"						"particles/econ/items/puck/puck_fairy_wing"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_puck/puck_waning_rift.vpcf"
+				"modifier"						"particles/econ/items/puck/puck_fairy_wing/puck_waning_rift_fairy_wing.vpcf"
+			}
+		}
+	}
+	"6165"
+	{
+		"name"									"Mischievous Dragon Tail"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-24"
+		"image_inventory"						"econ/items/puck/mischievous_tail/mischievous_tail"
+		"item_name"								"#DOTA_Item_Mischievous_Dragon_Tail"
+		"item_rarity"							"rare"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/items/puck/mischievous_tail/mischievous_tail.vmdl"
+	}
+	"6166"
+	{
+		"name"									"Mischievous Dragon Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-24"
+		"image_inventory"						"econ/items/puck/mischievous_back/mischievous_back"
+		"item_name"								"#DOTA_Item_Mischievous_Dragon_Wings"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/puck/mischievous_back/mischievous_back.vmdl"
+	}
+	"6167"
+	{
+		"name"									"Mischievous Dragon Head"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-24"
+		"image_inventory"						"econ/items/puck/mischievous_head/mischievous_head"
+		"item_name"								"#DOTA_Item_Mischievous_Dragon_Head"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/puck/mischievous_head/mischievous_head.vmdl"
+	}
+	"6176"
+	{
+		"name"									"Mystic Coils Tail"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-18"
+		"image_inventory"						"econ/items/puck/mysticcoils_tail/mysticcoils_tail"
+		"item_name"								"#DOTA_Item_Mystic_Coils_Tail"
+		"item_rarity"							"uncommon"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/items/puck/mysticcoils_tail/mysticcoils_tail.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"3/18/2014"
+			"price"								"0"
+		}
+	}
+	"6177"
+	{
+		"name"									"Mystic Coils Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-18"
+		"image_inventory"						"econ/items/puck/mysticcoils_wings/mysticcoils_wings"
+		"item_name"								"#DOTA_Item_Mystic_Coils_Wings"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/puck/mysticcoils_wings/mysticcoils_wings.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"3/18/2014"
+			"price"								"0"
+		}
+	}
+	"6178"
+	{
+		"name"									"Mystic Coils Antennae"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-18"
+		"image_inventory"						"econ/items/puck/mysticcoils_antennae/mysticcoils_antennae"
+		"item_name"								"#DOTA_Item_Mystic_Coils_Antennae"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Antennae"
+		"model_player"							"models/items/puck/mysticcoils_antennae/mysticcoils_antennae.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"3/18/2014"
+			"price"								"0"
+		}
+	}
+	"6287"
+	{
+		"name"									"Ethereal Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-12"
+		"image_inventory"						"econ/items/puck/etherealwings_puck_back/etherealwings_puck_back"
+		"item_name"								"#DOTA_Item_Ethereal_Wings"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/puck/etherealwings_puck_back/etherealwings_puck_back.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"3/20/2014"
+			"price"								"0"
+		}
+	}
+	"6290"
+	{
+		"name"									"Complete Wings of the Ethereal Monarch"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-06"
+		"event_id"								"EVENT_ID_NONE"
+		"image_inventory"						"econ/items/puck/radiant_wanderer_back/radiant_wanderer_back"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Wings_of_the_Ethereal_Monarch"
+		"item_name"								"#DOTA_Item_Complete_Wings_of_the_Ethereal_Monarch"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/puck/radiant_wanderer_back/radiant_wanderer_back.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/puck/puck_radiant_wanderer/puck_ambient_radiant_wandered_back.vpcf"
+				"system"						"particles/econ/items/puck/puck_radiant_wanderer/puck_ambient_radiant_wandered_back.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_back"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_l_wing"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_r_wing"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/puck/radiant_wanderer_back/radiant_wanderer_back"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/puck/radiant_wanderer_back/radiant_wanderer_back_style1"
+				}
+			}
+		}
+	}
+	"6292"
+	{
+		"name"									"Complete Tail of the Ethereal Monarch"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-06"
+		"event_id"								"EVENT_ID_NONE"
+		"image_inventory"						"econ/items/puck/radiant_wanderer_tail/radiant_wanderer_tail"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Tail_of_the_Ethereal_Monarch"
+		"item_name"								"#DOTA_Item_Complete_Tail_of_the_Ethereal_Monarch"
+		"item_rarity"							"mythical"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/items/puck/radiant_wanderer_tail/radiant_wanderer_tail.vmdl"
+	}
+	"6452"
+	{
+		"name"									"Tail of the Eternal Nymph"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-25"
+		"image_inventory"						"econ/items/puck/eternalnymph_tail/eternalnymph_tail"
+		"item_name"								"#DOTA_Item_Tail_of_the_Eternal_Nymph"
+		"item_rarity"							"uncommon"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_Fin"
+		"model_player"							"models/items/puck/eternalnymph_tail/eternalnymph_tail.vmdl"
+	}
+	"6595"
+	{
+		"name"									"Mischievous Fruits"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-13"
+		"image_inventory"						"econ/items/puck/mischievousfruits_head/mischievousfruits_head"
+		"item_name"								"#DOTA_Item_Mischievous_Fruits"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/puck/mischievousfruits_head/mischievousfruits_head.vmdl"
+	}
+	"6618"
+	{
+		"name"									"Complete Crown of the Ethereal Monarch"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-06"
+		"event_id"								"EVENT_ID_NONE"
+		"image_inventory"						"econ/items/puck/radiant_wanderer_head/radiant_wanderer_head"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Crown_of_the_Ethereal_Monarch"
+		"item_name"								"#DOTA_Item_Complete_Crown_of_the_Ethereal_Monarch"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/puck/radiant_wanderer_head/radiant_wanderer_head.vmdl"
+	}
+	"6671"
+	{
+		"name"									"Merry Wanderer's Brush"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2014"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"creation_date"							"2014-05-16"
+		"image_inventory"						"econ/items/puck/merry_wanderers_brush_tail/merry_wanderers_brush_tail"
+		"item_description"						"#DOTA_Item_Desc_Merry_Wanderers_Brush"
+		"item_name"								"#DOTA_Item_Merry_Wanderers_Brush"
+		"item_rarity"							"immortal"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/items/puck/merry_wanderers_brush_tail/merry_wanderers_brush_tail.vmdl"
+		"particle_folder"						"particles/econ/items/puck/puck_merry_wanderer"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_puck/puck_illusory_orb.vpcf"
+				"modifier"						"particles/econ/items/puck/puck_merry_wanderer/puck_illusory_orb_merry_wanderer.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"ability_icon"
+				"asset"							"puck_illusory_orb"
+				"modifier"						"puck_illusory_orb_merry"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/puck/puck_merry_wanderer/puck_ambient_merry_wanderer.vpcf"
+				"system"						"particles/econ/items/puck/puck_merry_wanderer/puck_ambient_merry_wanderer.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_tail_middle"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_tail_r"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_tail_l"
+					}
+				}
+			}
+		}
+	}
+	"6709"
+	{
+		"name"									"Orb of Reminiscence"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-23"
+		"image_inventory"						"econ/items/puck/reminiscence_head/reminiscence_head"
+		"item_name"								"#DOTA_Item_Orb_of_Reminiscence"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/puck/reminiscence_head/reminiscence_head.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"branding"
+		{
+			"team_id"							"111474"
+		}
+	}
+	"6710"
+	{
+		"name"									"Tail of Reminiscence"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-23"
+		"image_inventory"						"econ/items/puck/reminiscence_tail/reminiscence_tail"
+		"item_name"								"#DOTA_Item_Tail_of_Reminiscence"
+		"item_rarity"							"rare"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/items/puck/reminiscence_tail/reminiscence_tail.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"branding"
+		{
+			"team_id"							"111474"
+		}
+	}
+	"6711"
+	{
+		"name"									"Wings of Reminiscence"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-23"
+		"image_inventory"						"econ/items/puck/reminiscence_wings/reminiscence_wings"
+		"item_name"								"#DOTA_Item_Wings_of_Reminiscence"
+		"item_rarity"							"legendary"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/puck/reminiscence_wings/reminiscence_wings.vmdl"
+		"branding"
+		{
+			"team_id"							"111474"
+		}
+	}
+	"6855"
+	{
+		"name"									"Horns of the Eternal Nymph"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-25"
+		"image_inventory"						"econ/items/puck/eternalnymph_head/eternalnymph_head"
+		"item_name"								"#DOTA_Item_Horns_of_the_Eternal_Nymph"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Horns"
+		"model_player"							"models/items/puck/eternalnymph_head/eternalnymph_head.vmdl"
+	}
+	"6856"
+	{
+		"name"									"Wings of the Eternal Nymph"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-25"
+		"image_inventory"						"econ/items/puck/eternalnymph_back/eternalnymph_back"
+		"item_name"								"#DOTA_Item_Wings_of_the_Eternal_Nymph"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/puck/eternalnymph_back/eternalnymph_back.vmdl"
+	}
+	"7757"
+	{
+		"name"									"Essence of the Trickster Tail"
+		"prefab"								"wearable"
+		"creation_date"							"2016-11-21"
+		"image_inventory"						"econ/items/puck/essence_of_the_trickster_tail/essence_of_the_trickster_tail"
+		"item_name"								"#DOTA_Item_Essence_of_the_Trickster_Tail"
+		"item_rarity"							"rare"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_tail"
+		"model_player"							"models/items/puck/essence_of_the_trickster_tail/essence_of_the_trickster_tail.vmdl"
+	}
+	"7758"
+	{
+		"name"									"Essence of the Trickster Crown"
+		"prefab"								"wearable"
+		"creation_date"							"2016-11-21"
+		"image_inventory"						"econ/items/puck/essence_of_the_trickster_head/essence_of_the_trickster_head"
+		"item_name"								"#DOTA_Item_Essence_of_the_Trickster_Crown"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/puck/essence_of_the_trickster_head/essence_of_the_trickster_head.vmdl"
+	}
+	"7759"
+	{
+		"name"									"Essence of the Trickster Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2016-11-21"
+		"image_inventory"						"econ/items/puck/essence_of_the_trickster_back/essence_of_the_trickster_back"
+		"item_name"								"#DOTA_Item_Essence_of_the_Trickster_Wings"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/puck/essence_of_the_trickster_back/essence_of_the_trickster_back.vmdl"
+	}
+	"8890"
+	{
+		"name"									"Crown of the Ethereal Monarch"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/puck/radiant_wanderer_head/radiant_wanderer_head"
+		"item_description"						"#DOTA_Item_Desc_Crown_of_the_Ethereal_Monarch"
+		"item_name"								"#DOTA_Item_Crown_of_the_Ethereal_Monarch"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/puck/radiant_wanderer_head/radiant_wanderer_head.vmdl"
+	}
+	"8891"
+	{
+		"name"									"Tail of the Ethereal Monarch"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/puck/radiant_wanderer_tail/radiant_wanderer_tail"
+		"item_description"						"#DOTA_Item_Desc_Tail_of_the_Ethereal_Monarch"
+		"item_name"								"#DOTA_Item_Tail_of_the_Ethereal_Monarch"
+		"item_rarity"							"mythical"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_tail"
+		"model_player"							"models/items/puck/radiant_wanderer_tail/radiant_wanderer_tail.vmdl"
+	}
+	"8892"
+	{
+		"name"									"Wings of the Ethereal Monarch"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/puck/radiant_wanderer_back/radiant_wanderer_back"
+		"item_description"						"#DOTA_Item_Desc_Wings_of_the_Ethereal_Monarch"
+		"item_name"								"#DOTA_Item_Wings_of_the_Ethereal_Monarch"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/puck/radiant_wanderer_back/radiant_wanderer_back.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/puck/puck_radiant_wanderer/puck_ambient_radiant_wandered_back.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/puck/puck_radiant_wanderer/puck_ambient_radiant_wandered_back.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_back"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_l_wing"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_r_wing"
+					}
+				}
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Radiant_Wanderer_Back_0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Radiant_Wanderer_Back_1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"11898"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"1"
+				{
+					"icon_path"					"econ/items/puck/radiant_wanderer_back/radiant_wanderer_back_style1"
+				}
+			}
+		}
+	}
+	"9580"
+	{
+		"name"									"Wings of Curious Coldspell"
+		"prefab"								"wearable"
+		"creation_date"							"2017-11-30"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/puck/puck_snowflake_elf_back/puck_snowflake_elf_back"
+		"item_name"								"#DOTA_Item_Wings_of_Curious_Coldspell"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/puck/puck_snowflake_elf_back/puck_snowflake_elf_back.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/puck/puck_snowflake/puck_snowflake_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9581"
+	{
+		"name"									"Tail of Curious Coldspell"
+		"prefab"								"wearable"
+		"creation_date"							"2017-11-30"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/puck/puck_snowflake_elf_tail/puck_snowflake_elf_tail"
+		"item_name"								"#DOTA_Item_Tail_of_Curious_Coldspell"
+		"item_rarity"							"mythical"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_tail"
+		"model_player"							"models/items/puck/puck_snowflake_elf_tail/puck_snowflake_elf_tail.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+		}
+	}
+	"9582"
+	{
+		"name"									"Crown of Curious Coldspell"
+		"prefab"								"wearable"
+		"creation_date"							"2017-11-30"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/puck/puck_snowflake_elf_head/puck_snowflake_elf_head"
+		"item_name"								"#DOTA_Item_Crown_of_Curious_Coldspell"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/puck/puck_snowflake_elf_head/puck_snowflake_elf_head.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+		}
+	}
+	"13129"
+	{
+		"name"									"Faeriesnap Spriteleaf Back"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/puck/ti9_cache_puck_dionaea_muscipula_back/ti9_cache_puck_dionaea_muscipula_back"
+		"item_name"								"#DOTA_Item_Faeriesnap_Spriteleaf_Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/puck/ti9_cache_puck_dionaea_muscipula_back/ti9_cache_puck_dionaea_muscipula_back.vmdl"
+	}
+	"13130"
+	{
+		"name"									"Faeriesnap Spriteleaf Tail"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/puck/ti9_cache_puck_dionaea_muscipula_tail/ti9_cache_puck_dionaea_muscipula_tail"
+		"item_name"								"#DOTA_Item_Faeriesnap_Spriteleaf_Tail"
+		"item_rarity"							"mythical"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_tail"
+		"model_player"							"models/items/puck/ti9_cache_puck_dionaea_muscipula_tail/ti9_cache_puck_dionaea_muscipula_tail.vmdl"
+	}
+	"13131"
+	{
+		"name"									"Faeriesnap Spriteleaf Head"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/puck/ti9_cache_puck_dionaea_muscipula_head/ti9_cache_puck_dionaea_muscipula_head"
+		"item_name"								"#DOTA_Item_Faeriesnap_Spriteleaf_Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/puck/ti9_cache_puck_dionaea_muscipula_head/ti9_cache_puck_dionaea_muscipula_head.vmdl"
+	}
+	"13340"
+	{
+		"name"									"Wings of the Ageless Fae"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_NEW_BLOOM_2020"
+		"image_inventory"						"econ/items/puck/ti9_cache_puck_ahpuck_back/ti9_cache_puck_ahpuck_back"
+		"item_name"								"#DOTA_Item_Wings_of_the_Ageless_Fae"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/puck/ti9_cache_puck_ahpuck_back/ti9_cache_puck_ahpuck_back.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/puck/ti9_cache_puck_ahpuck_back/ti9_cache_puck_ahpuck_back.vpcf"
+			}
+		}
+	}
+	"13341"
+	{
+		"name"									"Crown of the Ageless Fae"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_NEW_BLOOM_2020"
+		"image_inventory"						"econ/items/puck/ti9_cache_puck_ahpuck_head/ti9_cache_puck_ahpuck_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Ageless_Fae"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/puck/ti9_cache_puck_ahpuck_head/ti9_cache_puck_ahpuck_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ahpuck"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/puck/ti9_cache_puck_ahpuck_head/ti9_cache_puck_ahpuck_head.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"default_idle_expression"
+				"asset"							"scenes/puck/puck_exp_idle_01.vcd"
+				"modifier"						"scenes/puck/ahpuck_puck_exp_idle_01.vcd"
+			}
+		}
+	}
+	"13342"
+	{
+		"name"									"Tail of the Ageless Fae"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_NEW_BLOOM_2020"
+		"image_inventory"						"econ/items/puck/ti9_cache_puck_ahpuck_tail/ti9_cache_puck_ahpuck_tail"
+		"item_name"								"#DOTA_Item_Tail_of_the_Ageless_Fae"
+		"item_rarity"							"mythical"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_tail"
+		"model_player"							"models/items/puck/ti9_cache_puck_ahpuck_tail/ti9_cache_puck_ahpuck_tail.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/puck/ti9_cache_puck_ahpuck_tail/ti9_cache_puck_ahpuck_tail.vpcf"
+			}
+		}
+	}
+	"13767"
+	{
+		"name"									"Blossom of the Merry Wanderer"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"hide_tradecraftdelete"					"1"
+		"image_inventory"						"econ/items/puck/puck_ti10_immortal_wings/puck_ti10_immortal_wings"
+		"item_description"						"#DOTA_Item_Desc_Blossom_of_the_Merry_Wanderer"
+		"item_name"								"#DOTA_Item_Blossom_of_the_Merry_Wanderer"
+		"item_rarity"							"immortal"
+		"item_slot"								"back"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/puck/puck_ti10_immortal_wings/puck_ti10_immortal_wings.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"ability_icon"
+				"asset"							"puck_dream_coil"
+				"modifier"						"puck/puck_ti10_immortal_ability_icons/puck_dream_coil_ti10"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"puck_ti10_immortal_wings"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/puck/puck_ti10_immortal/puck_ti10_ambient.vpcf"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_puck/puck_dreamcoil.vpcf"
+				"modifier"						"particles/econ/items/puck/puck_ti10_immortal/puck_ti10_ult.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_puck/puck_dreamcoil_tether.vpcf"
+				"modifier"						"particles/econ/items/puck/puck_ti10_immortal/puck_ti10_tether.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier5"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Puck.Dream_Coil"
+				"modifier"						"Hero_Puck.Dream_Coil.TI10"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+		}
+	}
+	"18413"
+	{
+		"name"									"Cycles of the Serene Tail"
+		"prefab"								"wearable"
+		"creation_date"							"2020-11-12"
+		"image_inventory"						"econ/items/puck/dplus_the_tricksters_guise_tail/dplus_the_tricksters_guise_tail"
+		"item_name"								"#DOTA_Item_Cycles_of_the_Serene_Tail"
+		"item_rarity"							"rare"
+		"item_slot"								"tail"
+		"model_player"							"models/items/puck/dplus_the_tricksters_guise_tail/dplus_the_tricksters_guise_tail.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"18414"
+	{
+		"name"									"Cycles of the Serene Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-11-12"
+		"image_inventory"						"econ/items/puck/dplus_the_tricksters_guise_head/dplus_the_tricksters_guise_head"
+		"item_name"								"#DOTA_Item_Cycles_of_the_Serene_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/puck/dplus_the_tricksters_guise_head/dplus_the_tricksters_guise_head.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"18415"
+	{
+		"name"									"Cycles of the Serene Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2020-11-12"
+		"image_inventory"						"econ/items/puck/dplus_the_tricksters_guise_back/dplus_the_tricksters_guise_back"
+		"item_name"								"#DOTA_Item_Cycles_of_the_Serene_Wings"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/puck/dplus_the_tricksters_guise_back/dplus_the_tricksters_guise_back.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"20410"
+	{
+		"name"									"Mischievous Dragon"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Mischievous Dragon Head"			"1"
+			"Mischievous Dragon Tail"			"1"
+			"Mischievous Dragon Wings"			"1"
+			"Mischievous Dragon Loading Screen"	"1"
+		}
+		"creation_date"							"2014-02-24"
+		"image_inventory"						"econ/loading_screens/mischievousdragon"
+		"item_description"						"#DOTA_Item_Desc_Mischievous_Dragon"
+		"item_name"								"#DOTA_Item_Mischievous_Dragon"
+		"item_rarity"							"rare"
+	}
+	"20436"
+	{
+		"name"									"Complete Ethereal Monarch"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of the Ethereal Monarch""1"
+			"Complete Wings of the Ethereal Monarch""1"
+			"Complete Tail of the Ethereal Monarch""1"
+			"Complete Crown of the Ethereal Monarch""1"
+		}
+		"creation_date"							"2019-11-06"
+		"event_id"								"EVENT_ID_NONE"
+		"image_inventory"						"econ/loading_screens/radiant_wanderer_radiant_wanderer_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Complete_Ethereal_Monarch"
+		"item_name"								"#DOTA_Item_Complete_Ethereal_Monarch"
+		"item_rarity"							"mythical"
+	}
+	"20444"
+	{
+		"name"									"Mystic Coils"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Mystic Coils Antennae"				"1"
+			"Mystic Coils Tail"					"1"
+			"Mystic Coils Wings"				"1"
+		}
+		"creation_date"							"2014-03-18"
+		"image_inventory"						"econ/sets/DOTA_Item_Mystic_Coils"
+		"item_name"								"#DOTA_Item_Mystic_Coils"
+		"item_rarity"							"rare"
+	}
+	"20557"
+	{
+		"name"									"Promo Mischievous Dragon"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Mischievous Dragon Head"			"1"
+			"Mischievous Dragon Tail"			"1"
+			"Mischievous Dragon Wings"			"1"
+			"Mischievous Dragon Loading Screen"	"1"
+		}
+		"creation_date"							"2014-06-18"
+		"image_inventory"						"econ/loading_screens/mischievousdragon"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Mischievous_Dragon"
+		"item_name"								"#DOTA_Item_Promo_Mischievous_Dragon"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+	}
+	"20576"
+	{
+		"name"									"Reminiscence of Dreams"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Orb of Reminiscence"				"1"
+			"Wings of Reminiscence"				"1"
+			"Tail of Reminiscence"				"1"
+			"Reminiscence of Dreams Loading Screen""1"
+		}
+		"creation_date"							"2014-06-23"
+		"image_inventory"						"econ/sets/dota_item_puck_reminiscence"
+		"item_description"						"#DOTA_Item_Desc_Reminiscence_of_Dreams"
+		"item_name"								"#DOTA_Item_Reminiscence_of_Dreams"
+		"item_rarity"							"legendary"
+		"branding"
+		{
+			"team_id"							"111474"
+		}
+	}
+	"20588"
+	{
+		"name"									"Eternal Nymph"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Eternal Nymph Loading Screen"		"1"
+			"Tail of the Eternal Nymph"			"1"
+			"Horns of the Eternal Nymph"		"1"
+			"Wings of the Eternal Nymph"		"1"
+		}
+		"creation_date"							"2014-06-25"
+		"image_inventory"						"econ/sets/dota_item_eternal_nymph"
+		"item_description"						"#DOTA_Item_Desc_Eternal_Nymph"
+		"item_name"								"#DOTA_Item_Eternal_Nymph"
+		"item_rarity"							"rare"
+	}
+	"20911"
+	{
+		"name"									"Essence of the Trickster"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Essence of the Trickster Tail"		"1"
+			"Essence of the Trickster Loading Screen""1"
+			"Essence of the Trickster Crown"	"1"
+			"Essence of the Trickster Wings"	"1"
+		}
+		"creation_date"							"2016-11-21"
+		"image_inventory"						"econ/loading_screens/essence_of_the_trickster_essence_of_the_trickster_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Essence_of_the_Trickster"
+		"item_name"								"#DOTA_Item_Essence_of_the_Trickster"
+		"item_rarity"							"rare"
+		"purchase_requirement_prompt_ok_event"	"DOTAShowItemDefPage( 17149 )"
+		"purchase_requirement_prompt_ok_text"	"#DOTA_CacheTreasure_MissingCompendiumOK"
+		"purchase_requirement_prompt_text"		"#DOTA_CacheTreasure_MissingCompendium_Fall2016"
+	}
+	"21056"
+	{
+		"name"									"Ethereal Monarch"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of the Ethereal Monarch""1"
+			"Wings of the Ethereal Monarch"		"1"
+			"Tail of the Ethereal Monarch"		"1"
+			"Crown of the Ethereal Monarch"		"1"
+		}
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/radiant_wanderer_radiant_wanderer_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Ethereal_Monarch"
+		"item_name"								"#DOTA_Item_Ethereal_Monarch"
+		"item_rarity"							"mythical"
+	}
+	"21162"
+	{
+		"name"									"Curious Coldspell"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Crown of Curious Coldspell"		"1"
+			"Tail of Curious Coldspell"			"1"
+			"Wings of Curious Coldspell"		"1"
+		}
+		"creation_date"							"2017-11-30"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/sets/DOTA_Item_Frostivus_PUCK_Snowflake_Elf"
+		"item_name"								"#DOTA_Item_Curious_Coldspell"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+		}
+	}
+	"21351"
+	{
+		"name"									"Faeriesnap Spriteleaf"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Faeriesnap Spriteleaf Head"		"1"
+			"Faeriesnap Spriteleaf Tail"		"1"
+			"Faeriesnap Spriteleaf Back"		"1"
+		}
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/sets/DOTA_Item_TI9_Cache_Puck_Dionaea_muscipula"
+		"item_name"								"#DOTA_Item_Faeriesnap_Spriteleaf"
+		"item_rarity"							"mythical"
+	}
+	"21390"
+	{
+		"name"									"Amusements of the Ageless Fae"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Tail of the Ageless Fae"			"1"
+			"Crown of the Ageless Fae"			"1"
+			"Wings of the Ageless Fae"			"1"
+		}
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_NEW_BLOOM_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Amusements_of_the_Ageless_Fae"
+		"item_name"								"#DOTA_Item_Amusements_of_the_Ageless_Fae"
+		"item_rarity"							"mythical"
+	}
+	"21802"
+	{
+		"name"									"Cycles of the Serene"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Cycles of the Serene Wings"		"1"
+			"Cycles of the Serene Head"			"1"
+			"Cycles of the Serene Tail"			"1"
+		}
+		"creation_date"							"2020-11-12"
+		"image_inventory"						"econ/sets/DOTA_Item_DPlus_The_Tricksters_Guise"
+		"item_name"								"#DOTA_Item_Cycles_of_the_Serene"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"15000"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"22317"
+	{
+		"name"									"Luminous Scarab Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/puck/luminous_scarab_head/luminous_scarab_head"
+		"item_name"								"#DOTA_Item_Luminous_Scarab_Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/puck/luminous_scarab_head/luminous_scarab_head.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"22318"
+	{
+		"name"									"Luminous Scarab Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/puck/luminous_scarab_back/luminous_scarab_back"
+		"item_name"								"#DOTA_Item_Luminous_Scarab_Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/puck/luminous_scarab_back/luminous_scarab_back.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"22319"
+	{
+		"name"									"Luminous Scarab Tail"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/puck/luminous_scarab_tail/luminous_scarab_tail"
+		"item_name"								"#DOTA_Item_Luminous_Scarab_Tail"
+		"item_rarity"							"mythical"
+		"item_slot"								"tail"
+		"model_player"							"models/items/puck/luminous_scarab_tail/luminous_scarab_tail.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"22335"
+	{
+		"name"									"Luminous Scarab"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Luminous Scarab Head"				"1"
+			"Luminous Scarab Back"				"1"
+			"Luminous Scarab Tail"				"1"
+			"Luminous Scarab Loading Screen"	"1"
+		}
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/loading_screens/luminous_scarab_ls"
+		"item_name"								"#DOTA_Item_Luminous_Scarab"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+}

@@ -1,0 +1,842 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"519"
+	{
+		"name"									"Viper's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-08"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vipers_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_viper"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_viper/viper_ambient_glow.vpcf"
+				"system"						"particles/units/heroes/hero_viper/viper_ambient_glow.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"611"
+	{
+		"name"									"Viper's Wings"
+		"prefab"								"default_item"
+		"creation_date"							"2016-10-20"
+		"image_inventory"						"econ/heroes/viper/viper_back"
+		"item_description"						"#DOTA_Item_Desc_Vipers_Wings"
+		"item_name"								"#DOTA_Item_Vipers_Wings"
+		"item_slot"								"back"
+		"model_player"							"models/heroes/viper/viper_back.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"623"
+	{
+		"name"									"Viper's Head"
+		"prefab"								"default_item"
+		"creation_date"							"2016-10-20"
+		"image_inventory"						"econ/heroes/viper/viper_head"
+		"item_description"						"#DOTA_Item_Desc_Vipers_Head"
+		"item_name"								"#DOTA_Item_Vipers_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head_"
+	}
+	"654"
+	{
+		"name"									"Viper's Tail"
+		"prefab"								"default_item"
+		"creation_date"							"2018-01-08"
+		"image_inventory"						"econ/heroes/viper/viper_tail"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Vipers_Head"
+		"item_name"								"#DOTA_Item_Vipers_Tail"
+		"item_quality"							"unique"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+	}
+	"7811"
+	{
+		"name"									"Malefic Drake's Hood"
+		"prefab"								"wearable"
+		"creation_date"							"2017-06-21"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/viper/viper_immortal_head_ti7/viper_immortal_head_ti7"
+		"item_description"						"#DOTA_Item_Desc_viper_immortal_head_ti7"
+		"item_name"								"#DOTA_Item_Malefic_Drakes_Hood"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/viper/viper_immortal_head_ti7/viper_immortal_head_ti7.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1535796000"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_viper/viper_poison_attack.vpcf"
+				"modifier"						"particles/econ/items/viper/viper_ti7_immortal/viper_poison_attack_ti7.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_viper/viper_poison_debuff.vpcf"
+				"modifier"						"particles/econ/items/viper/viper_ti7_immortal/viper_poison_debuff_ti7.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/viper/viper_ti7_immortal/viper_immortal_ti7_ambient.vpcf"
+				"style"							"0"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"viper_immortal_head_ti7"
+				"style"							"0"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"viper_poison_attack"
+				"modifier"						"viper/immortal/viper_poison_attack"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/viper/viper_ti7_immortal/viper_immortal_ti7_ambient_eyes.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier6"
+			{
+				"type"							"sound"
+				"asset"							"hero_viper.poisonAttack.Cast"
+				"modifier"						"hero_viper.poisonAttack.Cast.ti7"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier7"
+			{
+				"type"							"sound"
+				"asset"							"hero_viper.PoisonAttack.Target"
+				"modifier"						"hero_viper.PoisonAttack.Target.ti7"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+		}
+	}
+	"7995"
+	{
+		"name"									"Malefic Drake's Hood of the Crimson Witness"
+		"prefab"								"wearable"
+		"creation_date"							"2017-07-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/viper/viper_immortal_head_ti7/viper_immortal_head_ti71"
+		"item_description"						"#DOTA_Item_Desc_Malefic_Drakes_Hood_of_the_Crimson_Witness"
+		"item_name"								"#DOTA_Item_Malefic_Drakes_Hood_of_the_Crimson_Witness"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/viper/viper_immortal_head_ti7/viper_immortal_head_ti7.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_viper/viper_poison_attack.vpcf"
+				"modifier"						"particles/econ/items/viper/viper_ti7_immortal/viper_poison_crimson_attack_ti7.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_viper/viper_poison_debuff.vpcf"
+				"modifier"						"particles/econ/items/viper/viper_ti7_immortal/viper_poison_crimson_debuff_ti7.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/viper/viper_ti7_immortal/viper_immortal_ti7_crimson_ambient.vpcf"
+				"style"							"0"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"viper_immortal_head_ti7"
+				"style"							"0"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"viper_poison_attack"
+				"modifier"						"viper/immortal/viper_poison_attack_crimson"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/viper/viper_ti7_immortal/viper_immortal_ti7_ambient_eyes.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier6"
+			{
+				"type"							"sound"
+				"asset"							"hero_viper.poisonAttack.Cast"
+				"modifier"						"hero_viper.poisonAttack.Cast.ti7"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier7"
+			{
+				"type"							"sound"
+				"asset"							"hero_viper.PoisonAttack.Target"
+				"modifier"						"hero_viper.PoisonAttack.Target.ti7"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"skin"								"1"
+		}
+	}
+	"9230"
+	{
+		"name"									"Crown of the Fervid Monarch"
+		"prefab"								"wearable"
+		"creation_date"							"2017-11-01"
+		"image_inventory"						"econ/items/viper/king_viper_head/king_viper_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Fervid_Monarch"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/viper/king_viper_head/king_viper_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/viper/viper_king_head/viper_king_head_ambient.vpcf"
+				"style"							"0"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"9233"
+	{
+		"name"									"Form of the Fervid Monarch"
+		"prefab"								"wearable"
+		"creation_date"							"2017-11-01"
+		"image_inventory"						"econ/items/viper/king_viper_back/king_viper_back"
+		"item_name"								"#DOTA_Item_Form_of_the_Fervid_Monarch"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/viper/king_viper_back/king_viper_back.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9629"
+	{
+		"name"									"Crown of the Netherfrost"
+		"prefab"								"wearable"
+		"creation_date"							"2017-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/viper/viper_frigid_serpent_head/viper_frigid_serpent_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Netherfrost"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/viper/viper_frigid_serpent_head/viper_frigid_serpent_head.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+	}
+	"9630"
+	{
+		"name"									"Scales of the Netherfrost"
+		"prefab"								"wearable"
+		"creation_date"							"2017-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/viper/viper_frigid_serpent_back/viper_frigid_serpent_back"
+		"item_name"								"#DOTA_Item_Scales_of_the_Netherfrost"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/viper/viper_frigid_serpent_back/viper_frigid_serpent_back.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9669"
+	{
+		"name"									"Tail of the Netherfrost"
+		"prefab"								"wearable"
+		"creation_date"							"2018-01-08"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/viper/viper_frigid_serpent_back/viper_frigid_serpent_tail"
+		"item_name"								"#DOTA_Item_Tail_of_the_Netherfrost"
+		"item_rarity"							"rare"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_tail"
+		"model_player"							"models/items/viper/viper_frigid_serpent_tail/viper_frigid_serpent_tail.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9670"
+	{
+		"name"									"Tail of the Fervid Monarch"
+		"prefab"								"wearable"
+		"creation_date"							"2018-01-08"
+		"image_inventory"						"econ/items/viper/king_viper_back/king_viper_back_tail"
+		"item_name"								"#DOTA_Item_Tail_of_the_Fervid_Monarch"
+		"item_rarity"							"mythical"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_tail"
+		"model_player"							"models/items/viper/king_viper_tail/viper_king_viper_tail.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9758"
+	{
+		"name"									"Malefic Drake's Strike"
+		"prefab"								"wearable"
+		"creation_date"							"2018-06-22"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/viper/viper_immortal_tail_ti8/viper_immortal_tail_ti8"
+		"item_description"						"#DOTA_Item_Desc_Immortal_Vipers_Tail"
+		"item_name"								"#DOTA_Item_Malefic_Drakes_Strike"
+		"item_rarity"							"immortal"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/viper/viper_immortal_tail_ti8/viper_immortal_tail_ti8.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567296000"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"viper_ti8_immortal_tail"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_viper/viper_nethertoxin.vpcf"
+				"modifier"						"particles/econ/items/viper/viper_immortal_tail_ti8/viper_immortal_ti8_nethertoxin.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"ability_icon"
+				"asset"							"viper_nethertoxin"
+				"modifier"						"viper/ti8_immortal_tail/viper_nethertoxin_immortal"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_viper/viper_nethertoxin_proj.vpcf"
+				"modifier"						"particles/econ/items/viper/viper_immortal_tail_ti8/viper_immortal_ti8_nethertoxin_proj.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_viper/viper_nethertoxin_debuff.vpcf"
+				"modifier"						"particles/econ/items/viper/viper_immortal_tail_ti8/viper_immortal_ti8_nethertoxin_debuff.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/viper/viper_immortal_tail_ti8/viper_immortal_ti8_ambient.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier6"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Viper.NetherToxin"
+				"modifier"						"Hero_Viper.NetherToxin.TI8"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+		}
+	}
+	"12475"
+	{
+		"name"									"Sting of the Netherswarm Vanguard"
+		"prefab"								"wearable"
+		"creation_date"							"2019-10-02"
+		"image_inventory"						"econ/items/viper/viper_beetle_tail/viper_beetle_tail"
+		"item_name"								"#DOTA_Item_Sting_of_the_Netherswarm_Vanguard"
+		"item_rarity"							"rare"
+		"item_slot"								"tail"
+		"model_player"							"models/items/viper/viper_beetle_tail/viper_beetle_tail.vmdl"
+	}
+	"12476"
+	{
+		"name"									"Maw of the Netherswarm Vanguard"
+		"prefab"								"wearable"
+		"creation_date"							"2019-10-02"
+		"image_inventory"						"econ/items/viper/viper_beetle_head/viper_beetle_head"
+		"item_name"								"#DOTA_Item_Maw_of_the_Netherswarm_Vanguard"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"model_player"							"models/items/viper/viper_beetle_head/viper_beetle_head.vmdl"
+	}
+	"12477"
+	{
+		"name"									"Plating of the Netherswarm Vanguard"
+		"prefab"								"wearable"
+		"creation_date"							"2019-10-02"
+		"image_inventory"						"econ/items/viper/viper_beetle_back/viper_beetle_back"
+		"item_name"								"#DOTA_Item_Plating_of_the_Netherswarm_Vanguard"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"model_player"							"models/items/viper/viper_beetle_back/viper_beetle_back.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"13701"
+	{
+		"name"									"Helm of the Siege-Drake"
+		"prefab"								"wearable"
+		"creation_date"							"2019-10-02"
+		"image_inventory"						"econ/items/viper/blight_wyrm_head/blight_wyrm_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_SiegeDrake"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/viper/blight_wyrm_head/blight_wyrm_head.vmdl"
+	}
+	"13702"
+	{
+		"name"									"Tail of the Siege-Drake"
+		"prefab"								"wearable"
+		"creation_date"							"2019-10-02"
+		"image_inventory"						"econ/items/viper/blight_wyrm_tail/blight_wyrm_tail"
+		"item_name"								"#DOTA_Item_Tail_of_the_SiegeDrake"
+		"item_rarity"							"rare"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_tail"
+		"model_player"							"models/items/viper/blight_wyrm_tail/blight_wyrm_tail.vmdl"
+	}
+	"13728"
+	{
+		"name"									"Barding of the Siege-Drake"
+		"prefab"								"wearable"
+		"creation_date"							"2019-10-02"
+		"image_inventory"						"econ/items/viper/blight_wyrm_back/blight_wyrm_back"
+		"item_name"								"#DOTA_Item_Barding_of_the_SiegeDrake"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/viper/blight_wyrm_back/blight_wyrm_back.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"17860"
+	{
+		"name"									"Sunken Snapper Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/viper/mutant_nether_turtle_head/mutant_nether_turtle_head"
+		"item_name"								"#DOTA_Item_Sunken_Snapper_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/viper/mutant_nether_turtle_head/mutant_nether_turtle_head.vmdl"
+	}
+	"17861"
+	{
+		"name"									"Sunken Snapper Tail"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/viper/mutant_nether_turtle_tail/mutant_nether_turtle_tail"
+		"item_name"								"#DOTA_Item_Sunken_Snapper_Tail"
+		"item_rarity"							"rare"
+		"item_slot"								"tail"
+		"model_player"							"models/items/viper/mutant_nether_turtle_tail/mutant_nether_turtle_tail.vmdl"
+	}
+	"17862"
+	{
+		"name"									"Sunken Snapper Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/viper/mutant_nether_turtle_back/mutant_nether_turtle_back"
+		"item_name"								"#DOTA_Item_Sunken_Snapper_Wings"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/viper/mutant_nether_turtle_back/mutant_nether_turtle_back.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"18488"
+	{
+		"name"									"King of the Corrupted Nest Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-11"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/viper/spring2021_king_of_corrupted_nest_back/spring2021_king_of_corrupted_nest_back"
+		"item_name"								"#DOTA_Item_King_of_the_Corrupted_Nest_Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/viper/spring2021_king_of_corrupted_nest_back/spring2021_king_of_corrupted_nest_back.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1662026400"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"18489"
+	{
+		"name"									"King of the Corrupted Nest Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-11"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/viper/spring2021_king_of_corrupted_nest_head/spring2021_king_of_corrupted_nest_head"
+		"item_name"								"#DOTA_Item_King_of_the_Corrupted_Nest_Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/viper/spring2021_king_of_corrupted_nest_head/spring2021_king_of_corrupted_nest_head.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1662026400"
+			}
+		}
+	}
+	"18491"
+	{
+		"name"									"King of the Corrupted Nest Tail"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-11"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/viper/spring2021_king_of_corrupted_nest_tail/spring2021_king_of_corrupted_nest_tail"
+		"item_name"								"#DOTA_Item_King_of_the_Corrupted_Nest_Tail"
+		"item_rarity"							"mythical"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/items/viper/spring2021_king_of_corrupted_nest_tail/spring2021_king_of_corrupted_nest_tail.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1662026400"
+			}
+		}
+	}
+	"19451"
+	{
+		"name"									"Toll of the Netherblight Tail"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/viper/symbiotic_dreadwyrm_tail/symbiotic_dreadwyrm_tail"
+		"item_name"								"#DOTA_Item_Toll_of_the_Netherblight_Tail"
+		"item_rarity"							"rare"
+		"item_slot"								"tail"
+		"model_player"							"models/items/viper/symbiotic_dreadwyrm_tail/symbiotic_dreadwyrm_tail.vmdl"
+	}
+	"19452"
+	{
+		"name"									"Toll of the Netherblight Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/viper/symbiotic_dreadwyrm_head/symbiotic_dreadwyrm_head"
+		"item_name"								"#DOTA_Item_Toll_of_the_Netherblight_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"model_player"							"models/items/viper/symbiotic_dreadwyrm_head/symbiotic_dreadwyrm_head.vmdl"
+	}
+	"19453"
+	{
+		"name"									"Toll of the Netherblight Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/viper/symbiotic_dreadwyrm_back/symbiotic_dreadwyrm_back"
+		"item_name"								"#DOTA_Item_Toll_of_the_Netherblight_Back"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"model_player"							"models/items/viper/symbiotic_dreadwyrm_back/symbiotic_dreadwyrm_back.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"21143"
+	{
+		"name"									"Fervid Monarch"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Crown of the Fervid Monarch"		"1"
+			"Form of the Fervid Monarch"		"1"
+			"Tail of the Fervid Monarch"		"1"
+		}
+		"creation_date"							"2017-11-01"
+		"image_inventory"						"econ/sets/DOTA_Item_King_Viper"
+		"item_name"								"#DOTA_Item_Fervid_Monarch"
+		"item_rarity"							"mythical"
+	}
+	"21172"
+	{
+		"name"									"Sign of the Netherfrost"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Scales of the Netherfrost"			"1"
+			"Crown of the Netherfrost"			"1"
+			"Tail of the Netherfrost"			"1"
+		}
+		"creation_date"							"2017-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/sets/DOTA_Item_Frostivus_Viper_Frigid_Serpent"
+		"item_name"								"#DOTA_Item_Sign_of_the_Netherfrost"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+	}
+	"21253"
+	{
+		"name"									"Vanguard of the Netherswarm"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Maw of the Netherswarm Vanguard"	"1"
+			"Plating of the Netherswarm Vanguard""1"
+			"Sting of the Netherswarm Vanguard"	"1"
+		}
+		"creation_date"							"2019-10-04"
+		"image_inventory"						"econ/sets/DOTA_Item_Vanguard_of_the_Netherswarm"
+		"item_name"								"#DOTA_Item_Vanguard_of_the_Netherswarm"
+		"item_rarity"							"rare"
+	}
+	"21436"
+	{
+		"name"									"Advance of the Siege-Drake"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Advance of the Siege-Drake Loading Screen""1"
+			"Helm of the Siege-Drake"			"1"
+			"Tail of the Siege-Drake"			"1"
+			"Barding of the Siege-Drake"		"1"
+		}
+		"creation_date"							"2019-10-02"
+		"image_inventory"						"econ/loading_screens/blight_wyrm_loadingscreen"
+		"item_name"								"#DOTA_Item_Advance_of_the_SiegeDrake"
+		"item_rarity"							"rare"
+	}
+	"21708"
+	{
+		"name"									"Sunken Snapper"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Sunken Snapper Wings"				"1"
+			"Sunken Snapper Tail"				"1"
+			"Sunken Snapper Head"				"1"
+		}
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Mutant_Nether_Turtle"
+		"item_name"								"#DOTA_Item_Sunken_Snapper"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+	}
+	"21814"
+	{
+		"name"									"King of the Corrupted Nest"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"King of the Corrupted Nest Head"	"1"
+			"King of the Corrupted Nest Back"	"1"
+			"King of the Corrupted Nest Tail"	"1"
+			"King of the Corrupted Nest Loading Screen""1"
+		}
+		"creation_date"							"2021-02-11"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/loading_screens/spring2021_king_of_corrupted_nest_loading_screen"
+		"item_name"								"#DOTA_Item_King_of_the_Corrupted_Nest"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1662026400"
+			}
+		}
+	}
+	"21892"
+	{
+		"name"									"Toll of the Netherblight"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Toll of the Netherblight Tail"		"1"
+			"Toll of the Netherblight Head"		"1"
+			"Toll of the Netherblight Back"		"1"
+		}
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/sets/DOTA_Item_Toll_of_the_Netherblight"
+		"item_name"								"#DOTA_Item_Toll_of_the_Netherblight"
+		"item_rarity"							"rare"
+	}
+}

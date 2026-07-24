@@ -1,0 +1,2353 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"227"
+	{
+		"name"									"Treant Protector's Head"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/treant_protector/head"
+		"item_description"						"#DOTA_Item_Desc_Treant_Protectors_Head"
+		"item_name"								"#DOTA_Item_Treant_Protectors_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/treant_protector/head.vmdl"
+	}
+	"228"
+	{
+		"name"									"Treant Protector's Foliage"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/treant_protector/foliage"
+		"item_description"						"#DOTA_Item_Desc_Treant_Protectors_Foliage"
+		"item_name"								"#DOTA_Item_Treant_Protectors_Foliage"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/heroes/treant_protector/foliage.vmdl"
+	}
+	"229"
+	{
+		"name"									"Treant Protector's Hands"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/treant_protector/hands"
+		"item_description"						"#DOTA_Item_Desc_Treant_Protectors_Hands"
+		"item_name"								"#DOTA_Item_Treant_Protectors_Hands"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/heroes/treant_protector/hands.vmdl"
+	}
+	"230"
+	{
+		"name"									"Treant Protector's Feet"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/treant_protector/legs"
+		"item_description"						"#DOTA_Item_Desc_Treant_Protectors_Feet"
+		"item_name"								"#DOTA_Item_Treant_Protectors_Feet"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_legs"
+		"model_player"							"models/heroes/treant_protector/legs.vmdl"
+	}
+	"736"
+	{
+		"name"									"Treant Protector's Costume"
+		"prefab"								"default_item"
+		"creation_date"							"2020-09-25"
+		"image_inventory"						"econ/heroes/treant_protector/dota_item_treant_protector_costume"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Tidehunters_Costume"
+		"item_name"								"#DOTA_Item_Treant_Protectors_Costume"
+		"item_slot"								"costume"
+		"item_type_name"						"#DOTA_WearableType_Costume"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"7059"
+	{
+		"name"									"Embrace of the Agaric Flourish"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-26"
+		"image_inventory"						"econ/items/treant/fungal_arms/fungal_arms"
+		"item_name"								"#DOTA_Item_Embrace_of_the_Agaric_Flourish"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/treant/fungal_arms/fungal_arms.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_treant' gem_def_index: 3005 } asset_modifier: 74"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"treant_living_armor"
+				"modifier"						"treant/fungal_protector_icons/treant_living_armor"
+			}
+		}
+	}
+	"7060"
+	{
+		"name"									"Countenance of the Agaric Flourish"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-26"
+		"image_inventory"						"econ/items/treant/fungal_head/fungal_head"
+		"item_description"						"#DOTA_Item_Desc_Countenance_of_the_Agaric_Flourish"
+		"item_name"								"#DOTA_Item_Countenance_of_the_Agaric_Flourish"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/treant/fungal_head/fungal_head.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_treant' gem_def_index: 3005 } asset_modifier: 72"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"treant_eyes_in_the_forest"
+				"modifier"						"treant/fungal_protector_icons/treant_eyes_in_the_forest"
+			}
+			"asset_modifier_socket1"
+			{
+				"type"							"ability_icon"
+				"asset"							"treant_natures_guise"
+				"modifier"						"treant/fungal_protector_icons/treant_natures_guise"
+			}
+		}
+	}
+	"7061"
+	{
+		"name"									"Stride of the Agaric Flourish"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-26"
+		"image_inventory"						"econ/items/treant/fungal_legs/fungal_legs"
+		"item_description"						"#DOTA_Item_Desc_Stride_of_the_Agaric_Flourish"
+		"item_name"								"#DOTA_Item_Stride_of_the_Agaric_Flourish"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Legs"
+		"model_player"							"models/items/treant/fungal_legs/fungal_legs.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_treant' gem_def_index: 3005 } asset_modifier: 73"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"treant_overgrowth"
+				"modifier"						"treant/fungal_protector_icons/treant_overgrowth"
+			}
+		}
+	}
+	"7062"
+	{
+		"name"									"Canopy of the Agaric Flourish"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-26"
+		"image_inventory"						"econ/items/treant/fungal_shoulder/fungal_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Canopy_of_the_Agaric_Flourish"
+		"item_name"								"#DOTA_Item_Canopy_of_the_Agaric_Flourish"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder_Shrooms"
+		"model_player"							"models/items/treant/fungal_shoulder/fungal_shoulder.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_treant' gem_def_index: 3005 } asset_modifier: 75"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"treant_leech_seed"
+				"modifier"						"treant/fungal_protector_icons/treant_leech_seed"
+			}
+		}
+	}
+	"7298"
+	{
+		"name"									"Moonshard Claws"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-20"
+		"image_inventory"						"econ/items/treant/moonshard_arms/moonshard_arms"
+		"item_name"								"#DOTA_Item_Moonshard_Claws"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Claws"
+		"model_player"							"models/items/treant/moonshard_arms/moonshard_arms.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/17/2015"
+			"price"								"0"
+		}
+	}
+	"7299"
+	{
+		"name"									"Moonshard Tusks"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-20"
+		"image_inventory"						"econ/items/treant/moonshard_head/moonshard_head"
+		"item_name"								"#DOTA_Item_Moonshard_Tusks"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/treant/moonshard_head/moonshard_head.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/17/2015"
+			"price"								"0"
+		}
+	}
+	"7300"
+	{
+		"name"									"Moonshard Roots"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-20"
+		"image_inventory"						"econ/items/treant/moonshard_legs/moonshard_legs"
+		"item_name"								"#DOTA_Item_Moonshard_Roots"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Legs"
+		"model_player"							"models/items/treant/moonshard_legs/moonshard_legs.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/17/2015"
+			"price"								"0"
+		}
+	}
+	"7301"
+	{
+		"name"									"Canopy of the Moonshard"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-20"
+		"image_inventory"						"econ/items/treant/moonshard_shoulder/moonshard_shoulder"
+		"item_name"								"#DOTA_Item_Canopy_of_the_Moonshard"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/treant/moonshard_shoulder/moonshard_shoulder.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/17/2015"
+			"price"								"0"
+		}
+	}
+	"7805"
+	{
+		"name"									"Stumps of the Ancient Seal"
+		"prefab"								"wearable"
+		"creation_date"							"2016-11-21"
+		"image_inventory"						"econ/items/treant/ancient_seal_protector_set_legs/ancient_seal_protector_set_legs"
+		"item_name"								"#DOTA_Item_Stumps_of_the_Ancient_Seal"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_legs"
+		"model_player"							"models/items/treant/ancient_seal_protector_set_legs/ancient_seal_protector_set_legs.vmdl"
+	}
+	"7806"
+	{
+		"name"									"Arms of the Ancient Seal"
+		"prefab"								"wearable"
+		"creation_date"							"2016-11-21"
+		"image_inventory"						"econ/items/treant/ancient_seal_protector_set_arms/ancient_seal_protector_set_arms"
+		"item_name"								"#DOTA_Item_Arms_of_the_Ancient_Seal"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/treant/ancient_seal_protector_set_arms/ancient_seal_protector_set_arms.vmdl"
+	}
+	"7807"
+	{
+		"name"									"Bearing of the Ancient Seal"
+		"prefab"								"wearable"
+		"creation_date"							"2016-11-21"
+		"image_inventory"						"econ/items/treant/ancient_seal_protector_set_shoulder/ancient_seal_protector_set_shoulder"
+		"item_name"								"#DOTA_Item_Bearing_of_the_Ancient_Seal"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/treant/ancient_seal_protector_set_shoulder/ancient_seal_protector_set_shoulder.vmdl"
+	}
+	"7808"
+	{
+		"name"									"Overgrowth of the Ancient Seal"
+		"prefab"								"wearable"
+		"creation_date"							"2016-11-21"
+		"image_inventory"						"econ/items/treant/ancient_seal_protector_set_head/ancient_seal_protector_set_head"
+		"item_name"								"#DOTA_Item_Overgrowth_of_the_Ancient_Seal"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/treant/ancient_seal_protector_set_head/ancient_seal_protector_set_head.vmdl"
+	}
+	"8181"
+	{
+		"name"									"Arms of the Splintering Awe"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-09"
+		"image_inventory"						"econ/items/treant/splintering_radiance_arms/splintering_radiance_arms"
+		"item_name"								"#DOTA_Item_Arms_of_the_Splintering_Awe"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/treant/splintering_radiance_arms/splintering_radiance_arms.vmdl"
+	}
+	"8182"
+	{
+		"name"									"Mask of the Splintering Awe"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-09"
+		"image_inventory"						"econ/items/treant/splintering_radiance_head/splintering_radiance_head"
+		"item_name"								"#DOTA_Item_Mask_of_the_Splintering_Awe"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/treant/splintering_radiance_head/splintering_radiance_head.vmdl"
+	}
+	"8183"
+	{
+		"name"									"Stock of the Splintering Awe"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-09"
+		"image_inventory"						"econ/items/treant/splintering_radiance_legs/splintering_radiance_legs"
+		"item_name"								"#DOTA_Item_Stock_of_the_Splintering_Awe"
+		"item_rarity"							"uncommon"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Stock"
+		"model_player"							"models/items/treant/splintering_radiance_legs/splintering_radiance_legs.vmdl"
+	}
+	"8184"
+	{
+		"name"									"Carvings of the Splintering Awe"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-09"
+		"image_inventory"						"econ/items/treant/splintering_radiance_shoulder/splintering_radiance_shoulder"
+		"item_name"								"#DOTA_Item_Carvings_of_the_Splintering_Awe"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/treant/splintering_radiance_shoulder/splintering_radiance_shoulder.vmdl"
+	}
+	"8425"
+	{
+		"name"									"Emberbark Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-04"
+		"image_inventory"						"econ/items/treant/emberbark_arms/emberbark_arms"
+		"item_name"								"#DOTA_Item_Emberbark_Arms"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/treant/emberbark_arms/emberbark_arms.vmdl"
+	}
+	"8427"
+	{
+		"name"									"Emberbark Beard"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-04"
+		"image_inventory"						"econ/items/treant/emberbark_head/emberbark_head"
+		"item_name"								"#DOTA_Item_Emberbark_Beard"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Beard"
+		"model_player"							"models/items/treant/emberbark_head/emberbark_head.vmdl"
+	}
+	"8428"
+	{
+		"name"									"Emberbark Roots"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-04"
+		"image_inventory"						"econ/items/treant/emberbark_legs/emberbark_legs"
+		"item_name"								"#DOTA_Item_Emberbark_Roots"
+		"item_rarity"							"uncommon"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Roots"
+		"model_player"							"models/items/treant/emberbark_legs/emberbark_legs.vmdl"
+	}
+	"8429"
+	{
+		"name"									"Emberbark Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-04"
+		"image_inventory"						"econ/items/treant/emberbark_shoulder/emberbark_shoulder"
+		"item_name"								"#DOTA_Item_Emberbark_Shoulders"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/treant/emberbark_shoulder/emberbark_shoulder.vmdl"
+	}
+	"8899"
+	{
+		"name"									"Arms of Eldritch Gnarl"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/treant/seed_of_rebirth_arms/seed_of_rebirth_arms"
+		"item_description"						"#DOTA_Item_Desc_Seed_of_Rebirth_Arms"
+		"item_name"								"#DOTA_Item_Arms_of_Eldritch_Gnarl"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/treant/seed_of_rebirth_arms/seed_of_rebirth_arms.vmdl"
+	}
+	"8900"
+	{
+		"name"									"Snoot of Eldritch Gnarl"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/treant/seed_of_rebirth_head/seed_of_rebirth_head"
+		"item_description"						"#DOTA_Item_Desc_Seed_of_Rebirth_Head"
+		"item_name"								"#DOTA_Item_Snoot_of_Eldritch_Gnarl"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/treant/seed_of_rebirth_head/seed_of_rebirth_head.vmdl"
+	}
+	"8901"
+	{
+		"name"									"Roots of Eldritch Gnarl"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/treant/seed_of_rebirth_legs/seed_of_rebirth_legs"
+		"item_description"						"#DOTA_Item_Desc_Seed_of_Rebirth_Legs"
+		"item_name"								"#DOTA_Item_Roots_of_Eldritch_Gnarl"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_legs"
+		"model_player"							"models/items/treant/seed_of_rebirth_legs/seed_of_rebirth_legs.vmdl"
+	}
+	"8902"
+	{
+		"name"									"Foliage of Eldritch Gnarl"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/treant/seed_of_rebirth_shoulder/seed_of_rebirth_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Seed_of_Rebirth_Shoulder"
+		"item_name"								"#DOTA_Item_Foliage_of_Eldritch_Gnarl"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/treant/seed_of_rebirth_shoulder/seed_of_rebirth_shoulder.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/treant_protector/treant_seed_rebirth_ambient.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/treant_protector/treant_seed_rebirth_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_l_shoulder"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_r_shoulder"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_seed"
+					}
+					"4"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_seed_02"
+					}
+				}
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Seed_of_Rebirth_Shoulder_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Seed_of_Rebirth_Shoulder_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"11898"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/treant/seed_of_rebirth_shoulder/seed_of_rebirth_shoulder"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/treant/seed_of_rebirth_shoulder/seed_of_rebirth_shoulder_style1"
+				}
+			}
+		}
+	}
+	"9196"
+	{
+		"name"									"Stuntwood Sanctuary"
+		"prefab"								"wearable"
+		"creation_date"							"2017-03-21"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/treant/immortal_shoulder/treant_ti7_immortal_shoulder"
+		"item_description"						"#DOTA_Item_Desc_treant_ti7_immortal"
+		"item_name"								"#DOTA_Item_Stuntwood_Sanctuary"
+		"item_rarity"							"immortal"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/treant/immortal_shoulder/treant_ti7_immortal_shoulder.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1535796000"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_treant/treant_livingarmor.vpcf"
+				"modifier"						"particles/econ/items/treant_protector/ti7_shoulder/treant_ti7_livingarmor.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/treant_protector/ti7_shoulder/treant_ti7_immortal_ambient.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"treant_ti7_immortal"
+				"style"							"0"
+			}
+			"asset_modifier3"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Treant.LivingArmor.Target"
+				"modifier"						"Hero_Treant.LivingArmor.Target.ti7"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"treant_living_armor"
+				"modifier"						"treant/treant_ti7_immortal/treant_living_armor"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier5"
+			{
+				"type"							"healthbar_offset"
+				"offset"						"260"
+			}
+		}
+	}
+	"9452"
+	{
+		"name"									"Stuntwood Sanctuary of the Crimson Witness"
+		"prefab"								"wearable"
+		"creation_date"							"2017-08-03"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/treant/immortal_shoulder/treant_ti7_immortal_shoulder1"
+		"item_description"						"#DOTA_Item_Desc_Stuntwood_Sanctuary_of_the_Crimson_Witness"
+		"item_name"								"#DOTA_Item_Stuntwood_Sanctuary_of_the_Crimson_Witness"
+		"item_rarity"							"immortal"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Wearable"
+		"model_player"							"models/items/treant/immortal_shoulder/treant_ti7_immortal_shoulder.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_treant/treant_livingarmor.vpcf"
+				"modifier"						"particles/econ/items/treant_protector/ti7_shoulder/treant_ti7_crimson_livingarmor.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/treant_protector/ti7_shoulder/treant_ti7_crimson_immortal_ambient.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"treant_ti7_immortal"
+				"style"							"0"
+			}
+			"asset_modifier3"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Treant.LivingArmor.Target"
+				"modifier"						"Hero_Treant.LivingArmor.Target.ti7"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier4"
+			{
+				"type"							"healthbar_offset"
+				"offset"						"260"
+			}
+			"skin"								"1"
+			"asset_modifier5"
+			{
+				"type"							"ability_icon"
+				"asset"							"treant_living_armor"
+				"modifier"						"treant/treant_ti7_immortal/treant_living_armor_crimson"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+		}
+	}
+	"9704"
+	{
+		"name"									"Sanctuary of the Frost Auburn Hideaway"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-27"
+		"event_id"								"EVENT_ID_FROSTIVUS_2019"
+		"image_inventory"						"econ/items/treant/shelter_of_the_frozen_forest_shoulder/shelter_of_the_frozen_forest_shoulder"
+		"item_name"								"#DOTA_Item_Sanctuary_of_the_Frost_Auburn_Hideaway"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/treant/shelter_of_the_frozen_forest_shoulder/shelter_of_the_frozen_forest_shoulder.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"9705"
+	{
+		"name"									"Roots of the Frost Auburn Hideaway"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-27"
+		"event_id"								"EVENT_ID_FROSTIVUS_2019"
+		"image_inventory"						"econ/items/treant/shelter_of_the_frozen_forest_legs/shelter_of_the_frozen_forest_legs"
+		"item_name"								"#DOTA_Item_Roots_of_the_Frost_Auburn_Hideaway"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"model_player"							"models/items/treant/shelter_of_the_frozen_forest_legs/shelter_of_the_frozen_forest_legs.vmdl"
+	}
+	"9706"
+	{
+		"name"									"Beard of the Frost Auburn Hideaway"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-27"
+		"event_id"								"EVENT_ID_FROSTIVUS_2019"
+		"image_inventory"						"econ/items/treant/shelter_of_the_frozen_forest_head/shelter_of_the_frozen_forest_head"
+		"item_name"								"#DOTA_Item_Beard_of_the_Frost_Auburn_Hideaway"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/treant/shelter_of_the_frozen_forest_head/shelter_of_the_frozen_forest_head.vmdl"
+	}
+	"9898"
+	{
+		"name"									"Arms of the Ageless Witness"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/treant/lord_of_ancient_treant_arms/lord_of_ancient_treant_arms"
+		"item_description"						"#DOTA_Item_Desc_Arms_of_the_Ageless_Witness"
+		"item_name"								"#DOTA_Item_Arms_of_the_Ageless_Witness"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/treant/lord_of_ancient_treant_arms/lord_of_ancient_treant_arms.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Quest_Locked"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Quest_Unlocked"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17241"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/treant/lord_of_ancient_treant_arms/lord_of_ancient_treant_arms"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/treant/lord_of_ancient_treant_arms/lord_of_ancient_treant_arms_style1"
+				}
+			}
+		}
+	}
+	"9899"
+	{
+		"name"									"Head of the Ageless Witness"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/treant/lord_of_ancient_treant_head/lord_of_ancient_treant_head"
+		"item_description"						"#DOTA_Item_Desc_Head_of_the_Ageless_Witness"
+		"item_name"								"#DOTA_Item_Head_of_the_Ageless_Witness"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/treant/lord_of_ancient_treant_head/lord_of_ancient_treant_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/treant_protector/ancient_treant/ancient_treant_ambient_eyes_green.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/treant_protector/ancient_treant/ancient_treant_ambient_eyes_green.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_l_hair"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_r_hair"
+					}
+					"4"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_l_hair_02"
+					}
+					"5"
+					{
+						"control_point_index"	"5"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_r_hair_02"
+					}
+					"6"
+					{
+						"control_point_index"	"6"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_l_eye"
+					}
+					"7"
+					{
+						"control_point_index"	"7"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_r_eye"
+					}
+				}
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Quest_Locked"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Quest_Unlocked"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17241"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/treant/lord_of_ancient_treant_head/lord_of_ancient_treant_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/treant/lord_of_ancient_treant_head/lord_of_ancient_treant_head_style1"
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/treant_protector/ancient_treant/ancient_treant_ambient.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/treant_protector/ancient_treant/ancient_treant_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_l_hair"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_r_hair"
+					}
+					"4"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_l_hair_02"
+					}
+					"5"
+					{
+						"control_point_index"	"5"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_r_hair_02"
+					}
+					"6"
+					{
+						"control_point_index"	"6"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_l_eye"
+					}
+					"7"
+					{
+						"control_point_index"	"7"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_r_eye"
+					}
+				}
+			}
+		}
+	}
+	"9900"
+	{
+		"name"									"Legs of the Ageless Witness"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/treant/lord_of_ancient_treant_legs/lord_of_ancient_treant_legs"
+		"item_description"						"#DOTA_Item_Desc_Legs_of_the_Ageless_Witness"
+		"item_name"								"#DOTA_Item_Legs_of_the_Ageless_Witness"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_legs"
+		"model_player"							"models/items/treant/lord_of_ancient_treant_legs/lord_of_ancient_treant_legs.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Quest_Locked"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Quest_Unlocked"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17241"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/treant/lord_of_ancient_treant_legs/lord_of_ancient_treant_legs"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/treant/lord_of_ancient_treant_legs/lord_of_ancient_treant_legs_style1"
+				}
+			}
+		}
+	}
+	"9901"
+	{
+		"name"									"Shoulders of the Ageless Witness"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/treant/lord_of_ancient_treant_shoulder/lord_of_ancient_treant_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Shoulders_of_the_Ageless_Witness"
+		"item_name"								"#DOTA_Item_Shoulders_of_the_Ageless_Witness"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/treant/lord_of_ancient_treant_shoulder/lord_of_ancient_treant_shoulder.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Quest_Locked"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Quest_Unlocked"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17241"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/treant/lord_of_ancient_treant_shoulder/lord_of_ancient_treant_shoulder"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/treant/lord_of_ancient_treant_shoulder/lord_of_ancient_treant_shoulder_style1"
+				}
+			}
+		}
+	}
+	"12181"
+	{
+		"name"									"Bark of the Frost Auburn Hideaway"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-27"
+		"event_id"								"EVENT_ID_FROSTIVUS_2019"
+		"image_inventory"						"econ/items/treant/shelter_of_the_frozen_forest_arms/shelter_of_the_frozen_forest_arms"
+		"item_name"								"#DOTA_Item_Bark_of_the_Frost_Auburn_Hideaway"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"model_player"							"models/items/treant/shelter_of_the_frozen_forest_arms/shelter_of_the_frozen_forest_arms.vmdl"
+	}
+	"12855"
+	{
+		"name"									"Canopy of the Boreal Sentinel"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/treant/ancient_guardian_set_frostivus_2018_shoulder/ancient_guardian_set_frostivus_2018_shoulder"
+		"item_name"								"#DOTA_Item_Canopy_of_the_Boreal_Sentinel"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/treant/ancient_guardian_set_frostivus_2018_shoulder/ancient_guardian_set_frostivus_2018_shoulder.vmdl"
+	}
+	"12856"
+	{
+		"name"									"Legs of the Boreal Sentinel"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/treant/ancient_guardian_set_frostivus_2018_legs/ancient_guardian_set_frostivus_2018_legs"
+		"item_name"								"#DOTA_Item_Legs_of_the_Boreal_Sentinel"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_legs"
+		"model_player"							"models/items/treant/ancient_guardian_set_frostivus_2018_legs/ancient_guardian_set_frostivus_2018_legs.vmdl"
+	}
+	"12857"
+	{
+		"name"									"Head of the Boreal Sentinel"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/treant/ancient_guardian_set_frostivus_2018_head/ancient_guardian_set_frostivus_2018_head"
+		"item_name"								"#DOTA_Item_Head_of_the_Boreal_Sentinel"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/treant/ancient_guardian_set_frostivus_2018_head/ancient_guardian_set_frostivus_2018_head.vmdl"
+	}
+	"12858"
+	{
+		"name"									"Arms of the Boreal Sentinel"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/treant/ancient_guardian_set_frostivus_2018_arms/ancient_guardian_set_frostivus_2018_arms"
+		"item_name"								"#DOTA_Item_Arms_of_the_Boreal_Sentinel"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/treant/ancient_guardian_set_frostivus_2018_arms/ancient_guardian_set_frostivus_2018_arms.vmdl"
+	}
+	"14991"
+	{
+		"name"									"Stuntwood Symbiont"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"hide_tradecraftdelete"					"1"
+		"image_inventory"						"econ/items/treant/treant_ti10_immortal_head/treant_ti10_immortal_head"
+		"item_description"						"#DOTA_Item_Desc_Stuntwood_Symbiont"
+		"item_name"								"#DOTA_Item_Stuntwood_Symbiont"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/treant/treant_ti10_immortal_head/treant_ti10_immortal_head.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"ability_icon"
+				"asset"							"treant_overgrowth"
+				"modifier"						"treant/treant_ti10_immortal_ability_icon/treant_ti10_immortal_overgrowth"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_treant/treant_overgrowth_cast.vpcf"
+				"modifier"						"particles/econ/items/treant_protector/treant_ti10_immortal_head/treant_ti10_immortal_overgrowth_cast.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_treant/treant_overgrowth_vines.vpcf"
+				"modifier"						"particles/econ/items/treant_protector/treant_ti10_immortal_head/treant_ti10_immortal_overgrowth_root.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_treant/treant_overgrowth_vines_small.vpcf"
+				"modifier"						"particles/econ/items/treant_protector/treant_ti10_immortal_head/treant_ti10_immortal_overgrowth_root_small.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_treant/treant_overgrowth_trails.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/treant_protector/treant_ti10_immortal_head/treant_ti10_immortal_ambient.vpcf"
+			}
+		}
+	}
+	"17825"
+	{
+		"name"									"Treant Protector's Diretide Shimmer Costume"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-25"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 19:40:00"
+		"image_inventory"						"econ/sets/dota_item_treant_protectors_spooky_bundle"
+		"item_name"								"#DOTA_Item_Treant_Protectors_Diretide_Shimmer_Costume"
+		"item_rarity"							"seasonal"
+		"item_slot"								"costume"
+		"item_type_name"						"#DOTA_WearableType_Costume"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"model_skin"
+				"skin"							"1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/events/diretide_2020/hero_spooky_ambient/hero_spooky_ambient.vpcf"
+			}
+		}
+	}
+	"17826"
+	{
+		"name"									"Treant Protector's Diretide Shimmer Beard"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-25"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 19:40:00"
+		"image_inventory"						"econ/heroes/treant_protector/head1"
+		"item_name"								"#DOTA_Item_Treant_Protectors_Diretide_Shimmer_Beard"
+		"item_rarity"							"seasonal"
+		"item_slot"								"head"
+		"model_player"							"models/heroes/treant_protector/head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"17827"
+	{
+		"name"									"Treant Protector's Diretide Shimmer Hands"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-25"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 19:40:00"
+		"image_inventory"						"econ/heroes/treant_protector/hands1"
+		"item_name"								"#DOTA_Item_Treant_Protectors_Diretide_Shimmer_Hands"
+		"item_rarity"							"seasonal"
+		"item_slot"								"arms"
+		"model_player"							"models/heroes/treant_protector/hands.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"17828"
+	{
+		"name"									"Treant Protector's Diretide Shimmer Feet"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-25"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 19:40:00"
+		"image_inventory"						"econ/heroes/treant_protector/legs1"
+		"item_name"								"#DOTA_Item_Treant_Protectors_Diretide_Shimmer_Feet"
+		"item_rarity"							"seasonal"
+		"item_slot"								"legs"
+		"model_player"							"models/heroes/treant_protector/legs.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"17829"
+	{
+		"name"									"Treant Protector's Diretide Shimmer Branches"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-25"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 19:40:00"
+		"image_inventory"						"econ/items/treant/immortal_shoulder/treant_ti7_immortal_shoulder2"
+		"item_name"								"#DOTA_Item_Treant_Protectors_Diretide_Shimmer_Branches"
+		"item_rarity"							"seasonal"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/treant/immortal_shoulder/treant_ti7_immortal_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"treant_ti7_immortal"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Treant.LivingArmor.Target"
+				"modifier"						"Hero_Treant.LivingArmor.Target.ti7"
+				"style"							"0"
+			}
+			"asset_modifier2"
+			{
+				"type"							"healthbar_offset"
+				"offset"						"260"
+			}
+			"skin"								"2"
+		}
+	}
+	"18774"
+	{
+		"name"									"Haven of the Hinterheart - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-05-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/treant/guardian_of_the_forest_head/guardian_of_the_forest_head"
+		"item_name"								"#DOTA_Item_Haven_of_the_Hinterheart__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/treant/guardian_of_the_forest_head/guardian_of_the_forest_head.vmdl"
+		"static_attributes"
+		{
+			"giftable"							"0"
+			"not marketable"					"1"
+			"cannot trade"						"1"
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Guardian_of_the_Forest_Head_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Guardian_of_the_Forest_Head_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"22523"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/treant_protector/treant_cc_2021/treant_cc_2021_head.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/treant_protector/treant_cc_2021/treant_cc_2021_head_v2.vpcf"
+				"style"							"1"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/treant/guardian_of_the_forest_head/guardian_of_the_forest_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/treant/guardian_of_the_forest_head/guardian_of_the_forest_head_style1"
+				}
+			}
+		}
+	}
+	"18775"
+	{
+		"name"									"Haven of the Hinterheart - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-05-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/treant/guardian_of_the_forest_shoulder/guardian_of_the_forest_shoulder"
+		"item_name"								"#DOTA_Item_Haven_of_the_Hinterheart__Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/treant/guardian_of_the_forest_shoulder/guardian_of_the_forest_shoulder.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Guardian_of_the_Forest_Shoulder_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Guardian_of_the_Forest_Shoulder_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"22523"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/treant_protector/treant_cc_2021/treant_cc_2021_shoulder.vpcf"
+				"style"							"0"
+			}
+			"skip_model_combine"				"0"
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/treant_protector/treant_cc_2021/treant_cc_2021_shoulder_v2.vpcf"
+				"style"							"1"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/treant/guardian_of_the_forest_shoulder/guardian_of_the_forest_shoulder"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/treant/guardian_of_the_forest_shoulder/guardian_of_the_forest_shoulder_style1"
+				}
+			}
+		}
+	}
+	"18776"
+	{
+		"name"									"Haven of the Hinterheart - Legs"
+		"prefab"								"wearable"
+		"creation_date"							"2021-05-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/treant/guardian_of_the_forest_legs/guardian_of_the_forest_legs"
+		"item_name"								"#DOTA_Item_Haven_of_the_Hinterheart__Legs"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"model_player"							"models/items/treant/guardian_of_the_forest_legs/guardian_of_the_forest_legs.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Guardian_of_the_Forest_Legs_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Guardian_of_the_Forest_Legs_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"22523"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/treant/guardian_of_the_forest_legs/guardian_of_the_forest_legs"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/treant/guardian_of_the_forest_legs/guardian_of_the_forest_legs_style1"
+				}
+			}
+		}
+	}
+	"18777"
+	{
+		"name"									"Haven of the Hinterheart - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-05-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/treant/guardian_of_the_forest_arms/guardian_of_the_forest_arms"
+		"item_name"								"#DOTA_Item_Haven_of_the_Hinterheart__Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/treant/guardian_of_the_forest_arms/guardian_of_the_forest_arms.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Guardian_of_the_Forest_Arms_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Guardian_of_the_Forest_Arms_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"22523"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/treant/guardian_of_the_forest_arms/guardian_of_the_forest_arms"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/treant/guardian_of_the_forest_arms/guardian_of_the_forest_arms_style1"
+				}
+			}
+		}
+	}
+	"18854"
+	{
+		"name"									"Legs of the Arbor Sage"
+		"prefab"								"wearable"
+		"creation_date"							"2021-05-20"
+		"image_inventory"						"econ/items/treant/tactician_of_forest_legs/tactician_of_forest_legs"
+		"item_name"								"#DOTA_Item_Legs_of_the_Arbor_Sage"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"model_player"							"models/items/treant/tactician_of_forest_legs/tactician_of_forest_legs.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"18855"
+	{
+		"name"									"Arms of the Arbor Sage"
+		"prefab"								"wearable"
+		"creation_date"							"2021-05-20"
+		"image_inventory"						"econ/items/treant/tactician_of_forest_arms/tactician_of_forest_arms"
+		"item_name"								"#DOTA_Item_Arms_of_the_Arbor_Sage"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/treant/tactician_of_forest_arms/tactician_of_forest_arms.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"18856"
+	{
+		"name"									"Shoulder of the Arbor Sage"
+		"prefab"								"wearable"
+		"creation_date"							"2021-05-20"
+		"image_inventory"						"econ/items/treant/tactician_of_forest_shoulder/tactician_of_forest_shoulder"
+		"item_name"								"#DOTA_Item_Shoulder_of_the_Arbor_Sage"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/treant/tactician_of_forest_shoulder/tactician_of_forest_shoulder.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"18857"
+	{
+		"name"									"Head of the Arbor Sage"
+		"prefab"								"wearable"
+		"creation_date"							"2021-05-20"
+		"image_inventory"						"econ/items/treant/tactician_of_forest_head/tactician_of_forest_head"
+		"item_name"								"#DOTA_Item_Head_of_the_Arbor_Sage"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/treant/tactician_of_forest_head/tactician_of_forest_head.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"19399"
+	{
+		"name"									"Bogborne Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/treant/bogborne_arms/bogborne_arms"
+		"item_name"								"#DOTA_Item_Bogborne_Arms"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"model_player"							"models/items/treant/bogborne_arms/bogborne_arms.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"19400"
+	{
+		"name"									"Bogborne Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/treant/bogborne_head/bogborne_head"
+		"item_name"								"#DOTA_Item_Bogborne_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"model_player"							"models/items/treant/bogborne_head/bogborne_head.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"19401"
+	{
+		"name"									"Bogborne Legs"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/treant/bogborne_legs/bogborne_legs"
+		"item_name"								"#DOTA_Item_Bogborne_Legs"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"model_player"							"models/items/treant/bogborne_legs/bogborne_legs.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"19402"
+	{
+		"name"									"Bogborne Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/treant/bogborne_shoulder/bogborne_shoulder"
+		"item_name"								"#DOTA_Item_Bogborne_Shoulder"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/treant/bogborne_shoulder/bogborne_shoulder.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"20664"
+	{
+		"name"									"Agaric Flourish"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Embrace of the Agaric Flourish"	"1"
+			"Countenance of the Agaric Flourish""1"
+			"Stride of the Agaric Flourish"		"1"
+			"Canopy of the Agaric Flourish"		"1"
+			"Agaric Flourish Loading Screen"	"1"
+		}
+		"creation_date"							"2014-09-29"
+		"image_inventory"						"econ/sets/dota_item_fungal_protector"
+		"item_description"						"#DOTA_Item_Desc_Agaric_Flourish"
+		"item_name"								"#DOTA_Item_Agaric_Flourish"
+		"item_rarity"							"rare"
+	}
+	"20685"
+	{
+		"name"									"Esportal Dota 2 League"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Esportal Dota 2 League Ticket"		"1"
+			"Moonshard Claws"					"1"
+			"Moonshard Loading Screen"			"1"
+			"Moonshard Roots"					"1"
+			"Moonshard Tusks"					"1"
+			"Canopy of the Moonshard"			"1"
+		}
+		"creation_date"							"2014-11-20"
+		"image_inventory"						"econ/leagues/subscriptions_esportalbundle"
+		"item_description"						"#DOTA_Item_Desc_Esportal_Dota_2_League"
+		"item_name"								"#DOTA_Item_Esportal_Dota_2_League"
+		"item_rarity"							"rare"
+	}
+	"20803"
+	{
+		"name"									"Emberbark"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Emberbark Arms"					"1"
+			"Emberbark Beard"					"1"
+			"Emberbark Roots"					"1"
+			"Emberbark Shoulders"				"1"
+			"Emberbark Loading Screen"			"1"
+		}
+		"creation_date"							"2015-05-13"
+		"image_inventory"						"econ/loading_screens/emberbark_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Emberbark"
+		"item_name"								"#DOTA_Item_Emberbark"
+		"item_rarity"							"rare"
+	}
+	"20816"
+	{
+		"name"									"Splintering Awe"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Splintering Awe Loading Screen"	"1"
+			"Carvings of the Splintering Awe"	"1"
+			"Mask of the Splintering Awe"		"1"
+			"Stock of the Splintering Awe"		"1"
+			"Arms of the Splintering Awe"		"1"
+		}
+		"creation_date"							"2015-05-20"
+		"image_inventory"						"econ/loading_screens/splintering_radiance_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Splintering_Awe"
+		"item_name"								"#DOTA_Item_Splintering_Awe"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"2000"
+	}
+	"20971"
+	{
+		"name"									"Moonshard Overgrowth"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Moonshard Claws"					"1"
+			"Moonshard Tusks"					"1"
+			"Moonshard Roots"					"1"
+			"Canopy of the Moonshard"			"1"
+			"Moonshard Loading Screen"			"1"
+		}
+		"creation_date"							"2015-12-17"
+		"image_inventory"						"econ/loading_screens/moonshard_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Moonshard_Overgrowth"
+		"item_name"								"#DOTA_Item_Moonshard_Overgrowth"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"category_tags"						"Bundles"
+			"date"								"12/17/2015"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"21001"
+	{
+		"name"									"Protector of the Ancient Seal"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Protector of the Ancient Seal Loading Screen""1"
+			"Bearing of the Ancient Seal"		"1"
+			"Stumps of the Ancient Seal"		"1"
+			"Overgrowth of the Ancient Seal"	"1"
+			"Arms of the Ancient Seal"			"1"
+		}
+		"creation_date"							"2016-11-21"
+		"image_inventory"						"econ/loading_screens/ancient_seal_protector_set_loading_screen_of_the_ancient_seal_protector"
+		"item_description"						"#DOTA_Item_Desc_Protector_of_the_Ancient_Seal"
+		"item_name"								"#DOTA_Item_Protector_of_the_Ancient_Seal"
+		"item_rarity"							"rare"
+	}
+	"21058"
+	{
+		"name"									"Eldritch Gnarl"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of Eldritch Gnarl"	"1"
+			"Foliage of Eldritch Gnarl"			"1"
+			"Roots of Eldritch Gnarl"			"1"
+			"Snoot of Eldritch Gnarl"			"1"
+			"Arms of Eldritch Gnarl"			"1"
+		}
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/seed_of_rebirth_seed_of_rebirth_loadscreen"
+		"item_description"						"#DOTA_Item_Desc_Seed_of_Rebirth"
+		"item_name"								"#DOTA_Item_Eldritch_Gnarl"
+		"item_rarity"							"mythical"
+	}
+	"21079"
+	{
+		"name"									"Bark of the Ageless Witness"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Arms of the Ageless Witness"		"1"
+			"Head of the Ageless Witness"		"1"
+			"Legs of the Ageless Witness"		"1"
+			"Shoulders of the Ageless Witness"	"1"
+			"Loading Screen of the Ageless Witness""1"
+		}
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/loading_screens/lord_of_ancient_treant_lord_of_ancient_treant_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Bark_of_the_Ageless_Witness"
+		"item_name"								"#DOTA_Item_Bark_of_the_Ageless_Witness"
+		"item_rarity"							"mythical"
+	}
+	"21185"
+	{
+		"name"									"Frost Auburn Hideaway"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Sanctuary of the Frost Auburn Hideaway""1"
+			"Roots of the Frost Auburn Hideaway""1"
+			"Beard of the Frost Auburn Hideaway""1"
+			"Bark of the Frost Auburn Hideaway"	"1"
+		}
+		"creation_date"							"2019-11-27"
+		"event_id"								"EVENT_ID_FROSTIVUS_2019"
+		"image_inventory"						"econ/sets/DOTA_Item_Frost_Auburn_Hideaway"
+		"item_name"								"#DOTA_Item_Frost_Auburn_Hideaway"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"1"
+			}
+		}
+	}
+	"21309"
+	{
+		"name"									"The Boreal Sentinel"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Arms of the Boreal Sentinel"		"1"
+			"Head of the Boreal Sentinel"		"1"
+			"Legs of the Boreal Sentinel"		"1"
+			"Canopy of the Boreal Sentinel"		"1"
+		}
+		"creation_date"							"2018-12-02"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/sets/DOTA_Item_Frostivus_2018_treant_Ancient_Guardian_set"
+		"item_name"								"#DOTA_Item_The_Boreal_Sentinel"
+		"item_rarity"							"rare"
+	}
+	"21701"
+	{
+		"name"									"Treant Protector's Diretide Shimmer Bundle"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Treant Protector's Diretide Shimmer Hands""1"
+			"Treant Protector's Diretide Shimmer Costume""1"
+			"Treant Protector's Diretide Shimmer Beard""1"
+			"Treant Protector's Diretide Shimmer Feet""1"
+			"Treant Protector's Diretide Shimmer Branches""1"
+		}
+		"creation_date"							"2020-09-25"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 19:40:00"
+		"image_inventory"						"econ/sets/DOTA_Item_Treant_Protectors_Spooky_Bundle"
+		"item_name"								"#DOTA_Item_Treant_Protectors_Diretide_Shimmer_Bundle"
+		"item_rarity"							"seasonal"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"21753"
+	{
+		"name"									"Haven of the Hinterheart"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Haven of the Hinterheart - Arms"	"1"
+			"Haven of the Hinterheart - Legs"	"1"
+			"Haven of the Hinterheart - Shoulder""1"
+			"Haven of the Hinterheart - Head"	"1"
+		}
+		"creation_date"							"2021-05-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/sets/dota_item_haven_of_the_hinterheart"
+		"item_name"								"#DOTA_Item_Haven_of_the_Hinterheart"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21822"
+	{
+		"name"									"Honors of the Arbor Sage"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Shoulder of the Arbor Sage"		"1"
+			"Legs of the Arbor Sage"			"1"
+			"Head of the Arbor Sage"			"1"
+			"Arms of the Arbor Sage"			"1"
+			"Honors of the Arbor Sage Loading Screen""1"
+		}
+		"creation_date"							"2021-05-20"
+		"image_inventory"						"econ/loading_screens/tactician_of_forest_loading_screen"
+		"item_name"								"#DOTA_Item_Honors_of_the_Arbor_Sage"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21881"
+	{
+		"name"									"Bogborne"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bogborne Legs"						"1"
+			"Bogborne Shoulder"					"1"
+			"Bogborne Arms"						"1"
+			"Bogborne Head"						"1"
+		}
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/sets/DOTA_Item_Bogborne"
+		"item_name"								"#DOTA_Item_Bogborne"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"23262"
+	{
+		"name"									"Summer Lineage Bark of the Ageless Witness"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Summer Lineage Arms of the Ageless Witness""1"
+			"Summer Lineage Head of the Ageless Witness""1"
+			"Summer Lineage Legs of the Ageless Witness""1"
+			"Summer Lineage Shoulders of the Ageless Witness""1"
+		}
+		"creation_date"							"2022-05-18"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR3"
+		"image_inventory"						"econ/sets/DOTA_Item_Summer_Lineage_Bark_of_the_Ageless_Witness"
+		"item_description"						"#DOTA_Item_Desc_Summer_Lineage_Bark_of_the_Ageless_Witness"
+		"item_name"								"#DOTA_Item_Summer_Lineage_Bark_of_the_Ageless_Witness"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"37"
+			}
+		}
+		"visuals"
+		{
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/treant/lord_of_ancient_treant_arms/lord_of_ancient_treant_arms"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/treant/lord_of_ancient_treant_arms/lord_of_ancient_treant_arms_style1"
+				}
+			}
+		}
+	}
+	"23263"
+	{
+		"name"									"Summer Lineage Arms of the Ageless Witness"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-18"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR3"
+		"image_inventory"						"econ/items/treant/lord_of_ancient_treant_arms/lord_of_ancient_treant_arms2"
+		"item_description"						"#DOTA_Item_Desc_Summer_Lineage_Arms_of_the_Ageless_Witness"
+		"item_name"								"#DOTA_Item_Summer_Lineage_Arms_of_the_Ageless_Witness"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/treant/lord_of_ancient_treant_arms/lord_of_ancient_treant_arms.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"37"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"2"
+		}
+	}
+	"23264"
+	{
+		"name"									"Summer Lineage Head of the Ageless Witness"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-18"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR3"
+		"image_inventory"						"econ/items/treant/lord_of_ancient_treant_head/lord_of_ancient_treant_head2"
+		"item_description"						"#DOTA_Item_Desc_Summer_Lineage_Head_of_the_Ageless_Witness"
+		"item_name"								"#DOTA_Item_Summer_Lineage_Head_of_the_Ageless_Witness"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/treant/lord_of_ancient_treant_head/lord_of_ancient_treant_head.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"37"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"2"
+		}
+	}
+	"23265"
+	{
+		"name"									"Summer Lineage Legs of the Ageless Witness"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-18"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR3"
+		"image_inventory"						"econ/items/treant/lord_of_ancient_treant_legs/lord_of_ancient_treant_legs2"
+		"item_description"						"#DOTA_Item_Desc_Summer_Lineage_Legs_of_the_Ageless_Witness"
+		"item_name"								"#DOTA_Item_Summer_Lineage_Legs_of_the_Ageless_Witness"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Legs"
+		"model_player"							"models/items/treant/lord_of_ancient_treant_legs/lord_of_ancient_treant_legs.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"37"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"2"
+		}
+	}
+	"23266"
+	{
+		"name"									"Summer Lineage Shoulders of the Ageless Witness"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-18"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR3"
+		"image_inventory"						"econ/items/treant/lord_of_ancient_treant_shoulder/lord_of_ancient_treant_shoulder2"
+		"item_description"						"#DOTA_Item_Desc_Summer_Lineage_Shoulders_of_the_Ageless_Witness"
+		"item_name"								"#DOTA_Item_Summer_Lineage_Shoulders_of_the_Ageless_Witness"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/treant/lord_of_ancient_treant_shoulder/lord_of_ancient_treant_shoulder.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"37"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"2"
+		}
+	}
+}

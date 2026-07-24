@@ -1,0 +1,165 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.HudRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#DamageData
+{
+	width: fit-children;
+	height: fit-children;
+	align: right top;
+	margin-top: 64px;
+	flow-children: down;
+	opacity: 0;
+	transition-property: transform, opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+	transform: translateX(300px);
+}
+
+#DamageData.Show
+{
+	opacity: 1;
+	transform: translateX(0px);
+}
+
+#DamageData.Flip
+{
+	align: left top;
+}
+
+#DamageData.Flip #summary
+{
+	flow-children: left;
+}
+
+#DamageData.Flip #summary #toggle
+{
+	transform: rotateZ(90deg);
+}
+
+#DamageData.Flip #details
+{
+	transform: translateX(-300px);
+}
+
+#DamageData #summary
+{
+	width: 300px;
+	height: 34px;
+	background-color: #1b1e28f2;
+	box-shadow: inset 0 0 1px #62758B;
+	flow-children: right;
+}
+
+#DamageData #summary #toggle
+{
+	vertical-align: center;
+	width: 34px;
+	height: 34px;
+	background-color: black;
+	background-image: url("s2r://panorama/images/control_icons/expand_collapse_png.vtex");
+	background-repeat: no-repeat;
+	background-position: 50%;
+	transform: rotateZ(-90deg);
+	transition-property: transform;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+	box-shadow: inset 0 0 1px #62758B;
+}
+
+#DamageData #summary #toggle.Show
+{
+	transform: rotateZ(0deg);
+}
+
+#DamageData #summary #TotalDamage
+{
+	width: 266px;
+	height: 20px;
+	color: white;
+	text-shadow: 1px 1px 2px 3 #000000;
+	vertical-align: center;
+	text-overflow: shrink;
+	font-size: 18px;
+}
+
+#DamageData #details
+{
+	width: 100%;
+	height: fit-children;
+	max-height: 240px;
+	flow-children: down;
+	opacity: 0;
+	background-color: rgba(0, 0, 0, 0.722);
+	box-shadow: inset 0 0 1px #62758B;
+	transition-property: transform, opacity;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+	transform: translateX(300px);
+	overflow: squish scroll;
+}
+
+#DamageData #details.Show
+{
+	opacity: 1;
+	transform: translateX(0px);
+}
+
+#DamageData #details #DataEntry
+{
+	width: 100%;
+	height: 30px;
+	padding: 2px;
+}
+
+#DamageData #details #DataEntry #Bar
+{
+	height: 50%;
+	vertical-align: center;
+	border: 1px solid black;
+}
+
+#DamageData #details #DataEntry #Bar.DamageType1
+{
+	background-color: #ae2f28;
+}
+
+#DamageData #details #DataEntry #Bar.DamageType2
+{
+	background-color: #5b93d1;
+}
+
+#DamageData #details #DataEntry #Bar.DamageType4
+{
+	background-color: #d8ae53;
+}
+
+#DamageData #details #DataEntry #AbilityName
+{
+	color: white;
+	text-shadow: 1px 1px 2px 3 #000000;
+	align: left center;
+	margin-left: 10px;
+}
+
+#DamageData #details #DataEntry #Damage
+{
+	color: white;
+	text-shadow: 1px 1px 2px 3 #000000;
+	align: right center;
+	margin-right: 10px;
+}

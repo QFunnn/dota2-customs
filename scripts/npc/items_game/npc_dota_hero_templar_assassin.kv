@@ -1,0 +1,2656 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"173"
+	{
+		"name"									"Templar Assassin's Hair"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/lanaya/lanaya_hair"
+		"item_description"						"#DOTA_Item_Desc_Templar_Assassins_Default_Hair"
+		"item_name"								"#DOTA_Item_Templar_Assassins_Hair"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/lanaya/lanaya_hair.vmdl"
+	}
+	"174"
+	{
+		"name"									"Templar Assassin's Shoulders"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/lanaya/lanaya_cowl_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Templar_Assassinst_Shoulders"
+		"item_name"								"#DOTA_Item_Templar_Assassins_Shoulders"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/heroes/lanaya/lanaya_cowl_shoulder.vmdl"
+	}
+	"175"
+	{
+		"name"									"Templar Assassin's Armor"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/lanaya/lanaya_bracers_skirt"
+		"item_description"						"#DOTA_Item_Desc_Templar_Assassins_Default_Armor"
+		"item_name"								"#DOTA_Item_Templar_Assassins_Armor"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/heroes/lanaya/lanaya_bracers_skirt.vmdl"
+	}
+	"514"
+	{
+		"name"									"Templar Assassin's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-05"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Templar_Assassins_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_templar_assassin"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_templar_assassin/templar_assassin_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_templar_assassin/templar_assassin_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eyeR"
+					}
+					"4"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eyeL"
+					}
+				}
+			}
+		}
+	}
+	"603"
+	{
+		"name"									"Templar Assassin's Weapon"
+		"prefab"								"default_item"
+		"creation_date"							"2015-10-21"
+		"image_inventory"						"econ/heroes/lanaya/lanaya_default_weapon"
+		"item_description"						"#DOTA_Item_Desc_Templar_Assassins_Weapon"
+		"item_name"								"#DOTA_Item_Templar_Assassins_Weapon"
+		"particle_folder"						"particles/econ/items/templar_assassin/templar_assassin_focal"
+	}
+	"4400"
+	{
+		"name"									"Heirloom of the Temple Priestess"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"diretide tag"
+			{
+				"attribute_class"				"diretide_tag"
+				"value"							"2012"
+			}
+		}
+		"image_inventory"						"econ/items/lanaya/mysterious_comb2/mysterious_comb2"
+		"item_description"						"#DOTA_Item_Desc_Heirloom_of_the_Temple_Priestess"
+		"item_name"								"#DOTA_Item_Heirloom_of_the_Temple_Priestess"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Comb"
+		"model_player"							"models/items/lanaya/mysterious_comb2/mysterious_comb2.vmdl"
+	}
+	"4668"
+	{
+		"name"									"Scarf of the Deadly Nightshade"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/lanaya/ta_ns_shoulder/ta_ns_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Scarf_of_the_Deadly_Nightshade"
+		"item_name"								"#DOTA_Item_Scarf_of_the_Deadly_Nightshade"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Scarf"
+		"model_player"							"models/items/lanaya/ta_ns_shoulder/ta_ns_shoulder.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"static_attributes"
+		{
+			"polycount tag"
+			{
+				"attribute_class"				"polycount_tag"
+				"value"							"2012"
+			}
+		}
+	}
+	"4669"
+	{
+		"name"									"Garb of the Deadly Nightshade"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/lanaya/ta_ns_armor/ta_ns_armor"
+		"item_description"						"#DOTA_Item_Desc_Garb_of_the_Deadly_Nightshade"
+		"item_name"								"#DOTA_Item_Garb_of_the_Deadly_Nightshade"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/lanaya/ta_ns_armor/ta_ns_armor.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"static_attributes"
+		{
+			"polycount tag"
+			{
+				"attribute_class"				"polycount_tag"
+				"value"							"2012"
+			}
+		}
+	}
+	"4670"
+	{
+		"name"									"Headpiece of the Deadly Nightshade"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/lanaya/ta_ns_head/ta_ns_head"
+		"item_description"						"#DOTA_Item_Desc_Headpiece_of_the_Deadly_Nightshade"
+		"item_name"								"#DOTA_Item_Headpiece_of_the_Deadly_Nightshade"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair_and_Circlet"
+		"model_player"							"models/items/lanaya/ta_ns_head/ta_ns_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"static_attributes"
+		{
+			"polycount tag"
+			{
+				"attribute_class"				"polycount_tag"
+				"value"							"2012"
+			}
+		}
+	}
+	"4695"
+	{
+		"name"									"Sash of the Third Insight"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/lanaya/thiefscholar_girdle/thiefscholar_girdle"
+		"item_description"						"#DOTA_Item_Desc_Sash_of_the_Third_Insight"
+		"item_name"								"#DOTA_Item_Sash_of_the_Third_Insight"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Sash"
+		"model_player"							"models/items/lanaya/thiefscholar_girdle/thiefscholar_girdle.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4696"
+	{
+		"name"									"Brooch of the Third Insight"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/lanaya/thiefscholar_coiffure/thiefscholar_coiffure"
+		"item_description"						"#DOTA_Item_Desc_Brooch_of_the_Third_Insight"
+		"item_name"								"#DOTA_Item_Brooch_of_the_Third_Insight"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/lanaya/thiefscholar_coiffure/thiefscholar_coiffure.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4697"
+	{
+		"name"									"Mask of the Third Insight"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/lanaya/thiefscholar_shoulder/thiefscholar_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Mask_of_the_ThiefScholar"
+		"item_name"								"#DOTA_Item_Mask_of_the_Third_Insight"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/lanaya/thiefscholar_shoulder/thiefscholar_shoulder.vmdl"
+		"particle_folder"						"particles/econ/items/templar_assassin/templar_assassin_weapon_scholar"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_templar_assassin/templar_assassin_ambient.vpcf"
+				"modifier"						"particles/econ/items/templar_assassin/templar_assassin_weapon_scholar/templar_assassin_ambient_scholar.vpcf"
+			}
+		}
+	}
+	"5229"
+	{
+		"name"									"Whispering Dead Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-19"
+		"image_inventory"						"econ/items/lanaya/whispering_dead_armor/whispering_dead_armor"
+		"item_description"						"#DOTA_Item_Desc_Whispering_Dead_Armor"
+		"item_name"								"#DOTA_Item_Whispering_Dead_Armor"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Cloth_Armor"
+		"model_player"							"models/items/lanaya/whispering_dead_armor/whispering_dead_armor.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5230"
+	{
+		"name"									"Whispering Dead Mask"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-19"
+		"image_inventory"						"econ/items/lanaya/whispering_dead_mask/whispering_dead_mask"
+		"item_description"						"#DOTA_Item_Desc_Whispering_Dead_Mask"
+		"item_name"								"#DOTA_Item_Whispering_Dead_Mask"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/lanaya/whispering_dead_mask/whispering_dead_mask.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5231"
+	{
+		"name"									"Whispering Dead Mantle"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-19"
+		"image_inventory"						"econ/items/lanaya/whispering_dead_drapes/whispering_dead_drapes"
+		"item_description"						"#DOTA_Item_Desc_Whispering_Dead_Mantle"
+		"item_name"								"#DOTA_Item_Whispering_Dead_Mantle"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/lanaya/whispering_dead_drapes/whispering_dead_drapes.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5291"
+	{
+		"name"									"Redmoon Assassin's Secret Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-16"
+		"image_inventory"						"econ/items/lanaya/redmoon_assassinators_secret_armor/redmoon_assassinators_secret_armor"
+		"item_description"						"#DOTA_Item_Desc_Redmoon_Assassins_Secret_Armor"
+		"item_name"								"#DOTA_Item_Redmoon_Assassins_Secret_Armor"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/lanaya/redmoon_assassinators_secret_armor/redmoon_assassinators_secret_armor.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5292"
+	{
+		"name"									"Redmoon Assassin's Secret Headwear"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-16"
+		"image_inventory"						"econ/items/lanaya/redmoon_assassinators_secret_headwear/redmoon_assassinators_secret_headwear"
+		"item_description"						"#DOTA_Item_Desc_Redmoon_Assassins_Secret_Headwear"
+		"item_name"								"#DOTA_Item_Redmoon_Assassins_Secret_Headwear"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Headwear"
+		"model_player"							"models/items/lanaya/redmoon_assassinators_secret_headwear/redmoon_assassinators_secret_headwear.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5293"
+	{
+		"name"									"Redmoon Assassin's Secret Wraps"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-16"
+		"image_inventory"						"econ/items/lanaya/redmoon_assassinators_secret_wraps/redmoon_assassinators_secret_wraps"
+		"item_description"						"#DOTA_Item_Desc_Redmoon_Assassins_Secret_Wraps"
+		"item_name"								"#DOTA_Item_Redmoon_Assassins_Secret_Wraps"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Wraps"
+		"model_player"							"models/items/lanaya/redmoon_assassinators_secret_wraps/redmoon_assassinators_secret_wraps.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5302"
+	{
+		"name"									"Dreaded Bravo's Scarf"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-20"
+		"image_inventory"						"econ/items/lanaya/bravos_scarf/bravos_scarf"
+		"item_description"						"#DOTA_Item_Desc_Dreaded_Bravos_Scarf"
+		"item_name"								"#DOTA_Item_Dreaded_Bravos_Scarf"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Body_Wrap"
+		"model_player"							"models/items/lanaya/bravos_scarf/bravos_scarf.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5303"
+	{
+		"name"									"Dreaded Bravo's Cape"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-20"
+		"image_inventory"						"econ/items/lanaya/bravos_cape/bravos_cape"
+		"item_description"						"#DOTA_Item_Desc_Dreaded_Bravos_Cape"
+		"item_name"								"#DOTA_Item_Dreaded_Bravos_Cape"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/lanaya/bravos_cape/bravos_cape.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5304"
+	{
+		"name"									"Dreaded Bravo's Guise"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-20"
+		"image_inventory"						"econ/items/lanaya/dreaded_bravos_guise/dreaded_bravos_guise"
+		"item_description"						"#DOTA_Item_Desc_Dreaded_Bravos_Guise"
+		"item_name"								"#DOTA_Item_Dreaded_Bravos_Guise"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Headdress"
+		"model_player"							"models/items/lanaya/dreaded_bravos_guise/dreaded_bravos_guise.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5405"
+	{
+		"name"									"Style of the Occult Protector"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-10"
+		"image_inventory"						"econ/items/lanaya/style_of_the_occult_protector/style_of_the_occult_protector"
+		"item_description"						"#DOTA_Item_Desc_Style_of_the_Occult_Protector"
+		"item_name"								"#DOTA_Item_Style_of_the_Occult_Protector"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair_Tie"
+		"model_player"							"models/items/lanaya/style_of_the_occult_protector/style_of_the_occult_protector.vmdl"
+	}
+	"5851"
+	{
+		"name"									"Tail of the Secret Order"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-16"
+		"image_inventory"						"econ/items/lanaya/tail_of_the_secret_order/tail_of_the_secret_order"
+		"item_name"								"#DOTA_Item_Tail_of_the_Secret_Order"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/lanaya/tail_of_the_secret_order/tail_of_the_secret_order.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5978"
+	{
+		"name"									"Charming Assassin Curls"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-21"
+		"image_inventory"						"econ/items/lanaya/exotic_assassin_curls/exotic_assassin_curls"
+		"item_description"						"#DOTA_Item_Desc_Exotic_Assassin_Curls"
+		"item_name"								"#DOTA_Item_Charming_Assassin_Curls"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hairstyle"
+		"model_player"							"models/items/lanaya/exotic_assassin_curls/exotic_assassin_curls.vmdl"
+	}
+	"6730"
+	{
+		"name"									"Complete Spaulders of the Psion Inquisitor"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-06"
+		"event_id"								"EVENT_ID_NONE"
+		"image_inventory"						"econ/items/lanaya/raiment_of_the_violet_archives_shoulder/raiment_of_the_violet_archives_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Spaulders_of_the_Psion_Inquisitor"
+		"item_name"								"#DOTA_Item_Complete_Spaulders_of_the_Psion_Inquisitor"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/lanaya/raiment_of_the_violet_archives_shoulder/raiment_of_the_violet_archives_shoulder.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/templar_assassin/templar_assassin_violet/templar_assassin_violet_shoulder_ambient.vpcf"
+				"system"						"particles/econ/items/templar_assassin/templar_assassin_violet/templar_assassin_violet_shoulder_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_r"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_back_gem"
+					}
+				}
+			}
+		}
+	}
+	"6731"
+	{
+		"name"									"Complete Guards of the Psion Inquisitor"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-06"
+		"event_id"								"EVENT_ID_NONE"
+		"image_inventory"						"econ/items/lanaya/raiment_of_the_violet_archives_armor/raiment_of_the_violet_archives_armor"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Guards_of_the_Psion_Inquisitor"
+		"item_name"								"#DOTA_Item_Complete_Guards_of_the_Psion_Inquisitor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/lanaya/raiment_of_the_violet_archives_armor/raiment_of_the_violet_archives_armor.vmdl"
+	}
+	"6732"
+	{
+		"name"									"Complete Hood of the Psion Inquisitor"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-06"
+		"event_id"								"EVENT_ID_NONE"
+		"image_inventory"						"econ/items/lanaya/raiment_of_the_violet_archives_head_hood/raiment_of_the_violet_archives_head_hood"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Hood_of_the_Psion_Inquisitor"
+		"item_name"								"#DOTA_Item_Complete_Hood_of_the_Psion_Inquisitor"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/lanaya/raiment_of_the_violet_archives_head_hood/raiment_of_the_violet_archives_head_hood.vmdl"
+	}
+	"6900"
+	{
+		"name"									"Epitaphic Bonds Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-20"
+		"image_inventory"						"econ/items/lanaya/epitaphic_bonds_armor/epitaphic_bonds_armor"
+		"item_name"								"#DOTA_Item_Epitaphic_Bonds_Armor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/lanaya/epitaphic_bonds_armor/epitaphic_bonds_armor.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"branding"
+		{
+			"team_id"							"111474"
+		}
+	}
+	"6901"
+	{
+		"name"									"Epitaphic Bonds Hair"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-20"
+		"image_inventory"						"econ/items/lanaya/epitaphic_bonds_hair/epitaphic_bonds_hair"
+		"item_name"								"#DOTA_Item_Epitaphic_Bonds_Hair"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/lanaya/epitaphic_bonds_hair/epitaphic_bonds_hair.vmdl"
+		"branding"
+		{
+			"team_id"							"111474"
+		}
+	}
+	"6902"
+	{
+		"name"									"Epitaphic Bonds Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-20"
+		"image_inventory"						"econ/items/lanaya/epitaphic_bonds_shoulders/epitaphic_bonds_shoulders"
+		"item_name"								"#DOTA_Item_Epitaphic_Bonds_Shoulders"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder_Guard_and_Mask"
+		"model_player"							"models/items/lanaya/epitaphic_bonds_shoulders/epitaphic_bonds_shoulders.vmdl"
+		"branding"
+		{
+			"team_id"							"111474"
+		}
+	}
+	"7118"
+	{
+		"name"									"Guards of the Hidden Flower"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-12"
+		"image_inventory"						"econ/items/lanaya/hiddenflower_armor/hiddenflower_armor"
+		"item_name"								"#DOTA_Item_Guards_of_the_Hidden_Flower"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/lanaya/hiddenflower_armor/hiddenflower_armor.vmdl"
+	}
+	"7119"
+	{
+		"name"									"Sleeves of the Hidden Flower"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-12"
+		"image_inventory"						"econ/items/lanaya/hiddenflower_shoulder/hiddenflower_shoulder"
+		"item_name"								"#DOTA_Item_Sleeves_of_the_Hidden_Flower"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Sleeves"
+		"model_player"							"models/items/lanaya/hiddenflower_shoulder/hiddenflower_shoulder.vmdl"
+	}
+	"7120"
+	{
+		"name"									"Veil of the Hidden Flower"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-12"
+		"image_inventory"						"econ/items/lanaya/hiddenflower_head/hiddenflower_head"
+		"item_name"								"#DOTA_Item_Veil_of_the_Hidden_Flower"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Veil"
+		"model_player"							"models/items/lanaya/hiddenflower_head/hiddenflower_head.vmdl"
+	}
+	"7381"
+	{
+		"name"									"Brooch of the Fluttering Amethyst"
+		"prefab"								"wearable"
+		"creation_date"							"2014-12-01"
+		"image_inventory"						"econ/items/lanaya/dancing_butterfly_head/dancing_butterfly_head"
+		"item_name"								"#DOTA_Item_Brooch_of_the_Fluttering_Amethyst"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/lanaya/dancing_butterfly_head/dancing_butterfly_head.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/2/2014"
+			"price"								"0"
+		}
+	}
+	"7382"
+	{
+		"name"									"Wings of the Fluttering Amethyst"
+		"prefab"								"wearable"
+		"creation_date"							"2014-12-01"
+		"image_inventory"						"econ/items/lanaya/dancing_butterfly_shoulder/dancing_butterfly_shoulder"
+		"item_name"								"#DOTA_Item_Wings_of_the_Fluttering_Amethyst"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/lanaya/dancing_butterfly_shoulder/dancing_butterfly_shoulder.vmdl"
+		"particle_folder"						"particles/econ/items/templar_assassin/templar_assassin_butterfly"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/2/2014"
+			"price"								"0"
+		}
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_templar_assassin/templar_assassin_meld_attack.vpcf"
+				"modifier"						"particles/econ/items/templar_assassin/templar_assassin_butterfly/templar_assassin_meld_attack_butterfly.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_templar_assassin/templar_assassin_trap_explode.vpcf"
+				"modifier"						"particles/econ/items/templar_assassin/templar_assassin_butterfly/templar_assassin_trap_explode_butterfly.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_templar_assassin/templar_assassin_trap.vpcf"
+				"modifier"						"particles/econ/items/templar_assassin/templar_assassin_butterfly/templar_assassin_trap_butterfly.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_templar_assassin/templar_assassin_trap_portrait.vpcf"
+				"modifier"						"particles/econ/items/templar_assassin/templar_assassin_butterfly/templar_assassin_trap_butterfly_portrait.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+		}
+	}
+	"7383"
+	{
+		"name"									"Skirt of the Fluttering Amethyst"
+		"prefab"								"wearable"
+		"creation_date"							"2014-12-01"
+		"image_inventory"						"econ/items/lanaya/dancing_butterfly_armor/dancing_butterfly_armor"
+		"item_name"								"#DOTA_Item_Skirt_of_the_Fluttering_Amethyst"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/lanaya/dancing_butterfly_armor/dancing_butterfly_armor.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/2/2014"
+			"price"								"0"
+		}
+	}
+	"7433"
+	{
+		"name"									"Pauldrons of the Timekeeper"
+		"prefab"								"wearable"
+		"creation_date"							"2016-01-29"
+		"image_inventory"						"econ/items/lanaya/the_timekeeper_silvers/the_timekeeper_silvers"
+		"item_description"						"#DOTA_Item_Desc_Pauldrons_of_the_Timekeeper"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Timekeeper"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/lanaya/the_timekeeper_silvers/the_timekeeper_silvers.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Item_Timekeeper_Style_00"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Item_Timekeeper_Style_01"
+					"skin"						"1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"1"
+				{
+					"icon_path"					"econ/items/lanaya/the_timekeeper_silvers/the_timekeeper_silvers_style1"
+				}
+			}
+		}
+	}
+	"7435"
+	{
+		"name"									"Style of the Timekeeper"
+		"prefab"								"wearable"
+		"creation_date"							"2016-01-29"
+		"image_inventory"						"econ/items/lanaya/the_timekeeper_silver/the_timekeeper_silver"
+		"item_description"						"#DOTA_Item_Desc_Style_of_the_Timekeeper"
+		"item_name"								"#DOTA_Item_Style_of_the_Timekeeper"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Style"
+		"model_player"							"models/items/lanaya/the_timekeeper_silver/the_timekeeper_silver.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Item_Timekeeper_Style_00"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Item_Timekeeper_Style_01"
+					"skin"						"1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/lanaya/the_timekeeper_silver/the_timekeeper_silver"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/lanaya/the_timekeeper_silver/the_timekeeper_silver_style1"
+				}
+			}
+		}
+	}
+	"7436"
+	{
+		"name"									"Armor of the Timekeeper"
+		"prefab"								"wearable"
+		"creation_date"							"2016-01-29"
+		"image_inventory"						"econ/items/lanaya/the_timekeeper_silvera/the_timekeeper_silvera"
+		"item_description"						"#DOTA_Item_Desc_Armor_of_the_Timekeeper"
+		"item_name"								"#DOTA_Item_Armor_of_the_Timekeeper"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/lanaya/the_timekeeper_silvera/the_timekeeper_silvera.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Item_Timekeeper_Style_00"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Item_Timekeeper_Style_01"
+					"skin"						"1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/lanaya/the_timekeeper_silvera/the_timekeeper_silvera"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/lanaya/the_timekeeper_silvera/the_timekeeper_silvera_style1"
+				}
+			}
+		}
+	}
+	"7785"
+	{
+		"name"									"Hair of the Onyx Lotus"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-23"
+		"image_inventory"						"econ/items/lanaya/black_lotus_hair/black_lotus_hair"
+		"item_name"								"#DOTA_Item_Hair_of_the_Onyx_Lotus"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/lanaya/black_lotus_hair/black_lotus_hair.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"7786"
+	{
+		"name"									"Armor of the Onyx Lotus"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-23"
+		"image_inventory"						"econ/items/lanaya/black_lotus_armor/black_lotus_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Onyx_Lotus"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/lanaya/black_lotus_armor/black_lotus_armor.vmdl"
+	}
+	"7787"
+	{
+		"name"									"Dress of the Onyx Lotus"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-23"
+		"image_inventory"						"econ/items/lanaya/black_lotus_dress/black_lotus_dress"
+		"item_name"								"#DOTA_Item_Dress_of_the_Onyx_Lotus"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Dress"
+		"model_player"							"models/items/lanaya/black_lotus_dress/black_lotus_dress.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"8278"
+	{
+		"name"									"Mantle of the Concealed Raven"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/lanaya/mlg_concealed_raven_shoulder/mlg_concealed_raven_shoulder"
+		"item_name"								"#DOTA_Item_Mantle_of_the_Concealed_Raven"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/lanaya/concealed_raven_shoulder/concealed_raven_shoulder.vmdl"
+	}
+	"8280"
+	{
+		"name"									"Hood of the Concealed Raven"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/lanaya/mlg_concealed_raven_head/mlg_concealed_raven_head"
+		"item_name"								"#DOTA_Item_Hood_of_the_Concealed_Raven"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hood"
+		"model_player"							"models/items/lanaya/concealed_raven_head/concealed_raven_head.vmdl"
+	}
+	"8287"
+	{
+		"name"									"Feathers of the Concealed Raven"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/lanaya/mlg_concealed_raven_armor/mlg_concealed_raven_armor"
+		"item_name"								"#DOTA_Item_Feathers_of_the_Concealed_Raven"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/lanaya/concealed_raven_armor/concealed_raven_armor.vmdl"
+	}
+	"8329"
+	{
+		"name"									"Style of the Clandestine Trail"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/lanaya/heavenly_secrets_head/heavenly_secrets_head"
+		"item_name"								"#DOTA_Item_Style_of_the_Clandestine_Trail"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/lanaya/heavenly_secrets_head/heavenly_secrets_head.vmdl"
+	}
+	"8330"
+	{
+		"name"									"Halter of the Clandestine Trail"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/lanaya/heavenly_secrets_armor/heavenly_secrets_armor"
+		"item_name"								"#DOTA_Item_Halter_of_the_Clandestine_Trail"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/lanaya/heavenly_secrets_armor/heavenly_secrets_armor.vmdl"
+	}
+	"8331"
+	{
+		"name"									"Plume of the Clandestine Trail"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/lanaya/heavenly_secrets_shoulder/heavenly_secrets_shoulder"
+		"item_name"								"#DOTA_Item_Plume_of_the_Clandestine_Trail"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/lanaya/heavenly_secrets_shoulder/heavenly_secrets_shoulder.vmdl"
+	}
+	"8867"
+	{
+		"name"									"Spaulders of Wuxia"
+		"prefab"								"wearable"
+		"creation_date"							"2016-02-08"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/lanaya/shadow_of_wuxia_shoulder/shadow_of_wuxia_shoulder"
+		"item_name"								"#DOTA_Item_Spaulders_of_Wuxia"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Spaulders"
+		"model_player"							"models/items/lanaya/shadow_of_wuxia_shoulder/shadow_of_wuxia_shoulder.vmdl"
+	}
+	"8868"
+	{
+		"name"									"Headpiece of the Wuxia"
+		"prefab"								"wearable"
+		"creation_date"							"2016-02-08"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/lanaya/shadow_of_wuxia_head/shadow_of_wuxia_head"
+		"item_name"								"#DOTA_Item_Headpiece_of_the_Wuxia"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Headpiece"
+		"model_player"							"models/items/lanaya/shadow_of_wuxia_head/shadow_of_wuxia_head.vmdl"
+	}
+	"8872"
+	{
+		"name"									"Armor of the Wuxia"
+		"prefab"								"wearable"
+		"creation_date"							"2016-02-08"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/lanaya/shadow_of_wuxia_armor/shadow_of_wuxia_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Wuxia"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/lanaya/shadow_of_wuxia_armor/shadow_of_wuxia_armor.vmdl"
+	}
+	"9047"
+	{
+		"name"									"Spaulders of the Psion Inquisitor"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/lanaya/raiment_of_the_violet_archives_shoulder/raiment_of_the_violet_archives_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Raiment_of_the_Violet_Archives_Shoulder"
+		"item_name"								"#DOTA_Item_Spaulders_of_the_Psion_Inquisitor"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/lanaya/raiment_of_the_violet_archives_shoulder/raiment_of_the_violet_archives_shoulder.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/templar_assassin/templar_assassin_violet/templar_assassin_violet_shoulder_ambient.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/templar_assassin/templar_assassin_violet/templar_assassin_violet_shoulder_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_r"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_back_gem"
+					}
+				}
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Default"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Infused"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"11898"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/lanaya/raiment_of_the_violet_archives_shoulder/raiment_of_the_violet_archives_shoulder"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/lanaya/raiment_of_the_violet_archives_shoulder/raiment_of_the_violet_archives_shoulder_style1"
+				}
+			}
+		}
+	}
+	"9048"
+	{
+		"name"									"Guards of the Psion Inquisitor"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/lanaya/raiment_of_the_violet_archives_armor/raiment_of_the_violet_archives_armor"
+		"item_description"						"#DOTA_Item_Desc_Raiment_of_the_Violet_Archives_Armor"
+		"item_name"								"#DOTA_Item_Guards_of_the_Psion_Inquisitor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/lanaya/raiment_of_the_violet_archives_armor/raiment_of_the_violet_archives_armor.vmdl"
+	}
+	"9049"
+	{
+		"name"									"Hood of the Psion Inquisitor"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/lanaya/raiment_of_the_violet_archives_head_hood/raiment_of_the_violet_archives_head_hood"
+		"item_description"						"#DOTA_Item_Desc_Raiment_of_the_Violet_Archives_Head"
+		"item_name"								"#DOTA_Item_Hood_of_the_Psion_Inquisitor"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/lanaya/raiment_of_the_violet_archives_head_hood/raiment_of_the_violet_archives_head_hood.vmdl"
+	}
+	"9318"
+	{
+		"name"									"Focal Resonance"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-22"
+		"image_inventory"						"econ/items/templar_assassin/psi_blades/psi_blades_immortal4"
+		"item_description"						"#DOTA_Item_Desc_Focal_Resonance"
+		"item_name"								"#DOTA_Item_Focal_Resonance"
+		"item_rarity"							"immortal"
+		"model_player"							"models/items/templar_assassin/psi_blades/psi_blades_immortal.vmdl"
+		"particle_folder"						"particles/econ/items/templar_assassin/templar_assassin_focal"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+			"can_equip_as_ability_effects1"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"focal"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_templar_assassin/templar_assassin_ambient.vpcf"
+				"modifier"						"particles/econ/items/templar_assassin/templar_assassin_focal/ta_focal_base_ambient.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_templar_assassin/templar_assassin_base_attack.vpcf"
+				"modifier"						"particles/econ/items/templar_assassin/templar_assassin_focal/ta_focal_base_attack.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_templar_assassin/templar_assassin_psi_blade.vpcf"
+				"modifier"						"particles/econ/items/templar_assassin/templar_assassin_focal/ta_focal_psi_blade.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"templar_assassin_psi_blades"
+				"modifier"						"templar_assassin/focal_resonance/templar_assassin_psi_blades"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_templar_assassin/templar_assassin_meld_start.vpcf"
+				"modifier"						"particles/econ/items/templar_assassin/templar_assassin_focal/templar_assassin_meld_focal_start.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_templar_assassin/templar_assassin_meld_attack.vpcf"
+				"modifier"						"particles/econ/items/templar_assassin/templar_assassin_focal/templar_assassin_meld_focal_attack.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_templar_assassin/templar_assassin_meld_armor.vpcf"
+				"modifier"						"particles/econ/items/templar_assassin/templar_assassin_focal/templar_assassin_meld_focal_armor.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_templar_assassin/templar_meld_overhead.vpcf"
+				"modifier"						"particles/econ/items/templar_assassin/templar_assassin_focal/templar_meld_focal_overhead.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier9"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_templar_assassin/templar_assassin_meld.vpcf"
+				"modifier"						"particles/econ/items/templar_assassin/templar_assassin_focal/templar_assassin_meld_focal.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier10"
+			{
+				"type"							"ability_icon"
+				"asset"							"templar_assassin_meld"
+				"modifier"						"templar_assassin/focal_resonance/templar_assassin_meld"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier11"
+			{
+				"type"							"sound"
+				"asset"							"Hero_TemplarAssassin.PsiBlade"
+				"modifier"						"Hero_TemplarAssassin.PsiBlade.Resonance"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier12"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/templar_assassin/templar_assassin_focal/ta_focal_ambient.vpcf"
+				"system"						"particles/econ/items/templar_assassin/templar_assassin_focal/ta_focal_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_blade_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hand_l"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_blade_r"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hand_r"
+					}
+				}
+			}
+			"asset_modifier13"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/templar_assassin/templar_assassin_focal/ta_focal_upper_ambient.vpcf"
+				"system"						"particles/econ/items/templar_assassin/templar_assassin_focal/ta_focal_upper_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_upper_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_upper_r"
+					}
+				}
+			}
+		}
+	}
+	"12540"
+	{
+		"name"									"Taunt: You Earned It"
+		"prefab"								"taunt"
+		"creation_date"							"2020-05-25"
+		"hide_tradecraftdelete"					"1"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/taunts/dota_icon_taunt_templar_assassin_ti10"
+		"item_description"						"#DOTA_Item_Desc_Taunt_You_Earned_It"
+		"item_name"								"#DOTA_Item_Taunt_You_Earned_It"
+		"item_rarity"							"mythical"
+		"reward_can_be_shown_in_toast"			"1"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_TI10_Limited_Tradeability"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"ti10_taunt"
+				"gesture"						"1"
+			}
+		}
+	}
+	"12588"
+	{
+		"name"									"Blades of the Loyal Fold"
+		"prefab"								"wearable"
+		"creation_date"							"2020-01-17"
+		"event_id"								"EVENT_ID_NEW_BLOOM_2020"
+		"image_inventory"						"econ/items/lanaya/princess_loulan_weapon/princess_loulan_weapon"
+		"item_name"								"#DOTA_Item_Blades_of_the_Loyal_Fold"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/lanaya/princess_loulan_weapon/princess_loulan_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_templar_assassin/templar_assassin_ambient.vpcf"
+				"modifier"						"particles/econ/items/lanaya/princess_loulan/princess_loulan_weapon.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"13539"
+	{
+		"name"									"Mantle of the Whispered Bond"
+		"prefab"								"wearable"
+		"creation_date"							"2019-07-22"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/lanaya/ta_ti9_immortal_shoulders/ta_ti9_immortal_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Mantle_of_the_Whispered_Bond"
+		"item_name"								"#DOTA_Item_Mantle_of_the_Whispered_Bond"
+		"item_rarity"							"immortal"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/lanaya/ta_ti9_immortal_shoulders/ta_ti9_immortal_shoulders.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567332000"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lanaya/ta_ti9_immortal_shoulders/ta_ti9_immortal_shoulders.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_templar_assassin/templar_assassin_refraction.vpcf"
+				"modifier"						"particles/econ/items/lanaya/ta_ti9_immortal_shoulders/ta_ti9_refraction.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_templar_assassin/templar_assassin_refract_hit.vpcf"
+				"modifier"						"particles/econ/items/lanaya/ta_ti9_immortal_shoulders/ta_ti9_refract_hit.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"templar_assassin_refraction"
+				"modifier"						"templar_assassin_refraction_ti9"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"13720"
+	{
+		"name"									"Armor of the Loyal Fold"
+		"prefab"								"wearable"
+		"creation_date"							"2019-10-01"
+		"event_id"								"EVENT_ID_NEW_BLOOM_2020"
+		"image_inventory"						"econ/items/lanaya/princess_loulan_armor/princess_loulan_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Loyal_Fold"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/lanaya/princess_loulan_armor/princess_loulan_armor.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lanaya/princess_loulan/princess_loulan_armor.vpcf"
+			}
+		}
+	}
+	"13721"
+	{
+		"name"									"Pauldrons of the Loyal Fold"
+		"prefab"								"wearable"
+		"creation_date"							"2019-10-01"
+		"event_id"								"EVENT_ID_NEW_BLOOM_2020"
+		"image_inventory"						"econ/items/lanaya/princess_loulan_shoulder/princess_loulan_shoulder"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Loyal_Fold"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/lanaya/princess_loulan_shoulder/princess_loulan_shoulder.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lanaya/princess_loulan/princess_loulan_shoulder.vpcf"
+			}
+		}
+	}
+	"13722"
+	{
+		"name"									"Headdress of the Loyal Fold"
+		"prefab"								"wearable"
+		"creation_date"							"2019-10-01"
+		"event_id"								"EVENT_ID_NEW_BLOOM_2020"
+		"image_inventory"						"econ/items/lanaya/princess_loulan_head/princess_loulan_head"
+		"item_name"								"#DOTA_Item_Headdress_of_the_Loyal_Fold"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/lanaya/princess_loulan_head/princess_loulan_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lanaya/princess_loulan/princess_loulan_head.vpcf"
+			}
+		}
+	}
+	"14023"
+	{
+		"name"									"Faceless Destiny Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/lanaya/jade_assassin_armor/jade_assassin_armor"
+		"item_name"								"#DOTA_Item_Faceless_Destiny_Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/lanaya/jade_assassin_armor/jade_assassin_armor.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"14024"
+	{
+		"name"									"Faceless Destiny Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/lanaya/jade_assassin_shoulder/jade_assassin_shoulder"
+		"item_name"								"#DOTA_Item_Faceless_Destiny_Shoulder"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/lanaya/jade_assassin_shoulder/jade_assassin_shoulder.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"14025"
+	{
+		"name"									"Faceless Destiny Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/lanaya/jade_assassin_head/jade_assassin_head"
+		"item_name"								"#DOTA_Item_Faceless_Destiny_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/lanaya/jade_assassin_head/jade_assassin_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"14040"
+	{
+		"name"									"Faceless Destiny Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/lanaya/jade_assassin_weapon/jade_assassin_weapon"
+		"item_name"								"#DOTA_Item_Faceless_Destiny_Weapon"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/lanaya/jade_assassin_weapon/jade_assassin_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/templar_assassin/templar_assassin_focal"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"14752"
+	{
+		"name"									"Steward of the Forbidden Chamber Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/lanaya/ta_royal_squire_armor/ta_royal_squire_armor"
+		"item_name"								"#DOTA_Item_Steward_of_the_Forbidden_Chamber_Armor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"model_player"							"models/items/lanaya/ta_royal_squire_armor/ta_royal_squire_armor.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/templar_assassin/ta_ti10_royal_squire_armor/ta_ti10_royal_squire_armor_ambient.vpcf"
+			}
+		}
+	}
+	"14753"
+	{
+		"name"									"Steward of the Forbidden Chamber Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/lanaya/ta_royal_squire_shoulder/ta_royal_squire_shoulder"
+		"item_name"								"#DOTA_Item_Steward_of_the_Forbidden_Chamber_Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/lanaya/ta_royal_squire_shoulder/ta_royal_squire_shoulder.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/templar_assassin/ta_ti10_royal_squire_shoulder/ta_ti10_royal_squire_shoulder_ambient.vpcf"
+			}
+		}
+	}
+	"14754"
+	{
+		"name"									"Steward of the Forbidden Chamber Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/lanaya/ta_royal_squire_head/ta_royal_squire_head"
+		"item_name"								"#DOTA_Item_Steward_of_the_Forbidden_Chamber_Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/lanaya/ta_royal_squire_head/ta_royal_squire_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/templar_assassin/ta_ti10_royal_squire_head/ta_ti10_royal_squire_head_ambient.vpcf"
+			}
+		}
+	}
+	"18426"
+	{
+		"name"									"Keeper of Oblivion Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2020-11-12"
+		"image_inventory"						"econ/items/lanaya/dplus_keeper_of_knowledge_shoulder/dplus_keeper_of_knowledge_shoulder"
+		"item_name"								"#DOTA_Item_Keeper_of_Oblivion_Shoulders"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/lanaya/dplus_keeper_of_knowledge_shoulder/dplus_keeper_of_knowledge_shoulder.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"18428"
+	{
+		"name"									"Keeper of Oblivion Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-11-12"
+		"image_inventory"						"econ/items/lanaya/dplus_keeper_of_knowledge_head/dplus_keeper_of_knowledge_head"
+		"item_name"								"#DOTA_Item_Keeper_of_Oblivion_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/lanaya/dplus_keeper_of_knowledge_head/dplus_keeper_of_knowledge_head.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"18429"
+	{
+		"name"									"Keeper of Oblivion Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-11-12"
+		"image_inventory"						"econ/items/lanaya/dplus_keeper_of_knowledge_armor/dplus_keeper_of_knowledge_armor"
+		"item_name"								"#DOTA_Item_Keeper_of_Oblivion_Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/lanaya/dplus_keeper_of_knowledge_armor/dplus_keeper_of_knowledge_armor.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"19880"
+	{
+		"name"									"Faction of the Feather - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/lanaya/death_bearing_wings_weapon/death_bearing_wings_weapon"
+		"item_name"								"#DOTA_Item_Faction_of_the_Feather__Weapon"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/lanaya/death_bearing_wings_weapon/death_bearing_wings_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/templar_assassin/templar_assassin_focal"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+	}
+	"19881"
+	{
+		"name"									"Faction of the Feather - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/lanaya/death_bearing_wings_shoulder/death_bearing_wings_shoulder"
+		"item_name"								"#DOTA_Item_Faction_of_the_Feather__Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/lanaya/death_bearing_wings_shoulder/death_bearing_wings_shoulder.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"19883"
+	{
+		"name"									"Faction of the Feather - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/lanaya/death_bearing_wings_head/death_bearing_wings_head"
+		"item_name"								"#DOTA_Item_Faction_of_the_Feather__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/lanaya/death_bearing_wings_head/death_bearing_wings_head.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"19884"
+	{
+		"name"									"Faction of the Feather - Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/lanaya/death_bearing_wings_armor/death_bearing_wings_armor"
+		"item_name"								"#DOTA_Item_Faction_of_the_Feather__Armor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"model_player"							"models/items/lanaya/death_bearing_wings_armor/death_bearing_wings_armor.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"19922"
+	{
+		"name"									"Chimes of the Temple Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/lanaya/blessed_gifts_of_the_temple_weapon/blessed_gifts_of_the_temple_weapon"
+		"item_name"								"#DOTA_Item_Chimes_of_the_Temple_Weapon"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/lanaya/blessed_gifts_of_the_temple_weapon/blessed_gifts_of_the_temple_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/templar_assassin/templar_assassin_focal"
+	}
+	"19923"
+	{
+		"name"									"Chimes of the Temple Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/lanaya/blessed_gifts_of_the_temple_shoulder/blessed_gifts_of_the_temple_shoulder"
+		"item_name"								"#DOTA_Item_Chimes_of_the_Temple_Shoulder"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/lanaya/blessed_gifts_of_the_temple_shoulder/blessed_gifts_of_the_temple_shoulder.vmdl"
+	}
+	"19925"
+	{
+		"name"									"Chimes of the Temple Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/lanaya/blessed_gifts_of_the_temple_head/blessed_gifts_of_the_temple_head"
+		"item_name"								"#DOTA_Item_Chimes_of_the_Temple_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"model_player"							"models/items/lanaya/blessed_gifts_of_the_temple_head/blessed_gifts_of_the_temple_head.vmdl"
+	}
+	"19926"
+	{
+		"name"									"Chimes of the Temple Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/lanaya/blessed_gifts_of_the_temple_armor/blessed_gifts_of_the_temple_armor"
+		"item_name"								"#DOTA_Item_Chimes_of_the_Temple_Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"model_player"							"models/items/lanaya/blessed_gifts_of_the_temple_armor/blessed_gifts_of_the_temple_armor.vmdl"
+	}
+	"20085"
+	{
+		"name"									"The Deadly Nightshade Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Scarf of the Deadly Nightshade"	"1"
+			"Headpiece of the Deadly Nightshade""1"
+			"Garb of the Deadly Nightshade"		"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_The_Deadly_Nightshade_Set"
+		"item_description"						"#DOTA_Item_Desc_The_Deadly_Nightshade_Set"
+		"item_name"								"#DOTA_Item_The_Deadly_Nightshade_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20129"
+	{
+		"name"									"The Third Insight Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Sash of the Third Insight"			"1"
+			"Mask of the Third Insight"			"1"
+			"Brooch of the Third Insight"		"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_The_Third_Insight_Set"
+		"item_description"						"#DOTA_Item_Desc_The_Third_Insight_Set"
+		"item_name"								"#DOTA_Item_The_Third_Insight_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Mythical"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"399"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_templar_assassin/templar_assassin_ambient.vpcf"
+				"modifier"						"particles/econ/items/templar_assassin/templar_assassin_weapon_scholar/templar_assassin_ambient_scholar.vpcf"
+			}
+		}
+	}
+	"20216"
+	{
+		"name"									"Whispering Dead Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Whispering Dead Armor"				"1"
+			"Whispering Dead Mantle"			"1"
+			"Whispering Dead Mask"				"1"
+		}
+		"creation_date"							"2013-07-23"
+		"image_inventory"						"econ/sets/DOTA_Item_Whispering_Dead_Set"
+		"item_description"						"#DOTA_Item_Desc_Whispering_Dead_Set"
+		"item_name"								"#DOTA_Item_Whispering_Dead_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"7/23/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20217"
+	{
+		"name"									"The Dreaded Bravo Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Dreaded Bravo's Cape"				"1"
+			"Dreaded Bravo's Scarf"				"1"
+			"Dreaded Bravo's Guise"				"1"
+		}
+		"creation_date"							"2013-07-23"
+		"image_inventory"						"econ/sets/DOTA_Item_The_Dreaded_Bravo_Set"
+		"item_description"						"#DOTA_Item_Desc_The_Dreaded_Bravo_Set"
+		"item_name"								"#DOTA_Item_The_Dreaded_Bravo_Set"
+		"item_rarity"							"uncommon"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Uncommon"
+			"category_tags"						"Bundles"
+			"date"								"7/23/2013"
+			"bundle"							"1"
+			"price"								"249"
+		}
+	}
+	"20238"
+	{
+		"name"									"Redmoon Assassin's Secret Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Redmoon Assassin's Secret Armor"	"1"
+			"Redmoon Assassin's Secret Headwear""1"
+			"Redmoon Assassin's Secret Wraps"	"1"
+		}
+		"creation_date"							"2013-08-16"
+		"image_inventory"						"econ/sets/DOTA_Item_Redmoon_Assassinators_Secret_Set"
+		"item_description"						"#DOTA_Item_Desc_Redmoon_Assassins_Secret_Set"
+		"item_name"								"#DOTA_Item_Redmoon_Assassins_Secret_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"8/16/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20574"
+	{
+		"name"									"Epitaphic Bonds"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Epitaphic Bonds Armor"				"1"
+			"Epitaphic Bonds Hair"				"1"
+			"Epitaphic Bonds Shoulders"			"1"
+			"Epitaphic Bonds Loading Screen"	"1"
+		}
+		"creation_date"							"2014-06-20"
+		"image_inventory"						"econ/sets/dota_item_epitaphic_bonds"
+		"item_description"						"#DOTA_Item_Desc_Epitaphic_Bonds"
+		"item_name"								"#DOTA_Item_Epitaphic_Bonds"
+		"item_rarity"							"mythical"
+		"branding"
+		{
+			"team_id"							"111474"
+		}
+	}
+	"20619"
+	{
+		"name"									"Complete Province of the Psion Inquisitor"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of the Psion Inquisitor""1"
+			"Complete Spaulders of the Psion Inquisitor""1"
+			"Complete Guards of the Psion Inquisitor""1"
+			"Complete Hood of the Psion Inquisitor""1"
+		}
+		"creation_date"							"2019-11-06"
+		"event_id"								"EVENT_ID_NONE"
+		"image_inventory"						"econ/loading_screens/raiment_of_the_violet_archives_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Complete_Province_of_the_Psion_Inquisitor"
+		"item_name"								"#DOTA_Item_Complete_Province_of_the_Psion_Inquisitor"
+		"item_rarity"							"mythical"
+		"visuals"
+		{
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/sets/DOTA_Item_Complete_Province_of_the_Psion_Inquisitor"
+				}
+				"1"
+				{
+					"icon_path"					"econ/sets/DOTA_Item_Complete_Province_of_the_Psion_Inquisitor_style1"
+				}
+			}
+		}
+	}
+	"20655"
+	{
+		"name"									"Hidden Flower"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Guards of the Hidden Flower"		"1"
+			"Sleeves of the Hidden Flower"		"1"
+			"Veil of the Hidden Flower"			"1"
+			"Hidden Flower Loading Screen"		"1"
+		}
+		"creation_date"							"2014-09-16"
+		"image_inventory"						"econ/loading_screens/hiddenflower"
+		"item_description"						"#DOTA_Item_Desc_Hidden_Flower"
+		"item_name"								"#DOTA_Item_Hidden_Flower"
+		"item_rarity"							"rare"
+	}
+	"20689"
+	{
+		"name"									"i-League Season 2"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"i-League Season 2 Ticket"			"1"
+			"i-League Season 2 Loading Screen"	"1"
+			"i-League Season 2 HUD Skin"		"1"
+			"Wings of the Fluttering Amethyst"	"1"
+			"Skirt of the Fluttering Amethyst"	"1"
+			"Fluttering Amethyst Loading Screen""1"
+			"Brooch of the Fluttering Amethyst"	"1"
+		}
+		"creation_date"							"2014-12-02"
+		"image_inventory"						"econ/leagues/subscriptions_i_league_season_2"
+		"item_description"						"#DOTA_Item_Desc_iLeague_Season_2"
+		"item_name"								"#DOTA_Item_iLeague_Season_2"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Tournament_Bundle"
+	}
+	"20750"
+	{
+		"name"									"The Timekeeper"
+		"prefab"								"bundle"
+		"branding"
+		{
+			"corporation_id"					"293426899"
+		}
+		"bundle"
+		{
+			"The Timekeeper Silver Loading Screen""1"
+			"The Timekeeper Golden Loading Screen""1"
+			"Armor of the Timekeeper"			"1"
+			"Style of the Timekeeper"			"1"
+			"Pauldrons of the Timekeeper"		"1"
+		}
+		"creation_date"							"2016-02-24"
+		"image_inventory"						"econ/loading_screens/timekeeper_gold_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_The_Timekeeper"
+		"item_name"								"#DOTA_Item_The_Timekeeper"
+		"item_rarity"							"mythical"
+		"price_info"
+		{
+			"category_tags"						"Bundles"
+			"date"								"2/24/2016"
+			"bundle"							"1"
+			"price"								"0"
+		}
+	}
+	"20757"
+	{
+		"name"									"Fluttering Amethyst"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Brooch of the Fluttering Amethyst"	"1"
+			"Wings of the Fluttering Amethyst"	"1"
+			"Skirt of the Fluttering Amethyst"	"1"
+			"Fluttering Amethyst Loading Screen""1"
+		}
+		"creation_date"							"2015-12-17"
+		"image_inventory"						"econ/loading_screens/ta_butterfly_loading_screen"
+		"item_name"								"#DOTA_Item_Fluttering_Amethyst"
+		"item_rarity"							"rare"
+	}
+	"20764"
+	{
+		"name"									"Onyx Lotus"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of the Onyx Lotus"	"1"
+			"Dress of the Onyx Lotus"			"1"
+			"Armor of the Onyx Lotus"			"1"
+			"Hair of the Onyx Lotus"			"1"
+		}
+		"creation_date"							"2015-02-24"
+		"image_inventory"						"econ/loading_screens/black_lotus_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Onyx_Lotus"
+		"item_name"								"#DOTA_Item_Onyx_Lotus"
+		"item_rarity"							"rare"
+	}
+	"20898"
+	{
+		"name"									"Concealed Raven"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Concealed Raven Loading Screen"	"1"
+			"Feathers of the Concealed Raven"	"1"
+			"Hood of the Concealed Raven"		"1"
+			"Mantle of the Concealed Raven"		"1"
+		}
+		"image_inventory"						"econ/loading_screens/concealed_raven_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Concealed_Raven"
+		"item_name"								"#DOTA_Item_Concealed_Raven"
+		"item_rarity"							"rare"
+	}
+	"20916"
+	{
+		"name"									"Clandestine Trail"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Style of the Clandestine Trail"	"1"
+			"Halter of the Clandestine Trail"	"1"
+			"Plume of the Clandestine Trail"	"1"
+			"Clandestine Trail Loading Screen"	"1"
+		}
+		"creation_date"							"2015-10-12"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/loading_screens/heavenly_secrets_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Clandestine_Trail"
+		"item_name"								"#DOTA_Item_Clandestine_Trail"
+		"item_rarity"							"mythical"
+	}
+	"20997"
+	{
+		"name"									"Shadows of the Wuxia"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Shadows of the Wuxia Loading Screen""1"
+			"Armor of the Wuxia"				"1"
+			"Headpiece of the Wuxia"			"1"
+			"Spaulders of Wuxia"				"1"
+		}
+		"creation_date"							"2016-02-08"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/shadow_of_wuxia_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Shadows_of_the_Wuxia"
+		"item_name"								"#DOTA_Item_Shadows_of_the_Wuxia"
+		"item_rarity"							"mythical"
+	}
+	"21077"
+	{
+		"name"									"Province of the Psion Inquisitor"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of the Psion Inquisitor""1"
+			"Hood of the Psion Inquisitor"		"1"
+			"Guards of the Psion Inquisitor"	"1"
+			"Spaulders of the Psion Inquisitor"	"1"
+		}
+		"creation_date"							"2016-09-22"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/raiment_of_the_violet_archives_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Raiment_of_the_Violet_Archives"
+		"item_name"								"#DOTA_Item_Province_of_the_Psion_Inquisitor"
+		"item_rarity"							"mythical"
+	}
+	"21433"
+	{
+		"name"									"Ritual of the Loyal Fold"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Headdress of the Loyal Fold"		"1"
+			"Pauldrons of the Loyal Fold"		"1"
+			"Armor of the Loyal Fold"			"1"
+			"Blades of the Loyal Fold"			"1"
+		}
+		"creation_date"							"2019-10-01"
+		"event_id"								"EVENT_ID_NEW_BLOOM_2020"
+		"image_inventory"						"econ/sets/dota_item_princess_loulan"
+		"item_name"								"#DOTA_Item_Ritual_of_the_Loyal_Fold"
+		"item_rarity"							"mythical"
+	}
+	"21485"
+	{
+		"name"									"Faceless Destiny"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Faceless Destiny Weapon"			"1"
+			"Faceless Destiny Head"				"1"
+			"Faceless Destiny Shoulder"			"1"
+			"Faceless Destiny Armor"			"1"
+		}
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/sets/DOTA_Item_Faceless_Destiny"
+		"item_name"								"#DOTA_Item_Faceless_Destiny"
+		"item_rarity"							"rare"
+	}
+	"21585"
+	{
+		"name"									"Steward of the Forbidden Chamber"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Steward of the Forbidden Chamber Head""1"
+			"Steward of the Forbidden Chamber Shoulder""1"
+			"Steward of the Forbidden Chamber Armor""1"
+		}
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_TA_Royal_Squire"
+		"item_name"								"#DOTA_Item_Steward_of_the_Forbidden_Chamber"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21805"
+	{
+		"name"									"Keeper of Oblivion"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Keeper of Oblivion Armor"			"1"
+			"Keeper of Oblivion Head"			"1"
+			"Keeper of Oblivion Loading Screen"	"1"
+			"Keeper of Oblivion Shoulders"		"1"
+		}
+		"creation_date"							"2020-11-12"
+		"image_inventory"						"econ/loading_screens/dplus_keeper_of_knowledge_ls"
+		"item_name"								"#DOTA_Item_Keeper_of_Oblivion"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"15000"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21972"
+	{
+		"name"									"Faction of the Feather"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Faction of the Feather - Armor"	"1"
+			"Faction of the Feather - Head"		"1"
+			"Faction of the Feather Loading Screen""1"
+			"Faction of the Feather - Shoulder"	"1"
+			"Faction of the Feather - Weapon"	"1"
+		}
+		"creation_date"							"2021-08-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/sets/DOTA_Item_Vote_Only_Death_Bearing_Wings"
+		"item_name"								"#DOTA_Item_Faction_of_the_Feather"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+	}
+	"21980"
+	{
+		"name"									"Chimes of the Temple"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Chimes of the Temple Armor"		"1"
+			"Chimes of the Temple Head"			"1"
+			"Chimes of the Temple Loading Screen""1"
+			"Chimes of the Temple Shoulder"		"1"
+			"Chimes of the Temple Weapon"		"1"
+		}
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/loading_screens/blessed_gifts_of_the_temple_ls"
+		"item_name"								"#DOTA_Item_Chimes_of_the_Temple"
+		"item_rarity"							"rare"
+	}
+	"22288"
+	{
+		"name"									"Artist of the Astral Summer"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Artist of the Astral Summer - Armor""1"
+			"Artist of the Astral Summer Loading Screen""1"
+			"Artist of the Astral Summer - Head""1"
+			"Artist of the Astral Summer - Shoulder""1"
+		}
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/loading_screens/precious_coral_ls"
+		"item_name"								"#DOTA_Item_Artist_of_the_Astral_Summer"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"22292"
+	{
+		"name"									"Artist of the Astral Summer - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/lanaya/precious_coral_head/precious_coral_head"
+		"item_name"								"#DOTA_Item_Artist_of_the_Astral_Summer__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/lanaya/precious_coral_head/precious_coral_head.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"22293"
+	{
+		"name"									"Artist of the Astral Summer - Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/lanaya/precious_coral_armor/precious_coral_armor"
+		"item_name"								"#DOTA_Item_Artist_of_the_Astral_Summer__Armor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/lanaya/precious_coral_armor/precious_coral_armor.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"22294"
+	{
+		"name"									"Artist of the Astral Summer - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/lanaya/precious_coral_shoulder/precious_coral_shoulder"
+		"item_name"								"#DOTA_Item_Artist_of_the_Astral_Summer__Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/lanaya/precious_coral_shoulder/precious_coral_shoulder.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"23715"
+	{
+		"name"									"Seclusions of the Void"
+		"prefab"								"wearable"
+		"creation_date"							"2022-07-13"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/lanaya/ta_2022_immortal/ta_2022_immortal"
+		"item_description"						"#DOTA_Item_Desc_Seclusions_of_the_Void"
+		"item_name"								"#DOTA_Item_Seclusions_of_the_Void"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/lanaya/ta_2022_immortal/ta_2022_immortal.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+			"webm preview url"					"apps/dota2/videos/dota_react/international2022/immortals/templar_assassin_client.webm"
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/templar_assassin/ta_2022_immortal/ta_2022_immortal_ambient.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_templar_assassin/templar_assassin_trap.vpcf"
+				"modifier"						"particles/econ/items/templar_assassin/ta_2022_immortal/ta_2022_immortal_trap.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_templar_assassin/templar_assassin_trap_explode.vpcf"
+				"modifier"						"particles/econ/items/templar_assassin/ta_2022_immortal/ta_2022_immortal_trap_explode.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier3"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_templar_assassin_psionic_trap"
+				"modifier"						"models/items/lanaya/ta_2022_immortal/ta_2022_immortal_trap_invis.vmdl"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_templar_assassin/templar_assassin_trap_portrait.vpcf"
+				"modifier"						"particles/econ/items/templar_assassin/ta_2022_immortal/ta_2022_immortal_trap_portrait.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier5"
+			{
+				"type"							"ability_icon"
+				"asset"							"templar_assassin_trap"
+				"modifier"						"templar_assassin/ta_2022_immortal_ability_icon/ta_2022_immortal_trap"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier6"
+			{
+				"type"							"ability_icon"
+				"asset"							"templar_assassin_psionic_trap"
+				"modifier"						"templar_assassin/ta_2022_immortal_ability_icon/ta_2022_immortal_psionic_trap"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier7"
+			{
+				"type"							"ability_icon"
+				"asset"							"templar_assassin_self_trap"
+				"modifier"						"templar_assassin/ta_2022_immortal_ability_icon/ta_2022_immortal_self_trap"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_templar_assassin/templar_assassin_trap_slow.vpcf"
+				"modifier"						"particles/econ/items/templar_assassin/ta_2022_immortal/ta_2022_immortal_slow.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+		}
+	}
+	"23836"
+	{
+		"name"									"Golden Seclusions of the Void"
+		"prefab"								"wearable"
+		"creation_date"							"2022-08-11"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/lanaya/ta_2022_immortal/ta_2022_immortal1"
+		"item_description"						"#DOTA_Item_Desc_ta_2022_immortal_gold"
+		"item_name"								"#DOTA_Item_Golden_Seclusions_of_the_Void"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/lanaya/ta_2022_immortal/ta_2022_immortal.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+			"webm preview url"					"apps/dota2/videos/dota_react/international2022/immortals/templar_assassin_gold_client.webm"
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_templar_assassin/templar_assassin_trap_explode.vpcf"
+				"modifier"						"particles/econ/items/templar_assassin/ta_2022_immortal/ta_2022_immortal_trap_gold_explode.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier1"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_templar_assassin_psionic_trap"
+				"modifier"						"models/items/lanaya/ta_2022_immortal/ta_2022_immortal_trap_invis_gold.vmdl"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_templar_assassin/templar_assassin_trap_portrait.vpcf"
+				"modifier"						"particles/econ/items/templar_assassin/ta_2022_immortal/ta_2022_immortal_trap_portrait_gold.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_templar_assassin/templar_assassin_trap.vpcf"
+				"modifier"						"particles/econ/items/templar_assassin/ta_2022_immortal/ta_2022_immortal_trap_gold.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"skin"								"1"
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/templar_assassin/ta_2022_immortal/ta_2022_immortal_ambient_gold.vpcf"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_templar_assassin/templar_assassin_trap_slow.vpcf"
+				"modifier"						"particles/econ/items/templar_assassin/ta_2022_immortal/ta_2022_immortal_slow_gold.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier6"
+			{
+				"type"							"ability_icon"
+				"asset"							"templar_assassin_trap"
+				"modifier"						"templar_assassin/ta_2022_immortal_ability_icon/ta_2022_immortal_trap_gold"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier7"
+			{
+				"type"							"ability_icon"
+				"asset"							"templar_assassin_psionic_trap"
+				"modifier"						"templar_assassin/ta_2022_immortal_ability_icon/ta_2022_immortal_psionic_trap_gold"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier8"
+			{
+				"type"							"ability_icon"
+				"asset"							"templar_assassin_self_trap"
+				"modifier"						"templar_assassin/ta_2022_immortal_ability_icon/ta_2022_immortal_self_trap_gold"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+		}
+	}
+}

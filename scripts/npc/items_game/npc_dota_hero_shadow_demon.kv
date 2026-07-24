@@ -1,0 +1,1105 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"396"
+	{
+		"name"									"Shadow Demon's Cape"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/shadow_demon/shadow_demon_cape"
+		"item_description"						"#DOTA_Item_Desc_Shadow_Demons_Cape"
+		"item_name"								"#DOTA_Item_Shadow_Demons_Cape"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/heroes/shadow_demon/shadow_demon_cape.vmdl"
+	}
+	"397"
+	{
+		"name"									"Shadow Demon's Armor"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/shadow_demon/shadow_demon_chain"
+		"item_description"						"#DOTA_Item_Desc_Shadow_Demons_Armor"
+		"item_name"								"#DOTA_Item_Shadow_Demons_Armor"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/heroes/shadow_demon/shadow_demon_chain.vmdl"
+	}
+	"398"
+	{
+		"name"									"Shadow Demon's Belt"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/shadow_demon/shadow_demon_belt"
+		"item_description"						"#DOTA_Item_Desc_Shadow_Demons_Belt"
+		"item_name"								"#DOTA_Item_Shadow_Demons_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/heroes/shadow_demon/shadow_demon_belt.vmdl"
+	}
+	"399"
+	{
+		"name"									"Shadow Demon's Tail"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/shadow_demon/shadow_demon_tail"
+		"item_description"						"#DOTA_Item_Desc_Shadow_Demons_Tail"
+		"item_name"								"#DOTA_Item_Shadow_Demons_Tail"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_tail"
+		"model_player"							"models/heroes/shadow_demon/shadow_demon_tail.vmdl"
+	}
+	"545"
+	{
+		"name"									"Shadow Demon's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-10"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Shadow_Demons_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_shadow_demon"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_shadow_demon/shadow_demon_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_shadow_demon/shadow_demon_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+					"4"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"eye_L"
+					}
+					"5"
+					{
+						"control_point_index"	"5"
+						"attach_type"			"point_follow"
+						"attachment"			"eye_R"
+					}
+				}
+			}
+		}
+	}
+	"4377"
+	{
+		"name"									"Lash of the Summoned Lord"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/shadow_demon/tail_bishobola/tail_bishobola"
+		"item_description"						"#DOTA_Item_Desc_Lash_of_the_Summoned_Lord"
+		"item_name"								"#DOTA_Item_Lash_of_the_Summoned_Lord"
+		"item_rarity"							"uncommon"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/items/shadow_demon/tail_bishobola/tail_bishobola.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4379"
+	{
+		"name"									"Sigil of the Summoned Lord"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/shadow_demon/chains_bishobola/chains_bishobola"
+		"item_description"						"#DOTA_Item_Desc_Sigil_of_the_Summoned_Lord"
+		"item_name"								"#DOTA_Item_Sigil_of_the_Summoned_Lord"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/shadow_demon/chains_bishobola/chains_bishobola.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4380"
+	{
+		"name"									"Plate of the Summoned Lord"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/shadow_demon/belt_demonlord/belt_demonlord"
+		"item_description"						"#DOTA_Item_Desc_Plate_of_the_Summoned_Lord"
+		"item_name"								"#DOTA_Item_Plate_of_the_Summoned_Lord"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/shadow_demon/belt_demonlord/belt_demonlord.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4541"
+	{
+		"name"									"Bindings of the Summoned Lord"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/shadow_demon/back_ishobolaa/back_ishobolaa"
+		"item_description"						"#DOTA_Item_Desc_Bindings_of_the_Summoned_Lord"
+		"item_name"								"#DOTA_Item_Bindings_of_the_Summoned_Lord"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Horns"
+		"model_player"							"models/items/shadow_demon/back_ishobolaa/back_ishobolaa.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"6574"
+	{
+		"name"									"Diabolical Appendages"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-12"
+		"image_inventory"						"econ/items/shadow_demon/diabolical_back/diabolical_back"
+		"item_description"						"#DOTA_Item_Desc_Diabolical_Appendages"
+		"item_name"								"#DOTA_Item_Diabolical_Appendages"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/shadow_demon/diabolical_back/diabolical_back.vmdl"
+	}
+	"6717"
+	{
+		"name"									"Malicious Sting Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2014-08-13"
+		"image_inventory"						"econ/items/shadow_demon/malicioussting_armor/malicioussting_armor"
+		"item_description"						"#DOTA_Item_Desc_Malicious_Sting_Armor"
+		"item_name"								"#DOTA_Item_Malicious_Sting_Armor"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/shadow_demon/malicioussting_armor/malicioussting_armor.vmdl"
+	}
+	"6718"
+	{
+		"name"									"Malicious Sting Back"
+		"prefab"								"wearable"
+		"creation_date"							"2014-08-13"
+		"image_inventory"						"econ/items/shadow_demon/malicioussting_back/malicioussting_back"
+		"item_description"						"#DOTA_Item_Desc_Malicious_Sting_Back"
+		"item_name"								"#DOTA_Item_Malicious_Sting_Back"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/shadow_demon/malicioussting_back/malicioussting_back.vmdl"
+	}
+	"6719"
+	{
+		"name"									"Malicious Sting Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2014-08-13"
+		"image_inventory"						"econ/items/shadow_demon/malicioussting_belt/malicioussting_belt"
+		"item_description"						"#DOTA_Item_Desc_Malicious_Sting_Belt"
+		"item_name"								"#DOTA_Item_Malicious_Sting_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/shadow_demon/malicioussting_belt/malicioussting_belt.vmdl"
+	}
+	"6957"
+	{
+		"name"									"Malicious Sting Tail"
+		"prefab"								"wearable"
+		"creation_date"							"2014-08-13"
+		"image_inventory"						"econ/items/shadow_demon/malicioussting_tail/malicioussting_tail"
+		"item_description"						"#DOTA_Item_Desc_Malicious_Sting_Tail"
+		"item_name"								"#DOTA_Item_Malicious_Sting_Tail"
+		"item_rarity"							"uncommon"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/items/shadow_demon/malicioussting_tail/malicioussting_tail.vmdl"
+	}
+	"7179"
+	{
+		"name"									"Tail of the Umbral Descent"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-19"
+		"image_inventory"						"econ/items/shadow_demon/umbral_descent_tail/umbral_descent_tail"
+		"item_name"								"#DOTA_Item_Tail_of_the_Umbral_Descent"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/items/shadow_demon/umbral_descent_tail/umbral_descent_tail.vmdl"
+	}
+	"7180"
+	{
+		"name"									"Belt of the Umbral Descent"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-19"
+		"image_inventory"						"econ/items/shadow_demon/umbral_descent_belt/umbral_descent_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Umbral_Descent"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/shadow_demon/umbral_descent_belt/umbral_descent_belt.vmdl"
+	}
+	"7181"
+	{
+		"name"									"Armor of the Umbral Descent"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-19"
+		"image_inventory"						"econ/items/shadow_demon/umbral_descent_armor/umbral_descent_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Umbral_Descent"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/shadow_demon/umbral_descent_armor/umbral_descent_armor.vmdl"
+	}
+	"7182"
+	{
+		"name"									"Form of the Umbral Descent"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-19"
+		"image_inventory"						"econ/items/shadow_demon/umbral_descent_back/umbral_descent_back"
+		"item_name"								"#DOTA_Item_Form_of_the_Umbral_Descent"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Form"
+		"model_player"							"models/items/shadow_demon/umbral_descent_back/umbral_descent_back.vmdl"
+	}
+	"9234"
+	{
+		"name"									"Mantle of Grim Facade"
+		"prefab"								"wearable"
+		"creation_date"							"2017-03-23"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/shadow_demon/ti7_immortal_back/sd_ti7_immortal_back"
+		"item_description"						"#DOTA_Item_Desc_Mantle_of_Grim_Facade"
+		"item_name"								"#DOTA_Item_Mantle_of_Grim_Facade"
+		"item_quality"							"base"
+		"item_rarity"							"immortal"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/shadow_demon/ti7_immortal_back/sd_ti7_immortal_back.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"1"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shadow_demon/shadow_demon_shadow_poison_projectile.vpcf"
+				"modifier"						"particles/econ/items/shadow_demon/sd_ti7_shadow_poison/sd_ti7_shadow_poison_proj.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shadow_demon/shadow_demon_shadow_poison_release.vpcf"
+				"modifier"						"particles/econ/items/shadow_demon/sd_ti7_shadow_poison/sd_ti7_shadow_poison_release.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_demon/sd_ti7_shadow_poison/sd_ti7_immortal_ambient.vpcf"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti7"
+				"style"							"0"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shadow_demon/shadow_demon_ambient.vpcf"
+				"modifier"						"particles/econ/items/shadow_demon/sd_ti7_shadow_poison/sd_ti7_immortal_body_ambient.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shadow_demon/shadow_demon_shadow_poison_kill.vpcf"
+				"modifier"						"particles/econ/items/shadow_demon/sd_ti7_shadow_poison/sd_ti7_shadow_poison_kill.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier6"
+			{
+				"type"							"ability_icon"
+				"asset"							"shadow_demon_shadow_poison"
+				"modifier"						"shadow_demon/immortal/shadow_demon_shadow_poison"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier7"
+			{
+				"type"							"ability_icon"
+				"asset"							"shadow_demon_shadow_poison_release"
+				"modifier"						"shadow_demon/immortal/shadow_demon_shadow_poison_release"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+		}
+	}
+	"9450"
+	{
+		"name"									"Golden Mantle of Grim Facade"
+		"prefab"								"wearable"
+		"creation_date"							"2017-08-03"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/shadow_demon/ti7_immortal_back/sd_ti7_immortal_back1"
+		"item_description"						"#DOTA_Item_Desc_Golden_Mantle_of_Grim_Facade"
+		"item_name"								"#DOTA_Item_Golden_Mantle_of_Grim_Facade"
+		"item_rarity"							"immortal"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/shadow_demon/ti7_immortal_back/sd_ti7_immortal_back.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"1"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shadow_demon/shadow_demon_shadow_poison_projectile.vpcf"
+				"modifier"						"particles/econ/items/shadow_demon/sd_ti7_shadow_poison/sd_ti7_golden_shadow_poison_proj.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shadow_demon/shadow_demon_shadow_poison_release.vpcf"
+				"modifier"						"particles/econ/items/shadow_demon/sd_ti7_shadow_poison/sd_ti7_golden_shadow_poison_release.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_demon/sd_ti7_shadow_poison/sd_ti7_golden_immortal_ambient.vpcf"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti7"
+				"style"							"0"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shadow_demon/shadow_demon_ambient.vpcf"
+				"modifier"						"particles/econ/items/shadow_demon/sd_ti7_shadow_poison/sd_ti7_immortal_body_ambient.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shadow_demon/shadow_demon_shadow_poison_kill.vpcf"
+				"modifier"						"particles/econ/items/shadow_demon/sd_ti7_shadow_poison/sd_ti7_golden_shadow_poison_kill.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"skin"								"1"
+			"asset_modifier6"
+			{
+				"type"							"ability_icon"
+				"asset"							"shadow_demon_shadow_poison"
+				"modifier"						"shadow_demon/immortal/shadow_demon_shadow_poison_gold"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier7"
+			{
+				"type"							"ability_icon"
+				"asset"							"shadow_demon_shadow_poison_release"
+				"modifier"						"shadow_demon/immortal/shadow_demon_shadow_poison_release_gold"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+		}
+	}
+	"9532"
+	{
+		"name"									"Wake of the Stygian Maw"
+		"prefab"								"wearable"
+		"creation_date"							"2017-10-26"
+		"image_inventory"						"econ/items/shadow_demon/conqueror_measurement_armor/conqueror_measurement_armor"
+		"item_name"								"#DOTA_Item_Wake_of_the_Stygian_Maw"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/shadow_demon/conqueror_measurement_armor/conqueror_measurement_armor.vmdl"
+	}
+	"9533"
+	{
+		"name"									"Spines of the Stygian Maw"
+		"prefab"								"wearable"
+		"creation_date"							"2017-10-26"
+		"image_inventory"						"econ/items/shadow_demon/conqueror_measurement_back/conqueror_measurement_back"
+		"item_name"								"#DOTA_Item_Spines_of_the_Stygian_Maw"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/shadow_demon/conqueror_measurement_back/conqueror_measurement_back.vmdl"
+	}
+	"9535"
+	{
+		"name"									"Belt of the Stygian Maw"
+		"prefab"								"wearable"
+		"creation_date"							"2017-10-26"
+		"image_inventory"						"econ/items/shadow_demon/conqueror_measurement_belt/conqueror_measurement_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Stygian_Maw"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/shadow_demon/conqueror_measurement_belt/conqueror_measurement_belt.vmdl"
+	}
+	"9540"
+	{
+		"name"									"Tail of the Stygian Maw"
+		"prefab"								"wearable"
+		"creation_date"							"2017-10-26"
+		"image_inventory"						"econ/items/shadow_demon/conqueror_measurement_tail/conqueror_measurement_tail"
+		"item_name"								"#DOTA_Item_Tail_of_the_Stygian_Maw"
+		"item_rarity"							"rare"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_tail"
+		"model_player"							"models/items/shadow_demon/conqueror_measurement_tail/conqueror_measurement_tail.vmdl"
+	}
+	"13152"
+	{
+		"name"									"Tail of Depraved Malformation"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/shadow_demon/ti9_cache_sd_corrupted_shrine_tail/ti9_cache_sd_corrupted_shrine_tail"
+		"item_name"								"#DOTA_Item_Tail_of_Depraved_Malformation"
+		"item_rarity"							"rare"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_tail"
+		"model_player"							"models/items/shadow_demon/ti9_cache_sd_corrupted_shrine_tail/ti9_cache_sd_corrupted_shrine_tail.vmdl"
+	}
+	"13153"
+	{
+		"name"									"Grasp of Depraved Malformation"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/shadow_demon/ti9_cache_sd_corrupted_shrine_back/ti9_cache_sd_corrupted_shrine_back"
+		"item_name"								"#DOTA_Item_Grasp_of_Depraved_Malformation"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/shadow_demon/ti9_cache_sd_corrupted_shrine_back/ti9_cache_sd_corrupted_shrine_back.vmdl"
+	}
+	"13154"
+	{
+		"name"									"Armor of Depraved Malformation"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/shadow_demon/ti9_cache_sd_corrupted_shrine_armor/ti9_cache_sd_corrupted_shrine_armor"
+		"item_name"								"#DOTA_Item_Armor_of_Depraved_Malformation"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/shadow_demon/ti9_cache_sd_corrupted_shrine_armor/ti9_cache_sd_corrupted_shrine_armor.vmdl"
+	}
+	"13155"
+	{
+		"name"									"Belt of Depraved Malformation"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/shadow_demon/ti9_cache_sd_corrupted_shrine_belt/ti9_cache_sd_corrupted_shrine_belt"
+		"item_name"								"#DOTA_Item_Belt_of_Depraved_Malformation"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/shadow_demon/ti9_cache_sd_corrupted_shrine_belt/ti9_cache_sd_corrupted_shrine_belt.vmdl"
+	}
+	"14368"
+	{
+		"name"									"Crown of Calaphas Tail"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/shadow_demon/sd_crown_of_the_nightworld_tail/sd_crown_of_the_nightworld_tail"
+		"item_name"								"#DOTA_Item_Crown_of_Calaphas_Tail"
+		"item_rarity"							"mythical"
+		"item_slot"								"tail"
+		"model_player"							"models/items/shadow_demon/sd_crown_of_the_nightworld_tail/sd_crown_of_the_nightworld_tail.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"14369"
+	{
+		"name"									"Crown of Calaphas Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/shadow_demon/sd_crown_of_the_nightworld_belt/sd_crown_of_the_nightworld_belt"
+		"item_name"								"#DOTA_Item_Crown_of_Calaphas_Belt"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"model_player"							"models/items/shadow_demon/sd_crown_of_the_nightworld_belt/sd_crown_of_the_nightworld_belt.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"14370"
+	{
+		"name"									"Crown of Calaphas Back"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/shadow_demon/sd_crown_of_the_nightworld_back/sd_crown_of_the_nightworld_back"
+		"item_name"								"#DOTA_Item_Crown_of_Calaphas_Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"model_player"							"models/items/shadow_demon/sd_crown_of_the_nightworld_back/sd_crown_of_the_nightworld_back.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_demon/sd_crown_nightworld/sd_crown_nightworld_back.vpcf"
+			}
+		}
+	}
+	"14371"
+	{
+		"name"									"Crown of Calaphas Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/shadow_demon/sd_crown_of_the_nightworld_armor/sd_crown_of_the_nightworld_armor"
+		"item_name"								"#DOTA_Item_Crown_of_Calaphas_Armor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"model_player"							"models/items/shadow_demon/sd_crown_of_the_nightworld_armor/sd_crown_of_the_nightworld_armor.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_demon/sd_crown_nightworld/sd_crown_nightworld_armor.vpcf"
+			}
+		}
+	}
+	"19211"
+	{
+		"name"									"Origins of the Shadow Creed - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-09"
+		"image_inventory"						"econ/items/shadow_demon/mantle_of_the_shadow_demon_back/mantle_of_the_shadow_demon_back"
+		"item_name"								"#DOTA_Item_Origins_of_the_Shadow_Creed__Back"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/shadow_demon/mantle_of_the_shadow_demon_back/mantle_of_the_shadow_demon_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"19212"
+	{
+		"name"									"Origins of the Shadow Creed - Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-09"
+		"image_inventory"						"econ/items/shadow_demon/mantle_of_the_shadow_demon_belt/mantle_of_the_shadow_demon_belt"
+		"item_name"								"#DOTA_Item_Origins_of_the_Shadow_Creed__Belt"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/shadow_demon/mantle_of_the_shadow_demon_belt/mantle_of_the_shadow_demon_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"19213"
+	{
+		"name"									"Origins of the Shadow Creed - Tail"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-09"
+		"image_inventory"						"econ/items/shadow_demon/mantle_of_the_shadow_demon_tail/mantle_of_the_shadow_demon_tail"
+		"item_name"								"#DOTA_Item_Origins_of_the_Shadow_Creed__Tail"
+		"item_rarity"							"rare"
+		"item_slot"								"tail"
+		"model_player"							"models/items/shadow_demon/mantle_of_the_shadow_demon_tail/mantle_of_the_shadow_demon_tail.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"19214"
+	{
+		"name"									"Origins of the Shadow Creed - Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-09"
+		"image_inventory"						"econ/items/shadow_demon/mantle_of_the_shadow_demon_armor/mantle_of_the_shadow_demon_armor"
+		"item_name"								"#DOTA_Item_Origins_of_the_Shadow_Creed__Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/shadow_demon/mantle_of_the_shadow_demon_armor/mantle_of_the_shadow_demon_armor.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"20120"
+	{
+		"name"									"Chains of the Summoned Lord Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bindings of the Summoned Lord"		"1"
+			"Sigil of the Summoned Lord"		"1"
+			"Lash of the Summoned Lord"			"1"
+			"Plate of the Summoned Lord"		"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Chains_of_the_Summoned_Lord_Set"
+		"item_description"						"#DOTA_Item_Desc_Chains_of_the_Summoned_Lord_Set"
+		"item_name"								"#DOTA_Item_Chains_of_the_Summoned_Lord_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20617"
+	{
+		"name"									"Malicious Sting"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Malicious Sting Armor"				"1"
+			"Malicious Sting Back"				"1"
+			"Malicious Sting Tail"				"1"
+			"Malicious Sting Belt"				"1"
+		}
+		"creation_date"							"2014-08-13"
+		"image_inventory"						"econ/sets/DOTA_Item_Malicious_Sting"
+		"item_description"						"#DOTA_Item_Desc_Malicious_Sting"
+		"item_name"								"#DOTA_Item_Malicious_Sting"
+		"item_rarity"							"rare"
+	}
+	"20842"
+	{
+		"name"									"Umbral Descent"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Tail of the Umbral Descent"		"1"
+			"Belt of the Umbral Descent"		"1"
+			"Armor of the Umbral Descent"		"1"
+			"Form of the Umbral Descent"		"1"
+			"Umbral Descent Loading Screen"		"1"
+		}
+		"creation_date"							"2015-06-05"
+		"image_inventory"						"econ/loading_screens/umbral_descent_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Umbral_Descent"
+		"item_name"								"#DOTA_Item_Umbral_Descent"
+		"item_rarity"							"rare"
+	}
+	"21149"
+	{
+		"name"									"Stygian Maw"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Stygian Maw Loading Screen"		"1"
+			"Tail of the Stygian Maw"			"1"
+			"Belt of the Stygian Maw"			"1"
+			"Spines of the Stygian Maw"			"1"
+			"Wake of the Stygian Maw"			"1"
+		}
+		"creation_date"							"2017-10-26"
+		"image_inventory"						"econ/loading_screens/conqueror_measurement_loading_screen"
+		"item_name"								"#DOTA_Item_Stygian_Maw"
+		"item_rarity"							"rare"
+	}
+	"21356"
+	{
+		"name"									"Depraved Malformation"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Belt of Depraved Malformation"		"1"
+			"Armor of Depraved Malformation"	"1"
+			"Grasp of Depraved Malformation"	"1"
+			"Tail of Depraved Malformation"		"1"
+		}
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/sets/DOTA_Item_Depraved_Malformation"
+		"item_name"								"#DOTA_Item_Depraved_Malformation"
+		"item_rarity"							"rare"
+	}
+	"21548"
+	{
+		"name"									"Crown of Calaphas"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Crown of Calaphas Armor"			"1"
+			"Crown of Calaphas Back"			"1"
+			"Crown of Calaphas Belt"			"1"
+			"Crown of Calaphas Tail"			"1"
+		}
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_SD_Crown_of_the_Nightworld"
+		"item_name"								"#DOTA_Item_Crown_of_Calaphas"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21810"
+	{
+		"name"									"Origins of the Shadow Creed"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Origins of the Shadow Creed - Armor""1"
+			"Origins of the Shadow Creed - Tail""1"
+			"Origins of the Shadow Creed - Belt""1"
+			"Origins of the Shadow Creed - Back""1"
+		}
+		"creation_date"							"2021-08-09"
+		"image_inventory"						"econ/sets/DOTA_Item_Mantle_of_the_Shadow_Demon"
+		"item_name"								"#DOTA_Item_Origins_of_the_Shadow_Creed"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"22130"
+	{
+		"name"									"Spring Lineage Tail of the Stygian Maw"
+		"prefab"								"wearable"
+		"creation_date"							"2022-03-25"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/items/shadow_demon/conqueror_measurement_tail/conqueror_measurement_tail1"
+		"item_description"						"#DOTA_Item_Desc_Spring_Lineage_Tail_of_the_Stygian_Maw"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Tail_of_the_Stygian_Maw"
+		"item_rarity"							"rare"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/items/shadow_demon/conqueror_measurement_tail/conqueror_measurement_tail.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+		"visuals"
+		{
+			"skin"								"1"
+			"skip_model_combine"				"0"
+		}
+	}
+	"23185"
+	{
+		"name"									"Spring Lineage Wake of the Stygian Maw"
+		"prefab"								"wearable"
+		"creation_date"							"2022-03-25"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/items/shadow_demon/conqueror_measurement_armor/conqueror_measurement_armor1"
+		"item_description"						"#DOTA_Item_Desc_Spring_Lineage_Wake_of_the_Stygian_Maw"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Wake_of_the_Stygian_Maw"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/shadow_demon/conqueror_measurement_armor/conqueror_measurement_armor.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+		"visuals"
+		{
+			"skin"								"1"
+			"skip_model_combine"				"0"
+		}
+	}
+	"23186"
+	{
+		"name"									"Spring Lineage Spines of the Stygian Maw"
+		"prefab"								"wearable"
+		"creation_date"							"2022-03-25"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/items/shadow_demon/conqueror_measurement_back/conqueror_measurement_back1"
+		"item_description"						"#DOTA_Item_Desc_Spring_Lineage_Spines_of_the_Stygian_Maw"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Spines_of_the_Stygian_Maw"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/shadow_demon/conqueror_measurement_back/conqueror_measurement_back.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"23187"
+	{
+		"name"									"Spring Lineage Belt of the Stygian Maw"
+		"prefab"								"wearable"
+		"creation_date"							"2022-03-25"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/items/shadow_demon/conqueror_measurement_belt/conqueror_measurement_belt1"
+		"item_description"						"#DOTA_Item_Desc_Spring_Lineage_Belt_of_the_Stygian_Maw"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Belt_of_the_Stygian_Maw"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/shadow_demon/conqueror_measurement_belt/conqueror_measurement_belt.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"23188"
+	{
+		"name"									"Spring Lineage Stygian Maw"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Spring Lineage Wake of the Stygian Maw""1"
+			"Spring Lineage Spines of the Stygian Maw""1"
+			"Spring Lineage Belt of the Stygian Maw""1"
+			"Spring Lineage Tail of the Stygian Maw""1"
+		}
+		"creation_date"							"2022-03-25"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/sets/DOTA_Item_Spring_Lineage_Stygian_Maw"
+		"item_description"						"#DOTA_Item_Desc_Spring_Lineage_Stygian_Maw"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Stygian_Maw"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+	}
+}

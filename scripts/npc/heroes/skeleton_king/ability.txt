@@ -1,0 +1,121 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"skeleton_king_reincarnation"
+	{
+		"AbilityValues"
+		{
+			"scepter_duration"
+			{
+				"value"							"0"
+				"special_bonus_scepter"			"=0"
+				"RequiresScepter"				"1"
+			}
+			"scepter_aura_radius"
+			{
+				"value"							"0"
+				"special_bonus_scepter"			"=0"
+				"RequiresScepter"				"1"
+			}
+		}
+	}
+	"skeleton_king_vampiric_aura_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"AbilityTextureName"					"skeleton_king_bone_guard"
+		"ScriptFile"							"heroes/hero_wraith_king/skeleton_king_vampiric_aura_lua"
+		"AbilityType"							"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"FightRecapLevel"						"2"
+		"AbilityCastPoint"						"0.1"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityManaCost"						"70 80 90 100"
+		"AbilityModifierSupportValue"			"0.0"
+		"AbilityValues"
+		{
+			"vampiric_aura"
+			{
+				"value"							"9 16 23 30"
+				"special_bonus_unique_wraith_king_2""+10"
+			}
+			"skeleton_duration"
+			{
+				"value"							"40"
+				"special_bonus_unique_wraith_king_vampiric_skeleton_duration""+25%"
+			}
+			"AbilityCooldown"
+			{
+				"value"							"30"
+				"special_bonus_unique_wraith_king_vampiric_skeleton_duration""-25%"
+			}
+			"radius"							"3000"
+			"skeleton_damage"					"68 119 170 221"
+			"skeleton_health"					"350 612 875 1138"
+			"max_hp_steal"						"40"
+			"max_hp_steal_duration"				"10"
+			"fighter_crit"
+			{
+				"value"							"0"
+				"special_bonus_unique_wraith_king_6""+1"
+			}
+			"crit_bonus_level"
+			{
+				"special_bonus_unique_wraith_king_10""+1"
+			}
+			"cleave"
+			{
+				"special_bonus_cleave_35"		"+1"
+			}
+			"reincarnate"
+			{
+				"special_bonus_unique_wraith_king_5""+1"
+			}
+			"max_fighter_count"					"4"
+			"hero_bonus_damage"					"25"
+		}
+	}
+	"skeleton_fighter_mortal_strike"
+	{
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilitySound"							"Hero_SkeletonKing.CriticalStrike"
+		"BaseClass"								"ability_lua"
+		"AbilityTextureName"					"skeleton_king_mortal_strike"
+		"ScriptFile"							"heroes/hero_wraith_king/skeleton_fighter_mortal_strike"
+		"MaxLevel"								"2"
+		"AbilityCooldown"						"2.5 0.5"
+		"AbilityValues"
+		{
+			"crit_mult"							"200"
+		}
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_3"
+	}
+	"skeleton_fighter_plunder_blood"
+	{
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"BaseClass"								"ability_lua"
+		"AbilityTextureName"					"undying/undying_fall20_immortal_ability_icon/undying_fall20_immortal_soul_rip"
+		"ScriptFile"							"heroes/hero_wraith_king/skeleton_fighter_plunder_blood"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PURE"
+		"AbilityValues"
+		{
+			"max_hp_steal"						"40"
+			"crit_mult"							"200"
+		}
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_3"
+	}
+}

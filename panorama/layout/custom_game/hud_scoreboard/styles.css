@@ -1,0 +1,693 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+@define rarity_color_1: #b0c3d9;
+@define rarity_color_uncommon: #5e98d9;
+@define rarity_color_2: #4b69ff;
+@define rarity_color_3: #8847ff;
+@define rarity_color_0: #d32ce6;
+@define rarity_color_5: #eb4b4b;
+@define rarity_color_4: #e4ae39;
+@define rarity_color_arcana: #ade55c;
+@define rarity_color_seasonal: #fff34f;
+.CommonGoldNum
+{
+	font-size: 24px;
+	color: #FFCC34;
+}
+
+.CommonButtonBlue
+{
+	width: 197px;
+	height: 54px;
+	background-image: url("s2r://panorama/images/custom_game/common_resource/btnblue_png.vtex");
+}
+
+.CommonButtonBlue Label
+{
+	align: center center;
+	color: #E9E9E9;
+	font-size: 17px;
+	text-shadow: 0px 0px 1px 3 #000000;
+}
+
+.CommonButtonGrey
+{
+	width: 197px;
+	height: 54px;
+	background-image: url("s2r://panorama/images/custom_game/common_resource/btngrey_png.vtex");
+}
+
+.CommonButtonGrey Label
+{
+	align: center center;
+	color: #E9E9E9;
+	font-size: 17px;
+	text-shadow: 0px 0px 1px 3 #000000;
+}
+
+.RarityColor0
+{
+	color: rarity_color_0;
+}
+
+.RarityColor1
+{
+	color: rarity_color_1;
+}
+
+.RarityColor2
+{
+	color: rarity_color_2;
+}
+
+.RarityColor3
+{
+	color: rarity_color_3;
+}
+
+.RarityColor4
+{
+	color: rarity_color_4;
+}
+
+.RarityColor5
+{
+	color: rarity_color_5;
+}
+
+.RarityBorderColor0
+{
+	border-color: rarity_color_0;
+}
+
+.RarityBorderColor1
+{
+	border-color: rarity_color_1;
+}
+
+.RarityBorderColor2
+{
+	border-color: rarity_color_2;
+}
+
+.RarityBorderColor3
+{
+	border-color: rarity_color_3;
+}
+
+.RarityBorderColor4
+{
+	border-color: rarity_color_4;
+}
+
+.RarityBorderColor5
+{
+	border-color: rarity_color_5;
+}
+
+.RarityBGColor0
+{
+	background-color: rarity_color_0;
+}
+
+.RarityBGColor1
+{
+	background-color: rarity_color_1;
+}
+
+.RarityBGColor2
+{
+	background-color: rarity_color_2;
+}
+
+.RarityBGColor3
+{
+	background-color: rarity_color_3;
+}
+
+.RarityBGColor4
+{
+	background-color: rarity_color_4;
+}
+
+.RarityBGColor5
+{
+	background-color: rarity_color_5;
+}
+
+.RarityWashColor0
+{
+	wash-color: rarity_color_0;
+}
+
+.RarityWashColor1
+{
+	wash-color: rarity_color_1;
+}
+
+.RarityWashColor2
+{
+	wash-color: rarity_color_2;
+}
+
+.RarityWashColor3
+{
+	wash-color: rarity_color_3;
+}
+
+.RarityWashColor4
+{
+	wash-color: rarity_color_4;
+}
+
+.RarityWashColor5
+{
+	wash-color: rarity_color_5;
+}
+
+.RarityGradientColor0
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), color-stop(0.5, #ED88FF), to(#A925CA));
+}
+
+.RarityGradientColor1
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#C1C1C1), to(#768594));
+}
+
+.RarityGradientColor2
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#65B0F0), to(#254CCA));
+}
+
+.RarityGradientColor3
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#D482FF), to(#7325CA));
+}
+
+.RarityGradientColor4
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), color-stop(0.5, #FFE982), to(#CA8E25));
+}
+
+.RarityGradientColor5
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), color-stop(0.5, #FF9F70), to(#D53333));
+}
+
+.HudRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#Hud_Scoreboard_main
+{
+	width: fit-children;
+	height: fit-children;
+	margin-top: 70px;
+	transform: translatey(0px) translatex(-50px);
+	transition: transform 0.3s ease-in-out 0s, opacity 0.25s ease-in-out 0s;
+	background-color: #1B1E28;
+	opacity: 0;
+	border: 0px;
+	margin-left: 6px;
+}
+
+#Hud_Scoreboard_main.Show
+{
+	transform: translatey(0px) translatex(0px);
+	opacity: 1;
+}
+
+#Hud_Scoreboard_main #Hud_Scoreboard_title
+{
+	width: 100%;
+	height: 20px;
+	flow-children: right;
+	margin-left: 5px;
+}
+
+#Hud_Scoreboard_main #Hud_Scoreboard_title #Hud_Scoreboard_title_hero
+{
+	width: 206px;
+	text-align: center;
+	font-size: 12px;
+	color: #B3B3B3;
+}
+
+#Hud_Scoreboard_main #Hud_Scoreboard_title #Hud_Scoreboard_title_gold
+{
+	width: 60px;
+	text-align: center;
+	font-size: 12px;
+	color: #B3B3B3;
+	margin-left: 20px;
+}
+
+#Hud_Scoreboard_main #Hud_Scoreboard_title #Hud_Scoreboard_title_win
+{
+	width: 45px;
+	text-align: center;
+	font-size: 12px;
+	color: #B3B3B3;
+	margin-left: 6px;
+}
+
+#Hud_Scoreboard_main #Hud_Scoreboard_title #Hud_Scoreboard_title_lose
+{
+	width: 45px;
+	text-align: center;
+	font-size: 12px;
+	color: #B3B3B3;
+	margin-right: 6px;
+}
+
+#Hud_Scoreboard_main #Hud_Scoreboard_title #Hud_Scoreboard_title_ability
+{
+	width: 198px;
+	text-align: center;
+	font-size: 12px;
+	color: #B3B3B3;
+}
+
+#Hud_Scoreboard_main #Hud_Scoreboard_title #Hud_Scoreboard_title_talent
+{
+	width: 39px;
+	text-align: center;
+	font-size: 12px;
+	color: #B3B3B3;
+	margin-left: 4px;
+}
+
+#Hud_Scoreboard_main #Hud_Scoreboard_title #Hud_Scoreboard_title_item
+{
+	width: 145px;
+	text-align: center;
+	font-size: 12px;
+	color: #B3B3B3;
+}
+
+#Hud_Scoreboard_main #Hud_Scoreboard_list
+{
+	width: fit-children;
+	height: fit-children;
+	align: center center;
+	flow-children: down;
+}
+
+#Hud_Scoreboard_main #Hud_Scoreboard_bottombar
+{
+	height: 24px;
+}
+
+#Hud_Scoreboard_main #Hud_Scoreboard_bottombar #Hud_Scoreboard_Mute
+{
+	width: 200px;
+	height: 100%;
+	flow-children: right;
+}
+
+#Hud_Scoreboard_main #Hud_Scoreboard_bottombar #Hud_Scoreboard_Mute #AllMute_Button
+{
+	width: 22px;
+	height: 22px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/button_audio_on_psd.vtex");
+	background-size: 100%;
+}
+
+#Hud_Scoreboard_main #Hud_Scoreboard_bottombar #Hud_Scoreboard_Mute #AllMute_Button.Muted
+{
+	background-image: url("s2r://panorama/images/custom_game/button_audio_off_psd.vtex");
+}
+
+#Hud_Scoreboard_main #Hud_Scoreboard_bottombar #Hud_Scoreboard_Mute #AllMute_Button:hover
+{
+	brightness: 2;
+}
+
+#Hud_Scoreboard_main #Hud_Scoreboard_bottombar #Hud_Scoreboard_Mute #AllMute_text
+{
+	height: 13px;
+	vertical-align: center;
+	text-align: center;
+	color: white;
+	font-size: 12px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}
+
+#ScoreTeam
+{
+	width: fit-children;
+	height: fit-children;
+	background-color: #202B40;
+	box-shadow: inset #62758B 0px 0px 1px 0px;
+	background-size: 100%;
+	flow-children: down;
+}
+
+#ScoreTeam #TeamContent
+{
+	width: fit-children;
+	height: fit-children;
+	flow-children: down;
+}
+
+#PlayerInfo_main
+{
+	width: fit-children;
+	height: fit-children;
+	margin-left: 5px;
+}
+
+#PlayerInfo_main #PlayerInfo_hero
+{
+	width: 206px;
+	height: 100%;
+}
+
+#PlayerInfo_main #PlayerInfo_hero #PlayerInfo_hero_icon_img
+{
+	height: 36px;
+	width: 64px;
+	vertical-align: center;
+}
+
+#PlayerInfo_main #PlayerInfo_hero #PlayerInfo_hero_textInfo
+{
+	flow-children: down;
+	height: 100%;
+	width: 120px;
+}
+
+#PlayerInfo_main #PlayerInfo_hero #PlayerInfo_hero_textInfo #PlayerInfo_Playername
+{
+	height: 14px;
+	width: 87px;
+	color: #B3B3B3;
+	font-size: 12px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+	margin-left: 6px;
+	margin-top: 5px;
+}
+
+#PlayerInfo_main #PlayerInfo_hero #PlayerInfo_hero_textInfo #PlayerInfo_hero_lvlname
+{
+	height: 43px;
+	margin-bottom: 4px;
+	width: 87px;
+	margin-left: 6px;
+}
+
+#PlayerInfo_main #PlayerInfo_hero #PlayerInfo_hero_textInfo #PlayerInfo_hero_lvlname #PlayerInfo_hero_lvl
+{
+	align: left center;
+	flow-children: right;
+}
+
+#PlayerInfo_main #PlayerInfo_hero #PlayerInfo_hero_textInfo #PlayerInfo_hero_lvlname #PlayerInfo_hero_lvl #PlayerInfo_hero_lvl_title
+{
+	font-size: 12px;
+	color: #7896AD;
+}
+
+#PlayerInfo_main #PlayerInfo_hero #PlayerInfo_hero_textInfo #PlayerInfo_hero_lvlname #PlayerInfo_hero_lvl #PlayerInfo_hero_lvl_num
+{
+	font-size: 12px;
+	color: #FFFFFF;
+}
+
+#PlayerInfo_main #PlayerInfo_hero #PlayerInfo_hero_textInfo #PlayerInfo_hero_lvlname #PlayerInfo_hero_name
+{
+	align: right center;
+	font-size: 12px;
+	color: #7896AD;
+}
+
+#PlayerInfo_main #PlayerInfo_hero #PlayerInfo_mute
+{
+	width: 22px;
+	height: 22px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/button_audio_on_psd.vtex");
+	background-size: 100%;
+	visibility: collapse;
+}
+
+#PlayerInfo_main #PlayerInfo_hero #PlayerInfo_mute.Show
+{
+	visibility: visible;
+}
+
+#PlayerInfo_main #PlayerInfo_hero #PlayerInfo_mute.Muted
+{
+	background-image: url("s2r://panorama/images/custom_game/button_audio_off_psd.vtex");
+}
+
+#PlayerInfo_main #PlayerInfo_hero #PlayerInfo_mute:hover
+{
+	brightness: 2;
+}
+
+#PlayerInfo_main #PlayerInfo_gold
+{
+	width: 60px;
+	height: 40px;
+	margin-left: 20px;
+	vertical-align: center;
+	flow-children: right;
+	font-size: 24px;
+	color: #FFCC34;
+}
+
+#PlayerInfo_main #PlayerInfo_gold #PlayerInfo_gold_icon
+{
+	width: 23px;
+	height: 23px;
+	vertical-align: center;
+}
+
+#PlayerInfo_main #PlayerInfo_gold Label
+{
+	vertical-align: center;
+	text-align: center;
+	font-weight: bold;
+	font-size: 14px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+	margin-left: 4px;
+}
+
+#PlayerInfo_main #PlayerInfo_pvp_record
+{
+	width: 90px;
+	height: 40px;
+	vertical-align: center;
+	margin-left: 6px;
+	margin-right: 6px;
+}
+
+#PlayerInfo_main #PlayerInfo_pvp_record #pvp_record_win
+{
+	width: 50%;
+	align: left center;
+	text-align: center;
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 14px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}
+
+#PlayerInfo_main #PlayerInfo_pvp_record #pvp_record_lose
+{
+	width: 50%;
+	align: right center;
+	text-align: center;
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 14px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}
+
+#PlayerInfo_main #PlayerInfo_abilities
+{
+	width: 198px;
+	height: 100%;
+	margin-left: 6px;
+}
+
+#PlayerInfo_main #PlayerInfo_abilities .playerinfo_ability
+{
+	vertical-align: center;
+	height: 29px;
+	width: 29px;
+	margin-right: 3px;
+}
+
+#PlayerInfo_main #PlayerInfo_talent
+{
+	width: 39px;
+	height: 39px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/hud/reborn/statbranch_button_bg_psd.vtex");
+	background-size: 100%;
+}
+
+#PlayerInfo_main #PlayerInfo_talent #PlayerInfo_talent_branch
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/statbranch_button_bg_all_off_psd.vtex");
+	background-size: 100%;
+}
+
+#PlayerInfo_main #PlayerInfo_items
+{
+	height: 48px;
+	width: fit-children;
+	vertical-align: center;
+	padding-left: 6px;
+	padding-right: 6px;
+	flow-children: right;
+}
+
+#PlayerInfo_main #PlayerInfo_items #PlayerInfo_items_bonus
+{
+	width: 34px;
+	height: 48px;
+	padding: 2px;
+	flow-children: down;
+}
+
+#PlayerInfo_main #PlayerInfo_items #PlayerInfo_items_bonus #PlayerInfo_items_scepter
+{
+	width: 30px;
+	height: 65%;
+	background-image: url("s2r://panorama/images/hud/reborn/aghsstatus_scepter_psd.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#PlayerInfo_main #PlayerInfo_items #PlayerInfo_items_bonus #PlayerInfo_items_scepter.Active
+{
+	background-image: url("s2r://panorama/images/hud/reborn/aghsstatus_scepter_on_psd.vtex");
+}
+
+#PlayerInfo_main #PlayerInfo_items #PlayerInfo_items_bonus #PlayerInfo_items_shard
+{
+	width: 30px;
+	height: 35%;
+	background-image: url("s2r://panorama/images/hud/reborn/aghsstatus_shard_psd.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#PlayerInfo_main #PlayerInfo_items #PlayerInfo_items_bonus #PlayerInfo_items_shard.Active
+{
+	background-image: url("s2r://panorama/images/hud/reborn/aghsstatus_shard_on_psd.vtex");
+}
+
+#PlayerInfo_main #PlayerInfo_items #PlayerInfo_items_main
+{
+	width: 96px;
+	height: 48px;
+}
+
+#PlayerInfo_main #PlayerInfo_items #PlayerInfo_items_main .playerinfo_item0
+{
+	height: 22px;
+	width: 30px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	transform: translateX(0px) translateY(0px);
+}
+
+#PlayerInfo_main #PlayerInfo_items #PlayerInfo_items_main .playerinfo_item1
+{
+	height: 22px;
+	width: 30px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	transform: translateX(31.5px) translateY(0px);
+}
+
+#PlayerInfo_main #PlayerInfo_items #PlayerInfo_items_main .playerinfo_item2
+{
+	height: 22px;
+	width: 30px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	transform: translateX(63px) translateY(0px);
+}
+
+#PlayerInfo_main #PlayerInfo_items #PlayerInfo_items_main .playerinfo_item3
+{
+	height: 22px;
+	width: 30px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	transform: translateX(0px) translateY(24px);
+}
+
+#PlayerInfo_main #PlayerInfo_items #PlayerInfo_items_main .playerinfo_item4
+{
+	height: 22px;
+	width: 30px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	transform: translateX(31.5px) translateY(24px);
+}
+
+#PlayerInfo_main #PlayerInfo_items #PlayerInfo_items_main .playerinfo_item5
+{
+	height: 22px;
+	width: 30px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	transform: translateX(63px) translateY(24px);
+}
+
+#PlayerInfo_main #PlayerInfo_items #PlayerInfo_items_main .playerinfo_item6
+{
+	height: 22px;
+	width: 30px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	transform: translateX(0px) translateY(24px);
+}
+
+#PlayerInfo_main #PlayerInfo_items #playerinfo_item_neutral_slot
+{
+	align: right center;
+	height: 23px;
+	width: 23px;
+	border-radius: 50%;
+	background-image: url("s2r://panorama/images/hud/reborn/bg_neutral_slot_png.vtex");
+	background-size: 100%;
+}
+
+#PlayerInfo_main #PlayerInfo_items #playerinfo_item_neutral_slot .playerinfo_item_neutral
+{
+	align: center center;
+}
+
+#PlayerInfo_main #PlayerInfo_talent
+{
+	width: 35px;
+	height: 35px;
+}

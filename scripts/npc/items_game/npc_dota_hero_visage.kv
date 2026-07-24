@@ -1,0 +1,607 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"543"
+	{
+		"name"									"Visage's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-08"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Visages_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_visage"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_visage/visage_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_visage/visage_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"absorigin_follow"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wingL0"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wingR0"
+					}
+					"4"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wingL1"
+					}
+					"5"
+					{
+						"control_point_index"	"5"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wingR1"
+					}
+				}
+			}
+		}
+	}
+	"599"
+	{
+		"name"									"Visage's Familiars"
+		"prefab"								"default_item"
+		"creation_date"							"2015-10-06"
+		"image_inventory"						"econ/heroes/visage/visage_familiar"
+		"item_description"						"#DOTA_Item_Desc_Visages_Default_Familiars"
+		"item_name"								"#DOTA_Item_Visages_Familiars"
+		"item_slot"								"summon"
+		"item_type_name"						"#DOTA_WearableType_Familiars"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_visage_familiar"
+				"modifier"						"models/heroes/visage/visage_familiar.vmdl"
+			}
+		}
+	}
+	"624"
+	{
+		"name"									"Visage's Head"
+		"prefab"								"default_item"
+		"creation_date"							"2016-11-08"
+		"image_inventory"						"econ/heroes/visage/visage_head"
+		"item_description"						"#DOTA_Item_Desc_Visages_Head"
+		"item_name"								"#DOTA_Item_Visages_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head_"
+		"model_player"							"models/heroes/visage/visage_head.vmdl"
+	}
+	"625"
+	{
+		"name"									"Visage's Armor"
+		"prefab"								"default_item"
+		"creation_date"							"2016-11-08"
+		"image_inventory"						"econ/heroes/visage/visage_armor"
+		"item_description"						"#DOTA_Item_Desc_Visages_Armor"
+		"item_name"								"#DOTA_Item_Visages_Armor"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/heroes/visage/visage_armor.vmdl"
+	}
+	"7463"
+	{
+		"name"									"Tolling Shadows"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-21"
+		"image_inventory"						"econ/items/visage/immortal_familiar/immortal_familiar_tolling"
+		"item_description"						"#DOTA_Item_Desc_Tolling_Shadows"
+		"item_name"								"#DOTA_Item_Tolling_Shadows"
+		"item_rarity"							"immortal"
+		"item_slot"								"summon"
+		"item_type_name"						"#DOTA_WearableType_Familiars"
+		"particle_folder"						"particles/econ/items/visage/immortal_familiar/visage_immortal_ti5"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_visage_familiar1"
+				"modifier"						"models/items/visage/immortal_familiar/immortal_familiar.vmdl"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier1"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_visage_familiar2"
+				"modifier"						"models/items/visage/immortal_familiar/immortal_familiar.vmdl"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier2"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_visage_familiar3"
+				"modifier"						"models/items/visage/immortal_familiar/immortal_familiar.vmdl"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier3"
+			{
+				"type"							"entity_scale"
+				"asset"							"npc_dota_visage_familiar"
+				"scale_size"					"0.700000"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier4"
+			{
+				"type"							"sound"
+				"asset"							"Visage_Familar.StoneForm.Cast"
+				"modifier"						"Visage_Familar.StoneForm.Cast.Tolling"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_visage/visage_familiar_ambient.vpcf"
+				"modifier"						"particles/econ/items/visage/immortal_familiar/visage_immortal_ti5/visage_familiar_ambient_ti5.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_visage/familiar_dmg_charge_eyes.vpcf"
+				"modifier"						"particles/econ/items/visage/immortal_familiar/visage_immortal_ti5/familiar_dmg_charge_eyes_ti5.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_visage/visage_familiar_base_attack.vpcf"
+				"modifier"						"particles/econ/items/visage/immortal_familiar/visage_immortal_ti5/visage_familiar_base_attack_ti5.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier8"
+			{
+				"type"							"ability_icon"
+				"asset"							"visage_summon_familiars"
+				"modifier"						"visage_summon_familiars_alt1"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier9"
+			{
+				"type"							"ability_icon"
+				"asset"							"visage_summon_familiars_stone_form"
+				"modifier"						"visage_summon_familiars_stone_form_alt1"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier"
+			{
+				"type"							"ability_icon"
+				"asset"							"visage_stone_form_self_cast"
+				"modifier"						"visage_summon_familiars_stone_form_alt1"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+		}
+	}
+	"7997"
+	{
+		"name"									"Mask of the Soul Keeper"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-18"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/visage/bound_of_the_soul_keeper_head/bound_of_the_soul_keeper_head"
+		"item_description"						"#DOTA_Item_Desc_Mask_of_the_Soul_Keeper"
+		"item_name"								"#DOTA_Item_Mask_of_the_Soul_Keeper"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/visage/bound_of_the_soul_keeper_head/bound_of_the_soul_keeper_head.vmdl"
+	}
+	"7998"
+	{
+		"name"									"Familiar of the Soul Keeper"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-18"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/visage/bound_of_the_soul_keeper_familiar/bound_of_the_soul_keeper_familiar_npc_dota_visage_familiar"
+		"item_description"						"#DOTA_Item_Desc_Familiar_of_the_Soul_Keeper"
+		"item_name"								"#DOTA_Item_Familiar_of_the_Soul_Keeper"
+		"item_rarity"							"mythical"
+		"item_slot"								"summon"
+		"item_type_name"						"#DOTA_WearableType_Visage_Familiar"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_visage_familiar"
+				"modifier"						"models/items/visage/bound_of_the_soul_keeper_familiar/bound_of_the_soul_keeper_familiar.vmdl"
+			}
+		}
+	}
+	"9051"
+	{
+		"name"									"Wings of the Soul Keeper"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-18"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/visage/bound_of_the_soul_keeper_armor/bound_of_the_soul_keeper_armor"
+		"item_description"						"#DOTA_Item_Desc_Wings_of_the_Soul_Keeper"
+		"item_name"								"#DOTA_Item_Wings_of_the_Soul_Keeper"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/visage/bound_of_the_soul_keeper_armor/bound_of_the_soul_keeper_armor.vmdl"
+	}
+	"12501"
+	{
+		"name"									"Head of the Winged Harvest"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-11"
+		"image_inventory"						"econ/items/visage/soul_reaper_head/soul_reaper_head"
+		"item_name"								"#DOTA_Item_Head_of_the_Winged_Harvest"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/visage/soul_reaper_head/soul_reaper_head.vmdl"
+	}
+	"12502"
+	{
+		"name"									"Familiar of the Winged Harvest"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-11"
+		"image_inventory"						"econ/items/visage/soul_reaper_familiar_of_soul_reaper/soul_reaper_familiar_of_soul_reaper_npc_dota_visage_familiar"
+		"item_name"								"#DOTA_Item_Familiar_of_the_Winged_Harvest"
+		"item_rarity"							"uncommon"
+		"item_slot"								"summon"
+		"item_type_name"						"#DOTA_WearableType_Visage_Familiar"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_visage_familiar"
+				"modifier"						"models/items/visage/soul_reaper_familiar_of_soul_reaper/soul_reaper_familiar_of_soul_reaper.vmdl"
+			}
+		}
+	}
+	"12503"
+	{
+		"name"									"Armor of the Winged Harvest"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-11"
+		"image_inventory"						"econ/items/visage/soul_reaper_armor/soul_reaper_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Winged_Harvest"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/visage/soul_reaper_armor/soul_reaper_armor.vmdl"
+	}
+	"12546"
+	{
+		"name"									"Mask of Unblinking Eternity"
+		"prefab"								"wearable"
+		"creation_date"							"2020-01-05"
+		"event_id"								"EVENT_ID_NEW_BLOOM_2020"
+		"image_inventory"						"econ/items/visage/eye_of_holus_head/eye_of_holus_head"
+		"item_name"								"#DOTA_Item_Mask_of_Unblinking_Eternity"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/visage/eye_of_holus_head/eye_of_holus_head.vmdl"
+	}
+	"12547"
+	{
+		"name"									"Familiar of Unblinking Eternity"
+		"prefab"								"wearable"
+		"creation_date"							"2020-01-05"
+		"event_id"								"EVENT_ID_NEW_BLOOM_2020"
+		"image_inventory"						"econ/items/visage/eye_of_holus_familiar/eye_of_holus_familiar_npc_dota_visage_familiar"
+		"item_name"								"#DOTA_Item_Familiar_of_Unblinking_Eternity"
+		"item_rarity"							"rare"
+		"item_slot"								"summon"
+		"item_type_name"						"#DOTA_WearableType_Visage_Familiar"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_visage_familiar"
+				"modifier"						"models/items/visage/eye_of_holus_familiar/eye_of_holus_familiar.vmdl"
+			}
+		}
+	}
+	"12548"
+	{
+		"name"									"Armor of Unblinking Eternity"
+		"prefab"								"wearable"
+		"creation_date"							"2020-01-05"
+		"event_id"								"EVENT_ID_NEW_BLOOM_2020"
+		"image_inventory"						"econ/items/visage/eye_of_holus_armor/eye_of_holus_armor"
+		"item_name"								"#DOTA_Item_Armor_of_Unblinking_Eternity"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/visage/eye_of_holus_armor/eye_of_holus_armor.vmdl"
+	}
+	"12863"
+	{
+		"name"									"Wings of the Keeper's Gaze"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/visage/frostivus2018_visage_frostbitten_wingdrake_armor/frostivus2018_visage_frostbitten_wingdrake_armor"
+		"item_name"								"#DOTA_Item_Wings_of_the_Keepers_Gaze"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/visage/frostivus2018_visage_frostbitten_wingdrake_armor/frostivus2018_visage_frostbitten_wingdrake_armor.vmdl"
+	}
+	"12864"
+	{
+		"name"									"Helm of the Keeper's Gaze"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/visage/frostivus2018_visage_frostbitten_wingdrake_head/frostivus2018_visage_frostbitten_wingdrake_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Keepers_Gaze"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/visage/frostivus2018_visage_frostbitten_wingdrake_head/frostivus2018_visage_frostbitten_wingdrake_head.vmdl"
+	}
+	"12865"
+	{
+		"name"									"Familiars of the Keeper's Gaze"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/visage/frostivus2018_visage_frostbitten_wing_familiars/frostivus2018_visage_frostbitten_wing_familiars_npc_dota_visage_familiar"
+		"item_name"								"#DOTA_Item_Familiars_of_the_Keepers_Gaze"
+		"item_rarity"							"rare"
+		"item_slot"								"summon"
+		"item_type_name"						"#DOTA_WearableType_Visage_Familiar"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_visage_familiar"
+				"modifier"						"models/items/visage/frostivus2018_visage_frostbitten_wing_familiars/frostivus2018_visage_frostbitten_wing_familiars.vmdl"
+			}
+		}
+	}
+	"13427"
+	{
+		"name"									"Praetor of Royal Souls Head"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/visage/ti9_cache_visage_pit_guard_head/ti9_cache_visage_pit_guard_head"
+		"item_name"								"#DOTA_Item_Praetor_of_Royal_Souls_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/visage/ti9_cache_visage_pit_guard_head/ti9_cache_visage_pit_guard_head.vmdl"
+	}
+	"13428"
+	{
+		"name"									"Praetor of Royal Souls Familiar"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/visage/ti9_cache_visage_pit_guard_familiar/ti9_cache_visage_pit_guard_familiar_npc_dota_visage_familiar"
+		"item_name"								"#DOTA_Item_Praetor_of_Royal_Souls_Familiar"
+		"item_rarity"							"rare"
+		"item_slot"								"summon"
+		"item_type_name"						"#DOTA_WearableType_Visage_Familiar"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_visage_familiar"
+				"modifier"						"models/items/visage/ti9_cache_visage_pit_guard_familiar/ti9_cache_visage_pit_guard_familiar.vmdl"
+			}
+		}
+	}
+	"13429"
+	{
+		"name"									"Praetor of Royal Souls Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/visage/ti9_cache_visage_pit_guard_armor/ti9_cache_visage_pit_guard_armor"
+		"item_name"								"#DOTA_Item_Praetor_of_Royal_Souls_Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/visage/ti9_cache_visage_pit_guard_armor/ti9_cache_visage_pit_guard_armor.vmdl"
+	}
+	"19403"
+	{
+		"name"									"Boundary Marker of Death Realm Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/visage/boundary_marker_of_death_realm_armor/boundary_marker_of_death_realm_armor"
+		"item_name"								"#DOTA_Item_Vote_Only_Boundary_Marker_of_Death_Realm_Armor"
+		"item_slot"								"armor"
+		"model_player"							"models/items/visage/boundary_marker_of_death_realm_armor/boundary_marker_of_death_realm_armor.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19404"
+	{
+		"name"									"Boundary Marker of Death Realm Familiar"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/visage/boundary_marker_of_death_realm_familiar/boundary_marker_of_death_realm_familiar_npc_dota_visage_familiar"
+		"item_name"								"#DOTA_VISAGE_Boundary_Marker_of_Death_Realm_Familiar_FAMILIAR"
+		"item_slot"								"summon"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_visage_familiar"
+				"modifier"						"models/items/visage/boundary_marker_of_death_realm_familiar/boundary_marker_of_death_realm_familiar.vmdl"
+			}
+		}
+	}
+	"19405"
+	{
+		"name"									"Boundary Marker of Death Realm Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/visage/boundary_marker_of_death_realm_head/boundary_marker_of_death_realm_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Boundary_Marker_of_Death_Realm_Head"
+		"item_slot"								"head"
+		"model_player"							"models/items/visage/boundary_marker_of_death_realm_head/boundary_marker_of_death_realm_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"21010"
+	{
+		"name"									"Barding of the Soul Keeper"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of the Soul Keeper"	"1"
+			"Wings of the Soul Keeper"			"1"
+			"Familiar of the Soul Keeper"		"1"
+			"Mask of the Soul Keeper"			"1"
+		}
+		"creation_date"							"2017-01-18"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/loading_screens/bound_of_the_soul_keeper_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Barding_of_the_Soul_Keeper"
+		"item_name"								"#DOTA_Item_Barding_of_the_Soul_Keeper"
+		"item_rarity"							"mythical"
+	}
+	"21150"
+	{
+		"name"									"Unblinking Eternity"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armor of Unblinking Eternity"		"1"
+			"Familiar of Unblinking Eternity"	"1"
+			"Mask of Unblinking Eternity"		"1"
+			"Unblinking Eternity Loading Screen""1"
+		}
+		"creation_date"							"2020-01-05"
+		"event_id"								"EVENT_ID_NEW_BLOOM_2020"
+		"image_inventory"						"econ/loading_screens/eye_of_holus_ls"
+		"item_name"								"#DOTA_Item_Unblinking_Eternity"
+		"item_rarity"							"rare"
+	}
+	"21248"
+	{
+		"name"									"Sanction of the Winged Harvest"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armor of the Winged Harvest"		"1"
+			"Head of the Winged Harvest"		"1"
+			"Familiar of the Winged Harvest"	"1"
+			"Sanction of the Winged Harvest Loading Screen""1"
+		}
+		"creation_date"							"2018-09-12"
+		"image_inventory"						"econ/loading_screens/soul_reaper_loadingscreen_of_soul_reaper"
+		"item_description"						"#DOTA_Item_Desc_Sanction_of_the_Winged_Harvest"
+		"item_name"								"#DOTA_Item_Sanction_of_the_Winged_Harvest"
+		"item_rarity"							"uncommon"
+	}
+	"21311"
+	{
+		"name"									"Chill of the Keeper's Gaze"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Familiars of the Keeper's Gaze"	"1"
+			"Helm of the Keeper's Gaze"			"1"
+			"Wings of the Keeper's Gaze"		"1"
+		}
+		"creation_date"							"2018-12-02"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/sets/DOTA_Item_Frostivus2018_Visage_Frostbitten_Wingdrake"
+		"item_description"						"#DOTA_Item_Desc_Chill_of_the_Keepers_Gaze"
+		"item_name"								"#DOTA_Item_Chill_of_the_Keepers_Gaze"
+		"item_rarity"							"rare"
+	}
+	"21407"
+	{
+		"name"									"Praetor of Royal Souls"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Praetor of Royal Souls Armor"		"1"
+			"Praetor of Royal Souls Familiar"	"1"
+			"Praetor of Royal Souls Head"		"1"
+		}
+		"creation_date"							"2019-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_TI9_Cache_Visage_Pit_Guard"
+		"item_name"								"#DOTA_Item_Praetor_of_Royal_Souls"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+	}
+	"21882"
+	{
+		"name"									"Boundary Marker of Death Realm"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Boundary Marker of Death Realm Head""1"
+			"Boundary Marker of Death Realm Armor""1"
+			"Boundary Marker of Death Realm Familiar""1"
+		}
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Boundary_Marker_of_Death_Realm"
+		"workshop_accepted"						"0"
+	}
+}

@@ -1,0 +1,68 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"shadow_fiend_requiem_of_souls_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_nevermore/shadow_fiend_requiem_of_souls_lua"
+		"AbilityTextureName"					"nevermore_requiem"
+		"FightRecapLevel"						"2"
+		"MaxLevel"								"3"
+		"HasScepterUpgrade"						"1"
+		"precache"
+		{
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
+			"particle"							"particles/units/heroes/hero_nevermore/nevermore_wings.vpcf"
+			"particle"							"particles/units/heroes/hero_nevermore/nevermore_requiemofsouls.vpcf"
+		}
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_YES"
+		"AbilityCastRange"						"1000"
+		"AbilityCastPoint"						"1.67"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityDuration"						"5.0"
+		"AbilityManaCost"						"150 175 200"
+		"AbilityDamage"							"80 120 160"
+		"AbilityValues"
+		{
+			"cast_time_tooltip"					"1.67"
+			"requiem_radius"					"1000"
+			"requiem_reduction_ms"				"-25"
+			"requiem_reduction_damage"			"-50"
+			"requiem_reduction_tooltip"			"-50"
+			"requiem_slow_duration"				"5.0"
+			"requiem_reduction_radius"			"700"
+			"requiem_line_width_start"			"125"
+			"requiem_line_width_end"			"425"
+			"requiem_line_speed"				"700"
+			"soul_death_release"				"0.5"
+			"requiem_heal_pct_scepter"
+			{
+				"value"							"100"
+				"RequiresScepter"				"1"
+			}
+			"requiem_damage_pct_scepter"
+			{
+				"value"							"40"
+				"RequiresScepter"				"1"
+			}
+			"AbilityCooldown"
+			{
+				"value"							"120 110 100"
+				"special_bonus_scepter"			"-30"
+			}
+		}
+	}
+}

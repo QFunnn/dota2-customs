@@ -1,0 +1,2338 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"392"
+	{
+		"name"									"Undying's Helmet"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/undying/undying_helmet"
+		"item_description"						"#DOTA_Item_Desc_Undyings_Helmet"
+		"item_name"								"#DOTA_Item_Undyings_Helmet"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/undying/undying_helmet.vmdl"
+	}
+	"393"
+	{
+		"name"									"Undying's Armor"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/undying/undying_armor"
+		"item_description"						"#DOTA_Item_Desc_Undyings_Armor"
+		"item_name"								"#DOTA_Item_Undyings_Armor"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/heroes/undying/undying_armor.vmdl"
+	}
+	"542"
+	{
+		"name"									"Undying's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-08"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Undyings_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_undying"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_undying/undying_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_undying/undying_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"554"
+	{
+		"name"									"Undying's Flesh Golem"
+		"prefab"								"default_item"
+		"creation_date"							"2016-02-12"
+		"image_inventory"						"econ/heroes/undying/undying_flesh_golem"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Terrorblades_Demon_Form"
+		"item_name"								"#DOTA_Item_Undyings_Flesh_Golem"
+		"item_slot"								"ability4"
+		"item_type_name"						"#DOTA_WearableType_Flesh_Golem"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"hero_model_change"
+				"asset"							"models/heroes/undying/undying_flesh_golem.vmdl"
+				"modifier"						"models/heroes/undying/undying_flesh_golem.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_undying/undying_fg_ambient_mouthgas.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_undying/undying_fg_ambient_gas02.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+			}
+		}
+	}
+	"616"
+	{
+		"name"									"Undying's Arm Armor"
+		"prefab"								"default_item"
+		"creation_date"							"2016-04-28"
+		"image_inventory"						"econ/heroes/undying/mesh/undying_arm"
+		"item_name"								"#DOTA_Item_Undyings_Arm_Armor"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/heroes/undying/mesh/undying_arm.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"6616"
+	{
+		"name"									"Pale Mausoleum"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-09"
+		"image_inventory"						"econ/items/undying/idol_of_ruination/idol_tower_npc_dota_unit_tombstone1"
+		"item_description"						"#DOTA_Item_Desc_Pale_Mausoleum"
+		"item_name"								"#DOTA_Item_Pale_Mausoleum"
+		"item_rarity"							"immortal"
+		"item_slot"								"ability3"
+		"item_type_name"						"#DOTA_WearableType_Tombstone"
+		"particle_folder"						"particles/econ/items/undying/undying_manyone"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_unit_tombstone1"
+				"modifier"						"models/items/undying/idol_of_ruination/idol_tower.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_unit_tombstone2"
+				"modifier"						"models/items/undying/idol_of_ruination/idol_tower.vmdl"
+			}
+			"asset_modifier2"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_unit_tombstone3"
+				"modifier"						"models/items/undying/idol_of_ruination/idol_tower.vmdl"
+			}
+			"asset_modifier3"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_unit_undying_zombie_torso"
+				"modifier"						"models/items/undying/idol_of_ruination/ruin_wight_minion_torso.vmdl"
+			}
+			"asset_modifier4"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_unit_undying_zombie"
+				"modifier"						"models/items/undying/idol_of_ruination/ruin_wight_minion.vmdl"
+			}
+			"asset_modifier5"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_unit_tombstone4"
+				"modifier"						"models/items/undying/idol_of_ruination/idol_tower.vmdl"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_undying/undying_tombstone.vpcf"
+				"modifier"						"particles/econ/items/undying/undying_manyone/undying_pale_tombstone.vpcf"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_undying/undying_tombstone_ambient.vpcf"
+				"modifier"						"particles/econ/items/undying/undying_manyone/undying_pale_tombstone_ambient.vpcf"
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_undying/undying_tower_destruction.vpcf"
+				"modifier"						"particles/econ/items/undying/undying_manyone/undying_pale_tower_destruction.vpcf"
+			}
+			"asset_modifier9"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Undying.Tombstone"
+				"modifier"						"Hero_Undying.Mausoleum"
+			}
+			"asset_modifier10"
+			{
+				"type"							"ability_icon"
+				"asset"							"undying_tombstone"
+				"modifier"						"undying_tombstone_alt"
+			}
+		}
+	}
+	"6860"
+	{
+		"name"									"Golden Pale Mausoleum"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-30"
+		"image_inventory"						"econ/items/undying/idol_of_ruination/idol_tower_gold_npc_dota_unit_tombstone1"
+		"item_description"						"#DOTA_Item_Desc_Golden_Pale_Mausoleum"
+		"item_name"								"#DOTA_Item_Golden_Pale_Mausoleum"
+		"item_quality"							"genuine"
+		"item_rarity"							"immortal"
+		"item_slot"								"ability3"
+		"item_type_name"						"#DOTA_WearableType_Tombstone"
+		"particle_folder"						"particles/econ/items/undying/undying_manyone"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_unit_tombstone1"
+				"modifier"						"models/items/undying/idol_of_ruination/idol_tower_gold.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_unit_tombstone2"
+				"modifier"						"models/items/undying/idol_of_ruination/idol_tower_gold.vmdl"
+			}
+			"asset_modifier2"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_unit_tombstone3"
+				"modifier"						"models/items/undying/idol_of_ruination/idol_tower_gold.vmdl"
+			}
+			"asset_modifier3"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_unit_undying_zombie_torso"
+				"modifier"						"models/items/undying/idol_of_ruination/ruin_wight_minion_torso_gold.vmdl"
+			}
+			"asset_modifier4"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_unit_undying_zombie"
+				"modifier"						"models/items/undying/idol_of_ruination/ruin_wight_minion_gold.vmdl"
+			}
+			"asset_modifier5"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_unit_tombstone4"
+				"modifier"						"models/items/undying/idol_of_ruination/idol_tower_gold.vmdl"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_undying/undying_tombstone.vpcf"
+				"modifier"						"particles/econ/items/undying/undying_manyone/undying_pale_tombstone.vpcf"
+			}
+			"asset_modifier9"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_undying/undying_tombstone_ambient.vpcf"
+				"modifier"						"particles/econ/items/undying/undying_manyone/undying_pale_gold_tombstone_ambient.vpcf"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_undying/undying_tower_destruction.vpcf"
+				"modifier"						"particles/econ/items/undying/undying_manyone/undying_pale_gold_tower_destruction.vpcf"
+			}
+			"asset_modifier8"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Undying.Tombstone"
+				"modifier"						"Hero_Undying.Mausoleum"
+			}
+			"asset_modifier10"
+			{
+				"type"							"ability_icon"
+				"asset"							"undying_tombstone"
+				"modifier"						"undying_tombstone_alt_gold"
+			}
+		}
+	}
+	"7938"
+	{
+		"name"									"Pale Augur"
+		"prefab"								"wearable"
+		"creation_date"							"2016-05-24"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/undying/ti6_immortal_arm/mesh/ti6_immortal_arm_model"
+		"item_description"						"#DOTA_Item_Desc_Pale_Augur"
+		"item_name"								"#DOTA_Item_Pale_Augur"
+		"item_rarity"							"immortal"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/undying/ti6_immortal_arm/mesh/ti6_immortal_arm_model.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"augur_arm"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_undying/undying_decay.vpcf"
+				"modifier"						"particles/econ/items/undying/undying_pale_augur/undying_pale_augur_decay.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_undying/undying_decay_strength_buff.vpcf"
+				"modifier"						"particles/econ/items/undying/undying_pale_augur/undying_pale_augur_decay_strength_buff.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_undying/undying_decay_strength_xfer.vpcf"
+				"modifier"						"particles/econ/items/undying/undying_pale_augur/undying_pale_augur_decay_strength_xfer.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/undying/undying_pale_augur/undying_pale_augur_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/undying/undying_pale_augur/undying_pale_augur_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hand"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_bracer_mid"
+					}
+				}
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_undying/undying_decay_cast.vpcf"
+				"modifier"						"particles/econ/items/undying/undying_pale_augur/undying_pale_augur_decay_cast.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier6"
+			{
+				"type"							"ability_icon"
+				"asset"							"undying_decay"
+				"modifier"						"undying/pale_augur/undying_decay"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier7"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Undying.Decay.Cast"
+				"modifier"						"Hero_Undying.Decay.Cast.PaleAugur"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier8"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Undying.Decay.Target"
+				"modifier"						"Hero_Undying.Decay.Target.PaleAugur"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier9"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Undying.Decay.Transfer"
+				"modifier"						"Hero_Undying.Decay.Transfer.PaleAugur"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+		}
+	}
+	"7960"
+	{
+		"name"									"Armor of the Dirgeful Overlord"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/undying/undying_tomb_overlord_armor/undying_tomb_overlord_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Dirgeful_Overlord"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/undying/undying_tomb_overlord_armor/undying_tomb_overlord_armor.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"7961"
+	{
+		"name"									"Crown of the Dirgeful Overlord"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/undying/undying_tomb_overlord_head/undying_tomb_overlord_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Dirgeful_Overlord"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Crown"
+		"model_player"							"models/items/undying/undying_tomb_overlord_head/undying_tomb_overlord_head.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"7973"
+	{
+		"name"									"Bracers of the Dirgeful Overlord"
+		"prefab"								"wearable"
+		"creation_date"							"2016-06-02"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/undying/undying_tomb_overlord_arms/undying_tomb_overlord_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Dirgeful_Overlord"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/undying/undying_tomb_overlord_arms/undying_tomb_overlord_arms.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"8629"
+	{
+		"name"									"Undying's Tombstone"
+		"prefab"								"default_item"
+		"creation_date"							"2015-04-14"
+		"image_inventory"						"econ/heroes/undying/undying_tower"
+		"item_description"						"#DOTA_Item_Desc_Undyings_Tombstone"
+		"item_name"								"#DOTA_Item_Undyings_Tombstone"
+		"item_slot"								"ability3"
+		"item_type_name"						"#DOTA_WearableType_Tombstone"
+	}
+	"8679"
+	{
+		"name"									"Taunt: Funk of the Dead"
+		"prefab"								"taunt"
+		"creation_date"							"2015-05-08"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/taunts/taunt_icon_undying_walk_of_dead"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Funk_of_the_Dead"
+		"item_name"								"#DOTA_Item_Taunt_Funk_of_the_Dead"
+		"item_rarity"							"rare"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"walk_gesture"
+				"gesture"						"1"
+			}
+		}
+	}
+	"9031"
+	{
+		"name"									"Helm of Grim Reformation"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/undying/corrupted_scourge_head/corrupted_scourge_head"
+		"item_description"						"#DOTA_Item_Desc_Corrupted_Scourge_Head"
+		"item_name"								"#DOTA_Item_Helm_of_Grim_Reformation"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/undying/corrupted_scourge_head/corrupted_scourge_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/undying/undying_scourge/undying_scourge_head_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/undying/undying_scourge/undying_scourge_head_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+		}
+	}
+	"9032"
+	{
+		"name"									"Armor of Grim Reformation"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/undying/corrupted_scourge_armor/corrupted_scourge_armor"
+		"item_description"						"#DOTA_Item_Desc_Corrupted_Scourge_Armor"
+		"item_name"								"#DOTA_Item_Armor_of_Grim_Reformation"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/undying/corrupted_scourge_armor/corrupted_scourge_armor.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/undying/undying_scourge/undying_scourge_armor_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/undying/undying_scourge/undying_scourge_armor_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_bicep_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+		}
+	}
+	"9033"
+	{
+		"name"									"Gauntlets of Grim Reformation"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/undying/corrupted_scourge_arms/corrupted_scourge_arms"
+		"item_description"						"#DOTA_Item_Desc_Corrupted_Scourge_Arms"
+		"item_name"								"#DOTA_Item_Gauntlets_of_Grim_Reformation"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/undying/corrupted_scourge_arms/corrupted_scourge_arms.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/undying/undying_scourge/undying_scourge_arm_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/undying/undying_scourge/undying_scourge_arm_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_arm_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+		}
+	}
+	"9034"
+	{
+		"name"									"Corpse Hive of Grim Reformation"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/undying/flesh_golem/corrupted_scourge_corpse_hive/corrupted_scourge_corpse_hive"
+		"item_description"						"#DOTA_Item_Desc_Corrupted_Scourge_Corpse_Hive"
+		"item_name"								"#DOTA_Item_Corpse_Hive_of_Grim_Reformation"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability4"
+		"item_type_name"						"#DOTA_WearableType_Flesh_Golem"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"hero_model_change"
+				"asset"							"models/heroes/undying/undying_flesh_golem.vmdl"
+				"modifier"						"models/items/undying/flesh_golem/corrupted_scourge_corpse_hive/corrupted_scourge_corpse_hive.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_undying/undying_fg_ambient_mouthgas.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_undying/undying_fg_ambient_gas02.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/undying/undying_scourge/undying_scourge_golem_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/undying/undying_scourge/undying_scourge_golem_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_bicep_l"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_arm_l"
+					}
+					"4"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+		}
+	}
+	"9330"
+	{
+		"name"									"Golem of Seablight Procession"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/undying/flesh_golem/davy_jones_set_davy_jones_set_kraken/davy_jones_set_davy_jones_set_kraken"
+		"item_name"								"#DOTA_Item_Golem_of_Seablight_Procession"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability4"
+		"item_type_name"						"#DOTA_WearableType_Flesh_Golem"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"hero_model_change"
+				"asset"							"models/heroes/undying/undying_flesh_golem.vmdl"
+				"modifier"						"models/items/undying/flesh_golem/davy_jones_set_davy_jones_set_kraken/davy_jones_set_davy_jones_set_kraken.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_undying/undying_fg_ambient_mouthgas.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_undying/undying_fg_ambient_gas02.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+			}
+		}
+	}
+	"9331"
+	{
+		"name"									"Wraps of Seablight Procession"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/undying/davy_jones_set_head/davy_jones_set_head"
+		"item_name"								"#DOTA_Item_Wraps_of_Seablight_Procession"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/undying/davy_jones_set_head/davy_jones_set_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9332"
+	{
+		"name"									"Armor of Seablight Procession"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/undying/davy_jones_set_armor/davy_jones_set_armor"
+		"item_name"								"#DOTA_Item_Armor_of_Seablight_Procession"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/undying/davy_jones_set_armor/davy_jones_set_armor.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/undying/undying_davy_jones/undying_davy_jones_armor_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9333"
+	{
+		"name"									"Bracers of Seablight Procession"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/undying/davy_jones_set_arms/davy_jones_set_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_Seablight_Procession"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/undying/davy_jones_set_arms/davy_jones_set_arms.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9714"
+	{
+		"name"									"Phalanx of the Fallen Spear Golem"
+		"prefab"								"wearable"
+		"creation_date"							"2018-02-19"
+		"image_inventory"						"econ/items/undying/flesh_golem/deathmatch_dominator_golem/deathmatch_dominator_golem"
+		"item_name"								"#DOTA_Item_Phalanx_of_the_Fallen_Spear_Golem"
+		"item_rarity"							"rare"
+		"item_slot"								"ability4"
+		"item_type_name"						"#DOTA_WearableType_Flesh_Golem"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"hero_model_change"
+				"asset"							"models/heroes/undying/undying_flesh_golem.vmdl"
+				"modifier"						"models/items/undying/flesh_golem/deathmatch_dominator_golem/deathmatch_dominator_golem.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_undying/undying_fg_ambient_mouthgas.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_undying/undying_fg_ambient_gas02.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+			}
+		}
+	}
+	"9716"
+	{
+		"name"									"Phalanx of the Fallen Spear Bracers"
+		"prefab"								"wearable"
+		"creation_date"							"2018-02-16"
+		"image_inventory"						"econ/items/undying/deathmatch_dominator_arms/deathmatch_dominator_arms"
+		"item_name"								"#DOTA_Item_Phalanx_of_the_Fallen_Spear_Bracers"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/undying/deathmatch_dominator_arms/deathmatch_dominator_arms.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9717"
+	{
+		"name"									"Phalanx of the Fallen Spear Helm"
+		"prefab"								"wearable"
+		"creation_date"							"2018-02-16"
+		"image_inventory"						"econ/items/undying/deathmatch_dominator_head/deathmatch_dominator_head"
+		"item_name"								"#DOTA_Item_Phalanx_of_the_Fallen_Spear_Helm"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/undying/deathmatch_dominator_head/deathmatch_dominator_head.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"9718"
+	{
+		"name"									"Phalanx of the Fallen Spear Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2018-02-16"
+		"image_inventory"						"econ/items/undying/deathmatch_dominator_armor/deathmatch_dominator_armor"
+		"item_name"								"#DOTA_Item_Phalanx_of_the_Fallen_Spear_Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/undying/deathmatch_dominator_armor/deathmatch_dominator_armor.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"9910"
+	{
+		"name"									"Coat of Forlorn Descent"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/undying/ti8_undying_miner_armor/ti8_undying_miner_armor"
+		"item_name"								"#DOTA_Item_Coat_of_Forlorn_Descent"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/undying/ti8_undying_miner_armor/ti8_undying_miner_armor.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/undying/ti8_undying_miner_head/ti8_undying_miner_armor_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9911"
+	{
+		"name"									"Arms of Forlorn Descent"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/undying/ti8_undying_miner_arms/ti8_undying_miner_arms"
+		"item_name"								"#DOTA_Item_Arms_of_Forlorn_Descent"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/undying/ti8_undying_miner_arms/ti8_undying_miner_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9912"
+	{
+		"name"									"Flesh Golem of Forlorn Descent"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/undying/flesh_golem/ti8_undying_miner_flesh_golem/ti8_undying_miner_flesh_golem"
+		"item_name"								"#DOTA_Item_Flesh_Golem_of_Forlorn_Descent"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability4"
+		"item_type_name"						"#DOTA_WearableType_Flesh_Golem"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"hero_model_change"
+				"asset"							"models/heroes/undying/undying_flesh_golem.vmdl"
+				"modifier"						"models/items/undying/flesh_golem/ti8_undying_miner_flesh_golem/ti8_undying_miner_flesh_golem.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_undying/undying_fg_ambient_mouthgas.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_undying/undying_fg_ambient_gas02.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/undying/ti8_undying_miner_head/ti8_undying_miner_head_golem_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9913"
+	{
+		"name"									"Helm of Forlorn Descent"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/undying/ti8_undying_miner_head/ti8_undying_miner_head"
+		"item_name"								"#DOTA_Item_Helm_of_Forlorn_Descent"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/undying/ti8_undying_miner_head/ti8_undying_miner_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/undying/ti8_undying_miner_head/ti8_undying_miner_head_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"12496"
+	{
+		"name"									"Golem of Dirgesworn Dynasty"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-11"
+		"image_inventory"						"econ/items/undying/flesh_golem/elegy_of_abyssal_samurai_golem/elegy_of_abyssal_samurai_golem"
+		"item_name"								"#DOTA_Item_Golem_of_Dirgesworn_Dynasty"
+		"item_slot"								"ability4"
+		"item_type_name"						"#DOTA_WearableType_Flesh_Golem"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"hero_model_change"
+				"asset"							"models/heroes/undying/undying_flesh_golem.vmdl"
+				"modifier"						"models/items/undying/flesh_golem/elegy_of_abyssal_samurai_golem/elegy_of_abyssal_samurai_golem.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_undying/undying_fg_ambient_mouthgas.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_undying/undying_fg_ambient_gas02.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+			}
+		}
+	}
+	"12497"
+	{
+		"name"									"Armor of Dirgesworn Dynasty"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-11"
+		"event_id"								"EVENT_ID_NEW_BLOOM_2020"
+		"image_inventory"						"econ/items/undying/ti8_the_elegy_of_abyssal_samurai_armor/ti8_the_elegy_of_abyssal_samurai_armor"
+		"item_name"								"#DOTA_Item_Armor_of_Dirgesworn_Dynasty"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/undying/ti8_the_elegy_of_abyssal_samurai_armor/ti8_the_elegy_of_abyssal_samurai_armor.vmdl"
+	}
+	"12498"
+	{
+		"name"									"Bracers of Dirgesworn Dynasty"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-11"
+		"event_id"								"EVENT_ID_NEW_BLOOM_2020"
+		"image_inventory"						"econ/items/undying/ti8_the_elegy_of_abyssal_samurai_arms/ti8_the_elegy_of_abyssal_samurai_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_Dirgesworn_Dynasty"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/undying/ti8_the_elegy_of_abyssal_samurai_arms/ti8_the_elegy_of_abyssal_samurai_arms.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"12499"
+	{
+		"name"									"Helm of Dirgesworn Dynasty"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-11"
+		"event_id"								"EVENT_ID_NEW_BLOOM_2020"
+		"image_inventory"						"econ/items/undying/ti8_the_elegy_of_abyssal_samurai_head/ti8_the_elegy_of_abyssal_samurai_head"
+		"item_name"								"#DOTA_Item_Helm_of_Dirgesworn_Dynasty"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/undying/ti8_the_elegy_of_abyssal_samurai_head/ti8_the_elegy_of_abyssal_samurai_head.vmdl"
+	}
+	"12859"
+	{
+		"name"									"Helm of the Shambling Draug"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-27"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/undying/frostivus_2018_undying_accursed_draugr_head/frostivus_2018_undying_accursed_draugr_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Shambling_Draug"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/undying/frostivus_2018_undying_accursed_draugr_head/frostivus_2018_undying_accursed_draugr_head.vmdl"
+	}
+	"12860"
+	{
+		"name"									"Armor of the Shambling Draug"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-27"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/undying/frostivus_2018_undying_accursed_draugr_armor/frostivus_2018_undying_accursed_draugr_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Shambling_Draug"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/undying/frostivus_2018_undying_accursed_draugr_armor/frostivus_2018_undying_accursed_draugr_armor.vmdl"
+	}
+	"12861"
+	{
+		"name"									"Arms of the Shambling Draug"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-27"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/undying/frostivus_2018_undying_accursed_draugr_arms/frostivus_2018_undying_accursed_draugr_arms"
+		"item_name"								"#DOTA_Item_Arms_of_the_Shambling_Draug"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/undying/frostivus_2018_undying_accursed_draugr_arms/frostivus_2018_undying_accursed_draugr_arms.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"12862"
+	{
+		"name"									"Golem of the Shambling Draug"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-27"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/undying/flesh_golem/frostivus_2018_undying_accursed_draugr_golem/frostivus_2018_undying_accursed_draugr_golem"
+		"item_name"								"#DOTA_Item_Golem_of_the_Shambling_Draug"
+		"item_rarity"							"rare"
+		"item_slot"								"ability4"
+		"item_type_name"						"#DOTA_WearableType_Flesh_Golem"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"hero_model_change"
+				"asset"							"models/heroes/undying/undying_flesh_golem.vmdl"
+				"modifier"						"models/items/undying/flesh_golem/frostivus_2018_undying_accursed_draugr_golem/frostivus_2018_undying_accursed_draugr_golem.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_undying/undying_fg_ambient_mouthgas.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_undying/undying_fg_ambient_gas02.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+			}
+		}
+	}
+	"13482"
+	{
+		"name"									"Arms of the Creeping Vine"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/undying/ti9_cache_undying_carnivorous_parasitism_arms/ti9_cache_undying_carnivorous_parasitism_arms"
+		"item_name"								"#DOTA_Item_Arms_of_the_Creeping_Vine"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/undying/ti9_cache_undying_carnivorous_parasitism_arms/ti9_cache_undying_carnivorous_parasitism_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/undying/ti9_cache_undying_carnivorous_parasitism/ti9_cache_undying_carnivorous_parasitism_arms_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13483"
+	{
+		"name"									"Armor of the Creeping Vine"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/undying/ti9_cache_undying_carnivorous_parasitism_armor/ti9_cache_undying_carnivorous_parasitism_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Creeping_Vine"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/undying/ti9_cache_undying_carnivorous_parasitism_armor/ti9_cache_undying_carnivorous_parasitism_armor.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/undying/ti9_cache_undying_carnivorous_parasitism/ti9_cache_undying_carnivorous_parasitism_armor.vpcf"
+				"style"							"0"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"13484"
+	{
+		"name"									"Head of the Creeping Vine"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/undying/ti9_cache_undying_carnivorous_parasitism_head/ti9_cache_undying_carnivorous_parasitism_head"
+		"item_name"								"#DOTA_Item_Head_of_the_Creeping_Vine"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/undying/ti9_cache_undying_carnivorous_parasitism_head/ti9_cache_undying_carnivorous_parasitism_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/undying/ti9_cache_undying_carnivorous_parasitism/ti9_cache_undying_carnivorous_parasitism_head.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13485"
+	{
+		"name"									"Golem of the Creeping Vine"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/undying/flesh_golem/ti9_cache_undying_carnivorous_parasitism_golem/ti9_cache_undying_carnivorous_parasitism_golem"
+		"item_name"								"#DOTA_Item_Golem_of_the_Creeping_Vine"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability4"
+		"item_type_name"						"#DOTA_WearableType_Flesh_Golem"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"hero_model_change"
+				"asset"							"models/heroes/undying/undying_flesh_golem.vmdl"
+				"modifier"						"models/items/undying/flesh_golem/ti9_cache_undying_carnivorous_parasitism_golem/ti9_cache_undying_carnivorous_parasitism_golem.vmdl"
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/undying/ti9_cache_undying_carnivorous_parasitism/ti9_cache_undying_golem_carnivorous_parasitism.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"14963"
+	{
+		"name"									"The Hallows Within"
+		"prefab"								"wearable"
+		"creation_date"							"2020-07-03"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/undying/undying_fall20_immortal_head/undying_fall20_immortal_head"
+		"item_description"						"#DOTA_Item_Desc_The_Hallows_Within"
+		"item_name"								"#DOTA_Item_The_Hallows_Within"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/undying/undying_fall20_immortal_head/undying_fall20_immortal_head.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"fall20"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/undying/fall20_undying_head/fall20_undying_head_ambient.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_undying/undying_soul_rip_damage.vpcf"
+				"modifier"						"particles/econ/items/undying/fall20_undying_head/fall20_undying_soul_rip_damage.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_undying/undying_soul_rip_heal.vpcf"
+				"modifier"						"particles/econ/items/undying/fall20_undying_head/fall20_undying_soul_rip_heal.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"undying_soul_rip"
+				"modifier"						"undying/undying_fall20_immortal_ability_icon/undying_fall20_immortal_soul_rip"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+		}
+	}
+	"14994"
+	{
+		"name"									"The Hallows Within Tombstone"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-06"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/undying/undying_fall20_immortal_head/undying_fall20_immortal_tombstone_npc_dota_unit_tombstone1"
+		"item_description"						"#DOTA_Item_Desc_undying_fall20_immortal_tombstone"
+		"item_name"								"#DOTA_Item_The_Hallows_Within_Tombstone"
+		"item_rarity"							"immortal"
+		"item_slot"								"ability3"
+		"item_type_name"						"#DOTA_WearableType_Tombstone"
+		"particle_folder"						"particles/econ/items/undying/undying_manyone"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"ability_icon"
+				"asset"							"undying_tombstone"
+				"modifier"						"undying/undying_fall20_immortal_ability_icon/undying_fall20_immortal_tombstone"
+			}
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_unit_tombstone1"
+				"modifier"						"models/items/undying/undying_fall20_immortal_head/undying_fall20_immortal_tombstone.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"entity_healthbar_offset"
+				"asset"							"npc_dota_unit_tombstone"
+				"offset"						"335"
+			}
+			"asset_modifier2"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_unit_tombstone3"
+				"modifier"						"models/items/undying/undying_fall20_immortal_head/undying_fall20_immortal_tombstone.vmdl"
+			}
+			"asset_modifier3"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_unit_undying_zombie_torso"
+				"modifier"						"models/items/undying/undying_fall20_immortal_head/undying_fall20_immortal_minion.vmdl"
+			}
+			"asset_modifier4"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_unit_undying_zombie"
+				"modifier"						"models/items/undying/undying_fall20_immortal_head/undying_fall20_immortal_minion.vmdl"
+			}
+			"asset_modifier5"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_unit_tombstone4"
+				"modifier"						"models/items/undying/undying_fall20_immortal_head/undying_fall20_immortal_tombstone.vmdl"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_undying/undying_tombstone.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_undying/undying_tombstone_ambient.vpcf"
+				"modifier"						"particles/econ/items/undying/fall20_undying_head/fall20_undying_tombstone_ambient.vpcf"
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_undying/undying_tower_destruction.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"17956"
+	{
+		"name"									"Dark Meadow Massacre Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/undying/watchmen_of_wheat_field_head/watchmen_of_wheat_field_head"
+		"item_name"								"#DOTA_Item_Dark_Meadow_Massacre_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/undying/watchmen_of_wheat_field_head/watchmen_of_wheat_field_head.vmdl"
+	}
+	"17957"
+	{
+		"name"									"Dark Meadow Massacre Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/undying/watchmen_of_wheat_field_armor/watchmen_of_wheat_field_armor"
+		"item_name"								"#DOTA_Item_Dark_Meadow_Massacre_Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/undying/watchmen_of_wheat_field_armor/watchmen_of_wheat_field_armor.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"17958"
+	{
+		"name"									"Dark Meadow Massacre Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/undying/watchmen_of_wheat_field_arms/watchmen_of_wheat_field_arms"
+		"item_name"								"#DOTA_Item_Dark_Meadow_Massacre_Arms"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/undying/watchmen_of_wheat_field_arms/watchmen_of_wheat_field_arms.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"18127"
+	{
+		"name"									"Dark Meadow Massacre Golem"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/undying/flesh_golem/watchmen_of_wheat_field_scarecrow/watchmen_of_wheat_field_scarecrow"
+		"item_name"								"#DOTA_Item_Dark_Meadow_Massacre_Golem"
+		"item_rarity"							"rare"
+		"item_slot"								"ability4"
+		"item_type_name"						"#DOTA_WearableType_Flesh_Golem"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"hero_model_change"
+				"asset"							"models/heroes/undying/undying_flesh_golem.vmdl"
+				"modifier"						"models/items/undying/flesh_golem/watchmen_of_wheat_field_scarecrow/watchmen_of_wheat_field_scarecrow.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_undying/undying_fg_ambient_mouthgas.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_undying/undying_fg_ambient_gas02.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"18496"
+	{
+		"name"									"Hymn of the Pious Plague Hood"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-11"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/undying/spring2021_bristleback_paganism_pope_head/spring2021_bristleback_paganism_pope_head"
+		"item_name"								"#DOTA_Item_Hymn_of_the_Pious_Plague_Hood"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/undying/spring2021_bristleback_paganism_pope_head/spring2021_bristleback_paganism_pope_head.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1662026400"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"18497"
+	{
+		"name"									"Hymn of the Pious Plague Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-11"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/undying/spring2021_bristleback_paganism_pope_arms/spring2021_bristleback_paganism_pope_arms"
+		"item_name"								"#DOTA_Item_Hymn_of_the_Pious_Plague_Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/undying/spring2021_bristleback_paganism_pope_arms/spring2021_bristleback_paganism_pope_arms.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1662026400"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"18498"
+	{
+		"name"									"Hymn of the Pious Plague Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-11"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/undying/spring2021_bristleback_paganism_pope_armor/spring2021_bristleback_paganism_pope_armor"
+		"item_name"								"#DOTA_Item_Hymn_of_the_Pious_Plague_Armor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/undying/spring2021_bristleback_paganism_pope_armor/spring2021_bristleback_paganism_pope_armor.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1662026400"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"18499"
+	{
+		"name"									"Hymn of the Pious Plague Golem"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-11"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/undying/flesh_golem/spring2021_bristleback_paganism_pope_golem/spring2021_bristleback_paganism_pope_golem"
+		"item_name"								"#DOTA_Item_Hymn_of_the_Pious_Plague_Golem"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability4"
+		"item_type_name"						"#DOTA_WearableType_Flesh_Golem"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1662026400"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"hero_model_change"
+				"asset"							"models/heroes/undying/undying_flesh_golem.vmdl"
+				"modifier"						"models/items/undying/flesh_golem/spring2021_bristleback_paganism_pope_golem/spring2021_bristleback_paganism_pope_golem.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_undying/undying_fg_ambient_mouthgas.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_undying/undying_fg_ambient_gas02.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+			}
+		}
+	}
+	"18959"
+	{
+		"name"									"Fallen Rule - Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2021-06-02"
+		"image_inventory"						"econ/items/undying/renegade_guard_armor/renegade_guard_armor"
+		"item_name"								"#DOTA_Item_Fallen_Rule__Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/undying/renegade_guard_armor/renegade_guard_armor.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"18960"
+	{
+		"name"									"Fallen Rule - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-06-02"
+		"image_inventory"						"econ/items/undying/renegade_guard_head/renegade_guard_head"
+		"item_name"								"#DOTA_Item_Fallen_Rule__Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/undying/renegade_guard_head/renegade_guard_head.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"19284"
+	{
+		"name"									"Spring Lineage Phalanx of the Fallen Spear Golem"
+		"prefab"								"wearable"
+		"creation_date"							"2022-02-22"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/items/undying/flesh_golem/deathmatch_dominator_golem/deathmatch_dominator_golem_1"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Phalanx_of_the_Fallen_Spear_Golem"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Phalanx_of_the_Fallen_Spear_Golem"
+		"item_rarity"							"rare"
+		"item_slot"								"ability4"
+		"item_type_name"						"#DOTA_WearableType_Flesh_Golem"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"hero_model_change"
+				"asset"							"models/heroes/undying/undying_flesh_golem.vmdl"
+				"modifier"						"models/items/undying/flesh_golem/deathmatch_dominator_golem/deathmatch_dominator_golem.vmdl"
+				"skin"							"1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_undying/undying_fg_ambient_mouthgas.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_undying/undying_fg_ambient_gas02.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+			}
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"19285"
+	{
+		"name"									"Spring Lineage Phalanx of the Fallen Spear Bracers"
+		"prefab"								"wearable"
+		"creation_date"							"2022-02-22"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/items/undying/deathmatch_dominator_arms/deathmatch_dominator_arms1"
+		"item_description"						"#DOTA_Item_Desc_Spring_Lineage_Phalanx_of_the_Fallen_Spear_Bracers"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Phalanx_of_the_Fallen_Spear_Bracers"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/undying/deathmatch_dominator_arms/deathmatch_dominator_arms.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"19286"
+	{
+		"name"									"Spring Lineage Phalanx of the Fallen Spear Helm"
+		"prefab"								"wearable"
+		"creation_date"							"2022-02-22"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/items/undying/deathmatch_dominator_head/deathmatch_dominator_head1"
+		"item_description"						"#DOTA_Item_Desc_Spring_Lineage_Phalanx_of_the_Fallen_Spear_Helm"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Phalanx_of_the_Fallen_Spear_Helm"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/undying/deathmatch_dominator_head/deathmatch_dominator_head.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+		"visuals"
+		{
+			"skin"								"1"
+			"skip_model_combine"				"0"
+		}
+	}
+	"19287"
+	{
+		"name"									"Spring Lineage Phalanx of the Fallen Spear Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2022-02-22"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/items/undying/deathmatch_dominator_armor/deathmatch_dominator_armor1"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Phalanx_of_the_Fallen_Spear_Armor"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Phalanx_of_the_Fallen_Spear_Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/undying/deathmatch_dominator_armor/deathmatch_dominator_armor.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+		"visuals"
+		{
+			"skin"								"1"
+			"skip_model_combine"				"0"
+		}
+	}
+	"20840"
+	{
+		"name"									"Dirgeful Overlord"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armor of the Dirgeful Overlord"	"1"
+			"Bracers of the Dirgeful Overlord"	"1"
+			"Crown of the Dirgeful Overlord"	"1"
+			"Dirgeful Overlord Loading Screen"	"1"
+		}
+		"creation_date"							"2016-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/loading_screens/undying_tomb_overlord_loading_screen"
+		"item_name"								"#DOTA_Item_Dirgeful_Overlord"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"21073"
+	{
+		"name"									"Grim Reformation"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of Grim Reformation""1"
+			"Gauntlets of Grim Reformation"		"1"
+			"Armor of Grim Reformation"			"1"
+			"Helm of Grim Reformation"			"1"
+			"Corpse Hive of Grim Reformation"	"1"
+		}
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/corrupted_scourge_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Corrupted_Scourge"
+		"item_name"								"#DOTA_Item_Grim_Reformation"
+		"item_rarity"							"mythical"
+	}
+	"21118"
+	{
+		"name"									"Seablight Procession"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Golem of Seablight Procession"		"1"
+			"Wraps of Seablight Procession"		"1"
+			"Armor of Seablight Procession"		"1"
+			"Bracers of Seablight Procession"	"1"
+			"Seablight Procession Loading Screen""1"
+		}
+		"creation_date"							"2017-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/loading_screens/davy_jones_set_davy_jones_set_loading"
+		"item_description"						"#DOTA_Item_Desc_Seablight_Procession"
+		"item_name"								"#DOTA_Item_Seablight_Procession"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21184"
+	{
+		"name"									"Phalanx of the Fallen Spear"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Phalanx of the Fallen Spear Loading Screen""1"
+			"Phalanx of the Fallen Spear Armor"	"1"
+			"Phalanx of the Fallen Spear Helm"	"1"
+			"Phalanx of the Fallen Spear Bracers""1"
+			"Phalanx of the Fallen Spear Golem"	"1"
+		}
+		"creation_date"							"2018-02-16"
+		"image_inventory"						"econ/loading_screens/deathmatch_dominator_ls"
+		"item_name"								"#DOTA_Item_Phalanx_of_the_Fallen_Spear"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"15000"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21202"
+	{
+		"name"									"Forlorn Descent"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Forlorn Descent Loading Screen"	"1"
+			"Helm of Forlorn Descent"			"1"
+			"Flesh Golem of Forlorn Descent"	"1"
+			"Arms of Forlorn Descent"			"1"
+			"Coat of Forlorn Descent"			"1"
+		}
+		"creation_date"							"2018-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/loading_screens/ti8_undying_miner_loading_screen_v1"
+		"item_description"						"#DOTA_Item_Desc_Forlorn_Descent"
+		"item_name"								"#DOTA_Item_Forlorn_Descent"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+		}
+	}
+	"21247"
+	{
+		"name"									"Dirgesworn Dynasty"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Helm of Dirgesworn Dynasty"		"1"
+			"Bracers of Dirgesworn Dynasty"		"1"
+			"Armor of Dirgesworn Dynasty"		"1"
+			"Golem of Dirgesworn Dynasty"		"1"
+			"Dirgesworn Dynasty Loading Screen"	"1"
+		}
+		"creation_date"							"2018-09-12"
+		"event_id"								"EVENT_ID_NEW_BLOOM_2020"
+		"image_inventory"						"econ/loading_screens/elegy_of_abyssal_samurai_loadingscreen"
+		"item_name"								"#DOTA_Item_Dirgesworn_Dynasty"
+		"item_rarity"							"rare"
+	}
+	"21310"
+	{
+		"name"									"Shambling Draug"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Golem of the Shambling Draug"		"1"
+			"Arms of the Shambling Draug"		"1"
+			"Armor of the Shambling Draug"		"1"
+			"Helm of the Shambling Draug"		"1"
+		}
+		"creation_date"							"2018-12-02"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/sets/DOTA_Item_Frostivus_2018_Undying_Accursed_Draugr"
+		"item_name"								"#DOTA_Item_Shambling_Draug"
+		"item_rarity"							"rare"
+	}
+	"21418"
+	{
+		"name"									"Curse of the Creeping Vine"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Golem of the Creeping Vine"		"1"
+			"Head of the Creeping Vine"			"1"
+			"Armor of the Creeping Vine"		"1"
+			"Arms of the Creeping Vine"			"1"
+		}
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/sets/DOTA_Item_TI9_Cache_Undying_Carnivorous_Parasitism"
+		"item_description"						"#DOTA_Item_Desc_Curse_of_the_Creeping_Vine"
+		"item_name"								"#DOTA_Item_Curse_of_the_Creeping_Vine"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"21759"
+	{
+		"name"									"Dark Meadow Massacre"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Dark Meadow Massacre Golem"		"1"
+			"Dark Meadow Massacre Arms"			"1"
+			"Dark Meadow Massacre Armor"		"1"
+			"Dark Meadow Massacre Head"			"1"
+		}
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Watchmen_of_Wheat_Field"
+		"item_name"								"#DOTA_Item_Dark_Meadow_Massacre"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+	}
+	"21800"
+	{
+		"name"									"The Hallows Within Bundle"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"The Hallows Within"				"1"
+			"The Hallows Within Tombstone"		"1"
+		}
+		"creation_date"							"2020-10-20"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_The_Hallows_Within_Bundle"
+		"item_description"						"#DOTA_Item_Desc_The_Hallows_Within"
+		"item_name"								"#DOTA_Item_The_Hallows_Within_Bundle"
+		"item_rarity"							"immortal"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+	}
+	"21816"
+	{
+		"name"									"Hymn of the Pious Plague"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Hymn of the Pious Plague Golem"	"1"
+			"Hymn of the Pious Plague Armor"	"1"
+			"Hymn of the Pious Plague Arms"		"1"
+			"Hymn of the Pious Plague Hood"		"1"
+		}
+		"creation_date"							"2021-02-11"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/sets/DOTA_Item_The_Pagan_Pope"
+		"item_name"								"#DOTA_Item_Hymn_of_the_Pious_Plague"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1662026400"
+			}
+		}
+	}
+	"21827"
+	{
+		"name"									"Fallen Rule"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Fallen Rule Loading Screen"		"1"
+			"Fallen Rule - Head"				"1"
+			"Fallen Rule - Armor"				"1"
+		}
+		"creation_date"							"2021-06-02"
+		"image_inventory"						"econ/loading_screens/renegade_guard_undying_ls"
+		"item_name"								"#DOTA_Item_Fallen_Rule"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"22833"
+	{
+		"name"									"Spring Lineage Phalanx of the Fallen Spear"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Spring Lineage Phalanx of the Fallen Spear Bracers""1"
+			"Spring Lineage Phalanx of the Fallen Spear Helm""1"
+			"Spring Lineage Phalanx of the Fallen Spear Armor""1"
+			"Spring Lineage Phalanx of the Fallen Spear Golem""1"
+		}
+		"creation_date"							"2022-02-22"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/sets/DOTA_Item_Spring_lineage_Phalanx_of_the_Fallen_Spear"
+		"item_description"						"#DOTA_Item_Desc_Spring_lineage_Phalanx_of_the_Fallen_Spear"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Phalanx_of_the_Fallen_Spear"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+	}
+}

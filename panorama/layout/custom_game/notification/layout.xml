@@ -1,0 +1,60 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/hudstyles.vcss_c" />
+		<include src="s2r://panorama/styles/hud/hud_reborn.vcss_c" />
+		<include src="s2r://panorama/styles/custom_ui.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/notification/styles.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/sequence_actions.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/common.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/notification/script.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="CombatEventPlayerIcon">
+			<Panel class="CombatEventPlayerIcon" hittest="false" hittestchildren="false">
+				<DOTAAvatarImage id="PlayerAvatarImage" nocompendiumborder="true" hittest="false" hittestchildren="false" />
+			</Panel>
+		</snippet>
+		<snippet name="CombatEventHeroIcon">
+			<Panel class="CombatEventHeroIcon" hittest="false" hittestchildren="false">
+				<DOTAHeroImage id="PlayerHeroImage" heroname="npc_dota_hero_pudge" heroimagestyle="icon" />
+			</Panel>
+		</snippet>
+		<snippet name="Notification">
+			<Panel class="Notification" hittest="false">
+				<Panel id="SlashContainer">
+					<Panel id="TeamColorBar" />
+				</Panel>
+				<Label id="NotificationLabel" class="NotificationListLabel" hittest="false" />
+				<Panel id="NotificationIcon" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="notificationRoot" hittest="false">
+		<Panel id="ToastManager" hittest="false" />
+		<Panel id="UpperNotificationContianer" hittest="false" />
+		<Panel id="CombatNotificationContianer" hittest="false">
+			<Panel id="CombatNotificationLinesWrapper" hittest="false">
+				<ToastManager id="CombatNotificationToastManager" hittest="false" toastduration="10s" maxtoastsvisible="50" maxtoastbehavior="deleteoldest" preservefadedtoasts="true" delaytime="0" addtoaststohead="false" />
+			</Panel>
+		</Panel>
+		<ToastManager id="PvPLoseNotificationContianer" hittest="false" toastduration="8.0s" maxtoastsvisible="3" />
+		<ToastManager id="MonsterNotificationContianer" hittest="false" toastduration="8.0s" maxtoastsvisible="3" />
+		<ToastManager id="RightNotificationContianer" hittest="false" toastduration="8.0s" maxtoastsvisible="3" />
+		<Panel id="BottomNotificationContianer" hittest="false" />
+		<Panel id="HelpTipContainer" hittest="false" />
+	</Panel>
+</root>

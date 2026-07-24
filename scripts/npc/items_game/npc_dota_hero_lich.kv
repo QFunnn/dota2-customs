@@ -1,0 +1,2393 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"331"
+	{
+		"name"									"Lich's Belt"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/lich/lich_dress"
+		"item_description"						"#DOTA_Item_Desc_Lichs_Belt"
+		"item_name"								"#DOTA_Item_Lichs_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/heroes/lich/lich_dress.vmdl"
+	}
+	"332"
+	{
+		"name"									"Lich's Neck"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/lich/lich_neck_rock"
+		"item_description"						"#DOTA_Item_Desc_Lichs_Neck"
+		"item_name"								"#DOTA_Item_Lichs_Neck"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Neck"
+		"model_player"							"models/heroes/lich/lich_neck_rock.vmdl"
+	}
+	"333"
+	{
+		"name"									"Lich's Bracers"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/lich/lich_bracer"
+		"item_description"						"#DOTA_Item_Desc_Lichs_Bracers"
+		"item_name"								"#DOTA_Item_Lichs_Bracers"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/heroes/lich/lich_bracer.vmdl"
+	}
+	"334"
+	{
+		"name"									"Lich's Back"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/lich/lich_horns"
+		"item_description"						"#DOTA_Item_Desc_Lichs_Default_Back"
+		"item_name"								"#DOTA_Item_Lichs_Back"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/heroes/lich/lich_horns.vmdl"
+	}
+	"506"
+	{
+		"name"									"Lich's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-05"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Lichs_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_lich"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_lich/lich_ambient_frost.vpcf"
+				"system"						"particles/units/heroes/hero_lich/lich_ambient_frost.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_lich/lich_ambient_frost_legs.vpcf"
+				"system"						"particles/units/heroes/hero_lich/lich_ambient_frost_legs.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+				}
+			}
+		}
+	}
+	"571"
+	{
+		"name"									"Lich's Head"
+		"prefab"								"default_item"
+		"creation_date"							"2015-05-20"
+		"image_inventory"						"econ/heroes/lich/lich_head"
+		"item_description"						"#DOTA_Item_Desc_Lichs_Head"
+		"item_name"								"#DOTA_Item_Lichs_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+	}
+	"4851"
+	{
+		"name"									"Dead Winter Mantle"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/lich/the_deadwinter_head/the_deadwinter_head"
+		"item_description"						"#DOTA_Item_Desc_Deadwinter_Neck"
+		"item_name"								"#DOTA_Item_Dead_Winter_Mantle"
+		"item_rarity"							"uncommon"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/lich/the_deadwinter_head/the_deadwinter_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4852"
+	{
+		"name"									"Dead Winter Soul"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/lich/the_deadwinter_back/the_deadwinter_back"
+		"item_description"						"#DOTA_Item_Desc_Deadwinter_Back"
+		"item_name"								"#DOTA_Item_Dead_Winter_Soul"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/lich/the_deadwinter_back/the_deadwinter_back.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4853"
+	{
+		"name"									"Dead Winter Sash"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/lich/the_deadwinter_sash/the_deadwinter_sash"
+		"item_description"						"#DOTA_Item_Desc_Deadwinter_Belt"
+		"item_name"								"#DOTA_Item_Dead_Winter_Sash"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/lich/the_deadwinter_sash/the_deadwinter_sash.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4854"
+	{
+		"name"									"Dead Winter Grasp"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/lich/the_deadwinter_arms/the_deadwinter_arms"
+		"item_description"						"#DOTA_Item_Desc_Deadwinter_Arms"
+		"item_name"								"#DOTA_Item_Dead_Winter_Grasp"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/lich/the_deadwinter_arms/the_deadwinter_arms.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4895"
+	{
+		"name"									"Bindings of Eldritch Ice"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-25"
+		"image_inventory"						"econ/items/lich/rags/rags"
+		"item_description"						"#DOTA_Item_Desc_Bindings_of_Eldritch_Ice"
+		"item_name"								"#DOTA_Item_Bindings_of_Eldritch_Ice"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Bindings"
+		"model_player"							"models/items/lich/rags/rags.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4896"
+	{
+		"name"									"Glacier of Eldritch Ice"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-25"
+		"image_inventory"						"econ/items/lich/glacier/glacier"
+		"item_description"						"#DOTA_Item_Desc_Glacier_of_Eldritch_Ice"
+		"item_name"								"#DOTA_Item_Glacier_of_Eldritch_Ice"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Ice"
+		"model_player"							"models/items/lich/glacier/glacier.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4897"
+	{
+		"name"									"Mantle of Eldritch Ice"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-25"
+		"image_inventory"						"econ/items/lich/ice_mantle/ice_mantle"
+		"item_description"						"#DOTA_Item_Desc_Mantle_of_Eldritch_Ice"
+		"item_name"								"#DOTA_Item_Mantle_of_Eldritch_Ice"
+		"item_rarity"							"rare"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/lich/ice_mantle/ice_mantle.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4898"
+	{
+		"name"									"Bracers of Eldritch Ice"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-25"
+		"image_inventory"						"econ/items/lich/ice_frostbite/ice_frostbite"
+		"item_description"						"#DOTA_Item_Desc_Bracers_of_Eldritch_Ice"
+		"item_name"								"#DOTA_Item_Bracers_of_Eldritch_Ice"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/lich/ice_frostbite/ice_frostbite.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"6214"
+	{
+		"name"									"Bracers of the Frozen Star"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-03"
+		"image_inventory"						"econ/items/lich/lich_arms_sltv_t1/lich_arms_sltv_t1"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Frozen_Star"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/lich/lich_arms_sltv_t1/lich_arms_sltv_t1.vmdl"
+	}
+	"6216"
+	{
+		"name"									"Statue of the Frozen Star"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-03"
+		"image_inventory"						"econ/items/lich/lich_back_sltv_t1/lich_back_sltv_t1"
+		"item_name"								"#DOTA_Item_Statue_of_the_Frozen_Star"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Statue"
+		"model_player"							"models/items/lich/lich_back_sltv_t1/lich_back_sltv_t1.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/lich/lich_back_sltv_t1/lich_back_sltv_t1.vmdl"
+					"name"						"#DOTA_Item_Frozen_Star_Back_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/lich/lich_back_sltv_t2/lich_back_sltv_t2.vmdl"
+					"name"						"#DOTA_Item_Frozen_Star_Back_Style1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"gem"
+						{
+							"def_index"			"3003"
+							"type_field"		"league_id"
+							"type_value"		"232"
+							"unlock_field"		"games_viewed"
+							"unlock_value"		"75"
+						}
+					}
+				}
+				"2"
+				{
+					"model_player"				"models/items/lich/lich_back_sltv_t3/lich_back_sltv_t3.vmdl"
+					"name"						"#DOTA_Item_Frozen_Star_Back_Style2"
+					"alternate_icon"			"2"
+					"unlock"
+					{
+						"gem"
+						{
+							"def_index"			"3003"
+							"type_field"		"league_id"
+							"type_value"		"232"
+							"unlock_field"		"games_viewed"
+							"unlock_value"		"150"
+						}
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/lich/lich_back_sltv_t1/lich_back_sltv_t1"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/lich/lich_back_sltv_t2/lich_back_sltv_t2"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/lich/lich_back_sltv_t3/lich_back_sltv_t3"
+				}
+			}
+		}
+	}
+	"6217"
+	{
+		"name"									"Bindings of the Frozen Star"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-03"
+		"image_inventory"						"econ/items/lich/lich_belt_sltv_t1/lich_belt_sltv_t1"
+		"item_name"								"#DOTA_Item_Bindings_of_the_Frozen_Star"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Bindings"
+		"model_player"							"models/items/lich/lich_belt_sltv_t1/lich_belt_sltv_t1.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/lich/lich_belt_sltv_t1/lich_belt_sltv_t1.vmdl"
+					"name"						"#DOTA_Item_Frozen_Star_Belt_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/lich/lich_belt_sltv_t2/lich_belt_sltv_t2.vmdl"
+					"name"						"#DOTA_Item_Frozen_Star_Belt_Style1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"gem"
+						{
+							"def_index"			"3003"
+							"type_field"		"league_id"
+							"type_value"		"232"
+							"unlock_field"		"games_viewed"
+							"unlock_value"		"75"
+						}
+					}
+				}
+				"2"
+				{
+					"model_player"				"models/items/lich/lich_belt_sltv_t3/lich_belt_sltv_t3.vmdl"
+					"name"						"#DOTA_Item_Frozen_Star_Belt_Style2"
+					"alternate_icon"			"2"
+					"unlock"
+					{
+						"gem"
+						{
+							"def_index"			"3003"
+							"type_field"		"league_id"
+							"type_value"		"232"
+							"unlock_field"		"games_viewed"
+							"unlock_value"		"150"
+						}
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/lich/lich_belt_sltv_t1/lich_belt_sltv_t1"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/lich/lich_belt_sltv_t2/lich_belt_sltv_t2"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/lich/lich_belt_sltv_t3/lich_belt_sltv_t3"
+				}
+			}
+		}
+	}
+	"6218"
+	{
+		"name"									"Mantle of the Frozen Star"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-03"
+		"image_inventory"						"econ/items/lich/lich_neck_sltv_t1/lich_neck_sltv_t1"
+		"item_name"								"#DOTA_Item_Mantle_of_the_Frozen_Star"
+		"item_rarity"							"rare"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/lich/lich_neck_sltv_t1/lich_neck_sltv_t1.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/lich/lich_neck_sltv_t1/lich_neck_sltv_t1.vmdl"
+					"name"						"#DOTA_Item_Frozen_Star_Neck_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/lich/lich_neck_sltv_t2/lich_neck_sltv_t2.vmdl"
+					"name"						"#DOTA_Item_Frozen_Star_Neck_Style1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"gem"
+						{
+							"def_index"			"3003"
+							"type_field"		"league_id"
+							"type_value"		"232"
+							"unlock_field"		"games_viewed"
+							"unlock_value"		"75"
+						}
+					}
+				}
+				"2"
+				{
+					"model_player"				"models/items/lich/lich_neck_sltv_t3/lich_neck_sltv_t3.vmdl"
+					"name"						"#DOTA_Item_Frozen_Star_Neck_Style2"
+					"alternate_icon"			"2"
+					"unlock"
+					{
+						"gem"
+						{
+							"def_index"			"3003"
+							"type_field"		"league_id"
+							"type_value"		"232"
+							"unlock_field"		"games_viewed"
+							"unlock_value"		"150"
+						}
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/lich/lich_neck_sltv_t1/lich_neck_sltv_t1"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/lich/lich_neck_sltv_t2/lich_neck_sltv_t2"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/lich/lich_neck_sltv_t3/lich_neck_sltv_t3"
+				}
+			}
+		}
+	}
+	"6890"
+	{
+		"name"									"Wraps of the Black Pool"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-15"
+		"image_inventory"						"econ/items/lich/blackpool_arms/blackpool_arms"
+		"item_name"								"#DOTA_Item_Wraps_of_the_Black_Pool"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/lich/blackpool_arms/blackpool_arms.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"9/17/2014"
+			"price"								"0"
+		}
+	}
+	"6891"
+	{
+		"name"									"Belt of the Black Pool"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-15"
+		"image_inventory"						"econ/items/lich/blackpool_belt/blackpool_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Black_Pool"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/lich/blackpool_belt/blackpool_belt.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"9/17/2014"
+			"price"								"0"
+		}
+	}
+	"6896"
+	{
+		"name"									"Spikes of the Black Pool"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-15"
+		"image_inventory"						"econ/items/lich/blackpool_back/blackpool_back"
+		"item_name"								"#DOTA_Item_Spikes_of_the_Black_Pool"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Spikes"
+		"model_player"							"models/items/lich/blackpool_back/blackpool_back.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"9/17/2014"
+			"price"								"0"
+		}
+	}
+	"6949"
+	{
+		"name"									"Frozen Emperor's Twin Dragon Cape"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-20"
+		"image_inventory"						"econ/items/lich/imperialists_cape_of_the_twin_dragons/imperialists_cape_of_the_twin_dragons"
+		"item_name"								"#DOTA_Item_Frozen_Emperors_Twin_Dragon_Cape"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/lich/imperialists_cape_of_the_twin_dragons/imperialists_cape_of_the_twin_dragons.vmdl"
+	}
+	"7063"
+	{
+		"name"									"Frozen Emperor's Demon Mask"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-20"
+		"image_inventory"						"econ/items/lich/imperialists_frost_biter/imperialists_frost_biter"
+		"item_name"								"#DOTA_Item_Frozen_Emperors_Demon_Mask"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/lich/imperialists_frost_biter/imperialists_frost_biter.vmdl"
+	}
+	"7064"
+	{
+		"name"									"Frozen Emperor's Guardian Lion"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-20"
+		"image_inventory"						"econ/items/lich/imperialists_guardian_lions/imperialists_guardian_lions"
+		"item_name"								"#DOTA_Item_Frozen_Emperors_Guardian_Lion"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/lich/imperialists_guardian_lions/imperialists_guardian_lions.vmdl"
+	}
+	"7065"
+	{
+		"name"									"Frozen Emperor's Cursed Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-20"
+		"image_inventory"						"econ/items/lich/imperialists_mana_chamber/imperialists_mana_chamber"
+		"item_name"								"#DOTA_Item_Frozen_Emperors_Cursed_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/lich/imperialists_mana_chamber/imperialists_mana_chamber.vmdl"
+	}
+	"7066"
+	{
+		"name"									"Frozen Emperor's Runed Bracers"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-20"
+		"image_inventory"						"econ/items/lich/imperialists_runed_bracers/imperialists_runed_bracers"
+		"item_name"								"#DOTA_Item_Frozen_Emperors_Runed_Bracers"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/lich/imperialists_runed_bracers/imperialists_runed_bracers.vmdl"
+	}
+	"7102"
+	{
+		"name"									"Mantle of the Black Pool"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-11"
+		"image_inventory"						"econ/items/lich/blackpool_neck/blackpool_neck"
+		"item_name"								"#DOTA_Item_Mantle_of_the_Black_Pool"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/lich/blackpool_neck/blackpool_neck.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"9/17/2014"
+			"price"								"0"
+		}
+	}
+	"7576"
+	{
+		"name"									"Shearing Deposition"
+		"prefab"								"wearable"
+		"creation_date"							"2016-02-22"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/lich/lich_immortal/lich_immortal"
+		"item_description"						"#DOTA_Item_Desc_Shearing_Deposition"
+		"item_name"								"#DOTA_Item_Shearing_Deposition"
+		"item_rarity"							"immortal"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/lich/lich_immortal/lich_immortal.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_lich/lich_frost_nova.vpcf"
+				"modifier"						"particles/econ/items/lich/frozen_chains_ti6/lich_frozenchains_frostnova.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lich/frozen_chains_ti6/lich_frozenchains_ambient.vpcf"
+				"system"						"particles/econ/items/lich/frozen_chains_ti6/lich_frozenchains_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+						"attachment"			"attach_hitloc"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_portrait"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"sound"
+				"asset"							"Ability.FrostNova"
+				"modifier"						"Hero_Lich.FrostBlast.Immortal"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"lich_frost_nova"
+				"modifier"						"lich/shearing_deposition/lich_frost_nova"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+		}
+	}
+	"7885"
+	{
+		"name"									"Coffin of the Jiang Shi's Revenge"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-11"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/lich/master_of_jiang_shi_lich_back/master_of_jiang_shi_lich_back"
+		"item_description"						"#DOTA_Item_Desc_Coffin_of_the_Jiang_Shis_Revenge"
+		"item_name"								"#DOTA_Item_Coffin_of_the_Jiang_Shis_Revenge"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/lich/master_of_jiang_shi_lich_back/master_of_jiang_shi_lich_back.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"7899"
+	{
+		"name"									"Robe of the Jiang Shi's Revenge"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-11"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/lich/master_of_jiang_shi_lich_belt/master_of_jiang_shi_lich_belt"
+		"item_description"						"#DOTA_Item_Desc_Robe_of_the_Jiang_Shis_Revenge"
+		"item_name"								"#DOTA_Item_Robe_of_the_Jiang_Shis_Revenge"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/lich/master_of_jiang_shi_lich_belt/master_of_jiang_shi_lich_belt.vmdl"
+	}
+	"7907"
+	{
+		"name"									"Hat of the Jiang Shi's Revenge"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-11"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/lich/master_of_jiang_shi_lich_head/master_of_jiang_shi_lich_head"
+		"item_description"						"#DOTA_Item_Desc_Hat_of_the_Jiang_Shis_Revenge"
+		"item_name"								"#DOTA_Item_Hat_of_the_Jiang_Shis_Revenge"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/lich/master_of_jiang_shi_lich_head/master_of_jiang_shi_lich_head.vmdl"
+	}
+	"7931"
+	{
+		"name"									"Necklace of the Jiang Shi's Revenge"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-11"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/lich/master_of_jiang_shi_lich_neck/master_of_jiang_shi_lich_neck"
+		"item_description"						"#DOTA_Item_Desc_Necklace_of_the_Jiang_Shis_Revenge"
+		"item_name"								"#DOTA_Item_Necklace_of_the_Jiang_Shis_Revenge"
+		"item_rarity"							"mythical"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_neck"
+		"model_player"							"models/items/lich/master_of_jiang_shi_lich_neck/master_of_jiang_shi_lich_neck.vmdl"
+	}
+	"7932"
+	{
+		"name"									"Sleeves of the Jiang Shi's Revenge"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-11"
+		"image_inventory"						"econ/items/lich/master_of_jiang_shi_lich_arms/master_of_jiang_shi_lich_arms"
+		"item_description"						"#DOTA_Item_Desc_Sleeves_of_the_Jiang_Shis_Revenge"
+		"item_name"								"#DOTA_Item_Sleeves_of_the_Jiang_Shis_Revenge"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/lich/master_of_jiang_shi_lich_arms/master_of_jiang_shi_lich_arms.vmdl"
+	}
+	"8451"
+	{
+		"name"									"Crown of the Frost Lord"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-04"
+		"image_inventory"						"econ/items/lich/erlkonig_head/erlkonig_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Frost_Lord"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Crown"
+		"model_player"							"models/items/lich/erlkonig_head/erlkonig_head.vmdl"
+	}
+	"8452"
+	{
+		"name"									"Cloak of the Frost Lord"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-04"
+		"image_inventory"						"econ/items/lich/erlkonig_belt/erlkonig_belt"
+		"item_name"								"#DOTA_Item_Cloak_of_the_Frost_Lord"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Cloak"
+		"model_player"							"models/items/lich/erlkonig_belt/erlkonig_belt.vmdl"
+	}
+	"8453"
+	{
+		"name"									"Restraints of the Frost Lord"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-04"
+		"image_inventory"						"econ/items/lich/erlkonig_back/erlkonig_back"
+		"item_name"								"#DOTA_Item_Restraints_of_the_Frost_Lord"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Restraints"
+		"model_player"							"models/items/lich/erlkonig_back/erlkonig_back.vmdl"
+	}
+	"8454"
+	{
+		"name"									"Gauntlets of the Frost Lord"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-04"
+		"image_inventory"						"econ/items/lich/erlkonig_bracers/erlkonig_bracers"
+		"item_name"								"#DOTA_Item_Gauntlets_of_the_Frost_Lord"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Gauntlets"
+		"model_player"							"models/items/lich/erlkonig_bracers/erlkonig_bracers.vmdl"
+	}
+	"8455"
+	{
+		"name"									"Collar of the Frost Lord"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-04"
+		"image_inventory"						"econ/items/lich/erlkonig_neck/erlkonig_neck"
+		"item_name"								"#DOTA_Item_Collar_of_the_Frost_Lord"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Collar"
+		"model_player"							"models/items/lich/erlkonig_neck/erlkonig_neck.vmdl"
+	}
+	"8519"
+	{
+		"name"									"Bracers of the Serakund Tyrant"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/lich/blizzard_tyrant_arms/blizzard_tyrant_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Serakund_Tyrant"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/lich/blizzard_tyrant_arms/blizzard_tyrant_arms.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Item_Serakund_Tyrant_Style_00"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Item_Serakund_Tyrant_Style_01"
+					"skin"						"1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/lich/blizzard_tyrant_arms/blizzard_tyrant_arms"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/lich/blizzard_tyrant_arms/blizzard_tyrant_arms_style1"
+				}
+			}
+		}
+	}
+	"8520"
+	{
+		"name"									"Mantle of the Serakund Tyrant"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/lich/blizzard_tyrant_neck/blizzard_tyrant_neck"
+		"item_name"								"#DOTA_Item_Mantle_of_the_Serakund_Tyrant"
+		"item_rarity"							"mythical"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/lich/blizzard_tyrant_neck/blizzard_tyrant_neck.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Item_Serakund_Tyrant_Style_00"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Item_Serakund_Tyrant_Style_01"
+					"skin"						"1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/lich/blizzard_tyrant_neck/blizzard_tyrant_neck"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/lich/blizzard_tyrant_neck/blizzard_tyrant_neck_style1"
+				}
+			}
+		}
+	}
+	"8521"
+	{
+		"name"									"Crown of the Serakund Tyrant"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-20"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/lich/blizzard_tyrant_head/blizzard_tyrant_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Serakund_Tyrant"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Crown"
+		"model_player"							"models/items/lich/blizzard_tyrant_head/blizzard_tyrant_head.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Item_Serakund_Tyrant_Style_00"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Item_Serakund_Tyrant_Style_01"
+					"skin"						"1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/lich/blizzard_tyrant_head/blizzard_tyrant_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/lich/blizzard_tyrant_head/blizzard_tyrant_head_style1"
+				}
+			}
+		}
+	}
+	"8522"
+	{
+		"name"									"Core of the Serakund Tyrant"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/lich/blizzard_tyrant_back/blizzard_tyrant_back"
+		"item_name"								"#DOTA_Item_Core_of_the_Serakund_Tyrant"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Core"
+		"model_player"							"models/items/lich/blizzard_tyrant_back/blizzard_tyrant_back.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Item_Serakund_Tyrant_Style_00"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Item_Serakund_Tyrant_Style_01"
+					"skin"						"1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/lich/blizzard_tyrant_back/blizzard_tyrant_back"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/lich/blizzard_tyrant_back/blizzard_tyrant_back_style1"
+				}
+			}
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lich/blizzard_of_the_tyrant/blyzard_of_the_tyrant_back_face.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/lich/blizzard_of_the_tyrant/blyzard_of_the_tyrant_back_face.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lich/blizzard_of_the_tyrant/blyzard_of_the_tyrant_back_face_dark.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/lich/blizzard_of_the_tyrant/blyzard_of_the_tyrant_back_face_dark.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"8523"
+	{
+		"name"									"Tassets of the Serakund Tyrant"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/lich/blizzard_tyrant_belt/blizzard_tyrant_belt"
+		"item_name"								"#DOTA_Item_Tassets_of_the_Serakund_Tyrant"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Tassets"
+		"model_player"							"models/items/lich/blizzard_tyrant_belt/blizzard_tyrant_belt.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Item_Serakund_Tyrant_Style_00"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Item_Serakund_Tyrant_Style_01"
+					"skin"						"1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/lich/blizzard_tyrant_belt/blizzard_tyrant_belt"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/lich/blizzard_tyrant_belt/blizzard_tyrant_belt_style1"
+				}
+			}
+		}
+	}
+	"8599"
+	{
+		"name"									"Cuffs of Forbidden Knowledge"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-25"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/lich/forbidden_knowledge_arms/forbidden_knowledge_arms"
+		"item_description"						"#DOTA_Item_Desc_Forbidden_Knowledge_Arms"
+		"item_name"								"#DOTA_Item_Cuffs_of_Forbidden_Knowledge"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/lich/forbidden_knowledge_arms/forbidden_knowledge_arms.vmdl"
+	}
+	"8600"
+	{
+		"name"									"Tome of Forbidden Knowledge"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-25"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/lich/forbidden_knowledge_back/forbidden_knowledge_back"
+		"item_description"						"#DOTA_Item_Desc_Forbidden_Knowledge_Back"
+		"item_name"								"#DOTA_Item_Tome_of_Forbidden_Knowledge"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/lich/forbidden_knowledge_back/forbidden_knowledge_back.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lich/forbidden_knowledge/lich_forbidden_knowledge_ambient_book.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/lich/forbidden_knowledge/lich_forbidden_knowledge_ambient_book.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_book"
+					}
+				}
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Default"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Infused"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"11898"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/lich/forbidden_knowledge_back/forbidden_knowledge_back"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/lich/forbidden_knowledge_back/forbidden_knowledge_back_style1"
+				}
+			}
+		}
+	}
+	"8601"
+	{
+		"name"									"Robe of Forbidden Knowledge"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-25"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/lich/forbidden_knowledge_belt/forbidden_knowledge_belt"
+		"item_description"						"#DOTA_Item_Desc_Forbidden_Knowledge_Belt"
+		"item_name"								"#DOTA_Item_Robe_of_Forbidden_Knowledge"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/lich/forbidden_knowledge_belt/forbidden_knowledge_belt.vmdl"
+	}
+	"8602"
+	{
+		"name"									"Cage of Forbidden Knowledge"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-25"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/lich/forbidden_knowledge_head/forbidden_knowledge_head"
+		"item_description"						"#DOTA_Item_Desc_Forbidden_Knowledge_Head"
+		"item_name"								"#DOTA_Item_Cage_of_Forbidden_Knowledge"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/lich/forbidden_knowledge_head/forbidden_knowledge_head.vmdl"
+	}
+	"8603"
+	{
+		"name"									"Shackles of Forbidden Knowledge"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-25"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/lich/forbidden_knowledge_neck/forbidden_knowledge_neck"
+		"item_description"						"#DOTA_Item_Desc_Forbidden_Knowledge_Neck"
+		"item_name"								"#DOTA_Item_Shackles_of_Forbidden_Knowledge"
+		"item_rarity"							"mythical"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_neck"
+		"model_player"							"models/items/lich/forbidden_knowledge_neck/forbidden_knowledge_neck.vmdl"
+	}
+	"9560"
+	{
+		"name"									"Cloak of the Rime Lord"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/lich/lich_rime_lord_back/lich_rime_lord_back"
+		"item_name"								"#DOTA_Item_Cloak_of_the_Rime_Lord"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/lich/lich_rime_lord_back/lich_rime_lord_back.vmdl"
+	}
+	"9561"
+	{
+		"name"									"Robe of the Rime Lord"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/lich/lich_rime_lord_belt/lich_rime_lord_belt"
+		"item_name"								"#DOTA_Item_Robe_of_the_Rime_Lord"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/lich/lich_rime_lord_belt/lich_rime_lord_belt.vmdl"
+	}
+	"9756"
+	{
+		"name"									"Glare of the Tyrant"
+		"prefab"								"wearable"
+		"creation_date"							"2018-04-04"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/lich/lich_ti8_immortal_arms/lich_ti8_immortal_arms"
+		"item_description"						"#DOTA_Item_Desc_Glare_of_the_Tyrant"
+		"item_name"								"#DOTA_Item_Glare_of_the_Tyrant"
+		"item_rarity"							"immortal"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/lich/lich_ti8_immortal_arms/lich_ti8_immortal_arms.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567296000"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_lich/lich_ambient_frost.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_lich/lich_chain_frost.vpcf"
+				"modifier"						"particles/econ/items/lich/lich_ti8_immortal_arms/lich_ti8_chain_frost.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_lich/lich_ambient_frost_legs.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier3"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Lich.ChainFrost"
+				"modifier"						"Hero_Lich.ChainFrost.TI8"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier4"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Lich.ChainFrostLoop"
+				"modifier"						"Hero_Lich.ChainFrostLoop.TI8"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lich/lich_ti8_immortal_arms/lich_ti8_ambient_frost.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier6"
+			{
+				"type"							"ability_icon"
+				"asset"							"lich_chain_frost"
+				"modifier"						"lich/ti8_immortal_wrist/lich_chain_frost_immortal"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier7"
+			{
+				"type"							"activity"
+				"modifier"						"ti8"
+				"asset"							"ALL"
+				"style"							"0"
+			}
+		}
+	}
+	"12636"
+	{
+		"name"									"Bracers of the Rime Lord"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/lich/lich_rime_lord_arms/lich_rime_lord_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Rime_Lord"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/lich/lich_rime_lord_arms/lich_rime_lord_arms.vmdl"
+	}
+	"12637"
+	{
+		"name"									"Vestment of the Rime Lord"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/lich/lich_rime_lord_neck/lich_rime_lord_neck"
+		"item_name"								"#DOTA_Item_Vestment_of_the_Rime_Lord"
+		"item_rarity"							"rare"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_neck"
+		"model_player"							"models/items/lich/lich_rime_lord_neck/lich_rime_lord_neck.vmdl"
+	}
+	"12638"
+	{
+		"name"									"Crown of the Rime Lord"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/lich/lich_rime_lord_head/lich_rime_lord_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Rime_Lord"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/lich/lich_rime_lord_head/lich_rime_lord_head.vmdl"
+	}
+	"12792"
+	{
+		"name"									"Point of Vile Convocation"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/lich/frostivus2018_lich_frozenworlds_neck/frostivus2018_lich_frozenworlds_neck"
+		"item_name"								"#DOTA_Item_Point_of_Vile_Convocation"
+		"item_rarity"							"mythical"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_neck"
+		"model_player"							"models/items/lich/frostivus2018_lich_frozenworlds_neck/frostivus2018_lich_frozenworlds_neck.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"2018_frostivus"
+				"style"							"0"
+			}
+		}
+	}
+	"12794"
+	{
+		"name"									"Bracer of Vile Convocation"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/lich/frostivus2018_lich_frozenworlds_arms/frostivus2018_lich_frozenworlds_arms"
+		"item_name"								"#DOTA_Item_Bracer_of_Vile_Convocation"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/lich/frostivus2018_lich_frozenworlds_arms/frostivus2018_lich_frozenworlds_arms.vmdl"
+	}
+	"12795"
+	{
+		"name"									"Chains of Vile Convocation"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/lich/frostivus2018_lich_frozenworlds_back/frostivus2018_lich_frozenworlds_back"
+		"item_name"								"#DOTA_Item_Chains_of_Vile_Convocation"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/lich/frostivus2018_lich_frozenworlds_back/frostivus2018_lich_frozenworlds_back.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lich/frozenworlds/lich_frozenworlds_back_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"12796"
+	{
+		"name"									"Belt of Vile Convocation"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/lich/frostivus2018_lich_frozenworlds_belt/frostivus2018_lich_frozenworlds_belt"
+		"item_name"								"#DOTA_Item_Belt_of_Vile_Convocation"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/lich/frostivus2018_lich_frozenworlds_belt/frostivus2018_lich_frozenworlds_belt.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lich/frozenworlds/lich_frozenworlds_belt_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"12797"
+	{
+		"name"									"Crown of Vile Convocation"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/lich/frostivus2018_lich_frozenworlds_head/frostivus2018_lich_frozenworlds_head"
+		"item_name"								"#DOTA_Item_Crown_of_Vile_Convocation"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/lich/frostivus2018_lich_frozenworlds_head/frostivus2018_lich_frozenworlds_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lich/frozenworlds/lich_frozenworlds_head_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"12953"
+	{
+		"name"									"Taunt: Ice Cold Baller"
+		"prefab"								"taunt"
+		"creation_date"							"2019-03-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/taunts/taunt_icon_lich_ballplay"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Ice_Cold_Baller"
+		"item_name"								"#DOTA_Item_Taunt_Ice_Cold_Baller"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1598997600"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"lich_ballplay"
+				"gesture"						"1"
+			}
+		}
+	}
+	"13744"
+	{
+		"name"									"Arms of the Mad Mutineer"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-27"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/lich/the_pirate_king_arms/the_pirate_king_arms"
+		"item_name"								"#DOTA_Item_Arms_of_the_Mad_Mutineer"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/lich/the_pirate_king_arms/the_pirate_king_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"14127"
+	{
+		"name"									"Icebound King Set Neck"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/lich/icebound_king_set_neck/icebound_king_set_neck"
+		"item_name"								"#DOTA_Item_Vote_Only_Icebound_King_Set_Neck"
+		"item_slot"								"neck"
+		"model_player"							"models/items/lich/icebound_king_set_neck/icebound_king_set_neck.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14129"
+	{
+		"name"									"Icebound King Set Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/lich/icebound_king_set_head/icebound_king_set_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Icebound_King_Set_Head"
+		"item_slot"								"head"
+		"model_player"							"models/items/lich/icebound_king_set_head/icebound_king_set_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14130"
+	{
+		"name"									"Icebound King Set Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/lich/icebound_king_set_belt/icebound_king_set_belt"
+		"item_name"								"#DOTA_Item_Vote_Only_Icebound_King_Set_Belt"
+		"item_slot"								"belt"
+		"model_player"							"models/items/lich/icebound_king_set_belt/icebound_king_set_belt.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14131"
+	{
+		"name"									"Icebound King Set Back"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/lich/icebound_king_set_back/icebound_king_set_back"
+		"item_name"								"#DOTA_Item_Vote_Only_Icebound_King_Set_Back"
+		"item_slot"								"back"
+		"model_player"							"models/items/lich/icebound_king_set_back/icebound_king_set_back.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14132"
+	{
+		"name"									"Icebound King Set Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/lich/icebound_king_set_arms/icebound_king_set_arms"
+		"item_name"								"#DOTA_Item_Vote_Only_Icebound_King_Set_Arms"
+		"item_slot"								"arms"
+		"model_player"							"models/items/lich/icebound_king_set_arms/icebound_king_set_arms.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14153"
+	{
+		"name"									"Lord of the Forsaken Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-07"
+		"image_inventory"						"econ/items/lich/dplus_lord_of_the_forsaken_head/dplus_lord_of_the_forsaken_head"
+		"item_name"								"#DOTA_Item_Lord_of_the_Forsaken_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/lich/dplus_lord_of_the_forsaken_head/dplus_lord_of_the_forsaken_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"14154"
+	{
+		"name"									"Lord of the Forsaken Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-07"
+		"image_inventory"						"econ/items/lich/dplus_lord_of_the_forsaken_back/dplus_lord_of_the_forsaken_back"
+		"item_name"								"#DOTA_Item_Lord_of_the_Forsaken_Back"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/lich/dplus_lord_of_the_forsaken_back/dplus_lord_of_the_forsaken_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"14155"
+	{
+		"name"									"Lord of the Forsaken Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-07"
+		"image_inventory"						"econ/items/lich/dplus_lord_of_the_forsaken_belt/dplus_lord_of_the_forsaken_belt"
+		"item_name"								"#DOTA_Item_Lord_of_the_Forsaken_Belt"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/lich/dplus_lord_of_the_forsaken_belt/dplus_lord_of_the_forsaken_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"14156"
+	{
+		"name"									"Lord of the Forsaken Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-07"
+		"image_inventory"						"econ/items/lich/dplus_lord_of_the_forsaken_arms/dplus_lord_of_the_forsaken_arms"
+		"item_name"								"#DOTA_Item_Lord_of_the_Forsaken_Arms"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/lich/dplus_lord_of_the_forsaken_arms/dplus_lord_of_the_forsaken_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"14307"
+	{
+		"name"									"The Curse of Black Pool Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/lich/the_curse_of_black_pool_arms/the_curse_of_black_pool_arms"
+		"item_name"								"#DOTA_Item_Vote_Only_The_Curse_of_Black_Pool_Arms"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/lich/the_curse_of_black_pool_arms/the_curse_of_black_pool_arms.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14308"
+	{
+		"name"									"The Curse of Black Pool Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/lich/the_curse_of_black_pool_back/the_curse_of_black_pool_back"
+		"item_name"								"#DOTA_Item_Vote_Only_The_Curse_of_Black_Pool_Back"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/lich/the_curse_of_black_pool_back/the_curse_of_black_pool_back.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14309"
+	{
+		"name"									"The Curse of Black Pool Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/lich/the_curse_of_black_pool_belt/the_curse_of_black_pool_belt"
+		"item_name"								"#DOTA_Item_Vote_Only_The_Curse_of_Black_Pool_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/lich/the_curse_of_black_pool_belt/the_curse_of_black_pool_belt.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14310"
+	{
+		"name"									"The Curse of Black Pool Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/lich/the_curse_of_black_pool_head/the_curse_of_black_pool_head"
+		"item_name"								"#DOTA_Item_Vote_Only_The_Curse_of_Black_Pool_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/lich/the_curse_of_black_pool_head/the_curse_of_black_pool_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14311"
+	{
+		"name"									"The Curse of Black Pool Neck"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/lich/the_curse_of_black_pool_neck/the_curse_of_black_pool_neck"
+		"item_name"								"#DOTA_Item_Vote_Only_The_Curse_of_Black_Pool_Neck"
+		"item_slot"								"neck"
+		"model_player"							"models/items/lich/the_curse_of_black_pool_neck/the_curse_of_black_pool_neck.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14566"
+	{
+		"name"									"Lord of the Forsaken Neck"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-07"
+		"image_inventory"						"econ/items/lich/dplus_lord_of_the_forsaken_neck/dplus_lord_of_the_forsaken_neck"
+		"item_name"								"#DOTA_Item_Lord_of_the_Forsaken_Neck"
+		"item_rarity"							"rare"
+		"item_slot"								"neck"
+		"model_player"							"models/items/lich/dplus_lord_of_the_forsaken_neck/dplus_lord_of_the_forsaken_neck.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"14578"
+	{
+		"name"									"Lich Lord of Permafrost Neck"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"image_inventory"						"econ/items/lich/lich_lord_of_permafrost_neck/lich_lord_of_permafrost_neck"
+		"item_name"								"#DOTA_Item_Vote_Only_Lich_Lord_of_Permafrost_Neck"
+		"item_slot"								"neck"
+		"model_player"							"models/items/lich/lich_lord_of_permafrost_neck/lich_lord_of_permafrost_neck.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14579"
+	{
+		"name"									"Lich Lord of Permafrost Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"image_inventory"						"econ/items/lich/lich_lord_of_permafrost_arms/lich_lord_of_permafrost_arms"
+		"item_name"								"#DOTA_Item_Vote_Only_Lich_Lord_of_Permafrost_Arms"
+		"item_slot"								"arms"
+		"model_player"							"models/items/lich/lich_lord_of_permafrost_arms/lich_lord_of_permafrost_arms.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14580"
+	{
+		"name"									"Lich Lord of Permafrost Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"image_inventory"						"econ/items/lich/lich_lord_of_permafrost_belt/lich_lord_of_permafrost_belt"
+		"item_name"								"#DOTA_Item_Vote_Only_Lich_Lord_of_Permafrost_Belt"
+		"item_slot"								"belt"
+		"model_player"							"models/items/lich/lich_lord_of_permafrost_belt/lich_lord_of_permafrost_belt.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14581"
+	{
+		"name"									"Lich Lord of Permafrost Back"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"image_inventory"						"econ/items/lich/lich_lord_of_permafrost_back/lich_lord_of_permafrost_back"
+		"item_name"								"#DOTA_Item_Vote_Only_Lich_Lord_of_Permafrost_Back"
+		"item_slot"								"back"
+		"model_player"							"models/items/lich/lich_lord_of_permafrost_back/lich_lord_of_permafrost_back.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14582"
+	{
+		"name"									"Lich Lord of Permafrost Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"image_inventory"						"econ/items/lich/lich_lord_of_permafrost_head/lich_lord_of_permafrost_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Lich_Lord_of_Permafrost_Head"
+		"item_slot"								"head"
+		"model_player"							"models/items/lich/lich_lord_of_permafrost_head/lich_lord_of_permafrost_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14998"
+	{
+		"name"									"Perversions of the Bloodwhorl"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"hide_tradecraftdelete"					"1"
+		"image_inventory"						"econ/items/lich/lich_ti10_immortal_head/lich_ti10_immortal_head"
+		"item_description"						"#DOTA_Item_Desc_Perversions_of_the_Bloodwhorl"
+		"item_name"								"#DOTA_Item_Perversions_of_the_Bloodwhorl"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/lich/lich_ti10_immortal_head/lich_ti10_immortal_head.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_lich/lich_gaze.vpcf"
+				"modifier"						"particles/econ/items/lich/lich_ti10_immortal_head/lich_ti10_immortal_gaze.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lich/lich_ti10_immortal_head/lich_ti10_immortal_head_ambient.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/status_fx/status_effect_lich_gaze.vpcf"
+				"modifier"						"particles/econ/items/lich/lich_ti10_immortal_head/lich_ti10_immortal_gaze_status_effect.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"lich_sinister_gaze"
+				"modifier"						"lich/lich_ti10_immortal_ability_icon/lich_ti10_immortal_sinister_gaze"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier4"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Lich.SinisterGaze.Cast"
+				"modifier"						"Hero_Lich.SinisterGaze.Cast.TI10"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier5"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Lich.SinisterGaze.Target"
+				"modifier"						"Hero_Lich.SinisterGaze.Target.TI10"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+		}
+	}
+	"14999"
+	{
+		"name"									"Collar of the Mad Mutineer"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-27"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/lich/the_pirate_king_neck/the_pirate_king_neck"
+		"item_name"								"#DOTA_Item_Collar_of_the_Mad_Mutineer"
+		"item_rarity"							"rare"
+		"item_slot"								"neck"
+		"model_player"							"models/items/lich/the_pirate_king_neck/the_pirate_king_neck.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"17575"
+	{
+		"name"									"Back of the Mad Mutineer"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-27"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/lich/the_pirate_king_back/the_pirate_king_back"
+		"item_name"								"#DOTA_Item_Back_of_the_Mad_Mutineer"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/lich/the_pirate_king_back/the_pirate_king_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"17576"
+	{
+		"name"									"Hat of the Mad Mutineer"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-27"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/lich/the_pirate_king_head/the_pirate_king_head"
+		"item_name"								"#DOTA_Item_Hat_of_the_Mad_Mutineer"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/lich/the_pirate_king_head/the_pirate_king_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"17577"
+	{
+		"name"									"Belt of the Mad Mutineer"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-27"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/lich/the_pirate_king_belt/the_pirate_king_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Mad_Mutineer"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/lich/the_pirate_king_belt/the_pirate_king_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"17602"
+	{
+		"name"									"Revival of the Ice Witch Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-27"
+		"image_inventory"						"econ/items/lich/ethreains_vestments_head/ethreains_vestments_head"
+		"item_name"								"#DOTA_Item_Revival_of_the_Ice_Witch_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/lich/ethreains_vestments_head/ethreains_vestments_head.vmdl"
+	}
+	"17603"
+	{
+		"name"									"Revival of the Ice Witch Neck"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-27"
+		"image_inventory"						"econ/items/lich/ethreains_vestments_neck/ethreains_vestments_neck"
+		"item_name"								"#DOTA_Item_Revival_of_the_Ice_Witch_Neck"
+		"item_rarity"							"rare"
+		"item_slot"								"neck"
+		"model_player"							"models/items/lich/ethreains_vestments_neck/ethreains_vestments_neck.vmdl"
+	}
+	"17604"
+	{
+		"name"									"Revival of the Ice Witch Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-27"
+		"image_inventory"						"econ/items/lich/ethreains_vestments_arms/ethreains_vestments_arms"
+		"item_name"								"#DOTA_Item_Revival_of_the_Ice_Witch_Arms"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/lich/ethreains_vestments_arms/ethreains_vestments_arms.vmdl"
+	}
+	"17605"
+	{
+		"name"									"Revival of the Ice Witch Back"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-27"
+		"image_inventory"						"econ/items/lich/ethreains_vestments_back/ethreains_vestments_back"
+		"item_name"								"#DOTA_Item_Revival_of_the_Ice_Witch_Back"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/lich/ethreains_vestments_back/ethreains_vestments_back.vmdl"
+	}
+	"17606"
+	{
+		"name"									"Revival of the Ice Witch Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-27"
+		"image_inventory"						"econ/items/lich/ethreains_vestments_belt/ethreains_vestments_belt"
+		"item_name"								"#DOTA_Item_Revival_of_the_Ice_Witch_Belt"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/lich/ethreains_vestments_belt/ethreains_vestments_belt.vmdl"
+	}
+	"20147"
+	{
+		"name"									"Dead Winter Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Dead Winter Mantle"				"1"
+			"Dead Winter Soul"					"1"
+			"Dead Winter Sash"					"1"
+			"Dead Winter Grasp"					"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Dead_Winter_Set"
+		"item_description"						"#DOTA_Item_Desc_Dead_Winter_Set"
+		"item_name"								"#DOTA_Item_Dead_Winter_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Mythical"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20155"
+	{
+		"name"									"Eldritch Ice Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bindings of Eldritch Ice"			"1"
+			"Bracers of Eldritch Ice"			"1"
+			"Glacier of Eldritch Ice"			"1"
+			"Mantle of Eldritch Ice"			"1"
+		}
+		"creation_date"							"2013-03-26"
+		"image_inventory"						"econ/sets/DOTA_Item_Eldritch_Ice_Set"
+		"item_description"						"#DOTA_Item_Desc_Eldritch_Ice_Set"
+		"item_name"								"#DOTA_Item_Eldritch_Ice_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"3/26/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20416"
+	{
+		"name"									"Frozen Star"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Mantle of the Frozen Star"			"1"
+			"Statue of the Frozen Star"			"1"
+			"Bindings of the Frozen Star"		"1"
+			"Bracers of the Frozen Star"		"1"
+			"Frozen Star Loading Screen"		"1"
+		}
+		"creation_date"							"2014-03-03"
+		"image_inventory"						"econ/sets/DOTA_Item_Frozen_Star"
+		"item_description"						"#DOTA_Item_Desc_Frozen_Star"
+		"item_name"								"#DOTA_Item_Frozen_Star"
+		"item_rarity"							"mythical"
+	}
+	"20650"
+	{
+		"name"									"Sorcerer of the Black Pool"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Belt of the Black Pool"			"1"
+			"Wraps of the Black Pool"			"1"
+			"Spikes of the Black Pool"			"1"
+			"Mantle of the Black Pool"			"1"
+			"Sorcerer of the Black Pool Loading Screen""1"
+		}
+		"creation_date"							"2014-09-15"
+		"image_inventory"						"econ/loading_screens/blackpool"
+		"item_description"						"#DOTA_Item_Desc_Sorcerer_of_the_Black_Pool"
+		"item_name"								"#DOTA_Item_Sorcerer_of_the_Black_Pool"
+		"item_rarity"							"rare"
+	}
+	"20661"
+	{
+		"name"									"Frozen Emperor"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Frozen Emperor's Cursed Belt"		"1"
+			"Frozen Emperor's Demon Mask"		"1"
+			"Frozen Emperor's Guardian Lion"	"1"
+			"Frozen Emperor's Runed Bracers"	"1"
+			"Frozen Emperor's Twin Dragon Cape"	"1"
+		}
+		"creation_date"							"2014-10-20"
+		"image_inventory"						"econ/sets/DOTA_Item_Frozen_Emperor"
+		"item_name"								"#DOTA_Item_Frozen_Emperor"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Set"
+		"price_info"
+		{
+			"category_tags"						"Bundles"
+			"date"								"10/28/2014"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20799"
+	{
+		"name"									"Garb of the Frost Lord"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Crown of the Frost Lord"			"1"
+			"Cloak of the Frost Lord"			"1"
+			"Restraints of the Frost Lord"		"1"
+			"Gauntlets of the Frost Lord"		"1"
+			"Collar of the Frost Lord"			"1"
+			"Garb of the Frost Lord Loading Screen""1"
+		}
+		"creation_date"							"2015-05-13"
+		"image_inventory"						"econ/loading_screens/erlkonig_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Garb_of_the_Frost_Lord"
+		"item_name"								"#DOTA_Item_Garb_of_the_Frost_Lord"
+		"item_rarity"							"rare"
+	}
+	"20932"
+	{
+		"name"									"The Serakund Tyrant"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"The Serakund Tyrant Loading Screen""1"
+			"Mantle of the Serakund Tyrant"		"1"
+			"Crown of the Serakund Tyrant"		"1"
+			"Tassets of the Serakund Tyrant"	"1"
+			"Core of the Serakund Tyrant"		"1"
+			"Bracers of the Serakund Tyrant"	"1"
+		}
+		"creation_date"							"2015-12-04"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/blizzard_tyrant_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_The_Serakund_Tyrant"
+		"item_name"								"#DOTA_Item_The_Serakund_Tyrant"
+		"item_rarity"							"mythical"
+	}
+	"21008"
+	{
+		"name"									"Jiang Shi's Revenge"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Coffin of the Jiang Shi's Revenge"	"1"
+			"Robe of the Jiang Shi's Revenge"	"1"
+			"Hat of the Jiang Shi's Revenge"	"1"
+			"Necklace of the Jiang Shi's Revenge""1"
+			"Sleeves of the Jiang Shi's Revenge""1"
+			"Loading Screen of the Jiang Shi's Revenge""1"
+		}
+		"creation_date"							"2017-01-11"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/loading_screens/master_of_jiang_shi_lich_master_of_jiang_shi_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Jiang_Shis_Revenge"
+		"item_name"								"#DOTA_Item_Jiang_Shis_Revenge"
+		"item_rarity"							"mythical"
+	}
+	"21044"
+	{
+		"name"									"Forbidden Knowledge"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Cuffs of Forbidden Knowledge"		"1"
+			"Tome of Forbidden Knowledge"		"1"
+			"Robe of Forbidden Knowledge"		"1"
+			"Cage of Forbidden Knowledge"		"1"
+			"Shackles of Forbidden Knowledge"	"1"
+			"Loading Screen of Forbidden Knowledge""1"
+		}
+		"creation_date"							"2016-04-26"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/forbidden_knowledge_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Forbidden_Knowledge"
+		"item_name"								"#DOTA_Item_Forbidden_Knowledge"
+		"item_rarity"							"mythical"
+	}
+	"21273"
+	{
+		"name"									"Ascendance of the Rime Lord"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Crown of the Rime Lord"			"1"
+			"Vestment of the Rime Lord"			"1"
+			"Bracers of the Rime Lord"			"1"
+			"Ascendance of the Rime Lord Loading Screen""1"
+			"Robe of the Rime Lord"				"1"
+			"Cloak of the Rime Lord"			"1"
+		}
+		"creation_date"							"2018-09-12"
+		"image_inventory"						"econ/loading_screens/lich_rime_lord_loading_screen"
+		"item_name"								"#DOTA_Item_Ascendance_of_the_Rime_Lord"
+		"item_rarity"							"rare"
+	}
+	"21299"
+	{
+		"name"									"Rites of Vile Convocation"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Rites of Vile Convocation Loading Screen""1"
+			"Crown of Vile Convocation"			"1"
+			"Belt of Vile Convocation"			"1"
+			"Chains of Vile Convocation"		"1"
+			"Bracer of Vile Convocation"		"1"
+			"Point of Vile Convocation"			"1"
+		}
+		"creation_date"							"2018-12-02"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/loading_screens/frostivus2018_lich_frozenworlds_ls"
+		"item_name"								"#DOTA_Item_Rites_of_Vile_Convocation"
+		"item_rarity"							"mythical"
+	}
+	"21501"
+	{
+		"name"									"Icebound King Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Icebound King Set Arms"			"1"
+			"Icebound King Set Back"			"1"
+			"Icebound King Set Belt"			"1"
+			"Icebound King Set Head"			"1"
+			"Icebound King Set LS"				"1"
+			"Icebound King Set Neck"			"1"
+		}
+		"creation_date"							"2020-05-11"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Icebound_King_Set"
+		"workshop_accepted"						"0"
+	}
+	"21536"
+	{
+		"name"									"The Curse of Black Pool"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"The Curse of Black Pool Arms"		"1"
+			"The Curse of Black Pool Back"		"1"
+			"The Curse of Black Pool Belt"		"1"
+			"The Curse of Black Pool Head"		"1"
+			"The Curse of Black Pool Neck"		"1"
+			"The Curse of Black Pool LS"		"1"
+		}
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_The_Curse_of_Black_Pool"
+		"workshop_accepted"						"0"
+	}
+	"21598"
+	{
+		"name"									"Lord of the Forsaken"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Lord of the Forsaken Arms"			"1"
+			"Lord of the Forsaken Back"			"1"
+			"Lord of the Forsaken Belt"			"1"
+			"Lord of the Forsaken Head"			"1"
+			"Lord of the Forsaken Loading Screen""1"
+			"Lord of the Forsaken Neck"			"1"
+		}
+		"creation_date"							"2021-02-07"
+		"image_inventory"						"econ/loading_screens/dplus_lord_of_the_forsaken_ls"
+		"item_name"								"#DOTA_Item_Lord_of_the_Forsaken"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"21637"
+	{
+		"name"									"Lich Lord of Permafrost"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Lich Lord of Permafrost Head"		"1"
+			"Lich Lord of Permafrost Back"		"1"
+			"Lich Lord of Permafrost Belt"		"1"
+			"Lich Lord of Permafrost Neck"		"1"
+			"Lich Lord of Permafrost lord_of_permafrost""1"
+			"Lich Lord of Permafrost Arms"		"1"
+		}
+		"creation_date"							"2020-05-17"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Lich_Lord_of_Permafrost"
+		"workshop_accepted"						"0"
+	}
+	"21661"
+	{
+		"name"									"Shares of the Mad Mutineer"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Shares of the Mad Mutineer Loading Screen""1"
+			"Belt of the Mad Mutineer"			"1"
+			"Hat of the Mad Mutineer"			"1"
+			"Back of the Mad Mutineer"			"1"
+			"Arms of the Mad Mutineer"			"1"
+			"Collar of the Mad Mutineer"		"1"
+		}
+		"creation_date"							"2020-08-27"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/loading_screens/the_pirate_king_the_pirate_king_loadingscreen"
+		"item_name"								"#DOTA_Item_Shares_of_the_Mad_Mutineer"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"21665"
+	{
+		"name"									"Revival of the Ice Witch"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Revival of the Ice Witch Belt"		"1"
+			"Revival of the Ice Witch Back"		"1"
+			"Revival of the Ice Witch Arms"		"1"
+			"Revival of the Ice Witch Neck"		"1"
+			"Revival of the Ice Witch Head"		"1"
+			"Revival of the Ice Witch Loading Screen""1"
+		}
+		"creation_date"							"2020-08-27"
+		"image_inventory"						"econ/loading_screens/ethreains_vestments_ls"
+		"item_name"								"#DOTA_Item_Revival_of_the_Ice_Witch"
+		"item_rarity"							"rare"
+	}
+}

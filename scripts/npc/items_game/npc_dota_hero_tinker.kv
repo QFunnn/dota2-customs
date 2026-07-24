@@ -1,0 +1,963 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"367"
+	{
+		"name"									"Tinker's Right Arm"
+		"prefab"								"default_item"
+		"creation_date"							"2013-07-02"
+		"image_inventory"						"econ/heroes/tinker/tinker_right_arm"
+		"item_description"						"#DOTA_Item_Desc_Tinkers_Right_Arm"
+		"item_name"								"#DOTA_Item_Tinkers_Right_Arm"
+		"item_type_name"						"#DOTA_WearableType_Arm"
+		"model_player"							"models/heroes/tinker/tinker_right_arm.vmdl"
+	}
+	"463"
+	{
+		"name"									"Tinker's Left Arm"
+		"prefab"								"default_item"
+		"creation_date"							"2013-07-02"
+		"image_inventory"						"econ/heroes/tinker/tinker_left_arm"
+		"item_description"						"#DOTA_Item_Desc_Tinkers_Left_Arm"
+		"item_name"								"#DOTA_Item_Tinkers_Left_Arm"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Arm"
+		"model_player"							"models/heroes/tinker/tinker_left_arm.vmdl"
+	}
+	"464"
+	{
+		"name"									"Tinker's Shoulders"
+		"prefab"								"default_item"
+		"creation_date"							"2013-07-02"
+		"image_inventory"						"econ/heroes/tinker/tinker_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Tinkers_Shoulders"
+		"item_name"								"#DOTA_Item_Tinkers_Shoulders"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/heroes/tinker/tinker_shoulders.vmdl"
+	}
+	"465"
+	{
+		"name"									"Tinker's Helmet"
+		"prefab"								"default_item"
+		"creation_date"							"2013-07-02"
+		"image_inventory"						"econ/heroes/tinker/tinker_helmet"
+		"item_description"						"#DOTA_Item_Desc_Tinkers_Helmet"
+		"item_name"								"#DOTA_Item_Tinkers_Helmet"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/heroes/tinker/tinker_helmet.vmdl"
+	}
+	"466"
+	{
+		"name"									"Tinker's Head"
+		"prefab"								"default_item"
+		"creation_date"							"2013-07-02"
+		"item_description"						"#DOTA_Item_Desc_Tinkers_Head"
+		"item_name"								"#DOTA_Item_Tinkers_Head"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/tinker/tinker_body_head.vmdl"
+	}
+	"467"
+	{
+		"name"									"Tinker's Cape"
+		"prefab"								"default_item"
+		"creation_date"							"2013-07-02"
+		"image_inventory"						"econ/heroes/tinker/tinker_cape"
+		"item_description"						"#DOTA_Item_Desc_Tinkers_Cape"
+		"item_name"								"#DOTA_Item_Tinkers_Cape"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/heroes/tinker/tinker_cape.vmdl"
+	}
+	"515"
+	{
+		"name"									"Tinker's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-05"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Tinkers_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_tinker"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_tinker/tinker_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_tinker/tinker_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_ambient"
+					}
+				}
+			}
+		}
+	}
+	"618"
+	{
+		"name"									"Tinker's Misc"
+		"prefab"								"default_item"
+		"creation_date"							"2016-06-16"
+		"image_inventory"						"econ/heroes/tinker/tinker_misc"
+		"item_description"						"#DOTA_Item_Desc_Tinkers_Misc"
+		"item_name"								"#DOTA_Item_Tinkers_Misc"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Misc"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2014"
+			}
+		}
+	}
+	"6224"
+	{
+		"name"									"Mecha Boots of Travel Mk III"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-05"
+		"image_inventory"						"econ/items/tinker/boots_of_travel"
+		"item_description"						"#DOTA_Item_Desc_Mecha_Boots_of_Travel_Mk_III"
+		"item_name"								"#DOTA_Item_Mecha_Boots_of_Travel_Mk_III"
+		"item_rarity"							"immortal"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Boots"
+		"model_player"							"models/items/tinker/boots_of_travel.vmdl"
+		"particle_folder"						"particles/econ/items/tinker/boots_of_travel"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2014"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"5"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/items2_fx/teleport_start.vpcf"
+				"modifier"						"particles/econ/items/tinker/boots_of_travel/teleport_start_bots.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""5"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/items2_fx/teleport_end.vpcf"
+				"modifier"						"particles/econ/items/tinker/boots_of_travel/teleport_end_bots.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""5"
+			}
+			"asset_modifier2"
+			{
+				"type"							"inventory_icon"
+				"asset"							"travel_boots"
+				"modifier"						"travel_boots_tinker"
+				"apply_when_equipped_in_ability_effects_slot""5"
+			}
+			"asset_modifier3"
+			{
+				"type"							"sound"
+				"asset"							"Portal.Loop_Appear"
+				"modifier"						"Hero_Tinker.MechaBoots.Loop"
+				"apply_when_equipped_in_ability_effects_slot""5"
+			}
+			"asset_modifier4"
+			{
+				"type"							"sound"
+				"asset"							"Portal.Loop_Disappear"
+				"modifier"						"Hero_Tinker.MechaBoots.Loop"
+				"apply_when_equipped_in_ability_effects_slot""5"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tinker/boots_of_travel/tinker_bots_ambient.vpcf"
+				"system"						"particles/econ/items/tinker/boots_of_travel/tinker_bots_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_boot_r_out"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_boot_l_out"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_boot_r_front"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_boot_l_front"
+					}
+					"4"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_boot_r_back"
+					}
+					"5"
+					{
+						"control_point_index"	"5"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_boot_l_back"
+					}
+				}
+			}
+		}
+	}
+	"7143"
+	{
+		"name"									"Rollermawster"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-05"
+		"image_inventory"						"econ/items/tinker/roller_mawster/roller_mawster"
+		"item_description"						"#DOTA_Item_Desc_Rollermawster"
+		"item_name"								"#DOTA_Item_Rollermawster"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/tinker/roller_mawster/roller_mawster.vmdl"
+		"particle_folder"						"particles/econ/items/tinker/tinker_motm_rollermaw"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_sven' gem_def_index: 3005 } asset_modifier: 137"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_tinker/tinker_machine.vpcf"
+				"modifier"						"particles/econ/items/tinker/tinker_motm_rollermaw/tinker_rollermaw.vpcf"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_tinker/tinker_motm.vpcf"
+				"modifier"						"particles/econ/items/tinker/tinker_motm_rollermaw/tinker_rollermaw_motm.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_CAST_ABILITY_3"
+				"modifier"						"tinker_rollermaw"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier2"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Tinker.March_of_the_Machines.Cast"
+				"modifier"						"Hero_Tinker.March_of_the_Machines.Cast.Rollermawster"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tinker/tinker_motm_rollermaw/tinker_rollermawster_ambient_ears.vpcf"
+				"system"						"particles/econ/items/tinker/tinker_motm_rollermaw/tinker_rollermawster_ambient_ears.vpcf"
+				"attach_type"					"customorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"fx_left_ear"
+					}
+				}
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tinker/tinker_motm_rollermaw/tinker_rollermawster_ambient_pipe.vpcf"
+				"system"						"particles/econ/items/tinker/tinker_motm_rollermaw/tinker_rollermawster_ambient_pipe.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"fx_pipesmoke"
+					}
+				}
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tinker/tinker_motm_rollermaw/tinker_rollermawster_ambient_ears_other.vpcf"
+				"system"						"particles/econ/items/tinker/tinker_motm_rollermaw/tinker_rollermawster_ambient_ears_other.vpcf"
+				"attach_type"					"customorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"fx_right_ear"
+					}
+				}
+			}
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"tinker_march_of_the_machines"
+				"modifier"						"tinker/rollermawster/tinker_march_of_the_machines_1"
+			}
+		}
+	}
+	"7967"
+	{
+		"name"									"Helmet of the Fortified Fabricator"
+		"prefab"								"wearable"
+		"creation_date"							"2016-06-01"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/tinker/artillery_of_the_fortified_fabricator_head/artillery_of_the_fortified_fabricator_head"
+		"item_name"								"#DOTA_Item_Helmet_of_the_Fortified_Fabricator"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/tinker/artillery_of_the_fortified_fabricator_head/artillery_of_the_fortified_fabricator_head.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"7968"
+	{
+		"name"									"Ballista of the Fortified Fabricator"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/tinker/artillery_of_the_fortified_fabricator_off_hand_alt/artillery_of_the_fortified_fabricator_off_hand_alt"
+		"item_name"								"#DOTA_Item_Ballista_of_the_Fortified_Fabricator"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Ballista"
+		"model_player"							"models/items/tinker/artillery_of_the_fortified_fabricator_off_hand_alt/artillery_of_the_fortified_fabricator_off_hand_alt.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"7969"
+	{
+		"name"									"Shoulders of the Fortified Fabricator"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/tinker/artillery_of_the_fortified_fabricator_shoulder_alt/artillery_of_the_fortified_fabricator_shoulder_alt"
+		"item_name"								"#DOTA_Item_Shoulders_of_the_Fortified_Fabricator"
+		"item_quality"							"unusual"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/tinker/artillery_of_the_fortified_fabricator_shoulder_alt/artillery_of_the_fortified_fabricator_shoulder_alt.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"7970"
+	{
+		"name"									"Cannon of the Fortified Fabricator"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/tinker/artillery_of_the_fortified_fabricator_weapon_alt/artillery_of_the_fortified_fabricator_weapon_alt"
+		"item_name"								"#DOTA_Item_Cannon_of_the_Fortified_Fabricator"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Cannon"
+		"model_player"							"models/items/tinker/artillery_of_the_fortified_fabricator_weapon_alt/artillery_of_the_fortified_fabricator_weapon_alt.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"7972"
+	{
+		"name"									"Controls of the Fortified Fabricator"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/tinker/artillery_of_the_fortified_fabricator_back_alt/artillery_of_the_fortified_fabricator_back_alt"
+		"item_name"								"#DOTA_Item_Controls_of_the_Fortified_Fabricator"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Controls"
+		"model_player"							"models/items/tinker/artillery_of_the_fortified_fabricator_back_alt/artillery_of_the_fortified_fabricator_back_alt.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"9264"
+	{
+		"name"									"Submerged Hazard Launcher"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/tinker/deep_sea_robot_off_hand/deep_sea_robot_off_hand"
+		"item_name"								"#DOTA_Item_Submerged_Hazard_Launcher"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/tinker/deep_sea_robot_off_hand/deep_sea_robot_off_hand.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tinker/tinker_deepsea/tinker_deepsea_offhand_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9265"
+	{
+		"name"									"Submerged Hazard Mask"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/tinker/deep_sea_robot_head/deep_sea_robot_head"
+		"item_name"								"#DOTA_Item_Submerged_Hazard_Mask"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/tinker/deep_sea_robot_head/deep_sea_robot_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tinker/tinker_deepsea/tinker_deepsea_head_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9266"
+	{
+		"name"									"Submerged Hazard Hull"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/tinker/deep_sea_robot_shoulder/deep_sea_robot_shoulder"
+		"item_name"								"#DOTA_Item_Submerged_Hazard_Hull"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/tinker/deep_sea_robot_shoulder/deep_sea_robot_shoulder.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tinker/tinker_deepsea/tinker_deepsea_shoulder_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9267"
+	{
+		"name"									"Submerged Hazard Laser"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/tinker/deep_sea_robot_weapon/deep_sea_robot_weapon"
+		"item_name"								"#DOTA_Item_Submerged_Hazard_Laser"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/tinker/deep_sea_robot_weapon/deep_sea_robot_weapon.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tinker/tinker_deepsea/tinker_deepsea_weapon_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9268"
+	{
+		"name"									"Submerged Hazard Propeller"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/tinker/deep_sea_robot_back/deep_sea_robot_back"
+		"item_name"								"#DOTA_Item_Submerged_Hazard_Propeller"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/tinker/deep_sea_robot_back/deep_sea_robot_back.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tinker/tinker_deepsea/tinker_deepsea_back_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"12543"
+	{
+		"name"									"Taunt: Advanced Bladework"
+		"prefab"								"taunt"
+		"creation_date"							"2020-05-25"
+		"hide_tradecraftdelete"					"1"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/taunts/dota_icon_taunt_tinker_ti10"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Advanced_Bladework"
+		"item_name"								"#DOTA_Item_Taunt_Advanced_Bladework"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_TI10_Limited_Tradeability"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"ti10_taunt"
+				"style"							"0"
+				"gesture"						"1"
+			}
+		}
+		"reward_can_be_shown_in_toast"			"1"
+	}
+	"13777"
+	{
+		"name"									"Arcanic Resonance Beam"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"hide_tradecraftdelete"					"1"
+		"image_inventory"						"econ/items/tinker/tinker_ti10_immortal_laser/tinker_ti10_immortal_laser"
+		"item_description"						"#DOTA_Item_Desc_Arcanic_Resonance_Beam"
+		"item_name"								"#DOTA_Item_Arcanic_Resonance_Beam"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/tinker/tinker_ti10_immortal_laser/tinker_ti10_immortal_laser.vmdl"
+		"override_attack_attachments"			"1"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"ability_icon"
+				"asset"							"tinker_laser"
+				"modifier"						"tinker/tinker_ti10_immortal_ability_icons/tinker_laser_ti10"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+				"modifier"						"particles/econ/items/tinker/tinker_ti10_immortal_laser/tinker_ti10_immortal_laser.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_tinker/tinker_laser_aghs.vpcf"
+				"modifier"						"particles/econ/items/tinker/tinker_ti10_immortal_laser/tinker_ti10_immortal_laser_aghs.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tinker/tinker_ti10_immortal_laser/tinker_ti10_immortal_ambient.vpcf"
+			}
+		}
+	}
+	"14063"
+	{
+		"name"									"Blackshield Protodrone Stinger"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/tinker/mecha_hornet_back/mecha_hornet_back"
+		"item_name"								"#DOTA_Item_Blackshield_Protodrone_Stinger"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"model_player"							"models/items/tinker/mecha_hornet_back/mecha_hornet_back.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tinker/tinker_mecha_hornet/tinker_mecha_hornet_back.vpcf"
+			}
+		}
+	}
+	"14064"
+	{
+		"name"									"Blackshield Protodrone Laser"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/tinker/mecha_hornet_weapon/mecha_hornet_weapon"
+		"item_name"								"#DOTA_Item_Blackshield_Protodrone_Laser"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/tinker/mecha_hornet_weapon/mecha_hornet_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tinker/tinker_mecha_hornet/tinker_mecha_hornet_laser.vpcf"
+			}
+		}
+	}
+	"14065"
+	{
+		"name"									"Blackshield Protodrone Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/tinker/mecha_hornet_shoulder/mecha_hornet_shoulder"
+		"item_name"								"#DOTA_Item_Blackshield_Protodrone_Armor"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/tinker/mecha_hornet_shoulder/mecha_hornet_shoulder.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tinker/tinker_mecha_hornet/tinker_mecha_hornet_shoulder.vpcf"
+			}
+		}
+	}
+	"14066"
+	{
+		"name"									"Blackshield Protodrone Missile Launcher"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/tinker/mecha_hornet_off_hand/mecha_hornet_off_hand"
+		"item_name"								"#DOTA_Item_Blackshield_Protodrone_Missile_Launcher"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/tinker/mecha_hornet_off_hand/mecha_hornet_off_hand.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tinker/tinker_mecha_hornet/tinker_mecha_hornet_offhand.vpcf"
+			}
+		}
+	}
+	"14067"
+	{
+		"name"									"Blackshield Protodrone Helm"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/tinker/mecha_hornet_head/mecha_hornet_head"
+		"item_name"								"#DOTA_Item_Blackshield_Protodrone_Helm"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/tinker/mecha_hornet_head/mecha_hornet_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tinker/tinker_mecha_hornet/tinker_mecha_hornet_head.vpcf"
+			}
+		}
+	}
+	"20940"
+	{
+		"name"									"Fortified Fabricator"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Fortified Fabricator Loading Screen""1"
+			"Ballista of the Fortified Fabricator""1"
+			"Cannon of the Fortified Fabricator""1"
+			"Shoulders of the Fortified Fabricator""1"
+			"Helmet of the Fortified Fabricator""1"
+			"Controls of the Fortified Fabricator""1"
+		}
+		"creation_date"							"2016-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/loading_screens/artillery_of_the_fortified_fabricator_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Artillery_of_the_Fortified_Fabricator"
+		"item_name"								"#DOTA_Item_Fortified_Fabricator"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"21110"
+	{
+		"name"									"Submerged Hazard"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Submerged Hazard Launcher"			"1"
+			"Submerged Hazard Mask"				"1"
+			"Submerged Hazard Hull"				"1"
+			"Submerged Hazard Laser"			"1"
+			"Submerged Hazard Propeller"		"1"
+			"Submerged Hazard Loading Screen"	"1"
+		}
+		"creation_date"							"2017-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/loading_screens/deep_sea_robot_deep_sea_robot_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Submerged_Hazard"
+		"item_name"								"#DOTA_Item_Submerged_Hazard"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21489"
+	{
+		"name"									"Blackshield Protodrone"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Blackshield Protodrone Helm"		"1"
+			"Blackshield Protodrone Missile Launcher""1"
+			"Blackshield Protodrone Armor"		"1"
+			"Blackshield Protodrone Laser"		"1"
+			"Blackshield Protodrone Stinger"	"1"
+		}
+		"creation_date"							"2020-05-11"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Blackshield_Protodrone"
+		"item_name"								"#DOTA_Item_Blackshield_Protodrone"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+	}
+}

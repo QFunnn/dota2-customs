@@ -1,0 +1,804 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.HudMenu
+{
+	width: 100%;
+	height: 100%;
+	z-index: 3;
+}
+
+#MenuButtonsGroupRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#MenuButtonsRoot
+{
+	margin-left: 100px;
+	margin-right: 10px;
+	margin-top: 6px;
+	flow-children: right;
+}
+
+#MenuButtonsRoot .EOM_Icon
+{
+	horizontal-align: center;
+}
+
+#MenuButtonsRightRoot
+{
+	align: right top;
+	margin-right: 280px;
+	flow-children: right;
+}
+
+#MenuButtonsRightRoot .EOM_Icon
+{
+	horizontal-align: center;
+}
+
+@define rarity_color_1: #b0c3d9;
+@define rarity_color_uncommon: #5e98d9;
+@define rarity_color_2: #4b69ff;
+@define rarity_color_3: #8847ff;
+@define rarity_color_0: #d32ce6;
+@define rarity_color_5: #eb4b4b;
+@define rarity_color_4: #e4ae39;
+@define rarity_color_arcana: #ade55c;
+@define rarity_color_seasonal: #fff34f;
+.CommonGoldNum
+{
+	font-size: 24px;
+	color: #FFCC34;
+}
+
+.CommonButtonBlue
+{
+	width: 197px;
+	height: 54px;
+	background-image: url("s2r://panorama/images/custom_game/common_resource/btnblue_png.vtex");
+}
+
+.CommonButtonBlue Label
+{
+	align: center center;
+	color: #E9E9E9;
+	font-size: 17px;
+	text-shadow: 0px 0px 1px 3 #000000;
+}
+
+.CommonButtonGrey
+{
+	width: 197px;
+	height: 54px;
+	background-image: url("s2r://panorama/images/custom_game/common_resource/btngrey_png.vtex");
+}
+
+.CommonButtonGrey Label
+{
+	align: center center;
+	color: #E9E9E9;
+	font-size: 17px;
+	text-shadow: 0px 0px 1px 3 #000000;
+}
+
+.RarityColor0
+{
+	color: rarity_color_0;
+}
+
+.RarityColor1
+{
+	color: rarity_color_1;
+}
+
+.RarityColor2
+{
+	color: rarity_color_2;
+}
+
+.RarityColor3
+{
+	color: rarity_color_3;
+}
+
+.RarityColor4
+{
+	color: rarity_color_4;
+}
+
+.RarityColor5
+{
+	color: rarity_color_5;
+}
+
+.RarityBorderColor0
+{
+	border-color: rarity_color_0;
+}
+
+.RarityBorderColor1
+{
+	border-color: rarity_color_1;
+}
+
+.RarityBorderColor2
+{
+	border-color: rarity_color_2;
+}
+
+.RarityBorderColor3
+{
+	border-color: rarity_color_3;
+}
+
+.RarityBorderColor4
+{
+	border-color: rarity_color_4;
+}
+
+.RarityBorderColor5
+{
+	border-color: rarity_color_5;
+}
+
+.RarityBGColor0
+{
+	background-color: rarity_color_0;
+}
+
+.RarityBGColor1
+{
+	background-color: rarity_color_1;
+}
+
+.RarityBGColor2
+{
+	background-color: rarity_color_2;
+}
+
+.RarityBGColor3
+{
+	background-color: rarity_color_3;
+}
+
+.RarityBGColor4
+{
+	background-color: rarity_color_4;
+}
+
+.RarityBGColor5
+{
+	background-color: rarity_color_5;
+}
+
+.RarityWashColor0
+{
+	wash-color: rarity_color_0;
+}
+
+.RarityWashColor1
+{
+	wash-color: rarity_color_1;
+}
+
+.RarityWashColor2
+{
+	wash-color: rarity_color_2;
+}
+
+.RarityWashColor3
+{
+	wash-color: rarity_color_3;
+}
+
+.RarityWashColor4
+{
+	wash-color: rarity_color_4;
+}
+
+.RarityWashColor5
+{
+	wash-color: rarity_color_5;
+}
+
+.RarityGradientColor0
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), color-stop(0.5, #ED88FF), to(#A925CA));
+}
+
+.RarityGradientColor1
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#C1C1C1), to(#768594));
+}
+
+.RarityGradientColor2
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#65B0F0), to(#254CCA));
+}
+
+.RarityGradientColor3
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#D482FF), to(#7325CA));
+}
+
+.RarityGradientColor4
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), color-stop(0.5, #FFE982), to(#CA8E25));
+}
+
+.RarityGradientColor5
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), color-stop(0.5, #FF9F70), to(#D53333));
+}
+
+.HudRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#GridNeutralItems VerticalScrollBar
+{
+	width: 2px;
+}
+
+#DrawAbility
+{
+	width: 852px;
+	min-height: 368px;
+	background-color: #1b1e28f2;
+	box-shadow: inset 0 0 1px #62758B;
+	background-size: 100%;
+	horizontal-align: center;
+	margin-top: 60px;
+	transition-property: width, height, background-image, opacity;
+	transition-duration: 0.2s;
+	opacity: 0;
+	flow-children: down;
+}
+
+#DrawAbility.collapse
+{
+	width: fit-children;
+	min-height: 40px;
+}
+
+#DrawAbility.collapse #DrawAbilityShow
+{
+	width: 145px;
+	height: 40px;
+	margin: 10px 10px;
+}
+
+#DrawAbility.Show
+{
+	opacity: 1;
+}
+
+#DrawAbility.Side
+{
+	horizontal-align: right;
+	margin-top: 83px;
+	width: 368px;
+	height: 852px;
+}
+
+#DrawAbility.Side #DrawAbilityList
+{
+	margin-top: 28px;
+	max-width: 300px;
+}
+
+#DrawAbility.Side #DrawAbilityButtons
+{
+	width: 100%;
+	height: 180px;
+}
+
+#DrawAbility.Side #DrawAbilityButtons #DrawAbilityToggleList
+{
+	margin-top: 10px;
+	width: fit-children;
+	height: fit-children;
+	flow-children: down;
+	align: center top;
+}
+
+#DrawAbility.Side #DrawAbilityButtons #DrawAbilityToggleList .DrawAbilityToggleButton
+{
+	width: 234px;
+	height: fit-children;
+	margin: 2px 2px;
+}
+
+#DrawAbility.Side #DrawAbilityButtons #DrawAbilityToggleList .DrawAbilityToggleButton Label
+{
+	vertical-align: center;
+	font-size: 15px;
+	text-overflow: shrink;
+	color: #7896AD;
+}
+
+#DrawAbility.Side #DrawAbilityButtons #DrawAbilityClose
+{
+	align: center bottom;
+	flow-children: down;
+}
+
+#DrawAbility.Side #main_icon
+{
+	width: 73px;
+	height: 73px;
+}
+
+#DrawAbility.Side.collapse
+{
+	width: fit-children;
+	height: fit-children;
+	margin-top: 28px;
+	margin-right: 120px;
+}
+
+#DrawAbility.Side.collapse #DrawAbilityShow
+{
+	width: 145px;
+	height: 40px;
+	margin: 10px 10px;
+}
+
+#DrawAbility #DrawAbilityTitle
+{
+	margin-top: 20px;
+	horizontal-align: center;
+	font-size: 17px;
+	color: #5CDEFF;
+}
+
+#DrawAbility #DrawAbilityList
+{
+	margin-top: 10px;
+	max-width: 752px;
+}
+
+#DrawAbility #DrawAbilityList .DrawAbilityListAbilityName
+{
+	horizontal-align: center;
+	color: white;
+	font-size: 16px;
+	text-overflow: shrink;
+	max-width: 110px;
+	height: 23px;
+	margin-top: 7px;
+}
+
+#DrawAbility #DrawAbilityButtons
+{
+	width: 100%;
+	height: 100px;
+}
+
+#DrawAbility #DrawAbilityButtons #DrawAbilityClose
+{
+	align: center center;
+	flow-children: right;
+}
+
+#DrawAbility #DrawAbilityButtons #DrawAbilityClose .CommonButtonBlue
+{
+	width: 145px;
+	height: 40px;
+	margin: 10px 10px;
+}
+
+#DrawAbility #DrawAbilityButtons #DrawAbilityClose .CommonButtonGrey
+{
+	width: 145px;
+	height: 40px;
+	margin: 10px 10px;
+}
+
+#DrawAbility #DrawAbilityButtons #DrawAbilityShow
+{
+	align: center center;
+}
+
+#DrawAbility #DrawAbilityButtons #DrawAbilityToggleList
+{
+	width: 220px;
+	height: 32px;
+	flow-children: down;
+	align: right center;
+}
+
+#DrawAbility #DrawAbilityButtons #DrawAbilityToggleList .DrawAbilityToggleButton
+{
+	width: 100%;
+	height: fit-children;
+	margin: 2px 2px;
+}
+
+#DrawAbility #DrawAbilityButtons #DrawAbilityToggleList .DrawAbilityToggleButton Label
+{
+	vertical-align: center;
+	font-size: 15px;
+	color: #7896AD;
+	text-overflow: shrink;
+}
+
+#main_icon
+{
+	width: 73px;
+	height: 73px;
+}
+
+#linked_abilities
+{
+	margin-top: 49px;
+	visibility: collapse;
+	z-index: 2;
+	width: 73px;
+	height: 24px;
+	flow-children: left;
+}
+
+#linked_abilities.has_link_ability
+{
+	visibility: visible;
+}
+
+#linked_abilities .linked_ability
+{
+	width: 24px;
+	height: 24px;
+	margin-left: -20px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-right: 0px;
+	transform: translateX(0px);
+	transition-property: transform;
+	transition-duration: 0.2s;
+}
+
+#linked_abilities .linked_ability.show_link_abilities0
+{
+	margin-left: -24px;
+	transform: translateX(0px);
+}
+
+#linked_abilities .linked_ability.show_link_abilities1
+{
+	margin-left: -24px;
+	transform: translateX(-24px);
+}
+
+#linked_abilities .linked_ability.show_link_abilities2
+{
+	margin-left: -24px;
+	transform: translateX(-48px);
+}
+
+#linked_abilities .linked_ability.show_link_abilities3
+{
+	margin-left: -24px;
+	transform: translateX(-72px);
+}
+
+#linked_abilities .linked_ability.show_link_abilities4
+{
+	margin-left: -24px;
+	transform: translateX(-96px);
+}
+
+.AbilityButton
+{
+	width: 150px;
+	height: 110px;
+}
+
+.AbilityButton:active
+{
+	brightness: 0.5;
+}
+
+.AbilityButton #ability_icon
+{
+	width: 73px;
+	height: 73px;
+	horizontal-align: center;
+}
+
+.AbilityButton #ability_icon:hover
+{
+	box-shadow: inset 0 0 2px #20DDFF;
+}
+
+#RoundInfo
+{
+	margin-top: 76px;
+	opacity: 0;
+}
+
+#RoundInfo.Show
+{
+	opacity: 1;
+}
+
+#RoundInfo.Flip
+{
+	horizontal-align: right;
+}
+
+#RoundInfo #RoundNumberContainer
+{
+	width: 75px;
+	height: 75px;
+	border-radius: 10px;
+	vertical-align: bottom;
+	background-color: gradient(radial, 50% 50%, 0% 0%, 45% 45%, from(#4d4f52), to(#171819));
+	border: 4px solid #25282a;
+}
+
+#RoundInfo #RoundNumberContainer #RoundNumberTitle
+{
+	width: 100%;
+	height: 26px;
+	color: gradient(linear, 60% 0%, 0% 100%, from(#ef3e35), to(#ba3427));
+	font-size: 22px;
+	text-align: center;
+	text-shadow: 1px 1px 2px 3 #000000;
+	brightness: 1.5;
+	font-weight: bold;
+	margin-top: 4px;
+	text-transform: uppercase;
+	align: center top;
+	text-overflow: shrink;
+}
+
+#RoundInfo #RoundNumberContainer #RoundNumberLabel
+{
+	color: gradient(linear, 30% 0%, 0% 100%, from(#e04b43), to(#9e281c));
+	font-size: 36px;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 2px 3 #000000;
+	text-align: center;
+	font-weight: bold;
+	brightness: 1.2;
+	width: 100%;
+	align: center bottom;
+}
+
+#RoundInfo .EOM_ProgressBar
+{
+	width: 300px;
+	height: 33px;
+	margin-left: 75px;
+	vertical-align: bottom;
+	margin-bottom: 26px;
+	border: 4px solid #25282a;
+	border-left-width: 0px;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+	z-index: -1;
+}
+
+#RoundInfo .EOM_ProgressBar .EOM_ProgressBar_Left
+{
+	transition-duration: 1s;
+	transition-timing-function: linear;
+}
+
+#RoundInfo .EOM_ProgressBar #RoundRemainingTime
+{
+	align: center center;
+	height: 100%;
+	color: white;
+	font-size: 20px;
+	margin-right: 10px;
+	text-align: center;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: clip;
+	visibility: collapse;
+}
+
+#RoundInfo .EOM_ProgressBar #RoundRemainingTime.Show
+{
+	visibility: visible;
+}
+
+#RoundInfo .EOM_ProgressBar #RoundExpireTime
+{
+	align: center center;
+	height: 100%;
+	color: #ff6464;
+	font-size: 20px;
+	margin-right: 10px;
+	text-align: center;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: clip;
+	visibility: collapse;
+}
+
+#RoundInfo .EOM_ProgressBar #RoundExpireTime.Show
+{
+	visibility: visible;
+}
+
+#RoundInfo #ReadyGrid
+{
+	width: 85px;
+	height: 26px;
+	margin-right: 15px;
+	background-color: gradient(radial, 65% 65%, 5% 5%, 70% 70%, from(#971b1a), to(#4c1710));
+	border-bottom-right-radius: 7px;
+	border-bottom-left-radius: 7px;
+	align: right bottom;
+	padding: 1px;
+	padding-top: 1px;
+	flow-children: right;
+	box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+	transition-property: background-color, transform;
+	transition-duration: 0.6s;
+	z-index: -10;
+	transform: translateY(-26px);
+}
+
+#RoundInfo #ReadyGrid.Show
+{
+	transform: translateY(0px);
+}
+
+#RoundInfo #ReadyGrid Label
+{
+	color: #dcdcdc;
+	text-shadow: 1px 1px 2px 3 #000000;
+}
+
+#RoundInfo #ReadyGrid:hover
+{
+	background-color: gradient(radial, 65% 65%, 5% 5%, 70% 70%, from(#bd1f1e), to(#5a1910));
+}
+
+#RoundInfo #ReadyGrid:hover Label
+{
+	color: white;
+}
+
+#RoundInfo #RoundName
+{
+	vertical-align: bottom;
+	margin-left: 80px;
+	margin-bottom: 65px;
+	font-size: 22px;
+	text-shadow: 1px 1px 2px 3 #000000;
+	color: white;
+	width: 168px;
+	height: 26px;
+	text-overflow: shrink;
+}
+
+#RoundInfo #RoundAbilityList
+{
+	horizontal-align: right;
+	margin-bottom: 65px;
+	height: 28px;
+	width: 120px;
+}
+
+#RoundInfo #RoundAbilityList DOTAAbilityImage
+{
+	width: 28px;
+	height: 28px;
+	border-radius: 4px;
+	margin: 1px 1px 0px 1px;
+}
+
+#DrawNeutralItem
+{
+	width: fit-children;
+	height: fit-children;
+	background-color: #1b1e28f2;
+	box-shadow: inset 0 0 1px #62758B;
+	background-size: 100%;
+	align: center bottom;
+	margin-bottom: 186px;
+	margin-left: 400px;
+	flow-children: down;
+}
+
+#DrawNeutralItem #NeutralItemTop
+{
+	width: 100%;
+	height: 50px;
+}
+
+#DrawNeutralItem #NeutralItemTop .title
+{
+	align: center center;
+	font-size: 17px;
+	color: #5CDEFF;
+}
+
+#DrawNeutralItem #NeutralItemTop .title.Show
+{
+	visibility: visible;
+}
+
+#DrawNeutralItem #NeutralItemMain
+{
+	width: fit-children;
+	height: 80px;
+}
+
+#DrawNeutralItem #NeutralItemMain #NeutralItemContianer
+{
+	width: fit-children;
+	height: fit-children;
+	align: center center;
+	flow-children: right;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+#DrawNeutralItem #NeutralItemMain #NeutralItemContianer #NeutralItemSlot
+{
+	width: 88px;
+	height: 64px;
+	margin: 3px;
+}
+
+#DrawNeutralItem #NeutralItemMain #NeutralItemContianer #NeutralItemSlot #NeutralItemImage
+{
+	align: center center;
+	width: 70.4px;
+	height: 51.2px;
+	box-shadow: inset 0 0 2px #9e9e9e;
+}
+
+#DrawNeutralItem #NeutralItemMain #NeutralItemContianer #NeutralItemSlot #NeutralItemImage:active
+{
+	brightness: 0.5;
+}
+
+#DrawNeutralItem #NeutralItemMain #NeutralItemContianer #NeutralItemSlot #NeutralItemImage:hover
+{
+	box-shadow: inset 0 0 2px #20DDFF;
+}
+
+#DrawNeutralItem #NeutralItemBottom
+{
+	width: fit-children;
+	height: 70px;
+	horizontal-align: center;
+}
+
+#DrawNeutralItem #NeutralItemBottom #NeutralItemButtons
+{
+	width: fit-children;
+	height: fit-children;
+	align: center center;
+	flow-children: right;
+}
+
+#MiniMap
+{
+	background-color: #1b1e28f2;
+	box-shadow: inset 0 0 1px #62758B;
+	align: left bottom;
+}
+
+#MiniMap.Flip
+{
+	align: right bottom;
+}

@@ -1,0 +1,2991 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"318"
+	{
+		"name"									"Lina's Jewelry"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/lina/lina_neck"
+		"item_description"						"#DOTA_Item_Desc_Linas_Jewelry"
+		"item_name"								"#DOTA_Item_Linas_Jewelry"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Neck"
+		"model_player"							"models/heroes/lina/lina_neck.vmdl"
+	}
+	"319"
+	{
+		"name"									"Lina's Hair"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/lina/lina_head"
+		"item_description"						"#DOTA_Item_Desc_Linas_Hair"
+		"item_name"								"#DOTA_Item_Linas_Hair"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/lina/lina_head.vmdl"
+	}
+	"320"
+	{
+		"name"									"Lina's Sleeves"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/lina/lina_arms"
+		"item_description"						"#DOTA_Item_Desc_Linas_Sleeves"
+		"item_name"								"#DOTA_Item_Linas_Sleeves"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/heroes/lina/lina_arms.vmdl"
+	}
+	"321"
+	{
+		"name"									"Lina's Dress"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/lina/lina_belt"
+		"item_description"						"#DOTA_Item_Desc_Linas_Dress"
+		"item_name"								"#DOTA_Item_Linas_Dress"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/heroes/lina/lina_belt.vmdl"
+	}
+	"504"
+	{
+		"name"									"Lina's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-05"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Linas_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_lina"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_lina/lina_flame_hand_dual.vpcf"
+				"system"						"particles/units/heroes/hero_lina/lina_flame_hand_dual.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"4753"
+	{
+		"name"									"Blessings of the Solar Divine"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/lina/anuxi_solar_hair/anuxi_solar_hair"
+		"item_description"						"#DOTA_Item_Desc_Blessings_of_the_Solar_Divine"
+		"item_name"								"#DOTA_Item_Blessings_of_the_Solar_Divine"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/lina/anuxi_solar_hair/anuxi_solar_hair.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4754"
+	{
+		"name"									"Sleeves of the Solar Divine"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/lina/anuxi_solar_sleeves/anuxi_solar_sleeves"
+		"item_description"						"#DOTA_Item_Desc_Sleeves_of_the_Solar_Divine"
+		"item_name"								"#DOTA_Item_Sleeves_of_the_Solar_Divine"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Sleeves"
+		"model_player"							"models/items/lina/anuxi_solar_sleeves/anuxi_solar_sleeves.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4755"
+	{
+		"name"									"Flares of the Solar Divine"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/lina/anuxi_solar_belt/anuxi_solar_belt"
+		"item_description"						"#DOTA_Item_Desc_Flares_of_the_Solar_Divine"
+		"item_name"								"#DOTA_Item_Flares_of_the_Solar_Divine"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Skirt"
+		"model_player"							"models/items/lina/anuxi_solar_belt/anuxi_solar_belt.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4756"
+	{
+		"name"									"Arc of the Solar Divine"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/lina/anuxi_solar_necklace/anuxi_solar_necklace"
+		"item_description"						"#DOTA_Item_Desc_Arc_of_the_Solar_Divine"
+		"item_name"								"#DOTA_Item_Arc_of_the_Solar_Divine"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Necklace"
+		"model_player"							"models/items/lina/anuxi_solar_necklace/anuxi_solar_necklace.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4757"
+	{
+		"name"									"Catalyst Cap"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/lina/catalyst_cap2/catalyst_cap2"
+		"item_description"						"#DOTA_Item_Desc_Catalyst_Cap"
+		"item_name"								"#DOTA_Item_Catalyst_Cap"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hat"
+		"model_player"							"models/items/lina/catalyst_cap2/catalyst_cap2.vmdl"
+	}
+	"4794"
+	{
+		"name"									"Fiery Soul of the Slayer"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-07"
+		"has_store_custom_item_details_panel"	"1"
+		"image_inventory"						"econ/items/lina/origins_flamehair/origins_flamehair"
+		"item_description"						"#DOTA_Item_Desc_Fiery_Soul_of_the_Slayer"
+		"item_name"								"#DOTA_Item_Fiery_Soul_of_the_Slayer"
+		"item_rarity"							"arcana"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/lina/origins_flamehair/origins_flamehair.vmdl"
+		"particle_folder"						"particles/econ/items/lina/lina_head_headflame"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Legendary"
+			"category_tags"						"Bundles"
+			"date"								"9/23/2013"
+			"price"								"3499"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf"
+				"modifier"						"particles/econ/items/lina/lina_head_headflame/lina_spell_dragon_slave_headflame.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Lina.DragonSlave.Cast"
+				"modifier"						"Hero_Lina.DragonSlave.FireHair"
+			}
+			"asset_modifier2"
+			{
+				"type"							"icon_replacement_hero"
+				"asset"							"npc_dota_hero_lina"
+				"modifier"						"npc_dota_hero_lina_alt1"
+				"force_display"					"1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"lina_fiery_soul"
+				"modifier"						"lina_fiery_soul_alt1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"lina_dragon_slave"
+				"modifier"						"lina_dragon_slave_alt1"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_lina/lina_spell_dragon_slave_impact.vpcf"
+				"modifier"						"particles/econ/items/lina/lina_head_headflame/lina_spell_dragon_slave_impact_headflame.vpcf"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_lina/lina_flame_hand_dual.vpcf"
+				"modifier"						"particles/econ/items/lina/lina_head_headflame/lina_flame_hand_dual_headflame.vpcf"
+			}
+			"asset_modifier7"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"fiery_soul"
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lina/lina_head_headflame/lina_headflame.vpcf"
+				"system"						"particles/econ/items/lina/lina_head_headflame/lina_headflame.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+				}
+			}
+			"asset_modifier9"
+			{
+				"type"							"model_skin"
+				"skin"							"1"
+			}
+			"asset_modifier10"
+			{
+				"type"							"icon_replacement_hero_minimap"
+				"asset"							"npc_dota_hero_lina"
+				"modifier"						"npc_dota_hero_lina_alt1"
+				"force_display"					"1"
+			}
+			"asset_modifier11"
+			{
+				"type"							"arcana_level"
+				"level"							"1"
+			}
+		}
+	}
+	"4935"
+	{
+		"name"									"Pauldrons of the Battle Caster"
+		"prefab"								"wearable"
+		"creation_date"							"2013-04-30"
+		"image_inventory"						"econ/items/lina/pauldrons_of_the_slayer/pauldrons_of_the_slayer"
+		"item_description"						"#DOTA_Item_Desc_Pauldrons_of_the_Battle_Caster"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Battle_Caster"
+		"item_rarity"							"rare"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/lina/pauldrons_of_the_slayer/pauldrons_of_the_slayer.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4936"
+	{
+		"name"									"Vambraces of the Battle Caster"
+		"prefab"								"wearable"
+		"creation_date"							"2013-04-30"
+		"image_inventory"						"econ/items/lina/vambracesoftheslayerz1/vambracesoftheslayerz1"
+		"item_description"						"#DOTA_Item_Desc_Vambraces_of_the_Battle_Caster"
+		"item_name"								"#DOTA_Item_Vambraces_of_the_Battle_Caster"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Vambraces"
+		"model_player"							"models/items/lina/vambracesoftheslayerz1/vambracesoftheslayerz1.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4937"
+	{
+		"name"									"Plates of the Battle Caster"
+		"prefab"								"wearable"
+		"creation_date"							"2013-04-30"
+		"image_inventory"						"econ/items/lina/skirtoftheslayerz10/skirtoftheslayerz10"
+		"item_description"						"#DOTA_Item_Desc_Plates_of_the_Battle_Caster"
+		"item_name"								"#DOTA_Item_Plates_of_the_Battle_Caster"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/lina/skirtoftheslayerz10/skirtoftheslayerz10.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4938"
+	{
+		"name"									"Cut of the Battle Caster"
+		"prefab"								"wearable"
+		"creation_date"							"2013-04-30"
+		"image_inventory"						"econ/items/lina/hairoftheslayerr/hairoftheslayerr"
+		"item_description"						"#DOTA_Item_Desc_Cut_of_the_Battle_Caster"
+		"item_name"								"#DOTA_Item_Cut_of_the_Battle_Caster"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/lina/hairoftheslayerr/hairoftheslayerr.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4998"
+	{
+		"name"									"Taunt: Get Burned"
+		"prefab"								"taunt"
+		"image_inventory"						"econ/taunts/DOTA_Item_Taunt_Get_Burned"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Get_Burned"
+		"item_name"								"#DOTA_Item_Taunt_Get_Burned"
+		"item_rarity"							"mythical"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"get_burned"
+			}
+		}
+	}
+	"5042"
+	{
+		"name"									"Sleeves of the Charred Bloodline"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-10"
+		"image_inventory"						"econ/items/lina/x_arms_xxx/x_arms_xxx"
+		"item_description"						"#DOTA_Item_Desc_Sleeves_of_the_Charred_Bloodline"
+		"item_name"								"#DOTA_Item_Sleeves_of_the_Charred_Bloodline"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Sleeves"
+		"model_player"							"models/items/lina/x_arms_xxx/x_arms_xxx.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5043"
+	{
+		"name"									"Heirloom of the Charred Bloodline"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-10"
+		"image_inventory"						"econ/items/lina/x_necklace_xxx/x_necklace_xxx"
+		"item_description"						"#DOTA_Item_Desc_Heirloom_of_the_Charred_Bloodline"
+		"item_name"								"#DOTA_Item_Heirloom_of_the_Charred_Bloodline"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Necklace"
+		"model_player"							"models/items/lina/x_necklace_xxx/x_necklace_xxx.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5044"
+	{
+		"name"									"Style of the Charred Bloodline"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-10"
+		"image_inventory"						"econ/items/lina/x_hair_xxx/x_hair_xxx"
+		"item_description"						"#DOTA_Item_Desc_Style_of_the_Charred_Bloodline"
+		"item_name"								"#DOTA_Item_Style_of_the_Charred_Bloodline"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/lina/x_hair_xxx/x_hair_xxx.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5045"
+	{
+		"name"									"Gown of the Charred Bloodline"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-10"
+		"image_inventory"						"econ/items/lina/x_dress_xxx/x_dress_xxx"
+		"item_description"						"#DOTA_Item_Desc_Gown_of_the_Phoenix_Bloodline"
+		"item_name"								"#DOTA_Item_Gown_of_the_Charred_Bloodline"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Dress"
+		"model_player"							"models/items/lina/x_dress_xxx/x_dress_xxx.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5270"
+	{
+		"name"									"Sleeves of the Scorching Princess"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-19"
+		"image_inventory"						"econ/items/lina/sleeves_of_the_scorching_princess/sleeves_of_the_scorching_princess"
+		"item_description"						"#DOTA_Item_Desc_Sleeves_of_the_Scorching_Princess"
+		"item_name"								"#DOTA_Item_Sleeves_of_the_Scorching_Princess"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Sleeves"
+		"model_player"							"models/items/lina/sleeves_of_the_scorching_princess/sleeves_of_the_scorching_princess.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5271"
+	{
+		"name"									"Dress of the Scorching Princess"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-19"
+		"image_inventory"						"econ/items/lina/dress_of_the_scorching_princess/dress_of_the_scorching_princess"
+		"item_description"						"#DOTA_Item_Desc_Dress_of_the_Scorching_Princess"
+		"item_name"								"#DOTA_Item_Dress_of_the_Scorching_Princess"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Dress"
+		"model_player"							"models/items/lina/dress_of_the_scorching_princess/dress_of_the_scorching_princess.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5272"
+	{
+		"name"									"Tails of the Scorching Princess"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-19"
+		"image_inventory"						"econ/items/lina/tails_of_the_scorching_princess/tails_of_the_scorching_princess"
+		"item_description"						"#DOTA_Item_Desc_Tails_of_the_Scorching_Princess"
+		"item_name"								"#DOTA_Item_Tails_of_the_Scorching_Princess"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/lina/tails_of_the_scorching_princess/tails_of_the_scorching_princess.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5273"
+	{
+		"name"									"Epaulettes of the Scorching Princess"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-19"
+		"image_inventory"						"econ/items/lina/epaulettes_of_the_scorching_princess/epaulettes_of_the_scorching_princess"
+		"item_description"						"#DOTA_Item_Desc_Epaulettes_of_the_Scorching_Princess"
+		"item_name"								"#DOTA_Item_Epaulettes_of_the_Scorching_Princess"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Epaulettes"
+		"model_player"							"models/items/lina/epaulettes_of_the_scorching_princess/epaulettes_of_the_scorching_princess.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5796"
+	{
+		"name"									"Curls of Flame"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-03"
+		"image_inventory"						"econ/items/lina/curls_of_flame/curls_of_flame"
+		"item_name"								"#DOTA_Item_Curls_of_Flame"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hairstyle"
+		"model_player"							"models/items/lina/curls_of_flame/curls_of_flame.vmdl"
+	}
+	"5849"
+	{
+		"name"									"Braid of Fiery Curls"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-16"
+		"image_inventory"						"econ/items/lina/lina_braid_of_fierycurls/lina_braid_of_fierycurls"
+		"item_name"								"#DOTA_Item_Braid_of_Fiery_Curls"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/lina/lina_braid_of_fierycurls/lina_braid_of_fierycurls.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5930"
+	{
+		"name"									"Bright Moon Jeonmo"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-14"
+		"image_inventory"						"econ/items/lina/hwang_jin_yihead/hwang_jin_yihead"
+		"item_name"								"#DOTA_Item_Bright_Moon_Jeonmo"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hat"
+		"model_player"							"models/items/lina/hwang_jin_yihead/hwang_jin_yihead.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/17/2014"
+			"price"								"0"
+		}
+	}
+	"5931"
+	{
+		"name"									"Bright Moon Chima"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-14"
+		"image_inventory"						"econ/items/lina/hwang_jin_yibelt/hwang_jin_yibelt"
+		"item_name"								"#DOTA_Item_Bright_Moon_Chima"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Dress"
+		"model_player"							"models/items/lina/hwang_jin_yibelt/hwang_jin_yibelt.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/17/2014"
+			"price"								"0"
+		}
+	}
+	"5932"
+	{
+		"name"									"Bright Moon Somae"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-14"
+		"image_inventory"						"econ/items/lina/hwang_jin_yiarms/hwang_jin_yiarms"
+		"item_name"								"#DOTA_Item_Bright_Moon_Somae"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Sleeves"
+		"model_player"							"models/items/lina/hwang_jin_yiarms/hwang_jin_yiarms.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/17/2014"
+			"price"								"0"
+		}
+	}
+	"5933"
+	{
+		"name"									"Bright Moon Mokdori"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-14"
+		"image_inventory"						"econ/items/lina/hwang_jin_yineck/hwang_jin_yineck"
+		"item_name"								"#DOTA_Item_Bright_Moon_Mokdori"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Collar"
+		"model_player"							"models/items/lina/hwang_jin_yineck/hwang_jin_yineck.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/17/2014"
+			"price"								"0"
+		}
+	}
+	"5940"
+	{
+		"name"									"Adornments of the Ember Crane"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-15"
+		"image_inventory"						"econ/items/lina/ember_crane_neck/ember_crane_neck"
+		"item_name"								"#DOTA_Item_Adornments_of_the_Ember_Crane"
+		"item_rarity"							"uncommon"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Collar_and_Earrings"
+		"model_player"							"models/items/lina/ember_crane_neck/ember_crane_neck.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/24/2014"
+			"price"								"0"
+		}
+	}
+	"5941"
+	{
+		"name"									"Wings of the Ember Crane"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-15"
+		"image_inventory"						"econ/items/lina/ember_crane_arms/ember_crane_arms"
+		"item_name"								"#DOTA_Item_Wings_of_the_Ember_Crane"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arm_Wraps"
+		"model_player"							"models/items/lina/ember_crane_arms/ember_crane_arms.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/24/2014"
+			"price"								"0"
+		}
+	}
+	"5942"
+	{
+		"name"									"Tail of the Ember Crane"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-15"
+		"image_inventory"						"econ/items/lina/ember_crane_belt/ember_crane_belt"
+		"item_name"								"#DOTA_Item_Tail_of_the_Ember_Crane"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Skirt"
+		"model_player"							"models/items/lina/ember_crane_belt/ember_crane_belt.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/24/2014"
+			"price"								"0"
+		}
+	}
+	"5969"
+	{
+		"name"									"Headdress of the Ember Crane"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-20"
+		"image_inventory"						"econ/items/lina/ember_crane_head/ember_crane_head"
+		"item_name"								"#DOTA_Item_Headdress_of_the_Ember_Crane"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Headdress"
+		"model_player"							"models/items/lina/ember_crane_head/ember_crane_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/24/2014"
+			"price"								"0"
+		}
+	}
+	"6339"
+	{
+		"name"									"Fire Lotus Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-26"
+		"forced_item_quality"					"genuine"
+		"image_inventory"						"econ/items/lina/pw_fire_lotus/lina_belt"
+		"item_name"								"#DOTA_Item_Fire_Lotus_Belt"
+		"item_quality"							"genuine"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Skirt"
+		"model_player"							"models/items/lina/pw_fire_lotus/lina_belt.vmdl"
+		"particle_folder"						"particles/econ/items/lina/lina_fire_lotus"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lina/lina_fire_lotus/lina_fire_lotus_ambient.vpcf"
+				"system"						"particles/econ/items/lina/lina_fire_lotus/lina_fire_lotus_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"6559"
+	{
+		"name"									"Gauntlets of the Dragonfire"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-29"
+		"image_inventory"						"econ/items/lina/dragonfire_arms/dragonfire_arms"
+		"item_name"								"#DOTA_Item_Gauntlets_of_the_Dragonfire"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Gauntlets"
+		"model_player"							"models/items/lina/dragonfire_arms/dragonfire_arms.vmdl"
+	}
+	"6560"
+	{
+		"name"									"Drapes of the Dragonfire"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-29"
+		"image_inventory"						"econ/items/lina/dragonfire_belt/dragonfire_belt"
+		"item_name"								"#DOTA_Item_Drapes_of_the_Dragonfire"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Drapes"
+		"model_player"							"models/items/lina/dragonfire_belt/dragonfire_belt.vmdl"
+	}
+	"6598"
+	{
+		"name"									"Everlasting Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-15"
+		"image_inventory"						"econ/items/lina/everlastingheat_arms/everlastingheat_arms"
+		"item_name"								"#DOTA_Item_Everlasting_Arms"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/lina/everlastingheat_arms/everlastingheat_arms.vmdl"
+		"branding"
+		{
+			"corporation_id"					"89371588"
+		}
+	}
+	"6599"
+	{
+		"name"									"Everlasting Tails"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-15"
+		"image_inventory"						"econ/items/lina/everlastingheat_neck/everlastingheat_neck"
+		"item_name"								"#DOTA_Item_Everlasting_Tails"
+		"item_rarity"							"rare"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Tails"
+		"model_player"							"models/items/lina/everlastingheat_neck/everlastingheat_neck.vmdl"
+		"branding"
+		{
+			"corporation_id"					"89371588"
+		}
+	}
+	"6600"
+	{
+		"name"									"Everlasting Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-15"
+		"image_inventory"						"econ/items/lina/everlastingheat_belt/everlastingheat_belt"
+		"item_name"								"#DOTA_Item_Everlasting_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/lina/everlastingheat_belt/everlastingheat_belt.vmdl"
+		"branding"
+		{
+			"corporation_id"					"89371588"
+		}
+	}
+	"6685"
+	{
+		"name"									"Everlasting Hair"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-22"
+		"image_inventory"						"econ/items/lina/everlastingheat_hair/everlastingheat_hair"
+		"item_name"								"#DOTA_Item_Everlasting_Hair"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/lina/everlastingheat_head/everlastingheat_head.vmdl"
+		"branding"
+		{
+			"corporation_id"					"89371588"
+		}
+	}
+	"6707"
+	{
+		"name"									"Magnificent Flame"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-20"
+		"image_inventory"						"econ/items/lina/magnificentflame_head/magnificentflame_head"
+		"item_name"								"#DOTA_Item_Magnificent_Flame"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/lina/magnificentflame_head/magnificentflame_head.vmdl"
+	}
+	"6750"
+	{
+		"name"									"Braids of the Dragonfire"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-29"
+		"image_inventory"						"econ/items/lina/dragonfire_hair/dragonfire_hair"
+		"item_name"								"#DOTA_Item_Braids_of_the_Dragonfire"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/lina/dragonfire_hair/dragonfire_hair.vmdl"
+	}
+	"6751"
+	{
+		"name"									"Sash of the Dragonfire"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-29"
+		"image_inventory"						"econ/items/lina/dragonfire_neck/dragonfire_neck"
+		"item_name"								"#DOTA_Item_Sash_of_the_Dragonfire"
+		"item_rarity"							"uncommon"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Sash"
+		"model_player"							"models/items/lina/dragonfire_neck/dragonfire_neck.vmdl"
+	}
+	"7248"
+	{
+		"name"									"Sleeves of the Warhawk Vestiments"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-13"
+		"image_inventory"						"econ/items/lina/warhawk_vestiments_arms/warhawk_vestiments_arms"
+		"item_name"								"#DOTA_Item_Sleeves_of_the_Warhawk_Vestiments"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Sleeves"
+		"model_player"							"models/items/lina/warhawk_vestiments_arms/warhawk_vestiments_arms.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2015"
+			"price"								"0"
+		}
+	}
+	"7249"
+	{
+		"name"									"Skirt of the Warhawk Vestiments"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-13"
+		"image_inventory"						"econ/items/lina/warhawk_vestiments_skirt/warhawk_vestiments_skirt"
+		"item_name"								"#DOTA_Item_Skirt_of_the_Warhawk_Vestiments"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Skirt"
+		"model_player"							"models/items/lina/warhawk_vestiments_skirt/warhawk_vestiments_skirt.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2015"
+			"price"								"0"
+		}
+	}
+	"7250"
+	{
+		"name"									"Necklace of the Warhawk Vestiments"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-13"
+		"image_inventory"						"econ/items/lina/warhawk_vestiments_necklace/warhawk_vestiments_necklace"
+		"item_name"								"#DOTA_Item_Necklace_of_the_Warhawk_Vestiments"
+		"item_rarity"							"uncommon"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Necklace"
+		"model_player"							"models/items/lina/warhawk_vestiments_necklace/warhawk_vestiments_necklace.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2015"
+			"price"								"0"
+		}
+	}
+	"7251"
+	{
+		"name"									"Hood of the Warhawk Vestiments"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-13"
+		"image_inventory"						"econ/items/lina/warhawk_vestiments_cape/warhawk_vestiments_cape"
+		"item_name"								"#DOTA_Item_Hood_of_the_Warhawk_Vestiments"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hood"
+		"model_player"							"models/items/lina/warhawk_vestiments_cape/warhawk_vestiments_cape.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2015"
+			"price"								"0"
+		}
+	}
+	"7716"
+	{
+		"name"									"Dress of the Bewitching Flare"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-02"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/lina/bewitching_flame_belt/bewitching_flame_belt"
+		"item_description"						"#DOTA_Item_Desc_Dress_of_the_Bewitching_Flare"
+		"item_name"								"#DOTA_Item_Dress_of_the_Bewitching_Flare"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Dress"
+		"model_player"							"models/items/lina/bewitching_flame_belt/bewitching_flame_belt.vmdl"
+		"particle_folder"						"particles/econ/items/lina/lina_bewitching_flame"
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lina/lina_bewitching_flame/lina_bewitching_flame_ambient.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/lina/lina_bewitching_flame/lina_bewitching_flame_ambient.vpcf"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#Bewitching_Flare_Dress_Default"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#Bewitching_Flare_Dress_Particle"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"price"					"1"
+						"item_def"				"16735"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/lina/bewitching_flame_belt/bewitching_flame_belt"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/lina/bewitching_flame_belt/bewitching_flame_belt_particle"
+				}
+			}
+			"skin"								"0"
+		}
+	}
+	"7717"
+	{
+		"name"									"Touch of the Bewitching Flare"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-02"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/lina/bewitching_flame_arms/bewitching_flame_arms"
+		"item_name"								"#DOTA_Item_Touch_of_the_Bewitching_Flare"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Sleeves"
+		"model_player"							"models/items/lina/bewitching_flame_arms/bewitching_flame_arms.vmdl"
+	}
+	"7718"
+	{
+		"name"									"Corset of the Bewitching Flare"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-02"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/lina/bewitching_flame_neck/bewitching_flame_neck"
+		"item_name"								"#DOTA_Item_Corset_of_the_Bewitching_Flare"
+		"item_rarity"							"mythical"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Corset"
+		"model_player"							"models/items/lina/bewitching_flame_neck/bewitching_flame_neck.vmdl"
+	}
+	"7725"
+	{
+		"name"									"Style of the Bewitching Flare"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-02"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/lina/bewitching_flame_hair/bewitching_flame_hair"
+		"item_name"								"#DOTA_Item_Style_of_the_Bewitching_Flare"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Style"
+		"model_player"							"models/items/lina/bewitching_flame_hair/bewitching_flame_hair.vmdl"
+	}
+	"7741"
+	{
+		"name"									"Golden Wyrmwrought Flare"
+		"prefab"								"wearable"
+		"creation_date"							"2017-06-12"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/lina/lina_ti7/lina_ti71"
+		"item_description"						"#DOTA_Item_Desc_Golden_Wyrmwrought_Flare"
+		"item_name"								"#DOTA_Item_Golden_Wyrmwrought_Flare"
+		"item_rarity"							"immortal"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Skirt"
+		"model_player"							"models/items/lina/lina_ti7/lina_ti7.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1535796000"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_lina/lina_spell_light_strike_array_ray_team.vpcf"
+				"modifier"						"particles/econ/items/lina/lina_ti7/light_strike_array_pre_ti7_gold.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_lina/lina_spell_light_strike_array.vpcf"
+				"modifier"						"particles/econ/items/lina/lina_ti7/lina_spell_light_strike_array_ti7_gold.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lina/lina_ti7/lina_ti7_gold_ambient.vpcf"
+				"style"							"0"
+			}
+			"skin"								"1"
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti7"
+				"style"							"0"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"lina_light_strike_array"
+				"modifier"						"lina/lina_ti7_immortal/lina_lightstrike_array_gold"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier5"
+			{
+				"type"							"sound"
+				"asset"							"Ability.PreLightStrikeArray"
+				"modifier"						"Ability.PreLightStrikeArray.ti7"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+		}
+	}
+	"8003"
+	{
+		"name"									"Disciple of the Wyrmwrought Flame"
+		"prefab"								"wearable"
+		"creation_date"							"2016-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/lina/lina_immortal_ii/mesh/lina_immortal_ii"
+		"item_description"						"#DOTA_Item_Desc_Disciple_of_the_Wyrmwrought_Flame"
+		"item_name"								"#DOTA_Item_Disciple_of_the_Wyrmwrought_Flame"
+		"item_rarity"							"immortal"
+		"item_slot"								"neck"
+		"model_player"							"models/items/lina/lina_immortal_ii/mesh/lina_immortal_ii.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1470045600"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti6"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_lina/lina_spell_laguna_blade.vpcf"
+				"modifier"						"particles/econ/items/lina/lina_ti6/lina_ti6_laguna_blade.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lina/lina_ti6/lina_ti6_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/lina/lina_ti6/lina_ti6_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_neck"
+					}
+				}
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lina/lina_ti6/lina_ti6_ambient_base.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/lina/lina_ti6/lina_ti6_ambient_base.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_neck"
+					}
+				}
+			}
+			"asset_modifier4"
+			{
+				"type"							"sound"
+				"asset"							"Ability.LagunaBlade"
+				"modifier"						"Hero_Lina.LagunaBlade.Immortal"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier5"
+			{
+				"type"							"sound"
+				"asset"							"Ability.LagunaBladeImpact"
+				"modifier"						"Hero_Lina.LagunaBladeImpact.Immortal"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier6"
+			{
+				"type"							"ability_icon"
+				"asset"							"lina_laguna_blade"
+				"modifier"						"lina/lina_ti6_immortal/lina_laguna_blade"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"8118"
+	{
+		"name"									"Bracers of Smoldering Journey"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-04"
+		"image_inventory"						"econ/items/lina/migrant_blaze_arms/migrant_blaze_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_Smoldering_Journey"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/lina/migrant_blaze_arms/migrant_blaze_arms.vmdl"
+	}
+	"8119"
+	{
+		"name"									"Robe of Smoldering Journey"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-04"
+		"image_inventory"						"econ/items/lina/migrant_blaze_belt/migrant_blaze_belt"
+		"item_name"								"#DOTA_Item_Robe_of_Smoldering_Journey"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Robe"
+		"model_player"							"models/items/lina/migrant_blaze_belt/migrant_blaze_belt.vmdl"
+	}
+	"8120"
+	{
+		"name"									"Diadem of Smoldering Journey"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-04"
+		"image_inventory"						"econ/items/lina/migrant_blaze_head/migrant_blaze_head"
+		"item_name"								"#DOTA_Item_Diadem_of_Smoldering_Journey"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Diadem"
+		"model_player"							"models/items/lina/migrant_blaze_head/migrant_blaze_head.vmdl"
+	}
+	"8121"
+	{
+		"name"									"Shawl of Smoldering Journey"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-04"
+		"image_inventory"						"econ/items/lina/migrant_blaze_neck/migrant_blaze_neck"
+		"item_name"								"#DOTA_Item_Shawl_of_Smoldering_Journey"
+		"item_rarity"							"uncommon"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Shawl"
+		"model_player"							"models/items/lina/migrant_blaze_neck/migrant_blaze_neck.vmdl"
+	}
+	"8524"
+	{
+		"name"									"Helm of the Enthaleen Dragon"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/lina/scales_of_the_burning_dragon_head/scales_of_the_burning_dragon_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Enthaleen_Dragon"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/lina/scales_of_the_burning_dragon_head/scales_of_the_burning_dragon_head.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Item_Enthaleen_Dragon_Style_00"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Item_Enthaleen_Dragon_Style_01"
+					"skin"						"1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/lina/scales_of_the_burning_dragon_head/scales_of_the_burning_dragon_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/lina/scales_of_the_burning_dragon_head/scales_of_the_burning_dragon_head_style1"
+				}
+			}
+			"skin"								"0"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lina/enthaleen_dragon/lina_enthaleen_dragon_helm_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/lina/enthaleen_dragon/lina_enthaleen_dragon_helm_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lina/enthaleen_dragon/lina_enthaleen_dragon_helm_ambient_dark.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/lina/enthaleen_dragon/lina_enthaleen_dragon_helm_ambient_dark.vpcf"
+				"attach_type"					"customorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+				}
+			}
+		}
+	}
+	"8525"
+	{
+		"name"									"Mantle of the Enthaleen Dragon"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/lina/scales_of_the_burning_dragon_neck/scales_of_the_burning_dragon_neck"
+		"item_name"								"#DOTA_Item_Mantle_of_the_Enthaleen_Dragon"
+		"item_rarity"							"mythical"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/lina/scales_of_the_burning_dragon_neck/scales_of_the_burning_dragon_neck.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Item_Enthaleen_Dragon_Style_00"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Item_Enthaleen_Dragon_Style_01"
+					"skin"						"1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/lina/scales_of_the_burning_dragon_neck/scales_of_the_burning_dragon_neck"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/lina/scales_of_the_burning_dragon_neck/scales_of_the_burning_dragon_neck_style1"
+				}
+			}
+			"skin"								"0"
+		}
+	}
+	"8526"
+	{
+		"name"									"Dress of the Enthaleen Dragon"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/lina/scales_of_the_burning_dragon_belt/scales_of_the_burning_dragon_belt"
+		"item_name"								"#DOTA_Item_Dress_of_the_Enthaleen_Dragon"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Dress"
+		"model_player"							"models/items/lina/scales_of_the_burning_dragon_belt/scales_of_the_burning_dragon_belt.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Item_Enthaleen_Dragon_Style_00"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Item_Enthaleen_Dragon_Style_01"
+					"skin"						"1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/lina/scales_of_the_burning_dragon_belt/scales_of_the_burning_dragon_belt"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/lina/scales_of_the_burning_dragon_belt/scales_of_the_burning_dragon_belt_style1"
+				}
+			}
+			"skin"								"0"
+		}
+	}
+	"8527"
+	{
+		"name"									"Sleeves of the Enthaleen Dragon"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/lina/scales_of_the_burning_dragon_arms/scales_of_the_burning_dragon_arms"
+		"item_name"								"#DOTA_Item_Sleeves_of_the_Enthaleen_Dragon"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Sleeves"
+		"model_player"							"models/items/lina/scales_of_the_burning_dragon_arms/scales_of_the_burning_dragon_arms.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Item_Enthaleen_Dragon_Style_00"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Item_Enthaleen_Dragon_Style_01"
+					"skin"						"1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/lina/scales_of_the_burning_dragon_arms/scales_of_the_burning_dragon_arms"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/lina/scales_of_the_burning_dragon_arms/scales_of_the_burning_dragon_arms_style1"
+				}
+			}
+			"skin"								"0"
+		}
+	}
+	"8816"
+	{
+		"name"									"Style of the Vehement Plume"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/lina/feathery_soul_head/feathery_soul_head"
+		"item_name"								"#DOTA_Item_Style_of_the_Vehement_Plume"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Style"
+		"model_player"							"models/items/lina/feathery_soul_head/feathery_soul_head.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"1/10/2016"
+			"price"								"0"
+		}
+	}
+	"8817"
+	{
+		"name"									"Skirt of the Vehement Plume"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/lina/feathery_soul_belt/feathery_soul_belt"
+		"item_name"								"#DOTA_Item_Skirt_of_the_Vehement_Plume"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Skirt"
+		"model_player"							"models/items/lina/feathery_soul_belt/feathery_soul_belt.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"1/10/2016"
+			"price"								"0"
+		}
+	}
+	"8818"
+	{
+		"name"									"Sleeves of the Vehement Plume"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/lina/feathery_soul_arms/feathery_soul_arms"
+		"item_name"								"#DOTA_Item_Sleeves_of_the_Vehement_Plume"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Sleeves"
+		"model_player"							"models/items/lina/feathery_soul_arms/feathery_soul_arms.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"1/10/2016"
+			"price"								"0"
+		}
+	}
+	"8819"
+	{
+		"name"									"Necklace of the Vehement Plume"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/lina/feathery_soul_neck/feathery_soul_neck"
+		"item_name"								"#DOTA_Item_Necklace_of_the_Vehement_Plume"
+		"item_rarity"							"uncommon"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Necklace"
+		"model_player"							"models/items/lina/feathery_soul_neck/feathery_soul_neck.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"1/10/2016"
+			"price"								"0"
+		}
+	}
+	"8990"
+	{
+		"name"									"Headress of the Divine Flame"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-03"
+		"image_inventory"						"econ/items/lina/esl_divine_flame_head/esl_divine_flame_head"
+		"item_name"								"#DOTA_Item_Headress_of_the_Divine_Flame"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Headress"
+		"model_player"							"models/items/lina/esl_divine_flame_head/esl_divine_flame_head.vmdl"
+	}
+	"8991"
+	{
+		"name"									"Cape of the Divine Flame"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-03"
+		"image_inventory"						"econ/items/lina/esl_divine_flame_neck/esl_divine_flame_neck"
+		"item_name"								"#DOTA_Item_Cape_of_the_Divine_Flame"
+		"item_rarity"							"uncommon"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/lina/esl_divine_flame_neck/esl_divine_flame_neck.vmdl"
+	}
+	"8992"
+	{
+		"name"									"Sleeves of the Divine Flame"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-03"
+		"image_inventory"						"econ/items/lina/esl_divine_flame_arms/esl_divine_flame_arms"
+		"item_name"								"#DOTA_Item_Sleeves_of_the_Divine_Flame"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Sleeves"
+		"model_player"							"models/items/lina/esl_divine_flame_arms/esl_divine_flame_arms.vmdl"
+	}
+	"8993"
+	{
+		"name"									"Skirt of the Divine Flame"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-03"
+		"image_inventory"						"econ/items/lina/esl_divine_flame_belt/esl_divine_flame_belt"
+		"item_name"								"#DOTA_Item_Skirt_of_the_Divine_Flame"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Skirt"
+		"model_player"							"models/items/lina/esl_divine_flame_belt/esl_divine_flame_belt.vmdl"
+	}
+	"9071"
+	{
+		"name"									"Flames of the Fireflight Scion"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-05"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/lina/reborn_phoenixlina_arms/reborn_phoenixlina_arms"
+		"item_description"						"#DOTA_Item_Desc_Flames_of_the_Fireflight_Scion"
+		"item_name"								"#DOTA_Item_Flames_of_the_Fireflight_Scion"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/lina/reborn_phoenixlina_arms/reborn_phoenixlina_arms.vmdl"
+	}
+	"9072"
+	{
+		"name"									"Skirt of the Fireflight Scion"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-05"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/lina/reborn_phoenixlina_belt/reborn_phoenixlina_belt"
+		"item_description"						"#DOTA_Item_Desc_Skirt_of_the_Fireflight_Scion"
+		"item_name"								"#DOTA_Item_Skirt_of_the_Fireflight_Scion"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/lina/reborn_phoenixlina_belt/reborn_phoenixlina_belt.vmdl"
+	}
+	"9073"
+	{
+		"name"									"Hair of the Fireflight Scion"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-05"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/lina/reborn_phoenixlina_head/reborn_phoenixlina_head"
+		"item_description"						"#DOTA_Item_Desc_Hair_of_the_Fireflight_Scion"
+		"item_name"								"#DOTA_Item_Hair_of_the_Fireflight_Scion"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/lina/reborn_phoenixlina_head/reborn_phoenixlina_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"9074"
+	{
+		"name"									"Wings of the Fireflight Scion"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-05"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/lina/reborn_phoenixlina_neck/reborn_phoenixlina_neck"
+		"item_description"						"#DOTA_Item_Desc_Wings_of_the_Fireflight_Scion"
+		"item_name"								"#DOTA_Item_Wings_of_the_Fireflight_Scion"
+		"item_rarity"							"mythical"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_neck"
+		"model_player"							"models/items/lina/reborn_phoenixlina_neck/reborn_phoenixlina_neck.vmdl"
+	}
+	"9243"
+	{
+		"name"									"Wyrmwrought Flare"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-10"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/lina/lina_ti7/lina_ti7"
+		"item_description"						"#DOTA_Item_Desc_Wyrmwrought_Flare"
+		"item_name"								"#DOTA_Item_Wyrmwrought_Flare"
+		"item_rarity"							"immortal"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Skirt"
+		"model_player"							"models/items/lina/lina_ti7/lina_ti7.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1535796000"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_lina/lina_spell_light_strike_array_ray_team.vpcf"
+				"modifier"						"particles/econ/items/lina/lina_ti7/light_strike_array_pre_ti7.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_lina/lina_spell_light_strike_array.vpcf"
+				"modifier"						"particles/econ/items/lina/lina_ti7/lina_spell_light_strike_array_ti7.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lina/lina_ti7/lina_ti7_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti7"
+				"style"							"0"
+			}
+			"asset_modifier4"
+			{
+				"type"							"sound"
+				"asset"							"Ability.PreLightStrikeArray"
+				"modifier"						"Ability.PreLightStrikeArray.ti7"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier5"
+			{
+				"type"							"ability_icon"
+				"asset"							"lina_light_strike_array"
+				"modifier"						"lina/lina_ti7_immortal/lina_light_strike_array"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+		}
+	}
+	"12217"
+	{
+		"name"									"The Scarlet Flare Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2019-12-07"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/lina/the_scarlet_flare_belt/the_scarlet_flare_belt"
+		"item_name"								"#DOTA_Item_The_Scarlet_Flare_Belt"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/lina/the_scarlet_flare_belt/the_scarlet_flare_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_The_Scarlet_Flare_Belt_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_The_Scarlet_Flare_Belt_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"18956"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lina/lina_scarlet_flare/lina_scarlet_flare_belt.vpcf"
+				"style"							"1"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/lina/the_scarlet_flare_belt/the_scarlet_flare_belt"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/lina/the_scarlet_flare_belt/the_scarlet_flare_belt_style1"
+				}
+			}
+		}
+	}
+	"12227"
+	{
+		"name"									"The Scarlet Flare Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2019-12-07"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/lina/the_scarlet_flare_arms/the_scarlet_flare_arms"
+		"item_name"								"#DOTA_Item_The_Scarlet_Flare_Arms"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/lina/the_scarlet_flare_arms/the_scarlet_flare_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_The_Scarlet_Flare_Arms_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_The_Scarlet_Flare_Arms_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"18956"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/lina/the_scarlet_flare_arms/the_scarlet_flare_arms"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/lina/the_scarlet_flare_arms/the_scarlet_flare_arms_style1"
+				}
+			}
+		}
+	}
+	"12228"
+	{
+		"name"									"The Scarlet Flare Neck"
+		"prefab"								"wearable"
+		"creation_date"							"2019-12-07"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/lina/the_scarlet_flare_neck/the_scarlet_flare_neck"
+		"item_name"								"#DOTA_Item_The_Scarlet_Flare_Neck"
+		"item_rarity"							"rare"
+		"item_slot"								"neck"
+		"model_player"							"models/items/lina/the_scarlet_flare_neck/the_scarlet_flare_neck.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_The_Scarlet_Flare_Neck_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_The_Scarlet_Flare_Neck_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"18956"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/lina/the_scarlet_flare_neck/the_scarlet_flare_neck"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/lina/the_scarlet_flare_neck/the_scarlet_flare_neck_style1"
+				}
+			}
+		}
+	}
+	"12229"
+	{
+		"name"									"The Scarlet Flare Head"
+		"prefab"								"wearable"
+		"creation_date"							"2019-12-07"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/lina/the_scarlet_flare_head/the_scarlet_flare_head"
+		"item_name"								"#DOTA_Item_The_Scarlet_Flare_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/lina/the_scarlet_flare_head/the_scarlet_flare_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_The_Scarlet_Flare_Head_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_The_Scarlet_Flare_Head_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"18956"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lina/lina_scarlet_flare/lina_scarlet_flare_head.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lina/lina_scarlet_flare/lina_scarlet_flare_head_v1.vpcf"
+				"style"							"0"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/lina/the_scarlet_flare_head/the_scarlet_flare_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/lina/the_scarlet_flare_head/the_scarlet_flare_head_style1"
+				}
+			}
+		}
+	}
+	"13963"
+	{
+		"name"									"Heart of Fire Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/lina/heart_of_fire_head/heart_of_fire_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Heart_of_Fire_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/lina/heart_of_fire_head/heart_of_fire_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"13964"
+	{
+		"name"									"Heart of Fire Neck"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/lina/heart_of_fire_neck/heart_of_fire_neck"
+		"item_name"								"#DOTA_Item_Vote_Only_Heart_of_Fire_Neck"
+		"item_slot"								"neck"
+		"model_player"							"models/items/lina/heart_of_fire_neck/heart_of_fire_neck.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"13965"
+	{
+		"name"									"Heart of Fire Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/lina/heart_of_fire_belt/heart_of_fire_belt"
+		"item_name"								"#DOTA_Item_Vote_Only_Heart_of_Fire_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/lina/heart_of_fire_belt/heart_of_fire_belt.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14003"
+	{
+		"name"									"Heart of Fire Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/lina/heart_of_fire_arms/heart_of_fire_arms"
+		"item_name"								"#DOTA_Item_Vote_Only_Heart_of_Fire_Arms"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/lina/heart_of_fire_arms/heart_of_fire_arms.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14158"
+	{
+		"name"									"Queen of Misrule Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/lina/queen_of_misrule_head/queen_of_misrule_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Queen_of_Misrule_Head"
+		"item_slot"								"head"
+		"model_player"							"models/items/lina/queen_of_misrule_head/queen_of_misrule_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14159"
+	{
+		"name"									"Queen of Misrule Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/lina/queen_of_misrule_belt/queen_of_misrule_belt"
+		"item_name"								"#DOTA_Item_Vote_Only_Queen_of_Misrule_Belt"
+		"item_slot"								"belt"
+		"model_player"							"models/items/lina/queen_of_misrule_belt/queen_of_misrule_belt.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14160"
+	{
+		"name"									"Queen of Misrule Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/lina/queen_of_misrule_arms/queen_of_misrule_arms"
+		"item_name"								"#DOTA_Item_Vote_Only_Queen_of_Misrule_Arms"
+		"item_slot"								"arms"
+		"model_player"							"models/items/lina/queen_of_misrule_arms/queen_of_misrule_arms.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14161"
+	{
+		"name"									"Queen of Misrule Neck"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/lina/queen_of_misrule_neck/queen_of_misrule_neck"
+		"item_name"								"#DOTA_Item_Vote_Only_Queen_of_Misrule_Neck"
+		"item_slot"								"neck"
+		"model_player"							"models/items/lina/queen_of_misrule_neck/queen_of_misrule_neck.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14247"
+	{
+		"name"									"Glory of the Elderflame - Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/lina/blazing_cosmos_belt/blazing_cosmos_belt"
+		"item_name"								"#DOTA_Item_Glory_of_the_Elderflame__Belt"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"model_player"							"models/items/lina/blazing_cosmos_belt/blazing_cosmos_belt.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lina/lina_blazing_cosmos/lina_blazing_cosmos_belt.vpcf"
+			}
+		}
+	}
+	"14248"
+	{
+		"name"									"Glory of the Elderflame - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/lina/blazing_cosmos_arms/blazing_cosmos_arms"
+		"item_name"								"#DOTA_Item_Glory_of_the_Elderflame__Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"model_player"							"models/items/lina/blazing_cosmos_arms/blazing_cosmos_arms.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lina/lina_blazing_cosmos/lina_blazing_cosmos_arms.vpcf"
+			}
+		}
+	}
+	"14250"
+	{
+		"name"									"Glory of the Elderflame - Neck"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/lina/blazing_cosmos_neck/blazing_cosmos_neck"
+		"item_name"								"#DOTA_Item_Glory_of_the_Elderflame__Neck"
+		"item_rarity"							"mythical"
+		"item_slot"								"neck"
+		"model_player"							"models/items/lina/blazing_cosmos_neck/blazing_cosmos_neck.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lina/lina_blazing_cosmos/lina_blazing_cosmos_neck.vpcf"
+			}
+		}
+	}
+	"14251"
+	{
+		"name"									"Glory of the Elderflame - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/lina/blazing_cosmos_head/blazing_cosmos_head"
+		"item_name"								"#DOTA_Item_Glory_of_the_Elderflame__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/lina/blazing_cosmos_head/blazing_cosmos_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"18584"
+	{
+		"name"									"Fire Regent - Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-16"
+		"image_inventory"						"econ/items/lina/flame_lily_in_full_bloom_belt/flame_lily_in_full_bloom_belt"
+		"item_name"								"#DOTA_Item_Fire_Regent__Belt"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/lina/flame_lily_in_full_bloom_belt/flame_lily_in_full_bloom_belt.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"18585"
+	{
+		"name"									"Fire Regent - Neck"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-16"
+		"image_inventory"						"econ/items/lina/flame_lily_in_full_bloom_neck/flame_lily_in_full_bloom_neck"
+		"item_name"								"#DOTA_Item_Fire_Regent__Neck"
+		"item_rarity"							"rare"
+		"item_slot"								"neck"
+		"model_player"							"models/items/lina/flame_lily_in_full_bloom_neck/flame_lily_in_full_bloom_neck.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"18586"
+	{
+		"name"									"Fire Regent - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-16"
+		"image_inventory"						"econ/items/lina/flame_lily_in_full_bloom_arms/flame_lily_in_full_bloom_arms"
+		"item_name"								"#DOTA_Item_Fire_Regent__Arms"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/lina/flame_lily_in_full_bloom_arms/flame_lily_in_full_bloom_arms.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"18587"
+	{
+		"name"									"Fire Regent - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-16"
+		"image_inventory"						"econ/items/lina/flame_lily_in_full_bloom_head/flame_lily_in_full_bloom_head"
+		"item_name"								"#DOTA_Item_Fire_Regent__Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/lina/flame_lily_in_full_bloom_head/flame_lily_in_full_bloom_head.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"19375"
+	{
+		"name"									"Lina Amber Queen Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/lina/amber_queen_head/amber_queen_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Lina_Amber_Queen_Head"
+		"item_slot"								"head"
+		"model_player"							"models/items/lina/amber_queen_head/amber_queen_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19376"
+	{
+		"name"									"Lina Amber Queen Neck"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/lina/amber_queen_neck/amber_queen_neck"
+		"item_name"								"#DOTA_Item_Vote_Only_Lina_Amber_Queen_Neck"
+		"item_slot"								"neck"
+		"model_player"							"models/items/lina/amber_queen_neck/amber_queen_neck.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19377"
+	{
+		"name"									"Lina Amber Queen Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/lina/amber_queen_belt/amber_queen_belt"
+		"item_name"								"#DOTA_Item_Vote_Only_Lina_Amber_Queen_Belt"
+		"item_slot"								"belt"
+		"model_player"							"models/items/lina/amber_queen_belt/amber_queen_belt.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19378"
+	{
+		"name"									"Lina Amber Queen Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/lina/amber_queen_arms/amber_queen_arms"
+		"item_name"								"#DOTA_Item_Vote_Only_Lina_Amber_Queen_Arms"
+		"item_slot"								"arms"
+		"model_player"							"models/items/lina/amber_queen_arms/amber_queen_arms.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19522"
+	{
+		"name"									"Hellfire Insurgent Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/lina/heartflint_sorceress_arms/heartflint_sorceress_arms"
+		"item_name"								"#DOTA_Item_Hellfire_Insurgent_Arms"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"model_player"							"models/items/lina/heartflint_sorceress_arms/heartflint_sorceress_arms.vmdl"
+	}
+	"19523"
+	{
+		"name"									"Hellfire Insurgent Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/lina/heartflint_sorceress_belt/heartflint_sorceress_belt"
+		"item_name"								"#DOTA_Item_Hellfire_Insurgent_Belt"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"model_player"							"models/items/lina/heartflint_sorceress_belt/heartflint_sorceress_belt.vmdl"
+	}
+	"19524"
+	{
+		"name"									"Hellfire Insurgent Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/lina/heartflint_sorceress_head/heartflint_sorceress_head"
+		"item_name"								"#DOTA_Item_Hellfire_Insurgent_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"model_player"							"models/items/lina/heartflint_sorceress_head/heartflint_sorceress_head.vmdl"
+	}
+	"19525"
+	{
+		"name"									"Hellfire Insurgent Neck"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/lina/heartflint_sorceress_neck/heartflint_sorceress_neck"
+		"item_name"								"#DOTA_Item_Hellfire_Insurgent_Neck"
+		"item_rarity"							"rare"
+		"item_slot"								"neck"
+		"model_player"							"models/items/lina/heartflint_sorceress_neck/heartflint_sorceress_neck.vmdl"
+	}
+	"20104"
+	{
+		"name"									"Light of the Solar Divine"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Blessings of the Solar Divine"		"1"
+			"Sleeves of the Solar Divine"		"1"
+			"Flares of the Solar Divine"		"1"
+			"Arc of the Solar Divine"			"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Light_of_the_Solar_Divine_Set"
+		"item_name"								"#DOTA_Item_Light_of_the_Solar_Divine"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20163"
+	{
+		"name"									"The Battle Caster Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Cut of the Battle Caster"			"1"
+			"Pauldrons of the Battle Caster"	"1"
+			"Plates of the Battle Caster"		"1"
+			"Vambraces of the Battle Caster"	"1"
+		}
+		"creation_date"							"2013-04-30"
+		"image_inventory"						"econ/sets/DOTA_Item_The_Battle_Caster_Set"
+		"item_description"						"#DOTA_Item_Desc_The_Battle_Caster_Set"
+		"item_name"								"#DOTA_Item_The_Battle_Caster_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"4/30/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20188"
+	{
+		"name"									"The Garments of the Charred Bloodline Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Sleeves of the Charred Bloodline"	"1"
+			"Heirloom of the Charred Bloodline"	"1"
+			"Style of the Charred Bloodline"	"1"
+			"Gown of the Charred Bloodline"		"1"
+		}
+		"creation_date"							"2013-06-10"
+		"image_inventory"						"econ/sets/DOTA_Item_The_Garments_of_the_Charred_Bloodline_Set"
+		"item_description"						"#DOTA_Item_Desc_The_Garments_of_the_Charred_Bloodline_Set"
+		"item_name"								"#DOTA_Item_The_Garments_of_the_Charred_Bloodline_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"6/10/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20226"
+	{
+		"name"									"Fashion of the Scorching Princess Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Dress of the Scorching Princess"	"1"
+			"Epaulettes of the Scorching Princess""1"
+			"Sleeves of the Scorching Princess"	"1"
+			"Tails of the Scorching Princess"	"1"
+		}
+		"creation_date"							"2013-07-23"
+		"image_inventory"						"econ/sets/DOTA_Item_Fashion_of_the_Scorching_Princess_Set"
+		"item_description"						"#DOTA_Item_Desc_Fashion_of_the_Scorching_Princess_Set"
+		"item_name"								"#DOTA_Item_Fashion_of_the_Scorching_Princess_Set"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Common"
+			"category_tags"						"Bundles"
+			"date"								"7/23/2013"
+			"bundle"							"1"
+			"price"								"249"
+		}
+	}
+	"20357"
+	{
+		"name"									"Jini the Bright Moon Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bright Moon Chima"					"1"
+			"Bright Moon Somae"					"1"
+			"Bright Moon Mokdori"				"1"
+			"Bright Moon Jeonmo"				"1"
+		}
+		"creation_date"							"2014-01-14"
+		"image_inventory"						"econ/sets/DOTA_Item_The_Bright_Moon_of_Josean_Set"
+		"item_description"						"#DOTA_Item_Desc_Jini_the_Bright_Moon_Set"
+		"item_name"								"#DOTA_Item_Jini_the_Bright_Moon_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/17/2014"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20359"
+	{
+		"name"									"Ember Crane Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Wings of the Ember Crane"			"1"
+			"Tail of the Ember Crane"			"1"
+			"Ember Crane"						"1"
+			"Adornments of the Ember Crane"		"1"
+			"Headdress of the Ember Crane"		"1"
+		}
+		"creation_date"							"2014-01-15"
+		"image_inventory"						"econ/sets/DOTA_Item_Ember_Crane_Set"
+		"item_description"						"#DOTA_Item_Desc_Ember_Crane_Set"
+		"item_name"								"#DOTA_Item_Ember_Crane_Set"
+		"item_rarity"							"mythical"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/24/2014"
+			"bundle"							"1"
+			"price"								"799"
+		}
+	}
+	"20514"
+	{
+		"name"									"Everlasting Heat"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Everlasting Arms"					"1"
+			"Everlasting Belt"					"1"
+			"Everlasting Hair"					"1"
+			"Everlasting Tails"					"1"
+			"Everlasting Heat Loading Screen"	"1"
+		}
+		"creation_date"							"2014-05-15"
+		"image_inventory"						"econ/loading_screens/everlastingheat"
+		"item_description"						"#DOTA_Item_Desc_Everlasting_Heat"
+		"item_name"								"#DOTA_Item_Everlasting_Heat"
+		"item_rarity"							"mythical"
+	}
+	"20537"
+	{
+		"name"									"Dragonfire"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Braids of the Dragonfire"			"1"
+			"Gauntlets of the Dragonfire"		"1"
+			"Sash of the Dragonfire"			"1"
+			"Drapes of the Dragonfire"			"1"
+			"Dragonfire Loading Screen"			"1"
+		}
+		"creation_date"							"2014-05-29"
+		"image_inventory"						"econ/loading_screens/dragonfire_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Dragonfire"
+		"item_name"								"#DOTA_Item_Dragonfire"
+		"item_rarity"							"rare"
+	}
+	"20556"
+	{
+		"name"									"Promo Dragonfire"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Braids of the Dragonfire"			"1"
+			"Gauntlets of the Dragonfire"		"1"
+			"Sash of the Dragonfire"			"1"
+			"Drapes of the Dragonfire"			"1"
+			"Dragonfire Loading Screen"			"1"
+		}
+		"creation_date"							"2014-06-18"
+		"image_inventory"						"econ/loading_screens/dragonfire_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Dragonfire"
+		"item_name"								"#DOTA_Item_Promo_Dragonfire"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+	}
+	"20669"
+	{
+		"name"									"Synergy League Season 1"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Sleeves of the Warhawk Vestiments"	"1"
+			"Hood of the Warhawk Vestiments"	"1"
+			"Skirt of the Warhawk Vestiments"	"1"
+			"Necklace of the Warhawk Vestiments""1"
+			"Warhawk Vestiments Loading Screen"	"1"
+			"Synergy League Season 1 Ticket"	"1"
+		}
+		"creation_date"							"2014-10-13"
+		"image_inventory"						"econ/leagues/subscriptions_synergy"
+		"item_description"						"#DOTA_Item_Desc_Synergy_League_Season_1"
+		"item_name"								"#DOTA_Item_Synergy_League_Season_1"
+		"item_rarity"							"rare"
+	}
+	"20769"
+	{
+		"name"									"Bewitching Flare"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bewitching Flare Loading Screen"	"1"
+			"Corset of the Bewitching Flare"	"1"
+			"Dress of the Bewitching Flare"		"1"
+			"Style of the Bewitching Flare"		"1"
+			"Touch of the Bewitching Flare"		"1"
+		}
+		"creation_date"							"2015-09-09"
+		"image_inventory"						"econ/loading_screens/bewitching_flare_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Bewitching_Flare"
+		"item_name"								"#DOTA_Item_Bewitching_Flare"
+		"item_rarity"							"mythical"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+	}
+	"20775"
+	{
+		"name"									"Smoldering Journey"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Smoldering Journey Loading Screen"	"1"
+			"Bracers of Smoldering Journey"		"1"
+			"Robe of Smoldering Journey"		"1"
+			"Diadem of Smoldering Journey"		"1"
+			"Shawl of Smoldering Journey"		"1"
+		}
+		"creation_date"							"2015-03-17"
+		"image_inventory"						"econ/loading_screens/bts_migrant_blaze_loadscreen"
+		"item_description"						"#DOTA_Item_Desc_Smoldering_Journey"
+		"item_name"								"#DOTA_Item_Smoldering_Journey"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"3000"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1434795010"
+			}
+		}
+	}
+	"20830"
+	{
+		"name"									"Divine Flame"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Headress of the Divine Flame"		"1"
+			"Cape of the Divine Flame"			"1"
+			"Sleeves of the Divine Flame"		"1"
+			"Skirt of the Divine Flame"			"1"
+			"Divine Flame Loading Screen"		"1"
+		}
+		"creation_date"							"2015-06-03"
+		"image_inventory"						"econ/loading_screens/esl_divine_flame_ls"
+		"item_description"						"#DOTA_Item_Desc_Divine_Flame"
+		"item_name"								"#DOTA_Item_Divine_Flame"
+		"item_rarity"							"rare"
+	}
+	"20933"
+	{
+		"name"									"Regime of the Enthaleen Dragon"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Sleeves of the Enthaleen Dragon"	"1"
+			"Helm of the Enthaleen Dragon"		"1"
+			"Mantle of the Enthaleen Dragon"	"1"
+			"Dress of the Enthaleen Dragon"		"1"
+			"Regime of the Enthaleen Dragon Loading Screen""1"
+		}
+		"creation_date"							"2015-12-04"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/scales_of_the_burning_dragon_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Regime_of_the_Enthaleen_Dragon"
+		"item_name"								"#DOTA_Item_Regime_of_the_Enthaleen_Dragon"
+		"item_rarity"							"mythical"
+	}
+	"20968"
+	{
+		"name"									"Warhawk Vestiments"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Sleeves of the Warhawk Vestiments"	"1"
+			"Skirt of the Warhawk Vestiments"	"1"
+			"Necklace of the Warhawk Vestiments""1"
+			"Hood of the Warhawk Vestiments"	"1"
+			"Warhawk Vestiments Loading Screen"	"1"
+		}
+		"creation_date"							"2015-12-16"
+		"image_inventory"						"econ/loading_screens/warhawk_vestiments"
+		"item_description"						"#DOTA_Item_Desc_Warhawk_Vestiments"
+		"item_name"								"#DOTA_Item_Warhawk_Vestiments"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"category_tags"						"Bundles"
+			"date"								"12/16/2015"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20981"
+	{
+		"name"									"Vehement Plume"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Style of the Vehement Plume"		"1"
+			"Skirt of the Vehement Plume"		"1"
+			"Sleeves of the Vehement Plume"		"1"
+			"Necklace of the Vehement Plume"	"1"
+			"Vehement Plume Loading Screen"		"1"
+		}
+		"creation_date"							"2015-11-18"
+		"image_inventory"						"econ/loading_screens/feathery_soul_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Vehement_Plume"
+		"item_name"								"#DOTA_Item_Vehement_Plume"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"category_tags"						"Bundles"
+			"date"								"1/10/2016"
+			"bundle"							"1"
+			"price"								"499"
+		}
+	}
+	"21083"
+	{
+		"name"									"Fireflight Scion"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of the Fireflight Scion""1"
+			"Hair of the Fireflight Scion"		"1"
+			"Skirt of the Fireflight Scion"		"1"
+			"Flames of the Fireflight Scion"	"1"
+			"Wings of the Fireflight Scion"		"1"
+		}
+		"creation_date"							"2017-01-11"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/loading_screens/reborn_phoenixlina_reborn_phoenixlina_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Fireflight_Scion"
+		"item_name"								"#DOTA_Item_Fireflight_Scion"
+		"item_rarity"							"mythical"
+	}
+	"21220"
+	{
+		"name"									"The Scarlet Flare"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"The Scarlet Flare Head"			"1"
+			"The Scarlet Flare Neck"			"1"
+			"The Scarlet Flare Arms"			"1"
+			"The Scarlet Flare Belt"			"1"
+		}
+		"creation_date"							"2019-12-07"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/sets/DOTA_Item_The_Scarlet_Flare"
+		"item_name"								"#DOTA_Item_The_Scarlet_Flare"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/sets/DOTA_Item_The_Scarlet_Flare"
+				}
+				"1"
+				{
+					"icon_path"					"econ/sets/DOTA_Item_The_Scarlet_Flare_style1"
+				}
+			}
+		}
+	}
+	"21478"
+	{
+		"name"									"Heart of Fire"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Heart of Fire LS"					"1"
+			"Heart of Fire Head"				"1"
+			"Heart of Fire Neck"				"1"
+			"Heart of Fire Belt"				"1"
+			"Heart of Fire Arms"				"1"
+		}
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Heart_of_Fire"
+		"workshop_accepted"						"0"
+	}
+	"21507"
+	{
+		"name"									"Queen of Misrule"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Queen of Misrule Neck"				"1"
+			"Queen of Misrule Arms"				"1"
+			"Queen of Misrule Belt"				"1"
+			"Queen of Misrule Head"				"1"
+			"Queen of Misrule LS"				"1"
+		}
+		"creation_date"							"2020-05-11"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Queen_of_Misrule"
+		"workshop_accepted"						"0"
+	}
+	"21524"
+	{
+		"name"									"Glory of the Elderflame"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Glory of the Elderflame - Head"	"1"
+			"Glory of the Elderflame - Neck"	"1"
+			"Glory of the Elderflame - Arms"	"1"
+			"Glory of the Elderflame - Belt"	"1"
+		}
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Glory_of_the_Elderflame"
+		"item_name"								"#DOTA_Item_Glory_of_the_Elderflame"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21877"
+	{
+		"name"									"Lina Amber Queen"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Lina Amber Queen Belt"				"1"
+			"Lina Amber Queen Arms"				"1"
+			"Lina Amber Queen Neck"				"1"
+			"Lina Amber Queen Head"				"1"
+		}
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Lina_Amber_Queen"
+		"workshop_accepted"						"0"
+	}
+	"21906"
+	{
+		"name"									"Hellfire Insurgent"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Hellfire Insurgent Neck"			"1"
+			"Hellfire Insurgent Head"			"1"
+			"Hellfire Insurgent Belt"			"1"
+			"Hellfire Insurgent Arms"			"1"
+		}
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/sets/DOTA_Item_Heartflint_Sorceress"
+		"item_name"								"#DOTA_Item_Hellfire_Insurgent"
+		"item_rarity"							"rare"
+	}
+	"22282"
+	{
+		"name"									"Fire Regent"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Fire Regent - Head"				"1"
+			"Fire Regent - Arms"				"1"
+			"Fire Regent - Neck"				"1"
+			"Fire Regent - Belt"				"1"
+			"Fire Regent Loading Screen"		"1"
+		}
+		"creation_date"							"2021-11-16"
+		"image_inventory"						"econ/loading_screens/flame_lily_in_full_bloom_ls"
+		"item_name"								"#DOTA_Item_Fire_Regent"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+}

@@ -1,0 +1,3492 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"106"
+	{
+		"name"									"Spirit Breaker's Head"
+		"prefab"								"default_item"
+		"item_description"						"#DOTA_Item_Desc_Spirit_Breakers_Head"
+		"item_name"								"#DOTA_Item_Spirit_Breakers_Head"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/spirit_breaker/spirit_breaker_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_head_fire.vpcf"
+				"system"						"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_head_fire.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+				}
+			}
+		}
+	}
+	"111"
+	{
+		"name"									"Spirit Breaker's Horns"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/spirit_breaker/spirit_breaker_horns"
+		"item_description"						"#DOTA_Item_Desc_Spirit_Breakers_Horns"
+		"item_name"								"#DOTA_Item_Spirit_Breakers_Horns"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/spirit_breaker/spirit_breaker_horns.vmdl"
+	}
+	"112"
+	{
+		"name"									"Spirit Breaker's Shoulder Armor"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/spirit_breaker/spirit_breaker_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Spirit_Breakers_Shoulder_Armor"
+		"item_name"								"#DOTA_Item_Spirit_Breakers_Shoulder_Armor"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/heroes/spirit_breaker/spirit_breaker_shoulders.vmdl"
+	}
+	"113"
+	{
+		"name"									"Spirit Breaker's Mace"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/spirit_breaker/spirit_breaker_weapon"
+		"item_description"						"#DOTA_Item_Desc_Spirit_Breakers_Mace"
+		"item_name"								"#DOTA_Item_Spirit_Breakers_Mace"
+		"model_player"							"models/heroes/spirit_breaker/spirit_breaker_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"system"						"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"114"
+	{
+		"name"									"Spirit Breaker's Tail"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/spirit_breaker/spirit_breaker_tail"
+		"item_description"						"#DOTA_Item_Desc_Spirit_Breakers_Tail"
+		"item_name"								"#DOTA_Item_Spirit_Breakers_Tail"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/heroes/spirit_breaker/spirit_breaker_tail.vmdl"
+	}
+	"115"
+	{
+		"name"									"Spirit Breaker's Bracers"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/spirit_breaker/spirit_breaker_bracers"
+		"item_description"						"#DOTA_Item_Desc_Spirit_Breakers_Bracers"
+		"item_name"								"#DOTA_Item_Spirit_Breakers_Bracers"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracer"
+		"model_player"							"models/heroes/spirit_breaker/spirit_breaker_bracers.vmdl"
+	}
+	"116"
+	{
+		"name"									"Spirit Breaker's Belt"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/spirit_breaker/spirit_breaker_lower_armor"
+		"item_description"						"#DOTA_Item_Desc_Spirit_Breakers_Lower_Armor"
+		"item_name"								"#DOTA_Item_Spirit_Breakers_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/heroes/spirit_breaker/spirit_breaker_lower_armor.vmdl"
+	}
+	"4399"
+	{
+		"name"									"Ghost Orb of the Planeswalker"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"diretide tag"
+			{
+				"attribute_class"				"diretide_tag"
+				"value"							"2012"
+			}
+		}
+		"image_inventory"						"econ/items/spirit_breaker/occult_talon/occult_talon"
+		"item_description"						"#DOTA_Item_Desc_Ghost_Orb_of_the_Planeswalker"
+		"item_name"								"#DOTA_Item_Ghost_Orb_of_the_Planeswalker"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Flail"
+		"model_player"							"models/items/spirit_breaker/occult_talon/occult_talon.vmdl"
+		"particle_folder"						"particles/econ/items/spirit_breaker/spirit_breaker_weapon_ghost_orb"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"modifier"						"particles/econ/items/spirit_breaker/spirit_breaker_weapon_ghost_orb/spirit_breaker_ambient_flame_ghost_orb.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"system"						"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"4789"
+	{
+		"name"									"Empowering Elements"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/spirit_breaker/weapon_crystal/weapon_crystal"
+		"item_description"						"#DOTA_Item_Desc_Empowering_Elements"
+		"item_name"								"#DOTA_Item_Empowering_Elements"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Flail"
+		"model_player"							"models/items/spirit_breaker/weapon_crystal/weapon_crystal.vmdl"
+		"particle_folder"						"particles/econ/items/spirit_breaker/spirit_breaker_weapon_empowering_elements"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"modifier"						"particles/econ/items/spirit_breaker/spirit_breaker_weapon_empowering_elements/spirit_breaker_ambient_flame_empowering_elements.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"system"						"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"4869"
+	{
+		"name"									"Heavy Belt of the World Runner"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-20"
+		"image_inventory"						"econ/items/spirit_breaker/new_sb_rg_belt/new_sb_rg_belt"
+		"item_description"						"#DOTA_Item_Desc_Heavy_Belt_of_the_World_Runner"
+		"item_name"								"#DOTA_Item_Heavy_Belt_of_the_World_Runner"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/spirit_breaker/new_sb_rg_belt/new_sb_rg_belt.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4870"
+	{
+		"name"									"Heavy Gauntlets of the World Runner"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-20"
+		"image_inventory"						"econ/items/spirit_breaker/sb_new_rg_arns/sb_new_rg_arns"
+		"item_description"						"#DOTA_Item_Desc_Heavy_Gauntlets_of_the_World_Runner"
+		"item_name"								"#DOTA_Item_Heavy_Gauntlets_of_the_World_Runner"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Gauntlets"
+		"model_player"							"models/items/spirit_breaker/sb_new_rg_arns/sb_new_rg_arns.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4871"
+	{
+		"name"									"Heavy Helm of the World Runner"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-20"
+		"image_inventory"						"econ/items/spirit_breaker/new_sb_rg_helm/new_sb_rg_helm"
+		"item_description"						"#DOTA_Item_Desc_Heavy_Helm_of_the_World_Runner"
+		"item_name"								"#DOTA_Item_Heavy_Helm_of_the_World_Runner"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/spirit_breaker/new_sb_rg_helm/new_sb_rg_helm.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4872"
+	{
+		"name"									"Heavy Pauldrons of the World Runner"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-20"
+		"image_inventory"						"econ/items/spirit_breaker/new_sb_rg_shoulders/new_sb_rg_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Heavy_Pauldrons_of_the_World_Runner"
+		"item_name"								"#DOTA_Item_Heavy_Pauldrons_of_the_World_Runner"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/spirit_breaker/new_sb_rg_shoulders/new_sb_rg_shoulders.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5146"
+	{
+		"name"									"Battleseeker Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-09"
+		"image_inventory"						"econ/items/spirit_breaker/battleseeker_arms/battleseeker_arms"
+		"item_description"						"#DOTA_Item_Desc_Battleseeker_Arms"
+		"item_name"								"#DOTA_Item_Battleseeker_Arms"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Gauntlets"
+		"model_player"							"models/items/spirit_breaker/battleseeker_arms/battleseeker_arms.vmdl"
+	}
+	"5147"
+	{
+		"name"									"Battleseeker Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-09"
+		"image_inventory"						"econ/items/spirit_breaker/battleseeker_belt/battleseeker_belt"
+		"item_description"						"#DOTA_Item_Desc_Battleseeker_Belt"
+		"item_name"								"#DOTA_Item_Battleseeker_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/spirit_breaker/battleseeker_belt/battleseeker_belt.vmdl"
+	}
+	"5148"
+	{
+		"name"									"Battleseeker Helmet"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-09"
+		"image_inventory"						"econ/items/spirit_breaker/battleseeker_helmet/battleseeker_helmet"
+		"item_description"						"#DOTA_Item_Desc_Battleseeker_Helmet"
+		"item_name"								"#DOTA_Item_Battleseeker_Helmet"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/spirit_breaker/battleseeker_helmet/battleseeker_helmet.vmdl"
+	}
+	"5149"
+	{
+		"name"									"Battleseeker Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-09"
+		"image_inventory"						"econ/items/spirit_breaker/battleseeker_shoulders/battleseeker_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Battleseeker_Shoulders"
+		"item_name"								"#DOTA_Item_Battleseeker_Shoulders"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/spirit_breaker/battleseeker_shoulders/battleseeker_shoulders.vmdl"
+	}
+	"5449"
+	{
+		"name"									"Tail of Fury"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-25"
+		"image_inventory"						"econ/items/spirit_breaker/fury_tail/fury_tail"
+		"item_description"						"#DOTA_Item_Desc_Tail_of_Fury"
+		"item_name"								"#DOTA_Item_Tail_of_Fury"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/items/spirit_breaker/fury_tail/fury_tail.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5450"
+	{
+		"name"									"Bracers of Fury"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-25"
+		"image_inventory"						"econ/items/spirit_breaker/fury_arms/fury_arms"
+		"item_description"						"#DOTA_Item_Desc_Bracers_of_Fury"
+		"item_name"								"#DOTA_Item_Bracers_of_Fury"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/spirit_breaker/fury_arms/fury_arms.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5451"
+	{
+		"name"									"Belt of Fury"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-25"
+		"image_inventory"						"econ/items/spirit_breaker/fury_belt/fury_belt"
+		"item_description"						"#DOTA_Item_Desc_Belt_of_Fury"
+		"item_name"								"#DOTA_Item_Belt_of_Fury"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/spirit_breaker/fury_belt/fury_belt.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5452"
+	{
+		"name"									"Mask of Fury"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-25"
+		"image_inventory"						"econ/items/spirit_breaker/fury_head/fury_head"
+		"item_description"						"#DOTA_Item_Desc_Mask_of_Fury"
+		"item_name"								"#DOTA_Item_Mask_of_Fury"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Horned_Mask"
+		"model_player"							"models/items/spirit_breaker/fury_head/fury_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5453"
+	{
+		"name"									"Pauldrons of Fury"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-25"
+		"image_inventory"						"econ/items/spirit_breaker/fury_shoulders/fury_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Pauldrons_of_Fury"
+		"item_name"								"#DOTA_Item_Pauldrons_of_Fury"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/spirit_breaker/fury_shoulders/fury_shoulders.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5454"
+	{
+		"name"									"Spirit Crusher"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-25"
+		"image_inventory"						"econ/items/spirit_breaker/fury_weapon/fury_weapon"
+		"item_description"						"#DOTA_Item_Desc_Spirit_Crusher"
+		"item_name"								"#DOTA_Item_Spirit_Crusher"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/spirit_breaker/fury_weapon/fury_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/spirit_breaker/spirit_breaker_weapon_fury"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"modifier"						"particles/econ/items/spirit_breaker/spirit_breaker_weapon_fury/spirit_breaker_ambient_flame_fury.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"system"						"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"5485"
+	{
+		"name"									"Cuffs of the Iron Will"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-31"
+		"image_inventory"						"econ/items/spirit_breaker/spirit_breaker__imperial_crusher__arms/spirit_breaker__imperial_crusher__arms"
+		"item_description"						"#DOTA_Item_Desc_Cuffs_of_the_Iron_Will"
+		"item_name"								"#DOTA_Item_Cuffs_of_the_Iron_Will"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/spirit_breaker/spirit_breaker__imperial_crusher__arms/spirit_breaker__imperial_crusher__arms.vmdl"
+	}
+	"5487"
+	{
+		"name"									"Strap of the Iron Will"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-31"
+		"image_inventory"						"econ/items/spirit_breaker/spirit_breaker__imperial_crusher__belt/spirit_breaker__imperial_crusher__belt"
+		"item_description"						"#DOTA_Item_Desc_Strap_of_the_Iron_Will"
+		"item_name"								"#DOTA_Item_Strap_of_the_Iron_Will"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/spirit_breaker/spirit_breaker__imperial_crusher__belt/spirit_breaker__imperial_crusher__belt.vmdl"
+	}
+	"5488"
+	{
+		"name"									"Horns of the Iron Will"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-31"
+		"image_inventory"						"econ/items/spirit_breaker/spirit_breaker__imperial_crusher__head/spirit_breaker__imperial_crusher__head"
+		"item_description"						"#DOTA_Item_Desc_Horns_of_the_Iron_Will"
+		"item_name"								"#DOTA_Item_Horns_of_the_Iron_Will"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Horns"
+		"model_player"							"models/items/spirit_breaker/spirit_breaker__imperial_crusher__head/spirit_breaker__imperial_crusher__head.vmdl"
+	}
+	"5489"
+	{
+		"name"									"Mantle of the Iron Will"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-31"
+		"image_inventory"						"econ/items/spirit_breaker/spirit_breaker__imperial_crusher__shoulder/spirit_breaker__imperial_crusher__shoulder"
+		"item_description"						"#DOTA_Item_Desc_Mantle_of_the_Iron_Will"
+		"item_name"								"#DOTA_Item_Mantle_of_the_Iron_Will"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/spirit_breaker/spirit_breaker__imperial_crusher__shoulder/spirit_breaker__imperial_crusher__shoulder.vmdl"
+	}
+	"5490"
+	{
+		"name"									"Tail of the Iron Will"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-31"
+		"image_inventory"						"econ/items/spirit_breaker/spirit_breaker__imperial_crusher__tail/spirit_breaker__imperial_crusher__tail"
+		"item_description"						"#DOTA_Item_Desc_Tail_of_the_Iron_Will"
+		"item_name"								"#DOTA_Item_Tail_of_the_Iron_Will"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/items/spirit_breaker/spirit_breaker__imperial_crusher__tail/spirit_breaker__imperial_crusher__tail.vmdl"
+	}
+	"5577"
+	{
+		"name"									"Flail of the Iron Will"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-31"
+		"image_inventory"						"econ/items/spirit_breaker/spirit_breaker__imperial_crusher__weapon/spirit_breaker__imperial_crusher__weapon"
+		"item_description"						"#DOTA_Item_Desc_Flail_of_the_Iron_Will"
+		"item_name"								"#DOTA_Item_Flail_of_the_Iron_Will"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Flail"
+		"model_player"							"models/items/spirit_breaker/spirit_breaker__imperial_crusher__weapon/spirit_breaker__imperial_crusher__weapon.vmdl"
+	}
+	"5617"
+	{
+		"name"									"Belt of the Death Charge"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-06"
+		"image_inventory"						"econ/items/spirit_breaker/sb_ice_belt_final/sb_ice_belt_final"
+		"item_description"						"#DOTA_Item_Desc_Belt_of_the_Death_Charge"
+		"item_name"								"#DOTA_Item_Belt_of_the_Death_Charge"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Honored_Belt"
+		"model_player"							"models/items/spirit_breaker/sb_ice_belt_final/sb_ice_belt_final.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"branding"
+		{
+			"corporation_id"					"84772440"
+		}
+	}
+	"5618"
+	{
+		"name"									"Bracers of the Death Charge"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-06"
+		"image_inventory"						"econ/items/spirit_breaker/sb_ice_arms_final/sb_ice_arms_final"
+		"item_description"						"#DOTA_Item_Desc_Bracers_of_the_Death_Charge"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Death_Charge"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Honored_Bracers"
+		"model_player"							"models/items/spirit_breaker/sb_ice_arms_final/sb_ice_arms_final.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"branding"
+		{
+			"corporation_id"					"84772440"
+		}
+	}
+	"5619"
+	{
+		"name"									"Tail of the Death Charge"
+		"prefab"								"wearable"
+		"branding"
+		{
+			"corporation_id"					"84772440"
+		}
+		"creation_date"							"2013-11-06"
+		"image_inventory"						"econ/items/spirit_breaker/sb_ice_tail_final/sb_ice_tail_final"
+		"item_description"						"#DOTA_Item_Desc_Tail_of_the_Death_Charge"
+		"item_name"								"#DOTA_Item_Tail_of_the_Death_Charge"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_Honored_Tail"
+		"model_player"							"models/items/spirit_breaker/sb_ice_tail_final/sb_ice_tail_final.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5620"
+	{
+		"name"									"Horns of the Death Charge"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-06"
+		"image_inventory"						"econ/items/spirit_breaker/sb_ice_head_final/sb_ice_head_final"
+		"item_description"						"#DOTA_Item_Desc_Horns_of_the_Death_Charge"
+		"item_name"								"#DOTA_Item_Horns_of_the_Death_Charge"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Honored_Horns"
+		"model_player"							"models/items/spirit_breaker/sb_ice_head_final/sb_ice_head_final.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"branding"
+		{
+			"corporation_id"					"84772440"
+		}
+	}
+	"5621"
+	{
+		"name"									"Shoulders of the Death Charge"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-06"
+		"image_inventory"						"econ/items/spirit_breaker/sb_ice_shoulder_final/sb_ice_shoulder_final"
+		"item_description"						"#DOTA_Item_Desc_Shoulders_of_the_Death_Charge"
+		"item_name"								"#DOTA_Item_Shoulders_of_the_Death_Charge"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Honored_Shoulders"
+		"model_player"							"models/items/spirit_breaker/sb_ice_shoulder_final/sb_ice_shoulder_final.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"branding"
+		{
+			"corporation_id"					"84772440"
+		}
+	}
+	"5627"
+	{
+		"name"									"Flail of the Death Charge"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-06"
+		"image_inventory"						"econ/items/spirit_breaker/sb_ice_weapon_final/sb_ice_weapon_final"
+		"item_description"						"#DOTA_Item_Desc_Flail_of_the_Death_Charge"
+		"item_name"								"#DOTA_Item_Flail_of_the_Death_Charge"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Honored_Flail"
+		"model_player"							"models/items/spirit_breaker/sb_ice_weapon_final/sb_ice_weapon_final.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"branding"
+		{
+			"corporation_id"					"84772440"
+		}
+	}
+	"7452"
+	{
+		"name"									"Pauldrons of the Elemental Realms"
+		"prefab"								"wearable"
+		"creation_date"							"2016-01-06"
+		"image_inventory"						"econ/items/spirit_breaker/elemental_realms_shoulder/elemental_realms_shoulder"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Elemental_Realms"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/spirit_breaker/elemental_realms_shoulder/elemental_realms_shoulder.vmdl"
+	}
+	"7453"
+	{
+		"name"									"Tail of the Elemental Realms"
+		"prefab"								"wearable"
+		"creation_date"							"2016-01-06"
+		"image_inventory"						"econ/items/spirit_breaker/elemental_realms_tail/elemental_realms_tail"
+		"item_name"								"#DOTA_Item_Tail_of_the_Elemental_Realms"
+		"item_rarity"							"uncommon"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/items/spirit_breaker/elemental_realms_tail/elemental_realms_tail.vmdl"
+	}
+	"7454"
+	{
+		"name"									"Belt of the Elemental Realms"
+		"prefab"								"wearable"
+		"creation_date"							"2016-01-06"
+		"image_inventory"						"econ/items/spirit_breaker/elemental_realms_belt/elemental_realms_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Elemental_Realms"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/spirit_breaker/elemental_realms_belt/elemental_realms_belt.vmdl"
+	}
+	"7455"
+	{
+		"name"									"Flail of the Elemental Realms"
+		"prefab"								"wearable"
+		"creation_date"							"2016-01-06"
+		"image_inventory"						"econ/items/spirit_breaker/elemental_realms_weapon/elemental_realms_weapon"
+		"item_name"								"#DOTA_Item_Flail_of_the_Elemental_Realms"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Flail"
+		"model_player"							"models/items/spirit_breaker/elemental_realms_weapon/elemental_realms_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"system"						"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"7456"
+	{
+		"name"									"Tusks of the Elemental Realms"
+		"prefab"								"wearable"
+		"creation_date"							"2016-01-06"
+		"image_inventory"						"econ/items/spirit_breaker/elemental_realms_head/elemental_realms_head"
+		"item_name"								"#DOTA_Item_Tusks_of_the_Elemental_Realms"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Tusks"
+		"model_player"							"models/items/spirit_breaker/elemental_realms_head/elemental_realms_head.vmdl"
+	}
+	"7826"
+	{
+		"name"									"Taunt: Raging Bull"
+		"prefab"								"taunt"
+		"creation_date"							"2017-01-13"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/taunts/taunt_icon_spirit_breaker_raging_bull"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Raging_Bull"
+		"item_name"								"#DOTA_Item_Taunt_Raging_Bull"
+		"item_rarity"							"rare"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"rage_gesture"
+				"style"							"0"
+				"gesture"						"1"
+			}
+		}
+	}
+	"7874"
+	{
+		"name"									"Thundering Flail"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-30"
+		"static_attributes"
+		{
+			"cannot craft"
+			{
+				"attribute_class"				"cannot_craft"
+				"value"							"1"
+			}
+		}
+		"image_inventory"						"econ/items/spirit_breaker/thundering_flail_silver/thundering_flail_silver"
+		"item_name"								"#DOTA_Item_Thundering_Flail"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Flail"
+		"model_player"							"models/items/spirit_breaker/thundering_flail_silver/thundering_flail_silver.vmdl"
+		"particle_folder"						"particles/econ/items/spirit_breaker/spirit_breaker_thundering_flail"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spirit_breaker/spirit_breaker_thundering_flail/spirit_breaker_thundering_flail.vpcf"
+				"system"						"particles/econ/items/spirit_breaker/spirit_breaker_thundering_flail/spirit_breaker_thundering_flail.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_particle"
+					}
+				}
+			}
+		}
+	}
+	"8234"
+	{
+		"name"									"Iron Surge"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-16"
+		"image_inventory"						"econ/items/spirit_breaker/iron_surge/iron_surge"
+		"item_description"						"#DOTA_Item_Desc_Iron_Surge"
+		"item_name"								"#DOTA_Item_Iron_Surge"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/spirit_breaker/iron_surge/iron_surge.vmdl"
+		"particle_folder"						"particles/econ/items/spirit_breaker/spirit_breaker_iron_surge"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_spirit_breaker' gem_def_index: 3005 } asset_modifier: 126"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_head_fire.vpcf"
+				"modifier"						"particles/econ/items/spirit_breaker/spirit_breaker_iron_surge/spirit_breaker_iron_surge_ambient.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"iron_surge"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spirit_breaker/spirit_breaker_charge.vpcf"
+				"modifier"						"particles/econ/items/spirit_breaker/spirit_breaker_iron_surge/spirit_breaker_charge_iron.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spirit_breaker/spirit_breaker_charge_start.vpcf"
+				"modifier"						"particles/econ/items/spirit_breaker/spirit_breaker_iron_surge/spirit_breaker_charge_start_iron.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spirit_breaker/spirit_breaker_charge_target.vpcf"
+				"modifier"						"particles/econ/items/spirit_breaker/spirit_breaker_iron_surge/spirit_breaker_charge_target_iron.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/status_fx/status_effect_charge_of_darkness.vpcf"
+				"modifier"						"particles/econ/items/spirit_breaker/spirit_breaker_iron_surge/status_effect_iron_surge.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spirit_breaker/spirit_breaker_iron_surge/spirit_breaker_iron_surge_eyes.vpcf"
+				"system"						"particles/econ/items/spirit_breaker/spirit_breaker_iron_surge/spirit_breaker_iron_surge_eyes.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"spirit_breaker_charge_of_darkness"
+				"modifier"						"spirit_breaker_charge_of_darkness_alt"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+		}
+	}
+	"8740"
+	{
+		"name"									"Besieger of Worlds"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/spirit_breaker/weta_besieger_of_worlds/weta_besieger_of_worlds"
+		"item_name"								"#DOTA_Item_Besieger_of_Worlds"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/spirit_breaker/weta_besieger_of_worlds/weta_besieger_of_worlds.vmdl"
+	}
+	"8786"
+	{
+		"name"									"Bracers of the Elemental Realms"
+		"prefab"								"wearable"
+		"creation_date"							"2016-01-06"
+		"image_inventory"						"econ/items/spirit_breaker/elemental_realms_arms/elemental_realms_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Elemental_Realms"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/spirit_breaker/elemental_realms_arms/elemental_realms_arms.vmdl"
+	}
+	"8893"
+	{
+		"name"									"Bracers of the Elemental Imperator"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/spirit_breaker/fearless_impactor_arms/fearless_impactor_arms"
+		"item_description"						"#DOTA_Item_Desc_Fearless_Impactor_Arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Elemental_Imperator"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/spirit_breaker/fearless_impactor_arms/fearless_impactor_arms.vmdl"
+	}
+	"8894"
+	{
+		"name"									"Belt of the Elemental Imperator"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/spirit_breaker/fearless_impactor_belt/fearless_impactor_belt"
+		"item_description"						"#DOTA_Item_Desc_Fearless_Impactor_Belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Elemental_Imperator"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/spirit_breaker/fearless_impactor_belt/fearless_impactor_belt.vmdl"
+	}
+	"8895"
+	{
+		"name"									"Helm of the Elemental Imperator"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/spirit_breaker/fearless_impactor_head/fearless_impactor_head"
+		"item_description"						"#DOTA_Item_Desc_Fearless_Impactor_Head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Elemental_Imperator"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/spirit_breaker/fearless_impactor_head/fearless_impactor_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_head_fire.vpcf"
+				"modifier"						"particles/econ/items/spirit_breaker/spirit_breaker_weapon_fearlessimpactor/spirit_breaker_head_fearlessimpactor.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/spirit_breaker/spirit_breaker_weapon_fearlessimpactor/spirit_breaker_head_fearlessimpactor.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+				}
+			}
+		}
+	}
+	"8896"
+	{
+		"name"									"Pauldrons of the Elemental Imperator"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/spirit_breaker/fearless_impactor_shoulder/fearless_impactor_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Fearless_Impactor_Shoulder"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Elemental_Imperator"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/spirit_breaker/fearless_impactor_shoulder/fearless_impactor_shoulder.vmdl"
+	}
+	"8897"
+	{
+		"name"									"Flail of the Elemental Imperator"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/spirit_breaker/fearless_impactor_weapon/fearless_impactor_weapon"
+		"item_description"						"#DOTA_Item_Desc_Fearless_Impactor_Weapon"
+		"item_name"								"#DOTA_Item_Flail_of_the_Elemental_Imperator"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/spirit_breaker/fearless_impactor_weapon/fearless_impactor_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spirit_breaker/spirit_breaker_weapon_fearlessimpactor/spirit_breaker_fearlessimpactor_weaponfx.vpcf"
+				"system"						"particles/econ/items/spirit_breaker/spirit_breaker_weapon_fearlessimpactor/spirit_breaker_fearlessimpactor_weaponfx.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"8898"
+	{
+		"name"									"Tail of the Elemental Imperator"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/spirit_breaker/fearless_impactor_tail/fearless_impactor_tail"
+		"item_description"						"#DOTA_Item_Desc_Fearless_Impactor_Tail"
+		"item_name"								"#DOTA_Item_Tail_of_the_Elemental_Imperator"
+		"item_rarity"							"mythical"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_tail"
+		"model_player"							"models/items/spirit_breaker/fearless_impactor_tail/fearless_impactor_tail.vmdl"
+	}
+	"9361"
+	{
+		"name"									"Club of the Hellrunner"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-22"
+		"image_inventory"						"econ/items/spirit_breaker/wrath_of_the_hellrunner_weapon/wrath_of_the_hellrunner_weapon"
+		"item_name"								"#DOTA_Item_Club_of_the_Hellrunner"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Club"
+		"model_player"							"models/items/spirit_breaker/wrath_of_the_hellrunner_weapon/wrath_of_the_hellrunner_weapon.vmdl"
+	}
+	"9362"
+	{
+		"name"									"Sweep of the Hellrunner"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-22"
+		"image_inventory"						"econ/items/spirit_breaker/wrath_of_the_hellrunner_tail/wrath_of_the_hellrunner_tail"
+		"item_name"								"#DOTA_Item_Sweep_of_the_Hellrunner"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/items/spirit_breaker/wrath_of_the_hellrunner_tail/wrath_of_the_hellrunner_tail.vmdl"
+	}
+	"9363"
+	{
+		"name"									"Pauldrons of the Hellrunner"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-22"
+		"image_inventory"						"econ/items/spirit_breaker/wrath_of_the_hellrunner_shoulder/wrath_of_the_hellrunner_shoulder"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Hellrunner"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/spirit_breaker/wrath_of_the_hellrunner_shoulder/wrath_of_the_hellrunner_shoulder.vmdl"
+	}
+	"9364"
+	{
+		"name"									"Belt of the Hellrunner"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-22"
+		"image_inventory"						"econ/items/spirit_breaker/wrath_of_the_hellrunner_belt/wrath_of_the_hellrunner_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Hellrunner"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/spirit_breaker/wrath_of_the_hellrunner_belt/wrath_of_the_hellrunner_belt.vmdl"
+	}
+	"9365"
+	{
+		"name"									"Bracelet of the Hellrunner"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-22"
+		"image_inventory"						"econ/items/spirit_breaker/wrath_of_the_hellrunner_arms/wrath_of_the_hellrunner_arms"
+		"item_name"								"#DOTA_Item_Bracelet_of_the_Hellrunner"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracelet"
+		"model_player"							"models/items/spirit_breaker/wrath_of_the_hellrunner_arms/wrath_of_the_hellrunner_arms.vmdl"
+	}
+	"9366"
+	{
+		"name"									"Horns of the Hellrunner"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-22"
+		"image_inventory"						"econ/items/spirit_breaker/wrath_of_the_hellrunner_head/wrath_of_the_hellrunner_head"
+		"item_name"								"#DOTA_Item_Horns_of_the_Hellrunner"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Horns"
+		"model_player"							"models/items/spirit_breaker/wrath_of_the_hellrunner_head/wrath_of_the_hellrunner_head.vmdl"
+	}
+	"9546"
+	{
+		"name"									"Reach of the Ironbarde Charger"
+		"prefab"								"wearable"
+		"creation_date"							"2017-10-20"
+		"image_inventory"						"econ/items/spirit_breaker/raging_loco_weapon/raging_loco_weapon"
+		"item_name"								"#DOTA_Item_Reach_of_the_Ironbarde_Charger"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/spirit_breaker/raging_loco_weapon/raging_loco_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"system"						"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"9548"
+	{
+		"name"									"Pauldron of the Ironbarde Charger"
+		"prefab"								"wearable"
+		"creation_date"							"2017-10-20"
+		"image_inventory"						"econ/items/spirit_breaker/raging_loco_shoulder/raging_loco_shoulder"
+		"item_name"								"#DOTA_Item_Pauldron_of_the_Ironbarde_Charger"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/spirit_breaker/raging_loco_shoulder/raging_loco_shoulder.vmdl"
+	}
+	"9549"
+	{
+		"name"									"Tail of the Ironbarde Charger"
+		"prefab"								"wearable"
+		"creation_date"							"2017-10-20"
+		"image_inventory"						"econ/items/spirit_breaker/raging_loco_tail/raging_loco_tail"
+		"item_name"								"#DOTA_Item_Tail_of_the_Ironbarde_Charger"
+		"item_rarity"							"rare"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_tail"
+		"model_player"							"models/items/spirit_breaker/raging_loco_tail/raging_loco_tail.vmdl"
+	}
+	"9551"
+	{
+		"name"									"Mask of the Ironbarde Charger"
+		"prefab"								"wearable"
+		"creation_date"							"2017-10-20"
+		"image_inventory"						"econ/items/spirit_breaker/raging_loco_head/raging_loco_head"
+		"item_name"								"#DOTA_Item_Mask_of_the_Ironbarde_Charger"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/spirit_breaker/raging_loco_head/raging_loco_head.vmdl"
+	}
+	"9553"
+	{
+		"name"									"Belt of the Ironbarde Charger"
+		"prefab"								"wearable"
+		"creation_date"							"2017-10-20"
+		"image_inventory"						"econ/items/spirit_breaker/raging_loco_belt/raging_loco_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Ironbarde_Charger"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/spirit_breaker/raging_loco_belt/raging_loco_belt.vmdl"
+	}
+	"9554"
+	{
+		"name"									"Bracers of the Ironbarde Charger"
+		"prefab"								"wearable"
+		"creation_date"							"2017-10-20"
+		"image_inventory"						"econ/items/spirit_breaker/raging_loco_arms/raging_loco_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Ironbarde_Charger"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/spirit_breaker/raging_loco_arms/raging_loco_arms.vmdl"
+	}
+	"9744"
+	{
+		"name"									"Savage Mettle"
+		"prefab"								"wearable"
+		"creation_date"							"2018-03-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/spirit_breaker/spirit_breaker_ti8_immortal_weapon/spirit_breaker_ti8_immortal_weapon"
+		"item_description"						"#DOTA_Item_Desc_Savage_Mettle"
+		"item_name"								"#DOTA_Item_Savage_Mettle"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/spirit_breaker/spirit_breaker_ti8_immortal_weapon/spirit_breaker_ti8_immortal_weapon.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567296000"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spirit_breaker/spirit_breaker_weapon_ti8/spirit_breaker_ambient_ti8.vpcf"
+			}
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spirit_breaker/spirit_breaker_greater_bash.vpcf"
+				"modifier"						"particles/econ/items/spirit_breaker/spirit_breaker_weapon_ti8/spirit_breaker_bash_ti8.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti8"
+				"style"							"0"
+			}
+			"asset_modifier2"
+			{
+				"type"							"ability_icon"
+				"asset"							"spirit_breaker_greater_bash"
+				"modifier"						"spiritbreaker/ti8_immortal_weapon/spirit_breaker_greater_bash_immortal"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+		}
+	}
+	"9864"
+	{
+		"name"									"Shoulder of the Fractured Citadel"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/spirit_breaker/ti8_sb_the_abyss_charger_shoulder/ti8_sb_the_abyss_charger_shoulder"
+		"item_name"								"#DOTA_Item_Shoulder_of_the_Fractured_Citadel"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/spirit_breaker/ti8_sb_the_abyss_charger_shoulder/ti8_sb_the_abyss_charger_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9878"
+	{
+		"name"									"Belt of the Fractured Citadel"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/spirit_breaker/ti8_sb_the_abyss_charger_belt/ti8_sb_the_abyss_charger_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Fractured_Citadel"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/spirit_breaker/ti8_sb_the_abyss_charger_belt/ti8_sb_the_abyss_charger_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9880"
+	{
+		"name"									"Arms of the Fractured Citadel"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/spirit_breaker/ti8_sb_the_abyss_charger_arms/ti8_sb_the_abyss_charger_arms"
+		"item_name"								"#DOTA_Item_Arms_of_the_Fractured_Citadel"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/spirit_breaker/ti8_sb_the_abyss_charger_arms/ti8_sb_the_abyss_charger_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9882"
+	{
+		"name"									"Flail of the Fractured Citadel"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/spirit_breaker/ti8_sb_the_abyss_charger_weapon/ti8_sb_the_abyss_charger_weapon"
+		"item_name"								"#DOTA_Item_Flail_of_the_Fractured_Citadel"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/spirit_breaker/ti8_sb_the_abyss_charger_weapon/ti8_sb_the_abyss_charger_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"system"						"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"9902"
+	{
+		"name"									"Head of the Fractured Citadel"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/spirit_breaker/ti8_sb_the_abyss_charger_head/ti8_sb_the_abyss_charger_head"
+		"item_name"								"#DOTA_Item_Head_of_the_Fractured_Citadel"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/spirit_breaker/ti8_sb_the_abyss_charger_head/ti8_sb_the_abyss_charger_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9903"
+	{
+		"name"									"Tail of the Fractured Citadel"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/spirit_breaker/ti8_sb_the_abyss_charger_tail/ti8_sb_the_abyss_charger_tail"
+		"item_name"								"#DOTA_Item_Tail_of_the_Fractured_Citadel"
+		"item_rarity"							"mythical"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_tail"
+		"model_player"							"models/items/spirit_breaker/ti8_sb_the_abyss_charger_tail/ti8_sb_the_abyss_charger_tail.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"12827"
+	{
+		"name"									"Gust of the Surging Wind"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/spirit_breaker/frostivus2018_sb_icebreaker_weapon/frostivus2018_sb_icebreaker_weapon"
+		"item_name"								"#DOTA_Item_Gust_of_the_Surging_Wind"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/spirit_breaker/frostivus2018_sb_icebreaker_weapon/frostivus2018_sb_icebreaker_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"system"						"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"12828"
+	{
+		"name"									"Arms of the Surging Wind"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/spirit_breaker/frostivus2018_sb_icebreaker_arms/frostivus2018_sb_icebreaker_arms"
+		"item_name"								"#DOTA_Item_Arms_of_the_Surging_Wind"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/spirit_breaker/frostivus2018_sb_icebreaker_arms/frostivus2018_sb_icebreaker_arms.vmdl"
+	}
+	"12829"
+	{
+		"name"									"Belt of the Surging Wind"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/spirit_breaker/frostivus2018_sb_icebreaker_belt/frostivus2018_sb_icebreaker_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Surging_Wind"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/spirit_breaker/frostivus2018_sb_icebreaker_belt/frostivus2018_sb_icebreaker_belt.vmdl"
+	}
+	"12830"
+	{
+		"name"									"Tail of the Surging Wind"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/spirit_breaker/frostivus2018_sb_icebreaker_tail/frostivus2018_sb_icebreaker_tail"
+		"item_name"								"#DOTA_Item_Tail_of_the_Surging_Wind"
+		"item_rarity"							"rare"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_tail"
+		"model_player"							"models/items/spirit_breaker/frostivus2018_sb_icebreaker_tail/frostivus2018_sb_icebreaker_tail.vmdl"
+	}
+	"12831"
+	{
+		"name"									"Horns of the Surging Wind"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/spirit_breaker/frostivus2018_sb_icebreaker_head/frostivus2018_sb_icebreaker_head"
+		"item_name"								"#DOTA_Item_Horns_of_the_Surging_Wind"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/spirit_breaker/frostivus2018_sb_icebreaker_head/frostivus2018_sb_icebreaker_head.vmdl"
+	}
+	"12832"
+	{
+		"name"									"Pauldron of the Surging Wind"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/spirit_breaker/frostivus2018_sb_icebreaker_shoulder/frostivus2018_sb_icebreaker_shoulder"
+		"item_name"								"#DOTA_Item_Pauldron_of_the_Surging_Wind"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/spirit_breaker/frostivus2018_sb_icebreaker_shoulder/frostivus2018_sb_icebreaker_shoulder.vmdl"
+	}
+	"13745"
+	{
+		"name"									"Brace of Ultoria"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_arms/spirit_breaker_ti10_cavern_crawl_arms"
+		"item_description"						"#DOTA_Item_Desc_Spirit_Breaker_TI10_Cavern_Crawl_Arms"
+		"item_name"								"#DOTA_Item_Brace_of_Ultoria"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_arms/spirit_breaker_ti10_cavern_crawl_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Spirit_Breaker_TI10_Cavern_Crawl_Arms_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Spirit_Breaker_TI10_Cavern_Crawl_Arms_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17544"
+						"price"					"1"
+					}
+				}
+				"2"
+				{
+					"name"						"#DOTA_Style_Spirit_Breaker_TI10_Cavern_Crawl_Arms_2"
+					"skin"						"2"
+					"alternate_icon"			"2"
+					"unlock"
+					{
+						"item_def"				"17545"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spirit_breaker/sb_ti10_cavern_crawl/sb_ti10_cavern_crawl_arms_style2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spirit_breaker/sb_ti10_cavern_crawl/sb_ti10_cavern_crawl_arms_style3.vpcf"
+				"style"							"2"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_arms/spirit_breaker_ti10_cavern_crawl_arms"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_arms/spirit_breaker_ti10_cavern_crawl_arms_style1"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_arms/spirit_breaker_ti10_cavern_crawl_arms_style2"
+				}
+			}
+		}
+	}
+	"13746"
+	{
+		"name"									"Belt of Ultoria"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_belt/spirit_breaker_ti10_cavern_crawl_belt"
+		"item_description"						"#DOTA_Item_Desc_Belt_of_Ultoria"
+		"item_name"								"#DOTA_Item_Belt_of_Ultoria"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_belt/spirit_breaker_ti10_cavern_crawl_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Spirit_Breaker_TI10_Cavern_Crawl_Belt_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Spirit_Breaker_TI10_Cavern_Crawl_Belt_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17544"
+						"price"					"1"
+					}
+				}
+				"2"
+				{
+					"name"						"#DOTA_Style_Spirit_Breaker_TI10_Cavern_Crawl_Belt_2"
+					"skin"						"2"
+					"alternate_icon"			"2"
+					"unlock"
+					{
+						"item_def"				"17545"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spirit_breaker/sb_ti10_cavern_crawl/sb_ti10_cavern_crawl_belt_style2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spirit_breaker/sb_ti10_cavern_crawl/sb_ti10_cavern_crawl_belt.vpcf"
+				"style"							"2"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_belt/spirit_breaker_ti10_cavern_crawl_belt"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_belt/spirit_breaker_ti10_cavern_crawl_belt_style1"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_belt/spirit_breaker_ti10_cavern_crawl_belt_style2"
+				}
+			}
+		}
+	}
+	"13747"
+	{
+		"name"									"Helm of Ultoria"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_head/spirit_breaker_ti10_cavern_crawl_head"
+		"item_description"						"#DOTA_Item_Desc_Spirit_Breaker_TI10_Cavern_Crawl_Head"
+		"item_name"								"#DOTA_Item_Helm_of_Ultoria"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_head/spirit_breaker_ti10_cavern_crawl_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Spirit_Breaker_TI10_Cavern_Crawl_Head_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Spirit_Breaker_TI10_Cavern_Crawl_Head_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17544"
+						"price"					"1"
+					}
+				}
+				"2"
+				{
+					"name"						"#DOTA_Style_Spirit_Breaker_TI10_Cavern_Crawl_Head_2"
+					"skin"						"2"
+					"alternate_icon"			"2"
+					"unlock"
+					{
+						"item_def"				"17545"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spirit_breaker/sb_ti10_cavern_crawl/sb_ti10_cavern_crawl_head.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spirit_breaker/sb_ti10_cavern_crawl/sb_ti10_cavern_crawl_head_style2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spirit_breaker/sb_ti10_cavern_crawl/sb_ti10_cavern_crawl_head_style3.vpcf"
+				"style"							"2"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_head/spirit_breaker_ti10_cavern_crawl_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_head/spirit_breaker_ti10_cavern_crawl_head_style1"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_head/spirit_breaker_ti10_cavern_crawl_head_style2"
+				}
+			}
+		}
+	}
+	"13748"
+	{
+		"name"									"Mantle of Ultoria"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_shoulders/spirit_breaker_ti10_cavern_crawl_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Mantle_of_Ultoria"
+		"item_name"								"#DOTA_Item_Mantle_of_Ultoria"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_shoulders/spirit_breaker_ti10_cavern_crawl_shoulders.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Spirit_Breaker_TI10_Cavern_Crawl_Shoulders_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Spirit_Breaker_TI10_Cavern_Crawl_Shoulders_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17544"
+						"price"					"1"
+					}
+				}
+				"2"
+				{
+					"name"						"#DOTA_Style_Spirit_Breaker_TI10_Cavern_Crawl_Shoulders_2"
+					"skin"						"2"
+					"alternate_icon"			"2"
+					"unlock"
+					{
+						"item_def"				"17545"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spirit_breaker/sb_ti10_cavern_crawl/sb_ti10_cavern_crawl_shoulders.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spirit_breaker/sb_ti10_cavern_crawl/sb_ti10_cavern_crawl_shoulder_style2s.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spirit_breaker/sb_ti10_cavern_crawl/sb_ti10_cavern_crawl_shoulders_style3.vpcf"
+				"style"							"2"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_shoulders/spirit_breaker_ti10_cavern_crawl_shoulders"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_shoulders/spirit_breaker_ti10_cavern_crawl_shoulders_style1"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_shoulders/spirit_breaker_ti10_cavern_crawl_shoulders_style2"
+				}
+			}
+		}
+	}
+	"13749"
+	{
+		"name"									"Tail of Ultoria"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_tail/spirit_breaker_ti10_cavern_crawl_tail"
+		"item_description"						"#DOTA_Item_Desc_Tail_of_Ultoria"
+		"item_name"								"#DOTA_Item_Tail_of_Ultoria"
+		"item_rarity"							"rare"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_tail"
+		"model_player"							"models/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_tail/spirit_breaker_ti10_cavern_crawl_tail.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Spirit_Breaker_TI10_Cavern_Crawl_Tail_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Spirit_Breaker_TI10_Cavern_Crawl_Tail_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17544"
+						"price"					"1"
+					}
+				}
+				"2"
+				{
+					"name"						"#DOTA_Style_Spirit_Breaker_TI10_Cavern_Crawl_Tail_2"
+					"skin"						"2"
+					"alternate_icon"			"2"
+					"unlock"
+					{
+						"item_def"				"17545"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spirit_breaker/sb_ti10_cavern_crawl/sb_ti10_cavern_crawl_tail_style2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spirit_breaker/sb_ti10_cavern_crawl/sb_ti10_cavern_crawl_tail.vpcf"
+				"style"							"2"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_tail/spirit_breaker_ti10_cavern_crawl_tail"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_tail/spirit_breaker_ti10_cavern_crawl_tail_style1"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_tail/spirit_breaker_ti10_cavern_crawl_tail_style2"
+				}
+			}
+		}
+	}
+	"13750"
+	{
+		"name"									"Star of Ultoria"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_weapon/spirit_breaker_ti10_cavern_crawl_weapon"
+		"item_description"						"#DOTA_Item_Desc_Star_of_Ultoria"
+		"item_name"								"#DOTA_Item_Star_of_Ultoria"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_weapon/spirit_breaker_ti10_cavern_crawl_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Spirit_Breaker_TI10_Cavern_Crawl_Weapon_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Spirit_Breaker_TI10_Cavern_Crawl_Weapon_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17544"
+						"price"					"1"
+					}
+				}
+				"2"
+				{
+					"name"						"#DOTA_Style_Spirit_Breaker_TI10_Cavern_Crawl_Weapon_2"
+					"skin"						"2"
+					"alternate_icon"			"2"
+					"unlock"
+					{
+						"item_def"				"17545"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spirit_breaker/sb_ti10_cavern_crawl/sb_ti10_cavern_crawl_weapon.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spirit_breaker/sb_ti10_cavern_crawl/sb_ti10_cavern_crawl_weapon_style2.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/spirit_breaker/sb_ti10_cavern_crawl/sb_ti10_cavern_crawl_weapon_style3.vpcf"
+				"style"							"2"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_weapon/spirit_breaker_ti10_cavern_crawl_weapon"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_weapon/spirit_breaker_ti10_cavern_crawl_weapon_style1"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/spirit_breaker/spirit_breaker_ti10_cavern_crawl_weapon/spirit_breaker_ti10_cavern_crawl_weapon_style2"
+				}
+			}
+		}
+	}
+	"18398"
+	{
+		"name"									"Beast of the Outer Plane Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-11-12"
+		"image_inventory"						"econ/items/spirit_breaker/dplus_remnants_of_the_wild_berserker_weapon/dplus_remnants_of_the_wild_berserker_weapon"
+		"item_name"								"#DOTA_Item_Beast_of_the_Outer_Plane_Weapon"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/spirit_breaker/dplus_remnants_of_the_wild_berserker_weapon/dplus_remnants_of_the_wild_berserker_weapon.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"system"						"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"18399"
+	{
+		"name"									"Beast of the Outer Plane Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-11-12"
+		"image_inventory"						"econ/items/spirit_breaker/dplus_remnants_of_the_wild_berserker_head/dplus_remnants_of_the_wild_berserker_head"
+		"item_name"								"#DOTA_Item_Beast_of_the_Outer_Plane_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/spirit_breaker/dplus_remnants_of_the_wild_berserker_head/dplus_remnants_of_the_wild_berserker_head.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"18400"
+	{
+		"name"									"Beast of the Outer Plane Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2020-11-12"
+		"image_inventory"						"econ/items/spirit_breaker/dplus_remnants_of_the_wild_berserker_shoulder/dplus_remnants_of_the_wild_berserker_shoulder"
+		"item_name"								"#DOTA_Item_Beast_of_the_Outer_Plane_Shoulder"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/spirit_breaker/dplus_remnants_of_the_wild_berserker_shoulder/dplus_remnants_of_the_wild_berserker_shoulder.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"18416"
+	{
+		"name"									"Beast of the Outer Plane Tail"
+		"prefab"								"wearable"
+		"creation_date"							"2020-11-12"
+		"image_inventory"						"econ/items/spirit_breaker/dplus_remnants_of_the_wild_berserker_tail/dplus_remnants_of_the_wild_berserker_tail"
+		"item_name"								"#DOTA_Item_Beast_of_the_Outer_Plane_Tail"
+		"item_rarity"							"rare"
+		"item_slot"								"tail"
+		"model_player"							"models/items/spirit_breaker/dplus_remnants_of_the_wild_berserker_tail/dplus_remnants_of_the_wild_berserker_tail.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"18418"
+	{
+		"name"									"Beast of the Outer Plane Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-11-12"
+		"image_inventory"						"econ/items/spirit_breaker/dplus_remnants_of_the_wild_berserker_belt/dplus_remnants_of_the_wild_berserker_belt"
+		"item_name"								"#DOTA_Item_Beast_of_the_Outer_Plane_Belt"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/spirit_breaker/dplus_remnants_of_the_wild_berserker_belt/dplus_remnants_of_the_wild_berserker_belt.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"18419"
+	{
+		"name"									"Beast of the Outer Plane Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-11-12"
+		"image_inventory"						"econ/items/spirit_breaker/dplus_remnants_of_the_wild_berserker_arms/dplus_remnants_of_the_wild_berserker_arms"
+		"item_name"								"#DOTA_Item_Beast_of_the_Outer_Plane_Arms"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/spirit_breaker/dplus_remnants_of_the_wild_berserker_arms/dplus_remnants_of_the_wild_berserker_arms.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"19220"
+	{
+		"name"									"Barding of the Master's Pet - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-09"
+		"image_inventory"						"econ/items/spirit_breaker/soul_of_giant_armour_weapon/soul_of_giant_armour_weapon"
+		"item_name"								"#DOTA_Item_Barding_of_the_Masters_Pet__Weapon"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/spirit_breaker/soul_of_giant_armour_weapon/soul_of_giant_armour_weapon.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"system"						"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"19221"
+	{
+		"name"									"Barding of the Master's Pet - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-09"
+		"image_inventory"						"econ/items/spirit_breaker/soul_of_giant_armour_shoulder/soul_of_giant_armour_shoulder"
+		"item_name"								"#DOTA_Item_Barding_of_the_Masters_Pet__Shoulder"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/spirit_breaker/soul_of_giant_armour_shoulder/soul_of_giant_armour_shoulder.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"19222"
+	{
+		"name"									"Barding of the Master's Pet - Tail"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-09"
+		"image_inventory"						"econ/items/spirit_breaker/soul_of_giant_armour_tail/soul_of_giant_armour_tail"
+		"item_name"								"#DOTA_Item_Barding_of_the_Masters_Pet__Tail"
+		"item_rarity"							"rare"
+		"item_slot"								"tail"
+		"model_player"							"models/items/spirit_breaker/soul_of_giant_armour_tail/soul_of_giant_armour_tail.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"19223"
+	{
+		"name"									"Barding of the Master's Pet - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-09"
+		"image_inventory"						"econ/items/spirit_breaker/soul_of_giant_armour_arms/soul_of_giant_armour_arms"
+		"item_name"								"#DOTA_Item_Barding_of_the_Masters_Pet__Arms"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/spirit_breaker/soul_of_giant_armour_arms/soul_of_giant_armour_arms.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"19224"
+	{
+		"name"									"Barding of the Master's Pet - Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-09"
+		"image_inventory"						"econ/items/spirit_breaker/soul_of_giant_armour_belt/soul_of_giant_armour_belt"
+		"item_name"								"#DOTA_Item_Barding_of_the_Masters_Pet__Belt"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/spirit_breaker/soul_of_giant_armour_belt/soul_of_giant_armour_belt.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"19225"
+	{
+		"name"									"Barding of the Master's Pet - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-09"
+		"image_inventory"						"econ/items/spirit_breaker/soul_of_giant_armour_head/soul_of_giant_armour_head"
+		"item_name"								"#DOTA_Item_Barding_of_the_Masters_Pet__Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/spirit_breaker/soul_of_giant_armour_head/soul_of_giant_armour_head.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"19630"
+	{
+		"name"									"Interplanar Impactor Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/spirit_breaker/interplanar_impactor_arms/interplanar_impactor_arms"
+		"item_name"								"#DOTA_Item_Vote_Only_Interplanar_Impactor_Arms"
+		"item_slot"								"arms"
+		"model_player"							"models/items/spirit_breaker/interplanar_impactor_arms/interplanar_impactor_arms.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19631"
+	{
+		"name"									"Interplanar Impactor Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/spirit_breaker/interplanar_impactor_belt/interplanar_impactor_belt"
+		"item_name"								"#DOTA_Item_Vote_Only_Interplanar_Impactor_Belt"
+		"item_slot"								"belt"
+		"model_player"							"models/items/spirit_breaker/interplanar_impactor_belt/interplanar_impactor_belt.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19632"
+	{
+		"name"									"Interplanar Impactor Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/spirit_breaker/interplanar_impactor_head/interplanar_impactor_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Interplanar_Impactor_Head"
+		"item_slot"								"head"
+		"model_player"							"models/items/spirit_breaker/interplanar_impactor_head/interplanar_impactor_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19633"
+	{
+		"name"									"Interplanar Impactor Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/spirit_breaker/interplanar_impactor_shoulder/interplanar_impactor_shoulder"
+		"item_name"								"#DOTA_Item_Vote_Only_Interplanar_Impactor_Shoulder"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/spirit_breaker/interplanar_impactor_shoulder/interplanar_impactor_shoulder.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19634"
+	{
+		"name"									"Interplanar Impactor Tail"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/spirit_breaker/interplanar_impactor_tail/interplanar_impactor_tail"
+		"item_name"								"#DOTA_Item_Vote_Only_Interplanar_Impactor_Tail"
+		"item_slot"								"tail"
+		"model_player"							"models/items/spirit_breaker/interplanar_impactor_tail/interplanar_impactor_tail.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19635"
+	{
+		"name"									"Interplanar Impactor Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/spirit_breaker/interplanar_impactor_weapon/interplanar_impactor_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_Interplanar_Impactor_Weapon"
+		"model_player"							"models/items/spirit_breaker/interplanar_impactor_weapon/interplanar_impactor_weapon.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"system"						"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"20150"
+	{
+		"name"									"Heavy Armor of the World Runner Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Heavy Belt of the World Runner"	"1"
+			"Heavy Gauntlets of the World Runner""1"
+			"Heavy Helm of the World Runner"	"1"
+			"Heavy Pauldrons of the World Runner""1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Heavy_Armor_of_the_World_Runner_Set"
+		"item_description"						"#DOTA_Item_Desc_Heavy_Armor_of_the_World_Runner_Set"
+		"item_name"								"#DOTA_Item_Heavy_Armor_of_the_World_Runner_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20208"
+	{
+		"name"									"Battleseeker Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Battleseeker Arms"					"1"
+			"Battleseeker Belt"					"1"
+			"Battleseeker Helmet"				"1"
+			"Battleseeker Shoulders"			"1"
+		}
+		"creation_date"							"2013-07-10"
+		"image_inventory"						"econ/sets/DOTA_Item_Battleseeker_Set"
+		"item_description"						"#DOTA_Item_Desc_Battleseeker_Set"
+		"item_name"								"#DOTA_Item_Battleseeker_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"7/10/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20258"
+	{
+		"name"									"Barathrum's Fury Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Belt of Fury"						"1"
+			"Bracers of Fury"					"1"
+			"Mask of Fury"						"1"
+			"Pauldrons of Fury"					"1"
+			"Spirit Crusher"					"1"
+			"Tail of Fury"						"1"
+		}
+		"creation_date"							"2013-09-25"
+		"image_inventory"						"econ/sets/DOTA_Item_Barathrums_Fury_Set"
+		"item_description"						"#DOTA_Item_Desc_Barathrums_Fury_Set"
+		"item_name"								"#DOTA_Item_Barathrums_Fury_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"9/25/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20291"
+	{
+		"name"									"Vestments of the Iron Will Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Cuffs of the Iron Will"			"1"
+			"Strap of the Iron Will"			"1"
+			"Horns of the Iron Will"			"1"
+			"Mantle of the Iron Will"			"1"
+			"Tail of the Iron Will"				"1"
+			"Flail of the Iron Will"			"1"
+		}
+		"creation_date"							"2013-10-31"
+		"image_inventory"						"econ/sets/DOTA_Item_Imperial_Crusher_Set"
+		"item_description"						"#DOTA_Item_Desc_Vestments_of_the_Iron_Will"
+		"item_name"								"#DOTA_Item_Vestments_of_the_Iron_Will_Set"
+		"item_rarity"							"rare"
+	}
+	"20308"
+	{
+		"name"									"Death Charge Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Flail of the Death Charge"			"1"
+			"Shoulders of the Death Charge"		"1"
+			"Horns of the Death Charge"			"1"
+			"Tail of the Death Charge"			"1"
+			"Bracers of the Death Charge"		"1"
+			"Belt of the Death Charge"			"1"
+		}
+		"creation_date"							"2013-11-07"
+		"image_inventory"						"econ/sets/DOTA_Item_Death_Charge"
+		"item_description"						"#DOTA_Item_Desc_Death_Charge_Set"
+		"item_name"								"#DOTA_Item_Death_Charge_Set"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Skull_Bashing_Pro_Gear_Bundle"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Mythical"
+			"category_tags"						"Bundles"
+			"date"								"11/7/2013"
+			"bundle"							"1"
+			"price"								"799"
+		}
+		"branding"
+		{
+			"corporation_id"					"84772440"
+		}
+	}
+	"20849"
+	{
+		"name"									"Wrath of the Hellrunner"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Wrath of the Hellrunner Loading Screen""1"
+			"Club of the Hellrunner"			"1"
+			"Sweep of the Hellrunner"			"1"
+			"Pauldrons of the Hellrunner"		"1"
+			"Belt of the Hellrunner"			"1"
+			"Bracelet of the Hellrunner"		"1"
+			"Horns of the Hellrunner"			"1"
+		}
+		"creation_date"							"2015-06-22"
+		"image_inventory"						"econ/loading_screens/wrath_of_the_hellrunner_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Wrath_of_the_Hellrunner"
+		"item_name"								"#DOTA_Item_Wrath_of_the_Hellrunner"
+		"item_rarity"							"rare"
+	}
+	"20989"
+	{
+		"name"									"Elemental Realms"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Pauldrons of the Elemental Realms"	"1"
+			"Tail of the Elemental Realms"		"1"
+			"Belt of the Elemental Realms"		"1"
+			"Flail of the Elemental Realms"		"1"
+			"Tusks of the Elemental Realms"		"1"
+			"Bracers of the Elemental Realms"	"1"
+			"Elemental Realms Loading Screen"	"1"
+		}
+		"creation_date"							"2016-01-20"
+		"image_inventory"						"econ/loading_screens/elemental_realms_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Elemental_Realms"
+		"item_name"								"#DOTA_Item_Elemental_Realms"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1461146400"
+			}
+		}
+	}
+	"21057"
+	{
+		"name"									"Elemental Imperator"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Flail of the Elemental Imperator"	"1"
+			"Bracers of the Elemental Imperator""1"
+			"Belt of the Elemental Imperator"	"1"
+			"Helm of the Elemental Imperator"	"1"
+			"Loading Screen of the Elemental Imperator""1"
+			"Pauldrons of the Elemental Imperator""1"
+			"Tail of the Elemental Imperator"	"1"
+		}
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/fearless_impactor_loadingscreen_of_fearless_impactor_v2"
+		"item_description"						"#DOTA_Item_Desc_Fearless_Impactor"
+		"item_name"								"#DOTA_Item_Elemental_Imperator"
+		"item_rarity"							"mythical"
+	}
+	"21151"
+	{
+		"name"									"Ironbarde Charger"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bracers of the Ironbarde Charger"	"1"
+			"Belt of the Ironbarde Charger"		"1"
+			"Mask of the Ironbarde Charger"		"1"
+			"Tail of the Ironbarde Charger"		"1"
+			"Pauldron of the Ironbarde Charger"	"1"
+			"Reach of the Ironbarde Charger"	"1"
+		}
+		"creation_date"							"2017-10-25"
+		"image_inventory"						"econ/sets/DOTA_Item_Raging_Loco"
+		"item_name"								"#DOTA_Item_Ironbarde_Charger"
+		"item_rarity"							"rare"
+	}
+	"21200"
+	{
+		"name"									"Pillar of the Fractured Citadel"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Tail of the Fractured Citadel"		"1"
+			"Head of the Fractured Citadel"		"1"
+			"Flail of the Fractured Citadel"	"1"
+			"Arms of the Fractured Citadel"		"1"
+			"Belt of the Fractured Citadel"		"1"
+			"Shoulder of the Fractured Citadel"	"1"
+		}
+		"creation_date"							"2018-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/sets/DOTA_Item_TI8_SB_The_Abyss_Charger"
+		"item_description"						"#DOTA_Item_Desc_Pillar_of_the_Fractured_Citadel"
+		"item_name"								"#DOTA_Item_Pillar_of_the_Fractured_Citadel"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+		}
+	}
+	"21305"
+	{
+		"name"									"Bite of the Surging Wind"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Pauldron of the Surging Wind"		"1"
+			"Horns of the Surging Wind"			"1"
+			"Tail of the Surging Wind"			"1"
+			"Belt of the Surging Wind"			"1"
+			"Arms of the Surging Wind"			"1"
+			"Gust of the Surging Wind"			"1"
+		}
+		"creation_date"							"2018-12-02"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/sets/DOTA_Item_Frostivus2018_SB_Icebreaker"
+		"item_name"								"#DOTA_Item_Bite_of_the_Surging_Wind"
+		"item_rarity"							"rare"
+	}
+	"21409"
+	{
+		"name"									"Echoes of Ultoria"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Star of Ultoria"					"1"
+			"Tail of Ultoria"					"1"
+			"Mantle of Ultoria"					"1"
+			"Helm of Ultoria"					"1"
+			"Belt of Ultoria"					"1"
+			"Brace of Ultoria"					"1"
+		}
+		"creation_date"							"2020-05-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Spirit_Breaker_TI10_Cavern_Crawl"
+		"item_description"						"#DOTA_Item_Desc_Echoes_of_Ultoria"
+		"item_name"								"#DOTA_Item_Echoes_of_Ultoria"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+		}
+	}
+	"21803"
+	{
+		"name"									"Beast of the Outer Plane"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Beast of the Outer Plane Belt"		"1"
+			"Beast of the Outer Plane Arms"		"1"
+			"Beast of the Outer Plane Loading Screen""1"
+			"Beast of the Outer Plane Tail"		"1"
+			"Beast of the Outer Plane Head"		"1"
+			"Beast of the Outer Plane Weapon"	"1"
+			"Beast of the Outer Plane Shoulder"	"1"
+		}
+		"creation_date"							"2020-11-12"
+		"image_inventory"						"econ/loading_screens/dplus_remnants_of_the_wild_berserker_ls"
+		"item_name"								"#DOTA_Item_Beast_of_the_Outer_Plane"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"15000"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21852"
+	{
+		"name"									"Barding of the Master's Pet"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Barding of the Master's Pet - Head""1"
+			"Barding of the Master's Pet - Belt""1"
+			"Barding of the Master's Pet - Arms""1"
+			"Barding of the Master's Pet - Tail""1"
+			"Barding of the Master's Pet - Shoulder""1"
+			"Barding of the Master's Pet - Weapon""1"
+		}
+		"creation_date"							"2021-08-09"
+		"image_inventory"						"econ/sets/DOTA_Item_Barding_of_the_Masters_Pet"
+		"item_name"								"#DOTA_Item_Barding_of_the_Masters_Pet"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21925"
+	{
+		"name"									"Interplanar Impactor"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Interplanar Impactor Weapon"		"1"
+			"Interplanar Impactor Arms"			"1"
+			"Interplanar Impactor Belt"			"1"
+			"Interplanar Impactor Tail"			"1"
+			"Interplanar Impactor Head"			"1"
+			"Interplanar Impactor Shoulder"		"1"
+		}
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Interplanar_Impactor"
+		"workshop_accepted"						"0"
+	}
+	"22775"
+	{
+		"name"									"Winter Lineage Gust of the Surging Wind"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-22"
+		"event_id"								"EVENT_ID_TEAM_FANDOM_FALL_2021"
+		"image_inventory"						"econ/items/spirit_breaker/frostivus2018_sb_icebreaker_weapon/frostivus2018_sb_icebreaker_weapon_dpc"
+		"item_description"						"#DOTA_Item_Desc_Winter_Lineage_Gust_of_the_Surging_Wind"
+		"item_name"								"#DOTA_Item_Winter_Lineage_Gust_of_the_Surging_Wind"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/spirit_breaker/frostivus2018_sb_icebreaker_weapon/frostivus2018_sb_icebreaker_weapon.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"34"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"system"						"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"22776"
+	{
+		"name"									"Winter Lineage Arms of the Surging Wind"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-22"
+		"event_id"								"EVENT_ID_TEAM_FANDOM_FALL_2021"
+		"image_inventory"						"econ/items/spirit_breaker/frostivus2018_sb_icebreaker_arms/frostivus2018_sb_icebreaker_arms_dpc"
+		"item_description"						"#DOTA_Item_Desc_Winter_Lineage_Arms_of_the_Surging_Wind"
+		"item_name"								"#DOTA_Item_Winter_Lineage_Arms_of_the_Surging_Wind"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/spirit_breaker/frostivus2018_sb_icebreaker_arms/frostivus2018_sb_icebreaker_arms.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"34"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"22777"
+	{
+		"name"									"Winter Lineage Belt of the Surging Wind"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-22"
+		"event_id"								"EVENT_ID_TEAM_FANDOM_FALL_2021"
+		"image_inventory"						"econ/items/spirit_breaker/frostivus2018_sb_icebreaker_belt/frostivus2018_sb_icebreaker_belt_dpc"
+		"item_description"						"#DOTA_Item_Desc_Winter_Lineage_Belt_of_the_Surging_Wind"
+		"item_name"								"#DOTA_Item_Winter_Lineage_Belt_of_the_Surging_Wind"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/spirit_breaker/frostivus2018_sb_icebreaker_belt/frostivus2018_sb_icebreaker_belt.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"34"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"22778"
+	{
+		"name"									"Winter Lineage Tail of the Surging Wind"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-22"
+		"event_id"								"EVENT_ID_TEAM_FANDOM_FALL_2021"
+		"image_inventory"						"econ/items/spirit_breaker/frostivus2018_sb_icebreaker_tail/frostivus2018_sb_icebreaker_tail_dpc"
+		"item_description"						"#DOTA_Item_Desc_Winter_Lineage_Tail_of_the_Surging_Wind"
+		"item_name"								"#DOTA_Item_Winter_Lineage_Tail_of_the_Surging_Wind"
+		"item_rarity"							"mythical"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/items/spirit_breaker/frostivus2018_sb_icebreaker_tail/frostivus2018_sb_icebreaker_tail.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"34"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"22779"
+	{
+		"name"									"Winter Lineage Horns of the Surging Wind"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-22"
+		"event_id"								"EVENT_ID_TEAM_FANDOM_FALL_2021"
+		"image_inventory"						"econ/items/spirit_breaker/frostivus2018_sb_icebreaker_head/frostivus2018_sb_icebreaker_head_dpc"
+		"item_description"						"#DOTA_Item_Desc_Winter_Lineage_Horns_of_the_Surging_Wind"
+		"item_name"								"#DOTA_Item_Winter_Lineage_Horns_of_the_Surging_Wind"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/spirit_breaker/frostivus2018_sb_icebreaker_head/frostivus2018_sb_icebreaker_head.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"34"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"22780"
+	{
+		"name"									"Winter Lineage Pauldron of the Surging Wind"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-22"
+		"event_id"								"EVENT_ID_TEAM_FANDOM_FALL_2021"
+		"image_inventory"						"econ/items/spirit_breaker/frostivus2018_sb_icebreaker_shoulder/frostivus2018_sb_icebreaker_shoulder_dpc"
+		"item_description"						"#DOTA_Item_Desc_Winter_Lineage_Pauldron_of_the_Surging_Wind"
+		"item_name"								"#DOTA_Item_Winter_Lineage_Pauldron_of_the_Surging_Wind"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/spirit_breaker/frostivus2018_sb_icebreaker_shoulder/frostivus2018_sb_icebreaker_shoulder.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"34"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"22781"
+	{
+		"name"									"Winter Lineage Bite of the Surging Wind"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Winter Lineage Gust of the Surging Wind""1"
+			"Winter Lineage Arms of the Surging Wind""1"
+			"Winter Lineage Belt of the Surging Wind""1"
+			"Winter Lineage Tail of the Surging Wind""1"
+			"Winter Lineage Horns of the Surging Wind""1"
+			"Winter Lineage Pauldron of the Surging Wind""1"
+		}
+		"creation_date"							"2022-01-22"
+		"event_id"								"EVENT_ID_TEAM_FANDOM_FALL_2021"
+		"image_inventory"						"econ/sets/DOTA_Item_DPC_2022_Bite_of_the_Surging_Wind"
+		"item_description"						"#DOTA_Item_Desc_Winter_Lineage_Bite_of_the_Surging_Wind"
+		"item_name"								"#DOTA_Item_Winter_Lineage_Bite_of_the_Surging_Wind"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"34"
+			}
+		}
+	}
+	"23230"
+	{
+		"name"									"Summer Lineage Barathrum's Fury Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Summer Lineage Tail of Fury"		"1"
+			"Summer Lineage Bracers of Fury"	"1"
+			"Summer Lineage Belt of Fury"		"1"
+			"Summer Lineage Mask of Fury"		"1"
+			"Summer Lineage Pauldrons of Fury"	"1"
+			"Summer Lineage Spirit Crusher"		"1"
+		}
+		"creation_date"							"2022-05-04"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR3"
+		"image_inventory"						"econ/sets/DOTA_Item_Summer_Lineage_Barathrums_Fury_Set"
+		"item_description"						"#DOTA_Item_Desc_Summer_Lineage_Barathrums_Fury_Set"
+		"item_name"								"#DOTA_Item_Summer_Lineage_Barathrums_Fury_Set"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"37"
+			}
+		}
+	}
+	"23231"
+	{
+		"name"									"Summer Lineage Tail of Fury"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-04"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR3"
+		"image_inventory"						"econ/items/spirit_breaker/fury_tail/fury_tail1"
+		"item_description"						"#DOTA_Item_Desc_Summer_Lineage_Tail_of_Fury"
+		"item_name"								"#DOTA_Item_Summer_Lineage_Tail_of_Fury"
+		"item_rarity"							"rare"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/items/spirit_breaker/fury_tail/fury_tail.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"37"
+			}
+		}
+		"visuals"
+		{
+			"skin"								"1"
+			"skip_model_combine"				"0"
+		}
+	}
+	"23232"
+	{
+		"name"									"Summer Lineage Bracers of Fury"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-04"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR3"
+		"image_inventory"						"econ/items/spirit_breaker/fury_arms/fury_arms1"
+		"item_description"						"#DOTA_Item_Desc_Summer_Lineage_Bracers_of_Fury"
+		"item_name"								"#DOTA_Item_Summer_Lineage_Bracers_of_Fury"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/spirit_breaker/fury_arms/fury_arms.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"37"
+			}
+		}
+		"visuals"
+		{
+			"skin"								"1"
+			"skip_model_combine"				"0"
+		}
+	}
+	"23233"
+	{
+		"name"									"Summer Lineage Belt of Fury"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-04"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR3"
+		"image_inventory"						"econ/items/spirit_breaker/fury_belt/fury_belt1"
+		"item_description"						"#DOTA_Item_Desc_Summer_Lineage_Belt_of_Fury"
+		"item_name"								"#DOTA_Item_Summer_Lineage_Belt_of_Fury"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/spirit_breaker/fury_belt/fury_belt.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"37"
+			}
+		}
+		"visuals"
+		{
+			"skin"								"1"
+			"skip_model_combine"				"0"
+		}
+	}
+	"23234"
+	{
+		"name"									"Summer Lineage Mask of Fury"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-04"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR3"
+		"image_inventory"						"econ/items/spirit_breaker/fury_head/fury_head1"
+		"item_description"						"#DOTA_Item_Desc_Summer_Lineage_Mask_of_Fury"
+		"item_name"								"#DOTA_Item_Summer_Lineage_Mask_of_Fury"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Horned_Mask"
+		"model_player"							"models/items/spirit_breaker/fury_head/fury_head.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"37"
+			}
+		}
+		"visuals"
+		{
+			"skin"								"1"
+			"skip_model_combine"				"0"
+		}
+	}
+	"23235"
+	{
+		"name"									"Summer Lineage Pauldrons of Fury"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-04"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR3"
+		"image_inventory"						"econ/items/spirit_breaker/fury_shoulders/fury_shoulders1"
+		"item_description"						"#DOTA_Item_Desc_Summer_Lineage_Pauldrons_of_Fury"
+		"item_name"								"#DOTA_Item_Summer_Lineage_Pauldrons_of_Fury"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/spirit_breaker/fury_shoulders/fury_shoulders.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"37"
+			}
+		}
+		"visuals"
+		{
+			"skin"								"1"
+			"skip_model_combine"				"0"
+		}
+	}
+	"23236"
+	{
+		"name"									"Summer Lineage Spirit Crusher"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-04"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR3"
+		"image_inventory"						"econ/items/spirit_breaker/fury_weapon/fury_weapon1"
+		"item_description"						"#DOTA_Item_Desc_Summer_Lineage_Spirit_Crusher"
+		"item_name"								"#DOTA_Item_Summer_Lineage_Spirit_Crusher"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/spirit_breaker/fury_weapon/fury_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/spirit_breaker/spirit_breaker_weapon_fury"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"37"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"modifier"						"particles/econ/items/spirit_breaker/spirit_breaker_weapon_fury/spirit_breaker_ambient_flame_fury_dpc.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"system"						"particles/units/heroes/hero_spirit_breaker/spirit_breaker_ambient_flame.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"skin"								"1"
+			"skip_model_combine"				"0"
+		}
+	}
+}

@@ -1,0 +1,4057 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"420"
+	{
+		"name"									"Skywrath Mage's Weapon"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/skywrath_mage/skywrath_mage_staff"
+		"item_description"						"#DOTA_Item_Desc_Skywrath_Mages_Weapon"
+		"item_name"								"#DOTA_Item_Skywrath_Mages_Weapon"
+		"model_player"							"models/heroes/skywrath_mage/skywrath_mage_staff.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff"
+					}
+				}
+			}
+		}
+	}
+	"421"
+	{
+		"name"									"Skywrath Mage's Head"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/skywrath_mage/skywrath_mage_head"
+		"item_description"						"#DOTA_Item_Desc_Skywrath_Mages_Head"
+		"item_name"								"#DOTA_Item_Skywrath_Mages_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/skywrath_mage/skywrath_mage_head.vmdl"
+	}
+	"422"
+	{
+		"name"									"Skywrath Mage's Wings"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/skywrath_mage/skywrath_mage_wings"
+		"item_description"						"#DOTA_Item_Desc_Skywrath_Mages_Wings"
+		"item_name"								"#DOTA_Item_Skywrath_Mages_Wings"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/heroes/skywrath_mage/skywrath_mage_wings.vmdl"
+	}
+	"423"
+	{
+		"name"									"Skywrath Mage's Belt"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/skywrath_mage/skywrath_mage_belt"
+		"item_description"						"#DOTA_Item_Desc_Skywrath_Mages_Belt"
+		"item_name"								"#DOTA_Item_Skywrath_Mages_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/heroes/skywrath_mage/skywrath_mage_belt.vmdl"
+	}
+	"424"
+	{
+		"name"									"Skywrath Mage's Shoulders"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/skywrath_mage/skywrath_mage_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Skywrath_Mages_Shoulders"
+		"item_name"								"#DOTA_Item_Skywrath_Mages_Shoulders"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/heroes/skywrath_mage/skywrath_mage_shoulders.vmdl"
+	}
+	"425"
+	{
+		"name"									"Skywrath Mage's Bracers"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/skywrath_mage/skywrath_mage_bracers"
+		"item_description"						"#DOTA_Item_Desc_Skywrath_Mages_Bracers"
+		"item_name"								"#DOTA_Item_Skywrath_Mages_Bracers"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/heroes/skywrath_mage/skywrath_mage_bracers.vmdl"
+	}
+	"745"
+	{
+		"name"									"Skywrath Mage's Costume"
+		"prefab"								"default_item"
+		"creation_date"							"2020-09-22"
+		"image_inventory"						"econ/sets/DOTA_Item_Skywrath_Mages_Costume"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Mars_Costume"
+		"item_name"								"#DOTA_Item_Skywrath_Mages_Costume"
+		"item_slot"								"costume"
+		"item_type_name"						"#DOTA_WearableType_Costume"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"4447"
+	{
+		"name"									"Falcon's Rise"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-06"
+		"image_inventory"						"econ/items/skywrath_mage/swm_falconsrise/swm_falconsrise"
+		"item_description"						"#DOTA_Item_Desc_Falcons_Rise"
+		"item_name"								"#DOTA_Item_Falcons_Rise"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/skywrath_mage/swm_falconsrise/swm_falconsrise.vmdl"
+	}
+	"4448"
+	{
+		"name"									"Azure Shroud"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-06"
+		"image_inventory"						"econ/items/skywrath_mage/azureshroud03/azureshroud03"
+		"item_description"						"#DOTA_Item_Desc_The_Azure_Shroud"
+		"item_name"								"#DOTA_Item_Azure_Shroud"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Shroud"
+		"model_player"							"models/items/skywrath_mage/azureshroud03/azureshroud03.vmdl"
+	}
+	"4673"
+	{
+		"name"									"Eye of the Eyrie"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-06"
+		"image_inventory"						"econ/items/skywrath_mage/skywrathfinal_eye/skywrathfinal_eye"
+		"item_description"						"#DOTA_Item_Desc_Eye_of_the_Eyrie"
+		"item_name"								"#DOTA_Item_Eye_of_the_Eyrie"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/skywrath_mage/skywrathfinal_eye/skywrathfinal_eye.vmdl"
+	}
+	"4995"
+	{
+		"name"									"Gloves of Retribution"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-29"
+		"image_inventory"						"econ/items/skywrath_mage/ret_arms/ret_arms"
+		"item_description"						"#DOTA_Item_Desc_Gloves_of_Retribution"
+		"item_name"								"#DOTA_Item_Gloves_of_Retribution"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/skywrath_mage/ret_arms/ret_arms.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4999"
+	{
+		"name"									"Staff of Retribution"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-29"
+		"image_inventory"						"econ/items/skywrath_mage/ret_staff/ret_staff"
+		"item_description"						"#DOTA_Item_Desc_Staff_of_Retribution"
+		"item_name"								"#DOTA_Item_Staff_of_Retribution"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/skywrath_mage/ret_staff/ret_staff.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/skywrath_mage/skywrath_mage_staff_default.vsnap"
+				"modifier"						"particles/models/items/skywrath_mage/ret_staff/ret_staff.vsnap"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"system"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff_generic"
+					}
+				}
+			}
+		}
+	}
+	"5000"
+	{
+		"name"									"Helm of Retribution"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-29"
+		"image_inventory"						"econ/items/skywrath_mage/ret_helm/ret_helm"
+		"item_description"						"#DOTA_Item_Desc_Helm_of_Retribution"
+		"item_name"								"#DOTA_Item_Helm_of_Retribution"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/skywrath_mage/ret_helm/ret_helm.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5001"
+	{
+		"name"									"Belt of Retribution"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-29"
+		"image_inventory"						"econ/items/skywrath_mage/ret_belt/ret_belt"
+		"item_description"						"#DOTA_Item_Desc_Belt_of_Retribution"
+		"item_name"								"#DOTA_Item_Belt_of_Retribution"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/skywrath_mage/ret_belt/ret_belt.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5002"
+	{
+		"name"									"Pauldrons of Retribution"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-29"
+		"image_inventory"						"econ/items/skywrath_mage/ret_shoulders/ret_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Pauldrons_of_Retribution"
+		"item_name"								"#DOTA_Item_Pauldrons_of_Retribution"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/skywrath_mage/ret_shoulders/ret_shoulders.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5003"
+	{
+		"name"									"Wings of Retribution"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-29"
+		"image_inventory"						"econ/items/skywrath_mage/ret_wings/ret_wings"
+		"item_description"						"#DOTA_Item_Desc_Wings_of_Retribution"
+		"item_name"								"#DOTA_Item_Wings_of_Retribution"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/skywrath_mage/ret_wings/ret_wings.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5075"
+	{
+		"name"									"Nightwatcher's Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-17"
+		"image_inventory"						"econ/items/skywrath_mage/nightwatch_belt/nightwatch_belt"
+		"item_description"						"#DOTA_Item_Desc_Nightwatchers_Belt"
+		"item_name"								"#DOTA_Item_Nightwatchers_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/skywrath_mage/nightwatch_belt/nightwatch_belt.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5076"
+	{
+		"name"									"Nightwatcher's Bracers"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-17"
+		"image_inventory"						"econ/items/skywrath_mage/nightwatch_bracer/nightwatch_bracer"
+		"item_description"						"#DOTA_Item_Desc_Nightwatchers_Bracers"
+		"item_name"								"#DOTA_Item_Nightwatchers_Bracers"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/skywrath_mage/nightwatch_bracer/nightwatch_bracer.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5077"
+	{
+		"name"									"Nightwatcher's Mask"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-17"
+		"image_inventory"						"econ/items/skywrath_mage/nightwatch_helm/nightwatch_helm"
+		"item_description"						"#DOTA_Item_Desc_Nightwatchers_Mask"
+		"item_name"								"#DOTA_Item_Nightwatchers_Mask"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/skywrath_mage/nightwatch_helm/nightwatch_helm.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5078"
+	{
+		"name"									"Nightwatcher's Guard"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-17"
+		"image_inventory"						"econ/items/skywrath_mage/nightwatch_pauldrons/nightwatch_pauldrons"
+		"item_description"						"#DOTA_Item_Desc_Nightwatchers_Guard"
+		"item_name"								"#DOTA_Item_Nightwatchers_Guard"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/skywrath_mage/nightwatch_pauldrons/nightwatch_pauldrons.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5100"
+	{
+		"name"									"Headdress of the Protector"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-05"
+		"image_inventory"						"econ/items/skywrath_mage/reverent_headdress_ofthe_protector/reverent_headdress_ofthe_protector"
+		"item_description"						"#DOTA_Item_Desc_reverent_headdress_ofthe_protector"
+		"item_name"								"#DOTA_Item_Headdress_of_the_Protector"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Headdress"
+		"model_player"							"models/items/skywrath_mage/reverent_headdress_ofthe_protector/reverent_headdress_ofthe_protector.vmdl"
+	}
+	"5114"
+	{
+		"name"									"Vengeancebound Wings"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international tag"
+				"value"							"2013"
+			}
+		}
+		"creation_date"							"2013-07-19"
+		"image_inventory"						"econ/items/skywrath_mage/vengancebound_wings/vengancebound_wings"
+		"item_description"						"#DOTA_Item_Desc_Vengencebound_Wings"
+		"item_name"								"#DOTA_Item_Vengeancebound_Wings"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/skywrath_mage/vengancebound_wings/vengancebound_wings.vmdl"
+	}
+	"5260"
+	{
+		"name"									"Nightwatcher's Staff"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-09"
+		"image_inventory"						"econ/items/skywrath_mage/nightwatcher_staff/nightwatcher_staff"
+		"item_description"						"#DOTA_Item_Desc_Nightwatchers_Staff"
+		"item_name"								"#DOTA_Item_Nightwatchers_Staff"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/skywrath_mage/nightwatcher_staff/nightwatcher_staff.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/skywrath_mage/skywrath_mage_staff_default.vsnap"
+				"modifier"						"particles/models/items/skywrath_mage/nightwatcher_staff/nightwatcher_staff.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"system"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff_generic"
+					}
+				}
+			}
+		}
+	}
+	"5448"
+	{
+		"name"									"Cloud Forged Great Bracers"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-22"
+		"image_inventory"						"econ/items/skywrath_mage/cloud_forged_great_bracers/cloud_forged_great_bracers"
+		"item_description"						"#DOTA_Item_Desc_Cloud_Forged_Great_Bracers"
+		"item_name"								"#DOTA_Item_Cloud_Forged_Great_Bracers"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/skywrath_mage/cloud_forged_great_bracers/cloud_forged_great_bracers.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5455"
+	{
+		"name"									"Cloud Forged Great Girdle"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-22"
+		"image_inventory"						"econ/items/skywrath_mage/cloud_forged_great_girdle/cloud_forged_great_girdle"
+		"item_description"						"#DOTA_Item_Desc_Cloud_Forged_Great_Girdle"
+		"item_name"								"#DOTA_Item_Cloud_Forged_Great_Girdle"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/skywrath_mage/cloud_forged_great_girdle/cloud_forged_great_girdle.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5456"
+	{
+		"name"									"Cloud Forged Great Helm"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-22"
+		"image_inventory"						"econ/items/skywrath_mage/cloud_forged_great_helm/cloud_forged_great_helm"
+		"item_description"						"#DOTA_Item_Desc_Cloud_Forged_Great_Helm"
+		"item_name"								"#DOTA_Item_Cloud_Forged_Great_Helm"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/skywrath_mage/cloud_forged_great_helm/cloud_forged_great_helm.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5457"
+	{
+		"name"									"Cloud Forged Great Mantle"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-22"
+		"image_inventory"						"econ/items/skywrath_mage/cloud_forged_great_mantle/cloud_forged_great_mantle"
+		"item_description"						"#DOTA_Item_Desc_Cloud_Forged_Great_Mantle"
+		"item_name"								"#DOTA_Item_Cloud_Forged_Great_Mantle"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/skywrath_mage/cloud_forged_great_mantle/cloud_forged_great_mantle.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5458"
+	{
+		"name"									"Cloud Forged Great Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-22"
+		"image_inventory"						"econ/items/skywrath_mage/cloud_forged_great_wings/cloud_forged_great_wings"
+		"item_description"						"#DOTA_Item_Desc_Cloud_Forged_Great_Wings"
+		"item_name"								"#DOTA_Item_Cloud_Forged_Great_Wings"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/skywrath_mage/cloud_forged_great_wings/cloud_forged_great_wings.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/skywrath_mage/cloud_forged_great_wings/cloud_forged_great_wings.vmdl"
+					"name"						"#DOTA_Item_Cloud_Forged_Great_Wings_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/skywrath_mage/cloud_forged_white_tipped_great_wings/cloud_forged_white_tipped_great_wings.vmdl"
+					"name"						"#DOTA_Item_Cloud_Forged_Great_Wings_Style1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/skywrath_mage/cloud_forged_great_wings/cloud_forged_great_wings"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/skywrath_mage/cloud_forged_white_tipped_great_wings/cloud_forged_white_tipped_great_wings"
+				}
+			}
+		}
+	}
+	"5551"
+	{
+		"name"									"Cloud Forged Great Staff"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-22"
+		"image_inventory"						"econ/items/skywrath_mage/cloud_forged_great_staff/cloud_forged_great_staff"
+		"item_description"						"#DOTA_Item_Desc_Cloud_Forged_Great_Staff"
+		"item_name"								"#DOTA_Item_Cloud_Forged_Great_Staff"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/skywrath_mage/cloud_forged_great_staff/cloud_forged_great_staff.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/skywrath_mage/skywrath_mage_staff_default.vsnap"
+				"modifier"						"particles/models/items/skywrath_mage/cloud_forged_great_staff/cloud_forged_great_staff.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"system"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff_generic"
+					}
+				}
+			}
+		}
+	}
+	"5560"
+	{
+		"name"									"Aethereal Crescent Wand"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-24"
+		"image_inventory"						"econ/items/skywrath_mage/aetherial_crescent/aetherial_crescent"
+		"item_description"						"#DOTA_Item_Desc_Aetherial_Crescent_Wand"
+		"item_name"								"#DOTA_Item_Aethereal_Crescent_Wand"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Wand"
+		"model_player"							"models/items/skywrath_mage/aetherial_crescent/aetherial_crescent.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/skywrath_mage/skywrath_mage_staff_default.vsnap"
+				"modifier"						"particles/models/items/skywrath_mage/aetherial_crescent/aetherial_crescent.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"system"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff_generic"
+					}
+				}
+			}
+		}
+	}
+	"5712"
+	{
+		"name"									"Sceptre of the Throne"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-25"
+		"image_inventory"						"econ/items/skywrath_mage/sceptre_of_the_throne/sceptre_of_the_throne"
+		"item_name"								"#DOTA_Item_Sceptre_of_the_Throne"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/skywrath_mage/sceptre_of_the_throne/sceptre_of_the_throne.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/skywrath_mage/skywrath_mage_staff_default.vsnap"
+				"modifier"						"particles/models/items/skywrath_mage/sceptre_of_the_throne/sceptre_of_the_throne.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"system"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff_generic"
+					}
+				}
+			}
+		}
+	}
+	"5832"
+	{
+		"name"									"Rune Forged Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-17"
+		"image_inventory"						"econ/items/skywrath_mage/rune_forged_belt/rune_forged_belt"
+		"item_name"								"#DOTA_Item_Rune_Forged_Belt"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/skywrath_mage/rune_forged_belt/rune_forged_belt.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5857"
+	{
+		"name"									"Rune Forged Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-17"
+		"image_inventory"						"econ/items/skywrath_mage/rune_forged_wings/rune_forged_wings"
+		"item_name"								"#DOTA_Item_Rune_Forged_Wings"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/skywrath_mage/rune_forged_wings/rune_forged_wings.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5858"
+	{
+		"name"									"Rune Forged Staff"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-17"
+		"image_inventory"						"econ/items/skywrath_mage/rune_forged_staff/rune_forged_staff"
+		"item_name"								"#DOTA_Item_Rune_Forged_Staff"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/skywrath_mage/rune_forged_staff/rune_forged_staff.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/skywrath_mage/skywrath_mage_staff_default.vsnap"
+				"modifier"						"particles/models/items/skywrath_mage/rune_forged_staff/rune_forged_staff.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"system"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff_generic"
+					}
+				}
+			}
+		}
+	}
+	"5859"
+	{
+		"name"									"Rune Forged Bracers"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-17"
+		"image_inventory"						"econ/items/skywrath_mage/rune_forged_bracers/rune_forged_bracers"
+		"item_name"								"#DOTA_Item_Rune_Forged_Bracers"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/skywrath_mage/rune_forged_bracers/rune_forged_bracers.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5870"
+	{
+		"name"									"Rune Forged Helm"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-17"
+		"image_inventory"						"econ/items/skywrath_mage/rune_forged_helm/rune_forged_helm"
+		"item_name"								"#DOTA_Item_Rune_Forged_Helm"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/skywrath_mage/rune_forged_helm/rune_forged_helm.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5871"
+	{
+		"name"									"Rune Forged Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-17"
+		"image_inventory"						"econ/items/skywrath_mage/rune_forged_shoulders/rune_forged_shoulders"
+		"item_name"								"#DOTA_Item_Rune_Forged_Shoulders"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/skywrath_mage/rune_forged_shoulders/rune_forged_shoulders.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"6124"
+	{
+		"name"									"Sash of Divine Ascension"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-13"
+		"image_inventory"						"econ/items/skywrath_mage/sash_of_divine_ascension/sash_of_divine_ascension"
+		"item_description"						"#DOTA_Item_Desc_Sash_of_Divine_Ascension"
+		"item_name"								"#DOTA_Item_Sash_of_Divine_Ascension"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Sash"
+		"model_player"							"models/items/skywrath_mage/sash_of_divine_ascension/sash_of_divine_ascension.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/19/2014"
+			"price"								"0"
+		}
+	}
+	"6125"
+	{
+		"name"									"Cuffs of Divine Ascension"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-13"
+		"image_inventory"						"econ/items/skywrath_mage/cuffs_of_divine_ascension/cuffs_of_divine_ascension"
+		"item_description"						"#DOTA_Item_Desc_Cuffs_of_Divine_Ascension"
+		"item_name"								"#DOTA_Item_Cuffs_of_Divine_Ascension"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/skywrath_mage/cuffs_of_divine_ascension/cuffs_of_divine_ascension.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/19/2014"
+			"price"								"0"
+		}
+	}
+	"6126"
+	{
+		"name"									"Helm of Divine Ascension"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-13"
+		"image_inventory"						"econ/items/skywrath_mage/helm_of_divine_ascension/helm_of_divine_ascension"
+		"item_description"						"#DOTA_Item_Desc_Helm_of_Divine_Ascension"
+		"item_name"								"#DOTA_Item_Helm_of_Divine_Ascension"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/skywrath_mage/helm_of_divine_ascension/helm_of_divine_ascension.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/19/2014"
+			"price"								"0"
+		}
+	}
+	"6127"
+	{
+		"name"									"Mantle of Divine Ascension"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-13"
+		"image_inventory"						"econ/items/skywrath_mage/mantle_of_divine_ascension/mantle_of_divine_ascension"
+		"item_description"						"#DOTA_Item_Desc_Mantle_of_Divine_Ascension"
+		"item_name"								"#DOTA_Item_Mantle_of_Divine_Ascension"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulderpads"
+		"model_player"							"models/items/skywrath_mage/mantle_of_divine_ascension/mantle_of_divine_ascension.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/19/2014"
+			"price"								"0"
+		}
+	}
+	"6128"
+	{
+		"name"									"Wings of Divine Ascension"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-13"
+		"image_inventory"						"econ/items/skywrath_mage/wings_of_divine_ascension/wings_of_divine_ascension"
+		"item_description"						"#DOTA_Item_Desc_Wings_of_Divine_Ascension"
+		"item_name"								"#DOTA_Item_Wings_of_Divine_Ascension"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/skywrath_mage/wings_of_divine_ascension/wings_of_divine_ascension.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/19/2014"
+			"price"								"0"
+		}
+	}
+	"6129"
+	{
+		"name"									"Staff of Divine Ascension"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-13"
+		"image_inventory"						"econ/items/skywrath_mage/staff_of_divine_ascension/staff_of_divine_ascension"
+		"item_description"						"#DOTA_Item_Desc_Staff_of_Divine_Ascension"
+		"item_name"								"#DOTA_Item_Staff_of_Divine_Ascension"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/skywrath_mage/staff_of_divine_ascension/staff_of_divine_ascension.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/19/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/skywrath_mage/skywrath_mage_staff_default.vsnap"
+				"modifier"						"particles/models/items/skywrath_mage/staff_of_divine_ascension/staff_of_divine_ascension.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"system"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff_generic"
+					}
+				}
+			}
+		}
+	}
+	"6733"
+	{
+		"name"									"Complete Bracers of the Manticore"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-06"
+		"event_id"								"EVENT_ID_NONE"
+		"image_inventory"						"econ/items/skywrath_mage/manticore_of_the_eyrie_arms/manticore_of_the_eyrie_arms"
+		"item_name"								"#DOTA_Item_Complete_Bracers_of_the_Manticore"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/skywrath_mage/manticore_of_the_eyrie_arms/manticore_of_the_eyrie_arms.vmdl"
+	}
+	"6734"
+	{
+		"name"									"Complete Belt of the Manticore"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-06"
+		"event_id"								"EVENT_ID_NONE"
+		"image_inventory"						"econ/items/skywrath_mage/manticore_of_the_eyrie_belt/manticore_of_the_eyrie_belt"
+		"item_name"								"#DOTA_Item_Complete_Belt_of_the_Manticore"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/skywrath_mage/manticore_of_the_eyrie_belt/manticore_of_the_eyrie_belt.vmdl"
+	}
+	"6892"
+	{
+		"name"									"Empyrean"
+		"prefab"								"wearable"
+		"creation_date"							"2014-07-02"
+		"image_inventory"						"econ/items/skywrath_mage/empyrean"
+		"item_description"						"#DOTA_Item_Desc_Empyrean"
+		"item_name"								"#DOTA_Item_Empyrean"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/skywrath_mage/empyrean.vmdl"
+		"particle_folder"						"particles/econ/items/skywrath_mage/skywrath_mage_weapon_empyrean"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_skywrath_mage/skywrath_mage_mystic_flare_ambient.vpcf"
+				"modifier"						"particles/econ/items/skywrath_mage/skywrath_mage_weapon_empyrean/skywrath_mage_mystic_flare_ambient_empyrean.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier2"
+			{
+				"type"							"sound"
+				"asset"							"Hero_SkywrathMage.MysticFlare"
+				"modifier"						"Hero_SkywrathMage.MysticFlare.Empyrean"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"skywrath_mage_mystic_flare"
+				"modifier"						"skywrath_mage_mystic_flare_alt"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_LOADOUT"
+				"modifier"						"emp"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/skywrath_mage/skywrath_mage_weapon_empyrean/skywrath_mage_staff_ambient_empyrean.vpcf"
+				"system"						"particles/econ/items/skywrath_mage/skywrath_mage_weapon_empyrean/skywrath_mage_staff_ambient_empyrean.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff_generic"
+					}
+				}
+			}
+		}
+	}
+	"6919"
+	{
+		"name"									"Golden Empyrean"
+		"prefab"								"wearable"
+		"creation_date"							"2014-07-12"
+		"image_inventory"						"econ/items/skywrath_mage/empyrean1"
+		"item_description"						"#DOTA_Item_Desc_Golden_Empyrean"
+		"item_name"								"#DOTA_Item_Golden_Empyrean"
+		"item_quality"							"genuine"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/skywrath_mage/empyrean.vmdl"
+		"particle_folder"						"particles/econ/items/skywrath_mage/skywrath_mage_weapon_empyrean"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier2"
+			{
+				"type"							"sound"
+				"asset"							"Hero_SkywrathMage.MysticFlare"
+				"modifier"						"Hero_SkywrathMage.MysticFlare.Empyrean"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_LOADOUT"
+				"modifier"						"emp"
+			}
+			"skin"								"1"
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"skywrath_mage_mystic_flare"
+				"modifier"						"skywrath_mage_mystic_flare_alt_gold"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_skywrath_mage/skywrath_mage_mystic_flare_ambient.vpcf"
+				"modifier"						"particles/econ/items/skywrath_mage/skywrath_mage_weapon_empyrean/skywrath_mage_mystic_flare_ambient_empyrean_gold.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle_control_point"
+				"asset"							"particles/econ/items/skywrath_mage/skywrath_mage_weapon_empyrean/skywrath_mage_staff_ambient_empyrean.vpcf"
+				"control_point_number"			"25"
+				"cp_position"					"255.000 145.000 42.000"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_control_point"
+				"asset"							"particles/econ/items/skywrath_mage/skywrath_mage_weapon_empyrean/skywrath_mage_staff_ambient_empyrean.vpcf"
+				"control_point_number"			"26"
+				"cp_position"					"1.0 1.5 1.0"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/skywrath_mage/skywrath_mage_weapon_empyrean/skywrath_mage_staff_ambient_empyrean.vpcf"
+				"system"						"particles/econ/items/skywrath_mage/skywrath_mage_weapon_empyrean/skywrath_mage_staff_ambient_empyrean.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff_generic"
+					}
+				}
+			}
+		}
+	}
+	"6972"
+	{
+		"name"									"Complete Staff of the Manticore"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-06"
+		"event_id"								"EVENT_ID_NONE"
+		"image_inventory"						"econ/items/skywrath_mage/manticore_of_the_eyrie_staff/manticore_of_the_eyrie_staff"
+		"item_name"								"#DOTA_Item_Complete_Staff_of_the_Manticore"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/skywrath_mage/manticore_of_the_eyrie_staff/manticore_of_the_eyrie_staff.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/skywrath_mage/manticore/manticore_staff.vpcf"
+				"system"						"particles/econ/items/skywrath_mage/manticore/manticore_staff.vpcf"
+				"attach_type"					"customorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_fx_staff"
+					}
+				}
+			}
+		}
+	}
+	"6973"
+	{
+		"name"									"Complete Helm of the Manticore"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-06"
+		"event_id"								"EVENT_ID_NONE"
+		"image_inventory"						"econ/items/skywrath_mage/manticore_of_the_eyrie_head/manticore_of_the_eyrie_head"
+		"item_name"								"#DOTA_Item_Complete_Helm_of_the_Manticore"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/skywrath_mage/manticore_of_the_eyrie_head/manticore_of_the_eyrie_head.vmdl"
+	}
+	"6974"
+	{
+		"name"									"Complete Armor of the Manticore"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-06"
+		"event_id"								"EVENT_ID_NONE"
+		"image_inventory"						"econ/items/skywrath_mage/manticore_of_the_eyrie_shoulder/manticore_of_the_eyrie_shoulder"
+		"item_name"								"#DOTA_Item_Complete_Armor_of_the_Manticore"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/skywrath_mage/manticore_of_the_eyrie_shoulder/manticore_of_the_eyrie_shoulder.vmdl"
+	}
+	"6975"
+	{
+		"name"									"Complete Wings of the Manticore"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-06"
+		"event_id"								"EVENT_ID_NONE"
+		"image_inventory"						"econ/items/skywrath_mage/manticore_of_the_eyrie_wings/manticore_of_the_eyrie_wings"
+		"item_description"						"#DOTA_Item_Desc_Complete_Wings_of_the_Manticore"
+		"item_name"								"#DOTA_Item_Complete_Wings_of_the_Manticore"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/skywrath_mage/manticore_of_the_eyrie_wings/manticore_of_the_eyrie_wings.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/skywrath_mage/manticore/wings_of_the_manticore_ambientfx.vpcf"
+				"system"						"particles/econ/items/skywrath_mage/manticore/wings_of_the_manticore_ambientfx.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"7146"
+	{
+		"name"									"Virtue of the Crested Dawn"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-10"
+		"image_inventory"						"econ/items/skywrath_mage/blessing_of_the_crested_dawn_head/blessing_of_the_crested_dawn_head"
+		"item_description"						"#DOTA_Item_Desc_Virtue_of_the_Crested_Dawn"
+		"item_name"								"#DOTA_Item_Virtue_of_the_Crested_Dawn"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/skywrath_mage/blessing_of_the_crested_dawn_head/blessing_of_the_crested_dawn_head.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_skywrath_mage' gem_def_index: 3005 } asset_modifier: 163"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"skywrath_mage_ancient_seal"
+				"modifier"						"skywrath_mage/crested_dawn_icons/skywrath_mage_ancient_seal"
+			}
+			"asset_modifier_socket1"
+			{
+				"type"							"ability_icon"
+				"asset"							"skywrath_mage_arcane_bolt"
+				"modifier"						"skywrath_mage/crested_dawn_icons/skywrath_mage_arcane_bolt"
+			}
+			"asset_modifier_socket2"
+			{
+				"type"							"ability_icon"
+				"asset"							"skywrath_mage_concussive_shot"
+				"modifier"						"skywrath_mage/crested_dawn_icons/skywrath_mage_concussive_shot"
+			}
+			"asset_modifier_socket3"
+			{
+				"type"							"ability_icon"
+				"asset"							"skywrath_mage_mystic_flare"
+				"modifier"						"skywrath_mage/crested_dawn_icons/skywrath_mage_mystic_flare"
+			}
+		}
+	}
+	"7147"
+	{
+		"name"									"Staff of the Crested Dawn"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-10"
+		"image_inventory"						"econ/items/skywrath_mage/blessing_of_the_crested_dawn_weapon/blessing_of_the_crested_dawn_weapon"
+		"item_name"								"#DOTA_Item_Staff_of_the_Crested_Dawn"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/skywrath_mage/blessing_of_the_crested_dawn_weapon/blessing_of_the_crested_dawn_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/skywrath_mage/skywrath_mage_staff_default.vsnap"
+				"modifier"						"particles/models/items/skywrath_mage/blessing_of_the_crested_dawn_weapon/blessing_of_the_crested_dawn_weapon.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"system"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff_generic"
+					}
+				}
+			}
+		}
+	}
+	"7155"
+	{
+		"name"									"Span of the Crested Dawn"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-10"
+		"image_inventory"						"econ/items/skywrath_mage/blessing_of_the_crested_dawn_back/blessing_of_the_crested_dawn_back"
+		"item_name"								"#DOTA_Item_Span_of_the_Crested_Dawn"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/skywrath_mage/blessing_of_the_crested_dawn_back/blessing_of_the_crested_dawn_back.vmdl"
+	}
+	"7402"
+	{
+		"name"									"Argent Spear"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-13"
+		"image_inventory"						"econ/items/skywrath_mage/azure_triton/azure_triton"
+		"item_name"								"#DOTA_Item_Argent_Spear"
+		"item_rarity"							"uncommon"
+		"model_player"							"models/items/skywrath_mage/azure_triton/azure_triton.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"1/13/2015"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/skywrath_mage/skywrath_mage_staff_default.vsnap"
+				"modifier"						"particles/models/items/skywrath_mage/azure_triton/azure_triton.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"system"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff_generic"
+					}
+				}
+			}
+		}
+	}
+	"7422"
+	{
+		"name"									"Emblem of the Crested Dawn"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-10"
+		"image_inventory"						"econ/items/skywrath_mage/blessing_of_the_crested_dawn_arms/blessing_of_the_crested_dawn_arms"
+		"item_name"								"#DOTA_Item_Emblem_of_the_Crested_Dawn"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/skywrath_mage/blessing_of_the_crested_dawn_arms/blessing_of_the_crested_dawn_arms.vmdl"
+	}
+	"7423"
+	{
+		"name"									"Skirt of the Crested Dawn"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-10"
+		"image_inventory"						"econ/items/skywrath_mage/blessing_of_the_crested_dawn_skirt/blessing_of_the_crested_dawn_skirt"
+		"item_name"								"#DOTA_Item_Skirt_of_the_Crested_Dawn"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Skirt"
+		"model_player"							"models/items/skywrath_mage/blessing_of_the_crested_dawn_skirt/blessing_of_the_crested_dawn_skirt.vmdl"
+	}
+	"7424"
+	{
+		"name"									"Plates of the Crested Dawn"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-10"
+		"image_inventory"						"econ/items/skywrath_mage/blessing_of_the_crested_dawn_shoulder/blessing_of_the_crested_dawn_shoulder"
+		"item_name"								"#DOTA_Item_Plates_of_the_Crested_Dawn"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/skywrath_mage/blessing_of_the_crested_dawn_shoulder/blessing_of_the_crested_dawn_shoulder.vmdl"
+	}
+	"7493"
+	{
+		"name"									"Skywarrior's Countenance"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-19"
+		"image_inventory"						"econ/items/skywrath_mage/dotapit_s3_avillivas_countenance/dotapit_s3_avillivas_countenance"
+		"item_description"						"#DOTA_Item_Desc_Skywarriors_Countenance"
+		"item_name"								"#DOTA_Item_Skywarriors_Countenance"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/skywrath_mage/dotapit_s3_avillivas_countenance/dotapit_s3_avillivas_countenance.vmdl"
+		"particle_folder"						"particles/econ/items/skywrath_mage/hero_skywrath_dpits3_helm"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/skywrath_mage/hero_skywrath_dpits3_helm/skywrath_dpits3_helm.vpcf"
+				"system"						"particles/econ/items/skywrath_mage/hero_skywrath_dpits3_helm/skywrath_dpits3_helm.vpcf"
+				"attach_type"					"customorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"head_fx"
+					}
+				}
+			}
+		}
+	}
+	"7620"
+	{
+		"name"									"Mark of the Sol Guard"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-22"
+		"image_inventory"						"econ/items/skywrath_mage/d2cl_skywrath_belt/d2cl_skywrath_belt"
+		"item_name"								"#DOTA_Item_Mark_of_the_Sol_Guard"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/skywrath_mage/d2cl_skywrath_belt/d2cl_skywrath_belt.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"2/9/2015"
+			"price"								"0"
+		}
+	}
+	"7621"
+	{
+		"name"									"Bracelet of the Sol Guard"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-22"
+		"image_inventory"						"econ/items/skywrath_mage/d2cl_skywrath_arms/d2cl_skywrath_arms"
+		"item_name"								"#DOTA_Item_Bracelet_of_the_Sol_Guard"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracelet"
+		"model_player"							"models/items/skywrath_mage/d2cl_skywrath_arms/d2cl_skywrath_arms.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"2/9/2015"
+			"price"								"0"
+		}
+	}
+	"7622"
+	{
+		"name"									"Helm of the Sol Guard"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-22"
+		"image_inventory"						"econ/items/skywrath_mage/d2cl_skywrath_head/d2cl_skywrath_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Sol_Guard"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/skywrath_mage/d2cl_skywrath_head/d2cl_skywrath_head.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"2/9/2015"
+			"price"								"0"
+		}
+	}
+	"7623"
+	{
+		"name"									"Plate of the Sol Guard"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-22"
+		"image_inventory"						"econ/items/skywrath_mage/d2cl_skywrath_shoulder/d2cl_skywrath_shoulder"
+		"item_name"								"#DOTA_Item_Plate_of_the_Sol_Guard"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/skywrath_mage/d2cl_skywrath_shoulder/d2cl_skywrath_shoulder.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"2/9/2015"
+			"price"								"0"
+		}
+	}
+	"7624"
+	{
+		"name"									"Spear of the Sol Guard"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-22"
+		"image_inventory"						"econ/items/skywrath_mage/sol_guard_weapon/sol_guard_weapon"
+		"item_name"								"#DOTA_Item_Spear_of_the_Sol_Guard"
+		"item_rarity"							"uncommon"
+		"model_player"							"models/items/skywrath_mage/d2cl_skywrath_weapon/d2cl_skywrath_weapon.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"2/9/2015"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/skywrath_mage/skywrath_mage_staff_default.vsnap"
+				"modifier"						"particles/models/items/skywrath_mage/sol_guard_weapon/sol_guard_weapon.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"system"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff_generic"
+					}
+				}
+			}
+		}
+	}
+	"7625"
+	{
+		"name"									"Finery of the Sol Guard"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-22"
+		"image_inventory"						"econ/items/skywrath_mage/d2cl_skywrath_back/d2cl_skywrath_back"
+		"item_name"								"#DOTA_Item_Finery_of_the_Sol_Guard"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/skywrath_mage/d2cl_skywrath_back/d2cl_skywrath_back.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"2/9/2015"
+			"price"								"0"
+		}
+	}
+	"8127"
+	{
+		"name"									"Taunt: Chicken!"
+		"prefab"								"taunt"
+		"creation_date"							"2015-03-04"
+		"image_inventory"						"econ/taunts/taunt_icon_skywrath_mage_chicken"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Chicken"
+		"item_name"								"#DOTA_Item_Taunt_Chicken"
+		"item_rarity"							"mythical"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"chicken_gesture"
+				"frequency"						"1"
+				"gesture"						"1"
+			}
+		}
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+		}
+	}
+	"8335"
+	{
+		"name"									"Skywarrior's Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2015-04-16"
+		"image_inventory"						"econ/items/skywrath_mage/dotapit_skywrath_finalgoal_back/dotapit_skywrath_finalgoal_back"
+		"item_name"								"#DOTA_Item_Skywarriors_Wings"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/skywrath_mage/dotapit_skywrath_finalgoal_back/dotapit_skywrath_finalgoal_back.vmdl"
+	}
+	"8770"
+	{
+		"name"									"Armor of the Manticore"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/skywrath_mage/manticore_of_the_eyrie_shoulder/manticore_of_the_eyrie_shoulder"
+		"item_name"								"#DOTA_Item_Armor_of_the_Manticore"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/skywrath_mage/manticore_of_the_eyrie_shoulder/manticore_of_the_eyrie_shoulder.vmdl"
+	}
+	"8771"
+	{
+		"name"									"Helm of the Manticore"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/skywrath_mage/manticore_of_the_eyrie_head/manticore_of_the_eyrie_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Manticore"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/skywrath_mage/manticore_of_the_eyrie_head/manticore_of_the_eyrie_head.vmdl"
+	}
+	"8772"
+	{
+		"name"									"Wings of the Manticore"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/skywrath_mage/manticore_of_the_eyrie_wings/manticore_of_the_eyrie_wings"
+		"item_description"						"#DOTA_Item_Desc_Wings_of_the_Manticore"
+		"item_name"								"#DOTA_Item_Wings_of_the_Manticore"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/skywrath_mage/manticore_of_the_eyrie_wings/manticore_of_the_eyrie_wings.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/skywrath_mage/manticore/wings_of_the_manticore_ambientfx.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/skywrath_mage/manticore/wings_of_the_manticore_ambientfx.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#wings_of_the_manticore_default"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#wings_of_the_manticore_particle"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"price"					"1"
+						"item_def"				"16845"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/skywrath_mage/manticore_of_the_eyrie_wings/manticore_of_the_eyrie_wings"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/skywrath_mage/manticore_of_the_eyrie_wings/manticore_of_the_eyrie_wings_style1"
+				}
+			}
+		}
+	}
+	"8773"
+	{
+		"name"									"Staff of the Manticore"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/skywrath_mage/manticore_of_the_eyrie_staff/manticore_of_the_eyrie_staff"
+		"item_name"								"#DOTA_Item_Staff_of_the_Manticore"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/skywrath_mage/manticore_of_the_eyrie_staff/manticore_of_the_eyrie_staff.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/skywrath_mage/manticore/manticore_staff.vpcf"
+				"system"						"particles/econ/items/skywrath_mage/manticore/manticore_staff.vpcf"
+				"attach_type"					"customorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_fx_staff"
+					}
+				}
+			}
+		}
+	}
+	"8774"
+	{
+		"name"									"Belt of the Manticore"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/skywrath_mage/manticore_of_the_eyrie_belt/manticore_of_the_eyrie_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Manticore"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/skywrath_mage/manticore_of_the_eyrie_belt/manticore_of_the_eyrie_belt.vmdl"
+	}
+	"8775"
+	{
+		"name"									"Bracers of the Manticore"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/skywrath_mage/manticore_of_the_eyrie_arms/manticore_of_the_eyrie_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Manticore"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/skywrath_mage/manticore_of_the_eyrie_arms/manticore_of_the_eyrie_arms.vmdl"
+	}
+	"8931"
+	{
+		"name"									"Bracers of Cerulean Light"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-01"
+		"image_inventory"						"econ/items/skywrath_mage/guiding_lights_arms/guiding_lights_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_Cerulean_Light"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/skywrath_mage/guiding_lights_arms/guiding_lights_arms.vmdl"
+	}
+	"8932"
+	{
+		"name"									"Span of Cerulean Light"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-01"
+		"image_inventory"						"econ/items/skywrath_mage/guiding_lights_back/guiding_lights_back"
+		"item_name"								"#DOTA_Item_Span_of_Cerulean_Light"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/skywrath_mage/guiding_lights_back/guiding_lights_back.vmdl"
+	}
+	"8933"
+	{
+		"name"									"Girdle of Cerulean Light"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-01"
+		"image_inventory"						"econ/items/skywrath_mage/guiding_lights_belt/guiding_lights_belt"
+		"item_name"								"#DOTA_Item_Girdle_of_Cerulean_Light"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/skywrath_mage/guiding_lights_belt/guiding_lights_belt.vmdl"
+	}
+	"8934"
+	{
+		"name"									"Mask of Cerulean Light"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-01"
+		"image_inventory"						"econ/items/skywrath_mage/guiding_lights_head1/guiding_lights_head1"
+		"item_name"								"#DOTA_Item_Mask_of_Cerulean_Light"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/skywrath_mage/guiding_lights_head1/guiding_lights_head1.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/skywrath_mage/guiding_lights_head1/guiding_lights_head1.vmdl"
+					"name"						"#DOTA_Item_guiding_lights_head_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/skywrath_mage/guiding_lights_head2/guiding_lights_head2.vmdl"
+					"name"						"#DOTA_Item_guiding_lights_head_Style1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/skywrath_mage/guiding_lights_head1/guiding_lights_head1"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/skywrath_mage/guiding_lights_head2/guiding_lights_head2"
+				}
+			}
+		}
+	}
+	"8936"
+	{
+		"name"									"Pauldrons of Cerulean Light"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-01"
+		"image_inventory"						"econ/items/skywrath_mage/guiding_lights_shoulder/guiding_lights_shoulder"
+		"item_name"								"#DOTA_Item_Pauldrons_of_Cerulean_Light"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/skywrath_mage/guiding_lights_shoulder/guiding_lights_shoulder.vmdl"
+	}
+	"8937"
+	{
+		"name"									"Rod of Beacon's Light"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-01"
+		"image_inventory"						"econ/items/skywrath_mage/guiding_lights_weapon1/guiding_lights_weapon1"
+		"item_name"								"#DOTA_Item_Rod_of_Beacons_Light"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Rod"
+		"model_player"							"models/items/skywrath_mage/guiding_lights_weapon1/guiding_lights_weapon1.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/skywrath_mage/skywrath_mage_staff_default.vsnap"
+				"modifier"						"particles/models/items/skywrath_mage/guiding_lights_weapon1/guiding_lights_weapon1.vsnap"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/skywrath_mage/skywrath_mage_staff_default.vsnap"
+				"modifier"						"particles/models/items/skywrath_mage/guiding_lights_weapon2/guiding_lights_weapon2.vsnap"
+				"style"							"1"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/skywrath_mage/guiding_lights_weapon1/guiding_lights_weapon1.vmdl"
+					"name"						"#DOTA_Item_Rod_of_Beacons_Light_Style"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/skywrath_mage/guiding_lights_weapon2/guiding_lights_weapon2.vmdl"
+					"name"						"#DOTA_Item_Rod_of_Cerulean_Skies"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/skywrath_mage/guiding_lights_weapon1/guiding_lights_weapon1"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/skywrath_mage/guiding_lights_weapon2/guiding_lights_weapon2"
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"style"							"0"
+				"system"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff_generic"
+					}
+				}
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"style"							"1"
+				"system"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff_generic"
+					}
+				}
+			}
+		}
+	}
+	"9774"
+	{
+		"name"									"Helm of the Penitent Scholar"
+		"prefab"								"wearable"
+		"creation_date"							"2018-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/skywrath_mage/ti8_set/skywrath_ti8_head"
+		"item_description"						"#DOTA_Item_Desc_Helm_of_the_Penitent_Scholar"
+		"item_name"								"#DOTA_Item_Helm_of_the_Penitent_Scholar"
+		"item_quality"							"base"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/skywrath_mage/ti8_set/skywrath_ti8_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_ti8_skywrath_mage_0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_ti8_skywrath_mage_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17454"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"1"
+				{
+					"icon_path"					"econ/items/skywrath_mage/ti8_skywrath_mage_head/ti8_skywrath_mage_head_style1"
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/skywrath_mage/ti8_set/skywrath_ti8_head_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/skywrath_mage/ti8_set/skywrath_ti8_head_alternate_ambient.vpcf"
+				"style"							"1"
+			}
+		}
+	}
+	"9775"
+	{
+		"name"									"Wings of the Penitent Scholar"
+		"prefab"								"wearable"
+		"creation_date"							"2018-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/skywrath_mage/ti8_set/skywrath_ti8_wings"
+		"item_description"						"#DOTA_Item_Desc_Skywrath_Mages_ti8_back"
+		"item_name"								"#DOTA_Item_Wings_of_the_Penitent_Scholar"
+		"item_quality"							"base"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/skywrath_mage/ti8_set/skywrath_ti8_wings.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_ti8_skywrath_mage_0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_ti8_skywrath_mage_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17454"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/skywrath_mage/ti8_set/skywrath_ti8_wings"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/skywrath_mage/ti8_skywrath_mage_back/ti8_skywrath_mage_back_style1"
+				}
+			}
+		}
+	}
+	"9776"
+	{
+		"name"									"Arms of the Penitent Scholar"
+		"prefab"								"wearable"
+		"creation_date"							"2018-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/skywrath_mage/ti8_set/skywrath_ti8_arms"
+		"item_description"						"#DOTA_Item_Desc_Arms_of_the_Penitent_Scholar"
+		"item_name"								"#DOTA_Item_Arms_of_the_Penitent_Scholar"
+		"item_quality"							"base"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/skywrath_mage/ti8_set/skywrath_ti8_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_ti8_skywrath_mage_0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_ti8_skywrath_mage_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17454"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/skywrath_mage/ti8_set/skywrath_ti8_arms"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/skywrath_mage/ti8_skywrath_mage_arms/ti8_skywrath_mage_arms_style1"
+				}
+			}
+		}
+	}
+	"9777"
+	{
+		"name"									"Belt of the Penitent Scholar"
+		"prefab"								"wearable"
+		"creation_date"							"2018-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/skywrath_mage/ti8_set/skywrath_ti8_belt"
+		"item_description"						"#DOTA_Item_Desc_Skywrath_Mages_ti8_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Penitent_Scholar"
+		"item_quality"							"base"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/skywrath_mage/ti8_set/skywrath_ti8_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_ti8_skywrath_mage_0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_ti8_skywrath_mage_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17454"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/skywrath_mage/ti8_set/skywrath_ti8_belt"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/skywrath_mage/ti8_skywrath_mage_belt/ti8_skywrath_mage_belt_style1"
+				}
+			}
+		}
+	}
+	"9778"
+	{
+		"name"									"Pauldron of the Penitent Scholar"
+		"prefab"								"wearable"
+		"creation_date"							"2018-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/skywrath_mage/ti8_set/skywrath_ti8_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Shoulders_of_the_Penitent_Scholar"
+		"item_name"								"#DOTA_Item_Pauldron_of_the_Penitent_Scholar"
+		"item_quality"							"base"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/skywrath_mage/ti8_set/skywrath_ti8_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_ti8_skywrath_mage_0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_ti8_skywrath_mage_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17454"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/skywrath_mage/ti8_set/skywrath_ti8_shoulder"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/skywrath_mage/ti8_skywrath_mage_shoulder/ti8_skywrath_mage_shoulder_style1"
+				}
+			}
+		}
+	}
+	"9779"
+	{
+		"name"									"Flame of the Penitent Scholar"
+		"prefab"								"wearable"
+		"creation_date"							"2018-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/skywrath_mage/ti8_set/skywrath_ti8_weapon"
+		"item_description"						"#DOTA_Item_Desc_Skywrath_Mages_ti8_weapon"
+		"item_name"								"#DOTA_Item_Flame_of_the_Penitent_Scholar"
+		"item_quality"							"base"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/skywrath_mage/ti8_set/skywrath_ti8_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_ti8_skywrath_mage_0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_ti8_skywrath_mage_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17454"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/skywrath_mage/ti8_set/skywrath_ti8_weapon"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/skywrath_mage/ti8_skywrath_mage_weapon/ti8_skywrath_mage_weapon_style1"
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/skywrath_mage/ti8_set/skywrath_ti8_weapon_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/skywrath_mage/ti8_set/skywrath_ti8_weapon_alternative_ambient.vpcf"
+				"style"							"1"
+			}
+		}
+	}
+	"12010"
+	{
+		"name"									"Golden Wings of the Manticore"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/skywrath_mage/manticore_of_the_eyrie_wings/manticore_of_the_eyrie_wings_golden"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Wings_of_the_Manticore"
+		"item_name"								"#DOTA_Item_Golden_Wings_of_the_Manticore"
+		"item_rarity"							"legendary"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/skywrath_mage/manticore_of_the_eyrie_wings/manticore_of_the_eyrie_wings.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/skywrath_mage/manticore/wings_of_the_manticore_golden_ambientfx.vpcf"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"skin"						"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/skywrath_mage/manticore_of_the_eyrie_wings/manticore_of_the_eyrie_wings"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/skywrath_mage/manticore_of_the_eyrie_wings/manticore_of_the_eyrie_wings_style1"
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"12518"
+	{
+		"name"									"Helm of the Lionsguard"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-11"
+		"image_inventory"						"econ/items/skywrath_mage/lionguards_bastion_head/lionguards_bastion_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Lionsguard"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/skywrath_mage/lionguards_bastion_head/lionguards_bastion_head.vmdl"
+	}
+	"12519"
+	{
+		"name"									"Bracers of the Lionsguard"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-11"
+		"image_inventory"						"econ/items/skywrath_mage/lionguards_bastion_arms/lionguards_bastion_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Lionsguard"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/skywrath_mage/lionguards_bastion_arms/lionguards_bastion_arms.vmdl"
+	}
+	"12520"
+	{
+		"name"									"Belt of the Lionsguard"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-11"
+		"image_inventory"						"econ/items/skywrath_mage/lionguards_bastion_belt/lionguards_bastion_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Lionsguard"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/skywrath_mage/lionguards_bastion_belt/lionguards_bastion_belt.vmdl"
+	}
+	"12521"
+	{
+		"name"									"Wings of the Lionsguard"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-11"
+		"image_inventory"						"econ/items/skywrath_mage/lionguards_bastion_back/lionguards_bastion_back"
+		"item_name"								"#DOTA_Item_Wings_of_the_Lionsguard"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/skywrath_mage/lionguards_bastion_back/lionguards_bastion_back.vmdl"
+	}
+	"12522"
+	{
+		"name"									"Armor of the Lionsguard"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-11"
+		"image_inventory"						"econ/items/skywrath_mage/lionguards_bastion_shoulder/lionguards_bastion_shoulder"
+		"item_name"								"#DOTA_Item_Armor_of_the_Lionsguard"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/skywrath_mage/lionguards_bastion_shoulder/lionguards_bastion_shoulder.vmdl"
+	}
+	"12524"
+	{
+		"name"									"Lance of the Lionsguard"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-11"
+		"image_inventory"						"econ/items/skywrath_mage/lionguards_bastion_weapon/lionguards_bastion_weapon"
+		"item_name"								"#DOTA_Item_Lance_of_the_Lionsguard"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/skywrath_mage/lionguards_bastion_weapon/lionguards_bastion_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/skywrath_mage/skywrath_mage_staff_default.vsnap"
+				"modifier"						"particles/models/items/skywrath_mage/lionguards_bastion_weapon/lionguards_bastion_weapon_fx.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient.vpcf"
+				"modifier"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"system"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff_generic"
+					}
+				}
+			}
+		}
+	}
+	"12926"
+	{
+		"name"									"Flight of Epiphany"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-07"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/skywrath_mage/skywrath_ti9_immortal_back/skywrath_ti9_immortal_back"
+		"item_description"						"#DOTA_Item_Desc_Flight_of_Epiphany"
+		"item_name"								"#DOTA_Item_Flight_of_Epiphany"
+		"item_rarity"							"immortal"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/skywrath_mage/skywrath_ti9_immortal_back/skywrath_ti9_immortal_back.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1598997600"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"ability_icon"
+				"asset"							"skywrath_mage_arcane_bolt"
+				"modifier"						"skywrath_mage_arcane_bolt_ti9"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_skywrath_mage/skywrath_mage_arcane_bolt.vpcf"
+				"modifier"						"particles/econ/items/skywrath_mage/skywrath_ti9_immortal_back/skywrath_mage_ti9_arcane_bolt.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/skywrath_mage/skywrath_ti9_immortal_back/skywrath_mage_ti9_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti9"
+				"style"							"0"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"12993"
+	{
+		"name"									"Golden Flight of Epiphany"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-07"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/skywrath_mage/skywrath_ti9_immortal_back/skywrath_ti9_immortal_back1"
+		"item_description"						"#DOTA_Item_Desc_Golden_Flight_of_Epiphany"
+		"item_name"								"#DOTA_Item_Golden_Flight_of_Epiphany"
+		"item_rarity"							"immortal"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/skywrath_mage/skywrath_ti9_immortal_back/skywrath_ti9_immortal_back.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1598997600"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"ability_icon"
+				"asset"							"skywrath_mage_arcane_bolt"
+				"modifier"						"skywrath_mage_arcane_bolt_ti9_gold"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_skywrath_mage/skywrath_mage_arcane_bolt.vpcf"
+				"modifier"						"particles/econ/items/skywrath_mage/skywrath_ti9_immortal_back/skywrath_mage_ti9_arcane_bolt_golden.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"skip_model_combine"				"1"
+			"skin"								"1"
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/skywrath_mage/skywrath_ti9_immortal_back/skywrath_mage_ti9_golden_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti9"
+				"style"							"0"
+			}
+		}
+	}
+	"13568"
+	{
+		"name"									"Crimson Flight of Epiphany"
+		"prefab"								"wearable"
+		"creation_date"							"2019-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/skywrath_mage/skywrath_ti9_immortal_back/skywrath_ti9_immortal_back2"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Flight_of_Epiphany"
+		"item_name"								"#DOTA_Item_Crimson_Flight_of_Epiphany"
+		"item_rarity"							"immortal"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/skywrath_mage/skywrath_ti9_immortal_back/skywrath_ti9_immortal_back.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"ability_icon"
+				"asset"							"skywrath_mage_arcane_bolt"
+				"modifier"						"skywrath_mage_arcane_bolt_ti9_crimson"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_skywrath_mage/skywrath_mage_arcane_bolt.vpcf"
+				"modifier"						"particles/econ/items/skywrath_mage/skywrath_ti9_immortal_back/skywrath_mage_ti9_arcane_bolt_crimson.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/skywrath_mage/skywrath_ti9_immortal_back/skywrath_mage_ti9_crimson_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti9"
+				"style"							"0"
+			}
+			"skip_model_combine"				"1"
+			"skin"								"2"
+		}
+	}
+	"13931"
+	{
+		"name"									"Secrets of the Celestial Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/skywrath_mage/seraph_celestial_arms/seraph_celestial_arms"
+		"item_name"								"#DOTA_Item_Secrets_of_the_Celestial_Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"model_player"							"models/items/skywrath_mage/seraph_celestial_arms/seraph_celestial_arms.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"13932"
+	{
+		"name"									"Secrets of the Celestial Back"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/skywrath_mage/seraph_celestial_back/seraph_celestial_back"
+		"item_name"								"#DOTA_Item_Secrets_of_the_Celestial_Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"model_player"							"models/items/skywrath_mage/seraph_celestial_back/seraph_celestial_back.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/skywrath_mage/seraph_celestial/seraph_celestial_back_ambient.vpcf"
+			}
+		}
+	}
+	"13933"
+	{
+		"name"									"Secrets of the Celestial Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/skywrath_mage/seraph_celestial_weapon/seraph_celestial_weapon"
+		"item_name"								"#DOTA_Item_Secrets_of_the_Celestial_Weapon"
+		"item_rarity"							"mythical"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/skywrath_mage/seraph_celestial_weapon/seraph_celestial_weapon.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/skywrath_mage/skywrath_mage_staff_default.vsnap"
+				"modifier"						"particles/models/items/skywrath_mage/seraph_celestial_weapon/seraph_celestial_weapon_fx.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient.vpcf"
+				"modifier"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"system"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff_generic"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/skywrath_mage/seraph_celestial/seraph_celestial_weapon_ambient.vpcf"
+			}
+		}
+	}
+	"13934"
+	{
+		"name"									"Secrets of the Celestial Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/skywrath_mage/seraph_celestial_shoulder/seraph_celestial_shoulder"
+		"item_name"								"#DOTA_Item_Secrets_of_the_Celestial_Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/skywrath_mage/seraph_celestial_shoulder/seraph_celestial_shoulder.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/skywrath_mage/seraph_celestial/seraph_celestial_shoulder_ambient.vpcf"
+			}
+		}
+	}
+	"13936"
+	{
+		"name"									"Secrets of the Celestial Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/skywrath_mage/seraph_celestial_head/seraph_celestial_head"
+		"item_name"								"#DOTA_Item_Secrets_of_the_Celestial_Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/skywrath_mage/seraph_celestial_head/seraph_celestial_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/skywrath_mage/seraph_celestial/seraph_celestial_head_ambient.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"13937"
+	{
+		"name"									"Secrets of the Celestial Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/skywrath_mage/seraph_celestial_belt/seraph_celestial_belt"
+		"item_name"								"#DOTA_Item_Secrets_of_the_Celestial_Belt"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"model_player"							"models/items/skywrath_mage/seraph_celestial_belt/seraph_celestial_belt.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/skywrath_mage/seraph_celestial/seraph_celestial_belt_ambient.vpcf"
+			}
+		}
+	}
+	"14913"
+	{
+		"name"									"Eyriebound Imperator - Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/skywrath_mage/skywrath_mage_corrosion_of_regret_heart_belt/skywrath_mage_corrosion_of_regret_heart_belt"
+		"item_name"								"#DOTA_Item_Eyriebound_Imperator__Belt"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/skywrath_mage/skywrath_mage_corrosion_of_regret_heart_belt/skywrath_mage_corrosion_of_regret_heart_belt.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"14919"
+	{
+		"name"									"Eyriebound Imperator - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/skywrath_mage/skywrath_mage_corrosion_of_regret_heart_shoulder/skywrath_mage_corrosion_of_regret_heart_shoulder"
+		"item_name"								"#DOTA_Item_Eyriebound_Imperator__Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/skywrath_mage/skywrath_mage_corrosion_of_regret_heart_shoulder/skywrath_mage_corrosion_of_regret_heart_shoulder.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/skywrath_mage/skywrath_mage_corrosion_of_regret_heart_shoulder/skywrath_mage_corrosion_of_regret_heart_shoulder_ambient.vpcf"
+			}
+		}
+	}
+	"14920"
+	{
+		"name"									"Eyriebound Imperator - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/skywrath_mage/skywrath_mage_corrosion_of_regret_heart_head/skywrath_mage_corrosion_of_regret_heart_head"
+		"item_name"								"#DOTA_Item_Eyriebound_Imperator__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/skywrath_mage/skywrath_mage_corrosion_of_regret_heart_head/skywrath_mage_corrosion_of_regret_heart_head.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/skywrath_mage/skywrath_mage_corrosion_of_regret_heart_head/skywrath_mage_corrosion_of_regret_heart_head_ambient.vpcf"
+			}
+		}
+	}
+	"14921"
+	{
+		"name"									"Eyriebound Imperator - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/skywrath_mage/skywrath_mage_corrosion_of_regret_heart_arms/skywrath_mage_corrosion_of_regret_heart_arms"
+		"item_name"								"#DOTA_Item_Eyriebound_Imperator__Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/skywrath_mage/skywrath_mage_corrosion_of_regret_heart_arms/skywrath_mage_corrosion_of_regret_heart_arms.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"14922"
+	{
+		"name"									"Eyriebound Imperator - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/skywrath_mage/skywrath_mage_corrosion_of_regret_heart_weapon/skywrath_mage_corrosion_of_regret_heart_weapon"
+		"item_name"								"#DOTA_Item_Eyriebound_Imperator__Weapon"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/skywrath_mage/skywrath_mage_corrosion_of_regret_heart_weapon/skywrath_mage_corrosion_of_regret_heart_weapon.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/skywrath_mage/skywrath_mage_corrosion_of_regret_heart_weapon/sw_corrosion_weapon_ambient.vpcf"
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/skywrath_mage/skywrath_mage_staff_default.vsnap"
+				"modifier"						"particles/models/items/skywrath_mage/skywrath_mage_corrosion_of_regret_heart_weapon/skywrath_mage_corrosion_of_regret_heart_weapon_fx.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient.vpcf"
+				"modifier"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"system"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff_generic"
+					}
+				}
+			}
+		}
+	}
+	"14923"
+	{
+		"name"									"Eyriebound Imperator - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/skywrath_mage/skywrath_mage_corrosion_of_regret_heart_back/skywrath_mage_corrosion_of_regret_heart_back"
+		"item_name"								"#DOTA_Item_Eyriebound_Imperator__Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/skywrath_mage/skywrath_mage_corrosion_of_regret_heart_back/skywrath_mage_corrosion_of_regret_heart_back.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/skywrath_mage/skywrath_mage_corrosion_of_regret_heart_back/sm_corrosion_back_ambient.vpcf"
+			}
+		}
+	}
+	"18049"
+	{
+		"name"									"Thornwatch Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/skywrath_mage/guard_of_the_skywrath_throne_arms/guard_of_the_skywrath_throne_arms"
+		"item_name"								"#DOTA_Item_Thornwatch_Arms"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/skywrath_mage/guard_of_the_skywrath_throne_arms/guard_of_the_skywrath_throne_arms.vmdl"
+	}
+	"18050"
+	{
+		"name"									"Thornwatch Hat"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/skywrath_mage/guard_of_the_skywrath_throne_head/guard_of_the_skywrath_throne_head"
+		"item_name"								"#DOTA_Item_Thornwatch_Hat"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/skywrath_mage/guard_of_the_skywrath_throne_head/guard_of_the_skywrath_throne_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"18051"
+	{
+		"name"									"Thornwatch Pauldrons"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/skywrath_mage/guard_of_the_skywrath_throne_shoulder/guard_of_the_skywrath_throne_shoulder"
+		"item_name"								"#DOTA_Item_Thornwatch_Pauldrons"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/skywrath_mage/guard_of_the_skywrath_throne_shoulder/guard_of_the_skywrath_throne_shoulder.vmdl"
+	}
+	"18052"
+	{
+		"name"									"Thornwatch Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/skywrath_mage/guard_of_the_skywrath_throne_belt/guard_of_the_skywrath_throne_belt"
+		"item_name"								"#DOTA_Item_Thornwatch_Belt"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/skywrath_mage/guard_of_the_skywrath_throne_belt/guard_of_the_skywrath_throne_belt.vmdl"
+	}
+	"18053"
+	{
+		"name"									"Thornwatch Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/skywrath_mage/guard_of_the_skywrath_throne_weapon/guard_of_the_skywrath_throne_weapon"
+		"item_name"								"#DOTA_Item_Thornwatch_Weapon"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/skywrath_mage/guard_of_the_skywrath_throne_weapon/guard_of_the_skywrath_throne_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/skywrath_mage/skywrath_mage_staff_default.vsnap"
+				"modifier"						"particles/models/items/skywrath_mage/guard_of_the_skywrath_throne_weapon/guard_of_the_skywrath_throne_weapon_fx.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient.vpcf"
+				"modifier"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"system"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff_generic"
+					}
+				}
+			}
+		}
+	}
+	"18054"
+	{
+		"name"									"Thornwatch Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/skywrath_mage/guard_of_the_skywrath_throne_back/guard_of_the_skywrath_throne_back"
+		"item_name"								"#DOTA_Item_Thornwatch_Wings"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/skywrath_mage/guard_of_the_skywrath_throne_back/guard_of_the_skywrath_throne_back.vmdl"
+	}
+	"18317"
+	{
+		"name"									"Skywrath Mage's Diretide Shimmer Costume"
+		"prefab"								"wearable"
+		"creation_date"							"2020-10-02"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 22:40:00"
+		"image_inventory"						"econ/sets/DOTA_Item_Skywrath_Mages_Diretide_Bundle"
+		"item_name"								"#DOTA_Item_Skywrath_Mages_Diretide_Shimmer_Costume"
+		"item_rarity"							"seasonal"
+		"item_slot"								"costume"
+		"item_type_name"						"#DOTA_WearableType_Costume"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"model_skin"
+				"skin"							"1"
+			}
+			"skin"								"1"
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/events/diretide_2020/hero_spooky_ambient/hero_spooky_ambient_ghost.vpcf"
+			}
+		}
+	}
+	"18357"
+	{
+		"name"									"Skywrath's Diretide Shimmer Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-10-05"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 22:40:00"
+		"image_inventory"						"econ/heroes/skywrath_mage/skywrath_mage_belt1"
+		"item_name"								"#DOTA_Item_Skywraths_Diretide_Shimmer_Belt"
+		"item_rarity"							"seasonal"
+		"item_slot"								"belt"
+		"model_player"							"models/heroes/skywrath_mage/skywrath_mage_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"18358"
+	{
+		"name"									"Skywrath's Diretide Shimmer Bracers"
+		"prefab"								"wearable"
+		"creation_date"							"2020-10-05"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 22:40:00"
+		"image_inventory"						"econ/heroes/skywrath_mage/skywrath_mage_bracers1"
+		"item_name"								"#DOTA_Item_Skywraths_Diretide_Shimmer_Bracers"
+		"item_rarity"							"seasonal"
+		"item_slot"								"arms"
+		"model_player"							"models/heroes/skywrath_mage/skywrath_mage_bracers.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"18359"
+	{
+		"name"									"Skywrath's Diretide Shimmer Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-10-05"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 22:40:00"
+		"image_inventory"						"econ/heroes/skywrath_mage/skywrath_mage_head1"
+		"item_name"								"#DOTA_Item_Skywraths_Diretide_Shimmer_Head"
+		"item_rarity"							"seasonal"
+		"item_slot"								"head"
+		"model_player"							"models/heroes/skywrath_mage/skywrath_mage_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"18360"
+	{
+		"name"									"Skywrath's Diretide Shimmer Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2020-10-05"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 22:40:00"
+		"image_inventory"						"econ/heroes/skywrath_mage/skywrath_mage_shoulders1"
+		"item_name"								"#DOTA_Item_Skywraths_Diretide_Shimmer_Shoulders"
+		"item_rarity"							"seasonal"
+		"item_slot"								"shoulder"
+		"model_player"							"models/heroes/skywrath_mage/skywrath_mage_shoulders.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"18361"
+	{
+		"name"									"Skywrath's Diretide Shimmer Staff"
+		"prefab"								"wearable"
+		"creation_date"							"2020-10-05"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 22:40:00"
+		"image_inventory"						"econ/heroes/skywrath_mage/skywrath_mage_staff1"
+		"item_name"								"#DOTA_Item_Skywraths_Diretide_Shimmer_Staff"
+		"item_rarity"							"seasonal"
+		"model_player"							"models/heroes/skywrath_mage/skywrath_mage_staff.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"18362"
+	{
+		"name"									"Skywrath's Diretide Shimmer Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2020-10-05"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 22:40:00"
+		"image_inventory"						"econ/heroes/skywrath_mage/skywrath_mage_wings1"
+		"item_name"								"#DOTA_Item_Skywraths_Diretide_Shimmer_Wings"
+		"item_rarity"							"seasonal"
+		"item_slot"								"back"
+		"model_player"							"models/heroes/skywrath_mage/skywrath_mage_wings.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"20180"
+	{
+		"name"									"The Arms of Retribution Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Belt of Retribution"				"1"
+			"Gloves of Retribution"				"1"
+			"Helm of Retribution"				"1"
+			"Pauldrons of Retribution"			"1"
+			"Staff of Retribution"				"1"
+			"Wings of Retribution"				"1"
+		}
+		"creation_date"							"2013-05-29"
+		"image_inventory"						"econ/sets/DOTA_Item_The_Arms_of_Retribution_Set"
+		"item_description"						"#DOTA_Item_Desc_The_Arms_of_Retribution_Set"
+		"item_name"								"#DOTA_Item_The_Arms_of_Retribution_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"5/29/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20195"
+	{
+		"name"									"The Nightwatcher's Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Nightwatcher's Bracers"			"1"
+			"Nightwatcher's Mask"				"1"
+			"Nightwatcher's Belt"				"1"
+			"Nightwatcher's Guard"				"1"
+			"Nightwatcher's Staff"				"1"
+		}
+		"creation_date"							"2013-06-17"
+		"image_inventory"						"econ/sets/DOTA_Item_The_Nightwatchers_Set"
+		"item_description"						"#DOTA_Item_Desc_The_Nightwatchers_Set"
+		"item_name"								"#DOTA_Item_The_Nightwatchers_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"6/17/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20287"
+	{
+		"name"									"Cloud Forged Battle Gear Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Cloud Forged Great Bracers"		"1"
+			"Cloud Forged Great Girdle"			"1"
+			"Cloud Forged Great Helm"			"1"
+			"Cloud Forged Great Mantle"			"1"
+			"Cloud Forged Great Staff"			"1"
+			"Cloud Forged Great Wings"			"1"
+		}
+		"creation_date"							"2013-10-23"
+		"image_inventory"						"econ/sets/DOTA_Item_Cloud_Forged_Battle_Gear_Set"
+		"item_description"						"#DOTA_Item_Desc_Cloud_Forged_Battle_Gear_Set"
+		"item_name"								"#DOTA_Item_Cloud_Forged_Battle_Gear_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"10/23/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20341"
+	{
+		"name"									"Rune Forged Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Rune Forged Belt"					"1"
+			"Rune Forged Bracers"				"1"
+			"Rune Forged Helm"					"1"
+			"Rune Forged Shoulders"				"1"
+			"Rune Forged Staff"					"1"
+			"Rune Forged Wings"					"1"
+		}
+		"creation_date"							"2013-12-18"
+		"image_inventory"						"econ/sets/DOTA_Item_Rune_Forged_Set"
+		"item_description"						"#DOTA_Item_Desc_Rune_Forged_Set"
+		"item_name"								"#DOTA_Item_Rune_Forged_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"12/18/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20395"
+	{
+		"name"									"Divine Ascension"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Sash of Divine Ascension"			"1"
+			"Cuffs of Divine Ascension"			"1"
+			"Helm of Divine Ascension"			"1"
+			"Mantle of Divine Ascension"		"1"
+			"Wings of Divine Ascension"			"1"
+			"Staff of Divine Ascension"			"1"
+		}
+		"creation_date"							"2014-02-14"
+		"image_inventory"						"econ/sets/DOTA_Item_Divine_Ascension_Set"
+		"item_name"								"#DOTA_Item_Divine_Ascension"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"2/19/2014"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20622"
+	{
+		"name"									"Complete Vigilance of the Manticore"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Vigilance of the Manticore Loading Screen""1"
+			"Complete Armor of the Manticore"	"1"
+			"Complete Helm of the Manticore"	"1"
+			"Complete Wings of the Manticore"	"1"
+			"Complete Staff of the Manticore"	"1"
+			"Complete Belt of the Manticore"	"1"
+			"Complete Bracers of the Manticore"	"1"
+		}
+		"creation_date"							"2019-11-06"
+		"event_id"								"EVENT_ID_NONE"
+		"image_inventory"						"econ/loading_screens/manticore_of_the_eyrie_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Complete_Vigilance_of_the_Manticore"
+		"item_name"								"#DOTA_Item_Complete_Vigilance_of_the_Manticore"
+		"item_rarity"							"mythical"
+	}
+	"20724"
+	{
+		"name"									"Regalia of the Sol Guard"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Finery of the Sol Guard"			"1"
+			"Helm of the Sol Guard"				"1"
+			"Bracelet of the Sol Guard"			"1"
+			"Plate of the Sol Guard"			"1"
+			"Mark of the Sol Guard"				"1"
+			"Spear of the Sol Guard"			"1"
+		}
+		"creation_date"							"2015-01-22"
+		"image_inventory"						"econ/sets/DOTA_Item_Regalia_of_the_Sol_Guard"
+		"item_description"						"#DOTA_Item_Desc_Regalia_of_the_Sol_Guard"
+		"item_name"								"#DOTA_Item_Regalia_of_the_Sol_Guard"
+		"item_rarity"							"rare"
+	}
+	"20824"
+	{
+		"name"									"Beacon of Cerulean Light"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Beacon of Cerulean Light Loading Screen""1"
+			"Bracers of Cerulean Light"			"1"
+			"Span of Cerulean Light"			"1"
+			"Girdle of Cerulean Light"			"1"
+			"Mask of Cerulean Light"			"1"
+			"Pauldrons of Cerulean Light"		"1"
+			"Rod of Beacon's Light"				"1"
+		}
+		"creation_date"							"2015-06-02"
+		"image_inventory"						"econ/loading_screens/guiding_lights_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Beacon_of_Cerulean_Light"
+		"item_name"								"#DOTA_Item_Beacon_of_Cerulean_Light"
+		"item_rarity"							"mythical"
+	}
+	"20865"
+	{
+		"name"									"Blessing of the Crested Dawn"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Virtue of the Crested Dawn"		"1"
+			"Staff of the Crested Dawn"			"1"
+			"Span of the Crested Dawn"			"1"
+			"Emblem of the Crested Dawn"		"1"
+			"Skirt of the Crested Dawn"			"1"
+			"Plates of the Crested Dawn"		"1"
+			"Blessing of the Crested Dawn Loading Screen""1"
+		}
+		"creation_date"							"2015-07-10"
+		"image_inventory"						"econ/loading_screens/blessing_of_the_crested_dawn_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Blessing_of_the_Crested_Dawn"
+		"item_name"								"#DOTA_Item_Blessing_of_the_Crested_Dawn"
+		"item_rarity"							"rare"
+	}
+	"20972"
+	{
+		"name"									"Vigilance of the Manticore"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armor of the Manticore"			"1"
+			"Helm of the Manticore"				"1"
+			"Wings of the Manticore"			"1"
+			"Staff of the Manticore"			"1"
+			"Belt of the Manticore"				"1"
+			"Bracers of the Manticore"			"1"
+			"Vigilance of the Manticore Loading Screen""1"
+		}
+		"creation_date"							"2016-01-05"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/manticore_of_the_eyrie_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Vigilance_of_the_Manticore"
+		"item_name"								"#DOTA_Item_Vigilance_of_the_Manticore"
+		"item_rarity"							"mythical"
+	}
+	"21002"
+	{
+		"name"									"Vigil of the Penitent Scholar"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Helm of the Penitent Scholar"		"1"
+			"Wings of the Penitent Scholar"		"1"
+			"Arms of the Penitent Scholar"		"1"
+			"Belt of the Penitent Scholar"		"1"
+			"Pauldron of the Penitent Scholar"	"1"
+			"Flame of the Penitent Scholar"		"1"
+		}
+		"creation_date"							"2018-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/sets/DOTA_Item_Vigil_of_the_Penitent_Scholar"
+		"item_description"						"#DOTA_Item_Desc_Vigil_of_the_Penitent_Scholar"
+		"item_name"								"#DOTA_Item_Vigil_of_the_Penitent_Scholar"
+		"item_quality"							"base"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/sets/DOTA_Item_Vigil_of_the_Penitent_Scholar"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/skywrath_mage/ti8_skywrath_mage_head/ti8_skywrath_mage_head_style1"
+				}
+			}
+		}
+	}
+	"21252"
+	{
+		"name"									"Bastion of the Lionsguard"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Lance of the Lionsguard"			"1"
+			"Bastion of the Lionsguard Loading Screen""1"
+			"Armor of the Lionsguard"			"1"
+			"Wings of the Lionsguard"			"1"
+			"Belt of the Lionsguard"			"1"
+			"Bracers of the Lionsguard"			"1"
+			"Helm of the Lionsguard"			"1"
+		}
+		"creation_date"							"2018-09-12"
+		"image_inventory"						"econ/loading_screens/lionguards_bastion_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Bastion_of_the_Lionsguard"
+		"item_name"								"#DOTA_Item_Bastion_of_the_Lionsguard"
+		"item_rarity"							"uncommon"
+	}
+	"21467"
+	{
+		"name"									"Secrets of the Celestial"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Secrets of the Celestial Belt"		"1"
+			"Secrets of the Celestial Head"		"1"
+			"Secrets of the Celestial Loading Screen""1"
+			"Secrets of the Celestial Shoulder"	"1"
+			"Secrets of the Celestial Weapon"	"1"
+			"Secrets of the Celestial Back"		"1"
+			"Secrets of the Celestial Arms"		"1"
+		}
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/loading_screens/seraph_celestial_ls"
+		"item_name"								"#DOTA_Item_Secrets_of_the_Celestial"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21644"
+	{
+		"name"									"Eyriebound Imperator"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Eyriebound Imperator - Arms"		"1"
+			"Eyriebound Imperator - Back"		"1"
+			"Eyriebound Imperator - Belt"		"1"
+			"Eyriebound Imperator - Head"		"1"
+			"Eyriebound Imperator Loading Screen""1"
+			"Eyriebound Imperator - Shoulder"	"1"
+			"Eyriebound Imperator - Weapon"		"1"
+		}
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/loading_screens/skywrath_mage_corrosion_of_regret_heart_ls"
+		"item_name"								"#DOTA_Item_Eyriebound_Imperator"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21748"
+	{
+		"name"									"Thornwatch"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Thornwatch Wings"					"1"
+			"Thornwatch Weapon"					"1"
+			"Thornwatch Belt"					"1"
+			"Thornwatch Pauldrons"				"1"
+			"Thornwatch Hat"					"1"
+			"Thornwatch Arms"					"1"
+		}
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Guard_of_the_Skywrath_Throne"
+		"item_name"								"#DOTA_Item_Thornwatch"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+	}
+	"21796"
+	{
+		"name"									"Skywrath Mage's Diretide Shimmer Bundle"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Skywrath Mage's Diretide Shimmer Costume""1"
+			"Skywrath's Diretide Shimmer Belt"	"1"
+			"Skywrath's Diretide Shimmer Bracers""1"
+			"Skywrath's Diretide Shimmer Head"	"1"
+			"Skywrath's Diretide Shimmer Shoulders""1"
+			"Skywrath's Diretide Shimmer Staff"	"1"
+			"Skywrath's Diretide Shimmer Wings"	"1"
+		}
+		"creation_date"							"2020-10-05"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 22:40:00"
+		"image_inventory"						"econ/sets/DOTA_Item_Skywrath_Mages_Diretide_Bundle"
+		"item_name"								"#DOTA_Item_Skywrath_Mages_Diretide_Shimmer_Bundle"
+		"item_rarity"							"seasonal"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"23783"
+	{
+		"name"									"The Stars of Seraphus"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"The Stars of Seraphus - Shining Helm""1"
+			"The Stars of Seraphus - Wings"		"1"
+			"The Stars of Seraphus - Weapon"	"1"
+			"The Stars of Seraphus - Shoulder"	"1"
+			"The Stars of Seraphus - Belt"		"1"
+			"The Stars of Seraphus - Bracer"	"1"
+		}
+		"creation_date"							"2022-07-26"
+		"image_inventory"						"econ/sets/DOTA_Item_Seraphic_Apotheosis"
+		"item_name"								"#DOTA_Item_The_Stars_of_Seraphus"
+		"item_rarity"							"rare"
+	}
+	"24071"
+	{
+		"name"									"The Stars of Seraphus - Shining Helm"
+		"prefab"								"wearable"
+		"creation_date"							"2022-08-22"
+		"image_inventory"						"econ/items/skywrath_mage/seraphic_apotheosis_shining_helm/seraphic_apotheosis_shining_helm"
+		"item_name"								"#DOTA_Item_The_Stars_of_Seraphus__Shining_Helm"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/skywrath_mage/seraphic_apotheosis_shining_helm/seraphic_apotheosis_shining_helm.vmdl"
+	}
+	"24072"
+	{
+		"name"									"The Stars of Seraphus - Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2022-08-22"
+		"image_inventory"						"econ/items/skywrath_mage/seraphic_apotheosis_wings_of_the_seraph/seraphic_apotheosis_wings_of_the_seraph"
+		"item_name"								"#DOTA_Item_The_Stars_of_Seraphus__Wings"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/skywrath_mage/seraphic_apotheosis_wings_of_the_seraph/seraphic_apotheosis_wings_of_the_seraph.vmdl"
+	}
+	"24073"
+	{
+		"name"									"The Stars of Seraphus - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2022-08-22"
+		"image_inventory"						"econ/items/skywrath_mage/seraphic_apotheosis_twilight_shredder/seraphic_apotheosis_twilight_shredder"
+		"item_name"								"#DOTA_Item_The_Stars_of_Seraphus__Weapon"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/skywrath_mage/seraphic_apotheosis_twilight_shredder/seraphic_apotheosis_twilight_shredder.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/particle_snapshots/skywrath_mage/skywrath_mage_staff_default.vsnap"
+				"modifier"						"particles/models/items/skywrath_mage/seraphic_apotheosis_twilight_shredder/seraphic_apotheosis_twilight_shredder_fx.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient.vpcf"
+				"modifier"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"system"						"particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff_generic"
+					}
+				}
+			}
+		}
+	}
+	"24074"
+	{
+		"name"									"The Stars of Seraphus - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2022-08-22"
+		"image_inventory"						"econ/items/skywrath_mage/seraphic_apotheosis_blazing_chest/seraphic_apotheosis_blazing_chest"
+		"item_name"								"#DOTA_Item_The_Stars_of_Seraphus__Shoulder"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/skywrath_mage/seraphic_apotheosis_blazing_chest/seraphic_apotheosis_blazing_chest.vmdl"
+	}
+	"24075"
+	{
+		"name"									"The Stars of Seraphus - Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2022-08-22"
+		"image_inventory"						"econ/items/skywrath_mage/seraphic_apotheosis_belt/seraphic_apotheosis_belt"
+		"item_name"								"#DOTA_Item_The_Stars_of_Seraphus__Belt"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/skywrath_mage/seraphic_apotheosis_belt/seraphic_apotheosis_belt.vmdl"
+	}
+	"24076"
+	{
+		"name"									"The Stars of Seraphus - Bracer"
+		"prefab"								"wearable"
+		"creation_date"							"2022-08-22"
+		"image_inventory"						"econ/items/skywrath_mage/seraphic_apotheosis_bracer/seraphic_apotheosis_bracer"
+		"item_name"								"#DOTA_Item_The_Stars_of_Seraphus__Bracer"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/skywrath_mage/seraphic_apotheosis_bracer/seraphic_apotheosis_bracer.vmdl"
+	}
+}

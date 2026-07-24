@@ -1,0 +1,4046 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"448"
+	{
+		"name"									"Luna's Weapon"
+		"prefab"								"default_item"
+		"creation_date"							"2013-05-30"
+		"image_inventory"						"econ/heroes/luna/luna_weapon"
+		"item_description"						"#DOTA_Item_Desc_Lunas_Weapon"
+		"item_name"								"#DOTA_Item_Lunas_Weapon"
+		"model_player"							"models/heroes/luna/luna_weapon.vmdl"
+	}
+	"449"
+	{
+		"name"									"Luna's Shield"
+		"prefab"								"default_item"
+		"creation_date"							"2013-05-30"
+		"image_inventory"						"econ/heroes/luna/luna_shield"
+		"item_description"						"#DOTA_Item_Desc_Lunas_Shield"
+		"item_name"								"#DOTA_Item_Lunas_Shield"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Offhand"
+		"model_player"							"models/heroes/luna/luna_shield.vmdl"
+	}
+	"450"
+	{
+		"name"									"Luna's Helmet"
+		"prefab"								"default_item"
+		"creation_date"							"2013-05-30"
+		"image_inventory"						"econ/heroes/luna/luna_helmet"
+		"item_description"						"#DOTA_Item_Desc_Lunas_Helmet"
+		"item_name"								"#DOTA_Item_Lunas_Helmet"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/luna/luna_helmet.vmdl"
+	}
+	"451"
+	{
+		"name"									"Luna's Shoulder Armor"
+		"prefab"								"default_item"
+		"creation_date"							"2013-05-30"
+		"image_inventory"						"econ/heroes/luna/luna_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Lunas_Shoulder_Armor"
+		"item_name"								"#DOTA_Item_Lunas_Shoulder_Armor"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/heroes/luna/luna_shoulder.vmdl"
+	}
+	"452"
+	{
+		"name"									"Luna's Mount"
+		"prefab"								"default_item"
+		"creation_date"							"2013-05-30"
+		"image_inventory"						"econ/heroes/luna/luna_mount"
+		"item_description"						"#DOTA_Item_Desc_Lunas_Mount"
+		"item_name"								"#DOTA_Item_Lunas_Mount"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/heroes/luna/luna_mount.vmdl"
+	}
+	"453"
+	{
+		"name"									"Luna's Head"
+		"prefab"								"default_item"
+		"creation_date"							"2013-05-30"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_description"						"#DOTA_Item_Desc_Lunas_Head"
+		"item_name"								"#DOTA_Item_Lunas_Head"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Body_Head"
+		"model_player"							"models/heroes/luna/luna_head.vmdl"
+	}
+	"742"
+	{
+		"name"									"Luna's Costume"
+		"prefab"								"default_item"
+		"creation_date"							"2020-10-02"
+		"image_inventory"						"econ/sets/DOTA_Item_Lunas_Costume"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Centaurs_Costume"
+		"item_name"								"#DOTA_Item_Lunas_Costume"
+		"item_slot"								"costume"
+		"item_type_name"						"#DOTA_WearableType_Costume"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"5441"
+	{
+		"name"									"Helm of the Dark Moon Stalker"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/luna/the_burning_shadow_head/the_burning_shadow_head"
+		"item_description"						"#DOTA_Item_Desc_Helm_of_the_Dark_Moon_Stalker"
+		"item_name"								"#DOTA_Item_Helm_of_the_Dark_Moon_Stalker"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/luna/the_burning_shadow_head/the_burning_shadow_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Default"
+					"skin"						"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Infused"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"11898"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/luna/luna_burning_shadow/luna_burning_shadow_ambient.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/luna/luna_burning_shadow/luna_burning_shadow_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_helmet"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hair_02"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hair_03"
+					}
+					"4"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hair_04"
+					}
+					"5"
+					{
+						"control_point_index"	"5"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hair_05"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/luna/the_burning_shadow_head/the_burning_shadow_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/luna/the_burning_shadow_head/the_burning_shadow_head_style1"
+				}
+			}
+		}
+	}
+	"5592"
+	{
+		"name"									"Cowl of the Cold Hunt"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-09"
+		"image_inventory"						"econ/items/luna/lunahood104/lunahood104"
+		"item_name"								"#DOTA_Item_Cowl_of_the_Cold_Hunt"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hood"
+		"model_player"							"models/items/luna/lunahood104/lunahood104.vmdl"
+	}
+	"5595"
+	{
+		"name"									"Midnight Locks"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-26"
+		"image_inventory"						"econ/items/luna/midnight_locks/midnight_locks"
+		"item_description"						"#DOTA_Item_Desc_Midnight_Locks"
+		"item_name"								"#DOTA_Item_Midnight_Locks"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/luna/midnight_locks/midnight_locks.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/luna/midnight_locks/midnight_locks.vmdl"
+					"name"						"#DOTA_Item_Name_Midnight_Locks"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Item_Name_Midnight_Locks_Blue"
+					"skin"						"1"
+					"alternate_icon"			"1"
+				}
+				"2"
+				{
+					"name"						"#DOTA_Item_Name_Midnight_Locks_White"
+					"skin"						"2"
+					"alternate_icon"			"2"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/luna/midnight_locks/midnight_locks"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/luna/midnight_locks/midnight_locks_blue"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/luna/midnight_locks/midnight_locks_white"
+				}
+			}
+		}
+	}
+	"5749"
+	{
+		"name"									"Helm of Eternal Eclipse"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-02"
+		"image_inventory"						"econ/items/luna/helm_of_eternal_eclipse/helm_of_eternal_eclipse"
+		"item_name"								"#DOTA_Item_Helm_of_Eternal_Eclipse"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/luna/helm_of_eternal_eclipse/helm_of_eternal_eclipse.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5750"
+	{
+		"name"									"Noriet the Dusky Guardian"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-02"
+		"image_inventory"						"econ/items/luna/noriet_the_dusky_guardian/noriet_the_dusky_guardian"
+		"item_name"								"#DOTA_Item_Noriet_the_Dusky_Guardian"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/luna/noriet_the_dusky_guardian/noriet_the_dusky_guardian.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5751"
+	{
+		"name"									"Shield of Eternal Eclipse"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-02"
+		"image_inventory"						"econ/items/luna/shield_of_eternal_eclipse/shield_of_eternal_eclipse"
+		"item_name"								"#DOTA_Item_Shield_of_Eternal_Eclipse"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Shield"
+		"model_player"							"models/items/luna/shield_of_eternal_eclipse/shield_of_eternal_eclipse.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5752"
+	{
+		"name"									"Armor of Eternal Eclipse"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-02"
+		"image_inventory"						"econ/items/luna/armor_of_eternal_eclipse/armor_of_eternal_eclipse"
+		"item_name"								"#DOTA_Item_Armor_of_Eternal_Eclipse"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/luna/armor_of_eternal_eclipse/armor_of_eternal_eclipse.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5753"
+	{
+		"name"									"Blades of Eternal Eclipse"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-02"
+		"image_inventory"						"econ/items/luna/blades_of_eternal_eclipse/blades_of_eternal_eclipse"
+		"item_name"								"#DOTA_Item_Blades_of_Eternal_Eclipse"
+		"item_rarity"							"uncommon"
+		"model_player"							"models/items/luna/blades_of_eternal_eclipse/blades_of_eternal_eclipse.vmdl"
+		"particle_folder"						"particles/econ/items/luna/luna_eternal_eclipse"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_ambient_moon_glaive.vpcf"
+				"modifier"						"particles/econ/items/luna/luna_eternal_eclipse/luna_ambient_glaive_eternal_eclipse.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_base_attack.vpcf"
+				"modifier"						"particles/econ/items/luna/luna_eternal_eclipse/luna_attack_eternal_eclipse.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_moon_glaive.vpcf"
+				"modifier"						"particles/econ/items/luna/luna_eternal_eclipse/luna_glaive_eternal_eclipse.vpcf"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_moon_glaive_bounce.vpcf"
+				"modifier"						"particles/econ/items/luna/luna_eternal_eclipse/luna_glaive_bounce_eternal_eclipse.vpcf"
+			}
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"eternal"
+			}
+		}
+	}
+	"5822"
+	{
+		"name"									"Avon of the Crescent Moon"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-13"
+		"image_inventory"						"econ/items/luna/avon_of_the_crescent_moon/avon_of_the_crescent_moon"
+		"item_description"						"#DOTA_Item_Desc_Avon_of_the_Crescent_Moon"
+		"item_name"								"#DOTA_Item_Avon_of_the_Crescent_Moon"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/luna/avon_of_the_crescent_moon/avon_of_the_crescent_moon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5823"
+	{
+		"name"									"Glaves of the Crescent Moon"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-13"
+		"image_inventory"						"econ/items/luna/glaves_of_the_crescent_moon/glaves_of_the_crescent_moon"
+		"item_description"						"#DOTA_Item_Desc_Glaves_of_the_Crescent_Moon"
+		"item_name"								"#DOTA_Item_Glaves_of_the_Crescent_Moon"
+		"item_rarity"							"uncommon"
+		"model_player"							"models/items/luna/glaves_of_the_crescent_moon/glaves_of_the_crescent_moon.vmdl"
+		"particle_folder"						"particles/econ/items/luna/luna_crescent_moon"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/luna/luna_weapon.vsnap"
+				"modifier"						"particles/models/items/luna/glaves_of_the_crescent_moon/glaves_of_the_crescent_moon.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_ambient_moon_glaive.vpcf"
+				"modifier"						"particles/units/heroes/hero_luna/luna_ambient_moon_glaive_local.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_base_attack.vpcf"
+				"modifier"						"particles/econ/items/luna/luna_crescent_moon/luna_attack_crescent_moon.vpcf"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_moon_glaive.vpcf"
+				"modifier"						"particles/econ/items/luna/luna_crescent_moon/luna_glaive_crescent_moon.vpcf"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_moon_glaive_bounce.vpcf"
+				"modifier"						"particles/econ/items/luna/luna_crescent_moon/luna_glaive_bounce_crescent_moon.vpcf"
+			}
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"resolve"
+			}
+		}
+	}
+	"5824"
+	{
+		"name"									"Guard of the Crescent Moon"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-13"
+		"image_inventory"						"econ/items/luna/guard_of_the_crescent_moon/guard_of_the_crescent_moon"
+		"item_description"						"#DOTA_Item_Desc_Guard_of_the_Crescent_Moon"
+		"item_name"								"#DOTA_Item_Guard_of_the_Crescent_Moon"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Shield"
+		"model_player"							"models/items/luna/guard_of_the_crescent_moon/guard_of_the_crescent_moon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5825"
+	{
+		"name"									"Mantle of the Crescent Moon"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-13"
+		"image_inventory"						"econ/items/luna/mantle_of_the_crescent_moon/mantle_of_the_crescent_moon"
+		"item_description"						"#DOTA_Item_Desc_Mantle_of_the_Crescent_Moon"
+		"item_name"								"#DOTA_Item_Mantle_of_the_Crescent_Moon"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/luna/mantle_of_the_crescent_moon/mantle_of_the_crescent_moon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5826"
+	{
+		"name"									"Headress of the Crescent Moon"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-13"
+		"image_inventory"						"econ/items/luna/headress_of_the_crescent_moon/headress_of_the_crescent_moon"
+		"item_description"						"#DOTA_Item_Desc_Headress_of_the_Crescent_Moon"
+		"item_name"								"#DOTA_Item_Headress_of_the_Crescent_Moon"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/luna/headress_of_the_crescent_moon/headress_of_the_crescent_moon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5944"
+	{
+		"name"									"Epaulets of the Lucent Rider"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-16"
+		"image_inventory"						"econ/items/luna/lucent_epaulets/lucent_epaulets"
+		"item_name"								"#DOTA_Item_Epaulets_of_the_Lucent_Rider"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Epaulets"
+		"model_player"							"models/items/luna/lucent_epaulets/lucent_epaulets.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/3/2014"
+			"price"								"0"
+		}
+	}
+	"5945"
+	{
+		"name"									"Glaive of the Lucent Rider"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-16"
+		"image_inventory"						"econ/items/luna/lucent_glaive/lucent_glaive"
+		"item_name"								"#DOTA_Item_Glaive_of_the_Lucent_Rider"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/luna/lucent_glaive/lucent_glaive.vmdl"
+		"particle_folder"						"particles/econ/items/luna/luna_lucent_rider"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/3/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_base_attack.vpcf"
+				"modifier"						"particles/econ/items/luna/luna_lucent_rider/luna_attack_lucent_rider.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_ambient_moon_glaive.vpcf"
+				"modifier"						"particles/econ/items/luna/luna_lucent_rider/luna_ambient_glaive_lucent_rider.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_moon_glaive_bounce.vpcf"
+				"modifier"						"particles/econ/items/luna/luna_lucent_rider/luna_glaive_bounce_lucent_rider.vpcf"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_moon_glaive.vpcf"
+				"modifier"						"particles/econ/items/luna/luna_lucent_rider/luna_glaive_lucent_rider.vpcf"
+			}
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"rider"
+			}
+		}
+	}
+	"5946"
+	{
+		"name"									"Guard of the Lucent Rider"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-16"
+		"image_inventory"						"econ/items/luna/lucent_guard/lucent_guard"
+		"item_name"								"#DOTA_Item_Guard_of_the_Lucent_Rider"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Shield"
+		"model_player"							"models/items/luna/lucent_guard/lucent_guard.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/3/2014"
+			"price"								"0"
+		}
+	}
+	"5947"
+	{
+		"name"									"Lucentyr"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-16"
+		"image_inventory"						"econ/items/luna/lucent_mount/lucent_mount"
+		"item_name"								"#DOTA_Item_Lucentyr"
+		"item_rarity"							"legendary"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/luna/lucent_mount/lucent_mount.vmdl"
+		"particle_folder"						"particles/econ/items/luna/luna_lucent_rider"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/3/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE_RARE"
+				"modifier"						"lucentyr"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/luna/luna_lucent_rider/luna_mount_lucent_rider.vpcf"
+				"system"						"particles/econ/items/luna/luna_lucent_rider/luna_mount_lucent_rider.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+		}
+	}
+	"5948"
+	{
+		"name"									"Style of the Lucent Rider"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-16"
+		"image_inventory"						"econ/items/luna/lucent_head/lucent_head"
+		"item_name"								"#DOTA_Item_Style_of_the_Lucent_Rider"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/luna/lucent_head/lucent_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/3/2014"
+			"price"								"0"
+		}
+	}
+	"6147"
+	{
+		"name"									"Starrider of the Crescent Steel Glaive"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-24"
+		"image_inventory"						"econ/items/luna/starrider_glaive/starrider_glaive"
+		"item_name"								"#DOTA_Item_Starrider_of_the_Crescent_Steel_Glaive"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/luna/starrider_glaive/starrider_glaive.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/26/2014"
+			"price"								"0"
+		}
+	}
+	"6148"
+	{
+		"name"									"Starrider of the Crescent Steel Helmet"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-24"
+		"image_inventory"						"econ/items/luna/starrider_helmet/starrider_helmet"
+		"item_name"								"#DOTA_Item_Starrider_of_the_Crescent_Steel_Helmet"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/luna/starrider_helmet/starrider_helmet.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/26/2014"
+			"price"								"0"
+		}
+	}
+	"6149"
+	{
+		"name"									"Starrider of the Crescent Steel Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-24"
+		"image_inventory"						"econ/items/luna/starrider_mount/starrider_mount"
+		"item_name"								"#DOTA_Item_Starrider_of_the_Crescent_Steel_Mount"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/luna/starrider_mount/starrider_mount.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/26/2014"
+			"price"								"0"
+		}
+	}
+	"6150"
+	{
+		"name"									"Starrider of the Crescent Steel Shield"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-24"
+		"image_inventory"						"econ/items/luna/starrider_shield/starrider_shield"
+		"item_name"								"#DOTA_Item_Starrider_of_the_Crescent_Steel_Shield"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Shield"
+		"model_player"							"models/items/luna/starrider_shield/starrider_shield.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/26/2014"
+			"price"								"0"
+		}
+	}
+	"6151"
+	{
+		"name"									"Starrider of the Crescent Steel Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-24"
+		"image_inventory"						"econ/items/luna/starrider_shoulder/starrider_shoulder"
+		"item_name"								"#DOTA_Item_Starrider_of_the_Crescent_Steel_Shoulders"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/luna/starrider_shoulder/starrider_shoulder.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/26/2014"
+			"price"								"0"
+		}
+	}
+	"6608"
+	{
+		"name"									"Tigress of the Dark Moon Stalker"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/luna/the_burning_shadow_mount/the_burning_shadow_mount"
+		"item_description"						"#DOTA_Item_Desc_Tigress_of_the_Dark_Moon_Stalker"
+		"item_name"								"#DOTA_Item_Tigress_of_the_Dark_Moon_Stalker"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/luna/the_burning_shadow_mount/the_burning_shadow_mount.vmdl"
+	}
+	"6640"
+	{
+		"name"									"Moonrider's Lucent Headdress"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-12"
+		"image_inventory"						"econ/items/luna/lucentheaddress_head/lucentheaddress_head"
+		"item_name"								"#DOTA_Item_Moonriders_Lucent_Headdress"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Headdress"
+		"model_player"							"models/items/luna/lucentheaddress_head/lucentheaddress_head.vmdl"
+	}
+	"6720"
+	{
+		"name"									"Complete Glaive of the Dark Moon Stalker"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-06"
+		"event_id"								"EVENT_ID_NONE"
+		"image_inventory"						"econ/items/luna/the_burning_shadow_weapon/the_burning_shadow_weapon"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Glaive_of_the_Dark_Moon_Stalker"
+		"item_name"								"#DOTA_Item_Complete_Glaive_of_the_Dark_Moon_Stalker"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/luna/the_burning_shadow_weapon/the_burning_shadow_weapon.vmdl"
+	}
+	"6721"
+	{
+		"name"									"Complete Shoulders of the Dark Moon Stalker"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-06"
+		"event_id"								"EVENT_ID_NONE"
+		"image_inventory"						"econ/items/luna/the_burning_shadow_shoulder/the_burning_shadow_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Shoulders_of_the_Dark_Moon_Stalker"
+		"item_name"								"#DOTA_Item_Complete_Shoulders_of_the_Dark_Moon_Stalker"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/luna/the_burning_shadow_shoulder/the_burning_shadow_shoulder.vmdl"
+	}
+	"6723"
+	{
+		"name"									"Complete Shield of the Dark Moon Stalker"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-06"
+		"event_id"								"EVENT_ID_NONE"
+		"image_inventory"						"econ/items/luna/the_burning_shadow_off_hand/the_burning_shadow_off_hand"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Shield_of_the_Dark_Moon_Stalker"
+		"item_name"								"#DOTA_Item_Complete_Shield_of_the_Dark_Moon_Stalker"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Offhand_Weapon"
+		"model_player"							"models/items/luna/the_burning_shadow_off_hand/the_burning_shadow_off_hand.vmdl"
+	}
+	"6724"
+	{
+		"name"									"Complete Tigress of the Dark Moon Stalker"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-06"
+		"event_id"								"EVENT_ID_NONE"
+		"image_inventory"						"econ/items/luna/the_burning_shadow_mount/the_burning_shadow_mount"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Tigress_of_the_Dark_Moon_Stalker"
+		"item_name"								"#DOTA_Item_Complete_Tigress_of_the_Dark_Moon_Stalker"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/luna/the_burning_shadow_mount/the_burning_shadow_mount.vmdl"
+	}
+	"6729"
+	{
+		"name"									"Complete Helm of the Dark Moon Stalker"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-06"
+		"event_id"								"EVENT_ID_NONE"
+		"image_inventory"						"econ/items/luna/the_burning_shadow_head/the_burning_shadow_head"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Helm_of_the_Dark_Moon_Stalker"
+		"item_name"								"#DOTA_Item_Complete_Helm_of_the_Dark_Moon_Stalker"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/luna/the_burning_shadow_head/the_burning_shadow_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/luna/luna_burning_shadow/luna_burning_shadow_ambient.vpcf"
+				"system"						"particles/econ/items/luna/luna_burning_shadow/luna_burning_shadow_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_helmet"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hair_02"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hair_03"
+					}
+					"4"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hair_04"
+					}
+					"5"
+					{
+						"control_point_index"	"5"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hair_05"
+					}
+				}
+			}
+		}
+	}
+	"7140"
+	{
+		"name"									"Shield of the Dark Moon Stalker"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/luna/the_burning_shadow_off_hand/the_burning_shadow_off_hand"
+		"item_description"						"#DOTA_Item_Desc_Shield_of_the_Dark_Moon_Stalker"
+		"item_name"								"#DOTA_Item_Shield_of_the_Dark_Moon_Stalker"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/luna/the_burning_shadow_off_hand/the_burning_shadow_off_hand.vmdl"
+	}
+	"7215"
+	{
+		"name"									"Glaive of the Azure Constellation"
+		"prefab"								"wearable"
+		"creation_date"							"2014-12-05"
+		"image_inventory"						"econ/items/luna/zodiac_glave/zodiac_glave"
+		"item_description"						"#DOTA_Item_Desc_Glaive_of_the_Azure_Constellation"
+		"item_name"								"#DOTA_Item_Glaive_of_the_Azure_Constellation"
+		"item_type_name"						"#DOTA_WearableType_Glaive"
+		"model_player"							"models/items/luna/zodiac_glave/zodiac_glave.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2014"
+			"price"								"0"
+		}
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_luna' gem_def_index: 3005 } asset_modifier: 95"
+			}
+		}
+	}
+	"7216"
+	{
+		"name"									"Shield of the Azure Constellation"
+		"prefab"								"wearable"
+		"creation_date"							"2014-12-05"
+		"image_inventory"						"econ/items/luna/zodiac_shield/zodiac_shield"
+		"item_description"						"#DOTA_Item_Desc_Shield_of_the_Azure_Constellation"
+		"item_name"								"#DOTA_Item_Shield_of_the_Azure_Constellation"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Shield"
+		"model_player"							"models/items/luna/zodiac_shield/zodiac_shield.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2014"
+			"price"								"0"
+		}
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_luna' gem_def_index: 3005 } asset_modifier: 96"
+			}
+		}
+	}
+	"7217"
+	{
+		"name"									"Messenger of the Azure Constellation"
+		"prefab"								"wearable"
+		"creation_date"							"2014-12-05"
+		"image_inventory"						"econ/items/luna/the_zodiac_messenger/the_zodiac_messenger"
+		"item_description"						"#DOTA_Item_Desc_Messenger_of_the_Azure_Constellation"
+		"item_name"								"#DOTA_Item_Messenger_of_the_Azure_Constellation"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/luna/the_zodiac_messenger/the_zodiac_messenger.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2014"
+			"price"								"0"
+		}
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_luna' gem_def_index: 3005 } asset_modifier: 97"
+			}
+		}
+	}
+	"7218"
+	{
+		"name"									"Pauldrons of the Azure Constellation"
+		"prefab"								"wearable"
+		"creation_date"							"2014-12-05"
+		"image_inventory"						"econ/items/luna/zodiac_pauldrons/zodiac_pauldrons"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Azure_Constellation"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulderpads"
+		"model_player"							"models/items/luna/zodiac_pauldrons/zodiac_pauldrons.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2014"
+			"price"								"0"
+		}
+	}
+	"7219"
+	{
+		"name"									"Circlet of the Azure Constellation"
+		"prefab"								"wearable"
+		"creation_date"							"2014-12-05"
+		"image_inventory"						"econ/items/luna/zodiac_helmet/zodiac_helmet"
+		"item_description"						"#DOTA_Item_Desc_Circlet_of_the_Azure_Constellation"
+		"item_name"								"#DOTA_Item_Circlet_of_the_Azure_Constellation"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Circlet"
+		"model_player"							"models/items/luna/zodiac_helmet/zodiac_helmet.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2014"
+			"price"								"0"
+		}
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_luna' gem_def_index: 3005 } asset_modifier: 94"
+			}
+		}
+	}
+	"7226"
+	{
+		"name"									"Hoofenpaw"
+		"prefab"								"wearable"
+		"creation_date"							"2014-12-10"
+		"image_inventory"						"econ/items/luna/zheen_the_moon_staglion/zheen_the_moon_staglion"
+		"item_name"								"#DOTA_Item_Hoofenpaw"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/luna/zheen_the_moon_staglion/zheen_the_moon_staglion.vmdl"
+	}
+	"7269"
+	{
+		"name"									"Dusklight Crest"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-13"
+		"image_inventory"						"econ/items/luna/dusklight_head/dusklight_head"
+		"item_name"								"#DOTA_Item_Dusklight_Crest"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/luna/dusklight_head/dusklight_head.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/17/2015"
+			"price"								"0"
+		}
+	}
+	"7270"
+	{
+		"name"									"Dusklight Star"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-13"
+		"image_inventory"						"econ/items/luna/dusklight_offhand/dusklight_offhand"
+		"item_name"								"#DOTA_Item_Dusklight_Star"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Shield"
+		"model_player"							"models/items/luna/dusklight_offhand/dusklight_offhand.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/17/2015"
+			"price"								"0"
+		}
+	}
+	"7271"
+	{
+		"name"									"Dusklight Crescent"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-13"
+		"image_inventory"						"econ/items/luna/dusklight_weapon/dusklight_weapon"
+		"item_name"								"#DOTA_Item_Dusklight_Crescent"
+		"item_rarity"							"uncommon"
+		"model_player"							"models/items/luna/dusklight_weapon/dusklight_weapon.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/17/2015"
+			"price"								"0"
+		}
+	}
+	"7272"
+	{
+		"name"									"Dusklight Pauldrons"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-13"
+		"image_inventory"						"econ/items/luna/dusklight_shoulder/dusklight_shoulder"
+		"item_name"								"#DOTA_Item_Dusklight_Pauldrons"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/luna/dusklight_shoulder/dusklight_shoulder.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/17/2015"
+			"price"								"0"
+		}
+	}
+	"7273"
+	{
+		"name"									"Wildborn"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-13"
+		"image_inventory"						"econ/items/luna/dusklight_mount/dusklight_mount"
+		"item_name"								"#DOTA_Item_Wildborn"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/luna/dusklight_mount/dusklight_mount.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"11/13/2014"
+			"price"								"0"
+		}
+	}
+	"7531"
+	{
+		"name"									"Umbra Rider Hair"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-17"
+		"image_inventory"						"econ/items/luna/umbra_rider_hair_black/umbra_rider_hair_black"
+		"item_name"								"#DOTA_Item_Umbra_Rider_Hair"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/luna/umbra_rider_hair_black/umbra_rider_hair_black.vmdl"
+	}
+	"7533"
+	{
+		"name"									"Umbra Rider Shield"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-17"
+		"image_inventory"						"econ/items/luna/umbra_rider_shield/umbra_rider_shield"
+		"item_name"								"#DOTA_Item_Umbra_Rider_Shield"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Shield"
+		"model_player"							"models/items/luna/umbra_rider_shield/umbra_rider_shield.vmdl"
+	}
+	"7534"
+	{
+		"name"									"Compendium Umbra Rider Shield"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-19"
+		"image_inventory"						"econ/items/luna/umbra_rider_shield_alternate/umbra_rider_shield_alternate"
+		"item_name"								"#DOTA_Item_Compendium_Umbra_Rider_Shield"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Shield"
+		"model_player"							"models/items/luna/umbra_rider_shield_alternate/umbra_rider_shield_alternate.vmdl"
+	}
+	"7535"
+	{
+		"name"									"Umbra Rider Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-17"
+		"image_inventory"						"econ/items/luna/umbra_rider_shoulders/umbra_rider_shoulders"
+		"item_name"								"#DOTA_Item_Umbra_Rider_Shoulders"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/luna/umbra_rider_shoulders/umbra_rider_shoulders.vmdl"
+	}
+	"7538"
+	{
+		"name"									"Umbra Rider Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-17"
+		"image_inventory"						"econ/items/luna/umbra_rider_weapon/umbra_rider_weapon"
+		"item_name"								"#DOTA_Item_Umbra_Rider_Weapon"
+		"model_player"							"models/items/luna/umbra_rider_weapon/umbra_rider_weapon.vmdl"
+	}
+	"7583"
+	{
+		"name"									"Compendium Umbra Rider Hair"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-21"
+		"image_inventory"						"econ/items/luna/umbra_rider_hair_black/umbra_rider_hair_black"
+		"item_name"								"#DOTA_Item_Compendium_Umbra_Rider_Hair"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/luna/umbra_rider_hair_black/umbra_rider_hair_black.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/luna/umbra_rider_hair_black/umbra_rider_hair_black.vmdl"
+					"name"						"#DOTA_Item_Compendium_Umbra_Rider_Hair_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/luna/umbra_rider_hair_white/umbra_rider_hair_white.vmdl"
+					"name"						"#DOTA_Item_Compendium_Umbra_Rider_Hair_Style1"
+					"alternate_icon"			"1"
+				}
+				"2"
+				{
+					"model_player"				"models/items/luna/umbra_rider_hair_blue/umbra_rider_hair_blue.vmdl"
+					"name"						"#DOTA_Item_Compendium_Umbra_Rider_Hair_Style2"
+					"alternate_icon"			"2"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/luna/umbra_rider_hair_black/umbra_rider_hair_black"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/luna/umbra_rider_hair_white/umbra_rider_hair_white"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/luna/umbra_rider_hair_blue/umbra_rider_hair_blue"
+				}
+			}
+		}
+	}
+	"7584"
+	{
+		"name"									"Compendium Umbra Rider Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-21"
+		"image_inventory"						"econ/items/luna/umbra_rider_mount/umbra_rider_mount"
+		"item_name"								"#DOTA_Item_Compendium_Umbra_Rider_Mount"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/luna/umbra_rider_mount/umbra_rider_mount.vmdl"
+	}
+	"7585"
+	{
+		"name"									"Compendium Umbra Rider Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-21"
+		"image_inventory"						"econ/items/luna/umbra_rider_shoulders/umbra_rider_shoulders"
+		"item_name"								"#DOTA_Item_Compendium_Umbra_Rider_Shoulders"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/luna/umbra_rider_shoulders/umbra_rider_shoulders.vmdl"
+	}
+	"7586"
+	{
+		"name"									"Compendium Umbra Rider Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-21"
+		"image_inventory"						"econ/items/luna/umbra_rider_weapon/umbra_rider_weapon"
+		"item_name"								"#DOTA_Item_Compendium_Umbra_Rider_Weapon"
+		"model_player"							"models/items/luna/umbra_rider_weapon/umbra_rider_weapon.vmdl"
+	}
+	"7591"
+	{
+		"name"									"Umbra Rider Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-17"
+		"image_inventory"						"econ/items/luna/umbra_rider_mount/umbra_rider_mount"
+		"item_name"								"#DOTA_Item_Umbra_Rider_Mount"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/luna/umbra_rider_mount/umbra_rider_mount.vmdl"
+	}
+	"7693"
+	{
+		"name"									"Silvershade Rider Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-27"
+		"image_inventory"						"econ/items/luna/silvershade_rider_mount/silvershade_rider_mount"
+		"item_name"								"#DOTA_Item_Silvershade_Rider_Mount"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_mount"
+		"model_player"							"models/items/luna/silvershade_rider_mount/silvershade_rider_mount.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"7694"
+	{
+		"name"									"Helm of the Reef Kyte Rider"
+		"prefab"								"wearable"
+		"creation_date"							"2017-04-19"
+		"image_inventory"						"econ/items/luna/luna_ti7_set_head/luna_ti7_set_head"
+		"item_description"						"#DOTA_Item_Desc_Helm_of_the_Reef_Kyte_Rider"
+		"item_name"								"#DOTA_Item_Helm_of_the_Reef_Kyte_Rider"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/luna/luna_ti7_set_head/luna_ti7_set_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/luna/luna_ti7_set/luna_ti7_set_head_ambient.vpcf"
+				"style"							"0"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_TI7_Default"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_TI7_Upgraded"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17341"
+						"price"					"1"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/luna/luna_ti7_set/luna_ti7_set_style_head_ambient.vpcf"
+				"style"							"1"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/luna/luna_ti7_set_head/luna_ti7_set_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/luna/luna_ti7_set_head/luna_ti7_set_head_style1"
+				}
+			}
+		}
+	}
+	"7695"
+	{
+		"name"									"Shoulders of the Dark Moon Stalker"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/luna/the_burning_shadow_shoulder/the_burning_shadow_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Shoulders_of_the_Dark_Moon_Stalker"
+		"item_name"								"#DOTA_Item_Shoulders_of_the_Dark_Moon_Stalker"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/luna/the_burning_shadow_shoulder/the_burning_shadow_shoulder.vmdl"
+	}
+	"7696"
+	{
+		"name"									"Glaive of the Dark Moon Stalker"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/luna/the_burning_shadow_weapon/the_burning_shadow_weapon"
+		"item_description"						"#DOTA_Item_Desc_Glaive_of_the_Dark_Moon_Stalker"
+		"item_name"								"#DOTA_Item_Glaive_of_the_Dark_Moon_Stalker"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/luna/the_burning_shadow_weapon/the_burning_shadow_weapon.vmdl"
+	}
+	"7699"
+	{
+		"name"									"Rider's Eclipse Glaive"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-23"
+		"image_inventory"						"econ/items/luna/selemenes_eclipse_weapon/selemenes_eclipse_weapon"
+		"item_name"								"#DOTA_Item_Riders_Eclipse_Glaive"
+		"item_type_name"						"#DOTA_WearableType_Glaive"
+		"model_player"							"models/items/luna/selemenes_eclipse_weapon/selemenes_eclipse_weapon.vmdl"
+	}
+	"7700"
+	{
+		"name"									"Rider's Eclipse Shield"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-23"
+		"image_inventory"						"econ/items/luna/selemenes_eclipse_shield/selemenes_eclipse_shield"
+		"item_name"								"#DOTA_Item_Riders_Eclipse_Shield"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Shield"
+		"model_player"							"models/items/luna/selemenes_eclipse_shield/selemenes_eclipse_shield.vmdl"
+	}
+	"7701"
+	{
+		"name"									"Rider's Eclipse Helm"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-23"
+		"image_inventory"						"econ/items/luna/selemenes_eclipse_helm/selemenes_eclipse_helm"
+		"item_name"								"#DOTA_Item_Riders_Eclipse_Helm"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/luna/selemenes_eclipse_helm/selemenes_eclipse_helm.vmdl"
+	}
+	"7702"
+	{
+		"name"									"Rider's Eclipse Pauldrons"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-23"
+		"image_inventory"						"econ/items/luna/selemenes_eclipse_shoulders/selemenes_eclipse_shoulders"
+		"item_name"								"#DOTA_Item_Riders_Eclipse_Pauldrons"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/luna/selemenes_eclipse_shoulders/selemenes_eclipse_shoulders.vmdl"
+	}
+	"7703"
+	{
+		"name"									"Shattertooth"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-23"
+		"image_inventory"						"econ/items/luna/selemenes_eclipse_mount/selemenes_eclipse_mount"
+		"item_name"								"#DOTA_Item_Shattertooth"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/luna/selemenes_eclipse_mount/selemenes_eclipse_mount.vmdl"
+	}
+	"7840"
+	{
+		"name"									"Silvershade Rider Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-27"
+		"image_inventory"						"econ/items/luna/silvershade_rider_off_hand/silvershade_rider_off_hand"
+		"item_name"								"#DOTA_Item_Silvershade_Rider_OffHand"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/luna/silvershade_rider_off_hand/silvershade_rider_off_hand.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"7841"
+	{
+		"name"									"Silvershade Rider Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-27"
+		"image_inventory"						"econ/items/luna/silvershade_rider_weapon/silvershade_rider_weapon"
+		"item_name"								"#DOTA_Item_Silvershade_Rider_Weapon"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/luna/silvershade_rider_weapon/silvershade_rider_weapon.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"7842"
+	{
+		"name"									"Silvershade Rider Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-27"
+		"image_inventory"						"econ/items/luna/silvershade_rider_shoulder/silvershade_rider_shoulder"
+		"item_name"								"#DOTA_Item_Silvershade_Rider_Shoulder"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/luna/silvershade_rider_shoulder/silvershade_rider_shoulder.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"7843"
+	{
+		"name"									"Silvershade Rider Head"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-27"
+		"image_inventory"						"econ/items/luna/silvershade_rider_head/silvershade_rider_head"
+		"item_name"								"#DOTA_Item_Silvershade_Rider_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/luna/silvershade_rider_head/silvershade_rider_head.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"7962"
+	{
+		"name"									"Blades of Nightsilver's Resolve"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/luna/nightsilver_woods_set_weapon/nightsilver_woods_set_weapon"
+		"item_name"								"#DOTA_Item_Blades_of_Nightsilvers_Resolve"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/luna/nightsilver_woods_set_weapon/nightsilver_woods_set_weapon.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/luna/luna_weapon.vsnap"
+				"modifier"						"particles/models/items/luna/nightsilver_woods_set_weapon/nightsilver_woods_set_weapon.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_ambient_moon_glaive.vpcf"
+				"modifier"						"particles/units/heroes/hero_luna/luna_ambient_moon_glaive_local.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_base_attack.vpcf"
+				"modifier"						"particles/econ/items/luna/nightsilver_woods_weapon/luna_attack_nightsilver.vpcf"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_moon_glaive.vpcf"
+				"modifier"						"particles/econ/items/luna/nightsilver_woods_weapon/luna_glaive_nightsilver.vpcf"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_moon_glaive_bounce.vpcf"
+				"modifier"						"particles/econ/items/luna/nightsilver_woods_weapon/luna_glaive_bounce_nightsilver.vpcf"
+			}
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"resolve"
+			}
+		}
+	}
+	"7963"
+	{
+		"name"									"Pauldons of Nightsilver's Resolve"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/luna/nightsilver_woods_set_shoulder/nightsilver_woods_set_shoulder"
+		"item_name"								"#DOTA_Item_Pauldons_of_Nightsilvers_Resolve"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldron"
+		"model_player"							"models/items/luna/nightsilver_woods_set_shoulder/nightsilver_woods_set_shoulder.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"7964"
+	{
+		"name"									"Shield of Nightsilver's Resolve"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/luna/nightsilver_woods_set_off_hand/nightsilver_woods_set_off_hand"
+		"item_name"								"#DOTA_Item_Shield_of_Nightsilvers_Resolve"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Shield"
+		"model_player"							"models/items/luna/nightsilver_woods_set_off_hand/nightsilver_woods_set_off_hand.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"7965"
+	{
+		"name"									"Guardian of Nightsilver's Resolve"
+		"prefab"								"wearable"
+		"creation_date"							"2016-05-20"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/luna/nightsilver_woods_set_mount_style_1/nightsilver_woods_set_mount_style_1"
+		"item_name"								"#DOTA_Item_Guardian_of_Nightsilvers_Resolve"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/luna/nightsilver_woods_set_mount_style_1/nightsilver_woods_set_mount_style_1.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"7966"
+	{
+		"name"									"Style of Nightsilver's Resolve"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/luna/nightsilver_woods_set_head/nightsilver_woods_set_head"
+		"item_name"								"#DOTA_Item_Style_of_Nightsilvers_Resolve"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair_and_Headpiece"
+		"model_player"							"models/items/luna/nightsilver_woods_set_head/nightsilver_woods_set_head.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"8070"
+	{
+		"name"									"Taunt: Selemene Leap!"
+		"prefab"								"taunt"
+		"creation_date"							"2015-02-27"
+		"image_inventory"						"econ/taunts/taunt_icon_luna_selemene_leap"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Selemene_Leap"
+		"item_name"								"#DOTA_Item_Taunt_Selemene_Leap"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"selemene_gesture"
+				"gesture"						"1"
+			}
+		}
+	}
+	"8301"
+	{
+		"name"									"Moonfall"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-23"
+		"image_inventory"						"econ/items/luna/moonfall/moonfall"
+		"item_description"						"#DOTA_Item_Desc_Moonfall"
+		"item_name"								"#DOTA_Item_Moonfall"
+		"item_rarity"							"immortal"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Wearable"
+		"model_player"							"models/items/luna/moonfall/moonfall.vmdl"
+		"particle_folder"						"particles/econ/items/luna/luna_lucent_ti5"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_luna' gem_def_index: 3005 } asset_modifier: 127"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"moonfall"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_eclipse_cast.vpcf"
+				"modifier"						"particles/econ/items/luna/luna_lucent_ti5/luna_eclipse_cast_moonfall.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_lucent_beam.vpcf"
+				"modifier"						"particles/econ/items/luna/luna_lucent_ti5/luna_lucent_beam_moonfall.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_eclipse_impact.vpcf"
+				"modifier"						"particles/econ/items/luna/luna_lucent_ti5/luna_eclipse_impact_moonfall.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_eclipse_impact_notarget.vpcf"
+				"modifier"						"particles/econ/items/luna/luna_lucent_ti5/luna_eclipse_impact_notarget_moonfall.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier5"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/luna/luna_lucent_ti5/luna_shield_ambient_moonfall.vpcf"
+				"system"						"particles/econ/items/luna/luna_lucent_ti5/luna_shield_ambient_moonfall.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shield"
+					}
+				}
+			}
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"luna_lucent_beam"
+				"modifier"						"luna_lucent_beam_alt"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+		}
+	}
+	"8327"
+	{
+		"name"									"Golden Moonfall"
+		"prefab"								"wearable"
+		"creation_date"							"2015-04-14"
+		"image_inventory"						"econ/items/luna/moonfall/moonfall1"
+		"item_description"						"#DOTA_Item_Desc_Golden_Moonfall"
+		"item_name"								"#DOTA_Item_Golden_Moonfall"
+		"item_rarity"							"immortal"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Wearable"
+		"model_player"							"models/items/luna/moonfall/moonfall.vmdl"
+		"particle_folder"						"particles/econ/items/luna/luna_lucent_ti5_gold"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_luna' gem_def_index: 3005 } asset_modifier: 128"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"moonfall"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_eclipse_cast.vpcf"
+				"modifier"						"particles/econ/items/luna/luna_lucent_ti5_gold/luna_eclipse_cast_moonfall_gold.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_lucent_beam.vpcf"
+				"modifier"						"particles/econ/items/luna/luna_lucent_ti5_gold/luna_lucent_beam_moonfall_gold.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_eclipse_impact.vpcf"
+				"modifier"						"particles/econ/items/luna/luna_lucent_ti5_gold/luna_eclipse_impact_moonfall_gold.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_eclipse_impact_notarget.vpcf"
+				"modifier"						"particles/econ/items/luna/luna_lucent_ti5_gold/luna_eclipse_impact_notarget_moonfall_gold.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"skip_model_combine"				"1"
+			"skin"								"1"
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/luna/luna_lucent_ti5/luna_shield_ambient_moonfall.vpcf"
+				"modifier"						"particles/econ/items/luna/luna_lucent_ti5_gold/luna_shield_ambient_moonfall_gold.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/luna/luna_lucent_ti5/luna_shield_ambient_moonfall.vpcf"
+				"system"						"particles/econ/items/luna/luna_lucent_ti5/luna_shield_ambient_moonfall.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shield"
+					}
+				}
+			}
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"luna_lucent_beam"
+				"modifier"						"luna_lucent_beam_alt2"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+		}
+	}
+	"8486"
+	{
+		"name"									"Shield of the Night Grove"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-30"
+		"image_inventory"						"econ/items/luna/conqueror_of_the_dark_moon_offhand/conqueror_of_the_dark_moon_offhand"
+		"item_name"								"#DOTA_Item_Shield_of_the_Night_Grove"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Shield"
+		"model_player"							"models/items/luna/conqueror_of_the_dark_moon_offhand/conqueror_of_the_dark_moon_offhand.vmdl"
+	}
+	"8487"
+	{
+		"name"									"Glaive of the Night Grove"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-30"
+		"image_inventory"						"econ/items/luna/conqueror_of_the_dark_moon_weapon/conqueror_of_the_dark_moon_weapon"
+		"item_name"								"#DOTA_Item_Glaive_of_the_Night_Grove"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Glaive"
+		"model_player"							"models/items/luna/conqueror_of_the_dark_moon_weapon/conqueror_of_the_dark_moon_weapon.vmdl"
+	}
+	"8488"
+	{
+		"name"									"Pauldrons of the Night Grove"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-30"
+		"image_inventory"						"econ/items/luna/conqueror_of_the_dark_moon_shoulder/conqueror_of_the_dark_moon_shoulder"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Night_Grove"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/luna/conqueror_of_the_dark_moon_shoulder/conqueror_of_the_dark_moon_shoulder.vmdl"
+	}
+	"8489"
+	{
+		"name"									"Ykmir"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-30"
+		"image_inventory"						"econ/items/luna/conqueror_of_the_dark_moon_mount/conqueror_of_the_dark_moon_mount"
+		"item_name"								"#DOTA_Item_Ykmir"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/luna/conqueror_of_the_dark_moon_mount/conqueror_of_the_dark_moon_mount.vmdl"
+	}
+	"8490"
+	{
+		"name"									"Style of the Night Grove"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-30"
+		"image_inventory"						"econ/items/luna/conqueror_of_the_dark_moon_head/conqueror_of_the_dark_moon_head"
+		"item_name"								"#DOTA_Item_Style_of_the_Night_Grove"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Style"
+		"model_player"							"models/items/luna/conqueror_of_the_dark_moon_head/conqueror_of_the_dark_moon_head.vmdl"
+	}
+	"8669"
+	{
+		"name"									"Tiara of the Moonlit Thicket"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-07"
+		"image_inventory"						"econ/items/luna/bounch_luna_head/bounch_luna_head"
+		"item_name"								"#DOTA_Item_Tiara_of_the_Moonlit_Thicket"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Tiara"
+		"model_player"							"models/items/luna/bounch_luna_head/bounch_luna_head.vmdl"
+	}
+	"8670"
+	{
+		"name"									"Glaive of the Moonlit Thicket"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-07"
+		"image_inventory"						"econ/items/luna/bounch_luna_weapon/bounch_luna_weapon"
+		"item_name"								"#DOTA_Item_Glaive_of_the_Moonlit_Thicket"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Glaive"
+		"model_player"							"models/items/luna/bounch_luna_weapon/bounch_luna_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/luna/luna_selemene_returns"
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_ambient_moon_glaive.vpcf"
+				"modifier"						"particles/econ/items/luna/luna_selemene_returns/luna_ambient_glaive_selemene.vpcf"
+			}
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"thicket"
+			}
+		}
+	}
+	"8671"
+	{
+		"name"									"Pauldrons of the Moonlit Thicket"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-07"
+		"image_inventory"						"econ/items/luna/bounch_luna_shoulder/bounch_luna_shoulder"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Moonlit_Thicket"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/luna/bounch_luna_shoulder/bounch_luna_shoulder.vmdl"
+	}
+	"8672"
+	{
+		"name"									"Guard of the Moonlit Thicket"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-07"
+		"image_inventory"						"econ/items/luna/bounch_luna_offhand/bounch_luna_offhand"
+		"item_name"								"#DOTA_Item_Guard_of_the_Moonlit_Thicket"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Guard"
+		"model_player"							"models/items/luna/bounch_luna_offhand/bounch_luna_offhand.vmdl"
+	}
+	"8673"
+	{
+		"name"									"Orion"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-07"
+		"image_inventory"						"econ/items/luna/bounch_luna_mount/bounch_luna_mount"
+		"item_name"								"#DOTA_Item_Orion"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/luna/bounch_luna_mount/bounch_luna_mount.vmdl"
+		"particle_folder"						"particles/econ/items/luna/luna_selemene_returns"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/luna/luna_selemene_returns/luna_selemene_eye.vpcf"
+				"system"						"particles/econ/items/luna/luna_selemene_returns/luna_selemene_eye.vpcf"
+				"attach_type"					"point_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye1"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/luna/luna_selemene_returns/luna_selemene_eye_2.vpcf"
+				"system"						"particles/econ/items/luna/luna_selemene_returns/luna_selemene_eye_2.vpcf"
+				"attach_type"					"point_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye2"
+					}
+				}
+			}
+		}
+	}
+	"8852"
+	{
+		"name"									"Emeraldine Crest"
+		"prefab"								"wearable"
+		"creation_date"							"2016-02-04"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/luna/the_spirit_of_emerald_set_head/the_spirit_of_emerald_set_head"
+		"item_name"								"#DOTA_Item_Emeraldine_Crest"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Crest"
+		"model_player"							"models/items/luna/the_spirit_of_emerald_set_head/the_spirit_of_emerald_set_head.vmdl"
+	}
+	"8853"
+	{
+		"name"									"Emeraldine Glaive"
+		"prefab"								"wearable"
+		"creation_date"							"2016-02-04"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/luna/the_spirit_of_emerald_set_weapon/the_spirit_of_emerald_set_weapon"
+		"item_name"								"#DOTA_Item_Emeraldine_Glaive"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/luna/the_spirit_of_emerald_set_weapon/the_spirit_of_emerald_set_weapon.vmdl"
+	}
+	"8854"
+	{
+		"name"									"Emeraldine Shield"
+		"prefab"								"wearable"
+		"creation_date"							"2016-02-04"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/luna/the_spirit_of_emerald_set_off_hand/the_spirit_of_emerald_set_off_hand"
+		"item_name"								"#DOTA_Item_Emeraldine_Shield"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Shield"
+		"model_player"							"models/items/luna/the_spirit_of_emerald_set_off_hand/the_spirit_of_emerald_set_off_hand.vmdl"
+	}
+	"8855"
+	{
+		"name"									"Emeraldine Spaulders"
+		"prefab"								"wearable"
+		"creation_date"							"2016-02-04"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/luna/the_spirit_of_emerald_set_shoulder/the_spirit_of_emerald_set_shoulder"
+		"item_name"								"#DOTA_Item_Emeraldine_Spaulders"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/luna/the_spirit_of_emerald_set_shoulder/the_spirit_of_emerald_set_shoulder.vmdl"
+	}
+	"8856"
+	{
+		"name"									"Emeraldine Guardian"
+		"prefab"								"wearable"
+		"creation_date"							"2016-02-04"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/luna/the_spirit_of_emerald_set_mount/the_spirit_of_emerald_set_mount"
+		"item_name"								"#DOTA_Item_Emeraldine_Guardian"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/luna/the_spirit_of_emerald_set_mount/the_spirit_of_emerald_set_mount.vmdl"
+	}
+	"9216"
+	{
+		"name"									"Fintail Reef Kyte"
+		"prefab"								"wearable"
+		"creation_date"							"2017-04-19"
+		"image_inventory"						"econ/items/luna/luna_ti7_set_mount/luna_ti7_set_mount"
+		"item_description"						"#DOTA_Item_Desc_Fintail_Reef_Kyte"
+		"item_name"								"#DOTA_Item_Fintail_Reef_Kyte"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/luna/luna_ti7_set_mount/luna_ti7_set_mount.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/luna/luna_ti7_set/luna_ti7_set_mount_ambient.vpcf"
+				"style"							"0"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_TI7_Default"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_TI7_Upgraded"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17341"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/luna/luna_ti7_set/luna_ti7_set_style_mount_ambient.vpcf"
+				"style"							"1"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/luna/luna_ti7_set_mount/luna_ti7_set_mount"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/luna/luna_ti7_set_mount/luna_ti7_set_mount_style1"
+				}
+			}
+		}
+	}
+	"9217"
+	{
+		"name"									"Mantle of the Reef Kyte Rider"
+		"prefab"								"wearable"
+		"creation_date"							"2017-04-19"
+		"forced_item_quality"					"unique"
+		"image_inventory"						"econ/items/luna/luna_ti7_set_shoulder/luna_ti7_set_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Mantle_of_the_Reef_Kyte_Rider"
+		"item_name"								"#DOTA_Item_Mantle_of_the_Reef_Kyte_Rider"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/luna/luna_ti7_set_shoulder/luna_ti7_set_shoulder.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/luna/luna_ti7_set/luna_ti7_set_shoulder_ambient.vpcf"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_TI7_Default"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_TI7_Upgraded"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17341"
+						"price"					"1"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/luna/luna_ti7_set_shoulder/luna_ti7_set_shoulder"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/luna/luna_ti7_set_shoulder/luna_ti7_set_shoulder_style1"
+				}
+			}
+		}
+	}
+	"9218"
+	{
+		"name"									"Glaive of the Reef Kyte Rider"
+		"prefab"								"wearable"
+		"creation_date"							"2017-04-19"
+		"image_inventory"						"econ/items/luna/luna_ti7_set_weapon/luna_ti7_set_weapon"
+		"item_description"						"#DOTA_Item_Desc_Glaive_of_the_Reef_Kyte_Rider"
+		"item_name"								"#DOTA_Item_Glaive_of_the_Reef_Kyte_Rider"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/luna/luna_ti7_set_weapon/luna_ti7_set_weapon.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_TI7_Default"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_TI7_Upgraded"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17341"
+						"price"					"1"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/luna/luna_ti7_set_weapon/luna_ti7_set_weapon"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/luna/luna_ti7_set_weapon/luna_ti7_set_weapon_style1"
+				}
+			}
+		}
+	}
+	"9219"
+	{
+		"name"									"Shield of the Reef Kyte Rider"
+		"prefab"								"wearable"
+		"creation_date"							"2017-04-19"
+		"image_inventory"						"econ/items/luna/luna_ti7_set_offhand/luna_ti7_set_offhand"
+		"item_description"						"#DOTA_Item_Desc_Shield_of_the_Reef_Kyte_Rider"
+		"item_name"								"#DOTA_Item_Shield_of_the_Reef_Kyte_Rider"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/luna/luna_ti7_set_offhand/luna_ti7_set_offhand.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_TI7_Default"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_TI7_Upgraded"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17341"
+						"price"					"1"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/luna/luna_ti7_set_offhand/luna_ti7_set_offhand"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/luna/luna_ti7_set_offhand/luna_ti7_set_offhand_style1"
+				}
+			}
+		}
+	}
+	"9389"
+	{
+		"name"									"Helm of the Shadowforce Gale"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/luna/storm_whisperer_head/storm_whisperer_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Shadowforce_Gale"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/luna/storm_whisperer_head/storm_whisperer_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9390"
+	{
+		"name"									"Storm of the Shadowforce Gale"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/luna/storm_whisperer_mount/storm_whisperer_mount"
+		"item_name"								"#DOTA_Item_Storm_of_the_Shadowforce_Gale"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/luna/storm_whisperer_mount/storm_whisperer_mount.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9391"
+	{
+		"name"									"Shield of the Shadowforce Gale"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/luna/storm_whisperer_off_hand/storm_whisperer_off_hand"
+		"item_name"								"#DOTA_Item_Shield_of_the_Shadowforce_Gale"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/luna/storm_whisperer_off_hand/storm_whisperer_off_hand.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9392"
+	{
+		"name"									"Armor of the Shadowforce Gale"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/luna/storm_whisperer_shoulder/storm_whisperer_shoulder"
+		"item_name"								"#DOTA_Item_Armor_of_the_Shadowforce_Gale"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/luna/storm_whisperer_shoulder/storm_whisperer_shoulder.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9393"
+	{
+		"name"									"Glaives of the Shadowforce Gale"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/luna/storm_whisperer_weapon/storm_whisperer_weapon"
+		"item_name"								"#DOTA_Item_Glaives_of_the_Shadowforce_Gale"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/luna/storm_whisperer_weapon/storm_whisperer_weapon.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"12509"
+	{
+		"name"									"Blade of the Raidforged Rider"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-13"
+		"image_inventory"						"econ/items/luna/the_eclipse_beast_rider_weapon/the_eclipse_beast_rider_weapon"
+		"item_name"								"#DOTA_Item_Blade_of_the_Raidforged_Rider"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/luna/the_eclipse_beast_rider_weapon/the_eclipse_beast_rider_weapon.vmdl"
+	}
+	"12510"
+	{
+		"name"									"Armor of the Raidforged Rider"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-13"
+		"image_inventory"						"econ/items/luna/the_eclipse_beast_rider_shoulder/the_eclipse_beast_rider_shoulder"
+		"item_name"								"#DOTA_Item_Armor_of_the_Raidforged_Rider"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/luna/the_eclipse_beast_rider_shoulder/the_eclipse_beast_rider_shoulder.vmdl"
+	}
+	"12511"
+	{
+		"name"									"Shield of the Raidforged Rider"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-13"
+		"image_inventory"						"econ/items/luna/the_eclipse_beast_rider_off_hand/the_eclipse_beast_rider_off_hand"
+		"item_name"								"#DOTA_Item_Shield_of_the_Raidforged_Rider"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/luna/the_eclipse_beast_rider_off_hand/the_eclipse_beast_rider_off_hand.vmdl"
+	}
+	"12512"
+	{
+		"name"									"Head of the Raidforged Rider"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-13"
+		"image_inventory"						"econ/items/luna/the_eclipse_beast_rider_head/the_eclipse_beast_rider_head"
+		"item_name"								"#DOTA_Item_Head_of_the_Raidforged_Rider"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/luna/the_eclipse_beast_rider_head/the_eclipse_beast_rider_head.vmdl"
+	}
+	"12513"
+	{
+		"name"									"Mount of the Raidforged Rider"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-13"
+		"image_inventory"						"econ/items/luna/the_eclipse_beast_rider_mount/the_eclipse_beast_rider_mount"
+		"item_name"								"#DOTA_Item_Mount_of_the_Raidforged_Rider"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/luna/the_eclipse_beast_rider_mount/the_eclipse_beast_rider_mount.vmdl"
+	}
+	"12549"
+	{
+		"name"									"Shield of the Winged Sentinel"
+		"prefab"								"wearable"
+		"creation_date"							"2020-01-05"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/luna/essence_of_the_dark_moon_off_hand/essence_of_the_dark_moon_off_hand"
+		"item_name"								"#DOTA_Item_Shield_of_the_Winged_Sentinel"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/luna/essence_of_the_dark_moon_off_hand/essence_of_the_dark_moon_off_hand.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/luna/luna_fall20/luna_fall20_off_hand.vpcf"
+			}
+		}
+	}
+	"12551"
+	{
+		"name"									"Mount of the Winged Sentinel"
+		"prefab"								"wearable"
+		"creation_date"							"2020-01-05"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/luna/essence_of_the_dark_moon_mount/essence_of_the_dark_moon_mount"
+		"item_name"								"#DOTA_Item_Mount_of_the_Winged_Sentinel"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_mount"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/luna/essence_of_the_dark_moon_mount/essence_of_the_dark_moon_mount.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/luna/luna_fall20/luna_fall20_mount.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"12552"
+	{
+		"name"									"Helm of the Winged Sentinel"
+		"prefab"								"wearable"
+		"creation_date"							"2020-01-05"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/luna/essence_of_the_dark_moon_head/essence_of_the_dark_moon_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Winged_Sentinel"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/luna/essence_of_the_dark_moon_head/essence_of_the_dark_moon_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/luna/luna_fall20/luna_fall20_head.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"12553"
+	{
+		"name"									"Glaives of the Winged Sentinel"
+		"prefab"								"wearable"
+		"creation_date"							"2020-01-05"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/luna/essence_of_the_dark_moon_weapon/essence_of_the_dark_moon_weapon"
+		"item_name"								"#DOTA_Item_Glaives_of_the_Winged_Sentinel"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/luna/essence_of_the_dark_moon_weapon/essence_of_the_dark_moon_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/luna/luna_fall20/luna_fall20_weapon.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"sentinel"
+			}
+		}
+	}
+	"12554"
+	{
+		"name"									"Armor of the Winged Sentinel"
+		"prefab"								"wearable"
+		"creation_date"							"2020-01-05"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/luna/essence_of_the_dark_moon_shoulder/essence_of_the_dark_moon_shoulder"
+		"item_name"								"#DOTA_Item_Armor_of_the_Winged_Sentinel"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/luna/essence_of_the_dark_moon_shoulder/essence_of_the_dark_moon_shoulder.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/luna/luna_fall20/luna_fall20_shoulders.vpcf"
+			}
+		}
+	}
+	"12869"
+	{
+		"name"									"Glaive of Black Ice Scourge"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/luna/frostivus_2018_luna_beast_of_everholt_weapon/frostivus_2018_luna_beast_of_everholt_weapon"
+		"item_name"								"#DOTA_Item_Glaive_of_Black_Ice_Scourge"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/luna/frostivus_2018_luna_beast_of_everholt_weapon/frostivus_2018_luna_beast_of_everholt_weapon.vmdl"
+	}
+	"12870"
+	{
+		"name"									"Armor of Black Ice Scourge"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/luna/frostivus_2018_luna_beast_of_everholt_shoulder/frostivus_2018_luna_beast_of_everholt_shoulder"
+		"item_name"								"#DOTA_Item_Armor_of_Black_Ice_Scourge"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/luna/frostivus_2018_luna_beast_of_everholt_shoulder/frostivus_2018_luna_beast_of_everholt_shoulder.vmdl"
+	}
+	"12871"
+	{
+		"name"									"Shield of Black Ice Scourge"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/luna/frostivus_2018_luna_beast_of_everholt_off_hand/frostivus_2018_luna_beast_of_everholt_off_hand"
+		"item_name"								"#DOTA_Item_Shield_of_Black_Ice_Scourge"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/luna/frostivus_2018_luna_beast_of_everholt_off_hand/frostivus_2018_luna_beast_of_everholt_off_hand.vmdl"
+	}
+	"12872"
+	{
+		"name"									"Boar of Black Ice Scourge "
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/luna/frostivus_2018_luna_beast_of_everholt_mount/frostivus_2018_luna_beast_of_everholt_mount"
+		"item_name"								"#DOTA_Item_Boar_of_Black_Ice_Scourge_"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/luna/frostivus_2018_luna_beast_of_everholt_mount/frostivus_2018_luna_beast_of_everholt_mount.vmdl"
+	}
+	"12873"
+	{
+		"name"									"Hair of Black Ice Scourge"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/luna/frostivus_2018_luna_beast_of_everholt_head/frostivus_2018_luna_beast_of_everholt_head"
+		"item_name"								"#DOTA_Item_Hair_of_Black_Ice_Scourge"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/luna/frostivus_2018_luna_beast_of_everholt_head/frostivus_2018_luna_beast_of_everholt_head.vmdl"
+	}
+	"13000"
+	{
+		"name"									"Twilight Schism"
+		"prefab"								"wearable"
+		"creation_date"							"2019-07-04"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/luna/luna_ti9_immortal/luna_ti9_immortal"
+		"item_description"						"#DOTA_Item_Desc_Twilight_Schism"
+		"item_name"								"#DOTA_Item_Twilight_Schism"
+		"item_rarity"							"immortal"
+		"model_player"							"models/items/luna/luna_ti9_immortal/luna_ti9_immortal.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1598997600"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/luna/luna_ti9_weapon/luna_ti9_weapon_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti9"
+				"style"							"0"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_moon_glaive_bounce.vpcf"
+				"modifier"						"particles/econ/items/luna/luna_ti9_weapon/luna_ti9_moon_glaive_bounce.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_base_attack.vpcf"
+				"modifier"						"particles/econ/items/luna/luna_ti9_weapon/luna_ti9_base_attack.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_moon_glaive.vpcf"
+				"modifier"						"particles/econ/items/luna/luna_ti9_weapon/luna_ti9_moon_glaive_bounce.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier5"
+			{
+				"type"							"ability_icon"
+				"asset"							"luna_moon_glaive"
+				"modifier"						"luna/ti9_immortal_weapon/luna_moon_glaive_immortal"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+		}
+	}
+	"13524"
+	{
+		"name"									"Golden Twilight Schism"
+		"prefab"								"wearable"
+		"creation_date"							"2019-07-04"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/luna/luna_ti9_immortal/luna_ti9_immortal1"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Twilight_Schism"
+		"item_name"								"#DOTA_Item_Golden_Twilight_Schism"
+		"item_rarity"							"immortal"
+		"model_player"							"models/items/luna/luna_ti9_immortal/luna_ti9_immortal.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1598997600"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/luna/luna_ti9_weapon_gold/luna_ti9_weapon_ambient_gold.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti9"
+				"style"							"0"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_moon_glaive_bounce.vpcf"
+				"modifier"						"particles/econ/items/luna/luna_ti9_weapon_gold/luna_ti9_gold_moon_glaive_bounce.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_base_attack.vpcf"
+				"modifier"						"particles/econ/items/luna/luna_ti9_weapon_gold/luna_ti9_gold_base_attack.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_luna/luna_moon_glaive.vpcf"
+				"modifier"						"particles/econ/items/luna/luna_ti9_weapon_gold/luna_ti9_gold_moon_glaive_bounce.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier5"
+			{
+				"type"							"ability_icon"
+				"asset"							"luna_moon_glaive"
+				"modifier"						"luna/ti9_immortal_weapon/luna_moon_glaive_immortal_gold"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"skin"								"1"
+			"asset_modifier6"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_ATTACK"
+				"modifier"						"gold"
+			}
+		}
+	}
+	"13689"
+	{
+		"name"									"Madness of the Amaranth Orb Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/luna/scourge_of_the_sacred_grove_head/scourge_of_the_sacred_grove_head"
+		"item_name"								"#DOTA_Item_Madness_of_the_Amaranth_Orb_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/luna/scourge_of_the_sacred_grove_head/scourge_of_the_sacred_grove_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"13690"
+	{
+		"name"									"Madness of the Amaranth Orb Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/luna/scourge_of_the_sacred_grove_shoulder/scourge_of_the_sacred_grove_shoulder"
+		"item_name"								"#DOTA_Item_Madness_of_the_Amaranth_Orb_Shoulder"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/luna/scourge_of_the_sacred_grove_shoulder/scourge_of_the_sacred_grove_shoulder.vmdl"
+	}
+	"13691"
+	{
+		"name"									"Madness of the Amaranth Orb Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/luna/scourge_of_the_sacred_grove_mount/scourge_of_the_sacred_grove_mount"
+		"item_name"								"#DOTA_Item_Madness_of_the_Amaranth_Orb_Mount"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_mount"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/luna/scourge_of_the_sacred_grove_mount/scourge_of_the_sacred_grove_mount.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"13794"
+	{
+		"name"									"Taunt:  The Cat Dancer!"
+		"prefab"								"taunt"
+		"creation_date"							"2020-05-25"
+		"hide_tradecraftdelete"					"1"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/taunts/taunt_icon_luna_cat_dancer"
+		"item_description"						"#DOTA_Item_Desc_Taunt__The_Cat_Dancer"
+		"item_name"								"#DOTA_Item_Taunt__The_Cat_Dancer"
+		"item_rarity"							"immortal"
+		"reward_can_be_shown_in_toast"			"1"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_TI10_Limited_Tradeability"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"ti10_taunt"
+				"gesture"						"1"
+			}
+		}
+	}
+	"13820"
+	{
+		"name"									"Madness of the Amaranth Orb Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/luna/scourge_of_the_sacred_grove_off_hand/scourge_of_the_sacred_grove_off_hand"
+		"item_name"								"#DOTA_Item_Madness_of_the_Amaranth_Orb_OffHand"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/luna/scourge_of_the_sacred_grove_off_hand/scourge_of_the_sacred_grove_off_hand.vmdl"
+	}
+	"13821"
+	{
+		"name"									"Madness of the Amaranth Orb Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/luna/scourge_of_the_sacred_grove_weapon/scourge_of_the_sacred_grove_weapon"
+		"item_name"								"#DOTA_Item_Madness_of_the_Amaranth_Orb_Weapon"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/luna/scourge_of_the_sacred_grove_weapon/scourge_of_the_sacred_grove_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"18315"
+	{
+		"name"									"Luna's Diretide Shimmer Costume"
+		"prefab"								"wearable"
+		"creation_date"							"2020-10-02"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 21:40:00"
+		"image_inventory"						"econ/sets/dota_item_lunas_diretide_bundle"
+		"item_name"								"#DOTA_Item_Lunas_Diretide_Shimmer_Costume"
+		"item_rarity"							"seasonal"
+		"item_slot"								"costume"
+		"item_type_name"						"#DOTA_WearableType_Costume"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"model_skin"
+				"skin"							"1"
+			}
+			"skin"								"1"
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/events/diretide_2020/hero_spooky_ambient/hero_spooky_ambient_ghost.vpcf"
+			}
+		}
+	}
+	"18342"
+	{
+		"name"									"Luna's Diretide Shimmer Helmet"
+		"prefab"								"wearable"
+		"creation_date"							"2020-10-05"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 21:40:00"
+		"image_inventory"						"econ/heroes/luna/luna_helmet1"
+		"item_name"								"#DOTA_Item_Lunas_Diretide_Shimmer_Helmet"
+		"item_rarity"							"seasonal"
+		"item_slot"								"head"
+		"model_player"							"models/heroes/luna/luna_helmet.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"18343"
+	{
+		"name"									"Luna's Diretide Shimmer Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2020-10-05"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 21:40:00"
+		"image_inventory"						"econ/heroes/luna/luna_mount1"
+		"item_name"								"#DOTA_Item_Lunas_Diretide_Shimmer_Mount"
+		"item_rarity"							"seasonal"
+		"item_slot"								"mount"
+		"model_player"							"models/heroes/luna/luna_mount.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"18344"
+	{
+		"name"									"Luna's Diretide Shimmer Shield"
+		"prefab"								"wearable"
+		"creation_date"							"2020-10-05"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 21:40:00"
+		"image_inventory"						"econ/heroes/luna/luna_shield1"
+		"item_name"								"#DOTA_Item_Lunas_Diretide_Shimmer_Shield"
+		"item_rarity"							"seasonal"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/heroes/luna/luna_shield.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"18345"
+	{
+		"name"									"Luna's Diretide Shimmer Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2020-10-05"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 21:40:00"
+		"image_inventory"						"econ/heroes/luna/luna_shoulder1"
+		"item_name"								"#DOTA_Item_Lunas_Diretide_Shimmer_Shoulder"
+		"item_rarity"							"seasonal"
+		"item_slot"								"shoulder"
+		"model_player"							"models/heroes/luna/luna_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"18346"
+	{
+		"name"									"Luna's Diretide Shimmer Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-10-05"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 21:40:00"
+		"image_inventory"						"econ/heroes/luna/luna_weapon1"
+		"item_name"								"#DOTA_Item_Lunas_Diretide_Shimmer_Weapon"
+		"item_rarity"							"seasonal"
+		"model_player"							"models/heroes/luna/luna_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"20327"
+	{
+		"name"									"Blessings of the Eternal Eclipse Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armor of Eternal Eclipse"			"1"
+			"Blades of Eternal Eclipse"			"1"
+			"Helm of Eternal Eclipse"			"1"
+			"Noriet the Dusky Guardian"			"1"
+			"Shield of Eternal Eclipse"			"1"
+		}
+		"creation_date"							"2013-12-03"
+		"image_inventory"						"econ/sets/DOTA_Item_Blessings_of_the_Eternal_Eclipse_Set"
+		"item_description"						"#DOTA_Item_Desc_Blessings_of_the_Eternal_Eclipse_Set"
+		"item_name"								"#DOTA_Item_Blessings_of_the_Eternal_Eclipse_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"12/3/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20334"
+	{
+		"name"									"Flight of the Crescent Moon"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Avon of the Crescent Moon"			"1"
+			"Glaves of the Crescent Moon"		"1"
+			"Guard of the Crescent Moon"		"1"
+			"Headress of the Crescent Moon"		"1"
+			"Mantle of the Crescent Moon"		"1"
+		}
+		"creation_date"							"2013-12-13"
+		"image_inventory"						"econ/sets/DOTA_Item_Flight_of_the_Crescent_Moon_Set"
+		"item_name"								"#DOTA_Item_Flight_of_the_Crescent_Moon"
+		"item_rarity"							"mythical"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Mythical"
+			"category_tags"						"Bundles"
+			"date"								"12/13/2013"
+			"bundle"							"1"
+			"price"								"799"
+		}
+	}
+	"20360"
+	{
+		"name"									"Blessings of Lucentyr Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Guard of the Lucent Rider"			"1"
+			"Style of the Lucent Rider"			"1"
+			"Epaulets of the Lucent Rider"		"1"
+			"Glaive of the Lucent Rider"		"1"
+			"Lucentyr"							"1"
+		}
+		"creation_date"							"2014-01-16"
+		"image_inventory"						"econ/sets/DOTA_Item_Blessings_of_Lucentyr_Set"
+		"item_description"						"#DOTA_Item_Desc_Blessings_of_Lucentyr_Set"
+		"item_name"								"#DOTA_Item_Blessings_of_Lucentyr_Set"
+		"item_rarity"							"legendary"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Ancient"
+			"category_tags"						"Bundles"
+			"date"								"2/3/2014"
+			"bundle"							"1"
+			"price"								"1099"
+		}
+	}
+	"20407"
+	{
+		"name"									"Starrider of the Crescent Steel"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Starrider of the Crescent Steel Glaive""1"
+			"Starrider of the Crescent Steel Helmet""1"
+			"Starrider of the Crescent Steel Mount""1"
+			"Starrider of the Crescent Steel Shield""1"
+			"Starrider of the Crescent Steel Shoulders""1"
+		}
+		"creation_date"							"2014-02-24"
+		"image_inventory"						"econ/sets/DOTA_Item_Starrider_of_the_Crescent_Steel"
+		"item_description"						"#DOTA_Item_Desc_Starrider_of_the_Crescent_Steel"
+		"item_name"								"#DOTA_Item_Starrider_of_the_Crescent_Steel"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"2/26/2014"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20602"
+	{
+		"name"									"Complete Dark Moon Stalker"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of the Dark Moon Stalker""1"
+			"Complete Helm of the Dark Moon Stalker""1"
+			"Complete Tigress of the Dark Moon Stalker""1"
+			"Complete Shield of the Dark Moon Stalker""1"
+			"Complete Shoulders of the Dark Moon Stalker""1"
+			"Complete Glaive of the Dark Moon Stalker""1"
+		}
+		"creation_date"							"2019-11-06"
+		"event_id"								"EVENT_ID_NONE"
+		"image_inventory"						"econ/loading_screens/the_burning_shadow_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Complete_Dark_Moon_Stalker"
+		"item_name"								"#DOTA_Item_Complete_Dark_Moon_Stalker"
+		"item_rarity"							"mythical"
+	}
+	"20683"
+	{
+		"name"									"SLTV Star Series Season 11"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Dusklight Crescent"				"1"
+			"Dusklight Crest"					"1"
+			"Dusklight Pauldrons"				"1"
+			"Dusklight Star"					"1"
+			"SLTV Star Series Season 11 Ticket"	"1"
+			"Wildborn"							"1"
+			"Dusklight Loading Screen"			"1"
+		}
+		"creation_date"							"2014-11-13"
+		"image_inventory"						"econ/leagues/subscriptions_sltv11bundle"
+		"item_description"						"#DOTA_Item_Desc_SLTV_Star_Series_Season_11"
+		"item_name"								"#DOTA_Item_SLTV_Star_Series_Season_11"
+		"item_rarity"							"rare"
+	}
+	"20700"
+	{
+		"name"									"Azure Constellation"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Shield of the Azure Constellation"	"1"
+			"Messenger of the Azure Constellation""1"
+			"Pauldrons of the Azure Constellation""1"
+			"Circlet of the Azure Constellation""1"
+			"Azure Constellation Loading Screen""1"
+			"Azure Constellation HUD"			"1"
+			"Glaive of the Azure Constellation"	"1"
+		}
+		"creation_date"							"2014-12-09"
+		"image_inventory"						"econ/loading_screens/zodiac_sigils_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Azure_Constellation"
+		"item_name"								"#DOTA_Item_Azure_Constellation"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"category_tags"						"Bundles"
+			"date"								"12/16/2014"
+			"bundle"							"1"
+			"price"								"899"
+		}
+	}
+	"20703"
+	{
+		"name"									"Armor of the Moonlit Thicket"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armor of the Moonlit Thicket Loading Screen""1"
+			"Orion"								"1"
+			"Guard of the Moonlit Thicket"		"1"
+			"Pauldrons of the Moonlit Thicket"	"1"
+			"Glaive of the Moonlit Thicket"		"1"
+			"Tiara of the Moonlit Thicket"		"1"
+		}
+		"creation_date"							"2015-06-02"
+		"image_inventory"						"econ/loading_screens/bounch_luna_ls"
+		"item_name"								"#DOTA_Item_Armor_of_the_Moonlit_Thicket"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"3000"
+	}
+	"20715"
+	{
+		"name"									"Umbra Rider"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Umbra Rider Hair"					"1"
+			"Umbra Rider Loading Screen"		"1"
+			"Umbra Rider Mount"					"1"
+			"Umbra Rider Shield"				"1"
+			"Umbra Rider Shoulders"				"1"
+			"Umbra Rider Weapon"				"1"
+		}
+		"creation_date"							"2015-03-17"
+		"image_inventory"						"econ/loading_screens/umbra_rider_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Umbra_Rider"
+		"item_name"								"#DOTA_Item_Umbra_Rider"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"2500"
+	}
+	"20716"
+	{
+		"name"									"Compendium Umbra Rider"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Compendium Umbra Rider Hair"		"1"
+			"Compendium Umbra Rider Loading Screen""1"
+			"Compendium Umbra Rider Mount"		"1"
+			"Compendium Umbra Rider Shield"		"1"
+			"Compendium Umbra Rider Shoulders"	"1"
+			"Compendium Umbra Rider Weapon"		"1"
+		}
+		"creation_date"							"2015-01-21"
+		"image_inventory"						"econ/loading_screens/umbra_rider_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Compendium_Umbra_Rider"
+		"item_name"								"#DOTA_Item_Compendium_Umbra_Rider"
+		"item_rarity"							"rare"
+	}
+	"20746"
+	{
+		"name"									"Rider's Eclipse"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Rider's Eclipse Shield"			"1"
+			"Rider's Eclipse Glaive"			"1"
+			"Rider's Eclipse Loading Screen"	"1"
+			"Rider's Eclipse Helm"				"1"
+			"Rider's Eclipse Pauldrons"			"1"
+			"Shattertooth"						"1"
+		}
+		"creation_date"							"2015-02-16"
+		"image_inventory"						"econ/loading_screens/selemenes_eclipse_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Riders_Eclipse"
+		"item_name"								"#DOTA_Item_Riders_Eclipse"
+		"item_rarity"							"rare"
+	}
+	"20825"
+	{
+		"name"									"Armaments of the Night Grove"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Shield of the Night Grove"			"1"
+			"Pauldrons of the Night Grove"		"1"
+			"Glaive of the Night Grove"			"1"
+			"Ykmir"								"1"
+			"Style of the Night Grove"			"1"
+			"Armaments of the Night Grove Loading Screen""1"
+		}
+		"creation_date"							"2015-11-18"
+		"image_inventory"						"econ/loading_screens/conqueror_of_the_dark_moon_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Arnaments_of_the_Night_Grove"
+		"item_name"								"#DOTA_Item_Armaments_of_the_Night_Grove"
+		"item_rarity"							"rare"
+	}
+	"20889"
+	{
+		"name"									"Dark Moon Stalker"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of the Dark Moon Stalker""1"
+			"Glaive of the Dark Moon Stalker"	"1"
+			"Shoulders of the Dark Moon Stalker""1"
+			"Shield of the Dark Moon Stalker"	"1"
+			"Tigress of the Dark Moon Stalker"	"1"
+			"Helm of the Dark Moon Stalker"		"1"
+		}
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/the_burning_shadow_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Dark_Moon_Stalker"
+		"item_name"								"#DOTA_Item_Dark_Moon_Stalker"
+		"item_rarity"							"mythical"
+	}
+	"20890"
+	{
+		"name"									"Reef Kyte Rider"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Helm of the Reef Kyte Rider"		"1"
+			"Fintail Reef Kyte"					"1"
+			"Mantle of the Reef Kyte Rider"		"1"
+			"Glaive of the Reef Kyte Rider"		"1"
+			"Shield of the Reef Kyte Rider"		"1"
+		}
+		"creation_date"							"2017-04-19"
+		"image_inventory"						"econ/sets/DOTA_Item_Reef_Kyte_Rider"
+		"item_description"						"#DOTA_Item_Desc_Reef_Kyte_Rider"
+		"item_name"								"#DOTA_Item_Reef_Kyte_Rider"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1535796000"
+			}
+		}
+		"visuals"
+		{
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/sets/DOTA_Item_Reef_Kyte_Rider"
+				}
+				"1"
+				{
+					"icon_path"					"econ/sets/DOTA_Item_Reef_Kyte_Rider_style1"
+				}
+			}
+		}
+	}
+	"20964"
+	{
+		"name"									"Dusklight Marauder"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Dusklight Crest"					"1"
+			"Dusklight Star"					"1"
+			"Dusklight Crescent"				"1"
+			"Dusklight Pauldrons"				"1"
+			"Dusklight Loading Screen"			"1"
+			"Wildborn"							"1"
+		}
+		"creation_date"							"2015-12-17"
+		"image_inventory"						"econ/loading_screens/dusklight_loadingscreen"
+		"item_name"								"#DOTA_Item_Dusklight_Marauder"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"category_tags"						"Bundles"
+			"date"								"12/17/2015"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20993"
+	{
+		"name"									"Spirit of the Emeraldine Rider"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Spirit of the Emeraldine Rider Loading Screen""1"
+			"Emeraldine Crest"					"1"
+			"Emeraldine Glaive"					"1"
+			"Emeraldine Shield"					"1"
+			"Emeraldine Spaulders"				"1"
+			"Emeraldine Guardian"				"1"
+		}
+		"creation_date"							"2016-02-04"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/the_spirit_of_emerald_set_loading_screen_of_emerald_spirit_set"
+		"item_description"						"#DOTA_Item_Desc_Spirit_of_the_Emeraldine_Rider"
+		"item_name"								"#DOTA_Item_Spirit_of_the_Emeraldine_Rider"
+		"item_rarity"							"mythical"
+	}
+	"21020"
+	{
+		"name"									"Nightsilver's Resolve"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Nightsilver's Resolve Loading Screen""1"
+			"Style of Nightsilver's Resolve"	"1"
+			"Shield of Nightsilver's Resolve"	"1"
+			"Guardian of Nightsilver's Resolve"	"1"
+			"Pauldons of Nightsilver's Resolve"	"1"
+			"Blades of Nightsilver's Resolve"	"1"
+		}
+		"creation_date"							"2016-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/loading_screens/nightsilver_woods_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Nightsilvers_Resolve"
+		"item_name"								"#DOTA_Item_Nightsilvers_Resolve"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"21050"
+	{
+		"name"									"Silvershade Rider"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Silvershade Rider Head"			"1"
+			"Silvershade Rider Shoulder"		"1"
+			"Silvershade Rider Weapon"			"1"
+			"Silvershade Rider Off-Hand"		"1"
+			"Silvershade Rider Mount"			"1"
+			"Silvershade Rider Loading Screen"	"1"
+		}
+		"creation_date"							"2019-11-27"
+		"image_inventory"						"econ/loading_screens/silvershade_rider_ls"
+		"item_name"								"#DOTA_Item_Silvershade_Rider"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"15000"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21124"
+	{
+		"name"									"Shadowforce Gale"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Helm of the Shadowforce Gale"		"1"
+			"Storm of the Shadowforce Gale"		"1"
+			"Shield of the Shadowforce Gale"	"1"
+			"Armor of the Shadowforce Gale"		"1"
+			"Glaives of the Shadowforce Gale"	"1"
+			"Shadowforce Gale Loading Screen"	"1"
+		}
+		"creation_date"							"2017-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/loading_screens/storm_whisperer_storm_whisperer_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Shadowforce_Gale"
+		"item_name"								"#DOTA_Item_Shadowforce_Gale"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21250"
+	{
+		"name"									"Redemption of the Raidforged Rider"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Mount of the Raidforged Rider"		"1"
+			"Head of the Raidforged Rider"		"1"
+			"Shield of the Raidforged Rider"	"1"
+			"Armor of the Raidforged Rider"		"1"
+			"Blade of the Raidforged Rider"		"1"
+		}
+		"creation_date"							"2018-09-14"
+		"image_inventory"						"econ/sets/DOTA_Item_Eclipse_Beast_Rider"
+		"item_name"								"#DOTA_Item_Redemption_of_the_Raidforged_Rider"
+		"item_rarity"							"mythical"
+	}
+	"21257"
+	{
+		"name"									"Scorn of the Winged Sentinel"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armor of the Winged Sentinel"		"1"
+			"Glaives of the Winged Sentinel"	"1"
+			"Helm of the Winged Sentinel"		"1"
+			"Mount of the Winged Sentinel"		"1"
+			"Loading Screen of the Winged Sentinel""1"
+			"Shield of the Winged Sentinel"		"1"
+		}
+		"creation_date"							"2020-01-05"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Scorn_of_the_Winged_Sentinel"
+		"item_name"								"#DOTA_Item_Scorn_of_the_Winged_Sentinel"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+	}
+	"21312"
+	{
+		"name"									"Black Ice Scourge"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Hair of Black Ice Scourge"			"1"
+			"Boar of Black Ice Scourge "		"1"
+			"Shield of Black Ice Scourge"		"1"
+			"Armor of Black Ice Scourge"		"1"
+			"Glaive of Black Ice Scourge"		"1"
+		}
+		"creation_date"							"2018-12-02"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/sets/DOTA_Item_Frostivus_2018_Luna_Beast_of_Everholt"
+		"item_description"						"#DOTA_Item_Desc_Black_Ice_Scourge"
+		"item_name"								"#DOTA_Item_Black_Ice_Scourge"
+		"item_rarity"							"rare"
+	}
+	"21454"
+	{
+		"name"									"Madness of the Amaranth Orb"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Madness of the Amaranth Orb Head"	"1"
+			"Madness of the Amaranth Orb Shoulder""1"
+			"Madness of the Amaranth Orb Mount"	"1"
+			"Madness of the Amaranth Orb Off-Hand""1"
+			"Madness of the Amaranth Orb Weapon""1"
+		}
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/sets/DOTA_Item_Madness_of_the_Amaranth_Orb"
+		"item_name"								"#DOTA_Item_Madness_of_the_Amaranth_Orb"
+		"item_rarity"							"rare"
+	}
+	"21793"
+	{
+		"name"									"Luna's Diretide Shimmer Bundle"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Luna's Diretide Shimmer Costume"	"1"
+			"Luna's Diretide Shimmer Helmet"	"1"
+			"Luna's Diretide Shimmer Mount"		"1"
+			"Luna's Diretide Shimmer Shield"	"1"
+			"Luna's Diretide Shimmer Shoulder"	"1"
+			"Luna's Diretide Shimmer Weapon"	"1"
+		}
+		"creation_date"							"2020-10-05"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 21:40:00"
+		"image_inventory"						"econ/sets/DOTA_Item_Lunas_Diretide_Bundle"
+		"item_name"								"#DOTA_Item_Lunas_Diretide_Shimmer_Bundle"
+		"item_rarity"							"seasonal"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"22208"
+	{
+		"name"									"Lineage Blade of the Raidforged Rider"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-27"
+		"event_id"								"EVENT_ID_TEAM_FANDOM"
+		"image_inventory"						"econ/items/luna/the_eclipse_beast_rider_weapon/the_eclipse_beast_rider_weapon1"
+		"item_description"						"#DOTA_Item_Desc_Lineage_Blade_of_the_Raidforged_Rider"
+		"item_name"								"#DOTA_Item_Lineage_Blade_of_the_Raidforged_Rider"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/luna/the_eclipse_beast_rider_weapon/the_eclipse_beast_rider_weapon.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1637229600"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/luna/luna_lineage_2021/luna_lineage_2021_weapon.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"raidforged"
+			}
+		}
+	}
+	"22209"
+	{
+		"name"									"Lineage Armor of the Raidforged Rider"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-27"
+		"event_id"								"EVENT_ID_TEAM_FANDOM"
+		"image_inventory"						"econ/items/luna/the_eclipse_beast_rider_shoulder/the_eclipse_beast_rider_shoulder1"
+		"item_description"						"#DOTA_Item_Desc_Lineage_Armor_of_the_Raidforged_Rider"
+		"item_name"								"#DOTA_Item_Lineage_Armor_of_the_Raidforged_Rider"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/luna/the_eclipse_beast_rider_shoulder/the_eclipse_beast_rider_shoulder.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1637229600"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"22210"
+	{
+		"name"									"Lineage Shield of the Raidforged Rider"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-27"
+		"event_id"								"EVENT_ID_TEAM_FANDOM"
+		"image_inventory"						"econ/items/luna/the_eclipse_beast_rider_off_hand/the_eclipse_beast_rider_off_hand1"
+		"item_description"						"#DOTA_Item_Desc_Lineage_Shield_of_the_Raidforged_Rider"
+		"item_name"								"#DOTA_Item_Lineage_Shield_of_the_Raidforged_Rider"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Offhand_Weapon"
+		"model_player"							"models/items/luna/the_eclipse_beast_rider_off_hand/the_eclipse_beast_rider_off_hand.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1637229600"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/luna/luna_lineage_2021/luna_lineage_2021_ambient.vpcf"
+			}
+		}
+	}
+	"22211"
+	{
+		"name"									"Lineage Head of the Raidforged Rider"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-27"
+		"event_id"								"EVENT_ID_TEAM_FANDOM"
+		"image_inventory"						"econ/items/luna/the_eclipse_beast_rider_head/the_eclipse_beast_rider_head1"
+		"item_description"						"#DOTA_Item_Desc_Lineage_Head_of_the_Raidforged_Rider"
+		"item_name"								"#DOTA_Item_Lineage_Head_of_the_Raidforged_Rider"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/luna/the_eclipse_beast_rider_head/the_eclipse_beast_rider_head.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1637229600"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"22212"
+	{
+		"name"									"Lineage Redemption of the Raidforged Rider"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Lineage Shield of the Raidforged Rider""1"
+			"Lineage Mount of the Raidforged Rider""1"
+			"Lineage Head of the Raidforged Rider""1"
+			"Lineage Blade of the Raidforged Rider""1"
+			"Lineage Armor of the Raidforged Rider""1"
+		}
+		"creation_date"							"2021-09-27"
+		"event_id"								"EVENT_ID_TEAM_FANDOM"
+		"image_inventory"						"econ/sets/dota_item_lineage_redemption_of_the_raidforged_rider"
+		"item_description"						"#DOTA_Item_Desc_Lineage_Redemption_of_the_Raidforged_Rider"
+		"item_name"								"#DOTA_Item_Lineage_Redemption_of_the_Raidforged_Rider"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1637229600"
+			}
+		}
+	}
+	"22213"
+	{
+		"name"									"Lineage Mount of the Raidforged Rider"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-27"
+		"event_id"								"EVENT_ID_TEAM_FANDOM"
+		"image_inventory"						"econ/items/luna/the_eclipse_beast_rider_mount/the_eclipse_beast_rider_mount1"
+		"item_description"						"#DOTA_Item_Desc_Lineage_Mount_of_the_Raidforged_Rider"
+		"item_name"								"#DOTA_Item_Lineage_Mount_of_the_Raidforged_Rider"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/luna/the_eclipse_beast_rider_mount/the_eclipse_beast_rider_mount.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1637229600"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/luna/luna_lineage_2021/luna_lineage_2021_mount_ambient_smoke.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/luna/luna_lineage_2021/luna_lineage_2021_mount_eye_l_parent.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/luna/luna_lineage_2021/luna_lineage_2021_mount_eye_r_parent.vpcf"
+			}
+		}
+	}
+}

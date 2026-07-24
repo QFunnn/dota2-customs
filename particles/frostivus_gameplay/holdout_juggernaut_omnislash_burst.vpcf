@@ -1,0 +1,147 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nMaxParticles = 128
+	m_flConstantRadius = 15.0
+	m_ConstantColor = [ 255, 255, 255, 30 ]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_bAdditive = true
+			m_hTexture = resource:"materials/particle/smoke/curls/smoke_curls.vtex"
+			m_flAnimationRate = 1.0
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_Gravity = [ 0.0, 0.0, -100.0 ]
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.8
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 0.2
+		},
+		{
+			_class = "C_OP_Noise"
+			m_fl4NoiseScale = 0.00131
+			m_nFieldOutput = 4
+			m_flOutputMax = 130.0
+			m_bAdditive = true
+		},
+		{
+			_class = "C_OP_Noise"
+			m_bAdditive = true
+			m_flOutputMax = 90.0
+			m_nFieldOutput = 12
+			m_fl4NoiseScale = 0.0011
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndScale = 9.0
+			m_flBias = 0.85
+			m_flStartScale = 5.0
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_nOpEndCapState = 1
+			m_Rate = 100.0
+			m_flEndTime = 9999.0
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade = [ 39, 0, 0, 255 ]
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_nOpEndCapState = 1
+			m_nField = 16
+			m_Rate = -2.0
+			m_flEndTime = 99999.0
+		},
+		{
+			_class = "C_OP_PositionLock"
+			m_flStartTime_min = 0.2
+			m_flStartTime_max = 0.3
+			m_flEndTime_min = 0.4
+			m_flEndTime_max = 0.7
+			m_nControlPointNumber = 3
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMax = 0.65
+			m_fLifetimeMin = 0.45
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMax = [ 247, 255, 22, 255 ]
+			m_ColorMin = [ 205, 124, 37, 255 ]
+		},
+		{
+			_class = "C_INIT_CreateWithinSphere"
+			m_fRadiusMax = 25.0
+			m_fSpeedMax = 64.0
+			m_nControlPointNumber = 3
+		},
+		{
+			_class = "C_INIT_InitialVelocityNoise"
+			m_vecOutputMax = [ 54.0, 54.0, 54.0 ]
+			m_vecOutputMin = [ -54.0, -54.0, -54.0 ]
+			m_bLocalSpace = true
+		},
+		{
+			_class = "C_INIT_CreationNoise"
+			m_flOutputMax = 32.0
+			m_flOutputMin = 24.0
+			m_flNoiseScale = 2.0
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+		},
+		{
+			_class = "C_INIT_RandomYaw"
+			m_flDegreesMax = 4.0
+			m_flDegreesMin = -4.0
+		},
+		{
+			_class = "C_INIT_RandomYawFlip"
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 0.0, 0.0, 40.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 120.0 ]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 64.0
+		},
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 32
+		},
+	]
+}

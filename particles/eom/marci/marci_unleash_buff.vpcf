@@ -1,0 +1,106 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf58:version{9bada39c-a931-42d0-abdd-e5c1b13d37a6} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 12
+	m_nBehaviorVersion = 12
+	m_ConstantColor = [ 255, 238, 173, 255 ]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "eye_l"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_attack1"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 4
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_attack2"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "eye_r"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 5
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_attack1"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 6
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_attack2"
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/heroes/marci/marci_base.vmdl"
+				m_nModSpecificData = 777
+				m_sequenceName = "marci_idle_unleash"
+				m_hitboxSetName = "default"
+			}
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetParentControlPointsToChildCP"
+			m_nChildControlPoint = 5
+			m_nNumControlPoints = 4
+			m_nFirstSourcePoint = 3
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/eom/marci/marci_unleash_buff_hand.vpcf"
+			m_flDelay = 0.5
+		},
+		{
+			m_ChildRef = resource:"particles/eom/marci/marci_unleash_buff_hand.vpcf"
+			m_flDelay = 0.5
+		},
+		{
+			m_ChildRef = resource:"particles/eom/marci/marci_unleash_cast_hands.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/eom/marci/marci_unleash_cast_hands.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/eom/marci/marci_unleash_eye_r_parent.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/eom/marci/marci_unleash_eye_l_parent.vpcf"
+		},
+	]
+}

@@ -1,0 +1,100 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"enigma_demonic_conversion_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_enigma/enigma_demonic_conversion_lua"
+		"AbilityTextureName"					"enigma_demonic_conversion"
+		"FightRecapLevel"						"1"
+		"precache"
+		{
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts"
+		}
+		"AbilityType"							"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCooldown"						"44 36 28 20"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastRange"						"0"
+		"AbilityCastPoint"						"0.3 0.3 0.3 0.3"
+		"AbilityManaCost"						"75 100 125 150"
+		"AbilityHealthCost"						"75 100 125 150"
+		"AbilityValues"
+		{
+			"upgrade_kill_count"				"4"
+			"hero_kill_upgrade"					"5"
+			"eidelon_max_health"
+			{
+				"value"							"360 510 660 810"
+				"special_bonus_unique_enigma_7"	"+150"
+			}
+			"eidelon_base_damage"				"40 58 76 94"
+			"eidolon_duration"					"40"
+			"eidolon_bonus_damage"
+			{
+				"value"							"0"
+				"special_bonus_unique_enigma_3"	"+40"
+			}
+			"eidolon_bonus_attack_speed"
+			{
+				"value"							"0"
+				"special_bonus_unique_enigma_4"	"+10"
+			}
+			"eidelon_base_movespeed"			"280 310 340 370"
+			"eidolon_magic_resist"				"30 40 50 60"
+			"eidolon_attack_range"				"425 450 475 500"
+			"modelscale"						"2"
+			"health_gain"						"10"
+			"mana_regen"						"10"
+			"death_lose"						"5"
+			"eidelon_fire"
+			{
+				"value"							"0"
+				"special_bonus_shard"			"+1"
+			}
+		}
+	}
+	"enigma_demonic_conversion_lua_strike"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_enigma/enigma_demonic_conversion_lua_strike"
+		"AbilityTextureName"					"abaddon_death_coil_alliance"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"						"1"
+		"MaxLevel"								"1"
+		"precache"
+		{
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts"
+		}
+		"AbilityType"							"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCooldown"						"0"
+		"AbilityCastAnimation"					"ACT_DOTA_ATTACK"
+		"AbilityCastRange"						"700"
+		"AbilityCastPoint"						"0.0"
+		"AbilityManaCost"						"1000"
+		"AbilityValues"
+		{
+			"damage"							"100"
+			"bonus_damage_per_level"			"20"
+			"target_count"
+			{
+				"value"							"0"
+				"special_bonus_unique_enigma"	"+2"
+			}
+		}
+	}
+}

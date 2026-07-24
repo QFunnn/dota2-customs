@@ -1,0 +1,111 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"zeus_static_field_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_zeus/zeus_static_field_lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilitySound"							"Hero_Zuus.StaticField"
+		"HasShardUpgrade"						"1"
+		"AbilityTextureName"					"zuus_static_field"
+		"AbilityCooldown"						"11"
+		"AbilityManaCost"						"75"
+		"precache"
+		{
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
+			"particle"							"particles/units/heroes/hero_zuus/zuus_static_field.vpcf"
+		}
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_3"
+		"AbilityCastGestureSlot"				"DEFAULT"
+		"AbilityValues"
+		{
+			"damage_health_pct"
+			{
+				"value"							"4 6 8 10"
+				"LinkedSpecialBonus"			"special_bonus_unique_zeus"
+				"CalculateSpellDamageTooltip"	"0"
+			}
+			"hop_distance"						"450"
+			"hop_duration"						"0.5"
+			"hop_height"						"250"
+			"shock_duration"					"0.8"
+			"hop_shock_radius"					"2000"
+			"hop_slow_duration"					"2.5"
+			"nonzeus_multiplier"				"75"
+			"radius"							"1500"
+		}
+	}
+	"zuus_lightning_hands_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_zeus/zuus_lightning_hands_lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_ATTACK | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"					"zuus_lightning_hands"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastGestureSlot"				"DEFAULT"
+		"AbilityCastPoint"						"0.0 0.0 0.0 0.0"
+		"AbilityCooldown"						"0.5"
+		"MaxLevel"								"1"
+		"IsGrantedByShard"						"1"
+		"AbilityValues"
+		{
+			"attack_range_bonus"				"100"
+			"arc_lightning_damage_pct"			"50"
+			"arc_lightning_damage_illusion_pct"	"20"
+		}
+	}
+	"zuus_arc_lightning_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_zeus/zuus_arc_lightning_lua"
+		"AbilityTextureName"					"zuus_arc_lightning"
+		"MaxLevel"								"4"
+		"RequiredLevel"							"1"
+		"LevelsBetweenUpgrades"					"2"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilitySound"							"Hero_Zuus.ArcLightning.Cast"
+		"HasShardUpgrade"						"1"
+		"AbilityCastRange"						"850"
+		"AbilityCastPoint"						"0.2"
+		"AbilityCooldown"						"1.6"
+		"AbilityManaCost"						"80 85 90 95"
+		"AbilityValues"
+		{
+			"arc_damage"
+			{
+				"value"							"85 110 135 160"
+			}
+			"radius"
+			{
+				"value"							"500"
+				"affected_by_aoe_increase"		"1"
+			}
+			"jump_count"						"5 7 9 15"
+			"jump_delay"						"0.25 0.25 0.25 0.25"
+			"damage_health_pct"
+			{
+				"value"							"3 4 5 6"
+				"special_bonus_unique_zeus_2"	"+6"
+			}
+		}
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_1"
+	}
+}

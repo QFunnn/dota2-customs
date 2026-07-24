@@ -1,0 +1,48 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"warlock_fatal_bonds_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_warlock/warlock_fatal_bonds_lua"
+		"AbilityTextureName"					"warlock_fatal_bonds"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_YES"
+		"FightRecapLevel"						"1"
+		"AbilitySound"							"Hero_Warlock.FatalBonds"
+		"AbilityCastAnimation"					"ACT_DOTA_FATAL_BONDS"
+		"AbilityCastRange"						"1000"
+		"AbilityCastGestureSlot"				"DEFAULT"
+		"AbilityCastPoint"						"0.2"
+		"AbilityCooldown"						"36 30 24 18"
+		"AbilityManaCost"						"110 120 130 140"
+		"precache"
+		{
+			"particle"							"particles/units/heroes/hero_warlock/warlock_fatal_bonds_icon.vpcf"
+			"particle"							"particles/units/heroes/hero_warlock/warlock_fatal_bonds_hit.vpcf"
+		}
+		"AbilityValues"
+		{
+			"count"								"6"
+			"damage_share_percentage"
+			{
+				"value"							"12 16 20 24"
+				"LinkedSpecialBonus"			"special_bonus_unique_warlock_5"
+			}
+			"duration"							"25"
+			"search_aoe"						"700"
+		}
+	}
+}

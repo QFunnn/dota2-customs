@@ -1,0 +1,3752 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"182"
+	{
+		"name"									"Warlock's Golem"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/warlock/warlock_golem"
+		"item_description"						"#DOTA_Item_Desc_Warlocks_Golem"
+		"item_name"								"#DOTA_Item_Warlocks_Golem"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Golem"
+	}
+	"239"
+	{
+		"name"									"Warlock's Weapon"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/warlock/warlock_staff"
+		"item_description"						"#DOTA_Item_Desc_Warlocks_Weapon"
+		"item_name"								"#DOTA_Item_Warlocks_Weapon"
+		"model_player"							"models/heroes/warlock/warlock_staff.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf"
+				"system"						"particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"240"
+	{
+		"name"									"Warlock's Lantern"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/warlock/warlock_lantern"
+		"item_description"						"#DOTA_Item_Desc_Warlocks_Offhand_Weapon"
+		"item_name"								"#DOTA_Item_Warlocks_Lantern"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Offhand_Weapon"
+		"model_player"							"models/heroes/warlock/warlock_lantern.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_warlock/warlock_ambient_smoke.vpcf"
+				"system"						"particles/units/heroes/hero_warlock/warlock_ambient_smoke.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"241"
+	{
+		"name"									"Warlock's Head"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/warlock/warlock_cape"
+		"item_description"						"#DOTA_Item_Desc_Warlocks_Head"
+		"item_name"								"#DOTA_Item_Warlocks_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/warlock/warlock_cape.vmdl"
+	}
+	"242"
+	{
+		"name"									"Warlock's Shoulder"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/warlock/warlock_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Warlocks_Shoulder"
+		"item_name"								"#DOTA_Item_Warlocks_Shoulder"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/heroes/warlock/warlock_shoulder.vmdl"
+	}
+	"243"
+	{
+		"name"									"Warlock's Arms"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/warlock/warlock_bracers"
+		"item_description"						"#DOTA_Item_Desc_Warlocks_Arms"
+		"item_name"								"#DOTA_Item_Warlocks_Arms"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/heroes/warlock/warlock_bracers.vmdl"
+	}
+	"244"
+	{
+		"name"									"Warlock's Robe"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/warlock/warlock_robe"
+		"item_description"						"#DOTA_Item_Desc_Warlocks_Robe"
+		"item_name"								"#DOTA_Item_Warlocks_Robe"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/heroes/warlock/warlock_robe.vmdl"
+	}
+	"245"
+	{
+		"name"									"Warlock's Bag"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/warlock/warlock_bag"
+		"item_description"						"#DOTA_Item_Desc_Warlocks_Bag"
+		"item_name"								"#DOTA_Item_Warlocks_Bag"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/heroes/warlock/warlock_bag.vmdl"
+	}
+	"4436"
+	{
+		"name"									"Lantern of Death's Last Light"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"diretide tag"
+			{
+				"attribute_class"				"diretide_tag"
+				"value"							"2012"
+			}
+		}
+		"image_inventory"						"econ/items/warlock/deathly_lantern/deathly_lantern"
+		"item_description"						"#DOTA_Item_Desc_Lantern_of_Deaths_Last_Light"
+		"item_name"								"#DOTA_Item_Lantern_of_Deaths_Last_Light"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Lantern"
+		"model_player"							"models/items/warlock/deathly_lantern/deathly_lantern.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_warlock/warlock_ambient_smoke.vpcf"
+				"system"						"particles/units/heroes/hero_warlock/warlock_ambient_smoke.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"4468"
+	{
+		"name"									"Staff of the Archivist"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/warlock/archiviststaff/archiviststaff"
+		"item_description"						"#DOTA_Item_Desc_Staff_of_the_Archivist"
+		"item_name"								"#DOTA_Item_Staff_of_the_Archivist"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/warlock/archiviststaff/archiviststaff.vmdl"
+		"particle_folder"						"particles/econ/items/warlock/warlock_staff_archivist"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf"
+				"modifier"						"particles/econ/items/warlock/warlock_staff_archivist/warlock_ambient_staff_archivist.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf"
+				"system"						"particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"4470"
+	{
+		"name"									"Shroud of the Archivist"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/warlock/archivist_head/archivist_head"
+		"item_description"						"#DOTA_Item_Desc_Shroud_of_the_Archivist"
+		"item_name"								"#DOTA_Item_Shroud_of_the_Archivist"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/warlock/archivist_head/archivist_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4472"
+	{
+		"name"									"Demonbag of the Archivist"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/warlock/archivist_facebag/archivist_facebag"
+		"item_description"						"#DOTA_Item_Desc_Demonbag_of_the_Archivist"
+		"item_name"								"#DOTA_Item_Demonbag_of_the_Archivist"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Bag"
+		"model_player"							"models/items/warlock/archivist_facebag/archivist_facebag.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4474"
+	{
+		"name"									"Robe of the Archivist"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/warlock/archivists_robe/archivists_robe"
+		"item_description"						"#DOTA_Item_Desc_Robe_of_the_Archivist"
+		"item_name"								"#DOTA_Item_Robe_of_the_Archivist"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Robe"
+		"model_player"							"models/items/warlock/archivists_robe/archivists_robe.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4475"
+	{
+		"name"									"Lantern of the Archivist"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/warlock/archivist_lantern/archivist_lantern"
+		"item_description"						"#DOTA_Item_Desc_Lantern_of_the_Archivist"
+		"item_name"								"#DOTA_Item_Lantern_of_the_Archivist"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Lantern"
+		"model_player"							"models/items/warlock/archivist_lantern/archivist_lantern.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_warlock/warlock_ambient_smoke.vpcf"
+				"system"						"particles/units/heroes/hero_warlock/warlock_ambient_smoke.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"4477"
+	{
+		"name"									"Bracers of the Archivist"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/warlock/archivist_bracers/archivist_bracers"
+		"item_description"						"#DOTA_Item_Desc_Bracers_of_the_Archivist"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Archivist"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracer"
+		"model_player"							"models/items/warlock/archivist_bracers/archivist_bracers.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4478"
+	{
+		"name"									"Grand Mantle of the Archivist"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/warlock/archivist_shoulders/archivist_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Grand_Mantle_of_the_Archivist"
+		"item_name"								"#DOTA_Item_Grand_Mantle_of_the_Archivist"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/warlock/archivist_shoulders/archivist_shoulders.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4510"
+	{
+		"name"									"Twisted Lightbringer"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"diretide tag"
+			{
+				"attribute_class"				"diretide_tag"
+				"value"							"2012"
+			}
+		}
+		"image_inventory"						"econ/items/warlock/twisted_lantern/twisted_lantern"
+		"item_description"						"#DOTA_Item_Desc_Twisted_Lightbringer"
+		"item_name"								"#DOTA_Item_Twisted_Lightbringer"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Lantern"
+		"model_player"							"models/items/warlock/twisted_lantern/twisted_lantern.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_warlock/warlock_ambient_smoke.vpcf"
+				"system"						"particles/units/heroes/hero_warlock/warlock_ambient_smoke.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"4518"
+	{
+		"name"									"Hellish Gemstaff"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"diretide tag"
+			{
+				"attribute_class"				"diretide_tag"
+				"value"							"2012"
+			}
+		}
+		"image_inventory"						"econ/items/warlock/gemstaff/gemstaff"
+		"item_description"						"#DOTA_Item_Desc_Hellish_Gemstaff"
+		"item_name"								"#DOTA_Item_Hellish_Gemstaff"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/warlock/gemstaff/gemstaff.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf"
+				"system"						"particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"4640"
+	{
+		"name"									"Ishul-Shog the Watcher"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/warlock/archivist_golem/archivist_golem_npc_dota_warlock_golem"
+		"item_description"						"#DOTA_Item_Desc_IshulShog_the_Watcher"
+		"item_name"								"#DOTA_Item_IshulShog_the_Watcher"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Demon"
+		"particle_folder"						"particles/econ/items/warlock/warlock_golem_watcher"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_warlock_golem"
+				"modifier"						"models/items/warlock/archivist_golem/archivist_golem.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_warlock/golem_ambient.vpcf"
+				"modifier"						"particles/econ/items/warlock/warlock_golem_watcher/golem_ambient_watcher.vpcf"
+			}
+		}
+	}
+	"5411"
+	{
+		"name"									"Obsidian Golem"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-10"
+		"image_inventory"						"econ/items/warlock/golem/obsidian_golem/obsidian_golem_npc_dota_warlock_golem"
+		"item_description"						"#DOTA_Item_Desc_Obsidian_Golem"
+		"item_name"								"#DOTA_Item_Obsidian_Golem"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Golem"
+		"particle_folder"						"particles/econ/items/warlock/warlock_golem_obsidian"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_warlock_golem"
+				"modifier"						"models/items/warlock/golem/obsidian_golem/obsidian_golem.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_warlock/golem_ambient.vpcf"
+				"modifier"						"particles/econ/items/warlock/warlock_golem_obsidian/golem_ambient_obsidian.vpcf"
+			}
+		}
+	}
+	"5424"
+	{
+		"name"									"Staff of Infernal Chaos"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-17"
+		"image_inventory"						"econ/items/warlock/staff_of_infernal_chaos/staff_of_infernal_chaos"
+		"item_description"						"#DOTA_Item_Desc_Staff_of_Infernal_Chaos"
+		"item_name"								"#DOTA_Item_Staff_of_Infernal_Chaos"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/warlock/staff_of_infernal_chaos/staff_of_infernal_chaos.vmdl"
+		"particle_folder"						"particles/econ/items/warlock/warlock_staff_infernal"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf"
+				"modifier"						"particles/econ/items/warlock/warlock_staff_infernal/warlock_ambient_staff_infernal.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf"
+				"system"						"particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"5594"
+	{
+		"name"									"Hood of the Conjurer"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-26"
+		"image_inventory"						"econ/items/warlock/hood_of_the_conjurer/hood_of_the_conjurer"
+		"item_name"								"#DOTA_Item_Hood_of_the_Conjurer"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hood"
+		"model_player"							"models/items/warlock/hood_of_the_conjurer/hood_of_the_conjurer.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5605"
+	{
+		"name"									"Torchbearer"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"diretide tag"
+			{
+				"attribute_class"				"diretide_tag"
+				"value"							"2013"
+			}
+		}
+		"creation_date"							"2013-11-05"
+		"image_inventory"						"econ/items/warlock/golem/the_torchbearer/the_torchbearer_npc_dota_warlock_golem"
+		"item_description"						"#DOTA_Item_Desc_The_Torchbearer"
+		"item_name"								"#DOTA_Item_Torchbearer"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Demon"
+		"particle_folder"						"particles/econ/items/warlock/warlock_golem_watcher"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_warlock_golem"
+				"modifier"						"models/items/warlock/golem/the_torchbearer/the_torchbearer.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_warlock/golem_ambient.vpcf"
+				"modifier"						"particles/econ/items/warlock/warlock_golem_watcher/golem_ambient_watcher.vpcf"
+			}
+		}
+	}
+	"5698"
+	{
+		"name"									"Warlock's Summoning Scroll"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-21"
+		"image_inventory"						"econ/items/warlock/warlocks_summoning_scroll/warlocks_summoning_scroll"
+		"item_name"								"#DOTA_Item_Warlocks_Summoning_Scroll"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Scroll"
+		"model_player"							"models/items/warlock/warlocks_summoning_scroll/warlocks_summoning_scroll.vmdl"
+	}
+	"5725"
+	{
+		"name"									"Bracers of the Conjurer"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-26"
+		"image_inventory"						"econ/items/warlock/bracers_of_the_conjurer/bracers_of_the_conjurer"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Conjurer"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/warlock/bracers_of_the_conjurer/bracers_of_the_conjurer.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5726"
+	{
+		"name"									"Demonomicon"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-26"
+		"image_inventory"						"econ/items/warlock/the_demonomicon/the_demonomicon"
+		"item_name"								"#DOTA_Item_Demonomicon"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Demon_Book"
+		"model_player"							"models/items/warlock/the_demonomicon/the_demonomicon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5727"
+	{
+		"name"									"Garment of Control"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-26"
+		"image_inventory"						"econ/items/warlock/garment_of_control/garment_of_control"
+		"item_name"								"#DOTA_Item_Garment_of_Control"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Robe"
+		"model_player"							"models/items/warlock/garment_of_control/garment_of_control.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5728"
+	{
+		"name"									"Staff of the Malevolent"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-26"
+		"image_inventory"						"econ/items/warlock/staff_of_the_malevolent/staff_of_the_malevolent"
+		"item_name"								"#DOTA_Item_Staff_of_the_Malevolent"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/warlock/staff_of_the_malevolent/staff_of_the_malevolent.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf"
+				"system"						"particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"5729"
+	{
+		"name"									"Lantern of the Conjuring Sigil"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-26"
+		"image_inventory"						"econ/items/warlock/lantern_of_the_conjuring_sigil/lantern_of_the_conjuring_sigil"
+		"item_name"								"#DOTA_Item_Lantern_of_the_Conjuring_Sigil"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Lantern"
+		"model_player"							"models/items/warlock/lantern_of_the_conjuring_sigil/lantern_of_the_conjuring_sigil.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_warlock/warlock_ambient_smoke.vpcf"
+				"system"						"particles/units/heroes/hero_warlock/warlock_ambient_smoke.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"5730"
+	{
+		"name"									"Dark Pauldrons of the Conjurer"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-26"
+		"image_inventory"						"econ/items/warlock/dark_pauldrons_of_the_conjurer/dark_pauldrons_of_the_conjurer"
+		"item_name"								"#DOTA_Item_Dark_Pauldrons_of_the_Conjurer"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/warlock/dark_pauldrons_of_the_conjurer/dark_pauldrons_of_the_conjurer.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5731"
+	{
+		"name"									"Doom of Ithogoaki"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-26"
+		"image_inventory"						"econ/items/warlock/golem/doom_of_ithogoaki/doom_of_ithogoaki_npc_dota_warlock_golem"
+		"item_name"								"#DOTA_Item_Doom_of_Ithogoaki"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Demon"
+		"particle_folder"						"particles/econ/items/warlock/warlock_golem_watcher"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_warlock_golem"
+				"modifier"						"models/items/warlock/golem/doom_of_ithogoaki/doom_of_ithogoaki.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_warlock/golem_ambient.vpcf"
+				"modifier"						"particles/econ/items/warlock/warlock_golem_watcher/golem_ambient_watcher.vpcf"
+			}
+		}
+	}
+	"5840"
+	{
+		"name"									"Twisted Firekeeper"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-16"
+		"image_inventory"						"econ/items/warlock/twisted_firekeeper/twisted_firekeeper"
+		"item_name"								"#DOTA_Item_Twisted_Firekeeper"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/warlock/twisted_firekeeper/twisted_firekeeper.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf"
+				"system"						"particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"6068"
+	{
+		"name"									"Lantern of Auspicious Days"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-24"
+		"image_inventory"						"econ/items/warlock/warlock_lantern_spring2014/warlock_lantern_spring2014"
+		"item_name"								"#DOTA_Item_Lantern_of_Auspicious_Days"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Lantern"
+		"model_player"							"models/items/warlock/warlock_lantern_spring2014/warlock_lantern_spring2014.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_warlock/warlock_ambient_smoke.vpcf"
+				"system"						"particles/units/heroes/hero_warlock/warlock_ambient_smoke.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"6473"
+	{
+		"name"									"Hellborn Grasp"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2014"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"creation_date"							"2014-04-28"
+		"image_inventory"						"econ/items/warlock/hellborn_grasp/warlock_hellborn_grasp_staff"
+		"item_description"						"#DOTA_Item_Desc_Hand_of_Glory_Staff"
+		"item_name"								"#DOTA_Item_Hellborn_Grasp"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/warlock/hellborn_grasp/warlock_hellborn_grasp_staff.vmdl"
+		"particle_folder"						"particles/econ/items/warlock/warlock_staff_hellborn"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_warlock/warlock_upheaval.vpcf"
+				"modifier"						"particles/econ/items/warlock/warlock_staff_hellborn/warlock_upheaval_hellborn.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_warlock/warlock_upheaval_debuff.vpcf"
+				"modifier"						"particles/econ/items/warlock/warlock_staff_hellborn/warlock_upheaval_hellborn_debuff.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier5"
+			{
+				"type"							"ability_icon"
+				"asset"							"warlock_upheaval"
+				"modifier"						"warlock_hellborn_upheaval"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier6"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"glory"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/warlock/warlock_staff_hellborn/warlock_hellborn_grasp_staff.vpcf"
+				"system"						"particles/econ/items/warlock/warlock_staff_hellborn/warlock_hellborn_grasp_staff.vpcf"
+				"attach_type"					"customorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_index"
+					}
+					"1"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_ring"
+					}
+					"2"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_pinky"
+					}
+					"3"
+					{
+						"control_point_index"	"5"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_thumb"
+					}
+					"4"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_mid"
+					}
+					"5"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff"
+					}
+				}
+			}
+		}
+	}
+	"6589"
+	{
+		"name"									"Breath of Death"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-13"
+		"image_inventory"						"econ/items/warlock/breathofdeath_weapon/breathofdeath_weapon"
+		"item_name"								"#DOTA_Item_Breath_of_Death"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/warlock/breathofdeath_weapon/breathofdeath_weapon.vmdl"
+	}
+	"6607"
+	{
+		"name"									"Ahm'Hedoq the Maw"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-06"
+		"image_inventory"						"econ/items/warlock/golem/ahmhedoq/ahmhedoq_npc_dota_warlock_golem_1"
+		"item_name"								"#DOTA_Item_AhmHedoq_the_Maw"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Golem"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_warlock_golem"
+				"modifier"						"models/items/warlock/golem/ahmhedoq/ahmhedoq.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_warlock/golem_ambient.vpcf"
+				"modifier"						"particles/econ/items/warlock/warlock_golem_empty/warlock_golem_empty.vpcf"
+			}
+		}
+	}
+	"6716"
+	{
+		"name"									"Abyssal Watcher"
+		"prefab"								"wearable"
+		"creation_date"							"2014-08-13"
+		"image_inventory"						"econ/items/warlock/abyssal_watcher_offhand/abyssal_watcher_offhand"
+		"item_name"								"#DOTA_Item_Abyssal_Watcher"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Offhand"
+		"model_player"							"models/items/warlock/abyssal_watcher_offhand/abyssal_watcher_offhand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_warlock/warlock_ambient_smoke.vpcf"
+				"system"						"particles/units/heroes/hero_warlock/warlock_ambient_smoke.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"6824"
+	{
+		"name"									"Promo Ahm'Hedoq the Maw"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-18"
+		"image_inventory"						"econ/items/warlock/golem/ahmhedoq/ahmhedoq_npc_dota_warlock_golem_1"
+		"item_name"								"#DOTA_Item_Promo_AhmHedoq_the_Maw"
+		"item_quality"							"genuine"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Golem"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_warlock_golem"
+				"modifier"						"models/items/warlock/golem/ahmhedoq/ahmhedoq.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_warlock/golem_ambient.vpcf"
+				"modifier"						"particles/econ/items/warlock/warlock_golem_empty/warlock_golem_empty.vpcf"
+			}
+		}
+	}
+	"7227"
+	{
+		"name"									"Bag of the Dark Curator"
+		"prefab"								"wearable"
+		"creation_date"							"2014-12-10"
+		"image_inventory"						"econ/items/warlock/grimoires_belt/grimoires_belt"
+		"item_name"								"#DOTA_Item_Bag_of_the_Dark_Curator"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/warlock/grimoires_belt/grimoires_belt.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/18/2014"
+			"price"								"0"
+		}
+	}
+	"7228"
+	{
+		"name"									"Robe of the Dark Curator"
+		"prefab"								"wearable"
+		"creation_date"							"2014-12-10"
+		"image_inventory"						"econ/items/warlock/grimoires_back/grimoires_back"
+		"item_name"								"#DOTA_Item_Robe_of_the_Dark_Curator"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Robe"
+		"model_player"							"models/items/warlock/grimoires_back/grimoires_back.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/18/2014"
+			"price"								"0"
+		}
+	}
+	"7229"
+	{
+		"name"									"Bracers of the Dark Curator"
+		"prefab"								"wearable"
+		"creation_date"							"2014-12-10"
+		"image_inventory"						"econ/items/warlock/grimoires_arms/grimoires_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Dark_Curator"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/warlock/grimoires_arms/grimoires_arms.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/18/2014"
+			"price"								"0"
+		}
+	}
+	"7252"
+	{
+		"name"									"Hood of the Dark Curator"
+		"prefab"								"wearable"
+		"creation_date"							"2014-12-10"
+		"image_inventory"						"econ/items/warlock/grimoires_head/grimoires_head"
+		"item_name"								"#DOTA_Item_Hood_of_the_Dark_Curator"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hood"
+		"model_player"							"models/items/warlock/grimoires_head/grimoires_head.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/18/2014"
+			"price"								"0"
+		}
+	}
+	"7253"
+	{
+		"name"									"Lantern of the Dark Curator"
+		"prefab"								"wearable"
+		"creation_date"							"2014-12-10"
+		"image_inventory"						"econ/items/warlock/grimoires_offhand/grimoires_offhand"
+		"item_name"								"#DOTA_Item_Lantern_of_the_Dark_Curator"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Lantern"
+		"model_player"							"models/items/warlock/grimoires_offhand/grimoires_offhand.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/18/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_warlock/warlock_ambient_smoke.vpcf"
+				"system"						"particles/units/heroes/hero_warlock/warlock_ambient_smoke.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"7254"
+	{
+		"name"									"Demon of the Dark Curator"
+		"prefab"								"wearable"
+		"creation_date"							"2014-12-10"
+		"image_inventory"						"econ/items/warlock/golem/grimoires_pitlord_ultimate/grimoires_pitlord_ultimate_npc_dota_warlock_golem"
+		"item_name"								"#DOTA_Item_Demon_of_the_Dark_Curator"
+		"item_rarity"							"rare"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Golem"
+		"particle_folder"						"particles/econ/items/warlock/warlock_golem_dark_curator"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/18/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_warlock_golem"
+				"modifier"						"models/items/warlock/golem/grimoires_pitlord_ultimate/grimoires_pitlord_ultimate.vmdl"
+			}
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_warlock/golem_ambient.vpcf"
+				"modifier"						"particles/econ/items/warlock/warlock_golem_dark_curator/golem_ambient_dark_curator.vpcf"
+			}
+		}
+	}
+	"7255"
+	{
+		"name"									"Pauldrons of the Dark Curator"
+		"prefab"								"wearable"
+		"creation_date"							"2014-12-10"
+		"image_inventory"						"econ/items/warlock/grimoires_shoulder/grimoires_shoulder"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Dark_Curator"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/warlock/grimoires_shoulder/grimoires_shoulder.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/18/2014"
+			"price"								"0"
+		}
+	}
+	"7256"
+	{
+		"name"									"Staff of the Dark Curator"
+		"prefab"								"wearable"
+		"creation_date"							"2014-12-10"
+		"image_inventory"						"econ/items/warlock/grimoires_weapon/grimoires_weapon"
+		"item_name"								"#DOTA_Item_Staff_of_the_Dark_Curator"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/warlock/grimoires_weapon/grimoires_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/warlock/warlock_staff_dark_curator"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/18/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/warlock/warlock_staff_dark_curator/warlock_dark_curator_staff.vpcf"
+				"system"						"particles/econ/items/warlock/warlock_staff_dark_curator/warlock_dark_curator_staff.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"7886"
+	{
+		"name"									"Ceaseless Sorcery"
+		"prefab"								"wearable"
+		"creation_date"							"2015-02-02"
+		"static_attributes"
+		{
+			"cannot craft"
+			{
+				"attribute_class"				"cannot_craft"
+				"value"							"1"
+			}
+		}
+		"image_inventory"						"econ/items/warlock/ceaseless/ceaseless"
+		"item_name"								"#DOTA_Item_Ceaseless_Sorcery"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/warlock/ceaseless/ceaseless.vmdl"
+		"particle_folder"						"particles/econ/items/warlock/warlock_staff_ceaseless_ambient"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/warlock/warlock_staff_ceaseless_ambient/warlock_ceaseless_ambient_glow.vpcf"
+				"system"						"particles/econ/items/warlock/warlock_staff_ceaseless_ambient/warlock_ceaseless_ambient_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_core"
+					}
+				}
+			}
+		}
+	}
+	"8076"
+	{
+		"name"									"Bracers of the Gatekeeper"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-02"
+		"image_inventory"						"econ/items/warlock/tevent_2_gatekeeper_arms/tevent_2_gatekeeper_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Gatekeeper"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/warlock/tevent_2_gatekeeper_arms/tevent_2_gatekeeper_arms.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"3/16/2015"
+			"price"								"0"
+		}
+	}
+	"8077"
+	{
+		"name"									"Belt of the Gatekeeper"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-02"
+		"image_inventory"						"econ/items/warlock/tevent_2_gatekeeper_belt/tevent_2_gatekeeper_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Gatekeeper"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/warlock/tevent_2_gatekeeper_belt/tevent_2_gatekeeper_belt.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"3/16/2015"
+			"price"								"0"
+		}
+	}
+	"8078"
+	{
+		"name"									"Cloak of the Gatekeeper"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-02"
+		"image_inventory"						"econ/items/warlock/tevent_2_gatekeeper_cloak/tevent_2_gatekeeper_cloak"
+		"item_name"								"#DOTA_Item_Cloak_of_the_Gatekeeper"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Cloak"
+		"model_player"							"models/items/warlock/tevent_2_gatekeeper_cloak/tevent_2_gatekeeper_cloak.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"3/16/2015"
+			"price"								"0"
+		}
+	}
+	"8079"
+	{
+		"name"									"Hood of the Gatekeeper"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-02"
+		"image_inventory"						"econ/items/warlock/tevent_2_gatekeeper_head/tevent_2_gatekeeper_head"
+		"item_name"								"#DOTA_Item_Hood_of_the_Gatekeeper"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hood"
+		"model_player"							"models/items/warlock/tevent_2_gatekeeper_head/tevent_2_gatekeeper_head.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"3/16/2015"
+			"price"								"0"
+		}
+	}
+	"8080"
+	{
+		"name"									"Key of the Gatekeeper"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-02"
+		"image_inventory"						"econ/items/warlock/tevent_2_gatekeeper_key/tevent_2_gatekeeper_key"
+		"item_name"								"#DOTA_Item_Key_of_the_Gatekeeper"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Key"
+		"model_player"							"models/items/warlock/tevent_2_gatekeeper_key/tevent_2_gatekeeper_key.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"3/16/2015"
+			"price"								"0"
+		}
+	}
+	"8081"
+	{
+		"name"									"Wretched Guardian"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-02"
+		"image_inventory"						"econ/items/warlock/golem/tevent_2_gatekeeper_golem/tevent_2_gatekeeper_golem_npc_dota_warlock_golem"
+		"item_name"								"#DOTA_Item_Wretched_Guardian"
+		"item_rarity"							"rare"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Golem"
+		"particle_folder"						"particles/econ/items/warlock/warlock_golem_dark_curator"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"3/16/2015"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_warlock_golem"
+				"modifier"						"models/items/warlock/golem/tevent_2_gatekeeper_golem/tevent_2_gatekeeper_golem.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_warlock/golem_ambient.vpcf"
+				"modifier"						"particles/econ/items/warlock/warlock_golem_dark_curator/golem_ambient_dark_curator.vpcf"
+			}
+		}
+	}
+	"8082"
+	{
+		"name"									"Staff of the Gatekeeper"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-02"
+		"image_inventory"						"econ/items/warlock/tevent_2_gatekeeper_scythe/tevent_2_gatekeeper_scythe"
+		"item_name"								"#DOTA_Item_Staff_of_the_Gatekeeper"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/warlock/tevent_2_gatekeeper_scythe/tevent_2_gatekeeper_scythe.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"3/16/2015"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf"
+				"system"						"particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"8083"
+	{
+		"name"									"Pauldrons of the Gatekeeper"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-02"
+		"image_inventory"						"econ/items/warlock/tevent_2_gatekeeper_shoulders/tevent_2_gatekeeper_shoulders"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Gatekeeper"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/warlock/tevent_2_gatekeeper_shoulders/tevent_2_gatekeeper_shoulders.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"3/16/2015"
+			"price"								"0"
+		}
+	}
+	"8354"
+	{
+		"name"									"Bronzemonster of the Wailing Inferno"
+		"prefab"								"wearable"
+		"creation_date"							"2015-04-21"
+		"image_inventory"						"econ/items/warlock/golem/mdl_warlock_golem/mdl_warlock_golem_npc_dota_warlock_golem"
+		"item_name"								"#DOTA_Item_Bronzemonster_of_the_Wailing_Inferno"
+		"item_rarity"							"rare"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Golem"
+		"particle_folder"						"particles/econ/items/warlock/warlock_golem_empty"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_warlock' gem_def_index: 3005 } asset_modifier: 134"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_warlock_golem"
+				"modifier"						"models/items/warlock/golem/mdl_warlock_golem/mdl_warlock_golem.vmdl"
+			}
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_warlock/golem_ambient.vpcf"
+				"modifier"						"particles/econ/items/warlock/warlock_golem_empty/warlock_golem_empty.vpcf"
+			}
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"warlock_rain_of_chaos"
+				"modifier"						"warlock/wailing_inferno_icons/wailing_inferno_rain_of_chaos"
+			}
+		}
+	}
+	"8355"
+	{
+		"name"									"Shoulder of the Wailing Inferno"
+		"prefab"								"wearable"
+		"creation_date"							"2015-04-21"
+		"image_inventory"						"econ/items/warlock/mdl_warlock_shoulder/mdl_warlock_shoulder"
+		"item_name"								"#DOTA_Item_Shoulder_of_the_Wailing_Inferno"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/warlock/mdl_warlock_shoulder/mdl_warlock_shoulder.vmdl"
+	}
+	"8356"
+	{
+		"name"									"Lantern of the Wailing Inferno"
+		"prefab"								"wearable"
+		"creation_date"							"2015-04-21"
+		"image_inventory"						"econ/items/warlock/mdl_warlock_offhand/mdl_warlock_offhand"
+		"item_name"								"#DOTA_Item_Lantern_of_the_Wailing_Inferno"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Lantern"
+		"model_player"							"models/items/warlock/mdl_warlock_offhand/mdl_warlock_offhand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_warlock/warlock_ambient_smoke.vpcf"
+				"system"						"particles/units/heroes/hero_warlock/warlock_ambient_smoke.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"8357"
+	{
+		"name"									"Garb of the Wailing Inferno"
+		"prefab"								"wearable"
+		"creation_date"							"2015-04-21"
+		"image_inventory"						"econ/items/warlock/mdl_warlock_back/mdl_warlock_back"
+		"item_name"								"#DOTA_Item_Garb_of_the_Wailing_Inferno"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Garb"
+		"model_player"							"models/items/warlock/mdl_warlock_back/mdl_warlock_back.vmdl"
+	}
+	"8358"
+	{
+		"name"									"Bracers of the Wailing Inferno"
+		"prefab"								"wearable"
+		"creation_date"							"2015-04-21"
+		"image_inventory"						"econ/items/warlock/mdl_warlock_arms/mdl_warlock_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Wailing_Inferno"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/warlock/mdl_warlock_arms/mdl_warlock_arms.vmdl"
+	}
+	"8359"
+	{
+		"name"									"Staff of the Wailing Inferno"
+		"prefab"								"wearable"
+		"creation_date"							"2015-04-21"
+		"image_inventory"						"econ/items/warlock/mdl_warlock_weapon/mdl_warlock_weapon"
+		"item_name"								"#DOTA_Item_Staff_of_the_Wailing_Inferno"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/warlock/mdl_warlock_weapon/mdl_warlock_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf"
+				"system"						"particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"8360"
+	{
+		"name"									"Hood of the Wailing Inferno"
+		"prefab"								"wearable"
+		"creation_date"							"2015-04-21"
+		"image_inventory"						"econ/items/warlock/mdl_warlock_head/mdl_warlock_head"
+		"item_name"								"#DOTA_Item_Hood_of_the_Wailing_Inferno"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hood"
+		"model_player"							"models/items/warlock/mdl_warlock_head/mdl_warlock_head.vmdl"
+	}
+	"8361"
+	{
+		"name"									"Bag of the Wailing Inferno"
+		"prefab"								"wearable"
+		"creation_date"							"2015-04-21"
+		"image_inventory"						"econ/items/warlock/mdl_warlock_belt/mdl_warlock_belt"
+		"item_name"								"#DOTA_Item_Bag_of_the_Wailing_Inferno"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Bag"
+		"model_player"							"models/items/warlock/mdl_warlock_belt/mdl_warlock_belt.vmdl"
+	}
+	"8940"
+	{
+		"name"									"Servant of the Infernal Maw"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/warlock/golem/mystery_of_the_lost_ores_golem/mystery_of_the_lost_ores_golem_npc_dota_warlock_golem"
+		"item_description"						"#DOTA_Item_Desc_Servant_of_the_Infernal_Maw"
+		"item_name"								"#DOTA_Item_Servant_of_the_Infernal_Maw"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Warlock_Golem"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_warlock_golem"
+				"modifier"						"models/items/warlock/golem/mystery_of_the_lost_ores_golem/mystery_of_the_lost_ores_golem.vmdl"
+			}
+		}
+	}
+	"8941"
+	{
+		"name"									"Hood of the Infernal Maw"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/warlock/mystery_of_the_lost_ores_head/mystery_of_the_lost_ores_head"
+		"item_description"						"#DOTA_Item_Desc_Hood_of_the_Infernal_Maw"
+		"item_name"								"#DOTA_Item_Hood_of_the_Infernal_Maw"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/warlock/mystery_of_the_lost_ores_head/mystery_of_the_lost_ores_head.vmdl"
+	}
+	"8942"
+	{
+		"name"									"Bracers of the Infernal Maw"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/warlock/mystery_of_the_lost_ores_arms/mystery_of_the_lost_ores_arms"
+		"item_description"						"#DOTA_Item_Desc_Bracers_of_the_Infernal_Maw"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Infernal_Maw"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/warlock/mystery_of_the_lost_ores_arms/mystery_of_the_lost_ores_arms.vmdl"
+	}
+	"8943"
+	{
+		"name"									"Garment of the Infernal Maw"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/warlock/mystery_of_the_lost_ores_back/mystery_of_the_lost_ores_back"
+		"item_description"						"#DOTA_Item_Desc_Garment_of_the_Infernal_Maw"
+		"item_name"								"#DOTA_Item_Garment_of_the_Infernal_Maw"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/warlock/mystery_of_the_lost_ores_back/mystery_of_the_lost_ores_back.vmdl"
+	}
+	"8944"
+	{
+		"name"									"Pauldrons of the Infernal Maw"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/warlock/mystery_of_the_lost_ores_shoulder/mystery_of_the_lost_ores_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Pauldrons_of_the_Infernal_Maw"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Infernal_Maw"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/warlock/mystery_of_the_lost_ores_shoulder/mystery_of_the_lost_ores_shoulder.vmdl"
+	}
+	"8945"
+	{
+		"name"									"Staff of the Infernal Maw"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/warlock/mystery_of_the_lost_ores_weapon/mystery_of_the_lost_ores_weapon"
+		"item_description"						"#DOTA_Item_Desc_Staff_of_the_Infernal_Maw"
+		"item_name"								"#DOTA_Item_Staff_of_the_Infernal_Maw"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/warlock/mystery_of_the_lost_ores_weapon/mystery_of_the_lost_ores_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf"
+				"system"						"particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"8946"
+	{
+		"name"									"Book of the Infernal Maw"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/warlock/mystery_of_the_lost_ores_belt/mystery_of_the_lost_ores_belt"
+		"item_description"						"#DOTA_Item_Desc_Book_of_the_Infernal_Maw"
+		"item_name"								"#DOTA_Item_Book_of_the_Infernal_Maw"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/warlock/mystery_of_the_lost_ores_belt/mystery_of_the_lost_ores_belt.vmdl"
+	}
+	"8947"
+	{
+		"name"									"Lantern of the Infernal Maw"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/warlock/mystery_of_the_lost_ores_off_hand/mystery_of_the_lost_ores_off_hand"
+		"item_description"						"#DOTA_Item_Desc_Lantern_of_the_Infernal_Maw"
+		"item_name"								"#DOTA_Item_Lantern_of_the_Infernal_Maw"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/warlock/mystery_of_the_lost_ores_off_hand/mystery_of_the_lost_ores_off_hand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/warlock/warlock_lost_ores/warlock_lost_ores_offhand_glow.vpcf"
+				"system"						"particles/econ/items/warlock/warlock_lost_ores/warlock_lost_ores_offhand_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+				}
+			}
+		}
+	}
+	"9861"
+	{
+		"name"									"Gauntlets of the Hellsworn"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/warlock/hellsworn_arms/hellsworn_arms"
+		"item_name"								"#DOTA_Item_Gauntlets_of_the_Hellsworn"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Gauntlets"
+		"model_player"							"models/items/warlock/hellsworn_arms/hellsworn_arms.vmdl"
+	}
+	"9862"
+	{
+		"name"									"Pauldron of the Hellsworn"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/warlock/hellsworn_shoulder/hellsworn_shoulder"
+		"item_name"								"#DOTA_Item_Pauldron_of_the_Hellsworn"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldron"
+		"model_player"							"models/items/warlock/hellsworn_shoulder/hellsworn_shoulder.vmdl"
+	}
+	"9865"
+	{
+		"name"									"Hellsworn Construct"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/warlock/golem/hellsworn_golem/hellsworn_golem_npc_dota_warlock_golem"
+		"item_description"						"#DOTA_Item_Desc_Hellsworn_Construct"
+		"item_name"								"#DOTA_Item_Hellsworn_Construct"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Warlock_Golem"
+		"particle_folder"						"particles/units/heroes/hero_warlock"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_warlock_golem"
+				"modifier"						"models/items/warlock/golem/hellsworn_golem/hellsworn_golem.vmdl"
+			}
+			"asset_modifier2"
+			{
+				"type"							"ability_icon"
+				"asset"							"warlock_rain_of_chaos"
+				"modifier"						"warlock/tools_hellsworn_icons/warlock_rain_of_chaos"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"warlock_golem_permanent_immolation"
+				"modifier"						"warlock/tools_hellsworn_icons/warlock_golem_permanent_immolation"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"warlock_golem_flaming_fists"
+				"modifier"						"warlock/tools_hellsworn_icons/warlock_golem_flaming_fists"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_warlock/golem_ambient.vpcf"
+				"modifier"						"particles/econ/items/warlock/warlock_hellsworn_construct/golem_hellsworn_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9919"
+	{
+		"name"									"Staff of the Dread Compact"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-21"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/warlock/ti_8_warlock_darkness_apostate_weapon_v2/ti_8_warlock_darkness_apostate_weapon_v2"
+		"item_name"								"#DOTA_Item_Staff_of_the_Dread_Compact"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/warlock/ti_8_warlock_darkness_apostate_weapon_v2/ti_8_warlock_darkness_apostate_weapon_v2.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/warlock/warlock_ti8/warlock_ti8_staff_ambient.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"9920"
+	{
+		"name"									"Arms of the Dread Compact"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/warlock/ti_8_warlock_darkness_apostate_arms/ti_8_warlock_darkness_apostate_arms"
+		"item_name"								"#DOTA_Item_Arms_of_the_Dread_Compact"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/warlock/ti_8_warlock_darkness_apostate_arms/ti_8_warlock_darkness_apostate_arms.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"9921"
+	{
+		"name"									"Golem of the Dread Compact"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/warlock/golem/ti_8_warlock_darkness_apostate_golem/ti_8_warlock_darkness_apostate_golem_npc_dota_warlock_golem"
+		"item_name"								"#DOTA_Item_Golem_of_the_Dread_Compact"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Warlock_Golem"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_warlock_golem"
+				"modifier"						"models/items/warlock/golem/ti_8_warlock_darkness_apostate_golem/ti_8_warlock_darkness_apostate_golem.vmdl"
+			}
+		}
+	}
+	"9922"
+	{
+		"name"									"Cowl of the Dread Compact"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/warlock/ti_8_warlock_darkness_apostate_head/ti_8_warlock_darkness_apostate_head"
+		"item_name"								"#DOTA_Item_Cowl_of_the_Dread_Compact"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/warlock/ti_8_warlock_darkness_apostate_head/ti_8_warlock_darkness_apostate_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"9923"
+	{
+		"name"									"Tome of the Dread Compact"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/warlock/ti_8_warlock_darkness_apostate_off_hand/ti_8_warlock_darkness_apostate_off_hand"
+		"item_name"								"#DOTA_Item_Tome_of_the_Dread_Compact"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/warlock/ti_8_warlock_darkness_apostate_off_hand/ti_8_warlock_darkness_apostate_off_hand.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_warlock/warlock_ambient_smoke.vpcf"
+				"system"						"particles/units/heroes/hero_warlock/warlock_ambient_smoke.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"9924"
+	{
+		"name"									"Robes of the Dread Compact"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/warlock/ti_8_warlock_darkness_apostate_back/ti_8_warlock_darkness_apostate_back"
+		"item_name"								"#DOTA_Item_Robes_of_the_Dread_Compact"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/warlock/ti_8_warlock_darkness_apostate_back/ti_8_warlock_darkness_apostate_back.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"9925"
+	{
+		"name"									"Belt of the Dread Compact"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/warlock/ti_8_warlock_darkness_apostate_belt/ti_8_warlock_darkness_apostate_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Dread_Compact"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/warlock/ti_8_warlock_darkness_apostate_belt/ti_8_warlock_darkness_apostate_belt.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/warlock/warlock_ti8/warlock_ti8_head_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9926"
+	{
+		"name"									"Mantle of the Dread Compact"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/warlock/ti_8_warlock_darkness_apostate_shoulder/ti_8_warlock_darkness_apostate_shoulder"
+		"item_name"								"#DOTA_Item_Mantle_of_the_Dread_Compact"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/warlock/ti_8_warlock_darkness_apostate_shoulder/ti_8_warlock_darkness_apostate_shoulder.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"12956"
+	{
+		"name"									"Umbral Glyph"
+		"prefab"								"wearable"
+		"creation_date"							"2019-07-04"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/warlock/warlock_ti9_immortal_lantern/warlock_ti9_immortal_lantern"
+		"item_description"						"#DOTA_Item_Desc_Umbral_Glyph"
+		"item_name"								"#DOTA_Item_Umbral_Glyph"
+		"item_rarity"							"immortal"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/warlock/warlock_ti9_immortal_lantern/warlock_ti9_immortal_lantern.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1598997600"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/warlock/warlock_ti9/warlock_ti9_lantern_ambient.vpcf"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_warlock/warlock_shadow_word_buff.vpcf"
+				"modifier"						"particles/econ/items/warlock/warlock_ti9/warlock_ti9_shadow_word_buff.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier1"
+			{
+				"type"							"ability_icon"
+				"asset"							"warlock_shadow_word"
+				"modifier"						"warlock/ti9_immortal_offhand/warlock_shadow_word"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti9"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_warlock/warlock_shadow_word_debuff.vpcf"
+				"modifier"						"particles/econ/items/warlock/warlock_ti9/warlock_ti9_shadow_word_debuff.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier4"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Warlock.ShadowWord"
+				"modifier"						"Hero_Warlock.ShadowWord.TI9"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+		}
+	}
+	"13274"
+	{
+		"name"									"Tribal Pathways Staff"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/warlock/ti9_cache_warlock_tribal_warlock_weapon/ti9_cache_warlock_tribal_warlock_weapon"
+		"item_name"								"#DOTA_Item_Tribal_Pathways_Staff"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/warlock/ti9_cache_warlock_tribal_warlock_weapon/ti9_cache_warlock_tribal_warlock_weapon.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf"
+				"system"						"particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/warlock/warlock_ti9_cache_tribal/warlock_ti9_tribal_weapon_ambient.vpcf"
+			}
+		}
+	}
+	"13275"
+	{
+		"name"									"Tribal Pathways Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/warlock/ti9_cache_warlock_tribal_warlock_shoulder/ti9_cache_warlock_tribal_warlock_shoulder"
+		"item_name"								"#DOTA_Item_Tribal_Pathways_Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/warlock/ti9_cache_warlock_tribal_warlock_shoulder/ti9_cache_warlock_tribal_warlock_shoulder.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"13276"
+	{
+		"name"									"Tribal Pathways Necklace"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/warlock/ti9_cache_warlock_tribal_warlock_belt/ti9_cache_warlock_tribal_warlock_belt"
+		"item_name"								"#DOTA_Item_Tribal_Pathways_Necklace"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/warlock/ti9_cache_warlock_tribal_warlock_belt/ti9_cache_warlock_tribal_warlock_belt.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"13277"
+	{
+		"name"									"Tribal Pathways Lantern"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/warlock/ti9_cache_warlock_tribal_warlock_off_hand/ti9_cache_warlock_tribal_warlock_off_hand"
+		"item_name"								"#DOTA_Item_Tribal_Pathways_Lantern"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/warlock/ti9_cache_warlock_tribal_warlock_off_hand/ti9_cache_warlock_tribal_warlock_off_hand.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_warlock/warlock_ambient_smoke.vpcf"
+				"system"						"particles/units/heroes/hero_warlock/warlock_ambient_smoke.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/warlock/warlock_ti9_cache_tribal/warlock_ti9_lantern_eyes_ambient.vpcf"
+			}
+		}
+	}
+	"13278"
+	{
+		"name"									"Tribal Pathways Crown"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/warlock/ti9_cache_warlock_tribal_warlock_head/ti9_cache_warlock_tribal_warlock_head"
+		"item_name"								"#DOTA_Item_Tribal_Pathways_Crown"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/warlock/ti9_cache_warlock_tribal_warlock_head/ti9_cache_warlock_tribal_warlock_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/warlock/warlock_ti9_cache_tribal/warlock_ti9_tribal_head_ambient.vpcf"
+			}
+		}
+	}
+	"13279"
+	{
+		"name"									"Tribal Pathways Golem"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/warlock/golem/ti9_cache_warlock_tribal_warlock_golem/ti9_cache_warlock_tribal_golem_alt_npc_dota_warlock_golem"
+		"item_name"								"#DOTA_Item_Tribal_Pathways_Golem"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Warlock_Golem"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_warlock_golem"
+				"modifier"						"models/items/warlock/golem/ti9_cache_warlock_tribal_warlock_golem/ti9_cache_warlock_tribal_golem_alt.vmdl"
+			}
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_warlock/golem_ambient.vpcf"
+				"modifier"						"particles/econ/items/warlock/warlock_ti9_cache_tribal/warlock_ti9_golem_ambient.vpcf"
+			}
+		}
+	}
+	"13280"
+	{
+		"name"									"Tribal Pathways Bracer"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/warlock/ti9_cache_warlock_tribal_warlock_arms/ti9_cache_warlock_tribal_warlock_arms"
+		"item_name"								"#DOTA_Item_Tribal_Pathways_Bracer"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/warlock/ti9_cache_warlock_tribal_warlock_arms/ti9_cache_warlock_tribal_warlock_arms.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"13281"
+	{
+		"name"									"Tribal Pathways Robe"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/warlock/ti9_cache_warlock_tribal_warlock_back/ti9_cache_warlock_tribal_warlock_back"
+		"item_name"								"#DOTA_Item_Tribal_Pathways_Robe"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/warlock/ti9_cache_warlock_tribal_warlock_back/ti9_cache_warlock_tribal_warlock_back.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"13809"
+	{
+		"name"									"Warden of the Hellborn"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"hide_tradecraftdelete"					"1"
+		"image_inventory"						"econ/items/warlock/warlock_ti10_immortal_head/warlock_ti10_immortal_head"
+		"item_description"						"#DOTA_Item_Desc_Warden_of_the_Hellborn"
+		"item_name"								"#DOTA_Item_Warden_of_the_Hellborn"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"model_player"							"models/items/warlock/warlock_ti10_immortal_head/warlock_ti10_immortal_head.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_TI10_Limited_Tradeability"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"ability_icon"
+				"asset"							"warlock_fatal_bonds"
+				"modifier"						"warlock/warlock_ti10_immortal_ability_icons/warlock_fatal_bonds_ti10"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_warlock/warlock_fatal_bonds_icon.vpcf"
+				"modifier"						"particles/econ/items/warlock/warlock_ti10_head/warlock_ti_10_fatal_bonds_icon.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_warlock/warlock_fatal_bonds_pulse.vpcf"
+				"modifier"						"particles/econ/items/warlock/warlock_ti10_head/warlock_ti_10_fatal_bonds_pulse.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_warlock/warlock_fatal_bonds_hit.vpcf"
+				"modifier"						"particles/econ/items/warlock/warlock_ti10_head/warlock_ti_10_fatal_bonds_pulse_flame.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/warlock/warlock_ti10_head/warlock_ti_10_ambient_glyph.vpcf"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/warlock/warlock_ti10_head/warlock_ti_10_ambient_hair.vpcf"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_warlock/warlock_fatal_bonds_hit_parent.vpcf"
+				"modifier"						"particles/econ/items/warlock/warlock_ti10_head/warlock_ti_10_fatal_bonds_cast.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+		}
+	}
+	"13997"
+	{
+		"name"									"Beholden of the Banished Ones - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/warlock/puppet_summoner_weapon/puppet_summoner_weapon"
+		"item_name"								"#DOTA_Item_Beholden_of_the_Banished_Ones__Weapon"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/warlock/puppet_summoner_weapon/puppet_summoner_weapon.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf"
+				"system"						"particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/models/items/warlock/ti10_puppet_summoner_staff/ti10_puppet_summoner_staff.vpcf"
+			}
+		}
+	}
+	"13998"
+	{
+		"name"									"Beholden of the Banished Ones - Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/warlock/puppet_summoner_off_hand/puppet_summoner_off_hand"
+		"item_name"								"#DOTA_Item_Beholden_of_the_Banished_Ones__OffHand"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/warlock/puppet_summoner_off_hand/puppet_summoner_off_hand.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_warlock/warlock_ambient_smoke.vpcf"
+				"system"						"particles/units/heroes/hero_warlock/warlock_ambient_smoke.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+			"skip_model_combine"				"0"
+		}
+	}
+	"13999"
+	{
+		"name"									"Beholden of the Banished Ones - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/warlock/puppet_summoner_head/puppet_summoner_head"
+		"item_name"								"#DOTA_Item_Beholden_of_the_Banished_Ones__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/warlock/puppet_summoner_head/puppet_summoner_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/models/items/warlock/ti10_puppet_summoner_head/ti10_puppet_summoner_head.vpcf"
+			}
+		}
+	}
+	"14000"
+	{
+		"name"									"Beholden of the Banished Ones - Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/warlock/puppet_summoner_belt/puppet_summoner_belt"
+		"item_name"								"#DOTA_Item_Beholden_of_the_Banished_Ones__Belt"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/warlock/puppet_summoner_belt/puppet_summoner_belt.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"14001"
+	{
+		"name"									"Beholden of the Banished Ones - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/warlock/puppet_summoner_back/puppet_summoner_back"
+		"item_name"								"#DOTA_Item_Beholden_of_the_Banished_Ones__Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"model_player"							"models/items/warlock/puppet_summoner_back/puppet_summoner_back.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"14002"
+	{
+		"name"									"Beholden of the Banished Ones - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/warlock/puppet_summoner_arms/puppet_summoner_arms"
+		"item_name"								"#DOTA_Item_Beholden_of_the_Banished_Ones__Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"model_player"							"models/items/warlock/puppet_summoner_arms/puppet_summoner_arms.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"14269"
+	{
+		"name"									"Beholden of the Banished Ones - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/warlock/puppet_summoner_shoulder/puppet_summoner_shoulder"
+		"item_name"								"#DOTA_Item_Beholden_of_the_Banished_Ones__Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/warlock/puppet_summoner_shoulder/puppet_summoner_shoulder.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/models/items/warlock/ti10_puppet_summoner_shoulder/ti10_puppet_summoner_shoulder.vpcf"
+			}
+		}
+	}
+	"14297"
+	{
+		"name"									"Staff of the Spiteful Djinn"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/warlock/warlock_the_infernal_master_weapon/warlock_the_infernal_master_weapon"
+		"item_name"								"#DOTA_Item_Staff_of_the_Spiteful_Djinn"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/warlock/warlock_the_infernal_master_weapon/warlock_the_infernal_master_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf"
+				"system"						"particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"14298"
+	{
+		"name"									"Armor of the Spiteful Djinn"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/warlock/warlock_the_infernal_master_shoulder/warlock_the_infernal_master_shoulder"
+		"item_name"								"#DOTA_Item_Armor_of_the_Spiteful_Djinn"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/warlock/warlock_the_infernal_master_shoulder/warlock_the_infernal_master_shoulder.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/warlock/warlock_infernal_master/warlock_infernal_master_shoulder.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"14299"
+	{
+		"name"									"Lamp of the Spiteful Djinn"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/warlock/warlock_the_infernal_master_off_hand/warlock_the_infernal_master_off_hand"
+		"item_name"								"#DOTA_Item_Lamp_of_the_Spiteful_Djinn"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/warlock/warlock_the_infernal_master_off_hand/warlock_the_infernal_master_off_hand.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/warlock/warlock_infernal_master/warlock_infernal_master_lamp.vpcf"
+			}
+		}
+	}
+	"14300"
+	{
+		"name"									"Hood of the Spiteful Djinn"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/warlock/warlock_the_infernal_master_head/warlock_the_infernal_master_head"
+		"item_name"								"#DOTA_Item_Hood_of_the_Spiteful_Djinn"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/warlock/warlock_the_infernal_master_head/warlock_the_infernal_master_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/warlock/warlock_infernal_master/warlock_infernal_master_head.vpcf"
+			}
+		}
+	}
+	"14301"
+	{
+		"name"									"Spiteful Djinn"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/warlock/golem/warlock_the_infernal_master_golem/warlock_the_infernal_master_golem_npc_dota_warlock_golem"
+		"item_name"								"#DOTA_Item_Spiteful_Djinn"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability_ultimate"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_warlock_golem"
+				"modifier"						"models/items/warlock/golem/warlock_the_infernal_master_golem/warlock_the_infernal_master_golem.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"modifier"						"particles/econ/items/warlock/warlock_golem_infernal_master/warlock_golem_infernal_master.vpcf"
+				"asset"							"particles/units/heroes/hero_warlock/golem_ambient.vpcf"
+			}
+		}
+	}
+	"14302"
+	{
+		"name"									"Belt of the Spiteful Djinn"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/warlock/warlock_the_infernal_master_belt/warlock_the_infernal_master_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Spiteful_Djinn"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"model_player"							"models/items/warlock/warlock_the_infernal_master_belt/warlock_the_infernal_master_belt.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/warlock/warlock_infernal_master/warlock_infernal_master_belt.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"14303"
+	{
+		"name"									"Dress of the Spiteful Djinn"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/warlock/warlock_the_infernal_master_back/warlock_the_infernal_master_back"
+		"item_name"								"#DOTA_Item_Dress_of_the_Spiteful_Djinn"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"model_player"							"models/items/warlock/warlock_the_infernal_master_back/warlock_the_infernal_master_back.vmdl"
+	}
+	"14304"
+	{
+		"name"									"Bracers of the Spiteful Djinn"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/warlock/warlock_the_infernal_master_arms/warlock_the_infernal_master_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Spiteful_Djinn"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"model_player"							"models/items/warlock/warlock_the_infernal_master_arms/warlock_the_infernal_master_arms.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/warlock/warlock_infernal_master/warlock_infernal_master_arms.vpcf"
+			}
+		}
+	}
+	"14946"
+	{
+		"name"									"Beholden of the Banished Ones - Golem"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/warlock/golem/puppet_summoner_golem/puppet_summoner_golem_npc_dota_warlock_golem"
+		"item_name"								"#DOTA_Item_Beholden_of_the_Banished_Ones__Golem"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Warlock_Golem"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_warlock_golem"
+				"modifier"						"models/items/warlock/golem/puppet_summoner_golem/puppet_summoner_golem.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_warlock/golem_ambient.vpcf"
+				"modifier"						"particles/models/items/warlock/ti10_puppet_summoner_golem/ti10_puppet_summoner_golem.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"19296"
+	{
+		"name"									"Greevil Master Greevil Golem"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"image_inventory"						"econ/items/warlock/golem/greevil_master_greevil_golem/greevil_master_greevil_golem_npc_dota_warlock_golem"
+		"item_name"								"#DOTA_WARLOCK_Greevil_Master_Greevil_Golem_GOLEM"
+		"item_rarity"							"rare"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Warlock_Golem"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_warlock_golem"
+				"modifier"						"models/items/warlock/golem/greevil_master_greevil_golem/greevil_master_greevil_golem.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_warlock/golem_ambient.vpcf"
+				"modifier"						"particles/econ/items/warlock/greevil_golem/greevil_golem_ambient.vpcf"
+			}
+		}
+		"workshop_accepted"						"0"
+	}
+	"19297"
+	{
+		"name"									"Greevil Master Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"image_inventory"						"econ/items/warlock/greevil_master_off_hand/greevil_master_off_hand"
+		"item_name"								"#DOTA_Item_Vote_Only_Greevil_Master_OffHand"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/warlock/greevil_master_off_hand/greevil_master_off_hand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_warlock/warlock_ambient_smoke.vpcf"
+				"system"						"particles/units/heroes/hero_warlock/warlock_ambient_smoke.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+		"workshop_accepted"						"0"
+	}
+	"19298"
+	{
+		"name"									"Greevil Master Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"image_inventory"						"econ/items/warlock/greevil_master_weapon/greevil_master_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_Greevil_Master_Weapon"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/warlock/greevil_master_weapon/greevil_master_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf"
+				"system"						"particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+		"workshop_accepted"						"0"
+	}
+	"19299"
+	{
+		"name"									"Greevil Master Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"image_inventory"						"econ/items/warlock/greevil_master_shoulder/greevil_master_shoulder"
+		"item_name"								"#DOTA_Item_Vote_Only_Greevil_Master_Shoulder"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/warlock/greevil_master_shoulder/greevil_master_shoulder.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19320"
+	{
+		"name"									"Greevil Master Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"image_inventory"						"econ/items/warlock/greevil_master_head/greevil_master_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Greevil_Master_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"model_player"							"models/items/warlock/greevil_master_head/greevil_master_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19321"
+	{
+		"name"									"Greevil Master Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"image_inventory"						"econ/items/warlock/greevil_master_belt/greevil_master_belt"
+		"item_name"								"#DOTA_Item_Vote_Only_Greevil_Master_Belt"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"model_player"							"models/items/warlock/greevil_master_belt/greevil_master_belt.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19322"
+	{
+		"name"									"Greevil Master Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"image_inventory"						"econ/items/warlock/greevil_master_back/greevil_master_back"
+		"item_name"								"#DOTA_Item_Vote_Only_Greevil_Master_Back"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"model_player"							"models/items/warlock/greevil_master_back/greevil_master_back.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19323"
+	{
+		"name"									"Greevil Master Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"image_inventory"						"econ/items/warlock/greevil_master_arms/greevil_master_arms"
+		"item_name"								"#DOTA_Item_Vote_Only_Greevil_Master_Arms"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"model_player"							"models/items/warlock/greevil_master_arms/greevil_master_arms.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"20109"
+	{
+		"name"									"The Demonic Archivist Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bracers of the Archivist"			"1"
+			"Demonbag of the Archivist"			"1"
+			"Grand Mantle of the Archivist"		"1"
+			"Lantern of the Archivist"			"1"
+			"Robe of the Archivist"				"1"
+			"Staff of the Archivist"			"1"
+			"Shroud of the Archivist"			"1"
+			"Ishul-Shog the Watcher"			"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_The_Demonic_Archivist_Set"
+		"item_description"						"#DOTA_Item_Desc_The_Demonic_Archivist_Set"
+		"item_name"								"#DOTA_Item_The_Demonic_Archivist_Set"
+		"item_rarity"							"mythical"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Mythical"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"799"
+		}
+	}
+	"20319"
+	{
+		"name"									"The Exiled Demonologist Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bracers of the Conjurer"			"1"
+			"Dark Pauldrons of the Conjurer"	"1"
+			"Doom of Ithogoaki"					"1"
+			"Garment of Control"				"1"
+			"Hood of the Conjurer"				"1"
+			"Lantern of the Conjuring Sigil"	"1"
+			"Staff of the Malevolent"			"1"
+			"Demonomicon"						"1"
+		}
+		"creation_date"							"2013-11-26"
+		"image_inventory"						"econ/sets/DOTA_Item_The_Exiled_Demonologist_Set"
+		"item_description"						"#DOTA_Item_Desc_The_Exiled_Demonologist_Set"
+		"item_name"								"#DOTA_Item_The_Exiled_Demonologist_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Mythical"
+			"category_tags"						"Bundles"
+			"date"								"11/26/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20704"
+	{
+		"name"									"CEVO Season 6"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bag of the Dark Curator"			"1"
+			"Dark Curator Loading Screen"		"1"
+			"Bracers of the Dark Curator"		"1"
+			"Demon of the Dark Curator"			"1"
+			"Hood of the Dark Curator"			"1"
+			"Lantern of the Dark Curator"		"1"
+			"Pauldrons of the Dark Curator"		"1"
+			"Robe of the Dark Curator"			"1"
+			"Staff of the Dark Curator"			"1"
+			"CEVO Season 6 Ticket"				"1"
+		}
+		"creation_date"							"2014-12-18"
+		"image_inventory"						"econ/leagues/subscriptions_cevo_season6_bundle"
+		"item_description"						"#DOTA_Item_Desc_CEVO_Season_6"
+		"item_name"								"#DOTA_Item_CEVO_Season_6"
+		"item_rarity"							"rare"
+	}
+	"20735"
+	{
+		"name"									"2015 Rescuer MDL Bundle"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bronzemonster of the Wailing Inferno""1"
+			"Shoulder of the Wailing Inferno"	"1"
+			"Lantern of the Wailing Inferno"	"1"
+			"Garb of the Wailing Inferno"		"1"
+			"Bracers of the Wailing Inferno"	"1"
+			"Staff of the Wailing Inferno"		"1"
+			"Hood of the Wailing Inferno"		"1"
+			"Bag of the Wailing Inferno"		"1"
+			"The Wailing Inferno Loading Screen""1"
+			"2015 Rescuer MDL"					"1"
+		}
+		"creation_date"							"2015-05-06"
+		"image_inventory"						"econ/leagues/subscriptions_marstv_dota_2_league_bundle"
+		"item_description"						"#DOTA_Item_Desc_2015_Rescuer_MDL_Bundle"
+		"item_name"								"#DOTA_Item_2015_Rescuer_MDL_Bundle"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Tournament_Bundle"
+	}
+	"20759"
+	{
+		"name"									"Dark Curator"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bag of the Dark Curator"			"1"
+			"Robe of the Dark Curator"			"1"
+			"Bracers of the Dark Curator"		"1"
+			"Hood of the Dark Curator"			"1"
+			"Lantern of the Dark Curator"		"1"
+			"Demon of the Dark Curator"			"1"
+			"Pauldrons of the Dark Curator"		"1"
+			"Staff of the Dark Curator"			"1"
+			"Dark Curator Loading Screen"		"1"
+		}
+		"creation_date"							"2016-03-08"
+		"image_inventory"						"econ/loading_screens/dark_curator_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Dark_Curator"
+		"item_name"								"#DOTA_Item_Dark_Curator"
+		"item_rarity"							"rare"
+	}
+	"20770"
+	{
+		"name"									"TEvent Dota 2 Season 2"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"TEvent Dota 2 Season 2 Ticket"		"1"
+			"Pauldrons of the Gatekeeper"		"1"
+			"Bracers of the Gatekeeper"			"1"
+			"Belt of the Gatekeeper"			"1"
+			"Cloak of the Gatekeeper"			"1"
+			"Hood of the Gatekeeper"			"1"
+			"Key of the Gatekeeper"				"1"
+			"Staff of the Gatekeeper"			"1"
+			"Wretched Guardian"					"1"
+		}
+		"creation_date"							"2015-03-13"
+		"image_inventory"						"econ/leagues/subscriptions_tevent_dota_2_season_2_bundle"
+		"item_description"						"#DOTA_Item_Desc_TEvent_Dota_2_Season_2"
+		"item_name"								"#DOTA_Item_TEvent_Dota_2_Season_2"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Tournament_bundle"
+	}
+	"20790"
+	{
+		"name"									"Tools of the Hellsworn"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Gauntlets of the Hellsworn"		"1"
+			"Pauldron of the Hellsworn"			"1"
+			"Hellsworn Construct"				"1"
+		}
+		"creation_date"							"2015-10-12"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/bundles/hellsworn_tools_bundle"
+		"item_description"						"#DOTA_Item_Desc_Tools_of_the_Hellsworn"
+		"item_name"								"#DOTA_Item_Tools_of_the_Hellsworn"
+		"item_rarity"							"mythical"
+		"preview_override_def_index"			"9865"
+	}
+	"20877"
+	{
+		"name"									"The Gatekeeper"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bracers of the Gatekeeper"			"1"
+			"Belt of the Gatekeeper"			"1"
+			"Cloak of the Gatekeeper"			"1"
+			"Hood of the Gatekeeper"			"1"
+			"Key of the Gatekeeper"				"1"
+			"Staff of the Gatekeeper"			"1"
+			"Pauldrons of the Gatekeeper"		"1"
+			"The Gatekeeper Loading Screen"		"1"
+			"Wretched Guardian"					"1"
+		}
+		"creation_date"							"2016-03-08"
+		"image_inventory"						"econ/loading_screens/tevent_2_gatekeeper_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_The_Gatekeeper"
+		"item_name"								"#DOTA_Item_The_Gatekeeper"
+		"item_rarity"							"rare"
+	}
+	"21062"
+	{
+		"name"									"Chaos of the Infernal Maw"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Hood of the Infernal Maw"			"1"
+			"Bracers of the Infernal Maw"		"1"
+			"Garment of the Infernal Maw"		"1"
+			"Pauldrons of the Infernal Maw"		"1"
+			"Staff of the Infernal Maw"			"1"
+			"Book of the Infernal Maw"			"1"
+			"Lantern of the Infernal Maw"		"1"
+			"Loading Screen of the Infernal Maw""1"
+			"Servant of the Infernal Maw"		"1"
+		}
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/mystery_of_the_lost_ores_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Chaos_of_the_Infernal_Maw"
+		"item_name"								"#DOTA_Item_Chaos_of_the_Infernal_Maw"
+		"item_rarity"							"mythical"
+	}
+	"21204"
+	{
+		"name"									"Dread Compact"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Mantle of the Dread Compact"		"1"
+			"Belt of the Dread Compact"			"1"
+			"Robes of the Dread Compact"		"1"
+			"Tome of the Dread Compact"			"1"
+			"Cowl of the Dread Compact"			"1"
+			"Golem of the Dread Compact"		"1"
+			"Arms of the Dread Compact"			"1"
+			"Staff of the Dread Compact"		"1"
+		}
+		"creation_date"							"2018-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/sets/DOTA_Item_TI_8_Warlock_Darkness_Apostate"
+		"item_description"						"#DOTA_Item_Desc_TI_8_Warlock_Darkness_Apostate"
+		"item_name"								"#DOTA_Item_Dread_Compact"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+		}
+	}
+	"21378"
+	{
+		"name"									"Tribal Pathways"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Tribal Pathways Bracer"			"1"
+			"Tribal Pathways Robe"				"1"
+			"Tribal Pathways Staff"				"1"
+			"Tribal Pathways Shoulder"			"1"
+			"Tribal Pathways Lantern"			"1"
+			"Tribal Pathways Crown"				"1"
+			"Tribal Pathways Golem"				"1"
+			"Tribal Pathways Necklace"			"1"
+		}
+		"creation_date"							"2019-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/sets/DOTA_Item_Tribal_Pathways"
+		"item_description"						"#DOTA_Item_Desc_Tribal_Pathways"
+		"item_name"								"#DOTA_Item_Tribal_Pathways"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+		}
+	}
+	"21477"
+	{
+		"name"									"Beholden of the Banished Ones"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Beholden of the Banished Ones - Golem""1"
+			"Beholden of the Banished Ones - Shoulder""1"
+			"Beholden of the Banished Ones - Arms""1"
+			"Beholden of the Banished Ones - Back""1"
+			"Beholden of the Banished Ones - Belt""1"
+			"Beholden of the Banished Ones - Head""1"
+			"Beholden of the Banished Ones - Weapon""1"
+			"Beholden of the Banished Ones - Off-Hand""1"
+		}
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Beholden_of_the_Banished_Ones"
+		"item_name"								"#DOTA_Item_Beholden_of_the_Banished_Ones"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21534"
+	{
+		"name"									"Bindings of the Spiteful Djinn"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bracers of the Spiteful Djinn"		"1"
+			"Dress of the Spiteful Djinn"		"1"
+			"Belt of the Spiteful Djinn"		"1"
+			"Hood of the Spiteful Djinn"		"1"
+			"Lamp of the Spiteful Djinn"		"1"
+			"Armor of the Spiteful Djinn"		"1"
+			"Staff of the Spiteful Djinn"		"1"
+			"Spiteful Djinn"					"1"
+		}
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Bindings_of_the_Spiteful_Djinn"
+		"item_name"								"#DOTA_Item_Bindings_of_the_Spiteful_Djinn"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+	}
+	"21776"
+	{
+		"name"									"Greevil Master"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Greevil Master Arms"				"1"
+			"Greevil Master Belt"				"1"
+			"Greevil Master Head"				"1"
+			"Greevil Master Back"				"1"
+			"Greevil Master Shoulder"			"1"
+			"Greevil Master Weapon"				"1"
+			"Greevil Master Off-Hand"			"1"
+			"Greevil Master Greevil Golem"		"1"
+		}
+		"creation_date"							"2021-08-17"
+		"image_inventory"						"econ/sets/dota_item_greevil_master"
+		"item_name"								"#DOTA_Item_Vote_Only_Greevil_Master"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"						"1"
+			"not marketable"					"1"
+			"cannot delete"						"1"
+			"giftable"							"0"
+		}
+		"workshop_accepted"						"0"
+	}
+}

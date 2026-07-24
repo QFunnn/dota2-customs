@@ -1,0 +1,185 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+@keyframes 'MarkPulse'
+{
+	0%
+	{
+		brightness: 1.5;
+		pre-transform-scale2d: 1.1;
+		transform: rotateZ(0deg);
+	}
+	
+	25%
+	{
+		brightness: 0.5;
+		pre-transform-scale2d: 1;
+	}
+	
+	50%
+	{
+		brightness: 1.5;
+		pre-transform-scale2d: 1.1;
+		transform: rotateZ(-10deg);
+	}
+	
+	75%
+	{
+		brightness: 0.5;
+		pre-transform-scale2d: 1;
+	}
+	
+	100%
+	{
+		brightness: 1.5;
+		pre-transform-scale2d: 1.1;
+		transform: rotateZ(0deg);
+	}
+	
+}
+
+#EOM_MenuButtons
+{
+	margin-left: 122px;
+	margin-right: 30px;
+	flow-children: right;
+}
+
+#LeftTopMain
+{
+	transform: translateX(-500px);
+	opacity: 0;
+	transition-property: transform, opacity;
+	transition-duration: 1.5s;
+}
+
+#LeftTopMain.InitAnimation
+{
+	opacity: 1;
+	transform: translateX(0px);
+}
+
+#LeftTopMain #DotaButtonsBG
+{
+	width: 150px;
+	height: 47px;
+	margin-left: -90px;
+	background-color: #0000004d;
+}
+
+#LeftTopMain #LeftTopBG
+{
+	width: 100%;
+	height: 55px;
+	margin-left: 20px;
+	background-image: url("s2r://");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+#LeftTopMain #LeftTopGameLogo
+{
+	width: 108px;
+	height: 48px;
+	margin-left: 12px;
+	background-image: url("s2r://");
+	background-repeat: no-repeat;
+	background-size: 100% 24px;
+	background-position: center center;
+}
+
+#LeftTopMain #LeftTopButtons
+{
+	margin-left: 122px;
+	flow-children: right;
+}
+
+.EOM_MenuButton
+{
+	width: 43px;
+	height: 61px;
+	margin: 0px 4px;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	transition-property: background-image;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+	tooltip-position: bottom;
+	overflow: noclip;
+}
+
+.EOM_MenuButton .LeftTopButtonIcon
+{
+	width: 35px;
+	height: 35px;
+	horizontal-align: center;
+	y: 7px;
+	background-image: url("s2r://");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	transition-property: width, height, position;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_MenuButton Label
+{
+	horizontal-align: center;
+	y: 38px;
+	font-size: 14px;
+	color: #C1A362;
+	text-shadow: 0px 0px 2px 4 #11141B;
+	transition-property: font-size, color, position;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_MenuButton:not(.IsActive):hover
+{
+	background-image: url("s2r://");
+}
+
+.EOM_MenuButton:not(.IsActive):hover Label
+{
+	color: #FFF9B5;
+}
+
+.EOM_MenuButton:active
+{
+	sound: "ui_generic_button_click";
+}
+
+.EOM_MenuButton.IsActive
+{
+	background-image: url("s2r://");
+	background-position: center top -6px;
+	background-size: 54px 72px;
+}
+
+.EOM_MenuButton.IsActive .LeftTopButtonIcon
+{
+	width: 45px;
+	height: 45px;
+	y: 2px;
+}
+
+.EOM_MenuButton.IsActive Label
+{
+	y: 44px;
+	font-size: 16px;
+	color: #FFF9B5;
+}
+
+.EOM_MenuButton.IsActive:active
+{
+	sound: "ui_settings_out_multi";
+}

@@ -1,0 +1,45 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Layer0"
+{
+	"shader"	"spring_meteor.vfx"
+	"F_ALPHA_TEST"	"1"
+	"F_REFLECT_CUBE_MAP"	"1"
+	"g_flAlphaTestReference"	"0"
+	"g_flCubeMapPowerReflect"	"0.183"
+	"g_flCubeMapScalarReflect"	"2"
+	"g_flMeteorBloom"	"0.5"
+	"g_flMeteorBloomSaturation"	"2.5"
+	"g_flMeteorBloomThreshold"	"0.25"
+	"g_flReflectRimPower"	"0"
+	"g_flReflectRimStrength"	"1"
+	"g_flSpecularIntensity"	"1"
+	"g_vColorTint"	"[1.000000 1.000000 1.000000 0.000000]"
+	"g_vTexCoordOffset"	"[0.000000 0.000000 0.000000 0.000000]"
+	"g_vTexCoordScale"	"[1.000000 1.000000 0.000000 0.000000]"
+	"TextureAlphaTest"	"[1.000000 1.000000 1.000000 0.000000]"
+	"TextureBloom"	"[1.000000 1.000000 1.000000 0.000000]"
+	"TextureColor"	"[0.000000 0.466667 0.850980 1.000000]"
+	"TextureSelfIllumMask"	"[1.000000 1.000000 1.000000 0.000000]"
+	"TextureCubeMapReflect"	"eom/suipian/eom_suipian01_2_cube.png"
+	"TextureSpecular"	"eom/shadow_fiend_1/sf_glow_vmat_g_tspecular_542adeb9.png"
+	"Compiled Textures"
+	{
+		"g_tAlphaTest"	"eom/shadow_fiend_1/sf_glow_vmat_g_talphatest_cb32c30e.vtex"
+		"g_tColor"	"eom/shadow_fiend_1/sf_glow_vmat_g_tcolor_ab4721d1.vtex"
+		"g_tCubeMapReflect"	"eom/suipian/eom_suipian01_2_cube_png_386e6f03.vtex"
+		"g_tSpecular"	"eom/shadow_fiend_1/sf_glow_vmat_g_tspecular_542adeb9.vtex"
+	}
+	"DynamicParams"
+	{
+		"g_flReflectRimPower"	"return ((sin(time())+1)/2)*5;"
+	}
+}

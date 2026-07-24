@@ -1,0 +1,4589 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"168"
+	{
+		"name"									"Death Prophet's Dress"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/death_prophet/death_prophet_dress"
+		"item_description"						"#DOTA_Item_Desc_Death_Prophets_Dress"
+		"item_name"								"#DOTA_Item_Death_Prophets_Dress"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Legs"
+		"model_player"							"models/heroes/death_prophet/death_prophet_dress.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/heroes/death_prophet/death_prophet_vortex.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_dress.vpcf"
+				"system"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_dress.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+			}
+		}
+	}
+	"169"
+	{
+		"name"									"Death Prophet's Hair"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/death_prophet/death_prophet_hair"
+		"item_description"						"#DOTA_Item_Desc_Death_Prophets_Hair"
+		"item_name"								"#DOTA_Item_Death_Prophets_Hair"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/death_prophet/death_prophet_hair.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_hair.vpcf"
+				"system"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_hair.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+				}
+			}
+		}
+	}
+	"170"
+	{
+		"name"									"Death Prophet's Corset"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/death_prophet/death_prophet_dresstop"
+		"item_description"						"#DOTA_Item_Desc_Death_Prophets_Corset"
+		"item_name"								"#DOTA_Item_Death_Prophets_Corset"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/heroes/death_prophet/death_prophet_dresstop.vmdl"
+	}
+	"171"
+	{
+		"name"									"Death Prophet's Scarf"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/death_prophet/death_prophet_scarf"
+		"item_description"						"#DOTA_Item_Desc_Death_Prophets_Scarf"
+		"item_name"								"#DOTA_Item_Death_Prophets_Scarf"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/heroes/death_prophet/death_prophet_scarf.vmdl"
+	}
+	"505"
+	{
+		"name"									"Death Prophet's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-05"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Death_Prophets_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_death_prophet"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient.vpcf"
+				"attach_type"					"renderorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"568"
+	{
+		"name"									"Death Prophet's Head"
+		"prefab"								"default_item"
+		"creation_date"							"2015-05-20"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_description"						"#DOTA_Item_Desc_Death_Prophets_Head"
+		"item_name"								"#DOTA_Item_Death_Prophets_Head"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Body_Head"
+	}
+	"569"
+	{
+		"name"									"Death Prophet's Miscellaneous"
+		"prefab"								"default_item"
+		"creation_date"							"2015-05-20"
+		"image_inventory"						"econ/heroes/death_prophet/death_prophet_misc"
+		"item_description"						"#DOTA_Item_Desc_Death_Prophets_Miscellaneous"
+		"item_name"								"#DOTA_Item_Death_Prophets_Miscellaneous"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Misc"
+	}
+	"4049"
+	{
+		"name"									"Dress of the Corpse Maiden"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/death_prophet/death_prophet_corpse_dress"
+		"item_description"						"#DOTA_Item_Desc_Dress_of_the_Corpse_Maiden"
+		"item_name"								"#DOTA_Item_Dress_of_the_Corpse_Maiden"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Dress"
+		"model_player"							"models/items/death_prophet/death_prophet_corpse_dress.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"corpse_dress"
+			}
+			"asset_modifier1"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/heroes/death_prophet/death_prophet_vortex.vmdl"
+			}
+		}
+	}
+	"4190"
+	{
+		"name"									"Wicked Collar of the Corpse Maiden"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/death_prophet/death_prophet_corpse_dresstop"
+		"item_description"						"#DOTA_Item_Desc_Wicked_Collar_of_the_Corpse_Maiden"
+		"item_name"								"#DOTA_Item_Wicked_Collar_of_the_Corpse_Maiden"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Collar"
+		"model_player"							"models/items/death_prophet/death_prophet_corpse_dresstop.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"corpse_dresstop"
+			}
+		}
+	}
+	"4191"
+	{
+		"name"									"Ghastly Scarf of the Corpse Maiden"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/death_prophet/death_prophet_corpse_scarf"
+		"item_description"						"#DOTA_Item_Desc_Ghastly_Scarf_of_the_Corpse_Maiden"
+		"item_name"								"#DOTA_Item_Ghastly_Scarf_of_the_Corpse_Maiden"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Scarf"
+		"model_player"							"models/items/death_prophet/death_prophet_corpse_scarf.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"corpse_scarf"
+			}
+		}
+	}
+	"4202"
+	{
+		"name"									"Horns of the Bone Scryer"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/death_prophet/bone_scryer_head/bone_scryer_head"
+		"item_description"						"#DOTA_Item_Desc_Horns_of_the_Bone_Scryer"
+		"item_name"								"#DOTA_Item_Horns_of_the_Bone_Scryer"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Horns"
+		"model_player"							"models/items/death_prophet/bone_scryer_head/bone_scryer_head.vmdl"
+		"particle_folder"						"particles/econ/items/death_prophet/death_prophet_hair_scyrer"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/death_prophet/death_prophet_hair_scyrer/death_prophet_ambient_hair_scryer.vpcf"
+				"system"						"particles/econ/items/death_prophet/death_prophet_hair_scyrer/death_prophet_ambient_hair_scryer.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+				}
+			}
+		}
+	}
+	"4339"
+	{
+		"name"									"Funereal Dress of the Bone Scryer"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/death_prophet/bone_scryer_legs/bone_scryer_legs"
+		"item_description"						"#DOTA_Item_Desc_Funereal_Dress_of_the_Bone_Scryer"
+		"item_name"								"#DOTA_Item_Funereal_Dress_of_the_Bone_Scryer"
+		"item_rarity"							"uncommon"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Dress"
+		"model_player"							"models/items/death_prophet/bone_scryer_legs/bone_scryer_legs.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/heroes/death_prophet/death_prophet_vortex.vmdl"
+			}
+		}
+	}
+	"4340"
+	{
+		"name"									"Scarf of the Bone Scryer"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/death_prophet/bone_scryer_scarf/bone_scryer_scarf"
+		"item_description"						"#DOTA_Item_Desc_Scarf_of_the_Bone_Scryer"
+		"item_name"								"#DOTA_Item_Scarf_of_the_Bone_Scryer"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Scarf"
+		"model_player"							"models/items/death_prophet/bone_scryer_scarf/bone_scryer_scarf.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4396"
+	{
+		"name"									"Sash of Death's Bride"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"diretide tag"
+			{
+				"attribute_class"				"diretide_tag"
+				"value"							"2012"
+			}
+		}
+		"image_inventory"						"econ/items/death_prophet/sashed_gown/sashed_gown"
+		"item_description"						"#DOTA_Item_Desc_Sash_of_Deaths_Bride"
+		"item_name"								"#DOTA_Item_Sash_of_Deaths_Bride"
+		"item_rarity"							"uncommon"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Gown"
+		"model_player"							"models/items/death_prophet/sashed_gown/sashed_gown.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/heroes/death_prophet/death_prophet_vortex.vmdl"
+			}
+		}
+	}
+	"4397"
+	{
+		"name"									"Brooch of Death's Bride"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"diretide tag"
+			{
+				"attribute_class"				"diretide_tag"
+				"value"							"2012"
+			}
+		}
+		"image_inventory"						"econ/items/death_prophet/spookyhair2b/spookyhair2b"
+		"item_description"						"#DOTA_Item_Desc_Brooch_of_Deaths_Bride"
+		"item_name"								"#DOTA_Item_Brooch_of_Deaths_Bride"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/death_prophet/spookyhair2b/spookyhair2b.vmdl"
+	}
+	"4551"
+	{
+		"name"									"Decorative Armor of the Bone Scryer"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/death_prophet/bone_scryer_armor/bone_scryer_armor"
+		"item_description"						"#DOTA_Item_Desc_Decorative_Armor_of_the_Bone_Scryer"
+		"item_name"								"#DOTA_Item_Decorative_Armor_of_the_Bone_Scryer"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/death_prophet/bone_scryer_armor/bone_scryer_armor.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5064"
+	{
+		"name"									"Crown of the Death Priestess"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-16"
+		"image_inventory"						"econ/items/death_prophet/priestess_crown/priestess_crown"
+		"item_description"						"#DOTA_Item_Desc_Crown_of_the_Death_Priestess"
+		"item_name"								"#DOTA_Item_Crown_of_the_Death_Priestess"
+		"item_quality"							"genuine"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Headdress"
+		"model_player"							"models/items/death_prophet/priestess_crown/priestess_crown.vmdl"
+	}
+	"5091"
+	{
+		"name"									"Armor from the Gloom"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-03"
+		"image_inventory"						"econ/items/death_prophet/hecate_armor/hecate_armor"
+		"item_description"						"#DOTA_Item_Desc_Armor_from_the_Gloom"
+		"item_name"								"#DOTA_Item_Armor_from_the_Gloom"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Breastplate"
+		"model_player"							"models/items/death_prophet/hecate_armor/hecate_armor.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5092"
+	{
+		"name"									"Belts from the Gloom"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-03"
+		"image_inventory"						"econ/items/death_prophet/hecate_belt/hecate_belt"
+		"item_description"						"#DOTA_Item_Desc_Hecates_Belts"
+		"item_name"								"#DOTA_Item_Belts_from_the_Gloom"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/death_prophet/hecate_belt/hecate_belt.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5093"
+	{
+		"name"									"Wights from the Gloom"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-03"
+		"image_inventory"						"econ/items/death_prophet/hecate_ghosts/hecate_ghosts"
+		"item_description"						"#DOTA_Item_Desc_Wights_from_the_Gloom"
+		"item_name"								"#DOTA_Item_Wights_from_the_Gloom"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Ghosts"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"dota_death_prophet_exorcism_spirit"
+				"modifier"						"models/items/death_prophet/hecate_ghosts/hecate_ghosts.vmdl"
+			}
+		}
+	}
+	"5094"
+	{
+		"name"									"Dress from the Gloom"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-03"
+		"image_inventory"						"econ/items/death_prophet/hecate_dress/hecate_dress"
+		"item_description"						"#DOTA_Item_Desc_Hecates_Dress"
+		"item_name"								"#DOTA_Item_Dress_from_the_Gloom"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Dress"
+		"model_player"							"models/items/death_prophet/hecate_dress/hecate_dress.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/death_prophet/dp_hecate_shreds/dp_hecate_shreds.vmdl"
+			}
+		}
+	}
+	"5095"
+	{
+		"name"									"Blindfold from the Gloom"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-03"
+		"image_inventory"						"econ/items/death_prophet/hecate_head/hecate_head"
+		"item_description"						"#DOTA_Item_Desc_Blindfold_from_the_Gloom"
+		"item_name"								"#DOTA_Item_Blindfold_from_the_Gloom"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Headwrap"
+		"model_player"							"models/items/death_prophet/hecate_head/hecate_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5597"
+	{
+		"name"									"Augur's Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-05"
+		"image_inventory"						"econ/items/death_prophet/armor_mugen_angurs_curse/armor_mugen_angurs_curse"
+		"item_description"						"#DOTA_Item_Desc_Augurs_Armor"
+		"item_name"								"#DOTA_Item_Augurs_Armor"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/death_prophet/armor_mugen_angurs_curse/armor_mugen_angurs_curse.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5598"
+	{
+		"name"									"Augur's Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-05"
+		"image_inventory"						"econ/items/death_prophet/belt_mugen_augurs_curse/belt_mugen_augurs_curse"
+		"item_description"						"#DOTA_Item_Desc_Augurs_Belt"
+		"item_name"								"#DOTA_Item_Augurs_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/death_prophet/belt_mugen_augurs_curse/belt_mugen_augurs_curse.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5599"
+	{
+		"name"									"Augur's Hair"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-05"
+		"image_inventory"						"econ/items/death_prophet/hair_mugen_augurs_curse/hair_mugen_augurs_curse"
+		"item_description"						"#DOTA_Item_Desc_Augurs_Hair"
+		"item_name"								"#DOTA_Item_Augurs_Hair"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/death_prophet/hair_mugen_augurs_curse/hair_mugen_augurs_curse.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5600"
+	{
+		"name"									"Augur's Skirt"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-05"
+		"image_inventory"						"econ/items/death_prophet/skirt_mugen_augurs_curse/skirt_mugen_augurs_curse"
+		"item_description"						"#DOTA_Item_Desc_Augurs_Skirt"
+		"item_name"								"#DOTA_Item_Augurs_Skirt"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Skirt"
+		"model_player"							"models/items/death_prophet/skirt_mugen_augurs_curse/skirt_mugen_augurs_curse.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/heroes/death_prophet/death_prophet_vortex.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_dress.vpcf"
+				"system"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_dress.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+			}
+		}
+	}
+	"5603"
+	{
+		"name"									"Augur's Ghosts"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-05"
+		"image_inventory"						"econ/items/death_prophet/exorcism/ghost_mugen_augurs_curse/ghost_mugen_augurs_curse_npc_dota_broodmother_spiderling"
+		"item_description"						"#DOTA_Item_Desc_Augurs_Ghosts"
+		"item_name"								"#DOTA_Item_Augurs_Ghosts"
+		"item_rarity"							"rare"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Ghosts"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"dota_death_prophet_exorcism_spirit"
+				"modifier"						"models/items/death_prophet/exorcism/ghost_mugen_augurs_curse/ghost_mugen_augurs_curse.vmdl"
+			}
+		}
+	}
+	"5781"
+	{
+		"name"									"Corset of the Mortal Coil"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-03"
+		"image_inventory"						"econ/items/death_prophet/corset_of_the_mortal_coil/corset_of_the_mortal_coil"
+		"item_description"						"#DOTA_Item_Desc_Corset_of_the_Mortal_Coil"
+		"item_name"								"#DOTA_Item_Corset_of_the_Mortal_Coil"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/death_prophet/corset_of_the_mortal_coil/corset_of_the_mortal_coil.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5782"
+	{
+		"name"									"Gown of the Mortal Coil"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-03"
+		"image_inventory"						"econ/items/death_prophet/gown_of_the_mortal_coil/gown_of_the_mortal_coil"
+		"item_description"						"#DOTA_Item_Desc_Gown_of_the_Mortal_Coil"
+		"item_name"								"#DOTA_Item_Gown_of_the_Mortal_Coil"
+		"item_rarity"							"uncommon"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Dress"
+		"model_player"							"models/items/death_prophet/gown_of_the_mortal_coil/gown_of_the_mortal_coil.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/heroes/death_prophet/death_prophet_vortex.vmdl"
+			}
+		}
+	}
+	"5783"
+	{
+		"name"									"Cinch of the Mortal Coil"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-03"
+		"image_inventory"						"econ/items/death_prophet/cinch_of_the_mortal_coil/cinch_of_the_mortal_coil"
+		"item_description"						"#DOTA_Item_Desc_Cinch_of_the_Mortal_Coil"
+		"item_name"								"#DOTA_Item_Cinch_of_the_Mortal_Coil"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/death_prophet/cinch_of_the_mortal_coil/cinch_of_the_mortal_coil.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5787"
+	{
+		"name"									"Besieging Bow"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-03"
+		"image_inventory"						"econ/items/death_prophet/besieging_bow/besieging_bow"
+		"item_name"								"#DOTA_Item_Besieging_Bow"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Headband"
+		"model_player"							"models/items/death_prophet/besieging_bow/besieging_bow.vmdl"
+	}
+	"5809"
+	{
+		"name"									"Coronet of the Mortal Coil"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-05"
+		"image_inventory"						"econ/items/death_prophet/coronet_of_the_mortal_coil/coronet_of_the_mortal_coil"
+		"item_description"						"#DOTA_Item_Desc_Coronet_of_the_Mortal_Coil"
+		"item_name"								"#DOTA_Item_Coronet_of_the_Mortal_Coil"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/death_prophet/coronet_of_the_mortal_coil/coronet_of_the_mortal_coil.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5959"
+	{
+		"name"									"Outland Witch's Horns"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-10"
+		"image_inventory"						"econ/items/death_prophet/outland_witchs_horns/outland_witchs_horns"
+		"item_description"						"#DOTA_Item_Desc_Outland_Witchs_Horns"
+		"item_name"								"#DOTA_Item_Outland_Witchs_Horns"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Horns"
+		"model_player"							"models/items/death_prophet/outland_witchs_horns/outland_witchs_horns.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/19/2014"
+			"price"								"0"
+		}
+	}
+	"5960"
+	{
+		"name"									"Outland Witch's Necklace"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-11"
+		"image_inventory"						"econ/items/death_prophet/outland_witchs_necklace/outland_witchs_necklace"
+		"item_description"						"#DOTA_Item_Desc_Outland_Witchs_Necklace"
+		"item_name"								"#DOTA_Item_Outland_Witchs_Necklace"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Necklace"
+		"model_player"							"models/items/death_prophet/outland_witchs_necklace/outland_witchs_necklace.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/19/2014"
+			"price"								"0"
+		}
+	}
+	"5961"
+	{
+		"name"									"Outland Witch's Hem"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-11"
+		"image_inventory"						"econ/items/death_prophet/outland_witchs_hem/outland_witchs_hem"
+		"item_description"						"#DOTA_Item_Desc_Outland_Witchs_Hem"
+		"item_name"								"#DOTA_Item_Outland_Witchs_Hem"
+		"item_rarity"							"uncommon"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Dress"
+		"model_player"							"models/items/death_prophet/outland_witchs_hem/outland_witchs_hem.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/19/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_dress.vpcf"
+				"system"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_dress.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+			}
+		}
+	}
+	"5963"
+	{
+		"name"									"Outland Witch's Sash"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-11"
+		"image_inventory"						"econ/items/death_prophet/outland_witchs_sash/outland_witchs_sash"
+		"item_description"						"#DOTA_Item_Desc_Outland_Witchs_Sash"
+		"item_name"								"#DOTA_Item_Outland_Witchs_Sash"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Sash"
+		"model_player"							"models/items/death_prophet/outland_witchs_sash/outland_witchs_sash.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/19/2014"
+			"price"								"0"
+		}
+	}
+	"5965"
+	{
+		"name"									"Outland Witch's Tatters"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-11"
+		"image_inventory"						"econ/items/death_prophet/outland_witchs_tatters/outland_witchs_tatters"
+		"item_description"						"#DOTA_Item_Desc_Outland_Witchs_Tatters"
+		"item_name"								"#DOTA_Item_Outland_Witchs_Tatters"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Tatters"
+		"model_player"							"models/items/death_prophet/outland_witchs_tatters/outland_witchs_tatters.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/19/2014"
+			"price"								"0"
+		}
+	}
+	"5973"
+	{
+		"name"									"Outland Witch's Spirits"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-11"
+		"image_inventory"						"econ/items/death_prophet/exorcism/outland_witchs_spirits/outland_witchs_spirits"
+		"item_description"						"#DOTA_Item_Desc_Outland_Witchs_Spirits"
+		"item_name"								"#DOTA_Item_Outland_Witchs_Spirits"
+		"item_rarity"							"uncommon"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Spirits"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/19/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"dota_death_prophet_exorcism_spirit"
+				"modifier"						"models/items/death_prophet/exorcism/outland_witchs_spirits/outland_witchs_spirits.vmdl"
+			}
+		}
+	}
+	"6025"
+	{
+		"name"									"Beautiful Haunting"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-23"
+		"image_inventory"						"econ/items/death_prophet/exorcism/dp_ghosts_jangshi_v2/dp_ghosts_jangshi_v2"
+		"item_name"								"#DOTA_Item_Beautiful_Haunting"
+		"item_rarity"							"rare"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Ghosts"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"dota_death_prophet_exorcism_spirit"
+				"modifier"						"models/items/death_prophet/exorcism/dp_ghosts_jangshi_v2/dp_ghosts_jangshi_v2.vmdl"
+			}
+		}
+	}
+	"6047"
+	{
+		"name"									"Foreteller's Garment"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-24"
+		"image_inventory"						"econ/items/death_prophet/foreteller_belt/foreteller_belt"
+		"item_name"								"#DOTA_Item_Foretellers_Garment"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Jacket"
+		"model_player"							"models/items/death_prophet/foreteller_belt/foreteller_belt.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/24/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/heroes/death_prophet/death_prophet_vortex.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_dress.vpcf"
+				"system"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_dress.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+			}
+		}
+	}
+	"6048"
+	{
+		"name"									"Foreteller's Drapes"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-24"
+		"image_inventory"						"econ/items/death_prophet/foreteller_chest/foreteller_chest"
+		"item_name"								"#DOTA_Item_Foretellers_Drapes"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Scarf"
+		"model_player"							"models/items/death_prophet/foreteller_chest/foreteller_chest.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/24/2014"
+			"price"								"0"
+		}
+	}
+	"6049"
+	{
+		"name"									"Foreteller's Haircomb"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-24"
+		"image_inventory"						"econ/items/death_prophet/foreteller_head/foreteller_head"
+		"item_name"								"#DOTA_Item_Foretellers_Haircomb"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/death_prophet/foreteller_head/foreteller_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/24/2014"
+			"price"								"0"
+		}
+	}
+	"6050"
+	{
+		"name"									"Foreteller's Adorn"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-24"
+		"image_inventory"						"econ/items/death_prophet/foreteller_legs/foreteller_legs"
+		"item_name"								"#DOTA_Item_Foretellers_Adorn"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Skirt"
+		"model_player"							"models/items/death_prophet/foreteller_legs/foreteller_legs.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/24/2014"
+			"price"								"0"
+		}
+	}
+	"6451"
+	{
+		"name"									"Soothsayer's Spectral Strands"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-12"
+		"image_inventory"						"econ/items/death_prophet/soothsayerspectralstrands_head/soothsayerspectralstrands_head"
+		"item_name"								"#DOTA_Item_Soothsayers_Spectral_Strands"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/death_prophet/soothsayerspectralstrands_head/soothsayerspectralstrands_head.vmdl"
+	}
+	"6585"
+	{
+		"name"									"Style of Prophecy"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-13"
+		"image_inventory"						"econ/items/death_prophet/styleprophecy_head/styleprophecy_head"
+		"item_name"								"#DOTA_Item_Style_of_Prophecy"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/death_prophet/styleprophecy_head/styleprophecy_head.vmdl"
+	}
+	"6694"
+	{
+		"name"									"Fluttering Mortis"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2014"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"creation_date"							"2014-05-23"
+		"image_inventory"						"econ/items/death_prophet/acherontia/acherontia_dress"
+		"item_description"						"#DOTA_Item_Desc_Inkling_Wings"
+		"item_name"								"#DOTA_Item_Fluttering_Mortis"
+		"item_rarity"							"immortal"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Skirt"
+		"model_player"							"models/items/death_prophet/acherontia/acherontia_dress.vmdl"
+		"particle_folder"						"particles/econ/items/death_prophet/death_prophet_acherontia"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_death_prophet/death_prophet_carrion_swarm.vpcf"
+				"modifier"						"particles/econ/items/death_prophet/death_prophet_acherontia/death_prophet_acher_swarm.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"ability_icon"
+				"asset"							"death_prophet_carrion_swarm"
+				"modifier"						"death_prophet_carrion_swarm_moth"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"sound"
+				"asset"							"Hero_DeathProphet.CarrionSwarm"
+				"modifier"						"Hero_DeathProphet.CarrionSwarm.Mortis"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"sound"
+				"asset"							"Hero_DeathProphet.CarrionSwarm.Damage"
+				"modifier"						"Hero_DeathProphet.CarrionSwarm.Damage.Mortis"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/death_prophet/death_prophet_acherontia/death_prophet_inkling_ambient.vpcf"
+				"system"						"particles/econ/items/death_prophet/death_prophet_acherontia/death_prophet_inkling_ambient.vpcf"
+				"attach_type"					"customorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_root"
+					}
+				}
+			}
+		}
+	}
+	"6705"
+	{
+		"name"									"Genuine Heretic Enclave"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-19"
+		"image_inventory"						"econ/items/death_prophet/exorcism/hereticenclave/hereticenclave"
+		"item_name"								"#DOTA_Item_Genuine_Heretic_Enclave"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Ghosts"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"dota_death_prophet_exorcism_spirit"
+				"modifier"						"models/items/death_prophet/exorcism/hereticenclave/hereticenclave.vmdl"
+			}
+		}
+	}
+	"6783"
+	{
+		"name"									"Heretic Enclave"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-13"
+		"image_inventory"						"econ/items/death_prophet/exorcism/hereticenclave/hereticenclave"
+		"item_name"								"#DOTA_Item_Heretic_Enclave"
+		"item_rarity"							"rare"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Ghosts"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"dota_death_prophet_exorcism_spirit"
+				"modifier"						"models/items/death_prophet/exorcism/hereticenclave/hereticenclave.vmdl"
+			}
+		}
+	}
+	"6843"
+	{
+		"name"									"Mourning Mother's Dress"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-24"
+		"image_inventory"						"econ/items/death_prophet/mourning_legs/mourning_legs"
+		"item_name"								"#DOTA_Item_Mourning_Mothers_Dress"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Dress"
+		"model_player"							"models/items/death_prophet/mourning_legs/mourning_legs.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/heroes/death_prophet/death_prophet_vortex.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_dress.vpcf"
+				"system"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_dress.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+			}
+		}
+	}
+	"6844"
+	{
+		"name"									"Mourning Mother's Top"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-24"
+		"image_inventory"						"econ/items/death_prophet/mourning_armor/mourning_armor"
+		"item_name"								"#DOTA_Item_Mourning_Mothers_Top"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Collar"
+		"model_player"							"models/items/death_prophet/mourning_armor/mourning_armor.vmdl"
+	}
+	"6845"
+	{
+		"name"									"Mourning Mother's Veil"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-24"
+		"image_inventory"						"econ/items/death_prophet/mourning_hair/mourning_hair"
+		"item_name"								"#DOTA_Item_Mourning_Mothers_Veil"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/death_prophet/mourning_hair/mourning_hair.vmdl"
+	}
+	"6846"
+	{
+		"name"									"Mourning Mother's Scarf"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-24"
+		"image_inventory"						"econ/items/death_prophet/mourning_belt/mourning_belt"
+		"item_name"								"#DOTA_Item_Mourning_Mothers_Scarf"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Scarf"
+		"model_player"							"models/items/death_prophet/mourning_belt/mourning_belt.vmdl"
+	}
+	"6875"
+	{
+		"name"									"Spirits of the Mourning Mother"
+		"prefab"								"wearable"
+		"creation_date"							"2014-07-01"
+		"image_inventory"						"econ/items/death_prophet/exorcism/mourning_spirits/mourning_spirit"
+		"item_name"								"#DOTA_Item_Spirits_of_the_Mourning_Mother"
+		"item_rarity"							"rare"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Spirits"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"dota_death_prophet_exorcism_spirit"
+				"modifier"						"models/items/death_prophet/exorcism/mourning_ult/mourning_ult.vmdl"
+			}
+		}
+	}
+	"7082"
+	{
+		"name"									"Chiroptera of the Ghastly Matriarch"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-21"
+		"image_inventory"						"econ/items/death_prophet/exorcism/awakened_thirst_bats/awakened_thirst_bat"
+		"item_description"						"#DOTA_Item_Desc_Chiroptera_of_the_Ghastly_Matriarch"
+		"item_name"								"#DOTA_Item_Chiroptera_of_the_Ghastly_Matriarch"
+		"item_rarity"							"rare"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Exorcism_Bats"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_death_prophet' gem_def_index: 3005 } asset_modifier: 88"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"dota_death_prophet_exorcism_spirit"
+				"modifier"						"models/items/death_prophet/exorcism/awakened_thirst_bats/awakened_thirst_bats.vmdl"
+			}
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"death_prophet_exorcism"
+				"modifier"						"death_prophet/awakened_thirst_ult_bat_icon/death_prophet_exorcism"
+			}
+		}
+	}
+	"7084"
+	{
+		"name"									"Collar of the Ghastly Matriarch"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-21"
+		"image_inventory"						"econ/items/death_prophet/awakened_thirst_armor/awakened_thirst_armor"
+		"item_name"								"#DOTA_Item_Collar_of_the_Ghastly_Matriarch"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Collar"
+		"model_player"							"models/items/death_prophet/awakened_thirst_armor/awakened_thirst_armor.vmdl"
+	}
+	"7085"
+	{
+		"name"									"Scarf of the Ghastly Matriarch"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-21"
+		"image_inventory"						"econ/items/death_prophet/awakened_thirst_belt/awakened_thirst_belt"
+		"item_name"								"#DOTA_Item_Scarf_of_the_Ghastly_Matriarch"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Scarf"
+		"model_player"							"models/items/death_prophet/awakened_thirst_belt/awakened_thirst_belt.vmdl"
+	}
+	"7086"
+	{
+		"name"									"Tresses of the Ghastly Matriarch"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-21"
+		"image_inventory"						"econ/items/death_prophet/awakened_thirst_head/awakened_thirst_head"
+		"item_name"								"#DOTA_Item_Tresses_of_the_Ghastly_Matriarch"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/death_prophet/awakened_thirst_head/awakened_thirst_head.vmdl"
+	}
+	"7139"
+	{
+		"name"									"Skirt of the Ghastly Matriarch"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-21"
+		"image_inventory"						"econ/items/death_prophet/awakened_thirst_legs/awakened_thirst_legs"
+		"item_name"								"#DOTA_Item_Skirt_of_the_Ghastly_Matriarch"
+		"item_rarity"							"uncommon"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Skirt"
+		"model_player"							"models/items/death_prophet/awakened_thirst_legs/awakened_thirst_legs.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/death_prophet/awakened_thirst_misc/awakened_thirst_misc.vmdl"
+			}
+		}
+	}
+	"7205"
+	{
+		"name"									"Blouse of the Unkind Countess"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-27"
+		"image_inventory"						"econ/items/death_prophet/raven_vesture_armor/raven_vesture_armor"
+		"item_name"								"#DOTA_Item_Blouse_of_the_Unkind_Countess"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Blouse"
+		"model_player"							"models/items/death_prophet/raven_vesture_armor/raven_vesture_armor.vmdl"
+	}
+	"7206"
+	{
+		"name"									"Sash of the Unkind Countess"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-27"
+		"image_inventory"						"econ/items/death_prophet/raven_vesture_belt/raven_vesture_belt"
+		"item_name"								"#DOTA_Item_Sash_of_the_Unkind_Countess"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Sash"
+		"model_player"							"models/items/death_prophet/raven_vesture_belt/raven_vesture_belt.vmdl"
+	}
+	"7317"
+	{
+		"name"									"Dress of the Unkind Countess"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-27"
+		"image_inventory"						"econ/items/death_prophet/raven_vesture_dress/raven_vesture_dress"
+		"item_name"								"#DOTA_Item_Dress_of_the_Unkind_Countess"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Dress"
+		"model_player"							"models/items/death_prophet/raven_vesture_dress/raven_vesture_dress.vmdl"
+		"particle_folder"						"particles/econ/items/death_prophet/death_prophet_vesture_ambients"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_death_prophet/death_prophet_ambient.vpcf"
+				"modifier"						"particles/econ/items/death_prophet/death_prophet_vesture_ambients/death_prophet_vesture_ambients.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/death_prophet/raven_vesture_misc/raven_vesture_misc.vmdl"
+			}
+		}
+	}
+	"7318"
+	{
+		"name"									"Spirits of the Unkind Countess"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-27"
+		"image_inventory"						"econ/items/death_prophet/exorcism/raven_vesture_ghost/raven_vesture_ghost_dota_death_prophet_exorcism_spirit"
+		"item_name"								"#DOTA_Item_Spirits_of_the_Unkind_Countess"
+		"item_rarity"							"uncommon"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Spirits"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"dota_death_prophet_exorcism_spirit"
+				"modifier"						"models/items/death_prophet/exorcism/raven_vesture_ghost/raven_vesture_ghost.vmdl"
+			}
+		}
+	}
+	"7319"
+	{
+		"name"									"Style of the Unkind Countess"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-27"
+		"image_inventory"						"econ/items/death_prophet/raven_vesture_head/raven_vesture_head"
+		"item_name"								"#DOTA_Item_Style_of_the_Unkind_Countess"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Style"
+		"model_player"							"models/items/death_prophet/raven_vesture_head/raven_vesture_head.vmdl"
+	}
+	"8027"
+	{
+		"name"									"Fatal Blossom Robe"
+		"prefab"								"wearable"
+		"creation_date"							"2015-02-23"
+		"image_inventory"						"econ/items/death_prophet/fatal_blossom_armor/fatal_blossom_armor"
+		"item_name"								"#DOTA_Item_Fatal_Blossom_Robe"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Robe"
+		"model_player"							"models/items/death_prophet/fatal_blossom_armor/fatal_blossom_armor.vmdl"
+	}
+	"8028"
+	{
+		"name"									"Fatal Blossom Hairdress"
+		"prefab"								"wearable"
+		"creation_date"							"2015-02-23"
+		"image_inventory"						"econ/items/death_prophet/fatal_blossom_head/fatal_blossom_head"
+		"item_name"								"#DOTA_Item_Fatal_Blossom_Hairdress"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/death_prophet/fatal_blossom_head/fatal_blossom_head.vmdl"
+	}
+	"8029"
+	{
+		"name"									"Fatal Blossom Nails"
+		"prefab"								"wearable"
+		"creation_date"							"2015-02-23"
+		"image_inventory"						"econ/items/death_prophet/fatal_blossom_nails/fatal_blossom_nails"
+		"item_name"								"#DOTA_Item_Fatal_Blossom_Nails"
+		"item_rarity"							"uncommon"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Nails"
+		"model_player"							"models/items/death_prophet/fatal_blossom_nails/fatal_blossom_nails.vmdl"
+	}
+	"8030"
+	{
+		"name"									"Fatal Blossom Scarf"
+		"prefab"								"wearable"
+		"creation_date"							"2015-02-23"
+		"image_inventory"						"econ/items/death_prophet/fatal_blossom_belt/fatal_blossom_belt"
+		"item_name"								"#DOTA_Item_Fatal_Blossom_Scarf"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Scarf"
+		"model_player"							"models/items/death_prophet/fatal_blossom_belt/fatal_blossom_belt.vmdl"
+	}
+	"8031"
+	{
+		"name"									"Fatal Blossom Skirt"
+		"prefab"								"wearable"
+		"creation_date"							"2015-02-23"
+		"image_inventory"						"econ/items/death_prophet/fatal_blossom_skirt/fatal_blossom_skirt"
+		"item_name"								"#DOTA_Item_Fatal_Blossom_Skirt"
+		"item_rarity"							"uncommon"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Skirt"
+		"model_player"							"models/items/death_prophet/fatal_blossom_skirt/fatal_blossom_skirt.vmdl"
+	}
+	"8566"
+	{
+		"name"									"Spirits of the Mothbinder"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-07"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/death_prophet/exorcism/mothbinders_omen_mothbinders_spirits/mothbinders_omen_mothbinders_spirits_dota_death_prophet_exorcism_spirit"
+		"item_description"						"#DOTA_Item_Desc_Spirits_of_the_Mothbinder"
+		"item_name"								"#DOTA_Item_Spirits_of_the_Mothbinder"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Spirits"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"dota_death_prophet_exorcism_spirit"
+				"modifier"						"models/items/death_prophet/exorcism/mothbinders_omen_mothbinders_spirits/mothbinders_omen_mothbinders_spirits.vmdl"
+			}
+		}
+	}
+	"8567"
+	{
+		"name"									"Bracelets of the Mothbinder"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-07"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/death_prophet/mothbinders_omen_misc/mothbinders_omen_misc"
+		"item_description"						"#DOTA_Item_Desc_Bracelets_of_the_Mothbinder"
+		"item_name"								"#DOTA_Item_Bracelets_of_the_Mothbinder"
+		"item_rarity"							"mythical"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Misc"
+		"model_player"							"models/items/death_prophet/mothbinders_omen_misc/mothbinders_omen_misc.vmdl"
+	}
+	"8568"
+	{
+		"name"									"Belt of the Mothbinder"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-07"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/death_prophet/mothbinders_omen_belt/mothbinders_omen_belt"
+		"item_description"						"#DOTA_Item_Desc_Belt_of_the_Mothbinder"
+		"item_name"								"#DOTA_Item_Belt_of_the_Mothbinder"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/death_prophet/mothbinders_omen_belt/mothbinders_omen_belt.vmdl"
+	}
+	"8569"
+	{
+		"name"									"Skirt of the Mothbinder"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-07"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/death_prophet/mothbinders_omen_legs/mothbinders_omen_legs"
+		"item_description"						"#DOTA_Item_Desc_Skirt_of_the_Mothbinder"
+		"item_name"								"#DOTA_Item_Skirt_of_the_Mothbinder"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Skirt"
+		"model_player"							"models/items/death_prophet/mothbinders_omen_legs/mothbinders_omen_legs.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/death_prophet/mothbinders_omen_legs/mothbinders_omen_legs_vortex.vmdl"
+			}
+		}
+	}
+	"8570"
+	{
+		"name"									"Armor of the Mothbinder"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-07"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/death_prophet/mothbinders_omen_armor/mothbinders_omen_armor"
+		"item_description"						"#DOTA_Item_Desc_Armor_of_the_Mothbinder"
+		"item_name"								"#DOTA_Item_Armor_of_the_Mothbinder"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/death_prophet/mothbinders_omen_armor/mothbinders_omen_armor.vmdl"
+	}
+	"8571"
+	{
+		"name"									"Hood of the Mothbinder"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-07"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/death_prophet/mothbinders_omen_head/mothbinders_omen_head"
+		"item_description"						"#DOTA_Item_Desc_Hood_of_the_Mothbinder"
+		"item_name"								"#DOTA_Item_Hood_of_the_Mothbinder"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/death_prophet/mothbinders_omen_head/mothbinders_omen_head.vmdl"
+	}
+	"8651"
+	{
+		"name"									"Death Prophet's Death Spirits"
+		"prefab"								"default_item"
+		"creation_date"							"2015-04-14"
+		"image_inventory"						"econ/heroes/death_prophet/death_prophet_ghost"
+		"item_description"						"#DOTA_Item_Desc_Death_Prophets_Death_Spirits"
+		"item_name"								"#DOTA_Item_Death_Prophets_Death_Spirits"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Base"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"dota_death_prophet_exorcism_spirit"
+				"modifier"						"models/heroes/death_prophet/death_prophet_ghost.vmdl"
+			}
+		}
+	}
+	"8795"
+	{
+		"name"									"Sleeves of the Merqueen"
+		"prefab"								"wearable"
+		"creation_date"							"2016-01-08"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/death_prophet/mermaids_queen_belt/mermaids_queen_belt"
+		"item_name"								"#DOTA_Item_Sleeves_of_the_Merqueen"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Sleeves"
+		"model_player"							"models/items/death_prophet/mermaids_queen_belt/mermaids_queen_belt.vmdl"
+	}
+	"8802"
+	{
+		"name"									"Covers of the Merqueen"
+		"prefab"								"wearable"
+		"creation_date"							"2016-01-08"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/death_prophet/mermaids_queen_armor/mermaids_queen_armor"
+		"item_name"								"#DOTA_Item_Covers_of_the_Merqueen"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Covers"
+		"model_player"							"models/items/death_prophet/mermaids_queen_armor/mermaids_queen_armor.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/death_prophet/death_prophet_mermaids_queen/death_prophet_mermaids_armor.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/death_prophet/death_prophet_mermaids_queen/death_prophet_mermaids_armor.vpcf"
+				"attach_type"					"absorigin"
+				"attach_entity"					"self"
+			}
+		}
+	}
+	"8803"
+	{
+		"name"									"Wraith of the Merqueen"
+		"prefab"								"wearable"
+		"creation_date"							"2016-01-08"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/death_prophet/exorcism/mermaids_queen_spirit/mermaids_queen_spirit_dota_death_prophet_exorcism_spirit"
+		"item_name"								"#DOTA_Item_Wraith_of_the_Merqueen"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability_ultimate"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"dota_death_prophet_exorcism_spirit"
+				"modifier"						"models/items/death_prophet/exorcism/mermaids_queen_spirit/mermaids_queen_spirit.vmdl"
+			}
+		}
+	}
+	"8804"
+	{
+		"name"									"Crown of the Merqueen"
+		"prefab"								"wearable"
+		"creation_date"							"2016-01-08"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/death_prophet/mermaids_queen_head/mermaids_queen_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Merqueen"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Crown"
+		"model_player"							"models/items/death_prophet/mermaids_queen_head/mermaids_queen_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/death_prophet/death_prophet_mermaids_queen/death_prophet_mermaids_head.vpcf"
+				"system"						"particles/econ/items/death_prophet/death_prophet_mermaids_queen/death_prophet_mermaids_head.vpcf"
+				"attach_type"					"absorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+				}
+			}
+		}
+	}
+	"8805"
+	{
+		"name"									"Dress of the Merqueen"
+		"prefab"								"wearable"
+		"creation_date"							"2016-01-08"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/death_prophet/mermaids_queen_legs/mermaids_queen_legs"
+		"item_name"								"#DOTA_Item_Dress_of_the_Merqueen"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Dress"
+		"model_player"							"models/items/death_prophet/mermaids_queen_legs/mermaids_queen_legs.vmdl"
+		"visuals"
+		{
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"mermaid"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/death_prophet/death_prophet_mermaids_queen/death_prophet_mermaids_legs.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/death_prophet/death_prophet_mermaids_queen/death_prophet_mermaids_legs.vpcf"
+				"attach_type"					"absorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_legs"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_tent2"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_tent3"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_tent4"
+					}
+				}
+			}
+		}
+	}
+	"9257"
+	{
+		"name"									"Veil of Eternal Testament"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/death_prophet/drowned_siren_head/drowned_siren_head"
+		"item_name"								"#DOTA_Item_Veil_of_Eternal_Testament"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/death_prophet/drowned_siren_head/drowned_siren_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_hair.vpcf"
+				"system"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_hair.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"9258"
+	{
+		"name"									"Dress of Eternal Testament"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/death_prophet/drowned_siren_drowned_siren_skirt/drowned_siren_drowned_siren_skirt"
+		"item_name"								"#DOTA_Item_Dress_of_Eternal_Testament"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_legs"
+		"model_player"							"models/items/death_prophet/drowned_siren_drowned_siren_skirt/drowned_siren_drowned_siren_skirt.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/death_prophet/drowned_siren_drowned_siren/drowned_siren_drowned_siren_ambient.vpcf"
+			}
+		}
+	}
+	"9259"
+	{
+		"name"									"Blouse of Eternal Testament"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/death_prophet/drowned_siren_armor/drowned_siren_armor"
+		"item_name"								"#DOTA_Item_Blouse_of_Eternal_Testament"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/death_prophet/drowned_siren_armor/drowned_siren_armor.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9260"
+	{
+		"name"									"Ghosts of Eternal Testament"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/death_prophet/exorcism/drowned_siren_drowned_siren_crowned_fish/drowned_siren_drowned_siren_crowned_fish_dota_death_prophet_exorcism_spirit"
+		"item_name"								"#DOTA_Item_Ghosts_of_Eternal_Testament"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability_ultimate"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"dota_death_prophet_exorcism_spirit"
+				"modifier"						"models/items/death_prophet/exorcism/drowned_siren_drowned_siren_crowned_fish/drowned_siren_drowned_siren_crowned_fish.vmdl"
+			}
+		}
+	}
+	"9263"
+	{
+		"name"									"Weeds of Eternal Testament"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/death_prophet/drowned_siren_misc/drowned_siren_misc"
+		"item_name"								"#DOTA_Item_Weeds_of_Eternal_Testament"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Misc"
+		"model_player"							"models/items/death_prophet/drowned_siren_misc/drowned_siren_misc.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9656"
+	{
+		"name"									"Wraith of the Winter Revenant"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-27"
+		"event_id"								"EVENT_ID_FROSTIVUS_2019"
+		"image_inventory"						"econ/items/death_prophet/exorcism/woman_of_the_snow_snowfly/woman_of_the_snow_snowfly_dota_death_prophet_exorcism_spirit"
+		"item_name"								"#DOTA_Item_Wraith_of_the_Winter_Revenant"
+		"item_rarity"							"rare"
+		"item_slot"								"ability_ultimate"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"dota_death_prophet_exorcism_spirit"
+				"modifier"						"models/items/death_prophet/exorcism/woman_of_the_snow_snowfly/woman_of_the_snow_snowfly.vmdl"
+			}
+		}
+	}
+	"9657"
+	{
+		"name"									"Belt of the Winter Revenant"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-27"
+		"event_id"								"EVENT_ID_FROSTIVUS_2019"
+		"image_inventory"						"econ/items/death_prophet/woman_of_the_snow_belt/woman_of_the_snow_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Winter_Revenant"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/death_prophet/woman_of_the_snow_belt/woman_of_the_snow_belt.vmdl"
+	}
+	"9658"
+	{
+		"name"									"Skirt of the Winter Revenant"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-27"
+		"event_id"								"EVENT_ID_FROSTIVUS_2019"
+		"image_inventory"						"econ/items/death_prophet/woman_of_the_snow_legs/woman_of_the_snow_legs"
+		"item_name"								"#DOTA_Item_Skirt_of_the_Winter_Revenant"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"model_player"							"models/items/death_prophet/woman_of_the_snow_legs/woman_of_the_snow_legs.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/death_prophet/woman_of_the_snow_legs/woman_of_the_snow_legs_vortex.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/death_prophet/dp_snow/dp_snow_legs_ambient.vpcf"
+			}
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/death_prophet/woman_of_the_snow_legs/woman_of_the_snow_legs_vortex.vmdl"
+			}
+		}
+	}
+	"9667"
+	{
+		"name"									"Taunt: All Sparkles n' Rainbows"
+		"prefab"								"taunt"
+		"creation_date"							"2018-01-04"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/taunts/dota_icon_taunt_death_prophet_ti8"
+		"item_description"						"#DOTA_Item_Desc_Taunt_All_Sparkles_n_Rainbows"
+		"item_name"								"#DOTA_Item_Taunt_All_Sparkles_n_Rainbows"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567296000"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"ti8_taunt"
+				"style"							"0"
+				"gesture"						"1"
+			}
+		}
+	}
+	"9685"
+	{
+		"name"									"Tassle of the Winter Revenant"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-27"
+		"event_id"								"EVENT_ID_FROSTIVUS_2019"
+		"image_inventory"						"econ/items/death_prophet/woman_of_the_snow_misc/woman_of_the_snow_misc"
+		"item_name"								"#DOTA_Item_Tassle_of_the_Winter_Revenant"
+		"item_rarity"							"rare"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_misc"
+		"model_player"							"models/items/death_prophet/woman_of_the_snow_misc/woman_of_the_snow_misc.vmdl"
+	}
+	"9686"
+	{
+		"name"									"Crown of the Winter Revenant"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-27"
+		"event_id"								"EVENT_ID_FROSTIVUS_2019"
+		"image_inventory"						"econ/items/death_prophet/woman_of_the_snow_head/woman_of_the_snow_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Winter_Revenant"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/death_prophet/woman_of_the_snow_head/woman_of_the_snow_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/death_prophet/dp_snow/dp_snow_head_ambient.vpcf"
+			}
+		}
+	}
+	"9687"
+	{
+		"name"									"Robe of the Winter Revenant"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-27"
+		"event_id"								"EVENT_ID_FROSTIVUS_2019"
+		"image_inventory"						"econ/items/death_prophet/woman_of_the_snow_armor/woman_of_the_snow_armor"
+		"item_name"								"#DOTA_Item_Robe_of_the_Winter_Revenant"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/death_prophet/woman_of_the_snow_armor/woman_of_the_snow_armor.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/death_prophet/dp_snow/dp_snow_armor_ambient.vpcf"
+			}
+		}
+	}
+	"9731"
+	{
+		"name"									"Crest of the Shaded Eulogy"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-03"
+		"image_inventory"						"econ/items/death_prophet/burial_robes_head/burial_robes_head"
+		"item_name"								"#DOTA_Item_Crest_of_the_Shaded_Eulogy"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Crest"
+		"model_player"							"models/items/death_prophet/burial_robes_head/burial_robes_head.vmdl"
+	}
+	"9732"
+	{
+		"name"									"Mantle of the Shaded Eulogy"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-03"
+		"image_inventory"						"econ/items/death_prophet/burial_robes_armor/burial_robes_armor"
+		"item_name"								"#DOTA_Item_Mantle_of_the_Shaded_Eulogy"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/death_prophet/burial_robes_armor/burial_robes_armor.vmdl"
+	}
+	"9733"
+	{
+		"name"									"Dress of the Shaded Eulogy"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-03"
+		"image_inventory"						"econ/items/death_prophet/burial_robes_legs/burial_robes_legs"
+		"item_name"								"#DOTA_Item_Dress_of_the_Shaded_Eulogy"
+		"item_rarity"							"uncommon"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Dress"
+		"model_player"							"models/items/death_prophet/burial_robes_legs/burial_robes_legs.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/death_prophet/burial_robes_vortex/burial_robes_vortex.vmdl"
+			}
+		}
+	}
+	"9734"
+	{
+		"name"									"Tails of the Shaded Eulogy"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-03"
+		"image_inventory"						"econ/items/death_prophet/burial_robes_belt/burial_robes_belt"
+		"item_name"								"#DOTA_Item_Tails_of_the_Shaded_Eulogy"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/death_prophet/burial_robes_belt/burial_robes_belt.vmdl"
+	}
+	"9736"
+	{
+		"name"									"Witnesses of the Shaded Eulogy"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-03"
+		"image_inventory"						"econ/items/death_prophet/shaded_eulogy"
+		"item_name"								"#DOTA_Item_Witnesses_of_the_Shaded_Eulogy"
+		"item_rarity"							"uncommon"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Ghosts"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"dota_death_prophet_exorcism_spirit"
+				"modifier"						"models/items/death_prophet/exorcism/burial_robes_spirit/burial_robes_spirit.vmdl"
+			}
+		}
+	}
+	"12474"
+	{
+		"name"									"Scalefiend's Hatred Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/death_prophet/scalefiends_hatred_head/scalefiends_hatred_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Scalefiends_Hatred_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/death_prophet/scalefiends_hatred_head/scalefiends_hatred_head.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_hair.vpcf"
+				"system"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_hair.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+				}
+			}
+		}
+	}
+	"12738"
+	{
+		"name"									"Spirit of the Long Night"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/death_prophet/exorcism/frostivus2018_dp_mistress_blizzard_spirit/frostivus2018_dp_mistress_blizzard_spirit"
+		"item_name"								"#DOTA_Item_Spirit_of_the_Long_Night"
+		"item_rarity"							"rare"
+		"item_slot"								"ability_ultimate"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"dota_death_prophet_exorcism_spirit"
+				"modifier"						"models/items/death_prophet/exorcism/frostivus2018_dp_mistress_blizzard_spirit/frostivus2018_dp_mistress_blizzard_spirit.vmdl"
+			}
+		}
+	}
+	"12739"
+	{
+		"name"									"Belt of the Long Night"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/death_prophet/frostivus2018_dp_mistress_of_the_blizzard_belt/frostivus2018_dp_mistress_of_the_blizzard_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Long_Night"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/death_prophet/frostivus2018_dp_mistress_of_the_blizzard_belt/frostivus2018_dp_mistress_of_the_blizzard_belt.vmdl"
+	}
+	"12741"
+	{
+		"name"									"Cape of the Long Night"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/death_prophet/frostivus2018_dp_mistress_of_the_blizzard_armor/frostivus2018_dp_mistress_of_the_blizzard_armor"
+		"item_name"								"#DOTA_Item_Cape_of_the_Long_Night"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/death_prophet/frostivus2018_dp_mistress_of_the_blizzard_armor/frostivus2018_dp_mistress_of_the_blizzard_armor.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"12742"
+	{
+		"name"									"Hood of the Long Night"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/death_prophet/frostivus2018_dp_mistress_of_the_blizzard_head/frostivus2018_dp_mistress_of_the_blizzard_head"
+		"item_name"								"#DOTA_Item_Hood_of_the_Long_Night"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/death_prophet/frostivus2018_dp_mistress_of_the_blizzard_head/frostivus2018_dp_mistress_of_the_blizzard_head.vmdl"
+	}
+	"12743"
+	{
+		"name"									"Feathers of the Long Night"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/death_prophet/frostivus2018_dp_mistress_of_the_blizzard_misc/frostivus2018_dp_mistress_of_the_blizzard_misc"
+		"item_name"								"#DOTA_Item_Feathers_of_the_Long_Night"
+		"item_rarity"							"rare"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Misc"
+		"model_player"							"models/items/death_prophet/frostivus2018_dp_mistress_of_the_blizzard_misc/frostivus2018_dp_mistress_of_the_blizzard_misc.vmdl"
+	}
+	"12916"
+	{
+		"name"									"Skirt of the Long Night"
+		"prefab"								"wearable"
+		"creation_date"							"2019-01-07"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/death_prophet/skirt_of_the_blizzard/skirt_of_the_blizzard"
+		"item_name"								"#DOTA_Item_Skirt_of_the_Long_Night"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_legs"
+		"model_player"							"models/items/death_prophet/skirt_of_the_blizzard/skirt_of_the_blizzard.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/death_prophet/skirt_of_the_blizzard/skirt_of_the_blizzard_vortex.vmdl"
+			}
+		}
+	}
+	"12931"
+	{
+		"name"									"Mask of Mortis"
+		"prefab"								"wearable"
+		"creation_date"							"2019-02-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/death_prophet/dp_ti9_immortal_head/dp_ti9_immortal_head"
+		"item_description"						"#DOTA_Item_Desc_Mask_of_Mortis"
+		"item_name"								"#DOTA_Item_Mask_of_Mortis"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/death_prophet/dp_ti9_immortal_head/dp_ti9_immortal_head.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1598997600"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/death_prophet/death_prophet_ti9/death_prophet_ambient_hair_ti9.vpcf"
+			}
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_death_prophet/death_prophet_silence.vpcf"
+				"modifier"						"particles/econ/items/death_prophet/death_prophet_ti9/death_prophet_silence_ti9.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_death_prophet/death_prophet_silence_impact.vpcf"
+				"modifier"						"particles/econ/items/death_prophet/death_prophet_ti9/death_prophet_silence_impact_ti9.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/generic_gameplay/generic_silenced.vpcf"
+				"modifier"						"particles/econ/items/death_prophet/death_prophet_ti9/death_prophet_silence_custom_ti9_overhead_model.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_death_prophet/death_prophet_silence_custom.vpcf"
+				"modifier"						"particles/econ/items/death_prophet/death_prophet_ti9/death_prophet_silence_custom_ti9.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"death_prophet_silence"
+				"modifier"						"death_prophet_silence_ti9"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+		}
+	}
+	"13099"
+	{
+		"name"									"Skirt of the Brightshroud"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/death_prophet/ti9_cache_dp_peacock_priest_skirt/ti9_cache_dp_peacock_priest_skirt"
+		"item_name"								"#DOTA_Item_Skirt_of_the_Brightshroud"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_legs"
+		"model_player"							"models/items/death_prophet/ti9_cache_dp_peacock_priest_skirt/ti9_cache_dp_peacock_priest_skirt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/death_prophet/ti9_cache_dp_peacock_priest_skirt/ti9_cache_dp_peacock_priest_skirt_vortex.vmdl"
+			}
+		}
+	}
+	"13100"
+	{
+		"name"									"Bracer of the Brightshroud"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/death_prophet/ti9_cache_dp_peacock_priest_misc/ti9_cache_dp_peacock_priest_misc"
+		"item_name"								"#DOTA_Item_Bracer_of_the_Brightshroud"
+		"item_rarity"							"mythical"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Misc"
+		"model_player"							"models/items/death_prophet/ti9_cache_dp_peacock_priest_misc/ti9_cache_dp_peacock_priest_misc.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"13101"
+	{
+		"name"									"Spirit of the Brightshroud"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/death_prophet/exorcism/ti9_cache_dp_peacock_priest_spirit/ti9_cache_dp_peacock_priest_spirit_dota_death_prophet_exorcism_spirit"
+		"item_name"								"#DOTA_Item_Spirit_of_the_Brightshroud"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability_ultimate"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"dota_death_prophet_exorcism_spirit"
+				"modifier"						"models/items/death_prophet/exorcism/ti9_cache_dp_peacock_priest_spirit/ti9_cache_dp_peacock_priest_spirit.vmdl"
+			}
+		}
+	}
+	"13102"
+	{
+		"name"									"Armor of the Brightshroud"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/death_prophet/ti9_cache_dp_peacock_priest_armor/ti9_cache_dp_peacock_priest_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Brightshroud"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/death_prophet/ti9_cache_dp_peacock_priest_armor/ti9_cache_dp_peacock_priest_armor.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/death_prophet/death_prophet_peacock/death_prophet_peacock_armor_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13103"
+	{
+		"name"									"Belt of the Brightshroud"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/death_prophet/ti9_cache_dp_peacock_priest_belt/ti9_cache_dp_peacock_priest_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Brightshroud"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/death_prophet/ti9_cache_dp_peacock_priest_belt/ti9_cache_dp_peacock_priest_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"13104"
+	{
+		"name"									"Crown of the Brightshroud"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/death_prophet/ti9_cache_dp_peacock_priest_head/ti9_cache_dp_peacock_priest_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Brightshroud"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/death_prophet/ti9_cache_dp_peacock_priest_head/ti9_cache_dp_peacock_priest_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_hair.vpcf"
+				"system"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_hair.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/death_prophet/death_prophet_peacock/death_prophet_peacock_head_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13141"
+	{
+		"name"									"Scalefiend's Hatred Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/death_prophet/scalefiends_hatred_belt/scalefiends_hatred_belt"
+		"item_name"								"#DOTA_Item_Vote_Only_Scalefiends_Hatred_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/death_prophet/scalefiends_hatred_belt/scalefiends_hatred_belt.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"13156"
+	{
+		"name"									"TI9 Cache DP Voodoo Priestess Ghosts"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"image_inventory"						"econ/items/death_prophet/exorcism/ti9_cache_dp_voodoo_priestess_ghosts/ti9_cache_dp_voodoo_priestess_ghosts_dota_death_prophet_exorcism_spirit"
+		"item_name"								"#DOTA_TI9_Cache_DP_Voodoo_Priestess_Ghosts"
+		"item_slot"								"ability_ultimate"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"dota_death_prophet_exorcism_spirit"
+				"modifier"						"models/items/death_prophet/exorcism/ti9_cache_dp_voodoo_priestess_ghosts/ti9_cache_dp_voodoo_priestess_ghosts.vmdl"
+			}
+		}
+	}
+	"13157"
+	{
+		"name"									"TI9 Cache DP Voodoo Priestess Misc"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"image_inventory"						"econ/items/death_prophet/ti9_cache_dp_voodoo_priestess_misc/ti9_cache_dp_voodoo_priestess_misc"
+		"item_name"								"#DOTA_Item_Vote_Only_TI9_Cache_DP_Voodoo_Priestess_Misc"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Misc"
+		"model_player"							"models/items/death_prophet/ti9_cache_dp_voodoo_priestess_misc/ti9_cache_dp_voodoo_priestess_misc.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"13158"
+	{
+		"name"									"TI9 Cache DP Voodoo Priestess Legs"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"image_inventory"						"econ/items/death_prophet/ti9_cache_dp_voodoo_priestess_legs/ti9_cache_dp_voodoo_priestess_legs"
+		"item_name"								"#DOTA_Item_Vote_Only_TI9_Cache_DP_Voodoo_Priestess_Legs"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_legs"
+		"model_player"							"models/items/death_prophet/ti9_cache_dp_voodoo_priestess_legs/ti9_cache_dp_voodoo_priestess_legs.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/heroes/death_prophet/death_prophet_vortex.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_dress.vpcf"
+				"system"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_dress.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+			}
+		}
+	}
+	"13159"
+	{
+		"name"									"TI9 Cache DP Voodoo Priestess Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"image_inventory"						"econ/items/death_prophet/ti9_cache_dp_voodoo_priestess_belt/ti9_cache_dp_voodoo_priestess_belt"
+		"item_name"								"#DOTA_Item_Vote_Only_TI9_Cache_DP_Voodoo_Priestess_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/death_prophet/ti9_cache_dp_voodoo_priestess_belt/ti9_cache_dp_voodoo_priestess_belt.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"13160"
+	{
+		"name"									"TI9 Cache DP Voodoo Priestess Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"image_inventory"						"econ/items/death_prophet/ti9_cache_dp_voodoo_priestess_armor/ti9_cache_dp_voodoo_priestess_armor"
+		"item_name"								"#DOTA_Item_Vote_Only_TI9_Cache_DP_Voodoo_Priestess_Armor"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/death_prophet/ti9_cache_dp_voodoo_priestess_armor/ti9_cache_dp_voodoo_priestess_armor.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"13161"
+	{
+		"name"									"TI9 Cache DP Voodoo Priestess Head"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"image_inventory"						"econ/items/death_prophet/ti9_cache_dp_voodoo_priestess_head/ti9_cache_dp_voodoo_priestess_head"
+		"item_name"								"#DOTA_Item_Vote_Only_TI9_Cache_DP_Voodoo_Priestess_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/death_prophet/ti9_cache_dp_voodoo_priestess_head/ti9_cache_dp_voodoo_priestess_head.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_hair.vpcf"
+				"system"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_hair.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+				}
+			}
+		}
+	}
+	"13175"
+	{
+		"name"									"Scalefiend's Hatred Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/death_prophet/scalefiends_hatred_armor/scalefiends_hatred_armor"
+		"item_name"								"#DOTA_Item_Vote_Only_Scalefiends_Hatred_Armor"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/death_prophet/scalefiends_hatred_armor/scalefiends_hatred_armor.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"13239"
+	{
+		"name"									"Scalefiend's Hatred Flight"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/death_prophet/scalefiends_hatred_flight/scalefiends_hatred_flight"
+		"item_name"								"#DOTA_Item_Vote_Only_Scalefiends_Hatred_Flight"
+		"item_slot"								"legs"
+		"model_player"							"models/items/death_prophet/scalefiends_hatred_flight/scalefiends_hatred_flight.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/heroes/death_prophet/death_prophet_vortex.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_dress.vpcf"
+				"system"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_dress.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+			}
+		}
+	}
+	"13240"
+	{
+		"name"									"Scalefiend's Hatred Misc"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/death_prophet/scalefiends_hatred_misc/scalefiends_hatred_misc"
+		"item_name"								"#DOTA_Item_Vote_Only_Scalefiends_Hatred_Misc"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_misc"
+		"model_player"							"models/items/death_prophet/scalefiends_hatred_misc/scalefiends_hatred_misc.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"13241"
+	{
+		"name"									"Scalefiend's Hatred Familiars"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/death_prophet/exorcism/scalefiends_hatred_familiars/scalefiends_hatred_familiars_dota_death_prophet_exorcism_spirit"
+		"item_name"								"#DOTA_Scalefiends_Hatred_Familiars"
+		"item_slot"								"ability_ultimate"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"dota_death_prophet_exorcism_spirit"
+				"modifier"						"models/items/death_prophet/exorcism/scalefiends_hatred_familiars/scalefiends_hatred_familiars.vmdl"
+			}
+		}
+	}
+	"13990"
+	{
+		"name"									"Queen of Crimson Thorns Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/death_prophet/queen_of_crimson_thorns_head/queen_of_crimson_thorns_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Queen_of_Crimson_Thorns_Head"
+		"item_slot"								"head"
+		"model_player"							"models/items/death_prophet/queen_of_crimson_thorns_head/queen_of_crimson_thorns_head.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_hair.vpcf"
+				"system"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_hair.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+				}
+			}
+		}
+	}
+	"13991"
+	{
+		"name"									"Queen of Crimson Thorns Legs"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/death_prophet/queen_of_crimson_thorns_legs/queen_of_crimson_thorns_legs"
+		"item_name"								"#DOTA_Item_Vote_Only_Queen_of_Crimson_Thorns_Legs"
+		"item_slot"								"legs"
+		"model_player"							"models/items/death_prophet/queen_of_crimson_thorns_legs/queen_of_crimson_thorns_legs.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/heroes/death_prophet/death_prophet_vortex.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_dress.vpcf"
+				"system"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_dress.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+			}
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/death_prophet/queen_of_crimson_thorns_legs/queen_of_crimson_thorns_legs_vortex.vmdl"
+			}
+		}
+	}
+	"13992"
+	{
+		"name"									"Queen of Crimson Thorns Misc"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/death_prophet/queen_of_crimson_thorns_misc/queen_of_crimson_thorns_misc"
+		"item_name"								"#DOTA_Item_Vote_Only_Queen_of_Crimson_Thorns_Misc"
+		"item_slot"								"misc"
+		"model_player"							"models/items/death_prophet/queen_of_crimson_thorns_misc/queen_of_crimson_thorns_misc.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"13993"
+	{
+		"name"									"Queen of Crimson Thorns Ghost"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/death_prophet/exorcism/queen_of_crimson_thorns_ghost/queen_of_crimson_thorns_ghost_dota_death_prophet_exorcism_spirit"
+		"item_name"								"#DOTA_Queen_of_Crimson_Thorns_Ghost"
+		"item_slot"								"ability_ultimate"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"dota_death_prophet_exorcism_spirit"
+				"modifier"						"models/items/death_prophet/exorcism/queen_of_crimson_thorns_ghost/queen_of_crimson_thorns_ghost.vmdl"
+			}
+		}
+	}
+	"13995"
+	{
+		"name"									"Queen of Crimson Thorns Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/death_prophet/queen_of_crimson_thorns_armor/queen_of_crimson_thorns_armor"
+		"item_name"								"#DOTA_Item_Vote_Only_Queen_of_Crimson_Thorns_Armor"
+		"item_slot"								"armor"
+		"model_player"							"models/items/death_prophet/queen_of_crimson_thorns_armor/queen_of_crimson_thorns_armor.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"13996"
+	{
+		"name"									"Queen of Crimson Thorns Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/death_prophet/queen_of_crimson_thorns_belt/queen_of_crimson_thorns_belt"
+		"item_name"								"#DOTA_Item_Vote_Only_Queen_of_Crimson_Thorns_Belt"
+		"item_slot"								"belt"
+		"model_player"							"models/items/death_prophet/queen_of_crimson_thorns_belt/queen_of_crimson_thorns_belt.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14823"
+	{
+		"name"									"Oaths of the Beloved - Ghosts"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/death_prophet/exorcism/dp_bloody_bride_ghosts/dp_bloody_bride_ghosts_dota_death_prophet_exorcism_spirit"
+		"item_name"								"#DOTA_Item_Oaths_of_the_Beloved__Ghosts"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability_ultimate"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"dota_death_prophet_exorcism_spirit"
+				"modifier"						"models/items/death_prophet/exorcism/dp_bloody_bride_ghosts/dp_bloody_bride_ghosts.vmdl"
+			}
+		}
+	}
+	"14824"
+	{
+		"name"									"Oaths of the Beloved - Legs"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/death_prophet/dp_bloody_bride_legs/dp_bloody_bride_legs"
+		"item_name"								"#DOTA_Item_Oaths_of_the_Beloved__Legs"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"model_player"							"models/items/death_prophet/dp_bloody_bride_legs/dp_bloody_bride_legs.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/heroes/death_prophet/death_prophet_vortex.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_dress.vpcf"
+				"system"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_dress.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+			}
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/death_prophet/dp_bloody_bride_legs/dp_bloody_bride_legs_vortex.vmdl"
+			}
+		}
+	}
+	"14825"
+	{
+		"name"									"Oaths of the Beloved - Misc"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/death_prophet/dp_bloody_bride_misc/dp_bloody_bride_misc"
+		"item_name"								"#DOTA_Item_Oaths_of_the_Beloved__Misc"
+		"item_rarity"							"mythical"
+		"item_slot"								"misc"
+		"model_player"							"models/items/death_prophet/dp_bloody_bride_misc/dp_bloody_bride_misc.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+	}
+	"14826"
+	{
+		"name"									"Oaths of the Beloved - Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/death_prophet/dp_bloody_bride_belt/dp_bloody_bride_belt"
+		"item_name"								"#DOTA_Item_Oaths_of_the_Beloved__Belt"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"model_player"							"models/items/death_prophet/dp_bloody_bride_belt/dp_bloody_bride_belt.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"14827"
+	{
+		"name"									"Oaths of the Beloved - Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/death_prophet/dp_bloody_bride_armor/dp_bloody_bride_armor"
+		"item_name"								"#DOTA_Item_Oaths_of_the_Beloved__Armor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"model_player"							"models/items/death_prophet/dp_bloody_bride_armor/dp_bloody_bride_armor.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+	}
+	"14828"
+	{
+		"name"									"Oaths of the Beloved - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/death_prophet/dp_bloody_bride_head/dp_bloody_bride_head"
+		"item_name"								"#DOTA_Item_Oaths_of_the_Beloved__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/death_prophet/dp_bloody_bride_head/dp_bloody_bride_head.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_hair.vpcf"
+				"system"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_hair.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+				}
+			}
+		}
+	}
+	"17586"
+	{
+		"name"									"Ire of the Unwilted Spirits"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-27"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/death_prophet/exorcism/deathblossom_deathblossom_spirit/deathblossom_deathblossom_spirit_dota_death_prophet_exorcism_spirit"
+		"item_name"								"#DOTA_Item_Ire_of_the_Unwilted_Spirits"
+		"item_rarity"							"rare"
+		"item_slot"								"ability_ultimate"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"dota_death_prophet_exorcism_spirit"
+				"modifier"						"models/items/death_prophet/exorcism/deathblossom_deathblossom_spirit/deathblossom_deathblossom_spirit.vmdl"
+			}
+		}
+	}
+	"17587"
+	{
+		"name"									"Ire of the Unwilted Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-27"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/death_prophet/deathblossom_armor/deathblossom_armor"
+		"item_name"								"#DOTA_Item_Ire_of_the_Unwilted_Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/death_prophet/deathblossom_armor/deathblossom_armor.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"17589"
+	{
+		"name"									"Ire of the Unwilted Dress"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-27"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/death_prophet/deathblossom_legs/deathblossom_legs"
+		"item_name"								"#DOTA_Item_Ire_of_the_Unwilted_Dress"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"model_player"							"models/items/death_prophet/deathblossom_legs/deathblossom_legs.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/heroes/death_prophet/death_prophet_vortex.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_dress.vpcf"
+				"system"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_dress.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+			}
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/death_prophet/deathblossom_legs/deathblossom_legs_vortex.vmdl"
+			}
+		}
+	}
+	"17590"
+	{
+		"name"									"Ire of the Unwilted Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-27"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/death_prophet/deathblossom_belt/deathblossom_belt"
+		"item_name"								"#DOTA_Item_Ire_of_the_Unwilted_Belt"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/death_prophet/deathblossom_belt/deathblossom_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"17591"
+	{
+		"name"									"Ire of the Unwilted Style"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-27"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/death_prophet/deathblossom_head/deathblossom_head"
+		"item_name"								"#DOTA_Item_Ire_of_the_Unwilted_Style"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/death_prophet/deathblossom_head/deathblossom_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"17842"
+	{
+		"name"									"Dark Realm Oracles Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/death_prophet/fateful_symbiosis_armor/fateful_symbiosis_armor"
+		"item_name"								"#DOTA_Item_Dark_Realm_Oracles_Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/death_prophet/fateful_symbiosis_armor/fateful_symbiosis_armor.vmdl"
+	}
+	"17843"
+	{
+		"name"									"Dark Realm Oracles Ghost"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/death_prophet/exorcism/fateful_symbiosis_ghost/fateful_symbiosis_ghost_dota_death_prophet_exorcism_spirit"
+		"item_name"								"#DOTA_Item_Dark_Realm_Oracles_Ghost"
+		"item_rarity"							"rare"
+		"item_slot"								"ability_ultimate"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"dota_death_prophet_exorcism_spirit"
+				"modifier"						"models/items/death_prophet/exorcism/fateful_symbiosis_ghost/fateful_symbiosis_ghost.vmdl"
+			}
+		}
+	}
+	"17844"
+	{
+		"name"									"Dark Realm Oracles Wraps"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/death_prophet/fateful_symbiosis_misc/fateful_symbiosis_misc"
+		"item_name"								"#DOTA_Item_Dark_Realm_Oracles_Wraps"
+		"item_rarity"							"rare"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_misc"
+		"model_player"							"models/items/death_prophet/fateful_symbiosis_misc/fateful_symbiosis_misc.vmdl"
+	}
+	"17845"
+	{
+		"name"									"Dark Realm Oracles Mask"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/death_prophet/fateful_symbiosis_head/fateful_symbiosis_head"
+		"item_name"								"#DOTA_Item_Dark_Realm_Oracles_Mask"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/death_prophet/fateful_symbiosis_head/fateful_symbiosis_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_hair.vpcf"
+				"system"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_hair.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+				}
+			}
+		}
+	}
+	"17846"
+	{
+		"name"									"Dark Realm Oracles Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/death_prophet/fateful_symbiosis_belt/fateful_symbiosis_belt"
+		"item_name"								"#DOTA_Item_Dark_Realm_Oracles_Belt"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/death_prophet/fateful_symbiosis_belt/fateful_symbiosis_belt.vmdl"
+	}
+	"17847"
+	{
+		"name"									"Dark Realm Oracles Skirt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/death_prophet/fateful_symbiosis_petals/fateful_symbiosis_petals"
+		"item_name"								"#DOTA_Item_Dark_Realm_Oracles_Skirt"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"model_player"							"models/items/death_prophet/fateful_symbiosis_petals/fateful_symbiosis_petals.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/heroes/death_prophet/death_prophet_vortex.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_dress.vpcf"
+				"system"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_dress.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+			}
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/death_prophet/fateful_symbiosis_petals/fateful_symbiosis_petals_vortex.vmdl"
+			}
+		}
+	}
+	"18148"
+	{
+		"name"									"Curse of the Iron Maiden Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"image_inventory"						"econ/items/death_prophet/curse_of_the_iron_maiden_armor/curse_of_the_iron_maiden_armor"
+		"item_name"								"#DOTA_Item_Vote_Only_Curse_of_the_Iron_Maiden_Armor"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/death_prophet/curse_of_the_iron_maiden_armor/curse_of_the_iron_maiden_armor.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"18149"
+	{
+		"name"									"Curse of the Iron Maiden Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"image_inventory"						"econ/items/death_prophet/curse_of_the_iron_maiden_belt/curse_of_the_iron_maiden_belt"
+		"item_name"								"#DOTA_Item_Vote_Only_Curse_of_the_Iron_Maiden_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/death_prophet/curse_of_the_iron_maiden_belt/curse_of_the_iron_maiden_belt.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"18150"
+	{
+		"name"									"Curse of the Iron Maiden Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"image_inventory"						"econ/items/death_prophet/curse_of_the_iron_maiden_head/curse_of_the_iron_maiden_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Curse_of_the_Iron_Maiden_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/death_prophet/curse_of_the_iron_maiden_head/curse_of_the_iron_maiden_head.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_hair.vpcf"
+				"system"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_hair.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+				}
+			}
+		}
+	}
+	"18151"
+	{
+		"name"									"Curse of the Iron Maiden Legs"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"image_inventory"						"econ/items/death_prophet/curse_of_the_iron_maiden_legs/curse_of_the_iron_maiden_legs"
+		"item_name"								"#DOTA_Item_Vote_Only_Curse_of_the_Iron_Maiden_Legs"
+		"item_slot"								"legs"
+		"model_player"							"models/items/death_prophet/curse_of_the_iron_maiden_legs/curse_of_the_iron_maiden_legs.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/heroes/death_prophet/death_prophet_vortex.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_dress.vpcf"
+				"system"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_dress.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+			}
+		}
+	}
+	"18152"
+	{
+		"name"									"Curse of the Iron Maiden Misc"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"image_inventory"						"econ/items/death_prophet/curse_of_the_iron_maiden_misc/curse_of_the_iron_maiden_misc"
+		"item_name"								"#DOTA_Item_Vote_Only_Curse_of_the_Iron_Maiden_Misc"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_misc"
+		"model_player"							"models/items/death_prophet/curse_of_the_iron_maiden_misc/curse_of_the_iron_maiden_misc.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"18153"
+	{
+		"name"									"Curse of the Iron Maiden Ghosts"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"image_inventory"						"econ/items/death_prophet/exorcism/curse_of_the_iron_maiden_ghosts/curse_of_the_iron_maiden_ghosts_dota_death_prophet_exorcism_spirit"
+		"item_name"								"#DOTA_Curse_of_the_Iron_Maiden_Ghosts"
+		"item_slot"								"ability_ultimate"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"dota_death_prophet_exorcism_spirit"
+				"modifier"						"models/items/death_prophet/exorcism/curse_of_the_iron_maiden_ghosts/curse_of_the_iron_maiden_ghosts.vmdl"
+			}
+		}
+	}
+	"20079"
+	{
+		"name"									"The Corpse Maiden's Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Dress of the Corpse Maiden"		"1"
+			"Wicked Collar of the Corpse Maiden""1"
+			"Ghastly Scarf of the Corpse Maiden""1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_The_Corpse_Maidens_Set"
+		"item_description"						"#DOTA_Item_Desc_The_Corpse_Maidens_Set"
+		"item_name"								"#DOTA_Item_The_Corpse_Maidens_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20115"
+	{
+		"name"									"The Bone Scryer Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Horns of the Bone Scryer"			"1"
+			"Decorative Armor of the Bone Scryer""1"
+			"Funereal Dress of the Bone Scryer"	"1"
+			"Scarf of the Bone Scryer"			"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_The_Bone_Scryer_Set"
+		"item_description"						"#DOTA_Item_Desc_The_Bone_Scryer_Set"
+		"item_name"								"#DOTA_Item_The_Bone_Scryer_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20249"
+	{
+		"name"									"Gifts from the Gloom Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armor from the Gloom"				"1"
+			"Wights from the Gloom"				"1"
+			"Blindfold from the Gloom"			"1"
+			"Dress from the Gloom"				"1"
+			"Belts from the Gloom"				"1"
+		}
+		"creation_date"							"2013-09-09"
+		"image_inventory"						"econ/sets/DOTA_Item_Hecates_Gift_Set"
+		"item_description"						"#DOTA_Item_Desc_Gift_from_the_Gloom_Set"
+		"item_name"								"#DOTA_Item_Gifts_from_the_Gloom_Set"
+		"item_rarity"							"mythical"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Mythical"
+			"category_tags"						"Bundles"
+			"date"								"9/9/2013"
+			"bundle"							"1"
+			"price"								"799"
+		}
+	}
+	"20296"
+	{
+		"name"									"Augur's Curse Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Augur's Armor"						"1"
+			"Augur's Belt"						"1"
+			"Augur's Hair"						"1"
+			"Augur's Skirt"						"1"
+			"Augur's Ghosts"					"1"
+		}
+		"creation_date"							"2013-11-05"
+		"image_inventory"						"econ/sets/DOTA_Item_Augurs_Curse_Set"
+		"item_description"						"#DOTA_Item_Desc_Augurs_Curse_Set"
+		"item_name"								"#DOTA_Item_Augurs_Curse_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"11/5/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20332"
+	{
+		"name"									"Regalia of the Mortal Coil Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Gown of the Mortal Coil"			"1"
+			"Coronet of the Mortal Coil"		"1"
+			"Cinch of the Mortal Coil"			"1"
+			"Corset of the Mortal Coil"			"1"
+		}
+		"creation_date"							"2013-12-09"
+		"image_inventory"						"econ/sets/DOTA_Item_Regalia_of_the_Mortal_Coil_Set"
+		"item_description"						"#DOTA_Item_Desc_Regalia_of_the_Mortal_Coil_Set"
+		"item_name"								"#DOTA_Item_Regalia_of_the_Mortal_Coil_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"12/9/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20376"
+	{
+		"name"									"Foreteller's Robes Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Foreteller's Haircomb"				"1"
+			"Foreteller's Garment"				"1"
+			"Foreteller's Drapes"				"1"
+			"Foreteller's Adorn"				"1"
+		}
+		"creation_date"							"2014-01-24"
+		"image_inventory"						"econ/sets/DOTA_Item_Foretellers_Robes_Set"
+		"item_description"						"#DOTA_Item_Desc_Foretellers_Robes_Set"
+		"item_name"								"#DOTA_Item_Foretellers_Robes_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/24/2014"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20394"
+	{
+		"name"									"Witch of the Outlands Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Outland Witch's Hem"				"1"
+			"Outland Witch's Horns"				"1"
+			"Outland Witch's Necklace"			"1"
+			"Outland Witch's Spirits"			"1"
+			"Outland Witch's Sash"				"1"
+			"Outland Witch's Tatters"			"1"
+		}
+		"creation_date"							"2014-02-13"
+		"image_inventory"						"econ/sets/DOTA_Item_Witch_of_the_Outlands_Set"
+		"item_description"						"#DOTA_Item_Desc_Witch_of_the_Outlands_Set"
+		"item_name"								"#DOTA_Item_Witch_of_the_Outlands_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Uncommon"
+			"category_tags"						"Bundles"
+			"date"								"2/19/2014"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20605"
+	{
+		"name"									"The Mourning Mother"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Spirits of the Mourning Mother"	"1"
+			"Mourning Mother's Dress"			"1"
+			"Mourning Mother's Scarf"			"1"
+			"Mourning Mother's Top"				"1"
+			"Mourning Mother's Veil"			"1"
+			"Mourning Mother Loading Screen"	"1"
+		}
+		"creation_date"							"2014-08-01"
+		"image_inventory"						"econ/sets/DOTA_Item_Mourning_Mother"
+		"item_description"						"#DOTA_Item_Desc_The_Mourning_Mother"
+		"item_name"								"#DOTA_Item_The_Mourning_Mother"
+		"item_rarity"							"rare"
+	}
+	"20675"
+	{
+		"name"									"Ghastly Matriarch"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Ghastly Matriarch Loading Screen"	"1"
+			"Skirt of the Ghastly Matriarch"	"1"
+			"Tresses of the Ghastly Matriarch"	"1"
+			"Scarf of the Ghastly Matriarch"	"1"
+			"Collar of the Ghastly Matriarch"	"1"
+			"Chiroptera of the Ghastly Matriarch""1"
+		}
+		"creation_date"							"2014-10-22"
+		"image_inventory"						"econ/loading_screens/awakened_thirst_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Ghastly_Matriarch"
+		"item_name"								"#DOTA_Item_Ghastly_Matriarch"
+		"item_rarity"							"rare"
+	}
+	"20753"
+	{
+		"name"									"Fatal Blossom"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Fatal Blossom Hairdress"			"1"
+			"Fatal Blossom Nails"				"1"
+			"Fatal Blossom Scarf"				"1"
+			"Fatal Blossom Robe"				"1"
+			"Fatal Blossom Skirt"				"1"
+			"Fatal Blossom Loading Screen"		"1"
+		}
+		"creation_date"							"2015-02-23"
+		"image_inventory"						"econ/loading_screens/fatal_blossom_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Fatal_Blossom"
+		"item_name"								"#DOTA_Item_Fatal_Blossom"
+		"item_rarity"							"rare"
+	}
+	"20831"
+	{
+		"name"									"Vesture of the Unkind Countess"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Blouse of the Unkind Countess"		"1"
+			"Sash of the Unkind Countess"		"1"
+			"Dress of the Unkind Countess"		"1"
+			"Spirits of the Unkind Countess"	"1"
+			"Style of the Unkind Countess"		"1"
+			"Vesture of the Unkind Countess Loading Screen""1"
+		}
+		"creation_date"							"2015-06-03"
+		"image_inventory"						"econ/loading_screens/raven_vesture_loadscreen"
+		"item_description"						"#DOTA_Item_Desc_Vesture_of_the_Unkind_Countess"
+		"item_name"								"#DOTA_Item_Vesture_of_the_Unkind_Countess"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"2500"
+	}
+	"20861"
+	{
+		"name"									"The Shaded Eulogy"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"The Shaded Eulogy Loading Screen"	"1"
+			"Crest of the Shaded Eulogy"		"1"
+			"Mantle of the Shaded Eulogy"		"1"
+			"Dress of the Shaded Eulogy"		"1"
+			"Tails of the Shaded Eulogy"		"1"
+			"Witnesses of the Shaded Eulogy"	"1"
+		}
+		"creation_date"							"2015-07-03"
+		"image_inventory"						"econ/loading_screens/burial_robes_ls"
+		"item_description"						"#DOTA_Item_Desc_Death_Prophets_Burial_Robes"
+		"item_name"								"#DOTA_Item_The_Shaded_Eulogy"
+		"item_rarity"							"rare"
+	}
+	"20977"
+	{
+		"name"									"Secrets of the Merqueen"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Secrets of the Merqueen Loading Screen""1"
+			"Dress of the Merqueen"				"1"
+			"Crown of the Merqueen"				"1"
+			"Wraith of the Merqueen"			"1"
+			"Covers of the Merqueen"			"1"
+			"Sleeves of the Merqueen"			"1"
+		}
+		"creation_date"							"2016-01-08"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/mermaids_queen_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Secrets_of_the_Merqueen"
+		"item_name"								"#DOTA_Item_Secrets_of_the_Merqueen"
+		"item_rarity"							"mythical"
+	}
+	"21042"
+	{
+		"name"									"Temptation of the Mothbinder"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Hood of the Mothbinder"			"1"
+			"Armor of the Mothbinder"			"1"
+			"Skirt of the Mothbinder"			"1"
+			"Belt of the Mothbinder"			"1"
+			"Bracelets of the Mothbinder"		"1"
+			"Spirits of the Mothbinder"			"1"
+			"Loading Screen of the Mothbinder"	"1"
+		}
+		"creation_date"							"2016-09-07"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/loading_screens/mothbinders_omen_mothbinders_omen_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Temptation_of_the_Mothbinder"
+		"item_name"								"#DOTA_Item_Temptation_of_the_Mothbinder"
+		"item_rarity"							"mythical"
+	}
+	"21109"
+	{
+		"name"									"Eternal Testament"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Veil of Eternal Testament"			"1"
+			"Dress of Eternal Testament"		"1"
+			"Blouse of Eternal Testament"		"1"
+			"Ghosts of Eternal Testament"		"1"
+			"Weeds of Eternal Testament"		"1"
+			"Eternal Testament Loading Screen"	"1"
+		}
+		"creation_date"							"2017-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/loading_screens/drowned_siren_drowned_siren_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Eternal_Testament"
+		"item_name"								"#DOTA_Item_Eternal_Testament"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21179"
+	{
+		"name"									"Wail of the Winter Revenant"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Crown of the Winter Revenant"		"1"
+			"Robe of the Winter Revenant"		"1"
+			"Tassle of the Winter Revenant"		"1"
+			"Wraith of the Winter Revenant"		"1"
+			"Skirt of the Winter Revenant"		"1"
+			"Belt of the Winter Revenant"		"1"
+			"Wail of the Winter Revenant Loading Screen""1"
+		}
+		"creation_date"							"2019-11-27"
+		"event_id"								"EVENT_ID_FROSTIVUS_2019"
+		"image_inventory"						"econ/loading_screens/woman_of_the_snow_ls"
+		"item_name"								"#DOTA_Item_Wail_of_the_Winter_Revenant"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"1"
+			}
+		}
+	}
+	"21290"
+	{
+		"name"									"Mistress of the Long Night"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Hood of the Long Night"			"1"
+			"Cape of the Long Night"			"1"
+			"Feathers of the Long Night"		"1"
+			"Belt of the Long Night"			"1"
+			"Spirit of the Long Night"			"1"
+			"Skirt of the Long Night"			"1"
+		}
+		"creation_date"							"2018-12-02"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/sets/DOTA_Item_Frostivus2018_DP_Mistress_of_the_Blizzard"
+		"item_description"						"#DOTA_Item_Desc_Mistress_of_the_Long_Night"
+		"item_name"								"#DOTA_Item_Mistress_of_the_Long_Night"
+		"item_rarity"							"rare"
+	}
+	"21346"
+	{
+		"name"									"Soul of the Brightshroud"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Soul of the Brightshroud Loading Screen""1"
+			"Crown of the Brightshroud"			"1"
+			"Belt of the Brightshroud"			"1"
+			"Armor of the Brightshroud"			"1"
+			"Spirit of the Brightshroud"		"1"
+			"Bracer of the Brightshroud"		"1"
+			"Skirt of the Brightshroud"			"1"
+		}
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/loading_screens/ti9_cache_dp_peacock_priest_ls"
+		"item_description"						"#DOTA_Item_Desc_Soul_of_the_Brightshroud"
+		"item_name"								"#DOTA_Item_Soul_of_the_Brightshroud"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"21357"
+	{
+		"name"									"TI9 Cache DP Voodoo Priestess"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"TI9 Cache DP Voodoo Priestess Head""1"
+			"TI9 Cache DP Voodoo Priestess Armor""1"
+			"TI9 Cache DP Voodoo Priestess Belt""1"
+			"TI9 Cache DP Voodoo Priestess Legs""1"
+			"TI9 Cache DP Voodoo Priestess Misc""1"
+			"TI9 Cache DP Voodoo Priestess Ghosts""1"
+		}
+		"creation_date"							"2019-05-14"
+		"image_inventory"						"econ/sets/DOTA_Item_TI9_Cache_DP_Voodoo_Priestess"
+		"item_name"								"#DOTA_Item_Vote_Only_TI9_Cache_DP_Voodoo_Priestess"
+		"workshop_accepted"						"0"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+		}
+	}
+	"21382"
+	{
+		"name"									"Scalefiend's Hatred"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Scalefiend's Hatred Head"			"1"
+			"Scalefiend's Hatred Belt"			"1"
+			"Scalefiend's Hatred Armor"			"1"
+			"Scalefiend's Hatred Flight"		"1"
+			"Scalefiend's Hatred Misc"			"1"
+			"Scalefiend's Hatred Familiars"		"1"
+		}
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Scalefiends_Hatred"
+		"workshop_accepted"						"0"
+	}
+	"21476"
+	{
+		"name"									"Queen of Crimson Thorns"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Queen of Crimson Thorns Belt"		"1"
+			"Queen of Crimson Thorns Armor"		"1"
+			"Queen of Crimson Thorns LS"		"1"
+			"Queen of Crimson Thorns Ghost"		"1"
+			"Queen of Crimson Thorns Misc"		"1"
+			"Queen of Crimson Thorns Legs"		"1"
+			"Queen of Crimson Thorns Head"		"1"
+		}
+		"creation_date"							"2020-05-11"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Queen_of_Crimson_Thorns"
+		"workshop_accepted"						"0"
+	}
+	"21601"
+	{
+		"name"									"Oaths of the Beloved"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Oaths of the Beloved - Head"		"1"
+			"Oaths of the Beloved - Armor"		"1"
+			"Oaths of the Beloved - Belt"		"1"
+			"Oaths of the Beloved - Misc"		"1"
+			"Oaths of the Beloved - Legs"		"1"
+			"Oaths of the Beloved - Ghosts"		"1"
+			"Oaths of the Beloved Loading Screen""1"
+		}
+		"creation_date"							"2020-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/sets/DOTA_Item_Vote_Only_DP_bloody_bride"
+		"item_name"								"#DOTA_Item_Oaths_of_the_Beloved"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+	}
+	"21660"
+	{
+		"name"									"Ire of the Unwilted"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Ire of the Unwilted Style"			"1"
+			"Ire of the Unwilted Belt"			"1"
+			"Ire of the Unwilted Loading Screen""1"
+			"Ire of the Unwilted Spirits"		"1"
+			"Ire of the Unwilted Armor"			"1"
+			"Ire of the Unwilted Dress"			"1"
+		}
+		"creation_date"							"2020-08-27"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/loading_screens/deathblossom_deathblossom_loadingscreen"
+		"item_name"								"#DOTA_Item_Ire_of_the_Unwilted"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"21705"
+	{
+		"name"									"Dark Realm Oracles"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Dark Realm Oracles Skirt"			"1"
+			"Dark Realm Oracles Belt"			"1"
+			"Dark Realm Oracles Mask"			"1"
+			"Dark Realm Oracles Wraps"			"1"
+			"Dark Realm Oracles Ghost"			"1"
+			"Dark Realm Oracles Armor"			"1"
+		}
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Fateful_Symbiosis"
+		"item_name"								"#DOTA_Item_Dark_Realm_Oracles"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+	}
+	"21737"
+	{
+		"name"									"Curse of the Iron Maiden"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Curse of the Iron Maiden Armor"	"1"
+			"Curse of the Iron Maiden Belt"		"1"
+			"Curse of the Iron Maiden Head"		"1"
+			"Curse of the Iron Maiden Legs"		"1"
+			"Curse of the Iron Maiden Misc"		"1"
+			"Curse of the Iron Maiden Ghosts"	"1"
+		}
+		"creation_date"							"2020-09-28"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Curse_of_the_Iron_Maiden"
+		"workshop_accepted"						"0"
+	}
+	"22737"
+	{
+		"name"									"Feasts of the Forlorn - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-19"
+		"image_inventory"						"econ/items/death_prophet/carrion_bloom_head/carrion_bloom_head"
+		"item_name"								"#DOTA_Item_Feasts_of_the_Forlorn__Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/death_prophet/carrion_bloom_head/carrion_bloom_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_hair.vpcf"
+				"system"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_hair.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+				}
+			}
+		}
+	}
+	"22738"
+	{
+		"name"									"Feasts of the Forlorn - Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-19"
+		"image_inventory"						"econ/items/death_prophet/carrion_bloom_armor/carrion_bloom_armor"
+		"item_name"								"#DOTA_Item_Feasts_of_the_Forlorn__Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/death_prophet/carrion_bloom_armor/carrion_bloom_armor.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"22739"
+	{
+		"name"									"Feasts of the Forlorn - Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-19"
+		"image_inventory"						"econ/items/death_prophet/carrion_bloom_belt/carrion_bloom_belt"
+		"item_name"								"#DOTA_Item_Feasts_of_the_Forlorn__Belt"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/death_prophet/carrion_bloom_belt/carrion_bloom_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"22740"
+	{
+		"name"									"Feasts of the Forlorn - Misc"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-19"
+		"image_inventory"						"econ/items/death_prophet/carrion_bloom_misc/carrion_bloom_misc"
+		"item_name"								"#DOTA_Item_Feasts_of_the_Forlorn__Misc"
+		"item_rarity"							"rare"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_misc"
+		"model_player"							"models/items/death_prophet/carrion_bloom_misc/carrion_bloom_misc.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"22741"
+	{
+		"name"									"Feasts of the Forlorn - Legs"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-19"
+		"image_inventory"						"econ/items/death_prophet/carrion_bloom_legs/carrion_bloom_legs"
+		"item_name"								"#DOTA_Item_Feasts_of_the_Forlorn__Legs"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"model_player"							"models/items/death_prophet/carrion_bloom_legs/carrion_bloom_legs.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/heroes/death_prophet/death_prophet_vortex.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_dress.vpcf"
+				"system"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_dress.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+			}
+		}
+	}
+	"22742"
+	{
+		"name"									"Feasts of the Forlorn - Ghosts"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-19"
+		"image_inventory"						"econ/items/death_prophet/carrion_bloom_ghosts/carrion_bloom_ghosts"
+		"item_name"								"#DOTA_Item_Feasts_of_the_Forlorn__Ghosts"
+		"item_rarity"							"rare"
+		"item_slot"								"ability_ultimate"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"dota_death_prophet_exorcism_spirit"
+				"modifier"						"models/items/death_prophet/exorcism/carrion_bloom_ghosts/carrion_bloom_ghosts.vmdl"
+			}
+		}
+	}
+	"22782"
+	{
+		"name"									"Winter Lineage Spirits of the Mothbinder"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-24"
+		"event_id"								"EVENT_ID_TEAM_FANDOM_FALL_2021"
+		"image_inventory"						"econ/items/death_prophet/exorcism/mothbinders_omen_mothbinders_spirits/mothbinders_omen_mothbinders_spirits_dpc_dota_death_prophet_exorcism_spirit"
+		"item_description"						"#DOTA_Item_Desc_Winter_Lineage_Spirits_of_the_Mothbinder"
+		"item_name"								"#DOTA_Item_Winter_Lineage_Spirits_of_the_Mothbinder"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Spirits"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"34"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"dota_death_prophet_exorcism_spirit"
+				"modifier"						"models/items/death_prophet/exorcism/mothbinders_omen_mothbinders_spirits/mothbinders_omen_mothbinders_spirits_dpc.vmdl"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"22783"
+	{
+		"name"									"Winter Lineage Bracelets of the Mothbinder"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-24"
+		"event_id"								"EVENT_ID_TEAM_FANDOM_FALL_2021"
+		"image_inventory"						"econ/items/death_prophet/mothbinders_omen_misc/mothbinders_omen_misc1"
+		"item_description"						"#DOTA_Item_Desc_Winter_Lineage_Bracelets_of_the_Mothbinder"
+		"item_name"								"#DOTA_Item_Winter_Lineage_Bracelets_of_the_Mothbinder"
+		"item_rarity"							"mythical"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Misc"
+		"model_player"							"models/items/death_prophet/mothbinders_omen_misc/mothbinders_omen_misc.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"34"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"22784"
+	{
+		"name"									"Winter Lineage Belt of the Mothbinder"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-24"
+		"event_id"								"EVENT_ID_TEAM_FANDOM_FALL_2021"
+		"image_inventory"						"econ/items/death_prophet/mothbinders_omen_belt/mothbinders_omen_belt1"
+		"item_description"						"#DOTA_Item_Desc_Winter_Lineage_Belt_of_the_Mothbinder"
+		"item_name"								"#DOTA_Item_Winter_Lineage_Belt_of_the_Mothbinder"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/death_prophet/mothbinders_omen_belt/mothbinders_omen_belt.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"34"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"22785"
+	{
+		"name"									"Winter Lineage Skirt of the Mothbinder"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-24"
+		"event_id"								"EVENT_ID_TEAM_FANDOM_FALL_2021"
+		"image_inventory"						"econ/items/death_prophet/mothbinders_omen_legs/mothbinders_omen_legs1"
+		"item_description"						"#DOTA_Item_Desc_Winter_Lineage_Skirt_of_the_Mothbinder"
+		"item_name"								"#DOTA_Item_Winter_Lineage_Skirt_of_the_Mothbinder"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Skirt"
+		"model_player"							"models/items/death_prophet/mothbinders_omen_legs/mothbinders_omen_legs.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"34"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/death_prophet/mothbinders_omen_legs/mothbinders_omen_legs_vortex.vmdl"
+			}
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"22786"
+	{
+		"name"									"Winter Lineage Armor of the Mothbinder"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-24"
+		"event_id"								"EVENT_ID_TEAM_FANDOM_FALL_2021"
+		"image_inventory"						"econ/items/death_prophet/mothbinders_omen_armor/mothbinders_omen_armor1"
+		"item_description"						"#DOTA_Item_Desc_Winter_Lineage_Armor_of_the_Mothbinder"
+		"item_name"								"#DOTA_Item_Winter_Lineage_Armor_of_the_Mothbinder"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/death_prophet/mothbinders_omen_armor/mothbinders_omen_armor.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"34"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"22787"
+	{
+		"name"									"Winter Lineage Hood of the Mothbinder"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-24"
+		"event_id"								"EVENT_ID_TEAM_FANDOM_FALL_2021"
+		"image_inventory"						"econ/items/death_prophet/mothbinders_omen_head/mothbinders_omen_head1"
+		"item_description"						"#DOTA_Item_Desc_Winter_Lineage_Hood_of_the_Mothbinder"
+		"item_name"								"#DOTA_Item_Winter_Lineage_Hood_of_the_Mothbinder"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/death_prophet/mothbinders_omen_head/mothbinders_omen_head.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"34"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"22788"
+	{
+		"name"									"Winter Lineage Temptation of the Mothbinder"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Winter Lineage Spirits of the Mothbinder""1"
+			"Winter Lineage Bracelets of the Mothbinder""1"
+			"Winter Lineage Belt of the Mothbinder""1"
+			"Winter Lineage Skirt of the Mothbinder""1"
+			"Winter Lineage Armor of the Mothbinder""1"
+			"Winter Lineage Hood of the Mothbinder""1"
+		}
+		"creation_date"							"2022-01-24"
+		"event_id"								"EVENT_ID_TEAM_FANDOM_FALL_2021"
+		"image_inventory"						"econ/sets/DOTA_Item_DPC_2022_Temptation_of_the_Mothbinder"
+		"item_description"						"#DOTA_Item_Desc_Winter_Lineage_Temptation_of_the_Mothbinder"
+		"item_name"								"#DOTA_Item_Winter_Lineage_Temptation_of_the_Mothbinder"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"34"
+			}
+		}
+	}
+	"22874"
+	{
+		"name"									"Feasts of the Forlorn"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Feasts of the Forlorn - Ghosts"	"1"
+			"Feasts of the Forlorn - Legs"		"1"
+			"Feasts of the Forlorn - Misc"		"1"
+			"Feasts of the Forlorn - Belt"		"1"
+			"Feasts of the Forlorn - Armor"		"1"
+			"Feasts of the Forlorn - Head"		"1"
+		}
+		"creation_date"							"2022-02-25"
+		"image_inventory"						"econ/sets/DOTA_Item_Carrion_Bloom"
+		"item_name"								"#DOTA_Item_Feasts_of_the_Forlorn"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"23311"
+	{
+		"name"									"Dark Debutante Skirt"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-20"
+		"image_inventory"						"econ/items/death_prophet/dark_debutante/dark_debutante_dress"
+		"item_name"								"#DOTA_Item_Dark_Debutante_Skirt"
+		"item_slot"								"legs"
+		"model_player"							"models/items/death_prophet/deaths_bloom_deaths_bloom_skirt/deaths_bloom_deaths_bloom_skirt.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/heroes/death_prophet/death_prophet_vortex.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_dress.vpcf"
+				"system"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_dress.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+			}
+		}
+	}
+	"23312"
+	{
+		"name"									"Dark Debutante Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-20"
+		"image_inventory"						"econ/items/death_prophet/dark_debutante/dark_debutante_dresstop"
+		"item_name"								"#DOTA_Item_Dark_Debutante_Armor"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/death_prophet/deaths_bloom_armor/deaths_bloom_armor.vmdl"
+	}
+	"23313"
+	{
+		"name"									"Dark Debutante Head"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-20"
+		"image_inventory"						"econ/items/death_prophet/dark_debutante/dark_debutante_hair"
+		"item_name"								"#DOTA_Item_Dark_Debutante_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/death_prophet/deaths_bloom_head/deaths_bloom_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_hair.vpcf"
+				"system"						"particles/units/heroes/hero_death_prophet/death_prophet_ambient_hair.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+				}
+			}
+		}
+	}
+	"23314"
+	{
+		"name"									"Dark Debutante Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-20"
+		"image_inventory"						"econ/items/death_prophet/dark_debutante/dark_debutante_scarf"
+		"item_name"								"#DOTA_Item_Dark_Debutante_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/death_prophet/deaths_bloom_belt/deaths_bloom_belt.vmdl"
+	}
+	"23315"
+	{
+		"name"									"Dark Debutante Ultimate"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-20"
+		"image_inventory"						"econ/items/death_prophet/dark_debutante/dark_debutante_ghost"
+		"item_name"								"#DOTA_Item_Dark_Debutante_Ultimate"
+		"item_slot"								"ability_ultimate"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"dota_death_prophet_exorcism_spirit"
+				"modifier"						"models/items/death_prophet/exorcism/deaths_bloom_deaths_bloom_ultimate/deaths_bloom_deaths_bloom_ultimate.vmdl"
+			}
+		}
+	}
+	"23316"
+	{
+		"name"									"Dark Debutante"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Dark Debutante Belt"				"1"
+			"Dark Debutante Head"				"1"
+			"Dark Debutante Armor"				"1"
+			"Dark Debutante Skirt"				"1"
+			"Dark Debutante Ultimate"			"1"
+		}
+		"creation_date"							"2022-05-23"
+		"image_inventory"						"econ/sets/dota_item_dark_debutante"
+		"item_name"								"#DOTA_Item_Dark_Debutante"
+	}
+}

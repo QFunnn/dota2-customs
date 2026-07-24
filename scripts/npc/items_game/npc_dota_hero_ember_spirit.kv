@@ -1,0 +1,4585 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"462"
+	{
+		"name"									"Ember Spirit's Head Item"
+		"prefab"								"default_item"
+		"creation_date"							"2013-10-11"
+		"image_inventory"						"econ/heroes/ember_spirit/back"
+		"item_description"						"#DOTA_Item_Desc_Ember_Spirits_Head_Item"
+		"item_name"								"#DOTA_Item_Ember_Spirits_Head_Item"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/ember_spirit/back.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_head.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_head.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_eyes.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+		}
+	}
+	"469"
+	{
+		"name"									"Ember Spirit's Shoulders"
+		"prefab"								"default_item"
+		"creation_date"							"2013-10-11"
+		"image_inventory"						"econ/heroes/ember_spirit/shoulder"
+		"item_description"						"#DOTA_Item_Desc_Ember_Spirits_Shoulders"
+		"item_name"								"#DOTA_Item_Ember_Spirits_Shoulders"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/heroes/ember_spirit/shoulder.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_shoulder_glow.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_shoulder_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_glow_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_glow_l"
+					}
+				}
+			}
+		}
+	}
+	"471"
+	{
+		"name"									"Ember Spirit's Belt Item"
+		"prefab"								"default_item"
+		"creation_date"							"2013-10-11"
+		"image_inventory"						"econ/heroes/ember_spirit/belt"
+		"item_description"						"#DOTA_Item_Desc_Ember_Spirits_Belt_Item"
+		"item_name"								"#DOTA_Item_Ember_Spirits_Belt_Item"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/heroes/ember_spirit/belt.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_armor_glow.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_armor_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_armor_glow"
+					}
+				}
+			}
+		}
+	}
+	"472"
+	{
+		"name"									"Ember Spirit's Main Weapon"
+		"prefab"								"default_item"
+		"creation_date"							"2013-10-11"
+		"image_inventory"						"econ/heroes/ember_spirit/weapon1"
+		"item_description"						"#DOTA_Item_Desc_Ember_Spirits_Main_Weapon"
+		"item_name"								"#DOTA_Item_Ember_Spirits_Main_Weapon"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/heroes/ember_spirit/weapon1.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary_blade.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+		}
+	}
+	"473"
+	{
+		"name"									"Ember Spirit's Offhand Weapon"
+		"prefab"								"default_item"
+		"creation_date"							"2013-10-11"
+		"image_inventory"						"econ/heroes/ember_spirit/weapon2"
+		"item_description"						"#DOTA_Item_Desc_Ember_Spirits_Offhand_Weapon"
+		"item_name"								"#DOTA_Item_Ember_Spirits_Offhand_Weapon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/heroes/ember_spirit/weapon2.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand_blade.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+		}
+	}
+	"474"
+	{
+		"name"									"Ember Spirit's Arms"
+		"prefab"								"default_item"
+		"creation_date"							"2013-10-11"
+		"image_inventory"						"econ/heroes/ember_spirit/arm"
+		"item_description"						"#DOTA_Item_Desc_Ember_Spirits_Arms"
+		"item_name"								"#DOTA_Item_Ember_Spirits_Arms"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/heroes/ember_spirit/arm.vmdl"
+	}
+	"5878"
+	{
+		"name"									"Ember Spirit's Hat"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-18"
+		"image_inventory"						"econ/items/ember_spirit/ember_hat/ember_hat"
+		"item_name"								"#DOTA_Item_Ember_Spirits_Hat"
+		"item_rarity"							"legendary"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/ember_spirit/ember_hat/ember_hat.vmdl"
+	}
+	"5966"
+	{
+		"name"									"Fortune's Coin"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-21"
+		"image_inventory"						"econ/items/ember_spirit/lucky_disc/lucky_disc"
+		"item_name"								"#DOTA_Item_Fortunes_Coin"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Good_Luck_Charm"
+		"model_player"							"models/items/ember_spirit/lucky_disc/lucky_disc.vmdl"
+	}
+	"5972"
+	{
+		"name"									"Governor's Salakot"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-15"
+		"image_inventory"						"econ/items/ember_spirit/salakot/salakot"
+		"item_name"								"#DOTA_Item_Governors_Salakot"
+		"item_rarity"							"legendary"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hat"
+		"model_player"							"models/items/ember_spirit/salakot/salakot.vmdl"
+	}
+	"6013"
+	{
+		"name"									"Arm Guards of Prosperity"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-23"
+		"image_inventory"						"econ/items/ember_spirit/arm_guards_of_prosperity/arm_guards_of_prosperity"
+		"item_name"								"#DOTA_Item_Arm_Guards_of_Prosperity"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/ember_spirit/arm_guards_of_prosperity/arm_guards_of_prosperity.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/27/2014"
+			"price"								"0"
+		}
+	}
+	"6014"
+	{
+		"name"									"Crimson Guard of Prosperity"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-23"
+		"image_inventory"						"econ/items/ember_spirit/crimson_guard_of_prosperity/crimson_guard_of_prosperity"
+		"item_name"								"#DOTA_Item_Crimson_Guard_of_Prosperity"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/ember_spirit/crimson_guard_of_prosperity/crimson_guard_of_prosperity.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/27/2014"
+			"price"								"0"
+		}
+	}
+	"6015"
+	{
+		"name"									"Phoenix Helm of Prosperity"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-23"
+		"image_inventory"						"econ/items/ember_spirit/phoenix_helm_of_prosperity/phoenix_helm_of_prosperity"
+		"item_name"								"#DOTA_Item_Phoenix_Helm_of_Prosperity"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/ember_spirit/phoenix_helm_of_prosperity/phoenix_helm_of_prosperity.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/27/2014"
+			"price"								"0"
+		}
+	}
+	"6016"
+	{
+		"name"									"Jin - Blade of Prosperity"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-23"
+		"image_inventory"						"econ/items/ember_spirit/jin__blade_of_prosperity/jin__blade_of_prosperity"
+		"item_name"								"#DOTA_Item_Jin__Blade_of_Prosperity"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Sword"
+		"model_player"							"models/items/ember_spirit/jin__blade_of_prosperity/jin__blade_of_prosperity.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/27/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+		}
+	}
+	"6017"
+	{
+		"name"									"Huo - Blade of Prosperity"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-23"
+		"image_inventory"						"econ/items/ember_spirit/huo__blade_of_prosperity/huo__blade_of_prosperity"
+		"item_name"								"#DOTA_Item_Huo__Blade_of_Prosperity"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Sword"
+		"model_player"							"models/items/ember_spirit/huo__blade_of_prosperity/huo__blade_of_prosperity.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/27/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+		}
+	}
+	"6018"
+	{
+		"name"									"Ember Pauldrons of Prosperity"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-23"
+		"image_inventory"						"econ/items/ember_spirit/ember_pauldrons_of_prosperity/ember_pauldrons_of_prosperity"
+		"item_name"								"#DOTA_Item_Ember_Pauldrons_of_Prosperity"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/ember_spirit/ember_pauldrons_of_prosperity/ember_pauldrons_of_prosperity.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/27/2014"
+			"price"								"0"
+		}
+	}
+	"6357"
+	{
+		"name"									"Greater Purifier"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-01"
+		"image_inventory"						"econ/items/ember_spirit/greaterpurifier_weapon/greaterpurifier_weapon"
+		"item_name"								"#DOTA_Item_Greater_Purifier"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Sword"
+		"model_player"							"models/items/ember_spirit/greaterpurifier_weapon/greaterpurifier_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/ember_spirit/ember_spirit_lesser_greater_purifier"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"4/1/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/ember_spirit/weapon1.vsnap"
+				"modifier"						"particles/models/items/ember_spirit/greaterpurifier_weapon/greaterpurifier_weapon.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ember_spirit/ember_spirit_lesser_greater_purifier/ember_spirit_ambient_greaterpurifier_primary_blade.vpcf"
+				"system"						"particles/econ/items/ember_spirit/ember_spirit_lesser_greater_purifier/ember_spirit_ambient_greaterpurifier_primary_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+		}
+	}
+	"6358"
+	{
+		"name"									"Lesser Purifier"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-01"
+		"image_inventory"						"econ/items/ember_spirit/lesserpurifier_offhand_weapon/lesserpurifier_offhand_weapon"
+		"item_name"								"#DOTA_Item_Lesser_Purifier"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Sword"
+		"model_player"							"models/items/ember_spirit/lesserpurifier_offhand_weapon/lesserpurifier_offhand_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/ember_spirit/ember_spirit_lesser_greater_purifier"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"4/1/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/ember_spirit/weapon2.vsnap"
+				"modifier"						"particles/models/items/ember_spirit/lesserpurifier_offhand_weapon/lesserpurifier_offhand_weapon.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ember_spirit/ember_spirit_lesser_greater_purifier/ember_spirit_ambient_lesserpurifier_offhand_blade.vpcf"
+				"system"						"particles/econ/items/ember_spirit/ember_spirit_lesser_greater_purifier/ember_spirit_ambient_lesserpurifier_offhand_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+		}
+	}
+	"6759"
+	{
+		"name"									"Mentor of the High Plains Ceremonial Banner"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-30"
+		"image_inventory"						"econ/items/ember_spirit/mentor_high_plains_head/mentor_high_plains_head"
+		"item_name"								"#DOTA_Item_Mentor_of_the_High_Plains_Ceremonial_Banner"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Banner"
+		"model_player"							"models/items/ember_spirit/mentor_high_plains_head/mentor_high_plains_head.vmdl"
+	}
+	"6760"
+	{
+		"name"									"Mentor of the High Plains Great Cuirass"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-30"
+		"image_inventory"						"econ/items/ember_spirit/mentor_high_plains_belt/mentor_high_plains_belt"
+		"item_name"								"#DOTA_Item_Mentor_of_the_High_Plains_Great_Cuirass"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/ember_spirit/mentor_high_plains_belt/mentor_high_plains_belt.vmdl"
+	}
+	"6761"
+	{
+		"name"									"Mentor of the High Plains Guard"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-30"
+		"image_inventory"						"econ/items/ember_spirit/mentor_high_plains_arms/mentor_high_plains_arms"
+		"item_name"								"#DOTA_Item_Mentor_of_the_High_Plains_Guard"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/ember_spirit/mentor_high_plains_arms/mentor_high_plains_arms.vmdl"
+	}
+	"6762"
+	{
+		"name"									"Mentor of the High Plains Decorated Pauldrons"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-30"
+		"image_inventory"						"econ/items/ember_spirit/mentor_high_plains_shoulder/mentor_high_plains_shoulder"
+		"item_name"								"#DOTA_Item_Mentor_of_the_High_Plains_Decorated_Pauldrons"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/ember_spirit/mentor_high_plains_shoulder/mentor_high_plains_shoulder.vmdl"
+	}
+	"6763"
+	{
+		"name"									"Mentor of the High Plains Right Tiger Hook"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-30"
+		"image_inventory"						"econ/items/ember_spirit/mentor_high_plains_weapon/mentor_high_plains_weapon"
+		"item_name"								"#DOTA_Item_Mentor_of_the_High_Plains_Right_Tiger_Hook"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/ember_spirit/mentor_high_plains_weapon/mentor_high_plains_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/ember_spirit/weapon1.vsnap"
+				"modifier"						"particles/models/items/ember_spirit/mentor_high_plains_weapon/mentor_high_plains_weapon.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary_blade.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+		}
+	}
+	"6764"
+	{
+		"name"									"Mentor of the High Plains Left Tiger Hook"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-30"
+		"image_inventory"						"econ/items/ember_spirit/mentor_high_plains_offhand/mentor_high_plains_offhand"
+		"item_name"								"#DOTA_Item_Mentor_of_the_High_Plains_Left_Tiger_Hook"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Offhand_Weapon"
+		"model_player"							"models/items/ember_spirit/mentor_high_plains_offhand/mentor_high_plains_offhand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/ember_spirit/weapon2.vsnap"
+				"modifier"						"particles/models/items/ember_spirit/mentor_high_plains_offhand/mentor_high_plains_offhand.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand_blade.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+		}
+	}
+	"7001"
+	{
+		"name"									"Orbs of Blaze Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2014-08-22"
+		"image_inventory"						"econ/items/ember_spirit/blazearmor_arms/blazearmor_arms"
+		"item_name"								"#DOTA_Item_Orbs_of_Blaze_Armor"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Orbs"
+		"model_player"							"models/items/ember_spirit/blazearmor_arms/blazearmor_arms.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2015"
+			"price"								"0"
+		}
+	}
+	"7002"
+	{
+		"name"									"Robes of Blaze Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2014-08-22"
+		"image_inventory"						"econ/items/ember_spirit/blazearmor_belt/blazearmor_belt"
+		"item_name"								"#DOTA_Item_Robes_of_Blaze_Armor"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Robes"
+		"model_player"							"models/items/ember_spirit/blazearmor_belt/blazearmor_belt.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2015"
+			"price"								"0"
+		}
+	}
+	"7003"
+	{
+		"name"									"Pauldrons of Blaze Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2014-08-22"
+		"image_inventory"						"econ/items/ember_spirit/blazearmor_shoulder/blazearmor_shoulder"
+		"item_name"								"#DOTA_Item_Pauldrons_of_Blaze_Armor"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/ember_spirit/blazearmor_shoulder/blazearmor_shoulder.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2015"
+			"price"								"0"
+		}
+	}
+	"7004"
+	{
+		"name"									"Flaming Hair of Blaze Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2014-08-22"
+		"image_inventory"						"econ/items/ember_spirit/blazearmor_head/blazearmor_head"
+		"item_name"								"#DOTA_Item_Flaming_Hair_of_Blaze_Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/ember_spirit/blazearmor_head/blazearmor_head.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2015"
+			"price"								"0"
+		}
+	}
+	"7006"
+	{
+		"name"									"Zhuo -  Blade of Blaze Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2014-08-22"
+		"image_inventory"						"econ/items/ember_spirit/blazearmor_offhand/blazearmor_offhand"
+		"item_name"								"#DOTA_Item_Zhuo___Blade_of_Blaze_Armor"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_OffHand"
+		"model_player"							"models/items/ember_spirit/blazearmor_offhand/blazearmor_offhand.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2015"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/ember_spirit/weapon2.vsnap"
+				"modifier"						"particles/models/items/ember_spirit/blazearmor_offhand/blazearmor_offhand.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+		}
+	}
+	"7007"
+	{
+		"name"									"Xin - Blade of Blaze Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2014-08-22"
+		"image_inventory"						"econ/items/ember_spirit/blazearmor_weapon/blazearmor_weapon"
+		"item_name"								"#DOTA_Item_Xin__Blade_of_Blaze_Armor"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/ember_spirit/blazearmor_weapon/blazearmor_weapon.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2015"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/ember_spirit/weapon1.vsnap"
+				"modifier"						"particles/models/items/ember_spirit/blazearmor_weapon/blazearmor_weapon.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+		}
+	}
+	"7170"
+	{
+		"name"									"Imperial Flame Offhand Sword"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-27"
+		"image_inventory"						"econ/items/ember_spirit/flame_imperial_offhand/flame_imperial_offhand"
+		"item_name"								"#DOTA_Item_Imperial_Flame_Offhand_Sword"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Offhand_Weapon"
+		"model_player"							"models/items/ember_spirit/flame_imperial_offhand/flame_imperial_offhand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/ember_spirit/weapon2.vsnap"
+				"modifier"						"particles/models/items/ember_spirit/flame_imperial_offhand/flame_imperial_offhand.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand_blade.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+		}
+	}
+	"7175"
+	{
+		"name"									"Imperial Flame Sword"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-27"
+		"image_inventory"						"econ/items/ember_spirit/flame_imperial_weapon/flame_imperial_weapon"
+		"item_name"								"#DOTA_Item_Imperial_Flame_Sword"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/ember_spirit/flame_imperial_weapon/flame_imperial_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/ember_spirit/weapon1.vsnap"
+				"modifier"						"particles/models/items/ember_spirit/flame_imperial_weapon/flame_imperial_weapon.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary_blade.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+		}
+	}
+	"7470"
+	{
+		"name"									"Rapier of the Burning God Offhand"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-09"
+		"image_inventory"						"econ/items/ember_spirit/rapier_burning_god_offhand/rapier_burning_god_offhand"
+		"item_description"						"#DOTA_Item_Desc_Rapier_of_the_Burning_God_Offhand"
+		"item_name"								"#DOTA_Item_Rapier_of_the_Burning_God_Offhand"
+		"item_quality"							"genuine"
+		"item_rarity"							"immortal"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Offhand_Weapon"
+		"model_player"							"models/items/ember_spirit/rapier_burning_god_offhand/rapier_burning_god_offhand.vmdl"
+		"particle_folder"						"particles/econ/items/ember_spirit/ember_spirit_burning_god_offhand"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/ember_spirit/weapon2.vsnap"
+				"modifier"						"particles/models/items/ember_spirit/rapier_burning_god_offhand/rapier_burning_god_offhand.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"modifier"						"particles/econ/items/ember_spirit/ember_spirit_burning_god_offhand/ember_spirit_ambient_burning_god_l.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand_blade.vpcf"
+				"modifier"						"particles/econ/items/ember_spirit/ember_spirit_burning_god_offhand/ember_spirit_ambient_burning_god_l_blade.vpcf"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand_blade.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+		}
+	}
+	"7472"
+	{
+		"name"									"Rapier of the Burning God"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-09"
+		"image_inventory"						"econ/items/ember_spirit/rapier_burning_god_weapon/rapier_burning_god_weapon"
+		"item_description"						"#DOTA_Item_Desc_rapier_burning_god_weapon"
+		"item_name"								"#DOTA_Item_Rapier_of_the_Burning_God"
+		"item_quality"							"genuine"
+		"item_rarity"							"immortal"
+		"model_player"							"models/items/ember_spirit/rapier_burning_god_weapon/rapier_burning_god_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/ember_spirit/ember_spirit_burning_god_weapon"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/ember_spirit/weapon1.vsnap"
+				"modifier"						"particles/models/items/ember_spirit/rapier_burning_god_weapon/rapier_burning_god_weapon.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"modifier"						"particles/econ/items/ember_spirit/ember_spirit_burning_god_weapon/ember_spirit_ambient_burning_god_r.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary_blade.vpcf"
+				"modifier"						"particles/econ/items/ember_spirit/ember_spirit_burning_god_weapon/ember_spirit_ambient_burning_god_r_blade.vpcf"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary_blade.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+		}
+	}
+	"7879"
+	{
+		"name"									"Off-Hand Sword of the Smoldering Sage"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-11"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/ember_spirit/wu_sheng_off_hand_v2/wu_sheng_off_hand_v2"
+		"item_description"						"#DOTA_Item_Desc_OffHand_Sword_of_the_Smoldering_Sage"
+		"item_name"								"#DOTA_Item_OffHand_Sword_of_the_Smoldering_Sage"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/ember_spirit/wu_sheng_off_hand_v2/wu_sheng_off_hand_v2.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/ember_spirit/weapon2.vsnap"
+				"modifier"						"particles/models/items/ember_spirit/wu_sheng_off_hand_v2/wu_sheng_off_hand_v2_fx.vsnap"
+			}
+		}
+	}
+	"7880"
+	{
+		"name"									"Sword of the Smoldering Sage"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-11"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/ember_spirit/wu_sheng_weapon_v2/wu_sheng_weapon_v2"
+		"item_description"						"#DOTA_Item_Desc_Sword_of_the_Smoldering_Sage"
+		"item_name"								"#DOTA_Item_Sword_of_the_Smoldering_Sage"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/ember_spirit/wu_sheng_weapon_v2/wu_sheng_weapon_v2.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/ember_spirit/weapon1.vsnap"
+				"modifier"						"particles/models/items/ember_spirit/wu_sheng_weapon_v2/wu_sheng_weapon_v2_fx.vsnap"
+			}
+		}
+	}
+	"7881"
+	{
+		"name"									"Mantle of the Smoldering Sage"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-11"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/ember_spirit/wu_sheng_shoulder_v2/wu_sheng_shoulder_v2"
+		"item_description"						"#DOTA_Item_Desc_Mantle_of_the_Smoldering_Sage"
+		"item_name"								"#DOTA_Item_Mantle_of_the_Smoldering_Sage"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/ember_spirit/wu_sheng_shoulder_v2/wu_sheng_shoulder_v2.vmdl"
+	}
+	"7882"
+	{
+		"name"									"Cap of the Smoldering Sage"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-11"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/ember_spirit/wu_sheng_head_v2/wu_sheng_head_v2"
+		"item_description"						"#DOTA_Item_Desc_Cap_of_the_Smoldering_Sage"
+		"item_name"								"#DOTA_Item_Cap_of_the_Smoldering_Sage"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/ember_spirit/wu_sheng_head_v2/wu_sheng_head_v2.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_head.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_head.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_eyes.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+		}
+	}
+	"7883"
+	{
+		"name"									"Armguards of the Smoldering Sage"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-11"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/ember_spirit/wu_sheng_arms_v2/wu_sheng_arms_v2"
+		"item_description"						"#DOTA_Item_Desc_Armguards_of_the_Smoldering_Sage"
+		"item_name"								"#DOTA_Item_Armguards_of_the_Smoldering_Sage"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/ember_spirit/wu_sheng_arms_v2/wu_sheng_arms_v2.vmdl"
+	}
+	"7884"
+	{
+		"name"									"Belt of the Smoldering Sage"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-11"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/ember_spirit/wu_sheng_belt_v2/wu_sheng_belt_v2"
+		"item_description"						"#DOTA_Item_Desc_Belt_of_the_Smoldering_Sage"
+		"item_name"								"#DOTA_Item_Belt_of_the_Smoldering_Sage"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/ember_spirit/wu_sheng_belt_v2/wu_sheng_belt_v2.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_armor_glow.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_armor_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_armor_glow"
+					}
+				}
+			}
+		}
+	}
+	"7894"
+	{
+		"name"									"Arms of the Phoenix Clan"
+		"prefab"								"wearable"
+		"creation_date"							"2020-11-20"
+		"image_inventory"						"econ/items/ember_spirit/dplus_firebirds_awakening_arms/dplus_firebirds_awakening_arms"
+		"item_name"								"#DOTA_Item_Arms_of_the_Phoenix_Clan"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/ember_spirit/dplus_firebirds_awakening_arms/dplus_firebirds_awakening_arms.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"7895"
+	{
+		"name"									"Shoulders of the Phoenix Clan"
+		"prefab"								"wearable"
+		"creation_date"							"2020-11-20"
+		"image_inventory"						"econ/items/ember_spirit/dplus_firebirds_awakening_shoulder/dplus_firebirds_awakening_shoulder"
+		"item_name"								"#DOTA_Item_Shoulders_of_the_Phoenix_Clan"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/ember_spirit/dplus_firebirds_awakening_shoulder/dplus_firebirds_awakening_shoulder.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_shoulder_glow.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_shoulder_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_glow_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_glow_l"
+					}
+				}
+			}
+		}
+	}
+	"7896"
+	{
+		"name"									"Weapon of the Phoenix Clan"
+		"prefab"								"wearable"
+		"creation_date"							"2020-11-20"
+		"image_inventory"						"econ/items/ember_spirit/dplus_firebirds_awakening_weapon/dplus_firebirds_awakening_weapon"
+		"item_name"								"#DOTA_Item_Weapon_of_the_Phoenix_Clan"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/ember_spirit/dplus_firebirds_awakening_weapon/dplus_firebirds_awakening_weapon.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary_blade.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/ember_spirit/weapon1.vsnap"
+				"modifier"						"particles/models/items/ember_spirit/dplus_firebirds_awakening_weapon/dplus_firebirds_awakening_weapon_fx.vsnap"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"7897"
+	{
+		"name"									"Helm of the Phoenix Clan"
+		"prefab"								"wearable"
+		"creation_date"							"2020-11-20"
+		"image_inventory"						"econ/items/ember_spirit/dplus_firebirds_awakening_head/dplus_firebirds_awakening_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Phoenix_Clan"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/ember_spirit/dplus_firebirds_awakening_head/dplus_firebirds_awakening_head.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_head.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_head.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_eyes.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"7898"
+	{
+		"name"									"Offhand of the Phoenix Clan"
+		"prefab"								"wearable"
+		"creation_date"							"2020-11-20"
+		"image_inventory"						"econ/items/ember_spirit/dplus_firebirds_awakening_offhand/dplus_firebirds_awakening_offhand"
+		"item_name"								"#DOTA_Item_Offhand_of_the_Phoenix_Clan"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/ember_spirit/dplus_firebirds_awakening_offhand/dplus_firebirds_awakening_offhand.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand_blade.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/ember_spirit/weapon2.vsnap"
+				"modifier"						"particles/models/items/ember_spirit/dplus_firebirds_awakening_offhand/dplus_firebirds_awakening_offhand_fx.vsnap"
+			}
+		}
+	}
+	"8198"
+	{
+		"name"									"Belt of the Phoenix Clan"
+		"prefab"								"wearable"
+		"creation_date"							"2020-11-20"
+		"image_inventory"						"econ/items/ember_spirit/dplus_firebirds_awakening_belt/dplus_firebirds_awakening_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Phoenix_Clan"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/ember_spirit/dplus_firebirds_awakening_belt/dplus_firebirds_awakening_belt.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_armor_glow.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_armor_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_armor_glow"
+					}
+				}
+			}
+		}
+	}
+	"8840"
+	{
+		"name"									"Guard of the Rekindled Ashes"
+		"prefab"								"wearable"
+		"creation_date"							"2016-02-02"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/ember_spirit/rekindled_ashes_arms/rekindled_ashes_arms"
+		"item_name"								"#DOTA_Item_Guard_of_the_Rekindled_Ashes"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Guard"
+		"model_player"							"models/items/ember_spirit/rekindled_ashes_arms/rekindled_ashes_arms.vmdl"
+	}
+	"8841"
+	{
+		"name"									"Robe of the Rekindled Ashes"
+		"prefab"								"wearable"
+		"creation_date"							"2016-02-02"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/ember_spirit/rekindled_ashes_belt/rekindled_ashes_belt"
+		"item_name"								"#DOTA_Item_Robe_of_the_Rekindled_Ashes"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Robe"
+		"model_player"							"models/items/ember_spirit/rekindled_ashes_belt/rekindled_ashes_belt.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ember_spirit/ember_spirit_ashes/ember_spirit_ashes_ambient_armor_glow.vpcf"
+				"system"						"particles/econ/items/ember_spirit/ember_spirit_ashes/ember_spirit_ashes_ambient_armor_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_armor_glow"
+					}
+				}
+			}
+		}
+	}
+	"8842"
+	{
+		"name"									"Shoulders of the Rekindled Ashes"
+		"prefab"								"wearable"
+		"creation_date"							"2016-02-02"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/ember_spirit/rekindled_ashes_shoulder/rekindled_ashes_shoulder"
+		"item_name"								"#DOTA_Item_Shoulders_of_the_Rekindled_Ashes"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/ember_spirit/rekindled_ashes_shoulder/rekindled_ashes_shoulder.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_shoulder_glow.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_shoulder_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_glow_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_glow_l"
+					}
+				}
+			}
+		}
+	}
+	"8843"
+	{
+		"name"									"Headdress of the Rekindled Ashes"
+		"prefab"								"wearable"
+		"creation_date"							"2016-02-02"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/ember_spirit/rekindled_ashes_head/rekindled_ashes_head"
+		"item_name"								"#DOTA_Item_Headdress_of_the_Rekindled_Ashes"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Headdress"
+		"model_player"							"models/items/ember_spirit/rekindled_ashes_head/rekindled_ashes_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_head.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_head.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_eyes.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ashes"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ember_spirit/ember_spirit_ashes/ember_spirit_ashes_ambient_head.vpcf"
+				"system"						"particles/econ/items/ember_spirit/ember_spirit_ashes/ember_spirit_ashes_ambient_head.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"8844"
+	{
+		"name"									"Blade of the Rekindled Ashes"
+		"prefab"								"wearable"
+		"creation_date"							"2016-02-02"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/ember_spirit/rekindled_ashes_weapon/rekindled_ashes_weapon"
+		"item_name"								"#DOTA_Item_Blade_of_the_Rekindled_Ashes"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/ember_spirit/rekindled_ashes_weapon/rekindled_ashes_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ember_spirit/ember_spirit_ashes/ember_spirit_ashes_ambient_sword_primary.vpcf"
+				"system"						"particles/econ/items/ember_spirit/ember_spirit_ashes/ember_spirit_ashes_ambient_sword_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ember_spirit/ember_spirit_ashes/ember_spirit_ashes_ambient_sword_primary_blade.vpcf"
+				"system"						"particles/econ/items/ember_spirit/ember_spirit_ashes/ember_spirit_ashes_ambient_sword_primary_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/ember_spirit/weapon1.vsnap"
+				"modifier"						"particles/models/items/ember_spirit/rekindled_ashes_weapon/rekindled_ashes_weapon_fx.vsnap"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ember_spirit/ember_spirit_weapon_blur.vpcf"
+				"modifier"						"particles/econ/items/ember_spirit/ember_spirit_ashes/ember_spirit_ashes_weapon_blur.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ember_spirit/ember_spirit_weapon_blur_overhead.vpcf"
+				"modifier"						"particles/econ/items/ember_spirit/ember_spirit_ashes/ember_spirit_ashes_weapon_blur_overhead.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ember_spirit/ember_spirit_weapon_blur_both.vpcf"
+				"modifier"						"particles/econ/items/ember_spirit/ember_spirit_ashes/ember_spirit_ashes_weapon_blur_both.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"8845"
+	{
+		"name"									"Off-Hand Blade of the Rekindled Ashes"
+		"prefab"								"wearable"
+		"creation_date"							"2016-02-02"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/ember_spirit/rekindled_ashes_offhand/rekindled_ashes_offhand"
+		"item_name"								"#DOTA_Item_OffHand_Blade_of_the_Rekindled_Ashes"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/ember_spirit/rekindled_ashes_offhand/rekindled_ashes_offhand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ember_spirit/ember_spirit_ashes/ember_spirit_ashes_ambient_sword_offhand.vpcf"
+				"system"						"particles/econ/items/ember_spirit/ember_spirit_ashes/ember_spirit_ashes_ambient_sword_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ember_spirit/ember_spirit_ashes/ember_spirit_ashes_ambient_sword_offhand_blade.vpcf"
+				"system"						"particles/econ/items/ember_spirit/ember_spirit_ashes/ember_spirit_ashes_ambient_sword_offhand_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/ember_spirit/weapon2.vsnap"
+				"modifier"						"particles/models/items/ember_spirit/rekindled_ashes_offhand/rekindled_ashes_offhand_fx.vsnap"
+			}
+		}
+	}
+	"8879"
+	{
+		"name"									"Hood of the Wandering Flame"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/ember_spirit/vanishing_flame_head/vanishing_flame_head"
+		"item_description"						"#DOTA_Item_Desc_Hood_of_the_Wandering_Flame"
+		"item_name"								"#DOTA_Item_Hood_of_the_Wandering_Flame"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/ember_spirit/vanishing_flame_head/vanishing_flame_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_head.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_head.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_eyes.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+		}
+	}
+	"8880"
+	{
+		"name"									"Tunic of the Wandering Flame"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/ember_spirit/vanishing_flame_belt/vanishing_flame_belt"
+		"item_description"						"#DOTA_Item_Desc_Tunic_of_the_Wandering_Flame"
+		"item_name"								"#DOTA_Item_Tunic_of_the_Wandering_Flame"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/ember_spirit/vanishing_flame_belt/vanishing_flame_belt.vmdl"
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ember_spirit/ember_spirit_vanishing_flame/ember_spirit_vanishing_flame_ambient.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/ember_spirit/ember_spirit_vanishing_flame/ember_spirit_vanishing_flame_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ember_spirit/ember_spirit_vanishing_flame/ember_spirit_vanishing_flame_ambient_gem.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/ember_spirit/ember_spirit_vanishing_flame/ember_spirit_vanishing_flame_ambient_gem.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_gem"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_glyph"
+					}
+				}
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Default"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Infused"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"11898"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/ember_spirit/vanishing_flame_belt/vanishing_flame_belt"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/ember_spirit/vanishing_flame_belt/vanishing_flame_belt_style1"
+				}
+			}
+		}
+	}
+	"8881"
+	{
+		"name"									"Spaulder of the Wandering Flame"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/ember_spirit/vanishing_flame_shoulder/vanishing_flame_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Spaulder_of_the_Wandering_Flame"
+		"item_name"								"#DOTA_Item_Spaulder_of_the_Wandering_Flame"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/ember_spirit/vanishing_flame_shoulder/vanishing_flame_shoulder.vmdl"
+	}
+	"8882"
+	{
+		"name"									"Guard of the Wandering Flame"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/ember_spirit/vanishing_flame_arms/vanishing_flame_arms"
+		"item_description"						"#DOTA_Item_Desc_Guard_of_the_Wandering_Flame"
+		"item_name"								"#DOTA_Item_Guard_of_the_Wandering_Flame"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/ember_spirit/vanishing_flame_arms/vanishing_flame_arms.vmdl"
+	}
+	"8883"
+	{
+		"name"									"Off-Hand Blade of the Wandering Flame"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/ember_spirit/vanishing_flame_off_hand/vanishing_flame_off_hand"
+		"item_description"						"#DOTA_Item_Desc_OffHand_Blade_of_the_Wandering_Flame"
+		"item_name"								"#DOTA_Item_OffHand_Blade_of_the_Wandering_Flame"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/ember_spirit/vanishing_flame_off_hand/vanishing_flame_off_hand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/ember_spirit/weapon2.vsnap"
+				"modifier"						"particles/models/items/ember_spirit/vanishing_flame_off_hand/vanishing_flame_off_hand_fx.vsnap"
+			}
+		}
+	}
+	"8884"
+	{
+		"name"									"Blade of the Wandering Flame"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/ember_spirit/vanishing_flame_weapon/vanishing_flame_weapon"
+		"item_description"						"#DOTA_Item_Desc_Blade_of_the_Wandering_Flame"
+		"item_name"								"#DOTA_Item_Blade_of_the_Wandering_Flame"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/ember_spirit/vanishing_flame_weapon/vanishing_flame_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/ember_spirit/weapon1.vsnap"
+				"modifier"						"particles/models/items/ember_spirit/vanishing_flame_weapon/vanishing_flame_weapon_fx.vsnap"
+			}
+		}
+	}
+	"12260"
+	{
+		"name"									"Sword of the Volcanic Guard"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/ember_spirit/magma_spirit_weapon/magma_spirit_weapon"
+		"item_name"								"#DOTA_Item_Sword_of_the_Volcanic_Guard"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/ember_spirit/magma_spirit_weapon/magma_spirit_weapon.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary_blade.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/ember_spirit/weapon1.vsnap"
+				"modifier"						"particles/models/items/ember_spirit/magma_spirit_weapon/magma_spirit_weapon_fx.vsnap"
+			}
+		}
+	}
+	"12261"
+	{
+		"name"									"Helm of the Volcanic Guard"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/ember_spirit/magma_spirit_head/magma_spirit_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Volcanic_Guard"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/ember_spirit/magma_spirit_head/magma_spirit_head.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_head.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_head.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_eyes.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+		}
+	}
+	"12262"
+	{
+		"name"									"Off-hand Weapon of the Volcanic Guard"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/ember_spirit/magma_spirit_off_hand/magma_spirit_off_hand"
+		"item_name"								"#DOTA_Item_Offhand_Weapon_of_the_Volcanic_Guard"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/ember_spirit/magma_spirit_off_hand/magma_spirit_off_hand.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand_blade.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/ember_spirit/weapon2.vsnap"
+				"modifier"						"particles/models/items/ember_spirit/magma_spirit_off_hand/magma_spirit_off_hand_fx.vsnap"
+			}
+		}
+	}
+	"12263"
+	{
+		"name"									"Bracers of the Volcanic Guard"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/ember_spirit/magma_spirit_arms/magma_spirit_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Volcanic_Guard"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/ember_spirit/magma_spirit_arms/magma_spirit_arms.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+		}
+	}
+	"12267"
+	{
+		"name"									"Pauldrons of the Volcanic Guard"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/ember_spirit/magma_spirit_shoulder/magma_spirit_shoulder"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Volcanic_Guard"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/ember_spirit/magma_spirit_shoulder/magma_spirit_shoulder.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_shoulder_glow.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_shoulder_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_glow_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_glow_l"
+					}
+				}
+			}
+		}
+	}
+	"12268"
+	{
+		"name"									"Belt of the Volcanic Guard"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/ember_spirit/magma_spirit_belt/magma_spirit_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Volcanic_Guard"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/ember_spirit/magma_spirit_belt/magma_spirit_belt.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_armor_glow.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_armor_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_armor_glow"
+					}
+				}
+			}
+		}
+	}
+	"12482"
+	{
+		"name"									"Weapon of the Forsaken Flame"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/ember_spirit/desert_warrior_weapon/desert_warrior_weapon"
+		"item_name"								"#DOTA_Item_Weapon_of_the_Forsaken_Flame"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/ember_spirit/desert_warrior_weapon/desert_warrior_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ember_spirit/ember_spirit_desert_warrior_weapon/ember_spirit_desert_warrior_weapon_primary_blade.vpcf"
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/ember_spirit/weapon1.vsnap"
+				"modifier"						"particles/models/items/ember_spirit/desert_warrior_weapon/desert_warrior_weapon_fx.vsnap"
+			}
+		}
+	}
+	"12483"
+	{
+		"name"									"Off-Hand Weapon of the Forsaken Flame"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/ember_spirit/desert_warrior_off_hand/desert_warrior_off_hand"
+		"item_name"								"#DOTA_Item_OffHand_Weapon_of_the_Forsaken_Flame"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/ember_spirit/desert_warrior_off_hand/desert_warrior_off_hand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ember_spirit/ember_spirit_desert_warrior_off/ember_spirit_desert_warrior_off_primary_blade.vpcf"
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/ember_spirit/weapon2.vsnap"
+				"modifier"						"particles/models/items/ember_spirit/desert_warrior_off_hand/desert_warrior_off_hand_fx.vsnap"
+			}
+		}
+	}
+	"12484"
+	{
+		"name"									"Belt of the Forsaken Flame"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/ember_spirit/desert_warrior_belt/desert_warrior_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Forsaken_Flame"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/ember_spirit/desert_warrior_belt/desert_warrior_belt.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_armor_glow.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_armor_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_armor_glow"
+					}
+				}
+			}
+		}
+	}
+	"12485"
+	{
+		"name"									"Vetments of the Forsaken Flame"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/ember_spirit/desert_warrior_shoulder/desert_warrior_shoulder"
+		"item_name"								"#DOTA_Item_Vetments_of_the_Forsaken_Flame"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/ember_spirit/desert_warrior_shoulder/desert_warrior_shoulder.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_shoulder_glow.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_shoulder_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_glow_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_glow_l"
+					}
+				}
+			}
+		}
+	}
+	"12486"
+	{
+		"name"									"Hood of the Forsaken Flame"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/ember_spirit/desert_warrior_head/desert_warrior_head"
+		"item_name"								"#DOTA_Item_Hood_of_the_Forsaken_Flame"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/ember_spirit/desert_warrior_head/desert_warrior_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_head.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_head.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_eyes.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+		}
+	}
+	"12487"
+	{
+		"name"									"Bracers of the Forsaken Flame"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/ember_spirit/desert_warrior_arms/desert_warrior_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Forsaken_Flame"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/ember_spirit/desert_warrior_arms/desert_warrior_arms.vmdl"
+	}
+	"13007"
+	{
+		"name"									"Apogee of the Guardian Flame"
+		"prefab"								"wearable"
+		"creation_date"							"2019-07-04"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/ember_spirit/ember_ti9_immortal_shoulder/ember_ti9_immortal_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Apogee_of_the_Guardian_Flame"
+		"item_name"								"#DOTA_Item_Apogee_of_the_Guardian_Flame"
+		"item_rarity"							"immortal"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/ember_spirit/ember_ti9_immortal_shoulder/ember_ti9_immortal_shoulder.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1562968800"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ember_spirit/ember_ti9/ember_ti9_shoulders_ambient.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ember_spirit/ember_spirit_flameguard.vpcf"
+				"modifier"						"particles/econ/items/ember_spirit/ember_ti9/ember_ti9_flameguard.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier2"
+			{
+				"type"							"ability_icon"
+				"asset"							"ember_spirit_flame_guard"
+				"modifier"						"ember_spirit/ti9_immortal_shoulder/ember_spirit_flame_guard_immortal"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+		}
+	}
+	"13253"
+	{
+		"name"									"Hyakki no shou Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/ember_spirit/hyakki_no_shou_arms/hyakki_no_shou_arms"
+		"item_name"								"#DOTA_Item_Vote_Only_Hyakki_no_shou_Arms"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/ember_spirit/hyakki_no_shou_arms/hyakki_no_shou_arms.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"13254"
+	{
+		"name"									"Hyakki no shou Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/ember_spirit/hyakki_no_shou_belt/hyakki_no_shou_belt"
+		"item_name"								"#DOTA_Item_Vote_Only_Hyakki_no_shou_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/ember_spirit/hyakki_no_shou_belt/hyakki_no_shou_belt.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_armor_glow.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_armor_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_armor_glow"
+					}
+				}
+			}
+		}
+	}
+	"13255"
+	{
+		"name"									"Hyakki no shou Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/ember_spirit/hyakki_no_shou_head/hyakki_no_shou_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Hyakki_no_shou_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/ember_spirit/hyakki_no_shou_head/hyakki_no_shou_head.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_head.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_head.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_eyes.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+		}
+	}
+	"13256"
+	{
+		"name"									"Hyakki no shou Offhand"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/ember_spirit/hyakki_no_shou_offhand/hyakki_no_shou_offhand"
+		"item_name"								"#DOTA_Item_Vote_Only_Hyakki_no_shou_Offhand"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/ember_spirit/hyakki_no_shou_offhand/hyakki_no_shou_offhand.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary_blade.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/ember_spirit/weapon1.vsnap"
+				"modifier"						"particles/models/items/ember_spirit/hyakki_no_shou_offhand/hyakki_no_shou_offhand_fx.vsnap"
+			}
+		}
+	}
+	"13284"
+	{
+		"name"									"Hyakki no shou Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/ember_spirit/hyakki_no_shou_shoulder/hyakki_no_shou_shoulder"
+		"item_name"								"#DOTA_Item_Vote_Only_Hyakki_no_shou_Shoulder"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/ember_spirit/hyakki_no_shou_shoulder/hyakki_no_shou_shoulder.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_shoulder_glow.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_shoulder_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_glow_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_glow_l"
+					}
+				}
+			}
+		}
+	}
+	"13285"
+	{
+		"name"									"Hyakki no shou Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/ember_spirit/hyakki_no_shou_weapon/hyakki_no_shou_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_Hyakki_no_shou_Weapon"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/ember_spirit/hyakki_no_shou_weapon/hyakki_no_shou_weapon.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary_blade.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/ember_spirit/weapon1.vsnap"
+				"modifier"						"particles/models/items/ember_spirit/hyakki_no_shou_weapon/hyakki_no_shou_weapon_fx.vsnap"
+			}
+		}
+	}
+	"13290"
+	{
+		"name"									"Master of the Searing Path Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/ember_spirit/kungfu_master_arms/kungfu_master_arms"
+		"item_name"								"#DOTA_Item_Master_of_the_Searing_Path_Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/ember_spirit/kungfu_master_arms/kungfu_master_arms.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"13299"
+	{
+		"name"									"Master of the Searing Path Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/ember_spirit/kungfu_master_head/kungfu_master_head"
+		"item_name"								"#DOTA_Item_Master_of_the_Searing_Path_Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/ember_spirit/kungfu_master_head/kungfu_master_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_head.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_head.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_eyes.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ember_spirit/ember_ti10_cache/ember_ti10_cache_head.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"13300"
+	{
+		"name"									"Master of the Searing Path Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/ember_spirit/kungfu_master_weapon/kungfu_master_weapon"
+		"item_name"								"#DOTA_Item_Master_of_the_Searing_Path_Weapon"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/ember_spirit/kungfu_master_weapon/kungfu_master_weapon.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ember_spirit/ember_ti10_cache/ember_ti10_cache_weapon.vpcf"
+			}
+		}
+	}
+	"13301"
+	{
+		"name"									"Master of the Searing Path Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/ember_spirit/kungfu_master_shoulder/kungfu_master_shoulder"
+		"item_name"								"#DOTA_Item_Master_of_the_Searing_Path_Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/ember_spirit/kungfu_master_shoulder/kungfu_master_shoulder.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_shoulder_glow.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_shoulder_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_glow_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_glow_l"
+					}
+				}
+			}
+		}
+	}
+	"13302"
+	{
+		"name"									"Master of the Searing Path Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/ember_spirit/kungfu_master_off_hand/kungfu_master_off_hand"
+		"item_name"								"#DOTA_Item_Master_of_the_Searing_Path_OffHand"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/ember_spirit/kungfu_master_off_hand/kungfu_master_off_hand.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ember_spirit/ember_ti10_cache/ember_ti10_cache_offhand.vpcf"
+			}
+		}
+	}
+	"13361"
+	{
+		"name"									"Master of the Searing Path Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/ember_spirit/kungfu_master_belt/kungfu_master_belt"
+		"item_name"								"#DOTA_Item_Master_of_the_Searing_Path_Belt"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/ember_spirit/kungfu_master_belt/kungfu_master_belt.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_armor_glow.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_armor_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_armor_glow"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ember_spirit/ember_ti10_cache/ember_ti10_cache_belt.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"13381"
+	{
+		"name"									"Cinder Sensei Style"
+		"prefab"								"wearable"
+		"creation_date"							"2019-06-24"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/ember_spirit/ember_sindur_sensei_head/ember_sindur_sensei_head"
+		"item_name"								"#DOTA_Item_Cinder_Sensei_Style"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/ember_spirit/ember_sindur_sensei_head/ember_sindur_sensei_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_head.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_head.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_eyes.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ember_spirit/ember_sindur/ember_sindur_head_ambient.vpcf"
+			}
+		}
+	}
+	"13382"
+	{
+		"name"									"Cinder Sensei Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2019-06-24"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/ember_spirit/ember_sindur_sensei_weapon/ember_sindur_sensei_weapon"
+		"item_name"								"#DOTA_Item_Cinder_Sensei_Weapon"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/ember_spirit/ember_sindur_sensei_weapon/ember_sindur_sensei_weapon.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ember_spirit/ember_sindur/ember_sindur_weapon_ambient.vpcf"
+			}
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti9"
+			}
+			"asset_modifier1"
+			{
+				"type"							"sound"
+				"asset"							"Hero_EmberSpirit.Attack"
+				"modifier"						"Hero_EmberSpirit.Attack.TI9"
+			}
+			"asset_modifier2"
+			{
+				"type"							"sound"
+				"asset"							"Hero_EmberSpirit.SleightOfFist.Damage"
+				"modifier"						"Hero_EmberSpirit.SleightOfFist.Damage.TI9"
+			}
+			"asset_modifier3"
+			{
+				"type"							"sound"
+				"asset"							"Hero_EmberSpirit.PreAttack"
+				"modifier"						"Hero_EmberSpirit.PreAttack.TI9"
+			}
+		}
+	}
+	"13383"
+	{
+		"name"									"Cinder Sensei Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2019-06-24"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/ember_spirit/ember_sindur_sensei_shoulder/ember_sindur_sensei_shoulder"
+		"item_name"								"#DOTA_Item_Cinder_Sensei_Shoulders"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/ember_spirit/ember_sindur_sensei_shoulder/ember_sindur_sensei_shoulder.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_shoulder_glow.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_shoulder_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_glow_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_glow_l"
+					}
+				}
+			}
+		}
+	}
+	"13440"
+	{
+		"name"									"Cinder Sensei Off-Hand Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2019-06-24"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/ember_spirit/ember_sindur_sensei_offhand/ember_sindur_sensei_offhand"
+		"item_name"								"#DOTA_Item_Cinder_Sensei_OffHand_Weapon"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/ember_spirit/ember_sindur_sensei_offhand/ember_sindur_sensei_offhand.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ember_spirit/ember_sindur/ember_sindur_offhand_ambient.vpcf"
+			}
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti9_off"
+			}
+			"asset_modifier1"
+			{
+				"type"							"sound"
+				"asset"							"Hero_EmberSpirit.Attack"
+				"modifier"						"Hero_EmberSpirit.Attack.TI9"
+			}
+			"asset_modifier2"
+			{
+				"type"							"sound"
+				"asset"							"Hero_EmberSpirit.SleightOfFist.Damage"
+				"modifier"						"Hero_EmberSpirit.SleightOfFist.Damage.TI9"
+			}
+			"asset_modifier3"
+			{
+				"type"							"sound"
+				"asset"							"Hero_EmberSpirit.PreAttack"
+				"modifier"						"Hero_EmberSpirit.PreAttack.TI9"
+			}
+		}
+	}
+	"13441"
+	{
+		"name"									"Cinder Sensei Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2019-06-24"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/ember_spirit/ember_sindur_sensei_belt/ember_sindur_sensei_belt"
+		"item_name"								"#DOTA_Item_Cinder_Sensei_Belt"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/ember_spirit/ember_sindur_sensei_belt/ember_sindur_sensei_belt.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_armor_glow.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_armor_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_armor_glow"
+					}
+				}
+			}
+		}
+	}
+	"13442"
+	{
+		"name"									"Cinder Sensei Bracer"
+		"prefab"								"wearable"
+		"creation_date"							"2019-06-24"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/ember_spirit/ember_sindur_sensei_arms/ember_sindur_sensei_arms"
+		"item_name"								"#DOTA_Item_Cinder_Sensei_Bracer"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/ember_spirit/ember_sindur_sensei_arms/ember_sindur_sensei_arms.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"13454"
+	{
+		"name"									"Taunt: Hot Eats"
+		"prefab"								"taunt"
+		"creation_date"							"2020-05-25"
+		"hide_tradecraftdelete"					"1"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/taunts/dota_icon_taunt_ember_spirit"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Hot_Eats"
+		"item_name"								"#DOTA_Item_Taunt_Hot_Eats"
+		"item_rarity"							"mythical"
+		"reward_can_be_shown_in_toast"			"1"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_TI10_Limited_Tradeability"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"ti10"
+				"gesture"						"1"
+			}
+		}
+	}
+	"14181"
+	{
+		"name"									"Efrit Sultan Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/ember_spirit/efrit_sultan_weapon/efrit_sultan_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_Efrit_Sultan_Weapon"
+		"model_player"							"models/items/ember_spirit/efrit_sultan_weapon/efrit_sultan_weapon.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary_blade.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/ember_spirit/weapon1.vsnap"
+				"modifier"						"particles/models/items/ember_spirit/efrit_sultan_weapon/efrit_sultan_weapon_fx.vsnap"
+			}
+		}
+	}
+	"14182"
+	{
+		"name"									"Efrit Sultan Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/ember_spirit/efrit_sultan_shoulder/efrit_sultan_shoulder"
+		"item_name"								"#DOTA_Item_Vote_Only_Efrit_Sultan_Shoulder"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/ember_spirit/efrit_sultan_shoulder/efrit_sultan_shoulder.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_shoulder_glow.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_shoulder_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_glow_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_glow_l"
+					}
+				}
+			}
+		}
+	}
+	"14183"
+	{
+		"name"									"Efrit Sultan Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/ember_spirit/efrit_sultan_off_hand/efrit_sultan_off_hand"
+		"item_name"								"#DOTA_Item_Vote_Only_Efrit_Sultan_OffHand"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/ember_spirit/efrit_sultan_off_hand/efrit_sultan_off_hand.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand_blade.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/ember_spirit/weapon2.vsnap"
+				"modifier"						"particles/models/items/ember_spirit/efrit_sultan_off_hand/efrit_sultan_off_hand_fx.vsnap"
+			}
+		}
+	}
+	"14184"
+	{
+		"name"									"Efrit Sultan Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/ember_spirit/efrit_sultan_head/efrit_sultan_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Efrit_Sultan_Head"
+		"item_slot"								"head"
+		"model_player"							"models/items/ember_spirit/efrit_sultan_head/efrit_sultan_head.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_head.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_head.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_eyes.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+		}
+	}
+	"14185"
+	{
+		"name"									"Efrit Sultan Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/ember_spirit/efrit_sultan_belt/efrit_sultan_belt"
+		"item_name"								"#DOTA_Item_Vote_Only_Efrit_Sultan_Belt"
+		"item_slot"								"belt"
+		"model_player"							"models/items/ember_spirit/efrit_sultan_belt/efrit_sultan_belt.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_armor_glow.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_armor_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_armor_glow"
+					}
+				}
+			}
+		}
+	}
+	"14186"
+	{
+		"name"									"Efrit Sultan Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/ember_spirit/efrit_sultan_arms/efrit_sultan_arms"
+		"item_name"								"#DOTA_Item_Vote_Only_Efrit_Sultan_Arms"
+		"item_slot"								"arms"
+		"model_player"							"models/items/ember_spirit/efrit_sultan_arms/efrit_sultan_arms.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"20370"
+	{
+		"name"									"Flames of Prosperity Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Arm Guards of Prosperity"			"1"
+			"Crimson Guard of Prosperity"		"1"
+			"Phoenix Helm of Prosperity"		"1"
+			"Jin - Blade of Prosperity"			"1"
+			"Huo - Blade of Prosperity"			"1"
+			"Ember Pauldrons of Prosperity"		"1"
+			"Flames of Prosperity"				"1"
+		}
+		"creation_date"							"2014-01-23"
+		"image_inventory"						"econ/sets/DOTA_Item_Flames_of_Prosperity_Set"
+		"item_name"								"#DOTA_Item_Flames_of_Prosperity_Set"
+		"item_rarity"							"mythical"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Mythical"
+			"category_tags"						"Bundles"
+			"date"								"1/27/2014"
+			"bundle"							"1"
+			"price"								"799"
+		}
+	}
+	"20538"
+	{
+		"name"									"Mentor of the High Plains"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Mentor of the High Plains Ceremonial Banner""1"
+			"Mentor of the High Plains Decorated Pauldrons""1"
+			"Mentor of the High Plains Great Cuirass""1"
+			"Mentor of the High Plains Guard"	"1"
+			"Mentor of the High Plains Left Tiger Hook""1"
+			"Mentor of the High Plains Right Tiger Hook""1"
+			"Mentor of the High Plains Loading Screen""1"
+		}
+		"creation_date"							"2014-05-30"
+		"image_inventory"						"econ/loading_screens/mentor_high_plains_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Mentor_of_the_High_Plains"
+		"item_name"								"#DOTA_Item_Mentor_of_the_High_Plains"
+		"item_rarity"							"rare"
+	}
+	"20566"
+	{
+		"name"									"Promo Mentor of the High Plains"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Mentor of the High Plains Ceremonial Banner""1"
+			"Mentor of the High Plains Decorated Pauldrons""1"
+			"Mentor of the High Plains Great Cuirass""1"
+			"Mentor of the High Plains Guard"	"1"
+			"Mentor of the High Plains Left Tiger Hook""1"
+			"Mentor of the High Plains Right Tiger Hook""1"
+			"Mentor of the High Plains Loading Screen""1"
+		}
+		"creation_date"							"2014-06-18"
+		"image_inventory"						"econ/loading_screens/mentor_high_plains_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Genuine_Mentor_of_the_High_Plains"
+		"item_name"								"#DOTA_Item_Promo_Mentor_of_the_High_Plains"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+	}
+	"20631"
+	{
+		"name"									"Blaze Armor"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Flaming Hair of Blaze Armor"		"1"
+			"Orbs of Blaze Armor"				"1"
+			"Pauldrons of Blaze Armor"			"1"
+			"Robes of Blaze Armor"				"1"
+			"Xin - Blade of Blaze Armor"		"1"
+			"Zhuo -  Blade of Blaze Armor"		"1"
+			"Blaze Armor Loading Screen"		"1"
+		}
+		"creation_date"							"2014-08-22"
+		"image_inventory"						"econ/loading_screens/blazearmor"
+		"item_description"						"#DOTA_Item_Desc_Blaze_Armor"
+		"item_name"								"#DOTA_Item_Blaze_Armor"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"category_tags"						"Bundles"
+			"date"								"12/16/2015"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20674"
+	{
+		"name"									"Imperial Flame Swords Pack"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Imperial Flame Sword"				"1"
+			"Imperial Flame Offhand Sword"		"1"
+		}
+		"creation_date"							"2014-11-05"
+		"image_inventory"						"econ/bundles/imperial_flame_sword_bundle"
+		"item_description"						"#DOTA_Item_Desc_Imperial_Flame_Swords_Pack"
+		"item_name"								"#DOTA_Item_Imperial_Flame_Swords_Pack"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+	}
+	"20707"
+	{
+		"name"									"Rapiers of the Burning God"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Rapier of the Burning God"			"1"
+			"Rapier of the Burning God Offhand"	"1"
+		}
+		"creation_date"							"2015-01-09"
+		"image_inventory"						"econ/sets/DOTA_Item_Rapiers_of_the_Burning_God"
+		"item_description"						"#DOTA_Item_Desc_Rapiers_of_the_Burning_God"
+		"item_name"								"#DOTA_Item_Rapiers_of_the_Burning_God"
+		"item_quality"							"genuine"
+		"item_rarity"							"immortal"
+	}
+	"20926"
+	{
+		"name"									"Rekindled Ashes"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Guard of the Rekindled Ashes"		"1"
+			"Shoulders of the Rekindled Ashes"	"1"
+			"Rekindled Ashes Loading Screen"	"1"
+			"Blade of the Rekindled Ashes"		"1"
+			"Off-Hand Blade of the Rekindled Ashes""1"
+			"Robe of the Rekindled Ashes"		"1"
+			"Headdress of the Rekindled Ashes"	"1"
+		}
+		"creation_date"							"2016-02-02"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/rekindled_ashes_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Rekindled_Ashes"
+		"item_name"								"#DOTA_Item_Rekindled_Ashes"
+		"item_rarity"							"mythical"
+	}
+	"21007"
+	{
+		"name"									"Adage of the Smoldering Sage"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of the Smoldering Sage""1"
+			"Belt of the Smoldering Sage"		"1"
+			"Armguards of the Smoldering Sage"	"1"
+			"Mantle of the Smoldering Sage"		"1"
+			"Sword of the Smoldering Sage"		"1"
+			"Off-Hand Sword of the Smoldering Sage""1"
+			"Cap of the Smoldering Sage"		"1"
+		}
+		"creation_date"							"2017-01-11"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/loading_screens/wu_sheng_wu_sheng_load_screen"
+		"item_description"						"#DOTA_Item_Desc_Adage_of_the_Smoldering_Sage"
+		"item_name"								"#DOTA_Item_Adage_of_the_Smoldering_Sage"
+		"item_rarity"							"mythical"
+	}
+	"21054"
+	{
+		"name"									"Order of the Wandering Flame"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of the Wandering Flame""1"
+			"Blade of the Wandering Flame"		"1"
+			"Off-Hand Blade of the Wandering Flame""1"
+			"Guard of the Wandering Flame"		"1"
+			"Spaulder of the Wandering Flame"	"1"
+			"Tunic of the Wandering Flame"		"1"
+			"Hood of the Wandering Flame"		"1"
+		}
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/vanishing_flame_vanishing_flame_loading_screen_by_diredude"
+		"item_description"						"#DOTA_Item_Desc_Order_of_the_Wandering_Flame"
+		"item_name"								"#DOTA_Item_Order_of_the_Wandering_Flame"
+		"item_rarity"							"mythical"
+	}
+	"21227"
+	{
+		"name"									"Fires of the Volcanic Guard"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Fires of the Volcanic Guard Loading Screen""1"
+			"Belt of the Volcanic Guard"		"1"
+			"Pauldrons of the Volcanic Guard"	"1"
+			"Bracers of the Volcanic Guard"		"1"
+			"Off-hand Weapon of the Volcanic Guard""1"
+			"Helm of the Volcanic Guard"		"1"
+			"Sword of the Volcanic Guard"		"1"
+		}
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/loading_screens/magma_spirit_magma_spirit_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Fires_of_the_Volcanic_Guard"
+		"item_name"								"#DOTA_Item_Fires_of_the_Volcanic_Guard"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21234"
+	{
+		"name"									"Champion of the Phoenix Clan"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Belt of the Phoenix Clan"			"1"
+			"Offhand of the Phoenix Clan"		"1"
+			"Helm of the Phoenix Clan"			"1"
+			"Weapon of the Phoenix Clan"		"1"
+			"Shoulders of the Phoenix Clan"		"1"
+			"Arms of the Phoenix Clan"			"1"
+		}
+		"creation_date"							"2020-11-20"
+		"image_inventory"						"econ/sets/DOTA_Item_DPlus_Firebirds_Awakening"
+		"item_name"								"#DOTA_Item_Champion_of_the_Phoenix_Clan"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"15000"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21245"
+	{
+		"name"									"Visions of the Forsaken Flame"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bracers of the Forsaken Flame"		"1"
+			"Hood of the Forsaken Flame"		"1"
+			"Vetments of the Forsaken Flame"	"1"
+			"Belt of the Forsaken Flame"		"1"
+			"Off-Hand Weapon of the Forsaken Flame""1"
+			"Weapon of the Forsaken Flame"		"1"
+		}
+		"creation_date"							"2018-09-12"
+		"image_inventory"						"econ/sets/DOTA_Item_Visions_of_the_Forsaken_Flame"
+		"item_description"						"#DOTA_Item_Desc_Visions_of_the_Forsaken_Flame"
+		"item_name"								"#DOTA_Item_Visions_of_the_Forsaken_Flame"
+		"item_rarity"							"uncommon"
+	}
+	"21383"
+	{
+		"name"									"Master of the Searing Path"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Master of the Searing Path Loading Screen""1"
+			"Master of the Searing Path Belt"	"1"
+			"Master of the Searing Path Off-Hand""1"
+			"Master of the Searing Path Shoulder""1"
+			"Master of the Searing Path Weapon"	"1"
+			"Master of the Searing Path Head"	"1"
+			"Master of the Searing Path Arms"	"1"
+		}
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/loading_screens/kungfu_master_ls"
+		"item_name"								"#DOTA_Item_Master_of_the_Searing_Path"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21389"
+	{
+		"name"									"Cinder Sensei"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Cinder Sensei Bracer"				"1"
+			"Cinder Sensei Belt"				"1"
+			"Cinder Sensei Style"				"1"
+			"Cinder Sensei Off-Hand Weapon"		"1"
+			"Cinder Sensei Shoulders"			"1"
+			"Cinder Sensei Weapon"				"1"
+		}
+		"creation_date"							"2019-06-24"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/sets/DOTA_Item_Cinder_Sensei"
+		"item_description"						"#DOTA_Item_Desc_Cinder_Sensei"
+		"item_name"								"#DOTA_Item_Cinder_Sensei"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"21440"
+	{
+		"name"									"Hyakki no shou"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Hyakki no shou Arms"				"1"
+			"Hyakki no shou Belt"				"1"
+			"Hyakki no shou Head"				"1"
+			"Hyakki no shou Offhand"			"1"
+			"Hyakki no shou Shoulder"			"1"
+			"Hyakki no shou Weapon"				"1"
+		}
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Hyakki_no_shou"
+		"workshop_accepted"						"0"
+	}
+	"21512"
+	{
+		"name"									"Efrit Sultan"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Efrit Sultan Arms"					"1"
+			"Efrit Sultan Belt"					"1"
+			"Efrit Sultan Head"					"1"
+			"Efrit Sultan Off-Hand"				"1"
+			"Efrit Sultan Shoulder"				"1"
+			"Efrit Sultan Weapon"				"1"
+		}
+		"creation_date"							"2020-05-11"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Efrit_Sultan"
+		"workshop_accepted"						"0"
+	}
+	"23337"
+	{
+		"name"									"Blazing Tiger Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-23"
+		"image_inventory"						"econ/items/ember_spirit/blazing_tiger/blazing_tiger_arm"
+		"item_name"								"#DOTA_Item_Blazing_Tiger_Arms"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/ember_spirit/fire_cat_spring2017_arms/fire_cat_spring2017_arms.vmdl"
+	}
+	"23338"
+	{
+		"name"									"Blazing Tiger Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-23"
+		"image_inventory"						"econ/items/ember_spirit/blazing_tiger/blazing_tiger_belt"
+		"item_name"								"#DOTA_Item_Blazing_Tiger_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/ember_spirit/fire_cat_spring2017_belt/fire_cat_spring2017_belt.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_armor_glow.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_armor_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_armor_glow"
+					}
+				}
+			}
+		}
+	}
+	"23339"
+	{
+		"name"									"Blazing Tiger Head"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-23"
+		"image_inventory"						"econ/items/ember_spirit/blazing_tiger/blazing_tiger_back"
+		"item_name"								"#DOTA_Item_Blazing_Tiger_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/ember_spirit/fire_cat_spring2017_head/fire_cat_spring2017_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_head.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_head.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_eyes.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+		}
+	}
+	"23340"
+	{
+		"name"									"Blazing Tiger Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-23"
+		"image_inventory"						"econ/items/ember_spirit/blazing_tiger/blazing_tiger_weapon2"
+		"item_name"								"#DOTA_Item_Blazing_Tiger_OffHand"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/ember_spirit/fire_cat_spring2017_off_hand/fire_cat_spring2017_off_hand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand_blade.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_offhand_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/ember_spirit/weapon2.vsnap"
+				"modifier"						"particles/models/items/ember_spirit/fire_cat_spring2017_off_hand/fire_cat_spring2017_off_hand_fx.vsnap"
+			}
+		}
+	}
+	"23341"
+	{
+		"name"									"Blazing Tiger Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-23"
+		"image_inventory"						"econ/items/ember_spirit/blazing_tiger/blazing_tiger_shoulder"
+		"item_name"								"#DOTA_Item_Blazing_Tiger_Shoulder"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/ember_spirit/fire_cat_spring2017_shoulder/fire_cat_spring2017_shoulder.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_shoulder_glow.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_shoulder_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_glow_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_glow_l"
+					}
+				}
+			}
+		}
+	}
+	"23342"
+	{
+		"name"									"Blazing Tiger Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-23"
+		"image_inventory"						"econ/items/ember_spirit/blazing_tiger/blazing_tiger_weapon1"
+		"item_name"								"#DOTA_Item_Blazing_Tiger_Weapon"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/ember_spirit/fire_cat_spring2017_weapon/fire_cat_spring2017_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary_blade.vpcf"
+				"system"						"particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_sword_primary_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/ember_spirit/weapon1.vsnap"
+				"modifier"						"particles/models/items/ember_spirit/fire_cat_spring2017_weapon/fire_cat_spring2017_weapon_fx.vsnap"
+			}
+		}
+	}
+	"23343"
+	{
+		"name"									"Blazing Tiger"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Blazing Tiger Weapon"				"1"
+			"Blazing Tiger Shoulder"			"1"
+			"Blazing Tiger Off-Hand"			"1"
+			"Blazing Tiger Head"				"1"
+			"Blazing Tiger Belt"				"1"
+			"Blazing Tiger Arms"				"1"
+		}
+		"creation_date"							"2022-05-23"
+		"image_inventory"						"econ/sets/dota_item_blazing_tiger"
+		"item_name"								"#DOTA_Item_Blazing_Tiger"
+	}
+}

@@ -1,0 +1,70 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	// "phantom_assassin_fan_of_knives"
+	// {
+	// 	"AbilityValues"
+	// 	{
+	// 		"pct_health_damage_initial"			"9"
+	// 	}
+	// }
+	"phantom_assassin_blur"
+	{
+		"AbilityValues"
+		{
+			"duration"							"3"
+		}
+	}
+	"phantom_assassin_immaterial"
+	{
+		"AbilityValues"
+		{
+			"evasion_per_level"					"0.5"
+		}
+	}
+	"phantom_assassin_stifling_dagger_nb2017"
+	{
+		"BaseClass"								"ability_lua"
+		"AbilityTextureName"					"phantom_assassin_stifling_dagger_nb2017"
+		"ScriptFile"							"heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger_nb2017"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"						"1"
+		"AbilityCastRange"						"10000"
+		"AbilityCastPoint"						"0.3"
+		"AbilityChannelTime"					"0.45 0.6 0.75 0.9"
+		"precache"
+		{
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
+			"particle"							"particles/phantom_assassin_linear_dagger.vpcf"
+		}
+		"AbilityDuration"						"1 2 3 4"
+		"AbilityCooldown"						"12"
+		"AbilityManaCost"						"30 40 50 60"
+		"AbilityValues"
+		{
+			"dagger_range"						"525 750 975 1200"
+			"move_slow"							"-50"
+			"dagger_speed"						"1200"
+			"duration"							"1 2 3 4"
+			"base_damage"						"65"
+			"attack_factor"						"-75 -60 -45 -30"
+			"attack_factor_tooltip"				"25 40 55 70"
+			"dagger_count"						"4 6 8 10"
+			"dagger_offset"						"100"
+			"dagger_rate"						"0.14"
+		}
+	}
+}

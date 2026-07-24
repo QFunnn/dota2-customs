@@ -1,0 +1,447 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.EOM_PopupMain
+{
+	align: center center;
+	width: 981px;
+	height: 620px;
+	opacity: 0;
+	transition-property: opacity, transform, pre-transform-scale2d, wash-color;
+}
+
+.EOM_PopupMain .EOM_PopupBgMask
+{
+	width: 100%;
+	height: 100%;
+}
+
+.EOM_PopupMain.PopupType_LeftTop
+{
+	transition-duration: 0.4s;
+	transform: translateX(-120px) translateY(-60px);
+	pre-transform-scale2d: 0.95;
+	perspective-origin: 62% 5% invert;
+	perspective: 1000;
+}
+
+.EOM_PopupMain.PopupType_LeftTop.EOM_PopupMainShow
+{
+	opacity: 1;
+	pre-transform-scale2d: 1;
+	transform: none;
+}
+
+.EOM_PopupMain.PopupType_RightTop
+{
+	transition-duration: 0.4s;
+	transform: translateX(120px) translateY(-60px);
+	pre-transform-scale2d: 0.95;
+	perspective-origin: 62% 5% invert;
+	perspective: 1000;
+}
+
+.EOM_PopupMain.PopupType_RightTop.EOM_PopupMainShow
+{
+	opacity: 1;
+	pre-transform-scale2d: 1;
+	transform: none;
+}
+
+.EOM_PopupMain.PopupType_PopOut
+{
+	transition-duration: 0.2s;
+	animation-name: PopOut;
+	animation-duration: 0.2s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.EOM_PopupMain.PopupType_PopOut.EOM_PopupMainShow
+{
+	opacity: 1;
+}
+
+.EOM_PopupMain.PopupType_PopOut.EOM_PopupMainClose
+{
+	opacity: 0;
+	animation-name: PopOutClose;
+	animation-duration: 0.2s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.EOM_PopupMain .EOM_PopupTitle
+{
+	font-size: 24px;
+	text-shadow: 0px 0px 2px 4 rgba(0, 0, 0, 0.5);
+	color: gradient(linear, 0% 0%, 0% 100%, from(#DAC59D), to(#A07D53));
+	margin-top: 15px;
+	horizontal-align: center;
+}
+
+.EOM_PopupMain .EOM_PopupTitle.P2
+{
+	font-size: 24px;
+	font-weight: normal;
+	color: #3b89d1;
+	text-shadow: 0px 0px 2px 4 rgba(0, 0, 0, 0.5);
+}
+
+.EOM_PopupMain .EOM_PopupContent
+{
+	width: 100%;
+	height: 100%;
+	horizontal-align: center;
+	margin-top: 80px;
+	margin-bottom: 32px;
+	margin-left: 48px;
+	margin-right: 48px;
+	flow-children: down;
+}
+
+.EOM_PopupMain .EOM_PopupContent .EOM_PopupContentTop
+{
+	width: 100%;
+	height: 338px;
+}
+
+.EOM_PopupMain .EOM_PopupContent .EOM_PopupContentBottom
+{
+	width: 100%;
+	height: 100%;
+	padding-bottom: 14px;
+}
+
+.EOM_PopupMain .EOM_PopupContent.P2
+{
+	margin-top: 50px;
+	margin-bottom: 16px;
+	margin-left: 16px;
+	margin-right: 16px;
+}
+
+.EOM_PopupMain .EOM_IconButton
+{
+	horizontal-align: right;
+	wash-color: none;
+}
+
+.EOM_PopupMain .EOM_IconButton:active
+{
+	sound: "ui_settings_out_multi";
+}
+
+.EOM_PopupMain .EOM_IconButton:hover
+{
+	wash-color: none;
+}
+
+.EOM_PopupMain .EOM_IconButton.Tui7
+{
+	margin-top: 16px;
+	margin-right: 3px;
+}
+
+.EOM_PopupMain .EOM_IconButton.P2
+{
+	margin: 4px;
+}
+
+.EOM_PopupMain .EOM_IconButton.P2 .EOM_Icon
+{
+	width: 36px;
+	height: 36px;
+}
+
+@keyframes 'PopOut'
+{
+	0%
+	{
+		pre-transform-scale2d: 0.9;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 1.05;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+@keyframes 'PopOutClose'
+{
+	0%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 1.05;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 0.9;
+	}
+	
+}
+
+.EOM_PopupBG
+{
+	width: 100%;
+	height: 100%;
+}
+
+.EOM_PopupBG.Tui7 .EOM_TitleBG
+{
+	horizontal-align: center;
+	width: 480px;
+	height: 54px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/popup/tui7/popup_title_bg_png.vtex");
+	background-size: 100%;
+	z-index: 3;
+}
+
+.EOM_PopupBG.Tui7 .EOM_Texture
+{
+	width: 100%;
+	height: 100%;
+	margin-top: 13px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/popup/tui7/bg_png.vtex");
+	background-size: 100%;
+	z-index: 4;
+}
+
+.EOM_PopupBG.Tui7 .EOM_LeftTopBG
+{
+	align: left top;
+	width: 120px;
+	height: 120px;
+	margin-top: 13px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/popup/tui7/left_top_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	z-index: 2;
+}
+
+.EOM_PopupBG.Tui7 .EOM_CenterTopBG
+{
+	align: center top;
+	width: 100%;
+	height: 120px;
+	margin-top: 13px;
+	margin-left: 120px;
+	margin-right: 120px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/popup/tui7/center_top_png.vtex");
+	background-size: 100%;
+	background-repeat: repeat-x;
+}
+
+.EOM_PopupBG.Tui7 .EOM_RightTopBG
+{
+	align: right top;
+	width: 120px;
+	height: 120px;
+	margin-top: 13px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/popup/tui7/right_top_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	z-index: 2;
+}
+
+.EOM_PopupBG.Tui7 .EOM_CenterCenterBG
+{
+	align: center center;
+	width: 100%;
+	height: 100%;
+	margin: 120px;
+	margin-top: 133px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/popup/tui7/center_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	z-index: -1;
+}
+
+.EOM_PopupBG.Tui7 .EOM_LeftCenterBG
+{
+	align: left center;
+	width: 120px;
+	height: 100%;
+	margin-top: 133px;
+	margin-bottom: 120px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/popup/tui7/left_center_png.vtex");
+	background-size: 100%;
+	background-repeat: repeat-y;
+}
+
+.EOM_PopupBG.Tui7 .EOM_RightCenterBG
+{
+	align: right center;
+	width: 120px;
+	height: 100%;
+	margin-top: 133px;
+	margin-bottom: 120px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/popup/tui7/right_center_png.vtex");
+	background-size: 100%;
+	background-repeat: repeat-y;
+}
+
+.EOM_PopupBG.Tui7 .EOM_LeftBottomBG
+{
+	align: left bottom;
+	width: 120px;
+	height: 120px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/popup/tui7/left_bottom_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	z-index: 2;
+}
+
+.EOM_PopupBG.Tui7 .EOM_CenterBottomBG
+{
+	align: center bottom;
+	width: 100%;
+	height: 120px;
+	margin-left: 120px;
+	margin-right: 120px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/popup/tui7/center_bottom_png.vtex");
+	background-size: 100%;
+	background-repeat: repeat-x;
+}
+
+.EOM_PopupBG.Tui7 .EOM_RightBottomBG
+{
+	align: right bottom;
+	width: 120px;
+	height: 120px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/popup/tui7/right_bottom_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	z-index: 2;
+}
+
+.EOM_PopupBG.Tui3 .EOM_LeftTopBG
+{
+	align: left top;
+	width: 37px;
+	height: 37px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/popup/tui3/left_top_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	z-index: 2;
+}
+
+.EOM_PopupBG.Tui3 .EOM_CenterTopBG
+{
+	align: center top;
+	width: 100%;
+	height: 37px;
+	margin-left: 37px;
+	margin-right: 37px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/popup/tui3/center_top_png.vtex");
+	background-size: 100%;
+	background-repeat: repeat-x;
+}
+
+.EOM_PopupBG.Tui3 .EOM_RightTopBG
+{
+	align: right top;
+	width: 37px;
+	height: 37px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/popup/tui3/right_top_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	z-index: 2;
+}
+
+.EOM_PopupBG.Tui3 .EOM_CenterCenterBG
+{
+	align: center center;
+	width: 100%;
+	height: 100%;
+	margin: 37px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/popup/tui3/center_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	z-index: -1;
+}
+
+.EOM_PopupBG.Tui3 .EOM_LeftCenterBG
+{
+	align: left center;
+	width: 37px;
+	height: 100%;
+	margin-top: 37px;
+	margin-bottom: 37px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/popup/tui3/left_center_png.vtex");
+	background-size: 100%;
+	background-repeat: repeat-y;
+}
+
+.EOM_PopupBG.Tui3 .EOM_RightCenterBG
+{
+	align: right center;
+	width: 37px;
+	height: 100%;
+	margin-top: 37px;
+	margin-bottom: 37px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/popup/tui3/right_center_png.vtex");
+	background-size: 100%;
+	background-repeat: repeat-y;
+}
+
+.EOM_PopupBG.Tui3 .EOM_LeftBottomBG
+{
+	align: left bottom;
+	width: 37px;
+	height: 37px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/popup/tui3/left_bottom_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	z-index: 2;
+}
+
+.EOM_PopupBG.Tui3 .EOM_CenterBottomBG
+{
+	align: center bottom;
+	width: 100%;
+	height: 37px;
+	margin-left: 37px;
+	margin-right: 37px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/popup/tui3/center_bottom_png.vtex");
+	background-size: 100%;
+	background-repeat: repeat-x;
+}
+
+.EOM_PopupBG.Tui3 .EOM_RightBottomBG
+{
+	align: right bottom;
+	width: 37px;
+	height: 37px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/popup/tui3/right_bottom_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	z-index: 2;
+}
+
+.EOM_PopupBG.P2
+{
+	background-color: #1b1e28f2;
+	border: 1px solid #62758B;
+	box-shadow: #00000088 0px 0px 4px 2px;
+}

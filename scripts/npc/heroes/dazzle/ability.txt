@@ -1,0 +1,57 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"dazzle_bad_juju_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_dazzle/dazzle_bad_juju_lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO"
+		"AbilityTextureName"					"dazzle_bad_juju"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_NO"
+		"AbilityCastPoint"						"0.2"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityHealthCost"						"75"
+		"AbilityCooldown"						"3"
+		"AbilityCastRange"						"700"
+		"precache"
+		{
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
+		}
+		"AbilityValues"
+		{
+			"armor_reduction"
+			{
+				"value"							"3 4 5"
+				"special_bonus_unique_dazzle_4"	"+1"
+			}
+			"duration"							"8 10 12"
+			"radius"
+			{
+				"value"							"700"
+				"affected_by_aoe_increase"		"1"
+			}
+			"cooldown_reduction"				"4 5 6"
+			"cooldown_reduction_items"			"3 4 5"
+			"mana_cost_increase_pct"			"40"
+			"mana_cost_increase_duration"		"20"
+			"max_stacks"						"15"
+		}
+	}
+	"dazzle_shallow_grave"
+	{
+		"AbilityUnitTargetFlags"				"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+	}
+}

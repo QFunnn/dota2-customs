@@ -1,0 +1,1080 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"503"
+	{
+		"name"									"Bane's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-05"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Banes_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_bane"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_bane/bane_slime_trail.vpcf"
+				"system"						"particles/units/heroes/hero_bane/bane_slime_trail.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_bane/bane_hand_drip_right.vpcf"
+				"system"						"particles/units/heroes/hero_bane/bane_hand_drip_right.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_bane/bane_hand_drip.vpcf"
+				"system"						"particles/units/heroes/hero_bane/bane_hand_drip.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"612"
+	{
+		"name"									"Bane's Default Head"
+		"prefab"								"default_item"
+		"creation_date"							"2016-03-08"
+		"image_inventory"						"econ/heroes/bane/bane_head"
+		"item_name"								"#DOTA_Item_Banes_Default_Head"
+		"item_slot"								"head"
+		"model_player"							"models/heroes/bane/bane_head.vmdl"
+	}
+	"613"
+	{
+		"name"									"Bane's Default Shoulder"
+		"prefab"								"default_item"
+		"creation_date"							"2016-03-08"
+		"image_inventory"						"econ/heroes/bane/bane_shoulders"
+		"item_name"								"#DOTA_Item_Banes_Default_Shoulder"
+		"item_slot"								"shoulder"
+		"model_player"							"models/heroes/bane/bane_shoulders.vmdl"
+	}
+	"614"
+	{
+		"name"									"Bane's Default Arms"
+		"prefab"								"default_item"
+		"creation_date"							"2016-03-08"
+		"image_inventory"						"econ/heroes/bane/bane_arms"
+		"item_name"								"#DOTA_Item_Banes_Default_Arms"
+		"item_slot"								"arms"
+	}
+	"615"
+	{
+		"name"									"Bane's Default Back"
+		"prefab"								"default_item"
+		"creation_date"							"2016-03-08"
+		"image_inventory"						"econ/heroes/bane/bane_back"
+		"item_name"								"#DOTA_Item_Banes_Default_Back"
+		"item_slot"								"back"
+	}
+	"7692"
+	{
+		"name"									"Slumbering Terror"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/bane/slumbering_terror/slumbering_terror"
+		"item_description"						"#DOTA_Item_Desc_Slumbering_Terror"
+		"item_name"								"#DOTA_Item_Slumbering_Terror"
+		"item_rarity"							"immortal"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Terror"
+		"model_player"							"models/items/bane/slumbering_terror/slumbering_terror.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"terror"
+				"style"							"0"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/bane/slumbering_terror/bane_slumbering_terror_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/bane/slumbering_terror/bane_slumbering_terror_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_elbow_r"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_elbow_l"
+					}
+					"2"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bane/bane_nightmare.vpcf"
+				"modifier"						"particles/econ/items/bane/slumbering_terror/bane_slumber_nightmare.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"bane_nightmare"
+				"modifier"						"bane/slumbering_terror/bane_nightmare"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"bane_nightmare_end"
+				"modifier"						"bane/slumbering_terror/bane_nightmare_end"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+		}
+	}
+	"7941"
+	{
+		"name"									"Heir of Terror Crown"
+		"prefab"								"wearable"
+		"creation_date"							"2016-05-20"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/bane/heir_of_terror_bane_head/heir_of_terror_bane_head"
+		"item_name"								"#DOTA_Item_Heir_of_Terror_Crown"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Crown"
+		"model_player"							"models/items/bane/heir_of_terror_bane_head/heir_of_terror_bane_head.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"7942"
+	{
+		"name"									"Heir of Terror Bracers"
+		"prefab"								"wearable"
+		"creation_date"							"2016-05-20"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/bane/heir_of_terror_bane_arms/heir_of_terror_bane_arms"
+		"item_name"								"#DOTA_Item_Heir_of_Terror_Bracers"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/bane/heir_of_terror_bane_arms/heir_of_terror_bane_arms.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"7943"
+	{
+		"name"									"Heir of Terror Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2016-05-20"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/bane/heir_of_terror_bane_back/heir_of_terror_bane_back"
+		"item_name"								"#DOTA_Item_Heir_of_Terror_Belt"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/bane/heir_of_terror_bane_back/heir_of_terror_bane_back.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"7944"
+	{
+		"name"									"Heir of Terror Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2016-05-20"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/bane/heir_of_terror_bane_shoulder/heir_of_terror_bane_shoulder"
+		"item_name"								"#DOTA_Item_Heir_of_Terror_Wings"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/bane/heir_of_terror_bane_shoulder/heir_of_terror_bane_shoulder.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"8547"
+	{
+		"name"									"Hood of Lucid Torment"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-06"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/bane/bane_gear_head/bane_gear_head"
+		"item_description"						"#DOTA_Item_Desc_Hood_of_Lucid_Torment"
+		"item_name"								"#DOTA_Item_Hood_of_Lucid_Torment"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/bane/bane_gear_head/bane_gear_head.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Unhallowed_Nightmares_Head_0"
+					"skin"						"1"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Unhallowed_Nightmares_Head_1"
+					"skin"						"0"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17169"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/bane/bane_gear_head/bane_gear_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/bane/bane_gear_head/bane_gear_head_style1"
+				}
+			}
+		}
+	}
+	"8548"
+	{
+		"name"									"Cloth of Lucid Torment"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-06"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/bane/bane_gear_back/bane_gear_back"
+		"item_description"						"#DOTA_Item_Desc_Cloth_of_Lucid_Torment"
+		"item_name"								"#DOTA_Item_Cloth_of_Lucid_Torment"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/bane/bane_gear_back/bane_gear_back.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/bane/unhallowed_nightmares/bane_unhallowed_nightmares_back_infused.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/bane/unhallowed_nightmares/bane_unhallowed_nightmares_back_infused.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_spine_01"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_spine_02"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_spine_03"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/bane/unhallowed_nightmares/bane_unhallowed_nightmares_back.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/bane/unhallowed_nightmares/bane_unhallowed_nightmares_back.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_spine_01"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_spine_02"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_spine_03"
+					}
+				}
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Unhallowed_Nightmares_Back_0"
+					"skin"						"1"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Unhallowed_Nightmares_Back_1"
+					"skin"						"0"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17169"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/bane/bane_gear_back/bane_gear_back"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/bane/bane_gear_back/bane_gear_back_style1"
+				}
+			}
+		}
+	}
+	"8549"
+	{
+		"name"									"Sleeves of Lucid Torment"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-06"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/bane/bane_gear_arms/bane_gear_arms"
+		"item_description"						"#DOTA_Item_Desc_Sleeves_of_Lucid_Torment"
+		"item_name"								"#DOTA_Item_Sleeves_of_Lucid_Torment"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/bane/bane_gear_arms/bane_gear_arms.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Unhallowed_Nightmares_Arms_0"
+					"skin"						"1"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Unhallowed_Nightmares_Arms_1"
+					"skin"						"0"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17169"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/bane/bane_gear_arms/bane_gear_arms"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/bane/bane_gear_arms/bane_gear_arms_style1"
+				}
+			}
+		}
+	}
+	"8550"
+	{
+		"name"									"Eyes of Lucid Torment"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-06"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/bane/bane_gear_shoulder/bane_gear_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Eyes_of_Lucid_Torment"
+		"item_name"								"#DOTA_Item_Eyes_of_Lucid_Torment"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/bane/bane_gear_shoulder/bane_gear_shoulder.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Unhallowed_Nightmares_Shoulder_0"
+					"skin"						"1"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Unhallowed_Nightmares_Shoulder_1"
+					"skin"						"0"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17169"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/bane/bane_gear_shoulder/bane_gear_shoulder"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/bane/bane_gear_shoulder/bane_gear_shoulder_style1"
+				}
+			}
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/bane/unhallowed_nightmares/bane_unhallowed_nightmares_shoulder.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/bane/unhallowed_nightmares/bane_unhallowed_nightmares_shoulder.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_l_orb"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_r_orb"
+					}
+				}
+			}
+		}
+	}
+	"12538"
+	{
+		"name"									"Taunt: Soured Relationship"
+		"prefab"								"taunt"
+		"creation_date"							"2020-05-25"
+		"hide_tradecraftdelete"					"1"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/taunts/dota_icon_taunt_bane_ti10"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Vegetable_Justice"
+		"item_name"								"#DOTA_Item_Taunt_Soured_Relationship"
+		"item_rarity"							"mythical"
+		"reward_can_be_shown_in_toast"			"1"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_TI10_Limited_Tradeability"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"ti10_taunt"
+				"gesture"						"1"
+			}
+		}
+	}
+	"12712"
+	{
+		"name"									"Cover of the Sleepless Sect"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2019"
+		"image_inventory"						"econ/items/bane/frostivus_2018_bane_beast_nightmare_shoulder/frostivus_2018_bane_beast_nightmare_shoulder"
+		"item_name"								"#DOTA_Item_Cover_of_the_Sleepless_Sect"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/bane/frostivus_2018_bane_beast_nightmare_shoulder/frostivus_2018_bane_beast_nightmare_shoulder.vmdl"
+	}
+	"12713"
+	{
+		"name"									"Garb of the Sleepless Sect"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2019"
+		"image_inventory"						"econ/items/bane/frostivus_2018_bane_beast_of_the_nightmare_back/frostivus_2018_bane_beast_of_the_nightmare_back"
+		"item_name"								"#DOTA_Item_Garb_of_the_Sleepless_Sect"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/bane/frostivus_2018_bane_beast_of_the_nightmare_back/frostivus_2018_bane_beast_of_the_nightmare_back.vmdl"
+	}
+	"12714"
+	{
+		"name"									"Arms of the Sleepless Sect"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2019"
+		"image_inventory"						"econ/items/bane/frostivus_2018_bane_beast_of_the_nightmare_arms/frostivus_2018_bane_beast_of_the_nightmare_arms"
+		"item_name"								"#DOTA_Item_Arms_of_the_Sleepless_Sect"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/bane/frostivus_2018_bane_beast_of_the_nightmare_arms/frostivus_2018_bane_beast_of_the_nightmare_arms.vmdl"
+	}
+	"12715"
+	{
+		"name"									"Visage of the Sleepless Sect"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2019"
+		"image_inventory"						"econ/items/bane/frostivus_2018_bane_beast_of_the_nightmare_head/frostivus_2018_bane_beast_of_the_nightmare_head"
+		"item_name"								"#DOTA_Item_Visage_of_the_Sleepless_Sect"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/bane/frostivus_2018_bane_beast_of_the_nightmare_head/frostivus_2018_bane_beast_of_the_nightmare_head.vmdl"
+	}
+	"13307"
+	{
+		"name"									"TI9 Cache Bane Endless Nightmare Head"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"image_inventory"						"econ/items/bane/ti9_cache_bane_endless_nightmare_head/ti9_cache_bane_endless_nightmare_head"
+		"item_name"								"#DOTA_Item_Vote_Only_TI9_Cache_Bane_Endless_Nightmare_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/bane/ti9_cache_bane_endless_nightmare_head/ti9_cache_bane_endless_nightmare_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"13308"
+	{
+		"name"									"TI9 Cache Bane Endless Nightmare Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"image_inventory"						"econ/items/bane/ti9_cache_bane_endless_nightmare_shoulder/ti9_cache_bane_endless_nightmare_shoulder"
+		"item_name"								"#DOTA_Item_Vote_Only_TI9_Cache_Bane_Endless_Nightmare_Shoulder"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/bane/ti9_cache_bane_endless_nightmare_shoulder/ti9_cache_bane_endless_nightmare_shoulder.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"13309"
+	{
+		"name"									"TI9 Cache Bane Endless Nightmare Back"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"image_inventory"						"econ/items/bane/ti9_cache_bane_endless_nightmare_back/ti9_cache_bane_endless_nightmare_back"
+		"item_name"								"#DOTA_Item_Vote_Only_TI9_Cache_Bane_Endless_Nightmare_Back"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/bane/ti9_cache_bane_endless_nightmare_back/ti9_cache_bane_endless_nightmare_back.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"13310"
+	{
+		"name"									"TI9 Cache Bane Endless Nightmare Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"image_inventory"						"econ/items/bane/ti9_cache_bane_endless_nightmare_arms/ti9_cache_bane_endless_nightmare_arms"
+		"item_name"								"#DOTA_Item_Vote_Only_TI9_Cache_Bane_Endless_Nightmare_Arms"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/bane/ti9_cache_bane_endless_nightmare_arms/ti9_cache_bane_endless_nightmare_arms.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14964"
+	{
+		"name"									"Origin of the Unmaking"
+		"prefab"								"wearable"
+		"creation_date"							"2020-07-03"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/bane/bane_fall20_immortal_head/bane_fall20_immortal_head"
+		"item_description"						"#DOTA_Item_Desc_Origin_of_the_Unmaking"
+		"item_name"								"#DOTA_Item_Origin_of_the_Unmaking"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/bane/bane_fall20_immortal_head/bane_fall20_immortal_head.vmdl"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"fall20_head"
+			}
+			"asset_modifier1"
+			{
+				"type"							"ability_icon"
+				"asset"							"bane_fiends_grip"
+				"modifier"						"bane/bane_fall20_immortal_ability_icon/bane_fall20_immortal_fiends_grip"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_bane/bane_fiends_grip.vpcf"
+				"modifier"						"particles/econ/items/bane/bane_fall20_immortal/bane_fall20_immortal_grip.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/bane/bane_fall20_immortal/bane_fall20_immortal_ambient.vpcf"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/status_fx/status_effect_fiendsgrip.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+		}
+	}
+	"21019"
+	{
+		"name"									"Heir of Terror"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Heir of Terror Loadin Screen"		"1"
+			"Heir of Terror Wings"				"1"
+			"Heir of Terror Belt"				"1"
+			"Heir of Terror Bracers"			"1"
+			"Heir of Terror Crown"				"1"
+		}
+		"creation_date"							"2016-05-23"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/loading_screens/heir_of_terror_loadin_screen"
+		"item_description"						"#DOTA_Item_Desc_Heir_of_Terror"
+		"item_name"								"#DOTA_Item_Heir_of_Terror"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"21039"
+	{
+		"name"									"Lucid Torment"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of Lucid Torment"	"1"
+			"Sleeves of Lucid Torment"			"1"
+			"Hood of Lucid Torment"				"1"
+			"Cloth of Lucid Torment"			"1"
+			"Eyes of Lucid Torment"				"1"
+		}
+		"creation_date"							"2016-09-06"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/unhallowed_nightmares_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Lucid_Torment"
+		"item_name"								"#DOTA_Item_Lucid_Torment"
+		"item_rarity"							"mythical"
+	}
+	"21286"
+	{
+		"name"									"Worship of the Sleepless Sect"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Arms of the Sleepless Sect"		"1"
+			"Garb of the Sleepless Sect"		"1"
+			"Visage of the Sleepless Sect"		"1"
+			"Worship of the Sleepless Sect Loading Screen""1"
+			"Cover of the Sleepless Sect"		"1"
+		}
+		"creation_date"							"2018-12-02"
+		"event_id"								"EVENT_ID_FROSTIVUS_2019"
+		"image_inventory"						"econ/loading_screens/frostivus_2018_bane_beast_of_the_nightmare_ls"
+		"item_name"								"#DOTA_Item_Worship_of_the_Sleepless_Sect"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"1"
+			}
+		}
+	}
+	"21384"
+	{
+		"name"									"TI9 Cache Bane Endless Nightmare"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"TI9 Cache Bane Endless Nightmare Arms""1"
+			"TI9 Cache Bane Endless Nightmare Back""1"
+			"TI9 Cache Bane Endless Nightmare Head""1"
+			"TI9 Cache Bane Endless Nightmare Shoulder""1"
+			"TI9 Cache Bane Endless Nightmare LS""1"
+		}
+		"creation_date"							"2019-05-14"
+		"image_inventory"						"econ/loading_screens/ti9_cache_bane_endless_nightmare_ls"
+		"item_name"								"#DOTA_Item_Vote_Only_TI9_Cache_Bane_Endless_Nightmare"
+		"workshop_accepted"						"0"
+	}
+	"23213"
+	{
+		"name"									"Summer Lineage Lucid Torment"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Summer Lineage Eyes of Lucid Torment""1"
+			"Summer Lineage Sleeves of Lucid Torment""1"
+			"Summer Lineage Cloth of Lucid Torment""1"
+			"Summer Lineage Hood of Lucid Torment""1"
+		}
+		"creation_date"							"2022-05-03"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR3"
+		"image_inventory"						"econ/sets/DOTA_Item_Summer_Lineage_Lucid_Torment"
+		"item_description"						"#DOTA_Item_Desc_Summer_Lineage_Lucid_Torment"
+		"item_name"								"#DOTA_Item_Summer_Lineage_Lucid_Torment"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"37"
+			}
+		}
+		"visuals"
+		{
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/bane/bane_gear_shoulder/bane_gear_shoulder"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/bane/bane_gear_shoulder/bane_gear_shoulder_style1"
+				}
+			}
+		}
+	}
+	"23214"
+	{
+		"name"									"Summer Lineage Eyes of Lucid Torment"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-03"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR3"
+		"image_inventory"						"econ/items/bane/bane_gear_shoulder/bane_gear_shoulder2"
+		"item_description"						"#DOTA_Item_Desc_Summer_Lineage_Eyes_of_Lucid_Torment"
+		"item_name"								"#DOTA_Item_Summer_Lineage_Eyes_of_Lucid_Torment"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/bane/bane_gear_shoulder/bane_gear_shoulder.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"37"
+			}
+		}
+		"visuals"
+		{
+			"skin"								"2"
+			"skip_model_combine"				"0"
+		}
+	}
+	"23215"
+	{
+		"name"									"Summer Lineage Sleeves of Lucid Torment"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-03"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR3"
+		"image_inventory"						"econ/items/bane/bane_gear_arms/bane_gear_arms2"
+		"item_description"						"#DOTA_Item_Desc_Summer_Lineage_Sleeves_of_Lucid_Torment"
+		"item_name"								"#DOTA_Item_Summer_Lineage_Sleeves_of_Lucid_Torment"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/bane/bane_gear_arms/bane_gear_arms.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"37"
+			}
+		}
+		"visuals"
+		{
+			"skin"								"2"
+			"skip_model_combine"				"0"
+		}
+	}
+	"23216"
+	{
+		"name"									"Summer Lineage Cloth of Lucid Torment"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-03"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR3"
+		"image_inventory"						"econ/items/bane/bane_gear_back/bane_gear_back2"
+		"item_description"						"#DOTA_Item_Desc_Summer_Lineage_Cloth_of_Lucid_Torment"
+		"item_name"								"#DOTA_Item_Summer_Lineage_Cloth_of_Lucid_Torment"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/bane/bane_gear_back/bane_gear_back.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"37"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/bane/unhallowed_nightmares/bane_unhallowed_nightmares_back_infused_dpc.vpcf"
+				"style"							"0"
+			}
+			"skip_model_combine"				"0"
+			"skin"								"2"
+		}
+	}
+	"23217"
+	{
+		"name"									"Summer Lineage Hood of Lucid Torment"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-03"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR3"
+		"image_inventory"						"econ/items/bane/bane_gear_head/bane_gear_head_dpc"
+		"item_description"						"#DOTA_Item_Desc_Summer_Lineage_Hood_of_Lucid_Torment"
+		"item_name"								"#DOTA_Item_Summer_Lineage_Hood_of_Lucid_Torment"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/bane/bane_gear_head/bane_gear_head.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"37"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"2"
+		}
+	}
+}

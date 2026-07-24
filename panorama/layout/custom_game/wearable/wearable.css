@@ -1,0 +1,421 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.Hidden
+{
+	opacity: 0.0;
+}
+
+.CustomHudRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#CosmeticsContainerMask
+{
+	horizontal-align: center;
+	margin-right: 0px;
+	width: 580px;
+	height: 950px;
+}
+
+#CosmeticsContainerMaskLabel
+{
+	horizontal-align: center;
+	margin-top: 350px;
+	font-size: 55px;
+	color: white;
+}
+
+.Blur
+{
+	blur: gaussian(2);
+	saturation: 0.5;
+}
+
+#CosmeticsContainerMain
+{
+	horizontal-align: center;
+	margin-right: 0px;
+	width: 580px;
+	height: 950px;
+	background-color: black;
+	background-image: url("s2r://panorama/images/custom_game/extract/bg_hud_inspect_png.vtex");
+	background-size: cover;
+	z-index: -10;
+	border-radius: 15px;
+	opacity: 0.95;
+}
+
+.TopBarHeroImage
+{
+	background-color: #222;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#333), color-stop(0.2, #444), color-stop(.5, #333), to(#111));
+	width: 77px;
+	height: 42px;
+	margin-top: 4px;
+	vertical-align: top;
+	transition-duration: 0.1s;
+	saturation: 1;
+	brightness: 1;
+	contrast: 1;
+}
+
+#SelectCosmeticsContainer
+{
+	horizontal-align: right;
+	vertical-align: center;
+	margin-bottom: 40px;
+	margin-right: 5px;
+	z-index: 10;
+	opacity: 0.0;
+	transform: translateX(100px) translateY(0px);
+	transition-property: opacity, transform;
+	transition-duration: 0.2s;
+}
+
+#SelectCosmeticsContainer.CosmeticsContainerVisible
+{
+	opacity: 1;
+	transform: translateX(0px) translateY(0px);
+}
+
+#CosmeticsCloseButton
+{
+	horizontal-align: right;
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	background-image:url("s2r://panorama/images/custom_game/extract/x_close_png.vtex");
+	background-size: 27px 27px;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	box-shadow: #000000 0px 0px 3px 3px;
+	margin-bottom: 4px;
+	margin-top: 6px;
+	margin-right: 10px;
+}
+
+.EconItemContainer
+{
+	horizontal-align: center;
+	vertical-align: top;
+	flow-children: down;
+	width: 100%;
+}
+
+#EquipItemContainer
+{
+	flow-children: down;
+	horizontal-align: center;
+	vertical-align: top;
+	max-width: 100%;
+	height: 385px;
+	flow-children: right-wrap;
+	z-index: 20;
+	margin-top: 30px;
+	overflow: squish scroll;
+}
+
+#EquipItemContainer DOTAEconItem
+{
+	width: 100px;
+	height: 100px;
+	tooltip-position: left;
+}
+
+.NotWearable #PleaseSelectWearableUnit
+{
+	visibility: visible;
+}
+
+#PleaseSelectWearableUnit
+{
+	horizontal-align: middle;
+	vertical-align: middle;
+	visibility: collapse;
+	font-size: 22px;
+}
+
+.EconItemSlot
+{
+	flow-children: down;
+	height: 130px;
+	width: 130px;
+	overflow: noclip noclip;
+}
+
+.EconItemSlot>Label
+{
+	text-transform: uppercase;
+	margin-left: 7px;
+	font-size: 14px;
+	color: #999;
+	margin-bottom: -6px;
+	margin-top: 2px;
+	text-overflow: ellipsis;
+	width: 84px;
+	height: 20px;
+}
+
+.EconItemSlot>DOTAEconItem:hover
+{
+	box-shadow: #CCCCCC 0px 0px 10px 1px;
+}
+
+.Selected>DOTAEconItem
+{
+	box-shadow: grey 0px 0px 10px 1px;
+}
+
+.EconItemStyleContents
+{
+	padding: 0px;
+	width: 350px;
+	flow-children: down;
+	border: 2px solid black;
+	box-shadow: none;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#000), to(#222));
+	border: 0px;
+	z-index: 30;
+	box-shadow: fill #00000077 0px 0px 4px 4px;
+}
+
+#StyleLabel
+{
+	margin-left: 6px;
+	font-size: 16px;
+	color: #ccc;
+}
+
+#AvailableItems
+{
+	flow-children: down;
+	margin-top: 8px;
+	width: 95%;
+	horizontal-align: middle;
+}
+
+#AvailableHeader
+{
+	flow-children: right;
+	margin-bottom: 4px;
+}
+
+#AvailableTitle
+{
+	color: white;
+	text-transform: uppercase;
+	vertical-align: bottom;
+}
+
+.Row
+{
+	flow-children: right;
+	margin-top: 0%;
+	margin-bottom: 0%;
+	margin-right: 0%;
+	width: 100%;
+}
+
+.Category .Row Label
+{
+	horizontal-align: right;
+	margin-left: 5px;
+	margin-right: 5px;
+	font-size: 18;
+	color: #888888;
+}
+
+.Row TextEntry
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#111111FF), to(#222222FF));
+	border: 1px solid baseBorder;
+	color: lightgrey;
+	font-size: 16;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-left: 3px;
+	margin-right: 3px;
+	height: 20px;
+	width: 40px;
+	padding-top: 5px;
+	padding-left: 5px;
+}
+
+.Row TextEntry #PlaceholderText
+{
+	opacity: 1.0;
+	transition-property: opacity;
+	transition-duration: 0.1s;
+	vertical-align: middle;
+	color: #444444;
+	font-size: 16;
+}
+
+.Row TextEntry:focus
+{
+	padding-left: 10px;
+	padding-top: 10px;
+}
+
+.Row TextEntry:focus #PlaceholderText,TextEntry.HasInput #PlaceholderText
+{
+	opacity: 0.0;
+}
+
+.DemoButton
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#333333), to(#444444));
+	height: 32px;
+	width: 140px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-left: 3px;
+	margin-right: 3px;
+	border-style: solid;
+	border-width: 1px;
+	border-top-color: #444444;
+	border-left-color: #494949;
+	border-bottom-color: #111111;
+	border-right-color: #404040;
+	transition-property: background-color;
+	transition-duration: 0.15s;
+	transition-timing-function: linear;
+}
+
+.Category .Row .DemoButton#FieldButton
+{
+	height: 40px;
+	width: 140px;
+}
+
+.SourceButton
+{
+	flow-children: right;
+	border-top: 1px solid #ffffff22;
+	border-left: 1px solid #ffffff11;
+	border-right: 1px solid #00000044;
+	border-bottom: 1px solid #00000088;
+	padding: 5px 14px 3px 14px;
+	min-width: 100px;
+	height: 34px;
+	margin: 5px;
+}
+
+.SourceButton:hover
+{
+	brightness: 2.0;
+}
+
+#Bundle.SourceButton
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3784a6), to(#215373));
+}
+
+#Single.SourceButton
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3751a6), to(#1b2b5e));
+}
+
+#Single.SourceButtonDisabled,#Bundle.SourceButtonDisabled
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#646666), to(#646666)) !important;
+}
+
+#SourceIconContainer
+{
+	width: 44px;
+	height: 26px;
+	margin-top: -2px;
+	vertical-align: middle;
+	flow-children: right;
+}
+
+#SourceIconArrow
+{
+	width: 14px;
+	height: 14px;
+	vertical-align: middle;
+	horizontal-align: center;
+	wash-color: #ceffbb;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	background-image: url("s2r://panorama/images/custom_game/extract/icon_treasure_arrow_png.vtex");
+}
+
+#SourceIcon
+{
+	width: 22px;
+	height: 22px;
+	vertical-align: middle;
+	horizontal-align: center;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}
+
+#Bundle #SourceIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/extract/brackets_png.vtex");
+}
+
+#Single #SourceIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/extract/armory_icon_off_png.vtex");
+	brightness: 7;
+}
+
+.SourceButton Label
+{
+	color: white;
+}
+
+#AvailableItemsCarouselNav
+{
+	margin-right: 7px;
+}
+
+#AvailableItemsCarousel
+{
+	width: 100%;
+	height: 536px;
+}
+
+#AvailableItemsCarousel .CarouselPage
+{
+	flow-children: down-wrap;
+	padding-left: 0px;
+	padding-right: 0px;
+	overflow: scroll squish;
+	transition-property: position;
+	transition-duration: 0.3s;
+}
+
+.AvailableStoreItem
+{
+	width: 180px;
+	height: 200px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+#HeroNameContainer
+{
+	vertical-align: bottom;
+	horizontal-align: right;
+	flow-children: right;
+	margin-right: 222px;
+	margin-bottom: 200px;
+}

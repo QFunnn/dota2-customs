@@ -1,0 +1,2824 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"386"
+	{
+		"name"									"Timbersaw's Hat"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/shredder/shredder_driver_hat"
+		"item_description"						"#DOTA_Item_Desc_Timbersaws_Hat"
+		"item_name"								"#DOTA_Item_Timbersaws_Hat"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/shredder/shredder_driver_hat.vmdl"
+	}
+	"388"
+	{
+		"name"									"Timbersaw's Left Arm"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/shredder/shredder_chainsaw"
+		"item_description"						"#DOTA_Item_Desc_Timbersaws_Left_Arm"
+		"item_name"								"#DOTA_Item_Timbersaws_Left_Arm"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Offhand"
+		"model_player"							"models/heroes/shredder/shredder_chainsaw.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_shredder/shredder_ambient_saw.vpcf"
+				"system"						"particles/units/heroes/hero_shredder/shredder_ambient_saw.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_saw"
+					}
+				}
+			}
+		}
+	}
+	"389"
+	{
+		"name"									"Timbersaw's Shoulders"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/shredder/shredder_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Timbersaws_Shoulders"
+		"item_name"								"#DOTA_Item_Timbersaws_Shoulders"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/heroes/shredder/shredder_shoulders.vmdl"
+	}
+	"390"
+	{
+		"name"									"Timbersaw's Torso"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/shredder/shredder_body"
+		"item_description"						"#DOTA_Item_Desc_Timbersaws_Torso"
+		"item_name"								"#DOTA_Item_Timbersaws_Torso"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/heroes/shredder/shredder_body.vmdl"
+	}
+	"400"
+	{
+		"name"									"Timbersaw's Waist Saw"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/shredder/shredder_blade"
+		"item_description"						"#DOTA_Item_Desc_Timbersaws_Waist_Saw"
+		"item_name"								"#DOTA_Item_Timbersaws_Waist_Saw"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/heroes/shredder/shredder_blade.vmdl"
+	}
+	"401"
+	{
+		"name"									"Timbersaw's Armor"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/shredder/shredder_armor"
+		"item_description"						"#DOTA_Item_Desc_Timbersaws_Armor"
+		"item_name"								"#DOTA_Item_Timbersaws_Armor"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/heroes/shredder/shredder_armor.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"402"
+	{
+		"name"									"Timbersaw's Right Arm"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/shredder/shredder_hook"
+		"item_description"						"#DOTA_Item_Desc_Timbersaws_Right_Arm"
+		"item_name"								"#DOTA_Item_Timbersaws_Right_Arm"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/heroes/shredder/shredder_hook.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"537"
+	{
+		"name"									"Timbersaw's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-08"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Timbersaws_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_shredder"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_shredder/shredder_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_shredder/shredder_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_chimmney"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"absorigin_follow"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_saw"
+					}
+					"4"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_armor"
+					}
+				}
+			}
+		}
+	}
+	"6519"
+	{
+		"name"									"Timberthaw Armor"
+		"prefab"								"wearable"
+		"branding"
+		{
+			"corporation_id"					"84772440"
+		}
+		"creation_date"							"2014-05-28"
+		"image_inventory"						"econ/items/shredder/timberthaw_armor/timberthaw_armor"
+		"item_name"								"#DOTA_Item_Timberthaw_Armor"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/shredder/timberthaw_armor/mesh/shredder_timberthaw_armor_lod0.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"6520"
+	{
+		"name"									"Timberthaw Claw"
+		"prefab"								"wearable"
+		"branding"
+		{
+			"corporation_id"					"84772440"
+		}
+		"creation_date"							"2014-05-28"
+		"image_inventory"						"econ/items/shredder/timberthaw_weapon/timberthaw_weapon"
+		"item_name"								"#DOTA_Item_Timberthaw_Claw"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Claw"
+		"model_player"							"models/items/shredder/timberthaw_weapon/timberthaw_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"6521"
+	{
+		"name"									"Timberthaw Hat"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-28"
+		"image_inventory"						"econ/items/shredder/timberthaw_head/timberthaw_head"
+		"item_name"								"#DOTA_Item_Timberthaw_Hat"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hat"
+		"model_player"							"models/items/shredder/timberthaw_head/timberthaw_head.vmdl"
+		"branding"
+		{
+			"corporation_id"					"84772440"
+		}
+	}
+	"6522"
+	{
+		"name"									"Timberthaw Ripsaw"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-28"
+		"image_inventory"						"econ/items/shredder/timberthaw_offhand/timberthaw_offhand"
+		"item_name"								"#DOTA_Item_Timberthaw_Ripsaw"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Ripsaw"
+		"model_player"							"models/items/shredder/timberthaw_offhand/timberthaw_offhand.vmdl"
+		"particle_folder"						"particles/econ/items/timbersaw/timbersaw_timberthaw"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/timbersaw/timbersaw_timberthaw/shredder_timberthaw_ambient_saw.vpcf"
+				"system"						"particles/econ/items/timbersaw/timbersaw_timberthaw/shredder_timberthaw_ambient_saw.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_saw"
+					}
+				}
+			}
+		}
+		"branding"
+		{
+			"corporation_id"					"84772440"
+		}
+	}
+	"6523"
+	{
+		"name"									"Timberthaw Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-28"
+		"image_inventory"						"econ/items/shredder/timberthaw_shoulder/timberthaw_shoulder"
+		"item_name"								"#DOTA_Item_Timberthaw_Shoulders"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/shredder/timberthaw_shoulder/timberthaw_shoulder.vmdl"
+		"branding"
+		{
+			"corporation_id"					"84772440"
+		}
+	}
+	"6524"
+	{
+		"name"									"Timberthaw Back"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-28"
+		"image_inventory"						"econ/items/shredder/timberthaw_back/timberthaw_back"
+		"item_name"								"#DOTA_Item_Timberthaw_Back"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/shredder/timberthaw_back/timberthaw_back.vmdl"
+		"branding"
+		{
+			"corporation_id"					"84772440"
+		}
+	}
+	"7020"
+	{
+		"name"									"Cockpit of the Maniacal Machinist"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-12"
+		"image_inventory"						"econ/items/shredder/firefly_back/firefly_back"
+		"item_name"								"#DOTA_Item_Cockpit_of_the_Maniacal_Machinist"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/shredder/firefly_back/firefly_back.vmdl"
+	}
+	"7021"
+	{
+		"name"									"Claw of the Maniacal Machinist"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-12"
+		"image_inventory"						"econ/items/shredder/firefly_weapon/firefly_weapon"
+		"item_name"								"#DOTA_Item_Claw_of_the_Maniacal_Machinist"
+		"item_type_name"						"#DOTA_WearableType_Claw"
+		"model_player"							"models/items/shredder/firefly_weapon/firefly_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"7022"
+	{
+		"name"									"Goggles of the Maniacal Machinist"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-12"
+		"image_inventory"						"econ/items/shredder/firefly_head/firefly_head"
+		"item_name"								"#DOTA_Item_Goggles_of_the_Maniacal_Machinist"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Goggles"
+		"model_player"							"models/items/shredder/firefly_head/firefly_head.vmdl"
+	}
+	"7023"
+	{
+		"name"									"Shoulders of the Maniacal Machinist"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-12"
+		"image_inventory"						"econ/items/shredder/firefly_shoulder/firefly_shoulder"
+		"item_name"								"#DOTA_Item_Shoulders_of_the_Maniacal_Machinist"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/shredder/firefly_shoulder/firefly_shoulder.vmdl"
+	}
+	"7024"
+	{
+		"name"									"Chainsaw of the Maniacal Machinist"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-12"
+		"image_inventory"						"econ/items/shredder/firefly_offhand/firefly_offhand"
+		"item_name"								"#DOTA_Item_Chainsaw_of_the_Maniacal_Machinist"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Chainsaw"
+		"model_player"							"models/items/shredder/firefly_offhand/firefly_offhand.vmdl"
+		"particle_folder"						"particles/econ/items/timbersaw/hero_timbersaw_fullmetal"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/timbersaw/hero_timbersaw_fullmetal/shredder_ambient_fullmetal_saw.vpcf"
+				"system"						"particles/econ/items/timbersaw/hero_timbersaw_fullmetal/shredder_ambient_fullmetal_saw.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_saw"
+					}
+				}
+			}
+		}
+	}
+	"7027"
+	{
+		"name"									"Armor of the Maniacal Machinist"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-12"
+		"image_inventory"						"econ/items/shredder/firefly_armor/firefly_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Maniacal_Machinist"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/shredder/firefly_armor/firefly_armor.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"7136"
+	{
+		"name"									"Top Hat of the Steam Chopper"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-17"
+		"image_inventory"						"econ/items/shredder/top_hat_of_the_steam_chopper/top_hat_of_the_steam_chopper"
+		"item_name"								"#DOTA_Item_Top_Hat_of_the_Steam_Chopper"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hat"
+		"model_player"							"models/items/shredder/top_hat_of_the_steam_chopper/top_hat_of_the_steam_chopper.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"11/11/2014"
+			"price"								"0"
+		}
+	}
+	"7257"
+	{
+		"name"									"Barbed Saw of Utter Eradication"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/shredder/siege_golem_offhand/siege_golem_offhand"
+		"item_name"								"#DOTA_Item_Barbed_Saw_of_Utter_Eradication"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Saw"
+		"model_player"							"models/items/shredder/siege_golem_offhand/siege_golem_offhand.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_shredder/shredder_ambient_saw.vpcf"
+				"system"						"particles/units/heroes/hero_shredder/shredder_ambient_saw.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_saw"
+					}
+				}
+			}
+		}
+	}
+	"7258"
+	{
+		"name"									"Claw of the Steam Chopper"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-17"
+		"image_inventory"						"econ/items/shredder/sctimberweapon/sctimberweapon"
+		"item_name"								"#DOTA_Item_Claw_of_the_Steam_Chopper"
+		"item_type_name"						"#DOTA_WearableType_Claw"
+		"model_player"							"models/items/shredder/sctimberweapon/sctimberweapon.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"11/11/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"7259"
+	{
+		"name"									"Armor of Utter Eradication"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/shredder/siege_golem_armor/siege_golem_armor"
+		"item_name"								"#DOTA_Item_Armor_of_Utter_Eradication"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/shredder/siege_golem_armor/siege_golem_armor.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"7260"
+	{
+		"name"									"Pauldrons of the Steam Chopper"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-17"
+		"image_inventory"						"econ/items/shredder/sctimbershoulders/sctimbershoulders"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Steam_Chopper"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/shredder/sctimbershoulders/sctimbershoulders.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"11/11/2014"
+			"price"								"0"
+		}
+	}
+	"7261"
+	{
+		"name"									"Saw of the Steam Chopper"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-17"
+		"image_inventory"						"econ/items/shredder/sctimberoffhand/sctimberoffhand"
+		"item_name"								"#DOTA_Item_Saw_of_the_Steam_Chopper"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Saw"
+		"model_player"							"models/items/shredder/sctimberoffhand/sctimberoffhand.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"11/11/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_shredder/shredder_ambient_saw.vpcf"
+				"system"						"particles/units/heroes/hero_shredder/shredder_ambient_saw.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_saw"
+					}
+				}
+			}
+		}
+	}
+	"7262"
+	{
+		"name"									"Cockpit of the Steam Chopper"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-17"
+		"image_inventory"						"econ/items/shredder/sctimberback/sctimberback"
+		"item_name"								"#DOTA_Item_Cockpit_of_the_Steam_Chopper"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cockpit"
+		"model_player"							"models/items/shredder/sctimberback/sctimberback.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"11/11/2014"
+			"price"								"0"
+		}
+	}
+	"7263"
+	{
+		"name"									"Reactive Armor of the Steam Chopper"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-17"
+		"image_inventory"						"econ/items/shredder/sctimberarmor/sctimberarmor"
+		"item_name"								"#DOTA_Item_Reactive_Armor_of_the_Steam_Chopper"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Reactive_Armor"
+		"model_player"							"models/items/shredder/sctimberarmor/sctimberarmor.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"11/11/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"7264"
+	{
+		"name"									"Guards of Utter Eradication"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/shredder/siege_golem_shoulder/siege_golem_shoulder"
+		"item_name"								"#DOTA_Item_Guards_of_Utter_Eradication"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Guards"
+		"model_player"							"models/items/shredder/siege_golem_shoulder/siege_golem_shoulder.vmdl"
+	}
+	"7265"
+	{
+		"name"									"Claw of Utter Eradication"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/shredder/siege_golem_weapon/siege_golem_weapon"
+		"item_name"								"#DOTA_Item_Claw_of_Utter_Eradication"
+		"item_type_name"						"#DOTA_WearableType_Claw"
+		"model_player"							"models/items/shredder/siege_golem_weapon/siege_golem_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"7391"
+	{
+		"name"									"Cockpit of Utter Eradication"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/shredder/siege_golem_back/siege_golem_back"
+		"item_name"								"#DOTA_Item_Cockpit_of_Utter_Eradication"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cockpit"
+		"model_player"							"models/items/shredder/siege_golem_back/siege_golem_back.vmdl"
+	}
+	"7430"
+	{
+		"name"									"Fins of the Molten Destructor"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-03"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/shredder/mad_destructor_shoulder/mad_destructor_shoulder"
+		"item_name"								"#DOTA_Item_Fins_of_the_Molten_Destructor"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Fins"
+		"model_player"							"models/items/shredder/mad_destructor_shoulder/mad_destructor_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"7431"
+	{
+		"name"									"Pull Drill of the Molten Destructor"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-03"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/shredder/mad_destructor_weapon/mad_destructor_weapon"
+		"item_name"								"#DOTA_Item_Pull_Drill_of_the_Molten_Destructor"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Drill"
+		"model_player"							"models/items/shredder/mad_destructor_weapon/mad_destructor_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"7581"
+	{
+		"name"									"Controlled Burn"
+		"prefab"								"wearable"
+		"creation_date"							"2016-03-04"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/shredder/controlled_burn/mesh/controlled_burn_model"
+		"item_description"						"#DOTA_Item_Desc_Controlled_Burn"
+		"item_name"								"#DOTA_Item_Controlled_Burn"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Claw"
+		"model_player"							"models/items/shredder/controlled_burn/mesh/controlled_burn_model.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1471158000"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"burn"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shredder/shredder_timberchain.vpcf"
+				"modifier"						"particles/econ/items/shredder/timber_controlled_burn/timber_controlled_burn_timberchain.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shredder/shredder_timber_chain_trail.vpcf"
+				"modifier"						"particles/econ/items/shredder/timber_controlled_burn/timber_controlled_burn_timberchain_trail.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shredder/timber_controlled_burn/timber_controlled_burn_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/shredder/timber_controlled_burn/timber_controlled_burn_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon"
+					}
+				}
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shredder/shredder_tree_dmg.vpcf"
+				"modifier"						"particles/econ/items/shredder/timber_controlled_burn/timber_controlled_burn_tree_kill.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shredder/shredder_timber_dmg.vpcf"
+				"modifier"						"particles/econ/items/shredder/timber_controlled_burn/timber_controlled_burn_timber_dmg.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier6"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Shredder.TimberChain.Cast"
+				"modifier"						"Hero_Shredder.ControlledBurn.Cast"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier7"
+			{
+				"type"							"ability_icon"
+				"asset"							"shredder_timber_chain"
+				"modifier"						"shredder/controlled_burn/shredder_timber_chain"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+		}
+	}
+	"7672"
+	{
+		"name"									"Cap of the Steamcutter"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-01"
+		"image_inventory"						"econ/items/shredder/steam_woodcutter_head/steam_woodcutter_head"
+		"item_name"								"#DOTA_Item_Cap_of_the_Steamcutter"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Cap"
+		"model_player"							"models/items/shredder/steam_woodcutter_head/steam_woodcutter_head.vmdl"
+	}
+	"7673"
+	{
+		"name"									"Claw of the Steamcutter"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-01"
+		"image_inventory"						"econ/items/shredder/steam_woodcutter_weapon/steam_woodcutter_weapon"
+		"item_name"								"#DOTA_Item_Claw_of_the_Steamcutter"
+		"item_type_name"						"#DOTA_WearableType_Claw"
+		"model_player"							"models/items/shredder/steam_woodcutter_weapon/steam_woodcutter_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"7674"
+	{
+		"name"									"Furnace of the Steamcutter"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-01"
+		"image_inventory"						"econ/items/shredder/steam_woodcutter_armor/steam_woodcutter_armor"
+		"item_name"								"#DOTA_Item_Furnace_of_the_Steamcutter"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Furnace"
+		"model_player"							"models/items/shredder/steam_woodcutter_armor/steam_woodcutter_armor.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"7680"
+	{
+		"name"									"Actuator of the Steamcutter"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-01"
+		"image_inventory"						"econ/items/shredder/steam_woodcutter_shoulder/steam_woodcutter_shoulder"
+		"item_name"								"#DOTA_Item_Actuator_of_the_Steamcutter"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Actuator"
+		"model_player"							"models/items/shredder/steam_woodcutter_shoulder/steam_woodcutter_shoulder.vmdl"
+	}
+	"7681"
+	{
+		"name"									"Seat of the Steamcutter"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-01"
+		"image_inventory"						"econ/items/shredder/steam_woodcutter_back/steam_woodcutter_back"
+		"item_name"								"#DOTA_Item_Seat_of_the_Steamcutter"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Seat"
+		"model_player"							"models/items/shredder/steam_woodcutter_back/steam_woodcutter_back.vmdl"
+	}
+	"7682"
+	{
+		"name"									"Saw of the Steamcutter"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-01"
+		"image_inventory"						"econ/items/shredder/steam_woodcutter_offhand/steam_woodcutter_offhand"
+		"item_name"								"#DOTA_Item_Saw_of_the_Steamcutter"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Saw"
+		"model_player"							"models/items/shredder/steam_woodcutter_offhand/steam_woodcutter_offhand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/timbersaw/timbersaw_steamcutter/timbersaw_steamcutter_ambient_saw.vpcf"
+				"system"						"particles/econ/items/timbersaw/timbersaw_steamcutter/timbersaw_steamcutter_ambient_saw.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_saw"
+					}
+				}
+			}
+		}
+	}
+	"7744"
+	{
+		"name"									"Wild Hair of the Molten Destructor"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-03"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/shredder/mad_destructor_head/mad_destructor_head"
+		"item_name"								"#DOTA_Item_Wild_Hair_of_the_Molten_Destructor"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/shredder/mad_destructor_head/mad_destructor_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"8018"
+	{
+		"name"									"Chainsaw of the Molten Destructor"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-03"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/shredder/mad_destructor_offhand/mad_destructor_offhand"
+		"item_name"								"#DOTA_Item_Chainsaw_of_the_Molten_Destructor"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Chainsaw"
+		"model_player"							"models/items/shredder/mad_destructor_offhand/mad_destructor_offhand.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/timbersaw/timbersaw_molten_destructor/timbersaw_molten_destructor_saw.vpcf"
+				"system"						"particles/econ/items/timbersaw/timbersaw_molten_destructor/timbersaw_molten_destructor_saw.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_saw"
+					}
+				}
+			}
+		}
+	}
+	"8019"
+	{
+		"name"									"Exhaust of the Molten Destructor"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-03"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/shredder/mad_destructor_back/mad_destructor_back"
+		"item_name"								"#DOTA_Item_Exhaust_of_the_Molten_Destructor"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cockpit"
+		"model_player"							"models/items/shredder/mad_destructor_back/mad_destructor_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"8020"
+	{
+		"name"									"Suit of the Molten Destructor"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-03"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/shredder/mad_destructor_armor/mad_destructor_armor"
+		"item_name"								"#DOTA_Item_Suit_of_the_Molten_Destructor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/shredder/mad_destructor_armor/mad_destructor_armor.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"8430"
+	{
+		"name"									"Armor of the Stumpgrinder"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-04"
+		"image_inventory"						"econ/items/shredder/the_stumpgrinder__reactive_armor/the_stumpgrinder__reactive_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Stumpgrinder"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/shredder/the_stumpgrinder__reactive_armor/the_stumpgrinder__reactive_armor.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"8431"
+	{
+		"name"									"Helm of the Stumpgrinder"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-04"
+		"image_inventory"						"econ/items/shredder/the_stumpgrinder__head/the_stumpgrinder__head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Stumpgrinder"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/shredder/the_stumpgrinder__head/the_stumpgrinder__head.vmdl"
+	}
+	"8435"
+	{
+		"name"									"Circular Saw of the Stumpgrinder"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-04"
+		"image_inventory"						"econ/items/shredder/the_stumpgrinder_offhand/the_stumpgrinder_offhand"
+		"item_name"								"#DOTA_Item_Circular_Saw_of_the_Stumpgrinder"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Saw"
+		"model_player"							"models/items/shredder/the_stumpgrinder_offhand/the_stumpgrinder_offhand.vmdl"
+		"particle_folder"						"particles/econ/items/shredder/hero_shredder_stump_grinder"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shredder/hero_shredder_stump_grinder/shredder_ambient_saw_stump_grinder.vpcf"
+				"system"						"particles/econ/items/shredder/hero_shredder_stump_grinder/shredder_ambient_saw_stump_grinder.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_saw"
+					}
+				}
+			}
+		}
+	}
+	"8436"
+	{
+		"name"									"Seat of the Stumpgrinder"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-04"
+		"image_inventory"						"econ/items/shredder/the_stumpgrinder__body/the_stumpgrinder__body"
+		"item_name"								"#DOTA_Item_Seat_of_the_Stumpgrinder"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Seat"
+		"model_player"							"models/items/shredder/the_stumpgrinder__body/the_stumpgrinder__body.vmdl"
+	}
+	"8438"
+	{
+		"name"									"Mecharm of the Stumpgrinder"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-04"
+		"image_inventory"						"econ/items/shredder/the_stumpgrinder__shoulders/the_stumpgrinder__shoulders"
+		"item_name"								"#DOTA_Item_Mecharm_of_the_Stumpgrinder"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Mecharm"
+		"model_player"							"models/items/shredder/the_stumpgrinder__shoulders/the_stumpgrinder__shoulders.vmdl"
+	}
+	"8440"
+	{
+		"name"									"Claw of the Stumpgrinder"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-04"
+		"image_inventory"						"econ/items/shredder/the_stumpgrinder__weapon/the_stumpgrinder__weapon"
+		"item_name"								"#DOTA_Item_Claw_of_the_Stumpgrinder"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Claw"
+		"model_player"							"models/items/shredder/the_stumpgrinder__weapon/the_stumpgrinder__weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"8576"
+	{
+		"name"									"Goggles of Utter Eradication"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/shredder/siege_golem_head/siege_golem_head"
+		"item_name"								"#DOTA_Item_Goggles_of_Utter_Eradication"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Goggles_"
+		"model_player"							"models/items/shredder/siege_golem_head/siege_golem_head.vmdl"
+	}
+	"8663"
+	{
+		"name"									"Lumberclaw Cockpit"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-07"
+		"image_inventory"						"econ/items/shredder/lumberclaw_back/lumberclaw_back"
+		"item_name"								"#DOTA_Item_Lumberclaw_Cockpit"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cockpit"
+		"model_player"							"models/items/shredder/lumberclaw_back/lumberclaw_back.vmdl"
+	}
+	"8664"
+	{
+		"name"									"Lumberclaw Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-07"
+		"image_inventory"						"econ/items/shredder/lumberclaw_shoulders/lumberclaw_shoulders"
+		"item_name"								"#DOTA_Item_Lumberclaw_Shoulders"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/shredder/lumberclaw_shoulders/lumberclaw_shoulders.vmdl"
+	}
+	"8665"
+	{
+		"name"									"Lumberclaw Reactive Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-07"
+		"image_inventory"						"econ/items/shredder/lumberclaw_armor/lumberclaw_armor"
+		"item_name"								"#DOTA_Item_Lumberclaw_Reactive_Armor"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Reactive_Armor"
+		"model_player"							"models/items/shredder/lumberclaw_armor/lumberclaw_armor.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"8666"
+	{
+		"name"									"Lumberclaw Chainsaw"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-07"
+		"image_inventory"						"econ/items/shredder/lumberclaw_chainsaw/lumberclaw_chainsaw"
+		"item_name"								"#DOTA_Item_Lumberclaw_Chainsaw"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Chainsaw"
+		"model_player"							"models/items/shredder/lumberclaw_chainsaw/lumberclaw_chainsaw.vmdl"
+		"particle_folder"						"particles/econ/items/shredder/timber_lumberclaw_defaultmaterial"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shredder/timber_lumberclaw_defaultmaterial/shredder_lumber_claw_ambient.vpcf"
+				"system"						"particles/econ/items/shredder/timber_lumberclaw_defaultmaterial/shredder_lumber_claw_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_saw"
+					}
+				}
+			}
+		}
+	}
+	"8667"
+	{
+		"name"									"Lumberclaw Hook"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-07"
+		"image_inventory"						"econ/items/shredder/lumberclaw_claw/lumberclaw_claw"
+		"item_name"								"#DOTA_Item_Lumberclaw_Hook"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Hook"
+		"model_player"							"models/items/shredder/lumberclaw_claw/lumberclaw_claw.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"8668"
+	{
+		"name"									"Lumberclaw Cap"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-07"
+		"image_inventory"						"econ/items/shredder/lumberclaw_hat/lumberclaw_hat"
+		"item_name"								"#DOTA_Item_Lumberclaw_Cap"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Cap"
+		"model_player"							"models/items/shredder/lumberclaw_hat/lumberclaw_hat.vmdl"
+	}
+	"9526"
+	{
+		"name"									"Claw of the Raucous Gatecrasher"
+		"prefab"								"wearable"
+		"creation_date"							"2017-10-20"
+		"image_inventory"						"econ/items/shredder/noise_maker_weapon/noise_maker_weapon"
+		"item_name"								"#DOTA_Item_Claw_of_the_Raucous_Gatecrasher"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/shredder/noise_maker_weapon/noise_maker_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"9527"
+	{
+		"name"									"Joints of the Raucous Gatecrasher"
+		"prefab"								"wearable"
+		"creation_date"							"2017-10-20"
+		"image_inventory"						"econ/items/shredder/noise_maker_shoulder/noise_maker_shoulder"
+		"item_name"								"#DOTA_Item_Joints_of_the_Raucous_Gatecrasher"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/shredder/noise_maker_shoulder/noise_maker_shoulder.vmdl"
+	}
+	"9528"
+	{
+		"name"									"Shell of the Raucous Gatecrasher"
+		"prefab"								"wearable"
+		"creation_date"							"2017-10-20"
+		"image_inventory"						"econ/items/shredder/noise_maker_armor/noise_maker_armor"
+		"item_name"								"#DOTA_Item_Shell_of_the_Raucous_Gatecrasher"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/shredder/noise_maker_armor/noise_maker_armor.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"9529"
+	{
+		"name"									"Core of the Raucous Gatecrasher"
+		"prefab"								"wearable"
+		"creation_date"							"2017-10-20"
+		"image_inventory"						"econ/items/shredder/noise_maker_back/noise_maker_back"
+		"item_name"								"#DOTA_Item_Core_of_the_Raucous_Gatecrasher"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/shredder/noise_maker_back/noise_maker_back.vmdl"
+	}
+	"9530"
+	{
+		"name"									"Style of the Raucous Gatecrasher"
+		"prefab"								"wearable"
+		"creation_date"							"2017-10-20"
+		"image_inventory"						"econ/items/shredder/noise_maker_head/noise_maker_head"
+		"item_name"								"#DOTA_Item_Style_of_the_Raucous_Gatecrasher"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/shredder/noise_maker_head/noise_maker_head.vmdl"
+	}
+	"9531"
+	{
+		"name"									"Saw of the Raucous Gatecrasher"
+		"prefab"								"wearable"
+		"creation_date"							"2017-10-20"
+		"image_inventory"						"econ/items/shredder/noise_maker_off_hand/noise_maker_off_hand"
+		"item_name"								"#DOTA_Item_Saw_of_the_Raucous_Gatecrasher"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/shredder/noise_maker_off_hand/noise_maker_off_hand.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_shredder/shredder_ambient_saw.vpcf"
+				"system"						"particles/units/heroes/hero_shredder/shredder_ambient_saw.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_saw"
+					}
+				}
+			}
+		}
+	}
+	"9542"
+	{
+		"name"									"Armor of the Tree Punisher"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-01"
+		"image_inventory"						"econ/items/shredder/treepunisher_armor/treepunisher_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Tree_Punisher"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/shredder/treepunisher_armor/treepunisher_armor.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"9543"
+	{
+		"name"									"Goggles of the Tree Punisher"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-01"
+		"image_inventory"						"econ/items/shredder/treepunisher_head/treepunisher_head"
+		"item_name"								"#DOTA_Item_Goggles_of_the_Tree_Punisher"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Goggles"
+		"model_player"							"models/items/shredder/treepunisher_head/treepunisher_head.vmdl"
+	}
+	"9545"
+	{
+		"name"									"Seat of the Tree Punisher"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-01"
+		"image_inventory"						"econ/items/shredder/treepunisher_back/treepunisher_back"
+		"item_name"								"#DOTA_Item_Seat_of_the_Tree_Punisher"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Seat"
+		"model_player"							"models/items/shredder/treepunisher_back/treepunisher_back.vmdl"
+	}
+	"9547"
+	{
+		"name"									"Saw of the Tree Punisher"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-01"
+		"image_inventory"						"econ/items/shredder/treepunisher_offhand/treepunisher_offhand"
+		"item_name"								"#DOTA_Item_Saw_of_the_Tree_Punisher"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Saw"
+		"model_player"							"models/items/shredder/treepunisher_offhand/treepunisher_offhand.vmdl"
+		"particle_folder"						"particles/econ/items/timbersaw/hero_timbersaw_tree_punisher"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/timbersaw/hero_timbersaw_tree_punisher/shredder_ambient_tree_punisher.vpcf"
+				"system"						"particles/econ/items/timbersaw/hero_timbersaw_tree_punisher/shredder_ambient_tree_punisher.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_saw"
+					}
+				}
+			}
+		}
+	}
+	"9550"
+	{
+		"name"									"Grip of the Tree Punisher"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-01"
+		"image_inventory"						"econ/items/shredder/treepunisher_weapon/treepunisher_weapon"
+		"item_name"								"#DOTA_Item_Grip_of_the_Tree_Punisher"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Grip"
+		"model_player"							"models/items/shredder/treepunisher_weapon/treepunisher_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"9552"
+	{
+		"name"									"Plates of the Tree Punisher"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-01"
+		"image_inventory"						"econ/items/shredder/treepunisher_shoulder/treepunisher_shoulder"
+		"item_name"								"#DOTA_Item_Plates_of_the_Tree_Punisher"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Plates"
+		"model_player"							"models/items/shredder/treepunisher_shoulder/treepunisher_shoulder.vmdl"
+	}
+	"9692"
+	{
+		"name"									"Armor of the Siege Engine"
+		"prefab"								"wearable"
+		"creation_date"							"2017-10-26"
+		"image_inventory"						"econ/items/shredder/chopper_knight_armor/chopper_knight_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Siege_Engine"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/shredder/chopper_knight_armor/chopper_knight_armor.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"9693"
+	{
+		"name"									"Hull of the Siege Engine"
+		"prefab"								"wearable"
+		"creation_date"							"2017-10-26"
+		"image_inventory"						"econ/items/shredder/chopper_knight_back/chopper_knight_back"
+		"item_name"								"#DOTA_Item_Hull_of_the_Siege_Engine"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/shredder/chopper_knight_back/chopper_knight_back.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/timbersaw/chopper_knight/chopper_knight_back_ambient.vpcf"
+				"style"							"0"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"9694"
+	{
+		"name"									"Pauldrons of the Siege Engine"
+		"prefab"								"wearable"
+		"creation_date"							"2017-10-26"
+		"image_inventory"						"econ/items/shredder/chopper_knight_shoulder/chopper_knight_shoulder"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Siege_Engine"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/shredder/chopper_knight_shoulder/chopper_knight_shoulder.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/timbersaw/chopper_knight/chopper_knight_shoulder_ambient.vpcf"
+				"style"							"0"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"9695"
+	{
+		"name"									"Helm of the Siege Engine"
+		"prefab"								"wearable"
+		"creation_date"							"2017-10-26"
+		"image_inventory"						"econ/items/shredder/chopper_knight_head/chopper_knight_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Siege_Engine"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/shredder/chopper_knight_head/chopper_knight_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"9696"
+	{
+		"name"									"Grappler of the Siege Engine"
+		"prefab"								"wearable"
+		"creation_date"							"2017-10-26"
+		"image_inventory"						"econ/items/shredder/chopper_knight_weapon/chopper_knight_weapon"
+		"item_name"								"#DOTA_Item_Grappler_of_the_Siege_Engine"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/shredder/chopper_knight_weapon/chopper_knight_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/timbersaw/chopper_knight/chopper_knight_weapon_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9697"
+	{
+		"name"									"Saw-sword of the Siege Engine"
+		"prefab"								"wearable"
+		"creation_date"							"2017-10-26"
+		"image_inventory"						"econ/items/shredder/chopper_knight_off_hand/chopper_knight_off_hand"
+		"item_name"								"#DOTA_Item_Sawsword_of_the_Siege_Engine"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/shredder/chopper_knight_off_hand/chopper_knight_off_hand.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_shredder/shredder_ambient_saw.vpcf"
+				"system"						"particles/units/heroes/hero_shredder/shredder_ambient_saw.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_saw"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/timbersaw/chopper_knight/chopper_knight_offhand_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"12848"
+	{
+		"name"									"Hat of the Trailblazer"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/shredder/frostivus2018_timber_timberzil_head/frostivus2018_timber_timberzil_head"
+		"item_name"								"#DOTA_Item_Hat_of_the_Trailblazer"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/shredder/frostivus2018_timber_timberzil_head/frostivus2018_timber_timberzil_head.vmdl"
+	}
+	"12849"
+	{
+		"name"									"Claw of the Trailblazer"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/shredder/frostivus2018_timber_timberzil_weapon/frostivus2018_timber_timberzil_weapon"
+		"item_name"								"#DOTA_Item_Claw_of_the_Trailblazer"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/shredder/frostivus2018_timber_timberzil_weapon/frostivus2018_timber_timberzil_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"12850"
+	{
+		"name"									"Lights of the Trailblazer"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/shredder/frostivus2018_timber_timberzil_shoulder/frostivus2018_timber_timberzil_shoulder"
+		"item_name"								"#DOTA_Item_Lights_of_the_Trailblazer"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/shredder/frostivus2018_timber_timberzil_shoulder/frostivus2018_timber_timberzil_shoulder.vmdl"
+	}
+	"12851"
+	{
+		"name"									"Saw of the Trailblazer"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/shredder/frostivus2018_timber_timberzil_off_hand/frostivus2018_timber_timberzil_off_hand"
+		"item_name"								"#DOTA_Item_Saw_of_the_Trailblazer"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/shredder/frostivus2018_timber_timberzil_off_hand/frostivus2018_timber_timberzil_off_hand.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_shredder/shredder_ambient_saw.vpcf"
+				"system"						"particles/units/heroes/hero_shredder/shredder_ambient_saw.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_saw"
+					}
+				}
+			}
+		}
+	}
+	"12853"
+	{
+		"name"									"Seat of the Trailblazer"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/shredder/frostivus2018_timber_timberzil_back/frostivus2018_timber_timberzil_back"
+		"item_name"								"#DOTA_Item_Seat_of_the_Trailblazer"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/shredder/frostivus2018_timber_timberzil_back/frostivus2018_timber_timberzil_back.vmdl"
+	}
+	"12854"
+	{
+		"name"									"Armor of the Trailblazer"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/shredder/frostivus2018_timber_timberzil_armor/frostivus2018_timber_timberzil_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Trailblazer"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/shredder/frostivus2018_timber_timberzil_armor/frostivus2018_timber_timberzil_armor.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"12927"
+	{
+		"name"									"Rectifier"
+		"prefab"								"wearable"
+		"creation_date"							"2019-07-04"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/shredder/timbersaw_ti9_immortal_offhand/timbersaw_ti9_immortal_offhand"
+		"item_description"						"#DOTA_Item_Desc_Rectifier"
+		"item_name"								"#DOTA_Item_Rectifier"
+		"item_rarity"							"immortal"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/shredder/timbersaw_ti9_immortal_offhand/timbersaw_ti9_immortal_offhand.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1598997600"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti9"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/timbersaw/timbersaw_ti9/timbersaw_ti9_ambient.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shredder/shredder_chakram.vpcf"
+				"modifier"						"particles/econ/items/timbersaw/timbersaw_ti9/timbersaw_ti9_chakram.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shredder/shredder_chakram_stay.vpcf"
+				"modifier"						"particles/econ/items/timbersaw/timbersaw_ti9/timbersaw_ti9_chakram_stay.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shredder/shredder_chakram_return.vpcf"
+				"modifier"						"particles/econ/items/timbersaw/timbersaw_ti9/timbersaw_ti9_chakram_return.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shredder/shredder_chakram_aghs.vpcf"
+				"modifier"						"particles/econ/items/timbersaw/timbersaw_ti9/timbersaw_ti9_chakram_aghs.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shredder/shredder_chakram_hit.vpcf"
+				"modifier"						"particles/econ/items/timbersaw/timbersaw_ti9/timbersaw_ti9_chakram_hit.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier7"
+			{
+				"type"							"ability_icon"
+				"asset"							"shredder_chakram"
+				"modifier"						"shredder/ti9_immortal_offhand/shredder_chakram_immortal"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier8"
+			{
+				"type"							"ability_icon"
+				"asset"							"shredder_chakram_2"
+				"modifier"						"shredder/ti9_immortal_offhand/shredder_chakram_immortal_2"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier9"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Shredder.Chakram"
+				"modifier"						"Hero_Shredder.Chakram.TI9"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+		}
+	}
+	"13348"
+	{
+		"name"									"TI 9 Cache Timber Renewal of Spring Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/shredder/ti_9_cache_timber_renewal_of_spring_shoulder/ti_9_cache_timber_renewal_of_spring_shoulder"
+		"item_name"								"#DOTA_Item_Vote_Only_TI_9_Cache_Timber_Renewal_of_Spring_Shoulder"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/shredder/ti_9_cache_timber_renewal_of_spring_shoulder/ti_9_cache_timber_renewal_of_spring_shoulder.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"13349"
+	{
+		"name"									"TI 9 Cache Timber Renewal of Spring Back"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/shredder/ti_9_cache_timber_renewal_of_spring_back/ti_9_cache_timber_renewal_of_spring_back"
+		"item_name"								"#DOTA_Item_Vote_Only_TI_9_Cache_Timber_Renewal_of_Spring_Back"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/shredder/ti_9_cache_timber_renewal_of_spring_back/ti_9_cache_timber_renewal_of_spring_back.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"13350"
+	{
+		"name"									"TI 9 Cache Timber Renewal of Spring Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/shredder/ti_9_cache_timber_renewal_of_spring_weapon/ti_9_cache_timber_renewal_of_spring_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_TI_9_Cache_Timber_Renewal_of_Spring_Weapon"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/shredder/ti_9_cache_timber_renewal_of_spring_weapon/ti_9_cache_timber_renewal_of_spring_weapon.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"13351"
+	{
+		"name"									"TI 9 Cache Timber Renewal of Spring Head"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/shredder/ti_9_cache_timber_renewal_of_spring_head/ti_9_cache_timber_renewal_of_spring_head"
+		"item_name"								"#DOTA_Item_Vote_Only_TI_9_Cache_Timber_Renewal_of_Spring_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/shredder/ti_9_cache_timber_renewal_of_spring_head/ti_9_cache_timber_renewal_of_spring_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"13352"
+	{
+		"name"									"TI 9 Cache Timber Renewal of Spring Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/shredder/ti_9_cache_timber_renewal_of_spring_armor/ti_9_cache_timber_renewal_of_spring_armor"
+		"item_name"								"#DOTA_Item_Vote_Only_TI_9_Cache_Timber_Renewal_of_Spring_Armor"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/shredder/ti_9_cache_timber_renewal_of_spring_armor/ti_9_cache_timber_renewal_of_spring_armor.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"13353"
+	{
+		"name"									"TI 9 Cache Timber Renewal of Spring Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/shredder/ti_9_cache_timber_renewal_of_spring_off_hand/ti_9_cache_timber_renewal_of_spring_off_hand"
+		"item_name"								"#DOTA_Item_Vote_Only_TI_9_Cache_Timber_Renewal_of_Spring_OffHand"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/shredder/ti_9_cache_timber_renewal_of_spring_off_hand/ti_9_cache_timber_renewal_of_spring_off_hand.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_shredder/shredder_ambient_saw.vpcf"
+				"system"						"particles/units/heroes/hero_shredder/shredder_ambient_saw.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_saw"
+					}
+				}
+			}
+		}
+	}
+	"13523"
+	{
+		"name"									"Golden Rectifier"
+		"prefab"								"wearable"
+		"creation_date"							"2019-07-04"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/shredder/timbersaw_ti9_immortal_offhand/timbersaw_ti9_immortal_offhand1"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Rectifier"
+		"item_name"								"#DOTA_Item_Golden_Rectifier"
+		"item_rarity"							"immortal"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/shredder/timbersaw_ti9_immortal_offhand/timbersaw_ti9_immortal_offhand.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1598997600"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti9"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/timbersaw/timbersaw_ti9_gold/timbersaw_ti9_ambient_gold.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shredder/shredder_chakram.vpcf"
+				"modifier"						"particles/econ/items/timbersaw/timbersaw_ti9_gold/timbersaw_ti9_chakram_gold.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shredder/shredder_chakram_stay.vpcf"
+				"modifier"						"particles/econ/items/timbersaw/timbersaw_ti9_gold/timbersaw_ti9_chakram_gold_stay.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shredder/shredder_chakram_return.vpcf"
+				"modifier"						"particles/econ/items/timbersaw/timbersaw_ti9_gold/timbersaw_ti9_chakram_gold_return.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shredder/shredder_chakram_aghs.vpcf"
+				"modifier"						"particles/econ/items/timbersaw/timbersaw_ti9_gold/timbersaw_ti9_chakram_gold_aghs.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shredder/shredder_chakram_hit.vpcf"
+				"modifier"						"particles/econ/items/timbersaw/timbersaw_ti9_gold/timbersaw_ti9_chakram_gold_hit.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier7"
+			{
+				"type"							"ability_icon"
+				"asset"							"shredder_chakram"
+				"modifier"						"shredder/ti9_immortal_offhand/shredder_chakram_immortal_gold"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier8"
+			{
+				"type"							"ability_icon"
+				"asset"							"shredder_chakram_2"
+				"modifier"						"shredder/ti9_immortal_offhand/shredder_chakram_immortal_2_gold"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"skin"								"1"
+			"asset_modifier9"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Shredder.Chakram"
+				"modifier"						"Hero_Shredder.Chakram.TI9"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+		}
+	}
+	"14720"
+	{
+		"name"									"Clearcut Cavalier Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/shredder/timbersaw_sir_cutsalot_head/timbersaw_sir_cutsalot_head"
+		"item_name"								"#DOTA_Item_Clearcut_Cavalier_Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/shredder/timbersaw_sir_cutsalot_head/timbersaw_sir_cutsalot_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/timbersaw/timbersaw_ti10_cache/timbersaw_ti10_cache_head.vpcf"
+			}
+		}
+	}
+	"14721"
+	{
+		"name"									"Clearcut Cavalier Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/shredder/timbersaw_sir_cutsalot_weapon/timbersaw_sir_cutsalot_weapon"
+		"item_name"								"#DOTA_Item_Clearcut_Cavalier_Weapon"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/shredder/timbersaw_sir_cutsalot_weapon/timbersaw_sir_cutsalot_weapon.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/timbersaw/timbersaw_ti10_cache/timbersaw_ti10_cache_weapon.vpcf"
+			}
+		}
+	}
+	"14722"
+	{
+		"name"									"Clearcut Cavalier Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/shredder/timbersaw_sir_cutsalot_off_hand/timbersaw_sir_cutsalot_off_hand"
+		"item_name"								"#DOTA_Item_Clearcut_Cavalier_OffHand"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/shredder/timbersaw_sir_cutsalot_off_hand/timbersaw_sir_cutsalot_off_hand.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/timbersaw/timbersaw_ti10_cache/timbersaw_ti10_cache_offhand.vpcf"
+			}
+		}
+	}
+	"14723"
+	{
+		"name"									"Clearcut Cavalier Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/shredder/timbersaw_sir_cutsalot_shoulder/timbersaw_sir_cutsalot_shoulder"
+		"item_name"								"#DOTA_Item_Clearcut_Cavalier_Shoulders"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/shredder/timbersaw_sir_cutsalot_shoulder/timbersaw_sir_cutsalot_shoulder.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/timbersaw/timbersaw_ti10_cache/timbersaw_ti10_cache_shoulder.vpcf"
+			}
+		}
+	}
+	"14724"
+	{
+		"name"									"Clearcut Cavalier Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/shredder/timbersaw_sir_cutsalot_armor/timbersaw_sir_cutsalot_armor"
+		"item_name"								"#DOTA_Item_Clearcut_Cavalier_Armor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"model_player"							"models/items/shredder/timbersaw_sir_cutsalot_armor/timbersaw_sir_cutsalot_armor.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"14725"
+	{
+		"name"									"Clearcut Cavalier Back"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/shredder/timbersaw_sir_cutsalot_back/timbersaw_sir_cutsalot_back"
+		"item_name"								"#DOTA_Item_Clearcut_Cavalier_Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"model_player"							"models/items/shredder/timbersaw_sir_cutsalot_back/timbersaw_sir_cutsalot_back.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/timbersaw/timbersaw_ti10_cache/timbersaw_ti10_cache_back.vpcf"
+			}
+		}
+	}
+	"17623"
+	{
+		"name"									"Pumpkin Splitter Claw"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-27"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/shredder/halloween_vandal_claw/halloween_vandal_claw"
+		"item_name"								"#DOTA_Item_Pumpkin_Splitter_Claw"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/shredder/halloween_vandal_claw/halloween_vandal_claw.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"17624"
+	{
+		"name"									"Pumpkin Splitter Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-27"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/shredder/halloween_vandal_shoulder/halloween_vandal_shoulder"
+		"item_name"								"#DOTA_Item_Pumpkin_Splitter_Shoulder"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/shredder/halloween_vandal_shoulder/halloween_vandal_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shredder/shredder_ambient.vpcf"
+				"modifier"						"particles/units/heroes/hero_stormspirit/storm_spirit_null.vpcf"
+			}
+		}
+	}
+	"17625"
+	{
+		"name"									"Pumpkin Splitter Saw"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-27"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/shredder/halloween_vandal_saw/halloween_vandal_saw"
+		"item_name"								"#DOTA_Item_Pumpkin_Splitter_Saw"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/shredder/halloween_vandal_saw/halloween_vandal_saw.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/timbersaw/timber_pumpkin_saw/timber_pumpkin_saw_ambient.vpcf"
+			}
+		}
+	}
+	"17627"
+	{
+		"name"									"Pumpkin Splitter Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-27"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/shredder/halloween_vandal_armor/halloween_vandal_armor"
+		"item_name"								"#DOTA_Item_Pumpkin_Splitter_Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/shredder/halloween_vandal_armor/halloween_vandal_armor.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"17628"
+	{
+		"name"									"Pumpkin Splitter Seat"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-27"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/shredder/halloween_vandal_back/halloween_vandal_back"
+		"item_name"								"#DOTA_Item_Pumpkin_Splitter_Seat"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/shredder/halloween_vandal_back/halloween_vandal_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/timbersaw/timber_fall20_halloween/timber_fall20_halloween_back.vpcf"
+			}
+		}
+	}
+	"17629"
+	{
+		"name"									"Pumpkin Splitter Hat"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-27"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/shredder/halloween_vandal_head/halloween_vandal_head"
+		"item_name"								"#DOTA_Item_Pumpkin_Splitter_Hat"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/shredder/halloween_vandal_head/halloween_vandal_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"19683"
+	{
+		"name"									"Train Armor Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/shredder/train_armor_armor/train_armor_armor"
+		"item_name"								"#DOTA_Item_Vote_Only_Train_Armor_Armor"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/shredder/train_armor_armor/train_armor_armor.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"19684"
+	{
+		"name"									"Train Armor Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/shredder/train_armor_back/train_armor_back"
+		"item_name"								"#DOTA_Item_Vote_Only_Train_Armor_Back"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/shredder/train_armor_back/train_armor_back.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19813"
+	{
+		"name"									"Train Armor Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/shredder/train_armor_head/train_armor_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Train_Armor_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/shredder/train_armor_head/train_armor_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19814"
+	{
+		"name"									"Train Armor Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/shredder/train_armor_off_hand/train_armor_off_hand"
+		"item_name"								"#DOTA_Item_Vote_Only_Train_Armor_OffHand"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/shredder/train_armor_off_hand/train_armor_off_hand.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_shredder/shredder_ambient_saw.vpcf"
+				"system"						"particles/units/heroes/hero_shredder/shredder_ambient_saw.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_saw"
+					}
+				}
+			}
+		}
+	}
+	"19815"
+	{
+		"name"									"Train Armor Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/shredder/train_armor_shoulder/train_armor_shoulder"
+		"item_name"								"#DOTA_Item_Vote_Only_Train_Armor_Shoulder"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/shredder/train_armor_shoulder/train_armor_shoulder.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19944"
+	{
+		"name"									"Train Armor Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/shredder/train_armor_weapon/train_armor_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_Train_Armor_Weapon"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/shredder/train_armor_weapon/train_armor_weapon.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"20531"
+	{
+		"name"									"Timberthaw"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Timberthaw Armor"					"1"
+			"Timberthaw Back"					"1"
+			"Timberthaw Claw"					"1"
+			"Timberthaw Hat"					"1"
+			"Timberthaw Ripsaw"					"1"
+			"Timberthaw Shoulders"				"1"
+			"Timberthaw Loading Screen"			"1"
+		}
+		"creation_date"							"2014-05-28"
+		"image_inventory"						"econ/loading_screens/timberthaw"
+		"item_description"						"#DOTA_Item_Desc_Timberthaw"
+		"item_name"								"#DOTA_Item_Timberthaw"
+		"item_rarity"							"mythical"
+	}
+	"20570"
+	{
+		"name"									"Promo Timberthaw"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Timberthaw Armor"					"1"
+			"Timberthaw Back"					"1"
+			"Timberthaw Claw"					"1"
+			"Timberthaw Hat"					"1"
+			"Timberthaw Ripsaw"					"1"
+			"Timberthaw Shoulders"				"1"
+			"Timberthaw Loading Screen"			"1"
+		}
+		"creation_date"							"2014-06-18"
+		"image_inventory"						"econ/loading_screens/timberthaw"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Timberthaw"
+		"item_name"								"#DOTA_Item_Promo_Timberthaw"
+		"item_quality"							"genuine"
+		"item_rarity"							"mythical"
+	}
+	"20651"
+	{
+		"name"									"The Maniacal Machinist"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Cockpit of the Maniacal Machinist"	"1"
+			"Claw of the Maniacal Machinist"	"1"
+			"Goggles of the Maniacal Machinist"	"1"
+			"Shoulders of the Maniacal Machinist""1"
+			"Chainsaw of the Maniacal Machinist""1"
+			"Armor of the Maniacal Machinist"	"1"
+			"The Maniacal Machinist Loading Screen""1"
+		}
+		"creation_date"							"2014-09-16"
+		"image_inventory"						"econ/loading_screens/firefly"
+		"item_description"						"#DOTA_Item_Desc_The_Maniacal_Machinist"
+		"item_name"								"#DOTA_Item_The_Maniacal_Machinist"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"5000"
+	}
+	"20671"
+	{
+		"name"									"Steam Chopper"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Top Hat of the Steam Chopper"		"1"
+			"Claw of the Steam Chopper"			"1"
+			"Pauldrons of the Steam Chopper"	"1"
+			"Saw of the Steam Chopper"			"1"
+			"Reactive Armor of the Steam Chopper""1"
+			"Cockpit of the Steam Chopper"		"1"
+			"Steam Chopper Loading Screen"		"1"
+			"Steam Chopper Cursor Pack"			"1"
+		}
+		"creation_date"							"2014-10-17"
+		"image_inventory"						"econ/loading_screens/steam_chopper_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Steam_Chopper"
+		"item_name"								"#DOTA_Item_Steam_Chopper"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"category_tags"						"Bundles"
+			"date"								"11/11/2014"
+			"bundle"							"1"
+			"price"								"899"
+		}
+	}
+	"20802"
+	{
+		"name"									"The Stumpgrinder"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"The Stumpgrinder Loading Screen"	"1"
+			"Armor of the Stumpgrinder"			"1"
+			"Helm of the Stumpgrinder"			"1"
+			"Circular Saw of the Stumpgrinder"	"1"
+			"Seat of the Stumpgrinder"			"1"
+			"Mecharm of the Stumpgrinder"		"1"
+			"Claw of the Stumpgrinder"			"1"
+		}
+		"creation_date"							"2015-05-13"
+		"image_inventory"						"econ/loading_screens/stumpgrinder_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_The_Stumpgrinder"
+		"item_name"								"#DOTA_Item_The_Stumpgrinder"
+		"item_rarity"							"rare"
+	}
+	"20841"
+	{
+		"name"									"Lumberclaw"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Lumberclaw Loading Screen"			"1"
+			"Lumberclaw Cap"					"1"
+			"Lumberclaw Hook"					"1"
+			"Lumberclaw Chainsaw"				"1"
+			"Lumberclaw Cockpit"				"1"
+			"Lumberclaw Shoulders"				"1"
+			"Lumberclaw Reactive Armor"			"1"
+		}
+		"creation_date"							"2015-06-04"
+		"image_inventory"						"econ/loading_screens/lumberclaw_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Lumberclaw"
+		"item_name"								"#DOTA_Item_Lumberclaw"
+		"item_rarity"							"rare"
+	}
+	"20867"
+	{
+		"name"									"Tree Punisher"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Plates of the Tree Punisher"		"1"
+			"Grip of the Tree Punisher"			"1"
+			"Saw of the Tree Punisher"			"1"
+			"Seat of the Tree Punisher"			"1"
+			"Goggles of the Tree Punisher"		"1"
+			"Armor of the Tree Punisher"		"1"
+			"Tree Punisher Loading Screen"		"1"
+		}
+		"creation_date"							"2015-07-13"
+		"image_inventory"						"econ/loading_screens/treepunisher_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Tree_Punisher"
+		"item_name"								"#DOTA_Item_Tree_Punisher"
+		"item_rarity"							"rare"
+	}
+	"20875"
+	{
+		"name"									"Molten Destructor"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Suit of the Molten Destructor"		"1"
+			"Exhaust of the Molten Destructor"	"1"
+			"Fins of the Molten Destructor"		"1"
+			"Wild Hair of the Molten Destructor""1"
+			"Molten Destructor Loading Screen"	"1"
+			"Pull Drill of the Molten Destructor""1"
+			"Chainsaw of the Molten Destructor"	"1"
+		}
+		"creation_date"							"2015-09-16"
+		"image_inventory"						"econ/loading_screens/mad_destructor_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_mad_destructor"
+		"item_name"								"#DOTA_Item_Molten_Destructor"
+		"item_rarity"							"mythical"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"20876"
+	{
+		"name"									"Steamcutter"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Cap of the Steamcutter"			"1"
+			"Claw of the Steamcutter"			"1"
+			"Furnace of the Steamcutter"		"1"
+			"Actuator of the Steamcutter"		"1"
+			"Seat of the Steamcutter"			"1"
+			"Saw of the Steamcutter"			"1"
+			"Steamcutter Loading Screen"		"1"
+		}
+		"creation_date"							"2015-09-01"
+		"image_inventory"						"econ/loading_screens/steam_woodcutter_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Steamcutter"
+		"item_name"								"#DOTA_Item_Steamcutter"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"2500"
+	}
+	"20941"
+	{
+		"name"									"Utter Eradication"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Goggles of Utter Eradication"		"1"
+			"Cockpit of Utter Eradication"		"1"
+			"Claw of Utter Eradication"			"1"
+			"Guards of Utter Eradication"		"1"
+			"Armor of Utter Eradication"		"1"
+			"Barbed Saw of Utter Eradication"	"1"
+			"Utter Eradication Loading Screen"	"1"
+		}
+		"creation_date"							"2015-11-18"
+		"image_inventory"						"econ/loading_screens/sieage_golem_loading_screen"
+		"item_name"								"#DOTA_Item_Utter_Eradication"
+		"item_rarity"							"rare"
+	}
+	"21148"
+	{
+		"name"									"Raucous Gatecrasher"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Raucous Gatecrasher Loading Screen""1"
+			"Saw of the Raucous Gatecrasher"	"1"
+			"Style of the Raucous Gatecrasher"	"1"
+			"Core of the Raucous Gatecrasher"	"1"
+			"Shell of the Raucous Gatecrasher"	"1"
+			"Joints of the Raucous Gatecrasher"	"1"
+			"Claw of the Raucous Gatecrasher"	"1"
+		}
+		"creation_date"							"2017-10-25"
+		"image_inventory"						"econ/loading_screens/noise_maker_loadingscreen_of_the_noise_maker"
+		"item_name"								"#DOTA_Item_Raucous_Gatecrasher"
+		"item_rarity"							"rare"
+	}
+	"21180"
+	{
+		"name"									"Siege Engine"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armor of the Siege Engine"			"1"
+			"Hull of the Siege Engine"			"1"
+			"Pauldrons of the Siege Engine"		"1"
+			"Helm of the Siege Engine"			"1"
+			"Grappler of the Siege Engine"		"1"
+			"Saw-sword of the Siege Engine"		"1"
+			"Siege Engine Loadingscreen"		"1"
+		}
+		"creation_date"							"2018-02-19"
+		"image_inventory"						"econ/loading_screens/chopper_knight_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Siege_Engine"
+		"item_name"								"#DOTA_Item_Siege_Engine"
+		"item_rarity"							"mythical"
+		"shards_purchase_price"					"75000"
+	}
+	"21308"
+	{
+		"name"									"Trek of the Trailblazer"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armor of the Trailblazer"			"1"
+			"Seat of the Trailblazer"			"1"
+			"Loading Screen of the Trailblazer"	"1"
+			"Saw of the Trailblazer"			"1"
+			"Lights of the Trailblazer"			"1"
+			"Claw of the Trailblazer"			"1"
+			"Hat of the Trailblazer"			"1"
+		}
+		"creation_date"							"2018-12-02"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/loading_screens/frostivus2018_timber_timberzil_ls"
+		"item_description"						"#DOTA_Item_Desc_Trek_of_the_Trailblazer"
+		"item_name"								"#DOTA_Item_Trek_of_the_Trailblazer"
+		"item_rarity"							"rare"
+	}
+	"21392"
+	{
+		"name"									"TI9 Cache Timber Renewal of Spring"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"TI 9 Cache Timber Renewal of Spring Off-Hand""1"
+			"TI 9 Cache Timber Renewal of Spring Armor""1"
+			"TI 9 Cache Timber Renewal of Spring Head""1"
+			"TI 9 Cache Timber Renewal of Spring Weapon""1"
+			"TI 9 Cache Timber Renewal of Spring Back""1"
+			"TI 9 Cache Timber Renewal of Spring Shoulder""1"
+			"TI 9 Cache Timber Renewal of Spring LS""1"
+		}
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/loading_screens/ti_9_cache_timber_renewal_of_spring_ls"
+		"item_name"								"#DOTA_Item_Vote_Only_TI9_Cache_Timber_Renewal_of_Spring"
+		"workshop_accepted"						"0"
+	}
+	"21579"
+	{
+		"name"									"Clearcut Cavalier"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Clearcut Cavalier Back"			"1"
+			"Clearcut Cavalier Armor"			"1"
+			"Clearcut Cavalier Shoulders"		"1"
+			"Clearcut Cavalier Off-Hand"		"1"
+			"Clearcut Cavalier Weapon"			"1"
+			"Clearcut Cavalier Head"			"1"
+		}
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Clearcut_Cavalier"
+		"item_name"								"#DOTA_Item_Clearcut_Cavalier"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21669"
+	{
+		"name"									"Pumpkin Splitter"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Pumpkin Splitter Claw"				"1"
+			"Pumpkin Splitter Hat"				"1"
+			"Pumpkin Splitter Seat"				"1"
+			"Pumpkin Splitter Armor"			"1"
+			"Pumpkin Splitter Saw"				"1"
+			"Pumpkin Splitter Shoulder"			"1"
+		}
+		"creation_date"							"2020-08-27"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Pumpkin_Splitter"
+		"item_name"								"#DOTA_Item_Pumpkin_Splitter"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"22025"
+	{
+		"name"									"Train Armor"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Train Armor Armor"					"1"
+			"Train Armor Back"					"1"
+			"Train Armor Head"					"1"
+			"Train Armor Off-Hand"				"1"
+			"Train Armor Shoulder"				"1"
+			"Train Armor Weapon"				"1"
+		}
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Train_Armor"
+		"workshop_accepted"						"0"
+	}
+}

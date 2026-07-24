@@ -1,0 +1,441 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.HudRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+
+#HudLinkC4Root
+{
+	width: 1526px;
+	height: 864px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/hero_skin/popup_png.vtex");
+	transition-property: opacity, transform, pre-transform-scale2d, wash-color;
+	opacity: 0;
+	transition-duration: 0.4s;
+	transform: translateX(-120px) translateY(-60px);
+	pre-transform-scale2d: 0.95;
+	perspective-origin: 62% 5% invert;
+	perspective: 1000;
+}
+
+#HudLinkC4Root.show
+{
+	opacity: 1;
+	pre-transform-scale2d: 1;
+	transform: none;
+}
+
+#HandbookTitle
+{
+	font-size: 24px;
+	color: #DBCDA7;
+	horizontal-align: center;
+	margin-top: 14px;
+}
+
+#CloseBtn
+{
+	width: 52px;
+	height: 54px;
+	align: right top;
+	background-image: url("s2r://panorama/images/custom_game/hero_skin/btn_close_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	z-index: 2;
+}
+
+#CloseBtn:active
+{
+	pre-transform-scale2d: 0.95;
+}
+
+#CloseBtn:hover
+{
+	brightness: 2;
+}
+
+#LinkBg
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/new_link/bg_png.vtex");
+	background-size: 100%;
+}
+
+#LinkIcon
+{
+	width: 294px;
+	height: 122px;
+	background-image: url("s2r://panorama/images/custom_game/new_link/logo_png.vtex");
+	background-size: 100%;
+	margin-top: 25px;
+	margin-left: 39px;
+}
+
+#LinkTitle
+{
+	width: 504px;
+	height: 120px;
+	margin-top: 106px;
+	margin-left: 21px;
+}
+
+#LinkCountdown
+{
+	width: 258px;
+	height: 44px;
+	margin-top: 210px;
+	margin-left: 50px;
+	background-image: url("s2r://panorama/images/custom_game/new_link/time_button_png.vtex");
+	background-size: 100%;
+}
+
+#LinkCountdown #TimeIcon
+{
+	width: 14px;
+	height: 18px;
+	background-image: url("s2r://panorama/images/custom_game/new_link/time_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+	margin-left: 40px;
+}
+
+#LinkInfo
+{
+	width: 368px;
+	height: 172px;
+	background-image: url("s2r://panorama/images/custom_game/new_link/info_png.vtex");
+	background-size: 298px 132px;
+	background-position: 60px 30px;
+	background-repeat: no-repeat;
+	margin-top: 243px;
+	margin-left: -22px;
+	overflow: noclip;
+}
+
+#LinkInfo:hover
+{
+	brightness: 2;
+}
+
+#LinkInfo #InfoText
+{
+	margin-top: 80px;
+	margin-left: 180px;
+	font-size: 20px;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#FFEFAD), to(#E99256));
+	letter-spacing: 2px;
+	line-height: 25px;
+	text-overflow: shrink;
+}
+
+#LinkInfo #tips
+{
+	width: 116px;
+	height: 50px;
+	background-image: url("s2r://panorama/images/custom_game/new_link/tips_png.vtex");
+	pre-transform-rotate2d: -14deg;
+	x: 10px;
+	y: 30px;
+}
+
+#LinkInfo #tips Label
+{
+	font-size: 20px;
+	color: #FDF1CF;
+	align: center center;
+	y: -5px;
+}
+
+#LinkRightPanel
+{
+	width: 556px;
+	height: 808px;
+	background-image: url("s2r://panorama/images/custom_game/new_link/board_png.vtex");
+	background-size: 100%;
+	margin-top: 43px;
+	horizontal-align: right;
+	margin-right: 49px;
+}
+
+#LinkTaskList
+{
+	vertical-align: bottom;
+	height: 600px;
+	margin-left: 25px;
+	width: 516px;
+	margin-bottom: 10px;
+	overflow: squish scroll;
+	flow-children: down;
+}
+
+#LinkTaskList VerticalScrollBar
+{
+	margin-right: 0px;
+	width: 6px;
+	height: 95%;
+	vertical-align: center;
+	background-color: #1C2A3A;
+	border-radius: 5px;
+	border: 2px solid #54392B;
+	opacity: 0.5;
+}
+
+#LinkTaskList VerticalScrollBar .ScrollThumb
+{
+	background-color: #D48D49;
+	border-width: 0px;
+	border-radius: 3px;
+	border: 1px solid #D79D65;
+}
+
+#TaskRow
+{
+	width: 100%;
+	height: 90px;
+	margin-bottom: 10px;
+	background-image: url("s2r://panorama/images/custom_game/new_link/line_png.vtex");
+	background-size: 492px 6px;
+	background-position: center bottom;
+	background-repeat: no-repeat;
+}
+
+#TaskLeft
+{
+	flow-children: down;
+	width: 80%;
+	vertical-align: center;
+	margin-left: 15px;
+}
+
+#TaskLeft #TaskInfo
+{
+	font-size: 16px;
+	color: #FFFFFF;
+}
+
+#TaskLeft #TaskProgressRoot
+{
+	flow-children: right;
+}
+
+#TaskLeft #TaskProgressRoot #TaskProgress
+{
+	width: 190px;
+	height: 6px;
+	background-image: url("s2r://panorama/images/custom_game/new_link/progress_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+}
+
+#TaskLeft #TaskProgressRoot #TaskProgress #TaskProgressFill
+{
+	height: 6px;
+	background-image: url("s2r://panorama/images/custom_game/new_link/progress_fill_png.vtex");
+	background-size: 100%;
+}
+
+#TaskLeft #TaskProgressRoot #TaskProgressText
+{
+	margin-left: 5px;
+	font-size: 16px;
+	color: #C5AC7F;
+}
+
+#TaskRewards
+{
+	flow-children: right;
+	horizontal-align: right;
+	margin-right: 15px;
+	vertical-align: center;
+}
+
+#TaskReward
+{
+	width: 66px;
+	height: 66px;
+}
+
+#TaskReward #TaskRewardContent
+{
+	width: 66px;
+	height: 66px;
+	background-image: url("s2r://");
+	background-size: 100%;
+	overflow: noclip;
+}
+
+#TaskReward #TaskRewardContent #TaskRewardImage
+{
+	width: 56px;
+	height: 56px;
+	align: center center;
+}
+
+#TaskReward #TaskRewardContent #TaskRewardAmount
+{
+	align: right bottom;
+	font-size: 12px;
+	color: #FFFFFF;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+
+#TaskReward.Rarity1 #TaskRewardContent
+{
+	background-image: url("s2r://panorama/images/custom_game/new_link/b_icon_grey_png.vtex");
+}
+
+#TaskReward.Rarity2 #TaskRewardContent
+{
+	background-image: url("s2r://panorama/images/custom_game/new_link/b_icon_blue_png.vtex");
+}
+
+#TaskReward.Rarity3 #TaskRewardContent
+{
+	background-image: url("s2r://panorama/images/custom_game/new_link/b_icon_purple_png.vtex");
+}
+
+#TaskReward.Rarity4 #TaskRewardContent
+{
+	background-image: url("s2r://panorama/images/custom_game/new_link/b_icon_red_png.vtex");
+}
+
+#TaskReward.Rarity5 #TaskRewardContent
+{
+	background-image: url("s2r://panorama/images/custom_game/new_link/b_icon_yellow_png.vtex");
+}
+
+#TaskReward.Received #TaskRewardContent
+{
+	brightness: 0.5;
+}
+
+#TaskReward #TaskFinishBorder
+{
+	width: 74px;
+	height: 74px;
+	background-image: url("s2r://panorama/images/custom_game/new_link/border_png.vtex");
+	background-size: 100%;
+	align: center center;
+}
+
+#TaskReward #TaskRewardReceived
+{
+	width: 58px;
+	height: 54px;
+	background-image: url("s2r://panorama/images/custom_game/new_link/selected_png.vtex");
+	background-size: 100%;
+	align: center center;
+}
+
+#LinkExchangeList
+{
+	flow-children: right;
+	width: 100%;
+	padding: 20px;
+	margin-top: 20px;
+}
+
+#LinkExchangeList #ExchangePoint
+{
+	width: 94px;
+	height: 96px;
+	background-image: url("s2r://panorama/images/custom_game/new_link/icon_button_png.vtex");
+	background-size: 100%;
+	z-index: 2;
+}
+
+#LinkExchangeList #ExchangePoint Image
+{
+	width: 75px;
+	height: 75px;
+	horizontal-align: center;
+}
+
+#LinkExchangeList #ExchangePoint Label
+{
+	font-family: Reaver, Reaver;
+	align: center bottom;
+	margin-bottom: 5px;
+	font-size: 14px;
+	color: #FFD79B;
+}
+
+#LinkExchangeList #ExchangeList
+{
+	flow-children: right;
+	margin-left: -12px;
+}
+
+#LinkExchangeList #ExchangeList #ExchangeItem
+{
+	flow-children: down;
+	width: 130px;
+	margin-right: -33px;
+}
+
+#LinkExchangeList #ExchangeList #ExchangeItem #TaskReward
+{
+	horizontal-align: right;
+}
+
+#LinkExchangeList #ExchangeList #ExchangeItem #ExchangeProgress
+{
+	margin-top: 10px;
+}
+
+#LinkExchangeList #ExchangeList #ExchangeItem #ExchangeProgress #ProgressBar
+{
+	width: 96px;
+	height: 6px;
+	background-color: #270D0D;
+	vertical-align: center;
+}
+
+#LinkExchangeList #ExchangeList #ExchangeItem #ExchangeProgress #ProgressBar #ProgressInner
+{
+	width: 0%;
+	height: 6px;
+	background-color: #FFD79B;
+	z-index: 2;
+}
+
+#LinkExchangeList #ExchangeList #ExchangeItem #ExchangeProgress #Star
+{
+	align: right center;
+	width: 14px;
+	height: 12px;
+	background-image: url("s2r://panorama/images/custom_game/new_link/star_png.vtex");
+	background-size: 100%;
+	z-index: 2;
+	margin-right: -5px;
+}
+
+#LinkExchangeList #ExchangeList #ExchangeItem #ExchangeProgress #Star.active
+{
+	background-image: url("s2r://panorama/images/custom_game/new_link/star_active_png.vtex");
+}
+
+#LinkExchangeList #ExchangeList #ExchangeItem #ExchangePointText
+{
+	margin-top: 10px;
+	font-size: 14px;
+	color: #FFFFFF;
+	horizontal-align: right;
+	margin-right: 28px;
+}

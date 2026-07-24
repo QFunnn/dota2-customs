@@ -1,0 +1,660 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"749"
+	{
+		"name"									"Hoodwink's Hood"
+		"prefab"								"default_item"
+		"creation_date"							"2020-11-09"
+		"image_inventory"						"econ/heroes/hoodwink/hoodwink_hood"
+		"item_name"								"#DOTA_Item_Hoodwinks_Hood"
+		"item_slot"								"back"
+		"model_player"							"models/heroes/hoodwink/hoodwink_hood.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"750"
+	{
+		"name"									"Hoodwink's Costume"
+		"prefab"								"default_item"
+		"creation_date"							"2020-11-09"
+		"image_inventory"						"econ/heroes/hoodwink/hoodwink_costume"
+		"item_name"								"#DOTA_Item_Hoodwinks_Costume"
+		"item_slot"								"armor"
+		"model_player"							"models/heroes/hoodwink/hoodwink_costume.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"751"
+	{
+		"name"									"Hoodwink's Tail"
+		"prefab"								"default_item"
+		"creation_date"							"2020-11-09"
+		"image_inventory"						"econ/heroes/hoodwink/hoodwink_tail"
+		"item_name"								"#DOTA_Item_Hoodwinks_Tail"
+		"item_slot"								"tail"
+		"model_player"							"models/heroes/hoodwink/hoodwink_tail.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"752"
+	{
+		"name"									"Hoodwink's Weapon"
+		"prefab"								"default_item"
+		"creation_date"							"2020-11-09"
+		"image_inventory"						"econ/heroes/hoodwink/hoodwink_crossbow"
+		"item_name"								"#DOTA_Item_Hoodwinks_Weapon"
+		"model_player"							"models/heroes/hoodwink/hoodwink_crossbow.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"13145"
+	{
+		"name"									"Taunt: High Flying Squirrel"
+		"prefab"								"taunt"
+		"creation_date"							"2021-01-17"
+		"event_id"								"EVENT_ID_TEAM_FANDOM_FALL_2021"
+		"image_inventory"						"econ/taunts/dota_icon_taunt_hoodwink_acorns"
+		"item_description"						"#DOTA_Item_Desc_Taunt_High_Flying_Squirrel"
+		"item_name"								"#DOTA_Item_Taunt_High_Flying_Squirrel"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"2021_taunt"
+				"gesture"						"1"
+			}
+		}
+	}
+	"22220"
+	{
+		"name"									"Tomo'kan Incarnate Arbalest"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-28"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/hoodwink/hood_2021_blossom_weapon/hood_2021_blossom_weapon"
+		"item_description"						"#DOTA_Item_Desc_Tomokan_Incarnate_Arbalest"
+		"item_name"								"#DOTA_Item_Tomokan_Incarnate_Arbalest"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/hoodwink/hood_2021_blossom_weapon/hood_2021_blossom_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/hoodwink/hood_2021_blossom/hood_2021_blossom_weapon_ambient.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_hoodwink/hoodwink_base_attack.vpcf"
+				"modifier"						"particles/econ/items/hoodwink/hood_2021_blossom/hood_2021_blossom_attack.vpcf"
+			}
+		}
+	}
+	"22221"
+	{
+		"name"									"Tomo'kan Incarnate Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-28"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/hoodwink/hood_2021_blossom_armor/hood_2021_blossom_armor"
+		"item_description"						"#DOTA_Item_Desc_Tomokan_Incarnate_Armor"
+		"item_name"								"#DOTA_Item_Tomokan_Incarnate_Armor"
+		"item_rarity"							"immortal"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/hoodwink/hood_2021_blossom_armor/hood_2021_blossom_armor.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"blossom_2021"
+				"gesture"						"1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/hoodwink/hood_2021_blossom/hood_2021_blossom_armor_ambient.vpcf"
+			}
+		}
+	}
+	"22222"
+	{
+		"name"									"Tomo'kan Incarnate Tail"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-28"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/hoodwink/hood_2021_blossom_tail/hood_2021_blossom_tail"
+		"item_description"						"#DOTA_Item_Desc_Tomokan_Incarnate_Tail"
+		"item_name"								"#DOTA_Item_Tomokan_Incarnate_Tail"
+		"item_rarity"							"immortal"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_fire_tail"
+		"model_player"							"models/items/hoodwink/hood_2021_blossom_tail/hood_2021_blossom_tail.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/hoodwink/hood_2021_blossom/hood_2021_blossom_tail_ambient.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_hoodwink/hoodwink_scurry_passive.vpcf"
+				"modifier"						"particles/econ/items/hoodwink/hood_2021_blossom/hood_2021_blossom_scurry_passive.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_hoodwink/hoodwink_scurry_aura.vpcf"
+				"modifier"						"particles/econ/items/hoodwink/hood_2021_blossom/hood_2021_blossom_scurry_aura.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"hoodwink_scurry"
+				"modifier"						"hoodwink/hoodwink_2021_blossom/hoodwink_scurry"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+		}
+	}
+	"22223"
+	{
+		"name"									"Tomo'kan Incarnate Hood"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-28"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/hoodwink/hood_2021_blossom_back/hood_2021_blossom_back"
+		"item_description"						"#DOTA_Item_Desc_Tomokan_Incarnate_Hood"
+		"item_name"								"#DOTA_Item_Tomokan_Incarnate_Hood"
+		"item_rarity"							"immortal"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/hoodwink/hood_2021_blossom_back/hood_2021_blossom_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/hoodwink/hood_2021_blossom/hood_2021_blossom_head_ambient.vpcf"
+			}
+		}
+	}
+	"22224"
+	{
+		"name"									"Tomo'kan Incarnate"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Tomo'kan Incarnate Arbalest"		"1"
+			"Tomo'kan Incarnate Armor"			"1"
+			"Tomo'kan Incarnate Tail"			"1"
+			"Tomo'kan Incarnate Hood"			"1"
+		}
+		"creation_date"							"2021-09-28"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/sets/DOTA_Item_Tomokan_Incarnate"
+		"item_description"						"#DOTA_Item_Desc_Tomokan_Incarnate"
+		"item_name"								"#DOTA_Item_Tomokan_Incarnate"
+		"item_rarity"							"immortal"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+		}
+	}
+	"23246"
+	{
+		"name"									"Scourge of the Skyrangers Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-09"
+		"image_inventory"						"econ/items/hoodwink/scourge_of_the_skyrangers/scourge_of_the_skyrangers_costume"
+		"item_name"								"#DOTA_Item_Scourge_of_the_Skyrangers_Armor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/hoodwink/jungle_ranger_hoodwink_armor/jungle_ranger_hoodwink_armor.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/hoodwink/hoodwink_2022_jungle_ranger/hoodwink_2022_jungle_ranger_armor.vpcf"
+			}
+		}
+	}
+	"23247"
+	{
+		"name"									"Scourge of the Skyrangers Back"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-09"
+		"image_inventory"						"econ/items/hoodwink/scourge_of_the_skyrangers/scourge_of_the_skyrangers_hood"
+		"item_name"								"#DOTA_Item_Scourge_of_the_Skyrangers_Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/hoodwink/jungle_ranger_hoodwink_back/jungle_ranger_hoodwink_back.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/hoodwink/hoodwink_2022_jungle_ranger/hoodwink_2022_jungle_ranger_back_ambient.vpcf"
+			}
+		}
+	}
+	"23248"
+	{
+		"name"									"Scourge of the Skyrangers Tail"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-09"
+		"image_inventory"						"econ/items/hoodwink/scourge_of_the_skyrangers/scourge_of_the_skyrangers_tail"
+		"item_name"								"#DOTA_Item_Scourge_of_the_Skyrangers_Tail"
+		"item_rarity"							"mythical"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_Tail"
+		"model_player"							"models/items/hoodwink/jungle_ranger_hoodwink_tail/jungle_ranger_hoodwink_tail.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"23249"
+	{
+		"name"									"Scourge of the Skyrangers Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-09"
+		"image_inventory"						"econ/items/hoodwink/scourge_of_the_skyrangers/scourge_of_the_skyrangers_crossbow"
+		"item_name"								"#DOTA_Item_Scourge_of_the_Skyrangers_Weapon"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/hoodwink/jungle_ranger_hoodwink_weapon/jungle_ranger_hoodwink_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/hoodwink/hoodwink_2022_jungle_ranger/hoodwink_2022_jungle_ranger_weapon_ambient.vpcf"
+			}
+		}
+	}
+	"23256"
+	{
+		"name"									"Scourge of the Skyrangers"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Scourge of the Skyrangers Weapon"	"1"
+			"Scourge of the Skyrangers Tail"	"1"
+			"Scourge of the Skyrangers Back"	"1"
+			"Scourge of the Skyrangers Armor"	"1"
+		}
+		"creation_date"							"2022-05-09"
+		"image_inventory"						"econ/sets/dota_item_scourge_of_the_skyrangers"
+		"item_name"								"#DOTA_Item_Scourge_of_the_Skyrangers"
+		"item_rarity"							"mythical"
+	}
+	"23627"
+	{
+		"name"									"The Strings of Suradan"
+		"prefab"								"wearable"
+		"creation_date"							"2022-06-21"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/hoodwink/hood_2022_immortal_weapon/hood_2022_immortal_weapon"
+		"item_description"						"#DOTA_Item_Desc_hood_2022_immortal_weapon"
+		"item_name"								"#DOTA_Item_The_Strings_of_Suradan"
+		"item_rarity"							"immortal"
+		"model_player"							"models/items/hoodwink/hood_2022_immortal_weapon/hood_2022_immortal_weapon.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_hoodwink/hoodwink_sharpshooter.vpcf"
+				"modifier"						"particles/econ/items/hoodwink/hoodwink_2022_immortal/hoodwink_2022_immortal_sharpshooter.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_hoodwink/hoodwink_sharpshooter_projectile.vpcf"
+				"modifier"						"particles/econ/items/hoodwink/hoodwink_2022_immortal/hoodwink_2022_immortal_sharpshooter_projectile.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_hoodwink/hoodwink_sharpshooter_impact.vpcf"
+				"modifier"						"particles/econ/items/hoodwink/hoodwink_2022_immortal/hoodwink_2022_immortal_sharpshooter_impact.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_hoodwink/hoodwink_base_attack.vpcf"
+				"modifier"						"particles/econ/items/hoodwink/hoodwink_2022_immortal/hoodwink_2022_immortal_base_attack.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_hoodwink/hoodwink_sharpshooter_recoil.vpcf"
+				"modifier"						"particles/econ/items/hoodwink/hoodwink_2022_immortal/hoodwink_2022_immortal_sharpshooter_recoil.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/hoodwink/hoodwink_2022_immortal/hoodwink_2022_immortal_ambient.vpcf"
+				"style"							"0"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_hood_2022_immortal_weapon_0"
+					"alternate_icon"			"0"
+					"model_player"				"models/items/hoodwink/hood_2022_immortal_weapon/hood_2022_immortal_weapon.vmdl"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_hood_2022_immortal_weapon_1"
+					"alternate_icon"			"1"
+					"model_player"				"models/items/hoodwink/hood_2022_immortal_weapon/hood_2022_immortal_weapon_blossom.vmdl"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/hoodwink/hood_2022_immortal_weapon/hood_2022_immortal_weapon"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/hoodwink/hood_2022_immortal_weapon/hood_2022_immortal_weapon_style1"
+				}
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/hoodwink/hoodwink_2022_immortal/hoodwink_2022_immortal_ambient_blossom.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_hoodwink/hoodwink_base_attack.vpcf"
+				"modifier"						"particles/econ/items/hoodwink/hoodwink_2022_immortal/hoodwink_2022_immortal_base_attack_blossom.vpcf"
+				"style"							"1"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_hoodwink/hoodwink_sharpshooter.vpcf"
+				"modifier"						"particles/econ/items/hoodwink/hoodwink_2022_immortal/hoodwink_2022_immortal_sharpshooter_blossom.vpcf"
+				"style"							"1"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier9"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_hoodwink/hoodwink_sharpshooter_impact.vpcf"
+				"modifier"						"particles/econ/items/hoodwink/hoodwink_2022_immortal/hoodwink_2022_immortal_sharpshooter_impact_blossom.vpcf"
+				"style"							"1"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier10"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_hoodwink/hoodwink_sharpshooter_projectile.vpcf"
+				"modifier"						"particles/econ/items/hoodwink/hoodwink_2022_immortal/hoodwink_2022_immortal_sharpshooter_projectile_blossom.vpcf"
+				"style"							"1"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier11"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_hoodwink/hoodwink_sharpshooter_range_finder.vpcf"
+				"modifier"						"particles/econ/items/hoodwink/hoodwink_2022_immortal/hoodwink_sharpshooter_range_finder_blossom.vpcf"
+				"style"							"1"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier12"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"hood_2022_blossom"
+				"style"							"1"
+				"gesture"						"1"
+			}
+			"asset_modifier13"
+			{
+				"type"							"ability_icon"
+				"asset"							"hoodwink_sharpshooter"
+				"modifier"						"hoodwink/hood_2022_immortal_ability_icon/hood_2022_immortal_sharpshooter"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier14"
+			{
+				"type"							"ability_icon"
+				"asset"							"hoodwink_sharpshooter_release"
+				"modifier"						"hoodwink/hood_2022_immortal_ability_icon/hood_2022_immortal_sharpshooter_release"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier15"
+			{
+				"type"							"ability_icon"
+				"asset"							"hoodwink_sharpshooter"
+				"modifier"						"hoodwink/hood_2022_immortal_ability_icon/hood_2022_immortal_sharpshooter_blossom"
+				"style"							"1"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier16"
+			{
+				"type"							"ability_icon"
+				"asset"							"hoodwink_sharpshooter_release"
+				"modifier"						"hoodwink/hood_2022_immortal_ability_icon/hood_2022_immortal_sharpshooter_blossom_release"
+				"style"							"1"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+		}
+	}
+	"23696"
+	{
+		"name"									"Taunt: In It for the Lute"
+		"prefab"								"taunt"
+		"creation_date"							"2022-07-08"
+		"image_inventory"						"econ/taunts/taunt_icon_hoodwink_2022"
+		"item_description"						"#DOTA_Item_Desc_Taunt_In_It_for_the_Lute"
+		"item_name"								"#DOTA_Item_Taunt_In_It_for_the_Lute"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"hood_2022"
+				"gesture"						"1"
+			}
+		}
+	}
+	"24051"
+	{
+		"name"									"The Strings of Suradan Bundle"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"The Strings of Suradan"			"1"
+			"Taunt: In It for the Lute"			"1"
+		}
+		"creation_date"							"2022-08-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/sets/dota_item_strings_of_suradan"
+		"item_description"						"#DOTA_Item_Desc_The_Strings_of_Suradan_Bundle"
+		"item_name"								"#DOTA_Item_The_Strings_of_Suradan_Bundle"
+		"item_rarity"							"immortal"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+			"webm preview url"					"apps/dota2/videos/dota_react/international2022/immortals/hoodwink_client.webm"
+		}
+	}
+}

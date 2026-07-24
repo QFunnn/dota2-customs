@@ -1,0 +1,83 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"tinker_rearm_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"					"tinker_rearm"
+		"AbilityCastAnimation"					"ACT_DOTA_CHANNEL_ABILITY_4"
+		"ScriptFile"							"heroes/hero_tinker/tinker_rearm_lua"
+		"AbilityCastPoint"						"0"
+		"AbilityChannelTime"					"3.25 2.25 1.25"
+		"AbilityCooldown"						"8.0 7.0 6.0"
+		"AbilityManaCost"						"140 195 250"
+		"AbilityValues"
+		{
+			"sealing_bonus_rate"				"0.13"
+			"sealing_bonus_base"				"1"
+			"buff_duration"						"8"
+			"bonus_status_resistance"			"15"
+			"magic_resistance"
+			{
+				"value"							"0"
+				"special_bonus_unique_tinker_rearm_magic_resistance""+50"
+			}
+		}
+	}
+	"tinker_heat_seeking_missile_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"AbilityTextureName"					"tinker_heat_seeking_missile"
+		"ScriptFile"							"heroes/hero_tinker/tinker_heat_seeking_missile_lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"				"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE | DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+		"FightRecapLevel"						"1"
+		"AbilitySound"							"Hero_Tinker.Heat-Seeking_Missile"
+		"AbilityCastPoint"						"0 0 0 0"
+		"AbilityCastRange"						"2000"
+		"AbilityCooldown"						"18"
+		"AbilityManaCost"						"105 115 125 135"
+		"precache"
+		{
+			"particle"							"particles/units/heroes/hero_tinker/tinker_missile.vpcf"
+			"particle"							"particles/units/heroes/hero_tinker/tinker_missle_explosion.vpcf"
+			"particle"							"particles/units/heroes/hero_tinker/tinker_missile_dud.vpcf"
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_tinker.vsndevts"
+		}
+		"AbilityValues"
+		{
+			"damage"							"120 200 280 360"
+			"radius"
+			{
+				"value"							"2000"
+				"affected_by_aoe_increase"		"1"
+			}
+			"targets"
+			{
+				"value"							"10"
+				"LinkedSpecialBonus"			"special_bonus_unique_tinker_6"
+			}
+			"speed"								"700"
+			"stun_duration"
+			{
+				"value"							"0"
+				"special_bonus_unique_tinker_3"	"+0.2"
+			}
+		}
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_2"
+	}
+}

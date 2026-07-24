@@ -1,0 +1,199 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf61:version{39d3ce1d-9442-4407-9b78-8317145b1732} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_flConstantRadius = 20.0
+	m_flNoDrawTimeToGoToSleep = 99999.0
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 4
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_StopAfterCPDuration"
+			m_flDuration = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 2
+				m_nVectorComponent = 1
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 0.95
+			}
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_vecDistanceBias = [ 1.0, 1.0, 0.0 ]
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+			m_nOutputField = 7
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 2.0
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.8
+				m_flRandomMax = 1.2
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 10
+		},
+		{
+			_class = "C_INIT_VelocityFromCP"
+			m_velocityInput = 
+			{
+				m_nType = "PVEC_TYPE_CP_VALUE"
+				m_nControlPoint = 1
+			}
+			m_transformInput = 
+			{
+				m_nType = "PT_TYPE_INVALID"
+			}
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 0.0, 0.0, 72.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 72.0 ]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_OFF"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flStartScale = 0.0
+			m_flBias = 0.86
+		},
+		{
+			_class = "C_OP_SetChildControlPoints"
+			m_bSetOrientation = true
+			m_nChildGroupID = 1
+		},
+		{
+			_class = "C_OP_Orient2DRelToCP"
+			m_flRotOffset = 90.0
+			m_nFieldOutput = 12
+		},
+		{
+			_class = "C_OP_MovementPlaceOnGround"
+			m_flOffset = 72.0
+			m_bIncludeWater = true
+			m_flMaxTraceLength = 1024.0
+			m_flTraceOffset = 256.0
+			m_CollisionGroupName = "DEBRIS"
+			m_flLerpRate = 0.025
+		},
+		{
+			_class = "C_OP_EndCapTimedDecay"
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.05
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_SetChildControlPoints"
+			m_nFirstControlPoint = 3
+			m_bSetOrientation = true
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/eom/shadow_fiend/nevermore_requiem_line_heads_trail.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/eom/shadow_fiend/nevermore_requiem_line_heads_trail_f.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/eom/shadow_fiend/nevermore_requiem_line_heads_trail_black.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/eom/shadow_fiend/nevermore_requiem_line_heads_trail_e.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/eom/shadow_fiend/nevermore_requiem_line_heads_trail_ring.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_winter_wyvern/winter_wyvern_base_attack_explosion.vpcf"
+			m_bEndCap = true
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_winter_wyvern/winter_wyvern_arctic_attack_trail_swirl.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_winter_wyvern/winter_wyvern_arctic_attack_core.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_winter_wyvern/winter_wyvern_arctic_attack_trail.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_winter_wyvern/winter_wyvern_arctic_attack_launch.vpcf"
+		},
+	]
+}

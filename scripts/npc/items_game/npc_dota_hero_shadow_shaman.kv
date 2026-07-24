@@ -1,0 +1,2539 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"246"
+	{
+		"name"									"Shadow Shaman's Weapon"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/shadowshaman/weapon"
+		"item_description"						"#DOTA_Item_Desc_Shadow_Shamans_Weapon"
+		"item_name"								"#DOTA_Item_Shadow_Shamans_Weapon"
+		"model_player"							"models/heroes/shadowshaman/weapon.vmdl"
+		"particle_folder"						"particles/units/heroes/hero_shadowshaman"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_shadowshaman/shadowshaman_stick_r.vpcf"
+				"system"						"particles/units/heroes/hero_shadowshaman/shadowshaman_stick_r.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"247"
+	{
+		"name"									"Shadow Shaman's Off-hand Weapon"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/shadowshaman/weapon_offhand"
+		"item_description"						"#DOTA_Item_Desc_Shadow_Shamans_Offhand_Weapon"
+		"item_name"								"#DOTA_Item_Shadow_Shamans_Offhand_Weapon"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/heroes/shadowshaman/weapon_offhand.vmdl"
+		"particle_folder"						"particles/units/heroes/hero_shadowshaman"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_shadowshaman/shadowshaman_stick_l.vpcf"
+				"system"						"particles/units/heroes/hero_shadowshaman/shadowshaman_stick_l.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"248"
+	{
+		"name"									"Shadow Shaman's Headdress"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/shadowshaman/helmet"
+		"item_description"						"#DOTA_Item_Desc_Shadow_Shamans_Headdress"
+		"item_name"								"#DOTA_Item_Shadow_Shamans_Headdress"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/shadowshaman/helmet.vmdl"
+	}
+	"249"
+	{
+		"name"									"Shadow Shaman's Armor"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/shadowshaman/armarmor"
+		"item_description"						"#DOTA_Item_Desc_Shadow_Shamans_Armor"
+		"item_name"								"#DOTA_Item_Shadow_Shamans_Armor"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/heroes/shadowshaman/armarmor.vmdl"
+	}
+	"250"
+	{
+		"name"									"Shadow Shaman's Belt"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/shadowshaman/belt"
+		"item_description"						"#DOTA_Item_Desc_Shadow_Shamans_Stuff"
+		"item_name"								"#DOTA_Item_Shadow_Shamans_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/heroes/shadowshaman/belt.vmdl"
+	}
+	"251"
+	{
+		"name"									"Shadow Shaman's Head"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_description"						"#DOTA_Item_Desc_Shadow_Shamans_Head"
+		"item_name"								"#DOTA_Item_Shadow_Shamans_Head"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Body_Head"
+		"model_player"							"models/heroes/shadowshaman/head.vmdl"
+	}
+	"4412"
+	{
+		"name"									"Mysterious Vagabond's Pack"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/shadowshaman/vagabond_pack/vagabond_pack"
+		"item_description"						"#DOTA_Item_Desc_Mysterious_Vagabonds_Pack"
+		"item_name"								"#DOTA_Item_Mysterious_Vagabonds_Pack"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Banner_Pack"
+		"model_player"							"models/items/shadowshaman/vagabond_pack/vagabond_pack.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4416"
+	{
+		"name"									"Mysterious Vagabond's Wand"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/shadowshaman/vagabond_wand/vagabond_wand"
+		"item_description"						"#DOTA_Item_Desc_Mysterious_Vagabonds_Wand"
+		"item_name"								"#DOTA_Item_Mysterious_Vagabonds_Wand"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Wand"
+		"model_player"							"models/items/shadowshaman/vagabond_wand/vagabond_wand.vmdl"
+		"particle_folder"						"particles/econ/items/shadow_shaman/shadow_shaman_vagabond_wand"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shadowshaman/shadowshaman_stick_r.vpcf"
+				"modifier"						"particles/econ/items/shadow_shaman/shadow_shaman_vagabond_wand/shadowshaman_stick_r_vagabond.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_shadowshaman/shadowshaman_stick_r.vpcf"
+				"system"						"particles/units/heroes/hero_shadowshaman/shadowshaman_stick_r.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"4417"
+	{
+		"name"									"Mysterious Vagabond's Hat"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/shadowshaman/vagabond_hat/vagabond_hat"
+		"item_description"						"#DOTA_Item_Desc_Mysterious_Vagabonds_Hat"
+		"item_name"								"#DOTA_Item_Mysterious_Vagabonds_Hat"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hat"
+		"model_player"							"models/items/shadowshaman/vagabond_hat/vagabond_hat.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4419"
+	{
+		"name"									"Mysterious Vagabond's Concoction"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/shadowshaman/vagabond_drink/vagabond_drink"
+		"item_description"						"#DOTA_Item_Desc_Mysterious_Vagabonds_Concoction"
+		"item_name"								"#DOTA_Item_Mysterious_Vagabonds_Concoction"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Bottle"
+		"model_player"							"models/items/shadowshaman/vagabond_drink/vagabond_drink.vmdl"
+		"particle_folder"						"particles/econ/items/shadow_shaman/shadow_shaman_vagabond_bottle"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shadowshaman/shadowshaman_stick_l.vpcf"
+				"modifier"						"particles/econ/items/shadow_shaman/shadow_shaman_vagabond_bottle/shadowshaman_stick_l_vagabond.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_shadowshaman/shadowshaman_stick_l.vpcf"
+				"system"						"particles/units/heroes/hero_shadowshaman/shadowshaman_stick_l.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"5500"
+	{
+		"name"									"Eki Bukaw Bracers"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-10"
+		"image_inventory"						"econ/items/shadowshaman/eki_bukaw_bracers/eki_bukaw_bracers"
+		"item_description"						"#DOTA_Item_Desc_Eki_Bukaw_Bracers"
+		"item_name"								"#DOTA_Item_Eki_Bukaw_Bracers"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/shadowshaman/eki_bukaw_bracers/eki_bukaw_bracers.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5501"
+	{
+		"name"									"Records of the Eki Bukaw"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-15"
+		"image_inventory"						"econ/items/shadowshaman/records_of_the_eki_bukaw/records_of_the_eki_bukaw"
+		"item_description"						"#DOTA_Item_Desc_Records_of_the_Eki_Bukaw"
+		"item_name"								"#DOTA_Item_Records_of_the_Eki_Bukaw"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Records"
+		"model_player"							"models/items/shadowshaman/records_of_the_eki_bukaw/records_of_the_eki_bukaw.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5503"
+	{
+		"name"									"Eki Bukaw Wand - Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-10"
+		"image_inventory"						"econ/items/shadowshaman/eki_bukaw_wand__offhand/eki_bukaw_wand__offhand"
+		"item_description"						"#DOTA_Item_Desc_Eki_Bukaw_Wand__OffHand"
+		"item_name"								"#DOTA_Item_Eki_Bukaw_Wand__OffHand"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Wand"
+		"model_player"							"models/items/shadowshaman/eki_bukaw_wand__offhand/eki_bukaw_wand__offhand.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5504"
+	{
+		"name"									"Eki Bukaw Wand"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-10"
+		"image_inventory"						"econ/items/shadowshaman/eki_bukaw_wand/eki_bukaw_wand"
+		"item_description"						"#DOTA_Item_Desc_Eki_Bukaw_Wand"
+		"item_name"								"#DOTA_Item_Eki_Bukaw_Wand"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Wand"
+		"model_player"							"models/items/shadowshaman/eki_bukaw_wand/eki_bukaw_wand.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5507"
+	{
+		"name"									"Fiery Ward of Eki Bukaw"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-10"
+		"image_inventory"						"econ/items/shadowshaman/serpent_ward/fiery_ward_of_eki_bukaw/fiery_ward_of_eki_bukaw_npc_dota_shadow_shaman_ward"
+		"item_description"						"#DOTA_Item_Desc_Fiery_Ward_of_Eki_Bukaw"
+		"item_name"								"#DOTA_Item_Fiery_Ward_of_Eki_Bukaw"
+		"item_rarity"							"rare"
+		"item_slot"								"summon"
+		"item_type_name"						"#DOTA_WearableType_Spirit_Ward"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_shadow_shaman_ward"
+				"modifier"						"models/items/shadowshaman/serpent_ward/fiery_ward_of_eki_bukaw/fiery_ward_of_eki_bukaw.vmdl"
+			}
+		}
+	}
+	"5548"
+	{
+		"name"									"Visage of Eki Bukaw"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-15"
+		"image_inventory"						"econ/items/shadowshaman/visage_of_eki_bukaw/visage_of_eki_bukaw"
+		"item_description"						"#DOTA_Item_Desc_Visage_of_Eki_Bukaw"
+		"item_name"								"#DOTA_Item_Visage_of_Eki_Bukaw"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/shadowshaman/visage_of_eki_bukaw/visage_of_eki_bukaw.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"6066"
+	{
+		"name"									"Cauldron of Summons"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-24"
+		"image_inventory"						"econ/items/shadowshaman/cauldron_of_summons/cauldron_of_summons"
+		"item_name"								"#DOTA_Item_Cauldron_of_Summons"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Magical_Implements"
+		"model_player"							"models/items/shadowshaman/cauldron_of_summons/cauldron_of_summons.vmdl"
+	}
+	"6197"
+	{
+		"name"									"Scepter of Shades"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-19"
+		"image_inventory"						"econ/items/shadowshaman/shades_weapon/shades_weapon"
+		"item_name"								"#DOTA_Item_Scepter_of_Shades"
+		"model_player"							"models/items/shadowshaman/shades_weapon/shades_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/shadow_shaman/shadow_shaman_scepterofshades"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"3/21/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_shaman/shadow_shaman_scepterofshades/shadowshaman_shades_stick_r.vpcf"
+				"system"						"particles/econ/items/shadow_shaman/shadow_shaman_scepterofshades/shadowshaman_shades_stick_r.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"6198"
+	{
+		"name"									"Scepter of Shades - Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-19"
+		"image_inventory"						"econ/items/shadowshaman/shades_offhand/shades_offhand"
+		"item_name"								"#DOTA_Item_Scepter_of_Shades__OffHand"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/shadowshaman/shades_offhand/shades_offhand.vmdl"
+		"particle_folder"						"particles/econ/items/shadow_shaman/shadow_shaman_scepterofshades"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"3/21/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_shaman/shadow_shaman_scepterofshades/shadowshaman_shades_stick_l.vpcf"
+				"system"						"particles/econ/items/shadow_shaman/shadow_shaman_scepterofshades/shadowshaman_shades_stick_l.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"6206"
+	{
+		"name"									"Cincture of Shades"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-20"
+		"image_inventory"						"econ/items/shadowshaman/shades_belt/shades_belt"
+		"item_name"								"#DOTA_Item_Cincture_of_Shades"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Cincture"
+		"model_player"							"models/items/shadowshaman/shades_belt/shades_belt.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"3/21/2014"
+			"price"								"0"
+		}
+	}
+	"6309"
+	{
+		"name"									"Armwraps of Shades"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-19"
+		"image_inventory"						"econ/items/shadowshaman/shades_arms/shades_arms"
+		"item_name"								"#DOTA_Item_Armwraps_of_Shades"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/shadowshaman/shades_arms/shades_arms.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"3/21/2014"
+			"price"								"0"
+		}
+	}
+	"6310"
+	{
+		"name"									"Visage of Shades"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-19"
+		"image_inventory"						"econ/items/shadowshaman/shades_head/shades_head"
+		"item_name"								"#DOTA_Item_Visage_of_Shades"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Visage"
+		"model_player"							"models/items/shadowshaman/shades_head/shades_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"3/21/2014"
+			"price"								"0"
+		}
+	}
+	"6647"
+	{
+		"name"									"Lamb to the Slaughter"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-24"
+		"image_inventory"						"econ/items/shadowshaman/sheep_stick/sheep_stick"
+		"item_description"						"#DOTA_Item_Desc_Lamb_to_the_Slaughter"
+		"item_name"								"#DOTA_Item_Lamb_to_the_Slaughter"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Wand"
+		"model_player"							"models/items/shadowshaman/sheep_stick/sheep_stick.vmdl"
+		"particle_folder"						"particles/econ/items/shadow_shaman/shadow_shaman_sheepstick"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"hex_model"
+				"asset"							"hex"
+				"modifier"						"models/items/hex/sheep_hex/sheep_hex.vmdl"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shadowshaman/shadowshaman_voodoo.vpcf"
+				"modifier"						"particles/econ/items/shadow_shaman/shadow_shaman_sheepstick/shadowshaman_voodoo_sheepstick.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"sound"
+				"asset"							"Hero_ShadowShaman.Hex.Target"
+				"modifier"						"Hero_ShadowShaman.SheepHex.Target"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"shadow_shaman_voodoo"
+				"modifier"						"shadow_shaman_voodoo_alt"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_shaman/shadow_shaman_sheepstick/shadowshaman_stick_sheepstick.vpcf"
+				"system"						"particles/econ/items/shadow_shaman/shadow_shaman_sheepstick/shadowshaman_stick_sheepstick.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"6814"
+	{
+		"name"									"Tang-Ki Scepter Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-17"
+		"image_inventory"						"econ/items/shadowshaman/tangki_offhand/tangki_offhand"
+		"item_name"								"#DOTA_Item_TangKi_Scepter_OffHand"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_OffHand_Weapon"
+		"model_player"							"models/items/shadowshaman/tangki_offhand/tangki_offhand.vmdl"
+	}
+	"6815"
+	{
+		"name"									"Serpent Ward of Tang-Ki"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-17"
+		"image_inventory"						"econ/items/shadowshaman/serpent_ward/tangki_serpent_ward/tangki_serpent_ward_npc_dota_shadow_shaman_ward_1"
+		"item_name"								"#DOTA_Item_Serpent_Ward_of_TangKi"
+		"item_rarity"							"mythical"
+		"item_slot"								"summon"
+		"item_type_name"						"#DOTA_WearableType_Spirit_Ward"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_shadow_shaman_ward"
+				"modifier"						"models/items/shadowshaman/serpent_ward/tangki_serpent_ward/tangki_serpent_ward.vmdl"
+			}
+		}
+	}
+	"6816"
+	{
+		"name"									"Tang-Ki Scepter"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-17"
+		"image_inventory"						"econ/items/shadowshaman/tangki_weapon/tangki_weapon"
+		"item_name"								"#DOTA_Item_TangKi_Scepter"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Scepter"
+		"model_player"							"models/items/shadowshaman/tangki_weapon/tangki_weapon.vmdl"
+	}
+	"6817"
+	{
+		"name"									"Accursed Scrolls of Tang-Ki"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-17"
+		"image_inventory"						"econ/items/shadowshaman/tangki_arms/tangki_arms"
+		"item_name"								"#DOTA_Item_Accursed_Scrolls_of_TangKi"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/shadowshaman/tangki_arms/tangki_arms.vmdl"
+	}
+	"6818"
+	{
+		"name"									"Possessed Shrine of Tang-Ki"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-17"
+		"image_inventory"						"econ/items/shadowshaman/tangki_belt/tangki_belt"
+		"item_name"								"#DOTA_Item_Possessed_Shrine_of_TangKi"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/shadowshaman/tangki_belt/tangki_belt.vmdl"
+	}
+	"6819"
+	{
+		"name"									"Ornate Headdress of Tang-Ki"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-17"
+		"image_inventory"						"econ/items/shadowshaman/tangki_head/tangki_head"
+		"item_name"								"#DOTA_Item_Ornate_Headdress_of_TangKi"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Headdress"
+		"model_player"							"models/items/shadowshaman/tangki_head/tangki_head.vmdl"
+	}
+	"6915"
+	{
+		"name"									"Golden Lamb to the Slaughter"
+		"prefab"								"wearable"
+		"creation_date"							"2014-07-10"
+		"image_inventory"						"econ/items/shadowshaman/sheep_stick/sheep_stick_gold"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Lamb_to_the_Slaughter"
+		"item_name"								"#DOTA_Item_Golden_Lamb_to_the_Slaughter"
+		"item_quality"							"genuine"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Wand"
+		"model_player"							"models/items/shadowshaman/sheep_stick/sheep_stick.vmdl"
+		"particle_folder"						"particles/econ/items/shadow_shaman/shadow_shaman_sheepstick"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shadowshaman/shadowshaman_voodoo.vpcf"
+				"modifier"						"particles/econ/items/shadow_shaman/shadow_shaman_sheepstick/shadowshaman_voodoo_sheepstick.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"sound"
+				"asset"							"Hero_ShadowShaman.Hex.Target"
+				"modifier"						"Hero_ShadowShaman.SheepHex.Target"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"skip_model_combine"				"1"
+			"skin"								"1"
+			"asset_modifier4"
+			{
+				"type"							"hex_model"
+				"asset"							"hex"
+				"modifier"						"models/items/hex/sheep_hex/sheep_hex_gold.vmdl"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier1"
+			{
+				"type"							"ability_icon"
+				"asset"							"shadow_shaman_voodoo"
+				"modifier"						"shadow_shaman_voodoo_alt_gold"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_shaman/shadow_shaman_sheepstick/shadowshaman_stick_sheepstick.vpcf"
+				"system"						"particles/econ/items/shadow_shaman/shadow_shaman_sheepstick/shadowshaman_stick_sheepstick.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"7275"
+	{
+		"name"									"True Crow's Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2014-12-08"
+		"image_inventory"						"econ/items/shadowshaman/true_crow_armbands/true_crow_armbands"
+		"item_name"								"#DOTA_Item_True_Crows_Wings"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/shadowshaman/true_crow_armbands/true_crow_armbands.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2014"
+			"price"								"0"
+		}
+	}
+	"7384"
+	{
+		"name"									"True Crow's Pelt"
+		"prefab"								"wearable"
+		"creation_date"							"2014-12-08"
+		"image_inventory"						"econ/items/shadowshaman/true_crow_pelt/true_crow_pelt"
+		"item_name"								"#DOTA_Item_True_Crows_Pelt"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/shadowshaman/true_crow_pelt/true_crow_pelt.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2014"
+			"price"								"0"
+		}
+	}
+	"7386"
+	{
+		"name"									"True Crow's Vision"
+		"prefab"								"wearable"
+		"creation_date"							"2014-12-08"
+		"image_inventory"						"econ/items/shadowshaman/true_crow_vision/true_crow_vision"
+		"item_name"								"#DOTA_Item_True_Crows_Vision"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/shadowshaman/true_crow_vision/true_crow_vision.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2014"
+			"price"								"0"
+		}
+	}
+	"7387"
+	{
+		"name"									"True Crow's Talon"
+		"prefab"								"wearable"
+		"creation_date"							"2014-12-08"
+		"image_inventory"						"econ/items/shadowshaman/true_crow_talon/true_crow_talon"
+		"item_name"								"#DOTA_Item_True_Crows_Talon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Wand"
+		"model_player"							"models/items/shadowshaman/true_crow_talon/true_crow_talon.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2014"
+			"price"								"0"
+		}
+	}
+	"7388"
+	{
+		"name"									"True Crow's Ward"
+		"prefab"								"wearable"
+		"creation_date"							"2014-12-08"
+		"image_inventory"						"econ/items/shadowshaman/serpent_ward/true_crow_ward/true_crow_ward_npc_dota_shadow_shaman_ward_1"
+		"item_name"								"#DOTA_Item_True_Crows_Ward"
+		"item_rarity"							"rare"
+		"item_slot"								"summon"
+		"item_type_name"						"#DOTA_WearableType_Ward"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_shadow_shaman_ward"
+				"modifier"						"models/items/shadowshaman/serpent_ward/true_crow_ward/true_crow_ward.vmdl"
+			}
+		}
+	}
+	"7389"
+	{
+		"name"									"True Crow's Bite"
+		"prefab"								"wearable"
+		"creation_date"							"2014-12-08"
+		"image_inventory"						"econ/items/shadowshaman/true_form_bite/true_form_bite"
+		"item_name"								"#DOTA_Item_True_Crows_Bite"
+		"item_type_name"						"#DOTA_WearableType_Wand"
+		"model_player"							"models/items/shadowshaman/true_form_bite/true_form_bite.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2014"
+			"price"								"0"
+		}
+	}
+	"7511"
+	{
+		"name"									"Armbands of Shamanic Light"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-19"
+		"image_inventory"						"econ/items/shadowshaman/dotapit_s3_wild_tempest_arms/dotapit_s3_wild_tempest_arms"
+		"item_name"								"#DOTA_Item_Armbands_of_Shamanic_Light"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Armbands"
+		"model_player"							"models/items/shadowshaman/dotapit_s3_wild_tempest_arms/dotapit_s3_wild_tempest_arms.vmdl"
+	}
+	"7512"
+	{
+		"name"									"Skirt of Shamanic Light"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-19"
+		"image_inventory"						"econ/items/shadowshaman/dotapit_s3_wild_tempest_belt/dotapit_s3_wild_tempest_belt"
+		"item_name"								"#DOTA_Item_Skirt_of_Shamanic_Light"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Skirt"
+		"model_player"							"models/items/shadowshaman/dotapit_s3_wild_tempest_belt/dotapit_s3_wild_tempest_belt.vmdl"
+	}
+	"7513"
+	{
+		"name"									"Hood of Shamanic Light"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-19"
+		"image_inventory"						"econ/items/shadowshaman/dotapit_s3_wild_tempest_head/dotapit_s3_wild_tempest_head"
+		"item_name"								"#DOTA_Item_Hood_of_Shamanic_Light"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hood"
+		"model_player"							"models/items/shadowshaman/dotapit_s3_wild_tempest_head/dotapit_s3_wild_tempest_head.vmdl"
+	}
+	"7514"
+	{
+		"name"									"Candelabra of Shamanic Light"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-19"
+		"image_inventory"						"econ/items/shadowshaman/dotapit_s3_wild_tempest_offhand/dotapit_s3_wild_tempest_offhand"
+		"item_name"								"#DOTA_Item_Candelabra_of_Shamanic_Light"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Candelabra"
+		"model_player"							"models/items/shadowshaman/dotapit_s3_wild_tempest_offhand/dotapit_s3_wild_tempest_offhand.vmdl"
+	}
+	"7515"
+	{
+		"name"									"Serpent of Shamanic Light"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-19"
+		"image_inventory"						"econ/items/shadowshaman/serpent_ward/dotapit_s3_wild_tempest_wards/dotapit_s3_wild_tempest_wards_npc_dota_shadow_shaman_ward"
+		"item_name"								"#DOTA_Item_Serpent_of_Shamanic_Light"
+		"item_rarity"							"rare"
+		"item_slot"								"summon"
+		"item_type_name"						"#DOTA_WearableType_Wards"
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_shadow_shaman_ward"
+				"modifier"						"models/items/shadowshaman/serpent_ward/dotapit_s3_wild_tempest_wards/dotapit_s3_wild_tempest_wards.vmdl"
+			}
+		}
+	}
+	"7516"
+	{
+		"name"									"Wand of Shamanic Light"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-19"
+		"image_inventory"						"econ/items/shadowshaman/dotapit_s3_wild_tempest_weapon/dotapit_s3_wild_tempest_weapon"
+		"item_name"								"#DOTA_Item_Wand_of_Shamanic_Light"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Wand"
+		"model_player"							"models/items/shadowshaman/dotapit_s3_wild_tempest_weapon/dotapit_s3_wild_tempest_weapon.vmdl"
+	}
+	"8085"
+	{
+		"name"									"Taunt: Shaman Dance"
+		"prefab"								"taunt"
+		"creation_date"							"2015-03-03"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/taunts/taunt_icon_taunt_shadow_shaman_ti9"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Shaman_Dance"
+		"item_name"								"#DOTA_Item_Taunt_Shaman_Dance"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1598997600"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"ti9_taunt"
+				"gesture"						"1"
+			}
+		}
+	}
+	"8341"
+	{
+		"name"									"Shade of the Spiteful Eye"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/shadowshaman/eyedancer_wrath_head/eyedancer_wrath_head"
+		"item_description"						"#DOTA_Item_Desc_Shade_of_the_Spiteful_Eye"
+		"item_name"								"#DOTA_Item_Shade_of_the_Spiteful_Eye"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hat"
+		"model_player"							"models/items/shadowshaman/eyedancer_wrath_head/eyedancer_wrath_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_shaman/shadow_shaman_spiteful/shadowshaman_stick_spite_head.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/shadow_shaman/shadow_shaman_spiteful/shadowshaman_stick_spite_head.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+				}
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#Shade_of_the_Spiteful_Eye_Default"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#Shade_of_the_Spiteful_Eye_Particle"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"price"					"1"
+						"item_def"				"16735"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/shadowshaman/eyedancer_wrath_head/eyedancer_wrath_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/shadowshaman/eyedancer_wrath_head/eyedancer_wrath_head_particle"
+				}
+			}
+			"skin"								"0"
+		}
+	}
+	"8370"
+	{
+		"name"									"Shadow Shaman's Serpent Wards"
+		"prefab"								"default_item"
+		"creation_date"							"2015-04-14"
+		"image_inventory"						"econ/heroes/shadowshaman/ward"
+		"item_description"						"#DOTA_Item_Desc_Shadow_Shamans_Serpent_Wards"
+		"item_name"								"#DOTA_Item_Shadow_Shamans_Serpent_Wards"
+		"item_slot"								"summon"
+		"item_type_name"						"#DOTA_WearableType_Wards"
+	}
+	"9794"
+	{
+		"name"									"Censer of Gliss"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-08"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/shadowshaman/ss_ti8_immortal_offhand/ss_ti8_immortal_offhand"
+		"item_description"						"#DOTA_Item_Desc_Censer_of_Gliss"
+		"item_name"								"#DOTA_Item_Censer_of_Gliss"
+		"item_rarity"							"immortal"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/shadowshaman/ss_ti8_immortal_offhand/ss_ti8_immortal_offhand.vmdl"
+		"particle_folder"						"particles/units/heroes/hero_shadowshaman"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567296000"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_shaman/shadow_shaman_ti8/shadow_shaman_ti8_offhand_ambient.vpcf"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti8"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shadowshaman/shadowshaman_ether_shock.vpcf"
+				"modifier"						"particles/econ/items/shadow_shaman/shadow_shaman_ti8/shadow_shaman_ti8_ether_shock.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/status_fx/status_effect_null.vpcf"
+				"modifier"						"particles/status_fx/status_effect_shadow_shaman_ethershock.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"shadow_shaman_ether_shock"
+				"modifier"						"shadow_shaman_ether_shock_ti8"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+		}
+	}
+	"9884"
+	{
+		"name"									"Glimpse of the Spiteful Eye"
+		"prefab"								"wearable"
+		"creation_date"							"2015-04-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/shadowshaman/serpent_ward/eyedancer_wrath_ward/eyedancer_wrath_ward_npc_dota_shadow_shaman_ward_1"
+		"item_name"								"#DOTA_Item_Glimpse_of_the_Spiteful_Eye"
+		"item_rarity"							"mythical"
+		"item_slot"								"summon"
+		"item_type_name"						"#DOTA_WearableType_Ward"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_shadow_shaman_ward"
+				"modifier"						"models/items/shadowshaman/serpent_ward/eyedancer_wrath_ward/eyedancer_wrath_ward.vmdl"
+			}
+		}
+	}
+	"9885"
+	{
+		"name"									"Mantle of the Spiteful Eye"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/shadowshaman/eyedancer_wrath_arms/eyedancer_wrath_arms"
+		"item_name"								"#DOTA_Item_Mantle_of_the_Spiteful_Eye"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/shadowshaman/eyedancer_wrath_arms/eyedancer_wrath_arms.vmdl"
+	}
+	"9886"
+	{
+		"name"									"Sigil of the Spiteful Eye"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/shadowshaman/eyedancer_wrath_belt/eyedancer_wrath_belt"
+		"item_name"								"#DOTA_Item_Sigil_of_the_Spiteful_Eye"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Sigil"
+		"model_player"							"models/items/shadowshaman/eyedancer_wrath_belt/eyedancer_wrath_belt.vmdl"
+	}
+	"9887"
+	{
+		"name"									"Off-Hand Baton of the Spiteful Eye"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/shadowshaman/eyedancer_wrath_offhand/eyedancer_wrath_offhand"
+		"item_name"								"#DOTA_Item_OffHand_Baton_of_the_Spiteful_Eye"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_OffHand_Weapon"
+		"model_player"							"models/items/shadowshaman/eyedancer_wrath_offhand/eyedancer_wrath_offhand.vmdl"
+		"particle_folder"						"particles/units/heroes/hero_shadowshaman"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shadowshaman/shadowshaman_stick_l.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_shaman/shadow_shaman_spiteful/shadowshaman_stick_spite_l.vpcf"
+				"system"						"particles/econ/items/shadow_shaman/shadow_shaman_spiteful/shadowshaman_stick_spite_l.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"9888"
+	{
+		"name"									"Baton of the Spiteful Eye"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/shadowshaman/eyedancer_wrath_weapon/eyedancer_wrath_weapon"
+		"item_name"								"#DOTA_Item_Baton_of_the_Spiteful_Eye"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/shadowshaman/eyedancer_wrath_weapon/eyedancer_wrath_weapon.vmdl"
+		"particle_folder"						"particles/units/heroes/hero_shadowshaman"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shadowshaman/shadowshaman_stick_r.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_shaman/shadow_shaman_spiteful/shadowshaman_stick_spite_r.vpcf"
+				"system"						"particles/econ/items/shadow_shaman/shadow_shaman_spiteful/shadowshaman_stick_spite_r.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"9904"
+	{
+		"name"									"Charm of the Lucent Canopy"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/shadowshaman/ti8_ss_mushroomer_weapon/ti8_ss_mushroomer_weapon"
+		"item_name"								"#DOTA_Item_Charm_of_the_Lucent_Canopy"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/shadowshaman/ti8_ss_mushroomer_weapon/ti8_ss_mushroomer_weapon.vmdl"
+		"particle_folder"						"particles/units/heroes/hero_shadowshaman"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_shaman/ti8_ss_mushroomer_weapon/ti8_ss_mushroomer_weapon_ambient.vpcf"
+			}
+		}
+	}
+	"9905"
+	{
+		"name"									"Ward of the Lucent Canopy"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/shadowshaman/serpent_ward/ti8_ss_mushroomer_mushroomer_ward_ti_8/ti8_ss_mushroomer_mushroomer_ward_ti_8_npc_dota_shadow_shaman_ward"
+		"item_name"								"#DOTA_Item_Ward_of_the_Lucent_Canopy"
+		"item_rarity"							"mythical"
+		"item_slot"								"summon"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_shadow_shaman_ward"
+				"modifier"						"models/items/shadowshaman/serpent_ward/ti8_ss_mushroomer_mushroomer_ward_ti_8/ti8_ss_mushroomer_mushroomer_ward_ti_8.vmdl"
+			}
+		}
+	}
+	"9906"
+	{
+		"name"									"Off-Hand of the Lucent Canopy"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/shadowshaman/ti8_ss_mushroomer_off_hand/ti8_ss_mushroomer_off_hand"
+		"item_name"								"#DOTA_Item_OffHand_of_the_Lucent_Canopy"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/shadowshaman/ti8_ss_mushroomer_off_hand/ti8_ss_mushroomer_off_hand.vmdl"
+		"particle_folder"						"particles/units/heroes/hero_shadowshaman"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_shaman/ti8_ss_mushroomer_off_hand/ti8_ss_mushroomer_off_hand_ambient.vpcf"
+			}
+		}
+	}
+	"9907"
+	{
+		"name"									"Crest of the Lucent Canopy"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/shadowshaman/ti8_ss_mushroomer_head/ti8_ss_mushroomer_head"
+		"item_name"								"#DOTA_Item_Crest_of_the_Lucent_Canopy"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/shadowshaman/ti8_ss_mushroomer_head/ti8_ss_mushroomer_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9908"
+	{
+		"name"									"Haul of the Lucent Canopy"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/shadowshaman/ti8_ss_mushroomer_belt/ti8_ss_mushroomer_belt"
+		"item_name"								"#DOTA_Item_Haul_of_the_Lucent_Canopy"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/shadowshaman/ti8_ss_mushroomer_belt/ti8_ss_mushroomer_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_shaman/ti8_ss_mushroomer_belt/ti8_ss_mushroomer_belt_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9909"
+	{
+		"name"									"Arms of the Lucent Canopy"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/shadowshaman/ti8_ss_mushroomer_arms/ti8_ss_mushroomer_arms"
+		"item_name"								"#DOTA_Item_Arms_of_the_Lucent_Canopy"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/shadowshaman/ti8_ss_mushroomer_arms/ti8_ss_mushroomer_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"12419"
+	{
+		"name"									"Crimson Censer of Gliss"
+		"prefab"								"wearable"
+		"creation_date"							"2018-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/shadowshaman/ss_ti8_immortal_offhand/ss_ti8_immortal_offhand1"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Censer_of_Gliss"
+		"item_name"								"#DOTA_Item_Crimson_Censer_of_Gliss"
+		"item_rarity"							"immortal"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/shadowshaman/ss_ti8_immortal_offhand/ss_ti8_immortal_offhand.vmdl"
+		"particle_folder"						"particles/units/heroes/hero_shadowshaman"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_shaman/shadow_shaman_ti8/shadow_shaman_crimson_ti8_offhand_ambient.vpcf"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti8"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shadowshaman/shadowshaman_ether_shock.vpcf"
+				"modifier"						"particles/econ/items/shadow_shaman/shadow_shaman_ti8/shadow_shaman_crimson_ti8_ether_shock.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/status_fx/status_effect_null.vpcf"
+				"modifier"						"particles/status_fx/status_effect_shadow_shaman_ethershock.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"shadow_shaman_ether_shock"
+				"modifier"						"shadow_shaman_ether_shock_ti8_crimson"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"skin"								"1"
+		}
+	}
+	"13364"
+	{
+		"name"									"Bogmarch Wand"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/shadowshaman/ti9_cache_shaman_swamp_shaman_weapon/ti9_cache_shaman_swamp_shaman_weapon"
+		"item_name"								"#DOTA_Item_Bogmarch_Wand"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/shadowshaman/ti9_cache_shaman_swamp_shaman_weapon/ti9_cache_shaman_swamp_shaman_weapon.vmdl"
+		"particle_folder"						"particles/units/heroes/hero_shadowshaman"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_shadowshaman/shadowshaman_stick_r.vpcf"
+				"system"						"particles/units/heroes/hero_shadowshaman/shadowshaman_stick_r.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"13365"
+	{
+		"name"									"Bogmarch Ward"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/shadowshaman/serpent_ward/ti9_cache_shaman_swamp_shaman_ward/ti9_cache_shaman_swamp_shaman_ward_npc_dota_shadow_shaman_ward"
+		"item_name"								"#DOTA_Item_Bogmarch_Ward"
+		"item_rarity"							"rare"
+		"item_slot"								"summon"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_shadow_shaman_ward"
+				"modifier"						"models/items/shadowshaman/serpent_ward/ti9_cache_shaman_swamp_shaman_ward/ti9_cache_shaman_swamp_shaman_ward.vmdl"
+			}
+		}
+	}
+	"13366"
+	{
+		"name"									"Bogmarch Charm"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/shadowshaman/ti9_cache_shaman_swamp_shaman_off_hand/ti9_cache_shaman_swamp_shaman_off_hand"
+		"item_name"								"#DOTA_Item_Bogmarch_Charm"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/shadowshaman/ti9_cache_shaman_swamp_shaman_off_hand/ti9_cache_shaman_swamp_shaman_off_hand.vmdl"
+		"particle_folder"						"particles/units/heroes/hero_shadowshaman"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_shadowshaman/shadowshaman_stick_l.vpcf"
+				"system"						"particles/units/heroes/hero_shadowshaman/shadowshaman_stick_l.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"13367"
+	{
+		"name"									"Bogmarch Mask"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/shadowshaman/ti9_cache_shaman_swamp_shaman_head/ti9_cache_shaman_swamp_shaman_head"
+		"item_name"								"#DOTA_Item_Bogmarch_Mask"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/shadowshaman/ti9_cache_shaman_swamp_shaman_head/ti9_cache_shaman_swamp_shaman_head.vmdl"
+	}
+	"13368"
+	{
+		"name"									"Bogmarch Barrel"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/shadowshaman/ti9_cache_shaman_swamp_shaman_belt/ti9_cache_shaman_swamp_shaman_belt"
+		"item_name"								"#DOTA_Item_Bogmarch_Barrel"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/shadowshaman/ti9_cache_shaman_swamp_shaman_belt/ti9_cache_shaman_swamp_shaman_belt.vmdl"
+	}
+	"13369"
+	{
+		"name"									"Bogmarch Garb"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/shadowshaman/ti9_cache_shaman_swamp_shaman_arms/ti9_cache_shaman_swamp_shaman_arms"
+		"item_name"								"#DOTA_Item_Bogmarch_Garb"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/shadowshaman/ti9_cache_shaman_swamp_shaman_arms/ti9_cache_shaman_swamp_shaman_arms.vmdl"
+	}
+	"13757"
+	{
+		"name"									"Lash of the Lizard Kin"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-01"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/shadowshaman/ss_fall20_immortal_head/ss_fall20_immortal_head"
+		"item_description"						"#DOTA_Item_Desc_Lash_of_the_Lizard_Kin"
+		"item_name"								"#DOTA_Item_Lash_of_the_Lizard_Kin"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/shadowshaman/ss_fall20_immortal_head/ss_fall20_immortal_head.vmdl"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shadowshaman/shadowshaman_shackle.vpcf"
+				"modifier"						"particles/econ/items/shadow_shaman/ss_fall20_tongue/shadowshaman_shackle_net_fall20.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/status_fx/status_effect_shaman_shackle.vpcf"
+				"modifier"						"particles/econ/items/shadow_shaman/ss_fall20_tongue/status_effect_shaman_shackle_net_fall20.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_shaman/ss_fall20_tongue/shadowshaman_fall20_ambient.vpcf"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_shaman/ss_fall20_tongue/shadowshaman_fall20_ambient_mouth_drips.vpcf"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_shaman/ss_fall20_tongue/shadowshaman_fall20_ambient_eye_b.vpcf"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_shaman/ss_fall20_tongue/shadowshaman_fall20_ambient_eye_b_left.vpcf"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_shaman/ss_fall20_tongue/shadowshaman_fall20_ambient_crystal.vpcf"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_shaman/ss_fall20_tongue/shadowshaman_fall20_ambient_hair.vpcf"
+			}
+			"asset_modifier8"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"fall20"
+			}
+			"asset_modifier9"
+			{
+				"type"							"ability_icon"
+				"asset"							"shadow_shaman_shackles"
+				"modifier"						"shadow_shaman/shadow_shaman_fall20_immortal/shadow_shaman_fall20_immortal_shackles"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+		}
+	}
+	"14361"
+	{
+		"name"									"Red Sands Marauder - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/shadowshaman/shaman_charmer_of_firesnake_weapon/shaman_charmer_of_firesnake_weapon"
+		"item_name"								"#DOTA_Item_Red_Sands_Marauder__Weapon"
+		"item_rarity"							"mythical"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/shadowshaman/shaman_charmer_of_firesnake_weapon/shaman_charmer_of_firesnake_weapon.vmdl"
+		"particle_folder"						"particles/units/heroes/hero_shadowshaman"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_shaman/shadow_shaman_charmer_firesnake/shadow_shaman_charmer_firesnake_weapon.vpcf"
+			}
+		}
+	}
+	"14362"
+	{
+		"name"									"Red Sands Marauder - Offhand"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/shadowshaman/shaman_charmer_of_firesnake_off_hand/shaman_charmer_of_firesnake_off_hand"
+		"item_name"								"#DOTA_Item_Red_Sands_Marauder__Offhand"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/shadowshaman/shaman_charmer_of_firesnake_off_hand/shaman_charmer_of_firesnake_off_hand.vmdl"
+		"particle_folder"						"particles/units/heroes/hero_shadowshaman"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_shaman/shadow_shaman_charmer_firesnake/shadow_shaman_charmer_firesnake_offhand.vpcf"
+			}
+		}
+	}
+	"14364"
+	{
+		"name"									"Red Sands Marauder - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/shadowshaman/shaman_charmer_of_firesnake_head/shaman_charmer_of_firesnake_head"
+		"item_name"								"#DOTA_Item_Red_Sands_Marauder__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/shadowshaman/shaman_charmer_of_firesnake_head/shaman_charmer_of_firesnake_head.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_shaman/shadow_shaman_charmer_firesnake/shadow_shaman_charmer_firesnake_head.vpcf"
+			}
+		}
+	}
+	"14365"
+	{
+		"name"									"Red Sands Marauder - Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/shadowshaman/shaman_charmer_of_firesnake_belt/shaman_charmer_of_firesnake_belt"
+		"item_name"								"#DOTA_Item_Red_Sands_Marauder__Belt"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/shadowshaman/shaman_charmer_of_firesnake_belt/shaman_charmer_of_firesnake_belt.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_shaman/shadow_shaman_charmer_firesnake/shadow_shaman_charmer_firesnake_belt.vpcf"
+			}
+		}
+	}
+	"14366"
+	{
+		"name"									"Red Sands Marauder - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/shadowshaman/shaman_charmer_of_firesnake_arms/shaman_charmer_of_firesnake_arms"
+		"item_name"								"#DOTA_Item_Red_Sands_Marauder__Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"model_player"							"models/items/shadowshaman/shaman_charmer_of_firesnake_arms/shaman_charmer_of_firesnake_arms.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"14367"
+	{
+		"name"									"Red Sands Marauder - Summon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/shadowshaman/serpent_ward/shaman_charmer_of_firesnake_ability/shaman_charmer_of_firesnake_ability_npc_dota_shadow_shaman_ward"
+		"item_name"								"#DOTA_Item_Red_Sands_Marauder__Summon"
+		"item_rarity"							"mythical"
+		"item_slot"								"summon"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_shadow_shaman_ward"
+				"modifier"						"models/items/shadowshaman/serpent_ward/shaman_charmer_of_firesnake_ability/shaman_charmer_of_firesnake_ability.vmdl"
+			}
+		}
+	}
+	"18269"
+	{
+		"name"									"The eagle of the desert Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-29"
+		"image_inventory"						"econ/items/shadowshaman/the_eagle_of_the_desert_off_hand/the_eagle_of_the_desert_off_hand"
+		"item_name"								"#DOTA_Item_Vote_Only_The_eagle_of_the_desert_OffHand"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/shadowshaman/the_eagle_of_the_desert_off_hand/the_eagle_of_the_desert_off_hand.vmdl"
+		"particle_folder"						"particles/units/heroes/hero_shadowshaman"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_shadowshaman/shadowshaman_stick_l.vpcf"
+				"system"						"particles/units/heroes/hero_shadowshaman/shadowshaman_stick_l.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"18270"
+	{
+		"name"									"The eagle of the desert Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-29"
+		"image_inventory"						"econ/items/shadowshaman/the_eagle_of_the_desert_weapon/the_eagle_of_the_desert_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_The_eagle_of_the_desert_Weapon"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/shadowshaman/the_eagle_of_the_desert_weapon/the_eagle_of_the_desert_weapon.vmdl"
+		"particle_folder"						"particles/units/heroes/hero_shadowshaman"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_shadowshaman/shadowshaman_stick_r.vpcf"
+				"system"						"particles/units/heroes/hero_shadowshaman/shadowshaman_stick_r.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"18271"
+	{
+		"name"									"The eagle of the desert Ward"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-29"
+		"image_inventory"						"econ/items/shadowshaman/serpent_ward/the_eagle_of_the_desert_ward/the_eagle_of_the_desert_ward_npc_dota_shadow_shaman_ward"
+		"item_name"								"#DOTA_The_eagle_of_the_desert_Ward"
+		"item_slot"								"summon"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_shadow_shaman_ward"
+				"modifier"						"models/items/shadowshaman/serpent_ward/the_eagle_of_the_desert_ward/the_eagle_of_the_desert_ward.vmdl"
+			}
+		}
+	}
+	"18272"
+	{
+		"name"									"The eagle of the desert Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-29"
+		"image_inventory"						"econ/items/shadowshaman/the_eagle_of_the_desert_head/the_eagle_of_the_desert_head"
+		"item_name"								"#DOTA_Item_Vote_Only_The_eagle_of_the_desert_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/shadowshaman/the_eagle_of_the_desert_head/the_eagle_of_the_desert_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"18273"
+	{
+		"name"									"The eagle of the desert Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-29"
+		"image_inventory"						"econ/items/shadowshaman/the_eagle_of_the_desert_belt/the_eagle_of_the_desert_belt"
+		"item_name"								"#DOTA_Item_Vote_Only_The_eagle_of_the_desert_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/shadowshaman/the_eagle_of_the_desert_belt/the_eagle_of_the_desert_belt.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"18274"
+	{
+		"name"									"The eagle of the desert Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-29"
+		"image_inventory"						"econ/items/shadowshaman/the_eagle_of_the_desert_arms/the_eagle_of_the_desert_arms"
+		"item_name"								"#DOTA_Item_Vote_Only_The_eagle_of_the_desert_Arms"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/shadowshaman/the_eagle_of_the_desert_arms/the_eagle_of_the_desert_arms.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19870"
+	{
+		"name"									"DragonTooth Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/shadowshaman/dragontooth_weapon/dragontooth_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_DragonTooth_Weapon"
+		"model_player"							"models/items/shadowshaman/dragontooth_weapon/dragontooth_weapon.vmdl"
+		"particle_folder"						"particles/units/heroes/hero_shadowshaman"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_shadowshaman/shadowshaman_stick_r.vpcf"
+				"system"						"particles/units/heroes/hero_shadowshaman/shadowshaman_stick_r.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"19871"
+	{
+		"name"									"DragonTooth Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/shadowshaman/dragontooth_off_hand/dragontooth_off_hand"
+		"item_name"								"#DOTA_Item_Vote_Only_DragonTooth_OffHand"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/shadowshaman/dragontooth_off_hand/dragontooth_off_hand.vmdl"
+		"particle_folder"						"particles/units/heroes/hero_shadowshaman"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_shadowshaman/shadowshaman_stick_l.vpcf"
+				"system"						"particles/units/heroes/hero_shadowshaman/shadowshaman_stick_l.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"19872"
+	{
+		"name"									"DragonTooth Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/shadowshaman/dragontooth_head/dragontooth_head"
+		"item_name"								"#DOTA_Item_Vote_Only_DragonTooth_Head"
+		"item_slot"								"head"
+		"model_player"							"models/items/shadowshaman/dragontooth_head/dragontooth_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19873"
+	{
+		"name"									"DragonTooth Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/shadowshaman/dragontooth_belt/dragontooth_belt"
+		"item_name"								"#DOTA_Item_Vote_Only_DragonTooth_Belt"
+		"item_slot"								"belt"
+		"model_player"							"models/items/shadowshaman/dragontooth_belt/dragontooth_belt.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19874"
+	{
+		"name"									"DragonTooth Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/shadowshaman/dragontooth_arms/dragontooth_arms"
+		"item_name"								"#DOTA_Item_Vote_Only_DragonTooth_Arms"
+		"item_slot"								"arms"
+		"model_player"							"models/items/shadowshaman/dragontooth_arms/dragontooth_arms.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"20100"
+	{
+		"name"									"The Mysterious Vagabond Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Mysterious Vagabond's Concoction"	"1"
+			"Mysterious Vagabond's Hat"			"1"
+			"Mysterious Vagabond's Pack"		"1"
+			"Mysterious Vagabond's Wand"		"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_The_Mysterious_Vagabond_Set"
+		"item_description"						"#DOTA_Item_Desc_The_Mysterious_Vagabond_Set"
+		"item_name"								"#DOTA_Item_The_Mysterious_Vagabond_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20275"
+	{
+		"name"									"Eki Spiritual Implements Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Eki Bukaw Bracers"					"1"
+			"Eki Bukaw Wand"					"1"
+			"Eki Bukaw Wand - Off-Hand"			"1"
+			"Fiery Ward of Eki Bukaw"			"1"
+			"Records of the Eki Bukaw"			"1"
+			"Visage of Eki Bukaw"				"1"
+		}
+		"creation_date"							"2013-10-15"
+		"image_inventory"						"econ/sets/DOTA_Item_Eki_Spiritual_Implements_Set"
+		"item_description"						"#DOTA_Item_Desc_Eki_Spiritual_Implements_Set"
+		"item_name"								"#DOTA_Item_Eki_Spiritual_Implements_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"10/15/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20283"
+	{
+		"name"									"Eki Bukaw Wand Pack"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Eki Bukaw Wand"					"1"
+			"Eki Bukaw Wand - Off-Hand"			"1"
+		}
+		"creation_date"							"2013-10-17"
+		"image_inventory"						"econ/items/shadowshaman/eki_bukaw_wand/eki_bukaw_wand"
+		"item_description"						"#DOTA_Item_Desc_Eki_Bukaw_Wand_Pack"
+		"item_name"								"#DOTA_Item_Eki_Bukaw_Wand_Pack"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Paired_Weapons"
+	}
+	"20450"
+	{
+		"name"									"Garb of Shades"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armwraps of Shades"				"1"
+			"Cincture of Shades"				"1"
+			"Scepter of Shades"					"1"
+			"Visage of Shades"					"1"
+			"Scepter of Shades - Off-Hand"		"1"
+		}
+		"creation_date"							"2014-03-20"
+		"image_inventory"						"econ/sets/DOTA_Item_Garb_of_Shades"
+		"item_description"						"#DOTA_Item_Desc_Garb_of_Shades"
+		"item_name"								"#DOTA_Item_Garb_of_Shades"
+		"item_rarity"							"rare"
+	}
+	"20554"
+	{
+		"name"									"Mystic Instruments of Tang-Ki"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Accursed Scrolls of Tang-Ki"		"1"
+			"Ornate Headdress of Tang-Ki"		"1"
+			"Possessed Shrine of Tang-Ki"		"1"
+			"Serpent Ward of Tang-Ki"			"1"
+			"Tang-Ki Scepter"					"1"
+			"Tang-Ki Scepter Off-Hand"			"1"
+			"Tang-Ki Loading Screen"			"1"
+		}
+		"creation_date"							"2014-06-17"
+		"image_inventory"						"econ/loading_screens/tangki"
+		"item_description"						"#DOTA_Item_Desc_Mystic_Instruments_of_TangKi"
+		"item_name"								"#DOTA_Item_Mystic_Instruments_of_TangKi"
+		"item_rarity"							"mythical"
+	}
+	"20572"
+	{
+		"name"									"Promo Mystic Instruments of Tang-Ki"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Accursed Scrolls of Tang-Ki"		"1"
+			"Ornate Headdress of Tang-Ki"		"1"
+			"Possessed Shrine of Tang-Ki"		"1"
+			"Serpent Ward of Tang-Ki"			"1"
+			"Tang-Ki Scepter"					"1"
+			"Tang-Ki Scepter Off-Hand"			"1"
+			"Tang-Ki Loading Screen"			"1"
+		}
+		"creation_date"							"2014-06-18"
+		"image_inventory"						"econ/loading_screens/tangki"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Mystic_Instruments_of_TangKi"
+		"item_name"								"#DOTA_Item_Promo_Mystic_Instruments_of_TangKi"
+		"item_quality"							"genuine"
+		"item_rarity"							"mythical"
+	}
+	"20695"
+	{
+		"name"									"The True Crow"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"True Crow Loading Screen"			"1"
+			"True Crow's Wings"					"1"
+			"True Crow's Pelt"					"1"
+			"True Crow's Vision"				"1"
+			"True Crow's Talon"					"1"
+			"True Crow's Ward"					"1"
+			"True Crow's Bite"					"1"
+		}
+		"creation_date"							"2014-12-09"
+		"image_inventory"						"econ/loading_screens/true_crow_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_The_True_Crow"
+		"item_name"								"#DOTA_Item_The_True_Crow"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"category_tags"						"Bundles"
+			"date"								"12/16/2014"
+			"bundle"							"1"
+			"price"								"899"
+		}
+	}
+	"20719"
+	{
+		"name"									"Favors of the Shamanic Light"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Wand of Shamanic Light"			"1"
+			"Candelabra of Shamanic Light"		"1"
+			"Hood of Shamanic Light"			"1"
+			"Skirt of Shamanic Light"			"1"
+			"Armbands of Shamanic Light"		"1"
+			"Serpent of Shamanic Light"			"1"
+		}
+		"creation_date"							"2015-01-22"
+		"image_inventory"						"econ/loading_screens/dotapit_s3_shadow_shaman"
+		"item_description"						"#DOTA_Item_Desc_Favors_of_the_Shamanic_Light"
+		"item_name"								"#DOTA_Item_Favors_of_the_Shamanic_Light"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"2500"
+	}
+	"20922"
+	{
+		"name"									"Dancer of the Spiteful Eye"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Shade of the Spiteful Eye"			"1"
+			"Glimpse of the Spiteful Eye"		"1"
+			"Mantle of the Spiteful Eye"		"1"
+			"Sigil of the Spiteful Eye"			"1"
+			"Baton of the Spiteful Eye"			"1"
+			"Off-Hand Baton of the Spiteful Eye""1"
+			"Dancer of the Spiteful Eye Loading Screen""1"
+		}
+		"creation_date"							"2015-10-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/loading_screens/eyedancer_wrath_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Dancer_of_the_Spiteful_Eye"
+		"item_name"								"#DOTA_Item_Dancer_of_the_Spiteful_Eye"
+		"item_rarity"							"mythical"
+	}
+	"21201"
+	{
+		"name"									"Endowments of the Lucent Canopy"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Arms of the Lucent Canopy"			"1"
+			"Haul of the Lucent Canopy"			"1"
+			"Crest of the Lucent Canopy"		"1"
+			"Off-Hand of the Lucent Canopy"		"1"
+			"Ward of the Lucent Canopy"			"1"
+			"Charm of the Lucent Canopy"		"1"
+		}
+		"creation_date"							"2018-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/sets/DOTA_Item_TI8_ShadowShaman_Mushroomer"
+		"item_description"						"#DOTA_Item_Desc_TI8_ShadowShaman_Mushroomer"
+		"item_name"								"#DOTA_Item_Endowments_of_the_Lucent_Canopy"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+		}
+	}
+	"21395"
+	{
+		"name"									"Endurance of the Bogmarch"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bogmarch Mask"						"1"
+			"Bogmarch Charm"					"1"
+			"Bogmarch Wand"						"1"
+			"Bogmarch Barrel"					"1"
+			"Bogmarch Garb"						"1"
+			"Bogmarch Ward"						"1"
+		}
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/sets/DOTA_Item_Endurance_of_the_Bogmarch"
+		"item_name"								"#DOTA_Item_Endurance_of_the_Bogmarch"
+		"item_rarity"							"rare"
+	}
+	"21547"
+	{
+		"name"									"Red Sands Marauder"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Red Sands Marauder - Summon"		"1"
+			"Red Sands Marauder - Arms"			"1"
+			"Red Sands Marauder - Belt"			"1"
+			"Red Sands Marauder - Head"			"1"
+			"Red Sands Marauder Loading Screen"	"1"
+			"Red Sands Marauder - Offhand"		"1"
+			"Red Sands Marauder - Weapon"		"1"
+		}
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/loading_screens/shaman_charmer_of_firesnake_ls"
+		"item_name"								"#DOTA_Item_Red_Sands_Marauder"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21781"
+	{
+		"name"									"The eagle of the desert"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"The eagle of the desert Arms"		"1"
+			"The eagle of the desert Belt"		"1"
+			"The eagle of the desert Head"		"1"
+			"The eagle of the desert Ward"		"1"
+			"The eagle of the desert Weapon"	"1"
+			"The eagle of the desert Off-Hand"	"1"
+		}
+		"creation_date"							"2020-09-29"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_The_eagle_of_the_desert"
+		"workshop_accepted"						"0"
+	}
+	"21970"
+	{
+		"name"									"DragonTooth"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"DragonTooth Arms"					"1"
+			"DragonTooth Belt"					"1"
+			"DragonTooth Off-Hand"				"1"
+			"DragonTooth Weapon"				"1"
+			"DragonTooth Head"					"1"
+		}
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_DragonTooth"
+		"workshop_accepted"						"0"
+	}
+	"22269"
+	{
+		"name"									"Lash of the Lizard Kin of the Crimson Witness"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-30"
+		"event_id"								"EVENT_ID_TEAM_FANDOM"
+		"image_inventory"						"econ/items/shadowshaman/ss_fall20_immortal_head/ss_fall20_immortal_head1"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Lash_of_the_Lizard_Kin"
+		"item_name"								"#DOTA_Item_Lash_of_the_Lizard_Kin_of_the_Crimson_Witness"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/shadowshaman/ss_fall20_immortal_head/ss_fall20_immortal_head.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shadowshaman/shadowshaman_shackle.vpcf"
+				"modifier"						"particles/econ/items/shadow_shaman/ss_2021_crimson/shadowshaman_crimson_shackle.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/status_fx/status_effect_shaman_shackle.vpcf"
+				"modifier"						"particles/econ/items/shadow_shaman/ss_2021_crimson/status_effect_shaman_shackle_net_2021_crimson.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_shaman/ss_2021_crimson/shadowshaman_2021_crimson_ambient.vpcf"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_shaman/ss_2021_crimson/shadowshaman_2021_crimson_ambient_mouth_drips.vpcf"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_shaman/ss_2021_crimson/shadowshaman_2021_crimson_ambient_eyes.vpcf"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_shaman/ss_2021_crimson/shadowshaman_2021_crimson_ambient_crystal.vpcf"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_shaman/ss_2021_crimson/shadowshaman_2021_crimson_hair.vpcf"
+			}
+			"asset_modifier7"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"fall20"
+			}
+			"asset_modifier8"
+			{
+				"type"							"ability_icon"
+				"asset"							"shadow_shaman_shackles"
+				"modifier"						"shadow_shaman/shadow_shaman_fall20_immortal/shadow_shaman_fall20_immortal_shackles_crimson"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"skin"								"1"
+		}
+	}
+}

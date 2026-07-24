@@ -1,0 +1,4422 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"2"
+	{
+		"name"									"Axe's Axe"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/axe/axe_weapon"
+		"item_description"						"#DOTA_Item_Desc_Axes_Default_Axe"
+		"item_name"								"#DOTA_Item_Axes_Axe"
+		"model_player"							"models/heroes/axe/axe_weapon.vmdl"
+	}
+	"3"
+	{
+		"name"									"Axe's Shoulder Guard"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/axe/axe_armor"
+		"item_description"						"#DOTA_Item_Desc_Axes_Shoulderpad"
+		"item_name"								"#DOTA_Item_Axes_Shoulder_Guard"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/heroes/axe/axe_armor.vmdl"
+	}
+	"4"
+	{
+		"name"									"Axe's Hair"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/axe/axe_ponytail"
+		"item_description"						"#DOTA_Item_Desc_Axes_Hair"
+		"item_name"								"#DOTA_Item_Axes_Hair"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/heroes/axe/axe_ponytail.vmdl"
+	}
+	"5"
+	{
+		"name"									"Axe's Belt"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/axe/axe_belt"
+		"item_description"						"#DOTA_Item_Desc_Axes_Belt"
+		"item_name"								"#DOTA_Item_Axes_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/heroes/axe/axe_belt.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/axe/ti9_jungle_axe/axe_ti9__undie.vmdl"
+			}
+		}
+	}
+	"726"
+	{
+		"name"									"Axe's Costume"
+		"prefab"								"default_item"
+		"creation_date"							"2020-09-24"
+		"image_inventory"						"econ/heroes/axe/dota_item_axe_costume"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Mars_Costume"
+		"item_name"								"#DOTA_Item_Axes_Costume"
+		"item_slot"								"costume"
+		"item_type_name"						"#DOTA_WearableType_Costume"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"4004"
+	{
+		"name"									"Blood Chaser"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/blood_chaser"
+		"item_description"						"#DOTA_Item_Desc_The_Blood_Chaser"
+		"item_name"								"#DOTA_Item_Blood_Chaser"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Chain_Weapon"
+		"model_player"							"models/items/axe/blood_chaser.vmdl"
+		"particle_folder"						"particles/econ/items/axe/axe_weapon_bloodchaser"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"tags"
+		{
+			"is_weapon"							"1"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_RUN"
+				"modifier"						"blood_chaser"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_CAST_ABILITY_3"
+				"modifier"						"blood_chaser"
+			}
+			"asset_modifier2"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Axe.CounterHelix"
+				"modifier"						"Hero_Axe.CounterHelix_Blood_Chaser"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_axe/axe_attack_blur_counterhelix.vpcf"
+				"modifier"						"particles/econ/items/axe/axe_weapon_bloodchaser/axe_attack_blur_counterhelix_bloodchaser.vpcf"
+			}
+			"asset_modifier4"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE"
+				"modifier"						"blood_chaser"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/axe/axe_weapon_bloodchaser/axe_drag_sparks.vpcf"
+				"system"						"particles/econ/items/axe/axe_weapon_bloodchaser/axe_drag_sparks.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"4008"
+	{
+		"name"									"Demon Blood Helm"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/demon_blood_helm"
+		"item_description"						"#DOTA_Item_Desc_Demon_Blood_Helm"
+		"item_name"								"#DOTA_Item_Demon_Blood_Helm"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/axe/demon_blood_helm.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4009"
+	{
+		"name"									"Demon Blood Armor"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/demon_blood_armor"
+		"item_description"						"#DOTA_Item_Desc_Demon_Blood_Armor"
+		"item_name"								"#DOTA_Wearable_Axe_Demon_Blood_Armor"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/axe/demon_blood_armor.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4010"
+	{
+		"name"									"Demon Blood Guard"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/demon_blood_belt"
+		"item_description"						"#DOTA_Item_Desc_Demon_Blood_Guard"
+		"item_name"								"#DOTA_Item_Demon_Blood_Guard"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/axe/demon_blood_belt.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/axe/ti9_jungle_axe/axe_ti9__undie.vmdl"
+			}
+		}
+	}
+	"4021"
+	{
+		"name"									"Berserker's Pauldron"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/berserkers_pauldron"
+		"item_description"						"#DOTA_Item_Desc_Berserkers_Pauldron"
+		"item_name"								"#DOTA_Wearable_Axe_Berserkers_Pauldron"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/axe/berserkers_pauldron.vmdl"
+	}
+	"4022"
+	{
+		"name"									"Berserker's Helm"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/berserkers_helm"
+		"item_description"						"#DOTA_Item_Desc_Berserkers_Helm"
+		"item_name"								"#DOTA_Wearable_Axe_Berserkers_Helm"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/axe/berserkers_helm.vmdl"
+	}
+	"4023"
+	{
+		"name"									"Berserker's Belt"
+		"prefab"								"wearable"
+		"capabilities"
+		{
+			"nameable"							"1"
+		}
+		"image_inventory"						"econ/items/axe/berserkers_belt"
+		"item_description"						"#DOTA_Item_Desc_Berserkers_Belt"
+		"item_name"								"#DOTA_Wearable_Axe_Berserkers_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/axe/berserkers_belt.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/axe/ti9_jungle_axe/axe_ti9__undie.vmdl"
+			}
+		}
+	}
+	"4043"
+	{
+		"name"									"Taunt: Come and Get It!"
+		"prefab"								"taunt"
+		"image_inventory"						"econ/taunts/DOTA_Item_Taunt_Come_and_Get_It"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Come_and_Get_It"
+		"item_name"								"#DOTA_Item_Taunt_Come_and_Get_It"
+		"item_rarity"							"rare"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"come_get_it"
+			}
+		}
+	}
+	"4133"
+	{
+		"name"									"Pillar of Strength"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/greek_weapon"
+		"item_description"						"#DOTA_Item_Desc_Pillar_of_Strength"
+		"item_name"								"#DOTA_Item_Pillar_of_Strength"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/axe/greek_weapon.vmdl"
+	}
+	"4134"
+	{
+		"name"									"Stone Loins"
+		"prefab"								"wearable"
+		"capabilities"
+		{
+			"nameable"							"1"
+		}
+		"image_inventory"						"econ/items/axe/greek_belt"
+		"item_description"						"#DOTA_Item_Desc_Stone_Loins"
+		"item_name"								"#DOTA_Item_Stone_Loins"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/axe/greek_belt.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/axe/ti9_jungle_axe/axe_ti9__undie.vmdl"
+			}
+		}
+	}
+	"4135"
+	{
+		"name"									"Stone Guard"
+		"prefab"								"wearable"
+		"capabilities"
+		{
+			"nameable"							"1"
+		}
+		"image_inventory"						"econ/items/axe/greek_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Stone_Guard"
+		"item_name"								"#DOTA_Item_Stone_Guard"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Shoulder_Guard"
+		"model_player"							"models/items/axe/greek_shoulder.vmdl"
+	}
+	"4136"
+	{
+		"name"									"Stone Helmet"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/greek_helmet"
+		"item_description"						"#DOTA_Item_Desc_Stone_Helmet"
+		"item_name"								"#DOTA_Item_Stone_Helmet"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/axe/greek_helmet.vmdl"
+	}
+	"4161"
+	{
+		"name"									"Executioner's Axe"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/axe_executioner"
+		"item_description"						"#DOTA_Item_Desc_Executioners_Axe"
+		"item_name"								"#DOTA_Item_Executioners_Axe"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/axe/axe_executioner.vmdl"
+	}
+	"4162"
+	{
+		"name"									"Executioner's Cape"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/armor_executioner"
+		"item_description"						"#DOTA_Item_Desc_Executioners_Cape"
+		"item_name"								"#DOTA_Item_Executioners_Cape"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/axe/armor_executioner.vmdl"
+	}
+	"4163"
+	{
+		"name"									"Executioner's Trophies"
+		"prefab"								"wearable"
+		"capabilities"
+		{
+			"nameable"							"1"
+		}
+		"image_inventory"						"econ/items/axe/belt_executioner"
+		"item_description"						"#DOTA_Item_Desc_Executioners_Trophies"
+		"item_name"								"#DOTA_Item_Executioners_Trophies"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Gruesome_Trophies"
+		"model_player"							"models/items/axe/belt_executioner.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/axe/ti9_jungle_axe/axe_ti9__undie.vmdl"
+			}
+		}
+	}
+	"4164"
+	{
+		"name"									"Executioner's Hood"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/hood_executioner"
+		"item_description"						"#DOTA_Item_Desc_Executioners_Hood"
+		"item_name"								"#DOTA_Item_Executioners_Hood"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hood"
+		"model_player"							"models/items/axe/hood_executioner.vmdl"
+	}
+	"4172"
+	{
+		"name"									"Forgemaster's Apron"
+		"prefab"								"wearable"
+		"capabilities"
+		{
+			"nameable"							"1"
+		}
+		"image_inventory"						"econ/items/axe/blacksmith_cape"
+		"item_description"						"#DOTA_Item_Desc_Blacksmiths_Apron"
+		"item_name"								"#DOTA_Item_Forgemasters_Apron"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Apron"
+		"model_player"							"models/items/axe/blacksmith_cape.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/axe/ti9_jungle_axe/axe_ti9__undie.vmdl"
+			}
+		}
+	}
+	"4173"
+	{
+		"name"									"Forgemaster's Armlet"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/blacksmith_bracer"
+		"item_description"						"#DOTA_Item_Desc_Blacksmiths_Armlet"
+		"item_name"								"#DOTA_Item_Forgemasters_Armlet"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armlet"
+		"model_player"							"models/items/axe/blacksmith_bracer.vmdl"
+	}
+	"4174"
+	{
+		"name"									"Forgemaster's Hammer"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/blacksmith_weapon"
+		"item_description"						"#DOTA_Item_Desc_Forgemasters_Hammer"
+		"item_name"								"#DOTA_Item_Forgemasters_Hammer"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Hammer"
+		"model_player"							"models/items/axe/blacksmith_weapon.vmdl"
+	}
+	"4175"
+	{
+		"name"									"Forgemaster's Mask"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/blacksmith_helmet"
+		"item_description"						"#DOTA_Item_Desc_Forgemasters_Mask"
+		"item_name"								"#DOTA_Item_Forgemasters_Mask"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/axe/blacksmith_helmet.vmdl"
+	}
+	"4205"
+	{
+		"name"									"Kingslayer Axe"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/weapon_heavy_cutter"
+		"item_description"						"#DOTA_Item_Desc_Kingslayer_Axe"
+		"item_name"								"#DOTA_Item_Kingslayer_Axe"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/axe/weapon_heavy_cutter.vmdl"
+	}
+	"4244"
+	{
+		"name"									"Edgebearer's Helm"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/axelmet"
+		"item_description"						"#DOTA_Item_Desc_Edgebearers_Helm"
+		"item_name"								"#DOTA_Item_Edgebearers_Helm"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/axe/axelmet.vmdl"
+	}
+	"4280"
+	{
+		"name"									"Sylnashar the Winged Axe"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/gross/gross"
+		"item_description"						"#DOTA_Item_Desc_Sylnashar_the_Winged_Axe"
+		"item_name"								"#DOTA_Item_Sylnashar_the_Winged_Axe"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/axe/gross/gross.vmdl"
+	}
+	"4283"
+	{
+		"name"									"Bloodmist Belt"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/bloodmist_belt"
+		"item_description"						"#DOTA_Item_Desc_Bloodmist_Belt"
+		"item_name"								"#DOTA_Item_Bloodmist_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/axe/bloodmist_belt.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/axe/ti9_jungle_axe/axe_ti9__undie.vmdl"
+			}
+		}
+	}
+	"4284"
+	{
+		"name"									"Bloodmist Helm"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/bloodmist_helmet"
+		"item_description"						"#DOTA_Item_Desc_Bloodmist_Helm"
+		"item_name"								"#DOTA_Item_Bloodmist_Helm"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/axe/bloodmist_helmet.vmdl"
+	}
+	"4285"
+	{
+		"name"									"Bloodmist Crescent Axe"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/bloodmist_weapon"
+		"item_description"						"#DOTA_Item_Desc_Bloodmist_Crescent_Axe"
+		"item_name"								"#DOTA_Item_Bloodmist_Crescent_Axe"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/axe/bloodmist_weapon.vmdl"
+	}
+	"4286"
+	{
+		"name"									"Bloodmist Pauldrons"
+		"prefab"								"wearable"
+		"capabilities"
+		{
+			"nameable"							"1"
+		}
+		"image_inventory"						"econ/items/axe/bloodmist_pauldrons"
+		"item_description"						"#DOTA_Item_Desc_Bloodmist_Pauldrons"
+		"item_name"								"#DOTA_Item_Bloodmist_Pauldrons"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/axe/bloodmist_pauldrons.vmdl"
+	}
+	"4312"
+	{
+		"name"									"Reaver"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/generic_reaver"
+		"item_description"						"#DOTA_Item_Desc_Reaver"
+		"item_name"								"#DOTA_Item_Reaver"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/axe/generic_reaver.vmdl"
+	}
+	"4319"
+	{
+		"name"									"Nightmare Blade"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/weapon_nightmare"
+		"item_description"						"#DOTA_Item_Desc_Nightmare_Blade"
+		"item_name"								"#DOTA_Item_Nightmare_Blade"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/axe/weapon_nightmare.vmdl"
+	}
+	"4347"
+	{
+		"name"									"Berserker's Witchslayer"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/berserkers_weapon"
+		"item_description"						"#DOTA_Item_Desc_Berserkers_Witchslayer"
+		"item_name"								"#DOTA_Item_Berserkers_Witchslayer"
+		"item_quality"							"genuine"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/axe/berserkers_weapon.vmdl"
+	}
+	"4364"
+	{
+		"name"									"Wyvernguard Edge"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/axe_dragonaxe"
+		"item_description"						"#DOTA_Item_Desc_Wyvernguard_Edge"
+		"item_name"								"#DOTA_Item_Wyvernguard_Edge"
+		"item_quality"							"genuine"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/axe/axe_dragonaxe.vmdl"
+		"particle_folder"						"particles/econ/items/axe/axe_weapon_wyvernguard_edge"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_axe/axe_attack_blur_counterhelix.vpcf"
+				"modifier"						"particles/econ/items/axe/axe_weapon_wyvernguard_edge/axe_attack_blur_counterhelix_wyvernguard_edge.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/axe/axe_weapon_wyvernguard_edge/axe_weapon_eyes_wyvernguard_edge.vpcf"
+				"system"						"particles/econ/items/axe/axe_weapon_wyvernguard_edge/axe_weapon_eyes_wyvernguard_edge.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_axe_head"
+					}
+				}
+			}
+		}
+	}
+	"4371"
+	{
+		"name"									"Corpsemaker"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/corpsemaker/corpsemaker"
+		"item_description"						"#DOTA_Item_Desc_Corpsemaker"
+		"item_name"								"#DOTA_Item_Corpsemaker"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/axe/corpsemaker/corpsemaker.vmdl"
+	}
+	"4372"
+	{
+		"name"									"Headhunter"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/axe_weapon_headhunter/axe_weapon_headhunter"
+		"item_description"						"#DOTA_Item_Desc_Headhunter"
+		"item_name"								"#DOTA_Item_Headhunter"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/axe/axe_weapon_headhunter/axe_weapon_headhunter.vmdl"
+	}
+	"4376"
+	{
+		"name"									"Saberhorn's Helm"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/axe_oryxset_helm/axe_oryxset_helm"
+		"item_description"						"#DOTA_Item_Desc_Saberhorns_Helm"
+		"item_name"								"#DOTA_Item_Saberhorns_Helm"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/axe/axe_oryxset_helm/axe_oryxset_helm.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4405"
+	{
+		"name"									"Saberhorn's Pauldron"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/axe_oryxset_armor/axe_oryxset_armor"
+		"item_description"						"#DOTA_Item_Desc_Saberhorns_Pauldron"
+		"item_name"								"#DOTA_Item_Saberhorns_Pauldron"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Pauldron"
+		"model_player"							"models/items/axe/axe_oryxset_armor/axe_oryxset_armor.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4406"
+	{
+		"name"									"Saberhorn's Belt"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/axe_oryxset_belt/axe_oryxset_belt"
+		"item_description"						"#DOTA_Item_Desc_Saberhorns_Belt"
+		"item_name"								"#DOTA_Item_Saberhorns_Belt"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/axe/axe_oryxset_belt/axe_oryxset_belt.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/axe/ti9_jungle_axe/axe_ti9__undie.vmdl"
+			}
+		}
+	}
+	"4407"
+	{
+		"name"									"Saberhorn's Heavy Chopper"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/axe_oryxset_weapon/axe_oryxset_weapon"
+		"item_description"						"#DOTA_Item_Desc_Saberhorns_Heavy_Chopper"
+		"item_name"								"#DOTA_Item_Saberhorns_Heavy_Chopper"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/axe/axe_oryxset_weapon/axe_oryxset_weapon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4432"
+	{
+		"name"									"Heavy Steel Axe"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/axe_weapon001/axe_weapon001"
+		"item_description"						"#DOTA_Item_Desc_Heavy_Steel_Axe"
+		"item_name"								"#DOTA_Item_Heavy_Steel_Axe"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/axe/axe_weapon001/axe_weapon001.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4488"
+	{
+		"name"									"Heavy Steel Shoulder"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/sup_arm/sup_arm"
+		"item_description"						"#DOTA_Item_Desc_Heavy_Steel_Shoulder"
+		"item_name"								"#DOTA_Item_Heavy_Steel_Shoulder"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Pauldron"
+		"model_player"							"models/items/axe/sup_arm/sup_arm.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4494"
+	{
+		"name"									"Heavy Steel Belt"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/axe_belt001/axe_belt001"
+		"item_description"						"#DOTA_Item_Desc_Heavy_Steel_Belt"
+		"item_name"								"#DOTA_Item_Heavy_Steel_Belt"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/axe/axe_belt001/axe_belt001.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/axe/ti9_jungle_axe/axe_ti9__undie.vmdl"
+			}
+		}
+	}
+	"4526"
+	{
+		"name"									"Proof of Courage"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/sup_tail/sup_tail"
+		"item_description"						"#DOTA_Item_Desc_Proof_of_Courage"
+		"item_name"								"#DOTA_Item_Proof_of_Courage"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/axe/sup_tail/sup_tail.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4528"
+	{
+		"name"									"Little Blink Dagger"
+		"prefab"								"wearable"
+		"capabilities"
+		{
+			"nameable"							"1"
+		}
+		"image_inventory"						"econ/items/axe/generic_blinkdag/generic_blinkdag"
+		"item_description"						"#DOTA_Item_Desc_Little_Blink_Dagger"
+		"item_name"								"#DOTA_Item_Little_Blink_Dagger"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Dagger"
+		"model_player"							"models/items/axe/generic_blinkdag/generic_blinkdag.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/axe/ti9_jungle_axe/axe_ti9__undie.vmdl"
+			}
+		}
+	}
+	"4558"
+	{
+		"name"									"Skullsplitter Axe"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/skullsplitter/skullsplitter"
+		"item_description"						"#DOTA_Item_Desc_Skullsplitter_Axe"
+		"item_name"								"#DOTA_Item_Skullsplitter_Axe"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/axe/skullsplitter/skullsplitter.vmdl"
+	}
+	"4633"
+	{
+		"name"									"Half Measure"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/halfmeasure/halfmeasure"
+		"item_description"						"#DOTA_Item_Desc_The_Half_Measure"
+		"item_name"								"#DOTA_Item_Half_Measure"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/axe/halfmeasure/halfmeasure.vmdl"
+	}
+	"4808"
+	{
+		"name"									"Ragestone Axe"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/redstone_axe/redstone_axe"
+		"item_description"						"#DOTA_Item_Desc_Ragestone_Axe"
+		"item_name"								"#DOTA_Item_Ragestone_Axe"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/axe/redstone_axe/redstone_axe.vmdl"
+	}
+	"4873"
+	{
+		"name"									"Vindicator"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/axe/vindicator"
+		"item_description"						"#DOTA_Item_Desc_The_Vindicator"
+		"item_name"								"#DOTA_Item_Vindicator"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/axe/vindicator.vmdl"
+	}
+	"5027"
+	{
+		"name"									"Axe of the Red Conqueror"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-10"
+		"image_inventory"						"econ/items/axe/axeweapon_conq/axeweapon_conq"
+		"item_description"						"#DOTA_Item_Desc_Axe_of_the_Red_Conqueror"
+		"item_name"								"#DOTA_Item_Axe_of_the_Red_Conqueror"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/axe/axeweapon_conq/axeweapon_conq.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5028"
+	{
+		"name"									"Helm of the Red Conqueror"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-10"
+		"image_inventory"						"econ/items/axe/axehelm_conq/axehelm_conq"
+		"item_description"						"#DOTA_Item_Desc_Helm_of_the_Red_Conqueror"
+		"item_name"								"#DOTA_Item_Helm_of_the_Red_Conqueror"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/axe/axehelm_conq/axehelm_conq.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5029"
+	{
+		"name"									"Pauldron of the Red Conqueror"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-10"
+		"image_inventory"						"econ/items/axe/axearmor_conq/axearmor_conq"
+		"item_description"						"#DOTA_Item_Desc_Pauldron_of_the_Red_Conqueror"
+		"item_name"								"#DOTA_Item_Pauldron_of_the_Red_Conqueror"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/axe/axearmor_conq/axearmor_conq.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5030"
+	{
+		"name"									"Tassets of the Red Conqueror"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-10"
+		"image_inventory"						"econ/items/axe/axebelt_conq/axebelt_conq"
+		"item_description"						"#DOTA_Item_Desc_Tassets_of_the_Red_Conqueror"
+		"item_name"								"#DOTA_Item_Tassets_of_the_Red_Conqueror"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/axe/axebelt_conq/axebelt_conq.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/axe/ti9_jungle_axe/axe_ti9__undie.vmdl"
+			}
+		}
+	}
+	"5106"
+	{
+		"name"									"Red Mist Reaper's Shawl"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-09"
+		"image_inventory"						"econ/items/axe/reaper_armor/reaper_armor"
+		"item_description"						"#DOTA_Item_Desc_Red_Mist_Reapers_Armor"
+		"item_name"								"#DOTA_Item_Red_Mist_Reapers_Shawl"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Shawl"
+		"model_player"							"models/items/axe/reaper_armor/reaper_armor.vmdl"
+	}
+	"5107"
+	{
+		"name"									"Red Mist Reaper's Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-09"
+		"image_inventory"						"econ/items/axe/reaper_belt/reaper_belt"
+		"item_description"						"#DOTA_Item_Desc_Red_Mist_Reapers_Belt"
+		"item_name"								"#DOTA_Item_Red_Mist_Reapers_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/axe/reaper_belt/reaper_belt.vmdl"
+	}
+	"5108"
+	{
+		"name"									"Red Mist Reaper's Mask"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-09"
+		"image_inventory"						"econ/items/axe/reaper_head/reaper_head"
+		"item_description"						"#DOTA_Item_Desc_Red_Mist_Reapers_Mask"
+		"item_name"								"#DOTA_Item_Red_Mist_Reapers_Mask"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/axe/reaper_head/reaper_head.vmdl"
+	}
+	"5109"
+	{
+		"name"									"Red Mist Reaper's Tattoos"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-09"
+		"image_inventory"						"econ/items/axe/reaper_misc/reaper_misc"
+		"item_description"						"#DOTA_Item_Desc_Red_Mist_Reapers_Tattoos"
+		"item_name"								"#DOTA_Item_Red_Mist_Reapers_Tattoos"
+		"item_rarity"							"uncommon"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Tattoos"
+		"model_player"							"models/items/axe/reaper_misc/reaper_misc.vmdl"
+	}
+	"5110"
+	{
+		"name"									"Red Mist Reaper's Scythe"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-09"
+		"image_inventory"						"econ/items/axe/reaper_scythe/reaper_scythe"
+		"item_description"						"#DOTA_Item_Desc_Red_Mist_Reapers_Scythe"
+		"item_name"								"#DOTA_Item_Red_Mist_Reapers_Scythe"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Scythe"
+		"model_player"							"models/items/axe/reaper_scythe/reaper_scythe.vmdl"
+	}
+	"5181"
+	{
+		"name"									"Corruptor"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international tag"
+				"value"							"2013"
+			}
+		}
+		"creation_date"							"2013-07-19"
+		"image_inventory"						"econ/items/axe/corruptor/corruptor"
+		"item_description"						"#DOTA_Item_Desc_Corruptor"
+		"item_name"								"#DOTA_Item_Corruptor"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/axe/corruptor/corruptor.vmdl"
+	}
+	"5472"
+	{
+		"name"									"Guard of the Red Mist"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-01"
+		"image_inventory"						"econ/items/axe/vanguard_armor/vanguard_armor"
+		"item_description"						"#DOTA_Item_Desc_Guard_of_the_Red_Mist"
+		"item_name"								"#DOTA_Item_Guard_of_the_Red_Mist"
+		"item_quality"							"genuine"
+		"item_rarity"							"mythical"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/axe/vanguard_armor/vanguard_armor.vmdl"
+		"particle_folder"						"particles/econ/items/axe/axe_vanguard_armor"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/ability_modifier_placeholder/vanguard_passive.vpcf"
+				"modifier"						"particles/econ/items/axe/axe_vanguard_armor/axe_vanguard_passive.vpcf"
+			}
+		}
+	}
+	"5675"
+	{
+		"name"									"Axe of Phractos"
+		"prefab"								"wearable"
+		"capabilities"
+		{
+			"nameable"							"1"
+		}
+		"creation_date"							"2013-11-15"
+		"image_inventory"						"econ/items/axe/axe_practos_weapon/axe_practos_weapon"
+		"item_description"						"#DOTA_Item_Desc_Axe_of_Phractos"
+		"item_name"								"#DOTA_Item_Axe_of_Phractos"
+		"item_quality"							"genuine"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/axe/axe_practos_weapon/axe_practos_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/axe/axe_weapon_practos"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_axe/axe_attack_blur_counterhelix.vpcf"
+				"modifier"						"particles/econ/items/axe/axe_weapon_practos/axe_attack_blur_counterhelix_practos.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/axe/axe_weapon_practos/axe_practos_ambient.vpcf"
+				"system"						"particles/econ/items/axe/axe_weapon_practos/axe_practos_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon"
+					}
+				}
+			}
+		}
+	}
+	"5819"
+	{
+		"name"									"Mountain Splitter"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-10"
+		"image_inventory"						"econ/items/axe/axe_antler"
+		"item_description"						"#DOTA_Item_Desc_Mountain_Splitter"
+		"item_name"								"#DOTA_Item_Mountain_Splitter"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/axe/axe_antler.vmdl"
+	}
+	"6395"
+	{
+		"name"									"Girdle of the Harbinger"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-21"
+		"image_inventory"						"econ/items/axe/harbingerwar_misc/harbingerwar_misc"
+		"item_name"								"#DOTA_Item_Girdle_of_the_Harbinger"
+		"item_rarity"							"uncommon"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Girdle"
+		"model_player"							"models/items/axe/harbingerwar_misc/harbingerwar_misc.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"6/10/2014"
+			"price"								"0"
+		}
+	}
+	"6396"
+	{
+		"name"									"Belt of the Harbinger"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-21"
+		"image_inventory"						"econ/items/axe/harbingerwar_belt/harbingerwar_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Harbinger"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/axe/harbingerwar_belt/harbingerwar_belt.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"6/10/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/axe/ti9_jungle_axe/axe_ti9__undie.vmdl"
+			}
+		}
+	}
+	"6397"
+	{
+		"name"									"Axe of the Harbinger"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-21"
+		"image_inventory"						"econ/items/axe/harbingerwar_weapon/harbingerwar_weapon"
+		"item_name"								"#DOTA_Item_Axe_of_the_Harbinger"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/axe/harbingerwar_weapon/harbingerwar_weapon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"6/10/2014"
+			"price"								"0"
+		}
+	}
+	"6398"
+	{
+		"name"									"Helm of the Harbinger"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-21"
+		"image_inventory"						"econ/items/axe/harbingerwar_head/harbingerwar_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Harbinger"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/axe/harbingerwar_head/harbingerwar_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"6/10/2014"
+			"price"								"0"
+		}
+	}
+	"6399"
+	{
+		"name"									"Pauldron of the Harbinger"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-21"
+		"image_inventory"						"econ/items/axe/harbingerwar_armor/harbingerwar_armor"
+		"item_name"								"#DOTA_Item_Pauldron_of_the_Harbinger"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Pauldron"
+		"model_player"							"models/items/axe/harbingerwar_armor/harbingerwar_armor.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"6/10/2014"
+			"price"								"0"
+		}
+	}
+	"6571"
+	{
+		"name"									"Red Guard"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-12"
+		"image_inventory"						"econ/items/axe/redguard_weapon/redguard_weapon"
+		"item_description"						"#DOTA_Item_Desc_Red_Guard"
+		"item_name"								"#DOTA_Item_Red_Guard"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/axe/redguard_weapon/redguard_weapon.vmdl"
+	}
+	"6605"
+	{
+		"name"									"Rampant Outrage"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2014"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"creation_date"							"2014-05-15"
+		"image_inventory"						"econ/items/axe/shout_mask/shout_mask"
+		"item_description"						"#DOTA_Item_Desc_Rampant_Outrage"
+		"item_name"								"#DOTA_Item_Rampant_Outrage"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/axe/shout_mask/shout_mask.vmdl"
+		"particle_folder"						"particles/econ/items/axe/axe_helm_shoutmask"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_axe/axe_beserkers_call_owner.vpcf"
+				"modifier"						"particles/econ/items/axe/axe_helm_shoutmask/axe_beserkers_call_owner_shoutmask.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Axe.BerserkersCall.Start"
+				"modifier"						"Hero_Axe.BerserkersCall.Item.Shoutmask"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/ability_modifier_placeholder/axe_beserkers_call_buff.vpcf"
+				"modifier"						"particles/econ/items/axe/axe_helm_shoutmask/axe_beserkers_call_buff_shout_mask.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"axe_berserkers_call"
+				"modifier"						"axe_berserkers_call_shoutmask"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/axe/axe_helm_shoutmask/axe_shout_mask_ambient.vpcf"
+				"system"						"particles/econ/items/axe/axe_helm_shoutmask/axe_shout_mask_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_mouth"
+					}
+				}
+			}
+		}
+	}
+	"6672"
+	{
+		"name"									"Berserker's Nethersteel Barbute"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-12"
+		"image_inventory"						"econ/items/axe/nethersteelbarbute_head/nethersteelbarbute_head"
+		"item_name"								"#DOTA_Item_Berserkers_Nethersteel_Barbute"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Barbute"
+		"model_player"							"models/items/axe/nethersteelbarbute_head/nethersteelbarbute_head.vmdl"
+	}
+	"6799"
+	{
+		"name"									"Guillotine"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-16"
+		"image_inventory"						"econ/items/axe/guillotine_weapon/guillotine_weapon"
+		"item_name"								"#DOTA_Item_Guillotine"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/axe/guillotine_weapon/guillotine_weapon.vmdl"
+	}
+	"6808"
+	{
+		"name"									"Red General's Soul Splitter"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-17"
+		"image_inventory"						"econ/items/axe/soulsplitter_weapon/soulsplitter_weapon"
+		"item_name"								"#DOTA_Item_Red_Generals_Soul_Splitter"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/axe/soulsplitter_weapon/soulsplitter_weapon.vmdl"
+	}
+	"7214"
+	{
+		"name"									"Molten Claw"
+		"prefab"								"wearable"
+		"creation_date"							"2014-12-04"
+		"image_inventory"						"econ/items/axe/molten_claw/molten_claw"
+		"item_description"						"#DOTA_Item_Desc_Molten_Claw"
+		"item_name"								"#DOTA_Item_Molten_Claw"
+		"item_quality"							"genuine"
+		"item_rarity"							"immortal"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/axe/molten_claw/molten_claw.vmdl"
+		"particle_folder"						"particles/econ/items/axe/axe_armor_molten_claw"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"inventory_icon"
+				"asset"							"blade_mail"
+				"modifier"						"blade_mail_axe_pw"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/axe/axe_armor_molten_claw/axe_molten_claw_ambient.vpcf"
+				"system"						"particles/econ/items/axe/axe_armor_molten_claw/axe_molten_claw_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"7401"
+	{
+		"name"									"Battleaxe of the Basilisk"
+		"prefab"								"wearable"
+		"creation_date"							"2014-12-16"
+		"image_inventory"						"econ/items/axe/dragon_axe/dragon_axe"
+		"item_name"								"#DOTA_Item_Battleaxe_of_the_Basilisk"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/axe/dragon_axe/dragon_axe.vmdl"
+		"particle_folder"						"particles/econ/items/axe/axe_weapon_dragon_axe"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/18/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/axe/axe_weapon_dragon_axe/axe_dragon_axe.vpcf"
+				"system"						"particles/econ/items/axe/axe_weapon_dragon_axe/axe_dragon_axe.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon"
+					}
+				}
+			}
+		}
+	}
+	"7760"
+	{
+		"name"									"Horns of the Wrathful Annihilator"
+		"prefab"								"wearable"
+		"creation_date"							"2016-11-21"
+		"image_inventory"						"econ/items/axe/essentials_of_the_blood_edge_misc/essentials_of_the_blood_edge_misc"
+		"item_name"								"#DOTA_Item_Horns_of_the_Wrathful_Annihilator"
+		"item_rarity"							"rare"
+		"item_slot"								"misc"
+		"model_player"							"models/items/axe/essentials_of_the_blood_edge_misc/essentials_of_the_blood_edge_misc.vmdl"
+	}
+	"7766"
+	{
+		"name"									"Belt of the Wrathful Annihilator"
+		"prefab"								"wearable"
+		"creation_date"							"2016-11-21"
+		"image_inventory"						"econ/items/axe/essentials_of_the_blood_edge_belt/essentials_of_the_blood_edge_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Wrathful_Annihilator"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/axe/essentials_of_the_blood_edge_belt/essentials_of_the_blood_edge_belt.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/axe/ti9_jungle_axe/axe_ti9__undie.vmdl"
+			}
+		}
+	}
+	"7767"
+	{
+		"name"									"Armor of the Wrathful Annihilator"
+		"prefab"								"wearable"
+		"creation_date"							"2016-11-21"
+		"image_inventory"						"econ/items/axe/essentials_of_the_blood_edge_armor/essentials_of_the_blood_edge_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Wrathful_Annihilator"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/axe/essentials_of_the_blood_edge_armor/essentials_of_the_blood_edge_armor.vmdl"
+	}
+	"7768"
+	{
+		"name"									"Hood of the Wrathful Annihilator"
+		"prefab"								"wearable"
+		"creation_date"							"2016-11-21"
+		"image_inventory"						"econ/items/axe/essentials_of_the_blood_edge_head/essentials_of_the_blood_edge_head"
+		"item_name"								"#DOTA_Item_Hood_of_the_Wrathful_Annihilator"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/axe/essentials_of_the_blood_edge_head/essentials_of_the_blood_edge_head.vmdl"
+	}
+	"7769"
+	{
+		"name"									"Axe of the Wrathful Annihilator"
+		"prefab"								"wearable"
+		"creation_date"							"2016-11-21"
+		"image_inventory"						"econ/items/axe/essentials_of_the_blood_edge_weapon/essentials_of_the_blood_edge_weapon"
+		"item_name"								"#DOTA_Item_Axe_of_the_Wrathful_Annihilator"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/axe/essentials_of_the_blood_edge_weapon/essentials_of_the_blood_edge_weapon.vmdl"
+	}
+	"7900"
+	{
+		"name"									"Pauldron of the Ram's Head"
+		"prefab"								"wearable"
+		"creation_date"							"2015-02-06"
+		"image_inventory"						"econ/items/axe/searing_annihilator_armor/searing_annihilator_armor"
+		"item_name"								"#DOTA_Item_Pauldron_of_the_Rams_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/axe/searing_annihilator_armor/searing_annihilator_armor.vmdl"
+	}
+	"7901"
+	{
+		"name"									"Belt of the Ram's Head"
+		"prefab"								"wearable"
+		"creation_date"							"2015-02-06"
+		"image_inventory"						"econ/items/axe/searing_annihilator_belt/searing_annihilator_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Rams_Head"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/axe/searing_annihilator_belt/searing_annihilator_belt.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/axe/ti9_jungle_axe/axe_ti9__undie.vmdl"
+			}
+		}
+	}
+	"7902"
+	{
+		"name"									"Mask of the Ram's Head"
+		"prefab"								"wearable"
+		"creation_date"							"2015-02-06"
+		"image_inventory"						"econ/items/axe/searing_annihilator_head/searing_annihilator_head"
+		"item_name"								"#DOTA_Item_Mask_of_the_Rams_Head"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/axe/searing_annihilator_head/searing_annihilator_head.vmdl"
+	}
+	"7903"
+	{
+		"name"									"Ram's Head Blade"
+		"prefab"								"wearable"
+		"creation_date"							"2015-02-06"
+		"image_inventory"						"econ/items/axe/searing_annihilator_weapon/searing_annihilator_weapon"
+		"item_name"								"#DOTA_Item_Rams_Head_Blade"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/axe/searing_annihilator_weapon/searing_annihilator_weapon.vmdl"
+	}
+	"7904"
+	{
+		"name"									"Arm Guard of the Ram's Head"
+		"prefab"								"wearable"
+		"creation_date"							"2015-02-06"
+		"image_inventory"						"econ/items/axe/searing_annihilator_arms/searing_annihilator_arms"
+		"item_name"								"#DOTA_Item_Arm_Guard_of_the_Rams_Head"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Arm_Guard"
+		"model_player"							"models/items/axe/searing_annihilator_arms/searing_annihilator_arms.vmdl"
+	}
+	"8316"
+	{
+		"name"									"Almond the Frondillo"
+		"prefab"								"wearable"
+		"capabilities"
+		{
+			"nameable"							"1"
+			"can_have_sockets"					"0"
+		}
+		"creation_date"							"2015-03-27"
+		"image_inventory"						"econ/pets/almond_the_frondillo/almond_the_frondillo"
+		"item_description"						"#DOTA_Item_Desc_Axe__Almond_the_Frondillo"
+		"item_name"								"#DOTA_Item_Almond_the_Frondillo"
+		"item_rarity"							"immortal"
+		"item_slot"								"summon"
+		"item_type_name"						"#DOTA_WearableType_Pet"
+		"particle_folder"						"particles/econ/items/pets/pet_frondillo"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1441065600"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"pet"
+				"asset"							"models/pets/armadillo/armadillo.vmdl"
+				"ingame_scale"					"1"
+				"loadout_scale"					"1"
+				"loadout_default_offset"		"0 100 0"
+				"loadout_hero_offsets"
+				{
+					"axe"						"-10 75 0"
+					"bristleback"				"-40 70 0"
+					"centaur"					"-10 75 0"
+					"earthshaker"				"-10 80 0"
+					"juggernaut"				"-10 60 0"
+					"legion_commander"			"-45 80 0"
+					"riki"						"0 75 0"
+					"slark"						"30 80 0"
+					"sven"						"-10 70 0"
+				}
+				"levelup_rule"					"compendiumlevel"
+				"compendium_event_id"			"8"
+				"style"							"0"
+				"skin"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"portrait_background_model"
+				"asset"							"models/heroes/pedestal/pedestal_1_large.vmdl"
+				"style"							"0"
+				"skin"							"0"
+			}
+			"asset_modifier2"
+			{
+				"type"							"pet"
+				"asset"							"models/pets/armadillo/armadillo.vmdl"
+				"ingame_scale"					"1"
+				"loadout_scale"					"1"
+				"loadout_default_offset"		"0 100 0"
+				"loadout_hero_offsets"
+				{
+					"axe"						"-10 75 0"
+					"bristleback"				"-40 70 0"
+					"centaur"					"-10 75 0"
+					"earthshaker"				"-10 80 0"
+					"juggernaut"				"-10 60 0"
+					"legion_commander"			"-45 80 0"
+					"riki"						"0 75 0"
+					"slark"						"30 80 0"
+					"sven"						"-10 70 0"
+				}
+				"levelup_rule"					"compendiumlevel"
+				"compendium_event_id"			"8"
+				"style"							"1"
+				"skin"							"1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"portrait_background_model"
+				"asset"							"models/heroes/pedestal/pedestal_1_large.vmdl"
+				"style"							"1"
+				"skin"							"1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"pet"
+				"asset"							"models/pets/armadillo/armadillo.vmdl"
+				"ingame_scale"					"1"
+				"loadout_scale"					"1"
+				"loadout_default_offset"		"0 100 0"
+				"loadout_hero_offsets"
+				{
+					"axe"						"-10 75 0"
+					"bristleback"				"-40 70 0"
+					"centaur"					"-10 75 0"
+					"earthshaker"				"-10 80 0"
+					"juggernaut"				"-10 60 0"
+					"legion_commander"			"-45 80 0"
+					"riki"						"0 75 0"
+					"slark"						"30 80 0"
+					"sven"						"-10 70 0"
+				}
+				"levelup_rule"					"compendiumlevel"
+				"compendium_event_id"			"8"
+				"style"							"2"
+				"skin"							"2"
+			}
+			"asset_modifier5"
+			{
+				"type"							"portrait_background_model"
+				"asset"							"models/heroes/pedestal/pedestal_1_large.vmdl"
+				"style"							"2"
+				"skin"							"2"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Item_Almond_the_Frondillo"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Item_Almond_the_Frondillo_Red_Upgrade"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"price"					"1"
+						"item_def"				"16585"
+					}
+				}
+				"2"
+				{
+					"name"						"#DOTA_Item_Almond_the_Frondillo_Golden_Upgrade"
+					"skin"						"2"
+					"alternate_icon"			"2"
+					"unlock"
+					{
+						"price"					"1"
+						"item_def"				"16542"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/pets/almond_the_frondillo/almond_the_frondillo"
+				}
+				"1"
+				{
+					"icon_path"					"econ/pets/almond_the_frondillo/almond_the_frondillo_red"
+				}
+				"2"
+				{
+					"icon_path"					"econ/pets/almond_the_frondillo/almond_the_frondillo_gold"
+				}
+			}
+			"skin"								"0"
+			"asset_modifier6"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/pets/pet_frondillo/almond_ambient_gold.vpcf"
+				"style"							"2"
+				"asset"							"npc_dota_companion"
+				"system"						"particles/econ/items/pets/pet_frondillo/almond_ambient_gold.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_almond_fx"
+					}
+				}
+			}
+		}
+	}
+	"8366"
+	{
+		"name"									"All Heroes' Default Pet"
+		"prefab"								"default_item"
+		"creation_date"							"2015-04-14"
+		"item_name"								"#DOTA_Wearable_All_Heroes_DefaultPet"
+		"item_slot"								"summon"
+		"item_type_name"						"#DOTA_WearableType_Base"
+		"image_inventory"						"econ/default_no_item"
+	}
+	"8382"
+	{
+		"name"									"Pauldrons of the Warboss"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-22"
+		"image_inventory"						"econ/items/axe/oglodi_big_boss_armor/oglodi_big_boss_armor"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Warboss"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/axe/oglodi_big_boss_armor/oglodi_big_boss_armor.vmdl"
+	}
+	"8384"
+	{
+		"name"									"Belt of the Warboss"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-22"
+		"image_inventory"						"econ/items/axe/oglodi_big_boss_belt/oglodi_big_boss_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Warboss"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/axe/oglodi_big_boss_belt/oglodi_big_boss_belt.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/axe/ti9_jungle_axe/axe_ti9__undie.vmdl"
+			}
+		}
+	}
+	"8386"
+	{
+		"name"									"Mask of the Warboss"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-22"
+		"image_inventory"						"econ/items/axe/oglodi_big_boss_head/oglodi_big_boss_head"
+		"item_name"								"#DOTA_Item_Mask_of_the_Warboss"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/axe/oglodi_big_boss_head/oglodi_big_boss_head.vmdl"
+	}
+	"8388"
+	{
+		"name"									"Bracers of the Warboss"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-22"
+		"image_inventory"						"econ/items/axe/oglodi_big_boss_misc/oglodi_big_boss_misc"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Warboss"
+		"item_rarity"							"uncommon"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/axe/oglodi_big_boss_misc/oglodi_big_boss_misc.vmdl"
+	}
+	"8389"
+	{
+		"name"									"Axe of the Warboss"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-22"
+		"image_inventory"						"econ/items/axe/oglodi_big_boss_weapon/oglodi_big_boss_weapon"
+		"item_name"								"#DOTA_Item_Axe_of_the_Warboss"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/axe/oglodi_big_boss_weapon/oglodi_big_boss_weapon.vmdl"
+	}
+	"8468"
+	{
+		"name"									"Mantle of the Cinder Baron"
+		"prefab"								"wearable"
+		"creation_date"							"2015-11-09"
+		"image_inventory"						"econ/items/axe/axe_mantle_of_the_cinder_baron/axe_mantle_of_the_cinder_baron"
+		"item_description"						"#DOTA_Item_Desc_Mantle_of_the_Cinder_Baron"
+		"item_name"								"#DOTA_Item_Mantle_of_the_Cinder_Baron"
+		"item_rarity"							"immortal"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/axe/axe_cape/axe_cape.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/axe/axe_cinder/axe_cinder_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/axe/axe_cinder/axe_cinder_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/axe/axe_cinder/axe_cinder_ambient_alt.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/axe/axe_cinder/axe_cinder_ambient_alt.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_axe/axe_battle_hunger.vpcf"
+				"modifier"						"particles/econ/items/axe/axe_cinder/axe_cinder_battle_hunger.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_axe/axe_battle_hunger_cast.vpcf"
+				"modifier"						"particles/econ/items/axe/axe_cinder/axe_cinder_battle_hunger_cast.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"axe_battle_hunger"
+				"modifier"						"axe/mantle_of_the_cinder_baron/axe_battle_hunger"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#Mantle_of_the_Cinder_Baron_Style0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#Mantle_of_the_Cinder_Baron_Style1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"price"					"1"
+						"item_def"				"16599"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/axe/axe_mantle_of_the_cinder_baron/axe_mantle_of_the_cinder_baron"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/axe/axe_mantle_of_the_cinder_baron_alt/axe_mantle_of_the_cinder_baron_alt"
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"8469"
+	{
+		"name"									"Supreme Pauldrons of the Warboss"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/axe/oglodi_big_boss_armor/oglodi_big_boss_armor1"
+		"item_name"								"#DOTA_Item_Supreme_Pauldrons_of_the_Warboss"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/axe/oglodi_big_boss_armor/oglodi_big_boss_armor.vmdl"
+		"visuals"
+		{
+			"skin"								"1"
+		}
+	}
+	"8470"
+	{
+		"name"									"Supreme Belt of the Warboss"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/axe/oglodi_big_boss_belt/oglodi_big_boss_belt1"
+		"item_name"								"#DOTA_Item_Supreme_Belt_of_the_Warboss"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/axe/oglodi_big_boss_belt/oglodi_big_boss_belt.vmdl"
+		"visuals"
+		{
+			"skin"								"1"
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/axe/ti9_jungle_axe/axe_ti9__undie.vmdl"
+			}
+		}
+	}
+	"8471"
+	{
+		"name"									"Supreme Mask of the Warboss"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/axe/oglodi_big_boss_head/oglodi_big_boss_head1"
+		"item_name"								"#DOTA_Item_Supreme_Mask_of_the_Warboss"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/axe/oglodi_big_boss_head/oglodi_big_boss_head.vmdl"
+		"visuals"
+		{
+			"skin"								"1"
+		}
+	}
+	"8472"
+	{
+		"name"									"Supreme Bracers of the Warboss"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/axe/oglodi_big_boss_misc/oglodi_big_boss_misc1"
+		"item_name"								"#DOTA_Item_Supreme_Bracers_of_the_Warboss"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/axe/oglodi_big_boss_misc/oglodi_big_boss_misc.vmdl"
+		"visuals"
+		{
+			"skin"								"1"
+		}
+	}
+	"8473"
+	{
+		"name"									"Supreme Axe of the Warboss"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/axe/oglodi_big_boss_weapon/oglodi_big_boss_weapon1"
+		"item_name"								"#DOTA_Item_Supreme_Axe_of_the_Warboss"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/axe/oglodi_big_boss_weapon/oglodi_big_boss_weapon.vmdl"
+		"visuals"
+		{
+			"skin"								"1"
+		}
+	}
+	"8653"
+	{
+		"name"									"Axe's Miscellaneous"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/axe/axe_misc"
+		"item_description"						"#DOTA_Item_Desc_Axes_Miscellaneous"
+		"item_name"								"#DOTA_Item_Axes_Miscellaneous"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Misc"
+	}
+	"8907"
+	{
+		"name"									"Bracers of the Shattered Vanguard"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-05"
+		"image_inventory"						"econ/items/axe/armor_of_the_wrought_legion_misc/armor_of_the_wrought_legion_misc"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Shattered_Vanguard"
+		"item_rarity"							"mythical"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Misc"
+		"model_player"							"models/items/axe/armor_of_the_wrought_legion_misc/armor_of_the_wrought_legion_misc.vmdl"
+	}
+	"8908"
+	{
+		"name"									"Belt of the Shattered Vanguard"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-05"
+		"image_inventory"						"econ/items/axe/armor_of_the_wrought_legion_belt/armor_of_the_wrought_legion_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Shattered_Vanguard"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/axe/armor_of_the_wrought_legion_belt/armor_of_the_wrought_legion_belt.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/axe/ti9_jungle_axe/axe_ti9__undie.vmdl"
+			}
+		}
+	}
+	"8909"
+	{
+		"name"									"Pauldrons of the Shattered Vanguard"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-05"
+		"image_inventory"						"econ/items/axe/armor_of_the_wrought_legion_armor/armor_of_the_wrought_legion_armor"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Shattered_Vanguard"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/axe/armor_of_the_wrought_legion_armor/armor_of_the_wrought_legion_armor.vmdl"
+	}
+	"8910"
+	{
+		"name"									"Helm of the Shattered Vanguard"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-05"
+		"image_inventory"						"econ/items/axe/armor_of_the_wrought_legion_head/armor_of_the_wrought_legion_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Shattered_Vanguard"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/axe/armor_of_the_wrought_legion_head/armor_of_the_wrought_legion_head.vmdl"
+	}
+	"9040"
+	{
+		"name"									"Axe of the Shattered Vanguard"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-05"
+		"image_inventory"						"econ/items/axe/armor_of_the_wrought_legion_weapon/armor_of_the_wrought_legion_weapon"
+		"item_name"								"#DOTA_Item_Axe_of_the_Shattered_Vanguard"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/axe/armor_of_the_wrought_legion_weapon/armor_of_the_wrought_legion_weapon.vmdl"
+	}
+	"9645"
+	{
+		"name"									"Prize of the Snowpack Savage"
+		"prefab"								"wearable"
+		"creation_date"							"2017-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/axe/glacial_terror_misc/glacial_terror_misc"
+		"item_name"								"#DOTA_Item_Prize_of_the_Snowpack_Savage"
+		"item_rarity"							"rare"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Misc"
+		"model_player"							"models/items/axe/glacial_terror_misc/glacial_terror_misc.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+	}
+	"9646"
+	{
+		"name"									"Beard of the Snowpack Savage"
+		"prefab"								"wearable"
+		"creation_date"							"2017-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/axe/glacial_terror_head/glacial_terror_head"
+		"item_name"								"#DOTA_Item_Beard_of_the_Snowpack_Savage"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/axe/glacial_terror_head/glacial_terror_head.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+	}
+	"9647"
+	{
+		"name"									"Belt of the Snowpack Savage"
+		"prefab"								"wearable"
+		"creation_date"							"2017-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/axe/glacial_terror_belt/glacial_terror_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Snowpack_Savage"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/axe/glacial_terror_belt/glacial_terror_belt.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/axe/ti9_jungle_axe/axe_ti9__undie.vmdl"
+			}
+		}
+	}
+	"9648"
+	{
+		"name"									"Axe of the Snowpack Savage"
+		"prefab"								"wearable"
+		"creation_date"							"2017-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/axe/glacial_terror_weapon/glacial_terror_weapon"
+		"item_name"								"#DOTA_Item_Axe_of_the_Snowpack_Savage"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/axe/glacial_terror_weapon/glacial_terror_weapon.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+	}
+	"9649"
+	{
+		"name"									"Armor of the Snowpack Savage"
+		"prefab"								"wearable"
+		"creation_date"							"2017-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/axe/glacial_terror_armor/glacial_terror_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Snowpack_Savage"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/axe/glacial_terror_armor/glacial_terror_armor.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+	}
+	"10022"
+	{
+		"name"									"Expired Treasure of the Red Mist"
+		"prefab"								"retired_treasure_chest"
+		"associated_item"						"15003"
+		"expiration_date"						"2014-06-01 00:00:00"
+		"image_inventory"						"econ/tools/treasure_chest_axe"
+		"item_description"						"#DOTA_Item_Desc_Treasure_Chest"
+		"item_name"								"#DOTA_Item_Expired_Treasure_of_the_Red_Mist"
+		"static_attributes"
+		{
+			"treasure loot list"
+			{
+				"attribute_class"				"treasure loot list"
+				"value"							"treasure_chest_5_hero_axe"
+			}
+		}
+		"tool"
+		{
+			"type"								"supply_crate"
+		}
+	}
+	"12301"
+	{
+		"name"									"Beard of the Enduring Conscript"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/axe/ti8_axe_violent_prisoner_of_war_head/ti8_axe_violent_prisoner_of_war_head"
+		"item_name"								"#DOTA_Item_Beard_of_the_Enduring_Conscript"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/axe/ti8_axe_violent_prisoner_of_war_head/ti8_axe_violent_prisoner_of_war_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"12302"
+	{
+		"name"									"Bracer of the Enduring Conscript"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/axe/ti8_axe_violent_prisoner_of_war_misc/ti8_axe_violent_prisoner_of_war_misc"
+		"item_name"								"#DOTA_Item_Bracer_of_the_Enduring_Conscript"
+		"item_rarity"							"mythical"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Misc"
+		"model_player"							"models/items/axe/ti8_axe_violent_prisoner_of_war_misc/ti8_axe_violent_prisoner_of_war_misc.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"12303"
+	{
+		"name"									"Belt of the Enduring Conscript"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/axe/ti8_axe_violent_prisoner_of_war_belt/ti8_axe_violent_prisoner_of_war_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Enduring_Conscript"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/axe/ti8_axe_violent_prisoner_of_war_belt/ti8_axe_violent_prisoner_of_war_belt.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"12304"
+	{
+		"name"									"Armor of the Enduring Conscript"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/axe/ti8_axe_violent_prisoner_of_war_armor/ti8_axe_violent_prisoner_of_war_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Enduring_Conscript"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/axe/ti8_axe_violent_prisoner_of_war_armor/ti8_axe_violent_prisoner_of_war_armor.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"12305"
+	{
+		"name"									"Axe of the Enduring Conscript"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/axe/ti8_axe_violent_prisoner_of_war_weapon/ti8_axe_violent_prisoner_of_war_weapon"
+		"item_name"								"#DOTA_Item_Axe_of_the_Enduring_Conscript"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/axe/ti8_axe_violent_prisoner_of_war_weapon/ti8_axe_violent_prisoner_of_war_weapon.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"12954"
+	{
+		"name"									"Crucible of Rile"
+		"prefab"								"wearable"
+		"creation_date"							"2019-03-28"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/axe/axe_ti9_immortal_head/axe_ti9_immortal_head"
+		"item_description"						"#DOTA_Item_Desc_Crucible_of_Rile"
+		"item_name"								"#DOTA_Item_Crucible_of_Rile"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/axe/axe_ti9_immortal_head/axe_ti9_immortal_head.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1598997600"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/axe/axe_ti9_immortal/axe_ti9_immortal_ambient.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_axe/axe_beserkers_call_owner.vpcf"
+				"modifier"						"particles/econ/items/axe/axe_ti9_immortal/axe_ti9_call.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/ability_modifier_placeholder/axe_beserkers_call_buff.vpcf"
+				"modifier"						"particles/econ/items/axe/axe_ti9_immortal/axe_ti9_call_buff.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"axe_berserkers_call"
+				"modifier"						"axe_berserkers_call_ti9"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"12964"
+	{
+		"name"									"Fists of Axe Unleashed"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-07"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/axe/ti9_jungle_axe/ti9_jungle_axe_weapon"
+		"item_description"						"#DOTA_Item_Desc_Fists_of_Axe_Unleashed"
+		"item_name"								"#DOTA_Item_Fists_of_Axe_Unleashed"
+		"item_rarity"							"immortal"
+		"model_player"							"models/development/invisiblebox.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+			"can_equip_as_ability_effects1"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_hero_axe"
+				"modifier"						"models/items/axe/ti9_jungle_axe/axe_bare.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"hero_scale"
+				"asset"							"npc_dota_hero_axe"
+				"ModelScale"					"1.030000"
+				"VersusScale"					"0.916700"
+				"LoadoutScale"					"0.978500"
+				"SpectatorLoadoutScale"			"0.875500"
+			}
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti9"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_axe/axe_culling_blade_kill.vpcf"
+				"modifier"						"particles/econ/items/axe/ti9_jungle_axe/ti9_jungle_axe_culling_blade_kill.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_axe/axe_attack_blur_counterhelix.vpcf"
+				"modifier"						"particles/econ/items/axe/ti9_jungle_axe/ti9_jungle_axe_attack_blur_counterhelix.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_axe/axe_cullingblade_sprint.vpcf"
+				"modifier"						"particles/econ/items/axe/ti9_jungle_axe/ti9_jungle_axe_culling_blade_sprint.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_axe/axe_cullingblade_sprint_creep.vpcf"
+				"modifier"						"particles/econ/items/axe/ti9_jungle_axe/ti9_jungle_axe_culling_blade_sprint_creep.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_axe/axe_culling_blade_boost.vpcf"
+				"modifier"						"particles/econ/items/axe/ti9_jungle_axe/ti9_jungle_axe_culling_blade_boost.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_axe/axe_loadout.vpcf"
+				"modifier"						"particles/econ/items/axe/ti9_jungle_axe/ti9_jungle_axe_loadout.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier9"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Axe.PreAttack"
+				"modifier"						"Hero_Axe.PreAttack.Jungle"
+				"style"							"0"
+			}
+			"asset_modifier10"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Axe.Attack"
+				"modifier"						"Hero_Axe.Attack.Jungle"
+				"style"							"0"
+			}
+			"asset_modifier11"
+			{
+				"type"							"response_criteria"
+				"asset"							"jungle_axe"
+			}
+			"asset_modifier12"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_axe/axe_culling_blade_hero_effect.vpcf"
+				"modifier"						"particles/econ/items/axe/ti9_jungle_axe/ti9_jungle_axe_culling_blade_hero_effect.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier13"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_axe/axe_cullingblade_sprint_axe.vpcf"
+				"modifier"						"particles/econ/items/axe/ti9_jungle_axe/ti9_jungle_axe_cullingblade_sprint_axe.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier14"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/axe/ti9_jungle_axe/ti9_jungle_axe_misc_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier15"
+			{
+				"type"							"icon_replacement_hero"
+				"asset"							"npc_dota_hero_axe"
+				"modifier"						"npc_dota_hero_axe_alt"
+				"force_display"					"1"
+				"style"							"0"
+			}
+			"asset_modifier16"
+			{
+				"type"							"ability_icon"
+				"asset"							"axe_counter_helix"
+				"modifier"						"axe_counter_helix_unleashed"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier17"
+			{
+				"type"							"ability_icon"
+				"asset"							"axe_culling_blade"
+				"modifier"						"axe_culling_blade_unleashed"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+		}
+	}
+	"12965"
+	{
+		"name"									"Torso of Axe Unleashed"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-07"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/axe/ti9_jungle_axe/ti9_jungle_axe_armor"
+		"item_description"						"#DOTA_Item_Desc_Torso_of_Axe_Unleashed"
+		"item_name"								"#DOTA_Item_Torso_of_Axe_Unleashed"
+		"item_rarity"							"immortal"
+		"item_slot"								"armor"
+		"model_player"							"models/development/invisiblebox.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/axe/ti9_jungle_axe/ti9_jungle_axe_armor_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"12966"
+	{
+		"name"									"Belt of Axe Unleashed"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-07"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/axe/ti9_jungle_axe/ti9_jungle_axe_belt"
+		"item_description"						"#DOTA_Item_Desc_Belt_of_Axe_Unleashed"
+		"item_name"								"#DOTA_Item_Belt_of_Axe_Unleashed"
+		"item_rarity"							"immortal"
+		"item_slot"								"belt"
+		"model_player"							"models/items/axe/ti9_jungle_axe/ti9_jungle_axe_belt.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/axe/ti9_jungle_axe/ti9_jungle_axe_belt_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"12968"
+	{
+		"name"									"Hair of Axe Unleashed"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-07"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/axe/ti9_jungle_axe/ti9_jungle_axe_hair"
+		"item_description"						"#DOTA_Item_Desc_Axes_Unleashed_Hair"
+		"item_name"								"#DOTA_Item_Hair_of_Axe_Unleashed"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"model_player"							"models/items/axe/ti9_jungle_axe/ti9_jungle_axe_hair.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/axe/ti9_jungle_axe/ti9_jungle_axe_head_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13543"
+	{
+		"name"									"Golden Crucible of Rile"
+		"prefab"								"wearable"
+		"creation_date"							"2019-08-01"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/axe/axe_ti9_immortal_head/axe_ti9_immortal_head1"
+		"item_description"						"#DOTA_Item_Desc_axe_ti9_immortal_head_gold"
+		"item_name"								"#DOTA_Item_Golden_Crucible_of_Rile"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/axe/axe_ti9_immortal_head/axe_ti9_immortal_head.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1598997600"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/axe/axe_ti9_immortal/axe_ti9_gold_immortal_ambient.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_axe/axe_beserkers_call_owner.vpcf"
+				"modifier"						"particles/econ/items/axe/axe_ti9_immortal/axe_ti9_gold_call.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/ability_modifier_placeholder/axe_beserkers_call_buff.vpcf"
+				"modifier"						"particles/econ/items/axe/axe_ti9_immortal/axe_ti9_call_buff.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"axe_berserkers_call"
+				"modifier"						"axe_berserkers_call_ti9_gold"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"skin"								"1"
+		}
+	}
+	"13872"
+	{
+		"name"									"Days of the Demon - Misc"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/axe/oni_of_the_red_mist_misc/oni_of_the_red_mist_misc"
+		"item_name"								"#DOTA_Item_Days_of_the_Demon__Misc"
+		"item_rarity"							"mythical"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_misc"
+		"model_player"							"models/items/axe/oni_of_the_red_mist_misc/oni_of_the_red_mist_misc.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"13927"
+	{
+		"name"									"Days of the Demon - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/axe/oni_of_the_red_mist_weapon/oni_of_the_red_mist_weapon"
+		"item_name"								"#DOTA_Item_Days_of_the_Demon__Weapon"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/axe/oni_of_the_red_mist_weapon/oni_of_the_red_mist_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/axe/axe_oni_of_the_red_mist/axe_oni_red_mist_weapon_ambient.vpcf"
+			}
+		}
+	}
+	"13928"
+	{
+		"name"									"Days of the Demon - Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/axe/oni_of_the_red_mist_armor/oni_of_the_red_mist_armor"
+		"item_name"								"#DOTA_Item_Days_of_the_Demon__Armor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/axe/oni_of_the_red_mist_armor/oni_of_the_red_mist_armor.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/axe/axe_oni_of_the_red_mist/axe_oni_red_mist_armor_ambient.vpcf"
+			}
+		}
+	}
+	"13929"
+	{
+		"name"									"Days of the Demon - Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/axe/oni_of_the_red_mist_belt/oni_of_the_red_mist_belt"
+		"item_name"								"#DOTA_Item_Days_of_the_Demon__Belt"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/axe/oni_of_the_red_mist_belt/oni_of_the_red_mist_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/axe/ti9_jungle_axe/axe_ti9__undie.vmdl"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"13930"
+	{
+		"name"									"Days of the Demon - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/axe/oni_of_the_red_mist_head/oni_of_the_red_mist_head"
+		"item_name"								"#DOTA_Item_Days_of_the_Demon__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/axe/oni_of_the_red_mist_head/oni_of_the_red_mist_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/axe/axe_oni_of_the_red_mist/axe_oni_red_mist_head_ambient.vpcf"
+			}
+		}
+	}
+	"14802"
+	{
+		"name"									"Axe Blackthorn Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"image_inventory"						"econ/items/axe/axe_blackthorn_belt/axe_blackthorn_belt"
+		"item_name"								"#DOTA_Item_Vote_Only_Axe_Blackthorn_Belt"
+		"item_slot"								"belt"
+		"model_player"							"models/items/axe/axe_blackthorn_belt/axe_blackthorn_belt.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/axe/ti9_jungle_axe/axe_ti9__undie.vmdl"
+			}
+		}
+		"workshop_accepted"						"0"
+	}
+	"14803"
+	{
+		"name"									"Axe Blackthorn Misc"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"image_inventory"						"econ/items/axe/axe_blackthorn_misc/axe_blackthorn_misc"
+		"item_name"								"#DOTA_Item_Vote_Only_Axe_Blackthorn_Misc"
+		"item_slot"								"misc"
+		"model_player"							"models/items/axe/axe_blackthorn_misc/axe_blackthorn_misc.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14804"
+	{
+		"name"									"Axe Blackthorn Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"image_inventory"						"econ/items/axe/axe_blackthorn_weapon/axe_blackthorn_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_Axe_Blackthorn_Weapon"
+		"model_player"							"models/items/axe/axe_blackthorn_weapon/axe_blackthorn_weapon.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14805"
+	{
+		"name"									"Axe Blackthorn Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"image_inventory"						"econ/items/axe/axe_blackthorn_armor/axe_blackthorn_armor"
+		"item_name"								"#DOTA_Item_Vote_Only_Axe_Blackthorn_Armor"
+		"item_slot"								"armor"
+		"model_player"							"models/items/axe/axe_blackthorn_armor/axe_blackthorn_armor.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14806"
+	{
+		"name"									"Axe Blackthorn Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"image_inventory"						"econ/items/axe/axe_blackthorn_head/axe_blackthorn_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Axe_Blackthorn_Head"
+		"item_slot"								"head"
+		"model_player"							"models/items/axe/axe_blackthorn_head/axe_blackthorn_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"17790"
+	{
+		"name"									"Axe's Diretide Shimmer Costume"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-24"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 18:00:00"
+		"image_inventory"						"econ/sets/dota_item_axes_spooky_bundle"
+		"item_name"								"#DOTA_Item_Axes_Diretide_Shimmer_Costume"
+		"item_rarity"							"seasonal"
+		"item_slot"								"costume"
+		"item_type_name"						"#DOTA_WearableType_Costume"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"model_skin"
+				"skin"							"1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/events/diretide_2020/hero_spooky_ambient/hero_spooky_ambient.vpcf"
+			}
+		}
+	}
+	"17795"
+	{
+		"name"									"Axe's Diretide Shimmer Axe"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-24"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 18:00:00"
+		"image_inventory"						"econ/heroes/axe/axe_weapon1"
+		"item_name"								"#DOTA_Item_Axes_Diretide_Shimmer_Axe"
+		"item_rarity"							"seasonal"
+		"model_player"							"models/heroes/axe/axe_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"17796"
+	{
+		"name"									"Axe's Diretide Shimmer Hair"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-24"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 18:00:00"
+		"image_inventory"						"econ/heroes/axe/axe_ponytail1"
+		"item_name"								"#DOTA_Item_Axes_Diretide_Shimmer_Hair"
+		"item_rarity"							"seasonal"
+		"item_slot"								"head"
+		"model_player"							"models/heroes/axe/axe_ponytail.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"17797"
+	{
+		"name"									"Axe's Diretide Shimmer Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-24"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 18:00:00"
+		"image_inventory"						"econ/heroes/axe/axe_armor1"
+		"item_name"								"#DOTA_Item_Axes_Diretide_Shimmer_Armor"
+		"item_rarity"							"seasonal"
+		"item_slot"								"armor"
+		"model_player"							"models/heroes/axe/axe_armor.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"17798"
+	{
+		"name"									"Axe's Diretide Shimmer Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-24"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 18:00:00"
+		"image_inventory"						"econ/heroes/axe/axe_belt1"
+		"item_name"								"#DOTA_Item_Axes_Diretide_Shimmer_Belt"
+		"item_rarity"							"seasonal"
+		"item_slot"								"belt"
+		"model_player"							"models/heroes/axe/axe_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/axe/ti9_jungle_axe/axe_ti9__undie.vmdl"
+			}
+		}
+	}
+	"18292"
+	{
+		"name"									"Undefeated General Bracers"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-25"
+		"image_inventory"						"econ/items/axe/undefeated_general_misc/undefeated_general_misc"
+		"item_name"								"#DOTA_Item_Undefeated_General_Bracers"
+		"item_rarity"							"rare"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_misc"
+		"model_player"							"models/items/axe/undefeated_general_misc/undefeated_general_misc.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"18293"
+	{
+		"name"									"Undefeated General Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-25"
+		"image_inventory"						"econ/items/axe/undefeated_general_belt/undefeated_general_belt"
+		"item_name"								"#DOTA_Item_Undefeated_General_Belt"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/axe/undefeated_general_belt/undefeated_general_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/axe/ti9_jungle_axe/axe_ti9__undie.vmdl"
+			}
+		}
+	}
+	"18294"
+	{
+		"name"									"Undefeated General Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-25"
+		"image_inventory"						"econ/items/axe/undefeated_general_armor/undefeated_general_armor"
+		"item_name"								"#DOTA_Item_Undefeated_General_Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/axe/undefeated_general_armor/undefeated_general_armor.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"18295"
+	{
+		"name"									"Undefeated General Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-25"
+		"image_inventory"						"econ/items/axe/undefeated_general_head/undefeated_general_head"
+		"item_name"								"#DOTA_Item_Undefeated_General_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/axe/undefeated_general_head/undefeated_general_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"18296"
+	{
+		"name"									"Undefeated General Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-25"
+		"image_inventory"						"econ/items/axe/undefeated_general_weapon/undefeated_general_weapon"
+		"item_name"								"#DOTA_Item_Undefeated_General_Weapon"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/axe/undefeated_general_weapon/undefeated_general_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"18545"
+	{
+		"name"									"Carnage of the Endless Hunt - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-03"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/axe/aghsbp_2021_axe_head/aghsbp_2021_axe_head"
+		"item_name"								"#DOTA_Item_Carnage_of_the_Endless_Hunt__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/axe/aghsbp_2021_axe_head/aghsbp_2021_axe_head.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"18546"
+	{
+		"name"									"Carnage of the Endless Hunt - Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-03"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/axe/aghsbp_2021_axe_belt/aghsbp_2021_axe_belt"
+		"item_name"								"#DOTA_Item_Carnage_of_the_Endless_Hunt__Belt"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/axe/aghsbp_2021_axe_belt/aghsbp_2021_axe_belt.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/axe/ti9_jungle_axe/axe_ti9__undie.vmdl"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"18547"
+	{
+		"name"									"Carnage of the Endless Hunt - Misc"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-03"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/axe/aghsbp_2021_axe_misc/aghsbp_2021_axe_misc"
+		"item_name"								"#DOTA_Item_Carnage_of_the_Endless_Hunt__Misc"
+		"item_rarity"							"mythical"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_misc"
+		"model_player"							"models/items/axe/aghsbp_2021_axe_misc/aghsbp_2021_axe_misc.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"18548"
+	{
+		"name"									"Carnage of the Endless Hunt - Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-03"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/axe/aghsbp_2021_axe_shoulder/aghsbp_2021_axe_shoulder"
+		"item_name"								"#DOTA_Item_Carnage_of_the_Endless_Hunt__Armor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/axe/aghsbp_2021_axe_shoulder/aghsbp_2021_axe_shoulder.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"18549"
+	{
+		"name"									"Carnage of the Endless Hunt - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-03"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/axe/aghsbp_2021_axe_weapon/aghsbp_2021_axe_weapon"
+		"item_name"								"#DOTA_Item_Carnage_of_the_Endless_Hunt__Weapon"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/axe/aghsbp_2021_axe_weapon/aghsbp_2021_axe_weapon.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"18550"
+	{
+		"name"									"Carnage of the Endless Hunt - Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-03"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/axe/aghsbp_2021_axe_shoulders_v2/aghsbp_2021_axe_shoulders_v2"
+		"item_name"								"#DOTA_Item_Carnage_of_the_Endless_Hunt__Shoulders"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/axe/aghsbp_2021_axe_shoulders_v2/aghsbp_2021_axe_shoulders_v2.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"20002"
+	{
+		"name"									"Forged in Demons' Blood Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Demon Blood Helm"					"1"
+			"Demon Blood Armor"					"1"
+			"Demon Blood Guard"					"1"
+			"Blood Chaser"						"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Forged_in_Demons_Blood_Set"
+		"item_description"						"#DOTA_Bundle_Desc_Axe_Demon_Blood"
+		"item_name"								"#DOTA_Item_Forged_in_Demons_Blood_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Mythical"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20003"
+	{
+		"name"									"The Defiant Axe Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Pillar of Strength"				"1"
+			"Stone Loins"						"1"
+			"Stone Guard"						"1"
+			"Stone Helmet"						"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_The_Defiant_Axe_Set"
+		"item_description"						"#DOTA_Bundle_Desc_Axe_Defiant"
+		"item_name"								"#DOTA_Item_The_Defiant_Axe_Set"
+		"item_rarity"							"uncommon"
+	}
+	"20012"
+	{
+		"name"									"The Berserker's Blood Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Berserker's Pauldron"				"1"
+			"Berserker's Helm"					"1"
+			"Berserker's Belt"					"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_The_Berserkers_Blood_Set"
+		"item_description"						"#DOTA_Bundle_Desc_Axe_Berserker"
+		"item_name"								"#DOTA_Item_The_Berserkers_Blood_Set"
+	}
+	"20013"
+	{
+		"name"									"The Forgemaster's Tools Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Forgemaster's Apron"				"1"
+			"Forgemaster's Armlet"				"1"
+			"Forgemaster's Mask"				"1"
+			"Forgemaster's Hammer"				"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_The_Forgemasters_Tools_Set"
+		"item_description"						"#DOTA_Bundle_Desc_Axe_Forgemaster"
+		"item_name"								"#DOTA_Item_The_Forgemasters_Tools_Set"
+		"item_rarity"							"uncommon"
+	}
+	"20014"
+	{
+		"name"									"The Axecutioner Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Executioner's Axe"					"1"
+			"Executioner's Cape"				"1"
+			"Executioner's Trophies"			"1"
+			"Executioner's Hood"				"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_The_Axecutioner_Set"
+		"item_description"						"#DOTA_Bundle_Desc_Axe_Axecutioner"
+		"item_name"								"#DOTA_Item_The_Axecutioner_Set"
+		"item_rarity"							"rare"
+	}
+	"20034"
+	{
+		"name"									"Bloodmist Armor Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bloodmist Helm"					"1"
+			"Bloodmist Belt"					"1"
+			"Bloodmist Pauldrons"				"1"
+			"Bloodmist Crescent Axe"			"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Bloodmist_Armor_Set"
+		"item_description"						"#DOTA_Bundle_Desc_Axe_Blood_Mist"
+		"item_name"								"#DOTA_Item_Bloodmist_Armor_Set"
+	}
+	"20051"
+	{
+		"name"									"Saberhorn's Armor Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Saberhorn's Helm"					"1"
+			"Saberhorn's Pauldron"				"1"
+			"Saberhorn's Belt"					"1"
+			"Saberhorn's Heavy Chopper"			"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Saberhorns_Armor_Set"
+		"item_description"						"#DOTA_Item_Desc_Armor_of_the_Saberhorn_Set"
+		"item_name"								"#DOTA_Item_Saberhorns_Armor_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20052"
+	{
+		"name"									"Heavy Steel Armor Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Heavy Steel Shoulder"				"1"
+			"Heavy Steel Belt"					"1"
+			"Heavy Steel Axe"					"1"
+			"Proof of Courage"					"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Heavy_Steel_Armor_Set"
+		"item_description"						"#DOTA_Item_Desc_Heavy_Steel_Armor_Set"
+		"item_name"								"#DOTA_Item_Heavy_Steel_Armor_Set"
+		"item_rarity"							"uncommon"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Uncommon"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"249"
+		}
+	}
+	"20187"
+	{
+		"name"									"The Red Conqueror Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Axe of the Red Conqueror"			"1"
+			"Helm of the Red Conqueror"			"1"
+			"Pauldron of the Red Conqueror"		"1"
+			"Tassets of the Red Conqueror"		"1"
+		}
+		"creation_date"							"2013-06-10"
+		"image_inventory"						"econ/sets/DOTA_Item_The_Red_Conqueror_Set"
+		"item_description"						"#DOTA_Item_Desc_The_Red_Conqueror_Set"
+		"item_name"								"#DOTA_Item_The_Red_Conqueror_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"6/10/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20200"
+	{
+		"name"									"Red Mist Reaper Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Red Mist Reaper's Belt"			"1"
+			"Red Mist Reaper's Mask"			"1"
+			"Red Mist Reaper's Scythe"			"1"
+			"Red Mist Reaper's Tattoos"			"1"
+			"Red Mist Reaper's Shawl"			"1"
+		}
+		"creation_date"							"2013-07-09"
+		"image_inventory"						"econ/sets/DOTA_Item_Red_Mist_Reaper_Set"
+		"item_description"						"#DOTA_Item_Desc_Red_Mist_Reaper_Set"
+		"item_name"								"#DOTA_Item_Red_Mist_Reaper_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"7/9/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20489"
+	{
+		"name"									"Harbinger of War"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Axe of the Harbinger"				"1"
+			"Belt of the Harbinger"				"1"
+			"Helm of the Harbinger"				"1"
+			"Girdle of the Harbinger"			"1"
+			"Pauldron of the Harbinger"			"1"
+			"Harbinger of War Loading Screen"	"1"
+		}
+		"creation_date"							"2014-04-23"
+		"image_inventory"						"econ/sets/DOTA_Item_Harbinger_of_War"
+		"item_description"						"#DOTA_Item_Desc_Harbinger_of_War"
+		"item_name"								"#DOTA_Item_Harbinger_of_War"
+		"item_rarity"							"rare"
+	}
+	"20742"
+	{
+		"name"									"The Ram's Head Armaments"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"The Ram's Head Armaments Loading Screen""1"
+			"Arm Guard of the Ram's Head"		"1"
+			"Ram's Head Blade"					"1"
+			"Mask of the Ram's Head"			"1"
+			"Belt of the Ram's Head"			"1"
+			"Pauldron of the Ram's Head"		"1"
+		}
+		"creation_date"							"2015-02-11"
+		"image_inventory"						"econ/loading_screens/searing_annihilator_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_The_Rams_Head_Armaments"
+		"item_name"								"#DOTA_Item_The_Rams_Head_Armaments"
+		"item_rarity"							"rare"
+	}
+	"20998"
+	{
+		"name"									"Wrathful Annihilator"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Axe of the Wrathful Annihilator"	"1"
+			"Horns of the Wrathful Annihilator"	"1"
+			"Wrathful Annihilator Loading Screen""1"
+			"Hood of the Wrathful Annihilator"	"1"
+			"Belt of the Wrathful Annihilator"	"1"
+			"Armor of the Wrathful Annihilator"	"1"
+		}
+		"creation_date"							"2016-11-21"
+		"image_inventory"						"econ/loading_screens/essentials_of_the_blood_edge_loading_screen_of_the_cursed_blood_edge"
+		"item_description"						"#DOTA_Item_Desc_Wrathful_Annihilator"
+		"item_name"								"#DOTA_Item_Wrathful_Annihilator"
+		"item_rarity"							"rare"
+		"purchase_requirement_prompt_ok_event"	"DOTAShowItemDefPage( 17149 )"
+		"purchase_requirement_prompt_ok_text"	"#DOTA_CacheTreasure_MissingCompendiumOK"
+		"purchase_requirement_prompt_text"		"#DOTA_CacheTreasure_MissingCompendium_Fall2016"
+	}
+	"21022"
+	{
+		"name"									"Black Orc Warboss"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Black Orc Warboss Loading Screen"	"1"
+			"Axe of the Warboss"				"1"
+			"Bracers of the Warboss"			"1"
+			"Mask of the Warboss"				"1"
+			"Belt of the Warboss"				"1"
+			"Pauldrons of the Warboss"			"1"
+		}
+		"creation_date"							"2016-08-22"
+		"image_inventory"						"econ/loading_screens/oglodi_big_boss_oglodi_big_boss_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Black_Orc_Warboss"
+		"item_name"								"#DOTA_Item_Black_Orc_Warboss"
+		"item_rarity"							"uncommon"
+	}
+	"21035"
+	{
+		"name"									"Supreme Black Orc Warboss"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Supreme Pauldrons of the Warboss"	"1"
+			"Supreme Belt of the Warboss"		"1"
+			"Supreme Mask of the Warboss"		"1"
+			"Supreme Bracers of the Warboss"	"1"
+			"Supreme Axe of the Warboss"		"1"
+			"Black Orc Warboss Loading Screen"	"1"
+		}
+		"creation_date"							"2016-09-01"
+		"image_inventory"						"econ/loading_screens/oglodi_big_boss_oglodi_big_boss_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Supreme_Black_Orc_Warboss"
+		"item_name"								"#DOTA_Item_Supreme_Black_Orc_Warboss"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+	}
+	"21096"
+	{
+		"name"									"Armor of the Shattered Vanguard"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armor of the Shattered Vanguard Loading Screen""1"
+			"Axe of the Shattered Vanguard"		"1"
+			"Helm of the Shattered Vanguard"	"1"
+			"Belt of the Shattered Vanguard"	"1"
+			"Bracers of the Shattered Vanguard"	"1"
+			"Pauldrons of the Shattered Vanguard""1"
+		}
+		"creation_date"							"2017-01-11"
+		"image_inventory"						"econ/loading_screens/armor_of_the_wrought_legion_armor_of_the_wrought_legion"
+		"item_description"						"#DOTA_Item_Desc_Armor_of_the_Shattered_Vanguard"
+		"item_name"								"#DOTA_Item_Armor_of_the_Shattered_Vanguard"
+		"item_rarity"							"mythical"
+	}
+	"21175"
+	{
+		"name"									"Snowpack Savage"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of the Snowpack Savage""1"
+			"Armor of the Snowpack Savage"		"1"
+			"Axe of the Snowpack Savage"		"1"
+			"Belt of the Snowpack Savage"		"1"
+			"Beard of the Snowpack Savage"		"1"
+			"Prize of the Snowpack Savage"		"1"
+		}
+		"creation_date"							"2017-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/sets/DOTA_Item_Frostivus_Axe_Glacial_Terror"
+		"item_name"								"#DOTA_Item_Snowpack_Savage"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+	}
+	"21232"
+	{
+		"name"									"Shackles of the Enduring Conscript"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Axe of the Enduring Conscript"		"1"
+			"Armor of the Enduring Conscript"	"1"
+			"Belt of the Enduring Conscript"	"1"
+			"Bracer of the Enduring Conscript"	"1"
+			"Beard of the Enduring Conscript"	"1"
+			"Shackles of the Enduring Conscript Loading Screen""1"
+		}
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/loading_screens/ti8_axe_violent_prisoner_of_war_ls"
+		"item_description"						"#DOTA_Item_Desc_Shackles_of_the_Enduring_Conscript"
+		"item_name"								"#DOTA_Item_Shackles_of_the_Enduring_Conscript"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21325"
+	{
+		"name"									"Axe Unleashed"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Hair of Axe Unleashed"				"1"
+			"Belt of Axe Unleashed"				"1"
+			"Torso of Axe Unleashed"			"1"
+			"Fists of Axe Unleashed"			"1"
+		}
+		"creation_date"							"2019-05-07"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/sets/DOTA_Item_TI9_Jungle_Axe_Set"
+		"item_description"						"#DOTA_Item_Desc_Axe_Unleashed"
+		"item_name"								"#DOTA_Item_Axe_Unleashed"
+		"item_rarity"							"immortal"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21466"
+	{
+		"name"									"Days of the Demon"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Days of the Demon - Head"			"1"
+			"Days of the Demon - Belt"			"1"
+			"Days of the Demon - Armor"			"1"
+			"Days of the Demon - Weapon"		"1"
+			"Days of the Demon - Misc"			"1"
+		}
+		"creation_date"							"2021-09-01"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/sets/DOTA_Item_Days_of_the_Demon_Bundle"
+		"item_name"								"#DOTA_Item_Days_of_the_Demon"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21597"
+	{
+		"name"									"Axe Blackthorn"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Axe Blackthorn Head"				"1"
+			"Axe Blackthorn Armor"				"1"
+			"Axe Blackthorn Weapon"				"1"
+			"Axe Blackthorn Misc"				"1"
+			"Axe Blackthorn Belt"				"1"
+			"Axe Blackthorn Loadingscreen"		"1"
+		}
+		"creation_date"							"2020-05-17"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Axe_Blackthorn"
+		"workshop_accepted"						"0"
+	}
+	"21694"
+	{
+		"name"									"Axe's Diretide Shimmer Bundle"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Axe's Diretide Shimmer Costume"	"1"
+			"Axe's Diretide Shimmer Axe"		"1"
+			"Axe's Diretide Shimmer Hair"		"1"
+			"Axe's Diretide Shimmer Armor"		"1"
+			"Axe's Diretide Shimmer Belt"		"1"
+		}
+		"creation_date"							"2020-09-24"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 18:00:00"
+		"image_inventory"						"econ/sets/DOTA_Item_Axes_Spooky_Bundle"
+		"item_name"								"#DOTA_Item_Axes_Diretide_Shimmer_Bundle"
+		"item_rarity"							"seasonal"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"21787"
+	{
+		"name"									"Undefeated General"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Undefeated General Weapon"			"1"
+			"Undefeated General Head"			"1"
+			"Undefeated General Armor"			"1"
+			"Undefeated General Belt"			"1"
+			"Undefeated General Bracers"		"1"
+		}
+		"creation_date"							"2020-09-25"
+		"image_inventory"						"econ/sets/DOTA_Item_Undefeated_General"
+		"item_name"								"#DOTA_Item_Undefeated_General"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"15000"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"22214"
+	{
+		"name"									"Lineage The Ram's Head Armaments"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Lineage Ram's Head Blade"			"1"
+			"Lineage Pauldron of the Ram's Head""1"
+			"Lineage Mask of the Ram's Head"	"1"
+			"Lineage Belt of the Ram's Head"	"1"
+			"Lineage Arm Guard of the Ram's Head""1"
+		}
+		"creation_date"							"2021-09-28"
+		"event_id"								"EVENT_ID_TEAM_FANDOM"
+		"image_inventory"						"econ/sets/DOTA_Item_TI10_Legacy_The_Rams_Head_Armaments"
+		"item_description"						"#DOTA_Item_Desc_Lineage_The_Rams_Head_Armaments"
+		"item_name"								"#DOTA_Item_Lineage_The_Rams_Head_Armaments"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1637229600"
+			}
+		}
+	}
+	"22215"
+	{
+		"name"									"Lineage Pauldron of the Ram's Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-28"
+		"event_id"								"EVENT_ID_TEAM_FANDOM"
+		"image_inventory"						"econ/items/axe/searing_annihilator_armor/searing_annihilator_armor1"
+		"item_description"						"#DOTA_Item_Desc_Lineage_Pauldron_of_the_Rams_Head"
+		"item_name"								"#DOTA_Item_Lineage_Pauldron_of_the_Rams_Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/axe/searing_annihilator_armor/searing_annihilator_armor.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1637229600"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"22216"
+	{
+		"name"									"Lineage Belt of the Ram's Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-28"
+		"event_id"								"EVENT_ID_TEAM_FANDOM"
+		"image_inventory"						"econ/items/axe/searing_annihilator_belt/searing_annihilator_belt1"
+		"item_description"						"#DOTA_Item_Desc_Lineage_Belt_of_the_Rams_Head"
+		"item_name"								"#DOTA_Item_Lineage_Belt_of_the_Rams_Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/axe/searing_annihilator_belt/searing_annihilator_belt.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1637229600"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/axe/ti9_jungle_axe/axe_ti9__undie.vmdl"
+			}
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"22217"
+	{
+		"name"									"Lineage Mask of the Ram's Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-28"
+		"event_id"								"EVENT_ID_TEAM_FANDOM"
+		"image_inventory"						"econ/items/axe/searing_annihilator_head/searing_annihilator_head1"
+		"item_description"						"#DOTA_Item_Desc_Lineage_Mask_of_the_Rams_Head"
+		"item_name"								"#DOTA_Item_Lineage_Mask_of_the_Rams_Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/axe/searing_annihilator_head/searing_annihilator_head.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1637229600"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"22218"
+	{
+		"name"									"Lineage Ram's Head Blade"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-28"
+		"event_id"								"EVENT_ID_TEAM_FANDOM"
+		"image_inventory"						"econ/items/axe/searing_annihilator_weapon/searing_annihilator_weapon1"
+		"item_description"						"#DOTA_Item_Desc_Lineage_Rams_Head_Blade"
+		"item_name"								"#DOTA_Item_Lineage_Rams_Head_Blade"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/axe/searing_annihilator_weapon/searing_annihilator_weapon.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1637229600"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"22219"
+	{
+		"name"									"Lineage Arm Guard of the Ram's Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-28"
+		"event_id"								"EVENT_ID_TEAM_FANDOM"
+		"image_inventory"						"econ/items/axe/searing_annihilator_arms/searing_annihilator_arms1"
+		"item_description"						"#DOTA_Item_Desc_Lineage_Arm_Guard_of_the_Rams_Head"
+		"item_name"								"#DOTA_Item_Lineage_Arm_Guard_of_the_Rams_Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Arm_Guard"
+		"model_player"							"models/items/axe/searing_annihilator_arms/searing_annihilator_arms.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1637229600"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"22278"
+	{
+		"name"									"Carnage of the Endless Hunt"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Carnage of the Endless Hunt - Head""1"
+			"Carnage of the Endless Hunt - Belt""1"
+			"Carnage of the Endless Hunt - Weapon""1"
+			"Carnage of the Endless Hunt - Shoulders""1"
+		}
+		"creation_date"							"2021-11-04"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/sets/DOTA_Item_Aghs_BP_Glass_Basilisk_Hunter"
+		"item_name"								"#DOTA_Item_Carnage_of_the_Endless_Hunt"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"22731"
+	{
+		"name"									"Snowblind Survival - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-19"
+		"image_inventory"						"econ/items/axe/barbarian_of_the_outlands_weapon/barbarian_of_the_outlands_weapon"
+		"item_name"								"#DOTA_Item_Snowblind_Survival__Weapon"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/axe/barbarian_of_the_outlands_weapon/barbarian_of_the_outlands_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"22732"
+	{
+		"name"									"Snowblind Survival - Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-19"
+		"image_inventory"						"econ/items/axe/barbarian_of_the_outlands_armor/barbarian_of_the_outlands_armor"
+		"item_name"								"#DOTA_Item_Snowblind_Survival__Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/axe/barbarian_of_the_outlands_armor/barbarian_of_the_outlands_armor.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"22733"
+	{
+		"name"									"Snowblind Survival - Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-19"
+		"image_inventory"						"econ/items/axe/barbarian_of_the_outlands_belt/barbarian_of_the_outlands_belt"
+		"item_name"								"#DOTA_Item_Snowblind_Survival__Belt"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/axe/barbarian_of_the_outlands_belt/barbarian_of_the_outlands_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/axe/ti9_jungle_axe/axe_ti9__undie.vmdl"
+			}
+		}
+	}
+	"22735"
+	{
+		"name"									"Snowblind Survival - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-19"
+		"image_inventory"						"econ/items/axe/barbarian_of_the_outlands_head/barbarian_of_the_outlands_head"
+		"item_name"								"#DOTA_Item_Snowblind_Survival__Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/axe/barbarian_of_the_outlands_head/barbarian_of_the_outlands_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"22736"
+	{
+		"name"									"Snowblind Survival - Pelt"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-19"
+		"image_inventory"						"econ/items/axe/barbarian_of_the_outlands_misc/barbarian_of_the_outlands_misc"
+		"item_name"								"#DOTA_Item_Snowblind_Survival__Pelt"
+		"item_rarity"							"rare"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_misc"
+		"model_player"							"models/items/axe/barbarian_of_the_outlands_misc/barbarian_of_the_outlands_misc.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"22764"
+	{
+		"name"									"Snowblind Survival"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Snowblind Survival - Head"			"1"
+			"Snowblind Survival - Pelt"			"1"
+			"Snowblind Survival Loading Screen"	"1"
+			"Snowblind Survival - Belt"			"1"
+			"Snowblind Survival - Armor"		"1"
+			"Snowblind Survival - Weapon"		"1"
+		}
+		"creation_date"							"2022-01-19"
+		"image_inventory"						"econ/loading_screens/barbarian_of_the_outlands_ls"
+		"item_name"								"#DOTA_Item_Snowblind_Survival"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+}

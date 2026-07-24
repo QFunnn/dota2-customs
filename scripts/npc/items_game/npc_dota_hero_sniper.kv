@@ -1,0 +1,3345 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"281"
+	{
+		"name"									"Sniper's Weapon"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/sniper/weapon"
+		"item_description"						"#DOTA_Item_Desc_Snipers_Weapon"
+		"item_name"								"#DOTA_Item_Snipers_Weapon"
+		"model_player"							"models/heroes/sniper/weapon.vmdl"
+	}
+	"282"
+	{
+		"name"									"Sniper's Cape"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/sniper/cape"
+		"item_description"						"#DOTA_Item_Desc_Snipers_Cape"
+		"item_name"								"#DOTA_Item_Snipers_Cape"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/heroes/sniper/cape.vmdl"
+	}
+	"283"
+	{
+		"name"									"Sniper's Head Gear"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/sniper/headitem"
+		"item_description"						"#DOTA_Item_Desc_Snipers_Head_Gear"
+		"item_name"								"#DOTA_Item_Snipers_Head_Gear"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/sniper/headitem.vmdl"
+	}
+	"284"
+	{
+		"name"									"Sniper's Shoulder Armor"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/sniper/shoulder"
+		"item_description"						"#DOTA_Item_Desc_Snipers_Shoulder_Armor"
+		"item_name"								"#DOTA_Item_Snipers_Shoulder_Armor"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/heroes/sniper/shoulder.vmdl"
+	}
+	"285"
+	{
+		"name"									"Sniper's Bracers"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/sniper/bracer"
+		"item_description"						"#DOTA_Item_Desc_Snipers_Bracers"
+		"item_name"								"#DOTA_Item_Snipers_Bracers"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/heroes/sniper/bracer.vmdl"
+	}
+	"4594"
+	{
+		"name"									"Instagib OSP"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-22"
+		"image_inventory"						"econ/items/sniper/weapon_noscope/weapon_noscope"
+		"item_description"						"#DOTA_Item_Desc_The_Instagib_OSP"
+		"item_name"								"#DOTA_Item_Instagib_OSP"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Rifle"
+		"model_player"							"models/items/sniper/weapon_noscope/weapon_noscope.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_CAST_ABILITY_4"
+				"modifier"						"instagib"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_CAPTURE"
+				"modifier"						"instagib"
+			}
+		}
+	}
+	"4698"
+	{
+		"name"									"Sharpshooter's Stache"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/sniper/sharpshooter_stache/sharpshooter_stache"
+		"item_description"						"#DOTA_Item_Desc_The_Sharpshooters_Stache"
+		"item_name"								"#DOTA_Item_Sharpshooters_Stache"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/sniper/sharpshooter_stache/sharpshooter_stache.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4699"
+	{
+		"name"									"Killstealer"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/sniper/killstealer/killstealer"
+		"item_description"						"#DOTA_Item_Desc_The_Killstealer"
+		"item_name"								"#DOTA_Item_Killstealer"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Rifle"
+		"model_player"							"models/items/sniper/killstealer/killstealer.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4700"
+	{
+		"name"									"Sharpshooter's Pauldrons"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/sniper/sharpshooter_shoulder/sharpshooter_shoulder"
+		"item_description"						"#DOTA_Item_Desc_The_Sharpshooters_Pauldrons"
+		"item_name"								"#DOTA_Item_Sharpshooters_Pauldrons"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/sniper/sharpshooter_shoulder/sharpshooter_shoulder.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4701"
+	{
+		"name"									"Sharpshooter's Cloak"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/sniper/sharpshooter_cloak/sharpshooter_cloak"
+		"item_description"						"#DOTA_Item_Desc_The_Sharpshooters_Cloak"
+		"item_name"								"#DOTA_Item_Sharpshooters_Cloak"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cloak"
+		"model_player"							"models/items/sniper/sharpshooter_cloak/sharpshooter_cloak.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4725"
+	{
+		"name"									"Hunter's Helm"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/sniper/sniper_tallyho_head2/sniper_tallyho_head2"
+		"item_description"						"#DOTA_Item_Desc_The_Hunters_Helm"
+		"item_name"								"#DOTA_Item_Hunters_Helm"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/sniper/sniper_tallyho_head2/sniper_tallyho_head2.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4726"
+	{
+		"name"									"Cape of the Great Safari"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/sniper/sniper_tally_ho_back2/sniper_tally_ho_back2"
+		"item_description"						"#DOTA_Item_Desc_Cape_of_the_Great_Safari"
+		"item_name"								"#DOTA_Item_Cape_of_the_Great_Safari"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/sniper/sniper_tally_ho_back2/sniper_tally_ho_back2.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4727"
+	{
+		"name"									"Bracers of the Seasoned Hunter"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/sniper/sniper_tallyho_arms2/sniper_tallyho_arms2"
+		"item_description"						"#DOTA_Item_Desc_Bracers_of_the_Seasoned_Hunter"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Seasoned_Hunter"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/sniper/sniper_tallyho_arms2/sniper_tallyho_arms2.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4728"
+	{
+		"name"									"Sharpeye's Mementos"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/sniper/sniper_tallyho_shoulders3/sniper_tallyho_shoulders3"
+		"item_description"						"#DOTA_Item_Desc_Sharpeyes_Momentoes"
+		"item_name"								"#DOTA_Item_Sharpeyes_Mementos"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/sniper/sniper_tallyho_shoulders3/sniper_tallyho_shoulders3.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4729"
+	{
+		"name"									"Rifle of the Great Safari"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/sniper/sniper_tallyho_weapons1/sniper_tallyho_weapons1"
+		"item_description"						"#DOTA_Item_Desc_Rifle_of_the_Great_Safari"
+		"item_name"								"#DOTA_Item_Rifle_of_the_Great_Safari"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Rifle"
+		"model_player"							"models/items/sniper/sniper_tallyho_weapons1/sniper_tallyho_weapons1.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_CAPTURE"
+				"modifier"						"great_safari"
+			}
+		}
+	}
+	"4793"
+	{
+		"name"									"Sharpshooter's Bullet Bracers"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/sniper/sharpshooter_arms/sharpshooter_arms"
+		"item_description"						"#DOTA_Item_Desc_The_Sharpshooters_Bullet_Bracers"
+		"item_name"								"#DOTA_Item_Sharpshooters_Bullet_Bracers"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/sniper/sharpshooter_arms/sharpshooter_arms.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4806"
+	{
+		"name"									"Grampa Sharpie's Shin Shooter"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/sniper/snipers_grandfather_rifle_3/snipers_grandfather_rifle_3"
+		"item_description"						"#DOTA_Item_Desc_Grampa_Sharpies_Shin_Shooter"
+		"item_name"								"#DOTA_Item_Grampa_Sharpies_Shin_Shooter"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Rifle"
+		"model_player"							"models/items/sniper/snipers_grandfather_rifle_3/snipers_grandfather_rifle_3.vmdl"
+	}
+	"4807"
+	{
+		"name"									"Gramma Sharpie's Smokin' Rug"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/sniper/sniper_cape_rug/sniper_cape_rug"
+		"item_description"						"#DOTA_Item_Desc_Gramma_Sharpies_Smokin_Rug"
+		"item_name"								"#DOTA_Item_Gramma_Sharpies_Smokin_Rug"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/sniper/sniper_cape_rug/sniper_cape_rug.vmdl"
+	}
+	"4881"
+	{
+		"name"									"Spottin' Goggles"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-22"
+		"image_inventory"						"econ/items/sniper/globulargoggles/globulargoggles"
+		"item_description"						"#DOTA_Item_Desc_Spottin_Goggles"
+		"item_name"								"#DOTA_Item_Spottin_Goggles"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Goggles"
+		"model_player"							"models/items/sniper/globulargoggles/globulargoggles.vmdl"
+	}
+	"5038"
+	{
+		"name"									"Gunslinger's Hat"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-10"
+		"image_inventory"						"econ/items/sniper/gunslinger_head/gunslinger_headitem"
+		"item_description"						"#DOTA_Item_Desc_Gunslingers_Hat"
+		"item_name"								"#DOTA_Item_Gunslingers_Hat"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hat"
+		"model_player"							"models/items/sniper/gunslinger_head/gunslinger_headitem.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"cannot craft"
+			{
+				"attribute_class"				"cannot_craft"
+				"value"							"1"
+			}
+		}
+	}
+	"5039"
+	{
+		"name"									"Gunslinger's Rifle"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-10"
+		"image_inventory"						"econ/items/sniper/gunslinger_rifle/gunslinger_rifle"
+		"item_description"						"#DOTA_Item_Desc_Gunslingers_Rifle"
+		"item_name"								"#DOTA_Item_Gunslingers_Rifle"
+		"item_type_name"						"#DOTA_WearableType_Rifle"
+		"model_player"							"models/items/sniper/gunslinger_rifle/gunslinger_rifle.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"cannot craft"
+			{
+				"attribute_class"				"cannot_craft"
+				"value"							"1"
+			}
+		}
+	}
+	"5040"
+	{
+		"name"									"Gunslinger's Bracers"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-10"
+		"image_inventory"						"econ/items/sniper/gunslinger_bracers/gunslinger_bracers"
+		"item_description"						"#DOTA_Item_Desc_Gunslingers_Bracers"
+		"item_name"								"#DOTA_Item_Gunslingers_Bracers"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/sniper/gunslinger_bracers/gunslinger_bracers.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"cannot craft"
+			{
+				"attribute_class"				"cannot_craft"
+				"value"							"1"
+			}
+		}
+	}
+	"5041"
+	{
+		"name"									"Gunslinger's Cape"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-10"
+		"image_inventory"						"econ/items/sniper/gunslinger_cape/gunslinger_cape"
+		"item_description"						"#DOTA_Item_Desc_Gunslingers_Cape"
+		"item_name"								"#DOTA_Item_Gunslingers_Cape"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/sniper/gunslinger_cape/gunslinger_cape.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"cannot craft"
+			{
+				"attribute_class"				"cannot_craft"
+				"value"							"1"
+			}
+		}
+	}
+	"5240"
+	{
+		"name"									"Wolfhound Rifle"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-02"
+		"image_inventory"						"econ/items/sniper/wolfhound_rifle/wolfhound_rifle"
+		"item_description"						"#DOTA_Item_Desc_Wolfhound_Rifle"
+		"item_name"								"#DOTA_Item_Wolfhound_Rifle"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Rifle"
+		"model_player"							"models/items/sniper/wolfhound_rifle/wolfhound_rifle.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_LOADOUT"
+				"modifier"						"wolfhound"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_CAPTURE"
+				"modifier"						"wolfhound"
+			}
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE_RARE"
+				"modifier"						"wolfhound"
+			}
+		}
+	}
+	"5431"
+	{
+		"name"									"Hare Hunt Rifle"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-17"
+		"image_inventory"						"econ/items/sniper/hare_hunt_rifle/hare_hunt_rifle"
+		"item_description"						"#DOTA_Item_Desc_Hare_Hunt_Rifle"
+		"item_name"								"#DOTA_Item_Hare_Hunt_Rifle"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Rifle"
+		"model_player"							"models/items/sniper/hare_hunt_rifle/hare_hunt_rifle.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5432"
+	{
+		"name"									"Hare Hunt Sleeves"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-17"
+		"image_inventory"						"econ/items/sniper/hare_hunt_sleeves/hare_hunt_sleeves"
+		"item_description"						"#DOTA_Item_Desc_Hare_Hunt_Sleeves"
+		"item_name"								"#DOTA_Item_Hare_Hunt_Sleeves"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Sleeves"
+		"model_player"							"models/items/sniper/hare_hunt_sleeves/hare_hunt_sleeves.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5433"
+	{
+		"name"									"Hare Hunt Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-17"
+		"image_inventory"						"econ/items/sniper/hare_hunt_shoulders/hare_hunt_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Hare_Hunt_Shoulders"
+		"item_name"								"#DOTA_Item_Hare_Hunt_Shoulders"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/sniper/hare_hunt_shoulders/hare_hunt_shoulders.vmdl"
+		"particle_folder"						"particles/econ/items/sniper/sniper_hare_hunt_shoulder"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/sniper/sniper_hare_hunt_shoulder/sniper_hare_hunt_shoulder.vpcf"
+				"system"						"particles/econ/items/sniper/sniper_hare_hunt_shoulder/sniper_hare_hunt_shoulder.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_core"
+					}
+				}
+			}
+		}
+	}
+	"5434"
+	{
+		"name"									"Hare Hunt Cape"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-17"
+		"image_inventory"						"econ/items/sniper/hare_hunt_cape/hare_hunt_cape"
+		"item_description"						"#DOTA_Item_Desc_Hare_Hunt_Cape"
+		"item_name"								"#DOTA_Item_Hare_Hunt_Cape"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/sniper/hare_hunt_cape/hare_hunt_cape.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5435"
+	{
+		"name"									"Hare Hunt Hat"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-17"
+		"image_inventory"						"econ/items/sniper/hare_hunt_hat/hare_hunt_hat"
+		"item_description"						"#DOTA_Item_Desc_Hare_Hunt_Hat"
+		"item_name"								"#DOTA_Item_Hare_Hunt_Hat"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hat"
+		"model_player"							"models/items/sniper/hare_hunt_hat/hare_hunt_hat.vmdl"
+		"particle_folder"						"particles/econ/items/sniper/sniper_hare_hunt_hat"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/sniper/sniper_hare_hunt_hat/sniper_hare_hunt_hat.vpcf"
+				"system"						"particles/econ/items/sniper/sniper_hare_hunt_hat/sniper_hare_hunt_hat.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+		}
+	}
+	"5717"
+	{
+		"name"									"Hobbly-Bob"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-26"
+		"image_inventory"						"econ/items/sniper/defenseaustralians_sniper_corkhat/defenseaustralians_sniper_corkhat"
+		"item_description"						"#DOTA_Item_Desc_HobblyBob"
+		"item_name"								"#DOTA_Item_HobblyBob"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hat"
+		"model_player"							"models/items/sniper/defenseaustralians_sniper_corkhat/defenseaustralians_sniper_corkhat.vmdl"
+		"price_info"
+		{
+			"bucket"							"Cheap"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"12/16/2013"
+			"price"								"0"
+		}
+	}
+	"5739"
+	{
+		"name"									"Bracers of The Howling Wolf"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-29"
+		"image_inventory"						"econ/items/sniper/wolf_arms_bright/wolf_arms_bright"
+		"item_description"						"#DOTA_Item_Desc_Bracers_of_The_Howling_Wolf"
+		"item_name"								"#DOTA_Item_Bracers_of_The_Howling_Wolf"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/sniper/wolf_arms_bright/wolf_arms_bright.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/sniper/wolf_arms_bright/wolf_arms_bright.vmdl"
+					"name"						"#DOTA_Item_Bracers_of_The_Howling_Wolf_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/sniper/wolf_arms_dark/wolf_arms_dark.vmdl"
+					"name"						"#DOTA_Item_Bracers_of_The_Howling_Wolf_Style1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/sniper/wolf_arms_bright/wolf_arms_bright"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/sniper/wolf_arms_dark/wolf_arms_dark"
+				}
+			}
+		}
+	}
+	"5740"
+	{
+		"name"									"Pelt of The Howling Wolf"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-29"
+		"image_inventory"						"econ/items/sniper/wolf_cape_bright/wolf_cape_bright"
+		"item_description"						"#DOTA_Item_Desc_Pelt_of_The_Howling_Wolf"
+		"item_name"								"#DOTA_Item_Pelt_of_The_Howling_Wolf"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/sniper/wolf_cape_bright/wolf_cape_bright.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/sniper/wolf_cape_bright/wolf_cape_bright.vmdl"
+					"name"						"#DOTA_Item_Pelt_of_The_Howling_Wolf_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/sniper/wolf_cape_dark/wolf_cape_dark.vmdl"
+					"name"						"#DOTA_Item_Pelt_of_The_Howling_Wolf_Style1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/sniper/wolf_cape_bright/wolf_cape_bright"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/sniper/wolf_cape_dark/wolf_cape_dark"
+				}
+			}
+		}
+	}
+	"5741"
+	{
+		"name"									"Rifle of The Howling Wolf"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-29"
+		"image_inventory"						"econ/items/sniper/wolf_gun_bright/wolf_gun_bright"
+		"item_description"						"#DOTA_Item_Desc_Rifle_of_The_Howling_Wolf"
+		"item_name"								"#DOTA_Item_Rifle_of_The_Howling_Wolf"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Rifle"
+		"model_player"							"models/items/sniper/wolf_gun_bright/wolf_gun_bright.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/sniper/wolf_gun_bright/wolf_gun_bright.vmdl"
+					"name"						"#DOTA_Item_Rifle_of_The_Howling_Wolf_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/sniper/wolf_gun_dark/wolf_gun_dark.vmdl"
+					"name"						"#DOTA_Item_Rifle_of_The_Howling_Wolf_Style1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/sniper/wolf_gun_bright/wolf_gun_bright"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/sniper/wolf_gun_dark/wolf_gun_dark"
+				}
+			}
+		}
+	}
+	"5742"
+	{
+		"name"									"Hat of The Howling Wolf"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-29"
+		"image_inventory"						"econ/items/sniper/wolf_hat_bright/wolf_hat_bright"
+		"item_description"						"#DOTA_Item_Desc_Hat_of_The_Howling_Wolf"
+		"item_name"								"#DOTA_Item_Hat_of_The_Howling_Wolf"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hat"
+		"model_player"							"models/items/sniper/wolf_hat_bright/wolf_hat_bright.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/sniper/wolf_hat_bright/wolf_hat_bright.vmdl"
+					"name"						"#DOTA_Item_Hat_of_The_Howling_Wolf_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/sniper/wolf_hat_dark/wolf_hat_dark.vmdl"
+					"name"						"#DOTA_Item_Hat_of_The_Howling_Wolf_Style1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/sniper/wolf_hat_bright/wolf_hat_bright"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/sniper/wolf_hat_dark/wolf_hat_dark"
+				}
+			}
+		}
+	}
+	"5743"
+	{
+		"name"									"Spaulders of The Howling Wolf"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-29"
+		"image_inventory"						"econ/items/sniper/wolf_shoulder_bright/wolf_shoulder_bright"
+		"item_description"						"#DOTA_Item_Desc_Spaulders_of_The_Howling_Wolf"
+		"item_name"								"#DOTA_Item_Spaulders_of_The_Howling_Wolf"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Spaulders"
+		"model_player"							"models/items/sniper/wolf_shoulder_bright/wolf_shoulder_bright.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/sniper/wolf_shoulder_bright/wolf_shoulder_bright.vmdl"
+					"name"						"#DOTA_Item_Spaulders_of_The_Howling_Wolf_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/sniper/wolf_shoulder_dark/wolf_shoulder_dark.vmdl"
+					"name"						"#DOTA_Item_Spaulders_of_The_Howling_Wolf_Style1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/sniper/wolf_shoulder_bright/wolf_shoulder_bright"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/sniper/wolf_shoulder_dark/wolf_shoulder_dark"
+				}
+			}
+		}
+	}
+	"5977"
+	{
+		"name"									"Dragon's Breath"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-21"
+		"image_inventory"						"econ/items/sniper/dragons_breath/dragons_breath"
+		"item_name"								"#DOTA_Item_Dragons_Breath"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Sniper_Rifle"
+		"model_player"							"models/items/sniper/dragons_breath/dragons_breath.vmdl"
+	}
+	"6215"
+	{
+		"name"									"Karabin of the Wild West"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-21"
+		"image_inventory"						"econ/items/sniper/wildwest_weapon/wildwest_weapon"
+		"item_name"								"#DOTA_Item_Karabin_of_the_Wild_West"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Karabin"
+		"model_player"							"models/items/sniper/wildwest_weapon/wildwest_weapon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"3/24/2014"
+			"price"								"0"
+		}
+	}
+	"6328"
+	{
+		"name"									"Hat of the Wild West"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-21"
+		"image_inventory"						"econ/items/sniper/wildwest_head/wildwest_head"
+		"item_name"								"#DOTA_Item_Hat_of_the_Wild_West"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hat"
+		"model_player"							"models/items/sniper/wildwest_head/wildwest_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"3/24/2014"
+			"price"								"0"
+		}
+	}
+	"6329"
+	{
+		"name"									"Cape of the Wild West"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-21"
+		"image_inventory"						"econ/items/sniper/wildwest_back/wildwest_back"
+		"item_name"								"#DOTA_Item_Cape_of_the_Wild_West"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/sniper/wildwest_back/wildwest_back.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"3/24/2014"
+			"price"								"0"
+		}
+	}
+	"6330"
+	{
+		"name"									"Shoulders of the Wild West"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-21"
+		"image_inventory"						"econ/items/sniper/wildwest_shoulders/wildwest_shoulders"
+		"item_name"								"#DOTA_Item_Shoulders_of_the_Wild_West"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/sniper/wildwest_shoulders/wildwest_shoulders.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"3/24/2014"
+			"price"								"0"
+		}
+	}
+	"6331"
+	{
+		"name"									"Gloves of the Wild West"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-21"
+		"image_inventory"						"econ/items/sniper/wildwest_arms/wildwest_arms"
+		"item_name"								"#DOTA_Item_Gloves_of_the_Wild_West"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Gloves"
+		"model_player"							"models/items/sniper/wildwest_arms/wildwest_arms.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"3/24/2014"
+			"price"								"0"
+		}
+	}
+	"6352"
+	{
+		"name"									"Hobbly Cape"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-02"
+		"image_inventory"						"econ/items/sniper/hobbly_cape/hobbly_cape"
+		"item_name"								"#DOTA_Item_Hobbly_Cape"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/sniper/hobbly_cape/hobbly_cape.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"4/2/2014"
+			"price"								"0"
+		}
+	}
+	"6453"
+	{
+		"name"									"Muh Keen Gun"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-24"
+		"image_inventory"						"econ/items/sniper/machine_gun_charlie/machine_gun_charlie"
+		"item_description"						"#DOTA_Item_Desc_Muh_Keen_Gun"
+		"item_name"								"#DOTA_Item_Muh_Keen_Gun"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Rifle"
+		"model_player"							"models/items/sniper/machine_gun_charlie/machine_gun_charlie.vmdl"
+		"particle_folder"						"particles/econ/items/sniper/sniper_charlie"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2014"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+			"can_equip_as_ability_effects1"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_sniper/sniper_base_attack.vpcf"
+				"modifier"						"particles/econ/items/sniper/sniper_charlie/sniper_base_attack_charlie.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_sniper/sniper_crosshair.vpcf"
+				"modifier"						"particles/econ/items/sniper/sniper_charlie/sniper_crosshair_charlie.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_sniper/sniper_assassinate.vpcf"
+				"modifier"						"particles/econ/items/sniper/sniper_charlie/sniper_assassinate_charlie.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier3"
+			{
+				"type"							"sound"
+				"asset"							"Ability.AssassinateLoad"
+				"modifier"						"Ability.MKG_AssassinateLoad"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier4"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Sniper.ProjectileImpact"
+				"modifier"						"Hero_Sniper.MKG_impact"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier5"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Sniper.attack"
+				"modifier"						"Hero_Sniper.MKG_attack"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_sniper/sniper_shrapnel.vpcf"
+				"modifier"						"particles/econ/items/sniper/sniper_charlie/sniper_shrapnel_charlie.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier7"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Sniper.ShrapnelShoot"
+				"modifier"						"Hero_Sniper.MKG_ShrapnelShoot"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier8"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Sniper.ShrapnelShatter"
+				"modifier"						"Hero_Sniper.MKG_ShrapnelShatter"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier10"
+			{
+				"type"							"ability_icon"
+				"asset"							"sniper_assassinate"
+				"modifier"						"sniper_assassinate_muh_keen_gun"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier19"
+			{
+				"type"							"ability_icon"
+				"asset"							"sniper_shrapnel"
+				"modifier"						"sniper_shrapnel_muh_keen_gun"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier9"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"MGC"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"6895"
+	{
+		"name"									"The Feeder-Eater"
+		"prefab"								"wearable"
+		"creation_date"							"2014-07-03"
+		"image_inventory"						"econ/items/sniper/widowmaker/widowmaker"
+		"item_name"								"#DOTA_Item_The_FeederEater"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/sniper/widowmaker/widowmaker.vmdl"
+	}
+	"7156"
+	{
+		"name"									"Thud-Gun of the Keen Machine"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-22"
+		"image_inventory"						"econ/items/sniper/heavymetal_weapon/heavymetal_weapon"
+		"item_name"								"#DOTA_Item_ThudGun_of_the_Keen_Machine"
+		"item_type_name"						"#DOTA_WearableType_Gun"
+		"model_player"							"models/items/sniper/heavymetal_weapon/heavymetal_weapon.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2014"
+			"price"								"0"
+		}
+	}
+	"7157"
+	{
+		"name"									"Heavy Plates of the Keen Machine"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-22"
+		"image_inventory"						"econ/items/sniper/heavymetal_shoulder/heavymetal_shoulder"
+		"item_name"								"#DOTA_Item_Heavy_Plates_of_the_Keen_Machine"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/sniper/heavymetal_shoulder/heavymetal_shoulder.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2014"
+			"price"								"0"
+		}
+	}
+	"7158"
+	{
+		"name"									"Cyclopean Helm of the Keen Machine"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-22"
+		"image_inventory"						"econ/items/sniper/heavymetal_head/heavymetal_head"
+		"item_name"								"#DOTA_Item_Cyclopean_Helm_of_the_Keen_Machine"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/sniper/heavymetal_head/heavymetal_head.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2014"
+			"price"								"0"
+		}
+	}
+	"7160"
+	{
+		"name"									"Lucky Bullet of the Keen Machine"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-22"
+		"image_inventory"						"econ/items/sniper/heavymetal_arms/heavymetal_arms"
+		"item_name"								"#DOTA_Item_Lucky_Bullet_of_the_Keen_Machine"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/sniper/heavymetal_arms/heavymetal_arms.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2014"
+			"price"								"0"
+		}
+	}
+	"7163"
+	{
+		"name"									"Heavy Cloak of the Keen Machine"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-22"
+		"image_inventory"						"econ/items/sniper/heavymetal_back/heavymetal_back"
+		"item_name"								"#DOTA_Item_Heavy_Cloak_of_the_Keen_Machine"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cloak"
+		"model_player"							"models/items/sniper/heavymetal_back/heavymetal_back.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2014"
+			"price"								"0"
+		}
+	}
+	"7178"
+	{
+		"name"									"Cloak of the Exact Marksman"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-30"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/sniper/escape_master_back/escape_master_back"
+		"item_description"						"#DOTA_Item_Desc_Cloak_of_the_Exact_Marksman"
+		"item_name"								"#DOTA_Item_Cloak_of_the_Exact_Marksman"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cloak"
+		"model_player"							"models/items/sniper/escape_master_back/escape_master_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"branding"
+		{
+			"corporation_id"					"90045009"
+		}
+	}
+	"7187"
+	{
+		"name"									"Perforator"
+		"prefab"								"wearable"
+		"branding"
+		{
+			"corporation_id"					"90045009"
+		}
+		"creation_date"							"2015-07-30"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/sniper/escape_master_weapon/escape_master_weapon"
+		"item_description"						"#DOTA_Item_Desc_Perforator"
+		"item_name"								"#DOTA_Item_Perforator"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/sniper/escape_master_weapon/escape_master_weapon.vmdl"
+	}
+	"7525"
+	{
+		"name"									"Arm of the Exact Marksman"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-30"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/sniper/escape_master_arm/escape_master_arm"
+		"item_description"						"#DOTA_Item_Desc_Arm_of_the_Exact_Marksman"
+		"item_name"								"#DOTA_Item_Arm_of_the_Exact_Marksman"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arm"
+		"model_player"							"models/items/sniper/escape_master_arm/escape_master_arm.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"branding"
+		{
+			"corporation_id"					"90045009"
+		}
+	}
+	"7526"
+	{
+		"name"									"Spaulders of the Exact Marksman"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-30"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/sniper/escape_master_shoulder/escape_master_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Spaulders_of_the_Exact_Marksman"
+		"item_name"								"#DOTA_Item_Spaulders_of_the_Exact_Marksman"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Spaulders"
+		"model_player"							"models/items/sniper/escape_master_shoulder/escape_master_shoulder.vmdl"
+		"branding"
+		{
+			"corporation_id"					"90045009"
+		}
+	}
+	"7532"
+	{
+		"name"									"Cap of the Exact Marksman"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-30"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/sniper/escape_master_head/escape_master_head"
+		"item_description"						"#DOTA_Item_Desc_Cap_of_the_Exact_Marksman"
+		"item_name"								"#DOTA_Item_Cap_of_the_Exact_Marksman"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Cap"
+		"model_player"							"models/items/sniper/escape_master_head/escape_master_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"branding"
+		{
+			"corporation_id"					"90045009"
+		}
+	}
+	"8161"
+	{
+		"name"									"Cape of the Shooting Star"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-06"
+		"image_inventory"						"econ/items/sniper/dreamhacksniper_back/dreamhacksniper_back"
+		"item_name"								"#DOTA_Item_Cape_of_the_Shooting_Star"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/sniper/dreamhacksniper_back/dreamhacksniper_back.vmdl"
+	}
+	"8163"
+	{
+		"name"									"Goggles of the Shooting Star"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-06"
+		"image_inventory"						"econ/items/sniper/dreamhacksniper_head/dreamhacksniper_head"
+		"item_name"								"#DOTA_Item_Goggles_of_the_Shooting_Star"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Goggles"
+		"model_player"							"models/items/sniper/dreamhacksniper_head/dreamhacksniper_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"dreamleague"
+			}
+		}
+	}
+	"8164"
+	{
+		"name"									"Shoulders of the Shooting Star"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-06"
+		"image_inventory"						"econ/items/sniper/dreamhacksniper_shoulders/dreamhacksniper_shoulders"
+		"item_name"								"#DOTA_Item_Shoulders_of_the_Shooting_Star"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/sniper/dreamhacksniper_shoulders/dreamhacksniper_shoulders.vmdl"
+	}
+	"8165"
+	{
+		"name"									"Carbine of the Shooting Star"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-06"
+		"image_inventory"						"econ/items/sniper/dreamhacksniper_weapon/dreamhacksniper_weapon"
+		"item_name"								"#DOTA_Item_Carbine_of_the_Shooting_Star"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Carbine"
+		"model_player"							"models/items/sniper/dreamhacksniper_weapon/dreamhacksniper_weapon.vmdl"
+	}
+	"8197"
+	{
+		"name"									"Bracer and Boots of the Shooting Star"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-11"
+		"image_inventory"						"econ/items/sniper/dreamhacksniper_bracers/dreamhacksniper_bracers"
+		"item_name"								"#DOTA_Item_Bracer_and_Boots_of_the_Shooting_Star"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/sniper/dreamhacksniper_bracers/dreamhacksniper_bracers.vmdl"
+	}
+	"8221"
+	{
+		"name"									"Taunt: Quick Draw!"
+		"prefab"								"taunt"
+		"creation_date"							"2015-03-13"
+		"image_inventory"						"econ/taunts/taunt_icon_sniper_quick_draw"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Quick_Draw"
+		"item_name"								"#DOTA_Item_Taunt_Quick_Draw"
+		"item_rarity"							"rare"
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"taunt_quickdraw_gesture"
+				"gesture"						"1"
+			}
+		}
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+		}
+	}
+	"8237"
+	{
+		"name"									"Beard of the Hinterland Stalker"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/sniper/mlg_hunters_origin_head/mlg_hunters_origin_head"
+		"item_name"								"#DOTA_Item_Beard_of_the_Hinterland_Stalker"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Beard"
+		"model_player"							"models/items/sniper/mlg_hunters_origin_head/mlg_hunters_origin_head.vmdl"
+	}
+	"8239"
+	{
+		"name"									"Mantle of the Hinterland Stalker"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/sniper/mlg_hunters_origin_shoulders/mlg_hunters_origin_shoulder"
+		"item_name"								"#DOTA_Item_Mantle_of_the_Hinterland_Stalker"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/sniper/mlg_hunters_origin_shoulder/mlg_hunters_origin_shoulder.vmdl"
+	}
+	"8241"
+	{
+		"name"									"Gauntlet of the Hinterland Stalker"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/sniper/mlg_hunters_origin_arms/mlg_hunters_origin_arms"
+		"item_name"								"#DOTA_Item_Gauntlet_of_the_Hinterland_Stalker"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Gauntlet"
+		"model_player"							"models/items/sniper/mlg_hunters_origin_arms/mlg_hunters_origin_arms.vmdl"
+	}
+	"8243"
+	{
+		"name"									"Pelt of the Hinterland Stalker"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/sniper/mlg_hunters_origin_back/mlg_hunters_origin_back"
+		"item_name"								"#DOTA_Item_Pelt_of_the_Hinterland_Stalker"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Pelt"
+		"model_player"							"models/items/sniper/mlg_hunters_origin_back/mlg_hunters_origin_back.vmdl"
+	}
+	"8244"
+	{
+		"name"									"Stonefire"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/sniper/mlg_hunters_origin_weapon/mlg_hunters_origin_weapon"
+		"item_name"								"#DOTA_Item_Stonefire"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/sniper/mlg_hunters_origin_weapon/mlg_hunters_origin_weapon.vmdl"
+	}
+	"8250"
+	{
+		"name"									"Blunderbuss of the Dwarf Engineer"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-22"
+		"image_inventory"						"econ/items/sniper/the_marksman_weapon/the_marksman_weapon"
+		"item_name"								"#DOTA_Item_Blunderbuss_of_the_Dwarf_Engineer"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Rifle"
+		"model_player"							"models/items/sniper/the_marksman_weapon/the_marksman_weapon.vmdl"
+	}
+	"8253"
+	{
+		"name"									"Armguards of the Dwarf Engineer"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-22"
+		"image_inventory"						"econ/items/sniper/the_marksman_arms/the_marksman_arms"
+		"item_name"								"#DOTA_Item_Armguards_of_the_Dwarf_Engineer"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Armguards"
+		"model_player"							"models/items/sniper/the_marksman_arms/the_marksman_arms.vmdl"
+	}
+	"8255"
+	{
+		"name"									"Cape of the Dwarf Engineer"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-22"
+		"image_inventory"						"econ/items/sniper/the_marksman_back/the_marksman_back"
+		"item_name"								"#DOTA_Item_Cape_of_the_Dwarf_Engineer"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/sniper/the_marksman_back/the_marksman_back.vmdl"
+	}
+	"8256"
+	{
+		"name"									"Helm of the Dwarf Engineer"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-22"
+		"image_inventory"						"econ/items/sniper/the_marksman_head/the_marksman_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Dwarf_Engineer"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/sniper/the_marksman_head/the_marksman_head.vmdl"
+	}
+	"8260"
+	{
+		"name"									"Spaulder of the Dwarf Engineer"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-22"
+		"image_inventory"						"econ/items/sniper/the_marksman_shoulder/the_marksman_shoulder"
+		"item_name"								"#DOTA_Item_Spaulder_of_the_Dwarf_Engineer"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Spaulder"
+		"model_player"							"models/items/sniper/the_marksman_shoulder/the_marksman_shoulder.vmdl"
+	}
+	"8480"
+	{
+		"name"									"Helm of the Longbeard Dwarf Engineer"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/sniper/the_marksman_head/the_marksman_head1"
+		"item_name"								"#DOTA_Item_Helm_of_the_Longbeard_Dwarf_Engineer"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/sniper/the_marksman_head/the_marksman_head.vmdl"
+		"visuals"
+		{
+			"skin"								"1"
+		}
+	}
+	"8482"
+	{
+		"name"									"Blunderbuss of the Longbeard Dwarf Engineer"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/sniper/the_marksman_weapon/the_marksman_weapon1"
+		"item_name"								"#DOTA_Item_Blunderbuss_of_the_Longbeard_Dwarf_Engineer"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/sniper/the_marksman_weapon/the_marksman_weapon.vmdl"
+		"visuals"
+		{
+			"skin"								"1"
+		}
+	}
+	"8484"
+	{
+		"name"									"Armguards of the Longbeard Dwarf Engineer"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/sniper/the_marksman_arms/the_marksman_arms1"
+		"item_name"								"#DOTA_Item_Armguards_of_the_Longbeard_Dwarf_Engineer"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/sniper/the_marksman_arms/the_marksman_arms.vmdl"
+		"visuals"
+		{
+			"skin"								"1"
+		}
+	}
+	"8492"
+	{
+		"name"									"Cape of the Longbeard Dwarf Engineer"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/sniper/the_marksman_back/the_marksman_back1"
+		"item_name"								"#DOTA_Item_Cape_of_the_Longbeard_Dwarf_Engineer"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/sniper/the_marksman_back/the_marksman_back.vmdl"
+		"visuals"
+		{
+			"skin"								"1"
+		}
+	}
+	"8494"
+	{
+		"name"									"Spaulder of the Longbeard Dwarf Engineer"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/sniper/the_marksman_shoulder/the_marksman_shoulder1"
+		"item_name"								"#DOTA_Item_Spaulder_of_the_Longbeard_Dwarf_Engineer"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Spaulder"
+		"model_player"							"models/items/sniper/the_marksman_shoulder/the_marksman_shoulder.vmdl"
+		"visuals"
+		{
+			"skin"								"1"
+		}
+	}
+	"9092"
+	{
+		"name"									"Pack of the Occultist's Pursuit"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-02"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/sniper/witch_hunter_set_back/witch_hunter_set_back"
+		"item_description"						"#DOTA_Item_Desc_Pack_of_the_Occultists_Pursuit"
+		"item_name"								"#DOTA_Item_Pack_of_the_Occultists_Pursuit"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/sniper/witch_hunter_set_back/witch_hunter_set_back.vmdl"
+	}
+	"9093"
+	{
+		"name"									"Top Hat of the Occultist's Pursuit"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-02"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/sniper/witch_hunter_set_head/witch_hunter_set_head"
+		"item_description"						"#DOTA_Item_Desc_Top_Hat_of_the_Occultists_Pursuit"
+		"item_name"								"#DOTA_Item_Top_Hat_of_the_Occultists_Pursuit"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/sniper/witch_hunter_set_head/witch_hunter_set_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/sniper/sniper_witch_hunter/sniper_witch_hunter_head_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/sniper/sniper_witch_hunter/sniper_witch_hunter_head_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+				}
+			}
+		}
+	}
+	"9095"
+	{
+		"name"									"Bracers of the Occultist's Pursuit"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-02"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/sniper/witch_hunter_set_arms/witch_hunter_set_arms"
+		"item_description"						"#DOTA_Item_Desc_Bracers_of_the_Occultists_Pursuit"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Occultists_Pursuit"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/sniper/witch_hunter_set_arms/witch_hunter_set_arms.vmdl"
+	}
+	"9096"
+	{
+		"name"									"Pauldrons of the Occultist's Pursuit"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-02"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/sniper/witch_hunter_set_shoulder/witch_hunter_set_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Pauldrons_of_the_Occultists_Pursuit"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Occultists_Pursuit"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/sniper/witch_hunter_set_shoulder/witch_hunter_set_shoulder.vmdl"
+	}
+	"9097"
+	{
+		"name"									"Cannon of the Occultist's Pursuit"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-02"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/sniper/witch_hunter_set_weapon/witch_hunter_set_weapon"
+		"item_description"						"#DOTA_Item_Desc_Cannon_of_the_Occultists_Pursuit"
+		"item_name"								"#DOTA_Item_Cannon_of_the_Occultists_Pursuit"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/sniper/witch_hunter_set_weapon/witch_hunter_set_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/sniper/sniper_witch_hunter/sniper_witch_hunter_weapon_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/sniper/sniper_witch_hunter/sniper_witch_hunter_weapon_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_sniper/sniper_base_attack.vpcf"
+				"modifier"						"particles/econ/items/sniper/sniper_witch_hunter/sniper_witch_hunter_base_attack.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9197"
+	{
+		"name"									"Full-Bore Bonanza"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-04"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"hide_tradecraftdelete"					"1"
+		"image_inventory"						"econ/items/sniper/sniper_cape_immortal/sniper_cape_immortal"
+		"item_description"						"#DOTA_Item_Desc_FullBore_Bonanza"
+		"item_name"								"#DOTA_Item_FullBore_Bonanza"
+		"item_rarity"							"immortal"
+		"item_slot"								"back"
+		"model_player"							"models/items/sniper/sniper_cape_immortal/sniper_cape_immortal.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1535796000"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"immortal_cape"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf"
+				"modifier"						"particles/econ/items/sniper/sniper_immortal_cape/sniper_immortal_cape_headshot_slow.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/sniper/sniper_immortal_cape/sniper_immortal_cape_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_sniper/sniper_headshot_slow_caster.vpcf"
+				"modifier"						"particles/econ/items/sniper/sniper_immortal_cape/sniper_immortal_cape_headshot_slow_caster.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier4"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Sniper.Headshot"
+				"modifier"						"Hero_Sniper.DuckTarget"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier5"
+			{
+				"type"							"ability_icon"
+				"asset"							"sniper_headshot"
+				"modifier"						"sniper_headshot_immortal"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+		}
+	}
+	"9455"
+	{
+		"name"									"Golden Full-Bore Bonanza"
+		"prefab"								"wearable"
+		"creation_date"							"2017-08-03"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"hide_tradecraftdelete"					"1"
+		"image_inventory"						"econ/items/sniper/sniper_cape_immortal/sniper_cape_immortal1"
+		"item_description"						"#DOTA_Item_Desc_Golden_FullBore_Bonanza"
+		"item_name"								"#DOTA_Item_Golden_FullBore_Bonanza"
+		"item_rarity"							"immortal"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Wearable"
+		"model_player"							"models/items/sniper/sniper_cape_immortal/sniper_cape_immortal.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"immortal_cape"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf"
+				"modifier"						"particles/econ/items/sniper/sniper_immortal_cape_golden/sniper_immortal_cape_golden_headshot_slow.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/sniper/sniper_immortal_cape_golden/sniper_immortal_cape_golden_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_sniper/sniper_headshot_slow_caster.vpcf"
+				"modifier"						"particles/econ/items/sniper/sniper_immortal_cape_golden/sniper_immortal_cape_golden_headshot_slow_caster.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier4"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Sniper.Headshot"
+				"modifier"						"Hero_Sniper.DuckTarget"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier5"
+			{
+				"type"							"ability_icon"
+				"asset"							"sniper_headshot"
+				"modifier"						"sniper_headshot_immortal_gold"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"skin"								"1"
+		}
+	}
+	"9590"
+	{
+		"name"									"Pauldrons of the Silver Fox"
+		"prefab"								"wearable"
+		"creation_date"							"2017-11-29"
+		"image_inventory"						"econ/items/sniper/the_silverfox_hunter_shoulder/the_silverfox_hunter_shoulder"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Silver_Fox"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/sniper/the_silverfox_hunter_shoulder/the_silverfox_hunter_shoulder.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/sniper/sniper_silverfox/sniper_silverfox_ambient_shoulder.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9591"
+	{
+		"name"									"Weapon of the Silver Fox"
+		"prefab"								"wearable"
+		"creation_date"							"2017-11-29"
+		"image_inventory"						"econ/items/sniper/the_silverfox_hunter_weapon/the_silverfox_hunter_weapon"
+		"item_name"								"#DOTA_Item_Weapon_of_the_Silver_Fox"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/sniper/the_silverfox_hunter_weapon/the_silverfox_hunter_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/sniper/sniper_silverfox/sniper_silverfox_ambient.vpcf"
+				"style"							"0"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"9592"
+	{
+		"name"									"Helm of the Silver Fox"
+		"prefab"								"wearable"
+		"creation_date"							"2017-11-29"
+		"image_inventory"						"econ/items/sniper/the_silverfox_hunter_head/the_silverfox_hunter_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Silver_Fox"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/sniper/the_silverfox_hunter_head/the_silverfox_hunter_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/sniper/sniper_silverfox/sniper_silverfox_ambient_head.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9593"
+	{
+		"name"									"Cape of the Silver Fox"
+		"prefab"								"wearable"
+		"creation_date"							"2017-11-29"
+		"image_inventory"						"econ/items/sniper/the_silverfox_hunter_back/the_silverfox_hunter_back"
+		"item_name"								"#DOTA_Item_Cape_of_the_Silver_Fox"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/sniper/the_silverfox_hunter_back/the_silverfox_hunter_back.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/sniper/sniper_silverfox/sniper_silverfox_ambient_cape.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9594"
+	{
+		"name"									"Bracers of the Silver Fox"
+		"prefab"								"wearable"
+		"creation_date"							"2017-11-29"
+		"image_inventory"						"econ/items/sniper/the_silverfox_hunter_arms/the_silverfox_hunter_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Silver_Fox"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/sniper/the_silverfox_hunter_arms/the_silverfox_hunter_arms.vmdl"
+	}
+	"9650"
+	{
+		"name"									"Weapon of the Seasoned Expeditionary"
+		"prefab"								"wearable"
+		"creation_date"							"2017-12-04"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/sniper/northern_forester_sniper_weapon/northern_forester_sniper_weapon"
+		"item_name"								"#DOTA_Item_Weapon_of_the_Seasoned_Expeditionary"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/sniper/northern_forester_sniper_weapon/northern_forester_sniper_weapon.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+	}
+	"9651"
+	{
+		"name"									"Head of the Seasoned Expeditionary"
+		"prefab"								"wearable"
+		"creation_date"							"2017-12-04"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/sniper/northern_forester_sniper_head/northern_forester_sniper_head"
+		"item_name"								"#DOTA_Item_Head_of_the_Seasoned_Expeditionary"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/sniper/northern_forester_sniper_head/northern_forester_sniper_head.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+	}
+	"9652"
+	{
+		"name"									"Shoulder of the Seasoned Expeditionary"
+		"prefab"								"wearable"
+		"creation_date"							"2017-12-04"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/sniper/northern_forester_sniper_shoulder/northern_forester_sniper_shoulder"
+		"item_name"								"#DOTA_Item_Shoulder_of_the_Seasoned_Expeditionary"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/sniper/northern_forester_sniper_shoulder/northern_forester_sniper_shoulder.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+	}
+	"9653"
+	{
+		"name"									"Back of the Seasoned Expeditionary"
+		"prefab"								"wearable"
+		"creation_date"							"2017-12-04"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/sniper/northern_forester_sniper_back/northern_forester_sniper_back"
+		"item_name"								"#DOTA_Item_Back_of_the_Seasoned_Expeditionary"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/sniper/northern_forester_sniper_back/northern_forester_sniper_back.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+	}
+	"9654"
+	{
+		"name"									"Arms of the Seasoned Expeditionary"
+		"prefab"								"wearable"
+		"creation_date"							"2017-12-04"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/sniper/northern_forester_sniper_arms/northern_forester_sniper_arms"
+		"item_name"								"#DOTA_Item_Arms_of_the_Seasoned_Expeditionary"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/sniper/northern_forester_sniper_arms/northern_forester_sniper_arms.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+	}
+	"9818"
+	{
+		"name"									"Shatterhand Carbine"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-04"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/sniper/cunning_trappers_weapon/cunning_trappers_weapon"
+		"item_name"								"#DOTA_Item_Shatterhand_Carbine"
+		"item_type_name"						"#DOTA_WearableType_Carbine"
+		"model_player"							"models/items/sniper/cunning_trappers_weapon/cunning_trappers_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"14206"
+	{
+		"name"									"Deep sea overlord Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/sniper/deep_sea_overlord_weapon/deep_sea_overlord_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_Deep_sea_overlord_Weapon"
+		"model_player"							"models/items/sniper/deep_sea_overlord_weapon/deep_sea_overlord_weapon.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14207"
+	{
+		"name"									"Deep sea overlord Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/sniper/deep_sea_overlord_shoulder/deep_sea_overlord_shoulder"
+		"item_name"								"#DOTA_Item_Vote_Only_Deep_sea_overlord_Shoulder"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/sniper/deep_sea_overlord_shoulder/deep_sea_overlord_shoulder.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14209"
+	{
+		"name"									"Deep sea overlord Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/sniper/deep_sea_overlord_head/deep_sea_overlord_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Deep_sea_overlord_Head"
+		"item_slot"								"head"
+		"model_player"							"models/items/sniper/deep_sea_overlord_head/deep_sea_overlord_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14210"
+	{
+		"name"									"Deep sea overlord Back"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/sniper/deep_sea_overlord_back/deep_sea_overlord_back"
+		"item_name"								"#DOTA_Item_Vote_Only_Deep_sea_overlord_Back"
+		"item_slot"								"back"
+		"model_player"							"models/items/sniper/deep_sea_overlord_back/deep_sea_overlord_back.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14211"
+	{
+		"name"									"Deep sea overlord Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/sniper/deep_sea_overlord_arms/deep_sea_overlord_arms"
+		"item_name"								"#DOTA_Item_Vote_Only_Deep_sea_overlord_Arms"
+		"item_slot"								"arms"
+		"model_player"							"models/items/sniper/deep_sea_overlord_arms/deep_sea_overlord_arms.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14704"
+	{
+		"name"									"Blacksail Cannoneer Back"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/sniper/sniper_black_sails_cannoneer_back/sniper_black_sails_cannoneer_back"
+		"item_name"								"#DOTA_Item_Blacksail_Cannoneer_Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"model_player"							"models/items/sniper/sniper_black_sails_cannoneer_back/sniper_black_sails_cannoneer_back.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/sniper/sniper_ti10_black_sails_back/sniper_ti10_back_ambient.vpcf"
+			}
+		}
+	}
+	"14705"
+	{
+		"name"									"Blacksail Cannoneer Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/sniper/sniper_black_sails_cannoneer_shoulder/sniper_black_sails_cannoneer_shoulder"
+		"item_name"								"#DOTA_Item_Blacksail_Cannoneer_Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/sniper/sniper_black_sails_cannoneer_shoulder/sniper_black_sails_cannoneer_shoulder.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/sniper/sniper_ti10_black_sails_shoulder/sniper_ti10_black_sails_shoulder_ambient.vpcf"
+			}
+		}
+	}
+	"14707"
+	{
+		"name"									"Blacksail Cannoneer Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/sniper/sniper_black_sails_cannoneer_arms/sniper_black_sails_cannoneer_arms"
+		"item_name"								"#DOTA_Item_Blacksail_Cannoneer_Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"model_player"							"models/items/sniper/sniper_black_sails_cannoneer_arms/sniper_black_sails_cannoneer_arms.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"14708"
+	{
+		"name"									"Blacksail Cannoneer Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/sniper/sniper_black_sails_cannoneer_weapon/sniper_black_sails_cannoneer_weapon"
+		"item_name"								"#DOTA_Item_Blacksail_Cannoneer_Weapon"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/sniper/sniper_black_sails_cannoneer_weapon/sniper_black_sails_cannoneer_weapon.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/sniper/sniper_ti10_black_sails_weapon/sniper_ti10_black_sails_weapon_ambient.vpcf"
+			}
+		}
+	}
+	"14968"
+	{
+		"name"									"Helm of the Ardalan Interdictor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-07-13"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/sniper/scifi_sniper_test_head/scifi_sniper_test_head"
+		"item_description"						"#DOTA_Item_Desc_Helm_of_the_Ardalan_Interdictor"
+		"item_name"								"#DOTA_Item_Helm_of_the_Ardalan_Interdictor"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"model_player"							"models/items/sniper/scifi_sniper_test_head/scifi_sniper_test_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/sniper/sniper_fall20_immortal/sniper_fall20_immortal_head.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"response_criteria"
+				"asset"							"sniper_helmet"
+			}
+		}
+	}
+	"14969"
+	{
+		"name"									"Bracers of the Ardalan Interdictor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-07-13"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/sniper/scifi_sniper_test_arms/scifi_sniper_test_arms"
+		"item_description"						"#DOTA_Item_Desc_Bracers_of_the_Ardalan_Interdictor"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Ardalan_Interdictor"
+		"item_rarity"							"immortal"
+		"item_slot"								"arms"
+		"model_player"							"models/items/sniper/scifi_sniper_test_arms/scifi_sniper_test_arms.vmdl"
+	}
+	"14970"
+	{
+		"name"									"Colar of the Ardalan Interdictor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-07-13"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/sniper/scifi_sniper_test_shoulder/scifi_sniper_test_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Colar_of_the_Ardalan_Interdictor"
+		"item_name"								"#DOTA_Item_Colar_of_the_Ardalan_Interdictor"
+		"item_rarity"							"immortal"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/sniper/scifi_sniper_test_shoulder/scifi_sniper_test_shoulder.vmdl"
+	}
+	"14971"
+	{
+		"name"									"Weapon of the Ardalan Interdictor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-07-13"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/sniper/scifi_sniper_test_gun/scifi_sniper_test_gun"
+		"item_description"						"#DOTA_Item_Desc_Weapon_of_the_Ardalan_Interdictor"
+		"item_name"								"#DOTA_Item_Weapon_of_the_Ardalan_Interdictor"
+		"item_rarity"							"immortal"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/sniper/scifi_sniper_test_gun/scifi_sniper_test_gun.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+			"can_equip_as_ability_effects1"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"gun"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/sniper/sniper_fall20_immortal/sniper_fall20_immortal_weapon_ambient.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_sniper/sniper_assassinate.vpcf"
+				"modifier"						"particles/econ/items/sniper/sniper_fall20_immortal/sniper_fall20_immortal_assassinate.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_sniper/sniper_base_attack.vpcf"
+				"modifier"						"particles/econ/items/sniper/sniper_fall20_immortal/sniper_fall20_immortal_base_attack.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_sniper/sniper_shrapnel.vpcf"
+				"modifier"						"particles/econ/items/sniper/sniper_fall20_immortal/sniper_fall20_immortal_shrapnel.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_sniper/sniper_shrapnel_launch.vpcf"
+				"modifier"						"particles/econ/items/sniper/sniper_fall20_immortal/sniper_fall20_immortal_shrapnel_launch.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_sniper/sniper_crosshair.vpcf"
+				"modifier"						"particles/econ/items/sniper/sniper_fall20_immortal/sniper_fall20_immortal_crosshair.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier7"
+			{
+				"type"							"ability_icon"
+				"asset"							"sniper_shrapnel"
+				"modifier"						"sniper_fall20_shrapnel"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier8"
+			{
+				"type"							"ability_icon"
+				"asset"							"sniper_assassinate"
+				"modifier"						"sniper_fall20_assassinate"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier9"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Sniper.attack"
+				"modifier"						"Hero_Sniper.Attack.DT20"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+		}
+	}
+	"14972"
+	{
+		"name"									"Pack of the Ardalan Interdictor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-07-13"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/sniper/scifi_sniper_test_back/scifi_sniper_test_back"
+		"item_description"						"#DOTA_Item_Desc_Tales_of_the_Ardalan_Interdictor"
+		"item_name"								"#DOTA_Item_Pack_of_the_Ardalan_Interdictor"
+		"item_rarity"							"immortal"
+		"item_slot"								"back"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/sniper/scifi_sniper_test_back/scifi_sniper_test_back.vmdl"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"back"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/sniper/sniper_fall20_immortal/sniper_fall20_immortal_jetpack.vpcf"
+			}
+		}
+	}
+	"14978"
+	{
+		"name"									"Blacksail Cannoneer Hat"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/sniper/sniper_black_sails_cannoneer_head_2/sniper_black_sails_cannoneer_head_2"
+		"item_name"								"#DOTA_Item_Blacksail_Cannoneer_Hat"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/sniper/sniper_black_sails_cannoneer_head_2/sniper_black_sails_cannoneer_head_2.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/sniper/sniper_ti10_black_sails_head/sniper_ti10_head_ambient.vpcf"
+			}
+		}
+	}
+	"18138"
+	{
+		"name"									"Witch Hunt Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/sniper/broomstick_boomstick_weapon/broomstick_boomstick_weapon"
+		"item_name"								"#DOTA_Item_Witch_Hunt_Weapon"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/sniper/broomstick_boomstick_weapon/broomstick_boomstick_weapon.vmdl"
+	}
+	"18139"
+	{
+		"name"									"Witch Hunt Hat"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/sniper/broomstick_boomstick_head/broomstick_boomstick_head"
+		"item_name"								"#DOTA_Item_Witch_Hunt_Hat"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/sniper/broomstick_boomstick_head/broomstick_boomstick_head.vmdl"
+	}
+	"18140"
+	{
+		"name"									"Witch Hunt Cape"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/sniper/broomstick_boomstick_back/broomstick_boomstick_back"
+		"item_name"								"#DOTA_Item_Witch_Hunt_Cape"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/sniper/broomstick_boomstick_back/broomstick_boomstick_back.vmdl"
+	}
+	"18141"
+	{
+		"name"									"Witch Hunt Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/sniper/broomstick_boomstick_arms/broomstick_boomstick_arms"
+		"item_name"								"#DOTA_Item_Witch_Hunt_Arms"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/sniper/broomstick_boomstick_arms/broomstick_boomstick_arms.vmdl"
+	}
+	"18142"
+	{
+		"name"									"Witch Hunt Pauldrons"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/sniper/broomstick_boomstick_shoulder/broomstick_boomstick_shoulder"
+		"item_name"								"#DOTA_Item_Witch_Hunt_Pauldrons"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/sniper/broomstick_boomstick_shoulder/broomstick_boomstick_shoulder.vmdl"
+	}
+	"18475"
+	{
+		"name"									"Ghillied Gunman Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-11"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/sniper/spring2021_ambush_sniper_arms/spring2021_ambush_sniper_arms"
+		"item_name"								"#DOTA_Item_Ghillied_Gunman_Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/sniper/spring2021_ambush_sniper_arms/spring2021_ambush_sniper_arms.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1662026400"
+			}
+		}
+	}
+	"18476"
+	{
+		"name"									"Ghillied Gunman Cape"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-11"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/sniper/spring2021_ambush_sniper_cape/spring2021_ambush_sniper_cape"
+		"item_name"								"#DOTA_Item_Ghillied_Gunman_Cape"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/sniper/spring2021_ambush_sniper_cape/spring2021_ambush_sniper_cape.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1662026400"
+			}
+		}
+	}
+	"18477"
+	{
+		"name"									"Ghillied Gunman Nest Cap"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-11"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/sniper/spring2021_ambush_sniper_nest_cap/spring2021_ambush_sniper_nest_cap"
+		"item_name"								"#DOTA_Item_Ghillied_Gunman_Nest_Cap"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/sniper/spring2021_ambush_sniper_nest_cap/spring2021_ambush_sniper_nest_cap.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1662026400"
+			}
+		}
+	}
+	"18478"
+	{
+		"name"									"Ghillied Gunman Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-11"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/sniper/spring2021_ambush_sniper_shoulders/spring2021_ambush_sniper_shoulders"
+		"item_name"								"#DOTA_Item_Ghillied_Gunman_Shoulders"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/sniper/spring2021_ambush_sniper_shoulders/spring2021_ambush_sniper_shoulders.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1662026400"
+			}
+		}
+	}
+	"18479"
+	{
+		"name"									"Ghillied Gunman Sniper Rifle"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-11"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/sniper/spring2021_ambush_sniper_sniper_rifle/spring2021_ambush_sniper_sniper_rifle"
+		"item_name"								"#DOTA_Item_Ghillied_Gunman_Sniper_Rifle"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/sniper/spring2021_ambush_sniper_sniper_rifle/spring2021_ambush_sniper_sniper_rifle.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1662026400"
+			}
+		}
+	}
+	"20101"
+	{
+		"name"									"Gear of the Tally-Ho Hunter Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Cape of the Great Safari"			"1"
+			"Bracers of the Seasoned Hunter"	"1"
+			"Rifle of the Great Safari"			"1"
+			"Sharpeye's Mementos"				"1"
+			"Hunter's Helm"						"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Gear_of_the_TallyHo_Hunter_Set"
+		"item_description"						"#DOTA_Item_Desc_Gear_of_the_TallyHo_Hunter_Set"
+		"item_name"								"#DOTA_Item_Gear_of_the_TallyHo_Hunter_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20130"
+	{
+		"name"									"The Sharpshooter Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Sharpshooter's Stache"				"1"
+			"Killstealer"						"1"
+			"Sharpshooter's Pauldrons"			"1"
+			"Sharpshooter's Cloak"				"1"
+			"Sharpshooter's Bullet Bracers"		"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_The_Sharpshooter_Set"
+		"item_description"						"#DOTA_Item_Desc_The_Sharpshooter_Set"
+		"item_name"								"#DOTA_Item_The_Sharpshooter_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20256"
+	{
+		"name"									"The Hare Hunt Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Hare Hunt Cape"					"1"
+			"Hare Hunt Hat"						"1"
+			"Hare Hunt Rifle"					"1"
+			"Hare Hunt Shoulders"				"1"
+			"Hare Hunt Sleeves"					"1"
+		}
+		"creation_date"							"2013-09-23"
+		"image_inventory"						"econ/sets/DOTA_Item_The_Hare_Hunt_Set"
+		"item_description"						"#DOTA_Item_Desc_The_Hare_Hunt_Set"
+		"item_name"								"#DOTA_Item_The_Hare_Hunt_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"9/23/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20264"
+	{
+		"name"									"Gunslinger Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Gunslinger's Bracers"				"1"
+			"Gunslinger's Cape"					"1"
+			"Gunslinger's Hat"					"1"
+			"Gunslinger's Rifle"				"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Gunslinger_Set"
+		"item_description"						"#DOTA_Item_Desc_Gunslinger_Set"
+		"item_name"								"#DOTA_Item_Gunslinger_Set"
+		"item_rarity"							"rare"
+	}
+	"20321"
+	{
+		"name"									"Spirit of the Howling Wolf Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bracers of The Howling Wolf"		"1"
+			"Hat of The Howling Wolf"			"1"
+			"Spaulders of The Howling Wolf"		"1"
+			"Pelt of The Howling Wolf"			"1"
+			"Rifle of The Howling Wolf"			"1"
+		}
+		"creation_date"							"2013-11-29"
+		"image_inventory"						"econ/sets/DOTA_Item_Spirit_of_the_Howling_Wolf_Set"
+		"item_description"						"#DOTA_Item_Desc_Spirit_of_the_Howling_Wolf_Set"
+		"item_name"								"#DOTA_Item_Spirit_of_the_Howling_Wolf_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"11/29/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20453"
+	{
+		"name"									"Wild West"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Cape of the Wild West"				"1"
+			"Gloves of the Wild West"			"1"
+			"Hat of the Wild West"				"1"
+			"Karabin of the Wild West"			"1"
+			"Shoulders of the Wild West"		"1"
+		}
+		"creation_date"							"2014-03-21"
+		"image_inventory"						"econ/sets/DOTA_Item_Wild_West"
+		"item_description"						"#DOTA_Item_Desc_Wild_West"
+		"item_name"								"#DOTA_Item_Wild_West"
+		"item_rarity"							"rare"
+	}
+	"20677"
+	{
+		"name"									"Keen Machine"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Thud-Gun of the Keen Machine"		"1"
+			"Heavy Cloak of the Keen Machine"	"1"
+			"Cyclopean Helm of the Keen Machine""1"
+			"Heavy Plates of the Keen Machine"	"1"
+			"Lucky Bullet of the Keen Machine"	"1"
+			"Keen Machine Loading Screen"		"1"
+		}
+		"creation_date"							"2014-10-23"
+		"image_inventory"						"econ/loading_screens/keen_machine_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Keen_Machine"
+		"item_name"								"#DOTA_Item_Keen_Machine"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"category_tags"						"Bundles"
+			"date"								"12/16/2014"
+			"bundle"							"1"
+			"price"								"899"
+		}
+	}
+	"20819"
+	{
+		"name"									"Shooting Star"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Cape of the Shooting Star"			"1"
+			"Goggles of the Shooting Star"		"1"
+			"Shoulders of the Shooting Star"	"1"
+			"Carbine of the Shooting Star"		"1"
+			"Bracer and Boots of the Shooting Star""1"
+			"The Shooting Star Loading Screen"	"1"
+		}
+		"creation_date"							"2015-05-20"
+		"image_inventory"						"econ/loading_screens/dreamhack_sniper_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Shooting_Star"
+		"item_name"								"#DOTA_Item_Shooting_Star"
+		"item_rarity"							"mythical"
+	}
+	"20871"
+	{
+		"name"									"Exact Marksman"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Cloak of the Exact Marksman"		"1"
+			"Perforator"						"1"
+			"Arm of the Exact Marksman"			"1"
+			"Spaulders of the Exact Marksman"	"1"
+			"Cap of the Exact Marksman"			"1"
+			"Exact Marksman Loading Screen"		"1"
+		}
+		"creation_date"							"2015-07-30"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"image_inventory"						"econ/loading_screens/escape_master_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Exact_Marksman"
+		"item_name"								"#DOTA_Item_Exact_Marksman"
+		"item_rarity"							"mythical"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"branding"
+		{
+			"corporation_id"					"90045009"
+		}
+	}
+	"20899"
+	{
+		"name"									"Hinterland Stalker"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Beard of the Hinterland Stalker"	"1"
+			"Gauntlet of the Hinterland Stalker""1"
+			"Hinterland Stalker Loading Screen"	"1"
+			"Mantle of the Hinterland Stalker"	"1"
+			"Pelt of the Hinterland Stalker"	"1"
+			"Stonefire"							"1"
+		}
+		"image_inventory"						"econ/loading_screens/mlg_hunters_origin_loading_screen"
+		"item_name"								"#DOTA_Item_Hinterland_Stalker"
+		"item_rarity"							"rare"
+	}
+	"20960"
+	{
+		"name"									"The Dwarf Engineer"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armguards of the Dwarf Engineer"	"1"
+			"Cape of the Dwarf Engineer"		"1"
+			"Helm of the Dwarf Engineer"		"1"
+			"Spaulder of the Dwarf Engineer"	"1"
+			"The Dwarf Engineer Loading Screen"	"1"
+			"Blunderbuss of the Dwarf Engineer"	"1"
+		}
+		"creation_date"							"2016-08-22"
+		"image_inventory"						"econ/loading_screens/the_marksman_the_marksman_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_The_Dwarf_Engineer"
+		"item_name"								"#DOTA_Item_The_Dwarf_Engineer"
+		"item_rarity"							"uncommon"
+	}
+	"21024"
+	{
+		"name"									"Longbeard Dwarf Engineer"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Helm of the Longbeard Dwarf Engineer""1"
+			"Blunderbuss of the Longbeard Dwarf Engineer""1"
+			"Cape of the Longbeard Dwarf Engineer""1"
+			"Spaulder of the Longbeard Dwarf Engineer""1"
+			"The Dwarf Engineer Loading Screen"	"1"
+			"Armguards of the Longbeard Dwarf Engineer""1"
+		}
+		"creation_date"							"2016-08-22"
+		"image_inventory"						"econ/loading_screens/the_marksman_the_marksman_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Longbeard_Dwarf_Engineer"
+		"item_name"								"#DOTA_Item_Longbeard_Dwarf_Engineer"
+		"item_rarity"							"rare"
+	}
+	"21087"
+	{
+		"name"									"Occultist's Pursuit"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Cannon of the Occultist's Pursuit"	"1"
+			"Pauldrons of the Occultist's Pursuit""1"
+			"Bracers of the Occultist's Pursuit""1"
+			"Top Hat of the Occultist's Pursuit""1"
+			"Pack of the Occultist's Pursuit"	"1"
+			"Loading Screen of the Occultist's Pursuit""1"
+		}
+		"creation_date"							"2017-02-03"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/loading_screens/witch_hunter_set_witch_hunter_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Occultists_Pursuit"
+		"item_name"								"#DOTA_Item_Occultists_Pursuit"
+		"item_rarity"							"mythical"
+	}
+	"21164"
+	{
+		"name"									"The Silver Fox"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bracers of the Silver Fox"			"1"
+			"Cape of the Silver Fox"			"1"
+			"Helm of the Silver Fox"			"1"
+			"Weapon of the Silver Fox"			"1"
+			"Pauldrons of the Silver Fox"		"1"
+		}
+		"creation_date"							"2017-11-29"
+		"image_inventory"						"econ/sets/DOTA_Item_Frostivus_SNIPER_Silverfox_Hunter"
+		"item_description"						"#DOTA_Item_Desc_The_Silver_Fox"
+		"item_name"								"#DOTA_Item_The_Silver_Fox"
+		"item_rarity"							"mythical"
+		"shards_purchase_price"					"75000"
+	}
+	"21176"
+	{
+		"name"									"Seasoned Expeditionary"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Arms of the Seasoned Expeditionary""1"
+			"Back of the Seasoned Expeditionary""1"
+			"Shoulder of the Seasoned Expeditionary""1"
+			"Head of the Seasoned Expeditionary""1"
+			"Weapon of the Seasoned Expeditionary""1"
+		}
+		"creation_date"							"2017-12-04"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/sets/DOTA_Item_Frostivus_Northern_Forester"
+		"item_name"								"#DOTA_Item_Seasoned_Expeditionary"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+	}
+	"21517"
+	{
+		"name"									"Deep sea overlord"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Deep sea overlord Arms"			"1"
+			"Deep sea overlord Back"			"1"
+			"Deep sea overlord Head"			"1"
+			"Deep sea overlord LS"				"1"
+			"Deep sea overlord Shoulder"		"1"
+			"Deep sea overlord Weapon"			"1"
+		}
+		"creation_date"							"2020-05-11"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Deep_sea_overlord"
+		"workshop_accepted"						"0"
+	}
+	"21578"
+	{
+		"name"									"Blacksail Cannoneer"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Blacksail Cannoneer Hat"			"1"
+			"Blacksail Cannoneer Weapon"		"1"
+			"Blacksail Cannoneer Arms"			"1"
+			"Blacksail Cannoneer Shoulder"		"1"
+			"Blacksail Cannoneer Back"			"1"
+		}
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Sniper_Black_Sails_Cannoneer"
+		"item_name"								"#DOTA_Item_Blacksail_Cannoneer"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21654"
+	{
+		"name"									"Tales of the Ardalan Interdictor"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Colar of the Ardalan Interdictor"	"1"
+			"Helm of the Ardalan Interdictor"	"1"
+			"Weapon of the Ardalan Interdictor"	"1"
+			"Bracers of the Ardalan Interdictor""1"
+			"Pack of the Ardalan Interdictor"	"1"
+		}
+		"creation_date"							"2020-07-13"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Tales_of_the_Ardalan_Interdictor"
+		"item_description"						"#DOTA_Item_Desc_Tales_of_the_Ardalan_Interdictor"
+		"item_name"								"#DOTA_Item_Tales_of_the_Ardalan_Interdictor"
+		"item_rarity"							"immortal"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+	}
+	"21777"
+	{
+		"name"									"Witch Hunt"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Witch Hunt Pauldrons"				"1"
+			"Witch Hunt Arms"					"1"
+			"Witch Hunt Cape"					"1"
+			"Witch Hunt Hat"					"1"
+			"Witch Hunt Weapon"					"1"
+		}
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Broomstick_Boomstick"
+		"item_name"								"#DOTA_Item_Witch_Hunt"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+	}
+	"21812"
+	{
+		"name"									"Ghillied Gunman"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Ghillied Gunman Sniper Rifle"		"1"
+			"Ghillied Gunman Shoulders"			"1"
+			"Ghillied Gunman Nest Cap"			"1"
+			"Ghillied Gunman Cape"				"1"
+			"Ghillied Gunman Arms"				"1"
+		}
+		"creation_date"							"2021-02-11"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/sets/DOTA_Item_Ghillied_Gunman"
+		"item_name"								"#DOTA_Item_Ghillied_Gunman"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1662026400"
+			}
+		}
+	}
+	"22295"
+	{
+		"name"									"Haunted Hunter - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/sniper/captain_ahab_arms/captain_ahab_arms"
+		"item_name"								"#DOTA_Item_Haunted_Hunter__Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/sniper/captain_ahab_arms/captain_ahab_arms.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"22296"
+	{
+		"name"									"Haunted Hunter - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/sniper/captain_ahab_back/captain_ahab_back"
+		"item_name"								"#DOTA_Item_Haunted_Hunter__Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/sniper/captain_ahab_back/captain_ahab_back.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"22297"
+	{
+		"name"									"Haunted Hunter - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/sniper/captain_ahab_head/captain_ahab_head"
+		"item_name"								"#DOTA_Item_Haunted_Hunter__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/sniper/captain_ahab_head/captain_ahab_head.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"22298"
+	{
+		"name"									"Haunted Hunter - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/sniper/captain_ahab_shoulder/captain_ahab_shoulder"
+		"item_name"								"#DOTA_Item_Haunted_Hunter__Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/sniper/captain_ahab_shoulder/captain_ahab_shoulder.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"22299"
+	{
+		"name"									"Haunted Hunter - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/sniper/captain_ahab_weapon/captain_ahab_weapon"
+		"item_name"								"#DOTA_Item_Haunted_Hunter__Weapon"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/sniper/captain_ahab_weapon/captain_ahab_weapon.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"22321"
+	{
+		"name"									"Haunted Hunter"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Haunted Hunter - Arms"				"1"
+			"Haunted Hunter - Back"				"1"
+			"Haunted Hunter - Head"				"1"
+			"Haunted Hunter Loading Screen"		"1"
+			"Haunted Hunter - Shoulder"			"1"
+			"Haunted Hunter - Weapon"			"1"
+		}
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/loading_screens/captain_ahab_ls"
+		"item_name"								"#DOTA_Item_Haunted_Hunter"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+}

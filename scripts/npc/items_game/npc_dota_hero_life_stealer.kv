@@ -1,0 +1,1663 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"443"
+	{
+		"name"									"Lifestealer's Belt"
+		"prefab"								"default_item"
+		"creation_date"							"2014-02-12"
+		"image_inventory"						"econ/heroes/life_stealer/life_stealer_loincloth"
+		"item_description"						"#DOTA_Item_Desc_Lifestealers_Belt"
+		"item_name"								"#DOTA_Item_Lifestealers_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/heroes/life_stealer/life_stealer_loincloth.vmdl"
+	}
+	"444"
+	{
+		"name"									"Lifestealer's Chains"
+		"prefab"								"default_item"
+		"creation_date"							"2014-02-12"
+		"image_inventory"						"econ/heroes/life_stealer/life_stealer_chains"
+		"item_description"						"#DOTA_Item_Desc_Lifestealers_Chains"
+		"item_name"								"#DOTA_Item_Lifestealers_Chains"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/heroes/life_stealer/life_stealer_chains.vmdl"
+	}
+	"530"
+	{
+		"name"									"Lifestealer's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-08"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Lifestealers_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_life_stealer"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_life_stealer/life_stealer_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_life_stealer/life_stealer_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+					"4"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_jaw"
+					}
+				}
+			}
+		}
+	}
+	"727"
+	{
+		"name"									"Lifestealer's Diretide Shimmer Costume"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-24"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 18:20:00"
+		"image_inventory"						"econ/sets/dota_item_lifestealers_spooky_bundle"
+		"item_name"								"#DOTA_Item_Lifestealers_Diretide_Shimmer_Costume"
+		"item_rarity"							"seasonal"
+		"item_slot"								"costume"
+		"item_type_name"						"#DOTA_WearableType_Costume"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"model_skin"
+				"skin"							"2"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/events/diretide_2020/hero_spooky_ambient/hero_spooky_ambient.vpcf"
+			}
+		}
+	}
+	"728"
+	{
+		"name"									"Lifestealer's Costume"
+		"prefab"								"default_item"
+		"creation_date"							"2020-09-24"
+		"image_inventory"						"econ/heroes/life_stealer/dota_item_life_stealer_costume"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Mars_Costume"
+		"item_name"								"#DOTA_Item_Lifestealers_Costume"
+		"item_slot"								"costume"
+		"item_type_name"						"#DOTA_WearableType_Costume"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"6260"
+	{
+		"name"									"Horned Visage of the Ravenous Fiend"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-12"
+		"image_inventory"						"econ/items/lifestealer/ravenous_head/ravenous_head"
+		"item_name"								"#DOTA_Item_Horned_Visage_of_the_Ravenous_Fiend"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Horns"
+		"model_player"							"models/items/lifestealer/ravenous_head/ravenous_head.vmdl"
+	}
+	"6261"
+	{
+		"name"									"Claws of the Ravenous Fiend"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-12"
+		"image_inventory"						"econ/items/lifestealer/ravenous_arms/ravenous_arms"
+		"item_name"								"#DOTA_Item_Claws_of_the_Ravenous_Fiend"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Claws"
+		"model_player"							"models/items/lifestealer/ravenous_arms/ravenous_arms.vmdl"
+	}
+	"6262"
+	{
+		"name"									"Belt of the Ravenous Fiend"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-12"
+		"image_inventory"						"econ/items/lifestealer/ravenous_belt/ravenous_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Ravenous_Fiend"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/lifestealer/ravenous_belt/ravenous_belt.vmdl"
+	}
+	"6263"
+	{
+		"name"									"Ragged Shoulders of the Ravenous Fiend"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-12"
+		"image_inventory"						"econ/items/lifestealer/ravenous_back/ravenous_back"
+		"item_name"								"#DOTA_Item_Ragged_Shoulders_of_the_Ravenous_Fiend"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/lifestealer/ravenous_back/ravenous_back.vmdl"
+	}
+	"6318"
+	{
+		"name"									"Redrage Crawler Helm"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-20"
+		"image_inventory"						"econ/items/lifestealer/redrage_head/redrage_head"
+		"item_name"								"#DOTA_Item_Redrage_Crawler_Helm"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/lifestealer/redrage_head/redrage_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"3/26/2014"
+			"price"								"0"
+		}
+	}
+	"6319"
+	{
+		"name"									"Redrage Crawler Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-20"
+		"image_inventory"						"econ/items/lifestealer/redrage_belt/redrage_belt"
+		"item_name"								"#DOTA_Item_Redrage_Crawler_Belt"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/lifestealer/redrage_belt/redrage_belt.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"3/26/2014"
+			"price"								"0"
+		}
+	}
+	"6320"
+	{
+		"name"									"Redrage Crawler Battlewings"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-20"
+		"image_inventory"						"econ/items/lifestealer/redrage_battlewings/redrage_battlewings"
+		"item_name"								"#DOTA_Item_Redrage_Crawler_Battlewings"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Battlewings"
+		"model_player"							"models/items/lifestealer/redrage_battlewings/redrage_battlewings.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"3/26/2014"
+			"price"								"0"
+		}
+	}
+	"6321"
+	{
+		"name"									"Redrage Crawler Bracers"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-20"
+		"image_inventory"						"econ/items/lifestealer/redrage_bracers/redrage_bracers"
+		"item_name"								"#DOTA_Item_Redrage_Crawler_Bracers"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/lifestealer/redrage_bracers/redrage_bracers.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"3/26/2014"
+			"price"								"0"
+		}
+	}
+	"6463"
+	{
+		"name"									"Claws of the Transmuted Armaments"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-28"
+		"image_inventory"						"econ/items/lifestealer/transmuted_armaments_arms/transmuted_armaments_arms"
+		"item_name"								"#DOTA_Item_Claws_of_the_Transmuted_Armaments"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/lifestealer/transmuted_armaments_arms/transmuted_armaments_arms.vmdl"
+	}
+	"6464"
+	{
+		"name"									"Spikes of the Transmuted Armaments"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-28"
+		"image_inventory"						"econ/items/lifestealer/transmuted_armaments_back/transmuted_armaments_back"
+		"item_name"								"#DOTA_Item_Spikes_of_the_Transmuted_Armaments"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back_Spikes"
+		"model_player"							"models/items/lifestealer/transmuted_armaments_back/transmuted_armaments_back.vmdl"
+	}
+	"6465"
+	{
+		"name"									"Belt of the Transmuted Armaments"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-28"
+		"image_inventory"						"econ/items/lifestealer/transmuted_armaments_belt/transmuted_armaments_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Transmuted_Armaments"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/lifestealer/transmuted_armaments_belt/transmuted_armaments_belt.vmdl"
+	}
+	"6466"
+	{
+		"name"									"Helmet of the Transmuted Armaments"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-28"
+		"image_inventory"						"econ/items/lifestealer/transmuted_armaments_head/transmuted_armaments_head"
+		"item_name"								"#DOTA_Item_Helmet_of_the_Transmuted_Armaments"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/lifestealer/transmuted_armaments_head/transmuted_armaments_head.vmdl"
+	}
+	"6475"
+	{
+		"name"									"Leg Talons of Madness"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-20"
+		"image_inventory"						"econ/items/lifestealer/leg_talons_of_madness/leg_talons_of_madness"
+		"item_name"								"#DOTA_Item_Leg_Talons_of_Madness"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/lifestealer/leg_talons_of_madness/leg_talons_of_madness.vmdl"
+	}
+	"6476"
+	{
+		"name"									"Gauntlets of Madness"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-20"
+		"image_inventory"						"econ/items/lifestealer/gauntlets_of_madness/gauntlets_of_madness"
+		"item_name"								"#DOTA_Item_Gauntlets_of_Madness"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Gauntlets"
+		"model_player"							"models/items/lifestealer/gauntlets_of_madness/gauntlets_of_madness.vmdl"
+	}
+	"6477"
+	{
+		"name"									"Helm of Madness"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-20"
+		"image_inventory"						"econ/items/lifestealer/esl_lifestealer_helm/esl_lifestealer_helm"
+		"item_name"								"#DOTA_Item_Helm_of_Madness"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/lifestealer/esl_lifestealer_helm/esl_lifestealer_helm.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/lifestealer/esl_lifestealer_helm/esl_lifestealer_helm.vmdl"
+					"name"						"#DOTA_Item_Esl_Lifestealer_Helm_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/lifestealer/esl_lifestealer_helm_s1/esl_lifestealer_helm_s1.vmdl"
+					"name"						"#DOTA_Item_Esl_Lifestealer_Helm_Style1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/lifestealer/esl_lifestealer_helm/esl_lifestealer_helm"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/lifestealer/esl_lifestealer_helm_s1/esl_lifestealer_helm_s1"
+				}
+			}
+		}
+	}
+	"6478"
+	{
+		"name"									"Bonds of Madness"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-20"
+		"image_inventory"						"econ/items/lifestealer/bonds_of_madness/bonds_of_madness"
+		"item_name"								"#DOTA_Item_Bonds_of_Madness"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/lifestealer/bonds_of_madness/bonds_of_madness.vmdl"
+	}
+	"7392"
+	{
+		"name"									"Wraps of the Bloody Ripper"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-17"
+		"image_inventory"						"econ/items/lifestealer/bloody_ripper_arms/bloody_ripper_arms"
+		"item_description"						"#DOTA_Item_Desc_Wraps_of_the_Bloody_Ripper"
+		"item_name"								"#DOTA_Item_Wraps_of_the_Bloody_Ripper"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Wraps"
+		"model_player"							"models/items/lifestealer/bloody_ripper_arms/bloody_ripper_arms.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_life_stealer' gem_def_index: 3005 } asset_modifier: 100"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"life_stealer_consume"
+				"modifier"						"life_stealer/bloody_ripper_abilityicons/life_stealer_consume"
+			}
+		}
+	}
+	"7393"
+	{
+		"name"									"Blades of the Bloody Ripper"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-17"
+		"image_inventory"						"econ/items/lifestealer/bloody_ripper_back/bloody_ripper_back"
+		"item_description"						"#DOTA_Item_Desc_Blades_of_the_Bloody_Ripper"
+		"item_name"								"#DOTA_Item_Blades_of_the_Bloody_Ripper"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Blades"
+		"model_player"							"models/items/lifestealer/bloody_ripper_back/bloody_ripper_back.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_life_stealer' gem_def_index: 3005 } asset_modifier: 99"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"life_stealer_infest"
+				"modifier"						"life_stealer/bloody_ripper_abilityicons/life_stealer_infest"
+			}
+		}
+	}
+	"7394"
+	{
+		"name"									"Belt of the Bloody Ripper"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-17"
+		"image_inventory"						"econ/items/lifestealer/bloody_ripper_belt/bloody_ripper_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Bloody_Ripper"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/lifestealer/bloody_ripper_belt/bloody_ripper_belt.vmdl"
+	}
+	"7395"
+	{
+		"name"									"Mask of the Bloody Ripper"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-17"
+		"image_inventory"						"econ/items/lifestealer/bloody_ripper_head/bloody_ripper_head"
+		"item_description"						"#DOTA_Item_Desc_Mask_of_the_Bloody_Ripper"
+		"item_name"								"#DOTA_Item_Mask_of_the_Bloody_Ripper"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/lifestealer/bloody_ripper_head/bloody_ripper_head.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_life_stealer' gem_def_index: 3005 } asset_modifier: 98"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"life_stealer_rage"
+				"modifier"						"life_stealer/bloody_ripper_abilityicons/life_stealer_rage"
+			}
+			"asset_modifier_socket1"
+			{
+				"type"							"ability_icon"
+				"asset"							"life_stealer_feast"
+				"modifier"						"life_stealer/bloody_ripper_abilityicons/life_stealer_feast"
+			}
+			"asset_modifier_socket2"
+			{
+				"type"							"ability_icon"
+				"asset"							"life_stealer_open_wounds"
+				"modifier"						"life_stealer/bloody_ripper_abilityicons/life_stealer_open_wounds"
+			}
+		}
+	}
+	"7471"
+	{
+		"name"									"Compendium Wraps of the Bloody Ripper"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-09"
+		"image_inventory"						"econ/items/lifestealer/promo_bloody_ripper_arms/promo_bloody_ripper_arms"
+		"item_description"						"#DOTA_Item_Desc_Promo_Wraps_of_the_Bloody_Ripper"
+		"item_name"								"#DOTA_Item_Compendium_Wraps_of_the_Bloody_Ripper"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Wraps"
+		"model_player"							"models/items/lifestealer/promo_bloody_ripper_arms/promo_bloody_ripper_arms.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_life_stealer' gem_def_index: 3005 } asset_modifier: 103"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"life_stealer_consume"
+				"modifier"						"life_stealer/promo_bloody_ripper_abilityicons/life_stealer_consume"
+			}
+		}
+	}
+	"7473"
+	{
+		"name"									"Compendium Blades of the Bloody Ripper"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-09"
+		"image_inventory"						"econ/items/lifestealer/promo_bloody_ripper_back/promo_bloody_ripper_back"
+		"item_description"						"#DOTA_Item_Desc_Promo_Blades_of_the_Bloody_Ripper"
+		"item_name"								"#DOTA_Item_Compendium_Blades_of_the_Bloody_Ripper"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Blades"
+		"model_player"							"models/items/lifestealer/promo_bloody_ripper_back/promo_bloody_ripper_back.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_life_stealer' gem_def_index: 3005 } asset_modifier: 102"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"life_stealer_infest"
+				"modifier"						"life_stealer/promo_bloody_ripper_abilityicons/life_stealer_infest"
+			}
+		}
+	}
+	"7474"
+	{
+		"name"									"Compendium Belt of the Bloody Ripper"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-09"
+		"image_inventory"						"econ/items/lifestealer/promo_bloody_ripper_belt/promo_bloody_ripper_belt"
+		"item_name"								"#DOTA_Item_Compendium_Belt_of_the_Bloody_Ripper"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/lifestealer/promo_bloody_ripper_belt/promo_bloody_ripper_belt.vmdl"
+	}
+	"7475"
+	{
+		"name"									"Compendium Mask of the Bloody Ripper"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-09"
+		"image_inventory"						"econ/items/lifestealer/promo_bloody_ripper_head/promo_bloody_ripper_head"
+		"item_description"						"#DOTA_Item_Desc_Promo_Mask_of_the_Bloody_Ripper"
+		"item_name"								"#DOTA_Item_Compendium_Mask_of_the_Bloody_Ripper"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/lifestealer/promo_bloody_ripper_head/promo_bloody_ripper_head.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_life_stealer' gem_def_index: 3005 } asset_modifier: 101"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"life_stealer_rage"
+				"modifier"						"life_stealer/promo_bloody_ripper_abilityicons/life_stealer_rage"
+			}
+			"asset_modifier_socket1"
+			{
+				"type"							"ability_icon"
+				"asset"							"life_stealer_feast"
+				"modifier"						"life_stealer/promo_bloody_ripper_abilityicons/life_stealer_feast"
+			}
+			"asset_modifier_socket2"
+			{
+				"type"							"ability_icon"
+				"asset"							"life_stealer_open_wounds"
+				"modifier"						"life_stealer/promo_bloody_ripper_abilityicons/life_stealer_open_wounds"
+			}
+		}
+	}
+	"8658"
+	{
+		"name"									"Lifestealer's Head"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/life_stealer/life_stealer_head"
+		"item_description"						"#DOTA_Item_Desc_Lifestealers_Head"
+		"item_name"								"#DOTA_Item_Lifestealers_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Base"
+	}
+	"8659"
+	{
+		"name"									"Lifestealer's Back"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/life_stealer/life_stealer_back"
+		"item_description"						"#DOTA_Item_Desc_Lifestealers_Back"
+		"item_name"								"#DOTA_Item_Lifestealers_Back"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Base"
+	}
+	"9105"
+	{
+		"name"									"Mask of the Chainbreaker"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-02"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/lifestealer/mad_naix_of_the_fury_dungeon_head/mad_naix_of_the_fury_dungeon_head"
+		"item_description"						"#DOTA_Item_Desc_Mask_of_the_Chainbreaker"
+		"item_name"								"#DOTA_Item_Mask_of_the_Chainbreaker"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/lifestealer/mad_naix_of_the_fury_dungeon_head/mad_naix_of_the_fury_dungeon_head.vmdl"
+	}
+	"9106"
+	{
+		"name"									"Claws of the Chainbreaker"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-02"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/lifestealer/mad_naix_of_the_fury_dungeon_arms/mad_naix_of_the_fury_dungeon_arms"
+		"item_description"						"#DOTA_Item_Desc_Claws_of_the_Chainbreaker"
+		"item_name"								"#DOTA_Item_Claws_of_the_Chainbreaker"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/lifestealer/mad_naix_of_the_fury_dungeon_arms/mad_naix_of_the_fury_dungeon_arms.vmdl"
+	}
+	"9107"
+	{
+		"name"									"Armor of the Chainbreaker"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-02"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/lifestealer/mad_naix_of_the_fury_dungeon_back/mad_naix_of_the_fury_dungeon_back"
+		"item_description"						"#DOTA_Item_Desc_Armor_of_the_Chainbreaker"
+		"item_name"								"#DOTA_Item_Armor_of_the_Chainbreaker"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/lifestealer/mad_naix_of_the_fury_dungeon_back/mad_naix_of_the_fury_dungeon_back.vmdl"
+	}
+	"9108"
+	{
+		"name"									"Belt of the Chainbreaker"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-02"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/lifestealer/mad_naix_of_the_fury_dungeon_belt/mad_naix_of_the_fury_dungeon_belt"
+		"item_description"						"#DOTA_Item_Desc_Belt_of_the_Chainbreaker"
+		"item_name"								"#DOTA_Item_Belt_of_the_Chainbreaker"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/lifestealer/mad_naix_of_the_fury_dungeon_belt/mad_naix_of_the_fury_dungeon_belt.vmdl"
+	}
+	"9165"
+	{
+		"name"									"Taunt:  Chain Break Dance"
+		"prefab"								"taunt"
+		"creation_date"							"2017-05-04"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/taunts/dota_icon_taunt_lifestealer_sidewalker"
+		"item_description"						"#DOTA_Item_Desc_Taunt__Chain_Break_Dance"
+		"item_name"								"#DOTA_Item_Taunt__Chain_Break_Dance"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1535796000"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"break_gesture"
+				"style"							"0"
+				"gesture"						"1"
+			}
+		}
+	}
+	"9199"
+	{
+		"name"									"Profane Union"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-04"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"hide_tradecraftdelete"					"1"
+		"image_inventory"						"econ/items/lifestealer/immortal_back/lifestealer_immortal_back"
+		"item_description"						"#DOTA_Item_Desc_Profane_Union"
+		"item_name"								"#DOTA_Item_Profane_Union"
+		"item_rarity"							"immortal"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/lifestealer/immortal_back/lifestealer_immortal_back.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1535796000"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"hide_styles_from_ui"				"1"
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Lifestealer_Immortal_Base"
+					"skin"						"0"
+					"auto_style_rule"			"modifier_life_stealer_rage <= 0"
+					"auto_style_reason"			"#DOTA_AutoStyle_Initial_Style_Reason"
+					"model_player"				"models/items/lifestealer/immortal_back/lifestealer_immortal_back.vmdl"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Lifestealer_Immortal_Rage"
+					"skin"						"1"
+					"auto_style_rule"			"modifier_life_stealer_rage > 0"
+					"auto_style_reason"			"#DOTA_Style_LifeStealer_Rage_Reason"
+					"model_player"				"models/items/lifestealer/immortal_back/lifestealer_immortal_back_rage.vmdl"
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/status_fx/status_effect_life_stealer_rage.vpcf"
+				"modifier"						"particles/econ/items/lifestealer/lifestealer_immortal_backbone/status_effect_life_stealer_immortal_rage.vpcf"
+				"style"							"1"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_life_stealer/life_stealer_rage.vpcf"
+				"modifier"						"particles/econ/items/lifestealer/lifestealer_immortal_backbone/lifestealer_immortal_backbone_rage.vpcf"
+				"style"							"1"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lifestealer/lifestealer_immortal_backbone/lifestealer_immortal_backbone_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"back"
+				"style"							"0"
+			}
+			"asset_modifier4"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"rage"
+				"style"							"1"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/lifestealer/lifestealer_immortal_backbone/lifestealer_immortal_backbone_ambient.vpcf"
+				"modifier"						"particles/econ/items/lifestealer/lifestealer_immortal_backbone/lifestealer_immortal_null.vpcf"
+				"style"							"1"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lifestealer/lifestealer_immortal_backbone/lifestealer_immortal_backbone_rage_ambient.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier7"
+			{
+				"type"							"ability_icon"
+				"asset"							"life_stealer_rage"
+				"modifier"						"life_stealer_rage_immortal"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/lifestealer/immortal_back/lifestealer_immortal_back"
+				}
+			}
+		}
+	}
+	"9215"
+	{
+		"name"									"Golden Profane Union"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-04"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"hide_tradecraftdelete"					"1"
+		"image_inventory"						"econ/items/lifestealer/immortal_back/lifestealer_immortal_back_golden"
+		"item_description"						"#DOTA_Item_Desc_Golden_Profane_Union"
+		"item_name"								"#DOTA_Item_Golden_Profane_Union"
+		"item_rarity"							"immortal"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/lifestealer/immortal_back/lifestealer_immortal_back_golden.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1535796000"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"hide_styles_from_ui"				"1"
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Lifestealer_Immortal_Base"
+					"skin"						"0"
+					"auto_style_rule"			"modifier_life_stealer_rage <= 0"
+					"auto_style_reason"			"#DOTA_AutoStyle_Initial_Style_Reason"
+					"model_player"				"models/items/lifestealer/immortal_back/lifestealer_immortal_back_golden.vmdl"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Lifestealer_Immortal_Rage"
+					"skin"						"1"
+					"auto_style_rule"			"modifier_life_stealer_rage > 0"
+					"auto_style_reason"			"#DOTA_Style_LifeStealer_Rage_Reason"
+					"model_player"				"models/items/lifestealer/immortal_back/lifestealer_immortal_back_rage_golden.vmdl"
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/status_fx/status_effect_life_stealer_rage.vpcf"
+				"modifier"						"particles/econ/items/lifestealer/lifestealer_immortal_backbone_gold/status_effect_life_stealer_immortal_rage_gold.vpcf"
+				"style"							"1"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_life_stealer/life_stealer_rage.vpcf"
+				"modifier"						"particles/econ/items/lifestealer/lifestealer_immortal_backbone_gold/lifestealer_immortal_backbone_gold_rage.vpcf"
+				"style"							"1"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lifestealer/lifestealer_immortal_backbone_gold/lifestealer_immortal_backbone_gold_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier3"
+			{
+				"type"							"model_skin"
+				"skin"							"1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"back"
+				"style"							"0"
+			}
+			"asset_modifier5"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"rage"
+				"style"							"1"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/lifestealer/lifestealer_immortal_backbone_gold/lifestealer_immortal_backbone_gold_ambient.vpcf"
+				"modifier"						"particles/econ/items/lifestealer/lifestealer_immortal_backbone_gold/lifestealer_immortal_backbone_gold_lv_null.vpcf"
+				"style"							"1"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lifestealer/lifestealer_immortal_backbone_gold/lifestealer_immortal_backbone_rage_ambient_gold.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier8"
+			{
+				"type"							"ability_icon"
+				"asset"							"life_stealer_rage"
+				"modifier"						"life_stealer_rage_immortal_gold"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/lifestealer/immortal_back/lifestealer_immortal_back_golden"
+				}
+			}
+		}
+	}
+	"12934"
+	{
+		"name"									"Dread Requisition"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-07"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/lifestealer/ls_ti9_immortal_arms/ls_ti9_immortal_arms"
+		"item_description"						"#DOTA_Item_Desc_Dread_Requisition"
+		"item_name"								"#DOTA_Item_Dread_Requisition"
+		"item_rarity"							"immortal"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/lifestealer/ls_ti9_immortal_arms/ls_ti9_immortal_arms.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1598997600"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_life_stealer/life_stealer_open_wounds_impact.vpcf"
+				"modifier"						"particles/econ/items/lifestealer/ls_ti9_immortal/ls_ti9_open_wounds_impact.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier1"
+			{
+				"type"							"ability_icon"
+				"asset"							"life_stealer_open_wounds"
+				"modifier"						"life_stealer_open_wounds_ti9"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/status_fx/status_effect_life_stealer_open_wounds.vpcf"
+				"modifier"						"particles/econ/items/lifestealer/ls_ti9_immortal/status_effect_ls_ti9_open_wounds.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_life_stealer/life_stealer_open_wounds.vpcf"
+				"modifier"						"particles/econ/items/lifestealer/ls_ti9_immortal/ls_ti9_open_wounds.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lifestealer/ls_ti9_immortal/ls_ti9_immortal_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier5"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti9_arms"
+				"style"							"0"
+			}
+			"asset_modifier6"
+			{
+				"type"							"sound"
+				"asset"							"Hero_LifeStealer.OpenWounds"
+				"modifier"						"Hero_LifeStealer.OpenWounds.TI9"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+		}
+	}
+	"12998"
+	{
+		"name"									"Golden Dread Requisition"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-07"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/lifestealer/ls_ti9_immortal_arms/ls_ti9_immortal_arms1"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Dread_Requisition"
+		"item_name"								"#DOTA_Item_Golden_Dread_Requisition"
+		"item_rarity"							"immortal"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/lifestealer/ls_ti9_immortal_arms/ls_ti9_immortal_arms.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1598997600"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_life_stealer/life_stealer_open_wounds_impact.vpcf"
+				"modifier"						"particles/econ/items/lifestealer/ls_ti9_immortal_gold/ls_ti9_open_wounds_gold_impact.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier1"
+			{
+				"type"							"ability_icon"
+				"asset"							"life_stealer_open_wounds"
+				"modifier"						"life_stealer_open_wounds_ti9_gold"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/status_fx/status_effect_life_stealer_open_wounds.vpcf"
+				"modifier"						"particles/econ/items/lifestealer/ls_ti9_immortal_gold/status_effect_ls_ti9_open_wounds_gold.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_life_stealer/life_stealer_open_wounds.vpcf"
+				"modifier"						"particles/econ/items/lifestealer/ls_ti9_immortal_gold/ls_ti9_open_wounds_gold.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lifestealer/ls_ti9_immortal_gold/ls_ti9_immortal_ambient_gold.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier5"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti9_arms"
+				"style"							"0"
+			}
+			"skin"								"1"
+			"skip_model_combine"				"0"
+			"asset_modifier6"
+			{
+				"type"							"sound"
+				"asset"							"Hero_LifeStealer.OpenWounds"
+				"modifier"						"Hero_LifeStealer.OpenWounds.TI9"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+		}
+	}
+	"13787"
+	{
+		"name"									"Dark Maw Inhibitor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"hide_tradecraftdelete"					"1"
+		"image_inventory"						"econ/items/lifestealer/ls_ti10_immortal_head/ls_ti10_immortal_head"
+		"item_description"						"#DOTA_Item_Desc_Dark_Maw_Inhibitor"
+		"item_name"								"#DOTA_Item_Dark_Maw_Inhibitor"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"model_player"							"models/items/lifestealer/ls_ti10_immortal_head/ls_ti10_immortal_head.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"ability_icon"
+				"asset"							"life_stealer_infest"
+				"modifier"						"life_stealer/ls_ti10_immortal_ability_icons/life_stealer_infest_ti10"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier1"
+			{
+				"type"							"ability_icon"
+				"asset"							"life_stealer_consume"
+				"modifier"						"life_stealer/ls_ti10_immortal_ability_icons/life_stealer_consume_ti10"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lifestealer/ls_ti10_immortal/ls_ti10_immortal_head.vpcf"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_life_stealer/life_stealer_infested_unit.vpcf"
+				"modifier"						"particles/econ/items/lifestealer/ls_ti10_immortal/ls_ti10_immortal_infest_icon_glow.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_life_stealer/life_stealer_infest_emerge_bloody.vpcf"
+				"modifier"						"particles/econ/items/lifestealer/ls_ti10_immortal/ls_ti10_immortal_infest.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier5"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti10_head"
+			}
+			"asset_modifier6"
+			{
+				"type"							"sound"
+				"asset"							"Hero_LifeStealer.Consume"
+				"modifier"						"Hero_LifeStealer.Consume.TI10"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+		}
+	}
+	"13818"
+	{
+		"name"									"Golden Dark Maw Inhibitor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"hide_tradecraftdelete"					"1"
+		"image_inventory"						"econ/items/lifestealer/ls_ti10_immortal_head/ls_ti10_immortal_head_gold"
+		"item_description"						"#DOTA_Item_Desc_Lifestealer_TI10_Immortal_Head_Gold"
+		"item_name"								"#DOTA_Item_Golden_Dark_Maw_Inhibitor"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"model_player"							"models/items/lifestealer/ls_ti10_immortal_head/ls_ti10_immortal_head_gold.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_life_stealer/life_stealer_infest_emerge_bloody.vpcf"
+				"modifier"						"particles/econ/items/lifestealer/ls_ti10_immortal/ls_ti10_immortal_infest_gold.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_life_stealer/life_stealer_infested_unit.vpcf"
+				"modifier"						"particles/econ/items/lifestealer/ls_ti10_immortal/ls_ti10_immortal_infest_icon_gold_glow.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lifestealer/ls_ti10_immortal/ls_ti10_immortal_head_gold.vpcf"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti10_head"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"life_stealer_infest"
+				"modifier"						"life_stealer/ls_ti10_immortal_ability_icons/life_stealer_infest_ti10_gold"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier5"
+			{
+				"type"							"ability_icon"
+				"asset"							"life_stealer_consume"
+				"modifier"						"life_stealer/ls_ti10_immortal_ability_icons/life_stealer_consume_ti10_gold"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier6"
+			{
+				"type"							"sound"
+				"asset"							"Hero_LifeStealer.Consume"
+				"modifier"						"Hero_LifeStealer.Consume.TI10"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+		}
+	}
+	"17799"
+	{
+		"name"									"Lifestealer's Diretide Shimmer Chains"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-24"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 18:20:00"
+		"image_inventory"						"econ/heroes/life_stealer/life_stealer_chains1"
+		"item_name"								"#DOTA_Item_Lifestealers_Diretide_Shimmer_Chains"
+		"item_rarity"							"seasonal"
+		"item_slot"								"arms"
+		"model_player"							"models/heroes/life_stealer/life_stealer_chains.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"17800"
+	{
+		"name"									"Lifestealer's Diretide Shimmer Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-24"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 18:20:00"
+		"image_inventory"						"econ/heroes/life_stealer/life_stealer_loincloth1"
+		"item_name"								"#DOTA_Item_Lifestealers_Diretide_Shimmer_Belt"
+		"item_rarity"							"seasonal"
+		"item_slot"								"belt"
+		"model_player"							"models/heroes/life_stealer/life_stealer_loincloth.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"19581"
+	{
+		"name"									"Cursed Decay Inhibitor Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/lifestealer/cursed_decay_inhibitor_arms/cursed_decay_inhibitor_arms"
+		"item_name"								"#DOTA_Item_Vote_Only_Cursed_Decay_Inhibitor_Arms"
+		"item_slot"								"arms"
+		"model_player"							"models/items/lifestealer/cursed_decay_inhibitor_arms/cursed_decay_inhibitor_arms.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19582"
+	{
+		"name"									"Cursed Decay Inhibitor Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/lifestealer/cursed_decay_inhibitor_back/cursed_decay_inhibitor_back"
+		"item_name"								"#DOTA_Item_Vote_Only_Cursed_Decay_Inhibitor_Back"
+		"item_slot"								"back"
+		"model_player"							"models/items/lifestealer/cursed_decay_inhibitor_back/cursed_decay_inhibitor_back.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19583"
+	{
+		"name"									"Cursed Decay Inhibitor Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/lifestealer/cursed_decay_inhibitor_belt/cursed_decay_inhibitor_belt"
+		"item_name"								"#DOTA_Item_Vote_Only_Cursed_Decay_Inhibitor_Belt"
+		"item_slot"								"belt"
+		"model_player"							"models/items/lifestealer/cursed_decay_inhibitor_belt/cursed_decay_inhibitor_belt.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19584"
+	{
+		"name"									"Cursed Decay Inhibitor Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/lifestealer/cursed_decay_inhibitor_head/cursed_decay_inhibitor_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Cursed_Decay_Inhibitor_Head"
+		"item_slot"								"head"
+		"model_player"							"models/items/lifestealer/cursed_decay_inhibitor_head/cursed_decay_inhibitor_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"20431"
+	{
+		"name"									"Trappings of the Ravenous Fiend"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Belt of the Ravenous Fiend"		"1"
+			"Claws of the Ravenous Fiend"		"1"
+			"Horned Visage of the Ravenous Fiend""1"
+			"Ragged Shoulders of the Ravenous Fiend""1"
+			"Ravenous Fiend Loading Screen"		"1"
+		}
+		"creation_date"							"2014-03-12"
+		"image_inventory"						"econ/sets/DOTA_Item_Trappings_of_the_Ravenous_Fiend"
+		"item_description"						"#DOTA_Item_Desc_Trappings_of_the_Ravenous_Fiend"
+		"item_name"								"#DOTA_Item_Trappings_of_the_Ravenous_Fiend"
+		"item_rarity"							"rare"
+	}
+	"20455"
+	{
+		"name"									"Redrage Crawler"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Redrage Crawler Battlewings"		"1"
+			"Redrage Crawler Belt"				"1"
+			"Redrage Crawler Bracers"			"1"
+			"Redrage Crawler Helm"				"1"
+			"Redrage Crawler Loading Screen"	"1"
+		}
+		"creation_date"							"2014-03-24"
+		"image_inventory"						"econ/sets/DOTA_Item_Redrage_Crawler"
+		"item_name"								"#DOTA_Item_Redrage_Crawler"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Redrage_Crawler_Bundle"
+	}
+	"20499"
+	{
+		"name"									"Transmuted Armaments"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Claws of the Transmuted Armaments"	"1"
+			"Helmet of the Transmuted Armaments""1"
+			"Belt of the Transmuted Armaments"	"1"
+			"Spikes of the Transmuted Armaments""1"
+			"Transmuted Armaments Loading Screen""1"
+		}
+		"creation_date"							"2014-04-29"
+		"image_inventory"						"econ/loading_screens/transmuted_armaments_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Transmuted_Armaments"
+		"item_name"								"#DOTA_Item_Transmuted_Armaments"
+		"item_rarity"							"rare"
+	}
+	"20696"
+	{
+		"name"									"Bloody Ripper"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bloody Ripper Loading Screen"		"1"
+			"Belt of the Bloody Ripper"			"1"
+			"Blades of the Bloody Ripper"		"1"
+			"Wraps of the Bloody Ripper"		"1"
+			"Mask of the Bloody Ripper"			"1"
+		}
+		"creation_date"							"2015-03-17"
+		"image_inventory"						"econ/loading_screens/bloody_ripper_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Bloody_Ripper"
+		"item_name"								"#DOTA_Item_Bloody_Ripper"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"2500"
+	}
+	"20706"
+	{
+		"name"									"Compendium Bloody Ripper"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Compendium Bloody Ripper Loading Screen""1"
+			"Compendium Mask of the Bloody Ripper""1"
+			"Compendium Belt of the Bloody Ripper""1"
+			"Compendium Blades of the Bloody Ripper""1"
+			"Compendium Wraps of the Bloody Ripper""1"
+		}
+		"creation_date"							"2015-01-09"
+		"image_inventory"						"econ/loading_screens/promo_bloody_ripper_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Compendium_Bloody_Ripper"
+		"item_name"								"#DOTA_Item_Compendium_Bloody_Ripper"
+		"item_rarity"							"rare"
+	}
+	"21089"
+	{
+		"name"									"Torment of the Chainbreaker"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of the Chainbreaker""1"
+			"Belt of the Chainbreaker"			"1"
+			"Armor of the Chainbreaker"			"1"
+			"Claws of the Chainbreaker"			"1"
+			"Mask of the Chainbreaker"			"1"
+		}
+		"creation_date"							"2017-02-03"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/loading_screens/mad_naix_of_the_fury_dungeon_mad_naix_of_the_fury_dungeon_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Torment_of_the_Chainbreaker"
+		"item_name"								"#DOTA_Item_Torment_of_the_Chainbreaker"
+		"item_rarity"							"mythical"
+	}
+	"21695"
+	{
+		"name"									"Lifestealer's Diretide Shimmer Bundle"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Lifestealer's Diretide Shimmer Costume""1"
+			"Lifestealer's Diretide Shimmer Chains""1"
+			"Lifestealer's Diretide Shimmer Belt""1"
+		}
+		"creation_date"							"2020-09-24"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"expiration_date"						"2020-12-22 18:20:00"
+		"image_inventory"						"econ/sets/DOTA_Item_Lifestealers_Spooky_Bundle"
+		"item_name"								"#DOTA_Item_Lifestealers_Diretide_Shimmer_Bundle"
+		"item_rarity"							"seasonal"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"21915"
+	{
+		"name"									"Cursed Decay Inhibitor"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Cursed Decay Inhibitor Head"		"1"
+			"Cursed Decay Inhibitor Arms"		"1"
+			"Cursed Decay Inhibitor Back"		"1"
+			"Cursed Decay Inhibitor Belt"		"1"
+		}
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Cursed_Decay_Inhibitor"
+		"workshop_accepted"						"0"
+	}
+	"23450"
+	{
+		"name"									"Obsidian Atrocity"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Obsidian Atrocity - Head"			"1"
+			"Obsidian Atrocity - Back"			"1"
+			"Obsidian Atrocity - Arms"			"1"
+			"Obsidian Atrocity - Belt"			"1"
+		}
+		"creation_date"							"2022-06-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/sets/DOTA_Item_Lava_Stealer"
+		"item_name"								"#DOTA_Item_Obsidian_Atrocity"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+	}
+	"23451"
+	{
+		"name"									"Obsidian Atrocity - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2022-06-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/lifestealer/lavastealer_head/lavastealer_head"
+		"item_name"								"#DOTA_Item_Obsidian_Atrocity__Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/lifestealer/lavastealer_head/lavastealer_head.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+	}
+	"23452"
+	{
+		"name"									"Obsidian Atrocity - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2022-06-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/lifestealer/lavastealer_back/lavastealer_back"
+		"item_name"								"#DOTA_Item_Obsidian_Atrocity__Back"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/lifestealer/lavastealer_back/lavastealer_back.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/lifestealer/lifestealer_2022_themed/lifestealer_2022_themed_back_ambient.vpcf"
+			}
+		}
+	}
+	"23453"
+	{
+		"name"									"Obsidian Atrocity - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2022-06-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/lifestealer/lavastealer_arms/lavastealer_arms"
+		"item_name"								"#DOTA_Item_Obsidian_Atrocity__Arms"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/lifestealer/lavastealer_arms/lavastealer_arms.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+	}
+	"23454"
+	{
+		"name"									"Obsidian Atrocity - Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2022-06-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/lifestealer/lavastealer_belt/lavastealer_belt"
+		"item_name"								"#DOTA_Item_Obsidian_Atrocity__Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/lifestealer/lavastealer_belt/lavastealer_belt.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+	}
+}

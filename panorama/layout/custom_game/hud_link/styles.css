@@ -1,0 +1,251 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.HudRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+
+#HudLink
+{
+	width: 1504px;
+	height: 856px;
+	background-color: #4c4c88;
+	background-image: url("s2r://panorama/images/custom_game/activity/bg_png.vtex");
+	background-size: 100%;
+	align: center center;
+	opacity: 0;
+	transition-property: transform, opacity;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+	transform: translateX(-300px) translateY(-300px);
+}
+
+#HudLink.english #MainLogo
+{
+	background-image: url("s2r://panorama/images/custom_game/activity/link_logo_t12_en_png.vtex");
+}
+
+#HudLink.english #SkinPost
+{
+	background-image: url("s2r://panorama/images/custom_game/activity/t12_en_png.vtex");
+}
+
+#HudLink.Show
+{
+	opacity: 1;
+	transform: translateX(0px) translateY(0px);
+}
+
+#HudLink #CloseButton
+{
+	width: 52px;
+	height: 48px;
+	background-image: url("s2r://panorama/images/custom_game/activity/close_png.vtex");
+	background-size: 100%;
+	align: right top;
+	margin: 4px;
+}
+
+#HudLink #CloseButton:hover
+{
+	brightness: 1.5;
+}
+
+#HudLink #MainLogo
+{
+	align: right bottom;
+	width: 408px;
+	height: 96px;
+	background-image: url("s2r://panorama/images/custom_game/activity/link_logo_t12_png.vtex");
+	background-size: 100%;
+	margin-right: 50px;
+	margin-bottom: 20px;
+}
+
+#HudLink #SkinPost
+{
+	width: 100%;
+	height: 856px;
+	background-image: url("s2r://panorama/images/custom_game/activity/t12_new_png.vtex");
+	background-size: 100%;
+	align: left center;
+}
+
+#HudLink #LinkButton
+{
+	width: 200px;
+	height: 80px;
+	margin-left: 190px;
+	margin-bottom: 200px;
+	align: left bottom;
+}
+
+#HudLink #LinkButton Label
+{
+	font-size: 26px;
+	text-overflow: shrink;
+}
+
+#HudLink #Content
+{
+	width: 800px;
+	height: 100%;
+	align: right center;
+	flow-children: down;
+}
+
+#HudLink #Content #Top
+{
+	width: 100%;
+	height: 300px;
+}
+
+#HudLink #Content #Top #TitlePanel
+{
+	width: 743px;
+	height: 90px;
+	background-image: url("s2r://panorama/images/custom_game/activity/title_png.vtex");
+	align: center center;
+}
+
+#HudLink #Content #Top #TitlePanel #Title
+{
+	width: 480px;
+	height: 40px;
+	align: center center;
+	font-size: 36px;
+	text-align: center;
+	text-overflow: shrink;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#FFEEC8), to(#EEB985));
+}
+
+#HudLink #Content #Top #desc
+{
+	width: 398px;
+	height: 86px;
+	align: left bottom;
+	font-size: 20px;
+	text-overflow: shrink;
+	color: #96ACC4;
+	margin-left: 40px;
+	margin-bottom: 10px;
+}
+
+#HudLink #Content #Top #time
+{
+	width: 298px;
+	height: 24px;
+	align: right bottom;
+	font-size: 20px;
+	text-align: center;
+	text-overflow: shrink;
+	color: #96ACC4;
+	margin-bottom: 50px;
+}
+
+#HudLink #Content #Main
+{
+	width: 100%;
+}
+
+#HudLink #Content #Main #TaskList
+{
+	width: fit-children;
+	height: 400px;
+	flow-children: right;
+	horizontal-align: center;
+}
+
+#HudLink #Content #Main #TaskList #Task
+{
+	width: 226px;
+	height: 377px;
+	border: 2px solid #9CE3FF;
+	margin: 12px;
+	background-color: #151826;
+}
+
+#HudLink #Content #Main #TaskList #Task.Normal
+{
+	border: 2px solid #3B4D70;
+}
+
+#HudLink #Content #Main #TaskList #Task.Normal #Reward
+{
+	border: 2px solid #3B4D70;
+}
+
+#HudLink #Content #Main #TaskList #Task.Received
+{
+	border: 2px solid #474D58;
+	saturation: 0.5;
+}
+
+#HudLink #Content #Main #TaskList #Task.Received #Reward
+{
+	border: 2px solid #474D58;
+}
+
+#HudLink #Content #Main #TaskList #Task.CanReceive
+{
+	border: 2px solid #FFFAD1;
+}
+
+#HudLink #Content #Main #TaskList #Task.CanReceive #Reward
+{
+	border: 2px solid #FFFAD1;
+}
+
+#HudLink #Content #Main #TaskList #Task #TaskInfo
+{
+	width: 180px;
+	color: #A7BCE5;
+	text-overflow: shrink;
+	horizontal-align: center;
+	font-size: 20px;
+	margin-top: 23px;
+}
+
+#HudLink #Content #Main #TaskList #Task #Reward
+{
+	width: 100px;
+	height: 100px;
+	align: center bottom;
+	border: 2px solid #9CE3FF;
+	margin-bottom: 60px;
+}
+
+#HudLink #Content #Main #TaskList #Task #Reward #RewardImage
+{
+	align: center center;
+}
+
+#HudLink #Content #Main #TaskList #Task #Reward #RewardAmount
+{
+	font-size: 18px;
+	align: right bottom;
+	color: #ffffff;
+}
+
+#HudLink #Content #Main #TaskList #Task #GetRewardButton
+{
+	align: center bottom;
+	saturation: 0.1;
+}
+
+#HudLink #Content #Main #TaskList #Task #GetRewardButton.Enable
+{
+	saturation: 1;
+}

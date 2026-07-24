@@ -1,0 +1,48 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"sandking_caustic_finale_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_sandking/sandking_caustic_finale_lua"
+		"AbilityTextureName"					"sandking_caustic_finale"
+		"FightRecapLevel"						"1"
+		"MaxLevel"								"4"
+		"precache"
+		{
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_sandking.vsndevts"
+			"particle"							"particles/units/heroes/hero_sandking/sandking_caustic_finale_debuff.vpcf"
+			"particle"							"particles/units/heroes/hero_sandking/sandking_caustic_finale_explode.vpcf"
+		}
+		"AbilityType"							"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityValues"
+		{
+			"caustic_finale_radius"
+			{
+				"value"							"500"
+				"affected_by_aoe_increase"		"1"
+			}
+			"caustic_finale_damage_base"
+			{
+				"value"							"50 70 90 110"
+				"special_bonus_unique_sand_king_8""+120"
+			}
+			"caustic_finale_damage_pct"			"10 14 18 22"
+			"caustic_finale_duration"			"6"
+			"caustic_finale_slow"				"-14 -18 -22 -26"
+		}
+	}
+}

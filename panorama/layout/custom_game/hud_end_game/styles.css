@@ -1,0 +1,600 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.HudRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#CustomerService_qrcode
+{
+	width: 160px;
+	height: fit-children;
+	background-color: rgba(20, 20, 26, 0.824);
+	flow-children: down;
+}
+
+#CustomerService_qrcode #qrcode_main
+{
+	width: 140px;
+	height: 140px;
+	margin: 10px;
+	background-image: url("s2r://panorama/images/custom_game/store/wechat_qrcode_png.vtex");
+	background-size: 100%;
+	visibility: collapse;
+}
+
+#CustomerService_qrcode #qrcode_main.Show
+{
+	visibility: visible;
+}
+
+#CustomerService_qrcode #qrcode_abroad
+{
+	margin: 10px;
+	width: 140px;
+	height: 168px;
+	background-image: url("s2r://panorama/images/custom_game/icon/discord_icon_png.vtex");
+	background-size: 100% 78%;
+	background-repeat: no-repeat;
+	visibility: collapse;
+}
+
+#CustomerService_qrcode #qrcode_abroad Label
+{
+	align: center bottom;
+	color: #dbcda6;
+	font-size: 23px;
+	text-overflow: shrink;
+	text-align: center;
+	text-shadow: 1px 1px 2px 3 #000000;
+	text-decoration: underline;
+	height: 28px;
+}
+
+#CustomerService_qrcode #qrcode_abroad.Show
+{
+	visibility: visible;
+}
+
+#CustomerService_qrcode #qrcode_desc
+{
+	horizontal-align: center;
+	color: #dbcda6;
+	font-size: 18px;
+	text-overflow: shrink;
+	text-align: center;
+	text-shadow: 1px 1px 2px 3 #000000;
+	height: 24px;
+}
+
+.EndGameRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+
+#CustomEndGame_root
+{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.848);
+	z-index: 2;
+}
+
+#CustomEndGame_root #LinkActivity
+{
+	width: 210px;
+	height: 273.6px;
+	align: left center;
+	background-image: url("s2r://panorama/images/custom_game/activity/endgame_post_c1_png.vtex");
+	background-size: 100%;
+	z-index: 3;
+}
+
+#CustomEndGame_root #LinkActivity #LinkTitle
+{
+	width: 100%;
+	margin-left: 6px;
+	margin-right: 6px;
+	align: center bottom;
+	font-size: 24px;
+	text-align: left;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 4px 6 #000000;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#FFFDF5), to(#FFD895));
+}
+
+#CustomEndGame_root #CustomerService_qrcode
+{
+	align: right center;
+	margin-top: 400px;
+}
+
+#CustomEndGame_root #CustomEndGame_main
+{
+	width: fit-children;
+	height: fit-children;
+	align: center top;
+	margin-top: 80px;
+	flow-children: down;
+}
+
+#CustomEndGame_root #CustomEndGame_main #CustomEndGame_title
+{
+	width: 100%;
+	height: fit-children;
+}
+
+#CustomEndGame_root #CustomEndGame_main #CustomEndGame_title Label
+{
+	align: center center;
+	text-align: center;
+	color: #ffb1b1;
+	font-size: 64px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}
+
+#CustomEndGame_root #CustomEndGame_main #CustomEndGame_content
+{
+	width: fit-children;
+	height: fit-children;
+	flow-children: down;
+}
+
+#CustomEndGame_root #CustomEndGame_main #CustomEndGame_content #form_title
+{
+	margin-top: 10px;
+	width: 100%;
+	height: 26px;
+}
+
+#CustomEndGame_root #CustomEndGame_main #CustomEndGame_content #form_title Label
+{
+	text-align: center;
+	color: #b0a996;
+	font-size: 22px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}
+
+#CustomEndGame_root #CustomEndGame_main #CustomEndGame_content #form_title .title_basic_info
+{
+	width: 230px;
+}
+
+#CustomEndGame_root #CustomEndGame_main #CustomEndGame_content #form_title .title_pvp_record
+{
+	width: 124px;
+}
+
+#CustomEndGame_root #CustomEndGame_main #CustomEndGame_content #form_title .title_score
+{
+	width: 120px;
+}
+
+#CustomEndGame_root #CustomEndGame_main #CustomEndGame_content #form_title .title_ability
+{
+	width: 326px;
+	margin-right: 6px;
+}
+
+#CustomEndGame_root #CustomEndGame_main #CustomEndGame_content #form_title .title_items
+{
+	width: 364px;
+	margin-right: 6px;
+}
+
+#CustomEndGame_root #CustomEndGame_main #CustomEndGame_content #form_title .title_gold
+{
+	width: 100px;
+}
+
+#CustomEndGame_root #CustomEndGame_main #CustomEndGame_content #form_title .title_bet_reward
+{
+	width: 100px;
+}
+
+#CustomEndGame_root #CustomEndGame_main #CustomEndGame_content #form_title .title_reward
+{
+	width: 100px;
+}
+
+#CustomEndGame_root #CustomEndGame_main #CustomEndGame_content #form_title .title_round
+{
+	width: 100px;
+	margin-right: 6px;
+}
+
+#CustomEndGame_root #CustomEndGame_main #CustomEndGame_content #form_title #pvp_title
+{
+	width: fit-children;
+	height: fit-children;
+	flow-children: right;
+}
+
+#CustomEndGame_root #CustomEndGame_main #CustomEndGame_content #form_title #pve_title
+{
+	width: fit-children;
+	height: fit-children;
+	flow-children: right;
+}
+
+#CustomEndGame_root #CustomEndGame_quit
+{
+	width: 140px;
+	height: 50px;
+	align: right bottom;
+	box-shadow: inset grey 0px 0px 10px -8px;
+	margin-bottom: 50px;
+	margin-right: 200px;
+}
+
+#CustomEndGame_root #CustomEndGame_quit Label
+{
+	align: center center;
+	color: #cacaca;
+	font-weight: bold;
+	font-size: 24px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}
+
+#CustomEndGame_root #CustomEndGame_Buttons Label
+{
+	font-size: 22px;
+	text-overflow: shrink;
+}
+
+#pvp_content
+{
+	width: fit-children;
+	height: fit-children;
+	background-color: rgba(0, 0, 0, 0.5);
+	flow-children: down;
+}
+
+#pvp_content #teamInfo
+{
+	width: fit-children;
+	height: fit-children;
+	flow-children: down;
+}
+
+#pvp_content #teamInfo #PlayerInfo
+{
+	margin: 4px;
+	height: fit-children;
+	width: fit-children;
+	flow-children: right;
+}
+
+#pvp_content #teamInfo #PlayerInfo.Self
+{
+	brightness: 2;
+	box-shadow: inset #deba2d 0px 0px 10px -8px;
+}
+
+#pvp_content #teamInfo #PlayerInfo #basicInfo
+{
+	width: 230px;
+	height: 54px;
+	background-color: rgba(0, 0, 0, 0.95);
+	flow-children: right;
+}
+
+#pvp_content #teamInfo #PlayerInfo #basicInfo #basicInfo_img
+{
+	height: 100%;
+	width: height-percentage(175%);
+}
+
+#pvp_content #teamInfo #PlayerInfo #basicInfo #InfoText
+{
+	height: 100%;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 6px;
+}
+
+#pvp_content #teamInfo #PlayerInfo #basicInfo #InfoText #PlayerName
+{
+	height: 24px;
+	align: left top;
+	text-align: center;
+	color: white;
+	font-size: 20px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}
+
+#pvp_content #teamInfo #PlayerInfo #basicInfo #InfoText #heroInfo
+{
+	height: 22px;
+	align: center bottom;
+	text-align: center;
+	color: #b3b3b3;
+	font-size: 18px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}
+
+#pvp_content #teamInfo #PlayerInfo #pvp_record
+{
+	width: 124px;
+	height: 100%;
+	flow-children: right;
+	margin-right: 6px;
+	background-color: rgba(0, 0, 0, 0.95);
+}
+
+#pvp_content #teamInfo #PlayerInfo #pvp_record #pvp_record_win
+{
+	width: 50%;
+	height: 24px;
+	align: left center;
+	text-align: center;
+	color: dotaPlusLightGold;
+	font-weight: bold;
+	font-size: 20px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}
+
+#pvp_content #teamInfo #PlayerInfo #pvp_record #pvp_record_lose
+{
+	width: 50%;
+	height: 24px;
+	align: right center;
+	text-align: center;
+	color: dotaPlusLightGold;
+	font-weight: bold;
+	font-size: 20px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}
+
+#pvp_content #teamInfo #PlayerInfo #ability
+{
+	height: 100%;
+	width: 326px;
+	flow-children: right;
+	margin-right: 6px;
+	background-color: rgba(0, 0, 0, 0.95);
+}
+
+#pvp_content #teamInfo #PlayerInfo #ability #abilityImage
+{
+	height: 100%;
+	width: height-percentage(100%);
+}
+
+#pvp_content #teamInfo #PlayerInfo #items
+{
+	height: 100%;
+	width: 364px;
+	margin-right: 6px;
+	flow-children: right;
+	background-color: rgba(0, 0, 0, 0.95);
+}
+
+#pvp_content #teamInfo #PlayerInfo #items #itemSlot
+{
+	height: 86%;
+	width: height-percentage(130%);
+}
+
+#pvp_content #teamInfo #PlayerInfo #gold
+{
+	height: 100%;
+	width: 100px;
+	padding-right: 10px;
+	background-color: rgba(0, 0, 0, 0.95);
+}
+
+#pvp_content #teamInfo #PlayerInfo #gold #gold_text
+{
+	align: right center;
+	text-align: center;
+	color: #a79d69;
+	font-size: 24px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}
+
+#pvp_content #teamInfo #PlayerInfo #bet_reward
+{
+	height: 100%;
+	width: 100px;
+	padding-right: 10px;
+	background-color: rgba(0, 0, 0, 0.95);
+}
+
+#pvp_content #teamInfo #PlayerInfo #bet_reward #bet_reward_text
+{
+	align: right center;
+	text-align: center;
+	color: #b09d33;
+	font-size: 24px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}
+
+#pvp_content #teamInfo #PlayerInfo #score
+{
+	height: 100%;
+	width: 120px;
+	padding-right: 10px;
+	background-color: rgba(0, 0, 0, 0.95);
+}
+
+#pvp_content #teamInfo #PlayerInfo #score #score_text
+{
+	align: right center;
+	text-align: center;
+	color: white;
+	font-size: 24px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}
+
+#pvp_content #teamInfo #PlayerInfo #reward
+{
+	height: 100%;
+	width: 100px;
+	padding-right: 10px;
+	background-color: rgba(0, 0, 0, 0.95);
+}
+
+#pvp_content #teamInfo #PlayerInfo #reward #reward_text
+{
+	align: right center;
+	text-align: center;
+	color: white;
+	font-size: 24px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}
+
+#pve_content
+{
+	width: fit-children;
+	height: fit-children;
+	background-color: rgba(0, 0, 0, 0.5);
+	flow-children: down;
+}
+
+#pve_content #PlayerInfo
+{
+	margin: 4px;
+	height: fit-children;
+	width: fit-children;
+	flow-children: right;
+}
+
+#pve_content #PlayerInfo.Self
+{
+	brightness: 2;
+	box-shadow: inset #deba2d 0px 0px 10px -8px;
+}
+
+#pve_content #PlayerInfo #basicInfo
+{
+	width: 230px;
+	height: 54px;
+	background-color: rgba(0, 0, 0, 0.95);
+	flow-children: right;
+}
+
+#pve_content #PlayerInfo #basicInfo #basicInfo_img
+{
+	height: 100%;
+	width: height-percentage(175%);
+}
+
+#pve_content #PlayerInfo #basicInfo #InfoText
+{
+	height: 100%;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 6px;
+}
+
+#pve_content #PlayerInfo #basicInfo #InfoText #PlayerName
+{
+	align: left top;
+	text-align: center;
+	color: white;
+	font-size: 20px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}
+
+#pve_content #PlayerInfo #basicInfo #InfoText #heroInfo
+{
+	align: center bottom;
+	text-align: center;
+	color: #b3b3b3;
+	font-size: 18px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}
+
+#pve_content #PlayerInfo #ability
+{
+	height: 100%;
+	width: 326px;
+	flow-children: right;
+	margin-right: 6px;
+	background-color: rgba(0, 0, 0, 0.95);
+}
+
+#pve_content #PlayerInfo #ability #abilityImage
+{
+	height: 100%;
+	width: height-percentage(100%);
+}
+
+#pve_content #PlayerInfo #items
+{
+	height: 100%;
+	width: 364px;
+	margin-right: 6px;
+	flow-children: right;
+	background-color: rgba(0, 0, 0, 0.95);
+}
+
+#pve_content #PlayerInfo #items #itemSlot
+{
+	height: 86%;
+	width: height-percentage(130%);
+}
+
+#pve_content #PlayerInfo #round
+{
+	height: 100%;
+	width: 100px;
+	padding-right: 10px;
+	margin-right: 6px;
+	background-color: rgba(0, 0, 0, 0.95);
+}
+
+#pve_content #PlayerInfo #round #round_text
+{
+	align: right center;
+	text-align: center;
+	color: white;
+	font-size: 24px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}
+
+#pve_content #PlayerInfo #reward
+{
+	height: 100%;
+	width: 100px;
+	padding-right: 10px;
+	background-color: rgba(0, 0, 0, 0.95);
+}
+
+#pve_content #PlayerInfo #reward #reward_text
+{
+	align: right center;
+	text-align: center;
+	color: white;
+	font-size: 24px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}

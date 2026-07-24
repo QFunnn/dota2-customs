@@ -1,0 +1,952 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"172"
+	{
+		"name"									"Ancient Apparition's Head"
+		"prefab"								"default_item"
+		"creation_date"							"2015-10-28"
+		"image_inventory"						"econ/heroes/ancient_apparition/ancient_apparition_head"
+		"item_description"						"#DOTA_Item_Desc_Ancient_Aparitions_Head"
+		"item_name"								"#DOTA_Item_Ancient_Apparitions_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Base"
+	}
+	"501"
+	{
+		"name"									"Ancient Apparition's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-05"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Ancient_Apparitions_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_ancient_apparition"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ancient_apparition/ancient_apparition_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_ancient_apparition/ancient_apparition_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+				}
+			}
+		}
+	}
+	"648"
+	{
+		"name"									"Ancient Apparition's Shoulders"
+		"prefab"								"default_item"
+		"creation_date"							"2017-10-09"
+		"image_inventory"						"econ/heroes/ancient_apparition/ancient_apparition_shoulder"
+		"item_name"								"#DOTA_Item_Ancient_Apparitions_Shoulders"
+		"item_quality"							"unique"
+		"item_slot"								"shoulder"
+		"model_player"							"models/heroes/ancient_apparition/ancient_apparition_shoulder.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"649"
+	{
+		"name"									"Ancient Apparition's Arms"
+		"prefab"								"default_item"
+		"creation_date"							"2017-10-09"
+		"image_inventory"						"econ/heroes/ancient_apparition/ancient_apparition_arms"
+		"item_name"								"#DOTA_Item_Ancient_Apparitions_Arms"
+		"item_quality"							"unique"
+		"item_slot"								"arms"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"652"
+	{
+		"name"									"Ancient Apparition's Tail"
+		"prefab"								"default_item"
+		"creation_date"							"2017-10-30"
+		"image_inventory"						"econ/heroes/ancient_apparition/ancient_apparition_tail"
+		"item_name"								"#DOTA_Item_Ancient_Apparitions_Tail"
+		"item_quality"							"unique"
+		"item_slot"								"tail"
+		"model_player"							"models/heroes/ancient_apparition/ancient_apparition_tail.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"7462"
+	{
+		"name"									"Shatterblast Crown"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-20"
+		"image_inventory"						"econ/items/ancient_apparition/shatterblast_crown/shatterblast_crown2"
+		"item_description"						"#DOTA_Item_Desc_Shatterblast_Crown"
+		"item_name"								"#DOTA_Item_Shatterblast_Crown"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Crown"
+		"model_player"							"models/items/ancient_apparition/shatterblast_crown/shatterblast_crown.vmdl"
+		"particle_folder"						"particles/econ/items/ancient_apparition/aa_blast_ti_5"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ancient_apparition/ancient_apparition_ice_blast_final.vpcf"
+				"modifier"						"particles/econ/items/ancient_apparition/aa_blast_ti_5/ancient_apparition_ice_blast_final_ti5.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ancient_apparition/ancient_apparition_ice_blast_initial_explode.vpcf"
+				"modifier"						"particles/econ/items/ancient_apparition/aa_blast_ti_5/ancient_apparition_ice_blast_initial_explode_ti5.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ancient_apparition/ancient_apparition_ice_blast_marker.vpcf"
+				"modifier"						"particles/econ/items/ancient_apparition/aa_blast_ti_5/ancient_apparition_ice_blast_marker_ti5.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ancient_apparition/ancient_apparition_ice_blast_initial.vpcf"
+				"modifier"						"particles/econ/items/ancient_apparition/aa_blast_ti_5/ancient_apparition_ice_blast_initial_ti5.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ancient_apparition/ancient_apparition_ice_blast_explode.vpcf"
+				"modifier"						"particles/econ/items/ancient_apparition/aa_blast_ti_5/ancient_apparition_ice_blast_explode_ti5.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier6"
+			{
+				"type"							"ability_icon"
+				"asset"							"ancient_apparition_ice_blast"
+				"modifier"						"ancient_apparition/shatterblast_crown/ancient_apparition_ice_blast"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier7"
+			{
+				"type"							"ability_icon"
+				"asset"							"ancient_apparition_ice_blast_release"
+				"modifier"						"ancient_apparition/shatterblast_crown/ancient_apparition_ice_blast_release"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ancient_apparition/aa_blast_ti_5/aa_ti5_eyes.vpcf"
+				"system"						"particles/econ/items/ancient_apparition/aa_blast_ti_5/aa_ti5_eyes.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+				}
+			}
+		}
+	}
+	"7844"
+	{
+		"name"									"Garb of the Prophet Foretold"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-27"
+		"event_id"								"EVENT_ID_FROSTIVUS_2019"
+		"image_inventory"						"econ/items/ancient_apparition/ancient_prophet_of_ice_tail/ancient_prophet_of_ice_tail"
+		"item_name"								"#DOTA_Item_Garb_of_the_Prophet_Foretold"
+		"item_rarity"							"rare"
+		"item_slot"								"tail"
+		"model_player"							"models/items/ancient_apparition/ancient_prophet_of_ice_tail/ancient_prophet_of_ice_tail.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"8713"
+	{
+		"name"									"Spires of the Prophet Foretold"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-27"
+		"event_id"								"EVENT_ID_FROSTIVUS_2019"
+		"image_inventory"						"econ/items/ancient_apparition/ancient_prophet_of_ice_shoulder/ancient_prophet_of_ice_shoulder"
+		"item_name"								"#DOTA_Item_Spires_of_the_Prophet_Foretold"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/ancient_apparition/ancient_prophet_of_ice_shoulder/ancient_prophet_of_ice_shoulder.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"8714"
+	{
+		"name"									"Bindings of the Prophet Foretold"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-27"
+		"event_id"								"EVENT_ID_FROSTIVUS_2019"
+		"image_inventory"						"econ/items/ancient_apparition/ancient_prophet_of_ice_arms/ancient_prophet_of_ice_arms"
+		"item_name"								"#DOTA_Item_Bindings_of_the_Prophet_Foretold"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/ancient_apparition/ancient_prophet_of_ice_arms/ancient_prophet_of_ice_arms.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"8726"
+	{
+		"name"									"Hood of the Prophet Foretold"
+		"prefab"								"wearable"
+		"creation_date"							"2019-11-27"
+		"event_id"								"EVENT_ID_FROSTIVUS_2019"
+		"image_inventory"						"econ/items/ancient_apparition/ancient_prophet_of_ice_head/ancient_prophet_of_ice_head"
+		"item_name"								"#DOTA_Item_Hood_of_the_Prophet_Foretold"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/ancient_apparition/ancient_prophet_of_ice_head/ancient_prophet_of_ice_head.vmdl"
+	}
+	"9462"
+	{
+		"name"									"Shatterblast Core"
+		"prefab"								"wearable"
+		"creation_date"							"2018-03-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/ancient_apparition/ancient_apparation_ti8/ancient_apparation_ti8"
+		"item_description"						"#DOTA_Item_Desc_Shatterblast_Core"
+		"item_name"								"#DOTA_Item_Shatterblast_Core"
+		"item_rarity"							"immortal"
+		"item_slot"								"shoulder"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/ancient_apparition/ancient_apparation_ti8/ancient_apparation_ti8.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567296000"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ancient_apparition/ancient_ice_vortex.vpcf"
+				"modifier"						"particles/econ/items/ancient_apparition/ancient_apparation_ti8/ancient_ice_vortex_ti8.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ancient_apparition/ancient_apparation_ti8/ancient_ti8_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti8"
+				"style"							"0"
+			}
+			"asset_modifier3"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Ancient_Apparition.IceVortex"
+				"modifier"						"Hero_Ancient_Apparition.IceVortex.TI8"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"ancient_apparition_ice_vortex"
+				"modifier"						"ancient_apparition/ti8_immortal_back/ancient_apparition_ice_vortex_immortal"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+		}
+	}
+	"9666"
+	{
+		"name"									"Taunt: Cold Hearted!"
+		"prefab"								"taunt"
+		"creation_date"							"2018-01-03"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/taunts/dota_icon_taunt_ancient_apparition_ti9"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Cold_Hearted"
+		"item_name"								"#DOTA_Item_Taunt_Cold_Hearted"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1598997600"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"ti9_taunt"
+				"gesture"						"1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"healthbar_offset"
+				"offset"						"280"
+			}
+		}
+	}
+	"12439"
+	{
+		"name"									"Secrets of the Frost Singularity - Tail"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/ancient_apparition/frost_djin_tail/frost_djin_tail"
+		"item_name"								"#DOTA_Item_Secrets_of_the_Frost_Singularity__Tail"
+		"item_rarity"							"mythical"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_tail"
+		"model_player"							"models/items/ancient_apparition/frost_djin_tail/frost_djin_tail.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ancient_apparition/aa_frost_djin/aa_frost_djin_tail_ambient.vpcf"
+			}
+		}
+	}
+	"12440"
+	{
+		"name"									"Secrets of the Frost Singularity - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/ancient_apparition/frost_djin_shoulder/frost_djin_shoulder"
+		"item_name"								"#DOTA_Item_Secrets_of_the_Frost_Singularity__Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/ancient_apparition/frost_djin_shoulder/frost_djin_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"12441"
+	{
+		"name"									"Secrets of the Frost Singularity - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/ancient_apparition/frost_djin_head/frost_djin_head"
+		"item_name"								"#DOTA_Item_Secrets_of_the_Frost_Singularity__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/ancient_apparition/frost_djin_head/frost_djin_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ancient_apparition/aa_frost_djin/aa_frost_djin_head_ambient.vpcf"
+			}
+		}
+	}
+	"12442"
+	{
+		"name"									"Secrets of the Frost Singularity - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/ancient_apparition/frost_djin_arms/frost_djin_arms"
+		"item_name"								"#DOTA_Item_Secrets_of_the_Frost_Singularity__Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/ancient_apparition/frost_djin_arms/frost_djin_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ancient_apparition/aa_frost_djin/aa_frost_djin_arms_ambient.vpcf"
+			}
+		}
+	}
+	"12569"
+	{
+		"name"									"Tail of the Equilibrium"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-14"
+		"image_inventory"						"econ/items/ancient_apparition/ancient_apparition_frozen_evil_tail/ancient_apparition_frozen_evil_tail"
+		"item_name"								"#DOTA_Item_Tail_of_the_Equilibrium"
+		"item_rarity"							"uncommon"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_tail"
+		"model_player"							"models/items/ancient_apparition/ancient_apparition_frozen_evil_tail/ancient_apparition_frozen_evil_tail.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"12570"
+	{
+		"name"									"Armguards of the Equilibrium"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-14"
+		"image_inventory"						"econ/items/ancient_apparition/ancient_apparition_frozen_evil_arms/ancient_apparition_frozen_evil_arms"
+		"item_name"								"#DOTA_Item_Armguards_of_the_Equilibrium"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/ancient_apparition/ancient_apparition_frozen_evil_arms/ancient_apparition_frozen_evil_arms.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"12571"
+	{
+		"name"									"Armor of the Equilibrium"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-14"
+		"image_inventory"						"econ/items/ancient_apparition/ancient_apparition_frozen_evil_shoulder/ancient_apparition_frozen_evil_shoulder"
+		"item_name"								"#DOTA_Item_Armor_of_the_Equilibrium"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/ancient_apparition/ancient_apparition_frozen_evil_shoulder/ancient_apparition_frozen_evil_shoulder.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"12572"
+	{
+		"name"									"Helm of the Equilibrium"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-14"
+		"image_inventory"						"econ/items/ancient_apparition/ancient_apparition_frozen_evil_head/ancient_apparition_frozen_evil_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Equilibrium"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/ancient_apparition/ancient_apparition_frozen_evil_head/ancient_apparition_frozen_evil_head.vmdl"
+	}
+	"14162"
+	{
+		"name"									"Apocalypse Unbound - Tail"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/ancient_apparition/extremely_cold_shackles_tail/extremely_cold_shackles_tail"
+		"item_name"								"#DOTA_Item_Apocalypse_Unbound__Tail"
+		"item_rarity"							"mythical"
+		"item_slot"								"tail"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/ancient_apparition/extremely_cold_shackles_tail/extremely_cold_shackles_tail.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ancient_apparition/aa_cold_shackles/aa_cold_shackles_tail/aa_cold_shackles_tail.vpcf"
+			}
+		}
+	}
+	"14163"
+	{
+		"name"									"Apocalypse Unbound - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/ancient_apparition/extremely_cold_shackles_shoulder/extremely_cold_shackles_shoulder"
+		"item_name"								"#DOTA_Item_Apocalypse_Unbound__Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/ancient_apparition/extremely_cold_shackles_shoulder/extremely_cold_shackles_shoulder.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ancient_apparition/aa_cold_shackles/aa_cold_shackles_shoulder/aa_cold_shackles_shoulder.vpcf"
+			}
+		}
+	}
+	"14164"
+	{
+		"name"									"Apocalypse Unbound - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/ancient_apparition/extremely_cold_shackles_head/extremely_cold_shackles_head"
+		"item_name"								"#DOTA_Item_Apocalypse_Unbound__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/ancient_apparition/extremely_cold_shackles_head/extremely_cold_shackles_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ancient_apparition/aa_cold_shackles/aa_cold_shackles_head/aa_cold_shackles_head.vpcf"
+			}
+		}
+	}
+	"14165"
+	{
+		"name"									"Apocalypse Unbound - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/ancient_apparition/extremely_cold_shackles_arms/extremely_cold_shackles_arms"
+		"item_name"								"#DOTA_Item_Apocalypse_Unbound__Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/ancient_apparition/extremely_cold_shackles_arms/extremely_cold_shackles_arms.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ancient_apparition/aa_cold_shackles/aa_cold_shackles_arms/aa_cold_shackles_arms.vpcf"
+			}
+		}
+	}
+	"14887"
+	{
+		"name"									"Brumal Berserker Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"image_inventory"						"econ/items/ancient_apparition/aa_frozenberserker_arms/aa_frozenberserker_arms"
+		"item_name"								"#DOTA_Item_Brumal_Berserker_Arms"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"model_player"							"models/items/ancient_apparition/aa_frozenberserker_arms/aa_frozenberserker_arms.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"14888"
+	{
+		"name"									"Brumal Berserker Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"image_inventory"						"econ/items/ancient_apparition/aa_frozenberserker_shoulder/aa_frozenberserker_shoulder"
+		"item_name"								"#DOTA_Item_Brumal_Berserker_Shoulder"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/ancient_apparition/aa_frozenberserker_shoulder/aa_frozenberserker_shoulder.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"14889"
+	{
+		"name"									"Brumal Berserker Tail"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"image_inventory"						"econ/items/ancient_apparition/aa_frozenberserker_tail/aa_frozenberserker_tail"
+		"item_name"								"#DOTA_Item_Brumal_Berserker_Tail"
+		"item_rarity"							"rare"
+		"item_slot"								"tail"
+		"model_player"							"models/items/ancient_apparition/aa_frozenberserker_tail/aa_frozenberserker_tail.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"14890"
+	{
+		"name"									"Brumal Berserker Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"image_inventory"						"econ/items/ancient_apparition/aa_frozenberserker_head/aa_frozenberserker_head"
+		"item_name"								"#DOTA_Item_Brumal_Berserker_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"model_player"							"models/items/ancient_apparition/aa_frozenberserker_head/aa_frozenberserker_head.vmdl"
+	}
+	"18510"
+	{
+		"name"									"Shatterblast Rule"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-19"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/ancient_apparition/aa_2021_immortal/aa_2021_immortal"
+		"item_description"						"#DOTA_Item_Desc_Shatterblast_Rule"
+		"item_name"								"#DOTA_Item_Shatterblast_Rule"
+		"item_rarity"							"immortal"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/ancient_apparition/aa_2021_immortal/aa_2021_immortal.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1662026400"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"model"
+				"asset"							"models/heroes/ancient_apparition/ancient_apparition_shoulder.vmdl"
+				"modifier"						"models/items/ancient_apparition/aa_2021_immortal/aa_shoulder_2021_refit.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"2021_aa"
+			}
+			"asset_modifier2"
+			{
+				"type"							"ability_icon"
+				"asset"							"ancient_apparition_chilling_touch"
+				"modifier"						"ancient_apparition/aa_2021_immortal_ability_icon/aa_2021_immortal_chilling_touch"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ancient_apparition/aa_2021_immortal/aa_2021_immortal_ambient.vpcf"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ancient_apparition/ancient_apparition_chilling_touch_projectile.vpcf"
+				"modifier"						"particles/econ/items/ancient_apparition/aa_2021_immortal/aa_2021_immortal_chilling_projectile.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+		}
+	}
+	"21166"
+	{
+		"name"									"Mantle of the Prophet Foretold"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Hood of the Prophet Foretold"		"1"
+			"Bindings of the Prophet Foretold"	"1"
+			"Spires of the Prophet Foretold"	"1"
+			"Garb of the Prophet Foretold"		"1"
+		}
+		"creation_date"							"2019-11-27"
+		"event_id"								"EVENT_ID_FROSTIVUS_2019"
+		"image_inventory"						"econ/sets/DOTA_Item_Mantle_of_the_Prophet_Foretold"
+		"item_name"								"#DOTA_Item_Mantle_of_the_Prophet_Foretold"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"1"
+			}
+		}
+	}
+	"21237"
+	{
+		"name"									"Secrets of the Frost Singularity"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Secrets of the Frost Singularity - Arms""1"
+			"Secrets of the Frost Singularity - Head""1"
+			"Secrets of the Frost Singularity - Shoulder""1"
+			"Secrets of the Frost Singularity - Tail""1"
+		}
+		"creation_date"							"2018-09-12"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/sets/DOTA_DOTA_Item_Secrets_of_the_Frost_Singularity_Bundle"
+		"item_name"								"#DOTA_Item_Secrets_of_the_Frost_Singularity"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21261"
+	{
+		"name"									"Iris of the Equilibrium"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Helm of the Equilibrium"			"1"
+			"Armor of the Equilibrium"			"1"
+			"Armguards of the Equilibrium"		"1"
+			"Tail of the Equilibrium"			"1"
+		}
+		"creation_date"							"2018-09-14"
+		"image_inventory"						"econ/sets/DOTA_Item_Iris_of_the_Equilibrium"
+		"item_description"						"#DOTA_Item_Desc_Iris_of_the_Equilibrium"
+		"item_name"								"#DOTA_Item_Iris_of_the_Equilibrium"
+		"item_rarity"							"uncommon"
+	}
+	"21508"
+	{
+		"name"									"Apocalypse Unbound"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Apocalypse Unbound - Arms"			"1"
+			"Apocalypse Unbound - Head"			"1"
+			"Apocalypse Unbound - Shoulder"		"1"
+			"Apocalypse Unbound - Tail"			"1"
+		}
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Apocalypse_Unbound"
+		"item_name"								"#DOTA_Item_Apocalypse_Unbound"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21614"
+	{
+		"name"									"Brumal Berserker"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Brumal Berserker Head"				"1"
+			"Brumal Berserker Tail"				"1"
+			"Brumal Berserker Shoulder"			"1"
+			"Brumal Berserker Arms"				"1"
+		}
+		"creation_date"							"2020-05-17"
+		"image_inventory"						"econ/sets/DOTA_Item_Frozen_Berserker"
+		"item_name"								"#DOTA_Item_Brumal_Berserker"
+		"item_rarity"							"rare"
+	}
+}

@@ -1,0 +1,4296 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"203"
+	{
+		"name"									"Rubick's Staff"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/rubick/rubick_staff"
+		"item_description"						"#DOTA_Item_Desc_Rubicks_Staff"
+		"item_name"								"#DOTA_Item_Rubicks_Staff"
+		"model_player"							"models/heroes/rubick/rubick_staff.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"204"
+	{
+		"name"									"Rubick's Cape"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/rubick/cape"
+		"item_description"						"#DOTA_Item_Desc_Rubicks_Cape"
+		"item_name"								"#DOTA_Item_Rubicks_Cape"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/heroes/rubick/cape.vmdl"
+	}
+	"205"
+	{
+		"name"									"Rubick's Shoulder Armor"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/rubick/shoulder"
+		"item_description"						"#DOTA_Item_Desc_Rubicks_Shoulder_Armor"
+		"item_name"								"#DOTA_Item_Rubicks_Shoulder_Armor"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/heroes/rubick/shoulder.vmdl"
+	}
+	"419"
+	{
+		"name"									"Rubick's Head"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/rubick/rubick_head"
+		"item_description"						"#DOTA_Item_Desc_Rubicks_Head"
+		"item_name"								"#DOTA_Item_Rubicks_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/rubick/rubick_head.vmdl"
+	}
+	"544"
+	{
+		"name"									"Rubick's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-10"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Rubicks_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_rubick"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_rubick/rubick_staff_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_rubick/rubick_staff_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff_ambient"
+					}
+				}
+			}
+		}
+	}
+	"674"
+	{
+		"name"									"Rubick's Default Voice"
+		"prefab"								"default_item"
+		"creation_date"							"2019-02-18"
+		"image_inventory"						"econ/heroes/rubick/rubick_voice"
+		"item_description"						"#DOTA_Item_Desc_Rubicks_Default_Voice"
+		"item_name"								"#DOTA_Item_Rubicks_Default_Voice"
+		"item_quality"							"unique"
+		"item_slot"								"voice"
+		"item_type_name"						"#DOTA_WearableType_Voice"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"announcer_preview"
+				"asset"							"sounds/vo/rubick/rubick_firstblood_01.vsnd"
+				"modifier"						"#DOTA_Announcer_Preview_Rubick_Voice_Default_01"
+			}
+			"asset_modifier1"
+			{
+				"type"							"announcer_preview"
+				"asset"							"sounds/vo/rubick/rubick_move_14.vsnd"
+				"modifier"						"#DOTA_Announcer_Preview_Rubick_Voice_Default_02"
+			}
+			"asset_modifier2"
+			{
+				"type"							"announcer_preview"
+				"asset"							"sounds/vo/rubick/rubick_spellsteal_02.vsnd"
+				"modifier"						"#DOTA_Announcer_Preview_Rubick_Voice_Default_03"
+			}
+			"asset_modifier3"
+			{
+				"type"							"announcer_preview"
+				"asset"							"sounds/vo/rubick/rubick_move_21.vsnd"
+				"modifier"						"#DOTA_Announcer_Preview_Rubick_Voice_Default_04"
+			}
+		}
+	}
+	"4677"
+	{
+		"name"									"Councilor's Staff"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/rubick/rubick_staff_updated_textures/rubick_staff_updated_textures"
+		"item_description"						"#DOTA_Item_Desc_Councilors_Staff"
+		"item_name"								"#DOTA_Item_Councilors_Staff"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/rubick/rubick_staff_updated_textures/rubick_staff_updated_textures.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"4679"
+	{
+		"name"									"Councilor's Shawl"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/rubick/rubick_shoulders_mask_update/rubick_shoulders_mask_update"
+		"item_description"						"#DOTA_Item_Desc_Councilors_Shawl"
+		"item_name"								"#DOTA_Item_Councilors_Shawl"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/rubick/rubick_shoulders_mask_update/rubick_shoulders_mask_update.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4680"
+	{
+		"name"									"Councilor's Robe"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/rubick/robe_rubick_new_masksss/robe_rubick_new_masksss"
+		"item_description"						"#DOTA_Item_Desc_Councilors_Robe"
+		"item_name"								"#DOTA_Item_Councilors_Robe"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Robe"
+		"model_player"							"models/items/rubick/robe_rubick_new_masksss/robe_rubick_new_masksss.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4825"
+	{
+		"name"									"Councilor's Mask"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/rubick/rubcik_bishobola_new_head/rubcik_bishobola_new_head"
+		"item_description"						"#DOTA_Item_Desc_Councilors_Mask"
+		"item_name"								"#DOTA_Item_Councilors_Mask"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/rubick/rubcik_bishobola_new_head/rubcik_bishobola_new_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4836"
+	{
+		"name"									"Cloak of Inscrutable Zeal"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/rubick/serpentinemystic_back/serpentinemystic_back"
+		"item_description"						"#DOTA_Item_Desc_Cloak_of_Inscrutable_Zeal"
+		"item_name"								"#DOTA_Item_Cloak_of_Inscrutable_Zeal"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cloak"
+		"model_player"							"models/items/rubick/serpentinemystic_back/serpentinemystic_back.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4837"
+	{
+		"name"									"Mask of Inscrutable Zeal"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/rubick/serpentinemystic_head/serpentinemystic_head"
+		"item_description"						"#DOTA_Item_Desc_Mask_of_Inscrutable_Zeal"
+		"item_name"								"#DOTA_Item_Mask_of_Inscrutable_Zeal"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/rubick/serpentinemystic_head/serpentinemystic_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4838"
+	{
+		"name"									"Oculus Ephemeral"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/rubick/serpentinemystic_shoulder/serpentinemystic_shoulder"
+		"item_description"						"#DOTA_Item_Desc_The_Oculus_Ephemeral"
+		"item_name"								"#DOTA_Item_Oculus_Ephemeral"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Artifact"
+		"model_player"							"models/items/rubick/serpentinemystic_shoulder/serpentinemystic_shoulder.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4839"
+	{
+		"name"									"Staff of Inscrutable Zeal"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/rubick/serpentinemystic_weapon/serpentinemystic_weapon"
+		"item_description"						"#DOTA_Item_Desc_Staff_of_Inscrutable_Zeal"
+		"item_name"								"#DOTA_Item_Staff_of_Inscrutable_Zeal"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/rubick/serpentinemystic_weapon/serpentinemystic_weapon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"4883"
+	{
+		"name"									"Scepter of the Grand Magus"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-22"
+		"image_inventory"						"econ/items/rubick/weapon_agh/weapon_agh"
+		"item_description"						"#DOTA_Item_Desc_Scepter_of_the_Grand_Magus"
+		"item_name"								"#DOTA_Item_Scepter_of_the_Grand_Magus"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Scepter"
+		"model_player"							"models/items/rubick/weapon_agh/weapon_agh.vmdl"
+		"particle_folder"						"particles/econ/items/rubick/rubick_staff_scepter"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_rubick/rubick_staff_ambient.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_staff_scepter/rubick_staff_scepter.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/ability_modifier_placeholder/ultiscepter_passive.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_staff_scepter/ultiscepter_passive_rubick_aghs.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"4979"
+	{
+		"name"									"Spellbinder's Forgotten Greatstaff"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-21"
+		"image_inventory"						"econ/items/rubick/forgotten_greatstaff/forgotten_greatstaff"
+		"item_description"						"#DOTA_Item_Desc_Spellbinders_Forgotten_Greatstaff"
+		"item_name"								"#DOTA_Item_Spellbinders_Forgotten_Greatstaff"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/rubick/forgotten_greatstaff/forgotten_greatstaff.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"4980"
+	{
+		"name"									"Spellbinder's Tattered Cloak"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-21"
+		"image_inventory"						"econ/items/rubick/forgotten_cloak/forgotten_cloak"
+		"item_description"						"#DOTA_Item_Desc_Spellbinders_Tattered_Cloak"
+		"item_name"								"#DOTA_Item_Spellbinders_Tattered_Cloak"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cloak"
+		"model_player"							"models/items/rubick/forgotten_cloak/forgotten_cloak.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4981"
+	{
+		"name"									"Spellbinder's Catalytic Mantle"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-21"
+		"image_inventory"						"econ/items/rubick/forgotten_plate/forgotten_plate"
+		"item_description"						"#DOTA_Item_Desc_Spellbinders_Catalytic_Mantle"
+		"item_name"								"#DOTA_Item_Spellbinders_Catalytic_Mantle"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/rubick/forgotten_plate/forgotten_plate.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4982"
+	{
+		"name"									"Spellbinder's Mask of Shaping"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-21"
+		"image_inventory"						"econ/items/rubick/forgotten_mask/forgotten_mask"
+		"item_description"						"#DOTA_Item_Desc_Spellbinders_Mask_of_Shaping"
+		"item_name"								"#DOTA_Item_Spellbinders_Mask_of_Shaping"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/rubick/forgotten_mask/forgotten_mask.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5180"
+	{
+		"name"									"Crystalline Initio"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-19"
+		"image_inventory"						"econ/items/rubick/crystalline_initio/crystalline_initio"
+		"item_description"						"#DOTA_Item_Desc_Crystalline_Initio"
+		"item_name"								"#DOTA_Item_Crystalline_Initio"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/rubick/crystalline_initio/crystalline_initio.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international tag"
+				"value"							"2013"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"5364"
+	{
+		"name"									"Prestidigitator's Wraps"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-19"
+		"image_inventory"						"econ/items/rubick/peculiar_prestidigitator_cape/peculiar_prestidigitator_cape"
+		"item_description"						"#DOTA_Item_Desc_Prestigitators_Wraps"
+		"item_name"								"#DOTA_Item_Prestidigitators_Wraps"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/rubick/peculiar_prestidigitator_cape/peculiar_prestidigitator_cape.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5365"
+	{
+		"name"									"Prestidigitator's Oculus"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-19"
+		"image_inventory"						"econ/items/rubick/peculiar_prestidigitator_mask/peculiar_prestidigitator_mask"
+		"item_description"						"#DOTA_Item_Desc_Prestidigitators_Oculus"
+		"item_name"								"#DOTA_Item_Prestidigitators_Oculus"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/rubick/peculiar_prestidigitator_mask/peculiar_prestidigitator_mask.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5366"
+	{
+		"name"									"Prestidigitator's Shiners"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-19"
+		"image_inventory"						"econ/items/rubick/peculiar_prestidigitator_shoulders/peculiar_prestidigitator_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Prestigitators_Shiners"
+		"item_name"								"#DOTA_Item_Prestidigitators_Shiners"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/rubick/peculiar_prestidigitator_shoulders/peculiar_prestidigitator_shoulders.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5367"
+	{
+		"name"									"Prestidigitator's Source of Sorcery"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-19"
+		"image_inventory"						"econ/items/rubick/peculiar_prestidigitator_wraps/peculiar_prestidigitator_wraps"
+		"item_description"						"#DOTA_Item_Desc_Prestidigitators_Source_of_Sorcery"
+		"item_name"								"#DOTA_Item_Prestidigitators_Source_of_Sorcery"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/rubick/peculiar_prestidigitator_wraps/peculiar_prestidigitator_wraps.vmdl"
+		"particle_folder"						"particles/econ/items/rubick/rubick_staff_peculiar"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_rubick/rubick_staff_ambient.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_staff_peculiar/rubick_staff_ambient_peculiar.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"5375"
+	{
+		"name"									"Tails of Resonant Vibrance"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-28"
+		"image_inventory"						"econ/items/rubick/back_sltv_tier1/back_sltv_tier1"
+		"item_description"						"#DOTA_Item_Desc_Tails_of_Resonant_Vibrance"
+		"item_name"								"#DOTA_Item_Tails_of_Resonant_Vibrance"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cloak"
+		"model_player"							"models/items/rubick/back_sltv_tier1/back_sltv_tier1.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/rubick/back_sltv_tier1/back_sltv_tier1.vmdl"
+					"name"						"#Tails_of_Resonant_Vibrance_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/rubick/back_sltv_tier2/back_sltv_tier2.vmdl"
+					"name"						"#Tails_of_Resonant_Vibrance_Style1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"gem"
+						{
+							"def_index"			"3003"
+							"type_field"		"league_id"
+							"type_value"		"69"
+							"unlock_field"		"games_viewed"
+							"unlock_value"		"40"
+						}
+					}
+				}
+				"2"
+				{
+					"model_player"				"models/items/rubick/back_sltv_tier3/back_sltv_tier3.vmdl"
+					"name"						"#Tails_of_Resonant_Vibrance_Style2"
+					"alternate_icon"			"2"
+					"unlock"
+					{
+						"gem"
+						{
+							"def_index"			"3003"
+							"type_field"		"league_id"
+							"type_value"		"69"
+							"unlock_field"		"games_viewed"
+							"unlock_value"		"80"
+						}
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/rubick/back_sltv_tier1/back_sltv_tier1"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/rubick/back_sltv_tier2/back_sltv_tier2"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/rubick/back_sltv_tier3/back_sltv_tier3"
+				}
+			}
+		}
+	}
+	"5376"
+	{
+		"name"									"Hood of Resonant Vibrance"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-28"
+		"image_inventory"						"econ/items/rubick/head_sltv_tier1/head_sltv_tier1"
+		"item_description"						"#DOTA_Item_Desc_Hood_of_Resonant_Vibrance"
+		"item_name"								"#DOTA_Item_Hood_of_Resonant_Vibrance"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/rubick/head_sltv_tier1/head_sltv_tier1.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/rubick/head_sltv_tier1/head_sltv_tier1.vmdl"
+					"name"						"#Hood_of_Resonant_Vibrance_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/rubick/head_sltv_tier2/head_sltv_tier2.vmdl"
+					"name"						"#Hood_of_Resonant_Vibrance_Style1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"gem"
+						{
+							"def_index"			"3003"
+							"type_field"		"league_id"
+							"type_value"		"69"
+							"unlock_field"		"games_viewed"
+							"unlock_value"		"40"
+						}
+					}
+				}
+				"2"
+				{
+					"model_player"				"models/items/rubick/head_sltv_tier3/head_sltv_tier3.vmdl"
+					"name"						"#Hood_of_Resonant_Vibrance_Style2"
+					"alternate_icon"			"2"
+					"unlock"
+					{
+						"gem"
+						{
+							"def_index"			"3003"
+							"type_field"		"league_id"
+							"type_value"		"69"
+							"unlock_field"		"games_viewed"
+							"unlock_value"		"80"
+						}
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/rubick/head_sltv_tier1/head_sltv_tier1"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/rubick/head_sltv_tier2/head_sltv_tier2"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/rubick/head_sltv_tier3/head_sltv_tier3"
+				}
+			}
+		}
+	}
+	"5377"
+	{
+		"name"									"Shawl of Resonant Vibrance"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-28"
+		"image_inventory"						"econ/items/rubick/shoulder_sltv_tier1/shoulder_sltv_tier1"
+		"item_description"						"#DOTA_Item_Desc_Shawl_of_Resonant_Vibrance"
+		"item_name"								"#DOTA_Item_Shawl_of_Resonant_Vibrance"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shawl"
+		"model_player"							"models/items/rubick/shoulder_sltv_tier1/shoulder_sltv_tier1.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/rubick/shoulder_sltv_tier1/shoulder_sltv_tier1.vmdl"
+					"name"						"#Shawl_of_Resonant_Vibrance_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/rubick/shoulder_sltv_tier2/shoulder_sltv_tier2.vmdl"
+					"name"						"#Shawl_of_Resonant_Vibrance_Style1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"gem"
+						{
+							"def_index"			"3003"
+							"type_field"		"league_id"
+							"type_value"		"69"
+							"unlock_field"		"games_viewed"
+							"unlock_value"		"40"
+						}
+					}
+				}
+				"2"
+				{
+					"model_player"				"models/items/rubick/shoulder_sltv_tier3/shoulder_sltv_tier3.vmdl"
+					"name"						"#Shawl_of_Resonant_Vibrance_Style2"
+					"alternate_icon"			"2"
+					"unlock"
+					{
+						"gem"
+						{
+							"def_index"			"3003"
+							"type_field"		"league_id"
+							"type_value"		"69"
+							"unlock_field"		"games_viewed"
+							"unlock_value"		"80"
+						}
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/rubick/shoulder_sltv_tier1/shoulder_sltv_tier1"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/rubick/shoulder_sltv_tier2/shoulder_sltv_tier2"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/rubick/shoulder_sltv_tier3/shoulder_sltv_tier3"
+				}
+			}
+		}
+	}
+	"5378"
+	{
+		"name"									"Focus of Resonant Vibrance"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-28"
+		"image_inventory"						"econ/items/rubick/weapon_sltv_tier1/weapon_sltv_tier1"
+		"item_description"						"#DOTA_Item_Desc_Focus_of_Resonant_Vibrance"
+		"item_name"								"#DOTA_Item_Focus_of_Resonant_Vibrance"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/rubick/weapon_sltv_tier1/weapon_sltv_tier1.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/rubick/weapon_sltv_tier1/weapon_sltv_tier1.vmdl"
+					"name"						"#Focus_of_Resonant_Vibrance_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/rubick/weapon_sltv_tier2/weapon_sltv_tier2.vmdl"
+					"name"						"#Focus_of_Resonant_Vibrance_Style1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"gem"
+						{
+							"def_index"			"3003"
+							"type_field"		"league_id"
+							"type_value"		"69"
+							"unlock_field"		"games_viewed"
+							"unlock_value"		"40"
+						}
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/rubick/weapon_sltv_tier1/weapon_sltv_tier1"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/rubick/weapon_sltv_tier2/weapon_sltv_tier2"
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"5541"
+	{
+		"name"									"Spell Devourer"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-04"
+		"image_inventory"						"econ/items/rubick/spell_devourer/spell_devourer"
+		"item_description"						"#DOTA_Item_Desc_Spell_Devourer"
+		"item_name"								"#DOTA_Item_Spell_Devourer"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/rubick/spell_devourer/spell_devourer.vmdl"
+		"static_attributes"
+		{
+			"diretide tag"
+			{
+				"attribute_class"				"diretide_tag"
+				"value"							"2013"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"5644"
+	{
+		"name"									"Hood of the Cruel Magician"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-06"
+		"image_inventory"						"econ/items/rubick/rubick_kuroky_head/rubick_kuroky_head"
+		"item_description"						"#DOTA_Item_Desc_Hood_of_the_Cruel_Magician"
+		"item_name"								"#DOTA_Item_Hood_of_the_Cruel_Magician"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Honored_Hood"
+		"model_player"							"models/items/rubick/rubick_kuroky_head/rubick_kuroky_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"branding"
+		{
+			"corporation_id"					"82262664"
+		}
+	}
+	"5646"
+	{
+		"name"									"Robe of the Cruel Magician"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-06"
+		"image_inventory"						"econ/items/rubick/kuroky_rubick_back/kuroky_rubick_back"
+		"item_description"						"#DOTA_Item_Desc_Robe_of_the_Cruel_Magician"
+		"item_name"								"#DOTA_Item_Robe_of_the_Cruel_Magician"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Honored_Garb"
+		"model_player"							"models/items/rubick/kuroky_rubick_back/kuroky_rubick_back.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"branding"
+		{
+			"corporation_id"					"82262664"
+		}
+	}
+	"5649"
+	{
+		"name"									"Mantle of the Cruel Magician"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-06"
+		"image_inventory"						"econ/items/rubick/kuroky_rubick_shoulders/kuroky_rubick_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Mantle_of_the_Cruel_Magician"
+		"item_name"								"#DOTA_Item_Mantle_of_the_Cruel_Magician"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Honored_Shoulder"
+		"model_player"							"models/items/rubick/kuroky_rubick_shoulders/kuroky_rubick_shoulders.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"branding"
+		{
+			"corporation_id"					"82262664"
+		}
+	}
+	"5651"
+	{
+		"name"									"Staff of the Cruel Magician"
+		"prefab"								"wearable"
+		"branding"
+		{
+			"corporation_id"					"82262664"
+		}
+		"creation_date"							"2013-11-06"
+		"image_inventory"						"econ/items/rubick/kuroky_rubick_weapon/kuroky_rubick_weapon"
+		"item_description"						"#DOTA_Item_Desc_Staff_of_the_Cruel_Magician"
+		"item_name"								"#DOTA_Item_Staff_of_the_Cruel_Magician"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Honored_Staff"
+		"model_player"							"models/items/rubick/kuroky_rubick_weapon/kuroky_rubick_weapon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"6488"
+	{
+		"name"									"Eul's Scepter of the Magus"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-12"
+		"image_inventory"						"econ/items/rubick/scepterofmagus_weapon/scepterofmagus_weapon"
+		"item_name"								"#DOTA_Item_Euls_Scepter_of_the_Magus"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Scepter"
+		"model_player"							"models/items/rubick/scepterofmagus_weapon/scepterofmagus_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"6697"
+	{
+		"name"									"Genuine Eul's Scepter of the Magus"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-19"
+		"image_inventory"						"econ/items/rubick/scepterofmagus_weapon/scepterofmagus_weapon"
+		"item_name"								"#DOTA_Item_Genuine_Euls_Scepter_of_the_Magus"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Scepter"
+		"model_player"							"models/items/rubick/scepterofmagus_weapon/scepterofmagus_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"6912"
+	{
+		"name"									"Cape of the Cunning Augur"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-03"
+		"image_inventory"						"econ/items/rubick/fortuneteller_back/fortuneteller_back"
+		"item_name"								"#DOTA_Item_Cape_of_the_Cunning_Augur"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/rubick/fortuneteller_back/fortuneteller_back.vmdl"
+	}
+	"7025"
+	{
+		"name"									"Wandering Harlequin's Cape"
+		"prefab"								"wearable"
+		"creation_date"							"2014-07-21"
+		"image_inventory"						"econ/items/rubick/harlequin_back/harlequin_back"
+		"item_description"						"#DOTA_Item_Desc_Wandering_Harlequins_Cape"
+		"item_name"								"#DOTA_Item_Wandering_Harlequins_Cape"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/rubick/harlequin_back/harlequin_back.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_rubick' gem_def_index: 3005 } asset_modifier: 55"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"rubick_telekinesis"
+				"modifier"						"rubick/harlequin_icons/rubick_telekinesis"
+			}
+			"asset_modifier_socket1"
+			{
+				"type"							"ability_icon"
+				"asset"							"rubick_telekinesis_land"
+				"modifier"						"rubick/harlequin_icons/rubick_telekinesis_land"
+			}
+		}
+	}
+	"7026"
+	{
+		"name"									"Wandering Harlequin's Crest"
+		"prefab"								"wearable"
+		"creation_date"							"2014-07-21"
+		"image_inventory"						"econ/items/rubick/harlequin_head_black/harlequin_head_black"
+		"item_description"						"#DOTA_Item_Desc_Wandering_Harlequins_Crest"
+		"item_name"								"#DOTA_Item_Wandering_Harlequins_Crest"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Headpiece"
+		"model_player"							"models/items/rubick/harlequin_head_black/harlequin_head_black.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_rubick' gem_def_index: 3005 } asset_modifier: 54"
+			}
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/rubick/harlequin_head_black/harlequin_head_black.vmdl"
+					"name"						"#DOTA_Item_Wandering_Harlequins_Crest_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/rubick/harlequin_head_green_alt/harlequin_head_green_alt.vmdl"
+					"name"						"#DOTA_Item_Wandering_Harlequins_Crest_Style1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/rubick/harlequin_head_black/harlequin_head_black"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/rubick/harlequin_head_green_alt/harlequin_head_green_alt"
+				}
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"rubick_null_field"
+				"modifier"						"rubick/harlequin_icons/rubick_null_field"
+			}
+		}
+	}
+	"7028"
+	{
+		"name"									"Wandering Harlequin's Mantle"
+		"prefab"								"wearable"
+		"creation_date"							"2014-07-21"
+		"image_inventory"						"econ/items/rubick/harlequin_shoulder/harlequin_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Wandering_Harlequins_Mantle"
+		"item_name"								"#DOTA_Item_Wandering_Harlequins_Mantle"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/rubick/harlequin_shoulder/harlequin_shoulder.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_rubick' gem_def_index: 3005 } asset_modifier: 56"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"rubick_spell_steal"
+				"modifier"						"rubick/harlequin_icons/rubick_spell_steal"
+			}
+		}
+	}
+	"7029"
+	{
+		"name"									"Conceit of the Wandering Harlequin"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-23"
+		"image_inventory"						"econ/items/rubick/harlequin_weapon/harlequin_weapon"
+		"item_description"						"#DOTA_Item_Desc_Conceit_of_the_Wandering_Harlequin"
+		"item_name"								"#DOTA_Item_Conceit_of_the_Wandering_Harlequin"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/rubick/harlequin_weapon/harlequin_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/rubick/rubick_staff_wandering"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_rubick' gem_def_index: 3005 } asset_modifier: 42"
+			}
+			"static socket 2"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_rubick' gem_def_index: 3005 } asset_modifier: 53"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_rubick/rubick_staff_ambient.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_staff_wandering/rubick_staff_ambient_whset.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"7145"
+	{
+		"name"									"Cap of the Cunning Augur"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-03"
+		"image_inventory"						"econ/items/rubick/fortuneteller_head/fortuneteller_head"
+		"item_name"								"#DOTA_Item_Cap_of_the_Cunning_Augur"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Cap"
+		"model_player"							"models/items/rubick/fortuneteller_head/fortuneteller_head.vmdl"
+	}
+	"7507"
+	{
+		"name"									"Golden Staff of Perplex"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-30"
+		"image_inventory"						"econ/items/rubick/force_staff/force_staff1"
+		"item_description"						"#DOTA_Item_Desc_Golden_Staff_of_Perplex"
+		"item_name"								"#DOTA_Item_Golden_Staff_of_Perplex"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/rubick/force_staff/force_staff.vmdl"
+		"particle_folder"						"particles/econ/items/rubick/rubick_force_gold_ambient"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skin"								"1"
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"force"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_rubick/rubick_staff_ambient.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_force_gold_ambient/rubick_staff_ambient_kill.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_rubick/rubick_telekinesis.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_force_gold_ambient/rubick_telekinesis_force_gold.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_rubick/rubick_telekinesis_marker.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_force_gold_ambient/rubick_telekinesis_marker_force_gold.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_rubick/rubick_telekinesis_land.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_force_gold_ambient/rubick_telekinesis_land_force_gold.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier5"
+			{
+				"type"							"ability_icon"
+				"asset"							"rubick_telekinesis"
+				"modifier"						"rubick/staff_of_perplex/rubick_telekinesis_gold"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_force_gold_ambient/rubick_force_ambient_gold.vpcf"
+				"system"						"particles/econ/items/rubick/rubick_force_gold_ambient/rubick_force_ambient_gold.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff_ambient"
+					}
+				}
+			}
+		}
+	}
+	"7655"
+	{
+		"name"									"Staff of the Stargazer's Curiosity "
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-01"
+		"image_inventory"						"econ/items/rubick/vestments_of_stellar_abyss_weapon/vestments_of_stellar_abyss_weapon"
+		"item_name"								"#DOTA_Item_Staff_of_the_Stargazers_Curiosity_"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/rubick/vestments_of_stellar_abyss_weapon/vestments_of_stellar_abyss_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"7656"
+	{
+		"name"									"Mantle of the Stargazer's Curiosity "
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-01"
+		"image_inventory"						"econ/items/rubick/vestments_of_stellar_abyss_shoulder/vestments_of_stellar_abyss_shoulder"
+		"item_name"								"#DOTA_Item_Mantle_of_the_Stargazers_Curiosity_"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/rubick/vestments_of_stellar_abyss_shoulder/vestments_of_stellar_abyss_shoulder.vmdl"
+	}
+	"7657"
+	{
+		"name"									"Cloak of the Stargazer's Curiosity "
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-01"
+		"image_inventory"						"econ/items/rubick/vestments_of_stellar_abyss_back/vestments_of_stellar_abyss_back"
+		"item_name"								"#DOTA_Item_Cloak_of_the_Stargazers_Curiosity_"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cloak"
+		"model_player"							"models/items/rubick/vestments_of_stellar_abyss_back/vestments_of_stellar_abyss_back.vmdl"
+	}
+	"7658"
+	{
+		"name"									"Hood of the Stargazer's Curiosity"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-01"
+		"image_inventory"						"econ/items/rubick/vestments_of_stellar_abyss_head/vestments_of_stellar_abyss_head"
+		"item_name"								"#DOTA_Item_Hood_of_the_Stargazers_Curiosity"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hood"
+		"model_player"							"models/items/rubick/vestments_of_stellar_abyss_head/vestments_of_stellar_abyss_head.vmdl"
+	}
+	"8061"
+	{
+		"name"									"Taunt: Giddy Up!"
+		"prefab"								"taunt"
+		"creation_date"							"2015-02-26"
+		"image_inventory"						"econ/taunts/taunt_icon_rubick_giddy_up"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Giddy_Up"
+		"item_name"								"#DOTA_Item_Taunt_Giddy_Up"
+		"item_rarity"							"rare"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"giddy_up_gesture"
+				"frequency"						"1"
+				"gesture"						"1"
+			}
+		}
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+		}
+	}
+	"8108"
+	{
+		"name"									"Golden Ornithomancer Mantle of the Benefactor"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-30"
+		"event_id"								"EVENT_ID_NONE"
+		"image_inventory"						"econ/items/rubick/golden_ornithomancer_mantle/golden_ornithomancer_mantle"
+		"item_name"								"#DOTA_Item_Golden_Ornithomancer_Mantle_of_the_Benefactor"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/rubick/golden_ornithomancer_mantle/golden_ornithomancer_mantle.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_ornithomancer_gold/rubick_ornithomancer_gold_ambient.vpcf"
+				"system"						"particles/econ/items/rubick/rubick_ornithomancer_gold/rubick_ornithomancer_gold_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_thorax"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"8230"
+	{
+		"name"									"Golden Ornithomancer Mantle"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-24"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/rubick/ornithomancer_back/ornithomancer_back_gold"
+		"item_name"								"#DOTA_Item_Golden_Ornithomancer_Mantle"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/rubick/golden_ornithomancer_mantle/golden_ornithomancer_mantle.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_ornithomancer_gold/rubick_ornithomancer_gold_ambient.vpcf"
+				"system"						"particles/econ/items/rubick/rubick_ornithomancer_gold/rubick_ornithomancer_gold_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_thorax"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"8387"
+	{
+		"name"									"Staff of the Gifted Jester"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/rubick/gemini_juggler_weapon/gemini_juggler_weapon"
+		"item_name"								"#DOTA_Item_Staff_of_the_Gifted_Jester"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/rubick/gemini_juggler_weapon/gemini_juggler_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"8390"
+	{
+		"name"									"Mask of the Gifted Jester"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/rubick/gemini_juggler_head/gemini_juggler_head"
+		"item_name"								"#DOTA_Item_Mask_of_the_Gifted_Jester"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/rubick/gemini_juggler_head/gemini_juggler_head.vmdl"
+	}
+	"8393"
+	{
+		"name"									"Mantle of the Gifted Jester"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/rubick/gemini_juggler_shoulder/gemini_juggler_shoulder"
+		"item_name"								"#DOTA_Item_Mantle_of_the_Gifted_Jester"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/rubick/gemini_juggler_shoulder/gemini_juggler_shoulder.vmdl"
+	}
+	"8396"
+	{
+		"name"									"Cape of the Gifted Jester"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/rubick/gemini_juggler_back/gemini_juggler_back"
+		"item_name"								"#DOTA_Item_Cape_of_the_Gifted_Jester"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/rubick/gemini_juggler_back/gemini_juggler_back.vmdl"
+	}
+	"8591"
+	{
+		"name"									"Hat of Fantoccini's Dilemma"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/rubick/puppet_master_head/puppet_master_head"
+		"item_name"								"#DOTA_Item_Hat_of_Fantoccinis_Dilemma"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hat"
+		"model_player"							"models/items/rubick/puppet_master_head/puppet_master_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_puppet_master/rubick_head_puppet_ambient.vpcf"
+				"system"						"particles/econ/items/rubick/rubick_puppet_master/rubick_head_puppet_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+		}
+	}
+	"8592"
+	{
+		"name"									"Fantoccini"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/rubick/puppet_master_doll/puppet_master_doll"
+		"item_name"								"#DOTA_Item_Fantoccini"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Puppet"
+		"model_player"							"models/items/rubick/puppet_master_doll/puppet_master_doll.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_puppet_master/rubick_doll_puppet_ambient.vpcf"
+				"system"						"particles/econ/items/rubick/rubick_puppet_master/rubick_doll_puppet_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_doll_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_doll_eye_r"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_doll_mouth"
+					}
+				}
+			}
+		}
+	}
+	"8593"
+	{
+		"name"									"Torch of Fantoccini's Dilemma"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/rubick/puppet_master_weapon/puppet_master_weapon"
+		"item_name"								"#DOTA_Item_Torch_of_Fantoccinis_Dilemma"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Torch"
+		"model_player"							"models/items/rubick/puppet_master_weapon/puppet_master_weapon.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_rubick/rubick_telekinesis.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_puppet_master/rubick_telekinesis_puppet.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_rubick/rubick_staff_ambient.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_puppet_master/rubick_weapon_puppet_ambient.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"ability_icon"
+				"asset"							"rubick_telekinesis"
+				"modifier"						"rubick/fantoccinis_dilemma/rubick_telekinesis"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"8594"
+	{
+		"name"									"Coat of Fantoccini's Dilemma"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/rubick/puppet_master_back/puppet_master_back"
+		"item_name"								"#DOTA_Item_Coat_of_Fantoccinis_Dilemma"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Coat"
+		"model_player"							"models/items/rubick/puppet_master_back/puppet_master_back.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_puppet_master/rubick_back_puppet_ambient.vpcf"
+				"system"						"particles/econ/items/rubick/rubick_puppet_master/rubick_back_puppet_ambient.vpcf"
+				"attach_type"					"absorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_back"
+					}
+				}
+			}
+			"skip_model_combine"				"0"
+		}
+	}
+	"8684"
+	{
+		"name"									"Hood of Arcane Defiance"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/rubick/set_of_defiance_head/set_of_defiance_head"
+		"item_name"								"#DOTA_Item_Hood_of_Arcane_Defiance"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hood"
+		"model_player"							"models/items/rubick/set_of_defiance_head/set_of_defiance_head.vmdl"
+	}
+	"8685"
+	{
+		"name"									"Cape of Arcane Defiance"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/rubick/set_of_defiance_back/set_of_defiance_back"
+		"item_name"								"#DOTA_Item_Cape_of_Arcane_Defiance"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/rubick/set_of_defiance_back/set_of_defiance_back.vmdl"
+	}
+	"8686"
+	{
+		"name"									"Mantle of Arcane Defiance"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/rubick/set_of_defiance_shoulder/set_of_defiance_shoulder"
+		"item_name"								"#DOTA_Item_Mantle_of_Arcane_Defiance"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/rubick/set_of_defiance_shoulder/set_of_defiance_shoulder.vmdl"
+	}
+	"8687"
+	{
+		"name"									"Staff of Arcane Defiance"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/rubick/set_of_defiance_weapon/set_of_defiance_weapon"
+		"item_name"								"#DOTA_Item_Staff_of_Arcane_Defiance"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/rubick/set_of_defiance_weapon/set_of_defiance_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"8702"
+	{
+		"name"									"Hood of Diviner's Embrace"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/rubick/embrace_force_blue_head/embrace_force_blue_head"
+		"item_name"								"#DOTA_Item_Hood_of_Diviners_Embrace"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hood"
+		"model_player"							"models/items/rubick/embrace_force_blue_head/embrace_force_blue_head.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/10/2015"
+			"price"								"0"
+		}
+	}
+	"8703"
+	{
+		"name"									"Robe of Diviner's Embrace"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/rubick/embrace_force_blue_back/embrace_force_blue_back"
+		"item_name"								"#DOTA_Item_Robe_of_Diviners_Embrace"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Robe"
+		"model_player"							"models/items/rubick/embrace_force_blue_back/embrace_force_blue_back.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/10/2015"
+			"price"								"0"
+		}
+	}
+	"8704"
+	{
+		"name"									"Mantle of Diviner's Embrace"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/rubick/embrace_force_blue_shoulder/embrace_force_blue_shoulder"
+		"item_name"								"#DOTA_Item_Mantle_of_Diviners_Embrace"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/rubick/embrace_force_blue_shoulder/embrace_force_blue_shoulder.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/10/2015"
+			"price"								"0"
+		}
+	}
+	"8710"
+	{
+		"name"									"Staff of Diviner's Embrace"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/rubick/embrace_force_blue_weapon/embrace_force_blue_weapon"
+		"item_name"								"#DOTA_Item_Staff_of_Diviners_Embrace"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/rubick/embrace_force_blue_weapon/embrace_force_blue_weapon.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/10/2015"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_rubick/rubick_staff_ambient.vpcf"
+				"modifier"						"particles/units/heroes/hero_rubick/rubick_staff_ambient_empty.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"9004"
+	{
+		"name"									"Staff of the Cunning Augur"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-03"
+		"image_inventory"						"econ/items/rubick/fortuneteller_weapon/fortuneteller_weapon"
+		"item_name"								"#DOTA_Item_Staff_of_the_Cunning_Augur"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/rubick/fortuneteller_weapon/fortuneteller_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/rubick/rubick_fortuneteller_ambient"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_rubick/rubick_staff_ambient.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_fortuneteller_ambient/rubick_fortuneteller_staff_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/rubick/rubick_fortuneteller_ambient/rubick_fortuneteller_staff_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"9005"
+	{
+		"name"									"Mantle of the Cunning Augur"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-03"
+		"image_inventory"						"econ/items/rubick/fortuneteller_shoulder/fortuneteller_shoulder"
+		"item_name"								"#DOTA_Item_Mantle_of_the_Cunning_Augur"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/rubick/fortuneteller_shoulder/fortuneteller_shoulder.vmdl"
+		"particle_folder"						"particles/econ/items/rubick/rubick_fortuneteller_ambient"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_fortuneteller_ambient/rubick_fortuneteller_back_candle.vpcf"
+				"system"						"particles/econ/items/rubick/rubick_fortuneteller_ambient/rubick_fortuneteller_back_candle.vpcf"
+				"attach_type"					"customorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_candle_1"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_fortuneteller_ambient/rubick_fortuneteller_back_candle_2.vpcf"
+				"system"						"particles/econ/items/rubick/rubick_fortuneteller_ambient/rubick_fortuneteller_back_candle_2.vpcf"
+				"attach_type"					"customorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_candle_2"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_fortuneteller_ambient/rubick_fortuneteller_back_candle_3.vpcf"
+				"system"						"particles/econ/items/rubick/rubick_fortuneteller_ambient/rubick_fortuneteller_back_candle_3.vpcf"
+				"attach_type"					"customorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_candle_3"
+					}
+				}
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_fortuneteller_ambient/rubick_fortuneteller_back_candle_4.vpcf"
+				"system"						"particles/econ/items/rubick/rubick_fortuneteller_ambient/rubick_fortuneteller_back_candle_4.vpcf"
+				"attach_type"					"customorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_candle_4"
+					}
+				}
+			}
+		}
+	}
+	"9062"
+	{
+		"name"									"Hat of the Itinerant Scholar"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-02"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/rubick/mushis_wayfaring_scholar_head/mushis_wayfaring_scholar_head"
+		"item_name"								"#DOTA_Item_Hat_of_the_Itinerant_Scholar"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/rubick/mushis_wayfaring_scholar_head/mushis_wayfaring_scholar_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_wayfaring/rubick_wayfaring_hat_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/rubick/rubick_wayfaring/rubick_wayfaring_hat_ambient.vpcf"
+				"attach_type"					"customorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hat_candle_sml"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hat_candle_lrg"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"scholar"
+				"style"							"0"
+			}
+		}
+	}
+	"9063"
+	{
+		"name"									"Cape of the Itinerant Scholar"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-02"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/rubick/mushis_wayfaring_scholar_back/mushis_wayfaring_scholar_back"
+		"item_name"								"#DOTA_Item_Cape_of_the_Itinerant_Scholar"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/rubick/mushis_wayfaring_scholar_back/mushis_wayfaring_scholar_back.vmdl"
+	}
+	"9064"
+	{
+		"name"									"Tome of the Itinerant Scholar"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-02"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/rubick/mushis_wayfaring_scholar_shoulder/mushis_wayfaring_scholar_shoulder"
+		"item_name"								"#DOTA_Item_Tome_of_the_Itinerant_Scholar"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/rubick/mushis_wayfaring_scholar_shoulder/mushis_wayfaring_scholar_shoulder.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_wayfaring/rubick_wayfaring_back_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/rubick/rubick_wayfaring/rubick_wayfaring_back_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_item"
+					}
+				}
+			}
+		}
+	}
+	"9065"
+	{
+		"name"									"Staff of the Itinerant Scholar"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-02"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/rubick/mushis_wayfaring_scholar_weapon/mushis_wayfaring_scholar_weapon"
+		"item_name"								"#DOTA_Item_Staff_of_the_Itinerant_Scholar"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/rubick/mushis_wayfaring_scholar_weapon/mushis_wayfaring_scholar_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_rubick/rubick_staff_ambient.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_wayfaring/rubick_wayfaring_staff_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/rubick/rubick_wayfaring/rubick_wayfaring_staff_ambient.vpcf"
+				"attach_type"					"customorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff_ambient"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"9502"
+	{
+		"name"									"Staff of the Rambling Fatebender"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-11"
+		"image_inventory"						"econ/items/rubick/gambling_mage_rubick_weapon/gambling_mage_rubick_weapon"
+		"item_name"								"#DOTA_Item_Staff_of_the_Rambling_Fatebender"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/rubick/gambling_mage_rubick_weapon/gambling_mage_rubick_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_rubick/rubick_staff_ambient.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_gambling_mage/rubick_gambling_mage_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9503"
+	{
+		"name"									"Mask of the Rambling Fatebender"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-11"
+		"image_inventory"						"econ/items/rubick/gambling_mage_rubick_head/gambling_mage_rubick_head"
+		"item_name"								"#DOTA_Item_Mask_of_the_Rambling_Fatebender"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/rubick/gambling_mage_rubick_head/gambling_mage_rubick_head.vmdl"
+	}
+	"9504"
+	{
+		"name"									"Pauldrons of the Rambling Fatebender"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-11"
+		"image_inventory"						"econ/items/rubick/gambling_mage_rubick_shoulder/gambling_mage_rubick_shoulder"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Rambling_Fatebender"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/rubick/gambling_mage_rubick_shoulder/gambling_mage_rubick_shoulder.vmdl"
+	}
+	"9505"
+	{
+		"name"									"Cape of the Rambling Fatebender"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-11"
+		"image_inventory"						"econ/items/rubick/gambling_mage_rubick_back/gambling_mage_rubick_back"
+		"item_name"								"#DOTA_Item_Cape_of_the_Rambling_Fatebender"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/rubick/gambling_mage_rubick_back/gambling_mage_rubick_back.vmdl"
+	}
+	"9521"
+	{
+		"name"									"Staff of Perplex"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-30"
+		"image_inventory"						"econ/items/rubick/force_staff/force_staff"
+		"item_description"						"#DOTA_Item_Desc_Force_of_the_Magus"
+		"item_name"								"#DOTA_Item_Staff_of_Perplex"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/rubick/force_staff/force_staff.vmdl"
+		"particle_folder"						"particles/econ/items/rubick/rubick_force_ambient"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"force"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_rubick/rubick_staff_ambient.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_force_ambient/rubick_staff_ambient_kill.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_rubick/rubick_telekinesis.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_force_ambient/rubick_telekinesis_force.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_rubick/rubick_telekinesis_marker.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_force_ambient/rubick_telekinesis_marker_force.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_rubick/rubick_telekinesis_land.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_force_ambient/rubick_telekinesis_land_force.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier5"
+			{
+				"type"							"ability_icon"
+				"asset"							"rubick_telekinesis"
+				"modifier"						"rubick/staff_of_perplex/rubick_telekinesis"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_force_ambient/rubick_force_ambient.vpcf"
+				"system"						"particles/econ/items/rubick/rubick_force_ambient/rubick_force_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_staff_ambient"
+					}
+				}
+			}
+		}
+	}
+	"9715"
+	{
+		"name"									"Ornithomancer Mantle"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-01"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/rubick/ornithomancer_back/ornithomancer_back"
+		"item_name"								"#DOTA_Item_Ornithomancer_Mantle"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/rubick/ornithomancer_back/ornithomancer_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"12251"
+	{
+		"name"									"Weapon of the Mystic Masquerade"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/rubick/legacy_of_the_old_empire_weapon/legacy_of_the_old_empire_weapon"
+		"item_name"								"#DOTA_Item_Weapon_of_the_Mystic_Masquerade"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/rubick/legacy_of_the_old_empire_weapon/legacy_of_the_old_empire_weapon.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_legacy_empire/rubick_legacy_empire_weapon.vpcf"
+			}
+		}
+	}
+	"12252"
+	{
+		"name"									"Shoulder of the Mystic Masquerade"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/rubick/legacy_of_the_old_empire_shoulder/legacy_of_the_old_empire_shoulder"
+		"item_name"								"#DOTA_Item_Shoulder_of_the_Mystic_Masquerade"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/rubick/legacy_of_the_old_empire_shoulder/legacy_of_the_old_empire_shoulder.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_legacy_empire/rubick_legacy_empire_shoulders.vpcf"
+			}
+		}
+	}
+	"12253"
+	{
+		"name"									"Head of the Mystic Masquerade"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/rubick/legacy_of_the_old_empire_head/legacy_of_the_old_empire_head"
+		"item_name"								"#DOTA_Item_Head_of_the_Mystic_Masquerade"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/rubick/legacy_of_the_old_empire_head/legacy_of_the_old_empire_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_legacy_empire/rubick_legacy_empire_head.vpcf"
+			}
+		}
+	}
+	"12254"
+	{
+		"name"									"Back of the Mystic Masquerade"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/rubick/legacy_of_the_old_empire_back/legacy_of_the_old_empire_back"
+		"item_name"								"#DOTA_Item_Back_of_the_Mystic_Masquerade"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/rubick/legacy_of_the_old_empire_back/legacy_of_the_old_empire_back.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_legacy_empire/rubick_legacy_empire_back.vpcf"
+			}
+		}
+	}
+	"12392"
+	{
+		"name"									"Crux of Perplex"
+		"prefab"								"wearable"
+		"creation_date"							"2018-08-01"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/rubick/rubick_ti8_immortal_shoulders/rubick_ti8_immortal_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Crux_of_Perplex"
+		"item_name"								"#DOTA_Item_Crux_of_Perplex"
+		"item_rarity"							"immortal"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/rubick/rubick_ti8_immortal_shoulders/rubick_ti8_immortal_shoulders.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1535682268"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_rubick/rubick_fade_bolt.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_ti8_immortal/rubick_ti8_immortal_fade_bolt.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_rubick/rubick_fade_bolt_head.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_ti8_immortal/rubick_ti8_immortal_fade_bolt_head.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_rubick/rubick_fade_bolt_debuff.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_ti8_immortal/rubick_ti8_immortal_fade_bolt_debuff.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti8"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"rubick_fade_bolt"
+				"modifier"						"rubick/ti8_immortal_shoulder/rubick_fade_bolt_immortal"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_arcana/rubick_arc_shoulders_ambient.vpcf"
+				"custom_type"					"rubick_arcana"
+				"style"							"0"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_ti8_immortal/rubick_ti8_immortal_ambient.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier7"
+			{
+				"type"							"rubick_arcana_follower"
+				"style"							"0"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Crux_of_Perplex_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Crux_of_Perplex_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/rubick/rubick_ti8_immortal_shoulders/rubick_ti8_immortal_shoulders"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/rubick/rubick_ti8_immortal_shoulders/rubick_ti8_immortal_shoulders_style1"
+				}
+			}
+		}
+	}
+	"12427"
+	{
+		"name"									"Voice of the Magus Cypher"
+		"prefab"								"wearable"
+		"creation_date"							"2018-12-19"
+		"image_inventory"						"econ/voicepack/rubick_arcana_voicepack"
+		"item_description"						"#DOTA_Item_Desc_Voice_of_the_Magus_Cypher"
+		"item_name"								"#DOTA_Item_Voice_of_the_Magus_Cypher"
+		"item_rarity"							"arcana"
+		"item_slot"								"voice"
+		"item_type_name"						"#DOTA_WearableType_Alternate_Hero_Voice"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"response_criteria"
+				"asset"							"rubarc_mantle"
+			}
+			"asset_modifier1"
+			{
+				"type"							"announcer_preview"
+				"asset"							"sounds/vo/rubick/rub_arc_firstblood_01.vsnd"
+				"modifier"						"#DOTA_Announcer_Preview_Rubick_Cypher_Voice_01"
+			}
+			"asset_modifier2"
+			{
+				"type"							"announcer_preview"
+				"asset"							"sounds/vo/rubick/rub_arc_move_14.vsnd"
+				"modifier"						"#DOTA_Announcer_Preview_Rubick_Cypher_Voice_02"
+			}
+			"asset_modifier3"
+			{
+				"type"							"announcer_preview"
+				"asset"							"sounds/vo/rubick/rub_arc_spellsteal_02.vsnd"
+				"modifier"						"#DOTA_Announcer_Preview_Rubick_Cypher_Voice_03"
+			}
+			"asset_modifier4"
+			{
+				"type"							"announcer_preview"
+				"asset"							"sounds/vo/rubick/rub_arc_move_21.vsnd"
+				"modifier"						"#DOTA_Announcer_Preview_Rubick_Cypher_Voice_04"
+			}
+			"asset_modifier5"
+			{
+				"type"							"chatwheel"
+				"asset"							"rubick_rubick_laugh_06"
+				"modifier"						"rubick_rub_arc_laugh_06"
+			}
+			"asset_modifier6"
+			{
+				"type"							"chatwheel"
+				"asset"							"rubick_rubick_move_12"
+				"modifier"						"rubick_rub_arc_move_12"
+			}
+			"asset_modifier7"
+			{
+				"type"							"chatwheel"
+				"asset"							"rubick_rubick_lasthit_06"
+				"modifier"						"rubick_rub_arc_lasthit_06"
+			}
+			"asset_modifier8"
+			{
+				"type"							"chatwheel"
+				"asset"							"rubick_rubick_levelup_04"
+				"modifier"						"rubick_rub_arc_levelup_04"
+			}
+			"asset_modifier9"
+			{
+				"type"							"chatwheel"
+				"asset"							"rubick_rubick_rival_07"
+				"modifier"						"rubick_rub_arc_rival_07"
+			}
+			"asset_modifier10"
+			{
+				"type"							"chatwheel"
+				"asset"							"rubick_rubick_itemcommon_02"
+				"modifier"						"rubick_rub_arc_itemcommon_02"
+			}
+			"asset_modifier11"
+			{
+				"type"							"chatwheel"
+				"asset"							"rubick_rubick_failure_02"
+				"modifier"						"rubick_rub_arc_failure_02"
+			}
+			"asset_modifier12"
+			{
+				"type"							"chatwheel"
+				"asset"							"rubick_rubick_itemrare_01"
+				"modifier"						"rubick_rub_arc_itemrare_01"
+			}
+		}
+	}
+	"12451"
+	{
+		"name"									"The Magus Cypher"
+		"prefab"								"wearable"
+		"creation_date"							"2018-12-19"
+		"image_inventory"						"econ/items/rubick/arcana/magus_cypher"
+		"item_description"						"#DOTA_Item_Desc_The_Magus_Cypher"
+		"item_name"								"#DOTA_Item_The_Magus_Cypher"
+		"item_rarity"							"arcana"
+		"item_slot"								"back"
+		"model_player"							"models/items/rubick/rubick_arcana/rubick_arcana_back.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/19/2018"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"hide_styles_from_ui"				"1"
+			"only_display_on_hero_model_change"	"0"
+			"styles"
+			{
+				"0"
+				{
+					"auto_style_rule"			"rubick_arcana_auto_style < 12"
+				}
+				"1"
+				{
+					"auto_style_rule"			"rubick_arcana_auto_style == 12"
+				}
+				"2"
+				{
+					"auto_style_rule"			"rubick_arcana_auto_style == 13"
+				}
+				"3"
+				{
+					"auto_style_rule"			"rubick_arcana_auto_style >= 14 && rubick_arcana_auto_style < 21"
+				}
+				"4"
+				{
+					"auto_style_rule"			"rubick_arcana_auto_style == 21"
+				}
+				"5"
+				{
+					"auto_style_rule"			"rubick_arcana_auto_style >= 22 && rubick_arcana_auto_style < 24"
+				}
+				"6"
+				{
+					"auto_style_rule"			"rubick_arcana_auto_style >= 24 && rubick_arcana_auto_style < 31"
+				}
+				"7"
+				{
+					"auto_style_rule"			"rubick_arcana_auto_style >= 31 && rubick_arcana_auto_style < 34"
+				}
+				"8"
+				{
+					"auto_style_rule"			"rubick_arcana_auto_style >= 34 &&  rubick_arcana_auto_style < 44"
+				}
+				"9"
+				{
+					"auto_style_rule"			"rubick_arcana_auto_style >= 44 &&  rubick_arcana_auto_style < 51"
+				}
+				"10"
+				{
+					"auto_style_rule"			"rubick_arcana_auto_style == 51"
+				}
+				"11"
+				{
+					"auto_style_rule"			"rubick_arcana_auto_style == 52"
+				}
+				"12"
+				{
+					"auto_style_rule"			"rubick_arcana_auto_style == 53"
+				}
+				"13"
+				{
+					"auto_style_rule"			"rubick_arcana_auto_style >= 54 &&  rubick_arcana_auto_style < 62"
+				}
+				"14"
+				{
+					"auto_style_rule"			"rubick_arcana_auto_style >= 62 &&  rubick_arcana_auto_style < 64"
+				}
+				"15"
+				{
+					"auto_style_rule"			"rubick_arcana_auto_style >= 64 &&  rubick_arcana_auto_style < 71"
+				}
+				"16"
+				{
+					"auto_style_rule"			"rubick_arcana_auto_style == 71"
+				}
+				"17"
+				{
+					"auto_style_rule"			"rubick_arcana_auto_style >= 72 &&  rubick_arcana_auto_style < 74"
+				}
+				"18"
+				{
+					"auto_style_rule"			"rubick_arcana_auto_style >= 74 &&  rubick_arcana_auto_style < 81"
+				}
+				"19"
+				{
+					"auto_style_rule"			"rubick_arcana_auto_style >= 81 &&  rubick_arcana_auto_style < 84"
+				}
+				"20"
+				{
+					"auto_style_rule"			"rubick_arcana_auto_style >= 84 &&  rubick_arcana_auto_style < 93"
+				}
+				"21"
+				{
+					"auto_style_rule"			"rubick_arcana_auto_style == 93"
+				}
+				"22"
+				{
+					"auto_style_rule"			"rubick_arcana_auto_style >= 94 &&  rubick_arcana_auto_style < 102"
+				}
+				"23"
+				{
+					"auto_style_rule"			"rubick_arcana_auto_style == 102"
+				}
+				"24"
+				{
+					"auto_style_rule"			"rubick_arcana_auto_style == 103"
+				}
+				"25"
+				{
+					"auto_style_rule"			"rubick_arcana_auto_style >= 104"
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_hero_rubick"
+				"modifier"						"models/items/rubick/rubick_arcana/rubick_arcana_base.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"healthbar_offset"
+				"offset"						"275"
+			}
+			"asset_modifier2"
+			{
+				"type"							"arcana_level"
+				"level"							"1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"rubick_arcana"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_arcana/rubick_arc_ambient_default.vpcf"
+				"custom_type"					"rubick_arcana"
+			}
+			"asset_modifier5"
+			{
+				"type"							"rubick_arcana_follower"
+				"min_level"						"0"
+			}
+			"asset_modifier6"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Rubick.SpellSteal.Cast"
+				"modifier"						"Hero_Rubick.SpellSteal.Cast.Arcana"
+			}
+			"asset_modifier7"
+			{
+				"type"							"icon_replacement_hero_minimap"
+				"asset"							"npc_dota_hero_rubick"
+				"modifier"						"npc_dota_hero_rubick_alt1"
+				"force_display"					"1"
+			}
+			"asset_modifier8"
+			{
+				"type"							"icon_replacement_hero"
+				"asset"							"npc_dota_hero_rubick"
+				"modifier"						"npc_dota_hero_rubick_alt"
+				"force_display"					"1"
+			}
+			"asset_modifier9"
+			{
+				"type"							"ability_icon"
+				"asset"							"rubick_arcane_supremacy"
+				"modifier"						"rubick/arcana/rubick_arcane_supremacy_arcana"
+			}
+			"asset_modifier10"
+			{
+				"type"							"ability_icon"
+				"asset"							"rubick_fade_bolt"
+				"modifier"						"rubick/arcana/rubick_fade_bolt_arcana"
+			}
+			"asset_modifier11"
+			{
+				"type"							"ability_icon"
+				"asset"							"rubick_spell_steal"
+				"modifier"						"rubick/arcana/rubick_spell_steal_arcana"
+			}
+			"asset_modifier12"
+			{
+				"type"							"ability_icon"
+				"asset"							"rubick_telekinesis"
+				"modifier"						"rubick/arcana/rubick_telekinesis_arcana"
+			}
+			"asset_modifier13"
+			{
+				"type"							"ability_icon"
+				"asset"							"rubick_telekinesis_land"
+				"modifier"						"rubick/arcana/rubick_telekinesis_land_arcana"
+			}
+			"asset_modifier14"
+			{
+				"type"							"portrait_background_model"
+				"asset"							"models/items/rubick/rubick_arcana/rubick_arcana_pedestal.vmdl"
+			}
+			"asset_modifier15"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_lone_druid_bear"
+				"modifier"						"models/heroes/lone_druid/spirit_bear_rubick.vmdl"
+				"criteria"						"isbetween( style, 1, 100 )"
+			}
+			"asset_modifier16"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_venomancer/venomancer_poison_nova.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_arcana/rbck_arc_venomancer_poison_nova.vpcf"
+				"criteria"						"isbetween( style, 1, 100 )"
+			}
+			"asset_modifier17"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_rattletrap_cog"
+				"modifier"						"models/heroes/rattletrap/rattletrap_cog_rubick.vmdl"
+				"criteria"						"isbetween( style, 2, 100 )"
+			}
+			"asset_modifier18"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_doom_bringer/doom_bringer_doom.vpcf"
+				"modifier"						"particles/units/heroes/hero_rubick/rubick_doom.vpcf"
+				"criteria"						"isbetween( style, 3, 100 )"
+			}
+			"asset_modifier19"
+			{
+				"type"							"hero_model_change"
+				"asset"							"models/heroes/pangolier/pangolier_gyroshell2.vmdl"
+				"modifier"						"models/items/rubick/rubick_arcana/rubick_arcana_cube_pangolier.vmdl"
+				"criteria"						"isbetween( style, 4, 100 )"
+			}
+			"asset_modifier20"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_arcana/rbck_arc_skeletonking_hellfireblast.vpcf"
+				"criteria"						"isbetween( style, 4, 100 )"
+			}
+			"asset_modifier21"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_wings_buff.vpcf"
+				"modifier"						"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_wings_buff_rubick.vpcf"
+				"criteria"						"isbetween( style, 5, 100 )"
+			}
+			"asset_modifier22"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_omni.vpcf"
+				"modifier"						"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_omni_rubick.vpcf"
+				"criteria"						"isbetween( style, 5, 100 )"
+			}
+			"asset_modifier23"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_ally.vpcf"
+				"modifier"						"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_ally_rubick.vpcf"
+				"criteria"						"isbetween( style, 5, 100 )"
+			}
+			"asset_modifier24"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_earth_spirit/espirit_magnetize_target.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_arcana/rbck_espirit_magnetize_target.vpcf"
+				"criteria"						"isbetween( style, 5, 100 )"
+			}
+			"asset_modifier25"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_jakiro/jakiro_macropyre.vpcf"
+				"modifier"						"particles/units/heroes/hero_rubick/rubick_macropyre.vpcf"
+				"criteria"						"isbetween( style, 6, 100 )"
+			}
+			"asset_modifier26"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_kunkka/kunkka_ghost_ship.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_arcana/rbck_arc_kunkka_ghost_ship.vpcf"
+				"criteria"						"isbetween( style, 7, 100 )"
+			}
+			"asset_modifier27"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_dark_willow_creature"
+				"modifier"						"models/items/rubick/rubick_arcana/rubick_dark_willow_wisp.vmdl"
+				"criteria"						"isbetween( style, 7, 100 )"
+			}
+			"asset_modifier28"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_warlock_golem_scepter_"
+				"modifier"						"models/heroes/warlock/warlock_demon_rubick.vmdl"
+				"criteria"						"isbetween( style, 8, 100 )"
+			}
+			"asset_modifier29"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_warlock_golem_"
+				"modifier"						"models/heroes/warlock/warlock_demon_rubick.vmdl"
+				"criteria"						"isbetween( style, 8, 100 )"
+			}
+			"asset_modifier30"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_warlock/warlock_rain_of_chaos_start.vpcf"
+				"modifier"						"particles/units/heroes/hero_rubick/rubick_rain_of_chaos_start.vpcf"
+				"criteria"						"isbetween( style, 8, 100 )"
+			}
+			"asset_modifier31"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_warlock/warlock_rain_of_chaos.vpcf"
+				"modifier"						"particles/units/heroes/hero_rubick/rubick_rain_of_chaos.vpcf"
+				"criteria"						"isbetween( style, 8, 100 )"
+			}
+			"asset_modifier32"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_warlock/golem_ambient.vpcf"
+				"modifier"						"particles/units/heroes/hero_rubick/rubick_golem_ambient.vpcf"
+				"criteria"						"isbetween( style, 8, 100 )"
+			}
+			"asset_modifier33"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_tidehunter/tidehunter_spell_ravage.vpcf"
+				"modifier"						"particles/units/heroes/hero_rubick/rubick_spell_ravage.vpcf"
+				"criteria"						"isbetween( style, 9, 100 )"
+			}
+			"asset_modifier34"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_tidehunter/tidehunter_spell_ravage_hit.vpcf"
+				"modifier"						"particles/units/heroes/hero_rubick/rubick_spell_ravage_hit.vpcf"
+				"criteria"						"isbetween( style, 9, 100 )"
+			}
+			"asset_modifier35"
+			{
+				"type"							"hero_model_change"
+				"asset"							"models/heroes/lycan/lycan_wolf.vmdl"
+				"modifier"						"models/heroes/lycan/lycan_wolf_rubick.vmdl"
+				"criteria"						"isbetween( style, 10, 100 )"
+			}
+			"asset_modifier36"
+			{
+				"type"							"hero_model_change"
+				"asset"							"models/heroes/undying/undying_flesh_golem.vmdl"
+				"modifier"						"models/heroes/undying/undying_flesh_golem_rubick.vmdl"
+				"criteria"						"isbetween( style, 11, 100 )"
+			}
+			"asset_modifier37"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_witchdoctor/witchdoctor_ward_skull.vpcf"
+				"modifier"						"particles/units/heroes/hero_witchdoctor/witchdoctor_ward_skull_rubick.vpcf"
+				"criteria"						"isbetween( style, 11, 100 )"
+			}
+			"asset_modifier38"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_witchdoctor/witchdoctor_ward_cast_staff_fire.vpcf"
+				"modifier"						"particles/units/heroes/hero_witchdoctor/witchdoctor_ward_cast_staff_fire_rubick.vpcf"
+				"criteria"						"isbetween( style, 11, 100 )"
+			}
+			"asset_modifier39"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_witchdoctor/witchdoctor_ward_attack.vpcf"
+				"modifier"						"particles/units/heroes/hero_witchdoctor/witchdoctor_ward_attack_rubick.vpcf"
+				"criteria"						"isbetween( style, 11, 100 )"
+			}
+			"asset_modifier40"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ember_spirit/ember_spirit_fire_remnant.vpcf"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_rubick_fire_remnant.vpcf"
+				"criteria"						"isbetween( style, 12, 100 )"
+			}
+			"asset_modifier41"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ember_spirit/ember_spirit_fire_remnant_trail.vpcf"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_fire_remnant_trail_rubick.vpcf"
+				"criteria"						"isbetween( style, 12, 100 )"
+			}
+			"asset_modifier42"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ember_spirit/ember_spirit_remnant_dash.vpcf"
+				"modifier"						"particles/units/heroes/hero_ember_spirit/ember_spirit_remnant_dash_rubick.vpcf"
+				"criteria"						"isbetween( style, 12, 100 )"
+			}
+			"asset_modifier43"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_enigma/enigma_blackhole.vpcf"
+				"modifier"						"particles/units/heroes/hero_rubick/rubick_blackhole.vpcf"
+				"criteria"						"isbetween( style, 13, 100 )"
+			}
+			"asset_modifier44"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_shadow_shaman_ward"
+				"modifier"						"models/heroes/shadowshaman/shadowshaman_totem_rubick.vmdl"
+				"criteria"						"isbetween( style, 14, 100 )"
+			}
+			"asset_modifier45"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shadowshaman/shadow_shaman_ward_base_attack.vpcf"
+				"modifier"						"particles/units/heroes/hero_shadowshaman/shadow_shaman_ward_base_attack_rubick.vpcf"
+				"criteria"						"isbetween( style, 14, 100 )"
+			}
+			"asset_modifier46"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_skywrath_mage/skywrath_mage_mystic_flare_ambient.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_arcana/rbck_arc_skywrath_mage_mystic_flare_ambient.vpcf"
+				"criteria"						"isbetween( style, 14, 100 )"
+			}
+			"asset_modifier47"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_phoenix_sun"
+				"modifier"						"models/items/rubick/rubick_arcana/rubick_arcana_phoenix_egg.vmdl"
+				"criteria"						"isbetween( style, 15, 100 )"
+			}
+			"asset_modifier48"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phoenix/phoenix_supernova_egg.vpcf"
+				"modifier"						"particles/units/heroes/hero_rubick/rubick_supernova_egg.vpcf"
+				"criteria"						"isbetween( style, 15, 100 )"
+			}
+			"asset_modifier49"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_visage_familiar1"
+				"modifier"						"models/heroes/visage/rubick_visage_familiar.vmdl"
+				"criteria"						"isbetween( style, 16, 100 )"
+			}
+			"asset_modifier50"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_visage_familiar2"
+				"modifier"						"models/heroes/visage/rubick_visage_familiar.vmdl"
+				"criteria"						"isbetween( style, 16, 100 )"
+			}
+			"asset_modifier51"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_visage_familiar3"
+				"modifier"						"models/heroes/visage/rubick_visage_familiar.vmdl"
+				"criteria"						"isbetween( style, 16, 100 )"
+			}
+			"asset_modifier52"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_windrunner/windrunner_spell_powershot.vpcf"
+				"modifier"						"particles/units/heroes/hero_windrunner/windrunner_spell_powershot_rubick.vpcf"
+				"criteria"						"isbetween( style, 17, 100 )"
+			}
+			"asset_modifier53"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_explosion.vpcf"
+				"modifier"						"particles/units/heroes/hero_rubick/rubick_freezing_field_explosion.vpcf"
+				"criteria"						"isbetween( style, 18, 100 )"
+			}
+			"asset_modifier54"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_snow.vpcf"
+				"modifier"						"particles/units/heroes/hero_rubick/rubick_freezing_field_snow.vpcf"
+				"criteria"						"isbetween( style, 18, 100 )"
+			}
+			"asset_modifier55"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_techies_remote_mine"
+				"modifier"						"models/heroes/techies/fx_techies_remote_cart_rubick.vmdl"
+				"criteria"						"isbetween( style, 19, 100 )"
+			}
+			"asset_modifier56"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_techies/techies_remote_cart_explode.vpcf"
+				"modifier"						"particles/units/heroes/hero_techies/techies_remote_cart_explode_rubick.vpcf"
+				"criteria"						"isbetween( style, 19, 100 )"
+			}
+			"asset_modifier57"
+			{
+				"type"							"entity_model"
+				"asset"							"dota_death_prophet_exorcism_spirit"
+				"modifier"						"models/heroes/death_prophet/rubick_arcana_death_prophet_ghost.vmdl"
+				"criteria"						"isbetween( style, 19, 100 )"
+			}
+			"asset_modifier58"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_lion/lion_spell_finger_of_death.vpcf"
+				"modifier"						"particles/units/heroes/hero_rubick/rubick_finger_of_death.vpcf"
+				"criteria"						"isbetween( style, 20, 100 )"
+			}
+			"asset_modifier59"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_zuus/zuus_thundergods_wrath_start.vpcf"
+				"modifier"						"particles/units/heroes/hero_rubick/rubick_thundergods_wrath_start.vpcf"
+				"criteria"						"isbetween( style, 21, 100 )"
+			}
+			"asset_modifier60"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_zuus/zuus_thundergods_wrath.vpcf"
+				"modifier"						"particles/units/heroes/hero_rubick/rubick_thundergods_wrath.vpcf"
+				"criteria"						"isbetween( style, 21, 100 )"
+			}
+			"asset_modifier61"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_invoker/invoker_chaos_meteor.vpcf"
+				"modifier"						"particles/units/heroes/hero_rubick/rubick_chaos_meteor.vpcf"
+				"criteria"						"isbetween( style, 22, 100 )"
+			}
+			"asset_modifier62"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_invoker/invoker_chaos_meteor_fly.vpcf"
+				"modifier"						"particles/units/heroes/hero_rubick/rubick_chaos_meteor_fly.vpcf"
+				"criteria"						"isbetween( style, 22, 100 )"
+			}
+			"asset_modifier63"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_sandking/sandking_epicenter.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_arcana/rbck_arc_sandking_epicenter.vpcf"
+				"criteria"						"isbetween( style, 23, 100 )"
+			}
+			"asset_modifier64"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_lich/lich_chain_frost.vpcf"
+				"modifier"						"particles/units/heroes/hero_lich/lich_chain_frost_rubick.vpcf"
+				"criteria"						"isbetween( style, 23, 100 )"
+			}
+			"asset_modifier65"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shadow_demon/shadow_demon_demonic_purge.vpcf"
+				"modifier"						"particles/units/heroes/hero_shadow_demon/shadow_demon_demonic_purge_rubick.vpcf"
+				"criteria"						"isbetween( style, 24, 100 )"
+			}
+			"asset_modifier66"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_shadow_demon/shadow_demon_demonic_purge_cast.vpcf"
+				"modifier"						"particles/units/heroes/hero_shadow_demon/shadow_demon_demonic_purge_cast_rubick.vpcf"
+				"criteria"						"isbetween( style, 24, 100 )"
+			}
+			"asset_modifier67"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_faceless_void/faceless_void_chronosphere.vpcf"
+				"modifier"						"particles/units/heroes/hero_rubick/rubick_faceless_void_chronosphere.vpcf"
+				"criteria"						"isbetween( style, 25, 100 )"
+			}
+			"asset_modifier68"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_arcana/rubick_arc_ambient_lines.vpcf"
+				"criteria"						"isbetween( style, 25, 100 )"
+				"custom_type"					"rubick_arcana"
+			}
+			"asset_modifier69"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_snapfire/snapfire_lizard_blobs_arced.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_arcana/rbck_arc_snapfire_lizard_blobs_arced.vpcf"
+			}
+			"asset_modifier70"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_snapfire/hero_snapfire_ultimate_linger.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_arcana/rbck_arcana_ultimate_linger.vpcf"
+			}
+			"asset_modifier71"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_snapfire/hero_snapfire_ultimate_impact.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_arcana/rbck_arcana_snapfire_impact.vpcf"
+			}
+			"asset_modifier72"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_hoodwink/hoodwink_acorn_shot_initial.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_arcana/rbck_arcana_acorn_shot_initial.vpcf"
+			}
+			"asset_modifier73"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_hoodwink/hoodwink_acorn_shot_tracking.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_arcana/rbck_arcana_acorn_shot_tracking.vpcf"
+			}
+			"asset_modifier74"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_void_spirit/dissimilate/void_spirit_dissimilate.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_arcana/rbck_arcana_void_spirit_dissimilate.vpcf"
+			}
+			"asset_modifier75"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_void_spirit/dissimilate/void_spirit_dissimilate_dmg.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_arcana/rbck_arcana_void_spirit_dissimilate_dmg.vpcf"
+			}
+			"asset_modifier76"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_void_spirit/dissimilate/void_spirit_dissimilate_exit.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_arcana/rbck_arcana_void_spirit_dissimilate_exit.vpcf"
+			}
+			"asset_modifier77"
+			{
+				"type"							"model"
+				"asset"							"models/items/rubick/puppet_master_doll/puppet_master_doll.vmdl"
+				"modifier"						"models/items/rubick/puppet_master_doll/puppet_master_doll_arcana_refit.vmdl"
+			}
+		}
+	}
+	"13055"
+	{
+		"name"									"Staff of the Arcanist's Guise"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_NEW_BLOOM_2020"
+		"image_inventory"						"econ/items/rubick/ti9_cache_rubick_haunted_clairvoyance_weapon/ti9_cache_rubick_haunted_clairvoyance_weapon"
+		"item_name"								"#DOTA_Item_Staff_of_the_Arcanists_Guise"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/rubick/ti9_cache_rubick_haunted_clairvoyance_weapon/ti9_cache_rubick_haunted_clairvoyance_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"13056"
+	{
+		"name"									"Mantle of the Arcanist's Guise"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_NEW_BLOOM_2020"
+		"image_inventory"						"econ/items/rubick/ti9_cache_rubick_haunted_clairvoyance_shoulder/ti9_cache_rubick_haunted_clairvoyance_shoulder"
+		"item_name"								"#DOTA_Item_Mantle_of_the_Arcanists_Guise"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/rubick/ti9_cache_rubick_haunted_clairvoyance_shoulder/ti9_cache_rubick_haunted_clairvoyance_shoulder.vmdl"
+	}
+	"13057"
+	{
+		"name"									"Cloak of the Arcanist's Guise"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_NEW_BLOOM_2020"
+		"image_inventory"						"econ/items/rubick/ti9_cache_rubick_haunted_clairvoyance_back/ti9_cache_rubick_haunted_clairvoyance_back"
+		"item_name"								"#DOTA_Item_Cloak_of_the_Arcanists_Guise"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/rubick/ti9_cache_rubick_haunted_clairvoyance_back/ti9_cache_rubick_haunted_clairvoyance_back.vmdl"
+	}
+	"13058"
+	{
+		"name"									"Mask of the Arcanist's Guise"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_NEW_BLOOM_2020"
+		"image_inventory"						"econ/items/rubick/ti9_cache_rubick_haunted_clairvoyance_head/ti9_cache_rubick_haunted_clairvoyance_head"
+		"item_name"								"#DOTA_Item_Mask_of_the_Arcanists_Guise"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/rubick/ti9_cache_rubick_haunted_clairvoyance_head/ti9_cache_rubick_haunted_clairvoyance_head.vmdl"
+	}
+	"13265"
+	{
+		"name"									"Cape of the Impossible Realm"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/rubick/ti9_cache_rubick_ancient_magus_back/ti9_cache_rubick_ancient_magus_back"
+		"item_name"								"#DOTA_Item_Cape_of_the_Impossible_Realm"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/rubick/ti9_cache_rubick_ancient_magus_back/ti9_cache_rubick_ancient_magus_back.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1598997600"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_ti9_cache_magus_back/rubick_ti9_cache_magus_back_ambient.vpcf"
+			}
+		}
+	}
+	"13266"
+	{
+		"name"									"Staff of the Impossible Realm"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/rubick/ti9_cache_rubick_ancient_magus_weapon/ti9_cache_rubick_ancient_magus_weapon"
+		"item_name"								"#DOTA_Item_Staff_of_the_Impossible_Realm"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/rubick/ti9_cache_rubick_ancient_magus_weapon/ti9_cache_rubick_ancient_magus_weapon.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1598997600"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_rubick/rubick_staff_ambient.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_ti9_cache_magus_weapon/rubick_ti9_cache_magus_weapon_ambient.vpcf"
+			}
+		}
+	}
+	"13267"
+	{
+		"name"									"Head of the Impossible Realm"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/rubick/ti9_cache_rubick_ancient_magus_head/ti9_cache_rubick_ancient_magus_head"
+		"item_name"								"#DOTA_Item_Head_of_the_Impossible_Realm"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/rubick/ti9_cache_rubick_ancient_magus_head/ti9_cache_rubick_ancient_magus_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1598997600"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_ti9_cache_magus_head/rubick_ti9_cache_magus_head_ambient.vpcf"
+			}
+		}
+	}
+	"13268"
+	{
+		"name"									"Garb of the Impossible Realm"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/rubick/ti9_cache_rubick_ancient_magus_shoulder/ti9_cache_rubick_ancient_magus_shoulder"
+		"item_name"								"#DOTA_Item_Garb_of_the_Impossible_Realm"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/rubick/ti9_cache_rubick_ancient_magus_shoulder/ti9_cache_rubick_ancient_magus_shoulder.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1598997600"
+			}
+		}
+	}
+	"14425"
+	{
+		"name"									"March of the Crackerjack Mage - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/rubick/nutcracker_head/nutcracker_head"
+		"item_name"								"#DOTA_Item_March_of_the_Crackerjack_Mage__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/rubick/nutcracker_head/nutcracker_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_cc_2022_nutcracker_head/rubick_cc_2022_head.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"14435"
+	{
+		"name"									"March of the Crackerjack Mage - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/rubick/nutcracker_shoulder/nutcracker_shoulder"
+		"item_name"								"#DOTA_Item_March_of_the_Crackerjack_Mage__Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/rubick/nutcracker_shoulder/nutcracker_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_cc_2022_nutcracker_shoulder/rubick_cc_2022_shoulder.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"14436"
+	{
+		"name"									"March of the Crackerjack Mage - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/rubick/nutcracker_back/nutcracker_back"
+		"item_name"								"#DOTA_Item_March_of_the_Crackerjack_Mage__Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/rubick/nutcracker_back/nutcracker_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_cc_2022_nutcracker_back/rubick_cc_2022_nutcracker_back.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"14437"
+	{
+		"name"									"March of the Crackerjack Mage - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/rubick/nutcracker_weapon/nutcracker_weapon"
+		"item_name"								"#DOTA_Item_March_of_the_Crackerjack_Mage__Weapon"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/rubick/nutcracker_weapon/nutcracker_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_rubick/rubick_staff_ambient.vpcf"
+				"modifier"						"particles/econ/items/rubick/rubick_cc_2022_nutcracker_weapon/rubick_2022_cc_weapon_null.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_cc_2022_nutcracker_weapon/rubick_2022_cc_weapon_attachment.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/rubick_cc_2022_nutcracker_weapon/rubick_2022_cc_weapon.vpcf"
+			}
+		}
+	}
+	"17882"
+	{
+		"name"									"Plagueroad Apothacary Mask"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/rubick/keeper_of_plague_essence_head/keeper_of_plague_essence_head"
+		"item_name"								"#DOTA_Item_Plagueroad_Apothacary_Mask"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/rubick/keeper_of_plague_essence_head/keeper_of_plague_essence_head.vmdl"
+	}
+	"17883"
+	{
+		"name"									"Plagueroad Apothacary Cape"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/rubick/keeper_of_plague_essence_shoulder/keeper_of_plague_essence_shoulder"
+		"item_name"								"#DOTA_Item_Plagueroad_Apothacary_Cape"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/rubick/keeper_of_plague_essence_shoulder/keeper_of_plague_essence_shoulder.vmdl"
+	}
+	"17884"
+	{
+		"name"									"Plagueroad Apothacary Back"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/rubick/keeper_of_plague_essence_back/keeper_of_plague_essence_back"
+		"item_name"								"#DOTA_Item_Plagueroad_Apothacary_Back"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/rubick/keeper_of_plague_essence_back/keeper_of_plague_essence_back.vmdl"
+	}
+	"17885"
+	{
+		"name"									"Plagueroad Apothacary Staff"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/rubick/keeper_of_plague_essence_weapon/keeper_of_plague_essence_weapon"
+		"item_name"								"#DOTA_Item_Plagueroad_Apothacary_Staff"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/rubick/keeper_of_plague_essence_weapon/keeper_of_plague_essence_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"18201"
+	{
+		"name"									"Aghs BP Cape of the Impossible Realm"
+		"prefab"								"wearable"
+		"creation_date"							"2021-10-25"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/rubick/ti9_cache_rubick_ancient_magus_back/ti9_cache_rubick_ancient_magus_back1"
+		"item_name"								"#DOTA_Item_Aghs_BP_Cape_of_the_Impossible_Realm"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/rubick/ti9_cache_rubick_ancient_magus_back/ti9_cache_rubick_ancient_magus_back.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/aghsbp_2021_rubick_ancient_magus_back/aghsbp_2021_rubick_ancient_magus_back_ambient.vpcf"
+			}
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"18202"
+	{
+		"name"									"Aghs BP Staff of the Impossible Realm"
+		"prefab"								"wearable"
+		"creation_date"							"2021-10-25"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/rubick/ti9_cache_rubick_ancient_magus_weapon/ti9_cache_rubick_ancient_magus_weapon1"
+		"item_name"								"#DOTA_Item_Aghs_BP_Staff_of_the_Impossible_Realm"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/rubick/ti9_cache_rubick_ancient_magus_weapon/ti9_cache_rubick_ancient_magus_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_rubick/rubick_staff_ambient.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/aghsbp_2021_rubick_ancient_magus_weapon/aghsbp_2021_rubick_ancient_magus_weapon.vpcf"
+			}
+			"skin"								"1"
+		}
+	}
+	"18203"
+	{
+		"name"									"Aghs BP Head of the Impossible Realm"
+		"prefab"								"wearable"
+		"creation_date"							"2021-10-25"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/rubick/ti9_cache_rubick_ancient_magus_head/ti9_cache_rubick_ancient_magus_head1"
+		"item_name"								"#DOTA_Item_Aghs_BP_Head_of_the_Impossible_Realm"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/rubick/ti9_cache_rubick_ancient_magus_head/ti9_cache_rubick_ancient_magus_head_agh.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/rubick/aghsbp_2021_rubick_ancient_magus_head/aghsbp_2021_rubick_ancient_magus_head_ambient.vpcf"
+			}
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"18211"
+	{
+		"name"									"Aghs BP Garb of the Impossible Realm"
+		"prefab"								"wearable"
+		"creation_date"							"2021-10-25"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/rubick/ti9_cache_rubick_ancient_magus_shoulder/ti9_cache_rubick_ancient_magus_shoulder1"
+		"item_name"								"#DOTA_Item_Aghs_BP_Garb_of_the_Impossible_Realm"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/rubick/ti9_cache_rubick_ancient_magus_shoulder/ti9_cache_rubick_ancient_magus_shoulder.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"19506"
+	{
+		"name"									"First Movement of Magic Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/rubick/first_movement_of_magic_back/first_movement_of_magic_back"
+		"item_name"								"#DOTA_Item_Vote_Only_First_Movement_of_Magic_Back"
+		"item_slot"								"back"
+		"model_player"							"models/items/rubick/first_movement_of_magic_back/first_movement_of_magic_back.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19507"
+	{
+		"name"									"First Movement of Magic Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/rubick/first_movement_of_magic_head/first_movement_of_magic_head"
+		"item_name"								"#DOTA_Item_Vote_Only_First_Movement_of_Magic_Head"
+		"item_slot"								"head"
+		"model_player"							"models/items/rubick/first_movement_of_magic_head/first_movement_of_magic_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19509"
+	{
+		"name"									"First Movement of Magic Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/rubick/first_movement_of_magic_shoulder/first_movement_of_magic_shoulder"
+		"item_name"								"#DOTA_Item_Vote_Only_First_Movement_of_Magic_Shoulder"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/rubick/first_movement_of_magic_shoulder/first_movement_of_magic_shoulder.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19510"
+	{
+		"name"									"First Movement of Magic Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/rubick/first_movement_of_magic_weapon/first_movement_of_magic_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_First_Movement_of_Magic_Weapon"
+		"model_player"							"models/items/rubick/first_movement_of_magic_weapon/first_movement_of_magic_weapon.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"20116"
+	{
+		"name"									"Councilor's Raiment Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Councilor's Shawl"					"1"
+			"Councilor's Staff"					"1"
+			"Councilor's Robe"					"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Councilors_Raiment_Set"
+		"item_description"						"#DOTA_Item_Desc_Councilors_Raiment_Set"
+		"item_name"								"#DOTA_Item_Councilors_Raiment_Set"
+		"item_rarity"							"uncommon"
+	}
+	"20140"
+	{
+		"name"									"Councilor's Complete Raiment Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Councilor's Mask"					"1"
+			"Councilor's Robe"					"1"
+			"Councilor's Shawl"					"1"
+			"Councilor's Staff"					"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Councilors_Complete_Raiment_Set"
+		"item_description"						"#DOTA_Item_Desc_Councilors_Complete_Raiment_Set"
+		"item_name"								"#DOTA_Item_Councilors_Complete_Raiment_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20142"
+	{
+		"name"									"The Inscrutable Zeal Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Cloak of Inscrutable Zeal"			"1"
+			"Mask of Inscrutable Zeal"			"1"
+			"Staff of Inscrutable Zeal"			"1"
+			"Oculus Ephemeral"					"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_The_Inscrutable_Zeal_Set"
+		"item_description"						"#DOTA_Item_Desc_The_Inscrutable_Zeal_Set"
+		"item_name"								"#DOTA_Item_The_Inscrutable_Zeal_Set"
+		"item_rarity"							"mythical"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Mythical"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"799"
+		}
+	}
+	"20177"
+	{
+		"name"									"The Spellbinder's Shape Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Spellbinder's Catalytic Mantle"	"1"
+			"Spellbinder's Forgotten Greatstaff""1"
+			"Spellbinder's Mask of Shaping"		"1"
+			"Spellbinder's Tattered Cloak"		"1"
+		}
+		"creation_date"							"2013-05-21"
+		"image_inventory"						"econ/sets/DOTA_Item_The_Spellbinders_Shape_Set"
+		"item_description"						"#DOTA_Item_Desc_The_Spellbinders_Shape_Set"
+		"item_name"								"#DOTA_Item_The_Spellbinders_Shape_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"5/21/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20245"
+	{
+		"name"									"Peculiar Prestidigitator Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Prestidigitator's Wraps"			"1"
+			"Prestidigitator's Oculus"			"1"
+			"Prestidigitator's Shiners"			"1"
+			"Prestidigitator's Source of Sorcery""1"
+		}
+		"creation_date"							"2013-08-19"
+		"image_inventory"						"econ/sets/DOTA_Item_Peculiar_Pretidigitator_Set"
+		"item_description"						"#DOTA_Item_Desc_Peculiar_Prestidigitator_Set"
+		"item_name"								"#DOTA_Item_Peculiar_Prestidigitator_Set"
+		"item_rarity"							"mythical"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Mythical"
+			"category_tags"						"Bundles"
+			"date"								"8/19/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20247"
+	{
+		"name"									"Resonant Vibrance Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Focus of Resonant Vibrance"		"1"
+			"Hood of Resonant Vibrance"			"1"
+			"Shawl of Resonant Vibrance"		"1"
+			"Tails of Resonant Vibrance"		"1"
+			"StarSeries Season 7 - BUNDLE"		"1"
+		}
+		"creation_date"							"2013-08-29"
+		"image_inventory"						"econ/sets/DOTA_Item_Resonant_Vibrance_Set"
+		"item_description"						"#DOTA_Item_Desc_Resonant_Vibrance_Set"
+		"item_name"								"#DOTA_Item_Resonant_Vibrance_Set"
+		"item_rarity"							"mythical"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Mythical"
+			"category_tags"						"Bundles"
+			"date"								"8/29/2013"
+			"bundle"							"1"
+			"price"								"799"
+		}
+	}
+	"20302"
+	{
+		"name"									"Garb of the Cruel Magician Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Staff of the Cruel Magician"		"1"
+			"Hood of the Cruel Magician"		"1"
+			"Mantle of the Cruel Magician"		"1"
+			"Robe of the Cruel Magician"		"1"
+		}
+		"creation_date"							"2013-11-06"
+		"image_inventory"						"econ/sets/DOTA_Item_Garb_of_the_Cruel_Magician"
+		"item_description"						"#DOTA_Item_Desc_Garb_of_the_Cruel_Magician_Set"
+		"item_name"								"#DOTA_Item_Garb_of_the_Cruel_Magician_Set"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Cruel_Pro_Gear_Bundle"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Mythical"
+			"category_tags"						"Bundles"
+			"date"								"11/6/2013"
+			"bundle"							"1"
+			"price"								"799"
+		}
+		"branding"
+		{
+			"corporation_id"					"82262664"
+		}
+	}
+	"20596"
+	{
+		"name"									"Wandering Harlequin's Regalia"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Wandering Harlequin's Cape"		"1"
+			"Wandering Harlequin's Crest"		"1"
+			"Conceit of the Wandering Harlequin""1"
+			"Wandering Harlequin's Mantle"		"1"
+			"Wandering Harlequin Loading Screen""1"
+		}
+		"creation_date"							"2014-07-21"
+		"image_inventory"						"econ/sets/dota_item_wandering_harlequin"
+		"item_description"						"#DOTA_Item_Desc_Wandering_Harlequins_Regalia"
+		"item_name"								"#DOTA_Item_Wandering_Harlequins_Regalia"
+		"item_rarity"							"mythical"
+	}
+	"20832"
+	{
+		"name"									"Garb of the Cunning Augur"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Garb of the Cunning Augur Loading Screen""1"
+			"Cape of the Cunning Augur"			"1"
+			"Cap of the Cunning Augur"			"1"
+			"Staff of the Cunning Augur"		"1"
+			"Mantle of the Cunning Augur"		"1"
+		}
+		"creation_date"							"2015-06-03"
+		"image_inventory"						"econ/loading_screens/fortuneteller_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Garb_of_the_Cunning_Augur"
+		"item_name"								"#DOTA_Item_Garb_of_the_Cunning_Augur"
+		"item_rarity"							"mythical"
+	}
+	"20843"
+	{
+		"name"									"Diviner's Embrace"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Hood of Diviner's Embrace"			"1"
+			"Robe of Diviner's Embrace"			"1"
+			"Mantle of Diviner's Embrace"		"1"
+			"Staff of Diviner's Embrace"		"1"
+			"Diviner's Embrace Loading Screen"	"1"
+		}
+		"creation_date"							"2015-12-10"
+		"image_inventory"						"econ/loading_screens/embrace_force_blue_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Diviners_Embrace"
+		"item_name"								"#DOTA_Item_Diviners_Embrace"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"category_tags"						"Bundles"
+			"date"								"12/10/2015"
+			"bundle"							"1"
+			"price"								"499"
+		}
+	}
+	"20873"
+	{
+		"name"									"Stargazer's Curiosity"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Hood of the Stargazer's Curiosity"	"1"
+			"Cloak of the Stargazer's Curiosity ""1"
+			"Mantle of the Stargazer's Curiosity ""1"
+			"Staff of the Stargazer's Curiosity ""1"
+			"Stargazer's Curiosity Loading Screen""1"
+		}
+		"creation_date"							"2015-09-01"
+		"image_inventory"						"econ/loading_screens/vestments_of_stellar_abyss_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Stargazers_Curiosity"
+		"item_name"								"#DOTA_Item_Stargazers_Curiosity"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"3000"
+	}
+	"20927"
+	{
+		"name"									"Gifted Jester"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Gifted Jester Loading Screen"		"1"
+			"Cape of the Gifted Jester"			"1"
+			"Mantle of the Gifted Jester"		"1"
+			"Mask of the Gifted Jester"			"1"
+			"Staff of the Gifted Jester"		"1"
+		}
+		"creation_date"							"2015-11-03"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/loading_screens/gemini_juggler_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Gifted_Jester"
+		"item_name"								"#DOTA_Item_Gifted_Jester"
+		"item_rarity"							"mythical"
+	}
+	"20946"
+	{
+		"name"									"Fantoccini's Dilemma"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Fantoccini"						"1"
+			"Fantoccini's Dilemma Loading Screen""1"
+			"Coat of Fantoccini's Dilemma"		"1"
+			"Torch of Fantoccini's Dilemma"		"1"
+			"Hat of Fantoccini's Dilemma"		"1"
+		}
+		"creation_date"							"2015-12-07"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/puppet_master_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Fantoccinis_Dilemma"
+		"item_name"								"#DOTA_Item_Fantoccinis_Dilemma"
+		"item_rarity"							"mythical"
+	}
+	"20954"
+	{
+		"name"									"Arcane Defiance"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Hood of Arcane Defiance"			"1"
+			"Cape of Arcane Defiance"			"1"
+			"Mantle of Arcane Defiance"			"1"
+			"Staff of Arcane Defiance"			"1"
+			"Arcane Defiance Loading Screen"	"1"
+		}
+		"creation_date"							"2015-11-18"
+		"image_inventory"						"econ/loading_screens/set_of_defiance_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Arcane_Defiance"
+		"item_name"								"#DOTA_Item_Arcane_Defiance"
+		"item_rarity"							"rare"
+	}
+	"21081"
+	{
+		"name"									"Itinerant Scholar"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Itinerant Scholar Loading Screen"	"1"
+			"Staff of the Itinerant Scholar"	"1"
+			"Tome of the Itinerant Scholar"		"1"
+			"Cape of the Itinerant Scholar"		"1"
+			"Hat of the Itinerant Scholar"		"1"
+		}
+		"creation_date"							"2017-02-03"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/loading_screens/mushis_wayfaring_scholar_wayfaring_scholar_loading_screen"
+		"item_name"								"#DOTA_Item_Itinerant_Scholar"
+		"item_rarity"							"mythical"
+	}
+	"21140"
+	{
+		"name"									"Rambling Fatebender"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Rambling Fatebender Loading Screen""1"
+			"Cape of the Rambling Fatebender"	"1"
+			"Pauldrons of the Rambling Fatebender""1"
+			"Mask of the Rambling Fatebender"	"1"
+			"Staff of the Rambling Fatebender"	"1"
+		}
+		"creation_date"							"2017-09-11"
+		"image_inventory"						"econ/loading_screens/gambling_mage_rubick_gambling_mage_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Rambling_Fatebender"
+		"item_name"								"#DOTA_Item_Rambling_Fatebender"
+		"item_rarity"							"rare"
+	}
+	"21225"
+	{
+		"name"									"Carousal of the Mystic Masquerade"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Back of the Mystic Masquerade"		"1"
+			"Head of the Mystic Masquerade"		"1"
+			"Shoulder of the Mystic Masquerade"	"1"
+			"Weapon of the Mystic Masquerade"	"1"
+		}
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Legacy_of_the_old_Empire"
+		"item_name"								"#DOTA_Item_Carousal_of_the_Mystic_Masquerade"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21317"
+	{
+		"name"									"The Magus Cypher Bundle"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"The Magus Cypher"					"1"
+			"The Magus Cypher Emoticon"			"1"
+			"Voice of the Magus Cypher"			"1"
+		}
+		"creation_date"							"2018-12-19"
+		"image_inventory"						"econ/items/rubick/arcana/magus_cypher"
+		"item_description"						"#DOTA_Item_Desc_The_Magus_Cypher_Bundle"
+		"item_name"								"#DOTA_Item_The_Magus_Cypher_Bundle"
+		"item_rarity"							"arcana"
+		"price_info"
+		{
+			"category_tags"						"Bundles"
+			"date"								"12/19/2018"
+			"bundle"							"1"
+			"price"								"3499"
+		}
+	}
+	"21338"
+	{
+		"name"									"The Arcanist's Guise"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"The Arcanist's Guise Loading Screen""1"
+			"Mask of the Arcanist's Guise"		"1"
+			"Cloak of the Arcanist's Guise"		"1"
+			"Mantle of the Arcanist's Guise"	"1"
+			"Staff of the Arcanist's Guise"		"1"
+		}
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_NEW_BLOOM_2020"
+		"image_inventory"						"econ/loading_screens/ti9_cache_rubick_haunted_clairvoyance_ls"
+		"item_name"								"#DOTA_Item_The_Arcanists_Guise"
+		"item_rarity"							"rare"
+	}
+	"21376"
+	{
+		"name"									"Avatar of the Impossible Realm"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Garb of the Impossible Realm"		"1"
+			"Head of the Impossible Realm"		"1"
+			"Staff of the Impossible Realm"		"1"
+			"Cape of the Impossible Realm"		"1"
+		}
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/sets/DOTA_Item_TI9_Cache_Rubick_Ancient_Magus"
+		"item_description"						"#DOTA_Item_Desc_Avatar_of_the_Impossible_Realm"
+		"item_name"								"#DOTA_Item_Avatar_of_the_Impossible_Realm"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1598997600"
+			}
+		}
+	}
+	"21559"
+	{
+		"name"									"March of the Crackerjack Mage"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"March of the Crackerjack Mage - Weapon""1"
+			"March of the Crackerjack Mage - Back""1"
+			"March of the Crackerjack Mage - Shoulder""1"
+			"March of the Crackerjack Mage - Head""1"
+		}
+		"creation_date"							"2021-09-01"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/sets/DOTA_Item_March_of_the_Crackerjack_Mage_Bundle"
+		"item_name"								"#DOTA_Item_March_of_the_Crackerjack_Mage"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21713"
+	{
+		"name"									"Plagueroad Apothacary"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Plagueroad Apothacary Back"		"1"
+			"Plagueroad Apothacary Mask"		"1"
+			"Plagueroad Apothacary Cape"		"1"
+			"Plagueroad Apothacary Staff"		"1"
+		}
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Keeper_of_Plague_Essence"
+		"item_name"								"#DOTA_Item_Plagueroad_Apothacary"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+	}
+	"21902"
+	{
+		"name"									"First Movement of Magic"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"First Movement of Magic Weapon"	"1"
+			"First Movement of Magic Shoulder"	"1"
+			"First Movement of Magic Back"		"1"
+			"First Movement of Magic Head"		"1"
+			"First Movement of Magic LS"		"1"
+		}
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_First_Movement_of_Magic"
+		"workshop_accepted"						"0"
+	}
+	"22275"
+	{
+		"name"									"Aghs BP Avatar of the Impossible Realm"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Aghs BP Cape of the Impossible Realm""1"
+			"Aghs BP Staff of the Impossible Realm""1"
+			"Aghs BP Head of the Impossible Realm""1"
+			"Aghs BP Garb of the Impossible Realm""1"
+		}
+		"creation_date"							"2021-10-27"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Avatar_of_the_Impossible_Realm"
+		"item_name"								"#DOTA_Item_Aghs_BP_Avatar_of_the_Impossible_Realm"
+		"item_rarity"							"mythical"
+	}
+}

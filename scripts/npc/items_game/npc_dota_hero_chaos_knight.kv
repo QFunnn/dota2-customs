@@ -1,0 +1,4864 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"181"
+	{
+		"name"									"Chaos Knight's Horse"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/chaos_knight/chaos_knight_mount"
+		"item_description"						"#DOTA_Item_Desc_Chaos_Knights_horse"
+		"item_name"								"#DOTA_Item_Chaos_Knights_Horse"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/heroes/chaos_knight/chaos_knight_mount.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_tail"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"183"
+	{
+		"name"									"Chaos Knight's Shoulder Guards"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/chaos_knight/chaos_knight_shoulderpads"
+		"item_description"						"#DOTA_Item_Desc_Chaos_Knight_shoulderpads"
+		"item_name"								"#DOTA_Item_Chaos_Knights_Shoulder_Guards"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/heroes/chaos_knight/chaos_knight_shoulderpads.vmdl"
+	}
+	"184"
+	{
+		"name"									"Chaos Knight's Helmet"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/chaos_knight/chaos_knight_helmet"
+		"item_description"						"#DOTA_Item_Desc_Chaos_Knights_Helmet"
+		"item_name"								"#DOTA_Item_Chaos_Knights_Helmet"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/chaos_knight/chaos_knight_helmet.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_l"
+					}
+				}
+			}
+		}
+	}
+	"185"
+	{
+		"name"									"Chaos Knight's Weapon"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/chaos_knight/chaos_knight_mace"
+		"item_description"						"#DOTA_Item_Desc_Chaos_Knights_Weapon"
+		"item_name"								"#DOTA_Item_Chaos_Knights_Weapon"
+		"model_player"							"models/heroes/chaos_knight/chaos_knight_mace.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_mace.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_mace.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"186"
+	{
+		"name"									"Chaos Knight's Shield"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/chaos_knight/chaos_knight_shield"
+		"item_description"						"#DOTA_Item_Desc_Chaos_Knights_Shield"
+		"item_name"								"#DOTA_Item_Chaos_Knights_Shield"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Offhand_Weapon"
+		"model_player"							"models/heroes/chaos_knight/chaos_knight_shield.vmdl"
+	}
+	"4524"
+	{
+		"name"									"End of Order"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-10"
+		"image_inventory"						"econ/items/chaos_knight/end_of_order/end_of_order"
+		"item_description"						"#DOTA_Item_Desc_End_of_Order"
+		"item_name"								"#DOTA_Item_End_of_Order"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/chaos_knight/end_of_order/end_of_order.vmdl"
+		"particle_folder"						"particles/econ/items/chaos_knight/chaos_knight_helm_end_of_order"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_l"
+					}
+				}
+			}
+		}
+	}
+	"4527"
+	{
+		"name"									"Blade of Chaos Incarnate"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-06"
+		"image_inventory"						"econ/items/chaos_knight/weapon3_lastt/weapon3_lastt"
+		"item_description"						"#DOTA_Item_Desc_Blade_of_Chaos_Incarnate"
+		"item_name"								"#DOTA_Item_Blade_of_Chaos_Incarnate"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/chaos_knight/weapon3_lastt/weapon3_lastt.vmdl"
+	}
+	"4672"
+	{
+		"name"									"Blade of the Black Rider"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-06"
+		"image_inventory"						"econ/items/chaos_knight/weapon_sordo/weapon_sordo"
+		"item_description"						"#DOTA_Item_Desc_Blade_of_the_Black_Rider"
+		"item_name"								"#DOTA_Item_Blade_of_the_Black_Rider"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Sword"
+		"model_player"							"models/items/chaos_knight/weapon_sordo/weapon_sordo.vmdl"
+	}
+	"4743"
+	{
+		"name"									"Dark Ruin Helm"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-20"
+		"image_inventory"						"econ/items/chaos_knight/dark_head/dark_head"
+		"item_description"						"#DOTA_Item_Desc_Dark_Ruin_Helm"
+		"item_name"								"#DOTA_Item_Dark_Ruin_Helm"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/chaos_knight/dark_head/dark_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_l"
+					}
+				}
+			}
+		}
+	}
+	"4744"
+	{
+		"name"									"Hellstrider"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-20"
+		"image_inventory"						"econ/items/chaos_knight/dark_ruin_upd/dark_ruin_upd"
+		"item_description"						"#DOTA_Item_Desc_Dark_Ruin_Mount"
+		"item_name"								"#DOTA_Item_Hellstrider"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Warhorse"
+		"model_player"							"models/items/chaos_knight/dark_ruin_upd/dark_ruin_upd.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient_parent.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient_parent.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_tail"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_r"
+					}
+				}
+			}
+		}
+	}
+	"4745"
+	{
+		"name"									"Dark Ruin Gaze"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-20"
+		"image_inventory"						"econ/items/chaos_knight/dark_shield/dark_shield"
+		"item_description"						"#DOTA_Item_Desc_Dark_Ruin_Gaze"
+		"item_name"								"#DOTA_Item_Dark_Ruin_Gaze"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Shield"
+		"model_player"							"models/items/chaos_knight/dark_shield/dark_shield.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4746"
+	{
+		"name"									"Dark Ruin Mantle"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-20"
+		"image_inventory"						"econ/items/chaos_knight/dark_shoulder_upd/dark_shoulder_upd"
+		"item_description"						"#DOTA_Item_Desc_Dark_Ruin_Mantle"
+		"item_name"								"#DOTA_Item_Dark_Ruin_Mantle"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/chaos_knight/dark_shoulder_upd/dark_shoulder_upd.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4747"
+	{
+		"name"									"Dark Ruin Crusher"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-20"
+		"image_inventory"						"econ/items/chaos_knight/dark_weapon/dark_weapon"
+		"item_description"						"#DOTA_Item_Desc_Dark_Ruin_Crusher"
+		"item_name"								"#DOTA_Item_Dark_Ruin_Crusher"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Mace"
+		"model_player"							"models/items/chaos_knight/dark_weapon/dark_weapon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5166"
+	{
+		"name"									"Chaos Knight's Armlet of Mordiggian"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-15"
+		"image_inventory"						"econ/items/chaos_knight/chaos_knight_armlet"
+		"item_description"						"#DOTA_Item_Desc_Chaos_Knights_Armlet_of_Mordiggian"
+		"item_name"								"#DOTA_Item_Chaos_Knights_Armlet_of_Mordiggian"
+		"item_quality"							"genuine"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Armlet"
+		"model_player"							"models/items/chaos_knight/chaos_knight_armlet.vmdl"
+		"particle_folder"						"particles/econ/items/chaos_knight/chaos_knight_armlet"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/ability_modifier_placeholder/armlet_passive.vpcf"
+				"modifier"						"particles/econ/items/chaos_knight/chaos_knight_armlet/chaos_knight_armlet_passive.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/ability_modifier_placeholder/armlet_active.vpcf"
+				"modifier"						"particles/econ/items/chaos_knight/chaos_knight_armlet/chaos_knight_armlet_active.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/chaos_knight/chaos_knight_armlet/chaos_knight_armlet_ambient.vpcf"
+				"system"						"particles/econ/items/chaos_knight/chaos_knight_armlet/chaos_knight_armlet_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_armlet_1"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_armlet_2"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_armlet_3"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_armlet_4"
+					}
+					"4"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_armlet_5"
+					}
+				}
+			}
+		}
+	}
+	"5173"
+	{
+		"name"									"Entropic Helmet"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-23"
+		"image_inventory"						"econ/items/chaos_knight/entropic_set/chaos_knight_entropic_helmet"
+		"item_description"						"#DOTA_Item_Desc_Entropic_Helmet"
+		"item_name"								"#DOTA_Item_Entropic_Helmet"
+		"item_quality"							"genuine"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/chaos_knight/entropic_set/chaos_knight_entropic_helmet.vmdl"
+		"particle_folder"						"particles/econ/items/chaos_knight/chaos_knight_entropic"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/chaos_knight/chaos_knight_entropic/chaos_knight_entropic_helmet.vpcf"
+				"system"						"particles/econ/items/chaos_knight/chaos_knight_entropic/chaos_knight_entropic_helmet.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_helmet"
+					}
+				}
+			}
+		}
+	}
+	"5174"
+	{
+		"name"									"Helm of Infernal Despair"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international tag"
+				"value"							"2013"
+			}
+		}
+		"creation_date"							"2013-07-19"
+		"image_inventory"						"econ/items/chaos_knight/infernal_helm/infernal_helm"
+		"item_description"						"#DOTA_Item_Desc_Helm_of_Infernal_Despair"
+		"item_name"								"#DOTA_Item_Helm_of_Infernal_Despair"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/chaos_knight/infernal_helm/infernal_helm.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_l"
+					}
+				}
+			}
+		}
+	}
+	"5232"
+	{
+		"name"									"Ataxia"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-19"
+		"image_inventory"						"econ/items/chaos_knight/ataxia/ataxia"
+		"item_description"						"#DOTA_Item_Desc_Ataxia"
+		"item_name"								"#DOTA_Item_Ataxia"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Warhorse"
+		"model_player"							"models/items/chaos_knight/ataxia/ataxia.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_tail"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"5233"
+	{
+		"name"									"Blade of Endless Havoc"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-19"
+		"image_inventory"						"econ/items/chaos_knight/blade_of_entropy/blade_of_entropy"
+		"item_description"						"#DOTA_Item_Desc_Blade_of_Endless_Havoc"
+		"item_name"								"#DOTA_Item_Blade_of_Endless_Havoc"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Sword"
+		"model_player"							"models/items/chaos_knight/blade_of_entropy/blade_of_entropy.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5234"
+	{
+		"name"									"Helmet of Endless Havoc"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-19"
+		"image_inventory"						"econ/items/chaos_knight/face_of_entropy/face_of_entropy"
+		"item_description"						"#DOTA_Item_Desc_Helm_of_Endless_Havoc"
+		"item_name"								"#DOTA_Item_Helmet_of_Endless_Havoc"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/chaos_knight/face_of_entropy/face_of_entropy.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_l"
+					}
+				}
+			}
+		}
+	}
+	"5235"
+	{
+		"name"									"Shield of Endless Havoc"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-19"
+		"image_inventory"						"econ/items/chaos_knight/shield_of_entropy/shield_of_entropy"
+		"item_description"						"#DOTA_Item_Desc_Shield_of_Endless_Havoc"
+		"item_name"								"#DOTA_Item_Shield_of_Endless_Havoc"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Shield"
+		"model_player"							"models/items/chaos_knight/shield_of_entropy/shield_of_entropy.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5236"
+	{
+		"name"									"Mantle of Endless Havoc"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-19"
+		"image_inventory"						"econ/items/chaos_knight/shoulders_of_entropy/shoulders_of_entropy"
+		"item_description"						"#DOTA_Item_Desc_Mantle_of_Endless_Havoc"
+		"item_name"								"#DOTA_Item_Mantle_of_Endless_Havoc"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/chaos_knight/shoulders_of_entropy/shoulders_of_entropy.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5328"
+	{
+		"name"									"Entropic Axe"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-22"
+		"image_inventory"						"econ/items/chaos_knight/entropic_set/chaos_knight_entropic_axe"
+		"item_description"						"#DOTA_Item_Desc_Entropic_Axe"
+		"item_name"								"#DOTA_Item_Entropic_Axe"
+		"item_quality"							"genuine"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/chaos_knight/entropic_set/chaos_knight_entropic_axe.vmdl"
+	}
+	"5336"
+	{
+		"name"									"Entropic Shield"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-23"
+		"image_inventory"						"econ/items/chaos_knight/entropic_set/chaos_knight_entropic_shield"
+		"item_description"						"#DOTA_Item_Desc_Entropic_Shield"
+		"item_name"								"#DOTA_Item_Entropic_Shield"
+		"item_quality"							"genuine"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Shield"
+		"model_player"							"models/items/chaos_knight/entropic_set/chaos_knight_entropic_shield.vmdl"
+		"particle_folder"						"particles/econ/items/chaos_knight/chaos_knight_entropic"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/chaos_knight/chaos_knight_entropic/chaos_knight_entropic_shield.vpcf"
+				"system"						"particles/econ/items/chaos_knight/chaos_knight_entropic/chaos_knight_entropic_shield.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shield"
+					}
+				}
+			}
+		}
+	}
+	"5337"
+	{
+		"name"									"Entropic Shoulderpads"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-23"
+		"image_inventory"						"econ/items/chaos_knight/entropic_set/chaos_knight_entropic_shoulderpads"
+		"item_description"						"#DOTA_Item_Desc_Entropic_Shoulderpads"
+		"item_name"								"#DOTA_Item_Entropic_Shoulderpads"
+		"item_quality"							"genuine"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/chaos_knight/entropic_set/chaos_knight_entropic_shoulderpads.vmdl"
+		"particle_folder"						"particles/econ/items/chaos_knight/chaos_knight_entropic"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/chaos_knight/chaos_knight_entropic/chaos_knight_entropic_shoulderpads.vpcf"
+				"system"						"particles/econ/items/chaos_knight/chaos_knight_entropic/chaos_knight_entropic_shoulderpads.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulderpads"
+					}
+				}
+			}
+		}
+	}
+	"5430"
+	{
+		"name"									"Shadow Brand"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-17"
+		"image_inventory"						"econ/items/chaos_knight/shadow_brand/shadow_brand"
+		"item_description"						"#DOTA_Item_Desc_Shadow_Brand"
+		"item_name"								"#DOTA_Item_Shadow_Brand"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Sword"
+		"model_player"							"models/items/chaos_knight/shadow_brand/shadow_brand.vmdl"
+		"particle_folder"						"particles/econ/items/chaos_knight/chaos_knight_shadow_brand"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/chaos_knight/chaos_knight_shadow_brand/chaos_knight_shadow_brand_weapon.vpcf"
+				"system"						"particles/econ/items/chaos_knight/chaos_knight_shadow_brand/chaos_knight_shadow_brand_weapon.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon"
+					}
+				}
+			}
+		}
+	}
+	"5518"
+	{
+		"name"									"Blade of Burning Turmoil"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-11"
+		"image_inventory"						"econ/items/chaos_knight/ck_esp_blade/ck_esp_blade"
+		"item_description"						"#DOTA_Item_Desc_Blade_of_Burning_Turmoil"
+		"item_name"								"#DOTA_Item_Blade_of_Burning_Turmoil"
+		"item_type_name"						"#DOTA_WearableType_Sword"
+		"model_player"							"models/items/chaos_knight/ck_esp_blade/ck_esp_blade.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_mace.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_mace.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"5519"
+	{
+		"name"									"Horns of Burning Turmoil"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-11"
+		"image_inventory"						"econ/items/chaos_knight/ck_esp_helm/ck_esp_helm"
+		"item_description"						"#DOTA_Item_Desc_Helm_of_Burning_Turmoil"
+		"item_name"								"#DOTA_Item_Horns_of_Burning_Turmoil"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/chaos_knight/ck_esp_helm/ck_esp_helm.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_l"
+					}
+				}
+			}
+		}
+	}
+	"5520"
+	{
+		"name"									"Enmity"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-11"
+		"image_inventory"						"econ/items/chaos_knight/ck_esp_mount/ck_esp_mount"
+		"item_description"						"#DOTA_Item_Desc_Enmity"
+		"item_name"								"#DOTA_Item_Enmity"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Warhorse"
+		"model_player"							"models/items/chaos_knight/ck_esp_mount/ck_esp_mount.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_tail"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+		}
+	}
+	"5521"
+	{
+		"name"									"Shield of Burning Turmoil"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-11"
+		"image_inventory"						"econ/items/chaos_knight/ck_esp_shield/ck_esp_shield"
+		"item_description"						"#DOTA_Item_Desc_Shield_of_Burning_Turmoil"
+		"item_name"								"#DOTA_Item_Shield_of_Burning_Turmoil"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Shield"
+		"model_player"							"models/items/chaos_knight/ck_esp_shield/ck_esp_shield.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5522"
+	{
+		"name"									"Mantle of Burning Turmoil"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-11"
+		"image_inventory"						"econ/items/chaos_knight/ck_esp_shoulder/ck_esp_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Spaulder_of_Burning_Turmoil"
+		"item_name"								"#DOTA_Item_Mantle_of_Burning_Turmoil"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/chaos_knight/ck_esp_shoulder/ck_esp_shoulder.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5704"
+	{
+		"name"									"Hellfire Edge"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-17"
+		"image_inventory"						"econ/items/chaos_knight/hellfire_edge/hellfire_edge"
+		"item_description"						"#DOTA_Item_Desc_Hellfire_Edge"
+		"item_name"								"#DOTA_Item_Hellfire_Edge"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Battleaxe"
+		"model_player"							"models/items/chaos_knight/hellfire_edge/hellfire_edge.vmdl"
+	}
+	"5828"
+	{
+		"name"									"Atramentos the Apocalyptic"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-16"
+		"image_inventory"						"econ/items/chaos_knight/invincible_fiery_warhorse/invincible_fiery_warhorse"
+		"item_description"						"#DOTA_Item_Desc_Atramentos_the_Apocalyptic"
+		"item_name"								"#DOTA_Item_Atramentos_the_Apocalyptic"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/chaos_knight/invincible_fiery_warhorse/invincible_fiery_warhorse.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_tail"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"5875"
+	{
+		"name"									"Waraxe of Lost Light"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-18"
+		"image_inventory"						"econ/items/chaos_knight/weapon_prosto/weapon_prosto"
+		"item_name"								"#DOTA_Item_Waraxe_of_Lost_Light"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/chaos_knight/weapon_prosto/weapon_prosto.vmdl"
+	}
+	"5921"
+	{
+		"name"									"Bone Splitter"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-13"
+		"image_inventory"						"econ/items/chaos_knight/rising_chaos_blade/rising_chaos_blade"
+		"item_name"								"#DOTA_Item_Bone_Splitter"
+		"item_rarity"							"uncommon"
+		"model_player"							"models/items/chaos_knight/rising_chaos_blade/rising_chaos_blade.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_mace.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_mace.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"5922"
+	{
+		"name"									"Caged Fury"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-13"
+		"image_inventory"						"econ/items/chaos_knight/rising_chaos_helm/rising_chaos_helm"
+		"item_name"								"#DOTA_Item_Caged_Fury"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/chaos_knight/rising_chaos_helm/rising_chaos_helm.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_l"
+					}
+				}
+			}
+		}
+	}
+	"5923"
+	{
+		"name"									"Hellish Maw Spaulders"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-13"
+		"image_inventory"						"econ/items/chaos_knight/rising_chaos_spaulders/rising_chaos_spaulders"
+		"item_name"								"#DOTA_Item_Hellish_Maw_Spaulders"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Spaulders"
+		"model_player"							"models/items/chaos_knight/rising_chaos_spaulders/rising_chaos_spaulders.vmdl"
+	}
+	"5924"
+	{
+		"name"									"Rapture"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-13"
+		"image_inventory"						"econ/items/chaos_knight/rising_chaos_steed/rising_chaos_steed"
+		"item_name"								"#DOTA_Item_Rapture"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/chaos_knight/rising_chaos_steed/rising_chaos_steed.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_tail"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"5925"
+	{
+		"name"									"Shield of Screaming Souls"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-13"
+		"image_inventory"						"econ/items/chaos_knight/rising_chaos_shield/rising_chaos_shield"
+		"item_name"								"#DOTA_Item_Shield_of_Screaming_Souls"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Shield"
+		"model_player"							"models/items/chaos_knight/rising_chaos_shield/rising_chaos_shield.vmdl"
+	}
+	"5980"
+	{
+		"name"									"Chaos Legion Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-21"
+		"image_inventory"						"econ/items/chaos_knight/chaos_legion_mount/chaos_legion_mount"
+		"item_name"								"#DOTA_Item_Chaos_Legion_Mount"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/chaos_knight/chaos_legion_mount/chaos_legion_mount.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_tail"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"5981"
+	{
+		"name"									"Chaos Legion Drapes"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-21"
+		"image_inventory"						"econ/items/chaos_knight/chaos_legion_drapes/chaos_legion_drapes"
+		"item_name"								"#DOTA_Item_Chaos_Legion_Drapes"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/chaos_knight/chaos_legion_drapes/chaos_legion_drapes.vmdl"
+	}
+	"5982"
+	{
+		"name"									"Chaos Legion Helm"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-21"
+		"image_inventory"						"econ/items/chaos_knight/chaos_legion_helm/chaos_legion_helm"
+		"item_name"								"#DOTA_Item_Chaos_Legion_Helm"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/chaos_knight/chaos_legion_helm/chaos_legion_helm.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_l"
+					}
+				}
+			}
+		}
+	}
+	"5983"
+	{
+		"name"									"Chaos Legion Shield"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-21"
+		"image_inventory"						"econ/items/chaos_knight/chaos_legion_shield/chaos_legion_shield"
+		"item_name"								"#DOTA_Item_Chaos_Legion_Shield"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_OffHand_Weapon"
+		"model_player"							"models/items/chaos_knight/chaos_legion_shield/chaos_legion_shield.vmdl"
+	}
+	"5984"
+	{
+		"name"									"Chaos Legion Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-21"
+		"image_inventory"						"econ/items/chaos_knight/chaos_legion_weapon/chaos_legion_weapon"
+		"item_name"								"#DOTA_Item_Chaos_Legion_Weapon"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/chaos_knight/chaos_legion_weapon/chaos_legion_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_mace.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_mace.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"6264"
+	{
+		"name"									"Shield of the Chaos Hound"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-12"
+		"image_inventory"						"econ/items/chaos_knight/lighthunter_shield/lighthunter_shield"
+		"item_name"								"#DOTA_Item_Shield_of_the_Chaos_Hound"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Shield"
+		"model_player"							"models/items/chaos_knight/lighthunter_shield/lighthunter_shield.vmdl"
+	}
+	"6265"
+	{
+		"name"									"Axe of the Chaos Hound"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-12"
+		"image_inventory"						"econ/items/chaos_knight/lighthunter_axe/lighthunter_axe"
+		"item_name"								"#DOTA_Item_Axe_of_the_Chaos_Hound"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/chaos_knight/lighthunter_axe/lighthunter_axe.vmdl"
+	}
+	"6266"
+	{
+		"name"									"Pauldrons of the Chaos Hound"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-12"
+		"image_inventory"						"econ/items/chaos_knight/lighthunter_pauldrons/lighthunter_pauldrons"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Chaos_Hound"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/chaos_knight/lighthunter_pauldrons/lighthunter_pauldrons.vmdl"
+	}
+	"6267"
+	{
+		"name"									"Kerveros the Hound of Chaos"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-12"
+		"image_inventory"						"econ/items/chaos_knight/lighthunter_mount/lighthunter_mount"
+		"item_name"								"#DOTA_Item_Kerveros_the_Hound_of_Chaos"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/chaos_knight/lighthunter_mount/lighthunter_mount.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+		}
+	}
+	"6268"
+	{
+		"name"									"Helm of the Chaos Hound"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-12"
+		"image_inventory"						"econ/items/chaos_knight/lighthunter_helm/lighthunter_helm"
+		"item_description"						"#DOTA_Item_Desc_Helm_of_the_Light_Hunter"
+		"item_name"								"#DOTA_Item_Helm_of_the_Chaos_Hound"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/chaos_knight/lighthunter_helm/lighthunter_helm.vmdl"
+	}
+	"6404"
+	{
+		"name"									"Infernal Shredder"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-13"
+		"image_inventory"						"econ/items/chaos_knight/infernalshredder_weapon/infernalshredder_weapon"
+		"item_description"						"#DOTA_Item_Desc_Infernal_Shredder"
+		"item_name"								"#DOTA_Item_Infernal_Shredder"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/chaos_knight/infernalshredder_weapon/infernalshredder_weapon.vmdl"
+	}
+	"6813"
+	{
+		"name"									"Catastrophe"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-17"
+		"image_inventory"						"econ/items/chaos_knight/catastrophe_mount/catastrophe_mount"
+		"item_name"								"#DOTA_Item_Catastrophe"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/chaos_knight/catastrophe_mount/catastrophe_mount.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_tail"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"7087"
+	{
+		"name"									"Helm of Discord"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-26"
+		"image_inventory"						"econ/items/chaos_knight/discord_head_closed/discord_head_closed"
+		"item_name"								"#DOTA_Item_Helm_of_Discord"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/chaos_knight/discord_head_closed/discord_head_closed.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_l"
+					}
+				}
+			}
+		}
+	}
+	"7088"
+	{
+		"name"									"Discordia"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-26"
+		"image_inventory"						"econ/items/chaos_knight/discordia_mount/discordia_mount"
+		"item_name"								"#DOTA_Item_Discordia"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/chaos_knight/discordia_mount/discordia_mount.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"7089"
+	{
+		"name"									"Armlet of Discord"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-26"
+		"image_inventory"						"econ/items/chaos_knight/discord_offhand/discord_offhand"
+		"item_name"								"#DOTA_Item_Armlet_of_Discord"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Shield"
+		"model_player"							"models/items/chaos_knight/discord_offhand/discord_offhand.vmdl"
+	}
+	"7137"
+	{
+		"name"									"Pauldrons of Discord"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-26"
+		"image_inventory"						"econ/items/chaos_knight/discord_shoulders/discord_shoulders"
+		"item_name"								"#DOTA_Item_Pauldrons_of_Discord"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/chaos_knight/discord_shoulders/discord_shoulders.vmdl"
+	}
+	"7138"
+	{
+		"name"									"Blade of Discord"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-26"
+		"image_inventory"						"econ/items/chaos_knight/discord_weapon/discord_weapon"
+		"item_name"								"#DOTA_Item_Blade_of_Discord"
+		"model_player"							"models/items/chaos_knight/discord_weapon/discord_weapon.vmdl"
+	}
+	"7740"
+	{
+		"name"									"Golden Chaos Fulcrum"
+		"prefab"								"wearable"
+		"creation_date"							"2017-06-06"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/chaos_knight/chaos_knight_ti7_shield/chaos_knight_ti7_shield_gold"
+		"item_description"						"#DOTA_Item_Desc_Golden_Chaos_Fulcrum"
+		"item_name"								"#DOTA_Item_Golden_Chaos_Fulcrum"
+		"item_rarity"							"immortal"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Shield"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/chaos_knight/chaos_knight_ti7_shield/chaos_knight_ti7_shield.vmdl"
+		"particle_folder"						"particles/econ/items/chaos_knight/chaos_knight_entropic"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1535796000"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/chaos_knight/chaos_knight_ti7_shield/chaos_knight_ti7_golden_shield_ambient.vpcf"
+			}
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift.vpcf"
+				"modifier"						"particles/econ/items/chaos_knight/chaos_knight_ti7_shield/chaos_knight_ti7_golden_reality_rift.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti7"
+				"style"							"0"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift_lite.vpcf"
+				"modifier"						"particles/econ/items/chaos_knight/chaos_knight_ti7_shield/chaos_knight_ti7_golden_reality_rift_illusions.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"sound"
+				"asset"							"Hero_ChaosKnight.RealityRift.Cast"
+				"modifier"						"Hero_ChaosKnight.RealityRift.Cast.ti7"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"chaos_knight_reality_rift"
+				"modifier"						"chaos_knight/ck_ti7_immortal_gold/chaos_knight_reality_rift_alt2"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"skin"								"1"
+		}
+	}
+	"7789"
+	{
+		"name"									"Flail of the Burning Nightmare"
+		"prefab"								"wearable"
+		"creation_date"							"2016-11-21"
+		"image_inventory"						"econ/items/chaos_knight/burning_nightmare_chaos_knight_weapon/burning_nightmare_chaos_knight_weapon"
+		"item_name"								"#DOTA_Item_Flail_of_the_Burning_Nightmare"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/chaos_knight/burning_nightmare_chaos_knight_weapon/burning_nightmare_chaos_knight_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_mace.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_mace.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"7790"
+	{
+		"name"									"Pauldrons of the Burning Nightmare"
+		"prefab"								"wearable"
+		"creation_date"							"2016-11-21"
+		"image_inventory"						"econ/items/chaos_knight/burning_nightmare_chaos_knight_shoulder/burning_nightmare_chaos_knight_shoulder"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Burning_Nightmare"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/chaos_knight/burning_nightmare_chaos_knight_shoulder/burning_nightmare_chaos_knight_shoulder.vmdl"
+	}
+	"7791"
+	{
+		"name"									"Shield of the Burning Nightmare"
+		"prefab"								"wearable"
+		"creation_date"							"2016-11-21"
+		"image_inventory"						"econ/items/chaos_knight/burning_nightmare_chaos_knight_off_hand/burning_nightmare_chaos_knight_off_hand"
+		"item_name"								"#DOTA_Item_Shield_of_the_Burning_Nightmare"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/chaos_knight/burning_nightmare_chaos_knight_off_hand/burning_nightmare_chaos_knight_off_hand.vmdl"
+	}
+	"7792"
+	{
+		"name"									"Mount of the Burning Nightmare"
+		"prefab"								"wearable"
+		"creation_date"							"2016-11-21"
+		"image_inventory"						"econ/items/chaos_knight/burning_nightmare_chaos_knight_mount/burning_nightmare_chaos_knight_mount"
+		"item_name"								"#DOTA_Item_Mount_of_the_Burning_Nightmare"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/chaos_knight/burning_nightmare_chaos_knight_mount/burning_nightmare_chaos_knight_mount.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"7793"
+	{
+		"name"									"Helm of the Burning Nightmare"
+		"prefab"								"wearable"
+		"creation_date"							"2016-11-21"
+		"image_inventory"						"econ/items/chaos_knight/burning_nightmare_chaos_knight_head/burning_nightmare_chaos_knight_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Burning_Nightmare"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/chaos_knight/burning_nightmare_chaos_knight_head/burning_nightmare_chaos_knight_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_l"
+					}
+				}
+			}
+		}
+	}
+	"7878"
+	{
+		"name"									"Diabolic Aspect"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-30"
+		"static_attributes"
+		{
+			"cannot craft"
+			{
+				"attribute_class"				"cannot_craft"
+				"value"							"1"
+			}
+		}
+		"image_inventory"						"econ/items/chaos_knight/diabolic_aspect/diabolic_aspect"
+		"item_name"								"#DOTA_Item_Diabolic_Aspect"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/chaos_knight/diabolic_aspect/diabolic_aspect.vmdl"
+		"particle_folder"						"particles/econ/items/chaos_knight/chaos_knight_diabolic_aspect"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_l"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/chaos_knight/chaos_knight_diabolic_aspect/chaos_knight_diabolic_aspect_horns.vpcf"
+				"system"						"particles/econ/items/chaos_knight/chaos_knight_diabolic_aspect/chaos_knight_diabolic_aspect_horns.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horn_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horn_r"
+					}
+				}
+			}
+		}
+	}
+	"7946"
+	{
+		"name"									"Helm of the Dark Conqueror"
+		"prefab"								"wearable"
+		"creation_date"							"2016-05-23"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/chaos_knight/oni_knight_the_dark_conqueror_head/oni_knight_the_dark_conqueror_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Dark_Conqueror"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/chaos_knight/oni_knight_the_dark_conqueror_head/oni_knight_the_dark_conqueror_head.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_l"
+					}
+				}
+			}
+		}
+	}
+	"7947"
+	{
+		"name"									"Steed of the Dark Conqueror"
+		"prefab"								"wearable"
+		"creation_date"							"2016-05-23"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/chaos_knight/oni_knight_the_dark_conqueror_mount/oni_knight_the_dark_conqueror_mount"
+		"item_name"								"#DOTA_Item_Steed_of_the_Dark_Conqueror"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/chaos_knight/oni_knight_the_dark_conqueror_mount/oni_knight_the_dark_conqueror_mount.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_tail"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"7948"
+	{
+		"name"									"Shield of the Dark Conqueror"
+		"prefab"								"wearable"
+		"creation_date"							"2016-05-23"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/chaos_knight/oni_knight_the_dark_conqueror_off_hand/oni_knight_the_dark_conqueror_off_hand"
+		"item_name"								"#DOTA_Item_Shield_of_the_Dark_Conqueror"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Shield"
+		"model_player"							"models/items/chaos_knight/oni_knight_the_dark_conqueror_off_hand/oni_knight_the_dark_conqueror_off_hand.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"7949"
+	{
+		"name"									"Spaulders of the Dark Conqueror"
+		"prefab"								"wearable"
+		"creation_date"							"2016-05-23"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/chaos_knight/oni_knight_the_dark_conqueror_shoulder/oni_knight_the_dark_conqueror_shoulder"
+		"item_name"								"#DOTA_Item_Spaulders_of_the_Dark_Conqueror"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Spaulders"
+		"model_player"							"models/items/chaos_knight/oni_knight_the_dark_conqueror_shoulder/oni_knight_the_dark_conqueror_shoulder.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"7950"
+	{
+		"name"									"Axe of the Dark Conqueror"
+		"prefab"								"wearable"
+		"creation_date"							"2016-05-23"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/chaos_knight/oni_knight_the_dark_conqueror_weapon/oni_knight_the_dark_conqueror_weapon"
+		"item_name"								"#DOTA_Item_Axe_of_the_Dark_Conqueror"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/chaos_knight/oni_knight_the_dark_conqueror_weapon/oni_knight_the_dark_conqueror_weapon.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"8289"
+	{
+		"name"									"Cudgel of the Baleful Reign"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/chaos_knight/mlg_blackened_reign_weapon/mlg_blackened_reign_weapon"
+		"item_name"								"#DOTA_Item_Cudgel_of_the_Baleful_Reign"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Cudgel"
+		"model_player"							"models/items/chaos_knight/baleful_reign_weaoon/baleful_reign_weaoon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_mace.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_mace.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"8297"
+	{
+		"name"									"Shards of the Baleful Reign"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/chaos_knight/mlg_blackened_reign_shoulder/mlg_blackened_reign_shoulder"
+		"item_name"								"#DOTA_Item_Shards_of_the_Baleful_Reign"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/chaos_knight/baleful_reign_shoulder/baleful_reign_shoulder.vmdl"
+	}
+	"8302"
+	{
+		"name"									"Guard of the Baleful Reign"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/chaos_knight/mlg_blackened_reign_offhand/mlg_blackened_reign_offhand"
+		"item_name"								"#DOTA_Item_Guard_of_the_Baleful_Reign"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Guard"
+		"model_player"							"models/items/chaos_knight/baleful_reign_offhand/baleful_reign_offhand.vmdl"
+	}
+	"8309"
+	{
+		"name"									"Perdition"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/chaos_knight/mlg_blackened_reign_mount/mlg_blackened_reign_mount"
+		"item_name"								"#DOTA_Item_Perdition"
+		"item_rarity"							"uncommon"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/chaos_knight/baleful_reign_mount/baleful_reign_mount.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"8320"
+	{
+		"name"									"War Helm of the Baleful Reign"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/chaos_knight/mlg_blackened_reign_head/mlg_blackened_reign_head"
+		"item_name"								"#DOTA_Item_War_Helm_of_the_Baleful_Reign"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/chaos_knight/baleful_reign_head/baleful_reign_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_l"
+					}
+				}
+			}
+		}
+	}
+	"8739"
+	{
+		"name"									"Cataclysm Edge"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/chaos_knight/weta_catacysm_edge_weapon/weta_catacysm_edge_weapon"
+		"item_name"								"#DOTA_Item_Cataclysm_Edge"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Sword"
+		"model_player"							"models/items/chaos_knight/weta_catacysm_edge_weapon/weta_catacysm_edge_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_mace.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_mace.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"9058"
+	{
+		"name"									"Chaos Fulcrum"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-24"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/chaos_knight/chaos_knight_ti7_shield/chaos_knight_ti7_shield"
+		"item_description"						"#DOTA_Item_Desc_Chaos_Fulcrum"
+		"item_name"								"#DOTA_Item_Chaos_Fulcrum"
+		"item_rarity"							"immortal"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Shield"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/chaos_knight/chaos_knight_ti7_shield/chaos_knight_ti7_shield.vmdl"
+		"particle_folder"						"particles/econ/items/chaos_knight/chaos_knight_entropic"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1535796000"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/chaos_knight/chaos_knight_ti7_shield/chaos_knight_ti7_shield_ambient.vpcf"
+			}
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift.vpcf"
+				"modifier"						"particles/econ/items/chaos_knight/chaos_knight_ti7_shield/chaos_knight_ti7_reality_rift.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti7"
+				"style"							"0"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift_lite.vpcf"
+				"modifier"						"particles/econ/items/chaos_knight/chaos_knight_ti7_shield/chaos_knight_ti7_reality_rift_illusions.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"sound"
+				"asset"							"Hero_ChaosKnight.RealityRift.Cast"
+				"modifier"						"Hero_ChaosKnight.RealityRift.Cast.ti7"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"chaos_knight_reality_rift"
+				"modifier"						"chaos_knight/ck_ti7_immortal/chaos_knight_reality_rift_alt"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+		}
+	}
+	"12434"
+	{
+		"name"									"Taunt: Orderly Chaos"
+		"prefab"								"taunt"
+		"creation_date"							"2018-09-11"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/taunts/dota_icon_taunt_chaos_knight_ti9"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Orderly_Chaos"
+		"item_name"								"#DOTA_Item_Taunt_Orderly_Chaos"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1598997600"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"ck_gesture"
+				"gesture"						"1"
+			}
+		}
+	}
+	"13561"
+	{
+		"name"									"Chaos Arbiter"
+		"prefab"								"wearable"
+		"creation_date"							"2019-08-10"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/chaos_knight/ck_ti9_immortal_weapon/ck_ti9_immortal_weapon"
+		"item_description"						"#DOTA_Item_Desc_ck_ti9_immortal_weapon"
+		"item_name"								"#DOTA_Item_Chaos_Arbiter"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/chaos_knight/ck_ti9_immortal_weapon/ck_ti9_immortal_weapon.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567332000"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/chaos_knight/chaos_knight_ti9_weapon/chaos_knight_ti9_weapon_ambient.vpcf"
+			}
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_chaos_knight/chaos_knight_weapon_blur_critical.vpcf"
+				"modifier"						"particles/econ/items/chaos_knight/chaos_knight_ti9_weapon/chaos_knight_ti9_weapon_blur_crit.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_chaos_knight/chaos_knight_crit_tgt.vpcf"
+				"modifier"						"particles/econ/items/chaos_knight/chaos_knight_ti9_weapon/chaos_knight_ti9_weapon_crit_tgt.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier2"
+			{
+				"type"							"ability_icon"
+				"asset"							"chaos_knight_chaos_strike"
+				"modifier"						"chaos_knight_chaos_strike_ti9"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+		}
+	}
+	"13953"
+	{
+		"name"									"Rose and the Beast Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/chaos_knight/rose_and_the_beast_weapon/rose_and_the_beast_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_Rose_and_the_Beast_Weapon"
+		"model_player"							"models/items/chaos_knight/rose_and_the_beast_weapon/rose_and_the_beast_weapon.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_mace.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_mace.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"13954"
+	{
+		"name"									"Rose and the Beast Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/chaos_knight/rose_and_the_beast_shoulder/rose_and_the_beast_shoulder"
+		"item_name"								"#DOTA_Item_Vote_Only_Rose_and_the_Beast_Shoulder"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/chaos_knight/rose_and_the_beast_shoulder/rose_and_the_beast_shoulder.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"13955"
+	{
+		"name"									"Rose and the Beast Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/chaos_knight/rose_and_the_beast_off_hand/rose_and_the_beast_off_hand"
+		"item_name"								"#DOTA_Item_Vote_Only_Rose_and_the_Beast_OffHand"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/chaos_knight/rose_and_the_beast_off_hand/rose_and_the_beast_off_hand.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"13956"
+	{
+		"name"									"Rose and the Beast Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/chaos_knight/rose_and_the_beast_mount/rose_and_the_beast_mount"
+		"item_name"								"#DOTA_Item_Vote_Only_Rose_and_the_Beast_Mount"
+		"item_slot"								"mount"
+		"model_player"							"models/items/chaos_knight/rose_and_the_beast_mount/rose_and_the_beast_mount.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_tail"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"13958"
+	{
+		"name"									"Rose and the Beast Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/chaos_knight/rose_and_the_beast_head/rose_and_the_beast_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Rose_and_the_Beast_Head"
+		"item_slot"								"head"
+		"model_player"							"models/items/chaos_knight/rose_and_the_beast_head/rose_and_the_beast_head.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_l"
+					}
+				}
+			}
+		}
+	}
+	"14148"
+	{
+		"name"									"Talons of the Endless Storm Shield"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/chaos_knight/ck_gryphon_rider_off_hand/ck_gryphon_rider_off_hand"
+		"item_name"								"#DOTA_Item_Talons_of_the_Endless_Storm_Shield"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/chaos_knight/ck_gryphon_rider_off_hand/ck_gryphon_rider_off_hand.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/chaos_knight/chaos_knight_ti10_cache/chaos_knight_ti10_cache_shield.vpcf"
+			}
+		}
+	}
+	"14149"
+	{
+		"name"									"Talons of the Endless Storm Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/chaos_knight/ck_gryphon_rider_mount/ck_gryphon_rider_mount"
+		"item_name"								"#DOTA_Item_Talons_of_the_Endless_Storm_Mount"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/chaos_knight/ck_gryphon_rider_mount/ck_gryphon_rider_mount.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/chaos_knight/chaos_knight_ti10_cache/chaos_knight_ti10_cache_mount.vpcf"
+			}
+		}
+	}
+	"14150"
+	{
+		"name"									"Talons of the Endless Storm Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/chaos_knight/ck_gryphon_rider_head/ck_gryphon_rider_head"
+		"item_name"								"#DOTA_Item_Talons_of_the_Endless_Storm_Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/chaos_knight/ck_gryphon_rider_head/ck_gryphon_rider_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/chaos_knight/chaos_knight_ti10_cache/chaos_knight_ti10_cache_head.vpcf"
+			}
+			"skip_model_combine"				"0"
+		}
+	}
+	"14151"
+	{
+		"name"									"Talons of the Endless Storm Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/chaos_knight/ck_gryphon_rider_weapon/ck_gryphon_rider_weapon"
+		"item_name"								"#DOTA_Item_Talons_of_the_Endless_Storm_Weapon"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/chaos_knight/ck_gryphon_rider_weapon/ck_gryphon_rider_weapon.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/chaos_knight/chaos_knight_ti10_cache/chaos_knight_ti10_cache_weapon.vpcf"
+			}
+			"skip_model_combine"				"0"
+		}
+	}
+	"14152"
+	{
+		"name"									"Talons of the Endless Storm Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/chaos_knight/ck_gryphon_rider_shoulder/ck_gryphon_rider_shoulder"
+		"item_name"								"#DOTA_Item_Talons_of_the_Endless_Storm_Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/chaos_knight/ck_gryphon_rider_shoulder/ck_gryphon_rider_shoulder.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/chaos_knight/chaos_knight_ti10_cache/chaos_knight_ti10_cache_shoulder.vpcf"
+			}
+		}
+	}
+	"14350"
+	{
+		"name"									"Fury of Boundless Darkness Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/chaos_knight/fury_of_boundless_darkness_head/fury_of_boundless_darkness_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Fury_of_Boundless_Darkness_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/chaos_knight/fury_of_boundless_darkness_head/fury_of_boundless_darkness_head.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_l"
+					}
+				}
+			}
+		}
+	}
+	"14351"
+	{
+		"name"									"Fury of Boundless Darkness Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/chaos_knight/fury_of_boundless_darkness_mount/fury_of_boundless_darkness_mount"
+		"item_name"								"#DOTA_Item_Vote_Only_Fury_of_Boundless_Darkness_Mount"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_mount"
+		"model_player"							"models/items/chaos_knight/fury_of_boundless_darkness_mount/fury_of_boundless_darkness_mount.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_tail"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"14421"
+	{
+		"name"									"Fury of Boundless Darkness Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/chaos_knight/fury_of_boundless_darkness_off_hand/fury_of_boundless_darkness_off_hand"
+		"item_name"								"#DOTA_Item_Vote_Only_Fury_of_Boundless_Darkness_OffHand"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/chaos_knight/fury_of_boundless_darkness_off_hand/fury_of_boundless_darkness_off_hand.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14422"
+	{
+		"name"									"Fury of Boundless Darkness Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/chaos_knight/fury_of_boundless_darkness_shoulder/fury_of_boundless_darkness_shoulder"
+		"item_name"								"#DOTA_Item_Vote_Only_Fury_of_Boundless_Darkness_Shoulder"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/chaos_knight/fury_of_boundless_darkness_shoulder/fury_of_boundless_darkness_shoulder.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14423"
+	{
+		"name"									"Fury of Boundless Darkness Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/chaos_knight/fury_of_boundless_darkness_weapon/fury_of_boundless_darkness_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_Fury_of_Boundless_Darkness_Weapon"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/chaos_knight/fury_of_boundless_darkness_weapon/fury_of_boundless_darkness_weapon.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_mace.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_mace.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"17674"
+	{
+		"name"									"Chaos Maw Shield"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-25"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/chaos_knight/smiling_knight_shield/smiling_knight_shield"
+		"item_name"								"#DOTA_Item_Chaos_Maw_Shield"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/chaos_knight/smiling_knight_shield/smiling_knight_shield.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"17836"
+	{
+		"name"									"Chaos Maw Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-25"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/chaos_knight/smiling_knight_shoulder/smiling_knight_shoulder"
+		"item_name"								"#DOTA_Item_Chaos_Maw_Shoulder"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/chaos_knight/smiling_knight_shoulder/smiling_knight_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"17837"
+	{
+		"name"									"Chaos Maw Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-25"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/chaos_knight/smiling_knight_weapon/smiling_knight_weapon"
+		"item_name"								"#DOTA_Item_Chaos_Maw_Weapon"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/chaos_knight/smiling_knight_weapon/smiling_knight_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_mace.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_mace.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"17838"
+	{
+		"name"									"Chaos Maw Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-25"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/chaos_knight/smiling_knight_head/smiling_knight_head"
+		"item_name"								"#DOTA_Item_Chaos_Maw_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/chaos_knight/smiling_knight_head/smiling_knight_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_l"
+					}
+				}
+			}
+		}
+	}
+	"17839"
+	{
+		"name"									"Chaos Maw Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-25"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/chaos_knight/the_smiling_knight_mount/the_smiling_knight_mount"
+		"item_name"								"#DOTA_Item_Chaos_Maw_Mount"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_mount"
+		"model_player"							"models/items/chaos_knight/the_smiling_knight_mount/the_smiling_knight_mount.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_tail"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"18102"
+	{
+		"name"									"Oda Nobunaga Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"image_inventory"						"econ/items/chaos_knight/oda_nobunaga_weapon/oda_nobunaga_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_Oda_Nobunaga_Weapon"
+		"model_player"							"models/items/chaos_knight/oda_nobunaga_weapon/oda_nobunaga_weapon.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_mace.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_mace.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"18128"
+	{
+		"name"									"Oda Nobunaga Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"image_inventory"						"econ/items/chaos_knight/oda_nobunaga_shoulder/oda_nobunaga_shoulder"
+		"item_name"								"#DOTA_Item_Vote_Only_Oda_Nobunaga_Shoulder"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/chaos_knight/oda_nobunaga_shoulder/oda_nobunaga_shoulder.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"18134"
+	{
+		"name"									"Oda Nobunaga Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"image_inventory"						"econ/items/chaos_knight/oda_nobunaga_off_hand/oda_nobunaga_off_hand"
+		"item_name"								"#DOTA_Item_Vote_Only_Oda_Nobunaga_OffHand"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/chaos_knight/oda_nobunaga_off_hand/oda_nobunaga_off_hand.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"18135"
+	{
+		"name"									"Oda Nobunaga Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"image_inventory"						"econ/items/chaos_knight/oda_nobunaga_mount/oda_nobunaga_mount"
+		"item_name"								"#DOTA_Item_Vote_Only_Oda_Nobunaga_Mount"
+		"item_slot"								"mount"
+		"model_player"							"models/items/chaos_knight/oda_nobunaga_mount/oda_nobunaga_mount.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_tail"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"18136"
+	{
+		"name"									"Oda Nobunaga Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"image_inventory"						"econ/items/chaos_knight/oda_nobunaga_head/oda_nobunaga_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Oda_Nobunaga_Head"
+		"item_slot"								"head"
+		"model_player"							"models/items/chaos_knight/oda_nobunaga_head/oda_nobunaga_head.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_l"
+					}
+				}
+			}
+		}
+	}
+	"18457"
+	{
+		"name"									"Rampage Knight Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-07"
+		"image_inventory"						"econ/items/chaos_knight/dplus_rampage_knight_mount/dplus_rampage_knight_mount"
+		"item_name"								"#DOTA_Item_Rampage_Knight_Mount"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_mount"
+		"model_player"							"models/items/chaos_knight/dplus_rampage_knight_mount/dplus_rampage_knight_mount.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_tail"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"18458"
+	{
+		"name"									"Rampage Knight Shield"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-07"
+		"image_inventory"						"econ/items/chaos_knight/dplus_rampage_knight_offhand/dplus_rampage_knight_offhand"
+		"item_name"								"#DOTA_Item_Rampage_Knight_Shield"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/chaos_knight/dplus_rampage_knight_offhand/dplus_rampage_knight_offhand.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"18459"
+	{
+		"name"									"Rampage Knight Axe"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-07"
+		"image_inventory"						"econ/items/chaos_knight/dplus_rampage_knight_weapon/dplus_rampage_knight_weapon"
+		"item_name"								"#DOTA_Item_Rampage_Knight_Axe"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/chaos_knight/dplus_rampage_knight_weapon/dplus_rampage_knight_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_mace.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_mace.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"18460"
+	{
+		"name"									"Rampage Knight Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-07"
+		"image_inventory"						"econ/items/chaos_knight/dplus_rampage_knight_shoulder/dplus_rampage_knight_shoulder"
+		"item_name"								"#DOTA_Item_Rampage_Knight_Shoulder"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/chaos_knight/dplus_rampage_knight_shoulder/dplus_rampage_knight_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"18461"
+	{
+		"name"									"Rampage Knight Helm"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-07"
+		"image_inventory"						"econ/items/chaos_knight/dplus_rampage_knight_head/dplus_rampage_knight_head"
+		"item_name"								"#DOTA_Item_Rampage_Knight_Helm"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/chaos_knight/dplus_rampage_knight_head/dplus_rampage_knight_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_l"
+					}
+				}
+			}
+		}
+	}
+	"19300"
+	{
+		"name"									"Wrath of the Celestial Sentinel - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/chaos_knight/wrath_of_the_illustrious_sage_weapon/wrath_of_the_illustrious_sage_weapon"
+		"item_name"								"#DOTA_Item_Wrath_of_the_Celestial_Sentinel__Weapon"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/chaos_knight/wrath_of_the_illustrious_sage_weapon/wrath_of_the_illustrious_sage_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/chaos_knight/chaos_knight_2022_cc/chaos_knight_2022_cc_weapon.vpcf"
+			}
+		}
+	}
+	"19301"
+	{
+		"name"									"Wrath of the Celestial Sentinel - Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/chaos_knight/wrath_of_the_illustrious_sage_off_hand/wrath_of_the_illustrious_sage_off_hand"
+		"item_name"								"#DOTA_Item_Wrath_of_the_Celestial_Sentinel__OffHand"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/chaos_knight/wrath_of_the_illustrious_sage_off_hand/wrath_of_the_illustrious_sage_off_hand.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/chaos_knight/chaos_knight_2022_cc/chaos_knight_2022_cc_shield.vpcf"
+			}
+		}
+	}
+	"19302"
+	{
+		"name"									"Wrath of the Celestial Sentinel - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/chaos_knight/wrath_of_the_illustrious_sage_head/wrath_of_the_illustrious_sage_head"
+		"item_name"								"#DOTA_Item_Wrath_of_the_Celestial_Sentinel__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/chaos_knight/wrath_of_the_illustrious_sage_head/wrath_of_the_illustrious_sage_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_l"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/chaos_knight/chaos_knight_2022_cc/chaos_knight_2022_cc_head.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"19303"
+	{
+		"name"									"Wrath of the Celestial Sentinel - Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/chaos_knight/wrath_of_the_illustrious_sage_mount/wrath_of_the_illustrious_sage_mount"
+		"item_name"								"#DOTA_Item_Wrath_of_the_Celestial_Sentinel__Mount"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_mount"
+		"model_player"							"models/items/chaos_knight/wrath_of_the_illustrious_sage_mount/wrath_of_the_illustrious_sage_mount.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/chaos_knight/chaos_knight_2022_cc/chaos_knight_2022_cc_horse_ambient.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/chaos_knight/chaos_knight_2022_cc/chaos_knight_2022_cc_mount.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"19304"
+	{
+		"name"									"Wrath of the Celestial Sentinel - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/chaos_knight/wrath_of_the_illustrious_sage_shoulder/wrath_of_the_illustrious_sage_shoulder"
+		"item_name"								"#DOTA_Item_Wrath_of_the_Celestial_Sentinel__Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/chaos_knight/wrath_of_the_illustrious_sage_shoulder/wrath_of_the_illustrious_sage_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/chaos_knight/chaos_knight_2022_cc/chaos_knight_2022_cc_shoulder.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"19526"
+	{
+		"name"									"Melange of the Firelord - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/chaos_knight/majestic_firelord_head/majestic_firelord_head"
+		"item_name"								"#DOTA_Item_Melange_of_the_Firelord__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/chaos_knight/majestic_firelord_head/majestic_firelord_head.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_l"
+					}
+				}
+			}
+		}
+	}
+	"19528"
+	{
+		"name"									"Melange of the Firelord - Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/chaos_knight/majestic_firelord_mount/majestic_firelord_mount"
+		"item_name"								"#DOTA_Item_Melange_of_the_Firelord__Mount"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"model_player"							"models/items/chaos_knight/majestic_firelord_mount/majestic_firelord_mount.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_tail"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"19529"
+	{
+		"name"									"Melange of the Firelord - Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/chaos_knight/majestic_firelord_off_hand/majestic_firelord_off_hand"
+		"item_name"								"#DOTA_Item_Melange_of_the_Firelord__OffHand"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/chaos_knight/majestic_firelord_off_hand/majestic_firelord_off_hand.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+	}
+	"19530"
+	{
+		"name"									"Melange of the Firelord - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/chaos_knight/majestic_firelord_shoulder/majestic_firelord_shoulder"
+		"item_name"								"#DOTA_Item_Melange_of_the_Firelord__Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/chaos_knight/majestic_firelord_shoulder/majestic_firelord_shoulder.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"19531"
+	{
+		"name"									"Melange of the Firelord - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/chaos_knight/majestic_firelord_weapon/majestic_firelord_weapon"
+		"item_name"								"#DOTA_Item_Melange_of_the_Firelord__Weapon"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/chaos_knight/majestic_firelord_weapon/majestic_firelord_weapon.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_mace.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_mace.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"19759"
+	{
+		"name"									"Eyes of the Rift - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/chaos_knight/the_rift_knight_weapon/the_rift_knight_weapon"
+		"item_name"								"#DOTA_Item_Eyes_of_the_Rift__Weapon"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/chaos_knight/the_rift_knight_weapon/the_rift_knight_weapon.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_mace.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_mace.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"19760"
+	{
+		"name"									"Eyes of the Rift - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/chaos_knight/the_rift_knight_shoulder/the_rift_knight_shoulder"
+		"item_name"								"#DOTA_Item_Eyes_of_the_Rift__Shoulder"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/chaos_knight/the_rift_knight_shoulder/the_rift_knight_shoulder.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"19761"
+	{
+		"name"									"Eyes of the Rift - Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/chaos_knight/the_rift_knight_off_hand/the_rift_knight_off_hand"
+		"item_name"								"#DOTA_Item_Eyes_of_the_Rift__OffHand"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/chaos_knight/the_rift_knight_off_hand/the_rift_knight_off_hand.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"19762"
+	{
+		"name"									"Eyes of the Rift - Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/chaos_knight/the_rift_knight_mount/the_rift_knight_mount"
+		"item_name"								"#DOTA_Item_Eyes_of_the_Rift__Mount"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"model_player"							"models/items/chaos_knight/the_rift_knight_mount/the_rift_knight_mount.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_horse_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horse_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_tail.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_tail"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_feet_effects.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"19763"
+	{
+		"name"									"Eyes of the Rift - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/chaos_knight/the_rift_knight_head/the_rift_knight_head"
+		"item_name"								"#DOTA_Item_Eyes_of_the_Rift__Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"model_player"							"models/items/chaos_knight/the_rift_knight_head/the_rift_knight_head.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"system"						"particles/units/heroes/hero_chaos_knight/chaos_knight_ambient_helmet.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_human_eye_l"
+					}
+				}
+			}
+		}
+	}
+	"20172"
+	{
+		"name"									"Dark Ruin Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Dark Ruin Helm"					"1"
+			"Dark Ruin Gaze"					"1"
+			"Dark Ruin Mantle"					"1"
+			"Dark Ruin Crusher"					"1"
+			"Hellstrider"						"1"
+		}
+		"creation_date"							"2013-05-20"
+		"image_inventory"						"econ/sets/DOTA_Item_Dark_Ruin_Set"
+		"item_description"						"#DOTA_Item_Desc_Dark_Ruin_Set"
+		"item_name"								"#DOTA_Item_Dark_Ruin_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Mythical"
+			"category_tags"						"Bundles"
+			"date"								"5/20/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20212"
+	{
+		"name"									"Embers of Endless Havoc Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Ataxia"							"1"
+			"Blade of Endless Havoc"			"1"
+			"Helmet of Endless Havoc"			"1"
+			"Shield of Endless Havoc"			"1"
+			"Mantle of Endless Havoc"			"1"
+		}
+		"creation_date"							"2013-07-22"
+		"image_inventory"						"econ/sets/DOTA_Item_Embers_of_Entropy_Set"
+		"item_description"						"#DOTA_Item_Desc_Embers_of_Endless_Havoc_Set"
+		"item_name"								"#DOTA_Item_Embers_of_Endless_Havoc_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"7/22/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20231"
+	{
+		"name"									"Entropic Battlegear of the Warrider Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Entropic Axe"						"1"
+			"Entropic Helmet"					"1"
+			"Entropic Shield"					"1"
+			"Entropic Shoulderpads"				"1"
+		}
+		"creation_date"							"2013-07-24"
+		"image_inventory"						"econ/sets/DOTA_Item_Entropic_Battlegear_of_the_Warrider_Set"
+		"item_description"						"#DOTA_Item_Desc_Entropic_Battlegear_of_the_Warrider_Set"
+		"item_name"								"#DOTA_Item_Entropic_Battlegear_of_the_Warrider_Set"
+		"item_quality"							"genuine"
+		"item_rarity"							"mythical"
+	}
+	"20272"
+	{
+		"name"									"Arms of Burning Turmoil Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Blade of Burning Turmoil"			"1"
+			"Enmity"							"1"
+			"Horns of Burning Turmoil"			"1"
+			"Shield of Burning Turmoil"			"1"
+			"Mantle of Burning Turmoil"			"1"
+			"ESP Dota 2 Cup"					"1"
+		}
+		"creation_date"							"2013-10-14"
+		"image_inventory"						"econ/sets/DOTA_Item_Arms_of_Burning_Turmoil"
+		"item_description"						"#DOTA_Item_Desc_Arms_of_Burning_Turmoil_Set"
+		"item_name"								"#DOTA_Item_Arms_of_Burning_Turmoil_Set"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Mythical"
+			"category_tags"						"Bundles"
+			"date"								"10/14/2013"
+			"bundle"							"1"
+			"price"								"799"
+		}
+	}
+	"20355"
+	{
+		"name"									"Rising Chaos"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Rapture"							"1"
+			"Caged Fury"						"1"
+			"Bone Splitter"						"1"
+			"Hellish Maw Spaulders"				"1"
+			"Shield of Screaming Souls"			"1"
+		}
+		"creation_date"							"2014-01-13"
+		"image_inventory"						"econ/sets/DOTA_Item_Rising_Chaos"
+		"item_description"						"#DOTA_Item_Desc_Rising_Chaos"
+		"item_name"								"#DOTA_Item_Rising_Chaos"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"2500"
+	}
+	"20364"
+	{
+		"name"									"Chaos Legion Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Chaos Legion Drapes"				"1"
+			"Chaos Legion Helm"					"1"
+			"Chaos Legion Mount"				"1"
+			"Chaos Legion Shield"				"1"
+			"Chaos Legion Weapon"				"1"
+		}
+		"creation_date"							"2014-01-21"
+		"image_inventory"						"econ/sets/DOTA_Item_Chaos_Legion_Set"
+		"item_name"								"#DOTA_Item_Chaos_Legion_Set"
+		"item_rarity"							"mythical"
+	}
+	"20432"
+	{
+		"name"									"The Hounds of Chaos"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Shield of the Chaos Hound"			"1"
+			"Axe of the Chaos Hound"			"1"
+			"Pauldrons of the Chaos Hound"		"1"
+			"Helm of the Chaos Hound"			"1"
+			"Kerveros the Hound of Chaos"		"1"
+		}
+		"creation_date"							"2014-03-12"
+		"image_inventory"						"econ/sets/DOTA_Item_The_Hounds_of_Chaos"
+		"item_description"						"#DOTA_Item_Desc_The_Hounds_of_Chaos"
+		"item_name"								"#DOTA_Item_The_Hounds_of_Chaos"
+		"item_rarity"							"rare"
+	}
+	"20659"
+	{
+		"name"									"Champion of Discord"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Helm of Discord"					"1"
+			"Discordia"							"1"
+			"Armlet of Discord"					"1"
+			"Pauldrons of Discord"				"1"
+			"Blade of Discord"					"1"
+			"Champion of Discord Loading Screen""1"
+		}
+		"creation_date"							"2014-09-29"
+		"image_inventory"						"econ/sets/dota_item_champion_discord"
+		"item_description"						"#DOTA_Item_Desc_Champion_of_Discord"
+		"item_name"								"#DOTA_Item_Champion_of_Discord"
+		"item_rarity"							"rare"
+	}
+	"20836"
+	{
+		"name"									"Oni Knight the Dark Conqueror"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Oni Knight the Dark Conqueror Loading Screen""1"
+			"Spaulders of the Dark Conqueror"	"1"
+			"Shield of the Dark Conqueror"		"1"
+			"Steed of the Dark Conqueror"		"1"
+			"Helm of the Dark Conqueror"		"1"
+			"Axe of the Dark Conqueror"			"1"
+		}
+		"creation_date"							"2016-05-23"
+		"image_inventory"						"econ/loading_screens/oni_knight_the_dark_conqueror_oni_knight_the_dark_conqueror_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Oni_Knight_the_Dark_Conqueror"
+		"item_name"								"#DOTA_Item_Oni_Knight_the_Dark_Conqueror"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+		}
+	}
+	"20900"
+	{
+		"name"									"Charge of the Baleful Reign"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Charge of the Baleful Reign Loading Screen""1"
+			"Cudgel of the Baleful Reign"		"1"
+			"Guard of the Baleful Reign"		"1"
+			"Shards of the Baleful Reign"		"1"
+			"War Helm of the Baleful Reign"		"1"
+			"Perdition"							"1"
+		}
+		"image_inventory"						"econ/loading_screens/baleful_reign_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Charge_of_the_Baleful_Reign"
+		"item_name"								"#DOTA_Item_Charge_of_the_Baleful_Reign"
+		"item_rarity"							"rare"
+		"workshop_accepted"						"0"
+	}
+	"21066"
+	{
+		"name"									"Burning Nightmare"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Flail of the Burning Nightmare"	"1"
+			"Pauldrons of the Burning Nightmare""1"
+			"Shield of the Burning Nightmare"	"1"
+			"Mount of the Burning Nightmare"	"1"
+			"Helm of the Burning Nightmare"		"1"
+			"Burning Nightmare Loading Screen"	"1"
+		}
+		"creation_date"							"2016-09-14"
+		"image_inventory"						"econ/loading_screens/burning_nightmare_chaos_knight_burning_nightmare_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Burning_Nightmare"
+		"item_name"								"#DOTA_Item_Burning_Nightmare"
+		"item_rarity"							"rare"
+	}
+	"21474"
+	{
+		"name"									"Rampage Knight"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Rampage Knight Loading Screen"		"1"
+			"Rampage Knight Helm"				"1"
+			"Rampage Knight Shoulder"			"1"
+			"Rampage Knight Axe"				"1"
+			"Rampage Knight Shield"				"1"
+			"Rampage Knight Mount"				"1"
+		}
+		"creation_date"							"2021-02-07"
+		"image_inventory"						"econ/loading_screens/dplus_rampage_knight_ls"
+		"item_name"								"#DOTA_Item_Rampage_Knight"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"21505"
+	{
+		"name"									"Talons of the Endless Storm"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Talons of the Endless Storm Shoulder""1"
+			"Talons of the Endless Storm Weapon""1"
+			"Talons of the Endless Storm Head"	"1"
+			"Talons of the Endless Storm Mount"	"1"
+			"Talons of the Endless Storm Shield""1"
+		}
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Gryphon_Rider"
+		"item_name"								"#DOTA_Item_Talons_of_the_Endless_Storm"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21528"
+	{
+		"name"									"Rose and the Beast"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Rose and the Beast Head"			"1"
+			"Rose and the Beast LS"				"1"
+			"Rose and the Beast Mount"			"1"
+			"Rose and the Beast Off-Hand"		"1"
+			"Rose and the Beast Shoulder"		"1"
+			"Rose and the Beast Weapon"			"1"
+		}
+		"creation_date"							"2020-05-11"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Rose_and_the_Beast"
+		"workshop_accepted"						"0"
+	}
+	"21544"
+	{
+		"name"									"Fury of Boundless Darkness"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Fury of Boundless Darkness Head"	"1"
+			"Fury of Boundless Darkness Mount"	"1"
+			"Fury of Boundless Darkness Off-Hand""1"
+			"Fury of Boundless Darkness Shoulder""1"
+			"Fury of Boundless Darkness Weapon"	"1"
+			"Fury of Boundless Darkness LS"		"1"
+		}
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Fury_of_Boundless_Darkness"
+		"workshop_accepted"						"0"
+	}
+	"21704"
+	{
+		"name"									"Chaos Maw"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Chaos Maw Mount"					"1"
+			"Chaos Maw Head"					"1"
+			"Chaos Maw Weapon"					"1"
+			"Chaos Maw Shoulder"				"1"
+			"Chaos Maw Shield"					"1"
+		}
+		"creation_date"							"2020-09-25"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Smiling_Knight"
+		"item_name"								"#DOTA_Item_Chaos_Maw"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"21754"
+	{
+		"name"									"Oda Nobunaga"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Oda Nobunaga Head"					"1"
+			"Oda Nobunaga Weapon"				"1"
+			"Oda Nobunaga Off-Hand"				"1"
+			"Oda Nobunaga Shoulder"				"1"
+			"Oda Nobunaga Mount"				"1"
+		}
+		"creation_date"							"2021-08-17"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Oda_Nobunaga"
+		"workshop_accepted"						"0"
+	}
+	"21871"
+	{
+		"name"									"Wrath of the Celestial Sentinel"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Wrath of the Celestial Sentinel - Shoulder""1"
+			"Wrath of the Celestial Sentinel - Mount""1"
+			"Wrath of the Celestial Sentinel - Head""1"
+			"Wrath of the Celestial Sentinel - Off-Hand""1"
+			"Wrath of the Celestial Sentinel - Weapon""1"
+		}
+		"creation_date"							"2021-08-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/sets/DOTA_Item_Wrath_of_the_Celestial_Sentinel_Bundle"
+		"item_name"								"#DOTA_Item_Wrath_of_the_Celestial_Sentinel"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21907"
+	{
+		"name"									"Melange of the Firelord"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Melange of the Firelord - Weapon"	"1"
+			"Melange of the Firelord - Shoulder""1"
+			"Melange of the Firelord - Off-Hand""1"
+			"Melange of the Firelord - Mount"	"1"
+			"Melange of the Firelord Loading Screen""1"
+			"Melange of the Firelord - Head"	"1"
+		}
+		"creation_date"							"2021-08-18"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/loading_screens/majestic_firelord_ls"
+		"item_name"								"#DOTA_Item_Melange_of_the_Firelord"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+	}
+	"21948"
+	{
+		"name"									"Eyes of the Rift"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Eyes of the Rift - Weapon"			"1"
+			"Eyes of the Rift - Shoulder"		"1"
+			"Eyes of the Rift - Off-Hand"		"1"
+			"Eyes of the Rift - Mount"			"1"
+			"Eyes of the Rift - Head"			"1"
+		}
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/sets/DOTA_Item_Eyes_of_the_Rift"
+		"item_name"								"#DOTA_Item_Eyes_of_the_Rift"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+}

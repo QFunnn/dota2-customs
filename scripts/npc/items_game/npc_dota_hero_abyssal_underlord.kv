@@ -1,0 +1,1034 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"617"
+	{
+		"name"									"Underlord's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2016-06-02"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Underlords_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_New_Item"
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/heroes_underlord/underlord_ambient_eyes.vpcf"
+				"style"							"0"
+				"system"						"particles/units/heroes/heroes_underlord/underlord_ambient_eyes.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+		}
+	}
+	"619"
+	{
+		"name"									"Underlord's Armor"
+		"prefab"								"default_item"
+		"creation_date"							"2016-07-07"
+		"image_inventory"						"econ/heroes/abyssal_underlord/mesh/underlord_armor"
+		"item_name"								"#DOTA_Item_Underlords_Armor"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/heroes/abyssal_underlord/mesh/underlord_armor.vmdl"
+	}
+	"620"
+	{
+		"name"									"Underlord's Head Item"
+		"prefab"								"default_item"
+		"creation_date"							"2016-07-07"
+		"image_inventory"						"econ/heroes/abyssal_underlord/mesh/underlord_headitem"
+		"item_name"								"#DOTA_Item_Underlords_Head_Item"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/abyssal_underlord/mesh/underlord_headitem.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/heroes_underlord/underlord_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/units/heroes/heroes_underlord/underlord_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+		}
+	}
+	"621"
+	{
+		"name"									"Underlord's Weapon"
+		"prefab"								"default_item"
+		"creation_date"							"2016-07-07"
+		"image_inventory"						"econ/heroes/abyssal_underlord/mesh/underlord_weapon"
+		"item_name"								"#DOTA_Item_Underlords_Weapon"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/heroes/abyssal_underlord/mesh/underlord_weapon.vmdl"
+	}
+	"622"
+	{
+		"name"									"Underlord's Head"
+		"prefab"								"default_item"
+		"creation_date"							"2016-07-07"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Underlords_Head"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/abyssal_underlord/mesh/underlord_head.vmdl"
+	}
+	"9076"
+	{
+		"name"									"Blade of the Abyssal Scourge"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-12"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/underlord/abyss_tyrant_weapon/abyss_tyrant_weapon"
+		"item_description"						"#DOTA_Item_Desc_Blade_of_the_Abyssal_Scourge"
+		"item_name"								"#DOTA_Item_Blade_of_the_Abyssal_Scourge"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/underlord/abyss_tyrant_weapon/abyss_tyrant_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/heroes_underlord/underlord_atrophy_weapon.vpcf"
+				"modifier"						"particles/econ/items/underlord/underlord_tyrant/underlord_tyrant_atrophy_weapon.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9077"
+	{
+		"name"									"Armor of the Abyssal Scourge"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-12"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/underlord/abyss_tyrant_armor/abyss_tyrant_armor"
+		"item_description"						"#DOTA_Item_Desc_Armor_of_the_Abyssal_Scourge"
+		"item_name"								"#DOTA_Item_Armor_of_the_Abyssal_Scourge"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/underlord/abyss_tyrant_armor/abyss_tyrant_armor.vmdl"
+	}
+	"9078"
+	{
+		"name"									"Helm of the Abyssal Scourge"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-12"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/underlord/abyss_tyrant_head/abyss_tyrant_head"
+		"item_description"						"#DOTA_Item_Desc_Helm_of_the_Abyssal_Scourge"
+		"item_name"								"#DOTA_Item_Helm_of_the_Abyssal_Scourge"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/underlord/abyss_tyrant_head/abyss_tyrant_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/heroes_underlord/underlord_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/units/heroes/heroes_underlord/underlord_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+		}
+	}
+	"9742"
+	{
+		"name"									"Emerald Conquest"
+		"prefab"								"wearable"
+		"creation_date"							"2018-03-12"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/underlord/underlord_ti8_immortal_weapon/underlord_ti8_immortal_weapon"
+		"item_description"						"#DOTA_Item_Desc_Emerald_Conquest"
+		"item_name"								"#DOTA_Item_Emerald_Conquest"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/underlord/underlord_ti8_immortal_weapon/underlord_ti8_immortal_weapon.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567296000"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/underlord/underlord_ti8_immortal_weapon/underlord_ti8_immortal_weapon_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/heroes_underlord/underlord_pitofmalice.vpcf"
+				"modifier"						"particles/econ/items/underlord/underlord_ti8_immortal_weapon/underlord_ti8_immortal_pitofmalice.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/heroes_underlord/underlord_pitofmalice_pre.vpcf"
+				"modifier"						"particles/econ/items/underlord/underlord_ti8_immortal_weapon/underlord_ti8_immortal_pitofmalice_pre.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/heroes_underlord/abyssal_underlord_pitofmalice_stun.vpcf"
+				"modifier"						"particles/econ/items/underlord/underlord_ti8_immortal_weapon/underlord_ti8_immortal_pitofmalice_stun.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/heroes_underlord/underlord_pit_cast.vpcf"
+				"modifier"						"particles/econ/items/underlord/underlord_ti8_immortal_weapon/underlord_ti8_immortal_pitofmalice_cast.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/status_fx/status_effect_frost.vpcf"
+				"modifier"						"particles/status_fx/status_effect_goo.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier6"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti8"
+				"style"							"0"
+			}
+			"asset_modifier7"
+			{
+				"type"							"sound"
+				"asset"							"Hero_AbyssalUnderlord.PitOfMalice"
+				"modifier"						"Hero_AbyssalUnderlord.PitOfMalice.TI8"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/heroes_underlord/abyssal_underlord_pitofmalice_stun_light.vpcf"
+				"modifier"						"particles/econ/items/underlord/underlord_ti8_immortal_weapon/underlord_ti8_immortal_pitofmalice_stun_light.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier9"
+			{
+				"type"							"ability_icon"
+				"asset"							"abyssal_underlord_pit_of_malice"
+				"modifier"						"abyssal_underlord/ti8_immortal_weapon/abyssal_underlord_pit_of_malice_immortal"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+		}
+	}
+	"12293"
+	{
+		"name"									"Horns of the Obsidian Forge"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/underlord/ti8_underlord_petrifying_smith_overlord_head/ti8_underlord_petrifying_smith_overlord_head"
+		"item_name"								"#DOTA_Item_Horns_of_the_Obsidian_Forge"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/underlord/ti8_underlord_petrifying_smith_overlord_head/ti8_underlord_petrifying_smith_overlord_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/heroes_underlord/underlord_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/units/heroes/heroes_underlord/underlord_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+		}
+	}
+	"12294"
+	{
+		"name"									"Armor of the Obsidian Forge"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/underlord/ti8_underlord_petrifying_smith_overlord_armor/ti8_underlord_petrifying_smith_overlord_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Obsidian_Forge"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/underlord/ti8_underlord_petrifying_smith_overlord_armor/ti8_underlord_petrifying_smith_overlord_armor.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/underlord/underlord_ti8_cache/underlord_obsidian_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"12295"
+	{
+		"name"									"Blade of the Obsidian Forge"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/underlord/ti8_underlord_petrifying_smith_weapon_v4/ti8_underlord_petrifying_smith_weapon_v4"
+		"item_name"								"#DOTA_Item_Blade_of_the_Obsidian_Forge"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/underlord/ti8_underlord_petrifying_smith_weapon_v4/ti8_underlord_petrifying_smith_weapon_v4.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/abyssal_underlord/underlord_weapon_fx.vsnap"
+				"modifier"						"particles/models/items/underlord/ti8_underlord_petrifying_smith_weapon_v4/ti8_underlord_petrifying_smith_weapon_v4_fx.vsnap"
+			}
+		}
+	}
+	"12421"
+	{
+		"name"									"Crimson Emerald Conquest"
+		"prefab"								"wearable"
+		"creation_date"							"2018-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/underlord/underlord_ti8_immortal_weapon/underlord_ti8_immortal_weapon1"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Emerald_Conquest"
+		"item_name"								"#DOTA_Item_Crimson_Emerald_Conquest"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/underlord/underlord_ti8_immortal_weapon/underlord_ti8_immortal_weapon.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/underlord/underlord_ti8_immortal_weapon/underlord_crimson_ti8_immortal_weapon_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/heroes_underlord/underlord_pitofmalice.vpcf"
+				"modifier"						"particles/econ/items/underlord/underlord_ti8_immortal_weapon/underlord_crimson_ti8_immortal_pitofmalice.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/heroes_underlord/underlord_pitofmalice_pre.vpcf"
+				"modifier"						"particles/econ/items/underlord/underlord_ti8_immortal_weapon/underlord_crimson_ti8_immortal_pitofmalice_pre.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/heroes_underlord/abyssal_underlord_pitofmalice_stun.vpcf"
+				"modifier"						"particles/econ/items/underlord/underlord_ti8_immortal_weapon/underlord_crimson_ti8_immortal_pitofmalice_stun.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/heroes_underlord/underlord_pit_cast.vpcf"
+				"modifier"						"particles/econ/items/underlord/underlord_ti8_immortal_weapon/underlord_crimson_ti8_immortal_pitofmalice_cast.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/status_fx/status_effect_frost.vpcf"
+				"modifier"						"particles/status_fx/status_effect_goo_crimson.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier6"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti8"
+				"style"							"0"
+			}
+			"asset_modifier7"
+			{
+				"type"							"sound"
+				"asset"							"Hero_AbyssalUnderlord.PitOfMalice"
+				"modifier"						"Hero_AbyssalUnderlord.PitOfMalice.TI8"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/heroes_underlord/abyssal_underlord_pitofmalice_stun_light.vpcf"
+				"modifier"						"particles/econ/items/underlord/underlord_ti8_immortal_weapon/underlord_crimson_ti8_immortal_pitofmalice_stun_light.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier9"
+			{
+				"type"							"ability_icon"
+				"asset"							"abyssal_underlord_pit_of_malice"
+				"modifier"						"abyssal_underlord/ti8_immortal_weapon/abyssal_underlord_pit_of_malice_immortal_crimson"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"skip_model_combine"				"0"
+			"skin"								"1"
+		}
+	}
+	"14197"
+	{
+		"name"									"Ravenous Abyss - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/underlord/demonforged_armor_weapon/demonforged_armor_weapon"
+		"item_name"								"#DOTA_Item_Ravenous_Abyss__Weapon"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/underlord/demonforged_armor_weapon/demonforged_armor_weapon.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/underlord/underlord_ti10_cache/underlord_ti10_cache_weapon.vpcf"
+			}
+		}
+	}
+	"14199"
+	{
+		"name"									"Ravenous Abyss - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/underlord/demonforged_armor_head/demonforged_armor_head"
+		"item_name"								"#DOTA_Item_Ravenous_Abyss__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/underlord/demonforged_armor_head/demonforged_armor_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/heroes_underlord/underlord_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/units/heroes/heroes_underlord/underlord_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/underlord/underlord_ti10_cache/underlord_ti10_cache_head.vpcf"
+			}
+		}
+	}
+	"14200"
+	{
+		"name"									"Ravenous Abyss - Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/underlord/demonforged_armor_armor/demonforged_armor_armor"
+		"item_name"								"#DOTA_Item_Ravenous_Abyss__Armor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"model_player"							"models/items/underlord/demonforged_armor_armor/demonforged_armor_armor.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/underlord/underlord_ti10_cache/underlord_ti10_cache_armor.vpcf"
+			}
+		}
+	}
+	"19113"
+	{
+		"name"									"Emerald Subjugation"
+		"prefab"								"wearable"
+		"creation_date"							"2021-06-28"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/underlord/ul_2021_immortal/ul_2021_immortal"
+		"item_description"						"#DOTA_Item_Desc_Emerald_Subjugation"
+		"item_name"								"#DOTA_Item_Emerald_Subjugation"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/underlord/ul_2021_immortal/ul_2021_immortal.vmdl"
+		"static_attributes1"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/heroes_underlord/underlord_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/units/heroes/heroes_underlord/underlord_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"ability_icon"
+				"asset"							"abyssal_underlord_dark_rift"
+				"modifier"						"underlord/ul_2021_immortal_head_ability_icon/ul_2021_immortal_dark_rift"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier1"
+			{
+				"type"							"ability_icon"
+				"asset"							"abyssal_underlord_cancel_dark_rift"
+				"modifier"						"underlord/ul_2021_immortal_head_ability_icon/ul_2021_immortal_dark_rift_cancel"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/heroes_underlord/abbysal_underlord_darkrift_ambient.vpcf"
+				"modifier"						"particles/econ/items/underlord/underlord_2021_immortal/underlord_2021_immortal_darkrift_ambient.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/heroes_underlord/underlord_ambient.vpcf"
+				"modifier"						"particles/econ/items/underlord/underlord_2021_immortal/underlord_2021_immortal_head_ambient.vpcf"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/heroes_underlord/abbysal_underlord_portal_ambient.vpcf"
+				"modifier"						"particles/econ/items/underlord/underlord_2021_immortal/underlord_2021_immortal_portal.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/heroes_underlord/abbysal_underlord_portal_buildup.vpcf"
+				"modifier"						"particles/econ/items/underlord/underlord_2021_immortal/underlord_2021_immortal_portal_buildup.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier6"
+			{
+				"type"							"ability_icon"
+				"asset"							"abyssal_underlord_dark_portal"
+				"modifier"						"underlord/ul_2021_immortal_head_ability_icon/ul_2021_immortal_dark_rift"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+		}
+	}
+	"19936"
+	{
+		"name"									"Anger Divinity Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/underlord/anger_divinity_weapon/anger_divinity_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_Anger_Divinity_Weapon"
+		"model_player"							"models/items/underlord/anger_divinity_weapon/anger_divinity_weapon.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/abyssal_underlord/underlord_weapon_fx.vsnap"
+				"modifier"						"particles/models/items/underlord/anger_divinity_weapon/anger_divinity_weapon_fx.vsnap"
+			}
+		}
+	}
+	"19938"
+	{
+		"name"									"Anger Divinity Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/underlord/anger_divinity_head/anger_divinity_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Anger_Divinity_Head"
+		"item_slot"								"head"
+		"model_player"							"models/items/underlord/anger_divinity_head/anger_divinity_head.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/heroes_underlord/underlord_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/units/heroes/heroes_underlord/underlord_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+		}
+	}
+	"19939"
+	{
+		"name"									"Anger Divinity Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/underlord/anger_divinity_armor/anger_divinity_armor"
+		"item_name"								"#DOTA_Item_Vote_Only_Anger_Divinity_Armor"
+		"item_slot"								"armor"
+		"model_player"							"models/items/underlord/anger_divinity_armor/anger_divinity_armor.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"21084"
+	{
+		"name"									"Atrocities of the Abyssal Scourge"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Helm of the Abyssal Scourge"		"1"
+			"Armor of the Abyssal Scourge"		"1"
+			"Blade of the Abyssal Scourge"		"1"
+			"Loading Screen of the Abyssal Scourge""1"
+		}
+		"creation_date"							"2017-01-12"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/loading_screens/abyss_tyrant_abyss_tyrant_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Atrocities_of_the_Abyssal_Scourge"
+		"item_name"								"#DOTA_Item_Atrocities_of_the_Abyssal_Scourge"
+		"item_rarity"							"mythical"
+	}
+	"21231"
+	{
+		"name"									"Raiments of the Obsidian Forge"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Blade of the Obsidian Forge"		"1"
+			"Armor of the Obsidian Forge"		"1"
+			"Horns of the Obsidian Forge"		"1"
+		}
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/sets/DOTA_Item_TI8_Underlord_Petrifying_Smith"
+		"item_description"						"#DOTA_Item_Desc_Raiments_of_the_Obsidian_Forge"
+		"item_name"								"#DOTA_Item_Raiments_of_the_Obsidian_Forge"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21515"
+	{
+		"name"									"Ravenous Abyss"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Ravenous Abyss - Armor"			"1"
+			"Ravenous Abyss - Head"				"1"
+			"Ravenous Abyss - Weapon"			"1"
+			"Ravenous Abyss Loading Screen"		"1"
+		}
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/loading_screens/demonforged_armor_ls"
+		"item_name"								"#DOTA_Item_Ravenous_Abyss"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21983"
+	{
+		"name"									"Anger Divinity"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Anger Divinity Armor"				"1"
+			"Anger Divinity Head"				"1"
+			"Anger Divinity LS"					"1"
+			"Anger Divinity Weapon"				"1"
+		}
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Anger_Divinity"
+		"workshop_accepted"						"0"
+	}
+	"23699"
+	{
+		"name"									"Taunt: Pie of Malice"
+		"prefab"								"taunt"
+		"creation_date"							"2022-07-08"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/taunts/taunt_underlord_pizza_icon"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Pie_of_Malice"
+		"item_name"								"#DOTA_Item_Taunt_Pie_of_Malice"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"taunt_2022"
+				"gesture"						"1"
+			}
+			"skip_model_combine"				"0"
+		}
+	}
+}

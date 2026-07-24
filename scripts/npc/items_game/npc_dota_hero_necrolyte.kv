@@ -1,0 +1,2651 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"211"
+	{
+		"name"									"Necrophos' Sickle"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/necrolyte/necrolyte_sickle"
+		"item_description"						"#DOTA_Item_Desc_Necrophos_Sickle"
+		"item_name"								"#DOTA_Item_Necrophos_Sickle"
+		"model_player"							"models/heroes/necrolyte/necrolyte_sickle.vmdl"
+	}
+	"212"
+	{
+		"name"									"Necrophos' Beard"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/necrolyte/beard"
+		"item_description"						"#DOTA_Item_Desc_Necrophos_Beard"
+		"item_name"								"#DOTA_Item_Necrophos_Beard"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Body_Head"
+		"model_player"							"models/heroes/necrolyte/beard.vmdl"
+	}
+	"213"
+	{
+		"name"									"Necrophos' Headdress"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/necrolyte/hat"
+		"item_description"						"#DOTA_Item_Desc_Necrophos_Headdress"
+		"item_name"								"#DOTA_Item_Necrophos_Headdress"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/necrolyte/hat.vmdl"
+	}
+	"214"
+	{
+		"name"									"Necrophos' Vestments"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/necrolyte/shoulders"
+		"item_description"						"#DOTA_Item_Desc_Necrophos_Vestments"
+		"item_name"								"#DOTA_Item_Necrophos_Vestments"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/heroes/necrolyte/shoulders.vmdl"
+	}
+	"508"
+	{
+		"name"									"Necrophos' Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-05"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Necrophos_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_necrolyte"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_necrolyte/necrolyte_ambient_glow.vpcf"
+				"system"						"particles/units/heroes/hero_necrolyte/necrolyte_ambient_glow.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"659"
+	{
+		"name"									"Necrophos' Skirt"
+		"prefab"								"default_item"
+		"creation_date"							"2018-04-06"
+		"image_inventory"						"econ/heroes/necrolyte/legs"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Necrophos_Vestments"
+		"item_name"								"#DOTA_Item_Necrophos_Skirt"
+		"item_quality"							"unique"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_legs"
+		"model_player"							"models/heroes/necrolyte/legs.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"4398"
+	{
+		"name"									"Soul Reaper"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"diretide tag"
+			{
+				"attribute_class"				"diretide_tag"
+				"value"							"2012"
+			}
+		}
+		"image_inventory"						"econ/items/necrolyte/soulreaper2/soulreaper2"
+		"item_description"						"#DOTA_Item_Desc_The_Soul_Reaper"
+		"item_name"								"#DOTA_Item_Soul_Reaper"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Scythe"
+		"model_player"							"models/items/necrolyte/soulreaper2/soulreaper2.vmdl"
+	}
+	"4621"
+	{
+		"name"									"Scythe of Pestilence"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-06"
+		"image_inventory"						"econ/items/necrolyte/scythe_of_pestilence/scythe_of_pestilence"
+		"item_description"						"#DOTA_Item_Desc_Scythe_of_Pestilence"
+		"item_name"								"#DOTA_Item_Scythe_of_Pestilence"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Scythe"
+		"model_player"							"models/items/necrolyte/scythe_of_pestilence/scythe_of_pestilence.vmdl"
+	}
+	"4686"
+	{
+		"name"									"Scythe of Twin Deaths"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/necrolyte/death_protest_weapon/death_protest_weapon"
+		"item_description"						"#DOTA_Item_Desc_Scythe_of_Twin_Deaths"
+		"item_name"								"#DOTA_Item_Scythe_of_Twin_Deaths"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Scythe"
+		"model_player"							"models/items/necrolyte/death_protest_weapon/death_protest_weapon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4687"
+	{
+		"name"									"Reliquary of Rotting Doom"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/necrolyte/death_protest_shoulder/death_protest_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Reliquary_of_Rotting_Doom"
+		"item_name"								"#DOTA_Item_Reliquary_of_Rotting_Doom"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Reliquary"
+		"model_player"							"models/items/necrolyte/death_protest_shoulder/death_protest_shoulder.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"4688"
+	{
+		"name"									"Pretiosa of Putrescense"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/necrolyte/death_protest_hat/death_protest_hat"
+		"item_description"						"#DOTA_Item_Desc_Pretiosa_of_Putrescense"
+		"item_name"								"#DOTA_Item_Pretiosa_of_Putrescense"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hat"
+		"model_player"							"models/items/necrolyte/death_protest_hat/death_protest_hat.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4689"
+	{
+		"name"									"Beard of Weeping Scorn"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/necrolyte/death_protest_beard/death_protest_beard"
+		"item_description"						"#DOTA_Item_Desc_Beard_of_Weeping_Scorn"
+		"item_name"								"#DOTA_Item_Beard_of_Weeping_Scorn"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Beard"
+		"model_player"							"models/items/necrolyte/death_protest_beard/death_protest_beard.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4730"
+	{
+		"name"									"Direstone Liferipper"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2012"
+			}
+		}
+		"image_inventory"						"econ/items/necrolyte/demon_reaper/demon_reaper"
+		"item_description"						"#DOTA_Item_Desc_Direstone_Liferipper"
+		"item_name"								"#DOTA_Item_Direstone_Liferipper"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Scythe"
+		"model_player"							"models/items/necrolyte/demon_reaper/demon_reaper.vmdl"
+	}
+	"5098"
+	{
+		"name"									"Raven Scythe"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-05"
+		"image_inventory"						"econ/items/necrolyte/raven_scythe/raven_scythe"
+		"item_description"						"#DOTA_Item_Desc_raven_scythe"
+		"item_name"								"#DOTA_Item_Raven_Scythe"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Scythe"
+		"model_player"							"models/items/necrolyte/raven_scythe/raven_scythe.vmdl"
+	}
+	"5420"
+	{
+		"name"									"Laments of the Dead"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-17"
+		"image_inventory"						"econ/items/necrolyte/laments_for_the_dead/laments_for_the_dead"
+		"item_description"						"#DOTA_Item_Desc_Laments_of_the_Dead"
+		"item_name"								"#DOTA_Item_Laments_of_the_Dead"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/necrolyte/laments_for_the_dead/laments_for_the_dead.vmdl"
+	}
+	"5622"
+	{
+		"name"									"Vestments of the Ten Plagues Beard"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-06"
+		"image_inventory"						"econ/items/necrolyte/tenplagues_necrolyte_beard/tenplagues_necrolyte_beard"
+		"item_description"						"#DOTA_Item_Desc_Vestments_of_the_Ten_Plagues_Beard"
+		"item_name"								"#DOTA_Item_Vestments_of_the_Ten_Plagues_Beard"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Beard"
+		"model_player"							"models/items/necrolyte/tenplagues_necrolyte_beard/tenplagues_necrolyte_beard.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5623"
+	{
+		"name"									"Vestments of the Ten Plagues Helm"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-06"
+		"image_inventory"						"econ/items/necrolyte/tenplagues_necrolyte_head/tenplagues_necrolyte_head"
+		"item_description"						"#DOTA_Item_Desc_Vestments_of_the_Ten_Plagues_Helm"
+		"item_name"								"#DOTA_Item_Vestments_of_the_Ten_Plagues_Helm"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/necrolyte/tenplagues_necrolyte_head/tenplagues_necrolyte_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5624"
+	{
+		"name"									"Vestments of the Ten Plagues Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-06"
+		"image_inventory"						"econ/items/necrolyte/tenplagues_necrolyte_shoulder/tenplagues_necrolyte_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Vestments_of_the_Ten_Plagues_Shoulders"
+		"item_name"								"#DOTA_Item_Vestments_of_the_Ten_Plagues_Shoulders"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/necrolyte/tenplagues_necrolyte_shoulder/tenplagues_necrolyte_shoulder.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5625"
+	{
+		"name"									"Vestments of the Ten Plagues Scythe"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-06"
+		"image_inventory"						"econ/items/necrolyte/tenplagues_necrolyte_weapon/tenplagues_necrolyte_weapon"
+		"item_description"						"#DOTA_Item_Desc_Vestments_of_the_Ten_Plagues_Scythe"
+		"item_name"								"#DOTA_Item_Vestments_of_the_Ten_Plagues_Scythe"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Scythe"
+		"model_player"							"models/items/necrolyte/tenplagues_necrolyte_weapon/tenplagues_necrolyte_weapon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"6051"
+	{
+		"name"									"Immemorial Emperor's Beard"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-24"
+		"image_inventory"						"econ/items/necrolyte/immemorial_emperor_beard/immemorial_emperor_beard"
+		"item_name"								"#DOTA_Item_Immemorial_Emperors_Beard"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Beard"
+		"model_player"							"models/items/necrolyte/immemorial_emperor_beard/immemorial_emperor_beard.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/3/2014"
+			"price"								"0"
+		}
+	}
+	"6052"
+	{
+		"name"									"Immemorial Emperor's Coronet"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-24"
+		"image_inventory"						"econ/items/necrolyte/immemorial_emperor_head/immemorial_emperor_head"
+		"item_name"								"#DOTA_Item_Immemorial_Emperors_Coronet"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Coronet"
+		"model_player"							"models/items/necrolyte/immemorial_emperor_head/immemorial_emperor_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/3/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/necrolyte/immemorial_emperor_head/immemorial_emperor_head.vmdl"
+					"name"						"#DOTA_Item_Immemorial_Emperors_Coronet_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/necrolyte/immemorial_emperor_head_black/immemorial_emperor_head_black.vmdl"
+					"name"						"#DOTA_Item_Immemorial_Emperors_Coronet_Style1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/necrolyte/immemorial_emperor_head/immemorial_emperor_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/necrolyte/immemorial_emperor_head_black/immemorial_emperor_head_black"
+				}
+			}
+		}
+	}
+	"6053"
+	{
+		"name"									"Immemorial Emperor's Mantle"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-24"
+		"image_inventory"						"econ/items/necrolyte/immemorial_emperor_shoulder/immemorial_emperor_shoulder"
+		"item_name"								"#DOTA_Item_Immemorial_Emperors_Mantle"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/necrolyte/immemorial_emperor_shoulder/immemorial_emperor_shoulder.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/3/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/necrolyte/immemorial_emperor_shoulder/immemorial_emperor_shoulder.vmdl"
+					"name"						"#DOTA_Item_Immemorial_Emperors_Mantle_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/necrolyte/immemorial_emperor_shoulder_black/immemorial_emperor_shoulder_black.vmdl"
+					"name"						"#DOTA_Item_Immemorial_Emperors_Mantle_Style1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/necrolyte/immemorial_emperor_shoulder/immemorial_emperor_shoulder"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/necrolyte/immemorial_emperor_shoulder_black/immemorial_emperor_shoulder_black"
+				}
+			}
+		}
+	}
+	"6054"
+	{
+		"name"									"Immemorial Emperor's Scythe"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-24"
+		"image_inventory"						"econ/items/necrolyte/immemorial_emperor_weapon/immemorial_emperor_weapon"
+		"item_name"								"#DOTA_Item_Immemorial_Emperors_Scythe"
+		"item_rarity"							"uncommon"
+		"model_player"							"models/items/necrolyte/immemorial_emperor_weapon/immemorial_emperor_weapon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"2/3/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/necrolyte/immemorial_emperor_weapon/immemorial_emperor_weapon.vmdl"
+					"name"						"#DOTA_Item_Immemorial_Emperors_Scythe_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/necrolyte/immemorial_emperor_weapon_black/immemorial_emperor_weapon_black.vmdl"
+					"name"						"#DOTA_Item_Immemorial_Emperors_Scythe_Style1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/necrolyte/immemorial_emperor_weapon/immemorial_emperor_weapon"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/necrolyte/immemorial_emperor_weapon_black/immemorial_emperor_weapon_black"
+				}
+			}
+		}
+	}
+	"6291"
+	{
+		"name"									"Moldering Mask of Ka"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-10"
+		"image_inventory"						"econ/items/necrolyte/necronub_head/necronub_head"
+		"item_description"						"#DOTA_Item_Desc_Moldering_Mask_of_Ka"
+		"item_name"								"#DOTA_Item_Moldering_Mask_of_Ka"
+		"item_rarity"							"rare"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/necrolyte/necronub_head/necronub_head.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"11/11/2014"
+			"price"								"0"
+		}
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_necrolyte' gem_def_index: 3005 } asset_modifier: 91"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"necrolyte_sadist"
+				"modifier"						"necrolyte/necronub/necrolyte_sadist"
+			}
+			"asset_modifier_socket1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_necrolyte/necrolyte_base_attack.vpcf"
+				"modifier"						"particles/econ/items/necrolyte/necronub_base_attack/necrolyte_base_attack_ka.vpcf"
+			}
+		}
+	}
+	"6377"
+	{
+		"name"									"Beard of the Heretic"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-21"
+		"image_inventory"						"econ/items/necrolyte/heretic_head/heretic_head"
+		"item_name"								"#DOTA_Item_Beard_of_the_Heretic"
+		"item_rarity"							"rare"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Beard"
+		"model_player"							"models/items/necrolyte/heretic_head/heretic_head.vmdl"
+	}
+	"6378"
+	{
+		"name"									"Hood of the Heretic"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-21"
+		"image_inventory"						"econ/items/necrolyte/heretic_hood/heretic_hood"
+		"item_name"								"#DOTA_Item_Hood_of_the_Heretic"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hood"
+		"model_player"							"models/items/necrolyte/heretic_hood/heretic_hood.vmdl"
+	}
+	"6379"
+	{
+		"name"									"Scythe of the Heretic"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-21"
+		"image_inventory"						"econ/items/necrolyte/heretic_weapon/heretic_weapon"
+		"item_name"								"#DOTA_Item_Scythe_of_the_Heretic"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Scythe"
+		"model_player"							"models/items/necrolyte/heretic_weapon/heretic_weapon.vmdl"
+	}
+	"6380"
+	{
+		"name"									"Mantle of the Heretic"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-21"
+		"image_inventory"						"econ/items/necrolyte/heretic_shoulder/heretic_shoulder"
+		"item_name"								"#DOTA_Item_Mantle_of_the_Heretic"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/necrolyte/heretic_shoulder/heretic_shoulder.vmdl"
+	}
+	"6591"
+	{
+		"name"									"Scythe of Plague"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-13"
+		"image_inventory"						"econ/items/necrolyte/scytheofplague_weapon/scytheofplague_weapon"
+		"item_name"								"#DOTA_Item_Scythe_of_Plague"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Scythe"
+		"model_player"							"models/items/necrolyte/scytheofplague_weapon/scytheofplague_weapon.vmdl"
+	}
+	"7083"
+	{
+		"name"									"Shroud of Ka"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-10"
+		"image_inventory"						"econ/items/necrolyte/necronub_top/necronub_top"
+		"item_description"						"#DOTA_Item_Desc_Shroud_of_Ka"
+		"item_name"								"#DOTA_Item_Shroud_of_Ka"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Shroud"
+		"model_player"							"models/items/necrolyte/necronub_top/necronub_top.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"11/11/2014"
+			"price"								"0"
+		}
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_necrolyte' gem_def_index: 3005 } asset_modifier: 92"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"ability_icon"
+				"asset"							"necrolyte_heartstopper_aura"
+				"modifier"						"necrolyte/necronub/necrolyte_heartstopper_aura"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier_socket0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_necrolyte/necrolyte_ambient_glow.vpcf"
+				"modifier"						"particles/econ/items/necrolyte/necronub_ambient/necrolyte_ambient_glow_ka.vpcf"
+			}
+		}
+	}
+	"7124"
+	{
+		"name"									"Wings of Ka"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-10"
+		"image_inventory"						"econ/items/necrolyte/necronub_wings/necronub_wings"
+		"item_description"						"#DOTA_Item_Desc_Wings_of_Ka"
+		"item_name"								"#DOTA_Item_Wings_of_Ka"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/necrolyte/necronub_wings/necronub_wings.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"11/11/2014"
+			"price"								"0"
+		}
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_necrolyte' gem_def_index: 3005 } asset_modifier: 90"
+			}
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/necrolyte/necronub_wings/necronub_wings.vmdl"
+					"name"						"#DOTA_Item_Wings_of_Ka_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/necrolyte/necronub_coffin/necronub_coffin.vmdl"
+					"name"						"#DOTA_Item_Wings_of_Ka_Style1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/necrolyte/necronub_wings/necronub_wings"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/necrolyte/necronub_coffin/necronub_coffin"
+				}
+			}
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"necrolyte_death_pulse"
+				"modifier"						"necrolyte/necronub/necrolyte_death_pulse"
+			}
+			"asset_modifier_socket1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_necrolyte/necrolyte_pulse_enemy.vpcf"
+				"modifier"						"particles/econ/items/necrolyte/necronub_death_pulse/necrolyte_pulse_ka_enemy.vpcf"
+			}
+			"asset_modifier_socket2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_necrolyte/necrolyte_pulse_friend.vpcf"
+				"modifier"						"particles/econ/items/necrolyte/necronub_death_pulse/necrolyte_pulse_ka_friend.vpcf"
+			}
+		}
+	}
+	"7132"
+	{
+		"name"									"Scythe of Ka"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-10"
+		"image_inventory"						"econ/items/necrolyte/necronub_scythe/necronub_scythe"
+		"item_description"						"#DOTA_Item_Desc_Scythe_of_Ka"
+		"item_name"								"#DOTA_Item_Scythe_of_Ka"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Scythe"
+		"model_player"							"models/items/necrolyte/necronub_scythe/necronub_scythe.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"11/11/2014"
+			"price"								"0"
+		}
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_necrolyte' gem_def_index: 3005 } asset_modifier: 89"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"necrolyte_reapers_scythe"
+				"modifier"						"necrolyte/necronub/necrolyte_reapers_scythe"
+			}
+			"asset_modifier_socket1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_necrolyte/necrolyte_scythe.vpcf"
+				"modifier"						"particles/econ/items/necrolyte/necronub_scythe/necrolyte_scythe_ka.vpcf"
+			}
+			"asset_modifier_socket2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_necrolyte/necrolyte_scythe_start.vpcf"
+				"modifier"						"particles/econ/items/necrolyte/necronub_scythe/necrolyte_scythe_ka_start.vpcf"
+			}
+		}
+	}
+	"7427"
+	{
+		"name"									"Sullen Hollow"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-13"
+		"image_inventory"						"econ/items/necrolyte/immortal_shoulders/immortal_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Sullen_Hollow"
+		"item_name"								"#DOTA_Item_Sullen_Hollow"
+		"item_rarity"							"immortal"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/necrolyte/immortal_shoulders/immortal_shoulders.vmdl"
+		"particle_folder"						"particles/econ/items/necrolyte/necrophos_sullen"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"immosh"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_necrolyte/necrolyte_pulse_enemy.vpcf"
+				"modifier"						"particles/econ/items/necrolyte/necrophos_sullen/necro_sullen_pulse_enemy.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_necrolyte/necrolyte_pulse_friend.vpcf"
+				"modifier"						"particles/econ/items/necrolyte/necrophos_sullen/necro_sullen_pulse_friend.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"necrolyte_death_pulse"
+				"modifier"						"necrolyte/sullen_hollow/necrophos_death_pulse"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/necrolyte/necrophos_sullen/necro_sullen_ambient.vpcf"
+				"system"						"particles/econ/items/necrolyte/necrophos_sullen/necro_sullen_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"7508"
+	{
+		"name"									"Golden Sullen Hollow"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-30"
+		"image_inventory"						"econ/items/necrolyte/immortal_shoulders/immortal_shoulders2"
+		"item_description"						"#DOTA_Item_Desc_Golden_Sullen_Hollow"
+		"item_name"								"#DOTA_Item_Golden_Sullen_Hollow"
+		"item_rarity"							"immortal"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/necrolyte/immortal_shoulders/immortal_shoulders.vmdl"
+		"particle_folder"						"particles/econ/items/necrolyte/necrophos_sullen_gold"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"immosh"
+			}
+			"skin"								"1"
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_necrolyte/necrolyte_pulse_enemy.vpcf"
+				"modifier"						"particles/econ/items/necrolyte/necrophos_sullen_gold/necro_sullen_pulse_enemy_gold.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_necrolyte/necrolyte_pulse_friend.vpcf"
+				"modifier"						"particles/econ/items/necrolyte/necrophos_sullen_gold/necro_sullen_pulse_friend_gold.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"necrolyte_death_pulse"
+				"modifier"						"necrolyte/sullen_hollow/necrophos_sullen_gold_death_pulse"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/necrolyte/necrophos_sullen_gold/necro_sullen_ambient_gold.vpcf"
+				"system"						"particles/econ/items/necrolyte/necrophos_sullen_gold/necro_sullen_ambient_gold.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"7728"
+	{
+		"name"									"Scythe of the Scourge Dominion"
+		"prefab"								"wearable"
+		"creation_date"							"2016-11-21"
+		"image_inventory"						"econ/items/necrolyte/plague_lord_plague_lord_weapon/plague_lord_plague_lord_weapon"
+		"item_name"								"#DOTA_Item_Scythe_of_the_Scourge_Dominion"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/necrolyte/plague_lord_plague_lord_weapon/plague_lord_plague_lord_weapon.vmdl"
+	}
+	"7729"
+	{
+		"name"									"Crown of the Scourge Dominion"
+		"prefab"								"wearable"
+		"creation_date"							"2016-11-21"
+		"image_inventory"						"econ/items/necrolyte/plague_lord_plague_lord_head/plague_lord_plague_lord_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Scourge_Dominion"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/necrolyte/plague_lord_plague_lord_head/plague_lord_plague_lord_head.vmdl"
+	}
+	"7738"
+	{
+		"name"									"Mantle of the Scourge Dominion"
+		"prefab"								"wearable"
+		"creation_date"							"2016-11-21"
+		"image_inventory"						"econ/items/necrolyte/plague_lord_plague_lord_shoulder/plague_lord_plague_lord_shoulder"
+		"item_name"								"#DOTA_Item_Mantle_of_the_Scourge_Dominion"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/necrolyte/plague_lord_plague_lord_shoulder/plague_lord_plague_lord_shoulder.vmdl"
+	}
+	"7739"
+	{
+		"name"									"Beard of the Scourge Dominion"
+		"prefab"								"wearable"
+		"creation_date"							"2016-11-21"
+		"image_inventory"						"econ/items/necrolyte/plague_lord_plague_lord_beard/plague_lord_plague_lord_beard"
+		"item_name"								"#DOTA_Item_Beard_of_the_Scourge_Dominion"
+		"item_rarity"							"rare"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Body_Head"
+		"model_player"							"models/items/necrolyte/plague_lord_plague_lord_beard/plague_lord_plague_lord_beard.vmdl"
+	}
+	"8043"
+	{
+		"name"									"Sleeves of the Master Necromancer"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-25"
+		"image_inventory"						"econ/items/necrolyte/vampire_counts_head/vampire_counts_head"
+		"item_name"								"#DOTA_Item_Sleeves_of_the_Master_Necromancer"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head_and_Sleeves"
+		"model_player"							"models/items/necrolyte/vampire_counts_head/vampire_counts_head.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Vampire_Counts_Master_Head_and_Sleeves_0"
+					"alternate_icon"			"0"
+					"model_player"				"models/items/necrolyte/vampire_counts_head/vampire_counts_head.vmdl"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Vampire_Counts_Master_Head_and_Sleeves_1"
+					"alternate_icon"			"1"
+					"model_player"				"models/items/necrolyte/vampire_counts_head2/vampire_counts_head2.vmdl"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/necrolyte/vampire_counts_head/vampire_counts_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/necrolyte/vampire_counts_head/vampire_counts_head_style1"
+				}
+			}
+		}
+	}
+	"8044"
+	{
+		"name"									"Guise of the Master Necromancer"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-25"
+		"image_inventory"						"econ/items/necrolyte/vampire_counts_beard/vampire_counts_beard"
+		"item_name"								"#DOTA_Item_Guise_of_the_Master_Necromancer"
+		"item_rarity"							"rare"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Beard_and_Book"
+		"model_player"							"models/items/necrolyte/vampire_counts_beard/vampire_counts_beard.vmdl"
+	}
+	"8045"
+	{
+		"name"									"Scythe of the Master Necromancer"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-25"
+		"image_inventory"						"econ/items/necrolyte/vampire_counts_weapon/vampire_counts_weapon"
+		"item_name"								"#DOTA_Item_Scythe_of_the_Master_Necromancer"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/necrolyte/vampire_counts_weapon/vampire_counts_weapon.vmdl"
+	}
+	"8046"
+	{
+		"name"									"Robe of the Master Necromancer"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-25"
+		"image_inventory"						"econ/items/necrolyte/vampire_counts_shoulder/vampire_counts_shoulder"
+		"item_name"								"#DOTA_Item_Robe_of_the_Master_Necromancer"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Robe"
+		"model_player"							"models/items/necrolyte/vampire_counts_shoulder/vampire_counts_shoulder.vmdl"
+	}
+	"8474"
+	{
+		"name"									"Lich Sleeves of the Master Necromancer"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/necrolyte/vampire_counts_head/vampire_counts_head_pre"
+		"item_name"								"#DOTA_Item_Lich_Sleeves_of_the_Master_Necromancer"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head_and_Sleeves"
+		"model_player"							"models/items/necrolyte/vampire_counts_head/vampire_counts_head.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Vampire_Counts_Master_Head_and_Sleeves_0"
+					"alternate_icon"			"0"
+					"model_player"				"models/items/necrolyte/vampire_counts_head/vampire_counts_head.vmdl"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Vampire_Counts_Master_Head_and_Sleeves_1"
+					"alternate_icon"			"1"
+					"model_player"				"models/items/necrolyte/vampire_counts_head2/vampire_counts_head2.vmdl"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/necrolyte/vampire_counts_head/vampire_counts_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/necrolyte/vampire_counts_head/vampire_counts_head_style1"
+				}
+			}
+			"skin"								"1"
+		}
+	}
+	"8475"
+	{
+		"name"									"Lich Guise of the Master Necromancer"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/necrolyte/vampire_counts_beard/vampire_counts_beard1"
+		"item_name"								"#DOTA_Item_Lich_Guise_of_the_Master_Necromancer"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Beard_and_Book"
+		"model_player"							"models/items/necrolyte/vampire_counts_beard/vampire_counts_beard.vmdl"
+		"visuals"
+		{
+			"skin"								"1"
+		}
+	}
+	"8476"
+	{
+		"name"									"Lich Scythe of the Master Necromancer"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/necrolyte/vampire_counts_weapon/vampire_counts_weapon1"
+		"item_name"								"#DOTA_Item_Lich_Scythe_of_the_Master_Necromancer"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/necrolyte/vampire_counts_weapon/vampire_counts_weapon.vmdl"
+		"visuals"
+		{
+			"skin"								"1"
+		}
+	}
+	"8477"
+	{
+		"name"									"Lich Robe of the Master Necromancer"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/necrolyte/vampire_counts_shoulder/vampire_counts_shoulder1"
+		"item_name"								"#DOTA_Item_Lich_Robe_of_the_Master_Necromancer"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Robe"
+		"model_player"							"models/items/necrolyte/vampire_counts_shoulder/vampire_counts_shoulder.vmdl"
+		"visuals"
+		{
+			"skin"								"1"
+		}
+	}
+	"8927"
+	{
+		"name"									"Hood of Decay"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-01"
+		"image_inventory"						"econ/items/necrolyte/apostle_of_decay_head/apostle_of_decay_head"
+		"item_name"								"#DOTA_Item_Hood_of_Decay"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hood"
+		"model_player"							"models/items/necrolyte/apostle_of_decay_head/apostle_of_decay_head.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_necrolyte' gem_def_index: 3005 } asset_modifier: 144"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"necrolyte_sadist"
+				"modifier"						"necrolyte/apostle_of_decay_icons/necrolyte_sadist"
+			}
+		}
+	}
+	"8928"
+	{
+		"name"									"Mask of Decay"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-01"
+		"image_inventory"						"econ/items/necrolyte/apostle_of_decay_mask/apostle_of_decay_mask"
+		"item_description"						"#DOTA_Item_Desc_Mask_of_Decay"
+		"item_name"								"#DOTA_Item_Mask_of_Decay"
+		"item_rarity"							"uncommon"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/necrolyte/apostle_of_decay_mask/apostle_of_decay_mask.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_necrolyte' gem_def_index: 3005 } asset_modifier: 143"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"necrolyte_death_pulse"
+				"modifier"						"necrolyte/apostle_of_decay_icons/necrolyte_death_pulse"
+			}
+		}
+	}
+	"8929"
+	{
+		"name"									"Scythe of Decay"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-01"
+		"image_inventory"						"econ/items/necrolyte/apostle_of_decay_weapon/apostle_of_decay_weapon"
+		"item_name"								"#DOTA_Item_Scythe_of_Decay"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Scythe"
+		"model_player"							"models/items/necrolyte/apostle_of_decay_weapon/apostle_of_decay_weapon.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_necrolyte' gem_def_index: 3005 } asset_modifier: 146"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"necrolyte_reapers_scythe"
+				"modifier"						"necrolyte/apostle_of_decay_icons/necrolyte_reapers_scythe"
+			}
+		}
+	}
+	"8930"
+	{
+		"name"									"Vestments of Decay"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-01"
+		"image_inventory"						"econ/items/necrolyte/apostle_of_decay_shoulder/apostle_of_decay_shoulder"
+		"item_name"								"#DOTA_Item_Vestments_of_Decay"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Vestments"
+		"model_player"							"models/items/necrolyte/apostle_of_decay_shoulder/apostle_of_decay_shoulder.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_necrolyte' gem_def_index: 3005 } asset_modifier: 145"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"necrolyte_heartstopper_aura"
+				"modifier"						"necrolyte/apostle_of_decay_icons/necrolyte_heartstopper_aura"
+			}
+		}
+	}
+	"9089"
+	{
+		"name"									"Sullen Harvest"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-08"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/necrolyte/immortal_scythe/immortal_scythe"
+		"item_description"						"#DOTA_Item_Desc_Sullen_Harvest"
+		"item_name"								"#DOTA_Item_Sullen_Harvest"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/necrolyte/immortal_scythe/immortal_scythe.vmdl"
+		"particle_folder"						"particles/econ/items/necrolyte/necrophos_sullen"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti7"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/necrolyte/necro_sullen_harvest/necro_sullen_harvest_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_necrolyte/necrolyte_scythe_start.vpcf"
+				"modifier"						"particles/econ/items/necrolyte/necro_sullen_harvest/necro_ti7_immortal_scythe_start.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_necrolyte/necrolyte_scythe.vpcf"
+				"modifier"						"particles/econ/items/necrolyte/necro_sullen_harvest/necro_ti7_immortal_scythe.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier4"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Necrolyte.ReapersScythe.Cast"
+				"modifier"						"Hero_Necrolyte.ReapersScythe.Cast.ti7"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier5"
+			{
+				"type"							"ability_icon"
+				"asset"							"necrolyte_reapers_scythe"
+				"modifier"						"necrolyte/necro_ti7_immortal/necrolyte_reapers_scythe"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+		}
+	}
+	"9477"
+	{
+		"name"									"Exodus of the Plague Witch Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-18"
+		"image_inventory"						"econ/items/necrolyte/the_bringer_of_plagues_weapon_the_bringer_of_plagues/the_bringer_of_plagues_weapon_the_bringer_of_plagues"
+		"item_name"								"#DOTA_Item_Exodus_of_the_Plague_Witch_Weapon"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/necrolyte/the_bringer_of_plagues_weapon_the_bringer_of_plagues/the_bringer_of_plagues_weapon_the_bringer_of_plagues.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"9478"
+	{
+		"name"									"Exodus of the Plague Witch Back"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-18"
+		"image_inventory"						"econ/items/necrolyte/the_bringer_of_plagues_robe_the_bringer_of_plagues/the_bringer_of_plagues_robe_the_bringer_of_plagues"
+		"item_name"								"#DOTA_Item_Exodus_of_the_Plague_Witch_Back"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/necrolyte/the_bringer_of_plagues_robe_the_bringer_of_plagues/the_bringer_of_plagues_robe_the_bringer_of_plagues.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"9479"
+	{
+		"name"									"Exodus of the Plague Witch Head"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-18"
+		"image_inventory"						"econ/items/necrolyte/the_bringer_of_plagues_head_the_bringer_of_plagues/the_bringer_of_plagues_head_the_bringer_of_plagues"
+		"item_name"								"#DOTA_Item_Exodus_of_the_Plague_Witch_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/necrolyte/the_bringer_of_plagues_head_the_bringer_of_plagues/the_bringer_of_plagues_head_the_bringer_of_plagues.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"9480"
+	{
+		"name"									"Exodus of the Plague Witch Beard"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-18"
+		"image_inventory"						"econ/items/necrolyte/the_bringer_of_plagues_beard_the_bringer_of_plagues/the_bringer_of_plagues_beard_the_bringer_of_plagues"
+		"item_name"								"#DOTA_Item_Exodus_of_the_Plague_Witch_Beard"
+		"item_rarity"							"rare"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Body_Head"
+		"model_player"							"models/items/necrolyte/the_bringer_of_plagues_beard/dplus_plagues_beard.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9481"
+	{
+		"name"									"Scythe of the Plaguemonger"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-18"
+		"image_inventory"						"econ/items/necrolyte/the_plaguemonger_plaguemongers_scythe/the_plaguemonger_plaguemongers_scythe"
+		"item_name"								"#DOTA_Item_Scythe_of_the_Plaguemonger"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/necrolyte/the_plaguemonger_plaguemongers_scythe/the_plaguemonger_plaguemongers_scythe.vmdl"
+	}
+	"9482"
+	{
+		"name"									"Robe of the Plaguemonger"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-18"
+		"image_inventory"						"econ/items/necrolyte/the_plaguemonger_plaguemongers_robe/the_plaguemonger_plaguemongers_robe"
+		"item_name"								"#DOTA_Item_Robe_of_the_Plaguemonger"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/necrolyte/the_plaguemonger_plaguemongers_robe/the_plaguemonger_plaguemongers_robe.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"9483"
+	{
+		"name"									"Headdress of the Plaguemonger"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-18"
+		"image_inventory"						"econ/items/necrolyte/the_plaguemonger_plaguemongers_headdress/the_plaguemonger_plaguemongers_headdress"
+		"item_name"								"#DOTA_Item_Headdress_of_the_Plaguemonger"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/necrolyte/the_plaguemonger_plaguemongers_headdress/the_plaguemonger_plaguemongers_headdress.vmdl"
+	}
+	"9484"
+	{
+		"name"									"Beard of the the Plaguemonger"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-18"
+		"image_inventory"						"econ/items/necrolyte/the_plaguemonger_plaguemongers_beard/the_plaguemonger_plaguemongers_beard"
+		"item_name"								"#DOTA_Item_Beard_of_the_the_Plaguemonger"
+		"item_rarity"							"rare"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Body_Head"
+		"model_player"							"models/items/necrolyte/the_plaguemonger_plaguemongers_beard/the_plaguemonger_plaguemongers_beard.vmdl"
+	}
+	"9760"
+	{
+		"name"									"Fringe of the Plaguemonger"
+		"prefab"								"wearable"
+		"creation_date"							"2018-04-06"
+		"image_inventory"						"econ/items/necrolyte/the_plaguemonger_plaguemongers_robe/necrolyte_plaguemongers_skirt"
+		"item_name"								"#DOTA_Item_Fringe_of_the_Plaguemonger"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_legs"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/necrolyte/the_plaguemonger_plaguemongers_robe/necrolyte_plaguemongers_skirt.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"9838"
+	{
+		"name"									"Beard of the Murid Divine"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/necrolyte/ti8_necro_disaster_of_pestilence_beard/ti8_necro_disaster_of_pestilence_beard"
+		"item_name"								"#DOTA_Item_Beard_of_the_Murid_Divine"
+		"item_rarity"							"mythical"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Body_Head"
+		"model_player"							"models/items/necrolyte/ti8_necro_disaster_of_pestilence_beard/ti8_necro_disaster_of_pestilence_beard.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9839"
+	{
+		"name"									"Crown of the Murid Divine"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/necrolyte/ti8_necro_disaster_of_pestilence_head/ti8_necro_disaster_of_pestilence_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Murid_Divine"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/necrolyte/ti8_necro_disaster_of_pestilence_head/ti8_necro_disaster_of_pestilence_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9840"
+	{
+		"name"									"Legs of the Murid Divine"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/necrolyte/ti8_necro_disaster_of_pestilence_legs/ti8_necro_disaster_of_pestilence_legs"
+		"item_name"								"#DOTA_Item_Legs_of_the_Murid_Divine"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_legs"
+		"model_player"							"models/items/necrolyte/ti8_necro_disaster_of_pestilence_legs/ti8_necro_disaster_of_pestilence_legs.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9841"
+	{
+		"name"									"Robe of the Murid Divine"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/necrolyte/ti8_necro_disaster_of_pestilence_robe/ti8_necro_disaster_of_pestilence_robe"
+		"item_name"								"#DOTA_Item_Robe_of_the_Murid_Divine"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/necrolyte/ti8_necro_disaster_of_pestilence_robe/ti8_necro_disaster_of_pestilence_robe.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9842"
+	{
+		"name"									"Staff of the Murid Divine"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/necrolyte/ti8_necro_disaster_of_pestilence_weapon/ti8_necro_disaster_of_pestilence_weapon"
+		"item_name"								"#DOTA_Item_Staff_of_the_Murid_Divine"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/necrolyte/ti8_necro_disaster_of_pestilence_weapon/ti8_necro_disaster_of_pestilence_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"12932"
+	{
+		"name"									"Sullen Rampart"
+		"prefab"								"wearable"
+		"creation_date"							"2019-02-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/necrolyte/necro_ti9_immortal_skirt/necro_ti9_immortal_skirt"
+		"item_description"						"#DOTA_Item_Desc_Sullen_Rampart"
+		"item_name"								"#DOTA_Item_Sullen_Rampart"
+		"item_rarity"							"immortal"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_legs"
+		"model_player"							"models/items/necrolyte/necro_ti9_immortal_skirt/necro_ti9_immortal_skirt.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1565733600"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_necrolyte/necrolyte_spirit.vpcf"
+				"modifier"						"particles/econ/items/necrolyte/necro_ti9_immortal/necro_ti9_immortal_shroud.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/status_fx/status_effect_necrolyte_spirit.vpcf"
+				"modifier"						"particles/econ/items/necrolyte/necro_ti9_immortal/status_effect_necro_ti9_immortal_shroud.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_necrolyte/necrolyte_spirit_debuff.vpcf"
+				"modifier"						"particles/econ/items/necrolyte/necro_ti9_immortal/necro_ti9_immortal_shroud_debuff.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/necrolyte/necro_ti9_immortal/necro_ti9_immortal_ambient.vpcf"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"necrolyte_sadist"
+				"modifier"						"necrolyte/ti9_immortal_legs/necrophos_ghost_shroud_immortal"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_necrolyte/necrolyte_loadout.vpcf"
+				"modifier"						"particles/econ/items/necrolyte/necro_ti9_immortal/necro_ti9_immortal_loadout.vpcf"
+			}
+		}
+	}
+	"13065"
+	{
+		"name"									"Fowl Omen Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/necrolyte/ti9_cache_necro_fowl_plague_shoulder/ti9_cache_necro_fowl_plague_shoulder"
+		"item_name"								"#DOTA_Item_Fowl_Omen_Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/necrolyte/ti9_cache_necro_fowl_plague_shoulder/ti9_cache_necro_fowl_plague_shoulder.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/necrolyte/necro_ti9_cache/necro_ti9_cache_back_ambient.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_DIE"
+				"modifier"						"egg"
+			}
+		}
+	}
+	"13066"
+	{
+		"name"									"Fowl Omen Scythe"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/necrolyte/ti9_cache_necro_fowl_plague_scythe/ti9_cache_necro_fowl_plague_scythe"
+		"item_name"								"#DOTA_Item_Fowl_Omen_Scythe"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/necrolyte/ti9_cache_necro_fowl_plague_scythe/ti9_cache_necro_fowl_plague_scythe.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/necrolyte/necro_ti9_cache/necro_ti9_cache_weapon_ambient.vpcf"
+			}
+		}
+	}
+	"13067"
+	{
+		"name"									"Fowl Omen Skirt"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/necrolyte/ti9_cache_necro_fowl_plague_legs/ti9_cache_necro_fowl_plague_legs"
+		"item_name"								"#DOTA_Item_Fowl_Omen_Skirt"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_legs"
+		"model_player"							"models/items/necrolyte/ti9_cache_necro_fowl_plague_legs/ti9_cache_necro_fowl_plague_legs.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"13068"
+	{
+		"name"									"Fowl Omen Head"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/necrolyte/ti9_cache_necro_fowl_plague_head/ti9_cache_necro_fowl_plague_head"
+		"item_name"								"#DOTA_Item_Fowl_Omen_Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/necrolyte/ti9_cache_necro_fowl_plague_head/ti9_cache_necro_fowl_plague_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti9"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/necrolyte/necro_ti9_cache/necro_ti9_cache_ambient_head.vpcf"
+			}
+		}
+	}
+	"13069"
+	{
+		"name"									"Fowl Omen Beard"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/necrolyte/ti9_cache_necro_fowl_plague_beard/ti9_cache_necro_fowl_plague_beard"
+		"item_name"								"#DOTA_Item_Fowl_Omen_Beard"
+		"item_rarity"							"mythical"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Body_Head"
+		"model_player"							"models/items/necrolyte/ti9_cache_necro_fowl_plague_beard/ti9_cache_necro_fowl_plague_beard.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"17926"
+	{
+		"name"									"Plague Baron Collar"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/necrolyte/the_count_of_plague_collar/the_count_of_plague_collar"
+		"item_name"								"#DOTA_Item_Plague_Baron_Collar"
+		"item_rarity"							"rare"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_body_head"
+		"model_player"							"models/items/necrolyte/the_count_of_plague_collar/the_count_of_plague_collar.vmdl"
+	}
+	"17927"
+	{
+		"name"									"Plague Baron Skirt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/necrolyte/the_count_of_plague_skirt/the_count_of_plague_skirt"
+		"item_name"								"#DOTA_Item_Plague_Baron_Skirt"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"model_player"							"models/items/necrolyte/the_count_of_plague_skirt/the_count_of_plague_skirt.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"17928"
+	{
+		"name"									"Plague Baron Wand"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/necrolyte/the_count_of_plague_wand/the_count_of_plague_wand"
+		"item_name"								"#DOTA_Item_Plague_Baron_Wand"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/necrolyte/the_count_of_plague_wand/the_count_of_plague_wand.vmdl"
+	}
+	"17929"
+	{
+		"name"									"Plague Baron Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/necrolyte/the_count_of_plague_wings/the_count_of_plague_wings"
+		"item_name"								"#DOTA_Item_Plague_Baron_Wings"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/necrolyte/the_count_of_plague_wings/the_count_of_plague_wings.vmdl"
+	}
+	"17930"
+	{
+		"name"									"Plague Baron Hat"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/necrolyte/the_count_of_plague_hat/the_count_of_plague_hat"
+		"item_name"								"#DOTA_Item_Plague_Baron_Hat"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/necrolyte/the_count_of_plague_hat/the_count_of_plague_hat.vmdl"
+	}
+	"18212"
+	{
+		"name"									"Aghs BP Beard of the Murid Divine"
+		"prefab"								"wearable"
+		"creation_date"							"2021-10-27"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/necrolyte/ti8_necro_disaster_of_pestilence_beard/ti8_necro_disaster_of_pestilence_beard1"
+		"item_name"								"#DOTA_Item_Aghs_BP_Beard_of_the_Murid_Divine"
+		"item_rarity"							"mythical"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Body__Head"
+		"model_player"							"models/items/necrolyte/ti8_necro_disaster_of_pestilence_beard/ti8_necro_disaster_of_pestilence_beard.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"18213"
+	{
+		"name"									"Aghs BP Crown of the Murid Divine"
+		"prefab"								"wearable"
+		"creation_date"							"2021-10-27"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/necrolyte/ti8_necro_disaster_of_pestilence_head/ti8_necro_disaster_of_pestilence_head1"
+		"item_name"								"#DOTA_Item_Aghs_BP_Crown_of_the_Murid_Divine"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/necrolyte/ti8_necro_disaster_of_pestilence_head/ti8_necro_disaster_of_pestilence_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"18214"
+	{
+		"name"									"Aghs BP Legs of the Murid Divine"
+		"prefab"								"wearable"
+		"creation_date"							"2021-10-27"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/necrolyte/ti8_necro_disaster_of_pestilence_legs/ti8_necro_disaster_of_pestilence_legs1"
+		"item_name"								"#DOTA_Item_Aghs_BP_Legs_of_the_Murid_Divine"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Legs"
+		"model_player"							"models/items/necrolyte/ti8_necro_disaster_of_pestilence_legs/ti8_necro_disaster_of_pestilence_legs.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"18215"
+	{
+		"name"									"Aghs BP Robe of the Murid Divine"
+		"prefab"								"wearable"
+		"creation_date"							"2021-10-27"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/necrolyte/ti8_necro_disaster_of_pestilence_robe/ti8_necro_disaster_of_pestilence_robe1"
+		"item_name"								"#DOTA_Item_Aghs_BP_Robe_of_the_Murid_Divine"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/necrolyte/ti8_necro_disaster_of_pestilence_robe/ti8_necro_disaster_of_pestilence_robe.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"18216"
+	{
+		"name"									"Aghs BP Staff of the Murid Divine"
+		"prefab"								"wearable"
+		"creation_date"							"2021-10-27"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/necrolyte/ti8_necro_disaster_of_pestilence_weapon/ti8_necro_disaster_of_pestilence_weapon1"
+		"item_name"								"#DOTA_Item_Aghs_BP_Staff_of_the_Murid_Divine"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/necrolyte/ti8_necro_disaster_of_pestilence_weapon/ti8_necro_disaster_of_pestilence_weapon_agh.vmdl"
+		"set_parent_skin"						"1"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"20107"
+	{
+		"name"									"Relics of the Putrid Pontiff Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Beard of Weeping Scorn"			"1"
+			"Pretiosa of Putrescense"			"1"
+			"Reliquary of Rotting Doom"			"1"
+			"Scythe of Twin Deaths"				"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Relics_of_the_Putrid_Pontiff_Set"
+		"item_description"						"#DOTA_Item_Desc_Relics_of_the_Putrid_Pontiff_Set"
+		"item_name"								"#DOTA_Item_Relics_of_the_Putrid_Pontiff_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20298"
+	{
+		"name"									"Vestments of the Ten Plagues Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Vestments of the Ten Plagues Beard""1"
+			"Vestments of the Ten Plagues Helm"	"1"
+			"Vestments of the Ten Plagues Shoulders""1"
+			"Vestments of the Ten Plagues Scythe""1"
+		}
+		"creation_date"							"2013-11-06"
+		"image_inventory"						"econ/sets/DOTA_Item_Vestments_of_the_Ten_Plagues_Set"
+		"item_description"						"#DOTA_Item_Desc_Vestments_of_the_Ten_Plagues_Set"
+		"item_name"								"#DOTA_Item_Vestments_of_the_Ten_Plagues_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"11/6/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20375"
+	{
+		"name"									"Immemorial Emperor Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Immemorial Emperor's Beard"		"1"
+			"Immemorial Emperor's Coronet"		"1"
+			"Immemorial Emperor's Mantle"		"1"
+			"Immemorial Emperor's Scythe"		"1"
+			"Immemorial Emperor"				"1"
+		}
+		"creation_date"							"2014-01-24"
+		"image_inventory"						"econ/sets/DOTA_Item_Immemorial_Emperor_Set"
+		"item_description"						"#DOTA_Item_Desc_Immemorial_Emperor_Set"
+		"item_name"								"#DOTA_Item_Immemorial_Emperor_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"2/3/2014"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20481"
+	{
+		"name"									"Robes of the Heretic"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Hood of the Heretic"				"1"
+			"Mantle of the Heretic"				"1"
+			"Scythe of the Heretic"				"1"
+			"Beard of the Heretic"				"1"
+			"Robes of the Heretic Loading Screen""1"
+		}
+		"creation_date"							"2014-04-21"
+		"image_inventory"						"econ/sets/DOTA_Item_Robes_of_the_Heretic"
+		"item_description"						"#DOTA_Item_Desc_Robes_of_the_Heretic"
+		"item_name"								"#DOTA_Item_Robes_of_the_Heretic"
+		"item_rarity"							"rare"
+	}
+	"20676"
+	{
+		"name"									"Wrath of Ka"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Wrath of Ka Loading Screen"		"1"
+			"Moldering Mask of Ka"				"1"
+			"Shroud of Ka"						"1"
+			"Wings of Ka"						"1"
+			"Scythe of Ka"						"1"
+			"Wrath of Ka Cursor Pack"			"1"
+		}
+		"creation_date"							"2014-11-10"
+		"image_inventory"						"econ/loading_screens/necronub_load_screen"
+		"item_description"						"#DOTA_Item_Desc_Wrath_of_Ka"
+		"item_name"								"#DOTA_Item_Wrath_of_Ka"
+		"item_rarity"							"mythical"
+		"price_info"
+		{
+			"category_tags"						"Bundles"
+			"date"								"11/11/2014"
+			"bundle"							"1"
+			"price"								"899"
+		}
+	}
+	"20823"
+	{
+		"name"									"Apostle of Decay"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Apostle of Decay Loading Screen"	"1"
+			"Hood of Decay"						"1"
+			"Mask of Decay"						"1"
+			"Scythe of Decay"					"1"
+			"Vestments of Decay"				"1"
+		}
+		"creation_date"							"2015-06-02"
+		"image_inventory"						"econ/loading_screens/apostle_of_decay_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Apostle_of_Decay"
+		"item_name"								"#DOTA_Item_Apostle_of_Decay"
+		"item_rarity"							"mythical"
+	}
+	"20882"
+	{
+		"name"									"Master Necromancer"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of the Master Necromancer""1"
+			"Robe of the Master Necromancer"	"1"
+			"Scythe of the Master Necromancer"	"1"
+			"Sleeves of the Master Necromancer"	"1"
+			"Guise of the Master Necromancer"	"1"
+		}
+		"creation_date"							"2016-08-25"
+		"image_inventory"						"econ/loading_screens/vampire_counts_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Master_Necromancer"
+		"item_name"								"#DOTA_Item_Master_Necromancer"
+		"item_rarity"							"rare"
+	}
+	"20894"
+	{
+		"name"									"Scourge Dominion"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Scythe of the Scourge Dominion"	"1"
+			"Mantle of the Scourge Dominion"	"1"
+			"Scourge Dominion Loading Screen"	"1"
+			"Crown of the Scourge Dominion"		"1"
+			"Beard of the Scourge Dominion"		"1"
+		}
+		"creation_date"							"2016-11-21"
+		"image_inventory"						"econ/loading_screens/plague_lord_plague_lord_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Scourge_Dominion"
+		"item_name"								"#DOTA_Item_Scourge_Dominion"
+		"item_rarity"							"rare"
+		"purchase_requirement_prompt_ok_event"	"DOTAShowItemDefPage( 17149 )"
+		"purchase_requirement_prompt_ok_text"	"#DOTA_CacheTreasure_MissingCompendiumOK"
+		"purchase_requirement_prompt_text"		"#DOTA_CacheTreasure_MissingCompendium_Fall2016"
+	}
+	"21032"
+	{
+		"name"									"Lich Master Necromancer"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Lich Sleeves of the Master Necromancer""1"
+			"Lich Guise of the Master Necromancer""1"
+			"Lich Scythe of the Master Necromancer""1"
+			"Lich Robe of the Master Necromancer""1"
+			"Loading Screen of the Master Necromancer""1"
+		}
+		"creation_date"							"2016-09-01"
+		"image_inventory"						"econ/loading_screens/vampire_counts_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Lich_Master_Necromancer"
+		"item_name"								"#DOTA_Item_Lich_Master_Necromancer"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+	}
+	"21129"
+	{
+		"name"									"The Plaguemonger"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Beard of the the Plaguemonger"		"1"
+			"Headdress of the Plaguemonger"		"1"
+			"Robe of the Plaguemonger"			"1"
+			"Scythe of the Plaguemonger"		"1"
+			"The Plaguemonger Loading Screen"	"1"
+			"Fringe of the Plaguemonger"		"1"
+		}
+		"creation_date"							"2017-09-18"
+		"image_inventory"						"econ/loading_screens/the_plaguemonger_plaguemonger_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_The_Plaguemonger"
+		"item_name"								"#DOTA_Item_The_Plaguemonger"
+		"item_rarity"							"rare"
+	}
+	"21131"
+	{
+		"name"									"Exodus of the Plague Witch"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Exodus of the Plague Witch Beard"	"1"
+			"Exodus of the Plague Witch Head"	"1"
+			"Exodus of the Plague Witch Back"	"1"
+			"Exodus of the Plague Witch Weapon"	"1"
+			"Exodus of the Plague Witch Loading Screen""1"
+		}
+		"creation_date"							"2017-09-18"
+		"image_inventory"						"econ/loading_screens/the_bringer_of_plagues_loading_the_bringer_of_plagues"
+		"item_name"								"#DOTA_Item_Exodus_of_the_Plague_Witch"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"15000"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21195"
+	{
+		"name"									"The Murid Divine"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"The Murid Divine Loading Screen"	"1"
+			"Staff of the Murid Divine"			"1"
+			"Robe of the Murid Divine"			"1"
+			"Legs of the Murid Divine"			"1"
+			"Crown of the Murid Divine"			"1"
+			"Beard of the Murid Divine"			"1"
+		}
+		"creation_date"							"2018-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/loading_screens/ti8_necro_disaster_of_pestilence_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_The_Murid_Divine"
+		"item_name"								"#DOTA_Item_The_Murid_Divine"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+		}
+	}
+	"21340"
+	{
+		"name"									"Fowl Omen"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Fowl Omen Scythe"					"1"
+			"Fowl Omen Beard"					"1"
+			"Fowl Omen Head"					"1"
+			"Fowl Omen Skirt"					"1"
+			"Fowl Omen Shoulder"				"1"
+		}
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/sets/DOTA_Item_Fowl_Omen"
+		"item_description"						"#DOTA_Item_Desc_Fowl_Omen"
+		"item_name"								"#DOTA_Item_Fowl_Omen"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"21722"
+	{
+		"name"									"Plague Baron"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Plague Baron Collar"				"1"
+			"Plague Baron Hat"					"1"
+			"Plague Baron Skirt"				"1"
+			"Plague Baron Wand"					"1"
+			"Plague Baron Wings"				"1"
+		}
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_The_Count_of_Plague"
+		"item_name"								"#DOTA_Item_Plague_Baron"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+	}
+	"22276"
+	{
+		"name"									"Aghs BP The Murid Divine"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Aghs BP Beard of the Murid Divine"	"1"
+			"Aghs BP Crown of the Murid Divine"	"1"
+			"Aghs BP Legs of the Murid Divine"	"1"
+			"Aghs BP Robe of the Murid Divine"	"1"
+			"Aghs BP Staff of the Murid Divine"	"1"
+		}
+		"creation_date"							"2021-10-27"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_The_Murid_Divine"
+		"item_name"								"#DOTA_Item_Aghs_BP_The_Murid_Divine"
+		"item_rarity"							"mythical"
+	}
+	"23345"
+	{
+		"name"									"Sullen Shrine"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/necrolyte/necro_2022_immortal/necro_2022_immortal_head"
+		"item_description"						"#DOTA_Item_Desc_Sullen_Shrine"
+		"item_name"								"#DOTA_Item_Sullen_Shrine"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/necrolyte/necro_2022_immortal/necro_2022_immortal_head.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+			"can_equip_as_ability_effects"		"3"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/necrolyte/necro_2022_head_immortal/necro_head_immortal_ambient.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_necrolyte/necrolyte_heartstop_target_null.vpcf"
+				"modifier"						"particles/econ/items/necrolyte/necro_2022_head_immortal/necro_head_immortal_target.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_necrolyte/necrolyte_heartstop_target_creep_null.vpcf"
+				"modifier"						"particles/econ/items/necrolyte/necro_2022_head_immortal/necro_head_immortal_target_creep.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"necrolyte_heartstopper_aura"
+				"modifier"						"necrolyte/necro_2022_immortal/necro_2022_immortal_heartstopper_aura"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+		}
+	}
+	"23346"
+	{
+		"name"									"Sullen Strands"
+		"prefab"								"wearable"
+		"creation_date"							"2022-05-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/necrolyte/necro_2022_immortal/necro_2022_immortal_beard"
+		"item_description"						"#DOTA_Item_Desc_Sullen_Strands"
+		"item_name"								"#DOTA_Item_Sullen_Strands"
+		"item_rarity"							"immortal"
+		"item_slot"								"body_head"
+		"model_player"							"models/items/necrolyte/necro_2022_immortal/necro_2022_immortal_beard.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/necrolyte/necro_2022_head_immortal/necro_beard_immortal_ambient.vpcf"
+			}
+		}
+	}
+	"23717"
+	{
+		"name"									"Sullen Sanctum"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Sullen Shrine"						"1"
+			"Sullen Strands"					"1"
+		}
+		"creation_date"							"2022-07-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/sets/DOTA_Item_Sullen_Sanctum"
+		"item_description"						"#DOTA_Item_Desc_Sullen_Sanctum"
+		"item_name"								"#DOTA_Item_Sullen_Sanctum"
+		"item_rarity"							"immortal"
+		"static_attributes"
+		{
+			"giftable"							"0"
+			"cannot trade"						"1"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+			"tradable after date"				"1698865200"
+			"webm preview url"					"apps/dota2/videos/dota_react/international2022/immortals/necrolyte_client.webm"
+		}
+	}
+	"24878"
+	{
+		"name"									"Golden Sullen Shrine"
+		"prefab"								"wearable"
+		"creation_date"							"2022-10-05"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/necrolyte/necro_2022_immortal/necro_2022_immortal_head1"
+		"item_description"						"#DOTA_Item_Desc_Golden_Sullen_Shrine"
+		"item_name"								"#DOTA_Item_Golden_Sullen_Shrine"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/necrolyte/necro_2022_immortal/necro_2022_immortal_head.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+			"can_equip_as_ability_effects"		"3"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/necrolyte/necro_2022_head_immortal/necro_head_immortal_golden_ambient.vpcf"
+			}
+			"skin"								"1"
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_necrolyte/necrolyte_heartstop_target_null.vpcf"
+				"modifier"						"particles/econ/items/necrolyte/necro_2022_head_immortal/necro_head_immortal_golden_target.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_necrolyte/necrolyte_heartstop_target_creep_null.vpcf"
+				"modifier"						"particles/econ/items/necrolyte/necro_2022_head_immortal/necro_head_immortal_golden_target_creep.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"necrolyte_heartstopper_aura"
+				"modifier"						"necrolyte/necro_2022_immortal/necro_2022_immortal_heartstopper_aura_gold"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+		}
+	}
+	"24879"
+	{
+		"name"									"Golden Sullen Strands"
+		"prefab"								"wearable"
+		"creation_date"							"2022-10-05"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/necrolyte/necro_2022_immortal/necro_2022_immortal_beard1"
+		"item_description"						"#DOTA_Item_Desc_Golden_Sullen_Strands"
+		"item_name"								"#DOTA_Item_Golden_Sullen_Strands"
+		"item_rarity"							"immortal"
+		"item_slot"								"body_head"
+		"model_player"							"models/items/necrolyte/necro_2022_immortal/necro_2022_immortal_beard.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/necrolyte/necro_2022_head_immortal/necro_beard_immortal_golden_ambient.vpcf"
+			}
+		}
+	}
+	"24880"
+	{
+		"name"									"Golden Sullen Sanctum"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Golden Sullen Shrine"				"1"
+			"Golden Sullen Strands"				"1"
+		}
+		"creation_date"							"2022-10-05"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/sets/DOTA_Item_Golden_Sullen_Sanctum"
+		"item_description"						"#DOTA_Item_Desc_Golden_Sullen_Sanctum"
+		"item_name"								"#DOTA_Item_Golden_Sullen_Sanctum"
+		"item_rarity"							"immortal"
+		"static_attributes"
+		{
+			"giftable"							"0"
+			"cannot trade"						"1"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+			"tradable after date"				"1698865200"
+			"webm preview url"					"apps/dota2/videos/dota_react/international2022/immortals/necrolyte_gold_client.webm"
+		}
+	}
+}

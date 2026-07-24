@@ -1,0 +1,436 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.HudRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+}
+
+#RankPanel
+{
+	opacity: 0;
+	width: 1400px;
+	height: 800px;
+	background-image: url("s2r://panorama/images/custom_game/new_rank/popup_png.vtex");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	transition-property: opacity, transform;
+	transition-duration: 0.3s;
+	transform: translatey(-50px) translatex(-50px);
+	align: center center;
+	padding: 20px 30px;
+}
+
+#RankPanel.Show
+{
+	transform: translatey(0px) translatex(0px);
+	opacity: 1;
+}
+
+#RankPanel #RankTitle
+{
+	font-size: 24px;
+	color: #DBCDA7;
+	horizontal-align: center;
+	margin-top: -6px;
+}
+
+#RankPanel #CloseBtn
+{
+	width: 52px;
+	height: 54px;
+	align: right top;
+	background-image: url("s2r://panorama/images/custom_game/hero_skin/btn_close_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	margin-top: -20px;
+	margin-right: -30px;
+}
+
+#RankPanel #CloseBtn:active
+{
+	pre-transform-scale2d: 0.95;
+}
+
+#RankPanel #CloseBtn:hover
+{
+	brightness: 2;
+}
+
+#RankPanel #RankPanelBody
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	flow-children: right;
+	margin-top: 20px;
+}
+
+#RankPanel #RankPanelBody #RankSidebar
+{
+	width: 260px;
+	height: 100%;
+	flow-children: down;
+}
+
+#RankPanel #RankPanelBody #RankSidebar #RankListTabGroup
+{
+	margin-top: 50px;
+	width: 100%;
+	flow-children: down;
+}
+
+#RankPanel #RankPanelBody #RankSidebar #RankListTabGroup .TabButton
+{
+	width: 220px;
+	height: 56px;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	background-image: url("s2r://panorama/images/custom_game/new_rank/r2_tab_02_png.vtex");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	transition-property: background-image, brightness;
+	transition-duration: 0.2s;
+}
+
+#RankPanel #RankPanelBody #RankSidebar #RankListTabGroup .TabButton Label
+{
+	align: center center;
+	font-size: 20px;
+	color: #6C81A0;
+	transition-property: color;
+	transition-duration: 0.1s;
+	text-overflow: shrink;
+}
+
+#RankPanel #RankPanelBody #RankSidebar #RankListTabGroup .TabButton:hover
+{
+	brightness: 1.2;
+}
+
+#RankPanel #RankPanelBody #RankSidebar #RankListTabGroup .TabButton:hover Label
+{
+	color: #A7C5EA;
+}
+
+#RankPanel #RankPanelBody #RankSidebar #RankListTabGroup .TabButton.Selected
+{
+	background-image: url("s2r://panorama/images/custom_game/new_rank/r2_tab_01_png.vtex");
+}
+
+#RankPanel #RankPanelBody #RankSidebar #RankListTabGroup .TabButton.Selected Label
+{
+	color: #FFFFFF;
+}
+
+#RankPanel #RankPanelBody #RankSidebar .SidebarSpacer
+{
+	height: fill-parent-flow(1);
+}
+
+#RankPanel #RankPanelBody #RankContent
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.3s;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList.Selected
+{
+	opacity: 1;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListHeader
+{
+	width: 100%;
+	height: 40px;
+	flow-children: right;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListHeader Label
+{
+	vertical-align: center;
+	font-size: 18px;
+	color: #6a7c93;
+	text-align: center;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListHeader .HeaderRank
+{
+	width: 15%;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListHeader .HeaderPlayer
+{
+	width: 35%;
+	text-align: left;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListHeader .HeaderScorePve
+{
+	width: 25%;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListHeader .HeaderTime
+{
+	width: 25%;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListHeader .HeaderScore
+{
+	width: 50%;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListDivider
+{
+	width: 100%;
+	height: 4px;
+	background-image: url("s2r://panorama/images/custom_game/new_rank/r2_line_divider2_png.vtex");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	margin-bottom: 15px;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListItemsContainer
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListItemsContainer .RankListShadow
+{
+	width: 100%;
+	height: 40px;
+	align: center bottom;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#00000000), color-stop(0.6, #00000080), to(#000000dd));
+	z-index: 2;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListItemsContainer .RankListItems
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	overflow: squish scroll;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListItemsContainer .RankListItems VerticalScrollBar
+{
+	width: 6px;
+	height: 95%;
+	vertical-align: center;
+	opacity: 0.5;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListItemsContainer .RankListItems VerticalScrollBar .ScrollThumb
+{
+	background-color: #48698F;
+	border-width: 0px;
+	border-radius: 3px;
+	border: 1px solid #48698F;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListSelfFooter
+{
+	width: 100%;
+	height: fit-children;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListTile
+{
+	width: 100%;
+	height: 66px;
+	margin-bottom: 6px;
+	background-image: url("s2r://panorama/images/custom_game/new_rank/r2_list_png.vtex");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	flow-children: right;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListTile.Self
+{
+	background-image: url("s2r://panorama/images/custom_game/new_rank/r2_list2_png.vtex");
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListTile #Ranking
+{
+	width: 15%;
+	height: 100%;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListTile #Ranking .RankTag
+{
+	width: 44px;
+	height: 44px;
+	align: center center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListTile #Ranking .RankTag.RankTag1
+{
+	background-image: url("s2r://panorama/images/custom_game/new_rank/r2_tag_rank1_png.vtex");
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListTile #Ranking .RankTag.RankTag2
+{
+	background-image: url("s2r://panorama/images/custom_game/new_rank/r2_tag_rank2_png.vtex");
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListTile #Ranking .RankTag.RankTag3
+{
+	background-image: url("s2r://panorama/images/custom_game/new_rank/r2_tag_rank3_png.vtex");
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListTile #Ranking .RankTag.RankTag4
+{
+	background-image: url("s2r://panorama/images/custom_game/new_rank/r2_tag_rank4_png.vtex");
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListTile #Ranking .RankTag Label
+{
+	align: center center;
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 2px;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListTile #Ranking .RankTag Label.Top3Rank
+{
+	visibility: collapse;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListTile #Ranking .RankTag Label.OtherRank
+{
+	color: #92a3bb;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListTile #PlayerInfo
+{
+	width: 35%;
+	height: 100%;
+	flow-children: right;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListTile #PlayerInfo .AvatarContainer
+{
+	width: 50px;
+	height: 50px;
+	vertical-align: center;
+	margin-right: 2px;
+	flow-children: none;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListTile #PlayerInfo .AvatarContainer .AvatarImage
+{
+	width: 50px;
+	height: 50px;
+	align: center center;
+	border-radius: 4px;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListTile #PlayerInfo .AvatarContainer.HasFrame
+{
+	margin-right: 12px;
+	overflow: noclip;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListTile #PlayerInfo .AvatarContainer.HasFrame .AvatarFrame
+{
+	width: 100px;
+	height: 100px;
+	align: center center;
+	overflow: noclip;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListTile #PlayerInfo DOTAUserName
+{
+	vertical-align: center;
+	font-size: 20px;
+	color: #FFFFFF;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListTile #Score
+{
+	width: 50%;
+	height: 100%;
+	flow-children: right;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListTile #Score Label
+{
+	vertical-align: center;
+	font-size: 18px;
+	color: #A4C0E1;
+	text-align: center;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListTile #Score .ColumnScorePve
+{
+	width: 50%;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListTile #Score .ColumnTime
+{
+	width: 50%;
+}
+
+#RankPanel #RankPanelBody #RankContent .RankList .RankListTile #Score .ColumnScore
+{
+	width: 100%;
+}
+
+#RankPanel #SeasonInfoBtn
+{
+	width: 220px;
+	height: 56px;
+	align: left bottom;
+	margin-left: 20px;
+	margin-bottom: 30px;
+	background-image: url("s2r://panorama/images/custom_game/new_rank/r1_btn_blue_png.vtex");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	transition-property: brightness;
+	transition-duration: 0.2s;
+}
+
+#RankPanel #SeasonInfoBtn Label
+{
+	align: center center;
+	font-size: 20px;
+	color: #FFFFFF;
+}
+
+#RankPanel #SeasonInfoBtn:hover
+{
+	brightness: 1.2;
+}
+
+#RankPanel #SeasonInfoBtn:active
+{
+	pre-transform-scale2d: 0.98;
+}

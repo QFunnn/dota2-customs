@@ -1,0 +1,88 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"beastmaster_hawk_dive"
+	{
+		"AbilityCastRange"						"400"
+	}
+	"beastmaster_call_of_the_wild_hawk_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_beastmaster/beastmaster_call_of_the_wild_hawk_lua"
+		"AbilityTextureName"					"beastmaster_call_of_the_wild_hawk"
+		"FightRecapLevel"						"1"
+		"precache"
+		{
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_beastmaster.vsndevts"
+		}
+		"AbilityType"							"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastRange"						"0"
+		"AbilityCastPoint"						"0.3 0.3 0.3 0.3"
+		"AbilityManaCost"						"30"
+		"HasShardUpgrade"						"1"
+		"AbilityValues"
+		{
+			"hawk_duration"						"25"
+			"hawk_base_max_health"				"250 375 500 675"
+			"hawk_base_gold_bounty"				"30 40 50 60"
+			"hawk_base_vision_range"			"600 650 700 750"
+			"hawk_base_xp_bounty"				"40 50 60 70"
+			"hawk_base_magic_resist"			"30 40 50 60"
+			"hawk_base_damage"
+			{
+				"value"							"22 28 34 40"
+				"DamageTypeTooltip"				"DAMAGE_TYPE_PHYSICAL"
+			}
+			"AbilityCooldown"
+			{
+				"value"							"45 40 35 30"
+				"special_bonus_shard"			"-10"
+			}
+			"hawk_count"
+			{
+				"value"							"1"
+				"special_bonus_shard"			"+1"
+			}
+			"max_offset"						"280"
+			"root_duration"						"1.0"
+			"bonus_base_damage"					"8"
+			"max_stack"							"5"
+			"max_hawk_count"					"4"
+		}
+	}
+	"beastmaster_hawk_storm_gathering"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_beastmaster/beastmaster_hawk_storm_gathering"
+		"AbilityTextureName"					"harpy_storm_chain_lightning"
+		"FightRecapLevel"						"1"
+		"precache"
+		{
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_beastmaster.vsndevts"
+		}
+		"AbilityType"							"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"						"0"
+		"AbilityCastPoint"						"0"
+		"AbilityManaCost"						"0"
+		"AbilityValues"
+		{
+			"root_duration"						"0.5"
+			"bonus_base_damage"					"10"
+			"max_stack"							"8"
+		}
+	}
+}

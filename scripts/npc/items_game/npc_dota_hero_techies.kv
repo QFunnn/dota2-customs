@@ -1,0 +1,1734 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"394"
+	{
+		"name"									"Techies Bomb Arsenal"
+		"prefab"								"default_item"
+		"creation_date"							"2014-08-21"
+		"image_inventory"						"econ/heroes/techies/techies_remote_mine"
+		"item_description"						"#DOTA_Item_Desc_Default_Bomb_Arsenal"
+		"item_name"								"#DOTA_Item_Techies_Bomb_Arsenal"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Base"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_techies/techies_remote_mine.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+			}
+		}
+	}
+	"487"
+	{
+		"name"									"Techies Spoon Costume"
+		"prefab"								"default_item"
+		"creation_date"							"2014-03-04"
+		"image_inventory"						"econ/heroes/techies/techies_barrel"
+		"item_description"						"#DOTA_Item_Desc_Spoon_Costume"
+		"item_name"								"#DOTA_Item_Techies_Spoon_Costume"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Base"
+		"model_player"							"models/heroes/techies/techies_barrel.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"489"
+	{
+		"name"									"Techies Slingshot"
+		"prefab"								"default_item"
+		"creation_date"							"2014-03-04"
+		"image_inventory"						"econ/heroes/techies/techies_spleen_weapon"
+		"item_description"						"#DOTA_Item_Desc_Techies_Slingshot"
+		"item_name"								"#DOTA_Item_Techies_Slingshot"
+		"model_player"							"models/heroes/techies/techies_spleen_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"490"
+	{
+		"name"									"Techies Cart"
+		"prefab"								"default_item"
+		"creation_date"							"2014-03-04"
+		"image_inventory"						"econ/heroes/techies/techies_cart"
+		"item_description"						"#DOTA_Item_Desc_Techies_Cart"
+		"item_name"								"#DOTA_Item_Techies_Cart"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Cart"
+		"model_player"							"models/heroes/techies/techies_cart.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_techies/techies_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_techies/techies_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+				}
+			}
+		}
+	}
+	"491"
+	{
+		"name"									"Techies Squee Costume"
+		"prefab"								"default_item"
+		"creation_date"							"2014-03-04"
+		"image_inventory"						"econ/heroes/techies/techies_squee_costume"
+		"item_description"						"#DOTA_Item_Desc_Techies_Squee_Costume"
+		"item_name"								"#DOTA_Item_Techies_Squee_Costume"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Base"
+		"model_player"							"models/heroes/techies/techies_squee_costume.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"492"
+	{
+		"name"									"Techies Spleen Costume"
+		"prefab"								"default_item"
+		"creation_date"							"2014-03-04"
+		"image_inventory"						"econ/heroes/techies/techies_spleen_costume"
+		"item_description"						"#DOTA_Item_Desc_Techies_Spleen_Costume"
+		"item_name"								"#DOTA_Item_Techies_Spleen_Costume"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Base"
+		"model_player"							"models/heroes/techies/techies_spleen_costume.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"499"
+	{
+		"name"									"Techies Sign"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-01"
+		"image_inventory"						"econ/heroes/techies/techies_minefield_sign"
+		"item_description"						"#DOTA_Item_Desc_Techies_Sign"
+		"item_name"								"#DOTA_Item_Techies_Sign"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Base"
+	}
+	"6042"
+	{
+		"name"									"Bombtrails and Boomsticks Spleen"
+		"prefab"								"wearable"
+		"creation_date"							"2019-10-18"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/techies/crazy_night_of_magic_head/crazy_night_of_magic_head"
+		"item_name"								"#DOTA_Item_Bombtrails_and_Boomsticks_Spleen"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/techies/crazy_night_of_magic_head/crazy_night_of_magic_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/techies/techies_fall_crazy_night_of_magic_head/techies_fall_crazy_night_head_ambient.vpcf"
+			}
+		}
+	}
+	"6043"
+	{
+		"name"									"Bombtrails and Boomsticks Spoon"
+		"prefab"								"wearable"
+		"creation_date"							"2019-10-18"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/techies/crazy_night_of_magic_back/crazy_night_of_magic_back"
+		"item_name"								"#DOTA_Item_Bombtrails_and_Boomsticks_Spoon"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/techies/crazy_night_of_magic_back/crazy_night_of_magic_back.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/techies/techies_fall_crazy_night_of_magic_back/techies_crazy_night_ambient_candle.vpcf"
+			}
+		}
+	}
+	"6044"
+	{
+		"name"									"Bombtrails and Boomsticks Mines"
+		"prefab"								"wearable"
+		"creation_date"							"2019-10-18"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/heroes/techies/techies_remote_mine"
+		"item_name"								"#DOTA_Item_Bombtrails_and_Boomsticks_Mines"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+	}
+	"6045"
+	{
+		"name"									"Bombtrails and Boomsticks Squee"
+		"prefab"								"wearable"
+		"creation_date"							"2019-10-18"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/techies/crazy_night_of_magic_shoulder/crazy_night_of_magic_shoulder"
+		"item_name"								"#DOTA_Item_Bombtrails_and_Boomsticks_Squee"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/techies/crazy_night_of_magic_shoulder/crazy_night_of_magic_shoulder.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/techies/techies_fall_crazy_night_of_magic_shoulders/techies_fall_crazy_night_shoulders_ambient.vpcf"
+			}
+		}
+	}
+	"6046"
+	{
+		"name"									"Bombtrails and Boomsticks Cart"
+		"prefab"								"wearable"
+		"creation_date"							"2019-10-18"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/techies/crazy_night_of_magic_mount/crazy_night_of_magic_mount"
+		"item_name"								"#DOTA_Item_Bombtrails_and_Boomsticks_Cart"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_mount"
+		"model_player"							"models/items/techies/crazy_night_of_magic_mount/crazy_night_of_magic_mount.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/techies/techies_fall_crazy_night_of_magic_mount/techies_fall_crazy_night_ambient.vpcf"
+			}
+		}
+	}
+	"6288"
+	{
+		"name"									"Bombtrails and Boomsticks Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2019-10-18"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/techies/crazy_night_of_magic_weapon/crazy_night_of_magic_weapon"
+		"item_name"								"#DOTA_Item_Bombtrails_and_Boomsticks_Weapon"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/techies/crazy_night_of_magic_weapon/crazy_night_of_magic_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"6289"
+	{
+		"name"									"Bombtrails and Boomsticks Sign"
+		"prefab"								"wearable"
+		"creation_date"							"2019-10-18"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/techies/bigshot/techies_sign_bombtrails"
+		"item_name"								"#DOTA_Item_Bombtrails_and_Boomsticks_Sign"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"match_cycle_to_parent"					"0"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_techies_minefield_sign"
+				"modifier"						"models/items/techies/crazy_night_of_magic_sign/crazy_night_of_magic_sign.vmdl"
+			}
+			"skip_model_combine"				"0"
+		}
+	}
+	"6879"
+	{
+		"name"									"Swine of the Sunken Galley"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-04"
+		"image_inventory"						"econ/items/techies/bigshot/bigshot"
+		"item_description"						"#DOTA_Item_Desc_The_Swine_of_the_Sunken_Galley"
+		"item_name"								"#DOTA_Item_Swine_of_the_Sunken_Galley"
+		"item_rarity"							"arcana"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Swine_Cannon"
+		"model_player"							"models/items/techies/bigshot/bigshot.vmdl"
+		"particle_folder"						"particles/econ/items/techies/techies_arcana"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"8/29/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"techies_arcana"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_techies/techies_base_attack.vpcf"
+				"modifier"						"particles/econ/items/techies/techies_arcana/techies_base_attack_arcana.vpcf"
+				"system"						"particles/econ/items/techies/techies_arcana/techies_base_attack_arcana.vpcf"
+				"attach_type"					"point_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack4"
+					}
+				}
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_techies/techies_loadout.vpcf"
+				"modifier"						"particles/econ/items/techies/techies_arcana/techies_loadout_arcana.vpcf"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_techies/techies_remote_mines_detonate.vpcf"
+				"modifier"						"particles/econ/items/techies/techies_arcana/techies_remote_mines_detonate_arcana.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_techies/techies_remote_mine_plant.vpcf"
+				"modifier"						"particles/econ/items/techies/techies_arcana/techies_remote_mine_plant_arcana.vpcf"
+			}
+			"asset_modifier4"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Techies.Suicide"
+				"modifier"						"Hero_Techies.Suicide.Arcana"
+			}
+			"asset_modifier7"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Techies.RemoteMine.Detonate"
+				"modifier"						"Hero_Techies.RemoteMine.Detonate.Arcana"
+			}
+			"asset_modifier3"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Techies.Attack"
+				"modifier"						"Hero_Techies.Attack.Arcana"
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_techies/techies_suicide.vpcf"
+				"modifier"						"particles/econ/items/techies/techies_arcana/techies_suicide_arcana.vpcf"
+			}
+			"asset_modifier9"
+			{
+				"type"							"icon_replacement_hero"
+				"asset"							"npc_dota_hero_techies"
+				"modifier"						"npc_dota_hero_techies_alt1"
+				"force_display"					"1"
+			}
+			"asset_modifier10"
+			{
+				"type"							"ability_icon"
+				"asset"							"techies_remote_mines"
+				"modifier"						"techies_remote_swines"
+			}
+			"asset_modifier11"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/techies/techies_arcana/techies_ambient_arcana.vpcf"
+				"system"						"particles/econ/items/techies/techies_arcana/techies_ambient_arcana.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack4"
+					}
+				}
+			}
+			"asset_modifier12"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/techies/techies_arcana/techies_bigshot_fuse.vpcf"
+				"system"						"particles/econ/items/techies/techies_arcana/techies_bigshot_fuse.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_fxhand"
+					}
+				}
+			}
+			"asset_modifier13"
+			{
+				"type"							"icon_replacement_hero_minimap"
+				"asset"							"npc_dota_hero_techies"
+				"modifier"						"npc_dota_hero_techies_alt1"
+				"force_display"					"1"
+			}
+			"asset_modifier14"
+			{
+				"type"							"arcana_level"
+				"level"							"1"
+			}
+		}
+	}
+	"6907"
+	{
+		"name"									"Taunt: Techies Squint and Laugh"
+		"prefab"								"taunt"
+		"creation_date"							"2014-08-04"
+		"image_inventory"						"econ/taunts/dota_item_taunt_techies_squint_laugh"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Techies_Squint_and_Laugh"
+		"item_name"								"#DOTA_Item_Taunt_Techies_Squint_and_Laugh"
+		"item_rarity"							"rare"
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"taunt_fullbody"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_KILLTAUNT"
+				"modifier"						"taunt_killtaunt"
+			}
+		}
+	}
+	"6908"
+	{
+		"name"									"Swine Arsenal"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-04"
+		"image_inventory"						"econ/items/techies/bigshot/sticky_bomb_npc_dota_techies_remote_mine_pig"
+		"item_description"						"#DOTA_Item_Desc_Swine_Arsenal"
+		"item_name"								"#DOTA_Item_Swine_Arsenal"
+		"item_rarity"							"legendary"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Remote_Mines"
+		"particle_folder"						"particles/econ/items/techies/techies_arcana"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"8/29/2014"
+			"price"								"0"
+		}
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"		"2"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_techies_remote_mine"
+				"modifier"						"models/heroes/techies/fx_techies_remote_cart_pig.vmdl"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_techies/techies_remote_mine.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_techies_stasis_trap"
+				"modifier"						"models/items/techies/bigshot/fx_bigshot_stasis.vmdl"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_techies_land_mine"
+				"modifier"						"models/items/techies/bigshot/fx_bigshot_mine.vmdl"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_techies/techies_stasis_trap.vpcf"
+				"modifier"						"particles/econ/items/techies/techies_arcana/techies_stasis_trap_arcana.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_techies/techies_land_mine.vpcf"
+				"modifier"						"particles/econ/items/techies/techies_arcana/techies_land_mine_arcana.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier"
+			{
+				"type"							"ability_icon"
+				"asset"							"techies_sticky_bomb"
+				"modifier"						"techies_sticky_bomb_arcana"
+				"style"							"0"
+				"minimum_priority"				"1"
+			}
+		}
+	}
+	"6911"
+	{
+		"name"									"Swine Helmet"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-04"
+		"image_inventory"						"econ/items/techies/bigshot/bigshot_spleen_costume"
+		"item_description"						"#DOTA_Item_Desc_Swine_Helmet"
+		"item_name"								"#DOTA_Item_Swine_Helmet"
+		"item_rarity"							"legendary"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Helmet_for_Spleen"
+		"model_player"							"models/items/techies/bigshot/bigshot_spleen_costume.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"8/29/2014"
+			"price"								"0"
+		}
+	}
+	"6946"
+	{
+		"name"									"Mark of the Taunting Swine"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-04"
+		"image_inventory"						"econ/items/techies/bigshot/bigshot_minefield_sign"
+		"item_description"						"#DOTA_Item_Desc_Mark_of_the_Taunting_Swine"
+		"item_name"								"#DOTA_Item_Mark_of_the_Taunting_Swine"
+		"item_rarity"							"legendary"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Minefield_Sign"
+		"particle_folder"						"particles/econ/items/techies/techies_arcana"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"8/29/2014"
+			"price"								"0"
+		}
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"		"3"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_techies_minefield_sign"
+				"modifier"						"models/items/techies/bigshot/fx_bigshot_sign.vmdl"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_techies/techies_sign_ambient_base.vpcf"
+				"modifier"						"particles/econ/items/techies/techies_arcana/techies_sign_ambient.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier2"
+			{
+				"type"							"ability_icon"
+				"asset"							"techies_minefield_sign"
+				"modifier"						"techies_minefield_sign_swine"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+		}
+	}
+	"7009"
+	{
+		"name"									"Swine Visor"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-04"
+		"image_inventory"						"econ/items/techies/bigshot/bigshot_squee_costume"
+		"item_description"						"#DOTA_Item_Desc_Swine_Visor"
+		"item_name"								"#DOTA_Item_Swine_Visor"
+		"item_rarity"							"legendary"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet_for_Squee"
+		"model_player"							"models/items/techies/bigshot/bigshot_squee_costume.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"8/29/2014"
+			"price"								"0"
+		}
+	}
+	"7011"
+	{
+		"name"									"Swine Powder Barrel"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-04"
+		"image_inventory"						"econ/items/techies/bigshot/bigshot_barrel"
+		"item_description"						"#DOTA_Item_Desc_Swine_Powder_Barrel"
+		"item_name"								"#DOTA_Item_Swine_Powder_Barrel"
+		"item_rarity"							"legendary"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Barrel_for_Spoon"
+		"model_player"							"models/items/techies/bigshot/bigshot_barrel.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"8/29/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"arcana_level"
+				"level"							"1"
+			}
+		}
+	}
+	"9166"
+	{
+		"name"									"Taunt: We Have Liftoff"
+		"prefab"								"taunt"
+		"creation_date"							"2017-03-07"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/taunts/taunt_icon_techies_swing_around"
+		"item_description"						"#DOTA_Item_Desc_Taunt_We_Have_Liftoff"
+		"item_name"								"#DOTA_Item_Taunt_We_Have_Liftoff"
+		"item_rarity"							"rare"
+		"match_cycle_to_parent"					"0"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1535796000"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"swing_around_gesture"
+				"style"							"0"
+				"gesture"						"1"
+			}
+		}
+	}
+	"9960"
+	{
+		"name"									"Sign of the Sapper's Guile"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/techies/bigshot/techies_sign_sapper"
+		"item_name"								"#DOTA_Item_Sign_of_the_Sappers_Guile"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_techies_minefield_sign"
+				"modifier"						"models/items/techies/ti8_techies_subterranean_sapper_squad_sign/ti8_techies_subterranean_sapper_squad_sign.vmdl"
+			}
+		}
+	}
+	"9961"
+	{
+		"name"									"Arsenal of the Sapper's Guile"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/heroes/techies/techies_remote_mine"
+		"item_name"								"#DOTA_Item_Arsenal_of_the_Sappers_Guile"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9962"
+	{
+		"name"									"Auxiliary of the Sapper's Guile"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/techies/ti8_techies_subterranean_sapper_squad_weapon/ti8_techies_subterranean_sapper_squad_weapon"
+		"item_name"								"#DOTA_Item_Auxiliary_of_the_Sappers_Guile"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/techies/ti8_techies_subterranean_sapper_squad_weapon/ti8_techies_subterranean_sapper_squad_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9963"
+	{
+		"name"									"Implements of the Sapper's Guile"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/techies/ti8_techies_subterranean_sapper_squad_head/ti8_techies_subterranean_sapper_squad_head"
+		"item_name"								"#DOTA_Item_Implements_of_the_Sappers_Guile"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/techies/ti8_techies_subterranean_sapper_squad_head/ti8_techies_subterranean_sapper_squad_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/techies/techies_ti8/techies_ti8_head_ambient.vpcf"
+			}
+		}
+	}
+	"9964"
+	{
+		"name"									"Sack of the Sapper's Guile"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/techies/ti8_techies_subterranean_sapper_squad_back/ti8_techies_subterranean_sapper_squad_back"
+		"item_name"								"#DOTA_Item_Sack_of_the_Sappers_Guile"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/techies/ti8_techies_subterranean_sapper_squad_back/ti8_techies_subterranean_sapper_squad_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9965"
+	{
+		"name"									"Helm of the Sapper's Guile"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/techies/ti8_techies_subterranean_sapper_squad_shoulder/ti8_techies_subterranean_sapper_squad_shoulder"
+		"item_name"								"#DOTA_Item_Helm_of_the_Sappers_Guile"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/techies/ti8_techies_subterranean_sapper_squad_shoulder/ti8_techies_subterranean_sapper_squad_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9966"
+	{
+		"name"									"Skip of the Sapper's Guile"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/techies/ti8_techies_subterranean_sapper_squad_mount/ti8_techies_subterranean_sapper_squad_mount"
+		"item_name"								"#DOTA_Item_Skip_of_the_Sappers_Guile"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/techies/ti8_techies_subterranean_sapper_squad_mount/ti8_techies_subterranean_sapper_squad_mount.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_techies/techies_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_techies/techies_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+				}
+			}
+		}
+	}
+	"12833"
+	{
+		"name"									"Powdersled Rookery Spleen"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/techies/frostivus2018_techies_squad_penguins_head/frostivus2018_techies_squad_penguins_head"
+		"item_name"								"#DOTA_Item_Powdersled_Rookery_Spleen"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/techies/frostivus2018_techies_squad_penguins_head/frostivus2018_techies_squad_penguins_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"12834"
+	{
+		"name"									"Powdersled Rookery Cannon"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/techies/frostivus2018_techies_squad_penguins_weapon/frostivus2018_techies_squad_penguins_weapon"
+		"item_name"								"#DOTA_Item_Powdersled_Rookery_Cannon"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/techies/frostivus2018_techies_squad_penguins_weapon/frostivus2018_techies_squad_penguins_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/techies/techies_squad_penguins/techies_squad_penguins_weapon_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"12835"
+	{
+		"name"									"Powdersled Rookery Bomb"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/heroes/techies/techies_remote_mine"
+		"item_name"								"#DOTA_Item_Powdersled_Rookery_Bomb"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+	}
+	"12836"
+	{
+		"name"									"Powdersled Rookery Sled"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/techies/frostivus2018_techies_squad_penguins_mount/frostivus2018_techies_squad_penguins_mount"
+		"item_name"								"#DOTA_Item_Powdersled_Rookery_Sled"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/techies/frostivus2018_techies_squad_penguins_mount/frostivus2018_techies_squad_penguins_mount.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/techies/techies_squad_penguins/techies_squad_penguins_mount_ambient.vpcf"
+			}
+		}
+	}
+	"12837"
+	{
+		"name"									"Powdersled Rookera Sign"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/techies/bigshot/techies_sign_penguin"
+		"item_name"								"#DOTA_Item_Powdersled_Rookera_Sign"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_techies_minefield_sign"
+				"modifier"						"models/items/techies/frostivus2018_techies_squad_penguins_sign/frostivus2018_techies_squad_penguins_sign.vmdl"
+			}
+		}
+	}
+	"12839"
+	{
+		"name"									"Powdersled Rookery Squee"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/techies/frostivus2018_techies_squad_penguins_shoulder/frostivus2018_techies_squad_penguins_shoulder"
+		"item_name"								"#DOTA_Item_Powdersled_Rookery_Squee"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/techies/frostivus2018_techies_squad_penguins_shoulder/frostivus2018_techies_squad_penguins_shoulder.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"12840"
+	{
+		"name"									"Powdersled Rookery Spoon"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/techies/frostivus2018_techies_squad_penguins_back/frostivus2018_techies_squad_penguins_back"
+		"item_name"								"#DOTA_Item_Powdersled_Rookery_Spoon"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/techies/frostivus2018_techies_squad_penguins_back/frostivus2018_techies_squad_penguins_back.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"12841"
+	{
+		"name"									"Coat of the Powderkeg Patrol"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/techies/frostivus2018_techies_team_nutcracker_head/frostivus2018_techies_team_nutcracker_head"
+		"item_name"								"#DOTA_Item_Coat_of_the_Powderkeg_Patrol"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/techies/frostivus2018_techies_team_nutcracker_head/frostivus2018_techies_team_nutcracker_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"12842"
+	{
+		"name"									"Keg of the Powderkeg Patrol"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/techies/frostivus2018_techies_team_nutcracker_back/frostivus2018_techies_team_nutcracker_back"
+		"item_name"								"#DOTA_Item_Keg_of_the_Powderkeg_Patrol"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/techies/frostivus2018_techies_team_nutcracker_back/frostivus2018_techies_team_nutcracker_back.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"12843"
+	{
+		"name"									"Colors of the Powderkeg Patrol"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/techies/frostivus2018_techies_team_nutcracker_shoulder/frostivus2018_techies_team_nutcracker_shoulder"
+		"item_name"								"#DOTA_Item_Colors_of_the_Powderkeg_Patrol"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/techies/frostivus2018_techies_team_nutcracker_shoulder/frostivus2018_techies_team_nutcracker_shoulder.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"12844"
+	{
+		"name"									"Remote Mine of the Powderkeg Patrol"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/heroes/techies/techies_remote_mine"
+		"item_name"								"#DOTA_Item_Remote_Mine_of_the_Powderkeg_Patrol"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+	}
+	"12845"
+	{
+		"name"									"Mark of the Powderkeg Patrol"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/techies/bigshot/techies_sign_nutcracker"
+		"item_name"								"#DOTA_Item_Mark_of_the_Powderkeg_Patrol"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_techies_minefield_sign"
+				"modifier"						"models/items/techies/frostivus2018_techies_team_nutcracker_sign/frostivus2018_techies_team_nutcracker_sign.vmdl"
+			}
+		}
+	}
+	"12846"
+	{
+		"name"									"Cart of the Powderkeg Patrol"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/techies/frostivus2018_techies_team_nutcracker_mount/frostivus2018_techies_team_nutcracker_mount"
+		"item_name"								"#DOTA_Item_Cart_of_the_Powderkeg_Patrol"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/techies/frostivus2018_techies_team_nutcracker_mount/frostivus2018_techies_team_nutcracker_mount.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_techies/techies_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_techies/techies_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+				}
+			}
+		}
+	}
+	"12847"
+	{
+		"name"									"Munitions of the Powderkeg Patrol"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/techies/frostivus2018_techies_team_nutcracker_weapon/frostivus2018_techies_team_nutcracker_weapon"
+		"item_name"								"#DOTA_Item_Munitions_of_the_Powderkeg_Patrol"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/techies/frostivus2018_techies_team_nutcracker_weapon/frostivus2018_techies_team_nutcracker_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"13526"
+	{
+		"name"									"Pachyderm Powderwagon Squee"
+		"prefab"								"wearable"
+		"creation_date"							"2019-07-07"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/techies/techies_ti9_immortal_squee/techies_ti9_immortal_squee"
+		"item_description"						"#DOTA_Item_Desc_Pachyderm_Powderwagon_Squee"
+		"item_name"								"#DOTA_Item_Pachyderm_Powderwagon_Squee"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/techies/techies_ti9_immortal_squee/techies_ti9_immortal_squee.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567332000"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/techies/techies_ti9/techies_ti9_squee_ambient.vpcf"
+			}
+		}
+	}
+	"13527"
+	{
+		"name"									"Pachyderm Powderwagon Elephant"
+		"prefab"								"wearable"
+		"creation_date"							"2019-07-07"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/techies/techies_ti9_immortal_cart/techies_ti9_immortal_cart"
+		"item_description"						"#DOTA_Item_Desc_Pachyderm_Powderwagon_Elephant"
+		"item_name"								"#DOTA_Item_Pachyderm_Powderwagon_Elephant"
+		"item_rarity"							"immortal"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/techies/techies_ti9_immortal_cart/techies_ti9_immortal_cart.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567332000"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"TI9"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/techies/techies_ti9/techies_ti9_cart_ambient.vpcf"
+			}
+		}
+	}
+	"13528"
+	{
+		"name"									"Pachyderm Powderwagon Spleen"
+		"prefab"								"wearable"
+		"creation_date"							"2019-07-07"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/techies/techies_ti9_immortal_spleen/techies_ti9_immortal_spleen"
+		"item_description"						"#DOTA_Item_Desc_Pachyderm_Powderwagon_Spleen"
+		"item_name"								"#DOTA_Item_Pachyderm_Powderwagon_Spleen"
+		"item_rarity"							"immortal"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/techies/techies_ti9_immortal_spleen/techies_ti9_immortal_spleen.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567332000"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/techies/techies_ti9/techies_ti9_spleen_ambient.vpcf"
+			}
+		}
+	}
+	"13529"
+	{
+		"name"									"Pachyderm Powderwagon Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2019-07-07"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/techies/techies_ti9_immortal_bazooka/techies_ti9_immortal_bazooka"
+		"item_description"						"#DOTA_Item_Desc_Pachyderm_Powderwagon_Weapon"
+		"item_name"								"#DOTA_Item_Pachyderm_Powderwagon_Weapon"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/techies/techies_ti9_immortal_bazooka/techies_ti9_immortal_bazooka.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567332000"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_techies/techies_base_attack.vpcf"
+				"modifier"						"particles/econ/items/techies/techies_ti9/techies_ti9_base_attack.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/techies/techies_ti9/techies_ti9_bazooka_ambient.vpcf"
+			}
+		}
+	}
+	"13530"
+	{
+		"name"									"Pachyderm Powderwagon Spoon"
+		"prefab"								"wearable"
+		"creation_date"							"2019-07-07"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/techies/techies_ti9_immortal_spoon/techies_ti9_immortal_spoon"
+		"item_description"						"#DOTA_Item_Desc_Pachyderm_Powderwagon_Spoon"
+		"item_name"								"#DOTA_Item_Pachyderm_Powderwagon_Spoon"
+		"item_rarity"							"immortal"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/techies/techies_ti9_immortal_spoon/techies_ti9_immortal_spoon.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567332000"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"13548"
+	{
+		"name"									"Pachyderm Powderwagon Remote Mine"
+		"prefab"								"wearable"
+		"creation_date"							"2019-08-07"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/techies/bigshot/sticky_bomb_npc_dota_techies_remote_mine_elephant"
+		"item_description"						"#DOTA_Item_Desc_Pachyderm_Powderwagon_Remote_Mine"
+		"item_name"								"#DOTA_Item_Pachyderm_Powderwagon_Remote_Mine"
+		"item_rarity"							"immortal"
+		"item_slot"								"arms"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567332000"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+			"can_equip_as_ability_effects1"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_techies_remote_mine"
+				"modifier"						"models/heroes/techies/fx_techies_remote_cart_elephant.vmdl"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier1"
+			{
+				"type"							"entity_model"
+				"asset"							"models/heroes/techies/fx_techies_remote_cart.vmdl"
+				"modifier"						"models/heroes/techies/fx_techies_remote_cart_elephant.vmdl"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_techies_land_mine"
+				"modifier"						"models/items/techies/techies_ti9_immortal_prox_mine/techies_ti9_immortal_prox_mine.vmdl"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"skip_model_combine"				"0"
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"techies_land_mines"
+				"modifier"						"techies/techies_land_mines_immortal"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"techies_sticky_bomb"
+				"modifier"						"techies_sticky_bomb_immortal_1"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+		}
+	}
+	"13666"
+	{
+		"name"									"Pachyderm Powderwagon Sign"
+		"prefab"								"wearable"
+		"creation_date"							"2019-08-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/techies/techies_ti9_immortal_sign/techies_ti9_immortal_sign"
+		"item_description"						"#DOTA_Item_Desc_Pachyderm_Powderwagon_Sign"
+		"item_name"								"#DOTA_Item_Pachyderm_Powderwagon_Sign"
+		"item_rarity"							"immortal"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_sign"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567332000"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_techies_minefield_sign"
+				"modifier"						"models/items/techies/techies_ti9_immortal_sign/techies_ti9_immortal_sign.vmdl"
+			}
+		}
+	}
+	"14861"
+	{
+		"name"									"Pirate of Treasure's Bight Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/techies/pirate_of_treasures_bight_weapon/pirate_of_treasures_bight_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_Pirate_of_Treasures_Bight_Weapon"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/techies/pirate_of_treasures_bight_weapon/pirate_of_treasures_bight_weapon.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"14864"
+	{
+		"name"									"Pirate of Treasure's Bight Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/techies/pirate_of_treasures_bight_mount/pirate_of_treasures_bight_mount"
+		"item_name"								"#DOTA_Item_Vote_Only_Pirate_of_Treasures_Bight_Mount"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_mount"
+		"model_player"							"models/items/techies/pirate_of_treasures_bight_mount/pirate_of_treasures_bight_mount.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_techies/techies_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_techies/techies_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+				}
+			}
+		}
+	}
+	"14865"
+	{
+		"name"									"Pirate of Treasure's Bight Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/techies/pirate_of_treasures_bight_head/pirate_of_treasures_bight_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Pirate_of_Treasures_Bight_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/techies/pirate_of_treasures_bight_head/pirate_of_treasures_bight_head.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"14866"
+	{
+		"name"									"Pirate of Treasure's Bight Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/techies/pirate_of_treasures_bight_back/pirate_of_treasures_bight_back"
+		"item_name"								"#DOTA_Item_Vote_Only_Pirate_of_Treasures_Bight_Back"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/techies/pirate_of_treasures_bight_back/pirate_of_treasures_bight_back.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"14867"
+	{
+		"name"									"Pirate of Treasure's Bight Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/techies/pirate_of_treasures_bight_shoulder/pirate_of_treasures_bight_shoulder"
+		"item_name"								"#DOTA_Item_Vote_Only_Pirate_of_Treasures_Bight_Shoulder"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/techies/pirate_of_treasures_bight_shoulder/pirate_of_treasures_bight_shoulder.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"20374"
+	{
+		"name"									"Bombtrails and Boomsticks"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bombtrails and Boomsticks Loading Screen""1"
+			"Bombtrails and Boomsticks Sign"	"1"
+			"Bombtrails and Boomsticks Weapon"	"1"
+			"Bombtrails and Boomsticks Cart"	"1"
+			"Bombtrails and Boomsticks Squee"	"1"
+			"Bombtrails and Boomsticks Mines"	"1"
+			"Bombtrails and Boomsticks Spoon"	"1"
+			"Bombtrails and Boomsticks Spleen"	"1"
+		}
+		"creation_date"							"2019-10-18"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Bombtrails_and_Boomsticks"
+		"item_name"								"#DOTA_Item_Bombtrails_and_Boomsticks"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+	}
+	"20610"
+	{
+		"name"									"Swine of the Sunken Galley Bundle"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Swine of the Sunken Galley"		"1"
+			"Swine Helmet"						"1"
+			"Swine Powder Barrel"				"1"
+			"Swine Visor"						"1"
+			"Techies Emoticon"					"1"
+			"Swine Sappers"						"1"
+			"Swine Arsenal"						"1"
+			"Mark of the Taunting Swine"		"1"
+		}
+		"creation_date"							"2014-09-04"
+		"has_store_custom_item_details_panel"	"1"
+		"image_inventory"						"econ/items/techies/bigshot/bigshot_bundle"
+		"item_description"						"#DOTA_Item_Desc_Techies_Arcana"
+		"item_name"								"#DOTA_Item_Swine_of_the_Sunken_Galley_Bundle"
+		"item_rarity"							"arcana"
+		"price_info"
+		{
+			"category_tags"						"Bundles"
+			"date"								"8/29/2014"
+			"bundle"							"1"
+			"price"								"3499"
+		}
+	}
+	"21211"
+	{
+		"name"									"Primer of the Sapper's Guile"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Skip of the Sapper's Guile"		"1"
+			"Helm of the Sapper's Guile"		"1"
+			"Sack of the Sapper's Guile"		"1"
+			"Implements of the Sapper's Guile"	"1"
+			"Arsenal of the Sapper's Guile"		"1"
+			"Sign of the Sapper's Guile"		"1"
+			"Auxiliary of the Sapper's Guile"	"1"
+		}
+		"creation_date"							"2018-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/sets/DOTA_Item_Primer_of_Greybeard_Guile"
+		"item_description"						"#DOTA_Item_Desc_Primer_of_the_Sappers_Guile"
+		"item_name"								"#DOTA_Item_Primer_of_the_Sappers_Guile"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+		}
+	}
+	"21306"
+	{
+		"name"									"Powdersled Rookery"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Powdersled Rookery Loading Screen"	"1"
+			"Powdersled Rookery Sled"			"1"
+			"Powdersled Rookery Cannon"			"1"
+			"Powdersled Rookery Bomb"			"1"
+			"Powdersled Rookery Spleen"			"1"
+			"Powdersled Rookery Squee"			"1"
+			"Powdersled Rookery Spoon"			"1"
+			"Powdersled Rookera Sign"			"1"
+		}
+		"creation_date"							"2018-12-02"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/loading_screens/frostivus2018_techies_squad_penguins_ls"
+		"item_description"						"#DOTA_Item_Desc_Powdersled_Rookery"
+		"item_name"								"#DOTA_Item_Powdersled_Rookery"
+		"item_rarity"							"rare"
+	}
+	"21307"
+	{
+		"name"									"March of the Powderkeg Patrol"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Munitions of the Powderkeg Patrol"	"1"
+			"Cart of the Powderkeg Patrol"		"1"
+			"Mark of the Powderkeg Patrol"		"1"
+			"Coat of the Powderkeg Patrol"		"1"
+			"Keg of the Powderkeg Patrol"		"1"
+			"Colors of the Powderkeg Patrol"	"1"
+			"Remote Mine of the Powderkeg Patrol""1"
+		}
+		"creation_date"							"2018-12-02"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/sets/DOTA_Item_Frostivus2018__Techies_Team__Nutcracker"
+		"item_name"								"#DOTA_Item_March_of_the_Powderkeg_Patrol"
+		"item_rarity"							"rare"
+	}
+	"21424"
+	{
+		"name"									"Pachyderm Powderwagon"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Pachyderm Powderwagon Sign"		"1"
+			"Pachyderm Powderwagon Remote Mine"	"1"
+			"Pachyderm Powderwagon Spoon"		"1"
+			"Pachyderm Powderwagon Weapon"		"1"
+			"Pachyderm Powderwagon Spleen"		"1"
+			"Pachyderm Powderwagon Elephant"	"1"
+			"Pachyderm Powderwagon Squee"		"1"
+		}
+		"creation_date"							"2019-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/sets/DOTA_Item_Pachyderm_Powderwagon"
+		"item_description"						"#DOTA_Item_Desc_Pachyderm_Powderwagon"
+		"item_name"								"#DOTA_Item_Pachyderm_Powderwagon"
+		"item_rarity"							"immortal"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567332000"
+			}
+		}
+	}
+	"21607"
+	{
+		"name"									"Pirate of Treasure's Bight"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Pirate of Treasure's Bight Weapon"	"1"
+			"Pirate of Treasure's Bight Mount"	"1"
+			"Pirate of Treasure's Bight Head"	"1"
+			"Pirate of Treasure's Bight Back"	"1"
+			"Pirate of Treasure's Bight Shoulder""1"
+		}
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Pirate_of_Treasures_Bight"
+		"workshop_accepted"						"0"
+	}
+}

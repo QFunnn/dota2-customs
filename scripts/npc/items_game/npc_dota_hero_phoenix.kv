@@ -1,0 +1,1034 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"535"
+	{
+		"name"									"Phoenix's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-08"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Phoenixs_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_phoenix"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_phoenix/phoenix_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_phoenix/phoenix_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_neck"
+					}
+					"2"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_spine2"
+					}
+					"3"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_tailbase"
+					}
+					"4"
+					{
+						"control_point_index"	"5"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wingtipR"
+					}
+					"5"
+					{
+						"control_point_index"	"6"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wingtipL"
+					}
+					"6"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+		}
+	}
+	"592"
+	{
+		"name"									"Phoenix's Head"
+		"prefab"								"default_item"
+		"creation_date"							"2016-02-18"
+		"image_inventory"						"econ/heroes/phoenix/phoenix_bird_head"
+		"item_name"								"#DOTA_Item_Phoenixs_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/phoenix/phoenix_bird_head.vmdl"
+	}
+	"626"
+	{
+		"name"									"Phoenix Wings"
+		"prefab"								"default_item"
+		"creation_date"							"2016-11-18"
+		"image_inventory"						"econ/heroes/phoenix/phoenix_wings"
+		"item_description"						"#DOTA_Item_Desc_Phoenix_Wings"
+		"item_name"								"#DOTA_Item_Phoenix_Wings"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/heroes/phoenix/phoenix_wings.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/heroes/phoenix/phoenix_wings_fx.vmdl"
+			}
+			"skip_model_combine"				"0"
+		}
+	}
+	"627"
+	{
+		"name"									"Phoenix Supernova"
+		"prefab"								"default_item"
+		"creation_date"							"2016-11-18"
+		"image_inventory"						"econ/heroes/phoenix/phoenix_egg_npc_dota_phoenix_sun"
+		"item_description"						"#DOTA_Item_Desc_Phoenix_Supernova"
+		"item_name"								"#DOTA_Item_Phoenix_Supernova"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Supernova"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_phoenix_sun"
+				"modifier"						"models/heroes/phoenix/phoenix_egg.vmdl"
+			}
+		}
+	}
+	"7458"
+	{
+		"name"									"Solar Forge"
+		"prefab"								"wearable"
+		"creation_date"							"2016-02-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/phoenix/solar_forge/mesh/solar_forge_model"
+		"item_description"						"#DOTA_Item_Desc_Solar_Forge"
+		"item_name"								"#DOTA_Item_Solar_Forge"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/phoenix/solar_forge/mesh/solar_forge_model.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1471158000"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"solar"
+			}
+			"asset_modifier1"
+			{
+				"type"							"healthbar_offset"
+				"offset"						"280"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phoenix/phoenix_sunray.vpcf"
+				"modifier"						"particles/econ/items/phoenix/phoenix_solar_forge/phoenix_sunray_solar_forge.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phoenix/phoenix_solar_forge/phoenix_solar_forge_ambient.vpcf"
+				"system"						"particles/econ/items/phoenix/phoenix_solar_forge/phoenix_solar_forge_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+				}
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phoenix/phoenix_sunray_beam_enemy.vpcf"
+				"modifier"						"particles/econ/items/phoenix/phoenix_solar_forge/phoenix_solar_forge_sunray_beam_enemy.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phoenix/phoenix_sunray_beam_friend.vpcf"
+				"modifier"						"particles/econ/items/phoenix/phoenix_solar_forge/phoenix_sunray_beam_friend_solar_forge.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier6"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Phoenix.SunRay.Cast"
+				"modifier"						"Hero_Phoenix.SunRay.Cast.Immortal"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier7"
+			{
+				"type"							"ability_icon"
+				"asset"							"phoenix_sun_ray"
+				"modifier"						"phoenix/solar_forge/phoenix_sun_ray"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+		}
+	}
+	"7835"
+	{
+		"name"									"Crest of the Vermillion Crucible"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-10"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/phoenix/blazing_wing_head/blazing_wing_head"
+		"item_description"						"#DOTA_Item_Desc_Crest_of_the_Vermillion_Crucible"
+		"item_name"								"#DOTA_Item_Crest_of_the_Vermillion_Crucible"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/phoenix/blazing_wing_head/blazing_wing_head.vmdl"
+	}
+	"7836"
+	{
+		"name"									"Egg of the Vermillion Crucible"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-10"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/phoenix/ultimate/blazing_wing_blazing_egg/blazing_wing_blazing_egg_npc_dota_phoenix_sun"
+		"item_description"						"#DOTA_Item_Desc_Egg_of_the_Vermillion_Crucible"
+		"item_name"								"#DOTA_Item_Egg_of_the_Vermillion_Crucible"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Supernova"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_phoenix_sun"
+				"modifier"						"models/items/phoenix/ultimate/blazing_wing_blazing_egg/blazing_wing_blazing_egg.vmdl"
+			}
+		}
+	}
+	"7837"
+	{
+		"name"									"Feathers of the Vermillion Crucible"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-10"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/phoenix/blazing_wing_fire_wings/blazing_wing_fire_wings"
+		"item_description"						"#DOTA_Item_Desc_Feathers_of_the_Vermillion_Crucible"
+		"item_name"								"#DOTA_Item_Feathers_of_the_Vermillion_Crucible"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/phoenix/blazing_wing_fire_wings/blazing_wing_fire_wings.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/phoenix/blazing_wing_fire_wings/blazing_wing_fire_wings_fx.vmdl"
+			}
+		}
+	}
+	"9523"
+	{
+		"name"									"Crown of Golden Nirvana"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-10"
+		"image_inventory"						"econ/items/phoenix/golden_nirvana_head/golden_nirvana_head"
+		"item_name"								"#DOTA_Item_Crown_of_Golden_Nirvana"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/phoenix/golden_nirvana_head/golden_nirvana_head.vmdl"
+	}
+	"9524"
+	{
+		"name"									"Trappings of Golden Nirvana"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-10"
+		"image_inventory"						"econ/items/phoenix/golden_nirvana_golden_nirvana_wings_tail_armor/golden_nirvana_golden_nirvana_wings_tail_armor"
+		"item_name"								"#DOTA_Item_Trappings_of_Golden_Nirvana"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/phoenix/golden_nirvana_golden_nirvana_wings_tail_armor/golden_nirvana_golden_nirvana_wings_tail_armor.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/phoenix/golden_nirvana_golden_nirvana_wings_tail_armor/golden_nirvana_golden_nirvana_wings_tail_armor_fx.vmdl"
+			}
+		}
+	}
+	"9525"
+	{
+		"name"									"Nova of Golden Nirvana"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-10"
+		"image_inventory"						"econ/items/phoenix/ultimate/golden_nirvana_golden_nirvana_nova/golden_nirvana_golden_nirvana_nova_npc_dota_phoenix_sun"
+		"item_name"								"#DOTA_Item_Nova_of_Golden_Nirvana"
+		"item_rarity"							"rare"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Supernova"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_phoenix_sun"
+				"modifier"						"models/items/phoenix/ultimate/golden_nirvana_golden_nirvana_nova/golden_nirvana_golden_nirvana_nova.vmdl"
+			}
+		}
+	}
+	"9664"
+	{
+		"name"									"Taunt: Cold Breakfast"
+		"prefab"								"taunt"
+		"creation_date"							"2018-01-03"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/taunts/dota_icon_taunt_phoenix_ti8"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Cold_Breakfast"
+		"item_name"								"#DOTA_Item_Taunt_Cold_Breakfast"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567296000"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"ti8_taunt"
+				"gesture"						"1"
+				"style"							"0"
+			}
+		}
+	}
+	"9680"
+	{
+		"name"									"Taunt: Order Up!"
+		"prefab"								"taunt"
+		"creation_date"							"2018-01-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/taunts/dota_icon_taunt_phoenix_ti8_alt"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Order_Up"
+		"item_name"								"#DOTA_Item_Taunt_Order_Up"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567296000"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"ti8_taunt_cooked"
+				"gesture"						"1"
+				"style"							"0"
+			}
+		}
+	}
+	"12247"
+	{
+		"name"									"Beak of Molten Rebirth"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/phoenix/ti8_phoenix_heart_of_volcano_head/ti8_phoenix_heart_of_volcano_head"
+		"item_name"								"#DOTA_Item_Beak_of_Molten_Rebirth"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/phoenix/ti8_phoenix_heart_of_volcano_head/ti8_phoenix_heart_of_volcano_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"12248"
+	{
+		"name"									"Wings of Molten Rebirth"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/phoenix/ti8_phoenix_heart_of_volcano_wings/ti8_phoenix_heart_of_volcano_wings"
+		"item_name"								"#DOTA_Item_Wings_of_Molten_Rebirth"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/phoenix/ti8_phoenix_heart_of_volcano_wings/ti8_phoenix_heart_of_volcano_wings.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/phoenix/ti8_phoenix_heart_of_volcano_wings/ti8_phoenix_heart_of_volcano_wings_fx.vmdl"
+			}
+		}
+	}
+	"12249"
+	{
+		"name"									"Egg of Molten Rebirth"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/phoenix/ultimate/ti8_phoenix_heart_of_volcano_egg/ti8_phoenix_heart_of_volcano_egg_npc_dota_phoenix_sun"
+		"item_name"								"#DOTA_Item_Egg_of_Molten_Rebirth"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Supernova"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_phoenix_sun"
+				"modifier"						"models/items/phoenix/ultimate/ti8_phoenix_heart_of_volcano_egg/ti8_phoenix_heart_of_volcano_egg.vmdl"
+			}
+		}
+	}
+	"13408"
+	{
+		"name"									"Blaze of Oblivion Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/phoenix/nirvana_spiritual_head/nirvana_spiritual_head"
+		"item_name"								"#DOTA_Item_Blaze_of_Oblivion_Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/phoenix/nirvana_spiritual_head/nirvana_spiritual_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phoenix/phoenix_ti10_cache/phoenix_ti10_cache_head.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"13413"
+	{
+		"name"									"Blaze of Oblivion Back"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/phoenix/nirvana_spiritual_back/nirvana_spiritual_back"
+		"item_name"								"#DOTA_Item_Blaze_of_Oblivion_Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/phoenix/nirvana_spiritual_back/nirvana_spiritual_back.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/heroes/phoenix/phoenix_wings_fx.vmdl"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/phoenix/nirvana_spiritual_back/nirvana_spiritual_back_fx.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phoenix/phoenix_ti10_cache/phoenix_ti10_cache_back.vpcf"
+			}
+		}
+	}
+	"13414"
+	{
+		"name"									"Blaze of Oblivion Supernova"
+		"prefab"								"wearable"
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/phoenix/ultimate/nirvana_spiritual_supernova/nirvana_spiritual_supernova_npc_dota_phoenix_sun"
+		"item_name"								"#DOTA_Item_Blaze_of_Oblivion_Supernova"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Supernova"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_phoenix_sun"
+				"modifier"						"models/items/phoenix/ultimate/nirvana_spiritual_supernova/nirvana_spiritual_supernova.vmdl"
+			}
+		}
+	}
+	"13712"
+	{
+		"name"									"Span of the Temple of the Fallen Sun"
+		"prefab"								"wearable"
+		"creation_date"							"2019-10-01"
+		"image_inventory"						"econ/items/phoenix/eye_of_the_sun_eye_of_the_sun/eye_of_the_sun_eye_of_the_sun"
+		"item_name"								"#DOTA_Item_Span_of_the_Temple_of_the_Fallen_Sun"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/phoenix/eye_of_the_sun_eye_of_the_sun/eye_of_the_sun_eye_of_the_sun.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/phoenix/eye_of_the_sun_eye_of_the_sun/eye_of_the_sun_eye_of_the_sun_fx.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phoenix/eye_of_the_sun_back/phoenix_eye_of_sun_back_ambient.vpcf"
+			}
+		}
+	}
+	"13713"
+	{
+		"name"									"Crown of the Temple of the Fallen Sun"
+		"prefab"								"wearable"
+		"creation_date"							"2019-10-01"
+		"image_inventory"						"econ/items/phoenix/eye_of_the_sun_head/eye_of_the_sun_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Temple_of_the_Fallen_Sun"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/phoenix/eye_of_the_sun_head/eye_of_the_sun_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phoenix/eye_of_the_sun_head/phoenix_eye_of_sun_head_ambient.vpcf"
+			}
+		}
+	}
+	"13714"
+	{
+		"name"									"Honor of the Temple of the Fallen Sun"
+		"prefab"								"wearable"
+		"creation_date"							"2019-10-01"
+		"image_inventory"						"econ/items/phoenix/ultimate/eye_of_the_sun_sun_pyramid/eye_of_the_sun_sun_pyramid_npc_dota_phoenix_sun"
+		"item_name"								"#DOTA_Item_Honor_of_the_Temple_of_the_Fallen_Sun"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability_ultimate"
+		"item_type_name"						"#DOTA_WearableType_Supernova"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_phoenix_sun"
+				"modifier"						"models/items/phoenix/ultimate/eye_of_the_sun_sun_pyramid/eye_of_the_sun_sun_pyramid.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"modifier"						"particles/econ/items/phoenix/eye_of_the_sun/phoenix_supernova_egg_eye_sun_loadout.vpcf"
+				"asset"							"particles/units/heroes/hero_phoenix/phoenix_supernova_egg_loadout.vpcf"
+			}
+		}
+	}
+	"14270"
+	{
+		"name"									"Kitestar Splendor Supernova"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/phoenix/ultimate/aristocratic_rebirth_supernova/aristocratic_rebirth_supernova_npc_dota_phoenix_sun"
+		"item_name"								"#DOTA_Item_Kitestar_Splendor_Supernova"
+		"item_rarity"							"rare"
+		"item_slot"								"ability_ultimate"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_phoenix_sun"
+				"modifier"						"models/items/phoenix/ultimate/aristocratic_rebirth_supernova/aristocratic_rebirth_supernova.vmdl"
+			}
+		}
+	}
+	"14271"
+	{
+		"name"									"Kitestar Splendor Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/phoenix/aristocratic_rebirth_wings/aristocratic_rebirth_wings"
+		"item_name"								"#DOTA_Item_Kitestar_Splendor_Wings"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"model_player"							"models/items/phoenix/aristocratic_rebirth_wings/aristocratic_rebirth_wings.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/phoenix/aristocratic_rebirth_wings/aristocratic_rebirth_wings_fx.vmdl"
+			}
+		}
+	}
+	"14273"
+	{
+		"name"									"Kitestar Splendor Beak"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/phoenix/aristocratic_rebirth_head/aristocratic_rebirth_head"
+		"item_name"								"#DOTA_Item_Kitestar_Splendor_Beak"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"model_player"							"models/items/phoenix/aristocratic_rebirth_head/aristocratic_rebirth_head.vmdl"
+	}
+	"14993"
+	{
+		"name"									"Solar Gyre"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"hide_tradecraftdelete"					"1"
+		"image_inventory"						"econ/items/phoenix/phoenix_ti10_immortal_back/phoenix_ti10_immortal_back"
+		"item_description"						"#DOTA_Item_Desc_Solar_Gyre"
+		"item_name"								"#DOTA_Item_Solar_Gyre"
+		"item_rarity"							"immortal"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/phoenix/phoenix_ti10_immortal_back/phoenix_ti10_immortal_back.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+			"can_equip_as_ability_effects1"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phoenix/phoenix_fire_spirits.vpcf"
+				"modifier"						"particles/econ/items/phoenix/phoenix_ti10_immortal/phoenix_ti10_fire_spirits.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phoenix/phoenix_fire_spirit_launch.vpcf"
+				"modifier"						"particles/econ/items/phoenix/phoenix_ti10_immortal/phoenix_ti10_fire_spirit_launch.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phoenix/phoenix_fire_spirit_burn.vpcf"
+				"modifier"						"particles/econ/items/phoenix/phoenix_ti10_immortal/phoenix_ti10_fire_spirit_burn.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phoenix/phoenix_icarus_dive.vpcf"
+				"modifier"						"particles/econ/items/phoenix/phoenix_ti10_immortal/phoenix_ti10_icarus_dive.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf"
+				"modifier"						"particles/econ/items/phoenix/phoenix_ti10_immortal/phoenix_ti10_fire_spirit_ground.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/phoenix/phoenix_ti10_immortal_back/phoenix_ti10_immortal_back"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/phoenix/phoenix_ti10_immortal_back/phoenix_ti10_immortal_back_style1"
+				}
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phoenix/phoenix_ti10_immortal/phoenix_ti10_immortal_ambient.vpcf"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phoenix/phoenix_ambient.vpcf"
+				"modifier"						"particles/econ/items/phoenix/phoenix_ti10_immortal/phoenix_ti10_immortal_parent_ambient.vpcf"
+			}
+			"asset_modifier7"
+			{
+				"type"							"ability_icon"
+				"asset"							"phoenix_fire_spirits"
+				"modifier"						"phoenix/phoenix_ti10_immortal_ability_icon/phoenix_ti10_immortal_fire_spirit"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier8"
+			{
+				"type"							"ability_icon"
+				"asset"							"phoenix_icarus_dive"
+				"modifier"						"phoenix/phoenix_ti10_immortal_ability_icon/phoenix_ti10_immortal_icarus_dive"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier9"
+			{
+				"type"							"ability_icon"
+				"asset"							"phoenix_icarus_dive_stop"
+				"modifier"						"phoenix/phoenix_ti10_immortal_ability_icon/phoenix_ti10_immortal_icarus_dive_stop"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier10"
+			{
+				"type"							"ability_icon"
+				"asset"							"phoenix_launch_fire_spirit"
+				"modifier"						"phoenix/phoenix_ti10_immortal_ability_icon/phoenix_ti10_immortal_launch_fire_spirit"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier11"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/phoenix/phoenix_ti10_immortal_back/phoenix_ti10_immortal_back_fx.vmdl"
+			}
+		}
+	}
+	"20938"
+	{
+		"name"									"Vermillion Crucible"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of the Vermillion Crucible""1"
+			"Feathers of the Vermillion Crucible""1"
+			"Egg of the Vermillion Crucible"	"1"
+			"Crest of the Vermillion Crucible"	"1"
+		}
+		"creation_date"							"2017-01-11"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/loading_screens/blazing_wing_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Vermillion_Crucible"
+		"item_name"								"#DOTA_Item_Vermillion_Crucible"
+		"item_rarity"							"mythical"
+	}
+	"21147"
+	{
+		"name"									"Golden Nirvana"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Golden Nirvana Loading Screen"		"1"
+			"Nova of Golden Nirvana"			"1"
+			"Trappings of Golden Nirvana"		"1"
+			"Crown of Golden Nirvana"			"1"
+		}
+		"creation_date"							"2017-01-11"
+		"image_inventory"						"econ/loading_screens/golden_nirvana_golden_nirvana_loadingscreen"
+		"item_name"								"#DOTA_Item_Golden_Nirvana"
+		"item_rarity"							"rare"
+	}
+	"21224"
+	{
+		"name"									"Ire of Molten Rebirth"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Egg of Molten Rebirth"				"1"
+			"Wings of Molten Rebirth"			"1"
+			"Beak of Molten Rebirth"			"1"
+		}
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/sets/DOTA_Item_TI8_Phoenix_Heart_of_Volcano"
+		"item_description"						"#DOTA_Item_Desc_Ire_of_Molten_Rebirth"
+		"item_name"								"#DOTA_Item_Ire_of_Molten_Rebirth"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21374"
+	{
+		"name"									"Blaze of Oblivion"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Blaze of Oblivion Head"			"1"
+			"Blaze of Oblivion Supernova"		"1"
+			"Blaze of Oblivion Back"			"1"
+			"Blaze of Oblivion Loading Screen"	"1"
+		}
+		"creation_date"							"2020-08-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/loading_screens/nirvana_spiritual_loadingscreen"
+		"item_name"								"#DOTA_Item_Blaze_of_Oblivion"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21431"
+	{
+		"name"									"Temple of the Fallen Sun"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Crown of the Temple of the Fallen Sun""1"
+			"Span of the Temple of the Fallen Sun""1"
+			"Honor of the Temple of the Fallen Sun""1"
+		}
+		"creation_date"							"2019-10-01"
+		"image_inventory"						"econ/sets/DOTA_Item_Temple_of_the_Fallen_Sun"
+		"item_name"								"#DOTA_Item_Temple_of_the_Fallen_Sun"
+		"item_rarity"							"mythical"
+	}
+	"21527"
+	{
+		"name"									"Kitestar Splendor"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Kitestar Splendor Beak"			"1"
+			"Kitestar Splendor Supernova"		"1"
+			"Kitestar Splendor Wings"			"1"
+		}
+		"creation_date"							"2020-05-11"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Aristocratic_Rebirth"
+		"item_name"								"#DOTA_Item_Kitestar_Splendor"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+	}
+}

@@ -1,0 +1,1662 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"387"
+	{
+		"name"									"Shadow Fiend's Head"
+		"prefab"								"default_item"
+		"creation_date"							"2014-04-15"
+		"image_inventory"						"econ/heroes/shadow_fiend/shadow_fiend_head"
+		"item_description"						"#DOTA_Item_Desc_Shadow_Fiends_Head"
+		"item_name"								"#DOTA_Item_Shadow_Fiends_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/shadow_fiend/shadow_fiend_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_nevermore/shadow_fiend_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_nevermore/shadow_fiend_ambient_eyes.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eyeL"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eyeR"
+					}
+				}
+			}
+		}
+	}
+	"486"
+	{
+		"name"									"Shadow Fiend's Shoulders"
+		"prefab"								"default_item"
+		"creation_date"							"2014-04-15"
+		"image_inventory"						"econ/heroes/shadow_fiend/shadow_fiend_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Shadow_Fiends_Shoulders"
+		"item_name"								"#DOTA_Item_Shadow_Fiends_Shoulders"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/heroes/shadow_fiend/shadow_fiend_shoulders.vmdl"
+	}
+	"488"
+	{
+		"name"									"Shadow Fiend's Arms"
+		"prefab"								"default_item"
+		"creation_date"							"2014-04-15"
+		"image_inventory"						"econ/heroes/shadow_fiend/shadow_fiend_arms"
+		"item_description"						"#DOTA_Item_Desc_Shadow_Fiends_Arms"
+		"item_name"								"#DOTA_Item_Shadow_Fiends_Arms"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/heroes/shadow_fiend/shadow_fiend_arms.vmdl"
+	}
+	"509"
+	{
+		"name"									"Shadow Fiend's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-05"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Shadow_Fiends_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_nevermore"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_nevermore/nevermore_trail.vpcf"
+				"system"						"particles/units/heroes/hero_nevermore/nevermore_trail.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_nevermore/nevermore_ambient_glow.vpcf"
+				"system"						"particles/units/heroes/hero_nevermore/nevermore_ambient_glow.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"6996"
+	{
+		"name"									"Demon Eater"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-25"
+		"image_inventory"						"econ/items/nevermore/shadowfiend_demon_eater"
+		"item_description"						"#DOTA_Item_Desc_Demon_Eater"
+		"item_name"								"#DOTA_Item_Demon_Eater"
+		"item_rarity"							"arcana"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Burning_Soul"
+		"model_player"							"models/heroes/shadow_fiend/head_arcana.vmdl"
+		"particle_folder"						"particles/econ/items/shadow_fiend/sf_fire_arcana"
+		"price_info"
+		{
+			"category_tags"						"Items+Bundles"
+			"date"								"9/22/2014"
+			"price"								"3499"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"arcana"
+			}
+			"asset_modifier1"
+			{
+				"type"							"chatwheel"
+				"asset"							"nevermore_nev_thanks_02"
+				"modifier"						"nevermore_nev_arc_thanks_02"
+			}
+			"asset_modifier2"
+			{
+				"type"							"chatwheel"
+				"asset"							"nevermore_nev_deny_03"
+				"modifier"						"nevermore_nev_arc_deny_03"
+			}
+			"asset_modifier3"
+			{
+				"type"							"chatwheel"
+				"asset"							"nevermore_nev_kill_11"
+				"modifier"						"nevermore_nev_arc_kill_11"
+			}
+			"asset_modifier4"
+			{
+				"type"							"chatwheel"
+				"asset"							"nevermore_nev_ability_presence_02"
+				"modifier"						"nevermore_nev_arc_ability_presence_02"
+			}
+			"asset_modifier6"
+			{
+				"type"							"chatwheel"
+				"asset"							"nevermore_nev_attack_07"
+				"modifier"						"nevermore_nev_arc_attack_07"
+			}
+			"asset_modifier7"
+			{
+				"type"							"chatwheel"
+				"asset"							"nevermore_nev_attack_11"
+				"modifier"						"nevermore_nev_arc_attack_11"
+			}
+			"asset_modifier8"
+			{
+				"type"							"chatwheel"
+				"asset"							"nevermore_nev_rare_02"
+				"modifier"						"nevermore_nev_arc_rare_02"
+			}
+			"asset_modifier9"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_nevermore/nevermore_shadowraze_triple.vpcf"
+				"modifier"						"particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze_triple.vpcf"
+			}
+			"asset_modifier10"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_nevermore/nevermore_loadout.vpcf"
+				"modifier"						"particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_loadout.vpcf"
+			}
+			"asset_modifier11"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_nevermore/nevermore_ambient_glow.vpcf"
+				"modifier"						"particles/units/heroes/hero_nevermore/sf_fire_arcana_ambient_glow.vpcf"
+			}
+			"asset_modifier12"
+			{
+				"type"							"response_criteria"
+				"asset"							"arcana"
+			}
+			"skip_model_combine"				"0"
+			"asset_modifier13"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Nevermore.RequiemOfSoulsCast"
+				"modifier"						"Hero_Nevermore.ROS.Arcana.Cast"
+			}
+			"asset_modifier14"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Nevermore.RequiemOfSouls"
+				"modifier"						"Hero_Nevermore.ROS.Arcana"
+			}
+			"asset_modifier15"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Nevermore.Shadowraze"
+				"modifier"						"Hero_Nevermore.Shadowraze.Arcana"
+			}
+			"asset_modifier5"
+			{
+				"type"							"chatwheel"
+				"asset"							"nevermore_nev_lasthit_02"
+				"modifier"						"nevermore_nev_arc_lasthit_02"
+			}
+			"asset_modifier16"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_nevermore/nevermore_death.vpcf"
+				"modifier"						"particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_death.vpcf"
+			}
+			"asset_modifier17"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_nevermore/nevermore_souls.vpcf"
+				"modifier"						"particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_souls.vpcf"
+			}
+			"asset_modifier18"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_nevermore/nevermore_necro_souls.vpcf"
+				"modifier"						"particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_necro_souls.vpcf"
+			}
+			"asset_modifier19"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_nevermore/nevermore_necro_souls_hero.vpcf"
+				"modifier"						"particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_necro_souls_hero.vpcf"
+			}
+			"asset_modifier21"
+			{
+				"type"							"ability_icon"
+				"asset"							"nevermore_shadowraze3"
+				"modifier"						"nevermore_shadowraze3_demon"
+			}
+			"asset_modifier22"
+			{
+				"type"							"ability_icon"
+				"asset"							"nevermore_shadowraze2"
+				"modifier"						"nevermore_shadowraze2_demon"
+			}
+			"asset_modifier23"
+			{
+				"type"							"ability_icon"
+				"asset"							"nevermore_shadowraze1"
+				"modifier"						"nevermore_shadowraze1_demon"
+			}
+			"asset_modifier24"
+			{
+				"type"							"ability_icon"
+				"asset"							"nevermore_necromastery"
+				"modifier"						"nevermore_necromastery_demon"
+			}
+			"asset_modifier25"
+			{
+				"type"							"ability_icon"
+				"asset"							"nevermore_requiem"
+				"modifier"						"nevermore_requiem_demon"
+			}
+			"asset_modifier26"
+			{
+				"type"							"ability_icon"
+				"asset"							"nevermore_dark_lord"
+				"modifier"						"nevermore_dark_lord_demon"
+			}
+			"asset_modifier27"
+			{
+				"type"							"icon_replacement_hero"
+				"asset"							"npc_dota_hero_nevermore"
+				"modifier"						"npc_dota_hero_nevermore_alt1"
+				"force_display"					"1"
+			}
+			"asset_modifier28"
+			{
+				"type"							"portrait_background_model"
+				"asset"							"models/heroes/shadow_fiend/pedestal_sf.vmdl"
+			}
+			"asset_modifier29"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/shadow_fiend/sf_desolation/sf_base_attack_desolation.vpcf"
+				"modifier"						"particles/econ/items/shadow_fiend/sf_desolation/sf_base_attack_desolation_fire_arcana.vpcf"
+			}
+			"asset_modifier30"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_ambient.vpcf"
+				"system"						"particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_R0"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_R1"
+					}
+					"2"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_R2"
+					}
+					"3"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_L0"
+					}
+					"4"
+					{
+						"control_point_index"	"5"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_L1"
+					}
+					"5"
+					{
+						"control_point_index"	"6"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_L2"
+					}
+					"6"
+					{
+						"control_point_index"	"7"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+				}
+			}
+			"asset_modifier31"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_ambient_eyes.vpcf"
+				"system"						"particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_ambient_eyes.vpcf"
+				"attach_type"					"customorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eyeL"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eyeR"
+					}
+				}
+			}
+			"asset_modifier32"
+			{
+				"type"							"arcana_level"
+				"level"							"1"
+			}
+			"asset_modifier33"
+			{
+				"type"							"icon_replacement_hero_minimap"
+				"asset"							"npc_dota_hero_nevermore"
+				"modifier"						"npc_dota_hero_nevermore_alt1"
+				"force_display"					"1"
+			}
+			"asset_modifier"
+			{
+				"type"							"chatwheel"
+				"asset"							"nevermore_nev_laugh_02"
+				"modifier"						"nevermore_nev_arc_laugh_02"
+			}
+		}
+	}
+	"7188"
+	{
+		"name"									"Horns of the Diabolical Fiend"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/nevermore/diabolical_fiend_head/diabolical_fiend_head"
+		"item_name"								"#DOTA_Item_Horns_of_the_Diabolical_Fiend"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Horns"
+		"model_player"							"models/items/nevermore/diabolical_fiend_head/diabolical_fiend_head.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_nevermore/shadow_fiend_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_nevermore/shadow_fiend_ambient_eyes.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eyeL"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eyeR"
+					}
+				}
+			}
+		}
+	}
+	"7193"
+	{
+		"name"									"Arms of the Diabolical Fiend"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/nevermore/diabolical_fiend_arms/diabolical_fiend_arms"
+		"item_name"								"#DOTA_Item_Arms_of_the_Diabolical_Fiend"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/nevermore/diabolical_fiend_arms/diabolical_fiend_arms.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"7279"
+	{
+		"name"									"Armor of the Diabolical Fiend"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/nevermore/diabolical_fiend_shoulder/diabolical_fiend_shoulder"
+		"item_name"								"#DOTA_Item_Armor_of_the_Diabolical_Fiend"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/nevermore/diabolical_fiend_shoulder/diabolical_fiend_shoulder.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"8072"
+	{
+		"name"									"Taunt: Fiendish Swag!"
+		"prefab"								"taunt"
+		"creation_date"							"2015-02-28"
+		"image_inventory"						"econ/taunts/taunt_icon_shadow_fiend_fiendish_swag"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Fiendish_Swag"
+		"item_name"								"#DOTA_Item_Taunt_Fiendish_Swag"
+		"item_rarity"							"rare"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"swag_gesture"
+				"frequency"						"1"
+				"gesture"						"1"
+			}
+		}
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+		}
+	}
+	"8259"
+	{
+		"name"									"Arms of Desolation"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-19"
+		"image_inventory"						"econ/items/shadow_fiend/arms_deso/arms_deso"
+		"item_description"						"#DOTA_Item_Desc_Arms_of_Desolation"
+		"item_name"								"#DOTA_Item_Arms_of_Desolation"
+		"item_rarity"							"immortal"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/shadow_fiend/arms_deso/arms_deso.vmdl"
+		"particle_folder"						"particles/econ/items/shadow_fiend/sf_desolation"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"desolation"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_nevermore/nevermore_base_attack.vpcf"
+				"modifier"						"particles/econ/items/shadow_fiend/sf_desolation/sf_base_attack_desolation.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_base_attack.vpcf"
+				"modifier"						"particles/econ/items/shadow_fiend/sf_desolation/sf_base_attack_desolation_fire_arcana.vpcf"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/items_fx/desolator_projectile.vpcf"
+				"modifier"						"particles/econ/items/shadow_fiend/sf_desolation/sf_base_attack_desolation_desolator.vpcf"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_nevermore/nvm_atk_blur.vpcf"
+				"modifier"						"particles/econ/items/shadow_fiend/sf_desolation/nvm_atk_blur_dso.vpcf"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_nevermore/nvm_atk_blur_b.vpcf"
+				"modifier"						"particles/econ/items/shadow_fiend/sf_desolation/nvm_atk_blur_b_dso.vpcf"
+			}
+			"skip_model_combine"				"0"
+			"asset_modifier6"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_fiend/sf_desolation/shadow_fiend_desolation_ambient.vpcf"
+				"system"						"particles/econ/items/shadow_fiend/sf_desolation/shadow_fiend_desolation_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_arm_L"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_arm_R"
+					}
+					"2"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+		}
+	}
+	"9019"
+	{
+		"name"									"Grips of Eternal Harvest"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/nevermore/ferrum_chiroptera_arms/ferrum_chiroptera_arms"
+		"item_description"						"#DOTA_Item_Desc_Grips_of_Eternal_Harvest"
+		"item_name"								"#DOTA_Item_Grips_of_Eternal_Harvest"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Grips"
+		"model_player"							"models/items/nevermore/ferrum_chiroptera_arms/ferrum_chiroptera_arms.vmdl"
+	}
+	"9020"
+	{
+		"name"									"Pauldrons of Eternal Harvest"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/nevermore/ferrum_chiroptera_shoulder/ferrum_chiroptera_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Pauldrons_of_Eternal_Harvest"
+		"item_name"								"#DOTA_Item_Pauldrons_of_Eternal_Harvest"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/nevermore/ferrum_chiroptera_shoulder/ferrum_chiroptera_shoulder.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_fiend/sf_ferrum/shadow_fiend_ferrum_shoulder_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/shadow_fiend/sf_ferrum/shadow_fiend_ferrum_shoulder_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_r"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_arm_l"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_arm_r"
+					}
+					"4"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+					"5"
+					{
+						"control_point_index"	"5"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+		}
+	}
+	"9021"
+	{
+		"name"									"Horns of Eternal Harvest"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/nevermore/ferrum_chiroptera_head/ferrum_chiroptera_head"
+		"item_description"						"#DOTA_Item_Desc_Ferrum_Chiroptera_Head"
+		"item_name"								"#DOTA_Item_Horns_of_Eternal_Harvest"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Horns"
+		"model_player"							"models/items/nevermore/ferrum_chiroptera_head/ferrum_chiroptera_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_nevermore/shadow_fiend_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_nevermore/shadow_fiend_ambient_eyes.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eyeL"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eyeR"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_fiend/sf_ferrum/shadow_fiend_ferrum_head_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/shadow_fiend/sf_ferrum/shadow_fiend_ferrum_head_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+		}
+	}
+	"9494"
+	{
+		"name"									"Breastplate of the Fathomless Ravager"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"image_inventory"						"econ/items/nevermore/krakens_ravager_shoulder/krakens_ravager_shoulder"
+		"item_name"								"#DOTA_Item_Breastplate_of_the_Fathomless_Ravager"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/nevermore/krakens_ravager_shoulder/krakens_ravager_shoulder.vmdl"
+	}
+	"9495"
+	{
+		"name"									"Claws of the Fathomless Ravager"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"image_inventory"						"econ/items/nevermore/krakens_ravager_arms/krakens_ravager_arms"
+		"item_name"								"#DOTA_Item_Claws_of_the_Fathomless_Ravager"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/nevermore/krakens_ravager_arms/krakens_ravager_arms.vmdl"
+	}
+	"9496"
+	{
+		"name"									"Helm of the Fathomless Ravager"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"image_inventory"						"econ/items/nevermore/krakens_ravager_head/krakens_ravager_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Fathomless_Ravager"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/nevermore/krakens_ravager_head/krakens_ravager_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_nevermore/shadow_fiend_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_nevermore/shadow_fiend_ambient_eyes.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eyeL"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eyeR"
+					}
+				}
+			}
+		}
+	}
+	"9993"
+	{
+		"name"									"Murder of Souls Talons"
+		"prefab"								"wearable"
+		"creation_date"							"2019-12-07"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/nevermore/nevermores_shade_arms/nevermores_shade_arms"
+		"item_name"								"#DOTA_Item_Murder_of_Souls_Talons"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/nevermore/nevermores_shade_arms/nevermores_shade_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"9994"
+	{
+		"name"									"Murder of Souls Crown"
+		"prefab"								"wearable"
+		"creation_date"							"2019-12-07"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/nevermore/nevermores_shade_head/nevermores_shade_head"
+		"item_name"								"#DOTA_Item_Murder_of_Souls_Crown"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/nevermore/nevermores_shade_head/nevermores_shade_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_nevermore/shadow_fiend_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_nevermore/shadow_fiend_ambient_eyes.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eyeL"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eyeR"
+					}
+				}
+			}
+		}
+	}
+	"9995"
+	{
+		"name"									"Murder of Souls Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2019-12-07"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/nevermore/nevermores_shade_shoulder/nevermores_shade_shoulder"
+		"item_name"								"#DOTA_Item_Murder_of_Souls_Shoulders"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/nevermore/nevermores_shade_shoulder/nevermores_shade_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"12677"
+	{
+		"name"									"Soul Corpulence - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2020-01-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/nevermore/sf_immortal_flame_shoulder/sf_immortal_flame_shoulder"
+		"item_name"								"#DOTA_Item_Soul_Corpulence__Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/nevermore/sf_immortal_flame_shoulder/sf_immortal_flame_shoulder.vmdl"
+	}
+	"12678"
+	{
+		"name"									"Soul Corpulence - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-01-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/nevermore/sf_immortal_flame_head/sf_immortal_flame_head"
+		"item_name"								"#DOTA_Item_Soul_Corpulence__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/nevermore/sf_immortal_flame_head/sf_immortal_flame_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_nevermore/shadow_fiend_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_nevermore/shadow_fiend_ambient_eyes.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eyeL"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eyeR"
+					}
+				}
+			}
+		}
+	}
+	"12679"
+	{
+		"name"									"Soul Corpulence - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-01-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/nevermore/sf_immortal_flame_arms/sf_immortal_flame_arms"
+		"item_name"								"#DOTA_Item_Soul_Corpulence__Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/nevermore/sf_immortal_flame_arms/sf_immortal_flame_arms.vmdl"
+	}
+	"13505"
+	{
+		"name"									"Souls Tyrant Head"
+		"prefab"								"wearable"
+		"creation_date"							"2019-06-24"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/nevermore/sf_souls_tyrant_head/sf_souls_tyrant_head"
+		"item_name"								"#DOTA_Item_Souls_Tyrant_Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/nevermore/sf_souls_tyrant_head/sf_souls_tyrant_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_fiend/sf_souls_tyrant/sf_souls_tyrant_head_ambient.vpcf"
+			}
+		}
+	}
+	"13506"
+	{
+		"name"									"Souls Tyrant Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2019-06-24"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/nevermore/sf_souls_tyrant_arms/sf_souls_tyrant_arms"
+		"item_name"								"#DOTA_Item_Souls_Tyrant_Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/nevermore/sf_souls_tyrant_arms/sf_souls_tyrant_arms.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"13507"
+	{
+		"name"									"Souls Tyrant Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2019-06-24"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/nevermore/sf_souls_tyrant_shoulder/sf_souls_tyrant_shoulder"
+		"item_name"								"#DOTA_Item_Souls_Tyrant_Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/nevermore/sf_souls_tyrant_shoulder/sf_souls_tyrant_shoulder.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_fiend/sf_souls_tyrant/sf_souls_tyrant_shoulder_ambient.vpcf"
+			}
+		}
+	}
+	"18034"
+	{
+		"name"									"Twilight Effigy Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/nevermore/harvest_effigy_arms/harvest_effigy_arms"
+		"item_name"								"#DOTA_Item_Twilight_Effigy_Arms"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/nevermore/harvest_effigy_arms/harvest_effigy_arms.vmdl"
+	}
+	"18035"
+	{
+		"name"									"Twilight Effigy Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/nevermore/harvest_effigy_head/harvest_effigy_head"
+		"item_name"								"#DOTA_Item_Twilight_Effigy_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/nevermore/harvest_effigy_head/harvest_effigy_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_nevermore/shadow_fiend_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_nevermore/shadow_fiend_ambient_eyes.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eyeL"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eyeR"
+					}
+				}
+			}
+		}
+	}
+	"18036"
+	{
+		"name"									"Twilight Effigy Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/nevermore/harvest_effigy_shoulder/harvest_effigy_shoulder"
+		"item_name"								"#DOTA_Item_Twilight_Effigy_Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/nevermore/harvest_effigy_shoulder/harvest_effigy_shoulder.vmdl"
+	}
+	"19841"
+	{
+		"name"									"King of Vipers Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/nevermore/king_of_vipers_shoulder/king_of_vipers_shoulder"
+		"item_name"								"#DOTA_Item_Vote_Only_King_of_Vipers_Shoulder"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/nevermore/king_of_vipers_shoulder/king_of_vipers_shoulder.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Vote_Only_Style_King_of_Vipers_Shoulder_0"
+					"skin"						"2"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Vote_Only_Style_King_of_Vipers_Shoulder_1"
+					"skin"						"2"
+					"alternate_icon"			"1"
+				}
+				"2"
+				{
+					"name"						"#DOTA_Vote_Only_Style_King_of_Vipers_Shoulder_2"
+					"skin"						"2"
+					"alternate_icon"			"2"
+				}
+			}
+			"skin"								"1"
+			"skip_model_combine"				"0"
+		}
+		"workshop_accepted"						"0"
+	}
+	"19843"
+	{
+		"name"									"King of Vipers Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/nevermore/king_of_vipers_head/king_of_vipers_head"
+		"item_name"								"#DOTA_Item_Vote_Only_King_of_Vipers_Head"
+		"item_slot"								"head"
+		"model_player"							"models/items/nevermore/king_of_vipers_head/king_of_vipers_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_nevermore/shadow_fiend_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_nevermore/shadow_fiend_ambient_eyes.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eyeL"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eyeR"
+					}
+				}
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Vote_Only_Style_King_of_Vipers_Head_0"
+					"skin"						"2"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Vote_Only_Style_King_of_Vipers_Head_1"
+					"skin"						"2"
+					"alternate_icon"			"1"
+				}
+				"2"
+				{
+					"name"						"#DOTA_Vote_Only_Style_King_of_Vipers_Head_2"
+					"skin"						"2"
+					"alternate_icon"			"2"
+				}
+			}
+			"skin"								"1"
+			"skip_model_combine"				"0"
+		}
+		"workshop_accepted"						"0"
+	}
+	"19844"
+	{
+		"name"									"King of Vipers Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/nevermore/king_of_vipers_arms/king_of_vipers_arms"
+		"item_name"								"#DOTA_Item_Vote_Only_King_of_Vipers_Arms"
+		"item_slot"								"arms"
+		"model_player"							"models/items/nevermore/king_of_vipers_arms/king_of_vipers_arms.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Vote_Only_Style_King_of_Vipers_Arms_0"
+					"skin"						"2"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Vote_Only_Style_King_of_Vipers_Arms_1"
+					"skin"						"2"
+					"alternate_icon"			"1"
+				}
+				"2"
+				{
+					"name"						"#DOTA_Vote_Only_Style_King_of_Vipers_Arms_2"
+					"skin"						"2"
+					"alternate_icon"			"2"
+				}
+			}
+			"skin"								"1"
+			"skip_model_combine"				"0"
+		}
+		"workshop_accepted"						"0"
+	}
+	"20806"
+	{
+		"name"									"Diabolical Fiend"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Diabolical Fiend Loading Screen"	"1"
+			"Arms of the Diabolical Fiend"		"1"
+			"Horns of the Diabolical Fiend"		"1"
+			"Armor of the Diabolical Fiend"		"1"
+		}
+		"creation_date"							"2016-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/loading_screens/diabolical_fiend_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Diabolical_Fiend"
+		"item_name"								"#DOTA_Item_Diabolical_Fiend"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"21070"
+	{
+		"name"									"Eternal Harvest"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Horns of Eternal Harvest"			"1"
+			"Pauldrons of Eternal Harvest"		"1"
+			"Grips of Eternal Harvest"			"1"
+			"Loading Screen of Eternal Harvest"	"1"
+		}
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/ferrum_chiroptera_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Eternal_Harvest"
+		"item_name"								"#DOTA_Item_Eternal_Harvest"
+		"item_rarity"							"mythical"
+	}
+	"21138"
+	{
+		"name"									"Fathomless Ravager"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Helm of the Fathomless Ravager"	"1"
+			"Claws of the Fathomless Ravager"	"1"
+			"Breastplate of the Fathomless Ravager""1"
+		}
+		"creation_date"							"2017-05-17"
+		"image_inventory"						"econ/sets/DOTA_Item_TI7_Cache_Krakens_Ravager"
+		"item_description"						"#DOTA_Item_Desc_Fathomless_Ravager"
+		"item_name"								"#DOTA_Item_Fathomless_Ravager"
+		"item_rarity"							"rare"
+	}
+	"21217"
+	{
+		"name"									"Murder of Souls"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Murder of Souls Loading Screen"	"1"
+			"Murder of Souls Shoulders"			"1"
+			"Murder of Souls Crown"				"1"
+			"Murder of Souls Talons"			"1"
+		}
+		"creation_date"							"2019-12-07"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/loading_screens/nevermores_shade_ls"
+		"item_name"								"#DOTA_Item_Murder_of_Souls"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"21279"
+	{
+		"name"									"Soul Corpulence"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Soul Corpulence - Arms"			"1"
+			"Soul Corpulence - Head"			"1"
+			"Soul Corpulence Loading Screen"	"1"
+			"Soul Corpulence - Shoulder"		"1"
+		}
+		"creation_date"							"2020-01-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/loading_screens/sf_immortal_flame_ls"
+		"item_name"								"#DOTA_Item_Soul_Corpulence"
+		"item_rarity"							"mythical"
+	}
+	"21419"
+	{
+		"name"									"Souls Tyrant"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Souls Tyrant Shoulder"				"1"
+			"Souls Tyrant Arms"					"1"
+			"Souls Tyrant Head"					"1"
+			"Souls Tyrant Loading Screen"		"1"
+		}
+		"creation_date"							"2019-06-24"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/loading_screens/sf_souls_tyrant_ls"
+		"item_description"						"#DOTA_Item_Desc_Souls_Tyrant"
+		"item_name"								"#DOTA_Item_Souls_Tyrant"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"21752"
+	{
+		"name"									"Twilight Effigy"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Twilight Effigy Arms"				"1"
+			"Twilight Effigy Head"				"1"
+			"Twilight Effigy Loading Screen"	"1"
+			"Twilight Effigy Armor"				"1"
+		}
+		"creation_date"							"2020-09-28"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Harvest_Effigy"
+		"item_name"								"#DOTA_Item_Twilight_Effigy"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+	}
+	"21964"
+	{
+		"name"									"King of Vipers"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"King of Vipers Arms"				"1"
+			"King of Vipers Head"				"1"
+			"King of Vipers Shoulder"			"1"
+			"King of Vipers LS"					"1"
+		}
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_King_of_Vipers"
+		"workshop_accepted"						"0"
+	}
+	"22842"
+	{
+		"name"									"Spring Lineage Eternal Harvest"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Spring Lineage Grips of Eternal Harvest""1"
+			"Spring Lineage Pauldrons of Eternal Harvest""1"
+			"Spring Lineage Horns of Eternal Harvest""1"
+		}
+		"creation_date"							"2022-03-27"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/sets/DOTA_Item_Spring_Lineage_Eternal_Harvest"
+		"item_description"						"#DOTA_Item_Desc_Spring_Lineage_Eternal_Harvest"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Eternal_Harvest"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+	}
+	"22843"
+	{
+		"name"									"Spring Lineage Grips of Eternal Harvest"
+		"prefab"								"wearable"
+		"creation_date"							"2022-03-27"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/items/nevermore/ferrum_chiroptera_arms/ferrum_chiroptera_arms1"
+		"item_description"						"#DOTA_Item_Desc_Spring_Lineage_Grips_of_Eternal_Harvest"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Grips_of_Eternal_Harvest"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Grips"
+		"model_player"							"models/items/nevermore/ferrum_chiroptera_arms/ferrum_chiroptera_arms.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+		"visuals"
+		{
+			"skin"								"1"
+			"skip_model_combine"				"0"
+		}
+	}
+	"22844"
+	{
+		"name"									"Spring Lineage Pauldrons of Eternal Harvest"
+		"prefab"								"wearable"
+		"creation_date"							"2022-03-27"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/items/nevermore/ferrum_chiroptera_shoulder/ferrum_chiroptera_shoulder1"
+		"item_description"						"#DOTA_Item_Desc_Spring_Lineage_Pauldrons_of_Eternal_Harvest"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Pauldrons_of_Eternal_Harvest"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/nevermore/ferrum_chiroptera_shoulder/ferrum_chiroptera_shoulder.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_fiend/sf_ferrum/shadow_fiend_ferrum_shoulder_dpc_ambient.vpcf"
+				"style"							"0"
+			}
+			"skin"								"1"
+			"skip_model_combine"				"0"
+		}
+	}
+	"22845"
+	{
+		"name"									"Spring Lineage Horns of Eternal Harvest"
+		"prefab"								"wearable"
+		"creation_date"							"2022-03-27"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/items/nevermore/ferrum_chiroptera_head/ferrum_chiroptera_head1"
+		"item_description"						"#DOTA_Item_Desc_Spring_Lineage_Horns_of_Eternal_Harvest"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Horns_of_Eternal_Harvest"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Horns"
+		"model_player"							"models/items/nevermore/ferrum_chiroptera_head/ferrum_chiroptera_head.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_nevermore/shadow_fiend_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_nevermore/shadow_fiend_ambient_eyes.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eyeL"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eyeR"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/shadow_fiend/sf_ferrum/shadow_fiend_ferrum_head_dpc_ambient.vpcf"
+				"style"							"0"
+			}
+			"skin"								"1"
+			"skip_model_combine"				"0"
+		}
+	}
+}

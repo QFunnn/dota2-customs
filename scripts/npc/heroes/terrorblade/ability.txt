@@ -1,0 +1,91 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"terrorblade_sunder_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetFlags"				"DOTA_UNIT_TARGET_FLAG_NONE"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"						"2"
+		"MaxLevel"								"3"
+		"LevelsBetweenUpgrades"					"15"
+		"AbilityTextureName"					"terrorblade_sunder"
+		"ScriptFile"							"heroes/hero_terrorblade/terrorblade_sunder_lua"
+		"AbilityCooldown"						"120.0 80.0 40.0"
+		"AbilityCastRange"						"475"
+		"AbilityCastPoint"						"0.35"
+		"AbilityManaCost"						"100 75 50"
+		"AbilityValues"
+		{
+			"hit_point_minimum_pct"				"35 30 25"
+		}
+		"precache"
+		{
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts"
+			"particle"							"particles/units/heroes/hero_terrorblade/terrorblade_sunder.vpcf"
+		}
+	}
+	"terrorblade_reflection_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"AbilityTextureName"					"terrorblade_reflection"
+		"ScriptFile"							"heroes/hero_terrorblade/terrorblade_reflection_lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_YES"
+		"FightRecapLevel"						"1"
+		"AbilitySound"							"Hero_Terrorblade.Reflection"
+		"AbilityCastPoint"						"0.3"
+		"AbilityCastRange"						"700"
+		"AbilityManaCost"						"35 40 45 50"
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"							"23 20 17 14"
+				"special_bonus_unique_terrorblade_2""-3"
+			}
+			"illusion_duration"					"5"
+			"illusion_outgoing_damage"
+			{
+				"value"							"-45 -30 -15 0"
+				"special_bonus_unique_terrorblade_6""+10"
+			}
+			"illusion_outgoing_tooltip"
+			{
+				"value"							"55 70 85 100"
+				"special_bonus_unique_terrorblade_6""+10"
+			}
+			"move_slow"
+			{
+				"value"							"15 20 25 30"
+				"special_bonus_unique_terrorblade_6""+10"
+			}
+			"attack_slow"
+			{
+				"value"							"15 20 25 30"
+				"special_bonus_unique_terrorblade_6""+10"
+			}
+			"range"
+			{
+				"value"							"500"
+				"affected_by_aoe_increase"		"1"
+			}
+			"max_creep_affect"					"6"
+		}
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_1"
+	}
+}

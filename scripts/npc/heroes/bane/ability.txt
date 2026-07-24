@@ -1,0 +1,63 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"bane_fiends_grip_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"ScriptFile"							"heroes/hero_bane/bane_fiends_grip_lua"
+		"AbilityTextureName"					"bane_fiends_grip"
+		"FightRecapLevel"						"1"
+		"MaxLevel"								"3"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_YES_STRONG"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PURE"
+		"FightRecapLevel_Repeat1"				"2"
+		"AbilitySound"							"Hero_Bane.FiendsGrip"
+		"AbilityCastPoint"						"0.2"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityManaCost"						"200 300 400"
+		"AbilityCastRange"						"625"
+		"AbilityValues"
+		{
+			"fiend_grip_tick_interval"			"0.5"
+			"fiend_grip_mana_drain"
+			{
+				"value"							"5"
+				"special_bonus_unique_bane_9"	"+5"
+			}
+			"AbilityChannelTime"
+			{
+				"value"							"4.75 5.25 5.75"
+				"special_bonus_unique_bane_3"	"+3"
+			}
+			"fiend_grip_damage"					"70 110 150"
+			"AbilityCooldown"
+			{
+				"value"							"120 110 100"
+				"special_bonus_scepter"			"-45"
+			}
+			"illusion_count"
+			{
+				"special_bonus_scepter"			"+2"
+			}
+			"scepter_incoming_illusion_damage"
+			{
+				"special_bonus_scepter"			"+200"
+			}
+		}
+	}
+}

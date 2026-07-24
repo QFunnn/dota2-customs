@@ -1,0 +1,3055 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"454"
+	{
+		"name"									"Abaddon's Weapon"
+		"prefab"								"default_item"
+		"creation_date"							"2013-06-12"
+		"image_inventory"						"econ/heroes/abaddon/weapon"
+		"item_description"						"#DOTA_Item_Desc_Abaddons_Weapon"
+		"item_name"								"#DOTA_Item_Abaddons_Weapon"
+		"model_player"							"models/heroes/abaddon/weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"system"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"455"
+	{
+		"name"									"Abaddon's Helmet"
+		"prefab"								"default_item"
+		"creation_date"							"2013-06-12"
+		"image_inventory"						"econ/heroes/abaddon/helmet"
+		"item_description"						"#DOTA_Item_Desc_Abaddons_Helmet"
+		"item_name"								"#DOTA_Item_Abaddons_Helmet"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/abaddon/helmet.vmdl"
+	}
+	"456"
+	{
+		"name"									"Abaddon's Cape"
+		"prefab"								"default_item"
+		"creation_date"							"2013-06-12"
+		"image_inventory"						"econ/heroes/abaddon/cape"
+		"item_description"						"#DOTA_Item_Desc_Abaddons_Cape"
+		"item_name"								"#DOTA_Item_Abaddons_Cape"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/heroes/abaddon/cape.vmdl"
+	}
+	"457"
+	{
+		"name"									"Abaddon's Shoulder Armor"
+		"prefab"								"default_item"
+		"creation_date"							"2013-06-12"
+		"image_inventory"						"econ/heroes/abaddon/shoulders"
+		"item_description"						"#DOTA_Item_Desc_Abaddons_Shoulder_Armor"
+		"item_name"								"#DOTA_Item_Abaddons_Shoulder_Armor"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/heroes/abaddon/shoulders.vmdl"
+	}
+	"458"
+	{
+		"name"									"Abaddon's Mount"
+		"prefab"								"default_item"
+		"creation_date"							"2013-06-12"
+		"image_inventory"						"econ/heroes/abaddon/mount"
+		"item_description"						"#DOTA_Item_Desc_Abaddons_Mount"
+		"item_name"								"#DOTA_Item_Abaddons_Mount"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/heroes/abaddon/mount.vmdl"
+	}
+	"522"
+	{
+		"name"									"Abaddon's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-08"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Abaddons_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_abaddon"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_abaddon/abaddon_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_abaddon/abaddon_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+					"2"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"5168"
+	{
+		"name"									"Mace of the Chosen"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-15"
+		"image_inventory"						"econ/items/abaddon/feathers/feathers_weapon"
+		"item_description"						"#DOTA_Item_Desc_Mace_of_the_Chosen"
+		"item_name"								"#DOTA_Item_Mace_of_the_Chosen"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Mace"
+		"model_player"							"models/items/abaddon/feathers/feathers_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/abaddon/abaddon_feathers_mace"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/abaddon/abaddon_sword_default.vsnap"
+				"modifier"						"particles/models/items/abaddon/feathers/abaddon_feather_mace_fx.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_ATTACK"
+				"modifier"						"mace"
+			}
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE"
+				"modifier"						"mace"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_RUN"
+				"modifier"						"mace"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_abaddon/abaddon_aphotic_shield.vpcf"
+				"modifier"						"particles/econ/items/abaddon/abaddon_feathers_mace/abaddon_aphotic_shield_mace.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"system"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/abaddon/abaddon_feathers_mace/abaddon_weapon_feathers_mace_ambient.vpcf"
+				"system"						"particles/econ/items/abaddon/abaddon_feathers_mace/abaddon_weapon_feathers_mace_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_glow"
+					}
+				}
+			}
+		}
+	}
+	"5398"
+	{
+		"name"									"Mistblade"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-10"
+		"image_inventory"						"econ/items/abaddon/mistblade/mistblade"
+		"item_description"						"#DOTA_Item_Desc_Mistblade"
+		"item_name"								"#DOTA_Item_Mistblade"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Sword"
+		"model_player"							"models/items/abaddon/mistblade/mistblade.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/abaddon/abaddon_sword_default.vsnap"
+				"modifier"						"particles/models/items/abaddon/mistblade/mistblade.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"system"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"5561"
+	{
+		"name"									"Phantom's Reaper"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-24"
+		"image_inventory"						"econ/items/abaddon/phantoms_reaper/phantoms_reaper"
+		"item_description"						"#DOTA_Item_Desc_Phantoms_Reaper"
+		"item_name"								"#DOTA_Item_Phantoms_Reaper"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Scythe"
+		"model_player"							"models/items/abaddon/phantoms_reaper/phantoms_reaper.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/abaddon/abaddon_sword_default.vsnap"
+				"modifier"						"particles/models/items/abaddon/phantoms_reaper/phantoms_reaper.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"system"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"5690"
+	{
+		"name"									"Darkstar the Mistforged"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-19"
+		"image_inventory"						"econ/items/abaddon/darkstar_the_mistforged/darkstar_the_mistforged"
+		"item_description"						"#DOTA_Item_Desc_Darkstar_the_Mistforged"
+		"item_name"								"#DOTA_Item_Darkstar_the_Mistforged"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Sword"
+		"model_player"							"models/items/abaddon/darkstar_the_mistforged/darkstar_the_mistforged.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/abaddon/abaddon_sword_default.vsnap"
+				"modifier"						"particles/models/items/abaddon/darkstar_the_mistforged/darkstar_the_mistforged.vsnap"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"system"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"5691"
+	{
+		"name"									"Netherax, Nightmare of the Mist"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-19"
+		"image_inventory"						"econ/items/abaddon/netherax_nightmare_of_the_mist/netherax_nightmare_of_the_mist"
+		"item_description"						"#DOTA_Item_Desc_Netherax_Nightmare_of_the_Mist"
+		"item_name"								"#DOTA_Item_Netherax_Nightmare_of_the_Mist"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/abaddon/netherax_nightmare_of_the_mist/netherax_nightmare_of_the_mist.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5692"
+	{
+		"name"									"Mistplates of Ruin"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-19"
+		"image_inventory"						"econ/items/abaddon/mistplates_of_ruin/mistplates_of_ruin"
+		"item_name"								"#DOTA_Item_Mistplates_of_Ruin"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/abaddon/mistplates_of_ruin/mistplates_of_ruin.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5693"
+	{
+		"name"									"Tarnhelm of Ruin"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-20"
+		"image_inventory"						"econ/items/abaddon/tarnhelm_of_ruin/tarnhelm_of_ruin"
+		"item_name"								"#DOTA_Item_Tarnhelm_of_Ruin"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/abaddon/tarnhelm_of_ruin/tarnhelm_of_ruin.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5694"
+	{
+		"name"									"Winged Shroud of Ruin"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-20"
+		"image_inventory"						"econ/items/abaddon/winged_shroud_of_ruin/winged_shroud_of_ruin"
+		"item_name"								"#DOTA_Item_Winged_Shroud_of_Ruin"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/abaddon/winged_shroud_of_ruin/winged_shroud_of_ruin.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5792"
+	{
+		"name"									"Hollow Ripper"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-03"
+		"image_inventory"						"econ/items/abaddon/hollow_ripper/hollow_ripper"
+		"item_name"								"#DOTA_Item_Hollow_Ripper"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/abaddon/hollow_ripper/hollow_ripper.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/abaddon/abaddon_sword_default.vsnap"
+				"modifier"						"particles/models/items/abaddon/hollow_ripper/hollow_ripper.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"system"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"5801"
+	{
+		"name"									"Cloak of the Resentful Spectre"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-06"
+		"image_inventory"						"econ/items/abaddon/cloak_of_the_resentful_spectre/cloak_of_the_resentful_spectre"
+		"item_name"								"#DOTA_Item_Cloak_of_the_Resentful_Spectre"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"model_player"							"models/items/abaddon/cloak_of_the_resentful_spectre/cloak_of_the_resentful_spectre.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5804"
+	{
+		"name"									"Grudge in the Mist"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-06"
+		"image_inventory"						"econ/items/abaddon/grudge_in_the_mist/grudge_in_the_mist"
+		"item_name"								"#DOTA_Item_Grudge_in_the_Mist"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/abaddon/grudge_in_the_mist/grudge_in_the_mist.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5812"
+	{
+		"name"									"Rimeheart the Doom Stallion"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-09"
+		"image_inventory"						"econ/items/abaddon/mount_drake_evercold/mount_drake_evercold"
+		"item_name"								"#DOTA_Item_Rimeheart_the_Doom_Stallion"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Demon_Mount"
+		"model_player"							"models/items/abaddon/mount_drake_evercold/mount_drake_evercold.vmdl"
+	}
+	"5813"
+	{
+		"name"									"Death Shroud of the Frozen Apostle"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-09"
+		"image_inventory"						"econ/items/abaddon/cape_drake_evercold/cape_drake_evercold"
+		"item_name"								"#DOTA_Item_Death_Shroud_of_the_Frozen_Apostle"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/abaddon/cape_drake_evercold/cape_drake_evercold.vmdl"
+	}
+	"5814"
+	{
+		"name"									"Horned Helm of the Frozen Apostle"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-09"
+		"image_inventory"						"econ/items/abaddon/head_drake_evercold/head_drake_evercold"
+		"item_name"								"#DOTA_Item_Horned_Helm_of_the_Frozen_Apostle"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/abaddon/head_drake_evercold/head_drake_evercold.vmdl"
+	}
+	"5815"
+	{
+		"name"									"Drake Guard of the Frozen Apostle"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-09"
+		"image_inventory"						"econ/items/abaddon/shoulder_drake_evercold/shoulder_drake_evercold"
+		"item_name"								"#DOTA_Item_Drake_Guard_of_the_Frozen_Apostle"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldron"
+		"model_player"							"models/items/abaddon/shoulder_drake_evercold/shoulder_drake_evercold.vmdl"
+	}
+	"5816"
+	{
+		"name"									"Twisted Ghostblade of the Frozen Apostle"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-09"
+		"image_inventory"						"econ/items/abaddon/weapon_ravelord/weapon_ravelord"
+		"item_name"								"#DOTA_Item_Twisted_Ghostblade_of_the_Frozen_Apostle"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/abaddon/weapon_ravelord/weapon_ravelord.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/abaddon/abaddon_sword_default.vsnap"
+				"modifier"						"particles/models/items/abaddon/weapon_ravelord/weapon_ravelord.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"system"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"5821"
+	{
+		"name"									"Hood of the Font Guard"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-06"
+		"image_inventory"						"econ/items/abaddon/hood_of_the_font_guard/hood_of_the_font_guard"
+		"item_name"								"#DOTA_Item_Hood_of_the_Font_Guard"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hood"
+		"model_player"							"models/items/abaddon/hood_of_the_font_guard/hood_of_the_font_guard.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5829"
+	{
+		"name"									"Shoulderplates of Evil Spirit"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-06"
+		"image_inventory"						"econ/items/abaddon/shoulderplates_of_evil_spirit/shoulderplates_of_evil_spirit"
+		"item_name"								"#DOTA_Item_Shoulderplates_of_Evil_Spirit"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulderplates"
+		"model_player"							"models/items/abaddon/shoulderplates_of_evil_spirit/shoulderplates_of_evil_spirit.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5830"
+	{
+		"name"									"Cold Light of the Mist"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-06"
+		"image_inventory"						"econ/items/abaddon/cold_light_of_the_mist/cold_light_of_the_mist"
+		"item_name"								"#DOTA_Item_Cold_Light_of_the_Mist"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Sword"
+		"model_player"							"models/items/abaddon/cold_light_of_the_mist/cold_light_of_the_mist.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/abaddon/abaddon_sword_default.vsnap"
+				"modifier"						"particles/models/items/abaddon/cold_light_of_the_mist/cold_light_of_the_mist.vsnap"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"system"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"5837"
+	{
+		"name"									"Iceshard"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-16"
+		"image_inventory"						"econ/items/abaddon/sword_iceshard/sword_iceshard"
+		"item_description"						"#DOTA_Item_Desc_Iceshard"
+		"item_name"								"#DOTA_Item_Iceshard"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/abaddon/sword_iceshard/sword_iceshard.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/abaddon/abaddon_sword_default.vsnap"
+				"modifier"						"particles/models/items/abaddon/sword_iceshard/sword_iceshard.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"system"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"5902"
+	{
+		"name"									"Mistbreaker"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-06"
+		"image_inventory"						"econ/items/abaddon/weapon_foxc/weapon_foxc"
+		"item_description"						"#DOTA_Item_Desc_Mistbreaker"
+		"item_name"								"#DOTA_Item_Mistbreaker"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/abaddon/weapon_foxc/weapon_foxc.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/abaddon/abaddon_sword_default.vsnap"
+				"modifier"						"particles/models/items/abaddon/weapon_foxc/weapon_foxc.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"system"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"5904"
+	{
+		"name"									"Dreadsteed of Avernus"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-06"
+		"image_inventory"						"econ/items/abaddon/abamount/abamount"
+		"item_name"								"#DOTA_Item_Dreadsteed_of_Avernus"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/abaddon/abamount/abamount.vmdl"
+	}
+	"6360"
+	{
+		"name"									"Soulhoof"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-13"
+		"forced_item_quality"					"genuine"
+		"image_inventory"						"econ/items/abaddon/soulhoof/soulhoof"
+		"item_name"								"#DOTA_Item_Soulhoof"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/abaddon/soulhoof/soulhoof.vmdl"
+	}
+	"6408"
+	{
+		"name"									"Cloak of the Demonic Vessel"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-21"
+		"image_inventory"						"econ/items/abaddon/alliance_abba_back/alliance_abba_back"
+		"item_description"						"#DOTA_Item_Desc_Cloak_of_the_Demonic_Vessel"
+		"item_name"								"#DOTA_Item_Cloak_of_the_Demonic_Vessel"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cloak"
+		"model_player"							"models/items/abaddon/alliance_abba_back/alliance_abba_back.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"4/23/2014"
+			"price"								"0"
+		}
+		"branding"
+		{
+			"team_id"							"111474"
+		}
+	}
+	"6409"
+	{
+		"name"									"Hood of the Demonic Vessel"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-21"
+		"image_inventory"						"econ/items/abaddon/alliance_abba_head/alliance_abba_head"
+		"item_description"						"#DOTA_Item_Desc_Hood_of_the_Demonic_Vessel"
+		"item_name"								"#DOTA_Item_Hood_of_the_Demonic_Vessel"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hood"
+		"model_player"							"models/items/abaddon/alliance_abba_head/alliance_abba_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"4/23/2014"
+			"price"								"0"
+		}
+		"branding"
+		{
+			"team_id"							"111474"
+		}
+	}
+	"6410"
+	{
+		"name"									"Warhorse of the Demonic Vessel"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-21"
+		"image_inventory"						"econ/items/abaddon/alliance_abba_mount/alliance_abba_mount"
+		"item_description"						"#DOTA_Item_Desc_Warhorse_of_the_Demonic_Vessel"
+		"item_name"								"#DOTA_Item_Warhorse_of_the_Demonic_Vessel"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_My_Demonic_Warhorse"
+		"model_player"							"models/items/abaddon/alliance_abba_mount/alliance_abba_mount.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"4/23/2014"
+			"price"								"0"
+		}
+		"branding"
+		{
+			"team_id"							"111474"
+		}
+	}
+	"6411"
+	{
+		"name"									"Prey of the Demonic Vessel"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-21"
+		"image_inventory"						"econ/items/abaddon/alliance_abba_shoulder/alliance_abba_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Prey_of_the_Demonic_Vessel"
+		"item_name"								"#DOTA_Item_Prey_of_the_Demonic_Vessel"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder_Skull"
+		"model_player"							"models/items/abaddon/alliance_abba_shoulder/alliance_abba_shoulder.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"4/23/2014"
+			"price"								"0"
+		}
+		"branding"
+		{
+			"team_id"							"111474"
+		}
+	}
+	"6412"
+	{
+		"name"									"Blade of the Demonic Vessel"
+		"prefab"								"wearable"
+		"branding"
+		{
+			"team_id"							"111474"
+		}
+		"creation_date"							"2014-04-21"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+			"can_equip_as_ability_effects1"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"image_inventory"						"econ/items/abaddon/alliance_abba_weapon/alliance_abba_weapon"
+		"item_description"						"#DOTA_Item_Desc_Blade_of_the_Demonic_Vessel"
+		"item_name"								"#DOTA_Item_Blade_of_the_Demonic_Vessel"
+		"item_rarity"							"legendary"
+		"model_player"							"models/items/abaddon/alliance_abba_weapon/alliance_abba_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/abaddon/abaddon_alliance"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"4/23/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_abaddon/abaddon_death_coil.vpcf"
+				"modifier"						"particles/econ/items/abaddon/abaddon_alliance/abaddon_death_coil_alliance.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"ability_icon"
+				"asset"							"abaddon_aphotic_shield"
+				"modifier"						"abaddon_aphotic_shield_alliance"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"ability_icon"
+				"asset"							"abaddon_borrowed_time"
+				"modifier"						"abaddon_borrowed_time_alliance"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"abaddon_death_coil"
+				"modifier"						"abaddon_death_coil_alliance"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"abaddon_frostmourne"
+				"modifier"						"abaddon_frostmourne_alliance"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_abaddon/abaddon_aphotic_shield.vpcf"
+				"modifier"						"particles/econ/items/abaddon/abaddon_alliance/abaddon_aphotic_shield_alliance.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"system"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"6793"
+	{
+		"name"									"Demon Edge"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-16"
+		"image_inventory"						"econ/items/abaddon/demonedge_weapon/demonedge_weapon"
+		"item_name"								"#DOTA_Item_Demon_Edge"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/abaddon/demonedge_weapon/demonedge_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/abaddon/abaddon_sword_default.vsnap"
+				"modifier"						"particles/models/items/abaddon/demonedge_weapon/demonedge_weapon.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"system"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"6812"
+	{
+		"name"									"Emissary's Blade"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-17"
+		"image_inventory"						"econ/items/abaddon/emissaryblade_weapon/emissaryblade_weapon"
+		"item_name"								"#DOTA_Item_Emissarys_Blade"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/abaddon/emissaryblade_weapon/emissaryblade_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/abaddon/abaddon_sword_default.vsnap"
+				"modifier"						"particles/models/items/abaddon/emissaryblade_weapon/emissaryblade_weapon.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"system"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"7312"
+	{
+		"name"									"Vespertine Guard Helmet"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-24"
+		"image_inventory"						"econ/items/abaddon/vespertine_guard_helmet/vespertine_guard_helmet"
+		"item_name"								"#DOTA_Item_Vespertine_Guard_Helmet"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/abaddon/vespertine_guard_helmet/vespertine_guard_helmet.vmdl"
+	}
+	"7313"
+	{
+		"name"									"Vespertine Guard Blade"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-24"
+		"image_inventory"						"econ/items/abaddon/vespertine_guard_blade/vespertine_guard_blade"
+		"item_name"								"#DOTA_Item_Vespertine_Guard_Blade"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/abaddon/vespertine_guard_blade/vespertine_guard_blade.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/abaddon/abaddon_sword_default.vsnap"
+				"modifier"						"particles/models/items/abaddon/vespertine_guard_blade/vespertine_guard_blade.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"system"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"7314"
+	{
+		"name"									"Vespertine Guard Cloak"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-24"
+		"image_inventory"						"econ/items/abaddon/vespertine_guard_cloak/vespertine_guard_cloak"
+		"item_name"								"#DOTA_Item_Vespertine_Guard_Cloak"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cloak"
+		"model_player"							"models/items/abaddon/vespertine_guard_cloak/vespertine_guard_cloak.vmdl"
+	}
+	"7315"
+	{
+		"name"									"Nightsbane"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-24"
+		"image_inventory"						"econ/items/abaddon/vespertine_guard_mount/vespertine_guard_mount"
+		"item_name"								"#DOTA_Item_Nightsbane"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/abaddon/vespertine_guard_mount/vespertine_guard_mount.vmdl"
+	}
+	"7316"
+	{
+		"name"									"Vespertine Guard Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-24"
+		"image_inventory"						"econ/items/abaddon/vespertine_guard_shoulder/vespertine_guard_shoulder"
+		"item_name"								"#DOTA_Item_Vespertine_Guard_Shoulders"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/abaddon/vespertine_guard_shoulder/vespertine_guard_shoulder.vmdl"
+	}
+	"7334"
+	{
+		"name"									"Rider of Avarice Helmet"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-17"
+		"image_inventory"						"econ/items/abaddon/avarice_head/avarice_head"
+		"item_name"								"#DOTA_Item_Rider_of_Avarice_Helmet"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/abaddon/avarice_head/avarice_head.vmdl"
+	}
+	"7335"
+	{
+		"name"									"Rider of Avarice Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-17"
+		"image_inventory"						"econ/items/abaddon/avarice_shoulders/avarice_shoulders"
+		"item_name"								"#DOTA_Item_Rider_of_Avarice_Shoulders"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/abaddon/avarice_shoulders/avarice_shoulders.vmdl"
+	}
+	"7336"
+	{
+		"name"									"Rider of Avarice Sword"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-17"
+		"image_inventory"						"econ/items/abaddon/avarice_weapon/avarice_weapon"
+		"item_name"								"#DOTA_Item_Rider_of_Avarice_Sword"
+		"item_type_name"						"#DOTA_WearableType_Sword"
+		"model_player"							"models/items/abaddon/avarice_weapon/avarice_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/abaddon/abaddon_sword_default.vsnap"
+				"modifier"						"particles/models/items/abaddon/avarice_weapon/avarice_weapon.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"system"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"7337"
+	{
+		"name"									"Rider of Avarice Cape"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-17"
+		"image_inventory"						"econ/items/abaddon/avarice_back/avarice_back"
+		"item_name"								"#DOTA_Item_Rider_of_Avarice_Cape"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/abaddon/avarice_back/avarice_back.vmdl"
+	}
+	"7338"
+	{
+		"name"									"Rider of Avarice Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-17"
+		"image_inventory"						"econ/items/abaddon/avarice_mount/avarice_mount"
+		"item_name"								"#DOTA_Item_Rider_of_Avarice_Mount"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/abaddon/avarice_mount/avarice_mount.vmdl"
+	}
+	"7364"
+	{
+		"name"									"Compendium Rider of Avarice Cape"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-26"
+		"image_inventory"						"econ/items/abaddon/promo_gilded_cape/promo_gilded_cape"
+		"item_name"								"#DOTA_Item_Compendium_Rider_of_Avarice_Cape"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/abaddon/promo_gilded_cape/promo_gilded_cape.vmdl"
+	}
+	"7365"
+	{
+		"name"									"Compendium Rider of Avarice Helmet"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-26"
+		"image_inventory"						"econ/items/abaddon/promo_gilded_helmet/promo_gilded_helmet"
+		"item_name"								"#DOTA_Item_Compendium_Rider_of_Avarice_Helmet"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/abaddon/promo_gilded_helmet/promo_gilded_helmet.vmdl"
+	}
+	"7366"
+	{
+		"name"									"Compendium Rider of Avarice Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-26"
+		"image_inventory"						"econ/items/abaddon/promo_gilded_mount/promo_gilded_mount"
+		"item_name"								"#DOTA_Item_Compendium_Rider_of_Avarice_Mount"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/abaddon/promo_gilded_mount/promo_gilded_mount.vmdl"
+	}
+	"7367"
+	{
+		"name"									"Compendium Rider of Avarice Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-26"
+		"image_inventory"						"econ/items/abaddon/promo_gilded_shoulder/promo_gilded_shoulder"
+		"item_name"								"#DOTA_Item_Compendium_Rider_of_Avarice_Shoulders"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/abaddon/promo_gilded_shoulder/promo_gilded_shoulder.vmdl"
+	}
+	"7368"
+	{
+		"name"									"Compendium Rider of Avarice Sword"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-26"
+		"image_inventory"						"econ/items/abaddon/promo_gilded_sword/promo_gilded_sword"
+		"item_name"								"#DOTA_Item_Compendium_Rider_of_Avarice_Sword"
+		"item_type_name"						"#DOTA_WearableType_Sword"
+		"model_player"							"models/items/abaddon/promo_gilded_sword/promo_gilded_sword.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/abaddon/abaddon_sword_default.vsnap"
+				"modifier"						"particles/models/items/abaddon/promo_gilded_sword/promo_gilded_sword.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"system"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"7411"
+	{
+		"name"									"Cape of the Mistral Fiend"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-08"
+		"image_inventory"						"econ/items/abaddon/mark_of_the_mistral_fiend_back/mark_of_the_mistral_fiend_back"
+		"item_name"								"#DOTA_Item_Cape_of_the_Mistral_Fiend"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/abaddon/mark_of_the_mistral_fiend_back/mark_of_the_mistral_fiend_back.vmdl"
+	}
+	"7412"
+	{
+		"name"									"Helm of the Mistral Fiend"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-08"
+		"image_inventory"						"econ/items/abaddon/mark_of_the_mistral_fiend_head/mark_of_the_mistral_fiend_head"
+		"item_description"						"#DOTA_Item_Desc_Helm_of_the_Mistral_Fiend"
+		"item_name"								"#DOTA_Item_Helm_of_the_Mistral_Fiend"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/abaddon/mark_of_the_mistral_fiend_head/mark_of_the_mistral_fiend_head.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_abaddon' gem_def_index: 3005 } asset_modifier: 162"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"abaddon_aphotic_shield"
+				"modifier"						"abaddon/mistral_fiend_icons/abaddon_aphotic_shield"
+			}
+			"asset_modifier_socket1"
+			{
+				"type"							"ability_icon"
+				"asset"							"abaddon_borrowed_time"
+				"modifier"						"abaddon/mistral_fiend_icons/abaddon_borrowed_time"
+			}
+			"asset_modifier_socket2"
+			{
+				"type"							"ability_icon"
+				"asset"							"abaddon_death_coil"
+				"modifier"						"abaddon/mistral_fiend_icons/abaddon_death_coil"
+			}
+			"asset_modifier_socket3"
+			{
+				"type"							"ability_icon"
+				"asset"							"abaddon_frostmourne"
+				"modifier"						"abaddon/mistral_fiend_icons/abaddon_frostmourne"
+			}
+		}
+	}
+	"7413"
+	{
+		"name"									"Mistral"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-08"
+		"image_inventory"						"econ/items/abaddon/mark_of_the_mistral_fiend_mount/mark_of_the_mistral_fiend_mount"
+		"item_name"								"#DOTA_Item_Mistral"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/abaddon/mark_of_the_mistral_fiend_mount/mark_of_the_mistral_fiend_mount.vmdl"
+	}
+	"7414"
+	{
+		"name"									"Pauldrons of the Mistral Fiend"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-08"
+		"image_inventory"						"econ/items/abaddon/mark_of_the_mistral_fiend_shoulder/mark_of_the_mistral_fiend_shoulder"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Mistral_Fiend"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/abaddon/mark_of_the_mistral_fiend_shoulder/mark_of_the_mistral_fiend_shoulder.vmdl"
+	}
+	"7415"
+	{
+		"name"									"Call of the Mistral Fiend"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-08"
+		"image_inventory"						"econ/items/abaddon/mark_of_the_mistral_fiend_weapon/mark_of_the_mistral_fiend_weapon"
+		"item_name"								"#DOTA_Item_Call_of_the_Mistral_Fiend"
+		"model_player"							"models/items/abaddon/mark_of_the_mistral_fiend_weapon/mark_of_the_mistral_fiend_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/abaddon/abaddon_sword_default.vsnap"
+				"modifier"						"particles/models/items/abaddon/mark_of_the_mistral_fiend_weapon/mark_of_the_mistral_fiend_weapon.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"system"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"7457"
+	{
+		"name"									"Cape of Enveloping Despair"
+		"prefab"								"wearable"
+		"creation_date"							"2016-01-06"
+		"image_inventory"						"econ/items/abaddon/haze_whisperer_back/haze_whisperer_back"
+		"item_name"								"#DOTA_Item_Cape_of_Enveloping_Despair"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/abaddon/haze_whisperer_back/haze_whisperer_back.vmdl"
+	}
+	"7464"
+	{
+		"name"									"Helm of Enveloping Despair"
+		"prefab"								"wearable"
+		"creation_date"							"2016-01-06"
+		"image_inventory"						"econ/items/abaddon/haze_whisperer_head/haze_whisperer_head"
+		"item_name"								"#DOTA_Item_Helm_of_Enveloping_Despair"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/abaddon/haze_whisperer_head/haze_whisperer_head.vmdl"
+	}
+	"7496"
+	{
+		"name"									"Drowned Horseman's Cape"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-19"
+		"image_inventory"						"econ/items/abaddon/dotapit_s3_drowned_rider_back/dotapit_s3_drowned_rider_back"
+		"item_name"								"#DOTA_Item_Drowned_Horsemans_Cape"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/abaddon/dotapit_s3_drowned_rider_back/dotapit_s3_drowned_rider_back.vmdl"
+	}
+	"7497"
+	{
+		"name"									"Drowned Horseman's Helm"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-19"
+		"image_inventory"						"econ/items/abaddon/dotapit_s3_drowned_rider_head/dotapit_s3_drowned_rider_head"
+		"item_name"								"#DOTA_Item_Drowned_Horsemans_Helm"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/abaddon/dotapit_s3_drowned_rider_head/dotapit_s3_drowned_rider_head.vmdl"
+	}
+	"7498"
+	{
+		"name"									"Drowned Horseman's Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-19"
+		"image_inventory"						"econ/items/abaddon/dotapit_s3_drowned_rider_mount/dotapit_s3_drowned_rider_mount"
+		"item_name"								"#DOTA_Item_Drowned_Horsemans_Mount"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/abaddon/dotapit_s3_drowned_rider_mount/dotapit_s3_drowned_rider_mount.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"7499"
+	{
+		"name"									"Drowned Horseman's Pauldrons"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-19"
+		"image_inventory"						"econ/items/abaddon/dotapit_s3_drowned_rider_shoulder/dotapit_s3_drowned_rider_shoulder"
+		"item_name"								"#DOTA_Item_Drowned_Horsemans_Pauldrons"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/abaddon/dotapit_s3_drowned_rider_shoulder/dotapit_s3_drowned_rider_shoulder.vmdl"
+	}
+	"7500"
+	{
+		"name"									"Drowned Horseman's Axe and Buckler"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-19"
+		"image_inventory"						"econ/items/abaddon/dotapit_s3_drowned_rider_weapon/dotapit_s3_drowned_rider_weapon"
+		"item_name"								"#DOTA_Item_Drowned_Horsemans_Axe_and_Buckler"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/abaddon/dotapit_s3_drowned_rider_weapon/dotapit_s3_drowned_rider_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/abaddon/abaddon_sword_default.vsnap"
+				"modifier"						"particles/models/items/abaddon/dotapit_s3_drowned_rider_weapon/dotapit_s3_drowned_rider_weapon.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"system"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"7564"
+	{
+		"name"									"Blackmist Blade"
+		"prefab"								"wearable"
+		"creation_date"							"2015-08-19"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/abaddon/blackmist_blade/blackmist_blade"
+		"item_name"								"#DOTA_Item_Blackmist_Blade"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/abaddon/blackmist_blade/blackmist_blade.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/abaddon/abaddon_sword_default.vsnap"
+				"modifier"						"particles/models/items/abaddon/blackmist_blade/blackmist_blade.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"system"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"8741"
+	{
+		"name"									"Hallgul the War Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-12"
+		"image_inventory"						"econ/items/abaddon/weta_hallgul_war_mount/weta_hallgul_war_mount"
+		"item_name"								"#DOTA_Item_Hallgul_the_War_Mount"
+		"item_rarity"							"uncommon"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/abaddon/weta_hallgul_war_mount/weta_hallgul_war_mount.vmdl"
+	}
+	"8742"
+	{
+		"name"									"Fractured Sword"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-12"
+		"image_inventory"						"econ/items/abaddon/weta_fractured_sword_of_eternity_weapon/weta_fractured_sword_of_eternity_weapon"
+		"item_name"								"#DOTA_Item_Fractured_Sword"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Sword"
+		"model_player"							"models/items/abaddon/weta_fractured_sword_of_eternity_weapon/weta_fractured_sword_of_eternity_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"system"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/abaddon/abaddon_sword_default.vsnap"
+				"modifier"						"particles/models/items/abaddon/weta_fractured_sword_of_eternity_weapon/weta_fractured_sword_of_eternity_weapon_fx.vsnap"
+			}
+		}
+	}
+	"8747"
+	{
+		"name"									"Ram of Enveloping Despair"
+		"prefab"								"wearable"
+		"creation_date"							"2016-01-06"
+		"image_inventory"						"econ/items/abaddon/haze_whisperer_mount/haze_whisperer_mount"
+		"item_name"								"#DOTA_Item_Ram_of_Enveloping_Despair"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/abaddon/haze_whisperer_mount/haze_whisperer_mount.vmdl"
+	}
+	"8748"
+	{
+		"name"									"Spaulders of Enveloping Despair"
+		"prefab"								"wearable"
+		"creation_date"							"2016-01-06"
+		"image_inventory"						"econ/items/abaddon/haze_whisperer_shoulder/haze_whisperer_shoulder"
+		"item_name"								"#DOTA_Item_Spaulders_of_Enveloping_Despair"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Spaulders"
+		"model_player"							"models/items/abaddon/haze_whisperer_shoulder/haze_whisperer_shoulder.vmdl"
+	}
+	"8749"
+	{
+		"name"									"Halberd of Enveloping Despair"
+		"prefab"								"wearable"
+		"creation_date"							"2016-01-06"
+		"image_inventory"						"econ/items/abaddon/haze_whisperer_weapon/haze_whisperer_weapon"
+		"item_name"								"#DOTA_Item_Halberd_of_Enveloping_Despair"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Halberd"
+		"model_player"							"models/items/abaddon/haze_whisperer_weapon/haze_whisperer_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"system"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/abaddon/abaddon_sword_default.vsnap"
+				"modifier"						"particles/models/items/abaddon/haze_whisperer_weapon/haze_whisperer_weapon_fx.vsnap"
+			}
+		}
+	}
+	"9203"
+	{
+		"name"									"Cape of the Brinebred Cavalier"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"image_inventory"						"econ/items/abaddon/the_sunken_horseman_abaddon_back/the_sunken_horseman_abaddon_back"
+		"item_name"								"#DOTA_Item_Cape_of_the_Brinebred_Cavalier"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/abaddon/the_sunken_horseman_abaddon_back/the_sunken_horseman_abaddon_back.vmdl"
+	}
+	"9490"
+	{
+		"name"									"Crown of the Brinebred Cavalier"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"image_inventory"						"econ/items/abaddon/the_sunken_horseman_abaddon_head/the_sunken_horseman_abaddon_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Brinebred_Cavalier"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/abaddon/the_sunken_horseman_abaddon_head/the_sunken_horseman_abaddon_head.vmdl"
+	}
+	"9491"
+	{
+		"name"									"Steed of the Brinebred Cavalier"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"image_inventory"						"econ/items/abaddon/the_sunken_horseman_abaddon_mount/the_sunken_horseman_abaddon_mount"
+		"item_name"								"#DOTA_Item_Steed_of_the_Brinebred_Cavalier"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/abaddon/the_sunken_horseman_abaddon_mount/the_sunken_horseman_abaddon_mount.vmdl"
+	}
+	"9492"
+	{
+		"name"									"Sword of the Brinebred Cavalier"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"image_inventory"						"econ/items/abaddon/the_sunken_horseman_abaddon_weapon/the_sunken_horseman_abaddon_weapon"
+		"item_name"								"#DOTA_Item_Sword_of_the_Brinebred_Cavalier"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/abaddon/the_sunken_horseman_abaddon_weapon/the_sunken_horseman_abaddon_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"system"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/abaddon/abaddon_sword_default.vsnap"
+				"modifier"						"particles/models/items/abaddon/the_sunken_horseman_abaddon_weapon/the_sunken_horseman_abaddon_weapon_fx.vsnap"
+			}
+		}
+	}
+	"9493"
+	{
+		"name"									"Pauldrons of the Brinebred Cavalier"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"image_inventory"						"econ/items/abaddon/the_sunken_horseman_abaddon_shoulder/the_sunken_horseman_abaddon_shoulder"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Brinebred_Cavalier"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/abaddon/the_sunken_horseman_abaddon_shoulder/the_sunken_horseman_abaddon_shoulder.vmdl"
+	}
+	"13235"
+	{
+		"name"									"Endless Night Sword"
+		"prefab"								"wearable"
+		"creation_date"							"2019-06-24"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/abaddon/abaddon_endless_night_weapon/abaddon_endless_night_weapon"
+		"item_name"								"#DOTA_Item_Endless_Night_Sword"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/abaddon/abaddon_endless_night_weapon/abaddon_endless_night_weapon.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/abaddon/abaddon_endless/abaddon_endless_weapon_ambient.vpcf"
+			}
+		}
+	}
+	"13236"
+	{
+		"name"									"Endless Night Head"
+		"prefab"								"wearable"
+		"creation_date"							"2019-06-24"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/abaddon/abaddon_endless_night_head/abaddon_endless_night_head"
+		"item_name"								"#DOTA_Item_Endless_Night_Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/abaddon/abaddon_endless_night_head/abaddon_endless_night_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"13262"
+	{
+		"name"									"Endless Night Cape"
+		"prefab"								"wearable"
+		"creation_date"							"2019-06-24"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/abaddon/abaddon_endless_night_back/abaddon_endless_night_back"
+		"item_name"								"#DOTA_Item_Endless_Night_Cape"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/abaddon/abaddon_endless_night_back/abaddon_endless_night_back.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/abaddon/abaddon_endless/abaddon_endless_back_ambient.vpcf"
+			}
+		}
+	}
+	"13263"
+	{
+		"name"									"Endless Night Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2019-06-24"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/abaddon/abaddon_endless_night_shoulder/abaddon_endless_night_shoulder"
+		"item_name"								"#DOTA_Item_Endless_Night_Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/abaddon/abaddon_endless_night_shoulder/abaddon_endless_night_shoulder.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"13264"
+	{
+		"name"									"Endless Night Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2019-06-24"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/abaddon/abaddon_endless_night_mount/abaddon_endless_night_mount"
+		"item_name"								"#DOTA_Item_Endless_Night_Mount"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/abaddon/abaddon_endless_night_mount/abaddon_endless_night_mount.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/abaddon/abaddon_endless/abaddon_endless_mount_ambient.vpcf"
+			}
+		}
+	}
+	"13457"
+	{
+		"name"									"Scythe of the Everblack"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-13"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/abaddon/ti9_cache_abbaddon_everblack_weapon/ti9_cache_abbaddon_everblack_weapon"
+		"item_name"								"#DOTA_Item_Scythe_of_the_Everblack"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/abaddon/ti9_cache_abbaddon_everblack_weapon/ti9_cache_abbaddon_everblack_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"system"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/abaddon/abaddon_sword_default.vsnap"
+				"modifier"						"particles/models/items/abaddon/ti9_cache_abbaddon_everblack_weapon/ti9_cache_abbaddon_everblack_weapon_fx.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/abaddon/abaddon_everblack/abaddon_everblack_weapon_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_ATTACK"
+				"modifier"						"everblack"
+				"style"							"0"
+			}
+		}
+	}
+	"13458"
+	{
+		"name"									"Hood of the Everblack"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-13"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/abaddon/ti9_cache_abbaddon_everblack_head/ti9_cache_abbaddon_everblack_head"
+		"item_name"								"#DOTA_Item_Hood_of_the_Everblack"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/abaddon/ti9_cache_abbaddon_everblack_head/ti9_cache_abbaddon_everblack_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"13459"
+	{
+		"name"									"Pauldrons of the Everblack"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-13"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/abaddon/ti9_cache_abbaddon_everblack_shoulder/ti9_cache_abbaddon_everblack_shoulder"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Everblack"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/abaddon/ti9_cache_abbaddon_everblack_shoulder/ti9_cache_abbaddon_everblack_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/abaddon/abaddon_everblack/abaddon_everblack_shoulder_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13460"
+	{
+		"name"									"Cape of the Everblack"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-13"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/abaddon/ti9_cache_abbaddon_everblack_back/ti9_cache_abbaddon_everblack_back"
+		"item_name"								"#DOTA_Item_Cape_of_the_Everblack"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/abaddon/ti9_cache_abbaddon_everblack_back/ti9_cache_abbaddon_everblack_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"13461"
+	{
+		"name"									"Mount of the Everblack"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-13"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/abaddon/ti9_cache_abbaddon_everblack_mount/ti9_cache_abbaddon_everblack_mount"
+		"item_name"								"#DOTA_Item_Mount_of_the_Everblack"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/abaddon/ti9_cache_abbaddon_everblack_mount/ti9_cache_abbaddon_everblack_mount.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/abaddon/abaddon_everblack/abaddon_everblack_horse_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"19243"
+	{
+		"name"									"Merciless Mists - Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-09"
+		"image_inventory"						"econ/items/abaddon/merciless_king_mount/merciless_king_mount"
+		"item_name"								"#DOTA_Item_Merciless_Mists__Mount"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_mount"
+		"model_player"							"models/items/abaddon/merciless_king_mount/merciless_king_mount.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"19244"
+	{
+		"name"									"Merciless Mists - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-09"
+		"image_inventory"						"econ/items/abaddon/merciless_king_back/merciless_king_back"
+		"item_name"								"#DOTA_Item_Merciless_Mists__Back"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/abaddon/merciless_king_back/merciless_king_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"19245"
+	{
+		"name"									"Merciless Mists - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-09"
+		"image_inventory"						"econ/items/abaddon/merciless_king_shoulder/merciless_king_shoulder"
+		"item_name"								"#DOTA_Item_Merciless_Mists__Shoulder"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/abaddon/merciless_king_shoulder/merciless_king_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"19246"
+	{
+		"name"									"Merciless Mists - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-09"
+		"image_inventory"						"econ/items/abaddon/merciless_king_head/merciless_king_head"
+		"item_name"								"#DOTA_Item_Merciless_Mists__Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/abaddon/merciless_king_head/merciless_king_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"19247"
+	{
+		"name"									"Merciless Mists - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-09"
+		"image_inventory"						"econ/items/abaddon/merciless_king_weapon/merciless_king_weapon"
+		"item_name"								"#DOTA_Item_Merciless_Mists__Weapon"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/abaddon/merciless_king_weapon/merciless_king_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"system"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/abaddon/abaddon_sword_default.vsnap"
+				"modifier"						"particles/models/items/abaddon/merciless_king_weapon/merciless_king_weapon_fx.vsnap"
+			}
+		}
+	}
+	"19415"
+	{
+		"name"									"Blightfall - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/abaddon/soul_of_darkness_back/soul_of_darkness_back"
+		"item_name"								"#DOTA_Item_Blightfall__Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"model_player"							"models/items/abaddon/soul_of_darkness_back/soul_of_darkness_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"19416"
+	{
+		"name"									"Blightfall - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/abaddon/soul_of_darkness_head/soul_of_darkness_head"
+		"item_name"								"#DOTA_Item_Blightfall__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/abaddon/soul_of_darkness_head/soul_of_darkness_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/abaddon/abaddon_soul_of_darkness/abaddon_soul_of_darkness_head_ambient.vpcf"
+			}
+		}
+	}
+	"19417"
+	{
+		"name"									"Blightfall - Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/abaddon/soul_of_darkness_mount/soul_of_darkness_mount"
+		"item_name"								"#DOTA_Item_Blightfall__Mount"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"model_player"							"models/items/abaddon/soul_of_darkness_mount/soul_of_darkness_mount.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/abaddon/abaddon_soul_of_darkness/abaddon_soul_of_darkness_mount_ambient.vpcf"
+			}
+		}
+	}
+	"19418"
+	{
+		"name"									"Blightfall - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/abaddon/soul_of_darkness_shoulder/soul_of_darkness_shoulder"
+		"item_name"								"#DOTA_Item_Blightfall__Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/abaddon/soul_of_darkness_shoulder/soul_of_darkness_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"19419"
+	{
+		"name"									"Blightfall - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/abaddon/soul_of_darkness_weapon/soul_of_darkness_weapon"
+		"item_name"								"#DOTA_Item_Blightfall__Weapon"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/abaddon/soul_of_darkness_weapon/soul_of_darkness_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"modifier"						"particles/error/null.vpcf"
+				"asset"							"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/abaddon/abaddon_soul_of_darkness/abaddon_soul_of_darkness_weapon_ambient.vpcf"
+			}
+		}
+	}
+	"20315"
+	{
+		"name"									"Anointed Armor of Ruination"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Mistplates of Ruin"				"1"
+			"Darkstar the Mistforged"			"1"
+			"Netherax, Nightmare of the Mist"	"1"
+			"Tarnhelm of Ruin"					"1"
+			"Winged Shroud of Ruin"				"1"
+		}
+		"creation_date"							"2013-11-20"
+		"image_inventory"						"econ/sets/DOTA_Item_Anointed_Armor_of_Ruination"
+		"item_description"						"#DOTA_Item_Desc_Anointed_Armor_of_Ruination"
+		"item_name"								"#DOTA_Item_Anointed_Armor_of_Ruination"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"11/20/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20333"
+	{
+		"name"									"Sermon of the Frozen Apostle Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Rimeheart the Doom Stallion"		"1"
+			"Death Shroud of the Frozen Apostle""1"
+			"Drake Guard of the Frozen Apostle"	"1"
+			"Horned Helm of the Frozen Apostle"	"1"
+			"Twisted Ghostblade of the Frozen Apostle""1"
+		}
+		"creation_date"							"2013-12-09"
+		"image_inventory"						"econ/sets/DOTA_Item_Sermon_of_the_Frozen_Apostle_Set"
+		"item_description"						"#DOTA_Item_Desc_Sermon_of_the_Frozen_Apostle_Set"
+		"item_name"								"#DOTA_Item_Sermon_of_the_Frozen_Apostle_Set"
+		"item_rarity"							"mythical"
+	}
+	"20344"
+	{
+		"name"									"Darkness Wanderer's Armor Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Shoulderplates of Evil Spirit"		"1"
+			"Cold Light of the Mist"			"1"
+			"Grudge in the Mist"				"1"
+			"Hood of the Font Guard"			"1"
+			"Cloak of the Resentful Spectre"	"1"
+		}
+		"creation_date"							"2014-01-06"
+		"image_inventory"						"econ/sets/DOTA_Item_Darkness_Wanderers_Armor"
+		"item_description"						"#DOTA_Item_Desc_Darkness_Wanderers_Armor"
+		"item_name"								"#DOTA_Item_Darkness_Wanderers_Armor_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/6/2014"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20486"
+	{
+		"name"									"Arsenal of the Demonic Vessel"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Blade of the Demonic Vessel"		"1"
+			"Cloak of the Demonic Vessel"		"1"
+			"Hood of the Demonic Vessel"		"1"
+			"Prey of the Demonic Vessel"		"1"
+			"Warhorse of the Demonic Vessel"	"1"
+			"Loading Screen of the Demonic Vessel""1"
+		}
+		"creation_date"							"2014-04-21"
+		"has_store_custom_item_details_panel"	"1"
+		"image_inventory"						"econ/loading_screens/alliance_abbadon_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Arsenal_of_the_Demonic_Vessel"
+		"item_name"								"#DOTA_Item_Arsenal_of_the_Demonic_Vessel"
+		"item_rarity"							"legendary"
+		"item_type_name"						"#DOTA_WearableType_Evil_Collection"
+		"price_info"
+		{
+			"category_tags"						"Bundles"
+			"date"								"4/23/2014"
+			"bundle"							"1"
+			"price"								"1099"
+		}
+		"branding"
+		{
+			"team_id"							"111474"
+		}
+	}
+	"20687"
+	{
+		"name"									"Vespertine Guard"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Vespertine Guard Blade"			"1"
+			"Vespertine Guard Helmet"			"1"
+			"Vespertine Guard Cloak"			"1"
+			"Vespertine Guard Shoulders"		"1"
+			"Vespertine Guard Loading Screen"	"1"
+			"Nightsbane"						"1"
+		}
+		"creation_date"							"2014-11-24"
+		"image_inventory"						"econ/loading_screens/Vespertine_Guard_Loading_Screen"
+		"item_description"						"#DOTA_Item_Desc_Vespertine_Guard"
+		"item_name"								"#DOTA_Item_Vespertine_Guard"
+		"item_rarity"							"rare"
+	}
+	"20691"
+	{
+		"name"									"Compendium Rider of Avarice"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Compendium Rider of Avarice Sword"	"1"
+			"Compendium Rider of Avarice Shoulders""1"
+			"Compendium Rider of Avarice Mount"	"1"
+			"Compendium Rider of Avarice Helmet""1"
+			"Compendium Rider of Avarice Cape"	"1"
+			"Compendium Rider of Avarice Loading Screen""1"
+		}
+		"creation_date"							"2014-12-03"
+		"image_inventory"						"econ/loading_screens/promo_gilded_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Compendium_Rider_of_Avarice"
+		"item_name"								"#DOTA_Item_Compendium_Rider_of_Avarice"
+		"item_rarity"							"rare"
+	}
+	"20692"
+	{
+		"name"									"Rider of Avarice"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Rider of Avarice Helmet"			"1"
+			"Rider of Avarice Shoulders"		"1"
+			"Rider of Avarice Sword"			"1"
+			"Rider of Avarice Cape"				"1"
+			"Rider of Avarice Mount"			"1"
+			"Rider of Avarice Loading Screen"	"1"
+		}
+		"creation_date"							"2015-03-17"
+		"image_inventory"						"econ/loading_screens/avarice_rider_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Rider_of_Avarice"
+		"item_name"								"#DOTA_Item_Rider_of_Avarice"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"3000"
+	}
+	"20722"
+	{
+		"name"									"Drowned Horseman"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Drowned Horseman's Axe and Buckler""1"
+			"Drowned Horseman's Cape"			"1"
+			"Drowned Horseman's Helm"			"1"
+			"Drowned Horseman's Mount"			"1"
+			"Drowned Horseman's Pauldrons"		"1"
+		}
+		"creation_date"							"2015-01-22"
+		"image_inventory"						"econ/loading_screens/dotapit_s3_abaddon"
+		"item_description"						"#DOTA_Item_Desc_Drowned_Horseman"
+		"item_name"								"#DOTA_Item_Drowned_Horseman"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"3000"
+	}
+	"20864"
+	{
+		"name"									"Mark of the Mistral Fiend"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Cape of the Mistral Fiend"			"1"
+			"Helm of the Mistral Fiend"			"1"
+			"Mistral"							"1"
+			"Call of the Mistral Fiend"			"1"
+			"Mark of the Mistral Fiend Loading Screen""1"
+			"Pauldrons of the Mistral Fiend"	"1"
+		}
+		"creation_date"							"2015-07-08"
+		"image_inventory"						"econ/loading_screens/mark_of_the_mistral_fiend_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Mark_of_the_Mistral_Fiend"
+		"item_name"								"#DOTA_Item_Mark_of_the_Mistral_Fiend"
+		"item_rarity"							"rare"
+	}
+	"20990"
+	{
+		"name"									"Enveloping Despair"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Enveloping Despair Loading Screen"	"1"
+			"Halberd of Enveloping Despair"		"1"
+			"Spaulders of Enveloping Despair"	"1"
+			"Ram of Enveloping Despair"			"1"
+			"Helm of Enveloping Despair"		"1"
+			"Cape of Enveloping Despair"		"1"
+		}
+		"creation_date"							"2016-01-06"
+		"image_inventory"						"econ/loading_screens/haze_whisperer_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Enveloping_Despair"
+		"item_name"								"#DOTA_Item_Enveloping_Despair"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1461146400"
+			}
+		}
+	}
+	"21137"
+	{
+		"name"									"The Brinebred Cavalier"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Pauldrons of the Brinebred Cavalier""1"
+			"Sword of the Brinebred Cavalier"	"1"
+			"Steed of the Brinebred Cavalier"	"1"
+			"Crown of the Brinebred Cavalier"	"1"
+			"Cape of the Brinebred Cavalier"	"1"
+		}
+		"creation_date"							"2017-05-17"
+		"image_inventory"						"econ/sets/DOTA_Item_The_Sunken_Horseman"
+		"item_description"						"#DOTA_Item_Desc_The_Brinebred_Cavalier"
+		"item_name"								"#DOTA_Item_The_Brinebred_Cavalier"
+		"item_rarity"							"rare"
+	}
+	"21369"
+	{
+		"name"									"Endless Night"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Endless Night Mount"				"1"
+			"Endless Night Shoulder"			"1"
+			"Endless Night Cape"				"1"
+			"Endless Night Head"				"1"
+			"Endless Night Sword"				"1"
+			"Endless Night Loading Screen"		"1"
+		}
+		"creation_date"							"2019-06-24"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/loading_screens/abaddon_endless_night_ls"
+		"item_name"								"#DOTA_Item_Endless_Night"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"21413"
+	{
+		"name"									"Echoes of the Everblack"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Mount of the Everblack"			"1"
+			"Cape of the Everblack"				"1"
+			"Pauldrons of the Everblack"		"1"
+			"Hood of the Everblack"				"1"
+			"Scythe of the Everblack"			"1"
+		}
+		"creation_date"							"2019-05-13"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/sets/DOTA_Item_TI9_Cache_Abbaddon_Everblack"
+		"item_description"						"#DOTA_Item_Desc_Echoes_of_the_Everblack"
+		"item_name"								"#DOTA_Item_Echoes_of_the_Everblack"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"21856"
+	{
+		"name"									"Merciless Mists"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Merciless Mists - Weapon"			"1"
+			"Merciless Mists - Head"			"1"
+			"Merciless Mists - Mount"			"1"
+			"Merciless Mists - Back"			"1"
+			"Merciless Mists - Shoulder"		"1"
+		}
+		"creation_date"							"2021-08-09"
+		"image_inventory"						"econ/sets/DOTA_Item_Merciless_King"
+		"item_name"								"#DOTA_Item_Merciless_Mists"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"21884"
+	{
+		"name"									"Blightfall"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Blightfall Loading Screen"			"1"
+			"Blightfall - Weapon"				"1"
+			"Blightfall - Shoulder"				"1"
+			"Blightfall - Mount"				"1"
+			"Blightfall - Head"					"1"
+			"Blightfall - Back"					"1"
+		}
+		"creation_date"							"2021-08-18"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/sets/DOTA_Item_Blightfall_Bundle"
+		"item_name"								"#DOTA_Item_Blightfall"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"22336"
+	{
+		"name"									"Trenchknight - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/abaddon/knight_of_the_abyss_weapon/knight_of_the_abyss_weapon"
+		"item_name"								"#DOTA_Item_Trenchknight__Weapon"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/abaddon/knight_of_the_abyss_weapon/knight_of_the_abyss_weapon.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"system"						"particles/units/heroes/hero_abaddon/abaddon_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/abaddon/abaddon_sword_default.vsnap"
+				"modifier"						"particles/models/items/abaddon/knight_of_the_abyss_weapon/knight_of_the_abyss_weapon_fx.vsnap"
+			}
+		}
+	}
+	"22337"
+	{
+		"name"									"Trenchknight - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/abaddon/knight_of_the_abyss_shoulder/knight_of_the_abyss_shoulder"
+		"item_name"								"#DOTA_Item_Trenchknight__Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/abaddon/knight_of_the_abyss_shoulder/knight_of_the_abyss_shoulder.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"22338"
+	{
+		"name"									"Trenchknight - Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/abaddon/knight_of_the_abyss_mount/knight_of_the_abyss_mount"
+		"item_name"								"#DOTA_Item_Trenchknight__Mount"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_mount"
+		"model_player"							"models/items/abaddon/knight_of_the_abyss_mount/knight_of_the_abyss_mount.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"22340"
+	{
+		"name"									"Trenchknight - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/abaddon/knight_of_the_abyss_head/knight_of_the_abyss_head"
+		"item_name"								"#DOTA_Item_Trenchknight__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/abaddon/knight_of_the_abyss_head/knight_of_the_abyss_head.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"22341"
+	{
+		"name"									"Trenchknight - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/abaddon/knight_of_the_abyss_back/knight_of_the_abyss_back"
+		"item_name"								"#DOTA_Item_Trenchknight__Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/abaddon/knight_of_the_abyss_back/knight_of_the_abyss_back.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"22346"
+	{
+		"name"									"Trenchknight"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Trenchknight - Back"				"1"
+			"Trenchknight - Head"				"1"
+			"Trenchknight Loading Screen"		"1"
+			"Trenchknight - Mount"				"1"
+			"Trenchknight - Shoulder"			"1"
+			"Trenchknight - Weapon"				"1"
+		}
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/sets/DOTA_Item_Trenchknight"
+		"item_name"								"#DOTA_Item_Trenchknight"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"23670"
+	{
+		"name"									"Taunt: Dapper Duo"
+		"prefab"								"taunt"
+		"creation_date"							"2022-06-29"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/taunts/taunt_icon_abaddon_2022"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Dapper_Duo"
+		"item_name"								"#DOTA_Item_Taunt_Dapper_Duo"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"taunt_2022"
+				"gesture"						"1"
+			}
+		}
+	}
+}

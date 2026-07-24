@@ -1,0 +1,42 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"pudge_flesh_heap_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"AbilityTextureName"					"pudge_flesh_heap"
+		"ScriptFile"							"heroes/hero_pudge/pudge_flesh_heap_lua.lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityCooldown"						"20 18 16 14"
+		"AbilityManaCost"						"35 40 45 50"
+		"precache"
+		{
+			"particle"							"particles/msg_fx/msg_miss.vpcf"
+		}
+		"AbilityValues"
+		{
+			"damage_block"
+			{
+				"value"							"5 10 15 20"
+				"special_bonus_unique_pudge_1"	"x1.6"
+			}
+			"strength_per_kill"
+			{
+				"value"							"0.15 0.2 0.25 0.3"
+				"special_bonus_unique_pudge_1"	"x1.6"
+			}
+			"aura_radius"						"450"
+			"duration"							"5 6 7 8"
+			"kill_hero_multiple"				"5"
+		}
+	}
+}

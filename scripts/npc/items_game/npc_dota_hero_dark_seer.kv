@@ -1,0 +1,1712 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"348"
+	{
+		"name"									"Dark Seer's Spikes"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/dark_seer/dark_seer_back"
+		"item_description"						"#DOTA_Item_Desc_Dark_Seers_Spikes"
+		"item_name"								"#DOTA_Item_Dark_Seers_Spikes"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/heroes/dark_seer/dark_seer_back.vmdl"
+	}
+	"349"
+	{
+		"name"									"Dark Seer's Head"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/dark_seer/dark_seer_head"
+		"item_description"						"#DOTA_Item_Desc_Dark_Seers_Hat"
+		"item_name"								"#DOTA_Item_Dark_Seers_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/dark_seer/dark_seer_head.vmdl"
+	}
+	"350"
+	{
+		"name"									"Dark Seer's Bracers"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/dark_seer/dark_seer_arm"
+		"item_description"						"#DOTA_Item_Desc_Dark_Seers_Bracers"
+		"item_name"								"#DOTA_Item_Dark_Seers_Bracers"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/heroes/dark_seer/dark_seer_arm.vmdl"
+	}
+	"351"
+	{
+		"name"									"Dark Seer's Loin Cloth"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/dark_seer/dark_seer_waist"
+		"item_description"						"#DOTA_Item_Desc_Dark_Seers_Loin_Cloth"
+		"item_name"								"#DOTA_Item_Dark_Seers_Loin_Cloth"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/heroes/dark_seer/dark_seer_waist.vmdl"
+	}
+	"352"
+	{
+		"name"									"Dark Seer's Neck Armor"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/dark_seer/dark_seer_neck"
+		"item_description"						"#DOTA_Item_Desc_Dark_Seers_Neck_Armor"
+		"item_name"								"#DOTA_Item_Dark_Seers_Neck_Armor"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/heroes/dark_seer/dark_seer_neck.vmdl"
+	}
+	"524"
+	{
+		"name"									"Dark Seer's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-08"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Dark_Seers_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_dark_seer"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_dark_seer/dark_seer_ambient_hands.vpcf"
+				"system"						"particles/units/heroes/hero_dark_seer/dark_seer_ambient_hands.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"5115"
+	{
+		"name"									"Craniomancer"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international tag"
+				"value"							"2013"
+			}
+		}
+		"creation_date"							"2013-07-19"
+		"image_inventory"						"econ/items/dark_seer/chitin/chitin"
+		"item_description"						"#DOTA_Item_Desc_Craniomancer"
+		"item_name"								"#DOTA_Item_Craniomancer"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/dark_seer/chitin/chitin.vmdl"
+	}
+	"5116"
+	{
+		"name"									"Aqwanderer Bracers"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-09"
+		"image_inventory"						"econ/items/dark_seer/aqwanderer_arms/aqwanderer_arms"
+		"item_description"						"#DOTA_Item_Desc_Aqwanderer_Bracers"
+		"item_name"								"#DOTA_Item_Aqwanderer_Bracers"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracer"
+		"model_player"							"models/items/dark_seer/aqwanderer_arms/aqwanderer_arms.vmdl"
+	}
+	"5117"
+	{
+		"name"									"Aqwanderer Carapace"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-09"
+		"image_inventory"						"econ/items/dark_seer/aqwanderer_back/aqwanderer_back"
+		"item_description"						"#DOTA_Item_Desc_Aqwanderer_Carapace"
+		"item_name"								"#DOTA_Item_Aqwanderer_Carapace"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Shell"
+		"model_player"							"models/items/dark_seer/aqwanderer_back/aqwanderer_back.vmdl"
+	}
+	"5118"
+	{
+		"name"									"Aqwanderer Crown"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-09"
+		"image_inventory"						"econ/items/dark_seer/aqwanderer_head/aqwanderer_head"
+		"item_description"						"#DOTA_Item_Desc_Aqwanderer_Crown"
+		"item_name"								"#DOTA_Item_Aqwanderer_Crown"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/dark_seer/aqwanderer_head/aqwanderer_head.vmdl"
+	}
+	"5119"
+	{
+		"name"									"Aqwanderer Neckbrace"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-09"
+		"image_inventory"						"econ/items/dark_seer/aqwanderer_shoulders/aqwanderer_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Aqwanderer_Neckbrace"
+		"item_name"								"#DOTA_Item_Aqwanderer_Neckbrace"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Collar"
+		"model_player"							"models/items/dark_seer/aqwanderer_shoulders/aqwanderer_shoulders.vmdl"
+	}
+	"5120"
+	{
+		"name"									"Aqwanderer Boots"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-09"
+		"image_inventory"						"econ/items/dark_seer/aqwanderer_legs/aqwanderer_legs"
+		"item_description"						"#DOTA_Item_Desc_Aqwanderer_Legs"
+		"item_name"								"#DOTA_Item_Aqwanderer_Boots"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Boots"
+		"model_player"							"models/items/dark_seer/aqwanderer_legs/aqwanderer_legs.vmdl"
+	}
+	"5720"
+	{
+		"name"									"Armlets of Command"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-26"
+		"image_inventory"						"econ/items/dark_seer/armlets_of_command/armlets_of_command"
+		"item_name"								"#DOTA_Item_Armlets_of_Command"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Armlets"
+		"model_player"							"models/items/dark_seer/armlets_of_command/armlets_of_command.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5721"
+	{
+		"name"									"Ring of Command"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-26"
+		"image_inventory"						"econ/items/dark_seer/ring_of_command/ring_of_command"
+		"item_name"								"#DOTA_Item_Ring_of_Command"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/dark_seer/ring_of_command/ring_of_command.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5722"
+	{
+		"name"									"Waistguard of Command"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-26"
+		"image_inventory"						"econ/items/dark_seer/waistguard_of_command/waistguard_of_command"
+		"item_name"								"#DOTA_Item_Waistguard_of_Command"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/dark_seer/waistguard_of_command/waistguard_of_command.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5724"
+	{
+		"name"									"Collar of Command"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-26"
+		"image_inventory"						"econ/items/dark_seer/collar_of_command/collar_of_command"
+		"item_name"								"#DOTA_Item_Collar_of_Command"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Collar"
+		"model_player"							"models/items/dark_seer/collar_of_command/collar_of_command.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5774"
+	{
+		"name"									"Dark General's Mantle"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-02"
+		"image_inventory"						"econ/items/dark_seer/generals_mantle/generals_mantle"
+		"item_description"						"#DOTA_Item_Desc_Dark_Generals_Mantle"
+		"item_name"								"#DOTA_Item_Dark_Generals_Mantle"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder_Armor"
+		"model_player"							"models/items/dark_seer/generals_mantle/generals_mantle.vmdl"
+	}
+	"6231"
+	{
+		"name"									"Gombangdae Dosa Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-06"
+		"image_inventory"						"econ/items/dark_seer/gombangdae_arms/gombangdae_arms"
+		"item_name"								"#DOTA_Item_Gombangdae_Dosa_Arms"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/dark_seer/gombangdae_arms/gombangdae_arms.vmdl"
+	}
+	"6232"
+	{
+		"name"									"Gombangdae Dosa Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-06"
+		"image_inventory"						"econ/items/dark_seer/gombangdae_belt/gombangdae_belt"
+		"item_name"								"#DOTA_Item_Gombangdae_Dosa_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/dark_seer/gombangdae_belt/gombangdae_belt.vmdl"
+	}
+	"6233"
+	{
+		"name"									"Gombangdae Dosa Helmet"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-06"
+		"image_inventory"						"econ/items/dark_seer/gombangdae_head/gombangdae_head"
+		"item_name"								"#DOTA_Item_Gombangdae_Dosa_Helmet"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/dark_seer/gombangdae_head/gombangdae_head.vmdl"
+	}
+	"6234"
+	{
+		"name"									"Gombangdae Dosa Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-06"
+		"image_inventory"						"econ/items/dark_seer/gombangdae_shoulder/gombangdae_shoulder"
+		"item_name"								"#DOTA_Item_Gombangdae_Dosa_Shoulders"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/dark_seer/gombangdae_shoulder/gombangdae_shoulder.vmdl"
+	}
+	"6235"
+	{
+		"name"									"Gombangdae Dosa Back"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-06"
+		"image_inventory"						"econ/items/dark_seer/gombangdae_back/gombangdae_back"
+		"item_name"								"#DOTA_Item_Gombangdae_Dosa_Back"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/dark_seer/gombangdae_back/gombangdae_back.vmdl"
+	}
+	"6754"
+	{
+		"name"									"Crown of the Imperial Relics"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-25"
+		"image_inventory"						"econ/items/dark_seer/imperialrelic_head/imperialrelic_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Imperial_Relics"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Crown"
+		"model_player"							"models/items/dark_seer/imperialrelic_head/imperialrelic_head.vmdl"
+	}
+	"6756"
+	{
+		"name"									"Wraps of the Imperial Relics"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-25"
+		"image_inventory"						"econ/items/dark_seer/imperialrelics_arms/imperialrelics_arms"
+		"item_name"								"#DOTA_Item_Wraps_of_the_Imperial_Relics"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Wraps"
+		"model_player"							"models/items/dark_seer/imperialrelics_arms/imperialrelics_arms.vmdl"
+	}
+	"6770"
+	{
+		"name"									"Totems of the Imperial Relics"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-25"
+		"image_inventory"						"econ/items/dark_seer/imperialrelics_back/imperialrelics_back"
+		"item_name"								"#DOTA_Item_Totems_of_the_Imperial_Relics"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Totems"
+		"model_player"							"models/items/dark_seer/imperialrelics_back/imperialrelics_back.vmdl"
+	}
+	"6771"
+	{
+		"name"									"Pauldrons of the Imperial Relics"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-25"
+		"image_inventory"						"econ/items/dark_seer/imperialrelics_shoulder/imperialrelics_shoulder"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Imperial_Relics"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/dark_seer/imperialrelics_shoulder/imperialrelics_shoulder.vmdl"
+	}
+	"6772"
+	{
+		"name"									"Greaves of the Imperial Relics"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-25"
+		"image_inventory"						"econ/items/dark_seer/imperialrelics_belt/imperialrelics_belt"
+		"item_name"								"#DOTA_Item_Greaves_of_the_Imperial_Relics"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Greaves"
+		"model_player"							"models/items/dark_seer/imperialrelics_belt/imperialrelics_belt.vmdl"
+	}
+	"8212"
+	{
+		"name"									"Helm of the Artif Convert"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-13"
+		"image_inventory"						"econ/items/dark_seer/master_strategist_head/master_strategist_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Artif_Convert"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/dark_seer/master_strategist_head/master_strategist_head.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"1/10/2016"
+			"price"								"0"
+		}
+	}
+	"8213"
+	{
+		"name"									"Sleeves of the Artif Convert"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-13"
+		"image_inventory"						"econ/items/dark_seer/master_strategist_arms/master_strategist_arms"
+		"item_name"								"#DOTA_Item_Sleeves_of_the_Artif_Convert"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Sleeves"
+		"model_player"							"models/items/dark_seer/master_strategist_arms/master_strategist_arms.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"1/10/2016"
+			"price"								"0"
+		}
+	}
+	"8214"
+	{
+		"name"									"Belt of the Artif Convert"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-13"
+		"image_inventory"						"econ/items/dark_seer/master_strategist_belt/master_strategist_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Artif_Convert"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/dark_seer/master_strategist_belt/master_strategist_belt.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"1/10/2016"
+			"price"								"0"
+		}
+	}
+	"8215"
+	{
+		"name"									"Pauldrons of the Artif Convert"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-13"
+		"image_inventory"						"econ/items/dark_seer/master_strategist_shoulder/master_strategist_shoulder"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Artif_Convert"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/dark_seer/master_strategist_shoulder/master_strategist_shoulder.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"1/10/2016"
+			"price"								"0"
+		}
+	}
+	"8216"
+	{
+		"name"									"Scrolls of the Artif Convert"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-13"
+		"image_inventory"						"econ/items/dark_seer/master_strategist_back/master_strategist_back"
+		"item_name"								"#DOTA_Item_Scrolls_of_the_Artif_Convert"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Scroll"
+		"model_player"							"models/items/dark_seer/master_strategist_back/master_strategist_back.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"1/10/2016"
+			"price"								"0"
+		}
+	}
+	"8765"
+	{
+		"name"									"Hood of the Forgotten Tactician"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/dark_seer/forgotten_tactician_head/forgotten_tactician_head"
+		"item_name"								"#DOTA_Item_Hood_of_the_Forgotten_Tactician"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hood"
+		"model_player"							"models/items/dark_seer/forgotten_tactician_head/forgotten_tactician_head.vmdl"
+	}
+	"8766"
+	{
+		"name"									"Harness of the Forgotten Tactician"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/dark_seer/forgotten_tactician_back/forgotten_tactician_back"
+		"item_description"						"#DOTA_Item_Desc_Harness_of_the_Forgotten_Tactician"
+		"item_name"								"#DOTA_Item_Harness_of_the_Forgotten_Tactician"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Harness"
+		"model_player"							"models/items/dark_seer/forgotten_tactician_back/forgotten_tactician_back.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/dark_seer/dark_seer_tactician/dark_seer_tactician_back.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/dark_seer/dark_seer_tactician/dark_seer_tactician_back.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_back"
+					}
+				}
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#Harness_of_the_Forgotten_Tactician_Default"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#Harness_of_the_Forgotten_Tactician_Particle"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"price"					"1"
+						"item_def"				"16845"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/dark_seer/forgotten_tactician_back/forgotten_tactician_back"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/dark_seer/forgotten_tactician_back/forgotten_tactician_back_style1"
+				}
+			}
+		}
+	}
+	"8767"
+	{
+		"name"									"Belt of the Forgotten Tactician"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/dark_seer/forgotten_tactician_belt/forgotten_tactician_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Forgotten_Tactician"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/dark_seer/forgotten_tactician_belt/forgotten_tactician_belt.vmdl"
+	}
+	"8768"
+	{
+		"name"									"Collar of the Forgotten Tactician"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/dark_seer/forgotten_tactician_shoulder/forgotten_tactician_shoulder"
+		"item_name"								"#DOTA_Item_Collar_of_the_Forgotten_Tactician"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Collar"
+		"model_player"							"models/items/dark_seer/forgotten_tactician_shoulder/forgotten_tactician_shoulder.vmdl"
+	}
+	"8769"
+	{
+		"name"									"Bracers of the Forgotten Tactician"
+		"prefab"								"wearable"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/dark_seer/forgotten_tactician_arms/forgotten_tactician_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Forgotten_Tactician"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/dark_seer/forgotten_tactician_arms/forgotten_tactician_arms.vmdl"
+	}
+	"8874"
+	{
+		"name"									"Hood of the Vizier Exile"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/dark_seer/imperious_tactician_head/imperious_tactician_head"
+		"item_description"						"#DOTA_Item_Desc_Imperious_Tactician_Head"
+		"item_name"								"#DOTA_Item_Hood_of_the_Vizier_Exile"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/dark_seer/imperious_tactician_head/imperious_tactician_head.vmdl"
+	}
+	"8875"
+	{
+		"name"									"Bracelet of the Vizier Exile"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/dark_seer/imperious_tactician_arms/imperious_tactician_arms"
+		"item_description"						"#DOTA_Item_Desc_Imperious_Tactician_Arms"
+		"item_name"								"#DOTA_Item_Bracelet_of_the_Vizier_Exile"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/dark_seer/imperious_tactician_arms/imperious_tactician_arms.vmdl"
+	}
+	"8876"
+	{
+		"name"									"Belt of the Vizier Exile"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/dark_seer/imperious_tactician_belt/imperious_tactician_belt"
+		"item_description"						"#DOTA_Item_Desc_Imperious_Tactician_Belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Vizier_Exile"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/dark_seer/imperious_tactician_belt/imperious_tactician_belt.vmdl"
+	}
+	"8877"
+	{
+		"name"									"Drapes of the Vizier Exile"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/dark_seer/imperious_tactician_shoulder/imperious_tactician_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Imperious_Tactician_Shoulder"
+		"item_name"								"#DOTA_Item_Drapes_of_the_Vizier_Exile"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/dark_seer/imperious_tactician_shoulder/imperious_tactician_shoulder.vmdl"
+	}
+	"8878"
+	{
+		"name"									"Book of the Vizier Exile"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/dark_seer/imperious_tactician_back/imperious_tactician_back"
+		"item_description"						"#DOTA_Item_Desc_Imperious_Tactician_Back"
+		"item_name"								"#DOTA_Item_Book_of_the_Vizier_Exile"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/dark_seer/imperious_tactician_back/imperious_tactician_back.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"tactician"
+				"style"							"1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/dark_seer/dark_seer_imperious/dark_seer_imperious_back.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/dark_seer/dark_seer_imperious/dark_seer_imperious_back.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attach_entity"			"attach_book_root"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_book"
+					}
+				}
+			}
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/dark_seer/imperious_tactician_back/imperious_tactician_back_base.vmdl"
+					"name"						"#DOTA_Style_Imperious_Tactician_Back_0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Imperious_Tactician_Back_1"
+					"alternate_icon"			"1"
+					"model_player"				"models/items/dark_seer/imperious_tactician_back/imperious_tactician_back.vmdl"
+					"unlock"
+					{
+						"item_def"				"11898"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/dark_seer/imperious_tactician_back/imperious_tactician_back"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/dark_seer/imperious_tactician_back/imperious_tactician_back_style1"
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/dark_seer/dark_seer_imperious/dark_seer_imperious_back_pages.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/dark_seer/dark_seer_imperious/dark_seer_imperious_back_pages.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+				}
+			}
+		}
+	}
+	"9740"
+	{
+		"name"									"Bracers of Forlorn Precipice"
+		"prefab"								"wearable"
+		"creation_date"							"2018-06-22"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/dark_seer/dark_seer_ti8_immortal_arms/dark_seer_ti8_immortal_arms"
+		"item_description"						"#DOTA_Item_Desc_Bracers_of_Forlorn_Precipice"
+		"item_name"								"#DOTA_Item_Bracers_of_Forlorn_Precipice"
+		"item_rarity"							"immortal"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/dark_seer/dark_seer_ti8_immortal_arms/dark_seer_ti8_immortal_arms.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567296000"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti8"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_dark_seer/dark_seer_ion_shell.vpcf"
+				"modifier"						"particles/econ/items/dark_seer/dark_seer_ti8_immortal_arms/dark_seer_ti8_immortal_ion_shell.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_dark_seer/dark_seer_ion_shell_damage.vpcf"
+				"modifier"						"particles/econ/items/dark_seer/dark_seer_ti8_immortal_arms/dark_seer_ti8_immortal_ion_shell_dmg.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_dark_seer/dark_seer_ambient_hands.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/dark_seer/dark_seer_ti8_immortal_arms/dark_seer_ti8_immortal_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier5"
+			{
+				"type"							"ability_icon"
+				"asset"							"dark_seer_ion_shell"
+				"modifier"						"dark_seer/ti8_immortal_arm/dark_seer_ion_shell_immortal"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier6"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Dark_Seer.Ion_Shield_Start"
+				"modifier"						"Hero_Dark_Seer.Ion_Shield_Start.TI8"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier7"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Dark_Seer.Ion_Shield_end"
+				"modifier"						"Hero_Dark_Seer.Ion_Shield_end.TI8"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+		}
+	}
+	"9955"
+	{
+		"name"									"Flower of the Sapphire Shroud"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/dark_seer/ti8_darkseer_fungous_general_back/ti8_darkseer_fungous_general_back"
+		"item_name"								"#DOTA_Item_Flower_of_the_Sapphire_Shroud"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/dark_seer/ti8_darkseer_fungous_general_back/ti8_darkseer_fungous_general_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9956"
+	{
+		"name"									"Arms of the Sapphire Shroud"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/dark_seer/ti8_darkseer_fungous_general_arms/ti8_darkseer_fungous_general_arms"
+		"item_name"								"#DOTA_Item_Arms_of_the_Sapphire_Shroud"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/dark_seer/ti8_darkseer_fungous_general_arms/ti8_darkseer_fungous_general_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9957"
+	{
+		"name"									"Mantle of the Sapphire Shroud"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/dark_seer/ti8_darkseer_fungous_general_shoulder/ti8_darkseer_fungous_general_shoulder"
+		"item_name"								"#DOTA_Item_Mantle_of_the_Sapphire_Shroud"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/dark_seer/ti8_darkseer_fungous_general_shoulder/ti8_darkseer_fungous_general_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9958"
+	{
+		"name"									"Crown of the Sapphire Shroud"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/dark_seer/ti8_darkseer_fungous_general_head/ti8_darkseer_fungous_general_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Sapphire_Shroud"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/dark_seer/ti8_darkseer_fungous_general_head/ti8_darkseer_fungous_general_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9959"
+	{
+		"name"									"Belt of the Sapphire Shroud"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/dark_seer/ti8_darkseer_fungous_general_belt/ti8_darkseer_fungous_general_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Sapphire_Shroud"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/dark_seer/ti8_darkseer_fungous_general_belt/ti8_darkseer_fungous_general_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"12299"
+	{
+		"name"									"Golden Bracers of Forlorn Precipice"
+		"prefab"								"wearable"
+		"creation_date"							"2018-06-22"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/dark_seer/dark_seer_ti8_immortal_arms/dark_seer_ti8_immortal_arms1"
+		"item_description"						"#DOTA_Item_Desc_Golden_Bracers_of_Forlorn_Precipice"
+		"item_name"								"#DOTA_Item_Golden_Bracers_of_Forlorn_Precipice"
+		"item_rarity"							"immortal"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/dark_seer/dark_seer_ti8_immortal_arms/dark_seer_ti8_immortal_arms.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567296000"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti8"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_dark_seer/dark_seer_ion_shell.vpcf"
+				"modifier"						"particles/econ/items/dark_seer/dark_seer_ti8_immortal_arms/dark_seer_ti8_immortal_ion_shell_golden.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_dark_seer/dark_seer_ion_shell_damage.vpcf"
+				"modifier"						"particles/econ/items/dark_seer/dark_seer_ti8_immortal_arms/dark_seer_ti8_immortal_ion_shell_dmg_golden.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_dark_seer/dark_seer_ambient_hands.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/dark_seer/dark_seer_ti8_immortal_arms/dark_seer_ti8_immortal_ambient_golden.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier5"
+			{
+				"type"							"ability_icon"
+				"asset"							"dark_seer_ion_shell"
+				"modifier"						"dark_seer/ti8_immortal_arm/dark_seer_ion_shell_immortal_gold"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier6"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Dark_Seer.Ion_Shield_Start"
+				"modifier"						"Hero_Dark_Seer.Ion_Shield_Start.TI8"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier7"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Dark_Seer.Ion_Shield_end"
+				"modifier"						"Hero_Dark_Seer.Ion_Shield_end.TI8"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"skin"								"1"
+		}
+	}
+	"14498"
+	{
+		"name"									"DarkSeer Astrologer Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"image_inventory"						"econ/items/dark_seer/darkseer_astrologer_shoulder/darkseer_astrologer_shoulder"
+		"item_name"								"#DOTA_Item_Vote_Only_DarkSeer_Astrologer_Shoulder"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/dark_seer/darkseer_astrologer_shoulder/darkseer_astrologer_shoulder.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14499"
+	{
+		"name"									"DarkSeer Astrologer Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"image_inventory"						"econ/items/dark_seer/darkseer_astrologer_head/darkseer_astrologer_head"
+		"item_name"								"#DOTA_Item_Vote_Only_DarkSeer_Astrologer_Head"
+		"item_slot"								"head"
+		"model_player"							"models/items/dark_seer/darkseer_astrologer_head/darkseer_astrologer_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14500"
+	{
+		"name"									"DarkSeer Astrologer Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"image_inventory"						"econ/items/dark_seer/darkseer_astrologer_belt/darkseer_astrologer_belt"
+		"item_name"								"#DOTA_Item_Vote_Only_DarkSeer_Astrologer_Belt"
+		"item_slot"								"belt"
+		"model_player"							"models/items/dark_seer/darkseer_astrologer_belt/darkseer_astrologer_belt.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14501"
+	{
+		"name"									"DarkSeer Astrologer Back"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"image_inventory"						"econ/items/dark_seer/darkseer_astrologer_back/darkseer_astrologer_back"
+		"item_name"								"#DOTA_Item_Vote_Only_DarkSeer_Astrologer_Back"
+		"item_slot"								"back"
+		"model_player"							"models/items/dark_seer/darkseer_astrologer_back/darkseer_astrologer_back.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14502"
+	{
+		"name"									"DarkSeer Astrologer Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"image_inventory"						"econ/items/dark_seer/darkseer_astrologer_arms/darkseer_astrologer_arms"
+		"item_name"								"#DOTA_Item_Vote_Only_DarkSeer_Astrologer_Arms"
+		"item_slot"								"arms"
+		"model_player"							"models/items/dark_seer/darkseer_astrologer_arms/darkseer_astrologer_arms.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14503"
+	{
+		"name"									"Keeper of Oloxicam's Glass Pauldrons"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/dark_seer/ds_manipulator_of_warsituation_shoulder/ds_manipulator_of_warsituation_shoulder"
+		"item_name"								"#DOTA_Item_Keeper_of_Oloxicams_Glass_Pauldrons"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/dark_seer/ds_manipulator_of_warsituation_shoulder/ds_manipulator_of_warsituation_shoulder.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"14504"
+	{
+		"name"									"Keeper of Oloxicam's Glass Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/dark_seer/ds_manipulator_of_warsituation_head/ds_manipulator_of_warsituation_head"
+		"item_name"								"#DOTA_Item_Keeper_of_Oloxicams_Glass_Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/dark_seer/ds_manipulator_of_warsituation_head/ds_manipulator_of_warsituation_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/dark_seer/dark_seer_warsituation_head/dark_seer_warsituation_ambient.vpcf"
+			}
+		}
+	}
+	"14505"
+	{
+		"name"									"Keeper of Oloxicam's Glass Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/dark_seer/ds_manipulator_of_warsituation_belt/ds_manipulator_of_warsituation_belt"
+		"item_name"								"#DOTA_Item_Keeper_of_Oloxicams_Glass_Belt"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"model_player"							"models/items/dark_seer/ds_manipulator_of_warsituation_belt/ds_manipulator_of_warsituation_belt.vmdl"
+	}
+	"14526"
+	{
+		"name"									"Keeper of Oloxicam's Glass Bracer"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/dark_seer/ds_manipulator_of_warsituation_arms/ds_manipulator_of_warsituation_arms"
+		"item_name"								"#DOTA_Item_Keeper_of_Oloxicams_Glass_Bracer"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"model_player"							"models/items/dark_seer/ds_manipulator_of_warsituation_arms/ds_manipulator_of_warsituation_arms.vmdl"
+	}
+	"14527"
+	{
+		"name"									"Keeper of Oloxicam's Glass Hourglass"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/dark_seer/ds_manipulator_of_warsituation_back/ds_manipulator_of_warsituation_back"
+		"item_name"								"#DOTA_Item_Keeper_of_Oloxicams_Glass_Hourglass"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/dark_seer/ds_manipulator_of_warsituation_back/ds_manipulator_of_warsituation_back.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/dark_seer/dark_seer_warsituation_back/dark_seer_warsituation_back_ambient.vpcf"
+			}
+		}
+	}
+	"18409"
+	{
+		"name"									"Taunt: More Than Mental Mass"
+		"prefab"								"taunt"
+		"creation_date"							"2022-07-29"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/taunts/taunt_icon_dark_seer_2022"
+		"item_description"						"#DOTA_Item_Desc_Dark_Seer_2022_Taunt"
+		"item_name"								"#DOTA_Item_Taunt_More_Than_Mental_Mass"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"ds_2022_taunt"
+				"gesture"						"1"
+			}
+		}
+	}
+	"19277"
+	{
+		"name"									"Psionic Sage - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-12"
+		"image_inventory"						"econ/items/dark_seer/damathryx_legacy_head/damathryx_legacy_head"
+		"item_name"								"#DOTA_Item_Psionic_Sage__Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/dark_seer/damathryx_legacy_head/damathryx_legacy_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"19278"
+	{
+		"name"									"Psionic Sage - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-12"
+		"image_inventory"						"econ/items/dark_seer/damathryx_legacy_back/damathryx_legacy_back"
+		"item_name"								"#DOTA_Item_Psionic_Sage__Back"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/dark_seer/damathryx_legacy_back/damathryx_legacy_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"19279"
+	{
+		"name"									"Psionic Sage - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-12"
+		"image_inventory"						"econ/items/dark_seer/damathryx_legacy_arms/damathryx_legacy_arms"
+		"item_name"								"#DOTA_Item_Psionic_Sage__Arms"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/dark_seer/damathryx_legacy_arms/damathryx_legacy_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"19280"
+	{
+		"name"									"Psionic Sage - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-12"
+		"image_inventory"						"econ/items/dark_seer/damathryx_legacy_shoulder/damathryx_legacy_shoulder"
+		"item_name"								"#DOTA_Item_Psionic_Sage__Shoulder"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/dark_seer/damathryx_legacy_shoulder/damathryx_legacy_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"19281"
+	{
+		"name"									"Psionic Sage - Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-12"
+		"image_inventory"						"econ/items/dark_seer/damathryx_legacy_belt/damathryx_legacy_belt"
+		"item_name"								"#DOTA_Item_Psionic_Sage__Belt"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/dark_seer/damathryx_legacy_belt/damathryx_legacy_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"20206"
+	{
+		"name"									"Aqwanderer Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Aqwanderer Neckbrace"				"1"
+			"Aqwanderer Crown"					"1"
+			"Aqwanderer Carapace"				"1"
+			"Aqwanderer Bracers"				"1"
+			"Aqwanderer Boots"					"1"
+		}
+		"creation_date"							"2013-07-10"
+		"image_inventory"						"econ/sets/DOTA_Item_Aqwanderer_Set"
+		"item_description"						"#DOTA_Item_Desc_Aqwanderer_Set"
+		"item_name"								"#DOTA_Item_Aqwanderer_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"7/10/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20318"
+	{
+		"name"									"The Seers Command Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armlets of Command"				"1"
+			"Collar of Command"					"1"
+			"Ring of Command"					"1"
+			"Waistguard of Command"				"1"
+		}
+		"creation_date"							"2013-11-26"
+		"image_inventory"						"econ/sets/DOTA_Item_The_Seers_Command_Set"
+		"item_description"						"#DOTA_Item_Desc_The_Seers_Command_Set"
+		"item_name"								"#DOTA_Item_The_Seers_Command_Set"
+		"item_rarity"							"uncommon"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Uncommon"
+			"category_tags"						"Bundles"
+			"date"								"11/26/2013"
+			"bundle"							"1"
+			"price"								"249"
+		}
+	}
+	"20423"
+	{
+		"name"									"Gombangdae Dosa"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Gombangdae Dosa Arms"				"1"
+			"Gombangdae Dosa Back"				"1"
+			"Gombangdae Dosa Belt"				"1"
+			"Gombangdae Dosa Helmet"			"1"
+			"Gombangdae Dosa Shoulders"			"1"
+		}
+		"creation_date"							"2014-03-06"
+		"image_inventory"						"econ/sets/DOTA_Item_Gombangdae_Dosa"
+		"item_description"						"#DOTA_Item_Desc_Gombangdae_Dosa"
+		"item_name"								"#DOTA_Item_Gombangdae_Dosa"
+		"item_rarity"							"rare"
+	}
+	"20584"
+	{
+		"name"									"Imperial Relics"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Crown of the Imperial Relics"		"1"
+			"Pauldrons of the Imperial Relics"	"1"
+			"Totems of the Imperial Relics"		"1"
+			"Greaves of the Imperial Relics"	"1"
+			"Wraps of the Imperial Relics"		"1"
+			"Imperial Relics Loading Screen"	"1"
+		}
+		"creation_date"							"2014-06-25"
+		"image_inventory"						"econ/sets/DOTA_Item_Imperial_Relics"
+		"item_description"						"#DOTA_Item_Desc_Imperial_Relics"
+		"item_name"								"#DOTA_Item_Imperial_Relics"
+		"item_rarity"							"rare"
+	}
+	"20859"
+	{
+		"name"									"Forgotten Tactician"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Harness of the Forgotten Tactician""1"
+			"Belt of the Forgotten Tactician"	"1"
+			"Collar of the Forgotten Tactician"	"1"
+			"Bracers of the Forgotten Tactician""1"
+			"Forgotten Tactician Loading Screen""1"
+			"Hood of the Forgotten Tactician"	"1"
+		}
+		"creation_date"							"2015-12-31"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/forgotten_tactician_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Forgotten_Tactician"
+		"item_name"								"#DOTA_Item_Forgotten_Tactician"
+		"item_rarity"							"mythical"
+	}
+	"20980"
+	{
+		"name"									"Mentor of the Artif Convert"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Mentor of the Artif Convert Loading Screen""1"
+			"Scrolls of the Artif Convert"		"1"
+			"Pauldrons of the Artif Convert"	"1"
+			"Belt of the Artif Convert"			"1"
+			"Sleeves of the Artif Convert"		"1"
+			"Helm of the Artif Convert"			"1"
+		}
+		"creation_date"							"2016-01-10"
+		"image_inventory"						"econ/loading_screens/master_strategist_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Mentor_of_the_Artif_Convert"
+		"item_name"								"#DOTA_Item_Mentor_of_the_Artif_Convert"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"category_tags"						"Bundles"
+			"date"								"1/10/2016"
+			"bundle"							"1"
+			"price"								"499"
+		}
+	}
+	"21053"
+	{
+		"name"									"Opus of the Vizier Exile"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of the Vizier Exile""1"
+			"Book of the Vizier Exile"			"1"
+			"Drapes of the Vizier Exile"		"1"
+			"Belt of the Vizier Exile"			"1"
+			"Bracelet of the Vizier Exile"		"1"
+			"Hood of the Vizier Exile"			"1"
+		}
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/imperious_tactician_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Opus_of_the_Vizier_Exile"
+		"item_name"								"#DOTA_Item_Opus_of_the_Vizier_Exile"
+		"item_rarity"							"mythical"
+	}
+	"21210"
+	{
+		"name"									"Insights of the Sapphire Shroud"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Belt of the Sapphire Shroud"		"1"
+			"Crown of the Sapphire Shroud"		"1"
+			"Mantle of the Sapphire Shroud"		"1"
+			"Arms of the Sapphire Shroud"		"1"
+			"Flower of the Sapphire Shroud"		"1"
+		}
+		"creation_date"							"2018-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/sets/DOTA_Item_TI8_Darkseer_Fungous_General"
+		"item_description"						"#DOTA_Item_Desc_TI8_Darkseer_Fungous_General"
+		"item_name"								"#DOTA_Item_Insights_of_the_Sapphire_Shroud"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+		}
+	}
+	"21569"
+	{
+		"name"									"DarkSeer Astrologer"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"DarkSeer Astrologer Arms"			"1"
+			"DarkSeer Astrologer Back"			"1"
+			"DarkSeer Astrologer Belt"			"1"
+			"DarkSeer Astrologer Head"			"1"
+			"DarkSeer Astrologer Shoulder"		"1"
+		}
+		"creation_date"							"2020-05-16"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_DarkSeer_Astrologer"
+		"workshop_accepted"						"0"
+	}
+	"21573"
+	{
+		"name"									"Keeper of Oloxicam's Glass"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Keeper of Oloxicam's Glass Hourglass""1"
+			"Keeper of Oloxicam's Glass Bracer"	"1"
+			"Keeper of Oloxicam's Glass Belt"	"1"
+			"Keeper of Oloxicam's Glass Head"	"1"
+			"Keeper of Oloxicam's Glass Pauldrons""1"
+		}
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Keeper_of_Oloxicams_Glass"
+		"item_name"								"#DOTA_Item_Keeper_of_Oloxicams_Glass"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+	}
+	"21864"
+	{
+		"name"									"Psionic Sage"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Psionic Sage Loading Screen"		"1"
+			"Psionic Sage - Belt"				"1"
+			"Psionic Sage - Shoulder"			"1"
+			"Psionic Sage - Arms"				"1"
+			"Psionic Sage - Back"				"1"
+			"Psionic Sage - Head"				"1"
+		}
+		"creation_date"							"2021-08-12"
+		"image_inventory"						"econ/loading_screens/damathryx_legacy_ls"
+		"item_name"								"#DOTA_Item_Psionic_Sage"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"23191"
+	{
+		"name"									"Insight of Forlorn Precipice"
+		"prefab"								"wearable"
+		"creation_date"							"2022-04-28"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/dark_seer/ds_2022_immortal_head/ds_2022_immortal_head"
+		"item_description"						"#DOTA_Item_Desc_Insight_of_Forlorn_Precipice"
+		"item_name"								"#DOTA_Item_Insight_of_Forlorn_Precipice"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/dark_seer/ds_2022_immortal_head/ds_2022_immortal_head.vmdl"
+		"static_attributes"
+		{
+			"giftable"							"0"
+			"cannot trade"						"1"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+			"tradable after date"				"1698865200"
+			"webm preview url"					"apps/dota2/videos/dota_react/international2022/immortals/dark_seer_client.webm"
+			"can_equip_as_ability_effects"		"4"
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_dark_seer/dark_seer_wall_of_replica.vpcf"
+				"modifier"						"particles/econ/items/dark_seer/dark_seer_2022_immortal_head/dark_seer_2022_wall.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ds_2022"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/dark_seer/dark_seer_2022_immortal_head/ds_2022_immortal_head_ambient.vpcf"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"dark_seer_wall_of_replica"
+				"modifier"						"dark_seer/ds_2022_immortal/ds_2022_immortal_wall_of_replica"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_dark_seer/dark_seer_wall_of_replica_replicate.vpcf"
+				"modifier"						"particles/econ/items/dark_seer/dark_seer_2022_immortal_head/dark_seer_2022_wall_duplicate.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/status_fx/status_effect_dark_seer_illusion.vpcf"
+				"modifier"						"particles/econ/items/dark_seer/dark_seer_2022_immortal_head/dark_seer_2022_wall_illusion.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+		}
+	}
+}

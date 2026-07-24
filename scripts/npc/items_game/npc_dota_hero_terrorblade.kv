@@ -1,0 +1,2088 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"306"
+	{
+		"name"									"Terrorblade's Wings"
+		"prefab"								"default_item"
+		"creation_date"							"2013-12-17"
+		"image_inventory"						"econ/heroes/terrorblade/wings"
+		"item_description"						"#DOTA_Item_Desc_Terrorblades_Wings"
+		"item_name"								"#DOTA_Item_Terrorblades_Wings"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/heroes/terrorblade/wings.vmdl"
+	}
+	"307"
+	{
+		"name"									"Terrorblade's Weapons"
+		"prefab"								"default_item"
+		"creation_date"							"2013-12-19"
+		"image_inventory"						"econ/heroes/terrorblade/weapon"
+		"item_description"						"#DOTA_Item_Desc_Terrorblades_Weapons"
+		"item_name"								"#DOTA_Item_Terrorblades_Weapons"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/heroes/terrorblade/weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_l.vpcf"
+				"system"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_l.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_r.vpcf"
+				"system"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_r.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade.vpcf"
+				"system"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade_2.vpcf"
+				"system"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade_2.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+		}
+	}
+	"476"
+	{
+		"name"									"Terrorblade's Armor"
+		"prefab"								"default_item"
+		"creation_date"							"2013-12-19"
+		"image_inventory"						"econ/heroes/terrorblade/armor"
+		"item_description"						"#DOTA_Item_Desc_Terrorblades_Armor"
+		"item_name"								"#DOTA_Item_Terrorblades_Armor"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/heroes/terrorblade/armor.vmdl"
+	}
+	"478"
+	{
+		"name"									"Terrorblade's Head"
+		"prefab"								"default_item"
+		"creation_date"							"2013-12-19"
+		"image_inventory"						"econ/heroes/terrorblade/horns"
+		"item_description"						"#DOTA_Item_Desc_Terrorblades_Head"
+		"item_name"								"#DOTA_Item_Terrorblades_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/terrorblade/horns.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_eyes.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_mouth"
+					}
+				}
+			}
+		}
+	}
+	"540"
+	{
+		"name"									"Terrorblade's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-08"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Terrorblades_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Ambient_Effects"
+		"particle_folder"						"particles/units/heroes/hero_terrorblade"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_feet_effects.vpcf"
+				"affected_by_color_gems"		"1"
+				"system"						"particles/units/heroes/hero_terrorblade/terrorblade_feet_effects.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+		}
+	}
+	"5957"
+	{
+		"name"									"Fractal Horns of Inner Abysm"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-06"
+		"has_store_custom_item_details_panel"	"1"
+		"image_inventory"						"econ/heroes/terrorblade/arcana_terrorblade"
+		"item_description"						"#DOTA_Item_Desc_Fractal_Shard_of_Inner_Abysm"
+		"item_name"								"#DOTA_Item_Fractal_Horns_of_Inner_Abysm"
+		"item_rarity"							"arcana"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Demon_Horns"
+		"model_player"							"models/heroes/terrorblade/horns_arcana.vmdl"
+		"particle_folder"						"particles/econ/items/terrorblade/terrorblade_horns_arcana"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Legendary"
+			"category_tags"						"Bundles"
+			"date"								"2/13/2014"
+			"price"								"3499"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_hero_terrorblade"
+				"modifier"						"models/heroes/terrorblade/terrorblade_arcana.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"chatwheel"
+				"asset"							"terrorblade_terr_conjureimage_03"
+				"modifier"						"terrorblade_terr_shards_conjureimage_03"
+			}
+			"asset_modifier2"
+			{
+				"type"							"chatwheel"
+				"asset"							"terrorblade_terr_purch_02"
+				"modifier"						"terrorblade_terr_shards_purch_02"
+			}
+			"asset_modifier3"
+			{
+				"type"							"chatwheel"
+				"asset"							"terrorblade_terr_sunder_03"
+				"modifier"						"terrorblade_terr_shards_sunder_03"
+			}
+			"asset_modifier4"
+			{
+				"type"							"chatwheel"
+				"asset"							"terrorblade_terr_reflection_06"
+				"modifier"						"terrorblade_terr_shards_reflection_06"
+			}
+			"asset_modifier5"
+			{
+				"type"							"chatwheel"
+				"asset"							"terrorblade_terr_failure_05"
+				"modifier"						"terrorblade_terr_shards_failure_05"
+			}
+			"asset_modifier6"
+			{
+				"type"							"chatwheel"
+				"asset"							"terrorblade_terr_kill_14"
+				"modifier"						"terrorblade_terr_shards_kill_14"
+			}
+			"asset_modifier7"
+			{
+				"type"							"chatwheel"
+				"asset"							"terrorblade_terr_doubdam_04"
+				"modifier"						"terrorblade_terr_shards_doubdam_04"
+			}
+			"asset_modifier8"
+			{
+				"type"							"chatwheel"
+				"asset"							"terrorblade_terr_reflection_01"
+				"modifier"						"terrorblade_terr_shards_reflection_01"
+			}
+			"asset_modifier9"
+			{
+				"type"							"ability_icon"
+				"asset"							"terrorblade_metamorphosis"
+				"modifier"						"terrorblade_metamorphosis_alt1"
+			}
+			"asset_modifier10"
+			{
+				"type"							"ability_icon"
+				"asset"							"terrorblade_conjure_image"
+				"modifier"						"terrorblade_conjure_image_alt1"
+			}
+			"asset_modifier11"
+			{
+				"type"							"ability_icon"
+				"asset"							"terrorblade_reflection"
+				"modifier"						"terrorblade_reflection_alt1"
+			}
+			"asset_modifier12"
+			{
+				"type"							"icon_replacement_hero"
+				"asset"							"npc_dota_hero_terrorblade"
+				"modifier"						"npc_dota_hero_terrorblade_alt1"
+				"force_display"					"1"
+			}
+			"asset_modifier13"
+			{
+				"type"							"sound"
+				"asset"							"valve_dota_001.stinger.buy_back_player"
+				"modifier"						"terrorblade_arcana.stinger.buy_back_player"
+			}
+			"asset_modifier14"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/terrorblade/terrorblade_horns_arcana/terrorblade_ambient_body_arcana_horns.vpcf"
+				"system"						"particles/econ/items/terrorblade/terrorblade_horns_arcana/terrorblade_ambient_body_arcana_horns.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+				}
+			}
+			"asset_modifier15"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_eyes.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_mouth"
+					}
+				}
+			}
+			"asset_modifier16"
+			{
+				"type"							"arcana_level"
+				"level"							"1"
+			}
+			"asset_modifier17"
+			{
+				"type"							"icon_replacement_hero_minimap"
+				"asset"							"npc_dota_hero_terrorblade"
+				"modifier"						"npc_dota_hero_terrorblade_alt1"
+				"force_display"					"1"
+			}
+			"asset_modifier"
+			{
+				"type"							"chatwheel"
+				"asset"							"terrorblade_terr_laugh_07"
+				"modifier"						"terrorblade_terr_shards_laugh_07"
+			}
+		}
+	}
+	"7032"
+	{
+		"name"									"Marauder's Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2014-08-27"
+		"image_inventory"						"econ/items/terrorblade/marauders_armor/marauders_armor"
+		"item_name"								"#DOTA_Item_Marauders_Armor"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/terrorblade/marauders_armor/marauders_armor.vmdl"
+	}
+	"7033"
+	{
+		"name"									"Marauder's Demon Form"
+		"prefab"								"wearable"
+		"creation_date"							"2014-08-27"
+		"image_inventory"						"econ/items/terrorblade/marauders_demon/marauders_demon"
+		"item_name"								"#DOTA_Item_Marauders_Demon_Form"
+		"item_rarity"							"rare"
+		"item_slot"								"ability3"
+		"item_type_name"						"#DOTA_WearableType_Demon_Form"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"hero_model_change"
+				"asset"							"models/heroes/terrorblade/demon.vmdl"
+				"modifier"						"models/items/terrorblade/marauders_demon/marauders_demon.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+				"system"						"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis.vpcf"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_r1"
+					}
+					"4"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_r2"
+					}
+					"5"
+					{
+						"control_point_index"	"5"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_r3"
+					}
+					"6"
+					{
+						"control_point_index"	"6"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_l1"
+					}
+					"7"
+					{
+						"control_point_index"	"7"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_l2"
+					}
+					"8"
+					{
+						"control_point_index"	"8"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_l3"
+					}
+					"9"
+					{
+						"control_point_index"	"9"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+					"15"
+					{
+						"control_point_index"	"15"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+					"16"
+					{
+						"control_point_index"	"16"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_head.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+				"system"						"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_head.vpcf"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_mouth"
+					}
+					"15"
+					{
+						"control_point_index"	"15"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+					"16"
+					{
+						"control_point_index"	"16"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+				}
+			}
+		}
+	}
+	"7034"
+	{
+		"name"									"Marauder's Crown"
+		"prefab"								"wearable"
+		"creation_date"							"2014-08-27"
+		"image_inventory"						"econ/items/terrorblade/marauders_head/marauders_head"
+		"item_name"								"#DOTA_Item_Marauders_Crown"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Crown"
+		"model_player"							"models/items/terrorblade/marauders_head/marauders_head.vmdl"
+	}
+	"7035"
+	{
+		"name"									"Marauder's Blades"
+		"prefab"								"wearable"
+		"creation_date"							"2014-08-27"
+		"image_inventory"						"econ/items/terrorblade/marauders_weapon/marauders_weapon"
+		"item_name"								"#DOTA_Item_Marauders_Blades"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Blades"
+		"model_player"							"models/items/terrorblade/marauders_weapon/marauders_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade.vpcf"
+				"system"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade_2.vpcf"
+				"system"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade_2.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/terrorblade/weapon.vsnap"
+				"modifier"						"particles/models/items/terrorblade/marauders_weapon/marauders_weapon_fx.vsnap"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade.vpcf"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_right.vpcf"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade_2.vpcf"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_left.vpcf"
+			}
+		}
+	}
+	"7036"
+	{
+		"name"									"Marauder's Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2014-08-27"
+		"image_inventory"						"econ/items/terrorblade/marauders_back/marauders_back"
+		"item_name"								"#DOTA_Item_Marauders_Wings"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/terrorblade/marauders_back/marauders_back.vmdl"
+	}
+	"7404"
+	{
+		"name"									"Form of the Baleful Hollow"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-05"
+		"image_inventory"						"econ/items/terrorblade/corrupted_form/corrupted_form"
+		"item_name"								"#DOTA_Item_Form_of_the_Baleful_Hollow"
+		"item_rarity"							"rare"
+		"item_slot"								"ability3"
+		"item_type_name"						"#DOTA_WearableType_Demon_Form"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"hero_model_change"
+				"asset"							"models/heroes/terrorblade/demon.vmdl"
+				"modifier"						"models/items/terrorblade/corrupted_form/corrupted_form.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+				"system"						"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis.vpcf"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_r1"
+					}
+					"4"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_r2"
+					}
+					"5"
+					{
+						"control_point_index"	"5"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_r3"
+					}
+					"6"
+					{
+						"control_point_index"	"6"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_l1"
+					}
+					"7"
+					{
+						"control_point_index"	"7"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_l2"
+					}
+					"8"
+					{
+						"control_point_index"	"8"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_l3"
+					}
+					"9"
+					{
+						"control_point_index"	"9"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+					"15"
+					{
+						"control_point_index"	"15"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+					"16"
+					{
+						"control_point_index"	"16"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_head.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+				"system"						"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_head.vpcf"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_mouth"
+					}
+					"15"
+					{
+						"control_point_index"	"15"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+					"16"
+					{
+						"control_point_index"	"16"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+				}
+			}
+		}
+	}
+	"7405"
+	{
+		"name"									"Horns of the Baleful Hollow"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-05"
+		"image_inventory"						"econ/items/terrorblade/corrupted_horns/corrupted_horns"
+		"item_name"								"#DOTA_Item_Horns_of_the_Baleful_Hollow"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Horns"
+		"model_player"							"models/items/terrorblade/corrupted_horns/corrupted_horns.vmdl"
+	}
+	"7406"
+	{
+		"name"									"Blades of the Baleful Hollow"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-05"
+		"image_inventory"						"econ/items/terrorblade/corrupted_weapons/corrupted_weapons"
+		"item_name"								"#DOTA_Item_Blades_of_the_Baleful_Hollow"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Blades"
+		"model_player"							"models/items/terrorblade/corrupted_weapons/corrupted_weapons.vmdl"
+		"particle_folder"						"particles/econ/items/terrorblade/terrorblade_corrupted_blades"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade.vpcf"
+				"modifier"						"particles/econ/items/terrorblade/terrorblade_corrupted_blades/terrorblade_ambient_sword_blade_corrupted.vpcf"
+				"system"						"particles/econ/items/terrorblade/terrorblade_corrupted_blades/terrorblade_ambient_sword_blade_corrupted.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/terrorblade/terrorblade_corrupted_blades/terrorblade_ambient_sword_corrupted_l.vpcf"
+				"system"						"particles/econ/items/terrorblade/terrorblade_corrupted_blades/terrorblade_ambient_sword_corrupted_l.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/terrorblade/terrorblade_corrupted_blades/terrorblade_ambient_sword_blade_corrupted.vpcf"
+				"system"						"particles/econ/items/terrorblade/terrorblade_corrupted_blades/terrorblade_ambient_sword_blade_corrupted.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/terrorblade/terrorblade_corrupted_blades/terrorblade_ambient_sword_corrupted_r.vpcf"
+				"system"						"particles/econ/items/terrorblade/terrorblade_corrupted_blades/terrorblade_ambient_sword_corrupted_r.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/terrorblade/terrorblade_corrupted_blades/terrorblade_ambient_sword_blade_corrupted_2.vpcf"
+				"system"						"particles/econ/items/terrorblade/terrorblade_corrupted_blades/terrorblade_ambient_sword_blade_corrupted_2.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+		}
+	}
+	"8105"
+	{
+		"name"									"Plate of the Baleful Hollow"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-17"
+		"image_inventory"						"econ/items/terrorblade/bts_corrupted_lord_armor/bts_corrupted_lord_armor"
+		"item_name"								"#DOTA_Item_Plate_of_the_Baleful_Hollow"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/terrorblade/bts_corrupted_lord_armor/bts_corrupted_lord_armor.vmdl"
+	}
+	"8106"
+	{
+		"name"									"Wings of the Baleful Hollow"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-04"
+		"image_inventory"						"econ/items/terrorblade/bts_corrupted_lord_back/bts_corrupted_lord_back"
+		"item_name"								"#DOTA_Item_Wings_of_the_Baleful_Hollow"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/terrorblade/bts_corrupted_lord_back/bts_corrupted_lord_back.vmdl"
+	}
+	"8176"
+	{
+		"name"									"Collar of Eternal Purgatory"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-09"
+		"image_inventory"						"econ/items/terrorblade/endless_purgatory_armor/endless_purgatory_armor"
+		"item_name"								"#DOTA_Item_Collar_of_Eternal_Purgatory"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Collar"
+		"model_player"							"models/items/terrorblade/endless_purgatory_armor/endless_purgatory_armor.vmdl"
+	}
+	"8177"
+	{
+		"name"									"Wings of Eternal Purgatory"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-09"
+		"image_inventory"						"econ/items/terrorblade/endless_purgatory_back/endless_purgatory_back"
+		"item_name"								"#DOTA_Item_Wings_of_Eternal_Purgatory"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/terrorblade/endless_purgatory_back/endless_purgatory_back.vmdl"
+	}
+	"8178"
+	{
+		"name"									"Horns of Eternal Purgatory"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-09"
+		"image_inventory"						"econ/items/terrorblade/endless_purgatory_head/endless_purgatory_head"
+		"item_name"								"#DOTA_Item_Horns_of_Eternal_Purgatory"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Horns"
+		"model_player"							"models/items/terrorblade/endless_purgatory_head/endless_purgatory_head.vmdl"
+	}
+	"8179"
+	{
+		"name"									"Curse of Eternal Purgatory"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-09"
+		"image_inventory"						"econ/items/terrorblade/endless_purgatory_weapon/endless_purgatory_weapon"
+		"item_name"								"#DOTA_Item_Curse_of_Eternal_Purgatory"
+		"model_player"							"models/items/terrorblade/endless_purgatory_weapon/endless_purgatory_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade.vpcf"
+				"system"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade_2.vpcf"
+				"system"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade_2.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_r"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/terrorblade/weapon.vsnap"
+				"modifier"						"particles/models/items/terrorblade/endless_purgatory_weapon/endless_purgatory_weapon_fx.vsnap"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade.vpcf"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_right.vpcf"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade_2.vpcf"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_left.vpcf"
+			}
+		}
+	}
+	"8276"
+	{
+		"name"									"Form of Eternal Purgatory"
+		"prefab"								"wearable"
+		"creation_date"							"2015-04-14"
+		"image_inventory"						"econ/items/terrorblade/endless_purgatory_demon/endless_purgatory_demon"
+		"item_name"								"#DOTA_Item_Form_of_Eternal_Purgatory"
+		"item_rarity"							"rare"
+		"item_slot"								"ability3"
+		"item_type_name"						"#DOTA_WearableType_Form"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"hero_model_change"
+				"asset"							"models/heroes/terrorblade/demon.vmdl"
+				"modifier"						"models/items/terrorblade/endless_purgatory_demon/endless_purgatory_demon.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+				"system"						"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis.vpcf"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_r1"
+					}
+					"4"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_r2"
+					}
+					"5"
+					{
+						"control_point_index"	"5"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_r3"
+					}
+					"6"
+					{
+						"control_point_index"	"6"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_l1"
+					}
+					"7"
+					{
+						"control_point_index"	"7"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_l2"
+					}
+					"8"
+					{
+						"control_point_index"	"8"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_l3"
+					}
+					"9"
+					{
+						"control_point_index"	"9"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+					"15"
+					{
+						"control_point_index"	"15"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+					"16"
+					{
+						"control_point_index"	"16"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_head.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+				"system"						"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_head.vpcf"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_mouth"
+					}
+					"15"
+					{
+						"control_point_index"	"15"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+					"16"
+					{
+						"control_point_index"	"16"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+				}
+			}
+		}
+	}
+	"8650"
+	{
+		"name"									"Terrorblade's Demon Form"
+		"prefab"								"default_item"
+		"creation_date"							"2015-04-14"
+		"image_inventory"						"econ/heroes/terrorblade/demon"
+		"item_description"						"#DOTA_Item_Desc_Terrorblades_Demon_Form"
+		"item_name"								"#DOTA_Item_Terrorblades_Demon_Form"
+		"item_slot"								"ability3"
+		"item_type_name"						"#DOTA_WearableType_Base"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"hero_model_change"
+				"asset"							"models/heroes/terrorblade/demon.vmdl"
+				"modifier"						"models/heroes/terrorblade/demon.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+				"system"						"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis.vpcf"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_r1"
+					}
+					"4"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_r2"
+					}
+					"5"
+					{
+						"control_point_index"	"5"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_r3"
+					}
+					"6"
+					{
+						"control_point_index"	"6"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_l1"
+					}
+					"7"
+					{
+						"control_point_index"	"7"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_l2"
+					}
+					"8"
+					{
+						"control_point_index"	"8"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_l3"
+					}
+					"9"
+					{
+						"control_point_index"	"9"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+					"15"
+					{
+						"control_point_index"	"15"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+					"16"
+					{
+						"control_point_index"	"16"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_head.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+				"system"						"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_head.vpcf"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_mouth"
+					}
+					"15"
+					{
+						"control_point_index"	"15"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+					"16"
+					{
+						"control_point_index"	"16"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+				}
+			}
+		}
+	}
+	"9497"
+	{
+		"name"									"Armor of the Foulfell Corruptor"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-11"
+		"image_inventory"						"econ/items/terrorblade/knight_of_foulfell_terrorblade_armor/knight_of_foulfell_terrorblade_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Foulfell_Corruptor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/terrorblade/knight_of_foulfell_terrorblade_armor/knight_of_foulfell_terrorblade_armor.vmdl"
+	}
+	"9498"
+	{
+		"name"									"Helm of the Foulfell Corruptor"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-11"
+		"image_inventory"						"econ/items/terrorblade/knight_of_foulfell_terrorblade_head/knight_of_foulfell_terrorblade_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Foulfell_Corruptor"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/terrorblade/knight_of_foulfell_terrorblade_head/knight_of_foulfell_terrorblade_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_eyes.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_mouth"
+					}
+				}
+			}
+		}
+	}
+	"9499"
+	{
+		"name"									"Wings of the Foulfell Corruptor"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-11"
+		"image_inventory"						"econ/items/terrorblade/knight_of_foulfell_terrorblade_back/knight_of_foulfell_terrorblade_back"
+		"item_name"								"#DOTA_Item_Wings_of_the_Foulfell_Corruptor"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/terrorblade/knight_of_foulfell_terrorblade_back/knight_of_foulfell_terrorblade_back.vmdl"
+	}
+	"9500"
+	{
+		"name"									"Blades of the Foulfell Corruptor"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-11"
+		"image_inventory"						"econ/items/terrorblade/knight_of_foulfell_terrorblade_weapon/knight_of_foulfell_terrorblade_weapon"
+		"item_name"								"#DOTA_Item_Blades_of_the_Foulfell_Corruptor"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/terrorblade/knight_of_foulfell_terrorblade_weapon/knight_of_foulfell_terrorblade_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_l.vpcf"
+				"system"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_l.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade.vpcf"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_right.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade_2.vpcf"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_left.vpcf"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_l.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/terrorblade/weapon.vsnap"
+				"modifier"						"particles/models/items/terrorblade/knight_of_foulfell_terrorblade_weapon/knight_of_foulfell_terrorblade_weapon_fx.vsnap"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_r.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+			}
+		}
+	}
+	"9501"
+	{
+		"name"									"Demon Form of the Foulfell Corruptor"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-11"
+		"image_inventory"						"econ/items/terrorblade/knight_of_foulfell_demon/knight_of_foulfell_demon"
+		"item_name"								"#DOTA_Item_Demon_Form_of_the_Foulfell_Corruptor"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability3"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"hero_model_change"
+				"asset"							"models/heroes/terrorblade/demon.vmdl"
+				"modifier"						"models/items/terrorblade/knight_of_foulfell_demon/knight_of_foulfell_demon.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+				"system"						"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis.vpcf"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_r1"
+					}
+					"4"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_r2"
+					}
+					"5"
+					{
+						"control_point_index"	"5"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_r3"
+					}
+					"6"
+					{
+						"control_point_index"	"6"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_l1"
+					}
+					"7"
+					{
+						"control_point_index"	"7"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_l2"
+					}
+					"8"
+					{
+						"control_point_index"	"8"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_l3"
+					}
+					"9"
+					{
+						"control_point_index"	"9"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+					"15"
+					{
+						"control_point_index"	"15"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+					"16"
+					{
+						"control_point_index"	"16"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_head.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+				"system"						"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_head.vpcf"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_mouth"
+					}
+					"15"
+					{
+						"control_point_index"	"15"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+					"16"
+					{
+						"control_point_index"	"16"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+				}
+			}
+		}
+	}
+	"9750"
+	{
+		"name"									"Span of Sorrow"
+		"prefab"								"wearable"
+		"creation_date"							"2018-03-29"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/terrorblade/terrorblade_ti8_immortal_back/terrorblade_ti8_immortal_back"
+		"item_description"						"#DOTA_Item_Desc_Span_of_Sorrow"
+		"item_name"								"#DOTA_Item_Span_of_Sorrow"
+		"item_rarity"							"immortal"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/terrorblade/terrorblade_ti8_immortal_back/terrorblade_ti8_immortal_back.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567296000"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_terrorblade/terrorblade_sunder.vpcf"
+				"modifier"						"particles/econ/items/terrorblade/terrorblade_back_ti8/terrorblade_sunder_ti8.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/terrorblade/terrorblade_back_ti8/terrorblade_back_ambient_ti8.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/terrorblade/terrorblade_back_ti8/terrorblade_back_ambient_ti8.vpcf"
+				"default_color"
+				{
+					"r"							"56"
+					"g"							"188"
+					"b"							"255"
+				}
+			}
+			"skip_model_combine"				"0"
+			"asset_modifier2"
+			{
+				"type"							"ability_icon"
+				"asset"							"terrorblade_sunder"
+				"modifier"						"terrorblade/ti8_immortal_back/terrorblade_sunder_immortal"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+		}
+	}
+	"12917"
+	{
+		"name"									"Scythes of Sorrow"
+		"prefab"								"wearable"
+		"creation_date"							"2019-07-08"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/terrorblade/tb_ti9_immortal_weapon/tb_ti9_immortal_weapon"
+		"item_description"						"#DOTA_Item_Desc_Scythes_of_Sorrow"
+		"item_name"								"#DOTA_Item_Scythes_of_Sorrow"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/terrorblade/tb_ti9_immortal_weapon/tb_ti9_immortal_weapon.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1598997600"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_l.vpcf"
+				"system"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_l.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade.vpcf"
+				"modifier"						"particles/econ/items/terrorblade/terrorblade_ti9_immortal/terrorblade_ti9_immortal_weapon.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade_2.vpcf"
+				"modifier"						"particles/econ/items/terrorblade/terrorblade_ti9_immortal/terrorblade_ti9_immortal_weapon_left.vpcf"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_l.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/terrorblade/weapon.vsnap"
+				"modifier"						"particles/models/items/terrorblade/knight_of_foulfell_terrorblade_weapon/knight_of_foulfell_terrorblade_weapon_fx.vsnap"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_r.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_base_attack.vpcf"
+				"modifier"						"particles/econ/items/terrorblade/terrorblade_ti9_immortal/terrorblade_ti9_immortal_metamorphosis_base_attack.vpcf"
+			}
+		}
+	}
+	"14338"
+	{
+		"name"									"Chasm of the Broken Code Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/terrorblade/tb_samurai_weapon/tb_samurai_weapon"
+		"item_name"								"#DOTA_Item_Chasm_of_the_Broken_Code_Weapon"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/terrorblade/tb_samurai_weapon/tb_samurai_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_l.vpcf"
+				"system"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_l.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_l"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade.vpcf"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_right.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade_2.vpcf"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_left.vpcf"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_l.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/terrorblade/weapon.vsnap"
+				"modifier"						"particles/models/items/terrorblade/tb_samurai_weapon/tb_samurai_weapon_fx.vsnap"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_r.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+			}
+		}
+	}
+	"14339"
+	{
+		"name"									"Chasm of the Broken Code Demon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/terrorblade/tb_samurai_samurai_demon/tb_samurai_samurai_demon"
+		"item_name"								"#DOTA_Item_Chasm_of_the_Broken_Code_Demon"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability3"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"hero_model_change"
+				"asset"							"models/heroes/terrorblade/demon.vmdl"
+				"modifier"						"models/items/terrorblade/tb_samurai_samurai_demon/tb_samurai_samurai_demon.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+				"system"						"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis.vpcf"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_r1"
+					}
+					"4"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_r2"
+					}
+					"5"
+					{
+						"control_point_index"	"5"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_r3"
+					}
+					"6"
+					{
+						"control_point_index"	"6"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_l1"
+					}
+					"7"
+					{
+						"control_point_index"	"7"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_l2"
+					}
+					"8"
+					{
+						"control_point_index"	"8"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wing_l3"
+					}
+					"9"
+					{
+						"control_point_index"	"9"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+					"15"
+					{
+						"control_point_index"	"15"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+					"16"
+					{
+						"control_point_index"	"16"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_head.vpcf"
+				"spawn_in_loadout_only"			"1"
+				"spawn_in_alternate_loadout_only""1"
+				"system"						"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_head.vpcf"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_mouth"
+					}
+					"15"
+					{
+						"control_point_index"	"15"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+					"16"
+					{
+						"control_point_index"	"16"
+						"attach_type"			"worldorigin"
+						"position"				"0 0 0"
+					}
+				}
+			}
+		}
+	}
+	"14340"
+	{
+		"name"									"Chasm of the Broken Code Helm"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/terrorblade/tb_samurai_head/tb_samurai_head"
+		"item_name"								"#DOTA_Item_Chasm_of_the_Broken_Code_Helm"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/terrorblade/tb_samurai_head/tb_samurai_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/terrorblade/tb_samura_head/tb_samurai_head_ambient.vpcf"
+			}
+		}
+	}
+	"14341"
+	{
+		"name"									"Chasm of the Broken Code Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/terrorblade/tb_samurai_back/tb_samurai_back"
+		"item_name"								"#DOTA_Item_Chasm_of_the_Broken_Code_Wings"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"model_player"							"models/items/terrorblade/tb_samurai_back/tb_samurai_back.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/terrorblade/tb_samurai_back/tb_samurai_back_ambient.vpcf"
+			}
+		}
+	}
+	"14342"
+	{
+		"name"									"Chasm of the Broken Code Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/terrorblade/tb_samurai_armor/tb_samurai_armor"
+		"item_name"								"#DOTA_Item_Chasm_of_the_Broken_Code_Armor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"model_player"							"models/items/terrorblade/tb_samurai_armor/tb_samurai_armor.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/terrorblade/tb_samurai_armor/tb_samurai_armor_ambient.vpcf"
+			}
+		}
+	}
+	"20635"
+	{
+		"name"									"Marauder's Reflection"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Marauder's Armor"					"1"
+			"Marauder's Blades"					"1"
+			"Marauder's Demon Form"				"1"
+			"Marauder's Crown"					"1"
+			"Marauder's Wings"					"1"
+			"Marauder's Reflection Loading Screen""1"
+		}
+		"creation_date"							"2014-08-29"
+		"image_inventory"						"econ/loading_screens/marauders"
+		"item_name"								"#DOTA_Item_Marauders_Reflection"
+		"item_rarity"							"rare"
+	}
+	"20777"
+	{
+		"name"									"Baleful Hollow"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Baleful Hollow Loading Screen"		"1"
+			"Form of the Baleful Hollow"		"1"
+			"Horns of the Baleful Hollow"		"1"
+			"Blades of the Baleful Hollow"		"1"
+			"Plate of the Baleful Hollow"		"1"
+			"Wings of the Baleful Hollow"		"1"
+		}
+		"creation_date"							"2015-03-17"
+		"image_inventory"						"econ/loading_screens/bts_corrupted_lord_loadingscreen_new"
+		"item_description"						"#DOTA_Item_Desc_Baleful_Hollow"
+		"item_name"								"#DOTA_Item_Baleful_Hollow"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"2000"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1434795010"
+			}
+		}
+	}
+	"20914"
+	{
+		"name"									"Eternal Purgatory"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Collar of Eternal Purgatory"		"1"
+			"Curse of Eternal Purgatory"		"1"
+			"Eternal Purgatory Loading Screen"	"1"
+			"Form of Eternal Purgatory"			"1"
+			"Horns of Eternal Purgatory"		"1"
+			"Wings of Eternal Purgatory"		"1"
+		}
+		"creation_date"							"2015-10-09"
+		"image_inventory"						"econ/loading_screens/endless_purgatory_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Eternal_Purgatory"
+		"item_name"								"#DOTA_Item_Eternal_Purgatory"
+		"item_rarity"							"rare"
+	}
+	"21139"
+	{
+		"name"									"Foulfell Corruptor"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Foulfell Corruptor Loading Screen"	"1"
+			"Demon Form of the Foulfell Corruptor""1"
+			"Blades of the Foulfell Corruptor"	"1"
+			"Wings of the Foulfell Corruptor"	"1"
+			"Helm of the Foulfell Corruptor"	"1"
+			"Armor of the Foulfell Corruptor"	"1"
+		}
+		"creation_date"							"2017-09-11"
+		"image_inventory"						"econ/loading_screens/knight_of_foulfell_terrorblade_knight_of_foulfell_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Foulfell_Corruptor"
+		"item_name"								"#DOTA_Item_Foulfell_Corruptor"
+		"item_rarity"							"mythical"
+	}
+	"21542"
+	{
+		"name"									"Chasm of the Broken Code"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Chasm of the Broken Code Armor"	"1"
+			"Chasm of the Broken Code Wings"	"1"
+			"Chasm of the Broken Code Helm"		"1"
+			"Chasm of the Broken Code Demon"	"1"
+			"Chasm of the Broken Code Weapon"	"1"
+		}
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Chasm_of_the_Broken_Code"
+		"item_name"								"#DOTA_Item_Chasm_of_the_Broken_Code"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+	}
+}

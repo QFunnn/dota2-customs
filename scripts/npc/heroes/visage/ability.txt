@@ -1,0 +1,53 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"visage_gravekeepers_cloak_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"AbilityTextureName"					"visage_gravekeepers_cloak"
+		"ScriptFile"							"heroes/hero_visage/visage_gravekeepers_cloak_lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityDraftPreAbility"				"visage_summon_familiars_stone_form"
+		"AbilityCooldown"						"65"
+		"AbilityManaCost"						"125"
+		"HasShardUpgrade"						"1"
+		"AbilityValues"
+		{
+			"max_layers"						"16"
+			"damage_reduction"					"2 3 4 5"
+			"recovery_time"						"6 5 4 3"
+			"minimum_damage"					"40"
+			"radius"							"1200"
+			"max_damage_reduction"				"80"
+			"shard_duration"					"6"
+			"hero_multiplier"					"4"
+			"health_regen_pct"					"25"
+			"stun_duration"						"1.0 1.25 1.5"
+			"stun_radius"
+			{
+				"value"							"375"
+				"affected_by_aoe_increase"		"1"
+			}
+			"stun_delay"						"0.55"
+			"stun_damage"						"60 100 140"
+			"bonus_armor"
+			{
+				"special_bonus_unique_visage_5"	"+10"
+			}
+		}
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_1"
+	}
+	"visage_summon_familiars_stone_form"
+	{
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	}
+}

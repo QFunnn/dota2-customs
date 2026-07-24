@@ -1,0 +1,138 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"shredder_chakram_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_shredder/shredder_chakram_lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_NO"
+		"FightRecapLevel"						"1"
+		"AbilitySound"							"Hero_Shredder.Chakram.Cast"
+		"AbilityTextureName"					"shredder_chakram"
+		"HasScepterUpgrade"						"1"
+		"LinkedAbility"							"shredder_chakram_2_lua"
+		"AbilityDraftUltScepterAbility"			"shredder_chakram_2_lua"
+		"AbilityDraftUltShardAbility"			"shredder_flamethrower"
+		"precache"
+		{
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_shredder.vsndevts"
+			"particle"							"particles/units/heroes/hero_shredder/shredder_chakram.vpcf"
+			"particle"							"particles/units/heroes/hero_shredder/shredder_chakram_stay.vpcf"
+			"particle"							"particles/units/heroes/hero_shredder/shredder_chakram_return.vpcf"
+		}
+		"AbilityCastRange"						"1200 1200 1200"
+		"AbilityCastPoint"						"0.15"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCooldown"						"8.0 8.0 8.0"
+		"AbilityManaCost"						"75 125 175"
+		"AbilityValues"
+		{
+			"speed"								"900.0"
+			"radius"
+			{
+				"value"							"200"
+				"affected_by_aoe_increase"		"1"
+			}
+			"pass_damage"						"110 155 200"
+			"damage_per_second"					"50 75 100"
+			"slow"
+			{
+				"value"							"5"
+				"special_bonus_unique_timbersaw_4""+4"
+			}
+			"damage_interval"					"0.5"
+			"break_distance"					"2000.0"
+			"mana_per_second"					"14 22 30"
+			"pass_slow_duration"				"0.5"
+			"slow_health_percentage"			"5"
+		}
+	}
+	"shredder_chakram_2_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_shredder/shredder_chakram_lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_NO"
+		"FightRecapLevel"						"1"
+		"AbilitySound"							"Hero_Shredder.Chakram.Cast"
+		"AbilityTextureName"					"shredder_chakram_2"
+		"precache"
+		{
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_shredder.vsndevts"
+			"particle"							"particles/units/heroes/hero_shredder/shredder_chakram.vpcf"
+			"particle"							"particles/units/heroes/hero_shredder/shredder_chakram_stay.vpcf"
+			"particle"							"particles/units/heroes/hero_shredder/shredder_chakram_return.vpcf"
+		}
+		"AbilityCastRange"						"1200 1200 1200"
+		"AbilityCastPoint"						"0.15"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCooldown"						"8.0 8.0 8.0"
+		"AbilityManaCost"						"80 140 200"
+		"AbilityValues"
+		{
+			"second_chakram"
+			{
+				"value"							"0"
+				"special_bonus_unique_timbersaw""+1"
+			}
+			"speed"								"900.0"
+			"radius"
+			{
+				"value"							"200"
+				"affected_by_aoe_increase"		"1"
+			}
+			"pass_damage"						"110 155 200"
+			"damage_per_second"					"50 75 100"
+			"slow"
+			{
+				"value"							"5"
+				"special_bonus_unique_timbersaw_4""+4"
+			}
+			"damage_interval"					"0.5"
+			"break_distance"					"2000.0"
+			"mana_per_second"					"16 23 30"
+			"pass_slow_duration"				"0.5"
+			"slow_health_percentage"			"5"
+		}
+	}
+	"shredder_chakram_lua_return"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_shredder/shredder_chakram_lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"					"shredder_return_chakram"
+		"AbilityCastPoint"						"0.0 0.0 0.0 0.0"
+		"AbilityCastAnimation"					"ACT_INVALID"
+		"AbilityCooldown"						"0.5"
+		"MaxLevel"								"1"
+	}
+	"shredder_chakram_lua_2_return"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_shredder/shredder_chakram_lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"					"shredder_return_chakram_2"
+		"AbilityCastPoint"						"0.0 0.0 0.0 0.0"
+		"AbilityCastAnimation"					"ACT_INVALID"
+		"AbilityCooldown"						"0.5"
+		"MaxLevel"								"1"
+	}
+}

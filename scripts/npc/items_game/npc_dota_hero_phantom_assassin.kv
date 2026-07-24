@@ -1,0 +1,4673 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"137"
+	{
+		"name"									"Phantom Assassin's Helmet"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/phantom_assassin/phantom_assassin_helmet"
+		"item_description"						"#DOTA_Item_Desc_Phantom_Assassins_Helmet"
+		"item_name"								"#DOTA_Item_Phantom_Assassins_Helmet"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/heroes/phantom_assassin/phantom_assassin_helmet.vmdl"
+	}
+	"138"
+	{
+		"name"									"Phantom Assassin's Shoulder Pads"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/phantom_assassin/phantom_assassin_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Phantom_Assassins_Shoulder_Pads"
+		"item_name"								"#DOTA_Item_Phantom_Assassins_Shoulder_Pads"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder_Pads"
+		"model_player"							"models/heroes/phantom_assassin/phantom_assassin_shoulders.vmdl"
+	}
+	"139"
+	{
+		"name"									"Phantom Assassin's Cape"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/phantom_assassin/phantom_assassin_cape"
+		"item_description"						"#DOTA_Item_Desc_Phantom_Assassins_Cape"
+		"item_name"								"#DOTA_Item_Phantom_Assassins_Cape"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/heroes/phantom_assassin/phantom_assassin_cape.vmdl"
+	}
+	"140"
+	{
+		"name"									"Phantom Assassin's Weapon"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/phantom_assassin/phantom_assassin_weapon"
+		"item_description"						"#DOTA_Item_Desc_Phantom_Assassins_Weapon"
+		"item_name"								"#DOTA_Item_Phantom_Assassins_Weapon"
+		"model_player"							"models/heroes/phantom_assassin/phantom_assassin_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic.vsnap"
+				"modifier"						"particles/models/heroes/phantom_assassin/phantom_assassin_weapon.vsnap"
+			}
+		}
+	}
+	"141"
+	{
+		"name"									"Phantom Assassin's Daggers"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/phantom_assassin/phantom_assassin_daggers"
+		"item_description"						"#DOTA_Item_Desc_Phantom_Assassins_Daggers"
+		"item_name"								"#DOTA_Item_Phantom_Assassins_Daggers"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Misc"
+		"model_player"							"models/heroes/phantom_assassin/phantom_assassin_daggers.vmdl"
+	}
+	"764"
+	{
+		"name"									"Phantom Assassin's Persona"
+		"prefab"								"default_item"
+		"creation_date"							"2022-01-14"
+		"image_inventory"						"econ/heroes/phantom_assassin/phantom_assassin"
+		"item_description"						"#DOTA_Item_Desc_Phantom_Assassins_Persona"
+		"item_name"								"#DOTA_Item_Phantom_Assassins_Persona"
+		"item_quality"							"unique"
+		"item_slot"								"persona_selector"
+		"item_type_name"						"#DOTA_WearableType_Persona"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"783"
+	{
+		"name"									"Phantom Assassin Persona Head"
+		"prefab"								"default_item"
+		"creation_date"							"2022-08-18"
+		"image_inventory"						"econ/heroes/phantom_assassin_persona/phantom_assassin_persona_head"
+		"item_name"								"#DOTA_Item_Phantom_Assassin_Persona_Head"
+		"item_slot"								"head_persona_1"
+		"model_player"							"models/heroes/phantom_assassin_persona/phantom_assassin_persona_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"784"
+	{
+		"name"									"Phantom Assassin Persona Armor"
+		"prefab"								"default_item"
+		"creation_date"							"2022-08-18"
+		"image_inventory"						"econ/heroes/phantom_assassin_persona/phantom_assassin_persona_armor"
+		"item_name"								"#DOTA_Item_Phantom_Assassin_Persona_Armor"
+		"item_slot"								"armor_persona_1"
+		"model_player"							"models/heroes/phantom_assassin_persona/phantom_assassin_persona_armor.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"785"
+	{
+		"name"									"Phantom Assassin Persona Legs"
+		"prefab"								"default_item"
+		"creation_date"							"2022-08-18"
+		"image_inventory"						"econ/heroes/phantom_assassin_persona/phantom_assassin_persona_legs"
+		"item_name"								"#DOTA_Item_Phantom_Assassin_Persona_Legs"
+		"item_slot"								"legs_persona_1"
+		"model_player"							"models/heroes/phantom_assassin_persona/phantom_assassin_persona_legs.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"786"
+	{
+		"name"									"Phantom Assassin Persona Weapon"
+		"prefab"								"default_item"
+		"creation_date"							"2022-08-18"
+		"image_inventory"						"econ/heroes/phantom_assassin_persona/phantom_assassin_persona_weapon"
+		"item_name"								"#DOTA_Item_Phantom_Assassin_Persona_Weapon"
+		"item_slot"								"weapon_persona_1"
+		"model_player"							"models/heroes/phantom_assassin_persona/phantom_assassin_persona_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_phantom_assassin_persona/pa_persona_weapon_ambient.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"sound"
+				"asset"							"Hero_PhantomAssassin.Attack"
+				"modifier"						"Hero_PhantomAssassin.Attack.Persona"
+			}
+			"asset_modifier2"
+			{
+				"type"							"sound"
+				"asset"							"Hero_PhantomAssassin.PreAttack"
+				"modifier"						"Hero_PhantomAssassin.PreAttack.Persona"
+			}
+		}
+	}
+	"4167"
+	{
+		"name"									"Twinblade of the Veil"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/phantom_assassin/phantom_assasin_doubleblade"
+		"item_description"						"#DOTA_Item_Desc_Twinblade_of_the_Veil"
+		"item_name"								"#DOTA_Item_Twinblade_of_the_Veil"
+		"item_type_name"						"#DOTA_WearableType_Twinblade"
+		"model_player"							"models/items/phantom_assassin/phantom_assasin_doubleblade.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_twinblade_of_the_veil"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_twinblade_of_the_veil/phantom_assassin_ambient_blade_twinblade_of_the_veil.vpcf"
+			}
+		}
+	}
+	"4257"
+	{
+		"name"									"Deathwielder"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/phantom_assassin/weapon_reaper"
+		"item_description"						"#DOTA_Item_Desc_Deathwielder"
+		"item_name"								"#DOTA_Item_Deathwielder"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Twinblade"
+		"model_player"							"models/items/phantom_assassin/weapon_reaper.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_deathwielder"
+		"static_attributes"
+		{
+			"sithil stash"
+			{
+				"attribute_class"				"sithil_stash"
+				"value"							"2012"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_deathwielder/phantom_assassin_ambient_blade_deathwielder.vpcf"
+			}
+		}
+	}
+	"4271"
+	{
+		"name"									"Exquisite Doubled Axe of the Veil"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/phantom_assassin/phantom_assasin_doubleaxe"
+		"item_description"						"#DOTA_Item_Desc_Exquisite_Doubled_Axe_of_the_Veil"
+		"item_name"								"#DOTA_Item_Exquisite_Doubled_Axe_of_the_Veil"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Twinblade"
+		"model_player"							"models/items/phantom_assassin/phantom_assasin_doubleaxe.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_axe_of_the_veil"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_axe_of_the_veil/phantom_assassin_ambient_blade_axe_of_the_veil.vpcf"
+			}
+		}
+	}
+	"4671"
+	{
+		"name"									"Scythe of Sacrifice"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-06"
+		"image_inventory"						"econ/items/phantom_assassin/scythe_of_sacrifice/scythe_of_sacrifice"
+		"item_description"						"#DOTA_Item_Desc_Scythe_of_Sacrifice"
+		"item_name"								"#DOTA_Item_Scythe_of_Sacrifice"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Scythe"
+		"model_player"							"models/items/phantom_assassin/scythe_of_sacrifice/scythe_of_sacrifice.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic.vsnap"
+				"modifier"						"particles/models/items/phantom_assassin/scythe_of_sacrifice/scythe_of_sacrifice.vsnap"
+			}
+		}
+	}
+	"4930"
+	{
+		"name"									"Penumbral Warblade"
+		"prefab"								"wearable"
+		"creation_date"							"2013-04-30"
+		"image_inventory"						"econ/items/phantom_assassin/pa_veil_of_the_shadow_assassin/pa_veil_of_the_shadow_assassin"
+		"item_description"						"#DOTA_Item_Desc_Penumbral_Warblade"
+		"item_name"								"#DOTA_Item_Penumbral_Warblade"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/phantom_assassin/pa_veil_of_the_shadow_assassin/pa_veil_of_the_shadow_assassin.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic.vsnap"
+				"modifier"						"particles/models/items/phantom_assassin/pa_veil_of_the_shadow_assassin/pa_veil_of_the_shadow_assassin.vsnap"
+			}
+		}
+	}
+	"4931"
+	{
+		"name"									"Penumbral Shawl"
+		"prefab"								"wearable"
+		"creation_date"							"2013-04-30"
+		"image_inventory"						"econ/items/phantom_assassin/pa_veil_of_the_shadow_assassin_shoulder_final/pa_veil_of_the_shadow_assassin_shoulder_final"
+		"item_description"						"#DOTA_Item_Desc_Penumbral_Shawl"
+		"item_name"								"#DOTA_Item_Penumbral_Shawl"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shawl"
+		"model_player"							"models/items/phantom_assassin/pa_veil_of_the_shadow_assassin_shoulder_final/pa_veil_of_the_shadow_assassin_shoulder_final.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4932"
+	{
+		"name"									"Penumbral Hood"
+		"prefab"								"wearable"
+		"creation_date"							"2013-04-30"
+		"image_inventory"						"econ/items/phantom_assassin/veil_of_the_shadow_assassin_head_final/veil_of_the_shadow_assassin_head_final"
+		"item_description"						"#DOTA_Item_Desc_Penumbral_Hood"
+		"item_name"								"#DOTA_Item_Penumbral_Hood"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hood"
+		"model_player"							"models/items/phantom_assassin/veil_of_the_shadow_assassin_head_final/veil_of_the_shadow_assassin_head_final.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4933"
+	{
+		"name"									"Penumbral Crest"
+		"prefab"								"wearable"
+		"creation_date"							"2013-04-30"
+		"image_inventory"						"econ/items/phantom_assassin/pa_veil_of_the_shadow_assassin_veil_veil/pa_veil_of_the_shadow_assassin_veil_veil"
+		"item_description"						"#DOTA_Item_Desc_Penumbral_Crest"
+		"item_name"								"#DOTA_Item_Penumbral_Crest"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Buckle"
+		"model_player"							"models/items/phantom_assassin/pa_veil_of_the_shadow_assassin_veil_veil/pa_veil_of_the_shadow_assassin_veil_veil.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4934"
+	{
+		"name"									"Penumbral Cloak"
+		"prefab"								"wearable"
+		"creation_date"							"2013-04-30"
+		"image_inventory"						"econ/items/phantom_assassin/pa_veil_of_the_shadow_assassin_back_final/pa_veil_of_the_shadow_assassin_back_final"
+		"item_description"						"#DOTA_Item_Desc_Penumbral_Cloak"
+		"item_name"								"#DOTA_Item_Penumbral_Cloak"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cloak"
+		"model_player"							"models/items/phantom_assassin/pa_veil_of_the_shadow_assassin_back_final/pa_veil_of_the_shadow_assassin_back_final.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4964"
+	{
+		"name"									"Gloomblade"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-01"
+		"image_inventory"						"econ/items/phantom_assassin/shard_of_the_corrupted6/shard_of_the_corrupted6"
+		"item_description"						"#DOTA_Item_Desc_Gloomblade"
+		"item_name"								"#DOTA_Item_Gloomblade"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Sword"
+		"model_player"							"models/items/phantom_assassin/shard_of_the_corrupted6/shard_of_the_corrupted6.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic.vsnap"
+				"modifier"						"particles/models/items/phantom_assassin/shard_of_the_corrupted6/shard_of_the_corrupted6.vsnap"
+			}
+		}
+	}
+	"4966"
+	{
+		"name"									"Helm of the Nimble Edge"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-20"
+		"image_inventory"						"econ/items/phantom_assassin/senhelm_001/senhelm_001"
+		"item_description"						"#DOTA_Item_Desc_Helm_of_the_Nimble_Edge"
+		"item_name"								"#DOTA_Item_Helm_of_the_Nimble_Edge"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/phantom_assassin/senhelm_001/senhelm_001.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4967"
+	{
+		"name"									"Leaf of the Nimble Edge"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-20"
+		"image_inventory"						"econ/items/phantom_assassin/sentblade_001/sentblade_001"
+		"item_description"						"#DOTA_Item_Desc_Leaf_of_the_Nimble_Edge"
+		"item_name"								"#DOTA_Item_Leaf_of_the_Nimble_Edge"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/phantom_assassin/sentblade_001/sentblade_001.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic.vsnap"
+				"modifier"						"particles/models/items/phantom_assassin/sentblade_001/sentblade_001.vsnap"
+			}
+		}
+	}
+	"4968"
+	{
+		"name"									"Cloak of the Nimble Edge"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-20"
+		"image_inventory"						"econ/items/phantom_assassin/sentcloak_001/sentcloak_001"
+		"item_description"						"#DOTA_Item_Desc_Cloak_of_the_Nimble_Edge"
+		"item_name"								"#DOTA_Item_Cloak_of_the_Nimble_Edge"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cloak"
+		"model_player"							"models/items/phantom_assassin/sentcloak_001/sentcloak_001.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4969"
+	{
+		"name"									"Pauldron of the Nimble Edge"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-20"
+		"image_inventory"						"econ/items/phantom_assassin/sentshoulders_001/sentshoulders_001"
+		"item_description"						"#DOTA_Item_Desc_Pauldron_of_the_Nimble_Edge"
+		"item_name"								"#DOTA_Item_Pauldron_of_the_Nimble_Edge"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/phantom_assassin/sentshoulders_001/sentshoulders_001.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4970"
+	{
+		"name"									"Girdle of the Nimble Edge"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-20"
+		"image_inventory"						"econ/items/phantom_assassin/belt_001/belt_001"
+		"item_description"						"#DOTA_Item_Desc_Girdle_of_the_Nimble_Edge"
+		"item_name"								"#DOTA_Item_Girdle_of_the_Nimble_Edge"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/phantom_assassin/belt_001/belt_001.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5102"
+	{
+		"name"									"Evildoer"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-05"
+		"image_inventory"						"econ/items/phantom_assassin/evildoer/evildoer"
+		"item_description"						"#DOTA_Item_Desc_evildoer"
+		"item_name"								"#DOTA_Item_Evildoer"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/phantom_assassin/evildoer/evildoer.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic.vsnap"
+				"modifier"						"particles/models/items/phantom_assassin/the_evildoer/the_evildoer.vsnap"
+			}
+		}
+	}
+	"5350"
+	{
+		"name"									"Cloak of the Dark Wraith"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-19"
+		"image_inventory"						"econ/items/phantom_assassin/dark_wraith_back/dark_wraith_back"
+		"item_description"						"#DOTA_Item_Desc_Cloak_of_the_Dark_Wraith"
+		"item_name"								"#DOTA_Item_Cloak_of_the_Dark_Wraith"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cloak"
+		"model_player"							"models/items/phantom_assassin/dark_wraith_back/dark_wraith_back.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5351"
+	{
+		"name"									"Girdle of the Dark Wraith"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-19"
+		"image_inventory"						"econ/items/phantom_assassin/dark_wraith_belt/dark_wraith_belt"
+		"item_description"						"#DOTA_Item_Desc_Girdle_of_the_Dark_Wraith"
+		"item_name"								"#DOTA_Item_Girdle_of_the_Dark_Wraith"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Girdle"
+		"model_player"							"models/items/phantom_assassin/dark_wraith_belt/dark_wraith_belt.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5352"
+	{
+		"name"									"Helm of the Dark Wraith"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-19"
+		"image_inventory"						"econ/items/phantom_assassin/dark_wraith_helmet/dark_wraith_helmet"
+		"item_description"						"#DOTA_Item_Desc_Helm_of__the_Dark_Wraith"
+		"item_name"								"#DOTA_Item_Helm_of_the_Dark_Wraith"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_helmet"
+		"model_player"							"models/items/phantom_assassin/dark_wraith_helmet/dark_wraith_helmet.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5353"
+	{
+		"name"									"Guard of the Dark Wraith"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-19"
+		"image_inventory"						"econ/items/phantom_assassin/dark_wraith_shoulder/dark_wraith_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Guard_of_the_Dark_Wraith"
+		"item_name"								"#DOTA_Item_Guard_of_the_Dark_Wraith"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder_Guard"
+		"model_player"							"models/items/phantom_assassin/dark_wraith_shoulder/dark_wraith_shoulder.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_CAPTURE"
+				"modifier"						"dark_wraith"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_LOADOUT"
+				"modifier"						"dark_wraith"
+			}
+		}
+	}
+	"5354"
+	{
+		"name"									"Blade of the Dark Wraith"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-20"
+		"image_inventory"						"econ/items/phantom_assassin/dark_wraith_weapon/dark_wraith_weapon"
+		"item_description"						"#DOTA_Item_Desc_Blade_of_the_Dark_Wraith"
+		"item_name"								"#DOTA_Item_Blade_of_the_Dark_Wraith"
+		"item_rarity"							"uncommon"
+		"model_player"							"models/items/phantom_assassin/dark_wraith_weapon/dark_wraith_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic.vsnap"
+				"modifier"						"particles/models/items/phantom_assassin/dark_wraith_weapon/dark_wraith_weapon.vsnap"
+			}
+		}
+	}
+	"5583"
+	{
+		"name"									"Blade of Misery"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-31"
+		"image_inventory"						"econ/items/phantom_assassin/blade_of_misery/blade_of_misery"
+		"item_description"						"#DOTA_Item_Desc_Blade_of_Misery"
+		"item_name"								"#DOTA_Item_Blade_of_Misery"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/phantom_assassin/blade_of_misery/blade_of_misery.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic"
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic.vsnap"
+				"modifier"						"particles/models/items/phantom_assassin/blade_of_misery/blade_of_misery.vsnap"
+			}
+		}
+	}
+	"5654"
+	{
+		"name"									"Belt of the Gleaming Seal"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-06"
+		"image_inventory"						"econ/items/phantom_assassin/lodas_pa_set__belt/lodas_pa_set__belt"
+		"item_description"						"#DOTA_Item_Desc_Belt_of_the_Gleaming_Seal"
+		"item_name"								"#DOTA_Item_Belt_of_the_Gleaming_Seal"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Honored_Belt"
+		"model_player"							"models/items/phantom_assassin/lodas_pa_set__belt/lodas_pa_set__belt.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"branding"
+		{
+			"team_id"							"111474"
+		}
+	}
+	"5655"
+	{
+		"name"									"Cape of the Gleaming Seal"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-06"
+		"image_inventory"						"econ/items/phantom_assassin/lodas_pa_set__cape/lodas_pa_set__cape"
+		"item_description"						"#DOTA_Item_Desc_Cape_of_the_Gleaming_Seal"
+		"item_name"								"#DOTA_Item_Cape_of_the_Gleaming_Seal"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Honored_Cape"
+		"model_player"							"models/items/phantom_assassin/lodas_pa_set__cape/lodas_pa_set__cape.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"branding"
+		{
+			"team_id"							"111474"
+		}
+	}
+	"5656"
+	{
+		"name"									"Brooch of the Gleaming Seal"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-06"
+		"image_inventory"						"econ/items/phantom_assassin/lodas_pa_set__head/lodas_pa_set__head"
+		"item_description"						"#DOTA_Item_Desc_Brooch_of_the_Gleaming_Seal"
+		"item_name"								"#DOTA_Item_Brooch_of_the_Gleaming_Seal"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Honored_Brooch"
+		"model_player"							"models/items/phantom_assassin/lodas_pa_set__head/lodas_pa_set__head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"branding"
+		{
+			"team_id"							"111474"
+		}
+	}
+	"5657"
+	{
+		"name"									"Ornaments of the Gleaming Seal"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-06"
+		"image_inventory"						"econ/items/phantom_assassin/lodas_pa_set__shoulders/lodas_pa_set__shoulders"
+		"item_description"						"#DOTA_Item_Desc_Ornaments_of_the_Gleaming_Seal"
+		"item_name"								"#DOTA_Item_Ornaments_of_the_Gleaming_Seal"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Honored_Shoulders"
+		"model_player"							"models/items/phantom_assassin/lodas_pa_set__shoulders/lodas_pa_set__shoulders.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"branding"
+		{
+			"team_id"							"111474"
+		}
+	}
+	"5658"
+	{
+		"name"									"Gleaming Seal"
+		"prefab"								"wearable"
+		"branding"
+		{
+			"team_id"							"111474"
+		}
+		"creation_date"							"2013-11-06"
+		"image_inventory"						"econ/items/phantom_assassin/lodas_pa_set__weapon/lodas_pa_set__weapon"
+		"item_description"						"#DOTA_Item_Desc_The_Gleaming_Seal"
+		"item_name"								"#DOTA_Item_Gleaming_Seal"
+		"item_rarity"							"legendary"
+		"item_type_name"						"#DOTA_WearableType_Honored_Scythe"
+		"model_player"							"models/items/phantom_assassin/lodas_pa_set__weapon/lodas_pa_set__weapon.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_SPAWN"
+				"modifier"						"loda"
+				"style"							"0"
+			}
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic.vsnap"
+				"modifier"						"particles/models/items/phantom_assassin/lodas_pa_set__weapon/lodas_pa_set__weapon.vsnap"
+			}
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE"
+				"modifier"						"loda"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_RUN"
+				"modifier"						"loda"
+			}
+			"asset_modifier4"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_ATTACK"
+				"modifier"						"loda"
+			}
+			"asset_modifier5"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_LOADOUT"
+				"modifier"						"loda"
+			}
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_CAST_ABILITY_3"
+				"modifier"						"loda"
+			}
+		}
+	}
+	"5788"
+	{
+		"name"									"Lament of the Slain"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-03"
+		"image_inventory"						"econ/items/phantom_assassin/lament_of_the_slain/lament_of_the_slain"
+		"item_name"								"#DOTA_Item_Lament_of_the_Slain"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/phantom_assassin/lament_of_the_slain/lament_of_the_slain.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic"
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic.vsnap"
+				"modifier"						"particles/models/items/phantom_assassin/lament_of_the_slain/lament_of_the_slain.vsnap"
+			}
+		}
+	}
+	"6594"
+	{
+		"name"									"Seven-edged Blade"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-13"
+		"image_inventory"						"econ/items/phantom_assassin/sevenedgedblade_weapon/sevenedgedblade_weapon"
+		"item_name"								"#DOTA_Item_Sevenedged_Blade"
+		"item_quality"							"genuine"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/phantom_assassin/sevenedgedblade_weapon/sevenedgedblade_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic"
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic.vsnap"
+				"modifier"						"particles/models/items/phantom_assassin/sevenedgedblade_weapon/sevenedgedblade_weapon.vsnap"
+			}
+		}
+	}
+	"6664"
+	{
+		"name"									"Dragonterror Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-15"
+		"image_inventory"						"econ/items/phantom_assassin/dragonterror_shoulder/dragonterror_shoulder"
+		"item_name"								"#DOTA_Item_Dragonterror_Armor"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/phantom_assassin/dragonterror_shoulder/dragonterror_shoulder.vmdl"
+	}
+	"6665"
+	{
+		"name"									"Dragonterror Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-15"
+		"image_inventory"						"econ/items/phantom_assassin/dragonterror_belt/dragonterror_belt"
+		"item_name"								"#DOTA_Item_Dragonterror_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/phantom_assassin/dragonterror_belt/dragonterror_belt.vmdl"
+	}
+	"6666"
+	{
+		"name"									"Dragonterror Cape"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-15"
+		"image_inventory"						"econ/items/phantom_assassin/dragonterror_cape/dragonterror_cape"
+		"item_name"								"#DOTA_Item_Dragonterror_Cape"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/phantom_assassin/dragonterror_cape/dragonterror_cape.vmdl"
+	}
+	"6667"
+	{
+		"name"									"Dragonterror Helmet"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-15"
+		"image_inventory"						"econ/items/phantom_assassin/dragonterror_helmet/dragonterror_helmet"
+		"item_name"								"#DOTA_Item_Dragonterror_Helmet"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/phantom_assassin/dragonterror_helmet/dragonterror_helmet.vmdl"
+	}
+	"6668"
+	{
+		"name"									"Dragonterror Sword"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-15"
+		"image_inventory"						"econ/items/phantom_assassin/dragonterror_sword/dragonterror_sword"
+		"item_name"								"#DOTA_Item_Dragonterror_Sword"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/phantom_assassin/dragonterror_sword/dragonterror_sword.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic"
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic.vsnap"
+				"modifier"						"particles/models/items/phantom_assassin/dragonterror_sword/dragonterror_sword.vsnap"
+			}
+		}
+	}
+	"6872"
+	{
+		"name"									"Hell's Guide"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-27"
+		"image_inventory"						"econ/items/phantom_assassin/hells_guide/hells_guide"
+		"item_name"								"#DOTA_Item_Hells_Guide"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/phantom_assassin/hells_guide/hells_guide.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_hells_guide"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_hells_guide/phantom_assassin_hells_guide_ambient_blade.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_hells_guide/phantom_assassin_hells_guide_ambient.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_hells_guide/phantom_assassin_hells_guide_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"7113"
+	{
+		"name"									"Carreau's Honor"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-12"
+		"image_inventory"						"econ/items/phantom_assassin/carreau_weapon/carreau_weapon"
+		"item_name"								"#DOTA_Item_Carreaus_Honor"
+		"model_player"							"models/items/phantom_assassin/carreau_weapon/carreau_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic"
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic.vsnap"
+				"modifier"						"particles/models/items/phantom_assassin/carreau_weapon/carreau_weapon.vsnap"
+			}
+		}
+	}
+	"7114"
+	{
+		"name"									"Carreau's Agony"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-12"
+		"image_inventory"						"econ/items/phantom_assassin/carreau_back/carreau_back"
+		"item_name"								"#DOTA_Item_Carreaus_Agony"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/phantom_assassin/carreau_back/carreau_back.vmdl"
+	}
+	"7115"
+	{
+		"name"									"Carreau's Tradition"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-12"
+		"image_inventory"						"econ/items/phantom_assassin/carreau_belt/carreau_belt"
+		"item_name"								"#DOTA_Item_Carreaus_Tradition"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/phantom_assassin/carreau_belt/carreau_belt.vmdl"
+	}
+	"7116"
+	{
+		"name"									"Carreau's Etiquette"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-12"
+		"image_inventory"						"econ/items/phantom_assassin/carreau_shoulder/carreau_shoulder"
+		"item_name"								"#DOTA_Item_Carreaus_Etiquette"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/phantom_assassin/carreau_shoulder/carreau_shoulder.vmdl"
+	}
+	"7117"
+	{
+		"name"									"Carreau's Deception"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-12"
+		"image_inventory"						"econ/items/phantom_assassin/carreau_head/carreau_head"
+		"item_name"								"#DOTA_Item_Carreaus_Deception"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/phantom_assassin/carreau_head/carreau_head.vmdl"
+	}
+	"7247"
+	{
+		"name"									"Manifold Paradox"
+		"prefab"								"wearable"
+		"creation_date"							"2014-11-20"
+		"image_inventory"						"econ/items/phantom_assassin/manifold_paradox/arcana_pa"
+		"item_description"						"#DOTA_Item_Desc_Manifold_Paradox"
+		"item_name"								"#DOTA_Item_Manifold_Paradox"
+		"item_rarity"							"arcana"
+		"item_type_name"						"#DOTA_WearableType_Parallel_Blades"
+		"model_player"							"models/heroes/phantom_assassin/pa_arcana_weapons.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"11/17/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Item_Desc_Manifold_Paradox_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Item_Desc_Manifold_Paradox_Style1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"gem"
+						{
+							"def_index"			"3006"
+							"type_field"		"strange_type"
+							"type_value"		"219"
+							"unlock_field"		"strange_value"
+							"unlock_value"		"40"
+						}
+					}
+				}
+				"2"
+				{
+					"name"						"#DOTA_Item_Desc_Manifold_Paradox_Style2"
+					"alternate_icon"			"2"
+					"unlock"
+					{
+						"gem"
+						{
+							"def_index"			"3006"
+							"type_field"		"strange_type"
+							"type_value"		"219"
+							"unlock_field"		"strange_value"
+							"unlock_value"		"100"
+						}
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/phantom_assassin/manifold_paradox/arcana_pa"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/phantom_assassin/manifold_paradox/arcana_pa_style1"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/phantom_assassin/manifold_paradox/arcana_pa_style2"
+				}
+			}
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_hero_phantom_assassin"
+				"modifier"						"models/heroes/phantom_assassin/pa_arcana.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"chatwheel"
+				"asset"							"phantom_assassin_phass_happy_09"
+				"modifier"						"phantom_assassin_phass_arc_happy_09"
+			}
+			"asset_modifier3"
+			{
+				"type"							"chatwheel"
+				"asset"							"phantom_assassin_phass_kill_10"
+				"modifier"						"phantom_assassin_phass_arc_kill_10"
+			}
+			"asset_modifier4"
+			{
+				"type"							"chatwheel"
+				"asset"							"phantom_assassin_phass_kill_01"
+				"modifier"						"phantom_assassin_phass_arc_kill_01"
+			}
+			"asset_modifier5"
+			{
+				"type"							"chatwheel"
+				"asset"							"phantom_assassin_phass_ability_blur_02"
+				"modifier"						"phantom_assassin_phass_arc_ability_blur_02"
+			}
+			"asset_modifier6"
+			{
+				"type"							"chatwheel"
+				"asset"							"phantom_assassin_phass_deny_14"
+				"modifier"						"phantom_assassin_phass_arc_deny_14"
+			}
+			"asset_modifier7"
+			{
+				"type"							"chatwheel"
+				"asset"							"phantom_assassin_phass_level_06"
+				"modifier"						"phantom_assassin_phass_arc_level_06"
+			}
+			"asset_modifier8"
+			{
+				"type"							"chatwheel"
+				"asset"							"phantom_assassin_phass_kill_12"
+				"modifier"						"phantom_assassin_phass_arc_kill_12"
+			}
+			"asset_modifier2"
+			{
+				"type"							"chatwheel"
+				"asset"							"phantom_assassin_phass_kill_02"
+				"modifier"						"phantom_assassin_phass_arc_kill_02"
+			}
+			"asset_modifier10"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact_mechanical.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/phantom_assassin_crit_mechanical_arcana_swoop.vpcf"
+			}
+			"asset_modifier11"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/phantom_assassin_stifling_dagger_arcana.vpcf"
+				"minimum_priority"				"1"
+			}
+			"asset_modifier12"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact_dagger.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/phantom_assassin_crit_impact_dagger_arcana.vpcf"
+			}
+			"asset_modifier13"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact_dagger_mechanical.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/phantom_assassin_crit_impact_dagger_mechanical_arcana.vpcf"
+			}
+			"asset_modifier14"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger_debuff.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/phantom_assassin_stifling_dagger_debuff_arcana.vpcf"
+			}
+			"asset_modifier15"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_death.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_death.vpcf"
+			}
+			"asset_modifier16"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_loadout.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_loadout.vpcf"
+			}
+			"asset_modifier17"
+			{
+				"type"							"sound"
+				"asset"							"Hero_PhantomAssassin.CoupDeGrace"
+				"modifier"						"Hero_PhantomAssassin.CoupDeGrace.Arcana"
+			}
+			"asset_modifier18"
+			{
+				"type"							"portrait_background_model"
+				"asset"							"models/heroes/phantom_assassin/arcana_pedestal.vmdl"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier19"
+			{
+				"type"							"icon_replacement_hero"
+				"asset"							"npc_dota_hero_phantom_assassin"
+				"modifier"						"npc_dota_hero_phantom_assassin_alt1"
+				"force_display"					"1"
+			}
+			"asset_modifier20"
+			{
+				"type"							"ability_icon"
+				"asset"							"phantom_assassin_stifling_dagger"
+				"modifier"						"phantom_assassin_arcana_stifling_dagger"
+				"minimum_priority"				"1"
+			}
+			"asset_modifier21"
+			{
+				"type"							"ability_icon"
+				"asset"							"phantom_assassin_blur"
+				"modifier"						"phantom_assassin_arcana_blur"
+			}
+			"asset_modifier22"
+			{
+				"type"							"ability_icon"
+				"asset"							"phantom_assassin_phantom_strike"
+				"modifier"						"phantom_assassin_arcana_phantom_strike"
+			}
+			"asset_modifier23"
+			{
+				"type"							"ability_icon"
+				"asset"							"phantom_assassin_coup_de_grace"
+				"modifier"						"phantom_assassin_arcana_coup_de_grace"
+			}
+			"asset_modifier24"
+			{
+				"type"							"particle_control_point"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_blade_ambient_a.vpcf"
+				"control_point_number"			"26"
+				"cp_position"					"40 0 0"
+				"style"							"1"
+			}
+			"asset_modifier25"
+			{
+				"type"							"particle_control_point"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_blade_ambient_a.vpcf"
+				"control_point_number"			"26"
+				"cp_position"					"100 0 0"
+				"style"							"2"
+			}
+			"asset_modifier26"
+			{
+				"type"							"particle_control_point"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_blade_ambient_b.vpcf"
+				"control_point_number"			"26"
+				"cp_position"					"40 0 0"
+				"style"							"1"
+			}
+			"asset_modifier27"
+			{
+				"type"							"particle_control_point"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_blade_ambient_b.vpcf"
+				"control_point_number"			"26"
+				"cp_position"					"100 0 0"
+				"style"							"2"
+			}
+			"asset_modifier28"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_elder_ambient.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_elder_ambient.vpcf"
+				"resource"						"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith"
+				"attach_type"					"customorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_leg_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_leg_r"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hand_l"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hand_r"
+					}
+					"4"
+					{
+						"control_point_index"	"6"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+			"asset_modifier29"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_blade_ambient_a.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_blade_ambient_a.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier30"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_blade_ambient_b.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_blade_ambient_b.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+			"asset_modifier31"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_elder_eyes_l.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_elder_eyes_l.vpcf"
+				"attach_type"					"customorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+				}
+			}
+			"asset_modifier32"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_elder_eyes_r.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_elder_eyes_r.vpcf"
+				"attach_type"					"customorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+			"asset_modifier33"
+			{
+				"type"							"arcana_level"
+				"level"							"1"
+				"style"							"0"
+			}
+			"asset_modifier34"
+			{
+				"type"							"arcana_level"
+				"level"							"2"
+				"style"							"1"
+			}
+			"asset_modifier35"
+			{
+				"type"							"arcana_level"
+				"level"							"3"
+				"style"							"2"
+			}
+			"asset_modifier36"
+			{
+				"type"							"icon_replacement_hero_minimap"
+				"asset"							"npc_dota_hero_phantom_assassin"
+				"modifier"						"npc_dota_hero_phantom_assassin_alt1"
+				"force_display"					"1"
+			}
+			"asset_modifier"
+			{
+				"type"							"chatwheel"
+				"asset"							"phantom_assassin_phass_laugh_07"
+				"modifier"						"phantom_assassin_phass_arc_laugh_07"
+			}
+		}
+	}
+	"7297"
+	{
+		"name"									"Cape of the Creeping Shadow"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-28"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/phantom_assassin/creeping_shadow_back/creeping_shadow_back"
+		"item_name"								"#DOTA_Item_Cape_of_the_Creeping_Shadow"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/phantom_assassin/creeping_shadow_back/creeping_shadow_back.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"7307"
+	{
+		"name"									"Belt of the Creeping Shadow"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-28"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/phantom_assassin/creeping_shadow_belt/creeping_shadow_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Creeping_Shadow"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/phantom_assassin/creeping_shadow_belt/creeping_shadow_belt.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"7308"
+	{
+		"name"									"Hood of the Creeping Shadow"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-28"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/phantom_assassin/creeping_shadow_head/creeping_shadow_head"
+		"item_name"								"#DOTA_Item_Hood_of_the_Creeping_Shadow"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hood"
+		"model_player"							"models/items/phantom_assassin/creeping_shadow_head/creeping_shadow_head.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"7309"
+	{
+		"name"									"Shawl of the Creeping Shadow"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-28"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/phantom_assassin/creeping_shadow_shoulder/creeping_shadow_shoulder"
+		"item_name"								"#DOTA_Item_Shawl_of_the_Creeping_Shadow"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shawl"
+		"model_player"							"models/items/phantom_assassin/creeping_shadow_shoulder/creeping_shadow_shoulder.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"7310"
+	{
+		"name"									"Blade of the Creeping Shadow"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-28"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/phantom_assassin/creeping_shadow_weapon/creeping_shadow_weapon"
+		"item_name"								"#DOTA_Item_Blade_of_the_Creeping_Shadow"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/phantom_assassin/creeping_shadow_weapon/creeping_shadow_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic.vsnap"
+				"modifier"						"particles/models/items/phantom_assassin/creeping_shadow_weapon/creeping_shadow_weapon_fx.vsnap"
+			}
+		}
+	}
+	"7397"
+	{
+		"name"									"Hell's Usher"
+		"prefab"								"wearable"
+		"creation_date"							"2014-12-10"
+		"image_inventory"						"econ/items/phantom_assassin/hells_usher/hells_usher_new"
+		"item_description"						"#DOTA_Item_Desc_Hells_Usher"
+		"item_name"								"#DOTA_Item_Hells_Usher"
+		"item_quality"							"genuine"
+		"item_rarity"							"immortal"
+		"model_player"							"models/items/phantom_assassin/hells_guide/hells_guide.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_hells_usher"
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_hells_usher/phantom_assassin_hells_usher_ambient_blade.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_hells_usher/phantom_assassin_hells_usher_ambient.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_hells_usher/phantom_assassin_hells_usher_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"7597"
+	{
+		"name"									"Mantle of the Eventide"
+		"prefab"								"wearable"
+		"creation_date"							"2016-03-15"
+		"image_inventory"						"econ/items/phantom_assassin/raiments_of_the_shadow_slayer_set_shoulder/raiments_of_the_shadow_slayer_set_shoulder"
+		"item_name"								"#DOTA_Item_Mantle_of_the_Eventide"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/phantom_assassin/raiments_of_the_shadow_slayer_set_shoulder/raiments_of_the_shadow_slayer_set_shoulder.vmdl"
+	}
+	"7598"
+	{
+		"name"									"Tasset of the Eventide"
+		"prefab"								"wearable"
+		"creation_date"							"2016-03-15"
+		"image_inventory"						"econ/items/phantom_assassin/raiments_of_the_shadow_slayer_set_belt/raiments_of_the_shadow_slayer_set_belt"
+		"item_name"								"#DOTA_Item_Tasset_of_the_Eventide"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Tasset"
+		"model_player"							"models/items/phantom_assassin/raiments_of_the_shadow_slayer_set_belt/raiments_of_the_shadow_slayer_set_belt.vmdl"
+	}
+	"7599"
+	{
+		"name"									"Cloak of the Eventide"
+		"prefab"								"wearable"
+		"creation_date"							"2016-03-15"
+		"image_inventory"						"econ/items/phantom_assassin/raiments_of_the_shadow_slayer_set_back/raiments_of_the_shadow_slayer_set_back"
+		"item_name"								"#DOTA_Item_Cloak_of_the_Eventide"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cloak"
+		"model_player"							"models/items/phantom_assassin/raiments_of_the_shadow_slayer_set_back/raiments_of_the_shadow_slayer_set_back.vmdl"
+	}
+	"7600"
+	{
+		"name"									"Blade of the Eventide"
+		"prefab"								"wearable"
+		"creation_date"							"2016-03-15"
+		"image_inventory"						"econ/items/phantom_assassin/raiments_of_the_shadow_slayer_set_weapon/raiments_of_the_shadow_slayer_set_weapon"
+		"item_name"								"#DOTA_Item_Blade_of_the_Eventide"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/phantom_assassin/raiments_of_the_shadow_slayer_set_weapon/raiments_of_the_shadow_slayer_set_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic.vsnap"
+				"modifier"						"particles/models/items/phantom_assassin/raiments_of_the_shadow_slayer_set_weapon/raiments_of_the_shadow_slayer_set_weapon_fx.vsnap"
+			}
+		}
+	}
+	"7601"
+	{
+		"name"									"Headdress of the Eventide"
+		"prefab"								"wearable"
+		"creation_date"							"2016-03-15"
+		"image_inventory"						"econ/items/phantom_assassin/raiments_of_the_shadow_slayer_set_head/raiments_of_the_shadow_slayer_set_head"
+		"item_name"								"#DOTA_Item_Headdress_of_the_Eventide"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Headdress"
+		"model_player"							"models/items/phantom_assassin/raiments_of_the_shadow_slayer_set_head/raiments_of_the_shadow_slayer_set_head.vmdl"
+	}
+	"7607"
+	{
+		"name"									"Solace of Divinity"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/phantom_assassin/weta_solace_of_divinity_weapon/weta_solace_of_divinity_weapon"
+		"item_name"								"#DOTA_Item_Solace_of_Divinity"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/phantom_assassin/weta_solace_of_divinity_weapon/weta_solace_of_divinity_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic.vsnap"
+				"modifier"						"particles/models/items/phantom_assassin/weta_solace_of_divinity_weapon/weta_solace_of_divinity_weapon_fx.vsnap"
+			}
+		}
+	}
+	"8011"
+	{
+		"name"									"Blade of the Sacrosanct"
+		"prefab"								"wearable"
+		"creation_date"							"2015-02-23"
+		"image_inventory"						"econ/items/phantom_assassin/raiment_of_the_sacred_blossom_weapon/raiment_of_the_sacred_blossom_weapon"
+		"item_name"								"#DOTA_Item_Blade_of_the_Sacrosanct"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/phantom_assassin/raiment_of_the_sacred_blossom_weapon/raiment_of_the_sacred_blossom_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic.vsnap"
+				"modifier"						"particles/models/items/phantom_assassin/raiment_of_the_sacred_blossom_weapon/raiment_of_the_sacred_blossom_weapon.vsnap"
+			}
+		}
+	}
+	"8012"
+	{
+		"name"									"Shoulders of the Sacrosanct"
+		"prefab"								"wearable"
+		"creation_date"							"2015-02-23"
+		"image_inventory"						"econ/items/phantom_assassin/raiment_of_the_sacred_blossom_shoulder/raiment_of_the_sacred_blossom_shoulder"
+		"item_name"								"#DOTA_Item_Shoulders_of_the_Sacrosanct"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/phantom_assassin/raiment_of_the_sacred_blossom_shoulder/raiment_of_the_sacred_blossom_shoulder.vmdl"
+	}
+	"8013"
+	{
+		"name"									"Belt of the Sacrosanct"
+		"prefab"								"wearable"
+		"creation_date"							"2015-02-23"
+		"image_inventory"						"econ/items/phantom_assassin/raiment_of_the_sacred_blossom_belt/raiment_of_the_sacred_blossom_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Sacrosanct"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/phantom_assassin/raiment_of_the_sacred_blossom_belt/raiment_of_the_sacred_blossom_belt.vmdl"
+	}
+	"8014"
+	{
+		"name"									"Cape of the Sacrosanct"
+		"prefab"								"wearable"
+		"creation_date"							"2015-02-23"
+		"image_inventory"						"econ/items/phantom_assassin/raiment_of_the_sacred_blossom_back/raiment_of_the_sacred_blossom_back"
+		"item_name"								"#DOTA_Item_Cape_of_the_Sacrosanct"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/phantom_assassin/raiment_of_the_sacred_blossom_back/raiment_of_the_sacred_blossom_back.vmdl"
+	}
+	"8015"
+	{
+		"name"									"Helm of the Sacrosanct"
+		"prefab"								"wearable"
+		"creation_date"							"2015-02-23"
+		"image_inventory"						"econ/items/phantom_assassin/raiment_of_the_sacred_blossom_head/raiment_of_the_sacred_blossom_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Sacrosanct"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/phantom_assassin/raiment_of_the_sacred_blossom_head/raiment_of_the_sacred_blossom_head.vmdl"
+	}
+	"8136"
+	{
+		"name"									"Belt of the Ravening Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-05"
+		"image_inventory"						"econ/items/phantom_assassin/kiss_of_crows_belt/kiss_of_crows_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Ravening_Wings"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/phantom_assassin/kiss_of_crows_belt/kiss_of_crows_belt.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"4/1/2015"
+			"price"								"0"
+		}
+	}
+	"8137"
+	{
+		"name"									"Cape of the Ravening Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-05"
+		"image_inventory"						"econ/items/phantom_assassin/kiss_of_crows_back/kiss_of_crows_back"
+		"item_name"								"#DOTA_Item_Cape_of_the_Ravening_Wings"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/phantom_assassin/kiss_of_crows_back/kiss_of_crows_back.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"4/1/2015"
+			"price"								"0"
+		}
+	}
+	"8138"
+	{
+		"name"									"Glaive of the Ravening Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-05"
+		"image_inventory"						"econ/items/phantom_assassin/kiss_of_crows_weapon/kiss_of_crows_weapon"
+		"item_description"						"#DOTA_Item_Desc_Glaive_of_the_Ravening_Wings"
+		"item_name"								"#DOTA_Item_Glaive_of_the_Ravening_Wings"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/phantom_assassin/kiss_of_crows_weapon/kiss_of_crows_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_lw"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"4/1/2015"
+			"price"								"0"
+		}
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_phantom_assassin' gem_def_index: 3005 } asset_modifier: 122"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_lw/phantom_assassin_ambient_blade_lw.vpcf"
+			}
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"phantom_assassin_phantom_strike"
+				"modifier"						"phantom_assassin/ravening_ability_icons/phantom_assassin_phantom_strike"
+			}
+			"asset_modifier_socket1"
+			{
+				"type"							"ability_icon"
+				"asset"							"phantom_assassin_stifling_dagger"
+				"modifier"						"phantom_assassin/ravening_ability_icons/phantom_assassin_stifling_dagger"
+			}
+			"asset_modifier_socket2"
+			{
+				"type"							"ability_icon"
+				"asset"							"phantom_assassin_coup_de_grace"
+				"modifier"						"phantom_assassin/ravening_ability_icons/phantom_assassin_coup_de_grace"
+			}
+		}
+	}
+	"8139"
+	{
+		"name"									"Helm of the Ravening Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-05"
+		"image_inventory"						"econ/items/phantom_assassin/kiss_of_crows_head/kiss_of_crows_head"
+		"item_description"						"#DOTA_Item_Desc_Helm_of_the_Ravening_Wings"
+		"item_name"								"#DOTA_Item_Helm_of_the_Ravening_Wings"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/phantom_assassin/kiss_of_crows_head/kiss_of_crows_head.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"4/1/2015"
+			"price"								"0"
+		}
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_phantom_assassin' gem_def_index: 3005 } asset_modifier: 123"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"phantom_assassin_blur"
+				"modifier"						"phantom_assassin/ravening_ability_icons/phantom_assassin_blur"
+			}
+		}
+	}
+	"8140"
+	{
+		"name"									"Pauldrons of the Ravening Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-05"
+		"image_inventory"						"econ/items/phantom_assassin/kiss_of_crows_shoulders/kiss_of_crows_shoulders"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Ravening_Wings"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/phantom_assassin/kiss_of_crows_shoulders/kiss_of_crows_shoulders.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"4/1/2015"
+			"price"								"0"
+		}
+	}
+	"8586"
+	{
+		"name"									"Blade of the Bloodroot Guard"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/phantom_assassin/phantom_knight_weapon/phantom_knight_weapon"
+		"item_name"								"#DOTA_Item_Blade_of_the_Bloodroot_Guard"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/phantom_assassin/phantom_knight_weapon/phantom_knight_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic.vsnap"
+				"modifier"						"particles/models/items/phantom_assassin/phantom_knight_weapon/phantom_knight_weapon_fx.vsnap"
+			}
+		}
+	}
+	"8587"
+	{
+		"name"									"Belt of the Bloodroot Guard"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/phantom_assassin/phantom_knight_belt/phantom_knight_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Bloodroot_Guard"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/phantom_assassin/phantom_knight_belt/phantom_knight_belt.vmdl"
+	}
+	"8588"
+	{
+		"name"									"Vest of the Bloodroot Guard"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/phantom_assassin/phantom_knight_shoulder/phantom_knight_shoulder"
+		"item_name"								"#DOTA_Item_Vest_of_the_Bloodroot_Guard"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Vest"
+		"model_player"							"models/items/phantom_assassin/phantom_knight_shoulder/phantom_knight_shoulder.vmdl"
+	}
+	"8589"
+	{
+		"name"									"Cape of the Bloodroot Guard"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/phantom_assassin/phantom_knight_back/phantom_knight_back"
+		"item_name"								"#DOTA_Item_Cape_of_the_Bloodroot_Guard"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/phantom_assassin/phantom_knight_back/phantom_knight_back.vmdl"
+	}
+	"8590"
+	{
+		"name"									"Helm of the Bloodroot Guard"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/phantom_assassin/phantom_knight_head/phantom_knight_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Bloodroot_Guard"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/phantom_assassin/phantom_knight_head/phantom_knight_head.vmdl"
+	}
+	"9202"
+	{
+		"name"									"Taunt: Deadly Grace"
+		"prefab"								"taunt"
+		"creation_date"							"2017-03-24"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/taunts/dota_icon_taunt_phantomassassin_ti8"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Deadly_Grace"
+		"item_name"								"#DOTA_Item_Taunt_Deadly_Grace"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567296000"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"assassin"
+				"style"							"0"
+				"gesture"						"1"
+			}
+		}
+	}
+	"9319"
+	{
+		"name"									"Curve of the Fearful Aria"
+		"prefab"								"wearable"
+		"branding"
+		{
+			"corporation_id"					"43276219"
+		}
+		"creation_date"							"2015-06-22"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/phantom_assassin/toll_of_the_fearful_aria_weapon/toll_of_the_fearful_aria_weapon"
+		"item_description"						"#DOTA_Item_Desc_Curve_of_the_Fearful_Aria"
+		"item_name"								"#DOTA_Item_Curve_of_the_Fearful_Aria"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/phantom_assassin/toll_of_the_fearful_aria_weapon/toll_of_the_fearful_aria_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"replacement_type"				"PARTICLE_REPLACE_NONE"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic.vsnap"
+				"modifier"						"particles/models/items/phantom_assassin/toll_of_the_fearful_aria_weapon/toll_of_the_fearful_aria_weapon.vsnap"
+			}
+		}
+	}
+	"9320"
+	{
+		"name"									"Style of the Fearful Aria"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-22"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/phantom_assassin/toll_of_the_fearful_aria_head/toll_of_the_fearful_aria_head"
+		"item_description"						"#DOTA_Item_Desc_Style_of_the_Fearful_Aria"
+		"item_name"								"#DOTA_Item_Style_of_the_Fearful_Aria"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Style"
+		"model_player"							"models/items/phantom_assassin/toll_of_the_fearful_aria_head/toll_of_the_fearful_aria_head.vmdl"
+		"branding"
+		{
+			"corporation_id"					"43276219"
+		}
+	}
+	"9321"
+	{
+		"name"									"Armor of the Fearful Aria"
+		"prefab"								"wearable"
+		"branding"
+		{
+			"corporation_id"					"43276219"
+		}
+		"creation_date"							"2015-06-22"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/phantom_assassin/toll_of_the_fearful_aria_shoulder/toll_of_the_fearful_aria_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Armor_of_the_Fearful_Aria"
+		"item_name"								"#DOTA_Item_Armor_of_the_Fearful_Aria"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/phantom_assassin/toll_of_the_fearful_aria_shoulder/toll_of_the_fearful_aria_shoulder.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_echoes_aria/pa_echoes_aria_ambient.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_echoes_aria/pa_echoes_aria_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_chest"
+					}
+				}
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#Armor_of_the_Fearful_Aria_Default"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#Armor_of_the_Fearful_Aria_Particle"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"price"					"1"
+						"item_def"				"16735"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/phantom_assassin/toll_of_the_fearful_aria_shoulder/toll_of_the_fearful_aria_shoulder"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/phantom_assassin/toll_of_the_fearful_aria_shoulder/toll_of_the_fearful_aria_shoulder_particle"
+				}
+			}
+			"skin"								"0"
+		}
+	}
+	"9322"
+	{
+		"name"									"Trail of the Fearful Aria"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-22"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/phantom_assassin/toll_of_the_fearful_aria_back/toll_of_the_fearful_aria_back"
+		"item_description"						"#DOTA_Item_Desc_Trail_of_the_Fearful_Aria"
+		"item_name"								"#DOTA_Item_Trail_of_the_Fearful_Aria"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/phantom_assassin/toll_of_the_fearful_aria_back/toll_of_the_fearful_aria_back.vmdl"
+		"branding"
+		{
+			"corporation_id"					"43276219"
+		}
+	}
+	"9323"
+	{
+		"name"									"Sash of the Fearful Aria"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-22"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/phantom_assassin/toll_of_the_fearful_aria_belt/toll_of_the_fearful_aria_belt"
+		"item_description"						"#DOTA_Item_Desc_Sash_of_the_Fearful_Aria"
+		"item_name"								"#DOTA_Item_Sash_of_the_Fearful_Aria"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Sash"
+		"model_player"							"models/items/phantom_assassin/toll_of_the_fearful_aria_belt/toll_of_the_fearful_aria_belt.vmdl"
+		"branding"
+		{
+			"corporation_id"					"43276219"
+		}
+	}
+	"9757"
+	{
+		"name"									"Codicil of the Veiled Ones"
+		"prefab"								"wearable"
+		"creation_date"							"2018-04-04"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/phantom_assassin/pa_ti8_immortal_head/pa_ti8_immortal_head"
+		"item_description"						"#DOTA_Item_Desc_Codicil_of_the_Veiled_Ones"
+		"item_name"								"#DOTA_Item_Codicil_of_the_Veiled_Ones"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/phantom_assassin/pa_ti8_immortal_head/pa_ti8_immortal_head.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti8"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phantom_assassin/pa_ti8_immortal_head/pa_ti8_immortal_head_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/pa_ti8_immortal_head/pa_ti8_immortal_stifling_dagger.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/phantom_assassin_stifling_dagger_arcana.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/pa_ti8_immortal_head/pa_ti8_immortal_stifling_dagger_arcana_combined.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"phantom_assassin_stifling_dagger"
+				"modifier"						"phantom_assassin/ti8_immortal_helmet/phantom_assassin_stifling_dagger_immortal"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger_debuff.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/pa_ti8_immortal_head/pa_ti8_immortal_dagger_debuff.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle_combined"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/phantom_assassin_stifling_dagger_debuff_arcana.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/pa_ti8_immortal_head/pa_ti8_immortal_dagger_debuff_arcana_combined.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+		}
+	}
+	"9843"
+	{
+		"name"									"Helm of the Lifted Veil"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/phantom_assassin/ti8_pathe_gloomy_veil_head/ti8_pathe_gloomy_veil_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Lifted_Veil"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/phantom_assassin/ti8_pathe_gloomy_veil_head/ti8_pathe_gloomy_veil_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9844"
+	{
+		"name"									"Blade of the Lifted Veil"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/phantom_assassin/ti8_pathe_gloomy_veil_weapon/ti8_pathe_gloomy_veil_weapon"
+		"item_name"								"#DOTA_Item_Blade_of_the_Lifted_Veil"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/phantom_assassin/ti8_pathe_gloomy_veil_weapon/ti8_pathe_gloomy_veil_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic.vsnap"
+				"modifier"						"particles/models/items/phantom_assassin/ti8_pathe_gloomy_veil_weapon/ti8_pathe_gloomy_veil_weapon_fx.vsnap"
+			}
+		}
+	}
+	"9845"
+	{
+		"name"									"Belt of the Lifted Veil"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/phantom_assassin/ti8_pathe_gloomy_veil_belt/ti8_pathe_gloomy_veil_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Lifted_Veil"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/phantom_assassin/ti8_pathe_gloomy_veil_belt/ti8_pathe_gloomy_veil_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9846"
+	{
+		"name"									"Cape of the Lifted Veil"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/phantom_assassin/ti8_pathe_gloomy_veil_back/ti8_pathe_gloomy_veil_back"
+		"item_name"								"#DOTA_Item_Cape_of_the_Lifted_Veil"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/phantom_assassin/ti8_pathe_gloomy_veil_back/ti8_pathe_gloomy_veil_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9847"
+	{
+		"name"									"Armor of the Lifted Veil"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/phantom_assassin/ti8_pathe_gloomy_veil_shoulder/ti8_pathe_gloomy_veil_shoulder"
+		"item_name"								"#DOTA_Item_Armor_of_the_Lifted_Veil"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/phantom_assassin/ti8_pathe_gloomy_veil_shoulder/ti8_pathe_gloomy_veil_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"12594"
+	{
+		"name"									"Blade of Cruel Reprisal"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/phantom_assassin/armor_reprisal_weapon/armor_reprisal_weapon"
+		"item_name"								"#DOTA_Item_Blade_of_Cruel_Reprisal"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/phantom_assassin/armor_reprisal_weapon/armor_reprisal_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic.vsnap"
+				"modifier"						"particles/models/items/phantom_assassin/armor_reprisal_weapon/armor_reprisal_weapon_fx.vsnap"
+			}
+		}
+	}
+	"12596"
+	{
+		"name"									"Cape of Cruel Reprisal"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/phantom_assassin/armor_reprisal_back/armor_reprisal_back"
+		"item_name"								"#DOTA_Item_Cape_of_Cruel_Reprisal"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/phantom_assassin/armor_reprisal_back/armor_reprisal_back.vmdl"
+	}
+	"12597"
+	{
+		"name"									"Helm of Cruel Reprisal"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/phantom_assassin/armor_reprisal_head/armor_reprisal_head"
+		"item_name"								"#DOTA_Item_Helm_of_Cruel_Reprisal"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/phantom_assassin/armor_reprisal_head/armor_reprisal_head.vmdl"
+	}
+	"12598"
+	{
+		"name"									"Armor of Cruel Reprisal"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/phantom_assassin/armor_reprisal_shoulder/armor_reprisal_shoulder"
+		"item_name"								"#DOTA_Item_Armor_of_Cruel_Reprisal"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/phantom_assassin/armor_reprisal_shoulder/armor_reprisal_shoulder.vmdl"
+	}
+	"13476"
+	{
+		"name"									"Gothic Whisper Blade"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/phantom_assassin/ti9_cache_pa_gothic_hunter_weapon/ti9_cache_pa_gothic_hunter_weapon"
+		"item_name"								"#DOTA_Item_Gothic_Whisper_Blade"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/phantom_assassin/ti9_cache_pa_gothic_hunter_weapon/ti9_cache_pa_gothic_hunter_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phantom_assassin/ti9_cache_pa_gothic_hunter_weapon/ti9_cache_pa_gothic_weapon_ambient.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti9_cache"
+				"style"							"0"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+			}
+		}
+	}
+	"13477"
+	{
+		"name"									"Gothic Whisper Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/phantom_assassin/ti9_cache_pa_gothic_hunter_shoulder/ti9_cache_pa_gothic_hunter_shoulder"
+		"item_name"								"#DOTA_Item_Gothic_Whisper_Armor"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/phantom_assassin/ti9_cache_pa_gothic_hunter_shoulder/ti9_cache_pa_gothic_hunter_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"13478"
+	{
+		"name"									"Gothic Whisper Mask"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/phantom_assassin/ti9_cache_pa_gothic_hunter_head/ti9_cache_pa_gothic_hunter_head"
+		"item_name"								"#DOTA_Item_Gothic_Whisper_Mask"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/phantom_assassin/ti9_cache_pa_gothic_hunter_head/ti9_cache_pa_gothic_hunter_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phantom_assassin/ti9_cache_pa_gothic_hunter_head/ti9_cache_pa_gothic_head_ambient.vpcf"
+			}
+		}
+	}
+	"13479"
+	{
+		"name"									"Gothic Whisper Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/phantom_assassin/ti9_cache_pa_gothic_hunter_belt/ti9_cache_pa_gothic_hunter_belt"
+		"item_name"								"#DOTA_Item_Gothic_Whisper_Belt"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/phantom_assassin/ti9_cache_pa_gothic_hunter_belt/ti9_cache_pa_gothic_hunter_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phantom_assassin/ti9_cache_pa_gothic_hunter_belt/ti9_cache_pa_gothic_belt_ambient.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"13480"
+	{
+		"name"									"Gothic Whisper Cape"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/phantom_assassin/ti9_cache_pa_gothic_hunter_back/ti9_cache_pa_gothic_hunter_back"
+		"item_name"								"#DOTA_Item_Gothic_Whisper_Cape"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/phantom_assassin/ti9_cache_pa_gothic_hunter_back/ti9_cache_pa_gothic_hunter_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phantom_assassin/ti9_cache_pa_gothic_hunter_back/ti9_cache_pa_gothic_back_ambient.vpcf"
+			}
+		}
+	}
+	"13838"
+	{
+		"name"									"Valkyrie's Shade Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-07"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/phantom_assassin/valkyries_shade_belt/valkyries_shade_belt"
+		"item_name"								"#DOTA_Item_Valkyries_Shade_Belt"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"model_player"							"models/items/phantom_assassin/valkyries_shade_belt/valkyries_shade_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Valkyries_Shade_Belt_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Valkyries_Shade_Belt_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"18957"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/phantom_assassin/valkyries_shade_belt/valkyries_shade_belt"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/phantom_assassin/valkyries_shade_belt/valkyries_shade_belt_style1"
+				}
+			}
+		}
+	}
+	"13839"
+	{
+		"name"									"Valkyrie's Shade Back"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-07"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/phantom_assassin/valkyries_shade_back/valkyries_shade_back"
+		"item_name"								"#DOTA_Item_Valkyries_Shade_Back"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"model_player"							"models/items/phantom_assassin/valkyries_shade_back/valkyries_shade_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Valkyries_Shade_Back_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Valkyries_Shade_Back_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"18957"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phantom_assassin/pa_2021_cc/pa_2021_cc_back.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phantom_assassin/pa_2021_cc/pa_2021_cc_back_v2.vpcf"
+				"style"							"1"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/phantom_assassin/valkyries_shade_back/valkyries_shade_back"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/phantom_assassin/valkyries_shade_back/valkyries_shade_back_style1"
+				}
+			}
+		}
+	}
+	"13840"
+	{
+		"name"									"Valkyrie's Shade Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-07"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/phantom_assassin/valkyries_shade_head/valkyries_shade_head"
+		"item_name"								"#DOTA_Item_Valkyries_Shade_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"model_player"							"models/items/phantom_assassin/valkyries_shade_head/valkyries_shade_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Valkyries_Shade_Head_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Valkyries_Shade_Head_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"18957"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phantom_assassin/pa_2021_cc/pa_2021_cc_head.vpcf"
+				"style"							"1"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/phantom_assassin/valkyries_shade_head/valkyries_shade_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/phantom_assassin/valkyries_shade_head/valkyries_shade_head_style1"
+				}
+			}
+		}
+	}
+	"13841"
+	{
+		"name"									"Valkyrie's Shade Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-07"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/phantom_assassin/valkyries_shade_weapon/valkyries_shade_weapon"
+		"item_name"								"#DOTA_Item_Valkyries_Shade_Weapon"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/phantom_assassin/valkyries_shade_weapon/valkyries_shade_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic.vsnap"
+				"modifier"						"particles/models/items/phantom_assassin/valkyries_shade_weapon/valkyries_shade_weapon_fx.vsnap"
+			}
+			"skip_model_combine"				"1"
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Valkyries_Shade_Weapon_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Valkyries_Shade_Weapon_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"18957"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phantom_assassin/pa_2021_cc/pa_2021_cc_weapon.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phantom_assassin/pa_2021_cc/pa_2021_cc_weapon_v2.vpcf"
+				"style"							"1"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/phantom_assassin/valkyries_shade_weapon/valkyries_shade_weapon"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/phantom_assassin/valkyries_shade_weapon/valkyries_shade_weapon_style1"
+				}
+			}
+		}
+	}
+	"13842"
+	{
+		"name"									"Valkyrie's Shade Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-07"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/phantom_assassin/valkyries_shade_shoulder/valkyries_shade_shoulder"
+		"item_name"								"#DOTA_Item_Valkyries_Shade_Shoulder"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/phantom_assassin/valkyries_shade_shoulder/valkyries_shade_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Valkyries_Shade_Shoulder_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Valkyries_Shade_Shoulder_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"18957"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phantom_assassin/pa_2021_cc/pa_2021_cc_shoulder.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phantom_assassin/pa_2021_cc/pa_2021_cc_shoulder_v2.vpcf"
+				"style"							"1"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/phantom_assassin/valkyries_shade_shoulder/valkyries_shade_shoulder"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/phantom_assassin/valkyries_shade_shoulder/valkyries_shade_shoulder_style1"
+				}
+			}
+		}
+	}
+	"14948"
+	{
+		"name"									"Avowance of the Veiled Ones"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"hide_tradecraftdelete"					"1"
+		"image_inventory"						"econ/items/phantom_assassin/pa_fall20_immortal_shoulders/pa_fall20_immortal_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Avowance_of_the_Veiled_Ones"
+		"item_name"								"#DOTA_Item_Avowance_of_the_Veiled_Ones"
+		"item_rarity"							"immortal"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/phantom_assassin/pa_fall20_immortal_shoulders/pa_fall20_immortal_shoulders.vmdl"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"ability_icon"
+				"asset"							"phantom_assassin_blur"
+				"modifier"						"phantom_assassin/pa_fall20_immortal_ability_icon/pa_fall20_immortal_blur"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phantom_assassin/pa_fall20_immortal_shoulders/pa_fall20_immortal_shoulder_ambient.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_active_start.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/pa_fall20_immortal_shoulders/pa_fall20_blur_start.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_active_blur.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/pa_fall20_immortal_shoulders/pa_fall20_blur_ambient.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/status_fx/status_effect_phantom_assassin_active_blur.vpcf"
+				"modifier"						"particles/status_fx/status_effect_phantom_assassin_fall20_active_blur.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+		}
+	}
+	"17941"
+	{
+		"name"									"Assassination of Dark Feather Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"image_inventory"						"econ/items/phantom_assassin/assassination_of_dark_feather_shoulder/assassination_of_dark_feather_shoulder"
+		"item_name"								"#DOTA_Item_Vote_Only_Assassination_of_Dark_Feather_Shoulder"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/phantom_assassin/assassination_of_dark_feather_shoulder/assassination_of_dark_feather_shoulder.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"17942"
+	{
+		"name"									"Assassination of Dark Feather Back"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"image_inventory"						"econ/items/phantom_assassin/assassination_of_dark_feather_back/assassination_of_dark_feather_back"
+		"item_name"								"#DOTA_Item_Vote_Only_Assassination_of_Dark_Feather_Back"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/phantom_assassin/assassination_of_dark_feather_back/assassination_of_dark_feather_back.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"17943"
+	{
+		"name"									"Assassination of Dark Feather Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"image_inventory"						"econ/items/phantom_assassin/assassination_of_dark_feather_weapon/assassination_of_dark_feather_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_Assassination_of_Dark_Feather_Weapon"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/phantom_assassin/assassination_of_dark_feather_weapon/assassination_of_dark_feather_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic.vsnap"
+				"modifier"						"particles/models/items/phantom_assassin/assassination_of_dark_feather_weapon/assassination_of_dark_feather_weapon_fx.vsnap"
+			}
+		}
+	}
+	"17944"
+	{
+		"name"									"Assassination of Dark Feather Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"image_inventory"						"econ/items/phantom_assassin/assassination_of_dark_feather_belt/assassination_of_dark_feather_belt"
+		"item_name"								"#DOTA_Item_Vote_Only_Assassination_of_Dark_Feather_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/phantom_assassin/assassination_of_dark_feather_belt/assassination_of_dark_feather_belt.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"17945"
+	{
+		"name"									"Assassination of Dark Feather Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-28"
+		"image_inventory"						"econ/items/phantom_assassin/assassination_of_dark_feather_head/assassination_of_dark_feather_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Assassination_of_Dark_Feather_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/phantom_assassin/assassination_of_dark_feather_head/assassination_of_dark_feather_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"18450"
+	{
+		"name"									"Capricious Fate Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-07"
+		"image_inventory"						"econ/items/phantom_assassin/dplus_capricious_fate_belt/dplus_capricious_fate_belt"
+		"item_name"								"#DOTA_Item_Capricious_Fate_Belt"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/phantom_assassin/dplus_capricious_fate_belt/dplus_capricious_fate_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"18451"
+	{
+		"name"									"Capricious Fate Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-07"
+		"image_inventory"						"econ/items/phantom_assassin/dplus_capricious_fate_back/dplus_capricious_fate_back"
+		"item_name"								"#DOTA_Item_Capricious_Fate_Back"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/phantom_assassin/dplus_capricious_fate_back/dplus_capricious_fate_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"18452"
+	{
+		"name"									"Capricious Fate Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-07"
+		"image_inventory"						"econ/items/phantom_assassin/dplus_capricious_fate_shoulder/dplus_capricious_fate_shoulder"
+		"item_name"								"#DOTA_Item_Capricious_Fate_Shoulder"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/phantom_assassin/dplus_capricious_fate_shoulder/dplus_capricious_fate_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"18453"
+	{
+		"name"									"Capricious Fate Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-07"
+		"image_inventory"						"econ/items/phantom_assassin/dplus_capricious_fate_head/dplus_capricious_fate_head"
+		"item_name"								"#DOTA_Item_Capricious_Fate_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/phantom_assassin/dplus_capricious_fate_head/dplus_capricious_fate_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Item_Moon_Rift_Style_Style0"
+					"alternate_icon"			"0"
+					"model_player"				"models/items/phantom_assassin/dplus_capricious_fate_head/dplus_capricious_fate_head.vmdl"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Item_Moon_Rift_Style_Style1"
+					"alternate_icon"			"1"
+					"model_player"				"models/items/phantom_assassin/dplus_capricious_fate_head_2/dplus_capricious_fate_head_2.vmdl"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/phantom_assassin/dplus_capricious_fate_head/dplus_capricious_fate_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/phantom_assassin/dplus_capricious_fate_head/dplus_capricious_fate_head_style1"
+				}
+			}
+		}
+	}
+	"18455"
+	{
+		"name"									"Capricious Fate Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-07"
+		"image_inventory"						"econ/items/phantom_assassin/dplus_capricious_fate_weapon/dplus_capricious_fate_weapon"
+		"item_name"								"#DOTA_Item_Capricious_Fate_Weapon"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/phantom_assassin/dplus_capricious_fate_weapon/dplus_capricious_fate_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic.vsnap"
+				"modifier"						"particles/models/items/phantom_assassin/dplus_capricious_fate_weapon/dplus_capricious_fate_weapon_fx.vsnap"
+			}
+		}
+	}
+	"19176"
+	{
+		"name"									"Bane of the Deathstalkers - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-09"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/phantom_assassin/athena_pa_head/athena_pa_head"
+		"item_name"								"#DOTA_Item_Bane_of_the_Deathstalkers__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/phantom_assassin/athena_pa_head/athena_pa_head.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phantom_assassin/pa_2022_cc/pa_2022_cc_head.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"19177"
+	{
+		"name"									"Bane of the Deathstalkers - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-09"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/phantom_assassin/athena_pa_back/athena_pa_back"
+		"item_name"								"#DOTA_Item_Bane_of_the_Deathstalkers__Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/phantom_assassin/athena_pa_back/athena_pa_back.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phantom_assassin/pa_2022_cc/pa_2022_cc_back.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"19178"
+	{
+		"name"									"Bane of the Deathstalkers - Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-09"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/phantom_assassin/athena_pa_belt/athena_pa_belt"
+		"item_name"								"#DOTA_Item_Bane_of_the_Deathstalkers__Belt"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/phantom_assassin/athena_pa_belt/athena_pa_belt.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phantom_assassin/pa_2022_cc/pa_2022_cc_belt.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"19179"
+	{
+		"name"									"Bane of the Deathstalkers - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-09"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/phantom_assassin/athena_pa_shoulder/athena_pa_shoulder"
+		"item_name"								"#DOTA_Item_Bane_of_the_Deathstalkers__Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/phantom_assassin/athena_pa_shoulder/athena_pa_shoulder.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"1"
+			}
+		}
+	}
+	"19180"
+	{
+		"name"									"Bane of the Deathstalkers - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-09"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/phantom_assassin/athena_pa_weapon/athena_pa_weapon"
+		"item_name"								"#DOTA_Item_Bane_of_the_Deathstalkers__Weapon"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/phantom_assassin/athena_pa_weapon/athena_pa_weapon.vmdl"
+		"particle_folder"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"system"						"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic.vsnap"
+				"modifier"						"particles/models/items/phantom_assassin/athena_pa_weapon/athena_pa_weapon_fx.vsnap"
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phantom_assassin/pa_2022_cc/pa_2022_cc_weapon.vpcf"
+			}
+		}
+	}
+	"20162"
+	{
+		"name"									"Penumbral Vesture Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Penumbral Cloak"					"1"
+			"Penumbral Crest"					"1"
+			"Penumbral Hood"					"1"
+			"Penumbral Shawl"					"1"
+			"Penumbral Warblade"				"1"
+		}
+		"creation_date"							"2013-04-30"
+		"image_inventory"						"econ/sets/DOTA_Item_Penumbral_Vesture_Set"
+		"item_description"						"#DOTA_Item_Desc_Penumbral_Vesture_Set"
+		"item_name"								"#DOTA_Item_Penumbral_Vesture_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"4/30/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20173"
+	{
+		"name"									"Nimble Edge Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Helm of the Nimble Edge"			"1"
+			"Leaf of the Nimble Edge"			"1"
+			"Cloak of the Nimble Edge"			"1"
+			"Pauldron of the Nimble Edge"		"1"
+			"Girdle of the Nimble Edge"			"1"
+		}
+		"creation_date"							"2013-05-20"
+		"image_inventory"						"econ/sets/DOTA_Item_Nimble_Edge_Set"
+		"item_description"						"#DOTA_Item_Desc_Nimble_Edge_Set"
+		"item_name"								"#DOTA_Item_Nimble_Edge_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"5/20/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20246"
+	{
+		"name"									"Dark Wraith Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Blade of the Dark Wraith"			"1"
+			"Cloak of the Dark Wraith"			"1"
+			"Girdle of the Dark Wraith"			"1"
+			"Guard of the Dark Wraith"			"1"
+			"Helm of the Dark Wraith"			"1"
+		}
+		"creation_date"							"2013-08-20"
+		"image_inventory"						"econ/sets/DOTA_Item_Dark_Wraith_Set"
+		"item_description"						"#DOTA_Item_Desc_Dark_Wraith_Set"
+		"item_name"								"#DOTA_Item_Dark_Wraith_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"8/20/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20306"
+	{
+		"name"									"Dread of the Gleaming Seal Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Ornaments of the Gleaming Seal"	"1"
+			"Brooch of the Gleaming Seal"		"1"
+			"Cape of the Gleaming Seal"			"1"
+			"Belt of the Gleaming Seal"			"1"
+			"Gleaming Seal"						"1"
+		}
+		"creation_date"							"2013-11-07"
+		"image_inventory"						"econ/sets/DOTA_Item_Dread_of_the_Gleaming_Seal_Set"
+		"item_description"						"#DOTA_Item_Desc_Dread_of_the_Gleaming_Seal_Set"
+		"item_name"								"#DOTA_Item_Dread_of_the_Gleaming_Seal_Set"
+		"item_rarity"							"legendary"
+		"item_type_name"						"#DOTA_WearableType_Gleaming_Pro_Gear_Bundle"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Legendary"
+			"category_tags"						"Bundles"
+			"date"								"11/7/2013"
+			"bundle"							"1"
+			"price"								"1099"
+		}
+		"branding"
+		{
+			"team_id"							"111474"
+		}
+	}
+	"20529"
+	{
+		"name"									"Dragonterror"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Dragonterror Armor"				"1"
+			"Dragonterror Belt"					"1"
+			"Dragonterror Cape"					"1"
+			"Dragonterror Helmet"				"1"
+			"Dragonterror Sword"				"1"
+			"Dragonterror Loading Screen"		"1"
+		}
+		"creation_date"							"2014-05-26"
+		"image_inventory"						"econ/sets/dota_item_dragonterror"
+		"item_description"						"#DOTA_Item_Desc_Dragonterror"
+		"item_name"								"#DOTA_Item_Dragonterror"
+		"item_rarity"							"rare"
+	}
+	"20654"
+	{
+		"name"									"Dame de Carreau"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Carreau's Agony"					"1"
+			"Carreau's Deception"				"1"
+			"Carreau's Etiquette"				"1"
+			"Carreau's Honor"					"1"
+			"Carreau's Tradition"				"1"
+			"Dame de Carreau Loading Screen"	"1"
+		}
+		"creation_date"							"2014-09-16"
+		"image_inventory"						"econ/loading_screens/carreau"
+		"item_description"						"#DOTA_Item_Desc_Dame_de_Carreau"
+		"item_name"								"#DOTA_Item_Dame_de_Carreau"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"2500"
+	}
+	"20684"
+	{
+		"name"									"Manifold Paradox Bundle"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Manifold Paradox"					"1"
+			"Phantom Assassin Gravestone Emoticon""1"
+		}
+		"creation_date"							"2014-11-20"
+		"has_store_custom_item_details_panel"	"1"
+		"image_inventory"						"econ/items/phantom_assassin/manifold_paradox/arcana_pa"
+		"item_description"						"#DOTA_Item_Desc_Manifold_Paradox_Bundle"
+		"item_name"								"#DOTA_Item_Manifold_Paradox_Bundle"
+		"item_rarity"							"arcana"
+		"price_info"
+		{
+			"category_tags"						"Bundles"
+			"date"								"11/17/2014"
+			"bundle"							"1"
+			"price"								"3499"
+		}
+	}
+	"20763"
+	{
+		"name"									"Raiments of the Sacrosanct"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Blade of the Sacrosanct"			"1"
+			"Shoulders of the Sacrosanct"		"1"
+			"Belt of the Sacrosanct"			"1"
+			"Cape of the Sacrosanct"			"1"
+			"Helm of the Sacrosanct"			"1"
+			"Loading Screen of the Sacrosanct"	"1"
+		}
+		"creation_date"							"2015-02-24"
+		"image_inventory"						"econ/loading_screens/raiment_of_the_sacred_blossom_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Raiments_of_the_Sacrosanct"
+		"item_name"								"#DOTA_Item_Raiments_of_the_Sacrosanct"
+		"item_rarity"							"rare"
+	}
+	"20785"
+	{
+		"name"									"Ravening Wings"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Helm of the Ravening Wings"		"1"
+			"Glaive of the Ravening Wings"		"1"
+			"Pauldrons of the Ravening Wings"	"1"
+			"Cape of the Ravening Wings"		"1"
+			"Ravening Wings Loading Screen"		"1"
+			"Belt of the Ravening Wings"		"1"
+		}
+		"creation_date"							"2015-04-01"
+		"image_inventory"						"econ/sets/dota_item_ravening_wings"
+		"item_description"						"#DOTA_Item_Desc_Ravening_Wings"
+		"item_name"								"#DOTA_Item_Ravening_Wings"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"category_tags"						"Bundles"
+			"date"								"4/1/2015"
+			"bundle"							"1"
+			"price"								"599"
+		}
+	}
+	"20822"
+	{
+		"name"									"Creeping Shadow"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Creeping Shadow Loading Screen"	"1"
+			"Cape of the Creeping Shadow"		"1"
+			"Belt of the Creeping Shadow"		"1"
+			"Hood of the Creeping Shadow"		"1"
+			"Blade of the Creeping Shadow"		"1"
+			"Shawl of the Creeping Shadow"		"1"
+		}
+		"creation_date"							"2016-04-28"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/loading_screens/creeping_shadow_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Creeping_Shadow"
+		"item_name"								"#DOTA_Item_Creeping_Shadow"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"20848"
+	{
+		"name"									"Toll of the Fearful Aria"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Curve of the Fearful Aria"			"1"
+			"Style of the Fearful Aria"			"1"
+			"Armor of the Fearful Aria"			"1"
+			"Trail of the Fearful Aria"			"1"
+			"Sash of the Fearful Aria"			"1"
+			"Toll of the Fearful Aria Loading Screen""1"
+		}
+		"creation_date"							"2015-06-22"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/loading_screens/toll_of_the_fearful_aria_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Toll_of_the_Fearful_Aria"
+		"item_name"								"#DOTA_Item_Toll_of_the_Fearful_Aria"
+		"item_rarity"							"mythical"
+		"branding"
+		{
+			"corporation_id"					"43276219"
+		}
+	}
+	"20878"
+	{
+		"name"									"Raiments of the Eventide"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Raiments of the Eventide Set Loading Screen""1"
+			"Tasset of the Eventide"			"1"
+			"Mantle of the Eventide"			"1"
+			"Blade of the Eventide"				"1"
+			"Cloak of the Eventide"				"1"
+			"Headdress of the Eventide"			"1"
+		}
+		"creation_date"							"2016-03-16"
+		"image_inventory"						"econ/loading_screens/raiments_of_the_shadow_slayer_set_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Raiments_of_the_Eventide"
+		"item_name"								"#DOTA_Item_Raiments_of_the_Eventide"
+		"item_rarity"							"rare"
+	}
+	"20945"
+	{
+		"name"									"Bloodroot Guard"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Blade of the Bloodroot Guard"		"1"
+			"Belt of the Bloodroot Guard"		"1"
+			"Vest of the Bloodroot Guard"		"1"
+			"Cape of the Bloodroot Guard"		"1"
+			"Helm of the Bloodroot Guard"		"1"
+			"Bloodroot Guard Loading Screen"	"1"
+		}
+		"creation_date"							"2015-12-07"
+		"image_inventory"						"econ/loading_screens/phantom_knight_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Bloodroot_Guard"
+		"item_name"								"#DOTA_Item_Bloodroot_Guard"
+		"item_rarity"							"rare"
+	}
+	"21196"
+	{
+		"name"									"Visions of the Lifted Veil"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armor of the Lifted Veil"			"1"
+			"Cape of the Lifted Veil"			"1"
+			"Belt of the Lifted Veil"			"1"
+			"Blade of the Lifted Veil"			"1"
+			"Helm of the Lifted Veil"			"1"
+		}
+		"creation_date"							"2018-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/sets/DOTA_Item_TI8_PA_The_Gloomy_Veil"
+		"item_description"						"#DOTA_Item_Desc_TI8_PA_The_Gloomy_Veil"
+		"item_name"								"#DOTA_Item_Visions_of_the_Lifted_Veil"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+		}
+	}
+	"21265"
+	{
+		"name"									"Cruel Reprisal"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armor of Cruel Reprisal"			"1"
+			"Helm of Cruel Reprisal"			"1"
+			"Cape of Cruel Reprisal"			"1"
+			"Cruel Reprisal Loading Screen"		"1"
+			"Blade of Cruel Reprisal"			"1"
+		}
+		"creation_date"							"2018-09-12"
+		"image_inventory"						"econ/loading_screens/armor_reprisal_reprisal_loadingscreen"
+		"item_name"								"#DOTA_Item_Cruel_Reprisal"
+		"item_rarity"							"rare"
+	}
+	"21417"
+	{
+		"name"									"Gothic Whisper"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Gothic Whisper Cape"				"1"
+			"Gothic Whisper Belt"				"1"
+			"Gothic Whisper Mask"				"1"
+			"Gothic Whisper Armor"				"1"
+			"Gothic Whisper Blade"				"1"
+		}
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/sets/DOTA_Item_TI9_Cache_PA_Gothic_Hunter"
+		"item_description"						"#DOTA_Item_Desc_Gothic_Whisper"
+		"item_name"								"#DOTA_Item_Gothic_Whisper"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"21449"
+	{
+		"name"									"Valkyrie's Shade"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Valkyrie's Shade Shoulder"			"1"
+			"Valkyrie's Shade Weapon"			"1"
+			"Valkyrie's Shade Head"				"1"
+			"Valkyrie's Shade Back"				"1"
+			"Valkyrie's Shade Belt"				"1"
+		}
+		"creation_date"							"2020-05-11"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/sets/DOTA_Item_Valkyries_Shade"
+		"item_name"								"#DOTA_Item_Valkyries_Shade"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/sets/DOTA_Item_Valkyries_Shade"
+				}
+				"1"
+				{
+					"icon_path"					"econ/sets/DOTA_Item_Valkyries_Shade_style1"
+				}
+			}
+		}
+	}
+	"21725"
+	{
+		"name"									"Assassination of Dark Feather"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Assassination of Dark Feather Shoulder""1"
+			"Assassination of Dark Feather Back""1"
+			"Assassination of Dark Feather Weapon""1"
+			"Assassination of Dark Feather Belt""1"
+			"Assassination of Dark Feather Head""1"
+		}
+		"creation_date"							"2020-09-28"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Assassination_of_Dark_Feather"
+		"workshop_accepted"						"0"
+	}
+	"21809"
+	{
+		"name"									"Capricious Fate"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Capricious Fate Loading Screen"	"1"
+			"Capricious Fate Weapon"			"1"
+			"Capricious Fate Head"				"1"
+			"Capricious Fate Shoulder"			"1"
+			"Capricious Fate Back"				"1"
+			"Capricious Fate Belt"				"1"
+		}
+		"creation_date"							"2021-02-07"
+		"image_inventory"						"econ/loading_screens/dplus_capricious_fate_ls"
+		"item_name"								"#DOTA_Item_Capricious_Fate"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"21845"
+	{
+		"name"									"Bane of the Deathstalkers"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bane of the Deathstalkers - Weapon""1"
+			"Bane of the Deathstalkers - Shoulder""1"
+			"Bane of the Deathstalkers - Belt"	"1"
+			"Bane of the Deathstalkers - Back"	"1"
+			"Bane of the Deathstalkers - Head"	"1"
+		}
+		"creation_date"							"2021-07-09"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/sets/DOTA_Item_Bane_of_the_Deathstalkers_Bundle"
+		"item_name"								"#DOTA_Item_Bane_of_the_Deathstalkers"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"1"
+			}
+		}
+	}
+	"22268"
+	{
+		"name"									"Avowance of the Crimson Witness"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-30"
+		"event_id"								"EVENT_ID_TEAM_FANDOM"
+		"hide_tradecraftdelete"					"1"
+		"image_inventory"						"econ/items/phantom_assassin/pa_fall20_immortal_shoulders/pa_fall20_immortal_shoulders1"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Avowance_of_the_Veiled_Ones"
+		"item_name"								"#DOTA_Item_Avowance_of_the_Crimson_Witness"
+		"item_rarity"							"immortal"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/phantom_assassin/pa_fall20_immortal_shoulders/pa_fall20_immortal_shoulders.vmdl"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"ability_icon"
+				"asset"							"phantom_assassin_blur"
+				"modifier"						"phantom_assassin/pa_fall20_immortal_ability_icon/pa_fall20_immortal_blur_crimson"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/phantom_assassin/pa_crimson_witness_2021/pa_crimson_witness_immortal_shoulder_ambient.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_active_start.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/pa_crimson_witness_2021/pa_crimson_witness_blur_start.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_active_blur.vpcf"
+				"modifier"						"particles/econ/items/phantom_assassin/pa_crimson_witness_2021/pa_crimson_witness_blur_ambient.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/status_fx/status_effect_phantom_assassin_active_blur.vpcf"
+				"modifier"						"particles/status_fx/status_effect_phantom_assassin_fall20_active_blur.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"skin"								"1"
+		}
+	}
+	"22723"
+	{
+		"name"									"Exile Unveiled"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-14"
+		"image_inventory"						"econ/heroes/phantom_assassin_persona/phantom_assassin_persona"
+		"item_description"						"#DOTA_Item_Desc_Exile_Unveiled"
+		"item_name"								"#DOTA_Item_Exile_Unveiled"
+		"item_rarity"							"legendary"
+		"item_slot"								"persona_selector"
+		"static_attributes"
+		{
+			"giftable"							"0"
+			"cannot trade"						"1"
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"persona"
+				"persona"						"1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_hero_phantom_assassin"
+				"modifier"						"models/heroes/phantom_assassin_persona/phantom_assassin_persona.vmdl"
+			}
+			"asset_modifier2"
+			{
+				"type"							"hero_scale"
+				"asset"							"npc_dota_hero_phantom_assassin"
+				"ModelScale"					"0.950000"
+				"VersusScale"					"1"
+			}
+			"skip_model_combine"				"0"
+			"asset_modifier3"
+			{
+				"type"							"response_criteria"
+				"asset"							"pa_asan_vo"
+			}
+			"asset_modifier4"
+			{
+				"type"							"icon_replacement_hero"
+				"asset"							"npc_dota_hero_phantom_assassin"
+				"modifier"						"npc_dota_hero_phantom_assassin_persona1"
+				"style"							"0"
+				"force_display"					"1"
+			}
+			"asset_modifier5"
+			{
+				"type"							"icon_replacement_hero_minimap"
+				"asset"							"npc_dota_hero_phantom_assassin"
+				"modifier"						"npc_dota_hero_phantom_assassin_persona1"
+				"style"							"0"
+				"force_display"					"1"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf"
+				"modifier"						"particles/units/heroes/hero_phantom_assassin_persona/pa_persona_crit_impact.vpcf"
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf"
+				"modifier"						"particles/units/heroes/hero_phantom_assassin_persona/pa_persona_stifling_dagger.vpcf"
+			}
+			"asset_modifier9"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger_debuff.vpcf"
+				"modifier"						"particles/units/heroes/hero_phantom_assassin_persona/pa_persona_stifling_dagger_debuff.vpcf"
+			}
+			"asset_modifier10"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_phantom_strike_start.vpcf"
+				"modifier"						"particles/units/heroes/hero_phantom_assassin_persona/pa_persona_phantom_strike_start.vpcf"
+			}
+			"asset_modifier11"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_phantom_strike_end.vpcf"
+				"modifier"						"particles/units/heroes/hero_phantom_assassin_persona/pa_persona_phantom_strike_end.vpcf"
+			}
+			"asset_modifier12"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_shard_fan_of_knives.vpcf"
+				"modifier"						"particles/units/heroes/hero_phantom_assassin_persona/pa_persona_shard_fan_of_knives.vpcf"
+			}
+			"asset_modifier13"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_shard_fan_of_knives_dot.vpcf"
+				"modifier"						"particles/units/heroes/hero_phantom_assassin_persona/pa_persona_shard_fan_of_knives_debuff.vpcf"
+			}
+			"asset_modifier14"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_active_start.vpcf"
+				"modifier"						"particles/units/heroes/hero_phantom_assassin_persona/pa_persona_phantom_blur_active_start.vpcf"
+			}
+			"asset_modifier15"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_active_blur.vpcf"
+				"modifier"						"particles/units/heroes/hero_phantom_assassin_persona/pa_persona_phantom_blur_active.vpcf"
+			}
+			"asset_modifier16"
+			{
+				"type"							"ability_icon"
+				"asset"							"phantom_assassin_blur"
+				"modifier"						"phantom_assassin/persona/phantom_assassin_blur_persona1"
+			}
+			"asset_modifier17"
+			{
+				"type"							"ability_icon"
+				"asset"							"phantom_assassin_coup_de_grace"
+				"modifier"						"phantom_assassin/persona/phantom_assassin_coup_de_grace_persona2"
+			}
+			"asset_modifier18"
+			{
+				"type"							"ability_icon"
+				"asset"							"phantom_assassin_fan_of_knives"
+				"modifier"						"phantom_assassin/persona/phantom_assassin_fan_of_knives_persona1"
+			}
+			"asset_modifier19"
+			{
+				"type"							"ability_icon"
+				"asset"							"phantom_assassin_phantom_strike"
+				"modifier"						"phantom_assassin/persona/phantom_assassin_phantom_strike_persona1"
+			}
+			"asset_modifier20"
+			{
+				"type"							"ability_icon"
+				"asset"							"phantom_assassin_stifling_dagger"
+				"modifier"						"phantom_assassin/persona/phantom_assassin_stifling_dagger_persona1"
+			}
+			"asset_modifier21"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_phantom_assassin/phantom_assassin_loadout.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+			}
+			"asset_modifier22"
+			{
+				"type"							"chatwheel"
+				"asset"							"phantom_assassin_phass_laugh_07"
+				"modifier"						"phantom_assassin_pa_asan_wheel_laugh_01"
+				"label"							"#dota_chatwheel_label_phantom_assassin_asan_laugh"
+				"message"						"#dota_chatwheel_message_phantom_assassin_asan_laugh"
+			}
+			"asset_modifier23"
+			{
+				"type"							"chatwheel"
+				"asset"							"phantom_assassin_phass_happy_09"
+				"modifier"						"phantom_assassin_pa_asan_wheel_all_10"
+				"label"							"#dota_chatwheel_label_phantom_assassin_asan_thank"
+				"message"						"#dota_chatwheel_message_phantom_assassin_asan_thank"
+			}
+			"asset_modifier24"
+			{
+				"type"							"chatwheel"
+				"asset"							"phantom_assassin_phass_kill_02"
+				"modifier"						"phantom_assassin_pa_asan_wheel_deny_01"
+				"label"							"#dota_chatwheel_label_phantom_assassin_asan_deny"
+				"message"						"#dota_chatwheel_message_phantom_assassin_asan_deny"
+			}
+			"asset_modifier25"
+			{
+				"type"							"chatwheel"
+				"asset"							"phantom_assassin_phass_kill_10"
+				"modifier"						"phantom_assassin_pa_asan_wheel_all_02"
+				"label"							"#dota_chatwheel_label_phantom_assassin_asan_1"
+				"message"						"#dota_chatwheel_message_phantom_assassin_asan_1"
+			}
+			"asset_modifier26"
+			{
+				"type"							"chatwheel"
+				"asset"							"phantom_assassin_phass_kill_01"
+				"modifier"						"phantom_assassin_pa_asan_wheel_all_12"
+				"label"							"#dota_chatwheel_label_phantom_assassin_asan_2"
+				"message"						"#dota_chatwheel_message_phantom_assassin_asan_2"
+			}
+			"asset_modifier27"
+			{
+				"type"							"chatwheel"
+				"asset"							"phantom_assassin_phass_ability_blur_02"
+				"modifier"						"phantom_assassin_pa_asan_lasthit_pain_09"
+				"label"							"#dota_chatwheel_label_phantom_assassin_asan_3"
+				"message"						"#dota_chatwheel_message_phantom_assassin_asan_3"
+			}
+			"asset_modifier28"
+			{
+				"type"							"chatwheel"
+				"asset"							"phantom_assassin_phass_deny_14"
+				"modifier"						"phantom_assassin_pa_asan_win_07"
+				"label"							"#dota_chatwheel_label_phantom_assassin_asan_4"
+				"message"						"#dota_chatwheel_message_phantom_assassin_asan_4"
+			}
+			"asset_modifier29"
+			{
+				"type"							"chatwheel"
+				"asset"							"phantom_assassin_phass_level_06"
+				"modifier"						"phantom_assassin_pa_asan_wheel_all_14"
+				"label"							"#dota_chatwheel_label_phantom_assassin_asan_5"
+				"message"						"#dota_chatwheel_message_phantom_assassin_asan_5"
+			}
+			"asset_modifier30"
+			{
+				"type"							"chatwheel"
+				"asset"							"phantom_assassin_phass_kill_12"
+				"modifier"						"phantom_assassin_pa_asan_wheel_all_08"
+				"label"							"#dota_chatwheel_label_phantom_assassin_asan_6"
+				"message"						"#dota_chatwheel_message_phantom_assassin_asan_6"
+			}
+		}
+	}
+}

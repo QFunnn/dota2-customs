@@ -1,0 +1,82 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf58:version{9bada39c-a931-42d0-abdd-e5c1b13d37a6} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_spout_lt"
+					m_entityName = "parent"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_spout_rt"
+					m_entityName = "parent"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_spout_lb"
+					m_entityName = "parent"
+				},
+				{
+					m_iControlPoint = 4
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_spout_rb"
+					m_entityName = "parent"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "eom/io_1/i0_1.vmdl"
+				m_sequenceName = "idle"
+				m_hitboxSetName = "default"
+			}
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetParentControlPointsToChildCP"
+			m_nNumControlPoints = 4
+			m_nFirstSourcePoint = 1
+			m_bSetOrientation = true
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/econ/items/snapfire/snapfire_fall20_immortal/snapfire_fall20_immortal_lil_buff_exhaust.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/snapfire/snapfire_fall20_immortal/snapfire_fall20_immortal_lil_buff_exhaust.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/snapfire/snapfire_fall20_immortal/snapfire_fall20_immortal_lil_buff_exhaust.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/snapfire/snapfire_fall20_immortal/snapfire_fall20_immortal_lil_buff_exhaust.vpcf"
+		},
+	]
+}

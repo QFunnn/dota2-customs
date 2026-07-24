@@ -1,0 +1,1610 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"220"
+	{
+		"name"									"Chen's Staff"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/chen/weapon"
+		"item_description"						"#DOTA_Item_Desc_Chens_Staff"
+		"item_name"								"#DOTA_Item_Chens_Staff"
+		"model_player"							"models/heroes/chen/weapon.vmdl"
+	}
+	"221"
+	{
+		"name"									"Chen's Mount"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/chen/mount"
+		"item_description"						"#DOTA_Item_Desc_Chens_Mount"
+		"item_name"								"#DOTA_Item_Chens_Mount"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/heroes/chen/mount.vmdl"
+	}
+	"222"
+	{
+		"name"									"Chen's Helmet"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/chen/helmet"
+		"item_description"						"#DOTA_Item_Desc_Chens_Helmet"
+		"item_name"								"#DOTA_Item_Chens_Helmet"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/chen/helmet.vmdl"
+	}
+	"223"
+	{
+		"name"									"Chen's Bracers"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/chen/bracers"
+		"item_description"						"#DOTA_Item_Desc_Chens_Bracers"
+		"item_name"								"#DOTA_Item_Chens_Bracers"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/heroes/chen/bracers.vmdl"
+	}
+	"224"
+	{
+		"name"									"Chen's Shoulder Armor"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/chen/shoulders"
+		"item_description"						"#DOTA_Item_Desc_Chens_Shoulder_Armor"
+		"item_name"								"#DOTA_Item_Chens_Shoulder_Armor"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/heroes/chen/shoulders.vmdl"
+	}
+	"521"
+	{
+		"name"									"Chen's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-08"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Chens_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_chen"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_chen/chen_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_chen/chen_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+		}
+	}
+	"567"
+	{
+		"name"									"Chen's Miscellaneous"
+		"prefab"								"default_item"
+		"creation_date"							"2015-05-20"
+		"image_inventory"						"econ/heroes/chen/misc"
+		"item_description"						"#DOTA_Item_Desc_Chens_Miscellaneous"
+		"item_name"								"#DOTA_Item_Chens_Miscellaneous"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Misc"
+	}
+	"4772"
+	{
+		"name"									"Armguards of the Penitent Nomad"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/chen/arms_nomad/arms_nomad"
+		"item_description"						"#DOTA_Item_Desc_Armguards_of_the_Penitent_Nomad"
+		"item_name"								"#DOTA_Item_Armguards_of_the_Penitent_Nomad"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Armguard"
+		"model_player"							"models/items/chen/arms_nomad/arms_nomad.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4773"
+	{
+		"name"									"Shoulderguards of the Penitent Nomad"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/chen/shoulders_nomad/shoulders_nomad"
+		"item_description"						"#DOTA_Item_Desc_Shoulderguards_of_the_Penitent_Nomad"
+		"item_name"								"#DOTA_Item_Shoulderguards_of_the_Penitent_Nomad"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulderguard"
+		"model_player"							"models/items/chen/shoulders_nomad/shoulders_nomad.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4774"
+	{
+		"name"									"Turban of the Penitent Nomad"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/chen/head_nomad/head_nomad"
+		"item_description"						"#DOTA_Item_Desc_Turban_of_the_Penitent_Nomad"
+		"item_name"								"#DOTA_Item_Turban_of_the_Penitent_Nomad"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Turban"
+		"model_player"							"models/items/chen/head_nomad/head_nomad.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4777"
+	{
+		"name"									"Commanding Rod of the Penitent Nomad"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/chen/weapon_nomad/weapon_nomad"
+		"item_description"						"#DOTA_Item_Desc_Commanding_Rod_of_the_Penitent_Nomad"
+		"item_name"								"#DOTA_Item_Commanding_Rod_of_the_Penitent_Nomad"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/chen/weapon_nomad/weapon_nomad.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5032"
+	{
+		"name"									"Gemmed Pauldrons of the Priest Kings"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-05"
+		"image_inventory"						"econ/items/chen/shoulder_desert/shoulder_desert"
+		"item_description"						"#DOTA_Item_Desc_Gemmed_Pauldrons_of_the_Priest_Kings"
+		"item_name"								"#DOTA_Item_Gemmed_Pauldrons_of_the_Priest_Kings"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/chen/shoulder_desert/shoulder_desert.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5034"
+	{
+		"name"									"Gemmed Mitre of the Priest Kings"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-05"
+		"image_inventory"						"econ/items/chen/head_desert/head_desert"
+		"item_description"						"#DOTA_Item_Desc_Gemmed_Mitre_of_the_Priest_Kings"
+		"item_name"								"#DOTA_Item_Gemmed_Mitre_of_the_Priest_Kings"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mitre"
+		"model_player"							"models/items/chen/head_desert/head_desert.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5035"
+	{
+		"name"									"Gemmed Bracers of the Priest Kings"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-05"
+		"image_inventory"						"econ/items/chen/arms_desert/arms_desert"
+		"item_description"						"#DOTA_Item_Desc_Gemmed_Bracers_of_the_Priest_Kings"
+		"item_name"								"#DOTA_Item_Gemmed_Bracers_of_the_Priest_Kings"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracer"
+		"model_player"							"models/items/chen/arms_desert/arms_desert.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5036"
+	{
+		"name"									"Scarab Pendant of the Priest Kings"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-05"
+		"image_inventory"						"econ/items/chen/neck_desert/neck_desert"
+		"item_description"						"#DOTA_Item_Desc_Scarab_Pendant_of_the_Priest_Kings"
+		"item_name"								"#DOTA_Item_Scarab_Pendant_of_the_Priest_Kings"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Pendant"
+		"model_player"							"models/items/chen/neck_desert/neck_desert.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5037"
+	{
+		"name"									"Ruling Staff of the Priest Kings"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-05"
+		"image_inventory"						"econ/items/chen/weapon_desert/weapon_desert"
+		"item_description"						"#DOTA_Item_Desc_Ruling_Staff_of_the_Priest_Kings"
+		"item_name"								"#DOTA_Item_Ruling_Staff_of_the_Priest_Kings"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/chen/weapon_desert/weapon_desert.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5663"
+	{
+		"name"									"Wings of Obelis Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-29"
+		"image_inventory"						"econ/items/chen/arms_navi/arms_navi"
+		"item_description"						"#DOTA_Item_Desc_Wings_of_Obelis_Arms"
+		"item_name"								"#DOTA_Item_Wings_of_Obelis_Arms"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/chen/arms_navi/arms_navi.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"branding"
+		{
+			"team_id"							"36"
+		}
+	}
+	"5664"
+	{
+		"name"									"Wings of Obelis Helmet"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-29"
+		"image_inventory"						"econ/items/chen/head_navi/head_navi"
+		"item_description"						"#DOTA_Item_Desc_Wings_of_Obelis_Helmet"
+		"item_name"								"#DOTA_Item_Wings_of_Obelis_Helmet"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/chen/head_navi/head_navi.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"branding"
+		{
+			"team_id"							"36"
+		}
+	}
+	"5732"
+	{
+		"name"									"Wings of Obelis Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-29"
+		"image_inventory"						"econ/items/chen/shoulder_navi/shoulder_navi"
+		"item_description"						"#DOTA_Item_Desc_Wings_of_Obelis_Shoulders"
+		"item_name"								"#DOTA_Item_Wings_of_Obelis_Shoulders"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/chen/shoulder_navi/shoulder_navi.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"branding"
+		{
+			"team_id"							"36"
+		}
+	}
+	"5733"
+	{
+		"name"									"Wings of Obelis Staff"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-29"
+		"image_inventory"						"econ/items/chen/weapon_navi/weapon_navi"
+		"item_description"						"#DOTA_Item_Desc_Wings_of_Obelis_Staff"
+		"item_name"								"#DOTA_Item_Wings_of_Obelis_Staff"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/chen/weapon_navi/weapon_navi.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"branding"
+		{
+			"team_id"							"36"
+		}
+	}
+	"5991"
+	{
+		"name"									"Desert Gale Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-21"
+		"image_inventory"						"econ/items/chen/desert_gale_arms/desert_gale_arms"
+		"item_name"								"#DOTA_Item_Desert_Gale_Arms"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/chen/desert_gale_arms/desert_gale_arms.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/24/2014"
+			"price"								"0"
+		}
+	}
+	"5993"
+	{
+		"name"									"Desert Gale Helmet"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-21"
+		"image_inventory"						"econ/items/chen/desert_gale_helmet/desert_gale_helmet"
+		"item_name"								"#DOTA_Item_Desert_Gale_Helmet"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/chen/desert_gale_helmet/desert_gale_helmet.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/24/2014"
+			"price"								"0"
+		}
+	}
+	"5995"
+	{
+		"name"									"Desert Gale Moustache"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-21"
+		"image_inventory"						"econ/items/chen/desert_gale_moustache/desert_gale_moustache"
+		"item_name"								"#DOTA_Item_Desert_Gale_Moustache"
+		"item_rarity"							"uncommon"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Facial_Hair"
+		"model_player"							"models/items/chen/desert_gale_moustache/desert_gale_moustache.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/24/2014"
+			"price"								"0"
+		}
+	}
+	"5998"
+	{
+		"name"									"Desert Gale Shoulder Plate"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-21"
+		"image_inventory"						"econ/items/chen/desert_gale_shoulder_plate/desert_gale_shoulder_plate"
+		"item_name"								"#DOTA_Item_Desert_Gale_Shoulder_Plate"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/chen/desert_gale_shoulder_plate/desert_gale_shoulder_plate.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/24/2014"
+			"price"								"0"
+		}
+	}
+	"5999"
+	{
+		"name"									"Desert Gale Fouchard"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-21"
+		"image_inventory"						"econ/items/chen/desert_gale_staff/desert_gale_staff"
+		"item_name"								"#DOTA_Item_Desert_Gale_Fouchard"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Polearm"
+		"model_player"							"models/items/chen/desert_gale_staff/desert_gale_staff.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/24/2014"
+			"price"								"0"
+		}
+	}
+	"6588"
+	{
+		"name"									"Square Sky Staff"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-13"
+		"image_inventory"						"econ/items/chen/squareskystaff_weapon/squareskystaff_weapon"
+		"item_name"								"#DOTA_Item_Square_Sky_Staff"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/chen/squareskystaff_weapon/squareskystaff_weapon.vmdl"
+	}
+	"9151"
+	{
+		"name"									"Pilgrim"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-12"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/chen/chen_eye_of_power_mount/chen_eye_of_power_mount"
+		"item_name"								"#DOTA_Item_Pilgrim"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/chen/chen_eye_of_power_mount/chen_eye_of_power_mount.vmdl"
+	}
+	"9152"
+	{
+		"name"									"Eye of the Progenitor's Gaze"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-12"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/chen/chen_eye_of_power_weapon/chen_eye_of_power_weapon"
+		"item_name"								"#DOTA_Item_Eye_of_the_Progenitors_Gaze"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/chen/chen_eye_of_power_weapon/chen_eye_of_power_weapon.vmdl"
+	}
+	"9153"
+	{
+		"name"									"Armor of the Progenitor's Gaze"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-12"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/chen/chen_eye_of_power_shoulder/chen_eye_of_power_shoulder"
+		"item_name"								"#DOTA_Item_Armor_of_the_Progenitors_Gaze"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/chen/chen_eye_of_power_shoulder/chen_eye_of_power_shoulder.vmdl"
+	}
+	"9154"
+	{
+		"name"									"Drape of the Progenitor's Gaze"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-12"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/chen/chen_eye_of_power_misc/chen_eye_of_power_misc"
+		"item_name"								"#DOTA_Item_Drape_of_the_Progenitors_Gaze"
+		"item_rarity"							"mythical"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Misc"
+		"model_player"							"models/items/chen/chen_eye_of_power_misc/chen_eye_of_power_misc.vmdl"
+	}
+	"9155"
+	{
+		"name"									"Crown of the Progenitor's Gaze"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-12"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/chen/chen_eye_of_power_head/chen_eye_of_power_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Progenitors_Gaze"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/chen/chen_eye_of_power_head/chen_eye_of_power_head.vmdl"
+	}
+	"9156"
+	{
+		"name"									"Sleeves of the Progenitor's Gaze"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-12"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/chen/chen_eye_of_power_arms/chen_eye_of_power_arms"
+		"item_name"								"#DOTA_Item_Sleeves_of_the_Progenitors_Gaze"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/chen/chen_eye_of_power_arms/chen_eye_of_power_arms.vmdl"
+	}
+	"9157"
+	{
+		"name"									"Buttercup"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-27"
+		"image_inventory"						"econ/items/chen/buttercup_new/buttercup_new"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Buttercup"
+		"item_name"								"#DOTA_Item_Buttercup"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Noble_Beast"
+		"model_player"							"models/items/chen/buttercup_new/buttercup_new.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9158"
+	{
+		"name"									"Sanurok the Ever Able"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-27"
+		"image_inventory"						"econ/items/chen/mount_desert_new/mount_desert_new"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Sanurok_the_Ever_Able"
+		"item_name"								"#DOTA_Item_Sanurok_the_Ever_Able"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Riding_Cat"
+		"model_player"							"models/items/chen/mount_desert_new/mount_desert_new.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9159"
+	{
+		"name"									"Wings of Obelis Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-27"
+		"image_inventory"						"econ/items/chen/mount_navi_combined/mount_navi_combined"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Wings_of_Obelis_Mount"
+		"item_name"								"#DOTA_Item_Wings_of_Obelis_Mount"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/chen/mount_navi_combined/mount_navi_combined.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9160"
+	{
+		"name"									"Locuthi Mount of the Penitent Nomad"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-27"
+		"image_inventory"						"econ/items/chen/nomad_mount/nomad_mount"
+		"item_description"						"#DOTA_Item_Desc_Locuthi_Mount_of_the_Penitent_Nomad"
+		"item_name"								"#DOTA_Item_Locuthi_Mount_of_the_Penitent_Nomad"
+		"item_rarity"							"uncommon"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Barding"
+		"model_player"							"models/items/chen/nomad_mount/nomad_mount.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9161"
+	{
+		"name"									"Desert Gale Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2017-02-27"
+		"image_inventory"						"econ/items/chen/desert_gale_mount/desert_gale_mount"
+		"item_name"								"#DOTA_Item_Desert_Gale_Mount"
+		"item_rarity"							"uncommon"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/chen/desert_gale_mount/desert_gale_mount.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9465"
+	{
+		"name"									"Mount of the Barren Survivor"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-18"
+		"image_inventory"						"econ/items/chen/desert_wanderer_mount/desert_wanderer_mount"
+		"item_name"								"#DOTA_Item_Mount_of_the_Barren_Survivor"
+		"item_rarity"							"rare"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/chen/desert_wanderer_mount/desert_wanderer_mount.vmdl"
+	}
+	"9466"
+	{
+		"name"									"Arms of the Barren Survivor"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-18"
+		"image_inventory"						"econ/items/chen/desert_wanderer_arms/desert_wanderer_arms"
+		"item_name"								"#DOTA_Item_Arms_of_the_Barren_Survivor"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/chen/desert_wanderer_arms/desert_wanderer_arms.vmdl"
+	}
+	"9467"
+	{
+		"name"									"Shoulder of the Barren Survivor"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-18"
+		"image_inventory"						"econ/items/chen/desert_wanderer_shoulder/desert_wanderer_shoulder"
+		"item_name"								"#DOTA_Item_Shoulder_of_the_Barren_Survivor"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/chen/desert_wanderer_shoulder/desert_wanderer_shoulder.vmdl"
+	}
+	"9469"
+	{
+		"name"									"Weapon of the Barren Survivor"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-18"
+		"image_inventory"						"econ/items/chen/desert_wanderer_weapon/desert_wanderer_weapon"
+		"item_name"								"#DOTA_Item_Weapon_of_the_Barren_Survivor"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/chen/desert_wanderer_weapon/desert_wanderer_weapon.vmdl"
+	}
+	"9470"
+	{
+		"name"									"Head of the Barren Survivor"
+		"prefab"								"wearable"
+		"creation_date"							"2017-09-18"
+		"image_inventory"						"econ/items/chen/desert_wanderer_head/desert_wanderer_head"
+		"item_name"								"#DOTA_Item_Head_of_the_Barren_Survivor"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/chen/desert_wanderer_head/desert_wanderer_head.vmdl"
+	}
+	"9950"
+	{
+		"name"									"Crown of the Rat King"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/chen/ti8_chen_the_rat_king_head/ti8_chen_the_rat_king_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Rat_King"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/chen/ti8_chen_the_rat_king_head/ti8_chen_the_rat_king_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"9951"
+	{
+		"name"									"Scepter of the Rat King"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/chen/ti8_chen_the_rat_king_weapon/ti8_chen_the_rat_king_weapon"
+		"item_name"								"#DOTA_Item_Scepter_of_the_Rat_King"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/chen/ti8_chen_the_rat_king_weapon/ti8_chen_the_rat_king_weapon.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"9952"
+	{
+		"name"									"Royal Mount of the Rat King "
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/chen/ti8_chen_the_rat_king_mount/ti8_chen_the_rat_king_mount"
+		"item_name"								"#DOTA_Item_Royal_Mount_of_the_Rat_King_"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/chen/ti8_chen_the_rat_king_mount/ti8_chen_the_rat_king_mount.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"9953"
+	{
+		"name"									"Vest of the Rat King"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/chen/ti8_chen_the_rat_king_shoulder/ti8_chen_the_rat_king_shoulder"
+		"item_name"								"#DOTA_Item_Vest_of_the_Rat_King"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/chen/ti8_chen_the_rat_king_shoulder/ti8_chen_the_rat_king_shoulder.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"9954"
+	{
+		"name"									"Bracers of the Rat King"
+		"prefab"								"wearable"
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/chen/ti8_chen_the_rat_king_arms/ti8_chen_the_rat_king_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Rat_King"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/chen/ti8_chen_the_rat_king_arms/ti8_chen_the_rat_king_arms.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"13248"
+	{
+		"name"									"Staff of the Proudsilver Clan"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/chen/ti9_cache_chen_emperor_of_the_sun_weapon/ti9_cache_chen_emperor_of_the_sun_weapon"
+		"item_name"								"#DOTA_Item_Staff_of_the_Proudsilver_Clan"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/chen/ti9_cache_chen_emperor_of_the_sun_weapon/ti9_cache_chen_emperor_of_the_sun_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"13249"
+	{
+		"name"									"Cape of the Proudsilver Clan"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/chen/ti9_cache_chen_emperor_of_the_sun_shoulder/ti9_cache_chen_emperor_of_the_sun_shoulder"
+		"item_name"								"#DOTA_Item_Cape_of_the_Proudsilver_Clan"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/chen/ti9_cache_chen_emperor_of_the_sun_shoulder/ti9_cache_chen_emperor_of_the_sun_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"13250"
+	{
+		"name"									"Crown of the Proudsilver Clan"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/chen/ti9_cache_chen_emperor_of_the_sun_head/ti9_cache_chen_emperor_of_the_sun_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Proudsilver_Clan"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/chen/ti9_cache_chen_emperor_of_the_sun_head/ti9_cache_chen_emperor_of_the_sun_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/chen/ti9_emperor_of_the_sun/chen_ti9_head_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13251"
+	{
+		"name"									"Bracer of the Proudsilver Clan"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/chen/ti9_cache_chen_emperor_of_the_sun_arms/ti9_cache_chen_emperor_of_the_sun_arms"
+		"item_name"								"#DOTA_Item_Bracer_of_the_Proudsilver_Clan"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/chen/ti9_cache_chen_emperor_of_the_sun_arms/ti9_cache_chen_emperor_of_the_sun_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"13252"
+	{
+		"name"									"Mount of the Proudsilver Clan"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/chen/ti9_cache_chen_emperor_of_the_sun_mount/ti9_cache_chen_emperor_of_the_sun_mount"
+		"item_name"								"#DOTA_Item_Mount_of_the_Proudsilver_Clan"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/chen/ti9_cache_chen_emperor_of_the_sun_mount/ti9_cache_chen_emperor_of_the_sun_mount.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti9"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/chen/ti9_emperor_of_the_sun/chen_ti9_mount_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"14133"
+	{
+		"name"									"Humble Knight Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/chen/humble_knight_weapon/humble_knight_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_Humble_Knight_Weapon"
+		"model_player"							"models/items/chen/humble_knight_weapon/humble_knight_weapon.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14134"
+	{
+		"name"									"Humble Knight Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/chen/humble_knight_mount/humble_knight_mount"
+		"item_name"								"#DOTA_Item_Vote_Only_Humble_Knight_Mount"
+		"item_slot"								"mount"
+		"model_player"							"models/items/chen/humble_knight_mount/humble_knight_mount.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14135"
+	{
+		"name"									"Humble Knight Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/chen/humble_knight_head/humble_knight_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Humble_Knight_Head"
+		"item_slot"								"head"
+		"model_player"							"models/items/chen/humble_knight_head/humble_knight_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14136"
+	{
+		"name"									"Humble Knight Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/chen/humble_knight_arms/humble_knight_arms"
+		"item_name"								"#DOTA_Item_Vote_Only_Humble_Knight_Arms"
+		"item_slot"								"arms"
+		"model_player"							"models/items/chen/humble_knight_arms/humble_knight_arms.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14137"
+	{
+		"name"									"Humble Knight Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/chen/humble_knight_shoulder/humble_knight_shoulder"
+		"item_name"								"#DOTA_Item_Vote_Only_Humble_Knight_Shoulder"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/chen/humble_knight_shoulder/humble_knight_shoulder.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"18778"
+	{
+		"name"									"Pilgrim of the Snowy Shrine Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-05-17"
+		"image_inventory"						"econ/items/chen/pilgrim_of_the_snowy_shrine_weapon/pilgrim_of_the_snowy_shrine_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_Pilgrim_of_the_Snowy_Shrine_Weapon"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/chen/pilgrim_of_the_snowy_shrine_weapon/pilgrim_of_the_snowy_shrine_weapon.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"18779"
+	{
+		"name"									"Pilgrim of the Snowy Shrine Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-05-17"
+		"image_inventory"						"econ/items/chen/pilgrim_of_the_snowy_shrine_shoulder/pilgrim_of_the_snowy_shrine_shoulder"
+		"item_name"								"#DOTA_Item_Vote_Only_Pilgrim_of_the_Snowy_Shrine_Shoulder"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/chen/pilgrim_of_the_snowy_shrine_shoulder/pilgrim_of_the_snowy_shrine_shoulder.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"18780"
+	{
+		"name"									"Pilgrim of the Snowy Shrine Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-05-17"
+		"image_inventory"						"econ/items/chen/pilgrim_of_the_snowy_shrine_head/pilgrim_of_the_snowy_shrine_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Pilgrim_of_the_Snowy_Shrine_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/chen/pilgrim_of_the_snowy_shrine_head/pilgrim_of_the_snowy_shrine_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"18781"
+	{
+		"name"									"Pilgrim of the Snowy Shrine Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-05-17"
+		"image_inventory"						"econ/items/chen/pilgrim_of_the_snowy_shrine_arms/pilgrim_of_the_snowy_shrine_arms"
+		"item_name"								"#DOTA_Item_Vote_Only_Pilgrim_of_the_Snowy_Shrine_Arms"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/chen/pilgrim_of_the_snowy_shrine_arms/pilgrim_of_the_snowy_shrine_arms.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"18782"
+	{
+		"name"									"Pilgrim of the Snowy Shrine Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2021-05-17"
+		"image_inventory"						"econ/items/chen/pilgrim_of_the_snowy_shrine_mount/pilgrim_of_the_snowy_shrine_mount"
+		"item_name"								"#DOTA_Item_Vote_Only_Pilgrim_of_the_Snowy_Shrine_Mount"
+		"item_slot"								"mount"
+		"item_type_name"						"#DOTA_WearableType_mount"
+		"model_player"							"models/items/chen/pilgrim_of_the_snowy_shrine_mount/pilgrim_of_the_snowy_shrine_mount.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19347"
+	{
+		"name"									"Perils of the Red Banks - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/chen/chen_sobek_weapon/chen_sobek_weapon"
+		"item_name"								"#DOTA_Item_Perils_of_the_Red_Banks__Weapon"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/chen/chen_sobek_weapon/chen_sobek_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"19348"
+	{
+		"name"									"Perils of the Red Banks - Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/chen/chen_sobek_mount/chen_sobek_mount"
+		"item_name"								"#DOTA_Item_Perils_of_the_Red_Banks__Mount"
+		"item_rarity"							"mythical"
+		"item_slot"								"mount"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/chen/chen_sobek_mount/chen_sobek_mount.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/chen/chen_2022_cc_mount/chen_2022_cc_mount.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"19349"
+	{
+		"name"									"Perils of the Red Banks - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/chen/chen_sobek_shoulder/chen_sobek_shoulder"
+		"item_name"								"#DOTA_Item_Perils_of_the_Red_Banks__Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/chen/chen_sobek_shoulder/chen_sobek_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/chen/chen_2022_cc_shoulder/chen_2022_cc_shoulder.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"19350"
+	{
+		"name"									"Perils of the Red Banks - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/chen/chen_sobek_head/chen_sobek_head"
+		"item_name"								"#DOTA_Item_Perils_of_the_Red_Banks__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/chen/chen_sobek_head/chen_sobek_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/chen/chen_2022_cc_head/chen_2022_cc_head.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"19351"
+	{
+		"name"									"Perils of the Red Banks - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/chen/chen_sobek_arms/chen_sobek_arms"
+		"item_name"								"#DOTA_Item_Perils_of_the_Red_Banks__Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"model_player"							"models/items/chen/chen_sobek_arms/chen_sobek_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"20110"
+	{
+		"name"									"Arms of the Penitent Nomad Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armguards of the Penitent Nomad"	"1"
+			"Shoulderguards of the Penitent Nomad""1"
+			"Turban of the Penitent Nomad"		"1"
+			"Commanding Rod of the Penitent Nomad""1"
+			"Locuthi Mount of the Penitent Nomad""1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Arms_of_the_Penitent_Nomad_Set"
+		"item_description"						"#DOTA_Item_Desc_Arms_of_the_Penitent_Nomad_Set"
+		"item_name"								"#DOTA_Item_Arms_of_the_Penitent_Nomad_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20185"
+	{
+		"name"									"Gemmed Armor of the Priest Kings Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Gemmed Bracers of the Priest Kings""1"
+			"Gemmed Mitre of the Priest Kings"	"1"
+			"Gemmed Pauldrons of the Priest Kings""1"
+			"Ruling Staff of the Priest Kings"	"1"
+			"Scarab Pendant of the Priest Kings""1"
+			"Sanurok the Ever Able"				"1"
+		}
+		"creation_date"							"2013-06-05"
+		"image_inventory"						"econ/sets/DOTA_Item_Gemmed_Armor_of_the_Priest_Kings_Set"
+		"item_description"						"#DOTA_Item_Desc_Gemmed_Armor_of_the_Priest_Kings_Set"
+		"item_name"								"#DOTA_Item_Gemmed_Armor_of_the_Priest_Kings_Set"
+		"item_rarity"							"mythical"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Mythical"
+			"category_tags"						"Bundles"
+			"date"								"6/5/2013"
+			"bundle"							"1"
+			"price"								"799"
+		}
+	}
+	"20305"
+	{
+		"name"									"Wings of Obelis Set"
+		"prefab"								"bundle"
+		"branding"
+		{
+			"team_id"							"36"
+		}
+		"bundle"
+		{
+			"Wings of Obelis Arms"				"1"
+			"Wings of Obelis Helmet"			"1"
+			"Wings of Obelis Shoulders"			"1"
+			"Wings of Obelis Staff"				"1"
+			"Wings of Obelis Mount"				"1"
+		}
+		"creation_date"							"2013-11-29"
+		"image_inventory"						"econ/sets/DOTA_Item_Wings_of_Obelis_Set"
+		"item_description"						"#DOTA_Item_Desc_Wings_of_Obelis_Set"
+		"item_name"								"#DOTA_Item_Wings_of_Obelis_Set"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Navi_Bundle"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"11/29/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20363"
+	{
+		"name"									"Desert Gale Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Desert Gale Arms"					"1"
+			"Desert Gale Helmet"				"1"
+			"Desert Gale Moustache"				"1"
+			"Desert Gale Shoulder Plate"		"1"
+			"Desert Gale Fouchard"				"1"
+			"Desert Gale Mount"					"1"
+		}
+		"creation_date"							"2014-01-21"
+		"image_inventory"						"econ/sets/DOTA_Item_Desert_Gale_Set"
+		"item_description"						"#DOTA_Item_Desc_Desert_Gale_Set"
+		"item_name"								"#DOTA_Item_Desert_Gale_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/24/2014"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20965"
+	{
+		"name"									"Prospect of the Progenitor's Gaze"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Prospect of the Progenitor's Gaze Loading Screen""1"
+			"Sleeves of the Progenitor's Gaze"	"1"
+			"Crown of the Progenitor's Gaze"	"1"
+			"Drape of the Progenitor's Gaze"	"1"
+			"Armor of the Progenitor's Gaze"	"1"
+			"Eye of the Progenitor's Gaze"		"1"
+			"Pilgrim"							"1"
+		}
+		"creation_date"							"2017-01-12"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/loading_screens/chen_eye_of_power_chen_eye_of_power_anubis_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Prospect_of_the_Progenitors_Gaze"
+		"item_name"								"#DOTA_Item_Prospect_of_the_Progenitors_Gaze"
+		"item_rarity"							"mythical"
+	}
+	"21117"
+	{
+		"name"									"Barren Survivor"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Mount of the Barren Survivor"		"1"
+			"Arms of the Barren Survivor"		"1"
+			"Head of the Barren Survivor"		"1"
+			"Weapon of the Barren Survivor"		"1"
+			"Shoulder of the Barren Survivor"	"1"
+			"Barren Survivor Loading screen"	"1"
+		}
+		"creation_date"							"2017-09-18"
+		"image_inventory"						"econ/loading_screens/desert_wanderer_desert_wanderer_loading_screen"
+		"item_name"								"#DOTA_Item_Barren_Survivor"
+		"item_rarity"							"rare"
+	}
+	"21209"
+	{
+		"name"									"The Rat King"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bracers of the Rat King"			"1"
+			"Vest of the Rat King"				"1"
+			"Royal Mount of the Rat King "		"1"
+			"Scepter of the Rat King"			"1"
+			"Crown of the Rat King"				"1"
+		}
+		"creation_date"							"2018-07-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/sets/DOTA_Item_TI8_Chen_The_Rat_King"
+		"item_description"						"#DOTA_Item_Desc_The_Rat_King"
+		"item_name"								"#DOTA_Item_The_Rat_King"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2018"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21372"
+	{
+		"name"									"Priest of the Proudsilver Clan"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Mount of the Proudsilver Clan"		"1"
+			"Bracer of the Proudsilver Clan"	"1"
+			"Crown of the Proudsilver Clan"		"1"
+			"Cape of the Proudsilver Clan"		"1"
+			"Staff of the Proudsilver Clan"		"1"
+		}
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/sets/DOTA_Item_TI9_Cache_Chen_Emperor_of_the_Sun"
+		"item_description"						"#DOTA_Item_Desc_Priest_of_the_Proudsilver_Clan"
+		"item_name"								"#DOTA_Item_Priest_of_the_Proudsilver_Clan"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"21502"
+	{
+		"name"									"Humble Knight"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Humble Knight Shoulder"			"1"
+			"Humble Knight Arms"				"1"
+			"Humble Knight Head"				"1"
+			"Humble Knight Mount"				"1"
+			"Humble Knight Weapon"				"1"
+		}
+		"creation_date"							"2020-05-11"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Humble_Knight"
+		"workshop_accepted"						"0"
+	}
+	"21762"
+	{
+		"name"									"Pilgrim of the Snowy Shrine"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Pilgrim of the Snowy Shrine Mount"	"1"
+			"Pilgrim of the Snowy Shrine Arms"	"1"
+			"Pilgrim of the Snowy Shrine Head"	"1"
+			"Pilgrim of the Snowy Shrine Shoulder""1"
+			"Pilgrim of the Snowy Shrine Weapon""1"
+		}
+		"creation_date"							"2021-05-17"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Pilgrim_of_the_Snowy_Shrine"
+		"workshop_accepted"						"0"
+	}
+	"21875"
+	{
+		"name"									"Perils of the Red Banks"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Perils of the Red Banks - Arms"	"1"
+			"Perils of the Red Banks - Head"	"1"
+			"Perils of the Red Banks - Shoulder""1"
+			"Perils of the Red Banks - Mount"	"1"
+			"Perils of the Red Banks - Weapon"	"1"
+		}
+		"creation_date"							"2021-08-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/sets/DOTA_Item_Perils_of_the_Red_Banks_Bundle"
+		"item_name"								"#DOTA_Item_Perils_of_the_Red_Banks"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"23674"
+	{
+		"name"									"Taunt: Joyless Pleasure"
+		"prefab"								"taunt"
+		"creation_date"							"2022-06-29"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/taunts/taunt_icon_chen_2022"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Joyless_Pleasure"
+		"item_name"								"#DOTA_Item_Taunt_Joyless_Pleasure"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"taunt_2022"
+				"gesture"						"1"
+			}
+		}
+	}
+}

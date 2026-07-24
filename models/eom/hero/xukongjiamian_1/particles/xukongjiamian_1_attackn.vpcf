@@ -1,0 +1,119 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf64:version{c95f3434-dfef-4a35-9913-024beddb416a} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 30
+	m_hSnapshot = resource:"particles/models/particle/hexasphere_fx_2.vsnap"
+	m_nSnapshotControlPoint = 6
+	m_flConstantLifespan = 0.0
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderRopes"
+			m_flTextureVWorldSize = 500.0
+			m_flTextureVScrollRate = -250.0
+			m_flAddSelfAmount = 1.0
+			m_flOverbrightFactor = 6.0
+			m_nMaxTesselation = 1
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/spark_02.vtex"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_MovementRigidAttachToCP"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFromCPSnapshot"
+			m_nLocalSpaceCP = 4
+			m_nAttributeToRead = 0
+			m_nControlPointNumber = 6
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 101, 74, 255, 255 ]
+			m_ColorMax = [ 154, 82, 255, 255 ]
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_nFieldOutput = 7
+			m_nInputMax = 11
+			m_bActiveRange = true
+			m_bInvert = true
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+		{
+			_class = "C_INIT_SetRigidAttachment"
+			m_nControlPointNumber = 4
+		},
+		{
+			_class = "C_INIT_PositionWarp"
+			m_nScaleControlPointNumber = 1
+			m_nControlPointNumber = 4
+			m_vecWarpMin = [ 0.125, 0.125, 0.125 ]
+			m_vecWarpMax = [ 0.125, 0.125, 0.125 ]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nSnapshotControlPoint = 6
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 30.0
+			}
+		},
+	]
+	m_flConstantRadius = 8.0
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetSingleControlPointPosition"
+			m_bSetOnce = true
+			m_nCP1 = 4
+			m_vecCP1Pos = [ 0.0, 0.0, 0.0 ]
+			m_transformInput = 
+			{
+				m_nType = "PT_TYPE_INVALID"
+			}
+		},
+		{
+			_class = "C_OP_SetControlPointOrientation"
+			m_bUseWorldLocation = true
+			m_nCP = 4
+		},
+		{
+			_class = "C_OP_SetControlPointFromObjectScale"
+			m_nCPOutput = 3
+			m_nCPInput = 1
+		},
+	]
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 2
+}

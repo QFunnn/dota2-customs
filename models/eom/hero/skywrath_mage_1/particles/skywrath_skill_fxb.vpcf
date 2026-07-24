@@ -1,0 +1,167 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf61:version{39d3ce1d-9442-4407-9b78-8317145b1732} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 4
+	m_nInitialParticles = 4
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 1
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetControlPointPositions"
+			m_bUseWorldLocation = true
+			m_nCP4 = 15
+			m_vecCP3Pos = [ 1200.0, 0.0, 0.0 ]
+			m_nCP3 = 14
+			m_vecCP2Pos = [ 1400.0, 0.0, 0.0 ]
+			m_nCP2 = 13
+			m_vecCP1Pos = [ 1508.0, 0.0, 0.0 ]
+			m_nCP1 = 12
+			m_vecCP4Pos = [ 1000.0, 0.0, 0.0 ]
+		},
+		{
+			_class = "C_OP_SetParentControlPointsToChildCP"
+			m_nFirstSourcePoint = 12
+			m_nNumControlPoints = 4
+			m_nChildControlPoint = 2
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_fRadiusMax = 32.0
+			m_fRadiusMin = 28.0
+			m_vecDistanceBiasAbs = [ 1.0, 0.0, 0.0 ]
+			m_bLocalCoords = true
+			m_vecDistanceBias = [ 50.0, 1.0, 10.0 ]
+			m_TransformInput = 
+			{
+				m_nControlPoint = 3
+			}
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_bLocalCoords = true
+			m_OffsetMax = [ 50.0, 50.0, 0.0 ]
+			m_OffsetMin = [ 10.0, -50.0, 0.0 ]
+			m_TransformInput = 
+			{
+				m_nControlPoint = 3
+			}
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_PositionLock"
+			m_bLockRot = true
+			m_TransformInput = 
+			{
+				m_nControlPoint = 3
+			}
+		},
+		{
+			_class = "C_OP_SetPerChildControlPoint"
+			m_bSetOrientation = true
+			m_nNumControlPoints = 4
+			m_nFirstControlPoint = 1
+		},
+		{
+			_class = "C_OP_VectorNoise"
+			m_bAdditive = true
+			m_vecOutputMax = [ 64.0, 64.0, 64.0 ]
+			m_vecOutputMin = [ -64.0, -64.0, -64.0 ]
+			m_nFieldOutput = 0
+			m_fl4NoiseScale = 15.0
+		},
+		{
+			_class = "C_OP_EndCapTimedDecay"
+		},
+	]
+	m_ForceGenerators = 
+	[
+		{
+			_class = "C_OP_AttractToControlPoint"
+			m_fFalloffPower = -0.25
+			m_fForceAmount = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 350.0
+			}
+			m_TransformInput = 
+			{
+				m_nControlPoint = 3
+				m_bUseOrientation = false
+			}
+		},
+	]
+	m_Constraints = 
+	[
+		{
+			_class = "C_OP_ConstrainDistance"
+			m_nControlPointNumber = 3
+			m_fMaxDistance = 80.0
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"models/eom/hero/skywrath_mage_1/particles/skywrath_skill_fxb0.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/skywrath_mage_1/particles/skywrath_skill_fxb0.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/skywrath_mage_1/particles/skywrath_skill_fxb0.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/skywrath_mage_1/particles/skywrath_skill_fxb0.vpcf"
+		},
+	]
+}

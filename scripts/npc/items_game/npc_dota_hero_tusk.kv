@@ -1,0 +1,2749 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"413"
+	{
+		"name"									"Tusk's Armored Glove"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/tuskarr/tusk_armor_glove"
+		"item_description"						"#DOTA_Item_Desc_Tusks_Armored_Glove"
+		"item_name"								"#DOTA_Item_Tusks_Armored_Glove"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/heroes/tuskarr/tusk_armor_glove.vmdl"
+	}
+	"414"
+	{
+		"name"									"Tusk's Cowl"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/tuskarr/tusk_cowl"
+		"item_description"						"#DOTA_Item_Desc_Tusks_Cowl"
+		"item_name"								"#DOTA_Item_Tusks_Cowl"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/heroes/tuskarr/tusk_cowl.vmdl"
+	}
+	"415"
+	{
+		"name"									"Tusk's Hat"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/tuskarr/tusk_hat"
+		"item_description"						"#DOTA_Item_Desc_Tusks_Hat"
+		"item_name"								"#DOTA_Item_Tusks_Hat"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/tuskarr/tusk_hat.vmdl"
+	}
+	"416"
+	{
+		"name"									"Tusk's Tusks"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/tuskarr/tusk_horns"
+		"item_description"						"#DOTA_Item_Desc_Tusks_Horns"
+		"item_name"								"#DOTA_Item_Tusks_Tusks"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Neck"
+		"model_player"							"models/heroes/tuskarr/tusk_horns.vmdl"
+	}
+	"417"
+	{
+		"name"									"Tusk's Weapon"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/tuskarr/tusk_weapon"
+		"item_description"						"#DOTA_Item_Desc_Tusks_Weapon"
+		"item_name"								"#DOTA_Item_Tusks_Weapon"
+		"model_player"							"models/heroes/tuskarr/tusk_weapon.vmdl"
+	}
+	"418"
+	{
+		"name"									"Tusk's Fish Basket"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/tuskarr/tusk_fish_basket"
+		"item_description"						"#DOTA_Item_Desc_Tusks_Fish_Basket"
+		"item_name"								"#DOTA_Item_Tusks_Fish_Basket"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/heroes/tuskarr/tusk_fish_basket.vmdl"
+	}
+	"541"
+	{
+		"name"									"Tusk's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-08"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Tusks_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_tusk"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_tusk/tusk_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_tusk/tusk_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"absorigin_follow"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+					"4"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_tusk/tusk_ambient_mouth.vpcf"
+				"system"						"particles/units/heroes/hero_tusk/tusk_ambient_mouth.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_mouth"
+					}
+				}
+			}
+		}
+	}
+	"4097"
+	{
+		"name"									"Arctic Hunter's Ice Axe"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-07"
+		"image_inventory"						"econ/items/tuskarr/onizaphk_ahunter_weapon/onizaphk_ahunter_weapon"
+		"item_description"						"#DOTA_Item_Desc_Arctic_Hunters_Ice_Axe"
+		"item_name"								"#DOTA_Item_Arctic_Hunters_Ice_Axe"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/tuskarr/onizaphk_ahunter_weapon/onizaphk_ahunter_weapon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4123"
+	{
+		"name"									"Arctic Hunter's Parka"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-07"
+		"image_inventory"						"econ/items/tuskarr/onizaphk_ahunter_shoulder/onizaphk_ahunter_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Arctic_Hunters_Parka"
+		"item_name"								"#DOTA_Item_Arctic_Hunters_Parka"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/tuskarr/onizaphk_ahunter_shoulder/onizaphk_ahunter_shoulder.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4441"
+	{
+		"name"									"Arctic Hunter's Tusks"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-07"
+		"image_inventory"						"econ/items/tuskarr/onizaphk_ahunter_neck/onizaphk_ahunter_neck"
+		"item_description"						"#DOTA_Item_Desc_Arctic_Hunters_Tusks"
+		"item_name"								"#DOTA_Item_Arctic_Hunters_Tusks"
+		"item_rarity"							"uncommon"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Tusks"
+		"model_player"							"models/items/tuskarr/onizaphk_ahunter_neck/onizaphk_ahunter_neck.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4460"
+	{
+		"name"									"Arctic Hunter's Hood"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-07"
+		"image_inventory"						"econ/items/tuskarr/onizaphk_ahunter_head/onizaphk_ahunter_head"
+		"item_description"						"#DOTA_Item_Desc_Arctic_Hunters_Hood"
+		"item_name"								"#DOTA_Item_Arctic_Hunters_Hood"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hood"
+		"model_player"							"models/items/tuskarr/onizaphk_ahunter_head/onizaphk_ahunter_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4498"
+	{
+		"name"									"Arctic Hunter's Snack"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-07"
+		"image_inventory"						"econ/items/tuskarr/onizaphk_ahunter_back/onizaphk_ahunter_back"
+		"item_description"						"#DOTA_Item_Desc_Arctic_Hunters_Snack"
+		"item_name"								"#DOTA_Item_Arctic_Hunters_Snack"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Basket"
+		"model_player"							"models/items/tuskarr/onizaphk_ahunter_back/onizaphk_ahunter_back.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4499"
+	{
+		"name"									"Arctic Hunter's Glove"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-07"
+		"image_inventory"						"econ/items/tuskarr/onizaphk_ahunter_armsv2/onizaphk_ahunter_armsv2"
+		"item_description"						"#DOTA_Item_Desc_Arctic_Hunters_Glove"
+		"item_name"								"#DOTA_Item_Arctic_Hunters_Glove"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Fist"
+		"model_player"							"models/items/tuskarr/onizaphk_ahunter_armsv2/onizaphk_ahunter_armsv2.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5009"
+	{
+		"name"									"Frostiron Raider Helm"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-04"
+		"image_inventory"						"econ/items/tuskarr/frostiron_raider_helm/frostiron_raider_helm"
+		"item_description"						"#DOTA_Item_Desc_Frostiron_Raider_Helm"
+		"item_name"								"#DOTA_Item_Frostiron_Raider_Helm"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/tuskarr/frostiron_raider_helm/frostiron_raider_helm.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5010"
+	{
+		"name"									"Frostiron Raider Axe"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-04"
+		"image_inventory"						"econ/items/tuskarr/frostiron_raider_axe/frostiron_raider_axe"
+		"item_description"						"#DOTA_Item_Desc_Frostiron_Raider_Axe"
+		"item_name"								"#DOTA_Item_Frostiron_Raider_Axe"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/tuskarr/frostiron_raider_axe/frostiron_raider_axe.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5011"
+	{
+		"name"									"Frostiron Raider Fist"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-04"
+		"image_inventory"						"econ/items/tuskarr/frostiron_raider_fist/frostiron_raider_fist"
+		"item_description"						"#DOTA_Item_Desc_Frostiron_Raider_Fist"
+		"item_name"								"#DOTA_Item_Frostiron_Raider_Fist"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Punchfist"
+		"model_player"							"models/items/tuskarr/frostiron_raider_fist/frostiron_raider_fist.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TELEPORT"
+				"modifier"						"frostiron_raider"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_LOADOUT"
+				"modifier"						"frostiron_raider"
+			}
+		}
+	}
+	"5012"
+	{
+		"name"									"Frostiron Raider Shield"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-04"
+		"image_inventory"						"econ/items/tuskarr/frostiron_raider_back/frostiron_raider_back"
+		"item_description"						"#DOTA_Item_Desc_Frostiron_Raider_Shield"
+		"item_name"								"#DOTA_Item_Frostiron_Raider_Shield"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Shield"
+		"model_player"							"models/items/tuskarr/frostiron_raider_back/frostiron_raider_back.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5013"
+	{
+		"name"									"Frostiron Raider Tusks"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-04"
+		"image_inventory"						"econ/items/tuskarr/frostiron_raider_tusks/frostiron_raider_tusks"
+		"item_description"						"#DOTA_Item_Desc_Frostiron_Raider_Tusks"
+		"item_name"								"#DOTA_Item_Frostiron_Raider_Tusks"
+		"item_rarity"							"uncommon"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Tusks"
+		"model_player"							"models/items/tuskarr/frostiron_raider_tusks/frostiron_raider_tusks.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5014"
+	{
+		"name"									"Frostiron Raider Wrap"
+		"prefab"								"wearable"
+		"creation_date"							"2013-06-04"
+		"image_inventory"						"econ/items/tuskarr/frostiron_raider_cape/frostiron_raider_cape"
+		"item_description"						"#DOTA_Item_Desc_Frostiron_Raider_Cape"
+		"item_name"								"#DOTA_Item_Frostiron_Raider_Wrap"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Cape"
+		"model_player"							"models/items/tuskarr/frostiron_raider_cape/frostiron_raider_cape.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5425"
+	{
+		"name"									"Frozen Stein of the Bar Brawler"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-17"
+		"image_inventory"						"econ/items/tuskarr/frozen_stein_of_the_bar_brawler/frozen_stein_of_the_bar_brawler"
+		"item_description"						"#DOTA_Item_Desc_Frozen_Stein_of_the_Bar_Brawler"
+		"item_name"								"#DOTA_Item_Frozen_Stein_of_the_Bar_Brawler"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Stein"
+		"model_player"							"models/items/tuskarr/frozen_stein_of_the_bar_brawler/frozen_stein_of_the_bar_brawler.vmdl"
+	}
+	"5659"
+	{
+		"name"									"Barrier Shard Axe"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-06"
+		"image_inventory"						"econ/items/tuskarr/nexon_glacialshard/nexon_glacialshard"
+		"item_description"						"#DOTA_Item_Desc_Barrier_Shard_Axe"
+		"item_name"								"#DOTA_Item_Barrier_Shard_Axe"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/tuskarr/nexon_glacialshard/nexon_glacialshard.vmdl"
+	}
+	"5699"
+	{
+		"name"									"Barrel of Whale Ale"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-21"
+		"image_inventory"						"econ/items/tuskarr/barrel_of_whale_ale/barrel_of_whale_ale"
+		"item_name"								"#DOTA_Item_Barrel_of_Whale_Ale"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Keg"
+		"model_player"							"models/items/tuskarr/barrel_of_whale_ale/barrel_of_whale_ale.vmdl"
+	}
+	"5713"
+	{
+		"name"									"Snowball Stinger"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-25"
+		"image_inventory"						"econ/items/tuskarr/snowball_stinger/snowball_stinger"
+		"item_name"								"#DOTA_Item_Snowball_Stinger"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Glove"
+		"model_player"							"models/items/tuskarr/snowball_stinger/snowball_stinger.vmdl"
+	}
+	"5767"
+	{
+		"name"									"Frost Touched Cleaver"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-02"
+		"image_inventory"						"econ/items/tuskarr/frost_touched_cleaver/frost_touched_cleaver"
+		"item_description"						"#DOTA_Item_Desc_Frost_Touched_Cleaver"
+		"item_name"								"#DOTA_Item_Frost_Touched_Cleaver"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Cleaver"
+		"model_player"							"models/items/tuskarr/frost_touched_cleaver/frost_touched_cleaver.vmdl"
+		"particle_folder"						"particles/econ/items/tuskarr/tusk_frost_touched_cleaver"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tuskarr/tusk_frost_touched_cleaver/tusk_frost_touched_cleaver_ambient.vpcf"
+				"system"						"particles/econ/items/tuskarr/tusk_frost_touched_cleaver/tusk_frost_touched_cleaver_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon"
+					}
+				}
+			}
+		}
+	}
+	"5784"
+	{
+		"name"									"Ancestor's Frozen Axe"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-03"
+		"image_inventory"						"econ/items/tuskarr/ancestors_frozen_axe/ancestors_frozen_axe"
+		"item_description"						"#DOTA_Item_Desc_Ancestors_Frozen_Axe"
+		"item_name"								"#DOTA_Item_Ancestors_Frozen_Axe"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/tuskarr/ancestors_frozen_axe/ancestors_frozen_axe.vmdl"
+	}
+	"5934"
+	{
+		"name"									"Bobusang's Axe"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-14"
+		"image_inventory"						"econ/items/tuskarr/babusangs_axe/babusangs_axe"
+		"item_name"								"#DOTA_Item_Bobusangs_Axe"
+		"item_type_name"						"#DOTA_WearableType_Axe"
+		"model_player"							"models/items/tuskarr/babusangs_axe/babusangs_axe.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/17/2014"
+			"price"								"0"
+		}
+	}
+	"5935"
+	{
+		"name"									"Bobusang's Merchandise"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-14"
+		"image_inventory"						"econ/items/tuskarr/bobusangs_botjim/bobusangs_botjim"
+		"item_name"								"#DOTA_Item_Bobusangs_Merchandise"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/tuskarr/bobusangs_botjim/bobusangs_botjim.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/17/2014"
+			"price"								"0"
+		}
+	}
+	"5936"
+	{
+		"name"									"Bobusang's Jacket"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-14"
+		"image_inventory"						"econ/items/tuskarr/bobusangs_jacket/bobusangs_jacket"
+		"item_name"								"#DOTA_Item_Bobusangs_Jacket"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Jacket"
+		"model_player"							"models/items/tuskarr/bobusangs_jacket/bobusangs_jacket.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/17/2014"
+			"price"								"0"
+		}
+	}
+	"5937"
+	{
+		"name"									"Bobusang's Fist of the Predator Owl"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-14"
+		"image_inventory"						"econ/items/tuskarr/bobusangs_owl/bobusangs_owl"
+		"item_name"								"#DOTA_Item_Bobusangs_Fist_of_the_Predator_Owl"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Fist"
+		"model_player"							"models/items/tuskarr/bobusangs_owl/bobusangs_owl.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/17/2014"
+			"price"								"0"
+		}
+	}
+	"5938"
+	{
+		"name"									"Bobusang's Tobacco Fix"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-14"
+		"image_inventory"						"econ/items/tuskarr/bobusangs_pipe/bobusangs_pipe"
+		"item_description"						"#DOTA_Item_Desc_Bobusangs_Tobacco_Fix"
+		"item_name"								"#DOTA_Item_Bobusangs_Tobacco_Fix"
+		"item_rarity"							"rare"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Tusks"
+		"model_player"							"models/items/tuskarr/bobusangs_pipe/bobusangs_pipe.vmdl"
+		"particle_folder"						"particles/econ/items/tuskarr/tusk_bobusang_pipe"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/17/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tuskarr/tusk_bobusang_pipe/tusk_bobusang_pipe.vpcf"
+				"system"						"particles/econ/items/tuskarr/tusk_bobusang_pipe/tusk_bobusang_pipe.vpcf"
+				"attach_type"					"point_follow"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_pipe"
+					}
+				}
+			}
+		}
+	}
+	"5939"
+	{
+		"name"									"Bobusang's Sunshade"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-14"
+		"image_inventory"						"econ/items/tuskarr/bobusangs_paeraengyi/bobusangs_paeraengyi"
+		"item_name"								"#DOTA_Item_Bobusangs_Sunshade"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hat"
+		"model_player"							"models/items/tuskarr/bobusangs_paeraengyi/bobusangs_paeraengyi.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/17/2014"
+			"price"								"0"
+		}
+	}
+	"6806"
+	{
+		"name"									"Icewrack's Fist"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-17"
+		"image_inventory"						"econ/items/tuskarr/icewracksfist_arms/icewracksfist_arms"
+		"item_name"								"#DOTA_Item_Icewracks_Fist"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Fist"
+		"model_player"							"models/items/tuskarr/icewracksfist_arms/icewracksfist_arms.vmdl"
+	}
+	"7239"
+	{
+		"name"									"Boreal Sigil"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-03"
+		"image_inventory"						"econ/items/tuskarr/sigil/boreal_sigil/boreal_sigil_npc_dota_tusk_frozen_sigil1"
+		"item_name"								"#DOTA_Item_Boreal_Sigil"
+		"item_rarity"							"uncommon"
+		"item_slot"								"ability3"
+		"item_type_name"						"#DOTA_WearableType_Summon"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"10/7/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_tusk_frozen_sigil1"
+				"modifier"						"models/items/tuskarr/sigil/boreal_sigil/boreal_sigil.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_tusk_frozen_sigil2"
+				"modifier"						"models/items/tuskarr/sigil/boreal_sigil/boreal_sigil.vmdl"
+			}
+			"asset_modifier2"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_tusk_frozen_sigil3"
+				"modifier"						"models/items/tuskarr/sigil/boreal_sigil/boreal_sigil.vmdl"
+			}
+			"asset_modifier3"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_tusk_frozen_sigil4"
+				"modifier"						"models/items/tuskarr/sigil/boreal_sigil/boreal_sigil.vmdl"
+			}
+		}
+	}
+	"7375"
+	{
+		"name"									"Whisky the Stout Artifact"
+		"prefab"								"wearable"
+		"creation_date"							"2015-07-28"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/tuskarr/whiskey_the_stout/whiskey_the_stout"
+		"item_description"						"#DOTA_Item_Desc_Whisky_the_Stout"
+		"item_name"								"#DOTA_Item_Whisky_the_Stout_Artifact"
+		"item_rarity"							"immortal"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Backpack"
+		"model_player"							"models/items/tuskarr/whiskey_the_stout/whiskey_the_stout.vmdl"
+		"particle_folder"						"particles/econ/items/tuskarr/tusk_ti5_immortal"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1451606400"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_tusk/tusk_ice_shards.vpcf"
+				"modifier"						"particles/econ/items/tuskarr/tusk_ti5_immortal/tusk_ice_shards_stout.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_tusk/tusk_ice_shards_projectile.vpcf"
+				"modifier"						"particles/econ/items/tuskarr/tusk_ti5_immortal/tusk_ice_shards_projectile_stout.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Tusk.IceShards.Cast"
+				"modifier"						"Hero_Tusk.IceShards.Cast.Penguin"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"whiskey"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"8185"
+	{
+		"name"									"Broken Tusk of the Barrier Rogue"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-09"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/tuskarr/barrierrogue_tusk_neck/barrierrogue_tusk_neck"
+		"item_name"								"#DOTA_Item_Broken_Tusk_of_the_Barrier_Rogue"
+		"item_rarity"							"mythical"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Tusk"
+		"model_player"							"models/items/tuskarr/barrierrogue_tusk_neck/barrierrogue_tusk_neck.vmdl"
+	}
+	"8200"
+	{
+		"name"									"Pack of the Barrier Rogue"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-09"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/tuskarr/barrierrogue_tusk_back/barrierrogue_tusk_back"
+		"item_name"								"#DOTA_Item_Pack_of_the_Barrier_Rogue"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Pack"
+		"model_player"							"models/items/tuskarr/barrierrogue_tusk_back/barrierrogue_tusk_back.vmdl"
+	}
+	"8639"
+	{
+		"name"									"Tusk's Frozen Sigil"
+		"prefab"								"default_item"
+		"creation_date"							"2015-04-14"
+		"image_inventory"						"econ/heroes/tuskarr/tusk_frozen_sigil"
+		"item_description"						"#DOTA_Item_Desc_Tusks_Frozen_Sigil"
+		"item_name"								"#DOTA_Item_Tusks_Frozen_Sigil"
+		"item_slot"								"ability3"
+		"item_type_name"						"#DOTA_WearableType_Base"
+	}
+	"9006"
+	{
+		"name"									"Frozen Sigil of the Glacier Sea"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-03"
+		"image_inventory"						"econ/items/tuskarr/sigil/glaciomarine_sigil/glaciomarine_sigil_npc_dota_tusk_frozen_sigil1"
+		"item_name"								"#DOTA_Item_Frozen_Sigil_of_the_Glacier_Sea"
+		"item_rarity"							"rare"
+		"item_slot"								"ability3"
+		"item_type_name"						"#DOTA_WearableType_Sigil"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_tusk_frozen_sigil1"
+				"modifier"						"models/items/tuskarr/sigil/glaciomarine_sigil/glaciomarine_sigil.vmdl"
+			}
+			"asset_modifier1"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_tusk_frozen_sigil2"
+				"modifier"						"models/items/tuskarr/sigil/glaciomarine_sigil/glaciomarine_sigil.vmdl"
+			}
+			"asset_modifier2"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_tusk_frozen_sigil3"
+				"modifier"						"models/items/tuskarr/sigil/glaciomarine_sigil/glaciomarine_sigil.vmdl"
+			}
+			"asset_modifier3"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_tusk_frozen_sigil4"
+				"modifier"						"models/items/tuskarr/sigil/glaciomarine_sigil/glaciomarine_sigil.vmdl"
+			}
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"tusk_frozen_sigil"
+				"modifier"						"tusk/glaciomarine_ability_icons/tusk_frozen_sigil"
+			}
+		}
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_tusk' gem_def_index: 3005 } asset_modifier: 152"
+			}
+		}
+		"branding"
+		{
+			"team_id"							"726228"
+		}
+	}
+	"9007"
+	{
+		"name"									"Cap of the Glacier Sea"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-03"
+		"image_inventory"						"econ/items/tuskarr/glaciomarine_head/glaciomarine_head"
+		"item_name"								"#DOTA_Item_Cap_of_the_Glacier_Sea"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Cap"
+		"model_player"							"models/items/tuskarr/glaciomarine_head/glaciomarine_head.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_tusk' gem_def_index: 3005 } asset_modifier: 155"
+			}
+		}
+		"branding"
+		{
+			"team_id"							"726228"
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"tusk_snowball"
+				"modifier"						"tusk/glaciomarine_ability_icons/tusk_snowball"
+			}
+		}
+	}
+	"9008"
+	{
+		"name"									"Tusks of the Glacier Sea"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-03"
+		"image_inventory"						"econ/items/tuskarr/glaciomarine_neck/glaciomarine_neck"
+		"item_name"								"#DOTA_Item_Tusks_of_the_Glacier_Sea"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Tusks"
+		"model_player"							"models/items/tuskarr/glaciomarine_neck/glaciomarine_neck.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_tusk' gem_def_index: 3005 } asset_modifier: 156"
+			}
+		}
+		"branding"
+		{
+			"team_id"							"726228"
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"tusk_ice_shards"
+				"modifier"						"tusk/glaciomarine_ability_icons/tusk_ice_shards"
+			}
+		}
+	}
+	"9009"
+	{
+		"name"									"Anchor of the Glacier Sea"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-03"
+		"image_inventory"						"econ/items/tuskarr/glaciomarine_weapon/glaciomarine_weapon"
+		"item_name"								"#DOTA_Item_Anchor_of_the_Glacier_Sea"
+		"item_type_name"						"#DOTA_WearableType_Anchor"
+		"model_player"							"models/items/tuskarr/glaciomarine_weapon/glaciomarine_weapon.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_tusk' gem_def_index: 3005 } asset_modifier: 157"
+			}
+		}
+		"branding"
+		{
+			"team_id"							"726228"
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"tusk_walrus_kick"
+				"modifier"						"tusk/glaciomarine_ability_icons/tusk_walrus_kick"
+			}
+		}
+	}
+	"9010"
+	{
+		"name"									"Hook of the Glacier Sea"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-03"
+		"image_inventory"						"econ/items/tuskarr/glaciomarine_arm/glaciomarine_arm"
+		"item_name"								"#DOTA_Item_Hook_of_the_Glacier_Sea"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Hook"
+		"model_player"							"models/items/tuskarr/glaciomarine_arm/glaciomarine_arm.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_tusk' gem_def_index: 3005 } asset_modifier: 153"
+			}
+		}
+		"branding"
+		{
+			"team_id"							"726228"
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"tusk_walrus_punch"
+				"modifier"						"tusk/glaciomarine_ability_icons/tusk_walrus_punch"
+			}
+		}
+	}
+	"9011"
+	{
+		"name"									"Rudder of the Glacier Sea"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-03"
+		"image_inventory"						"econ/items/tuskarr/glaciomarine_back/glaciomarine_back"
+		"item_name"								"#DOTA_Item_Rudder_of_the_Glacier_Sea"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Rudder"
+		"model_player"							"models/items/tuskarr/glaciomarine_back/glaciomarine_back.vmdl"
+		"branding"
+		{
+			"team_id"							"726228"
+		}
+	}
+	"9012"
+	{
+		"name"									"Coat of the Glacier Sea"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-03"
+		"image_inventory"						"econ/items/tuskarr/glaciomarine_shoulder/glaciomarine_shoulder"
+		"item_name"								"#DOTA_Item_Coat_of_the_Glacier_Sea"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Coat"
+		"model_player"							"models/items/tuskarr/glaciomarine_shoulder/glaciomarine_shoulder.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_tusk' gem_def_index: 3005 } asset_modifier: 154"
+			}
+		}
+		"branding"
+		{
+			"team_id"							"726228"
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"tusk_launch_snowball"
+				"modifier"						"tusk/glaciomarine_ability_icons/tusk_launch_snowball"
+			}
+		}
+	}
+	"9607"
+	{
+		"name"									"Sigil of the Weathered Storm"
+		"prefab"								"wearable"
+		"creation_date"							"2017-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/tuskarr/sigil/terror_of_the_barrier_sigil/terror_of_the_barrier_sigil_npc_dota_tusk_frozen_sigil"
+		"item_name"								"#DOTA_Item_Sigil_of_the_Weathered_Storm"
+		"item_rarity"							"rare"
+		"item_slot"								"ability3"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_tusk_frozen_sigil"
+				"modifier"						"models/items/tuskarr/sigil/terror_of_the_barrier_sigil/terror_of_the_barrier_sigil.vmdl"
+			}
+		}
+	}
+	"9608"
+	{
+		"name"									"Harness of the Weathered Storm"
+		"prefab"								"wearable"
+		"creation_date"							"2017-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/tuskarr/terror_from_the_barrier_shoulder/terror_from_the_barrier_shoulder"
+		"item_name"								"#DOTA_Item_Harness_of_the_Weathered_Storm"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/tuskarr/terror_from_the_barrier_shoulder/terror_from_the_barrier_shoulder.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+	}
+	"9609"
+	{
+		"name"									"Armor of the Weathered Storm"
+		"prefab"								"wearable"
+		"creation_date"							"2017-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/tuskarr/terror_from_the_barrier_arms/terror_from_the_barrier_arms"
+		"item_name"								"#DOTA_Item_Armor_of_the_Weathered_Storm"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/tuskarr/terror_from_the_barrier_arms/terror_from_the_barrier_arms.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+	}
+	"9610"
+	{
+		"name"									"Mace of the Weathered Storm"
+		"prefab"								"wearable"
+		"creation_date"							"2017-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/tuskarr/terror_from_the_barrier_weapon/terror_from_the_barrier_weapon"
+		"item_name"								"#DOTA_Item_Mace_of_the_Weathered_Storm"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/tuskarr/terror_from_the_barrier_weapon/terror_from_the_barrier_weapon.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+	}
+	"9611"
+	{
+		"name"									"Helm of the Weathered Storm"
+		"prefab"								"wearable"
+		"creation_date"							"2017-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/tuskarr/terror_from_the_barrier_head/terror_from_the_barrier_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Weathered_Storm"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/tuskarr/terror_from_the_barrier_head/terror_from_the_barrier_head.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_tusk/tusk_ambient.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tuskarr/tusk_barrier_head/tusk_barrier_head_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9612"
+	{
+		"name"									"Cape of the Weathered Storm"
+		"prefab"								"wearable"
+		"creation_date"							"2017-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/tuskarr/terror_from_the_barrier_back/terror_from_the_barrier_back"
+		"item_name"								"#DOTA_Item_Cape_of_the_Weathered_Storm"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/tuskarr/terror_from_the_barrier_back/terror_from_the_barrier_back.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+	}
+	"9613"
+	{
+		"name"									"Tusks of the Weathered Storm"
+		"prefab"								"wearable"
+		"creation_date"							"2017-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/tuskarr/terror_from_the_barrier_neck/terror_from_the_barrier_neck"
+		"item_name"								"#DOTA_Item_Tusks_of_the_Weathered_Storm"
+		"item_rarity"							"rare"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_neck"
+		"model_player"							"models/items/tuskarr/terror_from_the_barrier_neck/terror_from_the_barrier_neck.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+	}
+	"9698"
+	{
+		"name"									"Hatchet of the Guarded Word"
+		"prefab"								"wearable"
+		"creation_date"							"2018-02-16"
+		"image_inventory"						"econ/items/tuskarr/harmful_iron_fist_weapon/harmful_iron_fist_weapon"
+		"item_name"								"#DOTA_Item_Hatchet_of_the_Guarded_Word"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/tuskarr/harmful_iron_fist_weapon/harmful_iron_fist_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tuskarr/tusk_harmful_fist/tuskar_ironfist_weapon_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9699"
+	{
+		"name"									"Tusks of the Guarded Word"
+		"prefab"								"wearable"
+		"creation_date"							"2018-02-16"
+		"image_inventory"						"econ/items/tuskarr/harmful_iron_fist_neck/harmful_iron_fist_neck"
+		"item_name"								"#DOTA_Item_Tusks_of_the_Guarded_Word"
+		"item_rarity"							"mythical"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_neck"
+		"model_player"							"models/items/tuskarr/harmful_iron_fist_neck/harmful_iron_fist_neck.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tuskarr/tusk_harmful_fist/tuskar_ironfist_tusk_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9700"
+	{
+		"name"									"Armor of the Guarded Word"
+		"prefab"								"wearable"
+		"creation_date"							"2018-02-16"
+		"image_inventory"						"econ/items/tuskarr/harmful_iron_fist_shoulder/harmful_iron_fist_shoulder"
+		"item_name"								"#DOTA_Item_Armor_of_the_Guarded_Word"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/tuskarr/harmful_iron_fist_shoulder/harmful_iron_fist_shoulder.vmdl"
+	}
+	"9701"
+	{
+		"name"									"Helm of the Guarded Word"
+		"prefab"								"wearable"
+		"creation_date"							"2018-02-16"
+		"image_inventory"						"econ/items/tuskarr/harmful_iron_fist_head/harmful_iron_fist_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Guarded_Word"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/tuskarr/harmful_iron_fist_head/harmful_iron_fist_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_tusk/tusk_ambient.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tuskarr/tusk_harmful_fist/tuskar_ironfist_helmet_ambient.vpcf"
+				"style"							"0"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"9702"
+	{
+		"name"									"Tome of the Guarded Word"
+		"prefab"								"wearable"
+		"creation_date"							"2018-02-16"
+		"image_inventory"						"econ/items/tuskarr/harmful_iron_fist_back/harmful_iron_fist_back"
+		"item_name"								"#DOTA_Item_Tome_of_the_Guarded_Word"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/tuskarr/harmful_iron_fist_back/harmful_iron_fist_back.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tuskarr/tusk_harmful_fist/tuskar_ironfist_back_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9703"
+	{
+		"name"									"Clawhammer of the Guarded Word"
+		"prefab"								"wearable"
+		"creation_date"							"2018-02-16"
+		"image_inventory"						"econ/items/tuskarr/harmful_iron_fist_arms/harmful_iron_fist_arms"
+		"item_name"								"#DOTA_Item_Clawhammer_of_the_Guarded_Word"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/tuskarr/harmful_iron_fist_arms/harmful_iron_fist_arms.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"9761"
+	{
+		"name"									"Taunt: Fight Me!"
+		"prefab"								"taunt"
+		"creation_date"							"2018-04-09"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/taunts/dota_icon_taunt_tusk_ti8"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Fight_Me"
+		"item_name"								"#DOTA_Item_Taunt_Fight_Me"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567296000"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"ti8_taunt"
+				"style"							"0"
+				"gesture"						"1"
+			}
+		}
+	}
+	"9822"
+	{
+		"name"									"Sigil of the Barrier Rogue"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-09"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/tuskarr/sigil/barrierrogue_tusk_sigil/barrierrogue_tusk_sigil_npc_dota_tusk_frozen_sigil"
+		"item_name"								"#DOTA_Item_Sigil_of_the_Barrier_Rogue"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability3"
+		"item_type_name"						"#DOTA_WearableType_Sigil"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_tusk_frozen_sigil"
+				"modifier"						"models/items/tuskarr/sigil/barrierrogue_tusk_sigil/barrierrogue_tusk_sigil.vmdl"
+			}
+		}
+	}
+	"9823"
+	{
+		"name"									"Pauldron of the Barrier Rogue"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-09"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/tuskarr/barrierrogue_tusk_shoulder/barrierrogue_tusk_shoulder"
+		"item_name"								"#DOTA_Item_Pauldron_of_the_Barrier_Rogue"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldron"
+		"model_player"							"models/items/tuskarr/barrierrogue_tusk_shoulder/barrierrogue_tusk_shoulder.vmdl"
+	}
+	"9824"
+	{
+		"name"									"Scar of the Barrier Rogue"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-09"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/tuskarr/barrierrogue_tusk_head/barrierrogue_tusk_head"
+		"item_name"								"#DOTA_Item_Scar_of_the_Barrier_Rogue"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Scar"
+		"model_player"							"models/items/tuskarr/barrierrogue_tusk_head/barrierrogue_tusk_head.vmdl"
+	}
+	"9825"
+	{
+		"name"									"Cannon Punch of the Barrier Rogue"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-09"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/tuskarr/barrierrogue_tusk_arns/barrierrogue_tusk_arns"
+		"item_description"						"#DOTA_Item_Desc_Cannon_Punch_of_the_Barrier_Rogue"
+		"item_name"								"#DOTA_Item_Cannon_Punch_of_the_Barrier_Rogue"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Cannon"
+		"model_player"							"models/items/tuskarr/barrierrogue_tusk_arns/barrierrogue_tusk_arns.vmdl"
+		"particle_folder"						"particles/econ/items/tuskarr/barrier_rogue"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_tusk/tusk_ambient.vpcf"
+				"modifier"						"particles/econ/items/tuskarr/barrier_rogue/barrier_rogue_ambient.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tuskarr/barrier_rogue/barrier_rogue_ambient_fx.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/tuskarr/barrier_rogue/barrier_rogue_ambient_fx.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"barrierrogue_fx"
+					}
+					"1"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"barrierrogue_fx"
+					}
+				}
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#Cannon_Punch_Default"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#Cannon_Punch_Particle"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"price"					"1"
+						"item_def"				"16735"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/tuskarr/barrierrogue_tusk_arns/barrierrogue_tusk_arns"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/tuskarr/barrierrogue_tusk_arns/barrierrogue_tusk_arns_particle"
+				}
+			}
+			"skin"								"0"
+		}
+	}
+	"9826"
+	{
+		"name"									"Maul of the Barrier Rogue"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-09"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/tuskarr/barrierrogue_tusk_weapon/barrierrogue_tusk_weapon"
+		"item_name"								"#DOTA_Item_Maul_of_the_Barrier_Rogue"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Maul"
+		"model_player"							"models/items/tuskarr/barrierrogue_tusk_weapon/barrierrogue_tusk_weapon.vmdl"
+	}
+	"13090"
+	{
+		"name"									"Knife of Distinguished Expeditionary"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/tuskarr/ti_9_cache_tusk_jungle_explorer_weapon/ti_9_cache_tusk_jungle_explorer_weapon"
+		"item_name"								"#DOTA_Item_Knife_of_Distinguished_Expeditionary"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/tuskarr/ti_9_cache_tusk_jungle_explorer_weapon/ti_9_cache_tusk_jungle_explorer_weapon.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tuskarr/ti9_tusk_jungle_weapon/ti9_tusk_jungle_weapon_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13091"
+	{
+		"name"									"Back of Distinguished Expeditionary"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/tuskarr/ti_9_cache_tusk_jungle_explorer_back/ti_9_cache_tusk_jungle_explorer_back"
+		"item_name"								"#DOTA_Item_Back_of_Distinguished_Expeditionary"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/tuskarr/ti_9_cache_tusk_jungle_explorer_back/ti_9_cache_tusk_jungle_explorer_back.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tuskarr/ti9_tusk_jungle_back/ti9_tusk_jungle_back_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13092"
+	{
+		"name"									"Fist of Distinguished Expeditionary"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/tuskarr/ti_9_cache_tusk_jungle_explorer_arms/ti_9_cache_tusk_jungle_explorer_arms"
+		"item_name"								"#DOTA_Item_Fist_of_Distinguished_Expeditionary"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/tuskarr/ti_9_cache_tusk_jungle_explorer_arms/ti_9_cache_tusk_jungle_explorer_arms.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tuskarr/ti9_tusk_jungle_arms/ti9_tusk_jungle_arms_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13093"
+	{
+		"name"									"Hat of Distinguished Expeditionary"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/tuskarr/ti_9_cache_tusk_jungle_explorer_head/ti_9_cache_tusk_jungle_explorer_head"
+		"item_name"								"#DOTA_Item_Hat_of_Distinguished_Expeditionary"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/tuskarr/ti_9_cache_tusk_jungle_explorer_head/ti_9_cache_tusk_jungle_explorer_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"13094"
+	{
+		"name"									"Tusks of Distinguished Expeditionary"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/tuskarr/ti_9_cache_tusk_jungle_explorer_neck/ti_9_cache_tusk_jungle_explorer_neck"
+		"item_name"								"#DOTA_Item_Tusks_of_Distinguished_Expeditionary"
+		"item_rarity"							"mythical"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_neck"
+		"model_player"							"models/items/tuskarr/ti_9_cache_tusk_jungle_explorer_neck/ti_9_cache_tusk_jungle_explorer_neck.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tuskarr/ti9_tusk_jungle_neck/ti9_tusk_jungle_neck_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13095"
+	{
+		"name"									"Coat of Distinguished Expeditionary"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/tuskarr/ti_9_cache_tusk_jungle_explorer_shoulder/ti_9_cache_tusk_jungle_explorer_shoulder"
+		"item_name"								"#DOTA_Item_Coat_of_Distinguished_Expeditionary"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/tuskarr/ti_9_cache_tusk_jungle_explorer_shoulder/ti_9_cache_tusk_jungle_explorer_shoulder.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"13537"
+	{
+		"name"									"Piscean Pulverizer"
+		"prefab"								"wearable"
+		"creation_date"							"2019-07-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/tuskarr/tusk_ti9_immortal_fist/tusk_ti9_immortal_fist"
+		"item_description"						"#DOTA_Item_Desc_Piscean_Pulverizer"
+		"item_name"								"#DOTA_Item_Piscean_Pulverizer"
+		"item_rarity"							"immortal"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/tuskarr/tusk_ti9_immortal_fist/tusk_ti9_immortal_fist.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567332000"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tuskarr/tusk_ti9_immortal/tusk_ti9_immortal_ambient.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_tusk/tusk_walruspunch_tgt.vpcf"
+				"modifier"						"particles/econ/items/tuskarr/tusk_ti9_immortal/tusk_ti9_walruspunch_tgt.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier2"
+			{
+				"type"							"ability_icon"
+				"asset"							"tusk_walrus_punch"
+				"modifier"						"tusk/ti9_immortal_fist/tusk_walrus_punch_immortal"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_tusk/tusk_walruspunch_txt_ult.vpcf"
+				"modifier"						"particles/econ/items/tuskarr/tusk_ti9_immortal/tusk_ti9_walruspunch_txt_ult.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_tusk/tusk_walruspunch_start.vpcf"
+				"modifier"						"particles/econ/items/tuskarr/tusk_ti9_immortal/tusk_ti9_walruspunch_start.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+		}
+	}
+	"13668"
+	{
+		"name"									"Golden Piscean Pulverizer"
+		"prefab"								"wearable"
+		"creation_date"							"2019-08-18"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/tuskarr/tusk_ti9_immortal_fist/tusk_ti9_immortal_fist1"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Piscean_Pulverizer"
+		"item_name"								"#DOTA_Item_Golden_Piscean_Pulverizer"
+		"item_rarity"							"immortal"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/tuskarr/tusk_ti9_immortal_fist/tusk_ti9_immortal_fist.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567332000"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/tuskarr/tusk_ti9_immortal/tusk_ti9_immortal_golden_ambient.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_tusk/tusk_walruspunch_tgt.vpcf"
+				"modifier"						"particles/econ/items/tuskarr/tusk_ti9_immortal/tusk_ti9_walruspunch_tgt.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier2"
+			{
+				"type"							"ability_icon"
+				"asset"							"tusk_walrus_punch"
+				"modifier"						"tusk/ti9_immortal_fist/tusk_walrus_punch_immortal_gold"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_tusk/tusk_walruspunch_txt_ult.vpcf"
+				"modifier"						"particles/econ/items/tuskarr/tusk_ti9_immortal/tusk_ti9_golden_walruspunch_txt_ult.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_tusk/tusk_walruspunch_start.vpcf"
+				"modifier"						"particles/econ/items/tuskarr/tusk_ti9_immortal/tusk_ti9_golden_walruspunch_start.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"skin"								"1"
+		}
+	}
+	"18286"
+	{
+		"name"									"Frost Brigadier Pack"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-25"
+		"image_inventory"						"econ/items/tuskarr/icelord_back/icelord_back"
+		"item_name"								"#DOTA_Item_Frost_Brigadier_Pack"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/tuskarr/icelord_back/icelord_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"18287"
+	{
+		"name"									"Frost Brigadier Axe"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-25"
+		"image_inventory"						"econ/items/tuskarr/icelord_weapon/icelord_weapon"
+		"item_name"								"#DOTA_Item_Frost_Brigadier_Axe"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/tuskarr/icelord_weapon/icelord_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"18288"
+	{
+		"name"									"Frost Brigadier Puncher"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-25"
+		"image_inventory"						"econ/items/tuskarr/icelord_arms/icelord_arms"
+		"item_name"								"#DOTA_Item_Frost_Brigadier_Puncher"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/tuskarr/icelord_arms/icelord_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"18289"
+	{
+		"name"									"Frost Brigadier Vestments"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-25"
+		"image_inventory"						"econ/items/tuskarr/icelord_shoulder/icelord_shoulder"
+		"item_name"								"#DOTA_Item_Frost_Brigadier_Vestments"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/tuskarr/icelord_shoulder/icelord_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"18290"
+	{
+		"name"									"Frost Brigadier Tusks"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-25"
+		"image_inventory"						"econ/items/tuskarr/icelord_neck/icelord_neck"
+		"item_name"								"#DOTA_Item_Frost_Brigadier_Tusks"
+		"item_rarity"							"rare"
+		"item_slot"								"neck"
+		"model_player"							"models/items/tuskarr/icelord_neck/icelord_neck.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"18291"
+	{
+		"name"									"Frost Brigadier Helm"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-25"
+		"image_inventory"						"econ/items/tuskarr/icelord_head/icelord_head"
+		"item_name"								"#DOTA_Item_Frost_Brigadier_Helm"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/tuskarr/icelord_head/icelord_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"18715"
+	{
+		"name"									"Eternal Icebreaker - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/tuskarr/king_of_the_frozen_sea_head/king_of_the_frozen_sea_head"
+		"item_name"								"#DOTA_Item_Eternal_Icebreaker__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/tuskarr/king_of_the_frozen_sea_head/king_of_the_frozen_sea_head.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"18884"
+	{
+		"name"									"Eternal Icebreaker - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/tuskarr/king_of_the_frozen_sea_arms/king_of_the_frozen_sea_arms"
+		"item_name"								"#DOTA_Item_Eternal_Icebreaker__Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/tuskarr/king_of_the_frozen_sea_arms/king_of_the_frozen_sea_arms.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"18885"
+	{
+		"name"									"Eternal Icebreaker - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/tuskarr/king_of_the_frozen_sea_back/king_of_the_frozen_sea_back"
+		"item_name"								"#DOTA_Item_Eternal_Icebreaker__Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/tuskarr/king_of_the_frozen_sea_back/king_of_the_frozen_sea_back.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"18954"
+	{
+		"name"									"Eternal Icebreaker - Tusks"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/tuskarr/king_of_the_frozen_sea_neck/king_of_the_frozen_sea_neck"
+		"item_name"								"#DOTA_Item_Eternal_Icebreaker__Tusks"
+		"item_rarity"							"mythical"
+		"item_slot"								"neck"
+		"model_player"							"models/items/tuskarr/king_of_the_frozen_sea_neck/king_of_the_frozen_sea_neck.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"19253"
+	{
+		"name"									"Conscript of the Frost Brigade - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-10"
+		"image_inventory"						"econ/items/tuskarr/glacial_squad_commander_set_shoulder/glacial_squad_commander_set_shoulder"
+		"item_name"								"#DOTA_Item_Conscript_of_the_Frost_Brigade__Shoulder"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/tuskarr/glacial_squad_commander_set_shoulder/glacial_squad_commander_set_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"19254"
+	{
+		"name"									"Conscript of the Frost Brigade - Neck"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-10"
+		"image_inventory"						"econ/items/tuskarr/glacial_squad_commander_set_neck/glacial_squad_commander_set_neck"
+		"item_name"								"#DOTA_Item_Conscript_of_the_Frost_Brigade__Neck"
+		"item_rarity"							"rare"
+		"item_slot"								"neck"
+		"model_player"							"models/items/tuskarr/glacial_squad_commander_set_neck/glacial_squad_commander_set_neck.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"19255"
+	{
+		"name"									"Conscript of the Frost Brigade - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-10"
+		"image_inventory"						"econ/items/tuskarr/glacial_squad_commander_set_back/glacial_squad_commander_set_back"
+		"item_name"								"#DOTA_Item_Conscript_of_the_Frost_Brigade__Back"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/tuskarr/glacial_squad_commander_set_back/glacial_squad_commander_set_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"19256"
+	{
+		"name"									"Conscript of the Frost Brigade - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-10"
+		"image_inventory"						"econ/items/tuskarr/glacial_squad_commander_set_head/glacial_squad_commander_set_head"
+		"item_name"								"#DOTA_Item_Conscript_of_the_Frost_Brigade__Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/tuskarr/glacial_squad_commander_set_head/glacial_squad_commander_set_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"19257"
+	{
+		"name"									"Conscript of the Frost Brigade - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-10"
+		"image_inventory"						"econ/items/tuskarr/glacial_squad_commander_set_weapon/glacial_squad_commander_set_weapon"
+		"item_name"								"#DOTA_Item_Conscript_of_the_Frost_Brigade__Weapon"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/tuskarr/glacial_squad_commander_set_weapon/glacial_squad_commander_set_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"19258"
+	{
+		"name"									"Conscript of the Frost Brigade - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-10"
+		"image_inventory"						"econ/items/tuskarr/glacial_squad_commander_set_arms/glacial_squad_commander_set_arms"
+		"item_name"								"#DOTA_Item_Conscript_of_the_Frost_Brigade__Arms"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/tuskarr/glacial_squad_commander_set_arms/glacial_squad_commander_set_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"19834"
+	{
+		"name"									"Lobodon Tusk Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/tuskarr/lobodon_tusk_weapon/lobodon_tusk_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_Lobodon_Tusk_Weapon"
+		"model_player"							"models/items/tuskarr/lobodon_tusk_weapon/lobodon_tusk_weapon.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19835"
+	{
+		"name"									"Lobodon Tusk Sigil"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/tuskarr/sigil/lobodon_tusk_sigil/lobodon_tusk_sigil_npc_dota_tusk_frozen_sigil"
+		"item_name"								"#DOTA_Lobodon_Tusk_Sigil"
+		"item_slot"								"ability3"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_tusk_frozen_sigil"
+				"modifier"						"models/items/tuskarr/sigil/lobodon_tusk_sigil/lobodon_tusk_sigil.vmdl"
+			}
+		}
+	}
+	"19836"
+	{
+		"name"									"Lobodon Tusk Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/tuskarr/lobodon_tusk_shoulder/lobodon_tusk_shoulder"
+		"item_name"								"#DOTA_Item_Vote_Only_Lobodon_Tusk_Shoulder"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/tuskarr/lobodon_tusk_shoulder/lobodon_tusk_shoulder.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19837"
+	{
+		"name"									"Lobodon Tusk Neck"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/tuskarr/lobodon_tusk_neck/lobodon_tusk_neck"
+		"item_name"								"#DOTA_Item_Vote_Only_Lobodon_Tusk_Neck"
+		"item_slot"								"neck"
+		"model_player"							"models/items/tuskarr/lobodon_tusk_neck/lobodon_tusk_neck.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19838"
+	{
+		"name"									"Lobodon Tusk Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/tuskarr/lobodon_tusk_head/lobodon_tusk_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Lobodon_Tusk_Head"
+		"item_slot"								"head"
+		"model_player"							"models/items/tuskarr/lobodon_tusk_head/lobodon_tusk_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19839"
+	{
+		"name"									"Lobodon Tusk Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/tuskarr/lobodon_tusk_back/lobodon_tusk_back"
+		"item_name"								"#DOTA_Item_Vote_Only_Lobodon_Tusk_Back"
+		"item_slot"								"back"
+		"model_player"							"models/items/tuskarr/lobodon_tusk_back/lobodon_tusk_back.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19840"
+	{
+		"name"									"Lobodon Tusk Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/tuskarr/lobodon_tusk_arms/lobodon_tusk_arms"
+		"item_name"								"#DOTA_Item_Vote_Only_Lobodon_Tusk_Arms"
+		"item_slot"								"arms"
+		"model_player"							"models/items/tuskarr/lobodon_tusk_arms/lobodon_tusk_arms.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"20168"
+	{
+		"name"									"Arctic Hunter Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Arctic Hunter's Ice Axe"			"1"
+			"Arctic Hunter's Parka"				"1"
+			"Arctic Hunter's Tusks"				"1"
+			"Arctic Hunter's Hood"				"1"
+			"Arctic Hunter's Snack"				"1"
+			"Arctic Hunter's Glove"				"1"
+		}
+		"creation_date"							"2013-05-07"
+		"image_inventory"						"econ/sets/DOTA_Item_Arctic_Hunter_Set"
+		"item_description"						"#DOTA_Item_Desc_Arctic_Hunter_Set"
+		"item_name"								"#DOTA_Item_Arctic_Hunter_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"5/7/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20183"
+	{
+		"name"									"Frostiron Raider Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Frostiron Raider Tusks"			"1"
+			"Frostiron Raider Fist"				"1"
+			"Frostiron Raider Axe"				"1"
+			"Frostiron Raider Helm"				"1"
+			"Frostiron Raider Shield"			"1"
+			"Frostiron Raider Wrap"				"1"
+		}
+		"creation_date"							"2013-06-04"
+		"image_inventory"						"econ/sets/DOTA_Item_Frostiron_Raider_Set"
+		"item_description"						"#DOTA_Item_Desc_Frostiron_Raider_Set"
+		"item_name"								"#DOTA_Item_Frostiron_Raider_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"6/4/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20358"
+	{
+		"name"									"Bobusang's Traveling Necessities Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bobusang's Merchandise"			"1"
+			"Bobusang's Axe"					"1"
+			"Bobusang's Jacket"					"1"
+			"Bobusang's Fist of the Predator Owl""1"
+			"Bobusang's Tobacco Fix"			"1"
+			"Bobusang's Sunshade"				"1"
+		}
+		"creation_date"							"2014-01-14"
+		"image_inventory"						"econ/sets/DOTA_Item_Bobusangs_Traveling_Necessities_Set"
+		"item_description"						"#DOTA_Item_Desc_Bobusangs_Traveling_Necessities_Set"
+		"item_name"								"#DOTA_Item_Bobusangs_Traveling_Necessities_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/17/2014"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20834"
+	{
+		"name"									"Brawler of the Glacier Sea"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Frozen Sigil of the Glacier Sea"	"1"
+			"Cap of the Glacier Sea"			"1"
+			"Tusks of the Glacier Sea"			"1"
+			"Anchor of the Glacier Sea"			"1"
+			"Hook of the Glacier Sea"			"1"
+			"Rudder of the Glacier Sea"			"1"
+			"Coat of the Glacier Sea"			"1"
+			"Brawler of the Glacier Sea Loading Screen""1"
+		}
+		"creation_date"							"2015-06-03"
+		"image_inventory"						"econ/loading_screens/glaciomarine_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Brawler_of_the_Glacier_Sea"
+		"item_name"								"#DOTA_Item_Brawler_of_the_Glacier_Sea"
+		"item_rarity"							"mythical"
+		"branding"
+		{
+			"team_id"							"726228"
+		}
+	}
+	"20903"
+	{
+		"name"									"Barrier Rogue"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Maul of the Barrier Rogue"			"1"
+			"Cannon Punch of the Barrier Rogue"	"1"
+			"Scar of the Barrier Rogue"			"1"
+			"Pauldron of the Barrier Rogue"		"1"
+			"Sigil of the Barrier Rogue"		"1"
+			"Pack of the Barrier Rogue"			"1"
+			"Broken Tusk of the Barrier Rogue"	"1"
+			"Barrier Rogue Loading Screen"		"1"
+		}
+		"creation_date"							"2015-09-10"
+		"image_inventory"						"econ/loading_screens/barrier_rogue_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Barrier_Rogue"
+		"item_name"								"#DOTA_Item_Barrier_Rogue"
+		"item_rarity"							"mythical"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+	}
+	"21169"
+	{
+		"name"									"Eye of the Weathered Storm"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Tusks of the Weathered Storm"		"1"
+			"Cape of the Weathered Storm"		"1"
+			"Helm of the Weathered Storm"		"1"
+			"Mace of the Weathered Storm"		"1"
+			"Armor of the Weathered Storm"		"1"
+			"Harness of the Weathered Storm"	"1"
+			"Sigil of the Weathered Storm"		"1"
+		}
+		"creation_date"							"2017-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/sets/DOTA_Item_Frostivus_TUSK_Terror_from_the_Barrier"
+		"item_name"								"#DOTA_Item_Eye_of_the_Weathered_Storm"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+	}
+	"21181"
+	{
+		"name"									"Hammer of the Guarded Word"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Hatchet of the Guarded Word"		"1"
+			"Armor of the Guarded Word"			"1"
+			"Tusks of the Guarded Word"			"1"
+			"Hammer of the Guarded Word Loading Screen""1"
+			"Helm of the Guarded Word"			"1"
+			"Tome of the Guarded Word"			"1"
+			"Clawhammer of the Guarded Word"	"1"
+		}
+		"creation_date"							"2018-02-16"
+		"image_inventory"						"econ/loading_screens/harmful_iron_fist_iron_fist_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Hammer_of_the_Guarded_Word"
+		"item_name"								"#DOTA_Item_Hammer_of_the_Guarded_Word"
+		"item_rarity"							"mythical"
+		"shards_purchase_price"					"75000"
+	}
+	"21344"
+	{
+		"name"									"Distinguished Expeditionary"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Knife of Distinguished Expeditionary""1"
+			"Coat of Distinguished Expeditionary""1"
+			"Tusks of Distinguished Expeditionary""1"
+			"Hat of Distinguished Expeditionary""1"
+			"Back of Distinguished Expeditionary""1"
+			"Fist of Distinguished Expeditionary""1"
+		}
+		"creation_date"							"2019-05-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/sets/DOTA_Item_Distinguished_Expeditionary"
+		"item_description"						"#DOTA_Item_Desc_Distinguished_Expeditionary"
+		"item_name"								"#DOTA_Item_Distinguished_Expeditionary"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"21786"
+	{
+		"name"									"Frost Brigadier"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Frost Brigadier Helm"				"1"
+			"Frost Brigadier Tusks"				"1"
+			"Frost Brigadier Vestments"			"1"
+			"Frost Brigadier Puncher"			"1"
+			"Frost Brigadier Axe"				"1"
+			"Frost Brigadier Pack"				"1"
+			"Frost Brigadier Loading Screen"	"1"
+		}
+		"creation_date"							"2020-09-27"
+		"image_inventory"						"econ/loading_screens/icelord_loadingscreen"
+		"item_name"								"#DOTA_Item_Frost_Brigadier"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"15000"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"21859"
+	{
+		"name"									"Conscript of the Frost Brigade"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Conscript of the Frost Brigade - Arms""1"
+			"Conscript of the Frost Brigade - Weapon""1"
+			"Conscript of the Frost Brigade - Head""1"
+			"Conscript of the Frost Brigade - Back""1"
+			"Conscript of the Frost Brigade - Neck""1"
+			"Conscript of the Frost Brigade - Shoulder""1"
+		}
+		"creation_date"							"2021-08-10"
+		"image_inventory"						"econ/sets/DOTA_Item_Glacial_Squad_Commander_Set"
+		"item_name"								"#DOTA_Item_Conscript_of_the_Frost_Brigade"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"21963"
+	{
+		"name"									"Lobodon Tusk"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Lobodon Tusk Arms"					"1"
+			"Lobodon Tusk Back"					"1"
+			"Lobodon Tusk Head"					"1"
+			"Lobodon Tusk Shoulder"				"1"
+			"Lobodon Tusk Sigil"				"1"
+			"Lobodon Tusk Neck"					"1"
+			"Lobodon Tusk Weapon"				"1"
+		}
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Lobodon_Tusk"
+		"workshop_accepted"						"0"
+	}
+	"22289"
+	{
+		"name"									"Eternal Icebreaker - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/tuskarr/king_of_the_frozen_sea_shoulder/king_of_the_frozen_sea_shoulder"
+		"item_name"								"#DOTA_Item_Eternal_Icebreaker__Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/tuskarr/king_of_the_frozen_sea_shoulder/king_of_the_frozen_sea_shoulder.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"22290"
+	{
+		"name"									"Eternal Icebreaker - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/tuskarr/king_of_the_frozen_sea_weapon/king_of_the_frozen_sea_weapon"
+		"item_name"								"#DOTA_Item_Eternal_Icebreaker__Weapon"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/tuskarr/king_of_the_frozen_sea_weapon/king_of_the_frozen_sea_weapon.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"22345"
+	{
+		"name"									"Eternal Icebreaker"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Eternal Icebreaker - Weapon"		"1"
+			"Eternal Icebreaker - Shoulder"		"1"
+			"Eternal Icebreaker - Tusks"		"1"
+			"Eternal Icebreaker - Back"			"1"
+			"Eternal Icebreaker - Arms"			"1"
+			"Eternal Icebreaker - Head"			"1"
+			"Eternal Icebreaker Loading Screen"	"1"
+		}
+		"creation_date"							"2021-11-22"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/loading_screens/king_of_the_frozen_sea_ls"
+		"item_name"								"#DOTA_Item_Eternal_Icebreaker"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+}

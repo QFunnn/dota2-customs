@@ -1,0 +1,1606 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"507"
+	{
+		"name"									"Morphling's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-05"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Morphlings_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_morphling"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_morphling/morphling_ambient_new.vpcf"
+				"system"						"particles/units/heroes/hero_morphling/morphling_ambient_new.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_base"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_ambient_spine1"
+					}
+					"2"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_ambient_spine2"
+					}
+					"3"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_ambient_head"
+					}
+					"4"
+					{
+						"control_point_index"	"5"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_ambient_head_2"
+					}
+					"5"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+		}
+	}
+	"573"
+	{
+		"name"									"Morphling's Head"
+		"prefab"								"default_item"
+		"creation_date"							"2015-05-20"
+		"image_inventory"						"econ/heroes/morphling/head"
+		"item_description"						"#DOTA_Item_Desc_Morphlings_Head"
+		"item_name"								"#DOTA_Item_Morphlings_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+	}
+	"574"
+	{
+		"name"									"Morphling's Shoulders"
+		"prefab"								"default_item"
+		"creation_date"							"2015-05-20"
+		"image_inventory"						"econ/heroes/morphling/shoulders"
+		"item_description"						"#DOTA_Item_Desc_Morphlings_Shoulders"
+		"item_name"								"#DOTA_Item_Morphlings_Shoulders"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+	}
+	"575"
+	{
+		"name"									"Morphling's Back"
+		"prefab"								"default_item"
+		"creation_date"							"2015-05-20"
+		"image_inventory"						"econ/heroes/morphling/back"
+		"item_description"						"#DOTA_Item_Desc_Morphlings_Back"
+		"item_name"								"#DOTA_Item_Morphlings_Back"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+	}
+	"576"
+	{
+		"name"									"Morphling's Arms"
+		"prefab"								"default_item"
+		"creation_date"							"2015-05-20"
+		"image_inventory"						"econ/heroes/morphling/arms"
+		"item_description"						"#DOTA_Item_Desc_Morphlings_Arms"
+		"item_name"								"#DOTA_Item_Morphlings_Arms"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+	}
+	"577"
+	{
+		"name"									"Morphling's Miscellaneous"
+		"prefab"								"default_item"
+		"creation_date"							"2015-05-20"
+		"image_inventory"						"econ/heroes/morphling/head"
+		"item_description"						"#DOTA_Item_Desc_Morphlings_Miscellaneous"
+		"item_name"								"#DOTA_Item_Morphlings_Miscellaneous"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Misc"
+	}
+	"4260"
+	{
+		"name"									"Radiant Crystal Bracer"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/morphling/bracer_radiant"
+		"item_description"						"#DOTA_Item_Desc_Radiant_Crystal_Bracer"
+		"item_name"								"#DOTA_Item_Radiant_Crystal_Bracer"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracer"
+		"model_player"							"models/items/morphling/bracer_radiant.vmdl"
+	}
+	"4261"
+	{
+		"name"									"Radiant Crystal Crown"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/morphling/helmet_radiant"
+		"item_description"						"#DOTA_Item_Desc_Radiant_Crystal_Crown"
+		"item_name"								"#DOTA_Item_Radiant_Crystal_Crown"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Crown"
+		"model_player"							"models/items/morphling/helmet_radiant.vmdl"
+	}
+	"4262"
+	{
+		"name"									"Radiant Crystal Pauldrons"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/morphling/shoulder_radiant"
+		"item_description"						"#DOTA_Item_Desc_Radiant_Crystal_Pauldrons"
+		"item_name"								"#DOTA_Item_Radiant_Crystal_Pauldrons"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldron"
+		"model_player"							"models/items/morphling/shoulder_radiant.vmdl"
+	}
+	"4263"
+	{
+		"name"									"Radiant Crystal Crests"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/morphling/back_radiant"
+		"item_description"						"#DOTA_Item_Desc_Radiant_Crystal_Crests"
+		"item_name"								"#DOTA_Item_Radiant_Crystal_Crests"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/morphling/back_radiant.vmdl"
+	}
+	"4296"
+	{
+		"name"									"Shoulders of the Comet's Tail"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2012"
+			}
+		}
+		"image_inventory"						"econ/items/morphling/shoulder_comets_tail"
+		"item_description"						"#DOTA_Item_Desc_Shoulders_of_the_Comets_Tail"
+		"item_name"								"#DOTA_Item_Shoulders_of_the_Comets_Tail"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldron"
+		"model_player"							"models/items/morphling/shoulder_comets_tail.vmdl"
+	}
+	"4348"
+	{
+		"name"									"Crown of the Comet's Tail"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2012"
+			}
+		}
+		"image_inventory"						"econ/items/morphling/crown_comets_tail"
+		"item_description"						"#DOTA_Item_Desc_Crown_of_the_Comets_Tail"
+		"item_name"								"#DOTA_Item_Crown_of_the_Comets_Tail"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Crown"
+		"model_player"							"models/items/morphling/crown_comets_tail.vmdl"
+	}
+	"4369"
+	{
+		"name"									"Direstone Crests"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/morphling/direstone_back/direstone_back"
+		"item_description"						"#DOTA_Item_Desc_Direstone_Crests"
+		"item_name"								"#DOTA_Item_Direstone_Crests"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Crests"
+		"model_player"							"models/items/morphling/direstone_back/direstone_back.vmdl"
+	}
+	"4373"
+	{
+		"name"									"Direstone Bracers"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/morphling/direstone_arms/direstone_arms"
+		"item_description"						"#DOTA_Item_Desc_Direstone_Bracers"
+		"item_name"								"#DOTA_Item_Direstone_Bracers"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/morphling/direstone_arms/direstone_arms.vmdl"
+	}
+	"4390"
+	{
+		"name"									"Direstone Crown"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/morphling/direstone_crown/direstone_crown"
+		"item_description"						"#DOTA_Item_Desc_Direstone_Crown"
+		"item_name"								"#DOTA_Item_Direstone_Crown"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Crown"
+		"model_player"							"models/items/morphling/direstone_crown/direstone_crown.vmdl"
+	}
+	"4394"
+	{
+		"name"									"Direstone Pauldrons"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/morphling/direstone_shoulder/direstone_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Direstone_Pauldrons"
+		"item_name"								"#DOTA_Item_Direstone_Pauldrons"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/morphling/direstone_shoulder/direstone_shoulder.vmdl"
+	}
+	"4403"
+	{
+		"name"									"Crests of Polymorphia"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/morphling/guard_general/guard_general"
+		"item_description"						"#DOTA_Item_Desc_Crests_of_Polymorphia"
+		"item_name"								"#DOTA_Item_Crests_of_Polymorphia"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Crests"
+		"model_player"							"models/items/morphling/guard_general/guard_general.vmdl"
+	}
+	"4404"
+	{
+		"name"									"Crown of Polymorphia"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/morphling/crown_general/crown_general"
+		"item_description"						"#DOTA_Item_Desc_Crown_of_Shifting_Forms"
+		"item_name"								"#DOTA_Item_Crown_of_Polymorphia"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Crown"
+		"model_player"							"models/items/morphling/crown_general/crown_general.vmdl"
+	}
+	"4410"
+	{
+		"name"									"Pauldrons of Polymorphia"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/morphling/shoulder_general/shoulder_general"
+		"item_description"						"#DOTA_Item_Desc_Pauldrons_of_Polymorphia"
+		"item_name"								"#DOTA_Item_Pauldrons_of_Polymorphia"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/morphling/shoulder_general/shoulder_general.vmdl"
+	}
+	"4422"
+	{
+		"name"									"Bracers of Polymorphia"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/morphling/bracer_general/bracer_general"
+		"item_description"						"#DOTA_Item_Desc_Bracers_of_Shifting_Forms"
+		"item_name"								"#DOTA_Item_Bracers_of_Polymorphia"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/morphling/bracer_general/bracer_general.vmdl"
+	}
+	"4428"
+	{
+		"name"									"Frost Shard Crown"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/morphling/frostshardcrown/frostshardcrown"
+		"item_description"						"#DOTA_Item_Desc_Frost_Shard_Crown"
+		"item_name"								"#DOTA_Item_Frost_Shard_Crown"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Crown"
+		"model_player"							"models/items/morphling/frostshardcrown/frostshardcrown.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4429"
+	{
+		"name"									"Frost Shard Pauldrons"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/morphling/frostshardpauldrons/frostshardpauldrons"
+		"item_description"						"#DOTA_Item_Desc_Frost_Shard_Pauldrons"
+		"item_name"								"#DOTA_Item_Frost_Shard_Pauldrons"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/morphling/frostshardpauldrons/frostshardpauldrons.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4433"
+	{
+		"name"									"Frost Shard Armlets"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/morphling/frost_shard_armlets/frost_shard_armlets"
+		"item_description"						"#DOTA_Item_Desc_Frost_Shard_Armlets"
+		"item_name"								"#DOTA_Item_Frost_Shard_Armlets"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Armlets"
+		"model_player"							"models/items/morphling/frost_shard_armlets/frost_shard_armlets.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4481"
+	{
+		"name"									"Birot's Bracers of Dignity"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/morphling/birots_bracers_of_dignity/birots_bracers_of_dignity"
+		"item_description"						"#DOTA_Item_Desc_Birots_Bracers_of_Dignity"
+		"item_name"								"#DOTA_Item_Birots_Bracers_of_Dignity"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/morphling/birots_bracers_of_dignity/birots_bracers_of_dignity.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4534"
+	{
+		"name"									"Birot's Crests of Dignity"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/morphling/birots_shoulder_of_dignity/birots_shoulder_of_dignity"
+		"item_description"						"#DOTA_Item_Desc_Birots_Crests_of_Dignity"
+		"item_name"								"#DOTA_Item_Birots_Crests_of_Dignity"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Crests"
+		"model_player"							"models/items/morphling/birots_shoulder_of_dignity/birots_shoulder_of_dignity.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4536"
+	{
+		"name"									"Birot's Helm of Dignity"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/morphling/birots_helm/birots_helm"
+		"item_description"						"#DOTA_Item_Desc_Birots_Helm_of_Dignity"
+		"item_name"								"#DOTA_Item_Birots_Helm_of_Dignity"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/morphling/birots_helm/birots_helm.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4537"
+	{
+		"name"									"Crown of the Falling Comet"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/morphling/head_fallingtails/head_fallingtails"
+		"item_description"						"#DOTA_Item_Desc_Crown_of_the_Falling_Comet"
+		"item_name"								"#DOTA_Item_Crown_of_the_Falling_Comet"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Crown"
+		"model_player"							"models/items/morphling/head_fallingtails/head_fallingtails.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4539"
+	{
+		"name"									"Crests of the Falling Comet"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/morphling/shoulder_tails/shoulder_tails"
+		"item_description"						"#DOTA_Item_Desc_Crests_of_the_Falling_Comet"
+		"item_name"								"#DOTA_Item_Crests_of_the_Falling_Comet"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Crests"
+		"model_player"							"models/items/morphling/shoulder_tails/shoulder_tails.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4574"
+	{
+		"name"									"Armlets of the Falling Comet"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/morphling/arms_fallingtails/arms_fallingtails"
+		"item_description"						"#DOTA_Item_Desc_Armlets_of_the_Falling_Comet"
+		"item_name"								"#DOTA_Item_Armlets_of_the_Falling_Comet"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Armlets"
+		"model_player"							"models/items/morphling/arms_fallingtails/arms_fallingtails.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5128"
+	{
+		"name"									"Thrashers of the Dreadful Abyss"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-09"
+		"image_inventory"						"econ/items/morphling/dreadful_abyss_arms/dreadful_abyss_arms"
+		"item_description"						"#DOTA_Item_Desc_Thrashers_of_the_Abyss"
+		"item_name"								"#DOTA_Item_Thrashers_of_the_Dreadful_Abyss"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/morphling/dreadful_abyss_arms/dreadful_abyss_arms.vmdl"
+	}
+	"5129"
+	{
+		"name"									"Tendrils of the Dreadful Abyss"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-09"
+		"image_inventory"						"econ/items/morphling/dreadful_abyss_head/dreadful_abyss_head"
+		"item_description"						"#DOTA_Item_Desc_Tendrils_of_the_Dreadful_Abyss"
+		"item_name"								"#DOTA_Item_Tendrils_of_the_Dreadful_Abyss"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Crown"
+		"model_player"							"models/items/morphling/dreadful_abyss_head/dreadful_abyss_head.vmdl"
+	}
+	"5150"
+	{
+		"name"									"Spines of the Dreadful Abyss"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-09"
+		"image_inventory"						"econ/items/morphling/dreadful_abyss_back/dreadful_abyss_back"
+		"item_description"						"#DOTA_Item_Desc_Spines_of_the_Dreadful_Abyss"
+		"item_name"								"#DOTA_Item_Spines_of_the_Dreadful_Abyss"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Spines"
+		"model_player"							"models/items/morphling/dreadful_abyss_back/dreadful_abyss_back.vmdl"
+	}
+	"5343"
+	{
+		"name"									"Gift of the Sea Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-16"
+		"image_inventory"						"econ/items/morphling/gift_of_the_sea_arms/gift_of_the_sea_arms"
+		"item_description"						"#DOTA_Item_Desc_Gift_of_the_Sea_Arms"
+		"item_name"								"#DOTA_Item_Gift_of_the_Sea_Arms"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/morphling/gift_of_the_sea_arms/gift_of_the_sea_arms.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5356"
+	{
+		"name"									"Gift of the Sea Fin"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-16"
+		"image_inventory"						"econ/items/morphling/gift_of_the_sea_fin/gift_of_the_sea_fin"
+		"item_description"						"#DOTA_Item_Desc_Gift_of_the_Sea_Fin"
+		"item_name"								"#DOTA_Item_Gift_of_the_Sea_Fin"
+		"item_rarity"							"rare"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Miscellaneous"
+		"model_player"							"models/items/morphling/gift_of_the_sea_fin/gift_of_the_sea_fin.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5358"
+	{
+		"name"									"Gift of the Sea Head"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-16"
+		"image_inventory"						"econ/items/morphling/gift_of_the_sea_head/gift_of_the_sea_head"
+		"item_description"						"#DOTA_Item_Desc_Gift_of_the_Sea_Head"
+		"item_name"								"#DOTA_Item_Gift_of_the_Sea_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head_piece"
+		"model_player"							"models/items/morphling/gift_of_the_sea_head/gift_of_the_sea_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5360"
+	{
+		"name"									"Gift of the Sea Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-16"
+		"image_inventory"						"econ/items/morphling/gift_of_the_sea_shoulders/gift_of_the_sea_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Gift_of_the_Sea_Shoulders"
+		"item_name"								"#DOTA_Item_Gift_of_the_Sea_Shoulders"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder_piece"
+		"model_player"							"models/items/morphling/gift_of_the_sea_shoulders/gift_of_the_sea_shoulders.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5363"
+	{
+		"name"									"Gift of the Sea Dorsal Wings"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-16"
+		"image_inventory"						"econ/items/morphling/gift_of_the_sea_top_fin/gift_of_the_sea_top_fin"
+		"item_description"						"#DOTA_Item_Desc_Gift_of_the_Sea_Dorsal_Wings"
+		"item_name"								"#DOTA_Item_Gift_of_the_Sea_Dorsal_Wings"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Dorsal_Fins"
+		"model_player"							"models/items/morphling/gift_of_the_sea_top_fin/gift_of_the_sea_top_fin.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5442"
+	{
+		"name"									"Ancient Armor Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-24"
+		"image_inventory"						"econ/items/morphling/ancient_armor_arms/ancient_armor_arms"
+		"item_description"						"#DOTA_Item_Desc_Ancient_Armor_Arms"
+		"item_name"								"#DOTA_Item_Ancient_Armor_Arms"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arm_Shields"
+		"model_player"							"models/items/morphling/ancient_armor_arms/ancient_armor_arms.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5443"
+	{
+		"name"									"Ancient Armor Back"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-24"
+		"image_inventory"						"econ/items/morphling/ancient_armor_back/ancient_armor_back"
+		"item_description"						"#DOTA_Item_Desc_Ancient_Armor_Back"
+		"item_name"								"#DOTA_Item_Ancient_Armor_Back"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back_Shield"
+		"model_player"							"models/items/morphling/ancient_armor_back/ancient_armor_back.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5444"
+	{
+		"name"									"Ancient Armor Breastplates"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-24"
+		"image_inventory"						"econ/items/morphling/ancient_armor_breastplates/ancient_armor_breastplates"
+		"item_description"						"#DOTA_Item_Desc_Ancient_Armor_Breastplates"
+		"item_name"								"#DOTA_Item_Ancient_Armor_Breastplates"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Breastplates"
+		"model_player"							"models/items/morphling/ancient_armor_breastplates/ancient_armor_breastplates.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5445"
+	{
+		"name"									"Ancient Armor Helmet"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-24"
+		"image_inventory"						"econ/items/morphling/ancient_armor_head/ancient_armor_head"
+		"item_description"						"#DOTA_Item_Desc_Ancient_Armor_Helmet"
+		"item_name"								"#DOTA_Item_Ancient_Armor_Helmet"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/morphling/ancient_armor_head/ancient_armor_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_RUN"
+				"modifier"						"ancient_armor"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_ATTACK"
+				"modifier"						"ancient_armor"
+			}
+		}
+	}
+	"5446"
+	{
+		"name"									"Ancient Armor Shoulder Shields"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-24"
+		"image_inventory"						"econ/items/morphling/ancient_armor_shoulders/ancient_armor_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Ancient_Armor_Shoulder_Shields"
+		"item_name"								"#DOTA_Item_Ancient_Armor_Shoulder_Shields"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder_Shields"
+		"model_player"							"models/items/morphling/ancient_armor_shoulders/ancient_armor_shoulders.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"6833"
+	{
+		"name"									"Blade of Tears"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-23"
+		"image_inventory"						"econ/items/morphling/ethereal_blade/ethereal_blade"
+		"item_description"						"#DOTA_Item_Desc_Blade_of_Tears"
+		"item_name"								"#DOTA_Item_Blade_of_Tears"
+		"item_rarity"							"immortal"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Ethereal_Blades"
+		"model_player"							"models/items/morphling/ethereal_blade/ethereal_blade.vmdl"
+		"particle_folder"						"particles/econ/items/morphling/morphling_ethereal"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_morphling/morphling_adaptive_strike.vpcf"
+				"modifier"						"particles/econ/items/morphling/morphling_ethereal/morphling_adaptive_strike_ethereal.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier1"
+			{
+				"type"							"ability_icon"
+				"asset"							"morphling_adaptive_strike_agi"
+				"modifier"						"morphling_adaptive_strike_agi_ethereal_blade"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/morphling/morphling_ethereal/morphling_ethereal_ambient.vpcf"
+				"system"						"particles/econ/items/morphling/morphling_ethereal/morphling_ethereal_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_blade_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_blade_l"
+					}
+				}
+			}
+		}
+	}
+	"7558"
+	{
+		"name"									"Grip of the Lost Star"
+		"prefab"								"wearable"
+		"branding"
+		{
+			"corporation_id"					"100317750"
+		}
+		"creation_date"							"2015-08-19"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/morphling/skadi_rising_misc/skadi_rising_misc"
+		"item_description"						"#DOTA_Item_Desc_Grip_of_the_Lost_Star"
+		"item_name"								"#DOTA_Item_Grip_of_the_Lost_Star"
+		"item_rarity"							"mythical"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Grip"
+		"model_player"							"models/items/morphling/skadi_rising_misc/skadi_rising_misc.vmdl"
+	}
+	"7559"
+	{
+		"name"									"Eye of the Lost Star"
+		"prefab"								"wearable"
+		"branding"
+		{
+			"corporation_id"					"100317750"
+		}
+		"creation_date"							"2015-08-19"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/morphling/skadi_rising_back/skadi_rising_back"
+		"item_description"						"#DOTA_Item_Desc_Eye_of_the_Lost_Star"
+		"item_name"								"#DOTA_Item_Eye_of_the_Lost_Star"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/morphling/skadi_rising_back/skadi_rising_back.vmdl"
+	}
+	"7560"
+	{
+		"name"									"Scowl of the Lost Star"
+		"prefab"								"wearable"
+		"branding"
+		{
+			"corporation_id"					"100317750"
+		}
+		"creation_date"							"2015-08-19"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/morphling/skadi_rising_head/skadi_rising_head"
+		"item_description"						"#DOTA_Item_Desc_Scowl_of_the_Lost_Star"
+		"item_name"								"#DOTA_Item_Scowl_of_the_Lost_Star"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Scowl"
+		"model_player"							"models/items/morphling/skadi_rising_head/skadi_rising_head.vmdl"
+	}
+	"7561"
+	{
+		"name"									"Spines of the Lost Star"
+		"prefab"								"wearable"
+		"branding"
+		{
+			"corporation_id"					"100317750"
+		}
+		"creation_date"							"2015-08-19"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/morphling/skadi_rising_shoulders/skadi_rising_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Spines_of_the_Lost_Star"
+		"item_name"								"#DOTA_Item_Spines_of_the_Lost_Star"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Spines"
+		"model_player"							"models/items/morphling/skadi_rising_shoulders/skadi_rising_shoulders.vmdl"
+	}
+	"7562"
+	{
+		"name"									"Bracers of the Lost Star"
+		"prefab"								"wearable"
+		"branding"
+		{
+			"corporation_id"					"100317750"
+		}
+		"creation_date"							"2015-08-19"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/morphling/skadi_rising_arms/skadi_rising_arms"
+		"item_description"						"#DOTA_Item_Desc_Bracers_of_the_Lost_Star"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Lost_Star"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/morphling/skadi_rising_arms/skadi_rising_arms.vmdl"
+	}
+	"7603"
+	{
+		"name"									"Crown of Tears"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-11"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/morphling/crown_of_tears/mesh/crown_of_tears_model"
+		"item_description"						"#DOTA_Item_Desc_Crown_of_Tears"
+		"item_name"								"#DOTA_Item_Crown_of_Tears"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"model_player"							"models/items/morphling/crown_of_tears/mesh/crown_of_tears_model.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"tears"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_morphling/morphling_waveform.vpcf"
+				"modifier"						"particles/econ/items/morphling/morphling_crown_of_tears/morphling_crown_waveform.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/morphling/morphling_crown_of_tears/morphling_crown_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/morphling/morphling_crown_of_tears/morphling_crown_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_crown"
+					}
+				}
+			}
+			"asset_modifier3"
+			{
+				"type"							"healthbar_offset"
+				"style"							"0"
+				"offset"						"160"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_morphling/morphling_waveform_dmg.vpcf"
+				"modifier"						"particles/econ/items/morphling/morphling_crown_of_tears/morphling_crown_waveform_dmg.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier5"
+			{
+				"type"							"ability_icon"
+				"asset"							"morphling_waveform"
+				"modifier"						"morphling/crown_of_tears/morphling_waveform"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+		}
+	}
+	"7687"
+	{
+		"name"									"Spray of the Roiling Surge"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-02"
+		"image_inventory"						"econ/items/morphling/armor_of_pure_absorption_shoulder/armor_of_pure_absorption_shoulder"
+		"item_name"								"#DOTA_Item_Spray_of_the_Roiling_Surge"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Spray"
+		"model_player"							"models/items/morphling/armor_of_pure_absorption_shoulder/armor_of_pure_absorption_shoulder.vmdl"
+	}
+	"7688"
+	{
+		"name"									"Curl of the Roiling Surge"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-02"
+		"image_inventory"						"econ/items/morphling/armor_of_pure_absorption_misc/armor_of_pure_absorption_misc"
+		"item_name"								"#DOTA_Item_Curl_of_the_Roiling_Surge"
+		"item_rarity"							"rare"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Curl"
+		"model_player"							"models/items/morphling/armor_of_pure_absorption_misc/armor_of_pure_absorption_misc.vmdl"
+	}
+	"7689"
+	{
+		"name"									"Crest of the Roiling Surge"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-02"
+		"image_inventory"						"econ/items/morphling/armor_of_pure_absorption_head/armor_of_pure_absorption_head"
+		"item_name"								"#DOTA_Item_Crest_of_the_Roiling_Surge"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Crest"
+		"model_player"							"models/items/morphling/armor_of_pure_absorption_head/armor_of_pure_absorption_head.vmdl"
+	}
+	"7690"
+	{
+		"name"									"Swell of the Roiling Surge"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-02"
+		"image_inventory"						"econ/items/morphling/armor_of_pure_absorption_back/armor_of_pure_absorption_back"
+		"item_name"								"#DOTA_Item_Swell_of_the_Roiling_Surge"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Swell"
+		"model_player"							"models/items/morphling/armor_of_pure_absorption_back/armor_of_pure_absorption_back.vmdl"
+	}
+	"7691"
+	{
+		"name"									"Drift of the Roiling Surge"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-02"
+		"image_inventory"						"econ/items/morphling/armor_of_pure_absorption_arms/armor_of_pure_absorption_arms"
+		"item_name"								"#DOTA_Item_Drift_of_the_Roiling_Surge"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Drift"
+		"model_player"							"models/items/morphling/armor_of_pure_absorption_arms/armor_of_pure_absorption_arms.vmdl"
+	}
+	"7721"
+	{
+		"name"									"Stellar Jade Trails"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-23"
+		"image_inventory"						"econ/items/morphling/renewed_jade_comet_shoulder/renewed_jade_comet_shoulder"
+		"item_name"								"#DOTA_Item_Stellar_Jade_Trails"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Trails"
+		"model_player"							"models/items/morphling/renewed_jade_comet_shoulder/renewed_jade_comet_shoulder.vmdl"
+	}
+	"7722"
+	{
+		"name"									"Stellar Jade Beads"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-23"
+		"image_inventory"						"econ/items/morphling/renewed_jade_comet_arms/renewed_jade_comet_arms"
+		"item_name"								"#DOTA_Item_Stellar_Jade_Beads"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Beads"
+		"model_player"							"models/items/morphling/renewed_jade_comet_arms/renewed_jade_comet_arms.vmdl"
+	}
+	"7723"
+	{
+		"name"									"Stellar Jade Crest"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-23"
+		"image_inventory"						"econ/items/morphling/renewed_jade_comet_back/renewed_jade_comet_back"
+		"item_name"								"#DOTA_Item_Stellar_Jade_Crest"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Crest"
+		"model_player"							"models/items/morphling/renewed_jade_comet_back/renewed_jade_comet_back.vmdl"
+	}
+	"7724"
+	{
+		"name"									"Stellar Jade Mask"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-23"
+		"image_inventory"						"econ/items/morphling/renewed_jade_comet_head/renewed_jade_comet_head"
+		"item_name"								"#DOTA_Item_Stellar_Jade_Mask"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/morphling/renewed_jade_comet_head/renewed_jade_comet_head.vmdl"
+	}
+	"8806"
+	{
+		"name"									"Crown of the Protean Emperor"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-20"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/morphling/emperor_of_the_sea_head/emperor_of_the_sea_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Protean_Emperor"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Crown"
+		"model_player"							"models/items/morphling/emperor_of_the_sea_head/emperor_of_the_sea_head.vmdl"
+	}
+	"8807"
+	{
+		"name"									"Ornaments of the Protean Emperor"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-20"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/morphling/emperor_of_the_sea_misc/emperor_of_the_sea_misc"
+		"item_name"								"#DOTA_Item_Ornaments_of_the_Protean_Emperor"
+		"item_rarity"							"mythical"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_Ornaments"
+		"model_player"							"models/items/morphling/emperor_of_the_sea_misc/emperor_of_the_sea_misc.vmdl"
+	}
+	"8808"
+	{
+		"name"									"Pauldrons of the Protean Emperor"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-20"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/morphling/emperor_of_the_sea_shoulder/emperor_of_the_sea_shoulder"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Protean_Emperor"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/morphling/emperor_of_the_sea_shoulder/emperor_of_the_sea_shoulder.vmdl"
+	}
+	"8809"
+	{
+		"name"									"Bracers of the Protean Emperor"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-20"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/morphling/emperor_of_the_sea_arms/emperor_of_the_sea_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Protean_Emperor"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/morphling/emperor_of_the_sea_arms/emperor_of_the_sea_arms.vmdl"
+	}
+	"8810"
+	{
+		"name"									"Spikes of the Protean Emperor"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-20"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/morphling/emperor_of_the_sea_back/emperor_of_the_sea_back"
+		"item_name"								"#DOTA_Item_Spikes_of_the_Protean_Emperor"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Spikes"
+		"model_player"							"models/items/morphling/emperor_of_the_sea_back/emperor_of_the_sea_back.vmdl"
+	}
+	"10154"
+	{
+		"name"									"Expired Treasure of Tidal Power"
+		"prefab"								"retired_treasure_chest"
+		"associated_item"						"15003"
+		"expiration_date"						"2014-06-01 00:00:00"
+		"image_inventory"						"econ/tools/treasure_chest_morphling"
+		"item_description"						"#DOTA_Item_Desc_Treasure_of_Tidal_Power"
+		"item_name"								"#DOTA_Item_Expired_Treasure_of_Tidal_Power"
+		"item_type_name"						"#DOTA_WearableType_Treasure"
+		"static_attributes"
+		{
+			"treasure loot list"
+			{
+				"attribute_class"				"treasure loot list"
+				"value"							"treasure_chest_25_hero_morphling"
+			}
+		}
+		"tool"
+		{
+			"type"								"supply_crate"
+		}
+	}
+	"13771"
+	{
+		"name"									"Taunt: Sawed-off Watergun"
+		"prefab"								"taunt"
+		"creation_date"							"2020-05-25"
+		"hide_tradecraftdelete"					"1"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/taunts/dota_icon_taunt_morphling_ti10"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Sawedoff_Watergun"
+		"item_name"								"#DOTA_Item_Taunt_Sawedoff_Watergun"
+		"item_rarity"							"mythical"
+		"reward_can_be_shown_in_toast"			"1"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_TI10_Limited_Tradeability"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"shotgun_gesture"
+				"gesture"						"1"
+				"style"							"0"
+			}
+		}
+	}
+	"19163"
+	{
+		"name"									"Darktrench Stalker - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/morphling/abyss_overlord_back/abyss_overlord_back"
+		"item_name"								"#DOTA_Item_Darktrench_Stalker__Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/morphling/abyss_overlord_back/abyss_overlord_back.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/morphling/morph_abyss_overlord/morph_abyss_back_ambient.vpcf"
+			}
+		}
+	}
+	"19164"
+	{
+		"name"									"Darktrench Stalker - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/morphling/abyss_overlord_head/abyss_overlord_head"
+		"item_name"								"#DOTA_Item_Darktrench_Stalker__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/morphling/abyss_overlord_head/abyss_overlord_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/morphling/morph_abyss_overlord/morph_abyss_head_ambient.vpcf"
+			}
+		}
+	}
+	"19166"
+	{
+		"name"									"Darktrench Stalker - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/morphling/abyss_overlord_arms/abyss_overlord_arms"
+		"item_name"								"#DOTA_Item_Darktrench_Stalker__Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/morphling/abyss_overlord_arms/abyss_overlord_arms.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/morphling/morph_abyss_overlord/morph_abyss_arms_ambient.vpcf"
+			}
+		}
+	}
+	"19167"
+	{
+		"name"									"Darktrench Stalker - Misc"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/morphling/abyss_overlord_misc/abyss_overlord_misc"
+		"item_name"								"#DOTA_Item_Darktrench_Stalker__Misc"
+		"item_rarity"							"mythical"
+		"item_slot"								"misc"
+		"item_type_name"						"#DOTA_WearableType_misc"
+		"model_player"							"models/items/morphling/abyss_overlord_misc/abyss_overlord_misc.vmdl"
+	}
+	"19168"
+	{
+		"name"									"Darktrench Stalker - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/morphling/abyss_overlord_shoulder/abyss_overlord_shoulder"
+		"item_name"								"#DOTA_Item_Darktrench_Stalker__Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/morphling/abyss_overlord_shoulder/abyss_overlord_shoulder.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/morphling/morph_abyss_overlord/morph_abyss_shoulder_ambient.vpcf"
+			}
+		}
+	}
+	"20020"
+	{
+		"name"									"Direstone Bindings Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Direstone Bracers"					"1"
+			"Direstone Crests"					"1"
+			"Direstone Crown"					"1"
+			"Direstone Pauldrons"				"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Direstone_Bindings_Set"
+		"item_description"						"#DOTA_Item_Desc_Direstone_Bindings_Set"
+		"item_name"								"#DOTA_Item_Direstone_Bindings_Set"
+	}
+	"20039"
+	{
+		"name"									"Radiant Crystal Bindings Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Radiant Crystal Bracer"			"1"
+			"Radiant Crystal Crests"			"1"
+			"Radiant Crystal Crown"				"1"
+			"Radiant Crystal Pauldrons"			"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Radiant_Crystal_Bindings_Set"
+		"item_description"						"#DOTA_Bundle_Desc_Morphling_Radiant_Crystal"
+		"item_name"								"#DOTA_Item_Radiant_Crystal_Bindings_Set"
+	}
+	"20056"
+	{
+		"name"									"Shards of Polymorphia Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Crests of Polymorphia"				"1"
+			"Crown of Polymorphia"				"1"
+			"Pauldrons of Polymorphia"			"1"
+			"Bracers of Polymorphia"			"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Shards_of_Polymorphia_Set"
+		"item_description"						"#DOTA_Item_Desc_Shards_of_Polymorphia_Set"
+		"item_name"								"#DOTA_Item_Shards_of_Polymorphia_Set"
+		"item_rarity"							"uncommon"
+	}
+	"20057"
+	{
+		"name"									"Bindings of Frost Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Frost Shard Armlets"				"1"
+			"Frost Shard Crown"					"1"
+			"Frost Shard Pauldrons"				"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Bindings_of_Frost_Set"
+		"item_description"						"#DOTA_Item_Desc_Bindings_of_Frost_Set"
+		"item_name"								"#DOTA_Item_Bindings_of_Frost_Set"
+		"item_rarity"							"uncommon"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Uncommon"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"249"
+		}
+	}
+	"20058"
+	{
+		"name"									"Birot's Bindings Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Birot's Bracers of Dignity"		"1"
+			"Birot's Crests of Dignity"			"1"
+			"Birot's Helm of Dignity"			"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Birots_Bindings_Set"
+		"item_description"						"#DOTA_Item_Desc_Birots_Bindings_Set"
+		"item_name"								"#DOTA_Item_Birots_Bindings_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20059"
+	{
+		"name"									"Shards of the Falling Comet Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Crown of the Falling Comet"		"1"
+			"Crests of the Falling Comet"		"1"
+			"Armlets of the Falling Comet"		"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Shards_of_the_Falling_Comet_Set"
+		"item_description"						"#DOTA_Item_Desc_Shards_of_the_Falling_Comet"
+		"item_name"								"#DOTA_Item_Shards_of_the_Falling_Comet_Set"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Common"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"249"
+		}
+	}
+	"20199"
+	{
+		"name"									"Luminary of the Dreadful Abyss Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Thrashers of the Dreadful Abyss"	"1"
+			"Tendrils of the Dreadful Abyss"	"1"
+			"Spines of the Dreadful Abyss"		"1"
+		}
+		"creation_date"							"2013-07-09"
+		"image_inventory"						"econ/sets/DOTA_Item_Luminary_of_the_Dreadful_Abyss_Set"
+		"item_description"						"#DOTA_Item_Desc_Luminary_of_the_Dreadful_Abyss_Set"
+		"item_name"								"#DOTA_Item_Luminary_of_the_Dreadful_Abyss_Set"
+		"item_rarity"							"uncommon"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Uncommon"
+			"category_tags"						"Bundles"
+			"date"								"7/9/2013"
+			"bundle"							"1"
+			"price"								"249"
+		}
+	}
+	"20241"
+	{
+		"name"									"Gift of the Sea Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Gift of the Sea Arms"				"1"
+			"Gift of the Sea Head"				"1"
+			"Gift of the Sea Shoulders"			"1"
+			"Gift of the Sea Dorsal Wings"		"1"
+			"Gift of the Sea Fin"				"1"
+		}
+		"creation_date"							"2013-08-16"
+		"image_inventory"						"econ/sets/DOTA_Item_Gift_of_the_Sea_Set"
+		"item_description"						"#DOTA_Item_Desc_Gift_of_the_Sea_Set"
+		"item_name"								"#DOTA_Item_Gift_of_the_Sea_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"8/16/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20260"
+	{
+		"name"									"Ancient Armor Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Ancient Armor Arms"				"1"
+			"Ancient Armor Breastplates"		"1"
+			"Ancient Armor Helmet"				"1"
+			"Ancient Armor Back"				"1"
+			"Ancient Armor Shoulder Shields"	"1"
+		}
+		"creation_date"							"2013-09-25"
+		"image_inventory"						"econ/sets/DOTA_Item_Ancient_Armor_Set"
+		"item_description"						"#DOTA_Item_Desc_Ancient_Armor_Set"
+		"item_name"								"#DOTA_Item_Ancient_Armor_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"9/25/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20749"
+	{
+		"name"									"Shard of the Lost Star"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Scowl of the Lost Star"			"1"
+			"Eye of the Lost Star"				"1"
+			"Spines of the Lost Star"			"1"
+			"Grip of the Lost Star"				"1"
+			"Bracers of the Lost Star"			"1"
+			"Shard of the Lost Star Loading Screen""1"
+		}
+		"creation_date"							"2015-08-19"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/loading_screens/skadi_rising_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Skadi_Rising"
+		"item_name"								"#DOTA_Item_Shard_of_the_Lost_Star"
+		"item_rarity"							"mythical"
+		"branding"
+		{
+			"corporation_id"					"100317750"
+		}
+	}
+	"20762"
+	{
+		"name"									"Stellar Jade"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Stellar Jade Trails"				"1"
+			"Stellar Jade Mask"					"1"
+			"Stellar Jade Loading Screen"		"1"
+			"Stellar Jade Beads"				"1"
+			"Stellar Jade Crest"				"1"
+		}
+		"creation_date"							"2015-02-23"
+		"image_inventory"						"econ/loading_screens/renewed_jade_comet_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Stellar_Jade"
+		"item_name"								"#DOTA_Item_Stellar_Jade"
+		"item_rarity"							"rare"
+	}
+	"20896"
+	{
+		"name"									"The Roiling Surge"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Drift of the Roiling Surge"		"1"
+			"Swell of the Roiling Surge"		"1"
+			"Crest of the Roiling Surge"		"1"
+			"Curl of the Roiling Surge"			"1"
+			"Spray of the Roiling Surge"		"1"
+			"The Roiling Surge Loading Screen"	"1"
+		}
+		"creation_date"							"2015-09-30"
+		"image_inventory"						"econ/loading_screens/armor_of_pure_absorption_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_The_Roiling_Surge"
+		"item_name"								"#DOTA_Item_The_Roiling_Surge"
+		"item_rarity"							"rare"
+	}
+	"20978"
+	{
+		"name"									"Splendor of the Protean Emperor"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Crown of the Protean Emperor"		"1"
+			"Ornaments of the Protean Emperor"	"1"
+			"Pauldrons of the Protean Emperor"	"1"
+			"Bracers of the Protean Emperor"	"1"
+			"Spikes of the Protean Emperor"		"1"
+			"Splendor of the Protean Emperor Loading Screen""1"
+		}
+		"creation_date"							"2016-01-08"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/emperor_of_the_sea_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Splendor_of_the_Protean_Emperor"
+		"item_name"								"#DOTA_Item_Splendor_of_the_Protean_Emperor"
+		"item_rarity"							"mythical"
+	}
+	"21843"
+	{
+		"name"									"Darktrench Stalker"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Darktrench Stalker - Arms"			"1"
+			"Darktrench Stalker - Back"			"1"
+			"Darktrench Stalker - Head"			"1"
+			"Darktrench Stalker Loading Screen"	"1"
+			"Darktrench Stalker - Misc"			"1"
+			"Darktrench Stalker - Shoulder"		"1"
+		}
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/loading_screens/abyss_overlord_ls"
+		"item_name"								"#DOTA_Item_Darktrench_Stalker"
+		"item_rarity"							"mythical"
+	}
+}

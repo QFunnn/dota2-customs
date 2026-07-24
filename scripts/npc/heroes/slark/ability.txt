@@ -1,0 +1,72 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"slark_essence_shift_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_slark/slark_essence_shift_lua.lua"
+		"AbilityTextureName"					"slark_essence_shift"
+		"AbilityType"							"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_NO"
+		"precache"
+		{
+			"particle"							"particles/units/heroes/hero_slark/slark_essence_shift.vpcf"
+		}
+		"AbilityValues"
+		{
+			"stat_loss"							"1"
+			"agi_gain"
+			{
+				"value"							"3"
+				"special_bonus_unique_slark_5"	"+1"
+			}
+			"creep_agi_gain"
+			{
+				"value"							"1"
+				"special_bonus_unique_slark_5"	"+1"
+			}
+			"duration"
+			{
+				"value"							"15 30 45 60"
+				"special_bonus_unique_slark_4"	"+40"
+			}
+		}
+	}
+	"slark_depth_shroud_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_slark/slark_depth_shroud_lua.lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+		"MaxLevel"								"1"
+		"AbilityTextureName"					"slark_depth_shroud"
+		"AbilityType"							"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastRange"						"600"
+		"AbilityCastPoint"						"0.1"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCooldown"						"75"
+		"AbilityManaCost"						"75"
+		"AbilityValues"
+		{
+			"duration"
+			{
+				"value"							"3"
+			}
+			"radius"
+			{
+				"value"							"250"
+				"affected_by_aoe_increase"		"1"
+			}
+		}
+	}
+}

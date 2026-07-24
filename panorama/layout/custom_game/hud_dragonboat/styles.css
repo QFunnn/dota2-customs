@@ -1,0 +1,951 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.HudRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+
+#DragonBoatRoot
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+}
+
+#DragonBoatRoot.show
+{
+	opacity: 1;
+}
+
+#DragonBoatScale
+{
+	width: 1920px;
+	height: 1080px;
+	align: center center;
+}
+
+#DragonBoatCloseBtn
+{
+	width: 52px;
+	height: 54px;
+	align: right top;
+	margin-top: 121px;
+	margin-right: 189px;
+	background-image: url("s2r://panorama/images/custom_game/hero_skin/btn_close_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	z-index: 10;
+}
+
+#DragonBoatCloseBtn:hover
+{
+	brightness: 2;
+}
+
+#DragonBoatCloseBtn:active
+{
+	pre-transform-scale2d: 0.95;
+}
+
+#Activity_DragonBoat
+{
+	width: 100%;
+	height: 100%;
+}
+
+#Activity_DragonBoat #CurrencyTopBar
+{
+	width: 1526px;
+	height: 80px;
+	horizontal-align: center;
+	z-index: 2;
+	margin-top: 150px;
+}
+
+#Activity_DragonBoat #CurrencyTopBar .EOM_Panel
+{
+	margin-top: 0px;
+}
+
+#Activity_DragonBoat #CurrencyTopBar .EOM_Currency
+{
+	width: 146px;
+	margin: 0px 6px;
+	vertical-align: bottom;
+	tooltip-position: bottom;
+	flow-children: down;
+}
+
+#Activity_DragonBoat #CurrencyTopBar .EOM_Currency .EOM_Feedback
+{
+	horizontal-align: center;
+}
+
+#Activity_DragonBoat #CurrencyTopBar .EOM_Currency .EOM_Feedback Label
+{
+	font-size: 10px;
+	color: #3AC7DB;
+	text-decoration: underline;
+}
+
+#Activity_DragonBoat #CurrencyTopBar .EOM_Currency .EOM_Feedback:hover
+{
+	brightness: 2;
+}
+
+#Activity_DragonBoat #CurrencyTopBar .EOM_Currency .EOM_Feedback:active
+{
+	brightness: 0.5;
+	sound: "ui_generic_button_click";
+}
+
+#Activity_DragonBoat #CurrencyTopBar .EOM_Currency .EOM_CurrencyContainer
+{
+	vertical-align: bottom;
+	tooltip-position: bottom;
+}
+
+#Activity_DragonBoat #CurrencyTopBar .EOM_Currency .EOM_CurrencyContainer .EOM_CurrencyIcon
+{
+	vertical-align: center;
+	width: 26px;
+	height: 26px;
+}
+
+#Activity_DragonBoat #CurrencyTopBar .EOM_Currency .EOM_CurrencyContainer .EOM_CurrencyLabelContainer
+{
+	vertical-align: center;
+	width: 138px;
+	height: 26px;
+	margin-left: 14px;
+	margin-right: 13px;
+	background-color: #060D14;
+	border: 1px solid #394860;
+	z-index: -1;
+}
+
+#Activity_DragonBoat #CurrencyTopBar .EOM_Currency .EOM_CurrencyContainer .EOM_CurrencyLabelContainer Label
+{
+	vertical-align: center;
+	margin-left: 23px;
+	font-size: 16px;
+	color: #FAE9AE;
+	text-overflow: shrink;
+	width: 84px;
+}
+
+#Activity_DragonBoat #CurrencyTopBar .EOM_Currency .EOM_CurrencyContainer .EOM_CurrencyRecharge
+{
+	width: 26px;
+	height: 26px;
+	horizontal-align: right;
+}
+
+#Activity_DragonBoat #CurrencyTopBar .EOM_Currency .EOM_CurrencyContainer .EOM_CurrencyRecharge .EOM_Image
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/p2/btn_add_png.vtex");
+}
+
+#Activity_DragonBoat #CollaborationLogo
+{
+	width: 310px;
+	height: 132px;
+	horizontal-align: left;
+	vertical-align: top;
+	margin-left: 220px;
+	margin-top: 154px;
+	z-index: 6;
+}
+
+#Activity_DragonBoat .InfoButton
+{
+	horizontal-align: center;
+	margin-top: 165px;
+	x: 272px;
+	z-index: 100;
+}
+
+#Activity_DragonBoat .InfoButton .InfoButtonIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/football/f5_icon_info_png.vtex");
+	background-size: 100%;
+	width: 38px;
+	height: 38px;
+	horizontal-align: center;
+	margin-bottom: 4px;
+}
+
+#Activity_DragonBoat .InfoButton .InfoButtonLabel
+{
+	vertical-align: bottom;
+	background-image: url("s2r://panorama/images/custom_game/draw/c_word_bg_01_png.vtex");
+	background-size: 100%;
+	width: 84px;
+	height: 22px;
+	horizontal-align: center;
+}
+
+#Activity_DragonBoat .InfoButton .InfoButtonLabel.russian Label,#Activity_DragonBoat .InfoButton .InfoButtonLabel.english Label
+{
+	font-size: 10px;
+	text-overflow: noclip;
+}
+
+#Activity_DragonBoat .InfoButton .InfoButtonLabel Label
+{
+	align: center center;
+	text-align: center;
+	font-size: 16px;
+	color: #FFF5DB;
+	text-shadow: 0px 0px 2px 1 #316999;
+	text-overflow: shrink;
+}
+
+#Activity_DragonBoat #ActivityMainContent
+{
+	width: 100%;
+	height: 100%;
+	opacity: 1;
+	transition-property: transform, opacity;
+	transform: translateY(0);
+	transition-duration: 0.2s;
+	transition-timing-function: ease-out;
+	overflow: noclip;
+}
+
+#Activity_DragonBoat #ActivityMainContent #DragonBoatBackground
+{
+	width: 1526px;
+	height: 864px;
+	align: center center;
+	y: 30px;
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/football/f5_bj_png.vtex");
+	background-size: 100%;
+}
+
+#Activity_DragonBoat #ActivityMainContent #ActivityTitle
+{
+	x: -13px;
+	width: 588px;
+	height: 144px;
+	align: center top;
+	margin-top: 148px;
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/football/f5_title_en_png.vtex");
+	background-size: 100%;
+}
+
+#Activity_DragonBoat #ActivityMainContent #ActivityTitle.english
+{
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/football/f5_title_en_png.vtex");
+}
+
+#Activity_DragonBoat #ActivityMainContent #ActivityTitle.russian
+{
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/football/f5_title_ru_png.vtex");
+}
+
+#Activity_DragonBoat #ActivityMainContent #ActivityTitle.schinese
+{
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/football/f5_title_cn_png.vtex");
+}
+
+#Activity_DragonBoat #ActivityMainContent #TimeBG
+{
+	x: 25px;
+	width: 402px;
+	height: 38px;
+	align: center top;
+	margin-top: 282px;
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/football/f5_board_time_png.vtex");
+	background-size: 100%;
+}
+
+#Activity_DragonBoat #ActivityMainContent #TimeBG #TimeIcon
+{
+	height: 28px;
+	width: 28px;
+	margin-top: 5px;
+	margin-left: 102px;
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/football/icon_clock_png.vtex");
+	background-size: 100%;
+}
+
+#Activity_DragonBoat #ActivityMainContent #TimeBG #TimeText
+{
+	width: 188px;
+	font-size: 18px;
+	color: #FFEA82;
+	vertical-align: center;
+	text-align: center;
+}
+
+#Activity_DragonBoat #ActivityMainContent #TimeBG Label
+{
+	font-size: 20px;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#B0EFFF), to(#F0FCFF));
+	text-shadow: 0px 0px 8px 2 #0F081D;
+	text-overflow: shrink;
+}
+
+#Activity_DragonBoat #ActivityMainContent #JoinButton
+{
+	x: -18px;
+	y: 49px;
+	width: 430px;
+	height: 188px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/football/f5_button_big_png.vtex");
+	background-size: 100%;
+}
+
+#Activity_DragonBoat #ActivityMainContent #JoinButton #TextJoin
+{
+	y: 17px;
+	align: center center;
+	font-size: 48px;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#F4CA90), to(#FFF1BB));
+	text-shadow: 2px 0px 1px #000000;
+}
+
+#Activity_DragonBoat #ActivityMainContent #JoinButton:disabled
+{
+	saturation: 0.4;
+	brightness: 0.8;
+}
+
+#Activity_DragonBoat #ActivityMainContent #TextBG
+{
+	x: -18px;
+	y: 169px;
+	width: 378px;
+	height: 36px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/football/f5_board_png.vtex");
+	background-size: 100%;
+}
+
+#Activity_DragonBoat #ActivityMainContent #TextBG #JoinText
+{
+	align: center center;
+	font-size: 18px;
+	color: #FFF5C5;
+	text-overflow: shrink;
+}
+
+#Activity_DragonBoat #ActivityMainContent #TextBG #JoinTicketIcon
+{
+	width: 32px;
+	height: 32px;
+	margin-left: 4px;
+	vertical-align: center;
+}
+
+#Activity_DragonBoat #ActivityMainContent .MatchingIcon
+{
+	width: 98px;
+	height: 102px;
+	horizontal-align: center;
+}
+
+#Activity_DragonBoat #ActivityMainContent .MatchingIcon.Loading
+{
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/s12_loading_png.vtex");
+	background-size: 100%;
+	animation-name: Rotate;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+#Activity_DragonBoat #ActivityMainContent .MatchingIcon.Checked
+{
+	background-image: url("s2r://panorama/images/custom_game/icon/icon_party_ready_psd_png.vtex");
+	background-size: 64px 64px;
+	background-position: center;
+	background-repeat: no-repeat;
+	animation-name: MatchedPopupUp;
+	animation-duration: 0.2s;
+}
+
+#Activity_DragonBoat #ActivityMainContent #LoadingText
+{
+	horizontal-align: center;
+	font-size: 24px;
+	margin-bottom: 6px;
+	color: #ffffff;
+	text-shadow: 0px 0px 3px 3 #000000;
+}
+
+#Activity_DragonBoat #ActivityMainContent #EstimateText
+{
+	horizontal-align: center;
+	font-size: 24px;
+	margin-top: 4px;
+	color: #ffffff;
+	text-shadow: 0px 0px 3px 3 #000000;
+}
+
+#Activity_DragonBoat #ActivityMainContent #WaitBG
+{
+	width: 388px;
+	height: 156px;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/football/f5_button_small_png.vtex");
+	background-size: 100%;
+	padding: 26px 34px 18px 34px;
+	saturation: 0.95;
+}
+
+#Activity_DragonBoat #ActivityMainContent #WaitBG:disabled
+{
+	brightness: 1;
+}
+
+#Activity_DragonBoat #ActivityMainContent #WaitBG.Success
+{
+	saturation: 1;
+}
+
+#Activity_DragonBoat #ActivityMainContent #WaitBG #WaitText
+{
+	margin-top: 20px;
+	horizontal-align: center;
+	text-align: center;
+}
+
+#Activity_DragonBoat #ActivityMainContent #WaitBG #WaitTime
+{
+	margin-top: 25px;
+	align: center center;
+	text-align: center;
+	font-size: 34px;
+}
+
+#Activity_DragonBoat #ActivityMainContent #WaitBG Label
+{
+	font-size: 22px;
+	color: #ffffff;
+}
+
+#Activity_DragonBoat #ActivityMainContent #CompetitionScene
+{
+	margin-top: 279px;
+	horizontal-align: center;
+	x: 18px;
+}
+
+#Activity_DragonBoat #ActivityMainContent #CompetitionScene #BoatPosition
+{
+	padding-top: 20px;
+	padding-bottom: 20px;
+	horizontal-align: center;
+	overflow: noclip;
+}
+
+#Activity_DragonBoat #ActivityMainContent #CompetitionScene #BoatPosition #LastUpRope
+{
+	vertical-align: bottom;
+	margin-left: 228px;
+	margin-bottom: 0px;
+	height: 76px;
+	width: 946px;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/football/f5_guardrail_png.vtex");
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad
+{
+	y: -20px;
+	padding-top: 20px;
+	height: 194px;
+	flow-children: right;
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad.Index_1
+{
+	margin-top: 91px;
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad.Index_2
+{
+	margin-top: 189px;
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad.Index_3
+{
+	margin-top: 284px;
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad.Index_4
+{
+	margin-top: 382px;
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad #Road
+{
+	margin-left: 8px;
+	height: 100%;
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad #Road #UpRope
+{
+	height: 76px;
+	width: 946px;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/football/f5_guardrail_png.vtex");
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad #PlayerBG
+{
+	margin-top: 69px;
+	padding: 0px 10px 4px 10px;
+	width: 220px;
+	height: 84px;
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/football/f5_name_bottom_01_png.vtex");
+	background-size: 100%;
+	flow-children: right;
+	z-index: 2;
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad #PlayerBG.self
+{
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/football/f5_name_bottom_02_png.vtex");
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad #PlayerBG #Avatar
+{
+	width: 66px;
+	height: 66px;
+	margin-left: 4px;
+	vertical-align: center;
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad #PlayerBG #PlayerName
+{
+	width: 126px;
+	height: 24px;
+	margin-left: 22px;
+	vertical-align: center;
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad #PlayerBG #PlayerName #PlayerNameLabel
+{
+	width: 126px;
+	height: 24px;
+	font-size: 18px;
+	color: #ffffff;
+	text-shadow: 0px 0px 3px 3 #0F081D;
+	text-overflow: shrink;
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad #PlayerBG #PlayerName .HiddenUserName
+{
+	width: 0px;
+	height: 0px;
+	opacity: 0;
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad #Rank
+{
+	height: 122px;
+	width: 124px;
+	margin-top: 24px;
+	margin-left: -2px;
+	background-size: 100%;
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad #Rank.Rank0
+{
+	opacity: 1;
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad #Rank.Rank1
+{
+	margin-top: -4px;
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/football/f5_trophy_01_png.vtex");
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad #Rank.Rank2
+{
+	margin-top: 13px;
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/football/f2_trophy_02_png.vtex");
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad #Rank.Rank3
+{
+	margin-top: 23px;
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/football/f2_trophy_03_png.vtex");
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad #Rank.Rank4
+{
+	margin-top: 35px;
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/football/f5_trophy_04_png.vtex");
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad #Rank.Rank5
+{
+	margin-top: 55px;
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/football/f5_trophy_05_png.vtex");
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad #BoatContainer
+{
+	margin-top: -38px;
+	margin-left: 190px;
+	ignore-parent-flow: true;
+	transition-property: transform, brightness;
+	transition-duration: 0.1s;
+	transition-timing-function: linear;
+	z-index: 1;
+	overflow: noclip;
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad #BoatContainer.Hover
+{
+	brightness: 1.2;
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad #BoatContainer #RankInfo
+{
+	margin-top: 20px;
+	margin-left: 95px;
+	width: 74px;
+	height: 58px;
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/football/f5_bubble_png.vtex");
+	background-size: 100%;
+	overflow: noclip;
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad #BoatContainer #RankInfo.self
+{
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/football/f5_bubble_png.vtex");
+	hue-rotation: 120deg;
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad #BoatContainer #RankInfo Label
+{
+	margin-bottom: 8px;
+	align: center center;
+	font-size: 24px;
+	color: #ffffff;
+	text-shadow: 0px 0px 3px 3 black;
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad #Boat
+{
+	horizontal-align: right;
+	height: 194px;
+	width: 180px;
+	margin-right: 0px;
+	background-size: 100%;
+	img-shadow: 0px 0px 3px 3 #000000;
+	transition-property: brightness;
+	transition-duration: 0.1s;
+	transition-timing-function: linear;
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad #Boat.Hero1
+{
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/football/f2_hero_01_png.vtex");
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad #Boat.Hero2
+{
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/football/f2_hero_02_png.vtex");
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad #Boat.Hero3
+{
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/football/f2_hero_03_png.vtex");
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad #Boat.Hero4
+{
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/football/f2_hero_04_png.vtex");
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad #Boat.self
+{
+	brightness: 1.18;
+}
+
+#Activity_DragonBoat #ActivityMainContent #PlayerRoad #Boat #BoatTooltipBox
+{
+	align: center bottom;
+	width: 116px;
+	height: 90px;
+	margin-bottom: 20px;
+}
+
+#Activity_DragonBoat #ActivityMainContent #RewardButton
+{
+	width: 388px;
+	height: 156px;
+	align: center bottom;
+	margin-bottom: 83px;
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/football/f5_button_receive_png.vtex");
+	background-size: 100%;
+	padding: 26px 34px 18px 34px;
+	z-index: 3;
+}
+
+#Activity_DragonBoat #ActivityMainContent #RewardButton:disabled
+{
+	brightness: 0.72;
+	saturation: 0.8;
+}
+
+#Activity_DragonBoat #ActivityMainContent #RewardButton:enabled
+{
+	animation-name: RewardBoxJump;
+	animation-duration: 2s;
+	animation-timing-function: ease-out;
+	animation-iteration-count: infinite;
+}
+
+#Activity_DragonBoat #ActivityMainContent #RewardButton:enabled #RewardBox
+{
+	animation-name: RewardBoxShining;
+	animation-duration: 2s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+#Activity_DragonBoat #ActivityMainContent #RewardButton.Received #Checked
+{
+	opacity: 1;
+}
+
+#Activity_DragonBoat #ActivityMainContent #RewardButton .MenuMarkIcon
+{
+	width: 38px;
+	height: 38px;
+	align: right top;
+	margin-top: 34px;
+	margin-right: 38px;
+	background-color: #f9d64f;
+	border-radius: 50%;
+}
+
+#Activity_DragonBoat #ActivityMainContent #RewardButton #RewardBox
+{
+	tooltip-position: top;
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+	opacity: 0;
+}
+
+#Activity_DragonBoat #ActivityMainContent #RewardButton #RewardButtonText
+{
+	align: center center;
+	margin-top: 20px;
+	margin-bottom: 6px;
+	font-size: 36px;
+	color: #ffffff;
+	text-shadow: 0px 0px 4px 3 #000000;
+	text-overflow: shrink;
+}
+
+#Activity_DragonBoat #ActivityMainContent #RewardButton #Checked
+{
+	opacity: 0;
+	align: center center;
+	width: 84px;
+	height: 78px;
+	background-image: url("s2r://panorama/images/custom_game/icon/selected_png.vtex");
+	background-size: 100%;
+}
+
+#Activity_DragonBoat #ActivityMainContent #MatchSuccess
+{
+	animation-name: DragonBoatMatchSuccess;
+	animation-duration: 0.4s;
+	align: center center;
+	y: 100px;
+}
+
+#Activity_DragonBoat #MatchingContent
+{
+	flow-children: down;
+	y: 30px;
+	align: center center;
+}
+
+#Activity_DragonBoat #MatchCountDown
+{
+	width: 388px;
+	height: 156px;
+	align: center bottom;
+	margin-bottom: 83px;
+}
+
+#Activity_DragonBoat #MatchCountDown:disabled
+{
+	saturation: 1;
+	brightness: 1;
+}
+
+#Activity_DragonBoat #MatchCountDown:disabled #MatchCountdownBG
+{
+	brightness: 0.8;
+}
+
+#Activity_DragonBoat #MatchCountDown:enabled #MatchCountdownBG
+{
+	hue-rotation: -90deg;
+}
+
+#Activity_DragonBoat #MatchCountDown #MatchCountdownBG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/activity/dragonboat/football/f5_button_small_png.vtex");
+	background-size: 100%;
+}
+
+#Activity_DragonBoat #MatchCountDown #MatchCountdownMain
+{
+	margin: 32px 10px 4px 10px;
+}
+
+#Activity_DragonBoat #MatchCountDown #EndCountDownLabel2
+{
+	font-size: 28px;
+	color: #ffffff;
+	text-shadow: 0px 0px 3px 3 #000000;
+}
+
+#Activity_DragonBoat #MatchCountDown #EndCountDownLabel
+{
+	font-size: 18px;
+	color: #ffffff;
+}
+
+#Activity_DragonBoat #MatchCountDown #RaceCountdownText
+{
+	font-size: 18px;
+	color: #ffffff;
+}
+
+#Activity_DragonBoat #MatchCountDown Label
+{
+	horizontal-align: center;
+	text-align: center;
+}
+
+#Activity_DragonBoat #MatchCountDown Countdown
+{
+	horizontal-align: center;
+}
+
+#Activity_DragonBoat #MatchCountDown Countdown Label
+{
+	font-size: 18px;
+	color: #ffffff;
+}
+
+@keyframes 'RewardBoxJump'
+{
+	0%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+	5%
+	{
+		pre-transform-scale2d: 0.98;
+		transform: translateY(-10px) rotateZ(3deg);
+	}
+	
+	10%
+	{
+		pre-transform-scale2d: 1.05;
+		transform: translateY(-5px) rotateZ(-1deg);
+	}
+	
+	15%
+	{
+		pre-transform-scale2d: 1;
+		transform: translateY(0px) rotateZ(0deg);
+	}
+	
+}
+
+@keyframes 'RewardBoxShining'
+{
+	0%
+	{
+		img-shadow: 0px 0px 6px 0px #ffffff33;
+	}
+	
+	50%
+	{
+		img-shadow: 0px 0px 12px 0px #ffd95ccc;
+	}
+	
+	100%
+	{
+		img-shadow: 0px 0px 6px 0px #ffffff33;
+	}
+	
+}
+
+@keyframes 'MatchedPopupUp'
+{
+	0%
+	{
+		pre-transform-scale2d: 0;
+		opacity: 0;
+	}
+	
+	90%
+	{
+		pre-transform-scale2d: 1.1;
+		opacity: 1;
+		brightness: 1.2;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1;
+		brightness: 1;
+	}
+	
+}
+
+@keyframes 'Rotate'
+{
+	0%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+	50%
+	{
+		transform: rotateZ(-180deg);
+	}
+	
+	100%
+	{
+		transform: rotateZ(-360deg);
+	}
+	
+}

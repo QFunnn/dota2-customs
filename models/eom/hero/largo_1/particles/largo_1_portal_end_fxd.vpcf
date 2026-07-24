@@ -1,0 +1,225 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf65:version{48e806a9-c210-4cd8-811a-38b5ef63b195} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nMaxParticles = 16
+	m_flConstantRadius = 128.0
+	m_nConstantSequenceNumber = 6
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 6
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetControlPointPositions"
+			m_vecCP1Pos = [ 0.0, 0.0, 955.0 ]
+			m_nCP2 = 18
+			m_nCP3 = 18
+			m_flOpStartFadeOutTime = 0.1
+			m_flOpEndFadeOutTime = 0.1
+			m_vecCP2Pos = [ 0.0, 0.0, 32.0 ]
+			m_vecCP3Pos = [ 0.0, 0.0, 32.0 ]
+			m_vecCP4Pos = [ 0.0, 0.0, 32.0 ]
+			m_nCP1 = 16
+			m_nCP4 = 18
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 32.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_TransformInput = 
+			{
+				m_nControlPoint = 16
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.5
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 90.0
+			}
+			m_nOutputField = 4
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 128.0
+				m_flRandomMax = 360.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 12
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 48.0
+				m_flRandomMax = 80.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 116, 88, 253, 255 ]
+			m_ColorMax = [ 72, 84, 253, 255 ]
+		},
+		{
+			_class = "C_INIT_SetRigidAttachment"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_SetChildControlPoints"
+			m_nFirstControlPoint = 17
+		},
+		{
+			_class = "C_OP_SpinYaw"
+			m_nSpinRateDegrees = 10
+			m_nSpinRateMinDegrees = 100
+		},
+	]
+	m_Constraints = 
+	[
+		{
+			_class = "C_OP_ConstrainDistanceToPath"
+			m_flMaxDistance0 = 0.0
+			m_flTravelTime = 0.5
+			m_PathParameters = 
+			{
+				m_nStartControlPointNumber = 16
+			}
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_nOrientationType = "PARTICLE_ORIENTATION_SCREENALIGN_TO_PARTICLE_NORMAL"
+			m_flCenterYOffset = -0.5
+			m_flAddSelfAmount = 2.0
+			m_flOverbrightFactor = 2.0
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/particle_glow_oval02_half.vtex"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+		{
+			_class = "C_OP_RenderScreenVelocityRotate"
+			m_flForwardDegrees = 90.0
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"models/eom/hero/largo_1/particles/largo_1_portal_end_fxdl.vpcf"
+			m_flDelay = 0.5
+		},
+		{
+			m_flDelay = 0.5
+			m_ChildRef = resource:"models/eom/hero/largo_1/particles/largo_1_portal_end_fxdi.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/largo_1/particles/largo_1_portal_end_fxdf.vpcf"
+			m_flDelay = 0.5
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/largo_1/particles/largo_1_portal_end_fxdk.vpcf"
+			m_flDelay = 0.5
+		},
+		{
+			m_flDelay = 0.5
+			m_ChildRef = resource:"models/eom/hero/largo_1/particles/largo_1_portal_end_fxdj.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/largo_1/particles/largo_1_portal_end_fxdn.vpcf"
+			m_flDelay = 0.25
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/largo_1/particles/largo_1_portal_end_fxdr.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/largo_1/particles/largo_1_portal_end_fxdh.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/largo_1/particles/largo_1_portal_end_fxdd.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/largo_1/particles/largo_1_portal_end_fxdg.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/largo_1/particles/largo_1_portal_end_fxde.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/largo_1/particles/largo_1_portal_end_fxda.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/largo_1/particles/largo_1_portal_end_fxdm.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/largo_1/particles/largo_1_portal_end_fxdq.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/largo_1/particles/largo_1_portal_end_fxdc.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/largo_1/particles/largo_1_portal_end_fxdp.vpcf"
+		},
+	]
+}

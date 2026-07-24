@@ -1,0 +1,908 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"551"
+	{
+		"name"									"Winter Wyvern's Headdress"
+		"prefab"								"default_item"
+		"creation_date"							"2015-01-27"
+		"image_inventory"						"econ/heroes/winterwyvern/winterwyvern_crown"
+		"item_name"								"#DOTA_Item_Winter_Wyverns_Headdress"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/winterwyvern/winterwyvern_crown.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"552"
+	{
+		"name"									"Winter Wyvern's Pelt"
+		"prefab"								"default_item"
+		"creation_date"							"2015-01-27"
+		"image_inventory"						"econ/heroes/winterwyvern/winterwyvern_backitem"
+		"item_name"								"#DOTA_Item_Winter_Wyverns_Pelt"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/heroes/winterwyvern/winterwyvern_backitem.vmdl"
+	}
+	"553"
+	{
+		"name"									"Winter Wyvern''s Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2015-01-27"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Winter_Wyverns_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_winter_wyvern"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_winter_wyvern/wyvern_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_winter_wyvern/wyvern_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+					"3"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+		}
+	}
+	"7291"
+	{
+		"name"									"Crown of the Iceburnt Elegy"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/winter_wyvern/ice_splinters_head/ice_splinters_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Iceburnt_Elegy"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Crown"
+		"model_player"							"models/items/winter_wyvern/ice_splinters_head/ice_splinters_head.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"7292"
+	{
+		"name"									"Wings of the Iceburnt Elegy"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-25"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/winter_wyvern/ice_splinters_back/ice_splinters_back"
+		"item_name"								"#DOTA_Item_Wings_of_the_Iceburnt_Elegy"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/items/winter_wyvern/ice_splinters_back/ice_splinters_back.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"8017"
+	{
+		"name"									"Iceflight Edifice"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-01"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/winter_wyvern/winter_wyvern_ti7_immortal/winter_wyvern_immortal_ti7"
+		"item_description"						"#DOTA_Item_Desc_Iceflight_Edifice"
+		"item_name"								"#DOTA_Item_Iceflight_Edifice"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Crown"
+		"model_player"							"models/items/winter_wyvern/winter_wyvern_ti7_immortal/winter_wyvern_immortal_ti7.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1535796000"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_winter_wyvern/wyvern_cold_embrace_buff.vpcf"
+				"modifier"						"particles/econ/items/winter_wyvern/winter_wyvern_ti7/wyvern_cold_embrace_ti7buff.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier1"
+			{
+				"type"							"ability_icon"
+				"asset"							"winter_wyvern_cold_embrace"
+				"modifier"						"winter_wyvern/immortal/winter_wyvern_cold_embrace"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/winter_wyvern/winter_wyvern_ti7/winter_wyvern_ti7_ambient.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/status_fx/status_effect_wyvern_cold_embrace.vpcf"
+				"modifier"						"particles/econ/items/winter_wyvern/winter_wyvern_ti7/status_effect_winter_wyvern_cold_embrace_ti7.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+		}
+	}
+	"8281"
+	{
+		"name"									"Crown of Frostheart"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/winter_wyvern/frostheart_wyvern_head/frostheart_wyvern_head"
+		"item_name"								"#DOTA_Item_Crown_of_Frostheart"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/winter_wyvern/frostheart_wyvern_head/frostheart_wyvern_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"8286"
+	{
+		"name"									"Wings of Frostheart"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/winter_wyvern/frostheart_wyvern_back/frostheart_wyvern_back"
+		"item_name"								"#DOTA_Item_Wings_of_Frostheart"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/winter_wyvern/frostheart_wyvern_back/frostheart_wyvern_back.vmdl"
+	}
+	"8516"
+	{
+		"name"									"Noble Crown of Frostheart"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-01"
+		"image_inventory"						"econ/items/winter_wyvern/frostheart_wyvern_head/frostheart_wyvern_head1"
+		"item_name"								"#DOTA_Item_Noble_Crown_of_Frostheart"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/winter_wyvern/frostheart_wyvern_head/frostheart_wyvern_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"8517"
+	{
+		"name"									"Noble Wings of Frostheart"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-01"
+		"image_inventory"						"econ/items/winter_wyvern/frostheart_wyvern_back/frostheart_wyvern_back1"
+		"item_name"								"#DOTA_Item_Noble_Wings_of_Frostheart"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/winter_wyvern/frostheart_wyvern_back/frostheart_wyvern_back.vmdl"
+		"visuals"
+		{
+			"skin"								"1"
+		}
+	}
+	"9035"
+	{
+		"name"									"Diadem of the Elder Myth"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/winter_wyvern/wyvern_of_the_pleiades_head/wyvern_of_the_pleiades_head"
+		"item_description"						"#DOTA_Item_Desc_Wyvern_of_the_Pleiades_Head"
+		"item_name"								"#DOTA_Item_Diadem_of_the_Elder_Myth"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/winter_wyvern/wyvern_of_the_pleiades_head/wyvern_of_the_pleiades_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/winter_wyvern/pleiades/wyvern_pleiades_ambient.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/winter_wyvern/pleiades/wyvern_pleiades_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin_follow"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_horn"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_jaw"
+					}
+					"3"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_l_eye"
+					}
+					"4"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_r_eye"
+					}
+					"5"
+					{
+						"control_point_index"	"5"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+				}
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Default"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Infused"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"11898"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/winter_wyvern/wyvern_of_the_pleiades_head/wyvern_of_the_pleiades_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/winter_wyvern/wyvern_of_the_pleiades_head/wyvern_of_the_pleiades_head_style1"
+				}
+			}
+		}
+	}
+	"9036"
+	{
+		"name"									"Wings of the Elder Myth"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/winter_wyvern/wyvern_of_the_pleiades_back/wyvern_of_the_pleiades_back"
+		"item_description"						"#DOTA_Item_Desc_Wyvern_of_the_Pleiades_Back"
+		"item_name"								"#DOTA_Item_Wings_of_the_Elder_Myth"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/winter_wyvern/wyvern_of_the_pleiades_back/wyvern_of_the_pleiades_back.vmdl"
+	}
+	"9167"
+	{
+		"name"									"Taunt:  Pleasant Distraction"
+		"prefab"								"taunt"
+		"creation_date"							"2017-05-04"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/taunts/dota_icon_taunt_winter_wyvern_smoke"
+		"item_description"						"#DOTA_Item_Desc_Taunt__Pleasant_Distraction"
+		"item_name"								"#DOTA_Item_Taunt__Pleasant_Distraction"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1535796000"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"smoke"
+				"style"							"0"
+				"gesture"						"1"
+			}
+		}
+	}
+	"9276"
+	{
+		"name"									"Wings of the Katekhein"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/winter_wyvern/wyvern_of_the_sea_back/wyvern_of_the_sea_back"
+		"item_name"								"#DOTA_Item_Wings_of_the_Katekhein"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/winter_wyvern/wyvern_of_the_sea_back/wyvern_of_the_sea_back.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+	}
+	"9277"
+	{
+		"name"									"Horn of the Katekhein"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/winter_wyvern/wyvern_of_the_sea_head/wyvern_of_the_sea_head"
+		"item_name"								"#DOTA_Item_Horn_of_the_Katekhein"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/winter_wyvern/wyvern_of_the_sea_head/wyvern_of_the_sea_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"9510"
+	{
+		"name"									"Crown of the Arctic Recluse"
+		"prefab"								"wearable"
+		"creation_date"							"2017-10-20"
+		"image_inventory"						"econ/items/winter_wyvern/wings_of_piercing_winter_head/wings_of_piercing_winter_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Arctic_Recluse"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/winter_wyvern/wings_of_piercing_winter_head/wings_of_piercing_winter_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"9511"
+	{
+		"name"									"Wings of the Arctic Recluse"
+		"prefab"								"wearable"
+		"creation_date"							"2017-10-20"
+		"image_inventory"						"econ/items/winter_wyvern/wings_of_piercing_winter_back/wings_of_piercing_winter_back"
+		"item_name"								"#DOTA_Item_Wings_of_the_Arctic_Recluse"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/winter_wyvern/wings_of_piercing_winter_back/wings_of_piercing_winter_back.vmdl"
+	}
+	"14225"
+	{
+		"name"									"Defender of the Brumal Crest - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/winter_wyvern/chilling_feather_head/chilling_feather_head"
+		"item_name"								"#DOTA_Item_Defender_of_the_Brumal_Crest__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/winter_wyvern/chilling_feather_head/chilling_feather_head.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/winter_wyvern/chilling_feather_head/ww_chilling_feather_head_ambient.vpcf"
+			}
+		}
+	}
+	"14226"
+	{
+		"name"									"Defender of the Brumal Crest - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/winter_wyvern/chilling_feather_back/chilling_feather_back"
+		"item_name"								"#DOTA_Item_Defender_of_the_Brumal_Crest__Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"model_player"							"models/items/winter_wyvern/chilling_feather_back/chilling_feather_back.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/winter_wyvern/chilling_feather_back/ww_chilling_feather_back_ambient.vpcf"
+			}
+		}
+	}
+	"14777"
+	{
+		"name"									"Polar Night Back"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"image_inventory"						"econ/items/winter_wyvern/ww_polar_night_back/ww_polar_night_back"
+		"item_name"								"#DOTA_Item_Polar_Night_Back"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"model_player"							"models/items/winter_wyvern/ww_polar_night_back/ww_polar_night_back.vmdl"
+	}
+	"14778"
+	{
+		"name"									"Polar Night Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"image_inventory"						"econ/items/winter_wyvern/ww_polar_night_head/ww_polar_night_head"
+		"item_name"								"#DOTA_Item_Polar_Night_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"model_player"							"models/items/winter_wyvern/ww_polar_night_head/ww_polar_night_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"18506"
+	{
+		"name"									"Aurora's Pyre Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-12"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/winter_wyvern/spring2021_frost_thorn_head/spring2021_frost_thorn_head"
+		"item_name"								"#DOTA_Item_Auroras_Pyre_Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/winter_wyvern/spring2021_frost_thorn_head/spring2021_frost_thorn_head.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1662026400"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"18507"
+	{
+		"name"									"Aurora's Pyre Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-02-12"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/items/winter_wyvern/spring2021_frost_thorn_back/spring2021_frost_thorn_back"
+		"item_name"								"#DOTA_Item_Auroras_Pyre_Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/winter_wyvern/spring2021_frost_thorn_back/spring2021_frost_thorn_back.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1662026400"
+			}
+		}
+	}
+	"20811"
+	{
+		"name"									"Iceburnt Elegy"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Iceburnt Elegy Loading Screen"		"1"
+			"Wings of the Iceburnt Elegy"		"1"
+			"Crown of the Iceburnt Elegy"		"1"
+		}
+		"creation_date"							"2016-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/loading_screens/ice_splinters_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Iceburnt_Elegy"
+		"item_name"								"#DOTA_Item_Iceburnt_Elegy"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"20963"
+	{
+		"name"									"Frostheart"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of Frostheart"		"1"
+			"Wings of Frostheart"				"1"
+			"Crown of Frostheart"				"1"
+		}
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/loading_screens/frostheart_wyvern_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Frostheart_Wyvern"
+		"item_name"								"#DOTA_Item_Frostheart"
+		"item_rarity"							"uncommon"
+	}
+	"21034"
+	{
+		"name"									"Noble Frostheart"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of Frostheart"		"1"
+			"Noble Crown of Frostheart"			"1"
+			"Noble Wings of Frostheart"			"1"
+		}
+		"creation_date"							"2016-09-01"
+		"image_inventory"						"econ/loading_screens/frostheart_wyvern_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Frostheart"
+		"item_name"								"#DOTA_Item_Noble_Frostheart"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+	}
+	"21074"
+	{
+		"name"									"Portents of the Elder Myth"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of the Elder Myth"	"1"
+			"Wings of the Elder Myth"			"1"
+			"Diadem of the Elder Myth"			"1"
+		}
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/wyvern_of_the_pleiades_pleiades_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Wyvern_of_the_Pleiades"
+		"item_name"								"#DOTA_Item_Portents_of_the_Elder_Myth"
+		"item_rarity"							"mythical"
+	}
+	"21112"
+	{
+		"name"									"Secrets of the Katekhein"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Wings of the Katekhein"			"1"
+			"Horn of the Katekhein"				"1"
+			"Secrets of the Katekhein Loading Screen""1"
+		}
+		"creation_date"							"2017-05-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/loading_screens/wyvern_of_the_sea_wyvern_of_the_sea_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Secrets_of_the_Katekhein"
+		"item_name"								"#DOTA_Item_Secrets_of_the_Katekhein"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2017"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21144"
+	{
+		"name"									"Arctic Recluse"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Wings of the Arctic Recluse"		"1"
+			"Crown of the Arctic Recluse"		"1"
+		}
+		"creation_date"							"2017-10-25"
+		"image_inventory"						"econ/sets/DOTA_Item_Wings_of_Piercing_Winter"
+		"item_name"								"#DOTA_Item_Arctic_Recluse"
+		"item_rarity"							"rare"
+	}
+	"21520"
+	{
+		"name"									"Defender of the Brumal Crest"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Defender of the Brumal Crest - Back""1"
+			"Defender of the Brumal Crest - Head""1"
+		}
+		"creation_date"							"2021-07-21"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/sets/DOTA_Item_Defender_of_the_Brumal_Crest"
+		"item_name"								"#DOTA_Item_Defender_of_the_Brumal_Crest"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21590"
+	{
+		"name"									"Polar Night"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Polar Night Head"					"1"
+			"Polar Night Back"					"1"
+		}
+		"creation_date"							"2020-05-17"
+		"image_inventory"						"econ/sets/DOTA_Item_Polar_Night"
+		"item_name"								"#DOTA_Item_Polar_Night"
+		"item_rarity"							"rare"
+	}
+	"21818"
+	{
+		"name"									"Aurora's Pyre"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Aurora's Pyre Back"				"1"
+			"Aurora's Pyre Head"				"1"
+			"Aurora's Pyre Loading Screen"		"1"
+		}
+		"creation_date"							"2021-02-12"
+		"event_id"								"EVENT_ID_SPRING_2021"
+		"image_inventory"						"econ/sets/DOTA_Item_Spring2021_Frost_Thorn"
+		"item_name"								"#DOTA_Item_Auroras_Pyre"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1662026400"
+			}
+		}
+	}
+	"22873"
+	{
+		"name"									"Currents of Endless Woe - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2022-02-25"
+		"image_inventory"						"econ/items/winter_wyvern/dusk_of_the_ice_age_head/dusk_of_the_ice_age_head"
+		"item_name"								"#DOTA_Item_Currents_of_Endless_Woe__Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/winter_wyvern/dusk_of_the_ice_age_head/dusk_of_the_ice_age_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"22876"
+	{
+		"name"									"Currents of Endless Woe - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2022-02-25"
+		"image_inventory"						"econ/items/winter_wyvern/dusk_of_the_ice_age_back/dusk_of_the_ice_age_back"
+		"item_name"								"#DOTA_Item_Currents_of_Endless_Woe__Back"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/winter_wyvern/dusk_of_the_ice_age_back/dusk_of_the_ice_age_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"22878"
+	{
+		"name"									"Currents of Endless Woe"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Currents of Endless Woe Loading Screen""1"
+			"Currents of Endless Woe - Back"	"1"
+			"Currents of Endless Woe - Head"	"1"
+		}
+		"creation_date"							"2022-02-25"
+		"image_inventory"						"econ/loading_screens/dusk_of_the_ice_age_ls"
+		"item_name"								"#DOTA_Item_Currents_of_Endless_Woe"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+}

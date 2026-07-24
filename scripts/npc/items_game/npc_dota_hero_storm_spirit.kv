@@ -1,0 +1,1706 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"308"
+	{
+		"name"									"Storm Spirit's Hat"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/storm_spirit/storm_hat"
+		"item_description"						"#DOTA_Item_Desc_Storm_Spirits_Hat"
+		"item_name"								"#DOTA_Item_Storm_Spirits_Hat"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/storm_spirit/storm_hat.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_stormspirit/stormspirit_head_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_stormspirit/stormspirit_head_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hat"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_stormspirit/storm_spirit_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_stormspirit/storm_spirit_ambient_eyes.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+		}
+	}
+	"309"
+	{
+		"name"									"Storm Spirit's Shoulder"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/storm_spirit/storm_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Storm_Spirits_Shoulder"
+		"item_name"								"#DOTA_Item_Storm_Spirits_Shoulder"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/heroes/storm_spirit/storm_shoulder.vmdl"
+	}
+	"310"
+	{
+		"name"									"Storm Spirit's Armor"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/storm_spirit/storm_shirt"
+		"item_description"						"#DOTA_Item_Desc_Storm_Spirits_Armor"
+		"item_name"								"#DOTA_Item_Storm_Spirits_Armor"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/heroes/storm_spirit/storm_shirt.vmdl"
+	}
+	"4479"
+	{
+		"name"									"Ring of the Storm"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-22"
+		"image_inventory"						"econ/items/storm_spirit/anuxi_ring_of_storm/anuxi_ring_of_storm"
+		"item_description"						"#DOTA_Item_Desc_Ring_of_the_Storm"
+		"item_name"								"#DOTA_Item_Ring_of_the_Storm"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hat"
+		"model_player"							"models/items/storm_spirit/anuxi_ring_of_storm/anuxi_ring_of_storm.vmdl"
+	}
+	"6019"
+	{
+		"name"									"Festive Robes of Good Fortune"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-23"
+		"image_inventory"						"econ/items/storm_spirit/festive_dress_of_good_fortune/festive_dress_of_good_fortune"
+		"item_name"								"#DOTA_Item_Festive_Robes_of_Good_Fortune"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Robes"
+		"model_player"							"models/items/storm_spirit/festive_dress_of_good_fortune/festive_dress_of_good_fortune.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/27/2014"
+			"price"								"0"
+		}
+	}
+	"6022"
+	{
+		"name"									"Ornate Hat of Good Fortune"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-23"
+		"image_inventory"						"econ/items/storm_spirit/ornate_hat_of_good_fortune/ornate_hat_of_good_fortune"
+		"item_name"								"#DOTA_Item_Ornate_Hat_of_Good_Fortune"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hat"
+		"model_player"							"models/items/storm_spirit/ornate_hat_of_good_fortune/ornate_hat_of_good_fortune.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/27/2014"
+			"price"								"0"
+		}
+	}
+	"6023"
+	{
+		"name"									"Scale Pauldrons of Good Fortune"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-23"
+		"image_inventory"						"econ/items/storm_spirit/scale_pauldrons_of_good_fortune/scale_pauldrons_of_good_fortune"
+		"item_name"								"#DOTA_Item_Scale_Pauldrons_of_Good_Fortune"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/storm_spirit/scale_pauldrons_of_good_fortune/scale_pauldrons_of_good_fortune.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/27/2014"
+			"price"								"0"
+		}
+	}
+	"6168"
+	{
+		"name"									"Heavenly General Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-24"
+		"image_inventory"						"econ/items/storm_spirit/heavenlygeneral_armor/heavenlygeneral_armor"
+		"item_name"								"#DOTA_Item_Heavenly_General_Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/storm_spirit/heavenlygeneral_armor/heavenlygeneral_armor.vmdl"
+		"branding"
+		{
+			"corporation_id"					"113705693"
+		}
+	}
+	"6169"
+	{
+		"name"									"Heavenly General Hat"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-24"
+		"image_inventory"						"econ/items/storm_spirit/heavenlygeneral_hat/heavenlygeneral_hat"
+		"item_name"								"#DOTA_Item_Heavenly_General_Hat"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hat"
+		"model_player"							"models/items/storm_spirit/heavenlygeneral_hat/heavenlygeneral_hat.vmdl"
+		"branding"
+		{
+			"corporation_id"					"113705693"
+		}
+	}
+	"6170"
+	{
+		"name"									"Heavenly General Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-24"
+		"image_inventory"						"econ/items/storm_spirit/heavenlygeneral_shoulders/heavenlygeneral_shoulders"
+		"item_name"								"#DOTA_Item_Heavenly_General_Shoulders"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/storm_spirit/heavenlygeneral_shoulders/heavenlygeneral_shoulders.vmdl"
+		"branding"
+		{
+			"corporation_id"					"113705693"
+		}
+	}
+	"6431"
+	{
+		"name"									"The Lightning Orchid"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2014"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"creation_date"							"2014-05-15"
+		"image_inventory"						"econ/items/storm_spirit/hat_orchid/hat_orchid"
+		"item_description"						"#DOTA_Item_Desc_The_Lightning_Orchid"
+		"item_name"								"#DOTA_Item_The_Lightning_Orchid"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hat"
+		"model_player"							"models/items/storm_spirit/hat_orchid/hat_orchid.vmdl"
+		"particle_folder"						"particles/econ/items/storm_spirit/storm_spirit_orchid_hat"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"sound"
+				"asset"							"Hero_StormSpirit.BallLightning"
+				"modifier"						"Hero_StormSpirit.Orchid_BallLightning"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_stormspirit/stormspirit_ball_lightning.vpcf"
+				"modifier"						"particles/econ/items/storm_spirit/storm_spirit_orchid_hat/stormspirit_orchid_ball_lightning.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_stormspirit/storm_spirit_ambient_eyes.vpcf"
+				"modifier"						"particles/econ/items/storm_spirit/storm_spirit_orchid_hat/storm_spirit_orchid_ambient_eyes.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_stormspirit/stormspirit_head_ambient.vpcf"
+				"modifier"						"particles/econ/items/storm_spirit/storm_spirit_orchid_hat/stormspirit_orchid_head_ambient.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/items2_fx/orchid.vpcf"
+				"modifier"						"particles/econ/items/storm_spirit/storm_spirit_orchid_hat/storm_spirit_orchid.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier7"
+			{
+				"type"							"ability_icon"
+				"asset"							"storm_spirit_ball_lightning"
+				"modifier"						"storm_spirit_ball_lightning_orchid"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_stormspirit/storm_spirit_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_stormspirit/storm_spirit_ambient_eyes.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+			"asset_modifier9"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_stormspirit/stormspirit_head_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_stormspirit/stormspirit_head_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hat"
+					}
+				}
+			}
+		}
+	}
+	"6540"
+	{
+		"name"									"Thunder Rogue's Braid"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-12"
+		"image_inventory"						"econ/items/storm_spirit/thunderbraid_head/thunderbraid_head"
+		"item_name"								"#DOTA_Item_Thunder_Rogues_Braid"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Braid"
+		"model_player"							"models/items/storm_spirit/thunderbraid_head/thunderbraid_head.vmdl"
+	}
+	"6701"
+	{
+		"name"									"Genuine Thunder Rogue's Braid"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-19"
+		"image_inventory"						"econ/items/storm_spirit/thunderbraid_head/thunderbraid_head"
+		"item_name"								"#DOTA_Item_Genuine_Thunder_Rogues_Braid"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Braid"
+		"model_player"							"models/items/storm_spirit/thunderbraid_head/thunderbraid_head.vmdl"
+	}
+	"8062"
+	{
+		"name"									"Taunt: In the Spirit of Peace"
+		"prefab"								"taunt"
+		"creation_date"							"2017-05-04"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/taunts/taunt_icon_storm_spirit_meditate"
+		"item_description"						"#DOTA_Item_Desc_Taunt_In_the_Spirit_of_Peace"
+		"item_name"								"#DOTA_Item_Taunt_In_the_Spirit_of_Peace"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1535796000"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"inner_peace_gesture"
+				"frequency"						"1"
+				"gesture"						"1"
+			}
+		}
+	}
+	"8166"
+	{
+		"name"									"Armor of Sizzling Charge"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-06"
+		"image_inventory"						"econ/items/storm_spirit/storm_spring_armor/storm_spring_armor"
+		"item_name"								"#DOTA_Item_Armor_of_Sizzling_Charge"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/storm_spirit/storm_spring_armor/storm_spring_armor.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"8167"
+	{
+		"name"									"Hat of Sizzling Charge"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-06"
+		"image_inventory"						"econ/items/storm_spirit/storm_spring_head/storm_spring_head"
+		"item_name"								"#DOTA_Item_Hat_of_Sizzling_Charge"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"model_player"							"models/items/storm_spirit/storm_spring_head/storm_spring_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"8180"
+	{
+		"name"									"Pauldrons of Sizzling Charge"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-09"
+		"image_inventory"						"econ/items/storm_spirit/storm_spring_arms/storm_spring_arms"
+		"item_name"								"#DOTA_Item_Pauldrons_of_Sizzling_Charge"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/storm_spirit/storm_spring_arms/storm_spring_arms.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"8247"
+	{
+		"name"									"Virtuous Roar Hair"
+		"prefab"								"wearable"
+		"branding"
+		{
+			"corporation_id"					"87586992"
+		}
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/storm_spirit/raijins_tools_of_war_head/raijins_tools_of_war_head"
+		"item_description"						"#DOTA_Item_Desc_Virtuous_Roar_Hair"
+		"item_name"								"#DOTA_Item_Virtuous_Roar_Hair"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/storm_spirit/raijins_tools_of_war_head/raijins_tools_of_war_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_stormspirit/storm_spirit_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_stormspirit/storm_spirit_ambient_eyes.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_stormspirit/stormspirit_head_ambient.vpcf"
+				"modifier"						"particles/units/heroes/hero_stormspirit/storm_spirit_null.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"8249"
+	{
+		"name"									"Virtuous Roar Pads"
+		"prefab"								"wearable"
+		"branding"
+		{
+			"corporation_id"					"87586992"
+		}
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/storm_spirit/raijins_tools_of_war_arms/raijins_tools_of_war_arms"
+		"item_description"						"#DOTA_Item_Desc_Virtuous_Roar_Pads"
+		"item_name"								"#DOTA_Item_Virtuous_Roar_Pads"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Pads"
+		"model_player"							"models/items/storm_spirit/raijins_tools_of_war_arms/raijins_tools_of_war_arms.vmdl"
+	}
+	"8251"
+	{
+		"name"									"Virtuous Roar Aspect"
+		"prefab"								"wearable"
+		"branding"
+		{
+			"corporation_id"					"87586992"
+		}
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/storm_spirit/raijins_tools_of_war_armor/raijins_tools_of_war_armor"
+		"item_description"						"#DOTA_Item_Desc_Virtuous_Roar_Aspect"
+		"item_name"								"#DOTA_Item_Virtuous_Roar_Aspect"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/storm_spirit/raijins_tools_of_war_armor/raijins_tools_of_war_armor.vmdl"
+	}
+	"8788"
+	{
+		"name"									"Pauldrons of the Raikage Warrior"
+		"prefab"								"wearable"
+		"creation_date"							"2016-01-07"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/storm_spirit/raikage_ares_arms/raikage_ares_arms"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Raikage_Warrior"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/storm_spirit/raikage_ares_arms/raikage_ares_arms.vmdl"
+	}
+	"8793"
+	{
+		"name"									"Helm of the Raikage Warrior"
+		"prefab"								"wearable"
+		"creation_date"							"2016-01-07"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/storm_spirit/raikage_ares_head/raikage_ares_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Raikage_Warrior"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/storm_spirit/raikage_ares_head/raikage_ares_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_stormspirit/storm_spirit_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_stormspirit/storm_spirit_ambient_eyes.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+		}
+	}
+	"8794"
+	{
+		"name"									"Robe of the Raikage Warrior"
+		"prefab"								"wearable"
+		"creation_date"							"2016-01-07"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/items/storm_spirit/raikage_ares_armor/raikage_ares_armor"
+		"item_name"								"#DOTA_Item_Robe_of_the_Raikage_Warrior"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Robe"
+		"model_player"							"models/items/storm_spirit/raikage_ares_armor/raikage_ares_armor.vmdl"
+	}
+	"9028"
+	{
+		"name"									"Garb of the Corridan Maestro"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/storm_spirit/tormenta_armor/tormenta_armor"
+		"item_description"						"#DOTA_Item_Desc_Tormenta_Armor"
+		"item_name"								"#DOTA_Item_Garb_of_the_Corridan_Maestro"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/storm_spirit/tormenta_armor/tormenta_armor.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/storm_spirit/storm_spirit_tormenta_armor/storm_spirit_tormenta_ambient.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/storm_spirit/storm_spirit_tormenta_armor/storm_spirit_tormenta_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin"
+					}
+				}
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Tormenta_Armor_0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Tormenta_Armor_1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"11898"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/storm_spirit/tormenta_armor/tormenta_armor"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/storm_spirit/tormenta_armor/tormenta_armor_style1"
+				}
+			}
+		}
+	}
+	"9029"
+	{
+		"name"									"Feathered Hat of the Corridan Maestro"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/storm_spirit/tormenta_head/tormenta_head"
+		"item_description"						"#DOTA_Item_Desc_Tormenta_Head"
+		"item_name"								"#DOTA_Item_Feathered_Hat_of_the_Corridan_Maestro"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/storm_spirit/tormenta_head/tormenta_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_stormspirit/storm_spirit_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_stormspirit/storm_spirit_ambient_eyes.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+		}
+	}
+	"9030"
+	{
+		"name"									"Rose of the Corridan Maestro"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/storm_spirit/tormenta_arms/tormenta_arms"
+		"item_description"						"#DOTA_Item_Desc_Tormenta_Arms"
+		"item_name"								"#DOTA_Item_Rose_of_the_Corridan_Maestro"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/storm_spirit/tormenta_arms/tormenta_arms.vmdl"
+	}
+	"9557"
+	{
+		"name"									"The Lightning Orchid of Eminent Revival"
+		"prefab"								"wearable"
+		"creation_date"							"2018-05-15"
+		"image_inventory"						"econ/items/storm_spirit/hat_orchid_retro/hat_orchid_retro"
+		"item_description"						"#DOTA_Item_Desc_The_Lightning_Orchid_of_Eminent_Revival"
+		"item_name"								"#DOTA_Item_The_Lightning_Orchid_of_Eminent_Revival"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hat"
+		"model_player"							"models/items/storm_spirit/hat_orchid/hat_orchid.vmdl"
+		"particle_folder"						"particles/econ/items/storm_spirit/storm_spirit_orchid_hat"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"treasure_display_override"				"#DOTA_EventName_International2014"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_stormspirit/stormspirit_head_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_stormspirit/stormspirit_head_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hat"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"sound"
+				"asset"							"Hero_StormSpirit.BallLightning"
+				"modifier"						"Hero_StormSpirit.Orchid_BallLightning"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_stormspirit/stormspirit_ball_lightning.vpcf"
+				"modifier"						"particles/econ/items/storm_spirit/storm_spirit_orchid_hat_retro/stormspirit_orchid_retro_ball_lightning.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_stormspirit/storm_spirit_ambient_eyes.vpcf"
+				"modifier"						"particles/econ/items/storm_spirit/storm_spirit_orchid_hat/storm_spirit_orchid_ambient_eyes.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_stormspirit/stormspirit_head_ambient.vpcf"
+				"modifier"						"particles/econ/items/storm_spirit/storm_spirit_orchid_hat_retro/storm_spirit_orchid_head_retro_ambient.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/items2_fx/orchid.vpcf"
+				"modifier"						"particles/econ/items/storm_spirit/storm_spirit_orchid_hat/storm_spirit_orchid.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier6"
+			{
+				"type"							"ability_icon"
+				"asset"							"storm_spirit_ball_lightning"
+				"modifier"						"storm_spirit/ti8_retro_immortal/storm_spirit_ball_lightning_orchid_retro"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_stormspirit/storm_spirit_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_stormspirit/storm_spirit_ambient_eyes.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+			"skip_model_combine"				"0"
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_The_Lightning_Orchid_Retro_0"
+					"skin"						"1"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_The_Lightning_Orchid_Retro_1"
+					"skin"						"2"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"gem"
+						{
+							"def_index"			"3021"
+							"type_field"		"strange_type"
+							"type_value"		"196"
+							"unlock_field"		"strange_value"
+							"unlock_value"		"60000"
+						}
+					}
+				}
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_stormspirit/stormspirit_head_ambient.vpcf"
+				"modifier"						"particles/econ/items/storm_spirit/storm_spirit_orchid_hat_retro/storm_spirit_orchid_head_retro_lvl2_ambient.vpcf"
+				"style"							"1"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/storm_spirit/hat_orchid_retro/hat_orchid_retro"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/storm_spirit/hat_orchid_retro/hat_orchid_retro_style1"
+				}
+			}
+		}
+	}
+	"9798"
+	{
+		"name"									"Sun Shade of Blossoming Harmony"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-04"
+		"image_inventory"						"econ/items/storm_spirit/esl_harmony_head/esl_harmony_head"
+		"item_name"								"#DOTA_Item_Sun_Shade_of_Blossoming_Harmony"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Sun_Shade"
+		"model_player"							"models/items/storm_spirit/esl_harmony_head/esl_harmony_head.vmdl"
+	}
+	"9799"
+	{
+		"name"									"Robe of Blossoming Harmony"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-04"
+		"image_inventory"						"econ/items/storm_spirit/esl_harmony_armor/esl_harmony_armor"
+		"item_name"								"#DOTA_Item_Robe_of_Blossoming_Harmony"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Robe"
+		"model_player"							"models/items/storm_spirit/esl_harmony_armor/esl_harmony_armor.vmdl"
+	}
+	"9800"
+	{
+		"name"									"Ruan of Blossoming Harmony"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-04"
+		"image_inventory"						"econ/items/storm_spirit/esl_harmony_arms/esl_harmony_arms"
+		"item_name"								"#DOTA_Item_Ruan_of_Blossoming_Harmony"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Ruan"
+		"model_player"							"models/items/storm_spirit/esl_harmony_arms/esl_harmony_arms.vmdl"
+	}
+	"12415"
+	{
+		"name"									"Mandate of the Stormborn"
+		"prefab"								"wearable"
+		"creation_date"							"2018-08-09"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/storm_spirit/storm_ti8_immortal_shoulders/storm_ti8_immortal_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Mandate_of_the_Stormborn"
+		"item_name"								"#DOTA_Item_Mandate_of_the_Stormborn"
+		"item_rarity"							"immortal"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Ruan"
+		"model_player"							"models/items/storm_spirit/storm_ti8_immortal_shoulders/storm_ti8_immortal_shoulders.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1535682268"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"ability_icon"
+				"asset"							"storm_spirit_overload"
+				"modifier"						"storm_spirit_overload_ti8"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_stormspirit/stormspirit_overload_ambient.vpcf"
+				"modifier"						"particles/econ/items/storm_spirit/strom_spirit_ti8/storm_spirit_ti8_overload_ambient.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_stormspirit/stormspirit_overload_discharge.vpcf"
+				"modifier"						"particles/econ/items/storm_spirit/strom_spirit_ti8/storm_sprit_ti8_overload_discharge.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti8"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/storm_spirit/strom_spirit_ti8/storm_spirit_shivas_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"12423"
+	{
+		"name"									"Golden Mandate of the Stormborn"
+		"prefab"								"wearable"
+		"creation_date"							"2018-08-15"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/storm_spirit/storm_ti8_immortal_shoulders/storm_ti8_immortal_shoulders1"
+		"item_description"						"#DOTA_Item_Desc_Golden_Mandate_of_the_Stormborn"
+		"item_name"								"#DOTA_Item_Golden_Mandate_of_the_Stormborn"
+		"item_rarity"							"immortal"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Ruan"
+		"model_player"							"models/items/storm_spirit/storm_ti8_immortal_shoulders/storm_ti8_immortal_shoulders.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1535682268"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"ability_icon"
+				"asset"							"storm_spirit_overload"
+				"modifier"						"storm_spirit_overload_ti8_golden"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_stormspirit/stormspirit_overload_ambient.vpcf"
+				"modifier"						"particles/econ/items/storm_spirit/strom_spirit_ti8/storm_spirit_ti8_overload_gold_ambient.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_stormspirit/stormspirit_overload_discharge.vpcf"
+				"modifier"						"particles/econ/items/storm_spirit/strom_spirit_ti8/gold_storm_sprit_ti8_overload_discharge.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti8"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/storm_spirit/strom_spirit_ti8/storm_spirit_shivas_gold_ambient.vpcf"
+				"style"							"0"
+			}
+			"skin"								"1"
+		}
+	}
+	"12514"
+	{
+		"name"									"Pauldrons of the Storm Dragon Potente"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-11"
+		"event_id"								"EVENT_ID_NEW_BLOOM_2020"
+		"image_inventory"						"econ/items/storm_spirit/qilin_sorcerer_arms/qilin_sorcerer_arms"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Storm_Dragon_Potente"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/storm_spirit/qilin_sorcerer_arms/qilin_sorcerer_arms.vmdl"
+	}
+	"12516"
+	{
+		"name"									"Horns of the Storm Dragon Potente"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-11"
+		"event_id"								"EVENT_ID_NEW_BLOOM_2020"
+		"image_inventory"						"econ/items/storm_spirit/qilin_sorcerer_head/qilin_sorcerer_head"
+		"item_name"								"#DOTA_Item_Horns_of_the_Storm_Dragon_Potente"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/storm_spirit/qilin_sorcerer_head/qilin_sorcerer_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_stormspirit/storm_spirit_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_stormspirit/storm_spirit_ambient_eyes.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+		}
+	}
+	"12517"
+	{
+		"name"									"Armor of the Storm Dragon Potente"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-11"
+		"event_id"								"EVENT_ID_NEW_BLOOM_2020"
+		"image_inventory"						"econ/items/storm_spirit/qilin_sorcerer_armor/qilin_sorcerer_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Storm_Dragon_Potente"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/storm_spirit/qilin_sorcerer_armor/qilin_sorcerer_armor.vmdl"
+	}
+	"12612"
+	{
+		"name"									"Complete Rose of the Corridan Maestro"
+		"prefab"								"wearable"
+		"creation_date"							"2018-10-25"
+		"image_inventory"						"econ/items/storm_spirit/tormenta_arms/tormenta_arms"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Rose_of_the_Corridan_Maestro"
+		"item_name"								"#DOTA_Item_Complete_Rose_of_the_Corridan_Maestro"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/storm_spirit/tormenta_arms/tormenta_arms.vmdl"
+	}
+	"12613"
+	{
+		"name"									"Complete Feathered Hat of the Corridan Maestro"
+		"prefab"								"wearable"
+		"creation_date"							"2018-10-25"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/storm_spirit/tormenta_head/tormenta_head"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Feathered_Hat_of_the_Corridan_Maestro"
+		"item_name"								"#DOTA_Item_Complete_Feathered_Hat_of_the_Corridan_Maestro"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/storm_spirit/tormenta_head/tormenta_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_stormspirit/storm_spirit_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_stormspirit/storm_spirit_ambient_eyes.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+		}
+	}
+	"12614"
+	{
+		"name"									"Complete Garb of the Corridan Maestro"
+		"prefab"								"wearable"
+		"creation_date"							"2018-10-25"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/storm_spirit/tormenta_armor/tormenta_armor"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Garb_of_the_Corridan_Maestro"
+		"item_name"								"#DOTA_Item_Complete_Garb_of_the_Corridan_Maestro"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/storm_spirit/tormenta_armor/tormenta_armor.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/storm_spirit/storm_spirit_tormenta_armor/storm_spirit_tormenta_ambient.vpcf"
+				"system"						"particles/econ/items/storm_spirit/storm_spirit_tormenta_armor/storm_spirit_tormenta_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"absorigin"
+					}
+				}
+			}
+		}
+	}
+	"13096"
+	{
+		"name"									"Finery of the Storm Djinn"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/storm_spirit/ti9_cache_storm_genie_spirit_head/ti9_cache_storm_genie_spirit_head"
+		"item_name"								"#DOTA_Item_Finery_of_the_Storm_Djinn"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/storm_spirit/ti9_cache_storm_genie_spirit_head/ti9_cache_storm_genie_spirit_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_stormspirit/stormspirit_head_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_stormspirit/stormspirit_head_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hat"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_stormspirit/storm_spirit_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_stormspirit/storm_spirit_ambient_eyes.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+		}
+	}
+	"13097"
+	{
+		"name"									"Light of the Storm Djinn"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/storm_spirit/ti9_cache_storm_genie_spirit_arms/ti9_cache_storm_genie_spirit_arms"
+		"item_name"								"#DOTA_Item_Light_of_the_Storm_Djinn"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/storm_spirit/ti9_cache_storm_genie_spirit_arms/ti9_cache_storm_genie_spirit_arms.vmdl"
+	}
+	"13098"
+	{
+		"name"									"Adornments of the Storm Djinn"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/storm_spirit/ti9_cache_storm_genie_spirit_armor/ti9_cache_storm_genie_spirit_armor"
+		"item_name"								"#DOTA_Item_Adornments_of_the_Storm_Djinn"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/storm_spirit/ti9_cache_storm_genie_spirit_armor/ti9_cache_storm_genie_spirit_armor.vmdl"
+	}
+	"18847"
+	{
+		"name"									"Vestments of the Thunderfold Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2021-05-20"
+		"image_inventory"						"econ/items/storm_spirit/emperors_robe_armor/emperors_robe_armor"
+		"item_name"								"#DOTA_Item_Vestments_of_the_Thunderfold_Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/storm_spirit/emperors_robe_armor/emperors_robe_armor.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"18848"
+	{
+		"name"									"Vestments of the Thunderfold Hat"
+		"prefab"								"wearable"
+		"creation_date"							"2021-05-20"
+		"image_inventory"						"econ/items/storm_spirit/emperors_robe_head/emperors_robe_head"
+		"item_name"								"#DOTA_Item_Vestments_of_the_Thunderfold_Hat"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/storm_spirit/emperors_robe_head/emperors_robe_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_stormspirit/stormspirit_head_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_stormspirit/stormspirit_head_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hat"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_stormspirit/storm_spirit_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_stormspirit/storm_spirit_ambient_eyes.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+		}
+	}
+	"18849"
+	{
+		"name"									"Vestments of the Thunderfold Pauldrons"
+		"prefab"								"wearable"
+		"creation_date"							"2021-05-20"
+		"image_inventory"						"econ/items/storm_spirit/emperors_robe_arms/emperors_robe_arms"
+		"item_name"								"#DOTA_Item_Vestments_of_the_Thunderfold_Pauldrons"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/storm_spirit/emperors_robe_arms/emperors_robe_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"20371"
+	{
+		"name"									"Gifts of Fortune Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Scale Pauldrons of Good Fortune"	"1"
+			"Ornate Hat of Good Fortune"		"1"
+			"Gifts of Fortune"					"1"
+			"Festive Robes of Good Fortune"		"1"
+		}
+		"creation_date"							"2014-01-23"
+		"image_inventory"						"econ/sets/DOTA_Item_Gifts_of_Fortune_Set"
+		"item_name"								"#DOTA_Item_Gifts_of_Fortune_Set"
+		"item_rarity"							"mythical"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Mythical"
+			"category_tags"						"Bundles"
+			"date"								"1/27/2014"
+			"bundle"							"1"
+			"price"								"799"
+		}
+	}
+	"20411"
+	{
+		"name"									"Heavenly General"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Heavenly General Armor"			"1"
+			"Heavenly General Hat"				"1"
+			"Heavenly General Shoulders"		"1"
+			"Heavenly General Loading Screen"	"1"
+		}
+		"creation_date"							"2014-02-24"
+		"image_inventory"						"econ/loading_screens/heavenlygeneral"
+		"item_description"						"#DOTA_Item_Desc_Heavenly_General"
+		"item_name"								"#DOTA_Item_Heavenly_General"
+		"item_rarity"							"rare"
+	}
+	"20818"
+	{
+		"name"									"Sizzling Charge"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armor of Sizzling Charge"			"1"
+			"Hat of Sizzling Charge"			"1"
+			"Pauldrons of Sizzling Charge"		"1"
+			"Sizzling Charge Loading Screen"	"1"
+		}
+		"creation_date"							"2015-05-20"
+		"image_inventory"						"econ/loading_screens/storm_spring_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Sizzling_Charge"
+		"item_name"								"#DOTA_Item_Sizzling_Charge"
+		"item_rarity"							"rare"
+	}
+	"20908"
+	{
+		"name"									"Blossoming Harmony"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Sun Shade of Blossoming Harmony"	"1"
+			"Robe of Blossoming Harmony"		"1"
+			"Ruan of Blossoming Harmony"		"1"
+			"Blossoming Harmony Loading Screen"	"1"
+		}
+		"creation_date"							"2015-09-15"
+		"image_inventory"						"econ/loading_screens/esl_blossoming_harmony_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Blossoming_Harmony"
+		"item_name"								"#DOTA_Item_Blossoming_Harmony"
+		"item_rarity"							"rare"
+	}
+	"20912"
+	{
+		"name"									"Virtuous Roar"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Virtuous Roar Aspect"				"1"
+			"Virtuous Roar Hair"				"1"
+			"Virtuous Roar Loading Screen"		"1"
+			"Virtuous Roar Pads"				"1"
+		}
+		"creation_date"							"2015-10-09"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/loading_screens/raijins_tools_of_war_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Virtuous_Roar"
+		"item_name"								"#DOTA_Item_Virtuous_Roar"
+		"item_rarity"							"mythical"
+		"branding"
+		{
+			"corporation_id"					"87586992"
+		}
+	}
+	"20976"
+	{
+		"name"									"Raikage Warrior"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Pauldrons of the Raikage Warrior"	"1"
+			"Helm of the Raikage Warrior"		"1"
+			"Robe of the Raikage Warrior"		"1"
+			"Raikage Warrior Loading Screen"	"1"
+		}
+		"creation_date"							"2016-01-07"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/raikage_ares_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Raikage_Warrior"
+		"item_name"								"#DOTA_Item_Raikage_Warrior"
+		"item_rarity"							"mythical"
+	}
+	"21072"
+	{
+		"name"									"Corridan Maestro"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of the Corridan Maestro""1"
+			"Rose of the Corridan Maestro"		"1"
+			"Feathered Hat of the Corridan Maestro""1"
+			"Garb of the Corridan Maestro"		"1"
+		}
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/tormenta_tormenta_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Tormenta"
+		"item_name"								"#DOTA_Item_Corridan_Maestro"
+		"item_rarity"							"mythical"
+	}
+	"21251"
+	{
+		"name"									"Storm Dragon Potente"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armor of the Storm Dragon Potente"	"1"
+			"Horns of the Storm Dragon Potente"	"1"
+			"Storm Dragon Potente Loading Screen""1"
+			"Pauldrons of the Storm Dragon Potente""1"
+		}
+		"creation_date"							"2018-09-12"
+		"event_id"								"EVENT_ID_NEW_BLOOM_2020"
+		"image_inventory"						"econ/loading_screens/qilin_sorcerer_loadingscreen"
+		"item_name"								"#DOTA_Item_Storm_Dragon_Potente"
+		"item_rarity"							"rare"
+	}
+	"21269"
+	{
+		"name"									"Complete Corridan Maestro"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of the Complete Corridan Maestro""1"
+			"Complete Rose of the Corridan Maestro""1"
+			"Complete Feathered Hat of the Corridan Maestro""1"
+			"Complete Garb of the Corridan Maestro""1"
+		}
+		"creation_date"							"2018-10-25"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/tormenta_tormenta_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Complete_Corridan_Maestro"
+		"item_name"								"#DOTA_Item_Complete_Corridan_Maestro"
+		"item_rarity"							"mythical"
+	}
+	"21345"
+	{
+		"name"									"Origins of the Storm Djinn"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Adornments of the Storm Djinn"		"1"
+			"Light of the Storm Djinn"			"1"
+			"Finery of the Storm Djinn"			"1"
+		}
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/sets/DOTA_Item_Origins_of_the_Storm_Djinn"
+		"item_name"								"#DOTA_Item_Origins_of_the_Storm_Djinn"
+		"item_rarity"							"rare"
+	}
+	"21825"
+	{
+		"name"									"Vestments of the Thunderfold"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Vestments of the Thunderfold Armor""1"
+			"Vestments of the Thunderfold Hat"	"1"
+			"Vestments of the Thunderfold Pauldrons""1"
+			"Vestments of the Thunderfold Loading Screen""1"
+		}
+		"creation_date"							"2021-05-20"
+		"image_inventory"						"econ/loading_screens/emperors_robe_ls"
+		"item_name"								"#DOTA_Item_Vestments_of_the_Thunderfold"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"23181"
+	{
+		"name"									"Spring Lineage Storm Dragon Potente"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Spring Lineage Armor of the Storm Dragon Potente""1"
+			"Spring Lineage Horns of the Storm Dragon Potente""1"
+			"Spring Lineage Pauldrons of the Storm Dragon Potente""1"
+		}
+		"creation_date"							"2022-03-17"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/sets/DOTA_Item_Spring_Lineage_Storm_Dragon_Potente"
+		"item_description"						"#DOTA_Item_Desc_Spring_Lineage_Storm_Dragon_Potente"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Storm_Dragon_Potente"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+	}
+	"23182"
+	{
+		"name"									"Spring Lineage Armor of the Storm Dragon Potente"
+		"prefab"								"wearable"
+		"creation_date"							"2022-03-17"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/items/storm_spirit/qilin_sorcerer_armor/qilin_sorcerer_armor1"
+		"item_description"						"#DOTA_Item_Desc_Spring_Lineage_Armor_of_the_Storm_Dragon_Potente"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Armor_of_the_Storm_Dragon_Potente"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/storm_spirit/qilin_sorcerer_armor/qilin_sorcerer_armor.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"23183"
+	{
+		"name"									"Spring Lineage Horns of the Storm Dragon Potente"
+		"prefab"								"wearable"
+		"creation_date"							"2022-03-17"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/items/storm_spirit/qilin_sorcerer_head/qilin_sorcerer_head1"
+		"item_description"						"#DOTA_Item_Desc_Spring_Lineage_Horns_of_the_Storm_Dragon_Potente"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Horns_of_the_Storm_Dragon_Potente"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/storm_spirit/qilin_sorcerer_head/qilin_sorcerer_head.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_stormspirit/storm_spirit_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_stormspirit/storm_spirit_ambient_eyes.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"23184"
+	{
+		"name"									"Spring Lineage Pauldrons of the Storm Dragon Potente"
+		"prefab"								"wearable"
+		"creation_date"							"2022-03-17"
+		"event_id"								"EVENT_ID_TEAM_2021_2022_TOUR2"
+		"image_inventory"						"econ/items/storm_spirit/qilin_sorcerer_arms/qilin_sorcerer_arms1"
+		"item_description"						"#DOTA_Item_Desc_Spring_Lineage_Pauldrons_of_the_Storm_Dragon_Potente"
+		"item_name"								"#DOTA_Item_Spring_Lineage_Pauldrons_of_the_Storm_Dragon_Potente"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/storm_spirit/qilin_sorcerer_arms/qilin_sorcerer_arms.vmdl"
+		"static_attributes"
+		{
+			"dpc season event id"
+			{
+				"attribute_class"				"dpc season event id"
+				"value"							"35"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+}

@@ -1,0 +1,1059 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"664"
+	{
+		"name"									"Grimstroke's Belt"
+		"prefab"								"default_item"
+		"creation_date"							"2018-07-25"
+		"image_inventory"						"econ/heroes/grimstroke/grimstroke_skirt"
+		"item_name"								"#DOTA_Item_Grimstrokes_Belt"
+		"item_slot"								"belt"
+		"model_player"							"models/heroes/grimstroke/grimstroke_skirt.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"666"
+	{
+		"name"									"Grimstroke's Weapon"
+		"prefab"								"default_item"
+		"capabilities"
+		{
+			"nameable"							"1"
+			"can_have_sockets"					"1"
+			"gems_can_be_extracted"				"1"
+			"can_gift_wrap"						"1"
+		}
+		"creation_date"							"2018-07-25"
+		"image_inventory"						"econ/heroes/grimstroke/grimstroke_weapon"
+		"item_name"								"#DOTA_Item_Grimstrokes_Weapon"
+		"model_player"							"models/heroes/grimstroke/grimstroke_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_grimstroke/grimstroke_brush_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"667"
+	{
+		"name"									"Grimstroke's Mask"
+		"prefab"								"default_item"
+		"creation_date"							"2018-07-25"
+		"image_inventory"						"econ/heroes/grimstroke/grimstroke_head_item"
+		"item_name"								"#DOTA_Item_Grimstrokes_Mask"
+		"item_slot"								"head"
+		"model_player"							"models/heroes/grimstroke/grimstroke_head_item.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_grimstroke/grimstroke_head_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"668"
+	{
+		"name"									"Grimstroke's Armor"
+		"prefab"								"default_item"
+		"creation_date"							"2018-07-25"
+		"image_inventory"						"econ/heroes/grimstroke/grimstroke_armor"
+		"item_name"								"#DOTA_Item_Grimstrokes_Armor"
+		"item_slot"								"armor"
+		"model_player"							"models/heroes/grimstroke/grimstroke_armor.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"12923"
+	{
+		"name"									"Taunt: Harsh Critique"
+		"prefab"								"taunt"
+		"creation_date"							"2019-02-06"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/taunts/dota_icon_taunt_grimstroke_ti9"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Harsh_Critique"
+		"item_name"								"#DOTA_Item_Taunt_Harsh_Critique"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1598997600"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"ti9_taunt"
+				"gesture"						"1"
+			}
+		}
+	}
+	"12939"
+	{
+		"name"									"Fortune of the Five Houses"
+		"prefab"								"wearable"
+		"creation_date"							"2019-07-04"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/grimstroke/grimstroke_ti9_immortal_weapon/grimstroke_ti9_immortal_weapon"
+		"item_description"						"#DOTA_Item_Desc_Fortune_of_the_Five_Houses"
+		"item_name"								"#DOTA_Item_Fortune_of_the_Five_Houses"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/grimstroke/grimstroke_ti9_immortal_weapon/grimstroke_ti9_immortal_weapon.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1598997600"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/grimstroke/ti9_immortal/gs_ti9_ambient.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti9"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_grimstroke/grimstroke_darkartistry_proj.vpcf"
+				"modifier"						"particles/econ/items/grimstroke/ti9_immortal/gs_ti9_artistry_proj.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"grimstroke_dark_artistry"
+				"modifier"						"grimstroke/ti9_immortal_weapon/grimstroke_dark_artistry_immortal"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_grimstroke/grimstroke_darkartistry_dmg.vpcf"
+				"modifier"						"particles/econ/items/grimstroke/ti9_immortal/gs_ti9_artistry_dmg.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+		}
+	}
+	"13060"
+	{
+		"name"									"Brush of the Ink Dragon"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/grimstroke/ti9_cache_grim_ink_dragon_poet_weapon/ti9_cache_grim_ink_dragon_poet_weapon"
+		"item_name"								"#DOTA_Item_Brush_of_the_Ink_Dragon"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/grimstroke/ti9_cache_grim_ink_dragon_poet_weapon/ti9_cache_grim_ink_dragon_poet_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_grimstroke/grimstroke_brush_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/grimstroke/ti9_cache_grimstroke_ink_dragon_poet/ti9_cache_grimstroke_weapon_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13061"
+	{
+		"name"									"Mask of the Ink Dragon"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/grimstroke/ti9_cache_grim_ink_dragon_poet_head/ti9_cache_grim_ink_dragon_poet_head"
+		"item_name"								"#DOTA_Item_Mask_of_the_Ink_Dragon"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/grimstroke/ti9_cache_grim_ink_dragon_poet_head/ti9_cache_grim_ink_dragon_poet_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/grimstroke/ti9_cache_grimstroke_ink_dragon_poet/ti9_cache_grimstroke_head_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13062"
+	{
+		"name"									"Belt of the Ink Dragon"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/grimstroke/ti9_cache_grim_ink_dragon_poet_belt/ti9_cache_grim_ink_dragon_poet_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Ink_Dragon"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/grimstroke/ti9_cache_grim_ink_dragon_poet_belt/ti9_cache_grim_ink_dragon_poet_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/grimstroke/ti9_cache_grimstroke_ink_dragon_poet/ti9_cache_grimstroke_belt_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13064"
+	{
+		"name"									"Armor of the Ink Dragon"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/grimstroke/ti9_cache_grim_ink_dragon_poet_armor/ti9_cache_grim_ink_dragon_poet_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Ink_Dragon"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/grimstroke/ti9_cache_grim_ink_dragon_poet_armor/ti9_cache_grim_ink_dragon_poet_armor.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"13715"
+	{
+		"name"									"Fury of the Damned Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2019-10-01"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/grimstroke/ghost_judger_armor/ghost_judger_armor"
+		"item_name"								"#DOTA_Item_Fury_of_the_Damned_Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/grimstroke/ghost_judger_armor/ghost_judger_armor.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"13716"
+	{
+		"name"									"Fury of the Damned Mask"
+		"prefab"								"wearable"
+		"creation_date"							"2019-10-01"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/grimstroke/ghost_judger_head/ghost_judger_head"
+		"item_name"								"#DOTA_Item_Fury_of_the_Damned_Mask"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/grimstroke/ghost_judger_head/ghost_judger_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_grimstroke/grimstroke_head_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13718"
+	{
+		"name"									"Fury of the Damned Brush"
+		"prefab"								"wearable"
+		"creation_date"							"2019-10-01"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/grimstroke/ghost_judger_weapon/ghost_judger_weapon"
+		"item_name"								"#DOTA_Item_Fury_of_the_Damned_Brush"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/grimstroke/ghost_judger_weapon/ghost_judger_weapon.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_grimstroke/grimstroke_brush_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13719"
+	{
+		"name"									"Fury of the Damned Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2019-10-01"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/grimstroke/ghost_judger_belt/ghost_judger_belt"
+		"item_name"								"#DOTA_Item_Fury_of_the_Damned_Belt"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/grimstroke/ghost_judger_belt/ghost_judger_belt.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"13874"
+	{
+		"name"									"Herald of the Ember Eye - Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/grimstroke/the_manipulator_belt/the_manipulator_belt"
+		"item_name"								"#DOTA_Item_Herald_of_the_Ember_Eye__Belt"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"model_player"							"models/items/grimstroke/the_manipulator_belt/the_manipulator_belt.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/grimstroke/the_manipulator/the_manipulator_belt/the_manipulator_belt.vpcf"
+			}
+		}
+	}
+	"13875"
+	{
+		"name"									"Herald of the Ember Eye - Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/grimstroke/the_manipulator_armor/the_manipulator_armor"
+		"item_name"								"#DOTA_Item_Herald_of_the_Ember_Eye__Armor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"model_player"							"models/items/grimstroke/the_manipulator_armor/the_manipulator_armor.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/grimstroke/the_manipulator/the_manipulator_armor/the_manipulator_armor.vpcf"
+			}
+		}
+	}
+	"13876"
+	{
+		"name"									"Herald of the Ember Eye - Brush"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/grimstroke/the_manipulator_weapon/the_manipulator_weapon"
+		"item_name"								"#DOTA_Item_Herald_of_the_Ember_Eye__Brush"
+		"item_rarity"							"mythical"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/grimstroke/the_manipulator_weapon/the_manipulator_weapon.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_grimstroke/grimstroke_brush_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/grimstroke/the_manipulator/the_manipulator_weapon/the_manipulator_weapon.vpcf"
+			}
+		}
+	}
+	"13877"
+	{
+		"name"									"Herald of the Ember Eye - Mask"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/grimstroke/the_manipulator_head/the_manipulator_head"
+		"item_name"								"#DOTA_Item_Herald_of_the_Ember_Eye__Mask"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/grimstroke/the_manipulator_head/the_manipulator_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_grimstroke/grimstroke_head_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/grimstroke/the_manipulator/the_manipulator_head/the_manipulator_head.vpcf"
+			}
+		}
+	}
+	"13896"
+	{
+		"name"									"The Chained Scribe - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-07"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/grimstroke/the_chained_scribe_head/the_chained_scribe_head"
+		"item_name"								"#DOTA_Item_The_Chained_Scribe__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/grimstroke/the_chained_scribe_head/the_chained_scribe_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_grimstroke/grimstroke_head_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/grimstroke/gs_cc_2022_head/gs_cc_2022_head.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13897"
+	{
+		"name"									"The Chained Scribe - Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-07"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/grimstroke/the_chained_scribe_armor/the_chained_scribe_armor"
+		"item_name"								"#DOTA_Item_The_Chained_Scribe__Armor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"model_player"							"models/items/grimstroke/the_chained_scribe_armor/the_chained_scribe_armor.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/grimstroke/gs_cc_2022_armor/gs_cc_2022_armor.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13898"
+	{
+		"name"									"The Chained Scribe - Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-07"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/grimstroke/the_chained_scribe_belt/the_chained_scribe_belt"
+		"item_name"								"#DOTA_Item_The_Chained_Scribe__Belt"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"model_player"							"models/items/grimstroke/the_chained_scribe_belt/the_chained_scribe_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/grimstroke/gs_cc_2022_belt/gs_cc_2022_belt.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13899"
+	{
+		"name"									"The Chained Scribe - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-07"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/grimstroke/the_chained_scribe_weapon/the_chained_scribe_weapon"
+		"item_name"								"#DOTA_Item_The_Chained_Scribe__Weapon"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/grimstroke/the_chained_scribe_weapon/the_chained_scribe_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_grimstroke/grimstroke_brush_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13900"
+	{
+		"name"									"Kite of Darkness - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-07"
+		"image_inventory"						"econ/items/grimstroke/tengu_guardian_weapon/tengu_guardian_weapon"
+		"item_name"								"#DOTA_Item_Kite_of_Darkness__Weapon"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/grimstroke/tengu_guardian_weapon/tengu_guardian_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_grimstroke/grimstroke_brush_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13901"
+	{
+		"name"									"Kite of Darkness - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-07"
+		"image_inventory"						"econ/items/grimstroke/tengu_guardian_head/tengu_guardian_head"
+		"item_name"								"#DOTA_Item_Kite_of_Darkness__Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"model_player"							"models/items/grimstroke/tengu_guardian_head/tengu_guardian_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_grimstroke/grimstroke_head_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13902"
+	{
+		"name"									"Kite of Darkness - Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-07"
+		"image_inventory"						"econ/items/grimstroke/tengu_guardian_belt/tengu_guardian_belt"
+		"item_name"								"#DOTA_Item_Kite_of_Darkness__Belt"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"model_player"							"models/items/grimstroke/tengu_guardian_belt/tengu_guardian_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"13903"
+	{
+		"name"									"Kite of Darkness - Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-07"
+		"image_inventory"						"econ/items/grimstroke/tengu_guardian_armor/tengu_guardian_armor"
+		"item_name"								"#DOTA_Item_Kite_of_Darkness__Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"model_player"							"models/items/grimstroke/tengu_guardian_armor/tengu_guardian_armor.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"17663"
+	{
+		"name"									"Remnants of Ascension"
+		"prefab"								"wearable"
+		"creation_date"							"2020-09-11"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/grimstroke/gs_fall20_immortal_head/gs_fall20_immortal_head"
+		"item_description"						"#DOTA_Item_Desc_Remnants_of_Ascension"
+		"item_name"								"#DOTA_Item_Remnants_of_Ascension"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/grimstroke/gs_fall20_immortal_head/gs_fall20_immortal_head.vmdl"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"ability_icon"
+				"asset"							"grimstroke_soul_chain"
+				"modifier"						"grimstroke/grimstroke_fall20_immortal_ability_icon/grimstroke_fall20_immortal_soulbind"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/grimstroke/gs_fall20_immortal/gs_fall20_immortal_ambient.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_grimstroke/grimstroke_soulchain_debuff.vpcf"
+				"modifier"						"particles/econ/items/grimstroke/gs_fall20_immortal/gs_fall20_immortal_soul_debuff.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_grimstroke/grimstroke_soulchain.vpcf"
+				"modifier"						"particles/econ/items/grimstroke/gs_fall20_immortal/gs_fall20_immortal_soulbind.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_grimstroke/grimstroke_soulchain_marker.vpcf"
+				"modifier"						"particles/econ/items/grimstroke/gs_fall20_immortal/gs_fall20_immortal_soul_marker.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+		}
+	}
+	"21339"
+	{
+		"name"									"Paean of the Ink Dragon"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armor of the Ink Dragon"			"1"
+			"Paean of the Ink Dragon Loading Screen""1"
+			"Belt of the Ink Dragon"			"1"
+			"Mask of the Ink Dragon"			"1"
+			"Brush of the Ink Dragon"			"1"
+		}
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/loading_screens/ti9_cache_grim_ink_dragon_poet_ls"
+		"item_description"						"#DOTA_Item_Desc_Paean_of_the_Ink_Dragon"
+		"item_name"								"#DOTA_Item_Paean_of_the_Ink_Dragon"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"21432"
+	{
+		"name"									"Fury of the Damned"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Fury of the Damned Belt"			"1"
+			"Fury of the Damned Brush"			"1"
+			"Fury of the Damned Mask"			"1"
+			"Fury of the Damned Armor"			"1"
+		}
+		"creation_date"							"2019-10-01"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Ghost_Judger"
+		"item_name"								"#DOTA_Item_Fury_of_the_Damned"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+	}
+	"21455"
+	{
+		"name"									"Herald of the Ember Eye"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Herald of the Ember Eye - Mask"	"1"
+			"Herald of the Ember Eye - Brush"	"1"
+			"Herald of the Ember Eye - Armor"	"1"
+			"Herald of the Ember Eye - Belt"	"1"
+			"Herald of the Ember Eye Loading Screen""1"
+		}
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/loading_screens/the_manipulator_ls"
+		"item_name"								"#DOTA_Item_Herald_of_the_Ember_Eye"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21459"
+	{
+		"name"									"The Chained Scribe"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"The Chained Scribe - Weapon"		"1"
+			"The Chained Scribe - Belt"			"1"
+			"The Chained Scribe - Armor"		"1"
+			"The Chained Scribe - Head"			"1"
+		}
+		"creation_date"							"2020-05-11"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/sets/DOTA_Item_DOTA_Item_The_Chained_Scribe_Bundle"
+		"item_name"								"#DOTA_Item_The_Chained_Scribe"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21532"
+	{
+		"name"									"Kite of Darkness"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Kite of Darkness Loading Screen"	"1"
+			"Kite of Darkness - Belt"			"1"
+			"Kite of Darkness - Head"			"1"
+			"Kite of Darkness - Weapon"			"1"
+			"Kite of Darkness - Armor"			"1"
+		}
+		"creation_date"							"2020-05-11"
+		"image_inventory"						"econ/loading_screens/tengu_guardian_ls"
+		"item_name"								"#DOTA_Item_Kite_of_Darkness"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+}

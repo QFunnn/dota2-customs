@@ -1,0 +1,5739 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"1"
+	{
+		"name"									"Anti-Mage's Glaive"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/antimage/antimage_weapon"
+		"item_description"						"#DOTA_Item_Desc_AntiMages_Glaive"
+		"item_name"								"#DOTA_Item_AntiMages_Glaive"
+		"model_player"							"models/heroes/antimage/antimage_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"215"
+	{
+		"name"									"Anti-Mage's Head"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/antimage/antimage_head"
+		"item_description"						"#DOTA_Item_Desc_AntiMages_Head"
+		"item_name"								"#DOTA_Item_AntiMages_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/antimage/antimage_head.vmdl"
+	}
+	"216"
+	{
+		"name"									"Anti-Mage's Armor"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/antimage/antimage_chest"
+		"item_description"						"#DOTA_Item_Desc_AntiMages_Armor"
+		"item_name"								"#DOTA_Item_AntiMages_Armor"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/heroes/antimage/antimage_chest.vmdl"
+	}
+	"217"
+	{
+		"name"									"Anti-Mage's Arms"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/antimage/antimage_arms"
+		"item_description"						"#DOTA_Item_Desc_AntiMages_Arms"
+		"item_name"								"#DOTA_Item_AntiMages_Arms"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/heroes/antimage/antimage_arms.vmdl"
+	}
+	"218"
+	{
+		"name"									"Anti-Mage's Belt"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/antimage/antimage_belt"
+		"item_description"						"#DOTA_Item_Desc_AntiMages_Belt"
+		"item_name"								"#DOTA_Item_AntiMages_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/heroes/antimage/antimage_belt.vmdl"
+	}
+	"335"
+	{
+		"name"									"Anti-Mage's Offhand Glaive"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/antimage/antimage_weapon"
+		"item_description"						"#DOTA_Item_Desc_AntiMages_Offhand_Glaive"
+		"item_name"								"#DOTA_Item_AntiMages_Offhand_Glaive"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Glaive"
+		"model_player"							"models/heroes/antimage/antimage_offhand_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"563"
+	{
+		"name"									"Antimage's Shoulders"
+		"prefab"								"default_item"
+		"creation_date"							"2015-05-20"
+		"image_inventory"						"econ/heroes/antimage/antimage_shoulders"
+		"item_description"						"#DOTA_Item_Desc_Antimages_Shoulders"
+		"item_name"								"#DOTA_Item_Antimages_Shoulders"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+	}
+	"708"
+	{
+		"name"									"Anti-Mage Persona Weapon"
+		"prefab"								"default_item"
+		"creation_date"							"2020-08-09"
+		"image_inventory"						"econ/heroes/antimage_female/antimage_female_weapon"
+		"item_name"								"#DOTA_Item_AntiMage_Persona_Weapon"
+		"item_slot"								"weapon_persona_1"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage_female/am_female_blade_l_ambient.vpcf"
+			}
+		}
+	}
+	"714"
+	{
+		"name"									"Anti-Mage Persona Offhand Weapon"
+		"prefab"								"default_item"
+		"creation_date"							"2020-08-09"
+		"image_inventory"						"econ/heroes/antimage_female/antimage_female_weapon_offhand"
+		"item_name"								"#DOTA_Item_AntiMage_Persona_Offhand_Weapon"
+		"item_slot"								"offhand_weapon_persona_1"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage_female/am_female_blade_r_ambient.vpcf"
+			}
+		}
+	}
+	"715"
+	{
+		"name"									"Anti-Mage Persona Armor"
+		"prefab"								"default_item"
+		"creation_date"							"2020-08-09"
+		"image_inventory"						"econ/heroes/antimage_female/antimage_female_armor"
+		"item_name"								"#DOTA_Item_AntiMage_Persona_Armor"
+		"item_slot"								"armor_persona_1"
+	}
+	"716"
+	{
+		"name"									"Anti-Mage Persona Hair"
+		"prefab"								"default_item"
+		"creation_date"							"2020-08-09"
+		"image_inventory"						"econ/heroes/antimage_female/antimage_female_head"
+		"item_name"								"#DOTA_Item_AntiMage_Persona_Hair"
+		"item_slot"								"head_persona_1"
+	}
+	"4322"
+	{
+		"name"									"Glaive of the Mage Slayer - Off-Hand"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/antimage/antimage_slasher_offhand_weapon"
+		"item_description"						"#DOTA_Item_Desc_Glaive_of_the_Mage_Slayer__OffHand"
+		"item_name"								"#DOTA_Item_Glaive_of_the_Mage_Slayer__OffHand"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Glaive"
+		"model_player"							"models/items/antimage/antimage_slasher_offhand_weapon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_ATTACK"
+				"modifier"						"slasher_offhand"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE_RARE"
+				"modifier"						"slasher_offhand"
+			}
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_DIE"
+				"modifier"						"slasher_offhand"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_VICTORY"
+				"modifier"						"slasher_offhand"
+			}
+			"asset_modifier4"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_LOADOUT"
+				"modifier"						"slasher_offhand"
+			}
+			"asset_modifier5"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE"
+				"modifier"						"slasher_offhand"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_offhand.vsnap"
+				"modifier"						"particles/models/items/antimage/slasher/slasher_offhand_fx.vsnap"
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"4476"
+	{
+		"name"									"Armor of the Mage Slayer"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/antimage/antimage_slasher_vest"
+		"item_description"						"#DOTA_Item_Desc_Armor_of_the_Mage_Slayer"
+		"item_name"								"#DOTA_Item_Armor_of_the_Mage_Slayer"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/antimage/antimage_slasher_vest.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE_RARE"
+				"modifier"						"slasher_chest"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_VICTORY"
+				"modifier"						"slasher_chest"
+			}
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_LOADOUT"
+				"modifier"						"slasher_chest"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_DIE"
+				"modifier"						"slasher_chest"
+			}
+			"asset_modifier4"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_CAST_ABILITY_2"
+				"modifier"						"slasher_chest"
+			}
+			"asset_modifier5"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE"
+				"modifier"						"slasher_chest"
+			}
+		}
+	}
+	"4555"
+	{
+		"name"									"Ancient Crasher"
+		"prefab"								"wearable"
+		"creation_date"							"2013-03-22"
+		"image_inventory"						"econ/items/antimage/anuxi_ancient_crasher/anuxi_ancient_crasher"
+		"item_description"						"#DOTA_Item_Desc_Ancient_Crasher"
+		"item_name"								"#DOTA_Item_Ancient_Crasher"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/antimage/anuxi_ancient_crasher/anuxi_ancient_crasher.vmdl"
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_offhand.vsnap"
+				"modifier"						"particles/models/items/antimage/anuxi_ancient_crasher/anuxi_ancient_crasher.vsnap"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"4556"
+	{
+		"name"									"Ancient Crescent"
+		"prefab"								"wearable"
+		"capabilities"
+		{
+			"nameable"							"1"
+		}
+		"creation_date"							"2013-03-22"
+		"image_inventory"						"econ/items/antimage/anuxi_ancient_crescent/anuxi_ancient_crescent"
+		"item_description"						"#DOTA_Item_Desc_Ancient_Crescent"
+		"item_name"								"#DOTA_Item_Ancient_Crescent"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/antimage/anuxi_ancient_crescent/anuxi_ancient_crescent.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_primary.vsnap"
+				"modifier"						"particles/models/items/antimage/anuxi_ancient_crescent/anuxi_ancient_crescent.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"4651"
+	{
+		"name"									"Collar of the Mage Slayer"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/antimage/antimage_slasher_neck"
+		"item_description"						"#DOTA_Item_Desc_Collar_of_the_Mage_Slayer"
+		"item_name"								"#DOTA_Item_Collar_of_the_Mage_Slayer"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Collar"
+		"model_player"							"models/items/antimage/antimage_slasher_neck.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE_RARE"
+				"modifier"						"slasher_shoulder"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_DIE"
+				"modifier"						"slasher_shoulder"
+			}
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_VICTORY"
+				"modifier"						"slasher_shoulder"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_LOADOUT"
+				"modifier"						"slasher_shoulder"
+			}
+			"asset_modifier4"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE"
+				"modifier"						"slasher_shoulder"
+			}
+		}
+	}
+	"4652"
+	{
+		"name"									"Bracer of the Mage Slayer"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/antimage/antimage_slasher_bracer"
+		"item_description"						"#DOTA_Item_Desc_Bracer_of_the_Mage_Slayer"
+		"item_name"								"#DOTA_Item_Bracer_of_the_Mage_Slayer"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracer"
+		"model_player"							"models/items/antimage/antimage_slasher_bracer.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE_RARE"
+				"modifier"						"slasher_arms"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_DIE"
+				"modifier"						"slasher_arms"
+			}
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_VICTORY"
+				"modifier"						"slasher_arms"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_LOADOUT"
+				"modifier"						"slasher_arms"
+			}
+			"asset_modifier4"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE"
+				"modifier"						"slasher_arms"
+			}
+		}
+	}
+	"4653"
+	{
+		"name"									"Skirt of the Mage Slayer"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/antimage/antimage_slasher_skirt"
+		"item_description"						"#DOTA_Item_Desc_Skirt_of_the_Mage_Slayer"
+		"item_name"								"#DOTA_Item_Skirt_of_the_Mage_Slayer"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Skirt"
+		"model_player"							"models/items/antimage/antimage_slasher_skirt.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE_RARE"
+				"modifier"						"slasher_belt"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_DIE"
+				"modifier"						"slasher_belt"
+			}
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_VICTORY"
+				"modifier"						"slasher_belt"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_LOADOUT"
+				"modifier"						"slasher_belt"
+			}
+			"asset_modifier4"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE"
+				"modifier"						"slasher_belt"
+			}
+		}
+	}
+	"4654"
+	{
+		"name"									"Glaive of the Mage Slayer"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/antimage/antimage_slasher_weapon"
+		"item_description"						"#DOTA_Item_Desc_Glaive_of_the_Mage_Slayer"
+		"item_name"								"#DOTA_Item_Glaive_of_the_Mage_Slayer"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Glaive"
+		"model_player"							"models/items/antimage/antimage_slasher_weapon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_ATTACK"
+				"modifier"						"slasher_weapon"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE_RARE"
+				"modifier"						"slasher_weapon"
+			}
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_DIE"
+				"modifier"						"slasher_weapon"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_VICTORY"
+				"modifier"						"slasher_weapon"
+			}
+			"asset_modifier4"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_LOADOUT"
+				"modifier"						"slasher_weapon"
+			}
+			"asset_modifier5"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE"
+				"modifier"						"slasher_weapon"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_primary.vsnap"
+				"modifier"						"particles/models/items/antimage/slasher/slasher_fx.vsnap"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"4655"
+	{
+		"name"									"Mask of the Mage Slayer"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/antimage/antimage_slasher_helmet"
+		"item_description"						"#DOTA_Item_Desc_Cult_Mask_of_the_Mage_Slayer"
+		"item_name"								"#DOTA_Item_Mask_of_the_Mage_Slayer"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/antimage/antimage_slasher_helmet.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE_RARE"
+				"modifier"						"slasher_mask"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_DIE"
+				"modifier"						"slasher_mask"
+			}
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_VICTORY"
+				"modifier"						"slasher_mask"
+			}
+			"asset_modifier3"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_CAST_ABILITY_4"
+				"modifier"						"slasher_mask"
+			}
+			"asset_modifier4"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_LOADOUT"
+				"modifier"						"slasher_mask"
+			}
+			"asset_modifier5"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_IDLE"
+				"modifier"						"slasher_mask"
+			}
+		}
+	}
+	"4769"
+	{
+		"name"									"Fashion of Yoskreth"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/antimage/wh_mask/wh_mask"
+		"item_description"						"#DOTA_Item_Desc_Fashion_of_Yoskreth"
+		"item_name"								"#DOTA_Item_Fashion_of_Yoskreth"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/antimage/wh_mask/wh_mask.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4770"
+	{
+		"name"									"Spellbreaker of Yoskreth"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/antimage/wh_shoulder/wh_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Spellbreaker_of_Yoskreth"
+		"item_name"								"#DOTA_Item_Spellbreaker_of_Yoskreth"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Guard"
+		"model_player"							"models/items/antimage/wh_shoulder/wh_shoulder.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4778"
+	{
+		"name"									"Sash of Yoskreth"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/antimage/wh_armor/wh_armor"
+		"item_description"						"#DOTA_Item_Desc_Sash_of_Yoskreth"
+		"item_name"								"#DOTA_Item_Sash_of_Yoskreth"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/antimage/wh_armor/wh_armor.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4779"
+	{
+		"name"									"Etched Crescent of Yoskreth - Off-Hand"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/antimage/wh_offhand_weapon/wh_offhand_weapon"
+		"item_description"						"#DOTA_Item_Desc_Etched_Crescent_of_Yoskreth__OffHand"
+		"item_name"								"#DOTA_Item_Etched_Crescent_of_Yoskreth__OffHand"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/antimage/wh_offhand_weapon/wh_offhand_weapon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_offhand.vsnap"
+				"modifier"						"particles/models/items/antimage/wh_offhand_weapon/wh_offhand_weapon.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"4781"
+	{
+		"name"									"Etched Crescent of Yoskreth"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/antimage/wh_weapon/wh_weapon"
+		"item_description"						"#DOTA_Item_Desc_Etched_Crescent_of_Yoskreth"
+		"item_name"								"#DOTA_Item_Etched_Crescent_of_Yoskreth"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/antimage/wh_weapon/wh_weapon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_primary.vsnap"
+				"modifier"						"particles/models/items/antimage/wh_weapon/wh_weapon.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"4782"
+	{
+		"name"									"Belt of Yoskreth"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/antimage/wh_belt/wh_belt"
+		"item_description"						"#DOTA_Item_Desc_Belt_of_Yoskreth"
+		"item_name"								"#DOTA_Item_Belt_of_Yoskreth"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/antimage/wh_belt/wh_belt.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4784"
+	{
+		"name"									"Bracers of Yoskreth"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/antimage/wh_arms/wh_arms"
+		"item_description"						"#DOTA_Item_Desc_Bracers_of_Yoskreth"
+		"item_name"								"#DOTA_Item_Bracers_of_Yoskreth"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracer"
+		"model_player"							"models/items/antimage/wh_arms/wh_arms.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4996"
+	{
+		"name"									"Taunt: The Magic Ends Here"
+		"prefab"								"taunt"
+		"creation_date"							"2013-05-30"
+		"image_inventory"						"econ/taunts/DOTA_Item_Taunt_The_Magic_Ends_Here"
+		"item_description"						"#DOTA_Item_Desc_Taunt_The_Magic_Ends_Here"
+		"item_name"								"#DOTA_Item_Taunt_The_Magic_Ends_Here"
+		"item_rarity"							"rare"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"magic_ends_here"
+			}
+		}
+	}
+	"5130"
+	{
+		"name"									"Nomad's Shelter"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-09"
+		"image_inventory"						"econ/items/antimage/nomadic_protector_armor/nomadic_protector_armor"
+		"item_description"						"#DOTA_Item_Desc_Nomads_Shelter"
+		"item_name"								"#DOTA_Item_Nomads_Shelter"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/antimage/nomadic_protector_armor/nomadic_protector_armor.vmdl"
+	}
+	"5131"
+	{
+		"name"									"Nomad's Guards"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-09"
+		"image_inventory"						"econ/items/antimage/nomadic_protector_arms/nomadic_protector_arms"
+		"item_description"						"#DOTA_Item_Desc_Nomads_Guards"
+		"item_name"								"#DOTA_Item_Nomads_Guards"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/antimage/nomadic_protector_arms/nomadic_protector_arms.vmdl"
+	}
+	"5132"
+	{
+		"name"									"Initiate's Cut"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-09"
+		"image_inventory"						"econ/items/antimage/nomadic_protector_head/nomadic_protector_head"
+		"item_description"						"#DOTA_Item_Desc_Initiates_Cut"
+		"item_name"								"#DOTA_Item_Initiates_Cut"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/antimage/nomadic_protector_head/nomadic_protector_head.vmdl"
+	}
+	"5133"
+	{
+		"name"									"Nomad's Barbed Edge"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-09"
+		"image_inventory"						"econ/items/antimage/nomadic_protector_weapon/nomadic_protector_weapon"
+		"item_description"						"#DOTA_Item_Desc_Nomads_Barbed_Edge"
+		"item_name"								"#DOTA_Item_Nomads_Barbed_Edge"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/antimage/nomadic_protector_weapon/nomadic_protector_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_primary.vsnap"
+				"modifier"						"particles/models/items/antimage/nomadic_protector_weapon/nomadic_protector_weapon.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"5134"
+	{
+		"name"									"Nomad's Edge - Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2013-07-09"
+		"image_inventory"						"econ/items/antimage/nomadic_protector_offhand/nomadic_protector_offhand"
+		"item_description"						"#DOTA_Item_Desc_Nomads_Edge__OffHand"
+		"item_name"								"#DOTA_Item_Nomads_Edge__OffHand"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/antimage/nomadic_protector_offhand/nomadic_protector_offhand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_offhand.vsnap"
+				"modifier"						"particles/models/items/antimage/nomadic_protector_offhand/nomadic_protector_offhand.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"5395"
+	{
+		"name"									"Arc of Manta - Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-10"
+		"image_inventory"						"econ/items/antimage/arc_of_manta__offhand/arc_of_manta__offhand"
+		"item_description"						"#DOTA_Item_Desc_Arc_of_Manta__OffHand"
+		"item_name"								"#DOTA_Item_Arc_of_Manta__OffHand"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/antimage/arc_of_manta__offhand/arc_of_manta__offhand.vmdl"
+		"particle_folder"						"particles/econ/items/antimage/antimage_weapon_manta"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_offhand.vsnap"
+				"modifier"						"particles/models/items/antimage/arc_of_manta__offhand/arc_of_manta__offhand.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/ability_modifier_placeholder/manta_passive_offhand.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_manta/antimage_blade_offhand_manta_passive.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"5396"
+	{
+		"name"									"Arc of Manta"
+		"prefab"								"wearable"
+		"creation_date"							"2013-09-10"
+		"image_inventory"						"econ/items/antimage/arc_of_manta/arc_of_manta"
+		"item_description"						"#DOTA_Item_Desc_Arc_of_Manta"
+		"item_name"								"#DOTA_Item_Arc_of_Manta"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/antimage/arc_of_manta/arc_of_manta.vmdl"
+		"particle_folder"						"particles/econ/items/antimage/antimage_weapon_manta"
+		"visuals"
+		{
+			"asset_modifier1"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_primary.vsnap"
+				"modifier"						"particles/models/items/antimage/arc_of_manta/arc_of_manta.vsnap"
+			}
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/ability_modifier_placeholder/manta_passive.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_manta/antimage_blade_primary_manta_passive.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"5528"
+	{
+		"name"									"Cloth of the Clergy Ascetic"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-14"
+		"image_inventory"						"econ/items/antimage/cloth_of_the_clergy_ascetic/cloth_of_the_clergy_ascetic"
+		"item_description"						"#DOTA_Item_Desc_Cloth_of_the_Clergy_Ascetic"
+		"item_name"								"#DOTA_Item_Cloth_of_the_Clergy_Ascetic"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Kilt"
+		"model_player"							"models/items/antimage/cloth_of_the_clergy_ascetic/cloth_of_the_clergy_ascetic.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5529"
+	{
+		"name"									"Reprieve of the Clergy Ascetic - Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-14"
+		"image_inventory"						"econ/items/antimage/reprieve_of_the_clergy_ascetic__offhand/reprieve_of_the_clergy_ascetic__offhand"
+		"item_description"						"#DOTA_Item_Desc_Reprieve_of_the_Clergy_Ascetic__OffHand"
+		"item_name"								"#DOTA_Item_Reprieve_of_the_Clergy_Ascetic__OffHand"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Offhand_Weapon"
+		"model_player"							"models/items/antimage/reprieve_of_the_clergy_ascetic__offhand/reprieve_of_the_clergy_ascetic__offhand.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_offhand.vsnap"
+				"modifier"						"particles/models/items/antimage/reprieve_of_the_clergy_ascetic__offhand/reprieve_of_the_clergy_ascetic__offhand.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"5530"
+	{
+		"name"									"Adornment of the Clergy Ascetic"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-14"
+		"image_inventory"						"econ/items/antimage/adornment_of_the_clergy_ascetic/adornment_of_the_clergy_ascetic"
+		"item_description"						"#DOTA_Item_Desc_Adornment_of_the_Clergy_Ascetic"
+		"item_name"								"#DOTA_Item_Adornment_of_the_Clergy_Ascetic"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/antimage/adornment_of_the_clergy_ascetic/adornment_of_the_clergy_ascetic.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5531"
+	{
+		"name"									"Reprieve of the Clergy Ascetic"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-14"
+		"image_inventory"						"econ/items/antimage/reprieve_of_the_clergy_ascetic/reprieve_of_the_clergy_ascetic"
+		"item_description"						"#DOTA_Item_Desc_Reprieve_of_the_Clergy_Ascetic"
+		"item_name"								"#DOTA_Item_Reprieve_of_the_Clergy_Ascetic"
+		"item_rarity"							"uncommon"
+		"model_player"							"models/items/antimage/reprieve_of_the_clergy_ascetic/reprieve_of_the_clergy_ascetic.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_primary.vsnap"
+				"modifier"						"particles/models/items/antimage/reprieve_of_the_clergy_ascetic/reprieve_of_the_clergy_ascetic.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"5532"
+	{
+		"name"									"Guard of the Clergy Ascetic"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-14"
+		"image_inventory"						"econ/items/antimage/guard_of_the_clergy_ascetic/guard_of_the_clergy_ascetic"
+		"item_description"						"#DOTA_Item_Desc_Guard_of_the_Clergy_Ascetic"
+		"item_name"								"#DOTA_Item_Guard_of_the_Clergy_Ascetic"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulderpiece"
+		"model_player"							"models/items/antimage/guard_of_the_clergy_ascetic/guard_of_the_clergy_ascetic.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5538"
+	{
+		"name"									"Hood of the Clergy Ascetic"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-14"
+		"image_inventory"						"econ/items/antimage/hood_of_the_clergy_ascetic/hood_of_the_clergy_ascetic"
+		"item_name"								"#DOTA_Item_Hood_of_the_Clergy_Ascetic"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hood"
+		"model_player"							"models/items/antimage/hood_of_the_clergy_ascetic/hood_of_the_clergy_ascetic.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5549"
+	{
+		"name"									"Bracers of the Clergy Ascetic"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-15"
+		"image_inventory"						"econ/items/antimage/bracers_of_the_clergy_ascetic/bracers_of_the_clergy_ascetic"
+		"item_description"						"#DOTA_Item_Desc_Bracers_of_the_Clergy_Ascetic"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Clergy_Ascetic"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/antimage/bracers_of_the_clergy_ascetic/bracers_of_the_clergy_ascetic.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5593"
+	{
+		"name"									"Bracers of the Shifting Sorcerer"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-06"
+		"image_inventory"						"econ/items/antimage/burning_am_set__arms/burning_am_set__arms"
+		"item_description"						"#DOTA_Item_Desc_Bracers_of_the_Shifting_Sorcerer"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Shifting_Sorcerer"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Honored_Bracers"
+		"model_player"							"models/items/antimage/burning_am_set__arms/burning_am_set__arms.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"branding"
+		{
+			"corporation_id"					"90892734"
+		}
+	}
+	"5636"
+	{
+		"name"									"Wrap of the Shifting Sorcerer"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-06"
+		"image_inventory"						"econ/items/antimage/burning_am_set__head/burning_am_set__head"
+		"item_description"						"#DOTA_Item_Desc_Wrap_of_the_Shifting_Sorcerer"
+		"item_name"								"#DOTA_Item_Wrap_of_the_Shifting_Sorcerer"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Honored_Wrap"
+		"model_player"							"models/items/antimage/burning_am_set__head/burning_am_set__head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"branding"
+		{
+			"corporation_id"					"90892734"
+		}
+	}
+	"5637"
+	{
+		"name"									"Hatchet of the Shifting Sorcerer - Offhand"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-06"
+		"image_inventory"						"econ/items/antimage/burning_am_set__weapon_offhand/burning_am_set__weapon_offhand"
+		"item_description"						"#DOTA_Item_Desc_Hatchet_of_the_Shifting_Sorcerer__Offhand"
+		"item_name"								"#DOTA_Item_Hatchet_of_the_Shifting_Sorcerer__Offhand"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Honored_Hatchet__Offhand"
+		"model_player"							"models/items/antimage/burning_am_set__weapon_offhand/burning_am_set__weapon_offhand.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_offhand.vsnap"
+				"modifier"						"particles/models/items/antimage/burning_am_set__weapon_offhand/burning_am_set__weapon_offhand.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+		"branding"
+		{
+			"corporation_id"					"90892734"
+		}
+	}
+	"5638"
+	{
+		"name"									"Hatchet of the Shifting Sorcerer"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-06"
+		"image_inventory"						"econ/items/antimage/burning_am_set__weapon/burning_am_set__weapon"
+		"item_description"						"#DOTA_Item_Desc_Hatchet_of_the_Shifting_Sorcerer"
+		"item_name"								"#DOTA_Item_Hatchet_of_the_Shifting_Sorcerer"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Honored_Hatchet"
+		"model_player"							"models/items/antimage/burning_am_set__weapon/burning_am_set__weapon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_primary.vsnap"
+				"modifier"						"particles/models/items/antimage/burning_am_set__weapon/burning_am_set__weapon.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+		"branding"
+		{
+			"corporation_id"					"90892734"
+		}
+	}
+	"5642"
+	{
+		"name"									"Pauldrons of the Shifting Sorcerer"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-06"
+		"image_inventory"						"econ/items/antimage/burning_am_set__armor/burning_am_set__armor"
+		"item_description"						"#DOTA_Item_Desc_Pauldrons_of_the_Shifting_Sorcerer"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Shifting_Sorcerer"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Honored_Pauldrons"
+		"model_player"							"models/items/antimage/burning_am_set__armor/burning_am_set__armor.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"branding"
+		{
+			"corporation_id"					"90892734"
+		}
+	}
+	"5643"
+	{
+		"name"									"Crest of the Shifting Sorcerer"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-06"
+		"image_inventory"						"econ/items/antimage/burning_am_set__belt/burning_am_set__belt"
+		"item_description"						"#DOTA_Item_Desc_Crest_of_the_Shifting_Sorcerer"
+		"item_name"								"#DOTA_Item_Crest_of_the_Shifting_Sorcerer"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Honored_Belt"
+		"model_player"							"models/items/antimage/burning_am_set__belt/burning_am_set__belt.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"branding"
+		{
+			"corporation_id"					"90892734"
+		}
+	}
+	"5754"
+	{
+		"name"									"Bracers of the Awakened"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-02"
+		"image_inventory"						"econ/items/antimage/bracers_of_the_awakened/bracers_of_the_awakened"
+		"item_description"						"#DOTA_Item_Desc_Bracers_of_the_Awakened"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Awakened"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/antimage/bracers_of_the_awakened/bracers_of_the_awakened.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5755"
+	{
+		"name"									"Gift of the Awakened"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-02"
+		"image_inventory"						"econ/items/antimage/gift_of_the_awakened/gift_of_the_awakened"
+		"item_description"						"#DOTA_Item_Desc_Gift_of_the_Awakened"
+		"item_name"								"#DOTA_Item_Gift_of_the_Awakened"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/antimage/gift_of_the_awakened/gift_of_the_awakened.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/antimage/gift_of_the_awakened/gift_of_the_awakened.vmdl"
+					"name"						"#DOTA_Item_Gift_of_the_Awakened"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/antimage/gift_of_the_awakened_style_2/gift_of_the_awakened_style_2.vmdl"
+					"name"						"#DOTA_Item_Gift_of_the_Awakened_Style2"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/antimage/gift_of_the_awakened/gift_of_the_awakened"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/antimage/gift_of_the_awakened_style_2/gift_of_the_awakened_style_2"
+				}
+			}
+		}
+	}
+	"5757"
+	{
+		"name"									"Leggings of the Awakened"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-02"
+		"image_inventory"						"econ/items/antimage/leggings_of_the_awakened/leggings_of_the_awakened"
+		"item_description"						"#DOTA_Item_Desc_Leggings_of_the_Awakened"
+		"item_name"								"#DOTA_Item_Leggings_of_the_Awakened"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Leggings"
+		"model_player"							"models/items/antimage/leggings_of_the_awakened/leggings_of_the_awakened.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5758"
+	{
+		"name"									"Shard of Retribution"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-02"
+		"image_inventory"						"econ/items/antimage/shard_of_retribution/shard_of_retribution"
+		"item_description"						"#DOTA_Item_Desc_Shard_of_Retribution"
+		"item_name"								"#DOTA_Item_Shard_of_Retribution"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/antimage/shard_of_retribution/shard_of_retribution.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_offhand.vsnap"
+				"modifier"						"particles/models/items/antimage/shard_of_retribution/shard_of_retribution.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"5759"
+	{
+		"name"									"Shard of Vengeance"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-02"
+		"image_inventory"						"econ/items/antimage/shard_of_vengeance/shard_of_vengeance"
+		"item_description"						"#DOTA_Item_Desc_Shard_of_Vengeance"
+		"item_name"								"#DOTA_Item_Shard_of_Vengeance"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/antimage/shard_of_vengeance/shard_of_vengeance.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_primary.vsnap"
+				"modifier"						"particles/models/items/antimage/shard_of_vengeance/shard_of_vengeance.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"5760"
+	{
+		"name"									"Shroud of the Awakened"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-02"
+		"image_inventory"						"econ/items/antimage/shroud_of_the_awakened/shroud_of_the_awakened"
+		"item_description"						"#DOTA_Item_Desc_Shroud_of_the_Awakened"
+		"item_name"								"#DOTA_Item_Shroud_of_the_Awakened"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Shroud"
+		"model_player"							"models/items/antimage/shroud_of_the_awakened/shroud_of_the_awakened.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5761"
+	{
+		"name"									"Words of the Awakened"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-02"
+		"image_inventory"						"econ/items/antimage/words_of_the_awakened/words_of_the_awakened"
+		"item_description"						"#DOTA_Item_Desc_Words_of_the_Awakened"
+		"item_name"								"#DOTA_Item_Words_of_the_Awakened"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Scroll"
+		"model_player"							"models/items/antimage/words_of_the_awakened/words_of_the_awakened.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"6205"
+	{
+		"name"									"Shoulders of Tustakuri"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-19"
+		"image_inventory"						"econ/items/antimage/pw_tustarkuri_shoulder/antimage_shoulder_lod0"
+		"item_description"						"#DOTA_Item_Desc_Shoulders_of_Tustakuri"
+		"item_name"								"#DOTA_Item_Shoulders_of_Tustakuri"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/antimage/pw_tustarkuri_shoulder/antimage_shoulder_lod0.vmdl"
+	}
+	"6322"
+	{
+		"name"									"Bracers of Tustakuri"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-20"
+		"image_inventory"						"econ/items/antimage/pw_tustarkuri_arms/antimage_arms_lod0"
+		"item_description"						"#DOTA_Item_Desc_Bracers_of_Tustakuri"
+		"item_name"								"#DOTA_Item_Bracers_of_Tustakuri"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/antimage/pw_tustarkuri_arms/antimage_arms_lod0.vmdl"
+	}
+	"6323"
+	{
+		"name"									"Belt of Tustakuri"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-20"
+		"image_inventory"						"econ/items/antimage/pw_tustarkuri_belt/antimage_belt_lod0"
+		"item_description"						"#DOTA_Item_Desc_Belt_of_Tustakuri"
+		"item_name"								"#DOTA_Item_Belt_of_Tustakuri"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/antimage/pw_tustarkuri_belt/antimage_belt_lod0.vmdl"
+	}
+	"6324"
+	{
+		"name"									"Pauldrons of Tustakuri"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-20"
+		"image_inventory"						"econ/items/antimage/pw_tustarkuri_armor/antimage_armor_lod0"
+		"item_description"						"#DOTA_Item_Desc_Pauldrons_of_Tustakuri"
+		"item_name"								"#DOTA_Item_Pauldrons_of_Tustakuri"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/antimage/pw_tustarkuri_armor/antimage_armor_lod0.vmdl"
+	}
+	"6325"
+	{
+		"name"									"Blade of Tustakuri"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-20"
+		"image_inventory"						"econ/items/antimage/pw_tustarkuri_weapon/antimage_weapon_lod0"
+		"item_description"						"#DOTA_Item_Desc_Blade_of_Tustakuri"
+		"item_name"								"#DOTA_Item_Blade_of_Tustakuri"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/antimage/pw_tustarkuri_weapon/antimage_weapon_lod0.vmdl"
+		"particle_folder"						"particles/econ/items/antimage/antimage_weapon_tustakuri"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_tustakuri/antimage_blade_tustakuri_primary.vpcf"
+				"system"						"particles/econ/items/antimage/antimage_weapon_tustakuri/antimage_blade_tustakuri_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"6326"
+	{
+		"name"									"Blade of Tustakuri - Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-20"
+		"image_inventory"						"econ/items/antimage/pw_tustarkuri_weapon_offhand/antimage_weapon_offhand_lod0"
+		"item_description"						"#DOTA_Item_Desc_Blade_of_Tustakuri__OffHand"
+		"item_name"								"#DOTA_Item_Blade_of_Tustakuri__OffHand"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_OffHand_Weapon"
+		"model_player"							"models/items/antimage/pw_tustarkuri_weapon_offhand/antimage_weapon_offhand_lod0.vmdl"
+		"particle_folder"						"particles/econ/items/antimage/antimage_weapon_tustakuri"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_tustakuri/antimage_blade_tustakuri_offhand.vpcf"
+				"system"						"particles/econ/items/antimage/antimage_weapon_tustakuri/antimage_blade_tustakuri_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"6327"
+	{
+		"name"									"Mask of Tustakuri"
+		"prefab"								"wearable"
+		"creation_date"							"2014-03-20"
+		"image_inventory"						"econ/items/antimage/pw_tustarkuri_head/antimage_head"
+		"item_description"						"#DOTA_Item_Desc_Mask_of_Tustakuri"
+		"item_name"								"#DOTA_Item_Mask_of_Tustakuri"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/antimage/pw_tustarkuri_head/antimage_head.vmdl"
+	}
+	"6536"
+	{
+		"name"									"Acolyte of Vengeance Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-06"
+		"image_inventory"						"econ/items/antimage/acolyte_vengeance_weapon/acolyte_vengeance_weapon"
+		"item_name"								"#DOTA_Item_Acolyte_of_Vengeance_Weapon"
+		"item_rarity"							"uncommon"
+		"model_player"							"models/items/antimage/acolyte_vengeance_weapon/acolyte_vengeance_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_primary.vsnap"
+				"modifier"						"particles/models/items/antimage/acolyte_vengeance_weapon/acolyte_vengeance_weapon.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"6542"
+	{
+		"name"									"Acolyte of Vengeance Shoulder Guards"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-06"
+		"image_inventory"						"econ/items/antimage/acolyte_vengeance_shoulder/acolyte_vengeance_shoulder"
+		"item_name"								"#DOTA_Item_Acolyte_of_Vengeance_Shoulder_Guards"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder_Guards"
+		"model_player"							"models/items/antimage/acolyte_vengeance_shoulder/acolyte_vengeance_shoulder.vmdl"
+	}
+	"6597"
+	{
+		"name"									"Acolyte of Vengeance Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-06"
+		"image_inventory"						"econ/items/antimage/acolyte_vengeance_armor/acolyte_vengeance_armor"
+		"item_name"								"#DOTA_Item_Acolyte_of_Vengeance_Armor"
+		"item_rarity"							"uncommon"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/antimage/acolyte_vengeance_armor/acolyte_vengeance_armor.vmdl"
+	}
+	"6881"
+	{
+		"name"									"Acolyte of Vengeance Offhand"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-21"
+		"image_inventory"						"econ/items/antimage/acolyte_vengeance_offhand/acolyte_vengeance_offhand"
+		"item_name"								"#DOTA_Item_Acolyte_of_Vengeance_Offhand"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Offhand_Weapon"
+		"model_player"							"models/items/antimage/acolyte_vengeance_offhand/acolyte_vengeance_offhand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_offhand.vsnap"
+				"modifier"						"particles/models/items/antimage/acolyte_vengeance_offhand/acolyte_vengeance_offhand.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"6882"
+	{
+		"name"									"Acolyte of Vengeance Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-21"
+		"image_inventory"						"econ/items/antimage/acolyte_vengeance_belt/acolyte_vengeance_belt"
+		"item_name"								"#DOTA_Item_Acolyte_of_Vengeance_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/antimage/acolyte_vengeance_belt/acolyte_vengeance_belt.vmdl"
+	}
+	"6883"
+	{
+		"name"									"Acolyte of Vengeance Bracers"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-21"
+		"image_inventory"						"econ/items/antimage/acolyte_vengeance_arms/acolyte_vengeance_arms"
+		"item_name"								"#DOTA_Item_Acolyte_of_Vengeance_Bracers"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/antimage/acolyte_vengeance_arms/acolyte_vengeance_arms.vmdl"
+	}
+	"6884"
+	{
+		"name"									"Acolyte of Vengeance Mask"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-21"
+		"image_inventory"						"econ/items/antimage/acolyte_of_vengeance_mask/acolyte_of_vengeance_mask"
+		"item_name"								"#DOTA_Item_Acolyte_of_Vengeance_Mask"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/antimage/acolyte_of_vengeance_mask/acolyte_of_vengeance_mask.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/antimage/acolyte_of_vengeance_mask/acolyte_of_vengeance_mask.vmdl"
+					"name"						"#DOTA_Item_Acolyte_of_Vengeance_Mask_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/antimage/acolyte_vengeance_hood/acolyte_vengeance_hood.vmdl"
+					"name"						"#DOTA_Item_Acolyte_of_Vengeance_Mask_Style1"
+					"alternate_icon"			"1"
+				}
+				"2"
+				{
+					"model_player"				"models/items/antimage/acolyte_vengeance_hooded_mask/acolyte_vengeance_hooded_mask.vmdl"
+					"name"						"#DOTA_Item_Acolyte_of_Vengeance_Mask_Style2"
+					"alternate_icon"			"2"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/antimage/acolyte_of_vengeance_mask/acolyte_of_vengeance_mask"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/antimage/acolyte_vengeance_hood/acolyte_vengeance_hood"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/antimage/acolyte_vengeance_hooded_mask/acolyte_vengeance_hooded_mask"
+				}
+			}
+		}
+	}
+	"7276"
+	{
+		"name"									"Golden Offhand Basher of Mage Skulls"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-14"
+		"image_inventory"						"econ/items/antimage/skullbasher_gold_offhand/skullbasher_gold_offhand1"
+		"item_description"						"#DOTA_Item_Desc_Golden_Offhand_Basher_of_Mage_Skulls"
+		"item_name"								"#DOTA_Item_Golden_Offhand_Basher_of_Mage_Skulls"
+		"item_rarity"							"immortal"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Offhand_Weapon"
+		"model_player"							"models/items/antimage/skullbasher/skullbasher_gold_offhand.vmdl"
+		"particle_folder"						"particles/econ/items/antimage/antimage_weapon_basher_ti5_gold"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_antimage' gem_def_index: 3005 } asset_modifier: 141"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"offhand_basher"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/items_fx/basher.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_basher_ti5_gold/am_basher_gold.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_antimage/antimage_blade_hit.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_basher_ti5_gold/antimage_blade_hit_basher_ti_5_gold.vpcf"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/generic_gameplay/generic_manaburn.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_basher_ti5_gold/am_manaburn_basher_ti_5_gold.vpcf"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_ambient_skullbasher_offhand.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_basher_ti5_gold/antimage_ambient_skullbasher_offhand_gold.vpcf"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_manavoid_basher_cast.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_basher_ti5_gold/antimage_manavoid_basher_cast_gold.vpcf"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_antimage/antimage_manavoid.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_basher_ti5_gold/antimage_manavoid_ti_5_gold.vpcf"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_ambient_skullbasher_offhand.vpcf"
+				"system"						"particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_ambient_skullbasher_offhand.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+					"1"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_antimage/am_basher_lightning.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_basher_ti5_gold/am_basher_lightning.vpcf"
+			}
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"antimage_mana_void"
+				"modifier"						"antimage/golden_basher_blades/antimage_mana_void"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier_socket1"
+			{
+				"type"							"ability_icon"
+				"asset"							"antimage_mana_break"
+				"modifier"						"antimage/golden_basher_blades/antimage_mana_break"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+		}
+	}
+	"7277"
+	{
+		"name"									"Golden Basher of Mage Skulls"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-14"
+		"image_inventory"						"econ/items/antimage/skullbasher_gold/skullbasher_gold1"
+		"item_description"						"#DOTA_Item_Desc_Golden_Basher_of_Mage_Skulls"
+		"item_name"								"#DOTA_Item_Golden_Basher_of_Mage_Skulls"
+		"item_rarity"							"immortal"
+		"model_player"							"models/items/antimage/skullbasher/skullbasher_gold.vmdl"
+		"particle_folder"						"particles/econ/items/antimage/antimage_weapon_basher_ti5_gold"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_antimage' gem_def_index: 3005 } asset_modifier: 141"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+			"can_equip_as_ability_effects1"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"basher"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/items_fx/basher.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_basher_ti5_gold/am_basher_gold.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/generic_gameplay/generic_manaburn.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_basher_ti5_gold/am_manaburn_basher_ti_5_gold.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_antimage/antimage_blade_hit.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_basher_ti5_gold/antimage_blade_hit_basher_ti_5_gold.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_ambient_skullbasher.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_basher_ti5_gold/antimage_ambient_skullbasher_gold.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_manavoid_basher_cast.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_basher_ti5_gold/antimage_manavoid_basher_cast_gold.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_antimage/antimage_manavoid.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_basher_ti5_gold/antimage_manavoid_ti_5_gold.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_ambient_skullbasher.vpcf"
+				"system"						"particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_ambient_skullbasher.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+					"1"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_antimage/am_basher_lightning.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_basher_ti5_gold/am_basher_lightning.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"antimage_mana_void"
+				"modifier"						"antimage/golden_basher_blades/antimage_mana_void"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier_socket1"
+			{
+				"type"							"ability_icon"
+				"asset"							"antimage_mana_break"
+				"modifier"						"antimage/golden_basher_blades/antimage_mana_break"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+		}
+	}
+	"7706"
+	{
+		"name"									"Belt of the Witch Hunter"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-15"
+		"image_inventory"						"econ/items/antimage/witch_hunter_belt/witch_hunter_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Witch_Hunter"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/antimage/witch_hunter_belt/witch_hunter_belt.vmdl"
+		"branding"
+		{
+			"team_id"							"36"
+		}
+	}
+	"7707"
+	{
+		"name"									"Hair of the Witch Hunter"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-15"
+		"image_inventory"						"econ/items/antimage/witch_hunter_head/witch_hunter_head"
+		"item_name"								"#DOTA_Item_Hair_of_the_Witch_Hunter"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/antimage/witch_hunter_head/witch_hunter_head.vmdl"
+		"branding"
+		{
+			"team_id"							"36"
+		}
+	}
+	"7708"
+	{
+		"name"									"Shoulders of the Witch Hunter"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-15"
+		"image_inventory"						"econ/items/antimage/witch_hunter_shoulder/witch_hunter_shoulder"
+		"item_name"								"#DOTA_Item_Shoulders_of_the_Witch_Hunter"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder_Guard_and_Mask"
+		"model_player"							"models/items/antimage/witch_hunter_shoulder/witch_hunter_shoulder.vmdl"
+		"branding"
+		{
+			"team_id"							"36"
+		}
+	}
+	"7709"
+	{
+		"name"									"Blade of the Witch Hunter"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-15"
+		"image_inventory"						"econ/items/antimage/witch_hunter_weapon/witch_hunter_weapon"
+		"item_name"								"#DOTA_Item_Blade_of_the_Witch_Hunter"
+		"item_rarity"							"uncommon"
+		"model_player"							"models/items/antimage/witch_hunter_weapon/witch_hunter_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_primary.vsnap"
+				"modifier"						"particles/models/items/antimage/witch_hunter_weapon/witch_hunter_weapon.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+		"branding"
+		{
+			"team_id"							"36"
+		}
+	}
+	"7743"
+	{
+		"name"									"Bracers of the Witch Hunter"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-15"
+		"image_inventory"						"econ/items/antimage/witch_hunter_arms/witch_hunter_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Witch_Hunter"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/antimage/witch_hunter_arms/witch_hunter_arms.vmdl"
+		"branding"
+		{
+			"team_id"							"36"
+		}
+	}
+	"7751"
+	{
+		"name"									"Armor of the Witch Hunter"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-15"
+		"image_inventory"						"econ/items/antimage/witch_hunter_armor/witch_hunter_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Witch_Hunter"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Chest_and_Leg_Armor"
+		"model_player"							"models/items/antimage/witch_hunter_armor/witch_hunter_armor.vmdl"
+		"branding"
+		{
+			"team_id"							"36"
+		}
+	}
+	"7752"
+	{
+		"name"									"Offhand Blade of the Witch Hunter"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-15"
+		"image_inventory"						"econ/items/antimage/witch_hunter_offhand/witch_hunter_offhand"
+		"item_name"								"#DOTA_Item_Offhand_Blade_of_the_Witch_Hunter"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Offhand_Weapon"
+		"model_player"							"models/items/antimage/witch_hunter_offhand/witch_hunter_offhand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_offhand.vsnap"
+				"modifier"						"particles/models/items/antimage/witch_hunter_offhand/witch_hunter_offhand.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+		"branding"
+		{
+			"team_id"							"36"
+		}
+	}
+	"8271"
+	{
+		"name"									"Basher of Mage Skulls"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-23"
+		"image_inventory"						"econ/items/antimage/skullbasher/skullbasher1"
+		"item_description"						"#DOTA_Item_Desc_Basher_of_Mage_Skulls"
+		"item_name"								"#DOTA_Item_Basher_of_Mage_Skulls"
+		"item_rarity"							"immortal"
+		"model_player"							"models/items/antimage/skullbasher/skullbasher.vmdl"
+		"particle_folder"						"particles/econ/items/antimage/antimage_weapon_basher_ti5"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_antimage' gem_def_index: 3005 } asset_modifier: 140"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+			"can_equip_as_ability_effects1"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"basher"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/items_fx/basher.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_basher_ti5/am_basher.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/generic_gameplay/generic_manaburn.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_basher_ti5/am_manaburn_basher_ti_5.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_antimage/antimage_blade_hit.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_blade_hit_basher_ti_5.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_antimage/antimage_manavoid.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_manavoid_ti_5.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier5"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_ambient_skullbasher.vpcf"
+				"system"						"particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_ambient_skullbasher.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+					"1"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_antimage/am_basher_lightning.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_basher_ti5/am_basher_lightning.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"antimage_mana_void"
+				"modifier"						"antimage/the_basher_blades/antimage_mana_void"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier_socket1"
+			{
+				"type"							"ability_icon"
+				"asset"							"antimage_mana_break"
+				"modifier"						"antimage/the_basher_blades/antimage_mana_break"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+		}
+	}
+	"8324"
+	{
+		"name"									"Offhand Basher of Mage Skulls"
+		"prefab"								"wearable"
+		"creation_date"							"2015-04-03"
+		"image_inventory"						"econ/items/antimage/skullbasher_offhand/skullbasher_offhand1"
+		"item_description"						"#DOTA_Item_Desc_Offhand_Basher_of_Mage_Skulls"
+		"item_name"								"#DOTA_Item_Offhand_Basher_of_Mage_Skulls"
+		"item_rarity"							"immortal"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Offhand_Weapon"
+		"model_player"							"models/items/antimage/skullbasher/skullbasher_offhand.vmdl"
+		"particle_folder"						"particles/econ/items/antimage/antimage_weapon_basher_ti5"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_antimage' gem_def_index: 3005 } asset_modifier: 140"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"offhand_basher"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/items_fx/basher.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_basher_ti5/am_basher.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_antimage/antimage_blade_hit.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_blade_hit_basher_ti_5.vpcf"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/generic_gameplay/generic_manaburn.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_basher_ti5/am_manaburn_basher_ti_5.vpcf"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_antimage/antimage_manavoid.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_manavoid_ti_5.vpcf"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier5"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_ambient_skullbasher_offhand.vpcf"
+				"system"						"particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_ambient_skullbasher_offhand.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+					"1"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_antimage/am_basher_lightning.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_basher_ti5/am_basher_lightning.vpcf"
+			}
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"antimage_mana_void"
+				"modifier"						"antimage/the_basher_blades/antimage_mana_void"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier_socket1"
+			{
+				"type"							"ability_icon"
+				"asset"							"antimage_mana_break"
+				"modifier"						"antimage/the_basher_blades/antimage_mana_break"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+		}
+	}
+	"8534"
+	{
+		"name"									"Armor of the Fervent Conscript"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-06"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/antimage/distinguished_conscript_armor/distinguished_conscript_armor"
+		"item_description"						"#DOTA_Item_Desc_Armor_of_the_Fervent_Conscript"
+		"item_name"								"#DOTA_Item_Armor_of_the_Fervent_Conscript"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/antimage/distinguished_conscript_armor/distinguished_conscript_armor.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Quest_Locked"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Quest_Unlocked"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17242"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"1"
+				{
+					"icon_path"					"econ/items/antimage/distinguished_conscript_armor/distinguished_conscript_armor_style1"
+				}
+			}
+		}
+	}
+	"8535"
+	{
+		"name"									"Belt of the Fervent Conscript"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-06"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/antimage/distinguished_conscript_belt/distinguished_conscript_belt"
+		"item_description"						"#DOTA_Item_Desc_Belt_of_the_Fervent_Conscript"
+		"item_name"								"#DOTA_Item_Belt_of_the_Fervent_Conscript"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/antimage/distinguished_conscript_belt/distinguished_conscript_belt.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Quest_Locked"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Quest_Unlocked"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17242"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"1"
+				{
+					"icon_path"					"econ/items/antimage/distinguished_conscript_belt/distinguished_conscript_belt_style1"
+				}
+			}
+		}
+	}
+	"8536"
+	{
+		"name"									"Shoulder Plate of the Fervent Conscript"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-06"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/antimage/distinguished_conscript_shoulder/distinguished_conscript_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Shoulder_Plate_of_the_Fervent_Conscript"
+		"item_name"								"#DOTA_Item_Shoulder_Plate_of_the_Fervent_Conscript"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/antimage/distinguished_conscript_shoulder/distinguished_conscript_shoulder.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_conscript/antimage_weapon_conscript_blade.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/antimage/antimage_weapon_conscript/antimage_weapon_conscript_blade.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_r"
+					}
+				}
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Quest_Locked"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Quest_Unlocked"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17242"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_conscript/antimage_weapon_conscript_blade_v2.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/antimage/antimage_weapon_conscript/antimage_weapon_conscript_blade_v2.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_r"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/antimage/distinguished_conscript_shoulder/distinguished_conscript_shoulder"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/antimage/distinguished_conscript_shoulder/distinguished_conscript_shoulder_style1"
+				}
+			}
+		}
+	}
+	"8543"
+	{
+		"name"									"Bracers of the Fervent Conscript"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-06"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/antimage/distinguished_conscript_arms/distinguished_conscript_arms"
+		"item_description"						"#DOTA_Item_Desc_Bracers_of_the_Fervent_Conscript"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Fervent_Conscript"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/antimage/distinguished_conscript_arms/distinguished_conscript_arms.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Quest_Locked"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Quest_Unlocked"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17242"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/antimage/distinguished_conscript_arms/distinguished_conscript_arms"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/antimage/distinguished_conscript_arms/distinguished_conscript_arms_style1"
+				}
+			}
+		}
+	}
+	"8544"
+	{
+		"name"									"Blade of the Fervent Conscript"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-06"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/antimage/distinguished_conscript_weapon/distinguished_conscript_weapon"
+		"item_description"						"#DOTA_Item_Desc_Blade_of_the_Fervent_Conscript"
+		"item_name"								"#DOTA_Item_Blade_of_the_Fervent_Conscript"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/antimage/distinguished_conscript_weapon/distinguished_conscript_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_conscript/antimage_blade_conscript_primary.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/antimage/antimage_weapon_conscript/antimage_blade_conscript_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_primary.vsnap"
+				"modifier"						"particles/models/items/antimage/distinguished_conscript_weapon/distinguished_conscript_weapon_fx.vsnap"
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_conscript/antimage_blade_conscript_primary_v2.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/antimage/antimage_weapon_conscript/antimage_blade_conscript_primary_v2.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Quest_Locked"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Quest_Unlocked"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17242"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/antimage/distinguished_conscript_weapon/distinguished_conscript_weapon"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/antimage/distinguished_conscript_weapon/distinguished_conscript_weapon_style1"
+				}
+			}
+		}
+	}
+	"8545"
+	{
+		"name"									"Off-Hand Blade of the Fervent Conscript"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-06"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/antimage/distinguished_conscript_off_hand/distinguished_conscript_off_hand"
+		"item_description"						"#DOTA_Item_Desc_OffHand_Blade_of_the_Fervent_Conscript"
+		"item_name"								"#DOTA_Item_OffHand_Blade_of_the_Fervent_Conscript"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/antimage/distinguished_conscript_off_hand/distinguished_conscript_off_hand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_conscript/antimage_blade_conscript_offhand.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/antimage/antimage_weapon_conscript/antimage_blade_conscript_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_offhand.vsnap"
+				"modifier"						"particles/models/items/antimage/distinguished_conscript_off_hand/distinguished_conscript_off_hand_fx.vsnap"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Quest_Locked"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Quest_Unlocked"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17242"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_conscript/antimage_blade_conscript_offhand_v2.vpcf"
+				"style"							"1"
+				"system"						"particles/econ/items/antimage/antimage_weapon_conscript/antimage_blade_conscript_offhand_v2.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/antimage/distinguished_conscript_off_hand/distinguished_conscript_off_hand"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/antimage/distinguished_conscript_off_hand/distinguished_conscript_off_hand_style1"
+				}
+			}
+		}
+	}
+	"8546"
+	{
+		"name"									"Style of the Fervent Conscript"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-06"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/antimage/distinguished_conscript_head_alt/distinguished_conscript_head_alt"
+		"item_description"						"#DOTA_Item_Desc_Style_of_the_Fervent_Conscript"
+		"item_name"								"#DOTA_Item_Style_of_the_Fervent_Conscript"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/antimage/distinguished_conscript_head_alt/distinguished_conscript_head_alt.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Quest_Locked"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Quest_Unlocked"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17242"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/antimage/distinguished_conscript_head_alt/distinguished_conscript_head_alt"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/antimage/distinguished_conscript_head_alt/distinguished_conscript_head_alt_style1"
+				}
+			}
+		}
+	}
+	"8595"
+	{
+		"name"									"Armor of Broken Scale"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/antimage/tarrasque_scale_armor/tarrasque_scale_armor"
+		"item_name"								"#DOTA_Item_Armor_of_Broken_Scale"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/antimage/tarrasque_scale_armor/tarrasque_scale_armor.vmdl"
+	}
+	"8596"
+	{
+		"name"									"Helm of Broken Scale"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/antimage/tarrasque_scale_head/tarrasque_scale_head"
+		"item_name"								"#DOTA_Item_Helm_of_Broken_Scale"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/antimage/tarrasque_scale_head/tarrasque_scale_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"8609"
+	{
+		"name"									"Belt of Broken Scale"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/antimage/tarrasque_scale_belt/tarrasque_scale_belt"
+		"item_name"								"#DOTA_Item_Belt_of_Broken_Scale"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/antimage/tarrasque_scale_belt/tarrasque_scale_belt.vmdl"
+	}
+	"8610"
+	{
+		"name"									"Bracers of Broken Scale"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/antimage/tarrasque_scale_arms/tarrasque_scale_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_Broken_Scale"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/antimage/tarrasque_scale_arms/tarrasque_scale_arms.vmdl"
+	}
+	"8611"
+	{
+		"name"									"Blade of Broken Scale"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/antimage/tarrasque_scale_weapon/tarrasque_scale_weapon"
+		"item_name"								"#DOTA_Item_Blade_of_Broken_Scale"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/antimage/tarrasque_scale_weapon/tarrasque_scale_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_primary.vsnap"
+				"modifier"						"particles/models/items/antimage/tarrasque_scale_weapon/tarrasque_scale_weapon_fx.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"8620"
+	{
+		"name"									"Wraps of Broken Scale"
+		"prefab"								"wearable"
+		"creation_date"							"2015-05-20"
+		"image_inventory"						"econ/items/antimage/tarrasque_scale_shoulder/tarrasque_scale_shoulder"
+		"item_name"								"#DOTA_Item_Wraps_of_Broken_Scale"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Wraps"
+		"model_player"							"models/items/antimage/tarrasque_scale_shoulder/tarrasque_scale_shoulder.vmdl"
+	}
+	"8678"
+	{
+		"name"									"Offhand Blade of Broken Scale"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/antimage/tarrasque_scale_offhand/tarrasque_scale_offhand"
+		"item_name"								"#DOTA_Item_Offhand_Blade_of_Broken_Scale"
+		"item_rarity"							"uncommon"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/antimage/tarrasque_scale_offhand/tarrasque_scale_offhand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_offhand.vsnap"
+				"modifier"						"particles/models/items/antimage/tarrasque_scale_offhand/tarrasque_scale_offhand_fx.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"8729"
+	{
+		"name"									"Bracers of the Survivor"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/antimage/god_eater_arms/god_eater_arms"
+		"item_description"						"#DOTA_Item_Desc_Bracers_of_the_Survivor"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Survivor"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/antimage/god_eater_arms/god_eater_arms.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_godeater/antimage_godeater_bracer_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/antimage/antimage_weapon_godeater/antimage_godeater_bracer_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_bracer_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_bracer_r"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+		}
+	}
+	"8730"
+	{
+		"name"									"Tunic of the Survivor"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/antimage/god_eater_armor/god_eater_armor"
+		"item_description"						"#DOTA_Item_Desc_Tunic_of_the_Survivor"
+		"item_name"								"#DOTA_Item_Tunic_of_the_Survivor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/antimage/god_eater_armor/god_eater_armor.vmdl"
+	}
+	"8731"
+	{
+		"name"									"Belt of the Survivor"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/antimage/god_eater_belt/god_eater_belt"
+		"item_description"						"#DOTA_Item_Desc_Belt_of_the_Survivor"
+		"item_name"								"#DOTA_Item_Belt_of_the_Survivor"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/antimage/god_eater_belt/god_eater_belt.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"8732"
+	{
+		"name"									"Hair of the Survivor"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/antimage/god_eater_head/god_eater_head"
+		"item_description"						"#DOTA_Item_Desc_Hair_of_the_Survivor"
+		"item_name"								"#DOTA_Item_Hair_of_the_Survivor"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/antimage/god_eater_head/god_eater_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_godeater/antimage_godeater_head_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/antimage/antimage_weapon_godeater/antimage_godeater_head_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+		}
+	}
+	"8733"
+	{
+		"name"									"Shoulders of the Survivor"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/antimage/god_eater_shoulder/god_eater_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Shoulders_of_the_Survivor"
+		"item_name"								"#DOTA_Item_Shoulders_of_the_Survivor"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/antimage/god_eater_shoulder/god_eater_shoulder.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_godeater/antimage_godeater_shoulder_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/antimage/antimage_weapon_godeater/antimage_godeater_shoulder_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_shoulder_r"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"absorigin_follow"
+					}
+				}
+			}
+		}
+	}
+	"8734"
+	{
+		"name"									"Blade of the Survivor"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/antimage/god_eater_weapon/god_eater_weapon"
+		"item_description"						"#DOTA_Item_Desc_Blade_of_the_Survivor"
+		"item_name"								"#DOTA_Item_Blade_of_the_Survivor"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/antimage/god_eater_weapon/god_eater_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_godeater/antimage_blade_primary_godeater.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/antimage/antimage_weapon_godeater/antimage_blade_primary_godeater.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"8735"
+	{
+		"name"									"Offhand Blade of the Survivor"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/items/antimage/god_eater_off_hand/god_eater_off_hand"
+		"item_description"						"#DOTA_Item_Desc_Offhand_Blade_of_the_Survivor"
+		"item_name"								"#DOTA_Item_Offhand_Blade_of_the_Survivor"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/antimage/god_eater_off_hand/god_eater_off_hand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_godeater/antimage_blade_offhand_godeater.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/antimage/antimage_weapon_godeater/antimage_blade_offhand_godeater.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"9249"
+	{
+		"name"									"Origins of Faith"
+		"prefab"								"wearable"
+		"creation_date"							"2017-05-17"
+		"image_inventory"						"econ/items/antimage/ti7_antimage_immortal/ti7_immortal_armor"
+		"item_description"						"#DOTA_Item_Desc_Origins_of_Faith"
+		"item_name"								"#DOTA_Item_Origins_of_Faith"
+		"item_rarity"							"immortal"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/antimage/ti7_antimage_immortal/ti7_immortal_armor.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"1"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_antimage/antimage_blink_start.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_ti7/antimage_blink_start_ti7.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_antimage/antimage_blink_end.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_ti7/antimage_blink_ti7_end.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_ti7/antimage_ti7_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"antimage_blink"
+				"modifier"						"antimage/immortal/antimage_blink"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+		}
+	}
+	"9457"
+	{
+		"name"									"Golden Origins of Faith"
+		"prefab"								"wearable"
+		"creation_date"							"2017-08-03"
+		"image_inventory"						"econ/items/antimage/ti7_antimage_immortal/ti7_immortal_armor1"
+		"item_description"						"#DOTA_Item_Desc_Origins_of_Faith"
+		"item_name"								"#DOTA_Item_Golden_Origins_of_Faith"
+		"item_rarity"							"immortal"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Wearable"
+		"model_player"							"models/items/antimage/ti7_antimage_immortal/ti7_immortal_armor.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"1"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_antimage/antimage_blink_start.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_ti7_golden/antimage_blink_start_ti7_golden.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_antimage/antimage_blink_end.vpcf"
+				"modifier"						"particles/econ/items/antimage/antimage_ti7_golden/antimage_blink_ti7_golden_end.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_ti7_golden/antimage_ti7_golden_ambient.vpcf"
+				"style"							"0"
+			}
+			"skin"								"1"
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"antimage_blink"
+				"modifier"						"antimage/immortal/antimage_blink_gold"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+		}
+	}
+	"9723"
+	{
+		"name"									"Oathbound Defiant Bracers"
+		"prefab"								"wearable"
+		"creation_date"							"2018-02-21"
+		"image_inventory"						"econ/items/antimage/avenging_anchorite_arms/avenging_anchorite_arms"
+		"item_name"								"#DOTA_Item_Oathbound_Defiant_Bracers"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/antimage/avenging_anchorite_arms/avenging_anchorite_arms.vmdl"
+	}
+	"9724"
+	{
+		"name"									"Oathbound Defiant Helm"
+		"prefab"								"wearable"
+		"creation_date"							"2018-02-21"
+		"image_inventory"						"econ/items/antimage/avenging_anchorite_head/avenging_anchorite_head"
+		"item_name"								"#DOTA_Item_Oathbound_Defiant_Helm"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/antimage/avenging_anchorite_head/avenging_anchorite_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_anchorite/antimage_head_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9725"
+	{
+		"name"									"Oathbound Defiant Pauldrons"
+		"prefab"								"wearable"
+		"creation_date"							"2018-02-21"
+		"image_inventory"						"econ/items/antimage/avenging_anchorite_shoulder/avenging_anchorite_shoulder"
+		"item_name"								"#DOTA_Item_Oathbound_Defiant_Pauldrons"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/antimage/avenging_anchorite_shoulder/avenging_anchorite_shoulder.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_anchorite/antimage_anchorite_ambient_shoulder.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"9726"
+	{
+		"name"									"Oathbound Defiant Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2018-02-21"
+		"image_inventory"						"econ/items/antimage/avenging_anchorite_belt/avenging_anchorite_belt"
+		"item_name"								"#DOTA_Item_Oathbound_Defiant_Belt"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/antimage/avenging_anchorite_belt/avenging_anchorite_belt.vmdl"
+	}
+	"9727"
+	{
+		"name"									"Oathbound Defiant Off-Hand Blade"
+		"prefab"								"wearable"
+		"creation_date"							"2018-02-21"
+		"image_inventory"						"econ/items/antimage/avenging_anchorite_off_hand/avenging_anchorite_off_hand"
+		"item_name"								"#DOTA_Item_Oathbound_Defiant_OffHand_Blade"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/antimage/avenging_anchorite_off_hand/avenging_anchorite_off_hand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_anchorite/antimage_blade_anchorite_off_hand.vpcf"
+			}
+		}
+	}
+	"9728"
+	{
+		"name"									"Oathbound Defiant Blades"
+		"prefab"								"wearable"
+		"creation_date"							"2018-02-21"
+		"image_inventory"						"econ/items/antimage/avenging_anchorite_weapon/avenging_anchorite_weapon"
+		"item_name"								"#DOTA_Item_Oathbound_Defiant_Blades"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/antimage/avenging_anchorite_weapon/avenging_anchorite_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_weapon_anchorite/antimage_blade_anchorite.vpcf"
+			}
+		}
+	}
+	"9729"
+	{
+		"name"									"Oathbound Defiant Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2018-02-21"
+		"image_inventory"						"econ/items/antimage/avenging_anchorite_armor/avenging_anchorite_armor"
+		"item_name"								"#DOTA_Item_Oathbound_Defiant_Armor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/antimage/avenging_anchorite_armor/avenging_anchorite_armor.vmdl"
+	}
+	"9763"
+	{
+		"name"									"Vest of the Mage Abolisher"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-03"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/antimage/mage_eraser_armor/mage_eraser_armor"
+		"item_name"								"#DOTA_Item_Vest_of_the_Mage_Abolisher"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Vest"
+		"model_player"							"models/items/antimage/mage_eraser_armor/mage_eraser_armor.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"9764"
+	{
+		"name"									"Bracers of the Mage Abolisher"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-03"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/antimage/mage_eraser_arms/mage_eraser_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Mage_Abolisher"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/antimage/mage_eraser_arms/mage_eraser_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"9765"
+	{
+		"name"									"Sash of the Mage Abolisher"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-03"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/antimage/mage_eraser_belt/mage_eraser_belt"
+		"item_name"								"#DOTA_Item_Sash_of_the_Mage_Abolisher"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Sash"
+		"model_player"							"models/items/antimage/mage_eraser_belt/mage_eraser_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"9766"
+	{
+		"name"									"Helmet of the Mage Abolisher"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-03"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/antimage/mage_eraser_head/mage_eraser_head"
+		"item_name"								"#DOTA_Item_Helmet_of_the_Mage_Abolisher"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/antimage/mage_eraser_head/mage_eraser_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"9768"
+	{
+		"name"									"Offhand Blade of the Mage Abolisher"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-03"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/antimage/mage_eraser_offhand/mage_eraser_offhand"
+		"item_name"								"#DOTA_Item_Offhand_Blade_of_the_Mage_Abolisher"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Offhand_Blade"
+		"model_player"							"models/items/antimage/mage_eraser_offhand/mage_eraser_offhand.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_offhand.vsnap"
+				"modifier"						"particles/models/items/antimage/mage_eraser_offhand/mage_eraser_offhand.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"9769"
+	{
+		"name"									"Pauldron of the Mage Abolisher"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-03"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/antimage/mage_eraser_shoulder/mage_eraser_shoulder"
+		"item_name"								"#DOTA_Item_Pauldron_of_the_Mage_Abolisher"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldron"
+		"model_player"							"models/items/antimage/mage_eraser_shoulder/mage_eraser_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"9770"
+	{
+		"name"									"Blade of the Mage Abolisher"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-03"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"image_inventory"						"econ/items/antimage/mage_eraser_weapon/mage_eraser_weapon"
+		"item_name"								"#DOTA_Item_Blade_of_the_Mage_Abolisher"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/antimage/mage_eraser_weapon/mage_eraser_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_primary.vsnap"
+				"modifier"						"particles/models/items/antimage/mage_eraser_weapon/mage_eraser_weapon.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"12444"
+	{
+		"name"									"Weapon of the Dragon's Disciple"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/antimage/anti_mage_dragon_fury_weapon/anti_mage_dragon_fury_weapon"
+		"item_name"								"#DOTA_Item_Weapon_of_the_Dragons_Disciple"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/antimage/anti_mage_dragon_fury_weapon/anti_mage_dragon_fury_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_primary.vsnap"
+				"modifier"						"particles/models/items/antimage/anti_mage_dragon_fury_weapon/anti_mage_dragon_fury_weapon_fx.vsnap"
+			}
+		}
+	}
+	"12445"
+	{
+		"name"									"Pauldron of the Dragon's Disciple"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/antimage/anti_mage_dragon_fury_shoulder/anti_mage_dragon_fury_shoulder"
+		"item_name"								"#DOTA_Item_Pauldron_of_the_Dragons_Disciple"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/antimage/anti_mage_dragon_fury_shoulder/anti_mage_dragon_fury_shoulder.vmdl"
+	}
+	"12446"
+	{
+		"name"									"Off-Hand of the Dragon's Disciple"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/antimage/anti_mage_dragon_fury_off_hand/anti_mage_dragon_fury_off_hand"
+		"item_name"								"#DOTA_Item_OffHand_of_the_Dragons_Disciple"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_offhand_weapon"
+		"model_player"							"models/items/antimage/anti_mage_dragon_fury_off_hand/anti_mage_dragon_fury_off_hand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_offhand.vsnap"
+				"modifier"						"particles/models/items/antimage/anti_mage_dragon_fury_off_hand/anti_mage_dragon_fury_off_hand_fx.vsnap"
+			}
+		}
+	}
+	"12447"
+	{
+		"name"									"Mask of the Dragon's Disciple"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/antimage/anti_mage_dragon_fury_head/anti_mage_dragon_fury_head"
+		"item_name"								"#DOTA_Item_Mask_of_the_Dragons_Disciple"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/antimage/anti_mage_dragon_fury_head/anti_mage_dragon_fury_head.vmdl"
+	}
+	"12448"
+	{
+		"name"									"Belt of the Dragon's Disciple"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/antimage/anti_mage_dragon_fury_belt/anti_mage_dragon_fury_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Dragons_Disciple"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/antimage/anti_mage_dragon_fury_belt/anti_mage_dragon_fury_belt.vmdl"
+	}
+	"12449"
+	{
+		"name"									"Arm of the Dragon's Disciple"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/antimage/anti_mage_dragon_fury_arms/anti_mage_dragon_fury_arms"
+		"item_name"								"#DOTA_Item_Arm_of_the_Dragons_Disciple"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/antimage/anti_mage_dragon_fury_arms/anti_mage_dragon_fury_arms.vmdl"
+	}
+	"12450"
+	{
+		"name"									"Trail of the Dragon's Disciple"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-10"
+		"image_inventory"						"econ/items/antimage/anti_mage_dragon_fury_armor/anti_mage_dragon_fury_armor"
+		"item_name"								"#DOTA_Item_Trail_of_the_Dragons_Disciple"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/antimage/anti_mage_dragon_fury_armor/anti_mage_dragon_fury_armor.vmdl"
+	}
+	"12668"
+	{
+		"name"									"Faceless Death - Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2020-01-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/antimage/am_royal_ornaments_armor/am_royal_ornaments_armor"
+		"item_name"								"#DOTA_Item_Faceless_Death__Armor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/antimage/am_royal_ornaments_armor/am_royal_ornaments_armor.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"12670"
+	{
+		"name"									"Faceless Death - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-01-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/antimage/am_royal_ornaments_head/am_royal_ornaments_head"
+		"item_name"								"#DOTA_Item_Faceless_Death__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/antimage/am_royal_ornaments_head/am_royal_ornaments_head.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"12671"
+	{
+		"name"									"Faceless Death - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2020-01-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/antimage/am_royal_ornaments_shoulder/am_royal_ornaments_shoulder"
+		"item_name"								"#DOTA_Item_Faceless_Death__Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/antimage/am_royal_ornaments_shoulder/am_royal_ornaments_shoulder.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"12672"
+	{
+		"name"									"Faceless Death - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-01-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/antimage/am_royal_ornaments_arms/am_royal_ornaments_arms"
+		"item_name"								"#DOTA_Item_Faceless_Death__Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/antimage/am_royal_ornaments_arms/am_royal_ornaments_arms.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"12673"
+	{
+		"name"									"Faceless Death - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-01-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/antimage/am_royal_ornaments_weapon/am_royal_ornaments_weapon"
+		"item_name"								"#DOTA_Item_Faceless_Death__Weapon"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/antimage/am_royal_ornaments_weapon/am_royal_ornaments_weapon.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_primary.vsnap"
+				"modifier"						"particles/models/items/antimage/am_royal_ornaments_weapon/am_royal_ornaments_weapon_fx.vsnap"
+			}
+		}
+	}
+	"12674"
+	{
+		"name"									"Faceless Death - Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2020-01-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/antimage/am_royal_ornaments_off_hand/am_royal_ornaments_off_hand"
+		"item_name"								"#DOTA_Item_Faceless_Death__OffHand"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/antimage/am_royal_ornaments_off_hand/am_royal_ornaments_off_hand.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_offhand.vsnap"
+				"modifier"						"particles/models/items/antimage/am_royal_ornaments_off_hand/am_royal_ornaments_off_hand_fx.vsnap"
+			}
+		}
+	}
+	"12675"
+	{
+		"name"									"Faceless Death - Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-01-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/antimage/am_royal_ornaments_belt/am_royal_ornaments_belt"
+		"item_name"								"#DOTA_Item_Faceless_Death__Belt"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/antimage/am_royal_ornaments_belt/am_royal_ornaments_belt.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"12940"
+	{
+		"name"									"Taunt: Bring It On"
+		"prefab"								"taunt"
+		"creation_date"							"2019-03-19"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/taunts/taunt_icon_technomage"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Bring_the_Noise"
+		"item_name"								"#DOTA_Item_Taunt_Bring_It_On"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1598997600"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"taunt_antimage_cheer"
+				"gesture"						"1"
+			}
+		}
+	}
+	"13783"
+	{
+		"name"									"The Disciple's Path"
+		"prefab"								"wearable"
+		"creation_date"							"2020-03-22"
+		"image_inventory"						"econ/heroes/antimage_female/antimage_female"
+		"item_description"						"#DOTA_Item_Desc_The_Disciples_Path"
+		"item_name"								"#DOTA_Item_The_Disciples_Path"
+		"item_rarity"							"legendary"
+		"item_slot"								"persona_selector"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"0"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"persona"
+				"persona"						"1"
+			}
+			"asset_modifier1"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_hero_antimage"
+				"modifier"						"models/heroes/antimage_female/antimage_female.vmdl"
+			}
+			"asset_modifier2"
+			{
+				"type"							"hero_scale"
+				"asset"							"npc_dota_hero_antimage"
+				"ModelScale"					"1"
+				"VersusScale"					"0.988900"
+			}
+			"asset_modifier3"
+			{
+				"type"							"response_criteria"
+				"asset"							"am_pers_wei"
+			}
+			"asset_modifier4"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Antimage.PreAttack"
+				"modifier"						"Hero_Antimage.PreAttack.Persona"
+			}
+			"asset_modifier5"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Antimage.Attack"
+				"modifier"						"Hero_Antimage.Attack.Persona"
+			}
+			"asset_modifier6"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Antimage.Blink_in"
+				"modifier"						"Hero_Antimage.Blink_in.Persona"
+			}
+			"asset_modifier7"
+			{
+				"type"							"icon_replacement_hero_minimap"
+				"asset"							"npc_dota_hero_antimage"
+				"modifier"						"npc_dota_hero_antimage_persona1"
+				"force_display"					"1"
+			}
+		}
+	}
+	"13784"
+	{
+		"name"									"Anti-Mage's Persona"
+		"prefab"								"default_item"
+		"creation_date"							"2020-03-22"
+		"image_inventory"						"econ/heroes/antimage/antimage_persona"
+		"item_description"						"#DOTA_Item_Desc_AntiMages_Persona"
+		"item_name"								"#DOTA_Item_AntiMages_Persona"
+		"item_slot"								"persona_selector"
+		"item_type_name"						"#DOTA_WearableType_Persona"
+	}
+	"14506"
+	{
+		"name"									"Armor of the Forgotten Plane"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/antimage/am_shinobi_armor/am_shinobi_armor"
+		"item_name"								"#DOTA_Item_Armor_of_the_Forgotten_Plane"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"model_player"							"models/items/antimage/am_shinobi_armor/am_shinobi_armor.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_shinobi/antimage_shinobi_armor.vpcf"
+			}
+		}
+	}
+	"14507"
+	{
+		"name"									"Bracer of the Forgotten Plane"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/antimage/am_shinobi_arms/am_shinobi_arms"
+		"item_name"								"#DOTA_Item_Bracer_of_the_Forgotten_Plane"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"model_player"							"models/items/antimage/am_shinobi_arms/am_shinobi_arms.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_shinobi/antimage_shinobi_arms.vpcf"
+			}
+		}
+	}
+	"14508"
+	{
+		"name"									"Belt of the Forgotten Plane"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/antimage/am_shinobi_belt/am_shinobi_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Forgotten_Plane"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"model_player"							"models/items/antimage/am_shinobi_belt/am_shinobi_belt.vmdl"
+	}
+	"14509"
+	{
+		"name"									"Mask of the Forgotten Plane"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/antimage/am_shinobi_head/am_shinobi_head"
+		"item_name"								"#DOTA_Item_Mask_of_the_Forgotten_Plane"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/antimage/am_shinobi_head/am_shinobi_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_shinobi/antimage_shinobi_head.vpcf"
+			}
+		}
+	}
+	"14510"
+	{
+		"name"									"Off-Hand Weapon of the Forgotten Plane"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/antimage/am_shinobi_off_hand/am_shinobi_off_hand"
+		"item_name"								"#DOTA_Item_OffHand_Weapon_of_the_Forgotten_Plane"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/antimage/am_shinobi_off_hand/am_shinobi_off_hand.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_shinobi/antimage_shinobi_offhand.vpcf"
+			}
+		}
+	}
+	"14511"
+	{
+		"name"									"Pauldron of the Forgotten Plane"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/antimage/am_shinobi_shoulder/am_shinobi_shoulder"
+		"item_name"								"#DOTA_Item_Pauldron_of_the_Forgotten_Plane"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/antimage/am_shinobi_shoulder/am_shinobi_shoulder.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_shinobi/antimage_shinobi_shoulder.vpcf"
+			}
+		}
+	}
+	"14512"
+	{
+		"name"									"Weapon of the Forgotten Plane "
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/items/antimage/am_shinobi_weapon/am_shinobi_weapon"
+		"item_name"								"#DOTA_Item_Weapon_of_the_Forgotten_Plane_"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/antimage/am_shinobi_weapon/am_shinobi_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/antimage_shinobi/antimage_shinobi_weapon.vpcf"
+			}
+		}
+	}
+	"18165"
+	{
+		"name"									"Lineage Armor of Broken Scale"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-27"
+		"event_id"								"EVENT_ID_TEAM_FANDOM"
+		"image_inventory"						"econ/items/antimage/ti10_tarrasque_scale_armor/ti10_tarrasque_scale_armor"
+		"item_description"						"#DOTA_Item_Desc_Lineage_Armor_of_Broken_Scale"
+		"item_name"								"#DOTA_Item_Lineage_Armor_of_Broken_Scale"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/antimage/tarrasque_scale_armor/tarrasque_scale_armor.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1637229600"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"18166"
+	{
+		"name"									"Lineage Helm of Broken Scale"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-27"
+		"event_id"								"EVENT_ID_TEAM_FANDOM"
+		"image_inventory"						"econ/items/antimage/ti10_tarrasque_scale_head/tarrasque_scale_head"
+		"item_description"						"#DOTA_Item_Desc_Lineage_Helm_of_Broken_Scale"
+		"item_name"								"#DOTA_Item_Lineage_Helm_of_Broken_Scale"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/antimage/tarrasque_scale_head/tarrasque_scale_head.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1637229600"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"18167"
+	{
+		"name"									"Lineage Belt of Broken Scale"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-27"
+		"event_id"								"EVENT_ID_TEAM_FANDOM"
+		"image_inventory"						"econ/items/antimage/ti10_tarrasque_scale_belt/tarrasque_scale_belt"
+		"item_description"						"#DOTA_Item_Desc_Lineage_Belt_of_Broken_Scale"
+		"item_name"								"#DOTA_Item_Lineage_Belt_of_Broken_Scale"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/antimage/tarrasque_scale_belt/tarrasque_scale_belt.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1637229600"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"18179"
+	{
+		"name"									"Lineage Bracers of Broken Scale"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-27"
+		"event_id"								"EVENT_ID_TEAM_FANDOM"
+		"image_inventory"						"econ/items/antimage/ti10_tarrasque_scale_arms/tarrasque_scale_arms"
+		"item_description"						"#DOTA_Item_Desc_Lineage_Bracers_of_Broken_Scale"
+		"item_name"								"#DOTA_Item_Lineage_Bracers_of_Broken_Scale"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/antimage/tarrasque_scale_arms/tarrasque_scale_arms.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1637229600"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"18181"
+	{
+		"name"									"Lineage Blade of Broken Scale"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-27"
+		"event_id"								"EVENT_ID_TEAM_FANDOM"
+		"image_inventory"						"econ/items/antimage/ti10_tarrasque_scale_weapon/tarrasque_scale_weapon"
+		"item_description"						"#DOTA_Item_Desc_Lineage_Blade_of_Broken_Scale"
+		"item_name"								"#DOTA_Item_Lineage_Blade_of_Broken_Scale"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/antimage/tarrasque_scale_weapon/tarrasque_scale_weapon.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1637229600"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_primary.vsnap"
+				"modifier"						"particles/models/items/antimage/tarrasque_scale_weapon/tarrasque_scale_weapon_fx.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/ti10_legacy_tarrasque_weapons/ti10_legacy_tarrasque_weapons_primary.vpcf"
+			}
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"18182"
+	{
+		"name"									"Lineage Wraps of Broken Scale"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-27"
+		"event_id"								"EVENT_ID_TEAM_FANDOM"
+		"image_inventory"						"econ/items/antimage/ti10_tarrasque_scale_shoulder/tarrasque_scale_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Lineage_Wraps_of_Broken_Scale"
+		"item_name"								"#DOTA_Item_Lineage_Wraps_of_Broken_Scale"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Wraps"
+		"model_player"							"models/items/antimage/tarrasque_scale_shoulder/tarrasque_scale_shoulder.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1637229600"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"18183"
+	{
+		"name"									"Lineage Offhand Blade of Broken Scale"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-27"
+		"event_id"								"EVENT_ID_TEAM_FANDOM"
+		"image_inventory"						"econ/items/antimage/ti10_tarrasque_scale_offhand/tarrasque_scale_offhand"
+		"item_description"						"#DOTA_Item_Desc_Lineage_Offhand_Blade_of_Broken_Scale"
+		"item_name"								"#DOTA_Item_Lineage_Offhand_Blade_of_Broken_Scale"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"item_type_name"						"#DOTA_WearableType_Blade"
+		"model_player"							"models/items/antimage/tarrasque_scale_offhand/tarrasque_scale_offhand.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1637229600"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_offhand.vsnap"
+				"modifier"						"particles/models/items/antimage/tarrasque_scale_offhand/tarrasque_scale_offhand_fx.vsnap"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/antimage/ti10_legacy_tarrasque_weapons/ti10_legacy_tarrasque_weapons_offhand.vpcf"
+			}
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"20080"
+	{
+		"name"									"The Mage Slayer's Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armor of the Mage Slayer"			"1"
+			"Collar of the Mage Slayer"			"1"
+			"Bracer of the Mage Slayer"			"1"
+			"Skirt of the Mage Slayer"			"1"
+			"Glaive of the Mage Slayer"			"1"
+			"Glaive of the Mage Slayer - Off-Hand""1"
+			"Mask of the Mage Slayer"			"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_The_Mage_Slayers_Set"
+		"item_description"						"#DOTA_Item_Desc_The_Mage_Slayers_Set"
+		"item_name"								"#DOTA_Item_The_Mage_Slayers_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20081"
+	{
+		"name"									"Glaives of the Mage Slayer Pack"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Glaive of the Mage Slayer"			"1"
+			"Glaive of the Mage Slayer - Off-Hand""1"
+		}
+		"image_inventory"						"econ/items/antimage/antimage_slasher_weapon"
+		"item_description"						"#DOTA_Item_Desc_Glaives_of_the_Mage_Slayer_Pack"
+		"item_name"								"#DOTA_Item_Glaives_of_the_Mage_Slayer_Pack"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Paired_Weapons"
+	}
+	"20111"
+	{
+		"name"									"Etched Crescents of Yoskreth Pack"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Etched Crescent of Yoskreth - Off-Hand""1"
+			"Etched Crescent of Yoskreth"		"1"
+		}
+		"image_inventory"						"econ/items/antimage/wh_offhand_weapon/wh_offhand_weapon"
+		"item_description"						"#DOTA_Item_Desc_Etched_Crescents_of_Yoskreth"
+		"item_name"								"#DOTA_Item_Etched_Crescents_of_Yoskreth_Pack"
+		"item_type_name"						"#DOTA_WearableType_Paired_Weapons"
+	}
+	"20112"
+	{
+		"name"									"The Gifts of Yoskreth Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Spellbreaker of Yoskreth"			"1"
+			"Sash of Yoskreth"					"1"
+			"Etched Crescent of Yoskreth - Off-Hand""1"
+			"Etched Crescent of Yoskreth"		"1"
+			"Belt of Yoskreth"					"1"
+			"Bracers of Yoskreth"				"1"
+			"Fashion of Yoskreth"				"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_The_Gifts_of_Yoskreth_Set"
+		"item_description"						"#DOTA_Item_Desc_The_Gifts_of_Yoskreth"
+		"item_name"								"#DOTA_Item_The_Gifts_of_Yoskreth_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20201"
+	{
+		"name"									"Barbed Edges of the Nomad Protector"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Nomad's Barbed Edge"				"1"
+			"Nomad's Edge - Off-Hand"			"1"
+		}
+		"creation_date"							"2013-07-09"
+		"image_inventory"						"econ/items/antimage/nomadic_protector_weapon/nomadic_protector_weapon"
+		"item_description"						"#DOTA_Item_Desc_Barbed_Edges_of_the_Nomad_Protector"
+		"item_name"								"#DOTA_Item_Barbed_Edges_of_the_Nomad_Protector"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Paired_Weapons"
+	}
+	"20202"
+	{
+		"name"									"The Nomad Protector Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Nomad's Barbed Edge"				"1"
+			"Nomad's Guards"					"1"
+			"Nomad's Shelter"					"1"
+			"Nomad's Edge - Off-Hand"			"1"
+			"Initiate's Cut"					"1"
+		}
+		"creation_date"							"2013-07-09"
+		"image_inventory"						"econ/sets/DOTA_Item_The_Nomad_Protector_Set"
+		"item_description"						"#DOTA_Item_Desc_The_Nomad_Protector_Set"
+		"item_name"								"#DOTA_Item_The_Nomad_Protector_Set"
+		"item_rarity"							"uncommon"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Uncommon"
+			"category_tags"						"Bundles"
+			"date"								"7/9/2013"
+			"bundle"							"1"
+			"price"								"249"
+		}
+	}
+	"20251"
+	{
+		"name"									"Arcs of Manta Pack"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Arc of Manta"						"1"
+			"Arc of Manta - Off-Hand"			"1"
+		}
+		"creation_date"							"2013-09-10"
+		"image_inventory"						"econ/items/antimage/arc_of_manta/arc_of_manta"
+		"item_description"						"#DOTA_Item_Desc_Arcs_of_Manta"
+		"item_name"								"#DOTA_Item_Arcs_of_Manta_Pack"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Paired_Weapons"
+	}
+	"20273"
+	{
+		"name"									"The Clergy Ascetic Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Adornment of the Clergy Ascetic"	"1"
+			"Bracers of the Clergy Ascetic"		"1"
+			"Cloth of the Clergy Ascetic"		"1"
+			"Guard of the Clergy Ascetic"		"1"
+			"Hood of the Clergy Ascetic"		"1"
+			"Reprieve of the Clergy Ascetic"	"1"
+			"Reprieve of the Clergy Ascetic - Off-Hand""1"
+		}
+		"creation_date"							"2013-10-15"
+		"image_inventory"						"econ/sets/DOTA_Item_The_Clergy_Ascetic_Set"
+		"item_description"						"#DOTA_Item_Desc_The_Clergy_Ascetic_Set"
+		"item_name"								"#DOTA_Item_The_Clergy_Ascetic_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"10/15/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20282"
+	{
+		"name"									"Reprieve of the Clergy Ascetic Pack"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Reprieve of the Clergy Ascetic"	"1"
+			"Reprieve of the Clergy Ascetic - Off-Hand""1"
+		}
+		"creation_date"							"2013-10-16"
+		"image_inventory"						"econ/items/antimage/reprieve_of_the_clergy_ascetic/reprieve_of_the_clergy_ascetic"
+		"item_description"						"#DOTA_Item_Desc_Reprieve_of_the_Clergy_Ascetic_Pack"
+		"item_name"								"#DOTA_Item_Reprieve_of_the_Clergy_Ascetic_Pack"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Paired_Weapons"
+	}
+	"20307"
+	{
+		"name"									"Spoils from the Shifting Sorcerer Bundle"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bracers of the Shifting Sorcerer"	"1"
+			"Wrap of the Shifting Sorcerer"		"1"
+			"Hatchet of the Shifting Sorcerer"	"1"
+			"Hatchet of the Shifting Sorcerer - Offhand""1"
+			"Pauldrons of the Shifting Sorcerer""1"
+			"Crest of the Shifting Sorcerer"	"1"
+		}
+		"creation_date"							"2013-11-07"
+		"image_inventory"						"econ/sets/DOTA_Item_Spoils_from_the_Shifting_Sorcerer_Bundle"
+		"item_description"						"#DOTA_Item_Desc_Spoils_from_the_Shifting_Sorcerer_Bundle"
+		"item_name"								"#DOTA_Item_Spoils_from_the_Shifting_Sorcerer_Bundle"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Magic_Hating_Pro_Gear_Bundle"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Mythical"
+			"category_tags"						"Bundles"
+			"date"								"11/7/2013"
+			"bundle"							"1"
+			"price"								"799"
+		}
+		"branding"
+		{
+			"corporation_id"					"90892734"
+		}
+	}
+	"20322"
+	{
+		"name"									"Legacy of the Awakened Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bracers of the Awakened"			"1"
+			"Gift of the Awakened"				"1"
+			"Leggings of the Awakened"			"1"
+			"Shard of Retribution"				"1"
+			"Shard of Vengeance"				"1"
+			"Shroud of the Awakened"			"1"
+			"Words of the Awakened"				"1"
+			"Legacy of the Awakened"			"1"
+		}
+		"creation_date"							"2013-12-02"
+		"image_inventory"						"econ/sets/DOTA_Item_Legacy_of_the_Awakened_Set"
+		"item_description"						"#DOTA_Item_Desc_Legacy_of_the_Awakened_Set"
+		"item_name"								"#DOTA_Item_Legacy_of_the_Awakened_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"12/2/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20457"
+	{
+		"name"									"Promo Armor of Tustakuri"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Belt of Tustakuri"					"1"
+			"Blade of Tustakuri"				"1"
+			"Blade of Tustakuri - Off-Hand"		"1"
+			"Bracers of Tustakuri"				"1"
+			"Shoulders of Tustakuri"			"1"
+			"Mask of Tustakuri"					"1"
+			"Pauldrons of Tustakuri"			"1"
+		}
+		"creation_date"							"2014-03-26"
+		"image_inventory"						"econ/sets/DOTA_Item_Promo_Armor_of_Tustakuri"
+		"item_description"						"#DOTA_Item_Desc_Promo_Armor_of_Tustakuri"
+		"item_name"								"#DOTA_Item_Promo_Armor_of_Tustakuri"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+	}
+	"20507"
+	{
+		"name"									"Acolyte of Vengeance"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Acolyte of Vengeance Armor"		"1"
+			"Acolyte of Vengeance Belt"			"1"
+			"Acolyte of Vengeance Bracers"		"1"
+			"Acolyte of Vengeance Mask"			"1"
+			"Acolyte of Vengeance Offhand"		"1"
+			"Acolyte of Vengeance Shoulder Guards""1"
+			"Acolyte of Vengeance Weapon"		"1"
+			"Acolyte of Vengeance Loading Screen""1"
+		}
+		"creation_date"							"2014-05-21"
+		"image_inventory"						"econ/sets/dota_item_acolyte_of_vengence"
+		"item_description"						"#DOTA_Item_Desc_Acolyte_of_Vengeance"
+		"item_name"								"#DOTA_Item_Acolyte_of_Vengeance"
+		"item_rarity"							"rare"
+	}
+	"20545"
+	{
+		"name"									"The Witch Hunter"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Blade of the Witch Hunter"			"1"
+			"Armor of the Witch Hunter"			"1"
+			"Hair of the Witch Hunter"			"1"
+			"Offhand Blade of the Witch Hunter"	"1"
+			"Bracers of the Witch Hunter"		"1"
+			"Shoulders of the Witch Hunter"		"1"
+			"Belt of the Witch Hunter"			"1"
+			"The Witch Hunter Loading Screen"	"1"
+		}
+		"creation_date"							"2014-06-09"
+		"image_inventory"						"econ/sets/dota_item_witch_hunter"
+		"item_description"						"#DOTA_Item_Desc_The_Witch_Hunter"
+		"item_name"								"#DOTA_Item_The_Witch_Hunter"
+		"item_rarity"							"rare"
+		"branding"
+		{
+			"team_id"							"36"
+		}
+	}
+	"20731"
+	{
+		"name"									"The Armor of Tustakuri"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Belt of Tustakuri"					"1"
+			"Blade of Tustakuri"				"1"
+			"Blade of Tustakuri - Off-Hand"		"1"
+			"Bracers of Tustakuri"				"1"
+			"Shoulders of Tustakuri"			"1"
+			"Mask of Tustakuri"					"1"
+			"Pauldrons of Tustakuri"			"1"
+		}
+		"creation_date"							"2015-01-25"
+		"image_inventory"						"econ/sets/DOTA_Item_The_Armor_of_Tustakuri"
+		"item_description"						"#DOTA_Item_Desc_The_Armor_of_Tustakuri"
+		"item_name"								"#DOTA_Item_The_Armor_of_Tustakuri"
+		"item_rarity"							"rare"
+	}
+	"20796"
+	{
+		"name"									"The Basher Blades"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Basher of Mage Skulls"				"1"
+			"Offhand Basher of Mage Skulls"		"1"
+		}
+		"creation_date"							"2015-04-29"
+		"image_inventory"						"econ/bundles/basher_blades_bundle1"
+		"item_description"						"#DOTA_Item_Desc_The_Basher_Blades"
+		"item_name"								"#DOTA_Item_The_Basher_Blades"
+		"item_rarity"							"immortal"
+	}
+	"20798"
+	{
+		"name"									"Golden Basher Blades"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Golden Basher of Mage Skulls"		"1"
+			"Golden Offhand Basher of Mage Skulls""1"
+		}
+		"creation_date"							"2015-05-12"
+		"image_inventory"						"econ/bundles/basher_blades_gold_bundle1"
+		"item_description"						"#DOTA_Item_Desc_Golden_Basher_Blades"
+		"item_name"								"#DOTA_Item_Golden_Basher_Blades"
+		"item_rarity"							"immortal"
+	}
+	"20901"
+	{
+		"name"									"Mage Abolisher"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Helmet of the Mage Abolisher"		"1"
+			"Vest of the Mage Abolisher"		"1"
+			"Sash of the Mage Abolisher"		"1"
+			"Offhand Blade of the Mage Abolisher""1"
+			"Blade of the Mage Abolisher"		"1"
+			"Pauldron of the Mage Abolisher"	"1"
+			"Bracers of the Mage Abolisher"		"1"
+			"Mage Abolisher Loading Screen"		"1"
+		}
+		"creation_date"							"2015-09-15"
+		"image_inventory"						"econ/loading_screens/mage_eraser_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_mage_eraser"
+		"item_name"								"#DOTA_Item_Mage_Abolisher"
+		"item_rarity"							"mythical"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2015"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"20948"
+	{
+		"name"									"Broken Scale"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Broken Scale Loading Screen"		"1"
+			"Blade of Broken Scale"				"1"
+			"Bracers of Broken Scale"			"1"
+			"Belt of Broken Scale"				"1"
+			"Helm of Broken Scale"				"1"
+			"Armor of Broken Scale"				"1"
+			"Offhand Blade of Broken Scale"		"1"
+			"Wraps of Broken Scale"				"1"
+		}
+		"creation_date"							"2015-12-07"
+		"image_inventory"						"econ/loading_screens/tarrasque_scale_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Broken_Scale"
+		"item_name"								"#DOTA_Item_Broken_Scale"
+		"item_rarity"							"rare"
+	}
+	"21038"
+	{
+		"name"									"Fervent Conscript"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armor of the Fervent Conscript"	"1"
+			"Off-Hand Blade of the Fervent Conscript""1"
+			"Style of the Fervent Conscript"	"1"
+			"Loading Screen of the Fervent Conscript""1"
+			"Belt of the Fervent Conscript"		"1"
+			"Shoulder Plate of the Fervent Conscript""1"
+			"Bracers of the Fervent Conscript"	"1"
+			"Blade of the Fervent Conscript"	"1"
+		}
+		"creation_date"							"2016-09-06"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/loading_screens/distinguished_conscript_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Fervent_Conscript"
+		"item_name"								"#DOTA_Item_Fervent_Conscript"
+		"item_rarity"							"mythical"
+	}
+	"21051"
+	{
+		"name"									"Guilt of the Survivor"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of the Survivor"	"1"
+			"Blade of the Survivor"				"1"
+			"Offhand Blade of the Survivor"		"1"
+			"Shoulders of the Survivor"			"1"
+			"Hair of the Survivor"				"1"
+			"Belt of the Survivor"				"1"
+			"Tunic of the Survivor"				"1"
+			"Bracers of the Survivor"			"1"
+		}
+		"creation_date"							"2016-09-14"
+		"event_id"								"EVENT_ID_FALL_MAJOR_2016"
+		"image_inventory"						"econ/loading_screens/god_eater_god_eater_loadingscreen"
+		"item_description"						"#DOTA_Item_Desc_Guilt_of_the_Survivor"
+		"item_name"								"#DOTA_Item_Guilt_of_the_Survivor"
+		"item_rarity"							"mythical"
+	}
+	"21186"
+	{
+		"name"									"Oathbound Defiant"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Oathbound Defiant Bracers"			"1"
+			"Oathbound Defiant Helm"			"1"
+			"Oathbound Defiant Pauldrons"		"1"
+			"Oathbound Defiant Belt"			"1"
+			"Oathbound Defiant Blades"			"1"
+			"Oathbound Defiant Armor"			"1"
+			"Oathbound Defiant Off-Hand Blade"	"1"
+		}
+		"creation_date"							"2018-02-21"
+		"image_inventory"						"econ/sets/DOTA_Item_Oathbound_Defiant"
+		"item_description"						"#DOTA_Item_Desc_Oathbound_Defiant"
+		"item_name"								"#DOTA_Item_Oathbound_Defiant"
+		"item_rarity"							"mythical"
+		"shards_purchase_price"					"75000"
+	}
+	"21238"
+	{
+		"name"									"Pledge of the Dragon's Disciple"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Trail of the Dragon's Disciple"	"1"
+			"Belt of the Dragon's Disciple"		"1"
+			"Mask of the Dragon's Disciple"		"1"
+			"Off-Hand of the Dragon's Disciple"	"1"
+			"Pauldron of the Dragon's Disciple"	"1"
+			"Pledge of the Dragon's Disciple Loading Screen""1"
+			"Arm of the Dragon's Disciple"		"1"
+			"Weapon of the Dragon's Disciple"	"1"
+		}
+		"creation_date"							"2018-09-12"
+		"image_inventory"						"econ/loading_screens/anti_mage_dragon_fury_loading_screen"
+		"item_name"								"#DOTA_Item_Pledge_of_the_Dragons_Disciple"
+		"item_rarity"							"rare"
+	}
+	"21278"
+	{
+		"name"									"Faceless Death"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Faceless Death - Belt"				"1"
+			"Faceless Death - Off-Hand"			"1"
+			"Faceless Death - Weapon"			"1"
+			"Faceless Death - Arms"				"1"
+			"Faceless Death - Shoulder"			"1"
+			"Faceless Death - Head"				"1"
+			"Faceless Death - Armor"			"1"
+			"Faceless Death Loading Screen"		"1"
+		}
+		"creation_date"							"2020-01-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/sets/DOTA_Item_Faceless_Death"
+		"item_name"								"#DOTA_Item_Faceless_Death"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+	"21570"
+	{
+		"name"									"Shadows of the Forgotten Plane"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Weapon of the Forgotten Plane "	"1"
+			"Armor of the Forgotten Plane"		"1"
+			"Bracer of the Forgotten Plane"		"1"
+			"Belt of the Forgotten Plane"		"1"
+			"Mask of the Forgotten Plane"		"1"
+			"Off-Hand Weapon of the Forgotten Plane""1"
+			"Pauldron of the Forgotten Plane"	"1"
+		}
+		"creation_date"							"2020-05-16"
+		"event_id"								"EVENT_ID_DIRETIDE_2020"
+		"image_inventory"						"econ/sets/dota_item_shadows_of_the_forgotten_plane"
+		"item_name"								"#DOTA_Item_Shadows_of_the_Forgotten_Plane"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"is commodity"
+			{
+				"attribute_class"				"is commodity"
+				"value"							"1"
+			}
+		}
+	}
+	"22045"
+	{
+		"name"									"Lineage Broken Scale"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Lineage Armor of Broken Scale"		"1"
+			"Lineage Helm of Broken Scale"		"1"
+			"Lineage Belt of Broken Scale"		"1"
+			"Lineage Bracers of Broken Scale"	"1"
+			"Lineage Blade of Broken Scale"		"1"
+			"Lineage Wraps of Broken Scale"		"1"
+			"Lineage Offhand Blade of Broken Scale""1"
+		}
+		"creation_date"							"2021-09-27"
+		"event_id"								"EVENT_ID_TEAM_FANDOM"
+		"image_inventory"						"econ/sets/DOTA_Item_TI10_Legacy_Broken_Scale"
+		"item_description"						"#DOTA_Item_Desc_Lineage_Broken_Scale"
+		"item_name"								"#DOTA_Item_Lineage_Broken_Scale"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1637229600"
+			}
+		}
+	}
+	"22754"
+	{
+		"name"									"Warden's Watch - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-19"
+		"image_inventory"						"econ/items/antimage/night_seeker_head/night_seeker_head"
+		"item_name"								"#DOTA_Item_Wardens_Watch__Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/antimage/night_seeker_head/night_seeker_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"22755"
+	{
+		"name"									"Warden's Watch - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-19"
+		"image_inventory"						"econ/items/antimage/night_seeker_arms/night_seeker_arms"
+		"item_name"								"#DOTA_Item_Wardens_Watch__Arms"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/antimage/night_seeker_arms/night_seeker_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"22756"
+	{
+		"name"									"Warden's Watch - Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-19"
+		"image_inventory"						"econ/items/antimage/night_seeker_armor/night_seeker_armor"
+		"item_name"								"#DOTA_Item_Wardens_Watch__Armor"
+		"item_rarity"							"rare"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/antimage/night_seeker_armor/night_seeker_armor.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"22757"
+	{
+		"name"									"Warden's Watch - Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-19"
+		"image_inventory"						"econ/items/antimage/night_seeker_belt/night_seeker_belt"
+		"item_name"								"#DOTA_Item_Wardens_Watch__Belt"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/antimage/night_seeker_belt/night_seeker_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"22758"
+	{
+		"name"									"Warden's Watch - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-19"
+		"image_inventory"						"econ/items/antimage/night_seeker_shoulder/night_seeker_shoulder"
+		"item_name"								"#DOTA_Item_Wardens_Watch__Shoulder"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/antimage/night_seeker_shoulder/night_seeker_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"22759"
+	{
+		"name"									"Warden's Watch - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-19"
+		"image_inventory"						"econ/items/antimage/night_seeker_weapon/night_seeker_weapon"
+		"item_name"								"#DOTA_Item_Wardens_Watch__Weapon"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/antimage/night_seeker_weapon/night_seeker_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_primary.vsnap"
+				"modifier"						"particles/models/items/antimage/night_seeker_weapon/night_seeker_weapon_fx.vsnap"
+			}
+		}
+	}
+	"22760"
+	{
+		"name"									"Warden's Watch - Off-Hand"
+		"prefab"								"wearable"
+		"creation_date"							"2022-01-19"
+		"image_inventory"						"econ/items/antimage/night_seeker_off_hand/night_seeker_off_hand"
+		"item_name"								"#DOTA_Item_Wardens_Watch__OffHand"
+		"item_rarity"							"rare"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/antimage/night_seeker_off_hand/night_seeker_off_hand.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_offhand.vsnap"
+				"modifier"						"particles/models/items/antimage/night_seeker_off_hand/night_seeker_off_hand_fx.vsnap"
+			}
+		}
+	}
+	"22767"
+	{
+		"name"									"Warden's Watch"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Warden's Watch Loading Screen"		"1"
+			"Warden's Watch - Off-Hand"			"1"
+			"Warden's Watch - Weapon"			"1"
+			"Warden's Watch - Shoulder"			"1"
+			"Warden's Watch - Belt"				"1"
+			"Warden's Watch - Armor"			"1"
+			"Warden's Watch - Arms"				"1"
+			"Warden's Watch - Head"				"1"
+		}
+		"creation_date"							"2022-01-19"
+		"image_inventory"						"econ/loading_screens/night_seeker_ls"
+		"item_name"								"#DOTA_Item_Wardens_Watch"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"23635"
+	{
+		"name"									"Howls of the Northmarch - Bracers"
+		"prefab"								"wearable"
+		"creation_date"							"2022-06-22"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/antimage/northern_veteran_bracers/northern_veteran_bracers"
+		"item_name"								"#DOTA_Item_Howls_of_the_Northmarch__Bracers"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/antimage/northern_veteran_bracers/northern_veteran_bracers.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+	}
+	"23636"
+	{
+		"name"									"Howls of the Northmarch - Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2022-06-22"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/antimage/northern_veteran_belt/northern_veteran_belt"
+		"item_name"								"#DOTA_Item_Howls_of_the_Northmarch__Belt"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/antimage/northern_veteran_belt/northern_veteran_belt.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+	}
+	"23637"
+	{
+		"name"									"Howls of the Northmarch - Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2022-06-22"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/antimage/northern_veteran_shoulders/northern_veteran_shoulders"
+		"item_name"								"#DOTA_Item_Howls_of_the_Northmarch__Shoulders"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/antimage/northern_veteran_shoulders/northern_veteran_shoulders.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+	}
+	"23638"
+	{
+		"name"									"Howls of the Northmarch - Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2022-06-22"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/antimage/northern_veteran_armor/northern_veteran_armor"
+		"item_name"								"#DOTA_Item_Howls_of_the_Northmarch__Armor"
+		"item_rarity"							"mythical"
+		"item_slot"								"armor"
+		"item_type_name"						"#DOTA_WearableType_armor"
+		"model_player"							"models/items/antimage/northern_veteran_armor/northern_veteran_armor.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+	}
+	"23639"
+	{
+		"name"									"Howls of the Northmarch - Hair"
+		"prefab"								"wearable"
+		"creation_date"							"2022-06-22"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/antimage/northern_veteran_hair/northern_veteran_hair"
+		"item_name"								"#DOTA_Item_Howls_of_the_Northmarch__Hair"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/antimage/northern_veteran_hair/northern_veteran_hair.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+	}
+	"23640"
+	{
+		"name"									"Howls of the Northmarch - Mainhand"
+		"prefab"								"wearable"
+		"creation_date"							"2022-06-22"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/antimage/northern_veteran_mainhand/northern_veteran_mainhand"
+		"item_name"								"#DOTA_Item_Howls_of_the_Northmarch__Mainhand"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/antimage/northern_veteran_mainhand/northern_veteran_mainhand.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_primary.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_primary.vsnap"
+				"modifier"						"particles/models/items/antimage/northern_veteran_mainhand/northern_veteran_mainhand_fx.vsnap"
+			}
+		}
+	}
+	"23641"
+	{
+		"name"									"Howls of the Northmarch - Offhand"
+		"prefab"								"wearable"
+		"creation_date"							"2022-06-22"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/antimage/northern_veteran_offhand/northern_veteran_offhand"
+		"item_name"								"#DOTA_Item_Howls_of_the_Northmarch__Offhand"
+		"item_rarity"							"mythical"
+		"item_slot"								"offhand_weapon"
+		"model_player"							"models/items/antimage/northern_veteran_offhand/northern_veteran_offhand.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"system"						"particles/units/heroes/hero_antimage/antimage_blade_offhand.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"particle_snapshot"
+				"asset"							"particles/models/heroes/antimage/antimage_weapon_offhand.vsnap"
+				"modifier"						"particles/models/items/antimage/northern_veteran_offhand/northern_veteran_offhand_fx.vsnap"
+			}
+		}
+	}
+	"23642"
+	{
+		"name"									"Howls of the Northmarch"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Howls of the Northmarch - Offhand"	"1"
+			"Howls of the Northmarch - Mainhand""1"
+			"Howls of the Northmarch - Hair"	"1"
+			"Howls of the Northmarch - Armor"	"1"
+			"Howls of the Northmarch - Shoulders""1"
+			"Howls of the Northmarch - Belt"	"1"
+			"Howls of the Northmarch - Bracers"	"1"
+		}
+		"creation_date"							"2022-06-22"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/sets/DOTA_Item_Northern_Veteran"
+		"item_name"								"#DOTA_Item_Howls_of_the_Northmarch"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+	}
+}

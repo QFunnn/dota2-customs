@@ -1,0 +1,169 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf24:version{c9a29215-bb77-47b2-af5d-67eb30ba6578} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 9
+	m_flConstantRadius = 6.0
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderRopes"
+			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
+			m_hTexture = resource:"materials/particle/beam_generic_7.vtex"
+			m_flTextureVWorldSize = 800.0
+			m_flTextureVScrollRate = -800.0
+			m_nMaxTesselation = 3
+			m_nMinTesselation = 3
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_Decay"
+			m_flOpStartFadeInTime = 0.5
+			m_flOpEndFadeInTime = 0.5
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flBias = 0.75
+			m_flEndTime = 0.5
+			m_flStartScale = 0.5
+			m_bEaseInAndOut = true
+			m_flEndScale = 2.0
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 0.5
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.65
+		},
+		{
+			_class = "C_OP_NormalLock"
+		},
+		{
+			_class = "C_OP_PositionLock"
+			m_bLockRot = true
+			m_flStartTime_min = 0.3
+			m_flStartTime_max = 0.35
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RingWave"
+			m_flYaw = 90.0
+			m_bXYVelocityOnly = false
+			m_flParticlesPerOrbit = 20.0
+			m_bEvenDistribution = true
+			m_flInitialRadius = 70.0
+			m_flRoll = 65.0
+			m_flInitialSpeedMin = 30.0
+			m_flInitialSpeedMax = 30.0
+		},
+		{
+			_class = "C_INIT_NormalAlignToCP"
+			m_nControlPointNumber = 1
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_nFieldOutput = "7"
+			m_nInputMax = 1
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_nInputMax = 2
+			m_nFieldOutput = "7"
+			m_flOutputMin = 1.0
+			m_flOutputMax = 0.0
+			m_bActiveRange = true
+			m_bInvert = true
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 30.0, 0.0, 260.0 ]
+			m_OffsetMax = [ 30.0, 0.0, 260.0 ]
+			m_bLocalCoords = true
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 9.0
+			}
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_ABSORIGIN_FOLLOW"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ 0.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ 0.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/heroes/death_prophet/death_prophet.vmdl"
+				m_nModSpecificData = 168
+				m_sequenceName = "taunt_jazz_hands"
+				m_nFireParticleOnSequenceFrame = 134
+				m_hitboxSetName = "default"
+				m_bAnimationNonLooping = true
+			}
+		},
+	]
+	m_ConstantColor = [ 0, 255, 0, 255 ]
+	m_flConstantLifespan = 1.35
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/econ/taunts/rainbow_a0.vpcf"
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetControlPointOrientation"
+			m_bUseWorldLocation = true
+			m_vecRotation = [ -45.0, 0.0, 0.0 ]
+			m_vecRotationB = [ -45.0, 0.0, 0.0 ]
+		},
+		{
+			_class = "C_OP_EnableChildrenFromParentParticleCount"
+		},
+	]
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 2
+}

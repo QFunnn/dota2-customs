@@ -1,0 +1,576 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.HudRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#Handbook
+{
+	opacity: 1;
+	margin-top: 20px;
+}
+
+#Handbook #HandbookIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/handbook/handbook_png.vtex");
+	background-size: 100%;
+	margin-left: 6px;
+	margin-top: 14px;
+}
+
+#Handbook #HandbookClose
+{
+	margin-top: 20px;
+	margin-right: 6px;
+}
+
+#Handbook #HandbookDivider
+{
+	margin-left: 205px;
+	width: 4px;
+	height: 720px;
+	background-image: none;
+	background-color: #1a222f;
+}
+
+#Handbook #HandbookCurrencyContainer
+{
+	margin-top: 100px;
+	horizontal-align: right;
+	flow-children: right;
+	height: 40px;
+	margin-right: 60px;
+	z-index: 1;
+}
+
+#Handbook #HandbookBreadcrumbDivider
+{
+	margin-top: 45px;
+	margin-left: 20px;
+	width: 100%;
+	height: 2px;
+	background-image: url("s2r://panorama/images/custom_game/handbook/itemsbase_line_png.vtex");
+	background-size: 100%;
+}
+
+#Handbook #HandbookSubHeader
+{
+	margin-left: 50px;
+	height: 40px;
+	width: 100%;
+	flow-children: right;
+}
+
+#Handbook #HandbookSubHeader #FilterCheckboxes
+{
+	flow-children: right;
+	vertical-align: center;
+}
+
+#Handbook #HandbookSubHeader #FilterCheckboxes ToggleButton
+{
+	margin-right: 18px;
+}
+
+#Handbook #HandbookSubHeader #FilterCheckboxes ToggleButton Label
+{
+	font-size: 18px;
+	margin-top: 0px;
+	transition-property: color, brightness;
+	transition-duration: 0.1s;
+}
+
+#Handbook #HandbookSubHeader #FilterCheckboxes ToggleButton:not(:selected) Label
+{
+	brightness: 0.6;
+}
+
+#Handbook #HandbookSubHeader #FilterCheckboxes ToggleButton.Filter_Owned Label
+{
+	color: #FFFFFF;
+}
+
+#Handbook #HandbookSubHeader #FilterCheckboxes ToggleButton.Filter_NotOwned Label
+{
+	color: #FFFFFF;
+}
+
+#Handbook #HandbookSubHeader #FilterCheckboxes ToggleButton.Filter_Limited Label
+{
+	color: #ff5249;
+}
+
+#Handbook #HandbookSubHeader #FilterCheckboxes ToggleButton.Filter_Immortal Label
+{
+	color: #e4ae39;
+}
+
+#Handbook #HandbookSubHeader #FilterCheckboxes ToggleButton.Filter_Mythical Label
+{
+	color: #8847ff;
+}
+
+#Handbook #HandbookSubHeader #FilterCheckboxes ToggleButton.Filter_Rare Label
+{
+	color: #4b69ff;
+}
+
+#Handbook #HandbookSubHeader #FilterCheckboxes ToggleButton.Filter_Normal Label
+{
+	color: #939da0;
+}
+
+#Handbook #HandbookSubHeader #HandbookSearch
+{
+	horizontal-align: right;
+	margin-left: 0px;
+	vertical-align: center;
+}
+
+#Handbook #HandbookSubHeader #HandbookSearch TextEntry
+{
+	background-color: #060d14;
+	height: 30px;
+	width: 200px;
+	border: 2px solid #3a4860;
+	border-radius: 15px;
+	padding: 3px 30px 2px 14px;
+	font-size: 18px;
+}
+
+#Handbook #HandbookSubHeader #HandbookSearch TextEntry Label
+{
+	font-size: 18px;
+	margin-top: 0px;
+}
+
+#Handbook #HandbookSubHeader #HandbookSearch .EOM_IconButton
+{
+	margin-right: 6px;
+}
+
+#Handbook #HandbookTabGroup
+{
+	margin-left: 20px;
+	width: 180px;
+	height: 720px;
+	flow-children: down;
+}
+
+#Handbook #HandbookTabGroup TabButton
+{
+	width: 170px;
+	height: 44px;
+	margin-bottom: 8px;
+	background-image: url("s2r://panorama/images/custom_game/handbook/tab_0_png.vtex");
+	background-size: 100%;
+	transition-property: background-image, brightness;
+	transition-duration: 0.1s;
+}
+
+#Handbook #HandbookTabGroup TabButton Label
+{
+	align: center center;
+	font-size: 18px;
+	color: #75869B;
+	transition-property: color;
+	transition-duration: 0.1s;
+	text-overflow: shrink;
+	margin: 0px 10px;
+	height: 24px;
+}
+
+#Handbook #HandbookTabGroup TabButton:not(:disabled):hover
+{
+	brightness: 1.5;
+}
+
+#Handbook #HandbookTabGroup TabButton:not(:disabled):hover Label
+{
+	color: #FFFFFF;
+}
+
+#Handbook #HandbookTabGroup TabButton:selected
+{
+	background-image: url("s2r://panorama/images/custom_game/handbook/tab_1_png.vtex");
+}
+
+#Handbook #HandbookTabGroup TabButton:selected Label
+{
+	color: #FFFFFF;
+}
+
+#Handbook #HandbookTabGroup TabButton #Lock
+{
+	align: right center;
+	margin-right: 10px;
+	width: 24px;
+	height: 24px;
+	background-image: url("s2r://panorama/images/eom_design/icon/tui7/lock_png.vtex");
+	background-size: 100%;
+}
+
+#Handbook #HandbookItemContainer
+{
+	width: 1180px;
+	height: 100%;
+	margin: 0px 30px 26px 225px;
+}
+
+#Handbook #HandbookItemContainer TabContents
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+
+#Handbook #HandbookItemContainer TabContents:selected
+{
+	opacity: 1;
+}
+
+#Handbook #HandbookItemContainer #HandbookItemList
+{
+	margin-top: 30px;
+	padding-top: 20px;
+}
+
+#Handbook #HandbookItemContainer #HandbookItemList #HandbookItemListPlayer
+{
+	margin-left: 20px;
+	width: 100%;
+	height: 24px;
+	margin-top: 10px;
+	background-image: url("s2r://panorama/images/custom_game/handbook/item_n_png.vtex");
+	background-size: 115px 24px;
+	background-repeat: no-repeat;
+}
+
+#Handbook #HandbookItemContainer #HandbookItemList #HandbookItemListPlayer Label
+{
+	vertical-align: center;
+	margin-left: 20px;
+	color: white;
+	text-shadow: 0px 0px 5px 3 #000000;
+}
+
+#Handbook #HandbookItemContainer #HandbookItemList #HandbookItemListLock
+{
+	margin-left: 20px;
+	width: 100%;
+	height: 24px;
+	margin-top: 10px;
+	background-image: url("s2r://panorama/images/custom_game/handbook/item_r_png.vtex");
+	background-size: 115px 24px;
+	background-repeat: no-repeat;
+}
+
+#Handbook #HandbookItemContainer #HandbookItemList #HandbookItemListLock Label
+{
+	vertical-align: center;
+	margin-left: 20px;
+	color: white;
+	text-shadow: 0px 0px 5px 3 #000000;
+}
+
+#Handbook #HandbookItemContainer #HandbookPlayerItemList
+{
+	margin-top: 50px;
+}
+
+#Handbook #HandbookItemContainer .HandbookItem
+{
+	margin: 20px 20px;
+	transition-property: position, transform, saturation;
+	transition-duration: 0.2s;
+	overflow: noclip;
+}
+
+#Handbook #HandbookItemContainer .HandbookItem:hover
+{
+	transform: translateY(-5px);
+	saturation: 1;
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity0 #HandbookItemBG
+{
+	background-image: url("s2r://panorama/images/custom_game/handbook/sp_png.vtex");
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity1 #HandbookItemBG
+{
+	background-image: url("s2r://panorama/images/custom_game/handbook/n_png.vtex");
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity2 #HandbookItemBG
+{
+	background-image: url("s2r://panorama/images/custom_game/handbook/r_png.vtex");
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity3 #HandbookItemBG
+{
+	background-image: url("s2r://panorama/images/custom_game/handbook/sr_png.vtex");
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity4 #HandbookItemBG
+{
+	background-image: url("s2r://panorama/images/custom_game/handbook/ssr_png.vtex");
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity5 #HandbookItemBG
+{
+	background-image: url("s2r://panorama/images/custom_game/handbook/sp_png.vtex");
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity0 .HandbookItemLineBg
+{
+	background-image: url("s2r://panorama/images/custom_game/handbook/sp_jiban_bt_png.vtex");
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity0 .HandbookItemLineBg Label
+{
+	color: #ff5249;
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity1 .HandbookItemLineBg
+{
+	background-image: url("s2r://panorama/images/custom_game/handbook/n_jiban_bt_png.vtex");
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity1 .HandbookItemLineBg Label
+{
+	color: #939da0;
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity2 .HandbookItemLineBg
+{
+	background-image: url("s2r://panorama/images/custom_game/handbook/r_jiban_bt_png.vtex");
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity2 .HandbookItemLineBg Label
+{
+	color: #4b69ff;
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity3 .HandbookItemLineBg
+{
+	background-image: url("s2r://panorama/images/custom_game/handbook/sr_jiban_bt_png.vtex");
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity3 .HandbookItemLineBg Label
+{
+	color: #8847ff;
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity4 .HandbookItemLineBg
+{
+	background-image: url("s2r://panorama/images/custom_game/handbook/ssr_jiban_bt_png.vtex");
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity4 .HandbookItemLineBg Label
+{
+	color: #e4ae39;
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity5 .HandbookItemLineBg
+{
+	background-image: url("s2r://panorama/images/custom_game/handbook/sp_jiban_bt_png.vtex");
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity5 .HandbookItemLineBg Label
+{
+	color: #ff5249;
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity0 #HandbookItemLink
+{
+	background-image: url("s2r://panorama/images/custom_game/handbook/sp_jiban_png.vtex");
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity0 #HandbookItemLink #HandbookItemRarityIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/handbook/card_rarity_sp_png.vtex");
+	background-size: 100%;
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity1 #HandbookItemLink
+{
+	background-image: url("s2r://panorama/images/custom_game/handbook/n_jiban_png.vtex");
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity1 #HandbookItemLink #HandbookItemRarityIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/handbook/card_rarity_n_png.vtex");
+	background-size: 100%;
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity2 #HandbookItemLink
+{
+	background-image: url("s2r://panorama/images/custom_game/handbook/r_jiban_png.vtex");
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity2 #HandbookItemLink #HandbookItemRarityIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/handbook/card_rarity_r_png.vtex");
+	background-size: 100%;
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity3 #HandbookItemLink
+{
+	background-image: url("s2r://panorama/images/custom_game/handbook/sr_jiban_png.vtex");
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity3 #HandbookItemLink #HandbookItemRarityIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/handbook/card_rarity_sr_png.vtex");
+	background-size: 100%;
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity4 #HandbookItemLink
+{
+	background-image: url("s2r://panorama/images/custom_game/handbook/ssr_jiban_png.vtex");
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity4 #HandbookItemLink #HandbookItemRarityIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/handbook/card_rarity_ssr_png.vtex");
+	background-size: 100%;
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity5 #HandbookItemLink
+{
+	background-image: url("s2r://panorama/images/custom_game/handbook/sp_jiban_png.vtex");
+}
+
+#Handbook #HandbookItemContainer .HandbookItem.Rarity5 #HandbookItemLink #HandbookItemRarityIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/handbook/card_rarity_sp_png.vtex");
+	background-size: 100%;
+}
+
+#Handbook #HandbookItemContainer .HandbookItem #HandbookItemName
+{
+	horizontal-align: center;
+	font-size: 20px;
+	color: white;
+	margin-top: 9px;
+	text-shadow: 0px 0px 5px 3 #000000;
+}
+
+#Handbook #HandbookItemContainer .HandbookItem #HandbookItemTemp
+{
+	align: center bottom;
+	margin-bottom: 20px;
+	color: #c0b6a1;
+	font-size: 20px;
+	text-shadow: 0px 0px 5px 3 #000000;
+	visibility: collapse;
+}
+
+#Handbook #HandbookItemContainer .HandbookItem #HandbookItemTemp.Show
+{
+	visibility: visible;
+}
+
+#Handbook #HandbookItemContainer .HandbookItem #HandbookItemCollectibleTag
+{
+	align: right top;
+	margin-top: -10px;
+	margin-right: -40px;
+	z-index: 3;
+}
+
+#Handbook #HandbookItemContainer .HandbookItem #HandbookItemWrapper
+{
+	overflow: noclip;
+}
+
+#Handbook #HandbookItemContainer .HandbookItem #HandbookItemImage
+{
+	width: 100%;
+	height: 100%;
+	margin: 32px 14px 18px 14px;
+}
+
+#Handbook #HandbookItemContainer .HandbookItem #HandbookItemBG
+{
+	background-size: 100%;
+	width: 100%;
+	height: 100%;
+}
+
+#Handbook #HandbookItemContainer .HandbookItem .HandbookItemLineBg
+{
+	height: 30px;
+	width: 100px;
+	background-size: 100%;
+}
+
+#Handbook #HandbookItemContainer .HandbookItem .HandbookItemLineBg Label
+{
+	vertical-align: center;
+	margin-left: 30px;
+	text-shadow: 0px 0px 5px 3 #000000;
+	text-overflow: shrink;
+}
+
+#Handbook #HandbookItemContainer .HandbookItem #HandbookItemTag
+{
+	margin-top: 44px;
+	margin-left: 14px;
+}
+
+#Handbook #HandbookItemContainer .HandbookItem #HandbookItemRarity
+{
+	margin-top: 44px;
+	margin-left: 14px;
+}
+
+#Handbook #HandbookItemContainer .HandbookItem #HandbookItemLink
+{
+	width: 43px;
+	height: 79px;
+	margin-top: 38px;
+	background-image: url("s2r://panorama/images/custom_game/handbook/bg_player_talent_btn_png.vtex");
+	background-size: 100%;
+}
+
+#Handbook #HandbookItemContainer .HandbookItem #HandbookItemTreasureIcon
+{
+	width: 26px;
+	height: 26px;
+	background-image: url("s2r://panorama/images/custom_game/handbook/treasure_icon_png.vtex");
+	background-size: 100%;
+	horizontal-align: center;
+	margin-top: 8px;
+}
+
+#Handbook #HandbookItemContainer .HandbookItem #HandbookItemRarityIcon
+{
+	width: 26px;
+	height: 26px;
+	align: center top;
+	margin-top: 10px;
+}
+
+#Lock
+{
+	align: right center;
+	margin-right: 20px;
+	width: 48px;
+	height: 48px;
+	background-image: url("s2r://panorama/images/eom_design/icon/tui7/lock_png.vtex");
+	background-size: 100%;
+}

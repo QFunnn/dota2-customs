@@ -1,0 +1,55 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf60:version{cd92a366-0b0d-4811-a18d-f6d472d19709} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/eom/hero/skywrath_mage_1/skywrath_mage_1.vmdl"
+				m_bShouldDrawAttachmentNames = true
+			}
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetParentControlPointsToChildCP"
+			m_nChildControlPoint = 5
+			m_nNumControlPoints = 2
+			m_nFirstSourcePoint = 5
+			m_bSetOrientation = true
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"models/eom/hero/skywrath_mage_1/particles/skywrath_commander_1_fxb1.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/skywrath_mage_1/particles/skywrath_commander_1_fxb2.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/skywrath_mage_1/particles/skywrath_commander_1_fxb0.vpcf"
+		},
+	]
+}

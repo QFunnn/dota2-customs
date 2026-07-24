@@ -1,0 +1,2799 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"142"
+	{
+		"name"									"Disruptor's Weapon"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/disruptor/weapon"
+		"item_description"						"#DOTA_Item_Desc_Disruptors_Weapon"
+		"item_name"								"#DOTA_Item_Disruptors_Weapon"
+		"model_player"							"models/heroes/disruptor/weapon.vmdl"
+	}
+	"143"
+	{
+		"name"									"Disruptor's Bracers"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/disruptor/bracers"
+		"item_description"						"#DOTA_Item_Desc_Disruptors_Bracers"
+		"item_name"								"#DOTA_Item_Disruptors_Bracers"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_bracers"
+		"model_player"							"models/heroes/disruptor/bracers.vmdl"
+	}
+	"144"
+	{
+		"name"									"Disruptor's Hair"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/disruptor/hair"
+		"item_description"						"#DOTA_Item_Desc_Disruptors_Hair"
+		"item_name"								"#DOTA_Item_Disruptors_Hair"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/disruptor/hair.vmdl"
+	}
+	"145"
+	{
+		"name"									"Disruptor's Back"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/disruptor/back"
+		"item_description"						"#DOTA_Item_Desc_Disruptors_Back"
+		"item_name"								"#DOTA_Item_Disruptors_Back"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/heroes/disruptor/back.vmdl"
+	}
+	"146"
+	{
+		"name"									"Disruptor's Shoulder Armor"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/disruptor/shoulder"
+		"item_description"						"#DOTA_Item_Desc_Disruptors_Shoulder_Armor"
+		"item_name"								"#DOTA_Item_Disruptors_Shoulder_Armor"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/heroes/disruptor/shoulder.vmdl"
+	}
+	"147"
+	{
+		"name"									"Disruptor's Mount"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/disruptor/mount"
+		"item_description"						"#DOTA_Item_Desc_Disruptors_Mount"
+		"item_name"								"#DOTA_Item_Disruptors_Mount"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/heroes/disruptor/mount.vmdl"
+	}
+	"525"
+	{
+		"name"									"Disruptor's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-08"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Disruptors_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_disruptor"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_disruptor/disruptor_ambient_glow.vpcf"
+				"system"						"particles/units/heroes/hero_disruptor/disruptor_ambient_glow.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"left_elec"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"right_elec"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"4449"
+	{
+		"name"									"Storm Rider's Sight"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/disruptor/disruptor_rider_storm_head/disruptor_rider_storm_head"
+		"item_description"						"#DOTA_Item_Desc_The_Storm_Riders_Sight"
+		"item_name"								"#DOTA_Item_Storm_Riders_Sight"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Monocle"
+		"model_player"							"models/items/disruptor/disruptor_rider_storm_head/disruptor_rider_storm_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4450"
+	{
+		"name"									"Storm Rider's Bracer"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/disruptor/disruptor_rider_storm_arms/disruptor_rider_storm_arms"
+		"item_description"						"#DOTA_Item_Desc_The_Storm_Riders_Bracer"
+		"item_name"								"#DOTA_Item_Storm_Riders_Bracer"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracer"
+		"model_player"							"models/items/disruptor/disruptor_rider_storm_arms/disruptor_rider_storm_arms.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4455"
+	{
+		"name"									"Stormthrasher"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/disruptor/disruptor_rider_storm_hammer/disruptor_rider_storm_hammer"
+		"item_description"						"#DOTA_Item_Desc_Stormthrasher"
+		"item_name"								"#DOTA_Item_Stormthrasher"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Hammer"
+		"model_player"							"models/items/disruptor/disruptor_rider_storm_hammer/disruptor_rider_storm_hammer.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4456"
+	{
+		"name"									"Storm Rider's Deflector"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/disruptor/disruptor_rider_storm_shoulder/disruptor_rider_storm_shoulder"
+		"item_description"						"#DOTA_Item_Desc_The_Storm_Riders_Deflector"
+		"item_name"								"#DOTA_Item_Storm_Riders_Deflector"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldron"
+		"model_player"							"models/items/disruptor/disruptor_rider_storm_shoulder/disruptor_rider_storm_shoulder.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4464"
+	{
+		"name"									"Aegis of the Storm"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/disruptor/disruptor_rider_storm_back/disruptor_rider_storm_back"
+		"item_description"						"#DOTA_Item_Desc_Aegis_of_the_Storm"
+		"item_name"								"#DOTA_Item_Aegis_of_the_Storm"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Generator"
+		"model_player"							"models/items/disruptor/disruptor_rider_storm_back/disruptor_rider_storm_back.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4466"
+	{
+		"name"									"Rampant the Scaled Hunter"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/disruptor/disruptor_rider_storm_mount/disruptor_rider_storm_mount"
+		"item_description"						"#DOTA_Item_Desc_Rampant_the_Scaled_Hunter"
+		"item_name"								"#DOTA_Item_Rampant_the_Scaled_Hunter"
+		"item_rarity"							"legendary"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/disruptor/disruptor_rider_storm_mount/disruptor_rider_storm_mount.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"4763"
+	{
+		"name"									"Grull the Grim Walker"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/disruptor/bub"
+		"item_description"						"#DOTA_Item_Desc_Grull_the_Grim_Walker"
+		"item_name"								"#DOTA_Item_Grull_the_Grim_Walker"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/disruptor/bub.vmdl"
+	}
+	"4961"
+	{
+		"name"									"Hammer of the Skygods"
+		"prefab"								"wearable"
+		"creation_date"							"2013-05-01"
+		"image_inventory"						"econ/items/disruptor/dsrptr12/dsrptr12"
+		"item_description"						"#DOTA_Item_Desc_Hammer_of_the_Skygods"
+		"item_name"								"#DOTA_Item_Hammer_of_the_Skygods"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Hammer"
+		"model_player"							"models/items/disruptor/dsrptr12/dsrptr12.vmdl"
+	}
+	"5573"
+	{
+		"name"									"Gwanji the Thunder Lizard"
+		"prefab"								"wearable"
+		"creation_date"							"2013-10-30"
+		"image_inventory"						"econ/items/disruptor/gwanji_the_thunder_lizard/gwanji_the_thunder_lizard"
+		"item_description"						"#DOTA_Item_Desc_Gwanji_the_Thunder_Lizard"
+		"item_name"								"#DOTA_Item_Gwanji_the_Thunder_Lizard"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Lizard"
+		"model_player"							"models/items/disruptor/gwanji_the_thunder_lizard/gwanji_the_thunder_lizard.vmdl"
+	}
+	"5631"
+	{
+		"name"									"Shocking Cornrows"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-04"
+		"image_inventory"						"econ/items/disruptor/ragethree_head/ragethree_head"
+		"item_name"								"#DOTA_Item_Shocking_Cornrows"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/disruptor/ragethree_head/ragethree_head.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"9/24/2014"
+			"price"								"0"
+		}
+	}
+	"5634"
+	{
+		"name"									"Chitin Shoulder Guard"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-04"
+		"image_inventory"						"econ/items/disruptor/ragethree_shoulder/ragethree_shoulder"
+		"item_name"								"#DOTA_Item_Chitin_Shoulder_Guard"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/disruptor/ragethree_shoulder/ragethree_shoulder.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"9/24/2014"
+			"price"								"0"
+		}
+	}
+	"5639"
+	{
+		"name"									"Guirus Arm Guards"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-04"
+		"image_inventory"						"econ/items/disruptor/ragethree_arms/ragethree_arms"
+		"item_name"								"#DOTA_Item_Guirus_Arm_Guards"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/disruptor/ragethree_arms/ragethree_arms.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"9/24/2014"
+			"price"								"0"
+		}
+	}
+	"5696"
+	{
+		"name"									"Mokkin, the Ancient Conductor"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-21"
+		"image_inventory"						"econ/items/disruptor/mokkin_the_ancient_conductor/mokkin_the_ancient_conductor"
+		"item_name"								"#DOTA_Item_Mokkin_the_Ancient_Conductor"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/disruptor/mokkin_the_ancient_conductor/mokkin_the_ancient_conductor.vmdl"
+	}
+	"5779"
+	{
+		"name"									"Anguilla"
+		"prefab"								"wearable"
+		"creation_date"							"2013-12-03"
+		"image_inventory"						"econ/items/disruptor/anguilla_mount/anguilla_mount"
+		"item_description"						"#DOTA_Item_Desc_Anguilla"
+		"item_name"								"#DOTA_Item_Anguilla"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/disruptor/anguilla_mount/anguilla_mount.vmdl"
+		"particle_folder"						"particles/econ/items/disruptor/disruptor_anguilla"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/disruptor/disruptor_anguilla/disruptor_anguilla_ambient.vpcf"
+				"system"						"particles/econ/items/disruptor/disruptor_anguilla/disruptor_anguilla_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"2"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+		}
+	}
+	"5918"
+	{
+		"name"									"Crimson Raptor of Druud"
+		"prefab"								"wearable"
+		"creation_date"							"2014-02-06"
+		"image_inventory"						"econ/items/disruptor/dismount/dismount"
+		"item_name"								"#DOTA_Item_Crimson_Raptor_of_Druud"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/disruptor/dismount/dismount.vmdl"
+	}
+	"6332"
+	{
+		"name"									"Tempest's Wrath Bracers"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-21"
+		"image_inventory"						"econ/items/disruptor/tempestwrath_arms/tempestwrath_arms"
+		"item_name"								"#DOTA_Item_Tempests_Wrath_Bracers"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/disruptor/tempestwrath_arms/tempestwrath_arms.vmdl"
+	}
+	"6333"
+	{
+		"name"									"Tempest's Wrath Back"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-21"
+		"image_inventory"						"econ/items/disruptor/tempestwrath_back/tempestwrath_back"
+		"item_name"								"#DOTA_Item_Tempests_Wrath_Back"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/disruptor/tempestwrath_back/tempestwrath_back.vmdl"
+	}
+	"6334"
+	{
+		"name"									"Tempest's Wrath Crown"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-21"
+		"image_inventory"						"econ/items/disruptor/tempestwrath_head/tempestwrath_head"
+		"item_name"								"#DOTA_Item_Tempests_Wrath_Crown"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Crown"
+		"model_player"							"models/items/disruptor/tempestwrath_head/tempestwrath_head.vmdl"
+	}
+	"6335"
+	{
+		"name"									"Morddos"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-21"
+		"image_inventory"						"econ/items/disruptor/tempestwrath_mount/tempestwrath_mount"
+		"item_name"								"#DOTA_Item_Morddos"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/disruptor/tempestwrath_mount/tempestwrath_mount.vmdl"
+	}
+	"6336"
+	{
+		"name"									"Tempest's Wrath Armor"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-21"
+		"image_inventory"						"econ/items/disruptor/tempestwrath_shoulder/tempestwrath_shoulder"
+		"item_name"								"#DOTA_Item_Tempests_Wrath_Armor"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"model_player"							"models/items/disruptor/tempestwrath_shoulder/tempestwrath_shoulder.vmdl"
+	}
+	"6345"
+	{
+		"name"									"Tempest's Wrath Hammer"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-21"
+		"image_inventory"						"econ/items/disruptor/tempestwrath_weapon/tempestwrath_weapon"
+		"item_name"								"#DOTA_Item_Tempests_Wrath_Hammer"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Hammer"
+		"model_player"							"models/items/disruptor/tempestwrath_weapon/tempestwrath_weapon.vmdl"
+	}
+	"6422"
+	{
+		"name"									"Bracers of the Stormlands"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-11"
+		"image_inventory"						"econ/items/disruptor/stormlands_arms/stormlands_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Stormlands"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/disruptor/stormlands_arms/stormlands_arms.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"6/11/2014"
+			"price"								"0"
+		}
+	}
+	"6460"
+	{
+		"name"									"Helm of the Stormlands"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-11"
+		"image_inventory"						"econ/items/disruptor/stormlands_head/stormlands_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Stormlands"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/disruptor/stormlands_head/stormlands_head.vmdl"
+	}
+	"6461"
+	{
+		"name"									"Deflector of the Stormlands"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-11"
+		"image_inventory"						"econ/items/disruptor/stormlands_back/stormlands_back"
+		"item_name"								"#DOTA_Item_Deflector_of_the_Stormlands"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Deflector"
+		"model_player"							"models/items/disruptor/stormlands_back/stormlands_back.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"6/11/2014"
+			"price"								"0"
+		}
+	}
+	"6462"
+	{
+		"name"									"Shoulder of the Stormlands"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-11"
+		"image_inventory"						"econ/items/disruptor/stormlands_shoulder/stormlands_shoulder"
+		"item_name"								"#DOTA_Item_Shoulder_of_the_Stormlands"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/disruptor/stormlands_shoulder/stormlands_shoulder.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"6/11/2014"
+			"price"								"0"
+		}
+	}
+	"6628"
+	{
+		"name"									"Valakul"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-11"
+		"image_inventory"						"econ/items/disruptor/stormlands_legs/stormlands_legs"
+		"item_name"								"#DOTA_Item_Valakul"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/disruptor/stormlands_legs/stormlands_legs.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"6/11/2014"
+			"price"								"0"
+		}
+	}
+	"6629"
+	{
+		"name"									"Hammer of the Stormlands"
+		"prefab"								"wearable"
+		"creation_date"							"2014-06-11"
+		"image_inventory"						"econ/items/disruptor/stormlands_weapon/stormlands_weapon"
+		"item_name"								"#DOTA_Item_Hammer_of_the_Stormlands"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Hammer"
+		"model_player"							"models/items/disruptor/stormlands_weapon/stormlands_weapon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"6/11/2014"
+			"price"								"0"
+		}
+	}
+	"6714"
+	{
+		"name"									"Raging Bug Idol"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-04"
+		"image_inventory"						"econ/items/disruptor/ragethree_back/ragethree_back"
+		"item_name"								"#DOTA_Item_Raging_Bug_Idol"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Idol"
+		"model_player"							"models/items/disruptor/ragethree_back/ragethree_back.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"9/24/2014"
+			"price"								"0"
+		}
+	}
+	"6739"
+	{
+		"name"									"Bracers of the Static Lord"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-29"
+		"image_inventory"						"econ/items/disruptor/staticlord_arms/staticlord_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Static_Lord"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/disruptor/staticlord_arms/staticlord_arms.vmdl"
+		"branding"
+		{
+			"corporation_id"					"93712171"
+		}
+	}
+	"6740"
+	{
+		"name"									"Blitzy the Stormrunner"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { gem_def_index: 3003 } corporation_id: 93712171"
+			}
+		}
+		"creation_date"							"2014-05-29"
+		"image_inventory"						"econ/items/disruptor/staticlord_legs/staticlord_legs"
+		"item_name"								"#DOTA_Item_Blitzy_the_Stormrunner"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/disruptor/staticlord_legs/staticlord_legs.vmdl"
+		"branding"
+		{
+			"corporation_id"					"93712171"
+		}
+	}
+	"6741"
+	{
+		"name"									"Static Lord's Generator"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-29"
+		"image_inventory"						"econ/items/disruptor/staticlord_back/staticlord_back"
+		"item_name"								"#DOTA_Item_Static_Lords_Generator"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/disruptor/staticlord_back/staticlord_back.vmdl"
+		"branding"
+		{
+			"corporation_id"					"93712171"
+		}
+	}
+	"6742"
+	{
+		"name"									"Helm of the Static Lord"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-29"
+		"image_inventory"						"econ/items/disruptor/staticlord_head/staticlord_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Static_Lord"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/disruptor/staticlord_head/staticlord_head.vmdl"
+		"styles"
+		{
+			"0"
+			{
+				"model_player"					"models/disruptor/staticlord_head/staticlord_head.vmdl"
+				"name"							"#DOTA_Item_Static_Lord_Style0"
+				"alternate_icon"				"0"
+			}
+			"1"
+			{
+				"model_player"					"models/items/disruptor/staticlord_head_s1/staticlord_head_s1.vmdl"
+				"name"							"#DOTA_Item_Static_Lord_Style1"
+				"alternate_icon"				"1"
+			}
+		}
+		"branding"
+		{
+			"corporation_id"					"93712171"
+		}
+	}
+	"6744"
+	{
+		"name"									"Shoulders of the Static Lord"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-29"
+		"image_inventory"						"econ/items/disruptor/staticlord_shoulder/staticlord_shoulder"
+		"item_name"								"#DOTA_Item_Shoulders_of_the_Static_Lord"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulders"
+		"model_player"							"models/items/disruptor/staticlord_shoulder/staticlord_shoulder.vmdl"
+		"branding"
+		{
+			"corporation_id"					"93712171"
+		}
+	}
+	"6745"
+	{
+		"name"									"Hammer of the Static Lord"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-29"
+		"image_inventory"						"econ/items/disruptor/staticlord_weapon/staticlord_weapon"
+		"item_name"								"#DOTA_Item_Hammer_of_the_Static_Lord"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Hammer"
+		"model_player"							"models/items/disruptor/staticlord_weapon/staticlord_weapon.vmdl"
+		"branding"
+		{
+			"corporation_id"					"93712171"
+		}
+	}
+	"6948"
+	{
+		"name"									"Guirus"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-04"
+		"image_inventory"						"econ/items/disruptor/ragethree_legs/ragethree_legs"
+		"item_name"								"#DOTA_Item_Guirus"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/disruptor/ragethree_legs/ragethree_legs.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"9/24/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/disruptor/ragethree_legs/ragethree_legs.vmdl"
+					"name"						"#DOTA_Item_Rage_Three_Leg_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/disruptor/ragethree_legs_s1/ragethree_legs_s1.vmdl"
+					"name"						"#DOTA_Item_Rage_Three_Leg_Style1"
+					"alternate_icon"			"1"
+				}
+				"2"
+				{
+					"model_player"				"models/items/disruptor/ragethree_legs_s2/ragethree_legs_s2.vmdl"
+					"name"						"#DOTA_Item_Rage_Three_Leg_Style2"
+					"alternate_icon"			"2"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/disruptor/ragethree_legs/ragethree_legs"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/disruptor/ragethree_legs_s1/ragethree_legs_s1"
+				}
+				"2"
+				{
+					"icon_path"					"econ/items/disruptor/ragethree_legs_s2/ragethree_legs_s2"
+				}
+			}
+		}
+	}
+	"6952"
+	{
+		"name"									"Raging Thunder"
+		"prefab"								"wearable"
+		"creation_date"							"2014-09-04"
+		"image_inventory"						"econ/items/disruptor/ragethree_weapon/ragethree_weapon"
+		"item_name"								"#DOTA_Item_Raging_Thunder"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Hammer"
+		"model_player"							"models/items/disruptor/ragethree_weapon/ragethree_weapon.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"9/24/2014"
+			"price"								"0"
+		}
+	}
+	"7779"
+	{
+		"name"									"Hammer of the Galvanized Spark"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-02"
+		"image_inventory"						"econ/items/disruptor/lightning_strike_weapon/lightning_strike_weapon"
+		"item_name"								"#DOTA_Item_Hammer_of_the_Galvanized_Spark"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Hammer"
+		"model_player"							"models/items/disruptor/lightning_strike_weapon/lightning_strike_weapon.vmdl"
+	}
+	"7780"
+	{
+		"name"									"Striking Steed"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-02"
+		"image_inventory"						"econ/items/disruptor/lightning_strike_legs/lightning_strike_legs"
+		"item_name"								"#DOTA_Item_Striking_Steed"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Steed"
+		"model_player"							"models/items/disruptor/lightning_strike_legs/lightning_strike_legs.vmdl"
+	}
+	"7781"
+	{
+		"name"									"Bracers of the Galvanized Spark"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-02"
+		"image_inventory"						"econ/items/disruptor/lightning_strike_arms/lightning_strike_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Galvanized_Spark"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/disruptor/lightning_strike_arms/lightning_strike_arms.vmdl"
+	}
+	"7782"
+	{
+		"name"									"Tuner of the Galvanized Spark"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-02"
+		"image_inventory"						"econ/items/disruptor/lightning_strike_back/lightning_strike_back"
+		"item_name"								"#DOTA_Item_Tuner_of_the_Galvanized_Spark"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Tuner"
+		"model_player"							"models/items/disruptor/lightning_strike_back/lightning_strike_back.vmdl"
+	}
+	"7783"
+	{
+		"name"									"Pauldrons of the Galvanized Spark"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-02"
+		"image_inventory"						"econ/items/disruptor/lightning_strike_shoulder/lightning_strike_shoulder"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Galvanized_Spark"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/disruptor/lightning_strike_shoulder/lightning_strike_shoulder.vmdl"
+	}
+	"7784"
+	{
+		"name"									"Mask of the Galvanized Spark"
+		"prefab"								"wearable"
+		"creation_date"							"2015-09-02"
+		"image_inventory"						"econ/items/disruptor/lightning_strike_head/lightning_strike_head"
+		"item_name"								"#DOTA_Item_Mask_of_the_Galvanized_Spark"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Mask"
+		"model_player"							"models/items/disruptor/lightning_strike_head/lightning_strike_head.vmdl"
+	}
+	"8022"
+	{
+		"name"									"Armplates of the Thunder Ram"
+		"prefab"								"wearable"
+		"creation_date"							"2015-02-23"
+		"image_inventory"						"econ/items/disruptor/thunder_ram_arms/thunder_ram_arms"
+		"item_name"								"#DOTA_Item_Armplates_of_the_Thunder_Ram"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Armplates"
+		"model_player"							"models/items/disruptor/thunder_ram_arms/thunder_ram_arms.vmdl"
+	}
+	"8023"
+	{
+		"name"									"Crown of the Thunder Ram"
+		"prefab"								"wearable"
+		"creation_date"							"2015-02-23"
+		"image_inventory"						"econ/items/disruptor/thunder_ram_head/thunder_ram_head"
+		"item_name"								"#DOTA_Item_Crown_of_the_Thunder_Ram"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/disruptor/thunder_ram_head/thunder_ram_head.vmdl"
+	}
+	"8024"
+	{
+		"name"									"Thunder Ram"
+		"prefab"								"wearable"
+		"creation_date"							"2015-02-23"
+		"image_inventory"						"econ/items/disruptor/thunder_ram_mount/thunder_ram_mount"
+		"item_name"								"#DOTA_Item_Thunder_Ram"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/disruptor/thunder_ram_mount/thunder_ram_mount.vmdl"
+	}
+	"8025"
+	{
+		"name"									"Pauldrons of the Thunder Ram"
+		"prefab"								"wearable"
+		"creation_date"							"2015-02-23"
+		"image_inventory"						"econ/items/disruptor/thunder_ram_shoulder/thunder_ram_shoulder"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Thunder_Ram"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/disruptor/thunder_ram_shoulder/thunder_ram_shoulder.vmdl"
+	}
+	"8026"
+	{
+		"name"									"Tempest Caller"
+		"prefab"								"wearable"
+		"creation_date"							"2015-02-23"
+		"image_inventory"						"econ/items/disruptor/thunder_ram_weapon/thunder_ram_weapon"
+		"item_name"								"#DOTA_Item_Tempest_Caller"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/disruptor/thunder_ram_weapon/thunder_ram_weapon.vmdl"
+	}
+	"8055"
+	{
+		"name"									"Flags of the Thunder Ram"
+		"prefab"								"wearable"
+		"creation_date"							"2015-02-24"
+		"image_inventory"						"econ/items/disruptor/thunder_ram_back/thunder_ram_back"
+		"item_name"								"#DOTA_Item_Flags_of_the_Thunder_Ram"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Flags"
+		"model_player"							"models/items/disruptor/thunder_ram_back/thunder_ram_back.vmdl"
+	}
+	"8109"
+	{
+		"name"									"Prodder of Skarsnik"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-22"
+		"image_inventory"						"econ/items/disruptor/night_goblin_disruptor_weapon/night_goblin_disruptor_weapon"
+		"item_name"								"#DOTA_Item_Prodder_of_Skarsnik"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/disruptor/night_goblin_disruptor_weapon/night_goblin_disruptor_weapon.vmdl"
+	}
+	"8131"
+	{
+		"name"									"Resistive Pinfold"
+		"prefab"								"wearable"
+		"creation_date"							"2015-03-04"
+		"image_inventory"						"econ/items/disruptor/resistive_pinfold_back/resistive_pinfold_back"
+		"item_description"						"#DOTA_Item_Desc_Resistive_Pinfold"
+		"item_name"								"#DOTA_Item_Resistive_Pinfold"
+		"item_rarity"							"immortal"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Generator"
+		"model_player"							"models/items/disruptor/resistive_pinfold_back/resistive_pinfold_back.vmdl"
+		"particle_folder"						"particles/econ/items/disruptor/disruptor_resistive_pinfold"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_sven' gem_def_index: 3005 } asset_modifier: 139"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_disruptor/disruptor_kineticfield.vpcf"
+				"modifier"						"particles/econ/items/disruptor/disruptor_resistive_pinfold/disruptor_ecage_kineticfield.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_disruptor/disruptor_kineticfield_formation.vpcf"
+				"modifier"						"particles/econ/items/disruptor/disruptor_resistive_pinfold/disruptor_ecage_formation.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"pinfold"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_disruptor/disruptor_ambient_glow.vpcf"
+				"modifier"						"particles/econ/items/disruptor/disruptor_resistive_pinfold/disruptor_ambient_empty.vpcf"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier4"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Disruptor.KineticField"
+				"modifier"						"Hero_Disruptor.KineticField.Pinfold"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier5"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Disruptor.KineticField.End"
+				"modifier"						"Hero_Disruptor.KineticField.Pinfold.End"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier6"
+			{
+				"type"							"healthbar_offset"
+				"offset"						"220"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/disruptor/disruptor_resistive_pinfold/disruptor_resistive_ambient_glow.vpcf"
+				"system"						"particles/econ/items/disruptor/disruptor_resistive_pinfold/disruptor_resistive_ambient_glow.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_fx_cent"
+					}
+					"1"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_backfx"
+					}
+				}
+			}
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"disruptor_kinetic_field"
+				"modifier"						"disruptor/resistive_pinfold/disruptor_kinetic_field"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+		}
+	}
+	"8132"
+	{
+		"name"									"Bracers of Skarsnik"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-22"
+		"image_inventory"						"econ/items/disruptor/night_goblin_disruptor_arms/night_goblin_disruptor_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_Skarsnik"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/disruptor/night_goblin_disruptor_arms/night_goblin_disruptor_arms.vmdl"
+	}
+	"8134"
+	{
+		"name"									"Arc of Skarsnik"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-22"
+		"image_inventory"						"econ/items/disruptor/night_goblin_disruptor_back/night_goblin_disruptor_back"
+		"item_name"								"#DOTA_Item_Arc_of_Skarsnik"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/disruptor/night_goblin_disruptor_back/night_goblin_disruptor_back.vmdl"
+	}
+	"8141"
+	{
+		"name"									"Headdress of Skarsnik"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-22"
+		"image_inventory"						"econ/items/disruptor/night_goblin_disruptor_head/night_goblin_disruptor_head"
+		"item_name"								"#DOTA_Item_Headdress_of_Skarsnik"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/disruptor/night_goblin_disruptor_head/night_goblin_disruptor_head.vmdl"
+	}
+	"8157"
+	{
+		"name"									"Shoulders of Skarsnik"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-22"
+		"image_inventory"						"econ/items/disruptor/night_goblin_disruptor_shoulder/night_goblin_disruptor_shoulder"
+		"item_name"								"#DOTA_Item_Shoulders_of_Skarsnik"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/disruptor/night_goblin_disruptor_shoulder/night_goblin_disruptor_shoulder.vmdl"
+	}
+	"8158"
+	{
+		"name"									"Gobbla"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-22"
+		"image_inventory"						"econ/items/disruptor/night_goblin_disruptor_legs/night_goblin_disruptor_legs"
+		"item_name"								"#DOTA_Item_Gobbla"
+		"item_rarity"							"uncommon"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_legs"
+		"model_player"							"models/items/disruptor/night_goblin_disruptor_legs/night_goblin_disruptor_legs.vmdl"
+	}
+	"8460"
+	{
+		"name"									"Prodder of Warlord Skarsnik"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/disruptor/night_goblin_disruptor_weapon/night_goblin_disruptor_weapon1"
+		"item_name"								"#DOTA_Item_Prodder_of_Warlord_Skarsnik"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/disruptor/night_goblin_disruptor_weapon/night_goblin_disruptor_weapon.vmdl"
+		"visuals"
+		{
+			"skin"								"1"
+		}
+	}
+	"8462"
+	{
+		"name"									"Bracers of Warlord Skarsnik"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/disruptor/night_goblin_disruptor_arms/night_goblin_disruptor_arms1"
+		"item_name"								"#DOTA_Item_Bracers_of_Warlord_Skarsnik"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/disruptor/night_goblin_disruptor_arms/night_goblin_disruptor_arms.vmdl"
+		"visuals"
+		{
+			"skin"								"1"
+		}
+	}
+	"8463"
+	{
+		"name"									"Arc of Warlord Skarsnik"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/disruptor/night_goblin_disruptor_back/night_goblin_disruptor_back1"
+		"item_name"								"#DOTA_Item_Arc_of_Warlord_Skarsnik"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/disruptor/night_goblin_disruptor_back/night_goblin_disruptor_back.vmdl"
+		"visuals"
+		{
+			"skin"								"1"
+		}
+	}
+	"8465"
+	{
+		"name"									"Headdress of Warlord Skarsnik"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/disruptor/night_goblin_disruptor_head/night_goblin_disruptor_head1"
+		"item_name"								"#DOTA_Item_Headdress_of_Warlord_Skarsnik"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/disruptor/night_goblin_disruptor_head/night_goblin_disruptor_head.vmdl"
+		"visuals"
+		{
+			"skin"								"1"
+		}
+	}
+	"8466"
+	{
+		"name"									"Shoulders of Warlord Skarsnik"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/disruptor/night_goblin_disruptor_shoulder/night_goblin_disruptor_shoulder1"
+		"item_name"								"#DOTA_Item_Shoulders_of_Warlord_Skarsnik"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/disruptor/night_goblin_disruptor_shoulder/night_goblin_disruptor_shoulder.vmdl"
+		"visuals"
+		{
+			"skin"								"1"
+		}
+	}
+	"8467"
+	{
+		"name"									"Warlord's Gobbla"
+		"prefab"								"wearable"
+		"creation_date"							"2016-08-31"
+		"image_inventory"						"econ/items/disruptor/night_goblin_disruptor_legs/night_goblin_disruptor_legs1"
+		"item_name"								"#DOTA_Item_Warlords_Gobbla"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_legs"
+		"model_player"							"models/items/disruptor/night_goblin_disruptor_legs/night_goblin_disruptor_legs.vmdl"
+		"visuals"
+		{
+			"skin"								"1"
+		}
+	}
+	"9083"
+	{
+		"name"									"Fowl of the Stormcharge Dragoon"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-12"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/disruptor/guardian_of_the_living_monolith_legs/guardian_of_the_living_monolith_legs"
+		"item_description"						"#DOTA_Item_Desc_Fowl_of_the_Stormcharge_Dragoon"
+		"item_name"								"#DOTA_Item_Fowl_of_the_Stormcharge_Dragoon"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_legs"
+		"model_player"							"models/items/disruptor/guardian_of_the_living_monolith_legs/guardian_of_the_living_monolith_legs.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/disruptor/disruptor_guardian_monolith_mount/disruptor_guardian_monolith_mount_ambient.vpcf"
+				"system"						"particles/econ/items/disruptor/disruptor_guardian_monolith_mount/disruptor_guardian_monolith_mount_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head_mount"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head_orb"
+					}
+				}
+			}
+		}
+	}
+	"9084"
+	{
+		"name"									"Wraps of the Stormcharge Dragoon"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-12"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/disruptor/guardian_of_the_living_monolith_arms/guardian_of_the_living_monolith_arms"
+		"item_description"						"#DOTA_Item_Desc_Wraps_of_the_Stormcharge_Dragoon"
+		"item_name"								"#DOTA_Item_Wraps_of_the_Stormcharge_Dragoon"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/disruptor/guardian_of_the_living_monolith_arms/guardian_of_the_living_monolith_arms.vmdl"
+	}
+	"9085"
+	{
+		"name"									"Scabbards of the Stormcharge Dragoon"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-12"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/disruptor/guardian_of_the_living_monolith_back/guardian_of_the_living_monolith_back"
+		"item_description"						"#DOTA_Item_Desc_Scabbards_of_the_Stormcharge_Dragoon"
+		"item_name"								"#DOTA_Item_Scabbards_of_the_Stormcharge_Dragoon"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/disruptor/guardian_of_the_living_monolith_back/guardian_of_the_living_monolith_back.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/disruptor/disruptor_guardian_monolith_back/disruptor_guardian_monolith_back_ambient.vpcf"
+				"system"						"particles/econ/items/disruptor/disruptor_guardian_monolith_back/disruptor_guardian_monolith_back_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_back_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_back_r"
+					}
+				}
+			}
+		}
+	}
+	"9086"
+	{
+		"name"									"Hat of the Stormcharge Dragoon"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-12"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/disruptor/guardian_of_the_living_monolith_head/guardian_of_the_living_monolith_head"
+		"item_description"						"#DOTA_Item_Desc_Hat_of_the_Stormcharge_Dragoon"
+		"item_name"								"#DOTA_Item_Hat_of_the_Stormcharge_Dragoon"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/disruptor/guardian_of_the_living_monolith_head/guardian_of_the_living_monolith_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/disruptor/disruptor_guardian_monolith_head/disruptor_guardian_monolith_head_ambient.vpcf"
+				"system"						"particles/econ/items/disruptor/disruptor_guardian_monolith_head/disruptor_guardian_monolith_head_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_head"
+					}
+				}
+			}
+		}
+	}
+	"9087"
+	{
+		"name"									"Mantle of the Stormcharge Dragoon"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-12"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/disruptor/guardian_of_the_living_monolith_shoulder/guardian_of_the_living_monolith_shoulder"
+		"item_description"						"#DOTA_Item_Desc_Mantle_of_the_Stormcharge_Dragoon"
+		"item_name"								"#DOTA_Item_Mantle_of_the_Stormcharge_Dragoon"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/disruptor/guardian_of_the_living_monolith_shoulder/guardian_of_the_living_monolith_shoulder.vmdl"
+	}
+	"9088"
+	{
+		"name"									"Blade of the Stormcharge Dragoon"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-12"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/disruptor/guardian_of_the_living_monolith_weapon/guardian_of_the_living_monolith_weapon"
+		"item_description"						"#DOTA_Item_Desc_Blade_of_the_Stormcharge_Dragoon"
+		"item_name"								"#DOTA_Item_Blade_of_the_Stormcharge_Dragoon"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/disruptor/guardian_of_the_living_monolith_weapon/guardian_of_the_living_monolith_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/disruptor/disruptor_guardian_monolith_weapon/disruptor_guardian_monolith_weapon_ambient.vpcf"
+				"system"						"particles/econ/items/disruptor/disruptor_guardian_monolith_weapon/disruptor_guardian_monolith_weapon_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon"
+					}
+				}
+			}
+		}
+	}
+	"9375"
+	{
+		"name"									"Storm Walker"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-23"
+		"image_inventory"						"econ/items/disruptor/great_deluge_legs_1/great_deluge_legs_1"
+		"item_name"								"#DOTA_Item_Storm_Walker"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/disruptor/great_deluge_legs_1/great_deluge_legs_1.vmdl"
+	}
+	"9377"
+	{
+		"name"									"Conductor of the Great Deluge"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-23"
+		"image_inventory"						"econ/items/disruptor/great_deluge_back/great_deluge_back"
+		"item_name"								"#DOTA_Item_Conductor_of_the_Great_Deluge"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Conductor"
+		"model_player"							"models/items/disruptor/great_deluge_back/great_deluge_back.vmdl"
+	}
+	"9378"
+	{
+		"name"									"Bludgeon of the Great Deluge"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-23"
+		"image_inventory"						"econ/items/disruptor/great_deluge_weapon/great_deluge_weapon"
+		"item_name"								"#DOTA_Item_Bludgeon_of_the_Great_Deluge"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Bludgeon"
+		"model_player"							"models/items/disruptor/great_deluge_weapon/great_deluge_weapon.vmdl"
+	}
+	"9379"
+	{
+		"name"									"Bracers of the Great Deluge"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-23"
+		"image_inventory"						"econ/items/disruptor/great_deluge_arms/great_deluge_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Great_Deluge"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/disruptor/great_deluge_arms/great_deluge_arms.vmdl"
+	}
+	"9380"
+	{
+		"name"									"Pauldrons of the Great Deluge"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-23"
+		"image_inventory"						"econ/items/disruptor/great_deluge_shoulder/great_deluge_shoulder"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Great_Deluge"
+		"item_rarity"							"uncommon"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/disruptor/great_deluge_shoulder/great_deluge_shoulder.vmdl"
+	}
+	"9381"
+	{
+		"name"									"Bristles of the Great Deluge"
+		"prefab"								"wearable"
+		"creation_date"							"2015-06-23"
+		"image_inventory"						"econ/items/disruptor/great_deluge_head/great_deluge_head"
+		"item_name"								"#DOTA_Item_Bristles_of_the_Great_Deluge"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Bristles"
+		"model_player"							"models/items/disruptor/great_deluge_head/great_deluge_head.vmdl"
+	}
+	"12412"
+	{
+		"name"									"Orb of Deliverance"
+		"prefab"								"wearable"
+		"creation_date"							"2018-08-06"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/disruptor/disruptor_ti8_immortal_weapon/disruptor_ti8_immortal_weapon"
+		"item_description"						"#DOTA_Item_Desc_Orb_of_Deliverance"
+		"item_name"								"#DOTA_Item_Orb_of_Deliverance"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/disruptor/disruptor_ti8_immortal_weapon/disruptor_ti8_immortal_weapon.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1535682268"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti8"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"ability_icon"
+				"asset"							"disruptor_thunder_strike"
+				"modifier"						"disruptor/ti8_immortal_weapon/disruptor_thunder_strike_immortal"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_disruptor/disruptor_thunder_strike_buff.vpcf"
+				"modifier"						"particles/econ/items/disruptor/disruptor_ti8_immortal_weapon/disruptor_ti8_immortal_thunder_strike_buff.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_disruptor/disruptor_thunder_strike_bolt.vpcf"
+				"modifier"						"particles/econ/items/disruptor/disruptor_ti8_immortal_weapon/disruptor_ti8_immortal_thunder_strike_bolt.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_disruptor/disruptor_thunder_strike_aoe.vpcf"
+				"modifier"						"particles/econ/items/disruptor/disruptor_ti8_immortal_weapon/disruptor_ti8_immortal_thunder_strike_aoe.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/disruptor/disruptor_ti8_immortal_weapon/disruptor_ti8_immortal_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_disruptor/disruptor_ambient_glow.vpcf"
+				"modifier"						"particles/econ/items/disruptor/disruptor_ti8_immortal_weapon/disruptor_ti8_ambient_glow.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13199"
+	{
+		"name"									"Weapon of the Defender of Ruin"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/disruptor/ti9_cache_disruptor_temple_defender_weapon/ti9_cache_disruptor_temple_defender_weapon"
+		"item_name"								"#DOTA_Item_Weapon_of_the_Defender_of_Ruin"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/disruptor/ti9_cache_disruptor_temple_defender_weapon/ti9_cache_disruptor_temple_defender_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/disruptor/disruptor_temple_defender/disruptor_temple_defender_weapon_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13200"
+	{
+		"name"									"Armor of the Defender of Ruin"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/disruptor/ti9_cache_disruptor_temple_defender_shoulder/ti9_cache_disruptor_temple_defender_shoulder"
+		"item_name"								"#DOTA_Item_Armor_of_the_Defender_of_Ruin"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_Shoulder"
+		"model_player"							"models/items/disruptor/ti9_cache_disruptor_temple_defender_shoulder/ti9_cache_disruptor_temple_defender_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"13201"
+	{
+		"name"									"Beast of the Defender of Ruin"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/disruptor/ti9_cache_disruptor_temple_defender_legs/ti9_cache_disruptor_temple_defender_legs"
+		"item_name"								"#DOTA_Item_Beast_of_the_Defender_of_Ruin"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_legs"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/disruptor/ti9_cache_disruptor_temple_defender_legs/ti9_cache_disruptor_temple_defender_legs.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/disruptor/disruptor_temple_defender/disruptor_temple_defender_legs_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13202"
+	{
+		"name"									"Helm of the Defender of Ruin"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/disruptor/ti9_cache_disruptor_temple_defender_head/ti9_cache_disruptor_temple_defender_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Defender_of_Ruin"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/disruptor/ti9_cache_disruptor_temple_defender_head/ti9_cache_disruptor_temple_defender_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"13203"
+	{
+		"name"									"Back of the Defender of Ruin"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/disruptor/ti9_cache_disruptor_temple_defender_back/ti9_cache_disruptor_temple_defender_back"
+		"item_name"								"#DOTA_Item_Back_of_the_Defender_of_Ruin"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/disruptor/ti9_cache_disruptor_temple_defender_back/ti9_cache_disruptor_temple_defender_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_disruptor/disruptor_ambient_glow.vpcf"
+				"modifier"						"particles/econ/items/disruptor/disruptor_resistive_pinfold/disruptor_ambient_empty.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/disruptor/disruptor_temple_defender/disruptor_temple_defender_back_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13204"
+	{
+		"name"									"Bracers of the Defender of Ruin"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/disruptor/ti9_cache_disruptor_temple_defender_arms/ti9_cache_disruptor_temple_defender_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Defender_of_Ruin"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/disruptor/ti9_cache_disruptor_temple_defender_arms/ti9_cache_disruptor_temple_defender_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"14103"
+	{
+		"name"									"Lightning Harbinger Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/disruptor/lightning_harbinger_weapon/lightning_harbinger_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_Lightning_Harbinger_Weapon"
+		"model_player"							"models/items/disruptor/lightning_harbinger_weapon/lightning_harbinger_weapon.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14104"
+	{
+		"name"									"Lightning Harbinger Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/disruptor/lightning_harbinger_shoulder/lightning_harbinger_shoulder"
+		"item_name"								"#DOTA_Item_Vote_Only_Lightning_Harbinger_Shoulder"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/disruptor/lightning_harbinger_shoulder/lightning_harbinger_shoulder.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14105"
+	{
+		"name"									"Lightning Harbinger Legs"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/disruptor/lightning_harbinger_legs/lightning_harbinger_legs"
+		"item_name"								"#DOTA_Item_Vote_Only_Lightning_Harbinger_Legs"
+		"item_slot"								"legs"
+		"model_player"							"models/items/disruptor/lightning_harbinger_legs/lightning_harbinger_legs.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14107"
+	{
+		"name"									"Lightning Harbinger Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/disruptor/lightning_harbinger_head/lightning_harbinger_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Lightning_Harbinger_Head"
+		"item_slot"								"head"
+		"model_player"							"models/items/disruptor/lightning_harbinger_head/lightning_harbinger_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14108"
+	{
+		"name"									"Lightning Harbinger Back"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/disruptor/lightning_harbinger_back/lightning_harbinger_back"
+		"item_name"								"#DOTA_Item_Vote_Only_Lightning_Harbinger_Back"
+		"item_slot"								"back"
+		"model_player"							"models/items/disruptor/lightning_harbinger_back/lightning_harbinger_back.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14109"
+	{
+		"name"									"Lightning Harbinger Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-06"
+		"image_inventory"						"econ/items/disruptor/lightning_harbinger_arms/lightning_harbinger_arms"
+		"item_name"								"#DOTA_Item_Vote_Only_Lightning_Harbinger_Arms"
+		"item_slot"								"arms"
+		"model_player"							"models/items/disruptor/lightning_harbinger_arms/lightning_harbinger_arms.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14714"
+	{
+		"name"									"Fury of the Righteous Storm - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/disruptor/disruptor_kirin_rider_weapon/disruptor_kirin_rider_weapon"
+		"item_name"								"#DOTA_Item_Fury_of_the_Righteous_Storm__Weapon"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/disruptor/disruptor_kirin_rider_weapon/disruptor_kirin_rider_weapon.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/disruptor/ti10_kirin_rider_weapon/ti10_kirin_rider_weapon.vpcf"
+			}
+		}
+	}
+	"14715"
+	{
+		"name"									"Fury of the Righteous Storm - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/disruptor/disruptor_kirin_rider_arms/disruptor_kirin_rider_arms"
+		"item_name"								"#DOTA_Item_Fury_of_the_Righteous_Storm__Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"model_player"							"models/items/disruptor/disruptor_kirin_rider_arms/disruptor_kirin_rider_arms.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"14716"
+	{
+		"name"									"Fury of the Righteous Storm - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/disruptor/disruptor_kirin_rider_back/disruptor_kirin_rider_back"
+		"item_name"								"#DOTA_Item_Fury_of_the_Righteous_Storm__Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"model_player"							"models/items/disruptor/disruptor_kirin_rider_back/disruptor_kirin_rider_back.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"14717"
+	{
+		"name"									"Fury of the Righteous Storm - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/disruptor/disruptor_kirin_rider_shoulder/disruptor_kirin_rider_shoulder"
+		"item_name"								"#DOTA_Item_Fury_of_the_Righteous_Storm__Shoulder"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"model_player"							"models/items/disruptor/disruptor_kirin_rider_shoulder/disruptor_kirin_rider_shoulder.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"14718"
+	{
+		"name"									"Fury of the Righteous Storm - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/disruptor/disruptor_kirin_rider_head/disruptor_kirin_rider_head"
+		"item_name"								"#DOTA_Item_Fury_of_the_Righteous_Storm__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/disruptor/disruptor_kirin_rider_head/disruptor_kirin_rider_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"14719"
+	{
+		"name"									"Fury of the Righteous Storm - Kirin"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/disruptor/disruptor_kirin_rider_legs/disruptor_kirin_rider_legs"
+		"item_name"								"#DOTA_Item_Fury_of_the_Righteous_Storm__Kirin"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"model_player"							"models/items/disruptor/disruptor_kirin_rider_legs/disruptor_kirin_rider_legs.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/disruptor/ti10_kirin_rider_legs/ti10_disruptor_kirin_rider_legs.vpcf"
+			}
+		}
+	}
+	"18604"
+	{
+		"name"									"Upland Pride - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-19"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/disruptor/wrath_of_druud_weapon_ti8/wrath_of_druud_weapon_ti8"
+		"item_name"								"#DOTA_Item_Upland_Pride__Weapon"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/disruptor/wrath_of_druud_weapon_ti8/wrath_of_druud_weapon_ti8.vmdl"
+	}
+	"18605"
+	{
+		"name"									"Upland Pride - Shoulders"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-19"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/disruptor/wrath_of_druud_shoulders_ti8/wrath_of_druud_shoulders_ti8"
+		"item_name"								"#DOTA_Item_Upland_Pride__Shoulders"
+		"item_rarity"							"mythical"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/disruptor/wrath_of_druud_shoulders_ti8/wrath_of_druud_shoulders_ti8.vmdl"
+	}
+	"18612"
+	{
+		"name"									"Upland Pride - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-19"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/disruptor/wrath_of_druud_head_ti8/wrath_of_druud_head_ti8"
+		"item_name"								"#DOTA_Item_Upland_Pride__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/disruptor/wrath_of_druud_head_ti8/wrath_of_druud_head_ti8.vmdl"
+	}
+	"18613"
+	{
+		"name"									"Upland Pride - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-19"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/disruptor/wrath_of_druud_arms_ti8/wrath_of_druud_arms_ti8"
+		"item_name"								"#DOTA_Item_Upland_Pride__Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/disruptor/wrath_of_druud_arms_ti8/wrath_of_druud_arms_ti8.vmdl"
+	}
+	"18614"
+	{
+		"name"									"Upland Pride - Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-19"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/disruptor/wrath_of_druud_mount_ti8/wrath_of_druud_mount_ti8"
+		"item_name"								"#DOTA_Item_Upland_Pride__Mount"
+		"item_rarity"							"mythical"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Mount"
+		"model_player"							"models/items/disruptor/wrath_of_druud_mount_ti8/wrath_of_druud_mount_ti8.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/disruptor/wrath_of_druud/wrath_of_druud_mount_ambient.vpcf"
+			}
+		}
+	}
+	"18711"
+	{
+		"name"									"Upland Pride - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-19"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/disruptor/wrath_of_druud_back_ti8/wrath_of_druud_back_ti8"
+		"item_name"								"#DOTA_Item_Upland_Pride__Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/disruptor/wrath_of_druud_back_ti8/wrath_of_druud_back_ti8.vmdl"
+	}
+	"19695"
+	{
+		"name"									"Precision of the Stormshaper - Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/disruptor/stormshaper_legs/stormshaper_legs"
+		"item_name"								"#DOTA_Item_Precision_of_the_Stormshaper__Mount"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"model_player"							"models/items/disruptor/stormshaper_legs/stormshaper_legs.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"19696"
+	{
+		"name"									"Precision of the Stormshaper - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/disruptor/stormshaper_arms/stormshaper_arms"
+		"item_name"								"#DOTA_Item_Precision_of_the_Stormshaper__Arms"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/disruptor/stormshaper_arms/stormshaper_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"19697"
+	{
+		"name"									"Precision of the Stormshaper - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/disruptor/stormshaper_back/stormshaper_back"
+		"item_name"								"#DOTA_Item_Precision_of_the_Stormshaper__Back"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/disruptor/stormshaper_back/stormshaper_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"19698"
+	{
+		"name"									"Precision of the Stormshaper - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/disruptor/stormshaper_shoulder/stormshaper_shoulder"
+		"item_name"								"#DOTA_Item_Precision_of_the_Stormshaper__Shoulder"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/disruptor/stormshaper_shoulder/stormshaper_shoulder.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"19699"
+	{
+		"name"									"Precision of the Stormshaper - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/disruptor/stormshaper_head/stormshaper_head"
+		"item_name"								"#DOTA_Item_Precision_of_the_Stormshaper__Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/disruptor/stormshaper_head/stormshaper_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"19700"
+	{
+		"name"									"Precision of the Stormshaper - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/items/disruptor/stormshaper_weapon/stormshaper_weapon"
+		"item_name"								"#DOTA_Item_Precision_of_the_Stormshaper__Weapon"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/disruptor/stormshaper_weapon/stormshaper_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"20102"
+	{
+		"name"									"Rider of the Storm Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Stormthrasher"						"1"
+			"Aegis of the Storm"				"1"
+			"Rampant the Scaled Hunter"			"1"
+			"Storm Rider's Sight"				"1"
+			"Storm Rider's Bracer"				"1"
+			"Storm Rider's Deflector"			"1"
+		}
+		"image_inventory"						"econ/sets/DOTA_Item_Rider_of_the_Storm_Set"
+		"item_description"						"#DOTA_Item_Desc_Rider_of_the_Storm_Set"
+		"item_name"								"#DOTA_Item_Rider_of_the_Storm_Set"
+		"item_rarity"							"mythical"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Legendary"
+			"category_tags"						"Bundles"
+			"date"								"1/1/2012"
+			"bundle"							"1"
+			"price"								"799"
+		}
+	}
+	"20477"
+	{
+		"name"									"Tempest's Wrath"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Tempest's Wrath Armor"				"1"
+			"Tempest's Wrath Back"				"1"
+			"Tempest's Wrath Bracers"			"1"
+			"Tempest's Wrath Crown"				"1"
+			"Morddos"							"1"
+			"Tempest's Wrath Hammer"			"1"
+			"Tempest's Wrath Loading Screen"	"1"
+		}
+		"creation_date"							"2014-04-21"
+		"image_inventory"						"econ/sets/DOTA_Item_Tempests_Wrath"
+		"item_description"						"#DOTA_Item_Desc_Tempests_Wrath"
+		"item_name"								"#DOTA_Item_Tempests_Wrath"
+		"item_rarity"							"rare"
+	}
+	"20535"
+	{
+		"name"									"Static Lord"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bracers of the Static Lord"		"1"
+			"Helm of the Static Lord"			"1"
+			"Blitzy the Stormrunner"			"1"
+			"Shoulders of the Static Lord"		"1"
+			"Static Lord's Generator"			"1"
+			"Hammer of the Static Lord"			"1"
+			"Static Lord Loading Screen"		"1"
+		}
+		"creation_date"							"2014-05-29"
+		"image_inventory"						"econ/loading_screens/staticlord"
+		"item_description"						"#DOTA_Item_Desc_Static_Lord"
+		"item_name"								"#DOTA_Item_Static_Lord"
+		"item_rarity"							"mythical"
+	}
+	"20547"
+	{
+		"name"									"Warrior of the Stormlands"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bracers of the Stormlands"			"1"
+			"Deflector of the Stormlands"		"1"
+			"Hammer of the Stormlands"			"1"
+			"Helm of the Stormlands"			"1"
+			"Shoulder of the Stormlands"		"1"
+			"Valakul"							"1"
+			"Warrior of the Stormlands Loading Screen""1"
+		}
+		"creation_date"							"2014-06-11"
+		"image_inventory"						"econ/loading_screens/stormlands"
+		"item_description"						"#DOTA_Item_Desc_Warrior_of_the_Stormlands"
+		"item_name"								"#DOTA_Item_Warrior_of_the_Stormlands"
+		"item_rarity"							"rare"
+	}
+	"20640"
+	{
+		"name"									"Rage of the Three"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Chitin Shoulder Guard"				"1"
+			"Guirus"							"1"
+			"Guirus Arm Guards"					"1"
+			"Raging Bug Idol"					"1"
+			"Raging Thunder"					"1"
+			"Shocking Cornrows"					"1"
+			"Rage of the Three Loading Screen"	"1"
+		}
+		"creation_date"							"2014-09-04"
+		"image_inventory"						"econ/loading_screens/ragethree"
+		"item_description"						"#DOTA_Item_Desc_Rage_of_the_Three"
+		"item_name"								"#DOTA_Item_Rage_of_the_Three"
+		"item_rarity"							"mythical"
+		"price_info"
+		{
+			"category_tags"						"Bundles"
+			"date"								"9/24/2014"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20752"
+	{
+		"name"									"Might of the Thunder Ram"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Armplates of the Thunder Ram"		"1"
+			"Crown of the Thunder Ram"			"1"
+			"Pauldrons of the Thunder Ram"		"1"
+			"Tempest Caller"					"1"
+			"Thunder Ram Loading Screen"		"1"
+			"Thunder Ram"						"1"
+			"Flags of the Thunder Ram"			"1"
+		}
+		"creation_date"							"2015-02-23"
+		"image_inventory"						"econ/loading_screens/thunder_ram_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Thunder_Ram"
+		"item_name"								"#DOTA_Item_Might_of_the_Thunder_Ram"
+		"item_rarity"							"mythical"
+	}
+	"20756"
+	{
+		"name"									"Skarsnik and Gobbla"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of Skarsnik and Gobbla""1"
+			"Gobbla"							"1"
+			"Shoulders of Skarsnik"				"1"
+			"Headdress of Skarsnik"				"1"
+			"Arc of Skarsnik"					"1"
+			"Bracers of Skarsnik"				"1"
+			"Prodder of Skarsnik"				"1"
+		}
+		"creation_date"							"2016-08-22"
+		"image_inventory"						"econ/loading_screens/night_goblin_disruptor_night_goblin_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Skarsnik_and_Gobbla"
+		"item_name"								"#DOTA_Item_Skarsnik_and_Gobbla"
+		"item_rarity"							"uncommon"
+	}
+	"20772"
+	{
+		"name"									"Bindings of the Galvanized Spark"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bindings of the Galvanized Spark Loading Screen""1"
+			"Mask of the Galvanized Spark"		"1"
+			"Pauldrons of the Galvanized Spark"	"1"
+			"Tuner of the Galvanized Spark"		"1"
+			"Bracers of the Galvanized Spark"	"1"
+			"Striking Steed"					"1"
+			"Hammer of the Galvanized Spark"	"1"
+		}
+		"creation_date"							"2015-09-30"
+		"image_inventory"						"econ/loading_screens/lightning_strike_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Bindings_of_the_Galvanized_Spark"
+		"item_name"								"#DOTA_Item_Bindings_of_the_Galvanized_Spark"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"3000"
+	}
+	"20854"
+	{
+		"name"									"Garb of the Great Deluge"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Storm Walker"						"1"
+			"Conductor of the Great Deluge"		"1"
+			"Bludgeon of the Great Deluge"		"1"
+			"Bracers of the Great Deluge"		"1"
+			"Pauldrons of the Great Deluge"		"1"
+			"Bristles of the Great Deluge"		"1"
+			"Garb of the Great Deluge Loading Screen""1"
+		}
+		"creation_date"							"2015-06-24"
+		"image_inventory"						"econ/loading_screens/great_deluge_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Garb_of_the_Great_Deluge"
+		"item_name"								"#DOTA_Item_Garb_of_the_Great_Deluge"
+		"item_rarity"							"rare"
+	}
+	"21031"
+	{
+		"name"									"Warlord Skarsnik and Gobbla"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Prodder of Warlord Skarsnik"		"1"
+			"Bracers of Warlord Skarsnik"		"1"
+			"Arc of Warlord Skarsnik"			"1"
+			"Headdress of Warlord Skarsnik"		"1"
+			"Shoulders of Warlord Skarsnik"		"1"
+			"Warlord's Gobbla"					"1"
+			"Loading Screen of Skarsnik and Gobbla""1"
+		}
+		"creation_date"							"2016-09-01"
+		"image_inventory"						"econ/loading_screens/night_goblin_disruptor_night_goblin_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Warlord_Skarsnik_and_Gobbla"
+		"item_name"								"#DOTA_Item_Warlord_Skarsnik_and_Gobbla"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+	}
+	"21086"
+	{
+		"name"									"Stormcharge Dragoon"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Fowl of the Stormcharge Dragoon"	"1"
+			"Wraps of the Stormcharge Dragoon"	"1"
+			"Scabbards of the Stormcharge Dragoon""1"
+			"Hat of the Stormcharge Dragoon"	"1"
+			"Mantle of the Stormcharge Dragoon"	"1"
+			"Blade of the Stormcharge Dragoon"	"1"
+		}
+		"creation_date"							"2017-01-12"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/sets/DOTA_Item_Stormcharge_Dragoon"
+		"item_description"						"#DOTA_Item_Desc_Stormcharge_Dragoon"
+		"item_name"								"#DOTA_Item_Stormcharge_Dragoon"
+		"item_rarity"							"mythical"
+	}
+	"21364"
+	{
+		"name"									"Defender of Ruin"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bracers of the Defender of Ruin"	"1"
+			"Back of the Defender of Ruin"		"1"
+			"Helm of the Defender of Ruin"		"1"
+			"Beast of the Defender of Ruin"		"1"
+			"Armor of the Defender of Ruin"		"1"
+			"Weapon of the Defender of Ruin"	"1"
+		}
+		"creation_date"							"2019-05-14"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/sets/DOTA_Item_TI9_Cache_Disruptor_Temple_Defender"
+		"item_description"						"#DOTA_Item_Desc_Defender_of_Ruin"
+		"item_name"								"#DOTA_Item_Defender_of_Ruin"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"21497"
+	{
+		"name"									"Lightning Harbinger"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Lightning Harbinger Arms"			"1"
+			"Lightning Harbinger Back"			"1"
+			"Lightning Harbinger Head"			"1"
+			"Lightning Harbinger LS"			"1"
+			"Lightning Harbinger Legs"			"1"
+			"Lightning Harbinger Shoulder"		"1"
+			"Lightning Harbinger Weapon"		"1"
+		}
+		"creation_date"							"2020-05-11"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Lightning_Harbinger"
+		"workshop_accepted"						"0"
+	}
+	"21647"
+	{
+		"name"									"Fury of the Righteous Storm"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Fury of the Righteous Storm - Kirin""1"
+			"Fury of the Righteous Storm - Head""1"
+			"Fury of the Righteous Storm - Shoulder""1"
+			"Fury of the Righteous Storm - Back""1"
+			"Fury of the Righteous Storm - Arms""1"
+			"Fury of the Righteous Storm - Weapon""1"
+		}
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Fury_of_the_Righteous_Storm"
+		"item_name"								"#DOTA_Item_Fury_of_the_Righteous_Storm"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21937"
+	{
+		"name"									"Precision of the Stormshaper"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Precision of the Stormshaper - Weapon""1"
+			"Precision of the Stormshaper - Head""1"
+			"Precision of the Stormshaper - Shoulder""1"
+			"Precision of the Stormshaper - Back""1"
+			"Precision of the Stormshaper - Arms""1"
+			"Precision of the Stormshaper - Mount""1"
+		}
+		"creation_date"							"2021-08-19"
+		"image_inventory"						"econ/sets/DOTA_Item_Stormshaper"
+		"item_name"								"#DOTA_Item_Precision_of_the_Stormshaper"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+	}
+	"22284"
+	{
+		"name"									"Upland Pride"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Upland Pride Loading Screen"		"1"
+			"Upland Pride - Back"				"1"
+			"Upland Pride - Mount"				"1"
+			"Upland Pride - Arms"				"1"
+			"Upland Pride - Head"				"1"
+			"Upland Pride - Shoulders"			"1"
+			"Upland Pride - Weapon"				"1"
+		}
+		"creation_date"							"2021-11-19"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/loading_screens/wrath_of_druud_loading_screen_ti8"
+		"item_name"								"#DOTA_Item_Upland_Pride"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"23518"
+	{
+		"name"									"Riftstalker"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Riftstalker Loading Screen"		"1"
+			"Riftstalker - Weapon"				"1"
+			"Riftstalker - Head"				"1"
+			"Riftstalker - Shoulder"			"1"
+			"Riftstalker - Back"				"1"
+			"Riftstalker - Arms"				"1"
+			"Riftstalker - Mount"				"1"
+		}
+		"creation_date"							"2022-07-20"
+		"image_inventory"						"econ/loading_screens/thunder_rage_thunder_rage_loadingscreen"
+		"item_name"								"#DOTA_Item_Riftstalker"
+		"item_rarity"							"rare"
+	}
+	"23576"
+	{
+		"name"									"Riftstalker - Mount"
+		"prefab"								"wearable"
+		"creation_date"							"2022-07-20"
+		"image_inventory"						"econ/items/disruptor/thunder_rage_legs/thunder_rage_legs"
+		"item_name"								"#DOTA_Item_Riftstalker__Mount"
+		"item_rarity"							"rare"
+		"item_slot"								"legs"
+		"model_player"							"models/items/disruptor/thunder_rage_legs/thunder_rage_legs.vmdl"
+	}
+	"23655"
+	{
+		"name"									"Tremors of the Tandem Storm"
+		"prefab"								"wearable"
+		"creation_date"							"2022-06-28"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/disruptor/dis_2022_immortal_mount/dis_2022_immortal_mount"
+		"item_description"						"#DOTA_Item_Desc_Tremors_of_the_Tandem_Storm"
+		"item_name"								"#DOTA_Item_Tremors_of_the_Tandem_Storm"
+		"item_rarity"							"immortal"
+		"item_slot"								"legs"
+		"item_type_name"						"#DOTA_WearableType_Legs"
+		"model_player"							"models/items/disruptor/dis_2022_immortal_mount/dis_2022_immortal_mount.vmdl"
+		"static_attributes"
+		{
+			"giftable"							"0"
+			"cannot trade"						"1"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+			"tradable after date"				"1698865200"
+			"webm preview url"					"apps/dota2/videos/dota_react/international2022/immortals/disruptor_client.webm"
+			"can_equip_as_ability_effects"		"4"
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"dis_2022"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_disruptor/disruptor_static_storm.vpcf"
+				"modifier"						"particles/econ/items/disruptor/disruptor_2022_immortal/disruptor_2022_immortal_static_storm.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/disruptor/disruptor_2022_immortal/disruptor_2022_immortal_ambient.vpcf"
+				"spawn_in_loadout_only"			"1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_disruptor/disruptor_static_storm_bolt_hero.vpcf"
+				"modifier"						"particles/econ/items/disruptor/disruptor_2022_immortal/disruptor_2022_immortal_static_storm_hero_debuff.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"spawn_in_loadout_only"			"2"
+				"modifier"						"particles/econ/items/disruptor/disruptor_2022_immortal/disruptor_2022_immortal_ambient_game.vpcf"
+			}
+			"asset_modifier5"
+			{
+				"type"							"ability_icon"
+				"asset"							"disruptor_static_storm"
+				"modifier"						"disruptor/dis_2022_immortal/dis_2022_immortal_static_storm"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+		}
+	}
+	"23701"
+	{
+		"name"									"Riftstalker - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2022-07-20"
+		"image_inventory"						"econ/items/disruptor/thunder_rage_arms/thunder_rage_arms"
+		"item_name"								"#DOTA_Item_Riftstalker__Arms"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/disruptor/thunder_rage_arms/thunder_rage_arms.vmdl"
+	}
+	"23718"
+	{
+		"name"									"Riftstalker - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2022-07-20"
+		"image_inventory"						"econ/items/disruptor/thunder_rage_back/thunder_rage_back"
+		"item_name"								"#DOTA_Item_Riftstalker__Back"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/disruptor/thunder_rage_back/thunder_rage_back.vmdl"
+	}
+	"23719"
+	{
+		"name"									"Riftstalker - Shoulder"
+		"prefab"								"wearable"
+		"creation_date"							"2022-07-20"
+		"image_inventory"						"econ/items/disruptor/thunder_rage_shoulder/thunder_rage_shoulder"
+		"item_name"								"#DOTA_Item_Riftstalker__Shoulder"
+		"item_rarity"							"rare"
+		"item_slot"								"shoulder"
+		"item_type_name"						"#DOTA_WearableType_shoulder"
+		"model_player"							"models/items/disruptor/thunder_rage_shoulder/thunder_rage_shoulder.vmdl"
+	}
+	"23720"
+	{
+		"name"									"Riftstalker - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2022-07-20"
+		"image_inventory"						"econ/items/disruptor/thunder_rage_head/thunder_rage_head"
+		"item_name"								"#DOTA_Item_Riftstalker__Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/disruptor/thunder_rage_head/thunder_rage_head.vmdl"
+	}
+	"23721"
+	{
+		"name"									"Riftstalker - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2022-07-20"
+		"image_inventory"						"econ/items/disruptor/thunder_rage_weapon/thunder_rage_weapon"
+		"item_name"								"#DOTA_Item_Riftstalker__Weapon"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/disruptor/thunder_rage_weapon/thunder_rage_weapon.vmdl"
+	}
+}

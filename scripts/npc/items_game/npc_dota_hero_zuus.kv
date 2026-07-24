@@ -1,0 +1,1368 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"589"
+	{
+		"name"									"Zeus' Arms"
+		"prefab"								"default_item"
+		"creation_date"							"2015-11-21"
+		"image_inventory"						"econ/heroes/zeus/zeus_bracers"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Zeus_Head"
+		"item_name"								"#DOTA_Item_Zeus_Arms"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/heroes/zeus/zeus_bracers.vmdl"
+	}
+	"593"
+	{
+		"name"									"Zeus' Weapon"
+		"prefab"								"default_item"
+		"creation_date"							"2015-07-14"
+		"image_inventory"						"econ/heroes/zeus/zeus_default_weapon"
+		"item_description"						"#DOTA_Item_Desc_Zeus_Default_Weapon"
+		"item_name"								"#DOTA_Item_Zeus_Weapon"
+	}
+	"604"
+	{
+		"name"									"Zeus' Head"
+		"prefab"								"default_item"
+		"creation_date"							"2015-11-05"
+		"image_inventory"						"econ/heroes/zeus/zeus_hair"
+		"item_name"								"#DOTA_Item_Zeus_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/zeus/zeus_hair.vmdl"
+	}
+	"605"
+	{
+		"name"									"Zeus Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2015-11-08"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Zeus_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_zeus/zeus_ambient_eyes.vpcf"
+				"style"							"0"
+				"system"						"particles/units/heroes/hero_zeus/zeus_ambient_eyes.vpcf"
+				"attach_type"					"customorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_zeus/zeus_ambient_hands.vpcf"
+				"style"							"0"
+				"system"						"particles/units/heroes/hero_zeus/zeus_ambient_hands.vpcf"
+				"attach_type"					"customorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+				}
+			}
+		}
+	}
+	"606"
+	{
+		"name"									"Zeus' Belt"
+		"prefab"								"default_item"
+		"creation_date"							"2015-11-21"
+		"image_inventory"						"econ/heroes/zeus/zeus_belt"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Zeus_Head"
+		"item_name"								"#DOTA_Item_Zeus_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/heroes/zeus/zeus_belt.vmdl"
+	}
+	"607"
+	{
+		"name"									"Zeus' Back"
+		"prefab"								"default_item"
+		"creation_date"							"2015-11-21"
+		"image_inventory"						"econ/heroes/zeus/zeus_vest"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Zeus_Head"
+		"item_name"								"#DOTA_Item_Zeus_Back"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/heroes/zeus/zeus_vest.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"5412"
+	{
+		"name"									"Righteous Thunderbolt"
+		"prefab"								"wearable"
+		"creation_date"							"2015-04-27"
+		"image_inventory"						"econ/items/zeus/lightning_weapon/mesh/zeus_lightning_weapon_model"
+		"item_description"						"#DOTA_Item_Desc_Righteous_Thunderbolt"
+		"item_name"								"#DOTA_Item_Righteous_Thunderbolt"
+		"item_rarity"							"immortal"
+		"model_player"							"models/items/zeus/lightning_weapon/mesh/zeus_lightning_weapon_model.vmdl"
+		"override_attack_attachments"			"1"
+		"particle_folder"						"particles/econ/items/zeus/lightning_weapon_fx"
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"lightning"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_zuus/zuus_base_attack.vpcf"
+				"modifier"						"particles/econ/items/zeus/lightning_weapon_fx/zuus_base_attack_immortal_lightning.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf"
+				"modifier"						"particles/econ/items/zeus/lightning_weapon_fx/zuus_lightning_bolt_immortal_lightning.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_zuus/zuus_lightning_bolt_castfx.vpcf"
+				"modifier"						"particles/econ/items/zeus/lightning_weapon_fx/zuus_lb_cfx_il.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"zuus_lightning_bolt"
+				"modifier"						"zuus_lightning_bolt_immortal"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier5"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Zuus.LightningBolt.Cast"
+				"modifier"						"Hero_Zuus.LightningBolt.Cast.Righteous"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier6"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Zuus.LightningBolt"
+				"modifier"						"Hero_Zuus.LightningBolt.Righteous"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/zeus/lightning_weapon_fx/zues_immortal_lightning_weapon.vpcf"
+				"system"						"particles/econ/items/zeus/lightning_weapon_fx/zues_immortal_lightning_weapon.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+				}
+			}
+		}
+	}
+	"6914"
+	{
+		"name"									"Tempest Helm of the Thundergod"
+		"prefab"								"wearable"
+		"creation_date"							"2015-12-16"
+		"image_inventory"						"econ/items/zeus/tempest_helm/zeus_arcana"
+		"item_description"						"#DOTA_Item_Desc_Tempest_Helm_of_the_Thundergod"
+		"item_name"								"#DOTA_Item_Tempest_Helm_of_the_Thundergod"
+		"item_rarity"							"arcana"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/heroes/zeus/zeus_hair_arcana.vmdl"
+		"override_attack_attachments"			"1"
+		"particle_folder"						"particles/econ/items/zeus/lightning_weapon_fx"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/14/2015"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"arcana"
+			}
+			"asset_modifier1"
+			{
+				"type"							"chatwheel"
+				"asset"							"zuus_zuus_level_03"
+				"modifier"						"zuus_zuus_arc_level_03"
+			}
+			"asset_modifier2"
+			{
+				"type"							"chatwheel"
+				"asset"							"zuus_zuus_win_05"
+				"modifier"						"zuus_zuus_arc_win_05"
+			}
+			"asset_modifier3"
+			{
+				"type"							"chatwheel"
+				"asset"							"zuus_zuus_cast_02"
+				"modifier"						"zuus_zuus_arc_cast_02"
+			}
+			"asset_modifier4"
+			{
+				"type"							"chatwheel"
+				"asset"							"zuus_zuus_kill_05"
+				"modifier"						"zuus_zuus_arc_kill_05"
+			}
+			"asset_modifier5"
+			{
+				"type"							"chatwheel"
+				"asset"							"zuus_zuus_death_07"
+				"modifier"						"zuus_zuus_arc_death_07"
+			}
+			"asset_modifier6"
+			{
+				"type"							"chatwheel"
+				"asset"							"zuus_zuus_ability_thunder_01"
+				"modifier"						"zuus_zuus_arc_ability_thunder_01"
+			}
+			"asset_modifier7"
+			{
+				"type"							"chatwheel"
+				"asset"							"zuus_zuus_rival_13"
+				"modifier"						"zuus_zuus_arc_rival_13"
+			}
+			"asset_modifier8"
+			{
+				"type"							"chatwheel"
+				"asset"							"zuus_zuus_respawn_06"
+				"modifier"						"zuus_zuus_arc_respawn_06"
+			}
+			"asset_modifier9"
+			{
+				"type"							"healthbar_offset"
+				"offset"						"200"
+			}
+			"asset_modifier10"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_zuus/zuus_thundergods_wrath.vpcf"
+				"modifier"						"particles/econ/items/zeus/arcana_chariot/zeus_arcana_thundergods_wrath.vpcf"
+			}
+			"asset_modifier11"
+			{
+				"type"							"particle"
+				"asset"							"particles/items_fx/blink_dagger_end.vpcf"
+				"modifier"						"particles/econ/items/zeus/arcana_chariot/zeus_arcana_blink_end.vpcf"
+			}
+			"asset_modifier12"
+			{
+				"type"							"particle"
+				"asset"							"particles/items_fx/blink_dagger_start.vpcf"
+				"modifier"						"particles/econ/items/zeus/arcana_chariot/zeus_arcana_blink_start.vpcf"
+			}
+			"asset_modifier13"
+			{
+				"type"							"sound"
+				"asset"							"DOTA_Item.BlinkDagger.Activate"
+				"modifier"						"Hero_Zeus.BlinkDagger.Arcana"
+				"style"							"0"
+			}
+			"asset_modifier14"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Zuus.GodsWrath.PreCast"
+				"modifier"						"Hero_Zuus.GodsWrath.PreCast.Arcana"
+				"style"							"0"
+			}
+			"asset_modifier15"
+			{
+				"type"							"arcana_level"
+				"level"							"1"
+			}
+			"asset_modifier16"
+			{
+				"type"							"ability_icon"
+				"asset"							"zuus_thundergods_wrath"
+				"modifier"						"zuus_thundergods_wrath_alt1"
+			}
+			"asset_modifier17"
+			{
+				"type"							"icon_replacement_hero"
+				"asset"							"npc_dota_hero_zuus"
+				"modifier"						"npc_dota_hero_zuus_alt1"
+				"force_display"					"1"
+			}
+			"asset_modifier18"
+			{
+				"type"							"ability_icon"
+				"asset"							"zuus_static_field"
+				"modifier"						"zuus_static_field_alt1"
+			}
+			"asset_modifier19"
+			{
+				"type"							"icon_replacement_hero_minimap"
+				"asset"							"npc_dota_hero_zuus"
+				"modifier"						"npc_dota_hero_zuus_alt1"
+				"force_display"					"1"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"chatwheel"
+				"asset"							"zuus_zuus_laugh_01"
+				"modifier"						"zuus_zuus_arc_laugh_01"
+			}
+		}
+	}
+	"7951"
+	{
+		"name"									"Bracers of the Wartorn Heavens"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/zuus/lord_of_heaven_arms/lord_of_heaven_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_the_Wartorn_Heavens"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/zuus/lord_of_heaven_arms/lord_of_heaven_arms.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"7952"
+	{
+		"name"									"Pauldrons of the Wartorn Heavens"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/zuus/lord_of_heaven_back/lord_of_heaven_back"
+		"item_name"								"#DOTA_Item_Pauldrons_of_the_Wartorn_Heavens"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Pauldrons"
+		"model_player"							"models/items/zuus/lord_of_heaven_back/lord_of_heaven_back.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"7953"
+	{
+		"name"									"Belt of the Wartorn Heavens"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/zuus/lord_of_heaven_belt/lord_of_heaven_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Wartorn_Heavens"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/zuus/lord_of_heaven_belt/lord_of_heaven_belt.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"7954"
+	{
+		"name"									"Helm of the Wartorn Heavens"
+		"prefab"								"wearable"
+		"creation_date"							"2016-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/zuus/lord_of_heaven_head/lord_of_heaven_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Wartorn_Heavens"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helm"
+		"model_player"							"models/items/zuus/lord_of_heaven_head/lord_of_heaven_head.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"8069"
+	{
+		"name"									"Taunt: Heavenly Jump!"
+		"prefab"								"taunt"
+		"creation_date"							"2015-02-27"
+		"image_inventory"						"econ/taunts/taunt_icon_zeus_heavenly_jump"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Heavenly_Jump"
+		"item_name"								"#DOTA_Item_Taunt_Heavenly_Jump"
+		"item_rarity"							"mythical"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"jump_gesture"
+				"frequency"						"1"
+				"gesture"						"1"
+			}
+		}
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2015"
+			}
+		}
+	}
+	"8692"
+	{
+		"name"									"Thundergod's Bare Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2015-12-16"
+		"image_inventory"						"econ/items/zeus/tempest_helm/thundergods_bare_arms"
+		"item_description"						"#DOTA_Item_Desc_Thundergods_Bare_Arms"
+		"item_name"								"#DOTA_Item_Thundergods_Bare_Arms"
+		"item_rarity"							"legendary"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/development/invisiblebox.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/14/2015"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"8693"
+	{
+		"name"									"Thundergod's Bare Chest"
+		"prefab"								"wearable"
+		"creation_date"							"2015-12-16"
+		"image_inventory"						"econ/items/zeus/tempest_helm/thundergods_bare_chest"
+		"item_description"						"#DOTA_Item_Desc_Thundergods_Bare_Chest"
+		"item_name"								"#DOTA_Item_Thundergods_Bare_Chest"
+		"item_rarity"							"legendary"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Chest"
+		"model_player"							"models/development/invisiblebox.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/14/2015"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"9037"
+	{
+		"name"									"Markings of the King Restored"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/zuus/the_return_of_the_king_of_gods_back/the_return_of_the_king_of_gods_back"
+		"item_description"						"#DOTA_Item_Desc_Markings_of_the_King_Restored"
+		"item_name"								"#DOTA_Item_Markings_of_the_King_Restored"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/zuus/the_return_of_the_king_of_gods_back/the_return_of_the_king_of_gods_back.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Quest_Locked"
+					"skin"						"1"
+					"alternate_icon"			"1"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Quest_Unlocked"
+					"skin"						"0"
+					"alternate_icon"			"0"
+					"unlock"
+					{
+						"item_def"				"17243"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/zuus/the_return_of_the_king_of_gods_back/the_return_of_the_king_of_gods_back"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/zuus/the_return_of_the_king_of_gods_back/the_return_of_the_king_of_gods_back_style1"
+				}
+			}
+		}
+	}
+	"9038"
+	{
+		"name"									"Armlets of the King Restored"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/zuus/the_return_of_the_king_of_gods_arms/the_return_of_the_king_of_gods_arms"
+		"item_description"						"#DOTA_Item_Desc_Armlets_of_the_King_Restored"
+		"item_name"								"#DOTA_Item_Armlets_of_the_King_Restored"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/zuus/the_return_of_the_king_of_gods_arms/the_return_of_the_king_of_gods_arms.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Quest_Locked"
+					"skin"						"1"
+					"alternate_icon"			"1"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Quest_Unlocked"
+					"skin"						"0"
+					"alternate_icon"			"0"
+					"unlock"
+					{
+						"item_def"				"17243"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/zuus/the_return_of_the_king_of_gods_arms/the_return_of_the_king_of_gods_arms"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/zuus/the_return_of_the_king_of_gods_arms/the_return_of_the_king_of_gods_arms_style1"
+				}
+			}
+		}
+	}
+	"9039"
+	{
+		"name"									"Belt of the King Restored"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/zuus/the_return_of_the_king_of_gods_belt/the_return_of_the_king_of_gods_belt"
+		"item_description"						"#DOTA_Item_Desc_Belt_of_the_King_Restored"
+		"item_name"								"#DOTA_Item_Belt_of_the_King_Restored"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/zuus/the_return_of_the_king_of_gods_belt/the_return_of_the_king_of_gods_belt.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Quest_Locked"
+					"skin"						"1"
+					"alternate_icon"			"1"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Quest_Unlocked"
+					"skin"						"0"
+					"alternate_icon"			"0"
+					"unlock"
+					{
+						"item_def"				"17243"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/zuus/the_return_of_the_king_of_gods_belt/the_return_of_the_king_of_gods_belt"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/zuus/the_return_of_the_king_of_gods_belt/the_return_of_the_king_of_gods_belt_style1"
+				}
+			}
+		}
+	}
+	"9052"
+	{
+		"name"									"Symbol of the King Restored"
+		"prefab"								"wearable"
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/items/zuus/the_return_of_the_king_of_gods_head/the_return_of_the_king_of_gods_head"
+		"item_description"						"#DOTA_Item_Desc_Symbol_of_the_King_Restored"
+		"item_name"								"#DOTA_Item_Symbol_of_the_King_Restored"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/zuus/the_return_of_the_king_of_gods_head/the_return_of_the_king_of_gods_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_zeus/zeus_return_king_of_gods_head_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/units/heroes/hero_zeus/zeus_return_king_of_gods_head_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_helmet"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_zeus/zeus_return_king_of_gods_head_style1_ambient.vpcf"
+				"style"							"1"
+				"system"						"particles/units/heroes/hero_zeus/zeus_return_king_of_gods_head_style1_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_helmet"
+					}
+				}
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Quest_Locked"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"model_player"				"models/items/zuus/the_return_of_the_king_of_gods_head/the_return_of_the_king_of_gods_head.vmdl"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Quest_Unlocked"
+					"skin"						"0"
+					"alternate_icon"			"0"
+					"model_player"				"models/items/zuus/the_return_of_the_king_of_gods_head/the_return_of_the_king_of_gods_head.vmdl"
+					"unlock"
+					{
+						"item_def"				"17243"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier3"
+			{
+				"type"							"healthbar_offset"
+				"offset"						"140"
+				"style"							"0"
+			}
+			"asset_modifier4"
+			{
+				"type"							"healthbar_offset"
+				"offset"						"140"
+				"style"							"1"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/zuus/the_return_of_the_king_of_gods_head/the_return_of_the_king_of_gods_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/zuus/the_return_of_the_king_of_gods_head/the_return_of_the_king_of_gods_head_style1"
+				}
+			}
+		}
+	}
+	"12323"
+	{
+		"name"									"Tempest Revelation"
+		"prefab"								"wearable"
+		"creation_date"							"2018-06-29"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/zeus/zeus_ti8_immortal_arms/zeus_ti8_immortal_arms"
+		"item_description"						"#DOTA_Item_Desc_Tempest_Revelation"
+		"item_name"								"#DOTA_Item_Tempest_Revelation"
+		"item_rarity"							"immortal"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/zeus/zeus_ti8_immortal_arms/zeus_ti8_immortal_arms.vmdl"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567296000"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti8"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_zuus/zuus_arc_lightning_head.vpcf"
+				"modifier"						"particles/econ/items/zeus/zeus_ti8_immortal_arms/zeus_ti8_immortal_arc_head.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_zuus/zuus_arc_lightning.vpcf"
+				"modifier"						"particles/econ/items/zeus/zeus_ti8_immortal_arms/zeus_ti8_immortal_arc.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"zuus_arc_lightning"
+				"modifier"						"zeus/ti8_immortal_arms/zeus_arc_lightning_immortal"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/zeus/zeus_ti8_immortal_arms/zeus_ti8_immortal_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13854"
+	{
+		"name"									"Fury of the Thunderhawk - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-07"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/zeus/thunder_hawk_arms/thunder_hawk_arms"
+		"item_name"								"#DOTA_Item_Fury_of_the_Thunderhawk__Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"model_player"							"models/items/zeus/thunder_hawk_arms/thunder_hawk_arms.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+	}
+	"13855"
+	{
+		"name"									"Fury of the Thunderhawk - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-07"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/zeus/thunder_hawk_back/thunder_hawk_back"
+		"item_name"								"#DOTA_Item_Fury_of_the_Thunderhawk__Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"model_player"							"models/items/zeus/thunder_hawk_back/thunder_hawk_back.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"13856"
+	{
+		"name"									"Fury of the Thunderhawk - Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-07"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/zeus/thunder_hawk_belt/thunder_hawk_belt"
+		"item_name"								"#DOTA_Item_Fury_of_the_Thunderhawk__Belt"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"model_player"							"models/items/zeus/thunder_hawk_belt/thunder_hawk_belt.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"13857"
+	{
+		"name"									"Fury of the Thunderhawk - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-04-07"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/zeus/thunder_hawk_head/thunder_hawk_head"
+		"item_name"								"#DOTA_Item_Fury_of_the_Thunderhawk__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/zeus/thunder_hawk_head/thunder_hawk_head.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+	}
+	"14554"
+	{
+		"name"									"Zeus Emperor of the Clergy Back"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"image_inventory"						"econ/items/zeus/zeus_emperor_of_the_clergy_back/zeus_emperor_of_the_clergy_back"
+		"item_name"								"#DOTA_Item_Vote_Only_Zeus_Emperor_of_the_Clergy_Back"
+		"item_slot"								"back"
+		"model_player"							"models/items/zeus/zeus_emperor_of_the_clergy_back/zeus_emperor_of_the_clergy_back.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"14555"
+	{
+		"name"									"Zeus Emperor of the Clergy Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"image_inventory"						"econ/items/zeus/zeus_emperor_of_the_clergy_belt/zeus_emperor_of_the_clergy_belt"
+		"item_name"								"#DOTA_Item_Vote_Only_Zeus_Emperor_of_the_Clergy_Belt"
+		"item_slot"								"belt"
+		"model_player"							"models/items/zeus/zeus_emperor_of_the_clergy_belt/zeus_emperor_of_the_clergy_belt.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14556"
+	{
+		"name"									"Zeus Emperor of the Clergy Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"image_inventory"						"econ/items/zeus/zeus_emperor_of_the_clergy_arms/zeus_emperor_of_the_clergy_arms"
+		"item_name"								"#DOTA_Item_Vote_Only_Zeus_Emperor_of_the_Clergy_Arms"
+		"item_slot"								"arms"
+		"model_player"							"models/items/zeus/zeus_emperor_of_the_clergy_arms/zeus_emperor_of_the_clergy_arms.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"14557"
+	{
+		"name"									"Zeus Emperor of the Clergy Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-05-17"
+		"image_inventory"						"econ/items/zeus/zeus_emperor_of_the_clergy_head/zeus_emperor_of_the_clergy_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Zeus_Emperor_of_the_Clergy_Head"
+		"item_slot"								"head"
+		"model_player"							"models/items/zeus/zeus_emperor_of_the_clergy_head/zeus_emperor_of_the_clergy_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"18563"
+	{
+		"name"									"Golden Immortal Pantheon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-10"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/zeus/zeus_2021_immortal/zeus_2021_immortal1"
+		"item_description"						"#DOTA_Item_Desc_zeus_2021_immortal_gold"
+		"item_name"								"#DOTA_Item_Golden_Immortal_Pantheon"
+		"item_rarity"							"immortal"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/zeus/zeus_2021_immortal/zeus_2021_immortal.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_zuus/zuus_static_field.vpcf"
+				"modifier"						"particles/econ/items/zeus/zeus_immortal_2021/zeus_immortal_2021_static_field_gold.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/zeus/zeus_immortal_2021/zeus_immortal_2021_ambient_gold.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_zuus/zuus_shard_head.vpcf"
+				"modifier"						"particles/econ/items/zeus/zeus_immortal_2021/zeus_immortal_2021_gold_shard_static_field.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_zuus/zuus_shard_slow.vpcf"
+				"modifier"						"particles/econ/items/zeus/zeus_immortal_2021/zeus_immortal_2021_shard_gold_slow.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"skin"								"1"
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"zuus_static_field"
+				"modifier"						"zeus/zeus_2021_immortal_back_ability_icon/zeus_2021_immortal_static_field_gold"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+		}
+	}
+	"19112"
+	{
+		"name"									"Immortal Pantheon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-06-28"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/zeus/zeus_2021_immortal/zeus_2021_immortal"
+		"item_description"						"#DOTA_Item_Desc_Dark_Pantheon"
+		"item_name"								"#DOTA_Item_Immortal_Pantheon"
+		"item_rarity"							"immortal"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/zeus/zeus_2021_immortal/zeus_2021_immortal.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_zuus/zuus_static_field.vpcf"
+				"modifier"						"particles/econ/items/zeus/zeus_immortal_2021/zeus_immortal_2021_static_field.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/zeus/zeus_immortal_2021/zeus_immortal_2021_ambient.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_zuus/zuus_shard_head.vpcf"
+				"modifier"						"particles/econ/items/zeus/zeus_immortal_2021/zeus_immortal_2021_shard_static_field.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"zuus_static_field"
+				"modifier"						"zeus/zeus_2021_immortal_back_ability_icon/zeus_2021_immortal_static_field"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+		}
+	}
+	"19679"
+	{
+		"name"									"Arc of the Sovereign Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/zeus/falcon_sovereign_head/falcon_sovereign_head"
+		"item_name"								"#DOTA_Item_Arc_of_the_Sovereign_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/zeus/falcon_sovereign_head/falcon_sovereign_head.vmdl"
+	}
+	"19680"
+	{
+		"name"									"Arc of the Sovereign Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/zeus/falcon_sovereign_arms/falcon_sovereign_arms"
+		"item_name"								"#DOTA_Item_Arc_of_the_Sovereign_Arms"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/zeus/falcon_sovereign_arms/falcon_sovereign_arms.vmdl"
+	}
+	"19681"
+	{
+		"name"									"Arc of the Sovereign Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/zeus/falcon_sovereign_back/falcon_sovereign_back"
+		"item_name"								"#DOTA_Item_Arc_of_the_Sovereign_Back"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/zeus/falcon_sovereign_back/falcon_sovereign_back.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"19682"
+	{
+		"name"									"Arc of the Sovereign Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/zeus/falcon_sovereign_belt/falcon_sovereign_belt"
+		"item_name"								"#DOTA_Item_Arc_of_the_Sovereign_Belt"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/zeus/falcon_sovereign_belt/falcon_sovereign_belt.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"20837"
+	{
+		"name"									"Wartorn Heavens"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Wartorn Heavens Loading Screen"	"1"
+			"Helm of the Wartorn Heavens"		"1"
+			"Pauldrons of the Wartorn Heavens"	"1"
+			"Belt of the Wartorn Heavens"		"1"
+			"Bracers of the Wartorn Heavens"	"1"
+		}
+		"creation_date"							"2016-04-26"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/loading_screens/zeus_lord_of_heaven_zeus_lord_of_heaven_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Wartorn_Heavens"
+		"item_name"								"#DOTA_Item_Wartorn_Heavens"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_To_TI6_BattlePass_Owners"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+		}
+	}
+	"20844"
+	{
+		"name"									"Tempest Helm of the Thundergod Bundle"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Tempest Helm of the Thundergod"	"1"
+			"Thundergod's Bare Arms"			"1"
+			"Thundergod's Bare Chest"			"1"
+			"Zeus Wrath Emoticon"				"1"
+		}
+		"creation_date"							"2015-12-16"
+		"has_store_custom_item_details_panel"	"1"
+		"image_inventory"						"econ/items/zeus/tempest_helm/zeus_arcana"
+		"item_description"						"#DOTA_Item_Desc_Tempest_Helm_of_the_Thundergod_Bundle"
+		"item_name"								"#DOTA_Item_Tempest_Helm_of_the_Thundergod_Bundle"
+		"item_rarity"							"arcana"
+		"price_info"
+		{
+			"category_tags"						"Bundles"
+			"date"								"12/14/2015"
+			"bundle"							"1"
+			"price"								"3499"
+		}
+	}
+	"21075"
+	{
+		"name"									"Bearing of the King Restored"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading Screen of the King Restored""1"
+			"Symbol of the King Restored"		"1"
+			"Belt of the King Restored"			"1"
+			"Armlets of the King Restored"		"1"
+			"Markings of the King Restored"		"1"
+		}
+		"creation_date"							"2016-09-16"
+		"event_id"								"EVENT_ID_WINTER_MAJOR_2017"
+		"image_inventory"						"econ/loading_screens/the_return_of_the_king_of_gods_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Bearing_of_the_King_Restored"
+		"item_name"								"#DOTA_Item_Bearing_of_the_King_Restored"
+		"item_rarity"							"mythical"
+	}
+	"21452"
+	{
+		"name"									"Fury of the Thunderhawk"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Fury of the Thunderhawk - Head"	"1"
+			"Fury of the Thunderhawk - Belt"	"1"
+			"Fury of the Thunderhawk - Back"	"1"
+			"Fury of the Thunderhawk - Arms"	"1"
+			"Fury of the Thunderhawk Loading Screen""1"
+		}
+		"creation_date"							"2020-05-11"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/loading_screens/thunder_hawk_thunder_hawk"
+		"item_name"								"#DOTA_Item_Fury_of_the_Thunderhawk"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"				"1698865200"
+			"additional_tooltip_text"			"#DOTA_EconItemSet_Tooltip_Immortals_TI11_Limited_Tradeability"
+		}
+	}
+	"21642"
+	{
+		"name"									"Zeus Emperor of the Clergy"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Zeus Emperor of the Clergy Head"	"1"
+			"Zeus Emperor of the Clergy Arms"	"1"
+			"Zeus Emperor of the Clergy Belt"	"1"
+			"Zeus Emperor of the Clergy Back"	"1"
+		}
+		"creation_date"							"2020-05-17"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Zeus_Emperor_of_the_Clergy"
+		"workshop_accepted"						"0"
+	}
+	"22024"
+	{
+		"name"									"Arc of the Sovereign"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Arc of the Sovereign Belt"			"1"
+			"Arc of the Sovereign Back"			"1"
+			"Arc of the Sovereign Arms"			"1"
+			"Arc of the Sovereign Head"			"1"
+			"Arc of the Sovereign Loading Screen""1"
+		}
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/loading_screens/falcon_sovereign_ls"
+		"item_name"								"#DOTA_Item_Arc_of_the_Sovereign"
+		"item_rarity"							"rare"
+	}
+	"24680"
+	{
+		"name"									"Immortal Pantheon of the Crimson Witness"
+		"prefab"								"wearable"
+		"creation_date"							"2022-09-28"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2022"
+		"image_inventory"						"econ/items/zeus/zeus_2021_immortal/zeus_2021_immortal2"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Immortal_Pantheon"
+		"item_name"								"#DOTA_Item_Immortal_Pantheon_of_the_Crimson_Witness"
+		"item_rarity"							"immortal"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/zeus/zeus_2021_immortal/zeus_2021_immortal.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_zuus/zuus_static_field.vpcf"
+				"modifier"						"particles/econ/items/zeus/zeus_immortal_2021/zeus_immortal_2021_static_field_crimson.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/zeus/zeus_immortal_2021/zeus_immortal_2021_ambient_crimson.vpcf"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_zuus/zuus_shard_head.vpcf"
+				"modifier"						"particles/econ/items/zeus/zeus_immortal_2021/zeus_immortal_2021_crimson_shard_static_field.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier3"
+			{
+				"type"							"ability_icon"
+				"asset"							"zuus_static_field"
+				"modifier"						"zeus/zeus_2021_immortal_back_ability_icon/zeus_2021_immortal_static_field_crimson"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"skin"								"2"
+			"asset_modifier4"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_zuus/zuus_shard_slow.vpcf"
+				"modifier"						"particles/units/heroes/hero_zuus/zuus_shard_crimson_slow.vpcf"
+			}
+		}
+		"static_attributes"
+		{
+			"can_equip_as_ability_effects"		"3"
+		}
+	}
+}

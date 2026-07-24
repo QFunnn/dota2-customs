@@ -1,0 +1,77 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"tusk_snowball_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_tusk/tusk_snowball_lua"
+		"AbilityTextureName"					"tusk_snowball"
+		"MaxLevel"								"4"
+		"RequiredLevel"							"1"
+		"LevelsBetweenUpgrades"					"2"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_NO"
+		"FightRecapLevel"						"1"
+		"AbilitySound"							"Hero_Tusk.Snowball.Cast"
+		"AbilityCastRange"						"1150"
+		"AbilityCastPoint"						"0.1 0.1 0.1 0.1"
+		"AbilityManaCost"						"75 75 75 75"
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"							"21 19 17 15"
+				"special_bonus_unique_tusk_6"	"-8"
+			}
+			"snowball_damage"
+			{
+				"value"							"80 140 200 260"
+				"special_bonus_unique_tusk_2"	"+120"
+			}
+			"snowball_speed"					"575 600 625 650"
+			"snowball_damage_bonus"				"25 50 75 100"
+			"stun_duration"						"0.6 0.8 1.0 1.2"
+			"snowball_windup_radius"
+			{
+				"value"							"100"
+				"affected_by_aoe_increase"		"1"
+			}
+			"snowball_duration"					"3.0"
+			"snowball_radius"
+			{
+				"value"							"200"
+				"affected_by_aoe_increase"		"1"
+			}
+			"snowball_grow_rate"				"40"
+			"snowball_windup"					"3.0"
+			"snowball_grab_radius"				"350"
+			"snowball_damage_factor"			"0.75"
+		}
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_2"
+	}
+	"tusk_launch_snowball_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_tusk/tusk_snowball_lua"
+		"AbilityTextureName"					"tusk_snowball"
+		"MaxLevel"								"4"
+		"RequiredLevel"							"1"
+		"LevelsBetweenUpgrades"					"2"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+		"AbilityCastPoint"						"0.0 0.0 0.0 0.0"
+		"AbilityCastAnimation"					"ACT_INVALID"
+	}
+}

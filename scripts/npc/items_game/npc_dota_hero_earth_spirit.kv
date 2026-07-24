@@ -1,0 +1,1504 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"475"
+	{
+		"name"									"Earth Spirit's Staff"
+		"prefab"								"default_item"
+		"creation_date"							"2013-10-22"
+		"image_inventory"						"econ/heroes/earth_spirit/earth_spirit_staff"
+		"item_description"						"#DOTA_Item_Desc_Earth_Spirits_Staff"
+		"item_name"								"#DOTA_Item_Earth_Spirits_Staff"
+		"model_player"							"models/heroes/earth_spirit/earth_spirit_staff.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_earth_spirit/espirit_ambient_weapon.vpcf"
+				"system"						"particles/units/heroes/hero_earth_spirit/espirit_ambient_weapon.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"fx_staff1"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"fx_staff2"
+					}
+				}
+			}
+		}
+	}
+	"477"
+	{
+		"name"									"Earth Spirit's Head Accessory"
+		"prefab"								"default_item"
+		"creation_date"							"2013-10-22"
+		"image_inventory"						"econ/heroes/earth_spirit/earth_spirit_hair"
+		"item_description"						"#DOTA_Item_Desc_Earth_Spirits_Head_Accessory"
+		"item_name"								"#DOTA_Item_Earth_Spirits_Head_Accessory"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/earth_spirit/earth_spirit_hair.vmdl"
+	}
+	"479"
+	{
+		"name"									"Earth Spirit's Belt"
+		"prefab"								"default_item"
+		"creation_date"							"2013-10-22"
+		"image_inventory"						"econ/heroes/earth_spirit/earth_spirit_belt"
+		"item_description"						"#DOTA_Item_Desc_Earth_Spirits_Belt"
+		"item_name"								"#DOTA_Item_Earth_Spirits_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/heroes/earth_spirit/earth_spirit_belt.vmdl"
+	}
+	"480"
+	{
+		"name"									"Earth Spirit's Neck"
+		"prefab"								"default_item"
+		"creation_date"							"2013-10-22"
+		"image_inventory"						"econ/heroes/earth_spirit/earth_spirit_torso"
+		"item_description"						"#DOTA_Item_Desc_Earth_Spirits_Neck"
+		"item_name"								"#DOTA_Item_Earth_Spirits_Neck"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Neck"
+		"model_player"							"models/heroes/earth_spirit/earth_spirit_torso.vmdl"
+	}
+	"481"
+	{
+		"name"									"Earth Spirit's Arms"
+		"prefab"								"default_item"
+		"creation_date"							"2013-11-05"
+		"image_inventory"						"econ/heroes/earth_spirit/earth_spirit_arms"
+		"item_description"						"#DOTA_Item_Desc_Earth_Spirits_Arms"
+		"item_name"								"#DOTA_Item_Earth_Spirits_Arms"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/heroes/earth_spirit/earth_spirit_arms.vmdl"
+	}
+	"482"
+	{
+		"name"									"Earth Spirit's Head"
+		"prefab"								"default_item"
+		"creation_date"							"2013-11-05"
+		"image_inventory"						"econ/heroes/earth_spirit/earth_spirit_head"
+		"item_description"						"#DOTA_Item_Desc_Earth_Spirits__Head"
+		"item_name"								"#DOTA_Item_Earth_Spirits_Head"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Body_Head"
+		"model_player"							"models/heroes/earth_spirit/earth_spirit_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_earth_spirit/earth_spirit_ambient_eyes.vpcf"
+				"system"						"particles/units/heroes/hero_earth_spirit/earth_spirit_ambient_eyes.vpcf"
+				"attach_type"					"absorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_r"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_eye_l"
+					}
+				}
+			}
+		}
+	}
+	"526"
+	{
+		"name"									"Earth Spirit's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-08"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Earth_Spirits_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_earth_spirit"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_earth_spirit/espirit_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_earth_spirit/espirit_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+			}
+		}
+	}
+	"6002"
+	{
+		"name"									"Plated Bracers of the Demon Stone"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-22"
+		"image_inventory"						"econ/items/earth_spirit/demon_stone_bracers/demon_stone_bracers"
+		"item_name"								"#DOTA_Item_Plated_Bracers_of_the_Demon_Stone"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/earth_spirit/demon_stone_bracers/demon_stone_bracers.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/27/2014"
+			"price"								"0"
+		}
+	}
+	"6003"
+	{
+		"name"									"Plackart of the Demon Stone"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-22"
+		"image_inventory"						"econ/items/earth_spirit/demon_stone_belt/demon_stone_belt"
+		"item_name"								"#DOTA_Item_Plackart_of_the_Demon_Stone"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/earth_spirit/demon_stone_belt/demon_stone_belt.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/27/2014"
+			"price"								"0"
+		}
+	}
+	"6004"
+	{
+		"name"									"Mane of the Demon Stone"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-22"
+		"image_inventory"						"econ/items/earth_spirit/demon_stone_hair/demon_stone_hair"
+		"item_name"								"#DOTA_Item_Mane_of_the_Demon_Stone"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hair"
+		"model_player"							"models/items/earth_spirit/demon_stone_hair/demon_stone_hair.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/27/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"model_player"				"models/items/earth_spirit/demon_stone_hair/demon_stone_hair.vmdl"
+					"name"						"#DOTA_Item_Mane_of_the_Demon_Stone_Style0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"model_player"				"models/items/earth_spirit/demon_stone_hat/demon_stone_hat.vmdl"
+					"name"						"#DOTA_Item_Mane_of_the_Demon_Stone_Style1"
+					"alternate_icon"			"1"
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/earth_spirit/demon_stone_hair/demon_stone_hair"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/earth_spirit/demon_stone_hat/demon_stone_hat"
+				}
+			}
+		}
+	}
+	"6005"
+	{
+		"name"									"Necklace of the Demon Stone"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-22"
+		"image_inventory"						"econ/items/earth_spirit/demon_stone_necklace/demon_stone_necklace"
+		"item_name"								"#DOTA_Item_Necklace_of_the_Demon_Stone"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Necklace"
+		"model_player"							"models/items/earth_spirit/demon_stone_necklace/demon_stone_necklace.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/27/2014"
+			"price"								"0"
+		}
+	}
+	"6006"
+	{
+		"name"									"Staff of the Demon Stone"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-22"
+		"image_inventory"						"econ/items/earth_spirit/demon_stone_weapon/demon_stone_weapon"
+		"item_name"								"#DOTA_Item_Staff_of_the_Demon_Stone"
+		"item_rarity"							"uncommon"
+		"model_player"							"models/items/earth_spirit/demon_stone_weapon/demon_stone_weapon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/27/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_earth_spirit/espirit_ambient_weapon.vpcf"
+				"system"						"particles/units/heroes/hero_earth_spirit/espirit_ambient_weapon.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"fx_staff1"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"fx_staff2"
+					}
+				}
+			}
+		}
+	}
+	"6008"
+	{
+		"name"									"Warriors of the Demon Stone"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-22"
+		"image_inventory"						"econ/items/earth_spirit/demon_stone_summon/demon_stone_summon"
+		"item_name"								"#DOTA_Item_Warriors_of_the_Demon_Stone"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability4"
+		"item_type_name"						"#DOTA_WearableType_Remnants"
+		"particle_folder"						"particles/econ/items/earth_spirit/earth_spirit_demonstone_summons"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/27/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_earth_spirit/espirit_stoneremnant.vpcf"
+				"modifier"						"particles/econ/items/earth_spirit/earth_spirit_demonstone_summons/espirit_stoneremnant_demonstone.vpcf"
+				"frequency"						"1"
+			}
+		}
+	}
+	"6061"
+	{
+		"name"									"Stone Dragon Soul"
+		"prefab"								"wearable"
+		"creation_date"							"2014-01-24"
+		"image_inventory"						"econ/items/earth_spirit/dragon_soul/dragon_soul"
+		"item_name"								"#DOTA_Item_Stone_Dragon_Soul"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/earth_spirit/dragon_soul/dragon_soul.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_earth_spirit/espirit_ambient_weapon.vpcf"
+				"system"						"particles/units/heroes/hero_earth_spirit/espirit_ambient_weapon.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"fx_staff1"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"fx_staff2"
+					}
+				}
+			}
+		}
+	}
+	"6432"
+	{
+		"name"									"Vanquishing Demons Geomagnetic Arm Guard"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-22"
+		"image_inventory"						"econ/items/earth_spirit/vanquishing_demons_arms/vanquishing_demons_arms"
+		"item_name"								"#DOTA_Item_Vanquishing_Demons_Geomagnetic_Arm_Guard"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arm_Guards"
+		"model_player"							"models/items/earth_spirit/vanquishing_demons_arms/vanquishing_demons_arms.vmdl"
+	}
+	"6433"
+	{
+		"name"									"Vanquishing Demons Earthcore Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-22"
+		"image_inventory"						"econ/items/earth_spirit/vanquishing_demons_belt/vanquishing_demons_belt"
+		"item_name"								"#DOTA_Item_Vanquishing_Demons_Earthcore_Belt"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/earth_spirit/vanquishing_demons_belt/vanquishing_demons_belt.vmdl"
+	}
+	"6434"
+	{
+		"name"									"Vanquishing Demons Ritual Headgear"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-22"
+		"image_inventory"						"econ/items/earth_spirit/vanquishing_demons_helmet/vanquishing_demons_helmet"
+		"item_name"								"#DOTA_Item_Vanquishing_Demons_Ritual_Headgear"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/earth_spirit/vanquishing_demons_helmet/vanquishing_demons_helmet.vmdl"
+	}
+	"6435"
+	{
+		"name"									"Vanquishing Demons Ornaments of Annihilation"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-22"
+		"image_inventory"						"econ/items/earth_spirit/vanquishing_demons_neck/vanquishing_demons_neck"
+		"item_name"								"#DOTA_Item_Vanquishing_Demons_Ornaments_of_Annihilation"
+		"item_rarity"							"uncommon"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Neck_Guard"
+		"model_player"							"models/items/earth_spirit/vanquishing_demons_neck/vanquishing_demons_neck.vmdl"
+	}
+	"6436"
+	{
+		"name"									"Vanquishing Demons Earthforce"
+		"prefab"								"wearable"
+		"creation_date"							"2014-04-22"
+		"image_inventory"						"econ/items/earth_spirit/vanquishing_demons_weapon/vanquishing_demons_weapon"
+		"item_name"								"#DOTA_Item_Vanquishing_Demons_Earthforce"
+		"model_player"							"models/items/earth_spirit/vanquishing_demons_weapon/vanquishing_demons_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_earth_spirit/espirit_ambient_weapon.vpcf"
+				"system"						"particles/units/heroes/hero_earth_spirit/espirit_ambient_weapon.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"fx_staff1"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"fx_staff2"
+					}
+				}
+			}
+		}
+	}
+	"6526"
+	{
+		"name"									"Stone Monkey Spirits"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-02"
+		"image_inventory"						"econ/items/earth_spirit/vanquishing_demons_summon/vanquishing_demon_summon"
+		"item_description"						"#DOTA_Item_Desc_Stone_Monkey_Spirit"
+		"item_name"								"#DOTA_Item_Stone_Monkey_Spirits"
+		"item_rarity"							"mythical"
+		"item_slot"								"ability4"
+		"item_type_name"						"#DOTA_WearableType_Remnants"
+		"particle_folder"						"particles/econ/items/earth_spirit/earth_spirit_vanquishingdemons_summons"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_earth_spirit/espirit_stoneremnant.vpcf"
+				"modifier"						"particles/econ/items/earth_spirit/earth_spirit_vanquishingdemons_summons/espirit_stoneremnant_vanquishingdemons.vpcf"
+				"frequency"						"1"
+			}
+		}
+	}
+	"6580"
+	{
+		"name"									"Demon Vanquisher"
+		"prefab"								"wearable"
+		"creation_date"							"2014-05-13"
+		"image_inventory"						"econ/items/earth_spirit/demonvanquisher_weapon/demonvanquisher_weapon"
+		"item_name"								"#DOTA_Item_Demon_Vanquisher"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+		"model_player"							"models/items/earth_spirit/demonvanquisher_weapon/demonvanquisher_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_earth_spirit/espirit_ambient_weapon.vpcf"
+				"system"						"particles/units/heroes/hero_earth_spirit/espirit_ambient_weapon.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"fx_staff1"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"fx_staff2"
+					}
+				}
+			}
+		}
+	}
+	"7183"
+	{
+		"name"									"Haidate of Bedrock Serenity"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-30"
+		"image_inventory"						"econ/items/earth_spirit/stone_tranquility_belt/stone_tranquility_belt"
+		"item_name"								"#DOTA_Item_Haidate_of_Bedrock_Serenity"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Haidate"
+		"model_player"							"models/items/earth_spirit/stone_tranquility_belt/stone_tranquility_belt.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2015"
+			"price"								"0"
+		}
+	}
+	"7184"
+	{
+		"name"									"Bo of Bedrock Serenity"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-30"
+		"image_inventory"						"econ/items/earth_spirit/stone_tranquility_weapon/stone_tranquility_weapon"
+		"item_name"								"#DOTA_Item_Bo_of_Bedrock_Serenity"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Bo"
+		"model_player"							"models/items/earth_spirit/stone_tranquility_weapon/stone_tranquility_weapon.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2015"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_earth_spirit/espirit_ambient_weapon.vpcf"
+				"system"						"particles/units/heroes/hero_earth_spirit/espirit_ambient_weapon.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"fx_staff1"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"fx_staff2"
+					}
+				}
+			}
+		}
+	}
+	"7185"
+	{
+		"name"									"Kabuto of Bedrock Serenity"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-30"
+		"image_inventory"						"econ/items/earth_spirit/stone_tranquility_helm/stone_tranquility_helm"
+		"item_name"								"#DOTA_Item_Kabuto_of_Bedrock_Serenity"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Kabuto"
+		"model_player"							"models/items/earth_spirit/stone_tranquility_helm/stone_tranquility_helm.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2015"
+			"price"								"0"
+		}
+	}
+	"7186"
+	{
+		"name"									"Kataginu of Bedrock Serenity"
+		"prefab"								"wearable"
+		"creation_date"							"2014-10-30"
+		"image_inventory"						"econ/items/earth_spirit/stone_tranquility_neck/stone_tranquility_neck"
+		"item_name"								"#DOTA_Item_Kataginu_of_Bedrock_Serenity"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_Kamishimo"
+		"model_player"							"models/items/earth_spirit/stone_tranquility_neck/stone_tranquility_neck.vmdl"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/16/2015"
+			"price"								"0"
+		}
+	}
+	"7935"
+	{
+		"name"									"Jade Reckoning"
+		"prefab"								"wearable"
+		"creation_date"							"2016-05-20"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/earth_spirit/jade_reckoning_v2/mesh/jade_reckoning_v2"
+		"item_description"						"#DOTA_Item_Desc_Jade_Reckoning"
+		"item_name"								"#DOTA_Item_Jade_Reckoning"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/earth_spirit/jade_reckoning_v2/mesh/jade_reckoning_v2.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"jade"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_earth_spirit/espirit_rollingboulder.vpcf"
+				"modifier"						"particles/econ/items/earth_spirit/earth_spirit_ti6_boulder/espirit_ti6_rollingboulder.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"sound"
+				"asset"							"Hero_EarthSpirit.RollingBoulder.Target"
+				"modifier"						"Hero_EarthSpirit.RollingBoulder.Target.Immortal"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_earth_spirit/espirit_rollingboulder_stone.vpcf"
+				"modifier"						"particles/econ/items/earth_spirit/earth_spirit_ti6_boulder/espirit_ti6_rollingboulder_stone.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier4"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/earth_spirit/earth_spirit_ti6_boulder/espirit_ti6_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/earth_spirit/earth_spirit_ti6_boulder/espirit_ti6_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_tip"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_weapon_base"
+					}
+				}
+			}
+			"asset_modifier5"
+			{
+				"type"							"ability_icon"
+				"asset"							"earth_spirit_rolling_boulder"
+				"modifier"						"earth_spirit/jade_reckoning/earth_spirit_rolling_boulder"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+		}
+	}
+	"8654"
+	{
+		"name"									"Earth Spirit's Stone Remnant"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/earth_spirit/earth_spirit_stonesummon"
+		"item_description"						"#DOTA_Item_Desc_Earth_Spirits_Stone_Remnant"
+		"item_name"								"#DOTA_Item_Earth_Spirits_Stone_Remnant"
+		"item_slot"								"ability4"
+		"item_type_name"						"#DOTA_WearableType_Ability_Remnant"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_earth_spirit/espirit_stoneremnant.vpcf"
+				"modifier"						"particles/units/heroes/hero_earth_spirit/espirit_stoneremnant.vpcf"
+				"frequency"						"1"
+			}
+		}
+	}
+	"8712"
+	{
+		"name"									"Arms of the Jade General"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-05"
+		"image_inventory"						"econ/items/earth_spirit/the_jade_general_arms/the_jade_general_arms"
+		"item_name"								"#DOTA_Item_Arms_of_the_Jade_General"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/earth_spirit/the_jade_general_arms/the_jade_general_arms.vmdl"
+	}
+	"8903"
+	{
+		"name"									"Belt of the Jade General"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-05"
+		"image_inventory"						"econ/items/earth_spirit/the_jade_general_belt/the_jade_general_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Jade_General"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/earth_spirit/the_jade_general_belt/the_jade_general_belt.vmdl"
+	}
+	"8904"
+	{
+		"name"									"Style of the Jade General"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-05"
+		"image_inventory"						"econ/items/earth_spirit/the_jade_general_head/the_jade_general_head"
+		"item_name"								"#DOTA_Item_Style_of_the_Jade_General"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/earth_spirit/the_jade_general_head/the_jade_general_head.vmdl"
+	}
+	"8905"
+	{
+		"name"									"Armor of the Jade General"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-05"
+		"image_inventory"						"econ/items/earth_spirit/the_jade_general_neck/the_jade_general_neck"
+		"item_name"								"#DOTA_Item_Armor_of_the_Jade_General"
+		"item_rarity"							"rare"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_neck"
+		"model_player"							"models/items/earth_spirit/the_jade_general_neck/the_jade_general_neck.vmdl"
+	}
+	"8906"
+	{
+		"name"									"Staff of the Jade General"
+		"prefab"								"wearable"
+		"creation_date"							"2017-01-05"
+		"image_inventory"						"econ/items/earth_spirit/the_jade_general_weapon/the_jade_general_weapon"
+		"item_name"								"#DOTA_Item_Staff_of_the_Jade_General"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Staff"
+		"model_player"							"models/items/earth_spirit/the_jade_general_weapon/the_jade_general_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_earth_spirit/espirit_ambient_weapon.vpcf"
+				"system"						"particles/units/heroes/hero_earth_spirit/espirit_ambient_weapon.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"fx_staff1"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"fx_staff2"
+					}
+				}
+			}
+		}
+	}
+	"12413"
+	{
+		"name"									"Taunt: Dirt Surfer"
+		"prefab"								"taunt"
+		"creation_date"							"2019-02-05"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/taunts/dota_icon_taunt_hang_ten"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Dirt_Surfer"
+		"item_name"								"#DOTA_Item_Taunt_Dirt_Surfer"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1598997600"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"hang_ten_gesture"
+				"gesture"						"1"
+				"style"							"0"
+			}
+		}
+	}
+	"13389"
+	{
+		"name"									"Helm of the Jade Emissary"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/earth_spirit/ti9_cache_earthspirit_turquoise_giant_head/ti9_cache_earthspirit_turquoise_giant_head"
+		"item_name"								"#DOTA_Item_Helm_of_the_Jade_Emissary"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/earth_spirit/ti9_cache_earthspirit_turquoise_giant_head/ti9_cache_earthspirit_turquoise_giant_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/earth_spirit/earth_spirit_ti9_turquoise_giant/earth_spirit_ti9_ambient_eyes.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"13390"
+	{
+		"name"									"Serpent of the Jade Emissary"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/earth_spirit/ti9_cache_earthspirit_turquoise_giant_neck/ti9_cache_earthspirit_turquoise_giant_neck"
+		"item_name"								"#DOTA_Item_Serpent_of_the_Jade_Emissary"
+		"item_rarity"							"mythical"
+		"item_slot"								"neck"
+		"item_type_name"						"#DOTA_WearableType_neck"
+		"model_player"							"models/items/earth_spirit/ti9_cache_earthspirit_turquoise_giant_neck/ti9_cache_earthspirit_turquoise_giant_neck.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"13391"
+	{
+		"name"									"Belt of the Jade Emissary"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/earth_spirit/ti9_cache_earthspirit_turquoise_giant_belt/ti9_cache_earthspirit_turquoise_giant_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Jade_Emissary"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/earth_spirit/ti9_cache_earthspirit_turquoise_giant_belt/ti9_cache_earthspirit_turquoise_giant_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/earth_spirit/earth_spirit_ti9_turquoise_giant/earth_spirit_ti9_belt_glow.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti9_cache"
+				"style"							"0"
+			}
+		}
+	}
+	"13392"
+	{
+		"name"									"Arms of the Jade Emissary"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/earth_spirit/ti9_cache_earthspirit_turquoise_giant_arms/ti9_cache_earthspirit_turquoise_giant_arms"
+		"item_name"								"#DOTA_Item_Arms_of_the_Jade_Emissary"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/earth_spirit/ti9_cache_earthspirit_turquoise_giant_arms/ti9_cache_earthspirit_turquoise_giant_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"13393"
+	{
+		"name"									"Staff of the Jade Emissary"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/items/earth_spirit/ti9_cache_earthspirit_turquoise_giant_weapon/ti9_cache_earthspirit_turquoise_giant_weapon"
+		"item_name"								"#DOTA_Item_Staff_of_the_Jade_Emissary"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/earth_spirit/ti9_cache_earthspirit_turquoise_giant_weapon/ti9_cache_earthspirit_turquoise_giant_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_earth_spirit/espirit_ambient_weapon.vpcf"
+				"system"						"particles/units/heroes/hero_earth_spirit/espirit_ambient_weapon.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"fx_staff1"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"fx_staff2"
+					}
+				}
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/earth_spirit/earth_spirit_ti9_turquoise_giant/earth_spirit_ti9_weapon_ambient.vpcf"
+				"style"							"0"
+			}
+		}
+	}
+	"17850"
+	{
+		"name"									"Bowling Champion Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/earth_spirit/bowling_champion_arms/bowling_champion_arms"
+		"item_name"								"#DOTA_Item_Vote_Only_Bowling_Champion_Arms"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/earth_spirit/bowling_champion_arms/bowling_champion_arms.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"17851"
+	{
+		"name"									"Bowling Champion Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/earth_spirit/bowling_champion_belt/bowling_champion_belt"
+		"item_name"								"#DOTA_Item_Vote_Only_Bowling_Champion_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/earth_spirit/bowling_champion_belt/bowling_champion_belt.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"17852"
+	{
+		"name"									"Bowling Champion Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/earth_spirit/bowling_champion_head/bowling_champion_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Bowling_Champion_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/earth_spirit/bowling_champion_head/bowling_champion_head.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"17853"
+	{
+		"name"									"Bowling Champion Neck"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/earth_spirit/bowling_champion_neck/bowling_champion_neck"
+		"item_name"								"#DOTA_Item_Vote_Only_Bowling_Champion_Neck"
+		"item_slot"								"neck"
+		"model_player"							"models/items/earth_spirit/bowling_champion_neck/bowling_champion_neck.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"17854"
+	{
+		"name"									"Bowling Champion Ability"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/earth_spirit/bowling_champion_ability/bowling_champion_ability"
+		"item_name"								"#DOTA_Item_Vote_Only_Bowling_Champion_Ability"
+		"item_slot"								"ability4"
+		"item_type_name"						"#DOTA_WearableType_ability4"
+		"model_player"							"models/items/earth_spirit/bowling_champion_ability/bowling_champion_ability.vmdl"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_earth_spirit/espirit_stoneremnant.vpcf"
+				"modifier"						"particles/econ/items/earth_spirit/earth_spirit_2021_summons/earth_spirit_2021_summons_ability.vpcf"
+				"frequency"						"1"
+			}
+		}
+		"workshop_accepted"						"0"
+	}
+	"17855"
+	{
+		"name"									"Bowling Champion Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/items/earth_spirit/bowling_champion_weapon/bowling_champion_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_Bowling_Champion_Weapon"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/earth_spirit/bowling_champion_weapon/bowling_champion_weapon.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_earth_spirit/espirit_ambient_weapon.vpcf"
+				"system"						"particles/units/heroes/hero_earth_spirit/espirit_ambient_weapon.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"fx_staff1"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"fx_staff2"
+					}
+				}
+			}
+		}
+	}
+	"18420"
+	{
+		"name"									"Emanations of the Worldcore Staff"
+		"prefab"								"wearable"
+		"creation_date"							"2020-11-12"
+		"image_inventory"						"econ/items/earth_spirit/dplus_loyalism_of_the_roaring_stone_weapon/dplus_loyalism_of_the_roaring_stone_weapon"
+		"item_name"								"#DOTA_Item_Emanations_of_the_Worldcore_Staff"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_weapon"
+		"model_player"							"models/items/earth_spirit/dplus_loyalism_of_the_roaring_stone_weapon/dplus_loyalism_of_the_roaring_stone_weapon.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_earth_spirit/espirit_ambient_weapon.vpcf"
+				"system"						"particles/units/heroes/hero_earth_spirit/espirit_ambient_weapon.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"fx_staff1"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"fx_staff2"
+					}
+				}
+			}
+		}
+	}
+	"18421"
+	{
+		"name"									"Emanations of the Worldcore Garbs"
+		"prefab"								"wearable"
+		"creation_date"							"2020-11-12"
+		"image_inventory"						"econ/items/earth_spirit/dplus_loyalism_of_the_roaring_stone_neck/dplus_loyalism_of_the_roaring_stone_neck"
+		"item_name"								"#DOTA_Item_Emanations_of_the_Worldcore_Garbs"
+		"item_rarity"							"rare"
+		"item_slot"								"neck"
+		"model_player"							"models/items/earth_spirit/dplus_loyalism_of_the_roaring_stone_neck/dplus_loyalism_of_the_roaring_stone_neck.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"18423"
+	{
+		"name"									"Emanations of the Worldcore Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-11-12"
+		"image_inventory"						"econ/items/earth_spirit/dplus_loyalism_of_the_roaring_stone_head/dplus_loyalism_of_the_roaring_stone_head"
+		"item_name"								"#DOTA_Item_Emanations_of_the_Worldcore_Head"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_head"
+		"model_player"							"models/items/earth_spirit/dplus_loyalism_of_the_roaring_stone_head/dplus_loyalism_of_the_roaring_stone_head.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"18424"
+	{
+		"name"									"Emanations of the Worldcore Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2020-11-12"
+		"image_inventory"						"econ/items/earth_spirit/dplus_loyalism_of_the_roaring_stone_belt/dplus_loyalism_of_the_roaring_stone_belt"
+		"item_name"								"#DOTA_Item_Emanations_of_the_Worldcore_Belt"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_belt"
+		"model_player"							"models/items/earth_spirit/dplus_loyalism_of_the_roaring_stone_belt/dplus_loyalism_of_the_roaring_stone_belt.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"18425"
+	{
+		"name"									"Emanations of the Worldcore Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2020-11-12"
+		"image_inventory"						"econ/items/earth_spirit/dplus_loyalism_of_the_roaring_stone_arms/dplus_loyalism_of_the_roaring_stone_arms"
+		"item_name"								"#DOTA_Item_Emanations_of_the_Worldcore_Arms"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_arms"
+		"model_player"							"models/items/earth_spirit/dplus_loyalism_of_the_roaring_stone_arms/dplus_loyalism_of_the_roaring_stone_arms.vmdl"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"20368"
+	{
+		"name"									"Strength of the Demon Stone Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Mane of the Demon Stone"			"1"
+			"Necklace of the Demon Stone"		"1"
+			"Plated Bracers of the Demon Stone"	"1"
+			"Staff of the Demon Stone"			"1"
+			"Warriors of the Demon Stone"		"1"
+			"Strength of the Demon Stone"		"1"
+			"Plackart of the Demon Stone"		"1"
+		}
+		"creation_date"							"2014-01-22"
+		"image_inventory"						"econ/sets/DOTA_Item_Strength_of_the_Demon_Stone_Set"
+		"item_description"						"#DOTA_Item_Desc_Strength_of_the_Demon_Stone_Set"
+		"item_name"								"#DOTA_Item_Strength_of_the_Demon_Stone_Set"
+		"item_rarity"							"mythical"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Mythical"
+			"category_tags"						"Bundles"
+			"date"								"1/27/2014"
+			"bundle"							"1"
+			"price"								"799"
+		}
+	}
+	"20495"
+	{
+		"name"									"Vanquishing Demons General"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Vanquishing Demons Earthcore Belt"	"1"
+			"Vanquishing Demons Earthforce"		"1"
+			"Vanquishing Demons Geomagnetic Arm Guard""1"
+			"Vanquishing Demons Ritual Headgear""1"
+			"Vanquishing Demons Ornaments of Annihilation""1"
+			"Vanquishing Demons Loading Screen"	"1"
+			"Stone Monkey Spirits"				"1"
+		}
+		"creation_date"							"2014-04-28"
+		"image_inventory"						"econ/loading_screens/vanquishing_demons"
+		"item_description"						"#DOTA_Item_Desc_Vanquishing_Demons_General"
+		"item_name"								"#DOTA_Item_Vanquishing_Demons_General"
+		"item_rarity"							"mythical"
+	}
+	"20673"
+	{
+		"name"									"GG League Season 2"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Haidate of Bedrock Serenity"		"1"
+			"Bo of Bedrock Serenity"			"1"
+			"Kabuto of Bedrock Serenity"		"1"
+			"Kataginu of Bedrock Serenity"		"1"
+			"GG League Season 2 Ticket"			"1"
+		}
+		"creation_date"							"2014-10-30"
+		"image_inventory"						"econ/leagues/subscriptions_ggleagues2"
+		"item_description"						"#DOTA_Item_Desc_GG_League_Season_2"
+		"item_name"								"#DOTA_Item_GG_League_Season_2"
+		"item_rarity"							"rare"
+	}
+	"20969"
+	{
+		"name"									"Bedrock Serenity"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Haidate of Bedrock Serenity"		"1"
+			"Bo of Bedrock Serenity"			"1"
+			"Kabuto of Bedrock Serenity"		"1"
+			"Kataginu of Bedrock Serenity"		"1"
+		}
+		"creation_date"							"2015-12-16"
+		"image_inventory"						"econ/bundles/bedrock_serenity"
+		"item_description"						"#DOTA_Item_Desc_Bedrock_Serenity"
+		"item_name"								"#DOTA_Item_Bedrock_Serenity"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"category_tags"						"Bundles"
+			"date"								"12/16/2015"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"21059"
+	{
+		"name"									"The Jade General"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"The Jade General Loading Screen"	"1"
+			"Staff of the Jade General"			"1"
+			"Armor of the Jade General"			"1"
+			"Style of the Jade General"			"1"
+			"Belt of the Jade General"			"1"
+			"Arms of the Jade General"			"1"
+		}
+		"creation_date"							"2017-01-11"
+		"image_inventory"						"econ/loading_screens/the_jade_general_the_jade_general"
+		"item_description"						"#DOTA_Item_Desc_The_Jade_General"
+		"item_name"								"#DOTA_Item_The_Jade_General"
+		"item_rarity"							"rare"
+	}
+	"21399"
+	{
+		"name"									"Adornments of the Jade Emissary"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Staff of the Jade Emissary"		"1"
+			"Arms of the Jade Emissary"			"1"
+			"Belt of the Jade Emissary"			"1"
+			"Serpent of the Jade Emissary"		"1"
+			"Helm of the Jade Emissary"			"1"
+		}
+		"creation_date"							"2019-05-16"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2019"
+		"image_inventory"						"econ/sets/DOTA_Item_TI9_Cache_EarthSpirit_Turquoise_Giant"
+		"item_description"						"#DOTA_Item_Desc_Adornments_of_the_Jade_Emissary"
+		"item_name"								"#DOTA_Item_Adornments_of_the_Jade_Emissary"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2019"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI9_Collectors_Cache"
+			}
+		}
+	}
+	"21608"
+	{
+		"name"									"Bowling Champion"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Bowling Champion Arms"				"1"
+			"Bowling Champion Belt"				"1"
+			"Bowling Champion Head"				"1"
+			"Bowling Champion Neck"				"1"
+			"Bowling Champion Ability"			"1"
+			"Bowling Champion Weapon"			"1"
+		}
+		"creation_date"							"2021-09-01"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Bowling_Champion"
+		"workshop_accepted"						"0"
+	}
+	"21804"
+	{
+		"name"									"Emanations of the Worldcore"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Emanations of the Worldcore Arms"	"1"
+			"Emanations of the Worldcore Belt"	"1"
+			"Emanations of the Worldcore Head"	"1"
+			"Emanations of the Worldcore Loading Screen""1"
+			"Emanations of the Worldcore Garbs"	"1"
+			"Emanations of the Worldcore Staff"	"1"
+		}
+		"creation_date"							"2020-11-12"
+		"image_inventory"						"econ/loading_screens/dplus_loyalism_of_the_roaring_stone_ls"
+		"item_name"								"#DOTA_Item_Emanations_of_the_Worldcore"
+		"item_rarity"							"rare"
+		"shards_purchase_price"					"15000"
+		"static_attributes"
+		{
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+}

@@ -1,0 +1,192 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.HudRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#CustomerService_qrcode
+{
+	width: 160px;
+	height: fit-children;
+	background-color: rgba(20, 20, 26, 0.824);
+	flow-children: down;
+}
+
+#CustomerService_qrcode #qrcode_main
+{
+	width: 140px;
+	height: 140px;
+	margin: 10px;
+	background-image: url("s2r://panorama/images/custom_game/store/wechat_qrcode_png.vtex");
+	background-size: 100%;
+	visibility: collapse;
+}
+
+#CustomerService_qrcode #qrcode_main.Show
+{
+	visibility: visible;
+}
+
+#CustomerService_qrcode #qrcode_abroad
+{
+	margin: 10px;
+	width: 140px;
+	height: 168px;
+	background-image: url("s2r://panorama/images/custom_game/icon/discord_icon_png.vtex");
+	background-size: 100% 78%;
+	background-repeat: no-repeat;
+	visibility: collapse;
+}
+
+#CustomerService_qrcode #qrcode_abroad Label
+{
+	align: center bottom;
+	color: #dbcda6;
+	font-size: 23px;
+	text-overflow: shrink;
+	text-align: center;
+	text-shadow: 1px 1px 2px 3 #000000;
+	text-decoration: underline;
+	height: 28px;
+}
+
+#CustomerService_qrcode #qrcode_abroad.Show
+{
+	visibility: visible;
+}
+
+#CustomerService_qrcode #qrcode_desc
+{
+	horizontal-align: center;
+	color: #dbcda6;
+	font-size: 18px;
+	text-overflow: shrink;
+	text-align: center;
+	text-shadow: 1px 1px 2px 3 #000000;
+	height: 24px;
+}
+
+.HudRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#HUD_Feedback_root
+{
+	width: 100%;
+	height: 100%;
+	transform: translatey(0px) translatex(-50px);
+	transition: transform 0.3s ease-in-out 0s, opacity 0.25s ease-in-out 0s;
+	opacity: 0;
+}
+
+#HUD_Feedback_root.Show
+{
+	transform: translatey(0px) translatex(0px);
+	opacity: 1;
+}
+
+#HUD_Feedback_root #CustomerService_qrcode
+{
+	align: left center;
+	margin-top: -170px;
+	margin-left: 282px;
+}
+
+#HUD_Feedback_main
+{
+	width: 282px;
+	height: 469px;
+	background-image: url("s2r://panorama/images/custom_game/suggestion/feedback_png.vtex");
+	margin-top: 280px;
+}
+
+#HUD_Feedback_main #HUD_Feedback_title
+{
+	width: 100%;
+	height: 40px;
+}
+
+#HUD_Feedback_main #HUD_Feedback_title #HUD_Feedback_title_text
+{
+	align: center center;
+	text-align: center;
+	color: white;
+	font-size: 20px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}
+
+#HUD_Feedback_main #HUD_Feedback_title #HUD_Feedback_close_button
+{
+	align: right center;
+	width: 40px;
+	height: 40px;
+	background-image: url("s2r://panorama/images/control_icons/x_close_gradient_png.vtex");
+	background-size: 80%;
+	background-repeat: no-repeat;
+}
+
+#HUD_Feedback_main #HUD_Feedback_title #HUD_Feedback_close_button:hover
+{
+	brightness: 2;
+}
+
+#HUD_Feedback_main #HUD_Feedback_textentry
+{
+	width: 96%;
+	height: 360px;
+	align: center center;
+	color: white;
+	font-size: 20px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+	white-space: normal;
+}
+
+#HUD_Feedback_main #HUD_Feedback_textentry #HUD_Feedback_limit
+{
+	align: right bottom;
+}
+
+#HUD_Feedback_main #HUD_Feedback_confirm
+{
+	width: 130px;
+	height: 50px;
+	background-image: url("s2r://panorama/images/custom_game/hud/btn_blue_png.vtex");
+	background-size: 100%;
+	align: center bottom;
+}
+
+#HUD_Feedback_main #HUD_Feedback_confirm:disabled
+{
+	saturation: 0.5;
+}
+
+#HUD_Feedback_main #HUD_Feedback_confirm:enabled:hover
+{
+	brightness: 2;
+}
+
+#HUD_Feedback_main #HUD_Feedback_confirm Label
+{
+	text-align: center;
+	align: center center;
+	color: white;
+	font-size: 20px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}

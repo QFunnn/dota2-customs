@@ -1,0 +1,2168 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"105"
+	{
+		"name"									"Ogre Magi's Weapon"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/ogre_magi/ogre_magi_weapon"
+		"item_description"						"#DOTA_Item_Desc_Ogremagis_Weapon"
+		"item_name"								"#DOTA_Item_Ogre_Magis_Weapon"
+		"model_player"							"models/heroes/ogre_magi/ogre_magi_weapon.vmdl"
+	}
+	"133"
+	{
+		"name"									"Ogre Magi's Cape"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/ogre_magi/ogre_magi_cape"
+		"item_description"						"#DOTA_Item_Desc_Ogre_Magis_Cape"
+		"item_name"								"#DOTA_Item_Ogre_Magis_Cape"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/heroes/ogre_magi/ogre_magi_cape.vmdl"
+	}
+	"134"
+	{
+		"name"									"Ogre Magi's Bracers"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/ogre_magi/ogre_magi_bracers"
+		"item_description"						"#DOTA_Item_Desc_Ogre_Magis_Bracers"
+		"item_name"								"#DOTA_Item_Ogre_Magis_Bracers"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/heroes/ogre_magi/ogre_magi_bracers.vmdl"
+	}
+	"135"
+	{
+		"name"									"Ogre Magi's Hats"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/ogre_magi/ogre_magi_hats"
+		"item_description"						"#DOTA_Item_Desc_Ogre_Magis_Hats"
+		"item_name"								"#DOTA_Item_Ogre_Magis_Hats"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/heroes/ogre_magi/ogre_magi_hats.vmdl"
+	}
+	"136"
+	{
+		"name"									"Ogre Magi's Belt"
+		"prefab"								"default_item"
+		"image_inventory"						"econ/heroes/ogre_magi/ogre_magi_belt"
+		"item_description"						"#DOTA_Item_Desc_Ogremagis_Belt"
+		"item_name"								"#DOTA_Item_Ogre_Magis_Belt"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/heroes/ogre_magi/ogre_magi_belt.vmdl"
+	}
+	"534"
+	{
+		"name"									"Ogre Magi's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2014-09-08"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Ogre_Magis_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_Unnamed_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_ogre_magi"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_ogre_magi/ogre_magi_weapon.vpcf"
+				"system"						"particles/units/heroes/hero_ogre_magi/ogre_magi_weapon.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_hitloc"
+					}
+				}
+			}
+		}
+	}
+	"698"
+	{
+		"name"									"Ogre Magi's Default Voice"
+		"prefab"								"default_item"
+		"creation_date"							"2019-12-14"
+		"image_inventory"						"econ/heroes/ogre_magi/ogre_magi_voice"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Rubicks_Default_Voice"
+		"item_name"								"#DOTA_Item_Ogre_Magis_Default_Voice"
+		"item_quality"							"unique"
+		"item_slot"								"voice"
+		"item_type_name"						"#DOTA_WearableType_Voice"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"announcer_preview"
+				"asset"							"sounds/vo/ogre_magi/ogmag_spawn_05.vsnd"
+				"modifier"						"#DOTA_Announcer_Preview_Ogre_Magi_Voice_Default_01"
+			}
+			"asset_modifier1"
+			{
+				"type"							"announcer_preview"
+				"asset"							"sounds/vo/ogre_magi/ogmag_move_20.vsnd"
+				"modifier"						"#DOTA_Announcer_Preview_Ogre_Magi_Voice_Default_02"
+			}
+			"asset_modifier2"
+			{
+				"type"							"announcer_preview"
+				"asset"							"sounds/vo/ogre_magi/ogmag_ability_multi_02.vsnd"
+				"modifier"						"#DOTA_Announcer_Preview_Ogre_Magi_Voice_Default_03"
+			}
+			"asset_modifier3"
+			{
+				"type"							"announcer_preview"
+				"asset"							"sounds/vo/ogre_magi/ogmag_level_06.vsnd"
+				"modifier"						"#DOTA_Announcer_Preview_Ogre_Magi_Voice_Default_04"
+			}
+		}
+	}
+	"3026"
+	{
+		"name"									"Ogre Magi Arcana Rune"
+		"prefab"								"socket_gem"
+		"creation_date"							"2019-11-14"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_description"						"#DOTA_Item_Desc_Ogre_Magi_Arcana_Rune"
+		"item_name"								"#DOTA_Item_Ogre_Magi_Arcana_Rune"
+		"item_quality"							"strange"
+		"item_rarity"							"arcana"
+		"static_attributes"
+		{
+			"gem type"
+			{
+				"attribute_class"				"gem type"
+				"value"							"3"
+			}
+			"gem not removable"
+			{
+				"attribute_class"				"gem not removable"
+				"value"							"1"
+			}
+		}
+	}
+	"4358"
+	{
+		"name"									"Lucky Belly Belt"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2012"
+			}
+		}
+		"image_inventory"						"econ/items/ogre_magi/belt_rich"
+		"item_description"						"#DOTA_Item_Desc_Lucky_Belly_Belt"
+		"item_name"								"#DOTA_Item_Lucky_Belly_Belt"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belly_Guard"
+		"model_player"							"models/items/ogre_magi/belt_rich.vmdl"
+	}
+	"4359"
+	{
+		"name"									"Champion's Belly Belt"
+		"prefab"								"wearable"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2012"
+			}
+		}
+		"image_inventory"						"econ/items/ogre_magi/championbelt/championbelt"
+		"item_description"						"#DOTA_Item_Desc_Champions_Belly_Belt"
+		"item_name"								"#DOTA_Item_Champions_Belly_Belt"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belly_Guard"
+		"model_player"							"models/items/ogre_magi/championbelt/championbelt.vmdl"
+	}
+	"4360"
+	{
+		"name"									"Golden Walrus Whacker"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/ogre_magi/goldenwalruswhacker/goldenwalruswhacker"
+		"item_description"						"#DOTA_Item_Desc_Golden_Walrus_Whacker"
+		"item_name"								"#DOTA_Item_Golden_Walrus_Whacker"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Club"
+		"model_player"							"models/items/ogre_magi/goldenwalruswhacker/goldenwalruswhacker.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2012"
+			}
+		}
+	}
+	"4736"
+	{
+		"name"									"Ignited Scepter"
+		"prefab"								"wearable"
+		"image_inventory"						"econ/items/ogre_magi/embersceptre/embersceptre"
+		"item_description"						"#DOTA_Item_Desc_Ember_Scepter"
+		"item_name"								"#DOTA_Item_Ignited_Scepter"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Club"
+		"model_player"							"models/items/ogre_magi/embersceptre/embersceptre.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2012"
+			}
+		}
+	}
+	"5241"
+	{
+		"name"									"Flaming Scepter of Ancestral Luck"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-05"
+		"image_inventory"						"econ/items/ogre_magi/ogre_ancestral_weapon/ogre_ancestral_weapon"
+		"item_description"						"#DOTA_Item_Desc_Flaming_Scepter_of_Ancestral_Luck"
+		"item_name"								"#DOTA_Item_Flaming_Scepter_of_Ancestral_Luck"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Club"
+		"model_player"							"models/items/ogre_magi/ogre_ancestral_weapon/ogre_ancestral_weapon.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_CAST_ABILITY_2"
+				"modifier"						"ancestral_scepter"
+			}
+		}
+	}
+	"5242"
+	{
+		"name"									"Bracer and Band of Ancestral Luck"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-05"
+		"image_inventory"						"econ/items/ogre_magi/ogre_ancestral_arms/ogre_ancestral_arms"
+		"item_description"						"#DOTA_Item_Desc_Bracer_and_Band"
+		"item_name"								"#DOTA_Item_Bracer_and_Band_of_Ancestral_Luck"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracer"
+		"model_player"							"models/items/ogre_magi/ogre_ancestral_arms/ogre_ancestral_arms.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5243"
+	{
+		"name"									"Mantle of Ancestral Luck"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-05"
+		"image_inventory"						"econ/items/ogre_magi/ogre_ancestral_back/ogre_ancestral_back"
+		"item_description"						"#DOTA_Item_Desc_Mantle_of_Ancestral_Luck"
+		"item_name"								"#DOTA_Item_Mantle_of_Ancestral_Luck"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Mantle"
+		"model_player"							"models/items/ogre_magi/ogre_ancestral_back/ogre_ancestral_back.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5244"
+	{
+		"name"									"Belt of Ancestral Luck"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-05"
+		"image_inventory"						"econ/items/ogre_magi/ogre_ancestral_belt/ogre_ancestral_belt"
+		"item_description"						"#DOTA_Item_Desc_Belt_of_Ancestral_Luck"
+		"item_name"								"#DOTA_Item_Belt_of_Ancestral_Luck"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/ogre_magi/ogre_ancestral_belt/ogre_ancestral_belt.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5245"
+	{
+		"name"									"Masks of Ancestral Luck"
+		"prefab"								"wearable"
+		"creation_date"							"2013-08-05"
+		"image_inventory"						"econ/items/ogre_magi/ogre_ancestral_head/ogre_ancestral_head"
+		"item_description"						"#DOTA_Item_Desc_Masks_of_Ancestral_Luck"
+		"item_name"								"#DOTA_Item_Masks_of_Ancestral_Luck"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Masks"
+		"model_player"							"models/items/ogre_magi/ogre_ancestral_head/ogre_ancestral_head.vmdl"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"NoPrice"
+			"category_tags"						"Equipment"
+			"date"								"1/13/2014"
+			"price"								"0"
+		}
+	}
+	"5607"
+	{
+		"name"									"Lighted Scepter of Serendipity"
+		"prefab"								"wearable"
+		"creation_date"							"2013-11-05"
+		"image_inventory"						"econ/items/ogre_magi/batter_snag/batter_snag"
+		"item_description"						"#DOTA_Item_Desc_Lighted_Scepter_of_Serendipity"
+		"item_name"								"#DOTA_Item_Lighted_Scepter_of_Serendipity"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Club"
+		"model_player"							"models/items/ogre_magi/batter_snag/batter_snag.vmdl"
+		"static_attributes"
+		{
+			"diretide tag"
+			{
+				"attribute_class"				"diretide_tag"
+				"value"							"2013"
+			}
+		}
+	}
+	"7611"
+	{
+		"name"									"Club of Pagus"
+		"prefab"								"wearable"
+		"creation_date"							"2016-03-15"
+		"image_inventory"						"econ/items/ogre_magi/fortunes_veil_weapon/fortunes_veil_weapon"
+		"item_name"								"#DOTA_Item_Club_of_Pagus"
+		"item_rarity"							"uncommon"
+		"item_type_name"						"#DOTA_WearableType_Club"
+		"model_player"							"models/items/ogre_magi/fortunes_veil_weapon/fortunes_veil_weapon.vmdl"
+	}
+	"7612"
+	{
+		"name"									"Cloak of Pagus"
+		"prefab"								"wearable"
+		"creation_date"							"2016-03-15"
+		"image_inventory"						"econ/items/ogre_magi/fortunes_veil_back/fortunes_veil_back"
+		"item_name"								"#DOTA_Item_Cloak_of_Pagus"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cloak"
+		"model_player"							"models/items/ogre_magi/fortunes_veil_back/fortunes_veil_back.vmdl"
+	}
+	"7613"
+	{
+		"name"									"Hood of Pagus"
+		"prefab"								"wearable"
+		"creation_date"							"2016-03-15"
+		"image_inventory"						"econ/items/ogre_magi/fortunes_veil_head/fortunes_veil_head"
+		"item_name"								"#DOTA_Item_Hood_of_Pagus"
+		"item_rarity"							"uncommon"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Hood"
+		"model_player"							"models/items/ogre_magi/fortunes_veil_head/fortunes_veil_head.vmdl"
+	}
+	"7614"
+	{
+		"name"									"Belt of Pagus"
+		"prefab"								"wearable"
+		"creation_date"							"2016-03-15"
+		"image_inventory"						"econ/items/ogre_magi/fortunes_veil_belt/fortunes_veil_belt"
+		"item_name"								"#DOTA_Item_Belt_of_Pagus"
+		"item_rarity"							"uncommon"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/ogre_magi/fortunes_veil_belt/fortunes_veil_belt.vmdl"
+	}
+	"7633"
+	{
+		"name"									"Bracers of Pagus"
+		"prefab"								"wearable"
+		"creation_date"							"2016-03-15"
+		"image_inventory"						"econ/items/ogre_magi/fortunes_veil_arms/fortunes_veil_arms"
+		"item_name"								"#DOTA_Item_Bracers_of_Pagus"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Bracers"
+		"model_player"							"models/items/ogre_magi/fortunes_veil_arms/fortunes_veil_arms.vmdl"
+	}
+	"7839"
+	{
+		"name"									"Shield and Bracelet of the Antipodeans"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-26"
+		"image_inventory"						"econ/items/ogre_magi/antipodean_arms/antipodean_arms"
+		"item_name"								"#DOTA_Item_Shield_and_Bracelet_of_the_Antipodeans"
+		"item_rarity"							"uncommon"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Shield"
+		"model_player"							"models/items/ogre_magi/antipodean_arms/antipodean_arms.vmdl"
+	}
+	"7845"
+	{
+		"name"									"Pauldron and Cloak of the Antipodeans"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-26"
+		"image_inventory"						"econ/items/ogre_magi/antipodean_back/antipodean_back"
+		"item_name"								"#DOTA_Item_Pauldron_and_Cloak_of_the_Antipodeans"
+		"item_rarity"							"uncommon"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Cloak"
+		"model_player"							"models/items/ogre_magi/antipodean_back/antipodean_back.vmdl"
+	}
+	"7846"
+	{
+		"name"									"Belt of the Antipodeans"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-26"
+		"image_inventory"						"econ/items/ogre_magi/antipodean_belt/antipodean_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Antipodeans"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/ogre_magi/antipodean_belt/antipodean_belt.vmdl"
+	}
+	"7847"
+	{
+		"name"									"Helmet and hood of the Antipodeans"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-26"
+		"image_inventory"						"econ/items/ogre_magi/antipodean_head/antipodean_head"
+		"item_name"								"#DOTA_Item_Helmet_and_hood_of_the_Antipodeans"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Helmet"
+		"model_player"							"models/items/ogre_magi/antipodean_head/antipodean_head.vmdl"
+	}
+	"7848"
+	{
+		"name"									"Burning scepter of the Antipodeans"
+		"prefab"								"wearable"
+		"creation_date"							"2015-01-26"
+		"image_inventory"						"econ/items/ogre_magi/antipodean_weapon/antipodean_weapon"
+		"item_description"						"#DOTA_Item_Desc_Burning_scepter_of_the_Antipodeans"
+		"item_name"								"#DOTA_Item_Burning_scepter_of_the_Antipodeans"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Scepter"
+		"model_player"							"models/items/ogre_magi/antipodean_weapon/antipodean_weapon.vmdl"
+		"static_attributes"
+		{
+			"static socket 1"
+			{
+				"attribute_class"				"socket"
+				"value"							"socket { required_hero: 'npc_dota_hero_ogre_magi' gem_def_index: 3005 } asset_modifier: 113"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier_socket0"
+			{
+				"type"							"ability_icon"
+				"asset"							"ogre_magi_bloodlust"
+				"modifier"						"ogre_magi/antipodeanabilityicons/ogre_magi_bloodlust"
+			}
+			"asset_modifier_socket1"
+			{
+				"type"							"ability_icon"
+				"asset"							"ogre_magi_fireblast"
+				"modifier"						"ogre_magi/antipodeanabilityicons/ogre_magi_fireblast"
+			}
+			"asset_modifier_socket2"
+			{
+				"type"							"ability_icon"
+				"asset"							"ogre_magi_ignite"
+				"modifier"						"ogre_magi/antipodeanabilityicons/ogre_magi_ignite"
+			}
+			"asset_modifier_socket3"
+			{
+				"type"							"ability_icon"
+				"asset"							"ogre_magi_multicast"
+				"modifier"						"ogre_magi/antipodeanabilityicons/ogre_magi_multicast"
+			}
+			"asset_modifier_socket4"
+			{
+				"type"							"ability_icon"
+				"asset"							"ogre_magi_unrefined_fireblast"
+				"modifier"						"ogre_magi/antipodeanabilityicons/ogre_magi_unrefined_fireblast"
+			}
+		}
+	}
+	"7910"
+	{
+		"name"									"Auspice of the Whyrlegyge"
+		"prefab"								"wearable"
+		"creation_date"							"2016-05-04"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2016"
+		"image_inventory"						"econ/items/ogre_magi/auspice_of_the_whyrlegyge/mesh/auspice_of_the_whyrlegyge_model"
+		"item_description"						"#DOTA_Item_Desc_Auspice_of_the_Whyrlegyge"
+		"item_name"								"#DOTA_Item_Auspice_of_the_Whyrlegyge"
+		"item_rarity"							"immortal"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Auspice"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/ogre_magi/auspice_of_the_whyrlegyge/mesh/auspice_of_the_whyrlegyge_model.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2016"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"auspice"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ogre_magi/ogre_magi_multicast.vpcf"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_magi_jackpot/ogre_magi_jackpot_multicast.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_magi_jackpot/ogre_magi_jackpot_ambient.vpcf"
+				"style"							"0"
+				"system"						"particles/econ/items/ogre_magi/ogre_magi_jackpot/ogre_magi_jackpot_ambient.vpcf"
+				"attach_type"					"customorigin"
+				"attach_entity"					"self"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"0"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_wheel"
+					}
+					"1"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_back"
+					}
+				}
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ogre_magi/ogre_magi_multicast_counter.vpcf"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_magi_jackpot/ogre_magi_jackpot_multicast_counter.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"ogre_magi_multicast"
+				"modifier"						"ogre_magi/auspice_of_the_whyrlegyge/ogre_magi_multicast"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Auspice_of_the_Whyrlegyge_0"
+					"alternate_icon"			"0"
+					"model_player"				"models/items/ogre_magi/auspice_of_the_whyrlegyge/mesh/auspice_of_the_whyrlegyge_model.vmdl"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Auspice_of_the_Whyrlegyge_1"
+					"alternate_icon"			"1"
+					"model_player"				"models/items/ogre_magi/auspice_of_the_whyrlegyge/ogre_arcana_immortal.vmdl"
+				}
+			}
+			"asset_modifier5"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ogre_magi/ogre_magi_arcana_multicast.vpcf"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_eggbeater_jackpot_multicast_secondstyle.vpcf"
+				"style"							"1"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ogre_magi/ogre_magi_arcana_multicast_counter.vpcf"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_magi_jackpot/ogre_magi_jackpot_multicast_counter.vpcf"
+				"style"							"1"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_back.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ogre_magi/ogre_magi_arcana_multicast.vpcf"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_multicast_style.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/ogre_magi/auspice_of_the_whyrlegyge/mesh/auspice_of_the_whyrlegyge_model"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/ogre_magi/auspice_of_the_whyrlegyge/mesh/auspice_of_the_whyrlegyge_model_style1"
+				}
+			}
+		}
+	}
+	"9224"
+	{
+		"name"									"Shovel of the Shoreline Sapper"
+		"prefab"								"wearable"
+		"creation_date"							"2017-04-19"
+		"image_inventory"						"econ/items/ogre_magi/ogre_magi_set_weapon/ogre_magi_set_weapon"
+		"item_description"						"#DOTA_Item_Desc_Ogre_Magi_Set_Weapon"
+		"item_name"								"#DOTA_Item_Shovel_of_the_Shoreline_Sapper"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/ogre_magi/ogre_magi_set_weapon/ogre_magi_set_weapon.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti7"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ogre_magi/ogre_magi_weapon.vpcf"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_ti7_set/ogre_ti7_set_weapon_ambient.vpcf"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_TI7_Default"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_TI7_Upgraded"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17342"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/ogre_magi/ogre_magi_set_weapon/ogre_magi_set_weapon"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/ogre_magi/ogre_magi_set_weapon/ogre_magi_set_weapon_style1"
+				}
+			}
+		}
+	}
+	"9225"
+	{
+		"name"									"Floathide Bands of the Shoreline Sapper"
+		"prefab"								"wearable"
+		"creation_date"							"2017-04-19"
+		"image_inventory"						"econ/items/ogre_magi/ogre_magi_set_arms/ogre_magi_set_arms"
+		"item_description"						"#DOTA_Item_Desc_Floathide_Bands_of_the_Shoreline_Sapper"
+		"item_name"								"#DOTA_Item_Floathide_Bands_of_the_Shoreline_Sapper"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/ogre_magi/ogre_magi_set_arms/ogre_magi_set_arms.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_TI7_Default"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_TI7_Upgraded"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17342"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"1"
+				{
+					"icon_path"					"econ/items/ogre_magi/ogre_magi_set_arms/ogre_magi_set_arms_style1"
+				}
+			}
+		}
+	}
+	"9226"
+	{
+		"name"									"Back Buoy of the Shoreline Sapper"
+		"prefab"								"wearable"
+		"creation_date"							"2017-04-19"
+		"image_inventory"						"econ/items/ogre_magi/ogre_magi_set_back/ogre_magi_set_back"
+		"item_description"						"#DOTA_Item_Desc_Back_Buoy_of_the_"
+		"item_name"								"#DOTA_Item_Back_Buoy_of_the_Shoreline_Sapper"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/ogre_magi/ogre_magi_set_back/ogre_magi_set_back.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_ti7_set/ogre_ti7_set_back_ambient.vpcf"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_TI7_Default"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_TI7_Upgraded"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17342"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/ogre_magi/ogre_magi_set_back/ogre_magi_set_back"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/ogre_magi/ogre_magi_set_back/ogre_magi_set_back_style1"
+				}
+			}
+		}
+	}
+	"9227"
+	{
+		"name"									"Floathide Belt of the Shoreline Sapper"
+		"prefab"								"wearable"
+		"creation_date"							"2017-04-19"
+		"image_inventory"						"econ/items/ogre_magi/ogre_magi_set_belt/ogre_magi_set_belt"
+		"item_description"						"#DOTA_Item_Desc_Floathide_Belt_of_the_Shoreline_Sapper"
+		"item_name"								"#DOTA_Item_Floathide_Belt_of_the_Shoreline_Sapper"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/ogre_magi/ogre_magi_set_belt/ogre_magi_set_belt.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_TI7_Default"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_TI7_Upgraded"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17342"
+						"price"					"1"
+					}
+				}
+			}
+			"alternate_icons"
+			{
+				"1"
+				{
+					"icon_path"					"econ/items/ogre_magi/ogre_magi_set_belt/ogre_magi_set_belt_style1"
+				}
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"9229"
+	{
+		"name"									"Headgear of the Shoreline Sapper"
+		"prefab"								"wearable"
+		"creation_date"							"2017-04-19"
+		"image_inventory"						"econ/items/ogre_magi/ogre_magi_set_head/ogre_magi_set_head"
+		"item_description"						"#DOTA_Item_Desc_Headgear_of_the_"
+		"item_name"								"#DOTA_Item_Headgear_of_the_Shoreline_Sapper"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/ogre_magi/ogre_magi_set_head/ogre_magi_set_head.vmdl"
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_ti7_set/ogre_ti7_set_head_ambient.vpcf"
+				"style"							"0"
+			}
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_TI7_Default"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_TI7_Upgraded"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"item_def"				"17342"
+						"price"					"1"
+					}
+				}
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_ti7_set/ogre_ti7_set_style_head_ambient.vpcf"
+				"style"							"1"
+			}
+			"alternate_icons"
+			{
+				"1"
+				{
+					"icon_path"					"econ/items/ogre_magi/ogre_magi_set_head/ogre_magi_set_head_style1"
+				}
+			}
+		}
+	}
+	"12318"
+	{
+		"name"									"Gimlek Decanter"
+		"prefab"								"wearable"
+		"creation_date"							"2018-06-28"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/ogre_magi/ogre_ti8_immortal_weapon/ogre_ti8_immortal_weapon"
+		"item_description"						"#DOTA_Item_Desc_Gimlek_Decanter"
+		"item_name"								"#DOTA_Item_Gimlek_Decanter"
+		"item_rarity"							"immortal"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/ogre_magi/ogre_ti8_immortal_weapon/ogre_ti8_immortal_weapon.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1535682268"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"3"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ogre_magi/ogre_magi_weapon.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_ti8_immortal_weapon/ogre_ti8_immortal_weapon_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier2"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti8"
+				"style"							"0"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_buff.vpcf"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_ti8_immortal_weapon/ogre_ti8_immortal_bloodlust_buff.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"ogre_magi_bloodlust"
+				"modifier"						"ogre_magi_bloodlust_ti8"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+			"asset_modifier5"
+			{
+				"type"							"sound"
+				"asset"							"Hero_OgreMagi.Attack"
+				"modifier"						"Hero_OgreMagi.Attack.TI8"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""3"
+			}
+		}
+	}
+	"12536"
+	{
+		"name"									"Voice of Flockheart's Gamble"
+		"prefab"								"wearable"
+		"creation_date"							"2019-12-18"
+		"image_inventory"						"econ/voicepack/ogre_magi_arcana_voicepack"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Voice_of_the_Magus_Cypher"
+		"item_name"								"#DOTA_Item_Voice_of_Flockhearts_Gamble"
+		"item_rarity"							"arcana"
+		"item_slot"								"voice"
+		"item_type_name"						"#DOTA_WearableType_Alternate_Hero_Voice"
+		"price_info"
+		{
+			"category_tags"						"Equipment"
+			"date"								"12/17/2019"
+			"price"								"0"
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"response_criteria"
+				"asset"							"ogflock"
+			}
+			"asset_modifier1"
+			{
+				"type"							"announcer_preview"
+				"asset"							"sounds/vo/ogre_magi/ogm_arc_spawn_09_02.vsnd"
+				"modifier"						"#DOTA_Announcer_Preview_Ogre_Magi_Flockheart_Voice_01"
+			}
+			"asset_modifier2"
+			{
+				"type"							"announcer_preview"
+				"asset"							"sounds/vo/ogre_magi/ogm_arc_move_22.vsnd"
+				"modifier"						"#DOTA_Announcer_Preview_Ogre_Magi_Flockheart_Voice_02"
+			}
+			"asset_modifier3"
+			{
+				"type"							"announcer_preview"
+				"asset"							"sounds/vo/ogre_magi/ogm_arc_kill_14.vsnd"
+				"modifier"						"#DOTA_Announcer_Preview_Ogre_Magi_Flockheart_Voice_03"
+			}
+			"asset_modifier4"
+			{
+				"type"							"announcer_preview"
+				"asset"							"sounds/vo/ogre_magi/ogm_arc_rival_304.vsnd"
+				"modifier"						"#DOTA_Announcer_Preview_Ogre_Magi_Flockheart_Voice_04"
+			}
+			"asset_modifier5"
+			{
+				"type"							"chatwheel"
+				"asset"							"ogre_magi_ogmag_laugh_14"
+				"modifier"						"ogre_magi_ogm_arc_laugh_14"
+			}
+			"asset_modifier6"
+			{
+				"type"							"chatwheel"
+				"asset"							"ogre_magi_ogmag_rival_04"
+				"modifier"						"ogre_magi_ogm_arc_thanks_03"
+				"label"							"#dota_chatwheel_label_ogre_magi_arcana_thank"
+				"message"						"#dota_chatwheel_message_ogre_magi_arcana_thank"
+			}
+			"asset_modifier7"
+			{
+				"type"							"chatwheel"
+				"asset"							"ogre_magi_ogmag_illus_02"
+				"modifier"						"ogre_magi_ogm_arc_illus_02_02"
+			}
+			"asset_modifier8"
+			{
+				"type"							"chatwheel"
+				"asset"							"ogre_magi_ogmag_ability_multi_05"
+				"modifier"						"ogre_magi_ogm_arc_ability_multi_05"
+			}
+			"asset_modifier9"
+			{
+				"type"							"chatwheel"
+				"asset"							"ogre_magi_ogmag_kill_11"
+				"modifier"						"ogre_magi_ogm_arc_kill_11"
+			}
+			"asset_modifier10"
+			{
+				"type"							"chatwheel"
+				"asset"							"ogre_magi_ogmag_rival_05"
+				"modifier"						"ogre_magi_ogm_arc_cast_03"
+				"label"							"#dota_chatwheel_label_ogre_magi_arcana_3"
+				"message"						"#dota_chatwheel_message_ogre_magi_arcana_3"
+			}
+			"asset_modifier11"
+			{
+				"type"							"chatwheel"
+				"asset"							"ogre_magi_ogmag_rival_03"
+				"modifier"						"ogre_magi_ogm_arc_kill_05"
+				"label"							"#dota_chatwheel_label_ogre_magi_arcana_4"
+				"message"						"#dota_chatwheel_message_ogre_magi_arcana_4"
+			}
+			"asset_modifier12"
+			{
+				"type"							"chatwheel"
+				"asset"							"ogre_magi_ogmag_kill_03"
+				"modifier"						"ogre_magi_ogm_arc_kill_03"
+			}
+			"asset_modifier13"
+			{
+				"type"							"chatwheel"
+				"asset"							"ogre_magi_ogmag_ability_multi_06"
+				"modifier"						"ogre_magi_ogm_arc_ability_multi_06"
+			}
+		}
+	}
+	"12798"
+	{
+		"name"									"Bracer of the Grey Wastes"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/ogre_magi/frostivus2018_ogre_prehistoric_hunter_arms/frostivus2018_ogre_prehistoric_hunter_arms"
+		"item_name"								"#DOTA_Item_Bracer_of_the_Grey_Wastes"
+		"item_rarity"							"rare"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/ogre_magi/frostivus2018_ogre_prehistoric_hunter_arms/frostivus2018_ogre_prehistoric_hunter_arms.vmdl"
+	}
+	"12799"
+	{
+		"name"									"Cape of the Grey Wastes"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/ogre_magi/frostivus2018_ogre_prehistoric_hunter_back/frostivus2018_ogre_prehistoric_hunter_back"
+		"item_name"								"#DOTA_Item_Cape_of_the_Grey_Wastes"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/ogre_magi/frostivus2018_ogre_prehistoric_hunter_back/frostivus2018_ogre_prehistoric_hunter_back.vmdl"
+	}
+	"12800"
+	{
+		"name"									"Belt of the Grey Wastes"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/ogre_magi/frostivus2018_ogre_prehistoric_hunter_belt/frostivus2018_ogre_prehistoric_hunter_belt"
+		"item_name"								"#DOTA_Item_Belt_of_the_Grey_Wastes"
+		"item_rarity"							"rare"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"model_player"							"models/items/ogre_magi/frostivus2018_ogre_prehistoric_hunter_belt/frostivus2018_ogre_prehistoric_hunter_belt.vmdl"
+	}
+	"12801"
+	{
+		"name"									"Heads of the Grey Wastes"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/ogre_magi/frostivus2018_ogre_prehistoric_hunter_head/frostivus2018_ogre_prehistoric_hunter_head"
+		"item_name"								"#DOTA_Item_Heads_of_the_Grey_Wastes"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/ogre_magi/frostivus2018_ogre_prehistoric_hunter_head/frostivus2018_ogre_prehistoric_hunter_head.vmdl"
+	}
+	"12802"
+	{
+		"name"									"Club of the Grey Wastes"
+		"prefab"								"wearable"
+		"creation_date"							"2018-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/items/ogre_magi/frostivus2018_ogre_prehistoric_hunter_weapon/frostivus2018_ogre_prehistoric_hunter_weapon"
+		"item_name"								"#DOTA_Item_Club_of_the_Grey_Wastes"
+		"item_rarity"							"rare"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"model_player"							"models/items/ogre_magi/frostivus2018_ogre_prehistoric_hunter_weapon/frostivus2018_ogre_prehistoric_hunter_weapon.vmdl"
+	}
+	"13014"
+	{
+		"name"									"Taunt: Call It What You Will"
+		"prefab"								"taunt"
+		"creation_date"							"2020-05-25"
+		"hide_tradecraftdelete"					"1"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/taunts/dota_icon_taunt_ogre_magi_ti10"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Call_It_What_You_Will"
+		"item_name"								"#DOTA_Item_Taunt_Call_It_What_You_Will"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_TI10_Limited_Tradeability"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+			"not marketable"
+			{
+				"attribute_class"				"not marketable"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"ti10_taunt"
+				"style"							"0"
+				"gesture"						"1"
+			}
+		}
+		"reward_can_be_shown_in_toast"			"1"
+	}
+	"13670"
+	{
+		"name"									"Flockheart's Gamble"
+		"prefab"								"wearable"
+		"creation_date"							"2019-12-18"
+		"image_inventory"						"econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_head"
+		"item_description"						"#DOTA_Item_Desc_Flockhearts_Gamble"
+		"item_name"								"#DOTA_Item_Flockhearts_Gamble"
+		"item_rarity"							"arcana"
+		"item_slot"								"head"
+		"model_player"							"models/items/ogre_magi/ogre_arcana/ogre_magi_arcana_head.vmdl"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Style_Ogre_Magi_Arcana_Head_Item_Style0"
+					"skin"						"0"
+					"alternate_icon"			"0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Style_Ogre_Magi_Arcana_Head_Item_Style1"
+					"skin"						"1"
+					"alternate_icon"			"1"
+					"unlock"
+					{
+						"gem"
+						{
+							"def_index"			"3026"
+							"type_field"		"strange_type"
+							"type_value"		"266"
+							"unlock_field"		"strange_value"
+							"unlock_value"		"500"
+						}
+					}
+				}
+			}
+			"asset_modifier"
+			{
+				"type"							"arcana_level"
+				"level"							"1"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"arcana_level"
+				"level"							"2"
+				"style"							"1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"buff_modifier"
+				"modifier"						"modifier_ogre_magi_arcana"
+			}
+			"asset_modifier3"
+			{
+				"type"							"entity_model"
+				"asset"							"npc_dota_hero_ogre_magi"
+				"modifier"						"models/items/ogre_magi/ogre_arcana/ogre_magi_arcana.vmdl"
+			}
+			"asset_modifier4"
+			{
+				"type"							"hero_scale"
+				"asset"							"npc_dota_hero_ogre_magi"
+				"ModelScale"					"0.850000"
+				"VersusScale"					"0.767700"
+				"LoadoutScale"					"0.795200"
+				"SpectatorLoadoutScale"			"0.804500"
+			}
+			"asset_modifier5"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"arcana"
+			}
+			"asset_modifier6"
+			{
+				"type"							"healthbar_offset"
+				"offset"						"250"
+			}
+			"asset_modifier7"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ogre_magi/ogre_magi_fireblast.vpcf"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_fireblast.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier8"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ogre_magi/ogre_magi_fireblast_cast.vpcf"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_fireblast_cast.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier9"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ogre_magi/ogre_magi_ignite_cast.vpcf"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_ignite_cast.vpcf"
+			}
+			"asset_modifier10"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ogre_magi/ogre_magi_ignite.vpcf"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_ignite.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier11"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ogre_magi/ogre_magi_ignite_debuff.vpcf"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_ignite_debuff.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier12"
+			{
+				"type"							"particle"
+				"asset"							"particles/items2_fx/hand_of_midas.vpcf"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_hand_of_midas.vpcf"
+			}
+			"asset_modifier13"
+			{
+				"type"							"particle"
+				"asset"							"particles/generic_gameplay/generic_stunned.vpcf"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_stunned.vpcf"
+			}
+			"asset_modifier14"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ogre_magi/ogre_magi_unr_fireblast.vpcf"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_unrefined_fireblast.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier15"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_ambient.vpcf"
+				"style"							"0"
+			}
+			"skip_model_combine"				"1"
+			"asset_modifier16"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ogre_magi/ogre_magi_loadout.vpcf"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_loadout_spawn_only.vpcf"
+			}
+			"asset_modifier17"
+			{
+				"type"							"model_skin"
+				"style"							"0"
+				"skin"							"0"
+			}
+			"asset_modifier18"
+			{
+				"type"							"model_skin"
+				"style"							"1"
+				"skin"							"1"
+			}
+			"asset_modifier19"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/ogre_magi/ogre_arcana/ogre_magi_arcana_tail.vmdl"
+				"style"							"0"
+			}
+			"asset_modifier20"
+			{
+				"type"							"additional_wearable"
+				"asset"							"models/items/ogre_magi/ogre_arcana/ogre_magi_arcana_tail_style1.vmdl"
+				"style"							"1"
+			}
+			"asset_modifier21"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ogre_magi/ogre_magi_ignite.vpcf"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_ignite_secondstyle.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier22"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_secondstyle_ambient.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier23"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ogre_magi/ogre_magi_ignite_debuff.vpcf"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_ignite_secondstyle_debuff.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier24"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ogre_magi/ogre_magi_fireblast.vpcf"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_secondstyle_fireblast.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier25"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ogre_magi/ogre_magi_fireblast_cast.vpcf"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_secondstyle_fireblast_cast.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier26"
+			{
+				"type"							"portrait_background_model"
+				"asset"							"models/items/ogre_magi/ogre_arcana/pedestal_ogre_arcana.vmdl"
+			}
+			"asset_modifier27"
+			{
+				"type"							"ability_icon"
+				"asset"							"ogre_magi_fireblast"
+				"modifier"						"ogre_magi/arcana/ogre_magi_fireblast_arcana"
+				"style"							"0"
+			}
+			"asset_modifier28"
+			{
+				"type"							"ability_icon"
+				"asset"							"ogre_magi_bloodlust"
+				"modifier"						"ogre_magi/arcana/ogre_magi_bloodlust_arcana"
+				"style"							"0"
+			}
+			"asset_modifier29"
+			{
+				"type"							"ability_icon"
+				"asset"							"ogre_magi_ignite"
+				"modifier"						"ogre_magi/arcana/ogre_magi_ignite_arcana"
+				"style"							"0"
+			}
+			"asset_modifier30"
+			{
+				"type"							"ability_icon"
+				"asset"							"ogre_magi_unrefined_fireblast"
+				"modifier"						"ogre_magi/arcana/ogre_magi_unrefined_fireblast_arcana"
+				"style"							"0"
+			}
+			"asset_modifier31"
+			{
+				"type"							"ability_icon"
+				"asset"							"ogre_magi_multicast"
+				"modifier"						"ogre_magi/arcana/ogre_magi_multicast_arcana"
+				"style"							"0"
+			}
+			"asset_modifier32"
+			{
+				"type"							"inventory_icon"
+				"asset"							"hand_of_midas"
+				"modifier"						"hand_of_midas_ogre_arcana"
+			}
+			"asset_modifier33"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ogre_magi/ogre_magi_unr_fireblast.vpcf"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_unrefined_fireblast_secondstyle.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier34"
+			{
+				"type"							"icon_replacement_hero"
+				"asset"							"npc_dota_hero_ogre_magi"
+				"modifier"						"npc_dota_hero_ogre_magi_alt1"
+				"force_display"					"1"
+				"style"							"0"
+			}
+			"asset_modifier35"
+			{
+				"type"							"icon_replacement_hero"
+				"asset"							"npc_dota_hero_ogre_magi"
+				"modifier"						"npc_dota_hero_ogre_magi_alt2"
+				"force_display"					"1"
+				"style"							"1"
+			}
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_head"
+				}
+				"1"
+				{
+					"icon_path"					"econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_head_style1"
+				}
+			}
+			"asset_modifier36"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_loadout_dustpoof.vpcf"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_loadout_dustpoof_secondstyle.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier37"
+			{
+				"type"							"icon_replacement_hero_minimap"
+				"asset"							"npc_dota_hero_ogre_magi"
+				"modifier"						"npc_dota_hero_ogre_magi_alt1"
+				"style"							"0"
+				"force_display"					"0"
+			}
+			"asset_modifier38"
+			{
+				"type"							"icon_replacement_hero_minimap"
+				"asset"							"npc_dota_hero_ogre_magi"
+				"modifier"						"npc_dota_hero_ogre_magi_alt2"
+				"style"							"1"
+				"force_display"					"1"
+			}
+			"asset_modifier39"
+			{
+				"type"							"ability_icon"
+				"asset"							"ogre_magi_fireblast"
+				"modifier"						"ogre_magi/arcana/ogre_magi_fireblast_arcana_alt1"
+				"style"							"1"
+			}
+			"asset_modifier40"
+			{
+				"type"							"ability_icon"
+				"asset"							"ogre_magi_bloodlust"
+				"modifier"						"ogre_magi/arcana/ogre_magi_bloodlust_arcana_alt2"
+				"style"							"1"
+			}
+			"asset_modifier41"
+			{
+				"type"							"ability_icon"
+				"asset"							"ogre_magi_ignite"
+				"modifier"						"ogre_magi/arcana/ogre_magi_ignite_arcana_alt1"
+				"style"							"1"
+			}
+			"asset_modifier42"
+			{
+				"type"							"ability_icon"
+				"asset"							"ogre_magi_unrefined_fireblast"
+				"modifier"						"ogre_magi/arcana/ogre_magi_unrefined_fireblast_arcana_alt1"
+				"style"							"1"
+			}
+			"asset_modifier43"
+			{
+				"type"							"ability_icon"
+				"asset"							"ogre_magi_multicast"
+				"modifier"						"ogre_magi/arcana/ogre_magi_multicast_arcana_alt1"
+				"style"							"1"
+			}
+			"asset_modifier44"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/ogre_magi/ogre_ti10_taunt/ogre_taunt_ambient.vpcf"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_ti10_taunt/ogre_arcana_taunt_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier45"
+			{
+				"type"							"particle"
+				"asset"							"particles/econ/items/ogre_magi/ogre_ti10_taunt/ogre_arcana_taunt_ambient.vpcf"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_ti10_taunt/ogre_arcana_taunt_sec_style_ambient.vpcf"
+				"style"							"1"
+			}
+			"asset_modifier46"
+			{
+				"type"							"model"
+				"asset"							"models/items/ogre_magi/ogre_magi_enter_the_dragon_arms/ogre_magi_enter_the_dragon_arms.vmdl"
+				"modifier"						"models/items/ogre_magi/ogre_magi_enter_the_dragon_arms/om_arcana_cc_refit_arms.vmdl"
+			}
+			"asset_modifier47"
+			{
+				"type"							"model"
+				"asset"							"models/items/ogre_magi/ogre_magi_enter_the_dragon_back/ogre_magi_enter_the_dragon_back.vmdl"
+				"modifier"						"models/items/ogre_magi/ogre_magi_enter_the_dragon_back/om_arcana_cc_refit_back.vmdl"
+			}
+			"asset_modifier48"
+			{
+				"type"							"model"
+				"asset"							"models/items/ogre_magi/ogre_magi_enter_the_dragon_belt/ogre_magi_enter_the_dragon_belt.vmdl"
+				"modifier"						"models/items/ogre_magi/ogre_magi_enter_the_dragon_belt/om_arcana_cc_refit_belt.vmdl"
+			}
+		}
+	}
+	"18097"
+	{
+		"name"									"Pyrexae Polymorph Perfected - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/ogre_magi/ogre_magi_enter_the_dragon_weapon/ogre_magi_enter_the_dragon_weapon"
+		"item_name"								"#DOTA_Item_Pyrexae_Polymorph_Perfected__Weapon"
+		"item_rarity"							"mythical"
+		"model_player"							"models/items/ogre_magi/ogre_magi_enter_the_dragon_weapon/ogre_magi_enter_the_dragon_weapon.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_ogre_magi/ogre_magi_weapon.vpcf"
+				"modifier"						"particles/error/null.vpcf"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_2022_cc/ogre_2022_cc_weapon.vpcf"
+			}
+		}
+	}
+	"18098"
+	{
+		"name"									"Pyrexae Polymorph Perfected - Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/ogre_magi/ogre_magi_enter_the_dragon_head/ogre_magi_enter_the_dragon_head"
+		"item_name"								"#DOTA_Item_Pyrexae_Polymorph_Perfected__Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/ogre_magi/ogre_magi_enter_the_dragon_head/ogre_magi_enter_the_dragon_head.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"18099"
+	{
+		"name"									"Pyrexae Polymorph Perfected - Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/ogre_magi/ogre_magi_enter_the_dragon_belt/ogre_magi_enter_the_dragon_belt"
+		"item_name"								"#DOTA_Item_Pyrexae_Polymorph_Perfected__Belt"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"model_player"							"models/items/ogre_magi/ogre_magi_enter_the_dragon_belt/ogre_magi_enter_the_dragon_belt.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_2022_cc/ogre_2022_cc_belt.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"18100"
+	{
+		"name"									"Pyrexae Polymorph Perfected - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/ogre_magi/ogre_magi_enter_the_dragon_back/ogre_magi_enter_the_dragon_back"
+		"item_name"								"#DOTA_Item_Pyrexae_Polymorph_Perfected__Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/ogre_magi/ogre_magi_enter_the_dragon_back/ogre_magi_enter_the_dragon_back.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"18101"
+	{
+		"name"									"Pyrexae Polymorph Perfected - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/ogre_magi/ogre_magi_enter_the_dragon_arms/ogre_magi_enter_the_dragon_arms"
+		"item_name"								"#DOTA_Item_Pyrexae_Polymorph_Perfected__Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"model_player"							"models/items/ogre_magi/ogre_magi_enter_the_dragon_arms/ogre_magi_enter_the_dragon_arms.vmdl"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/ogre_magi/ogre_2022_cc/ogre_2022_cc_arm_stuffing.vpcf"
+			}
+			"skip_model_combine"				"1"
+		}
+	}
+	"18534"
+	{
+		"name"									"Stonebreak Excavators - Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-01"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/ogre_magi/aghs_bp_2021_ogre_magi_weapon/aghs_bp_2021_ogre_magi_weapon1"
+		"item_name"								"#DOTA_Item_Stonebreak_Excavators__Weapon"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Weapon"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/ogre_magi/ti8_ogre_crypt_treasure_hunting_team_weapon/ti8_ogre_crypt_treasure_hunting_team_weapon.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"18535"
+	{
+		"name"									"Stonebreak Excavators - Heads"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-01"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/ogre_magi/aghs_bp_2021_ogre_magi_head/aghs_bp_2021_ogre_magi_head1"
+		"item_name"								"#DOTA_Item_Stonebreak_Excavators__Heads"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/ogre_magi/ti8_ogre_crypt_treasure_hunting_team_head/ti8_ogre_crypt_treasure_hunting_team_head.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"18536"
+	{
+		"name"									"Stonebreak Excavators - Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-01"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/ogre_magi/aghs_bp_2021_ogre_magi_belt/aghs_bp_2021_ogre_magi_belt1"
+		"item_name"								"#DOTA_Item_Stonebreak_Excavators__Belt"
+		"item_rarity"							"mythical"
+		"item_slot"								"belt"
+		"item_type_name"						"#DOTA_WearableType_Belt"
+		"match_cycle_to_parent"					"0"
+		"model_player"							"models/items/ogre_magi/ti8_ogre_crypt_treasure_hunting_team_belt/ti8_ogre_crypt_treasure_hunting_team_belt.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"18537"
+	{
+		"name"									"Stonebreak Excavators - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-01"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/ogre_magi/aghs_bp_2021_ogre_magi_back/aghs_bp_2021_ogre_magi_back_agh1"
+		"item_name"								"#DOTA_Item_Stonebreak_Excavators__Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/ogre_magi/ti8_ogre_crypt_treasure_hunting_team_back/ti8_ogre_crypt_treasure_hunting_team_back_agh.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"18538"
+	{
+		"name"									"Stonebreak Excavators - Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-11-01"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/items/ogre_magi/aghs_bp_2021_ogre_magi_arms/aghs_bp_2021_ogre_magi_arms"
+		"item_name"								"#DOTA_Item_Stonebreak_Excavators__Arms"
+		"item_rarity"							"mythical"
+		"item_slot"								"arms"
+		"item_type_name"						"#DOTA_WearableType_Arms"
+		"model_player"							"models/items/ogre_magi/ti8_ogre_crypt_treasure_hunting_team_arms/ti8_ogre_crypt_treasure_hunting_team_arms.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"skin"								"1"
+		}
+	}
+	"19370"
+	{
+		"name"									"Adventurers of Fortune Arms"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/ogre_magi/adventurers_of_fortune_arms/adventurers_of_fortune_arms"
+		"item_name"								"#DOTA_Item_Vote_Only_Adventurers_of_Fortune_Arms"
+		"item_slot"								"arms"
+		"model_player"							"models/items/ogre_magi/adventurers_of_fortune_arms/adventurers_of_fortune_arms.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19371"
+	{
+		"name"									"Adventurers of Fortune Back"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/ogre_magi/adventurers_of_fortune_back/adventurers_of_fortune_back"
+		"item_name"								"#DOTA_Item_Vote_Only_Adventurers_of_Fortune_Back"
+		"item_slot"								"back"
+		"model_player"							"models/items/ogre_magi/adventurers_of_fortune_back/adventurers_of_fortune_back.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19372"
+	{
+		"name"									"Adventurers of Fortune Belt"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/ogre_magi/adventurers_of_fortune_belt/adventurers_of_fortune_belt"
+		"item_name"								"#DOTA_Item_Vote_Only_Adventurers_of_Fortune_Belt"
+		"item_slot"								"belt"
+		"model_player"							"models/items/ogre_magi/adventurers_of_fortune_belt/adventurers_of_fortune_belt.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"19373"
+	{
+		"name"									"Adventurers of Fortune Head"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/ogre_magi/adventurers_of_fortune_head/adventurers_of_fortune_head"
+		"item_name"								"#DOTA_Item_Vote_Only_Adventurers_of_Fortune_Head"
+		"item_slot"								"head"
+		"model_player"							"models/items/ogre_magi/adventurers_of_fortune_head/adventurers_of_fortune_head.vmdl"
+		"workshop_accepted"						"0"
+		"visuals"
+		{
+			"styles"
+			{
+				"0"
+				{
+					"name"						"#DOTA_Vote_Only_Style_Adventurers_of_Fortune_Head_0"
+				}
+				"1"
+				{
+					"name"						"#DOTA_Vote_Only_Style_Adventurers_of_Fortune_Head_1"
+					"model_player"				"models/items/ogre_magi/adventurers_of_fortune_head_v2/adventurers_of_fortune_head_v2.vmdl"
+				}
+			}
+		}
+	}
+	"19374"
+	{
+		"name"									"Adventurers of Fortune Weapon"
+		"prefab"								"wearable"
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/items/ogre_magi/adventurers_of_fortune_weapon/adventurers_of_fortune_weapon"
+		"item_name"								"#DOTA_Item_Vote_Only_Adventurers_of_Fortune_Weapon"
+		"model_player"							"models/items/ogre_magi/adventurers_of_fortune_weapon/adventurers_of_fortune_weapon.vmdl"
+		"workshop_accepted"						"0"
+	}
+	"20234"
+	{
+		"name"									"Ancestral Luck Set"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Flaming Scepter of Ancestral Luck"	"1"
+			"Bracer and Band of Ancestral Luck"	"1"
+			"Mantle of Ancestral Luck"			"1"
+			"Belt of Ancestral Luck"			"1"
+			"Masks of Ancestral Luck"			"1"
+		}
+		"creation_date"							"2013-08-14"
+		"image_inventory"						"econ/sets/DOTA_Item_Ancestral_Luck_Set"
+		"item_description"						"#DOTA_Item_Desc_Ancestral_Luck_Set"
+		"item_name"								"#DOTA_Item_Ancestral_Luck_Set"
+		"item_rarity"							"rare"
+		"price_info"
+		{
+			"bucket"							"Normal"
+			"class"								"Rare"
+			"category_tags"						"Bundles"
+			"date"								"8/14/2013"
+			"bundle"							"1"
+			"price"								"399"
+		}
+	}
+	"20575"
+	{
+		"name"									"Ancestral Fortune "
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Flaming Scepter of Ancestral Luck"	"1"
+			"Bracer and Band of Ancestral Luck"	"1"
+			"Mantle of Ancestral Luck"			"1"
+			"Belt of Ancestral Luck"			"1"
+			"Masks of Ancestral Luck"			"1"
+			"Ancestral Luck Loading Screen"		"1"
+		}
+		"creation_date"							"2014-06-23"
+		"image_inventory"						"econ/sets/DOTA_Item_Ancestral_Luck_Set"
+		"item_description"						"#DOTA_Item_Desc_Ancestral_Fortune_"
+		"item_name"								"#DOTA_Item_Ancestral_Fortune_"
+		"item_quality"							"genuine"
+		"item_rarity"							"rare"
+	}
+	"20734"
+	{
+		"name"									"Antipodean Allies"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Loading screen of the Antipodeans"	"1"
+			"Pauldron and Cloak of the Antipodeans""1"
+			"Shield and Bracelet of the Antipodeans""1"
+			"Belt of the Antipodeans"			"1"
+			"Helmet and hood of the Antipodeans""1"
+			"Burning scepter of the Antipodeans""1"
+		}
+		"creation_date"							"2015-02-06"
+		"image_inventory"						"econ/loading_screens/antipodeanloadscreen"
+		"item_description"						"#DOTA_Item_Desc_Antipodeans_Set"
+		"item_name"								"#DOTA_Item_Antipodean_Allies"
+		"item_rarity"							"mythical"
+		"item_type_name"						"#DOTA_WearableType_Item_set"
+	}
+	"20879"
+	{
+		"name"									"Veil of Pagus"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Veil of Pagus Loading Screen"		"1"
+			"Club of Pagus"						"1"
+			"Cloak of Pagus"					"1"
+			"Hood of Pagus"						"1"
+			"Belt of Pagus"						"1"
+			"Bracers of Pagus"					"1"
+		}
+		"creation_date"							"2016-03-16"
+		"image_inventory"						"econ/loading_screens/fortunes_veil_fortunes_veil_loading_screen"
+		"item_description"						"#DOTA_Item_Desc_Veil_of_Pagus"
+		"item_name"								"#DOTA_Item_Veil_of_Pagus"
+		"item_rarity"							"rare"
+	}
+	"21103"
+	{
+		"name"									"Shoreline Sapper"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Shovel of the Shoreline Sapper"	"1"
+			"Floathide Bands of the Shoreline Sapper""1"
+			"Back Buoy of the Shoreline Sapper"	"1"
+			"Floathide Belt of the Shoreline Sapper""1"
+			"Headgear of the Shoreline Sapper"	"1"
+		}
+		"creation_date"							"2017-04-19"
+		"image_inventory"						"econ/sets/DOTA_Item_Shoreline_Sapper"
+		"item_description"						"#DOTA_Item_Desc_Shoreline_Sapper"
+		"item_name"								"#DOTA_Item_Shoreline_Sapper"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1535796000"
+			}
+		}
+		"visuals"
+		{
+			"alternate_icons"
+			{
+				"0"
+				{
+					"icon_path"					"econ/sets/DOTA_Item_Shoreline_Sapper"
+				}
+				"1"
+				{
+					"icon_path"					"econ/sets/DOTA_Item_Shoreline_Sapper_style1"
+				}
+			}
+		}
+	}
+	"21256"
+	{
+		"name"									"Flockheart's Gamble Bundle"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Voice of Flockheart's Gamble"		"1"
+			"Flockheart's Gamble"				"1"
+		}
+		"creation_date"							"2019-12-18"
+		"image_inventory"						"econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_head"
+		"item_description"						"#DOTA_Item_Desc_Flockhearts_Gamble_Bundle"
+		"item_name"								"#DOTA_Item_Flockhearts_Gamble_Bundle"
+		"item_rarity"							"arcana"
+		"price_info"
+		{
+			"category_tags"						"Bundles"
+			"date"								"12/17/2019"
+			"bundle"							"1"
+			"price"								"3499"
+		}
+	}
+	"21300"
+	{
+		"name"									"Tales of the Grey Wastes"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Club of the Grey Wastes"			"1"
+			"Heads of the Grey Wastes"			"1"
+			"Belt of the Grey Wastes"			"1"
+			"Cape of the Grey Wastes"			"1"
+			"Bracer of the Grey Wastes"			"1"
+		}
+		"creation_date"							"2018-12-02"
+		"event_id"								"EVENT_ID_FROSTIVUS_2018"
+		"image_inventory"						"econ/sets/DOTA_Item_Frostivus2018_Ogre_Prehistoric_Hunter"
+		"item_description"						"#DOTA_Item_Desc_Tales_of_the_Grey_Wastes"
+		"item_name"								"#DOTA_Item_Tales_of_the_Grey_Wastes"
+		"item_rarity"							"rare"
+	}
+	"21743"
+	{
+		"name"									"Pyrexae Polymorph Perfected"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Pyrexae Polymorph Perfected - Arms""1"
+			"Pyrexae Polymorph Perfected - Back""1"
+			"Pyrexae Polymorph Perfected - Belt""1"
+			"Pyrexae Polymorph Perfected - Head""1"
+			"Pyrexae Polymorph Perfected - Weapon""1"
+		}
+		"creation_date"							"2021-08-17"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/sets/DOTA_Item_Pyrexae_Polymorph_Perfected_Bundle"
+		"item_name"								"#DOTA_Item_Pyrexae_Polymorph_Perfected"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+	"21872"
+	{
+		"name"									"Adventurers of Fortune"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Adventurers of Fortune Arms"		"1"
+			"Adventurers of Fortune Back"		"1"
+			"Adventurers of Fortune Belt"		"1"
+			"Adventurers of Fortune Head"		"1"
+			"Adventurers of Fortune Weapon"		"1"
+		}
+		"creation_date"							"2021-08-18"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Vote_Only_Adventurers_of_Fortune"
+		"workshop_accepted"						"0"
+	}
+	"22281"
+	{
+		"name"									"Stonebreak Excavators"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Stonebreak Excavators - Arms"		"1"
+			"Stonebreak Excavators - Back"		"1"
+			"Stonebreak Excavators - Belt"		"1"
+			"Stonebreak Excavators - Heads"		"1"
+			"Stonebreak Excavators - Weapon"	"1"
+		}
+		"creation_date"							"2021-11-05"
+		"event_id"								"EVENT_ID_FALL_2021"
+		"image_inventory"						"econ/sets/DOTA_Item_Aghs_BP_2021_Ogre_Magi"
+		"item_name"								"#DOTA_Item_Stonebreak_Excavators"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1672567200"
+			}
+		}
+	}
+}

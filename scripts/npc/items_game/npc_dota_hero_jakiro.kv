@@ -1,0 +1,796 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Items"
+{
+	"631"
+	{
+		"name"									"Jakiro's Ambient Effects"
+		"prefab"								"default_item"
+		"creation_date"							"2017-01-31"
+		"image_inventory"						"econ/testitem_slot_empty"
+		"item_name"								"#DOTA_Item_Jakiros_Ambient_Effects"
+		"item_slot"								"ambient_effects"
+		"item_type_name"						"#DOTA_WearableType_New_Item"
+		"particle_folder"						"particles/units/heroes/hero_jakiro"
+		"visuals"
+		{
+			"asset_modifier0"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/units/heroes/hero_jakiro/jakiro_ambient.vpcf"
+				"system"						"particles/units/heroes/hero_jakiro/jakiro_ambient.vpcf"
+				"attach_type"					"absorigin_follow"
+				"attach_entity"					"parent"
+				"control_points"
+				{
+					"0"
+					{
+						"control_point_index"	"1"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack1"
+					}
+					"1"
+					{
+						"control_point_index"	"2"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_attack2"
+					}
+					"2"
+					{
+						"control_point_index"	"3"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_ice_eye_l"
+					}
+					"3"
+					{
+						"control_point_index"	"4"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_ice_eye_r"
+					}
+					"4"
+					{
+						"control_point_index"	"5"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_fire_eye_r"
+					}
+					"5"
+					{
+						"control_point_index"	"6"
+						"attach_type"			"point_follow"
+						"attachment"			"attach_fire_eye_l"
+					}
+				}
+			}
+		}
+	}
+	"633"
+	{
+		"name"									"Jakiro's Fire Head"
+		"prefab"								"default_item"
+		"creation_date"							"2017-03-08"
+		"image_inventory"						"econ/heroes/jakiro/jakiro_head_left"
+		"item_description"						"#DOTA_Item_Desc_Jakiros_Left_Head"
+		"item_name"								"#DOTA_Item_Jakiros_Fire_Head"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Left_Head"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"634"
+	{
+		"name"									"Jakiro's Ice Head"
+		"prefab"								"default_item"
+		"creation_date"							"2017-03-09"
+		"image_inventory"						"econ/heroes/jakiro/jakiro_head_right"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Jakiros_Left_Head"
+		"item_name"								"#DOTA_Item_Jakiros_Ice_Head"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_RightHead"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"635"
+	{
+		"name"									"Jakiro's Wings"
+		"prefab"								"default_item"
+		"creation_date"							"2017-03-09"
+		"image_inventory"						"econ/heroes/jakiro/jakiro_wings"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Jakiros_Right_Head"
+		"item_name"								"#DOTA_Item_Jakiros_Wings"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Wings"
+		"model_player"							"models/heroes/jakiro/jakiro_wings.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"636"
+	{
+		"name"									"Jakiro's Tail"
+		"prefab"								"default_item"
+		"creation_date"							"2017-03-09"
+		"image_inventory"						"econ/heroes/jakiro/jakiro_armor"
+		"item_description"						"#DOTA_Item_Desc_Copy_of_Jakiros_Wings"
+		"item_name"								"#DOTA_Item_Jakiros_Tail"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_Armor"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"7820"
+	{
+		"name"									"Pyrexaec Floe"
+		"prefab"								"wearable"
+		"creation_date"							"2017-07-17"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/items/jakiro/jakiro_ti7_immortal_head/jakiro_ti7_immortal_head_ice"
+		"item_description"						"#DOTA_Item_Desc_Pyrexaec_Floe"
+		"item_name"								"#DOTA_Item_Pyrexaec_Floe"
+		"item_rarity"							"immortal"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_RightHead"
+		"model_player"							"models/items/jakiro/jakiro_ti7_immortal_head/jakiro_ti7_immortal_head_ice.vmdl"
+		"static_attributes"
+		{
+			"giftable"
+			{
+				"attribute_class"				"giftable"
+				"value"							"1"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"2"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ALL"
+				"modifier"						"ti7"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_jakiro/jakiro_ice_path.vpcf"
+				"modifier"						"particles/econ/items/jakiro/jakiro_ti7_immortal_head/jakiro_ti7_immortal_head_ice_path.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_jakiro/jakiro_ice_path_b.vpcf"
+				"modifier"						"particles/econ/items/jakiro/jakiro_ti7_immortal_head/jakiro_ti7_immortal_head_ice_path_b.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier3"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/jakiro/jakiro_ti7_immortal_head/jakiro_ti7_immortal_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier4"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Jakiro.IcePath"
+				"modifier"						"Hero_Jakiro.IcePath.ti7"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier5"
+			{
+				"type"							"ability_icon"
+				"asset"							"jakiro_ice_path"
+				"modifier"						"jakiro/immortal/jakiro_ice_path"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+			"asset_modifier6"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_jakiro/jakiro_ambient.vpcf"
+				"modifier"						"particles/econ/items/jakiro/jakiro_ti7_immortal_head/jakiro_ti7_immortal_body_ambient.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""2"
+			}
+		}
+	}
+	"9213"
+	{
+		"name"									"Taunt: Fluid Mechanics"
+		"prefab"								"taunt"
+		"creation_date"							"2017-05-04"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2017"
+		"image_inventory"						"econ/taunts/dota_icon_taunt_jakiro_cork_screw"
+		"item_description"						"#DOTA_Item_Desc_Taunt_Fluid_Mechanics"
+		"item_name"								"#DOTA_Item_Taunt_Fluid_Mechanics"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1535796000"
+			}
+		}
+		"visuals"
+		{
+			"asset_modifier"
+			{
+				"type"							"activity"
+				"asset"							"ACT_DOTA_TAUNT"
+				"modifier"						"corkscrew_gesture"
+				"gesture"						"1"
+				"style"							"0"
+			}
+		}
+	}
+	"9262"
+	{
+		"name"									"Wings of Elder Convergence"
+		"prefab"								"wearable"
+		"creation_date"							"2017-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/jakiro/elder_dragon_wingslot/elder_dragon_wingslot"
+		"item_name"								"#DOTA_Item_Wings_of_Elder_Convergence"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_wings"
+		"model_player"							"models/items/jakiro/elder_dragon_wingslot/elder_dragon_wingslot.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9296"
+	{
+		"name"									"Heat of Elder Convergence"
+		"prefab"								"wearable"
+		"creation_date"							"2017-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/jakiro/elder_blood_elderdragon_fire_headslot_/elder_blood_elderdragon_fire_headslot_"
+		"item_name"								"#DOTA_Item_Heat_of_Elder_Convergence"
+		"item_rarity"							"rare"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_left_head"
+		"model_player"							"models/items/jakiro/elder_blood_elderdragon_fire_headslot_/elder_blood_elderdragon_fire_headslot_.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9297"
+	{
+		"name"									"Frost of Elder Convergence"
+		"prefab"								"wearable"
+		"creation_date"							"2017-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/jakiro/elder_blood_elderdragon_ice_head_slot/elder_blood_elderdragon_ice_head_slot"
+		"item_name"								"#DOTA_Item_Frost_of_Elder_Convergence"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_right_head"
+		"model_player"							"models/items/jakiro/elder_blood_elderdragon_ice_head_slot/elder_blood_elderdragon_ice_head_slot.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+		}
+	}
+	"9298"
+	{
+		"name"									"Tail of Elder Convergence"
+		"prefab"								"wearable"
+		"creation_date"							"2017-11-28"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/items/jakiro/twin_dragon_of_the_elder_blood_tail/twin_dragon_of_the_elder_blood_tail"
+		"item_name"								"#DOTA_Item_Tail_of_Elder_Convergence"
+		"item_rarity"							"rare"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_tail"
+		"model_player"							"models/items/jakiro/twin_dragon_of_the_elder_blood_tail/twin_dragon_of_the_elder_blood_tail.vmdl"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"9745"
+	{
+		"name"									"Pyrexaec Flux"
+		"prefab"								"wearable"
+		"creation_date"							"2018-06-22"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2018"
+		"image_inventory"						"econ/items/jakiro/jakiro_ti8_immortal_left_head/jakiro_ti8_immortal_left_head"
+		"item_description"						"#DOTA_Item_Desc_Pyrexaec_Flux"
+		"item_name"								"#DOTA_Item_Pyrexaec_Flux"
+		"item_rarity"							"immortal"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/jakiro/jakiro_ti8_immortal_left_head/jakiro_ti8_immortal_left_head.vmdl"
+		"static_attributes"
+		{
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1567296000"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Immortals_Exclusive_To_TI7_BattlePass_Owners"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/jakiro/jakiro_ti8_immortal_head/jakiro_ti8_head_ambient.vpcf"
+				"style"							"0"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_jakiro/jakiro_dual_breath_fire.vpcf"
+				"modifier"						"particles/econ/items/jakiro/jakiro_ti8_immortal_head/jakiro_ti8_dual_breath_fire.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_jakiro/jakiro_dual_breath_ice.vpcf"
+				"modifier"						"particles/econ/items/jakiro/jakiro_ti8_immortal_head/jakiro_ti8_dual_breath_ice.vpcf"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier3"
+			{
+				"type"							"sound"
+				"asset"							"Hero_Jakiro.DualBreath"
+				"modifier"						"Hero_Jakiro.DualBreath.TI8"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+			"asset_modifier4"
+			{
+				"type"							"ability_icon"
+				"asset"							"jakiro_dual_breath"
+				"modifier"						"jakiro/immortal/jakiro_dual_breath"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""1"
+			}
+		}
+	}
+	"13024"
+	{
+		"name"									"Tail of Chimeric Rapport"
+		"prefab"								"wearable"
+		"creation_date"							"2018-09-13"
+		"image_inventory"						"econ/items/jakiro/elemental_chimera_tail/elemental_chimera_tail"
+		"item_name"								"#DOTA_Item_Tail_of_Chimeric_Rapport"
+		"item_rarity"							"rare"
+		"item_slot"								"tail"
+		"item_type_name"						"#DOTA_WearableType_tail"
+		"model_player"							"models/items/jakiro/elemental_chimera_tail/elemental_chimera_tail.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"13025"
+	{
+		"name"									"Barding of Chimeric Rapport"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/jakiro/ti9_cache_jakiro_elemental_chimera_back/ti9_cache_jakiro_elemental_chimera_back"
+		"item_name"								"#DOTA_Item_Barding_of_Chimeric_Rapport"
+		"item_rarity"							"rare"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_Back"
+		"model_player"							"models/items/jakiro/ti9_cache_jakiro_elemental_chimera_back/ti9_cache_jakiro_elemental_chimera_back.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"13026"
+	{
+		"name"									"Icy Glare of Chimeric Rapport"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/jakiro/ti9_cache_jakiro_elemental_chimera_head/ti9_cache_jakiro_elemental_chimera_head"
+		"item_name"								"#DOTA_Item_Icy_Glare_of_Chimeric_Rapport"
+		"item_rarity"							"rare"
+		"item_slot"								"head"
+		"item_type_name"						"#DOTA_WearableType_Head"
+		"model_player"							"models/items/jakiro/ti9_cache_jakiro_elemental_chimera_head/ti9_cache_jakiro_elemental_chimera_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"13027"
+	{
+		"name"									"Molten Gaze of Chimeric Rapport"
+		"prefab"								"wearable"
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/items/jakiro/ti9_cache_jakiro_elemental_chimera_body_head/ti9_cache_jakiro_elemental_chimera_body_head"
+		"item_name"								"#DOTA_Item_Molten_Gaze_of_Chimeric_Rapport"
+		"item_rarity"							"rare"
+		"item_slot"								"body_head"
+		"item_type_name"						"#DOTA_WearableType_Body_Head"
+		"model_player"							"models/items/jakiro/ti9_cache_jakiro_elemental_chimera_body_head/ti9_cache_jakiro_elemental_chimera_body_head.vmdl"
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+		}
+	}
+	"14123"
+	{
+		"name"									"Fissured Flight - Ice Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/jakiro/volcano_head/volcano_head"
+		"item_name"								"#DOTA_Item_Fissured_Flight__Ice_Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"head"
+		"model_player"							"models/items/jakiro/volcano_head/volcano_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/jakiro/jakiro_ti10_volcano/jakiro_volcano_head_ice.vpcf"
+			}
+		}
+	}
+	"14124"
+	{
+		"name"									"Fissured Flight - Tail"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/jakiro/volcano_tail/volcano_tail"
+		"item_name"								"#DOTA_Item_Fissured_Flight__Tail"
+		"item_rarity"							"mythical"
+		"item_slot"								"tail"
+		"model_player"							"models/items/jakiro/volcano_tail/volcano_tail.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/jakiro/jakiro_ti10_volcano/jakiro_volcano_tail.vpcf"
+			}
+		}
+	}
+	"14125"
+	{
+		"name"									"Fissured Flight - Back"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/jakiro/volcano_back/volcano_back"
+		"item_name"								"#DOTA_Item_Fissured_Flight__Back"
+		"item_rarity"							"mythical"
+		"item_slot"								"back"
+		"model_player"							"models/items/jakiro/volcano_back/volcano_back.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/jakiro/jakiro_ti10_volcano/jakiro_volcano_back.vpcf"
+			}
+		}
+	}
+	"14126"
+	{
+		"name"									"Fissured Flight - Fire Head"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/items/jakiro/volcano_body_head/volcano_body_head"
+		"item_name"								"#DOTA_Item_Fissured_Flight__Fire_Head"
+		"item_rarity"							"mythical"
+		"item_slot"								"body_head"
+		"model_player"							"models/items/jakiro/volcano_body_head/volcano_body_head.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"0"
+			"asset_modifier"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/jakiro/jakiro_ti10_volcano/jakiro_volcano_head.vpcf"
+			}
+		}
+	}
+	"14949"
+	{
+		"name"									"Pyrexaec Forge"
+		"prefab"								"wearable"
+		"creation_date"							"2020-06-11"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"hide_tradecraftdelete"					"1"
+		"image_inventory"						"econ/items/jakiro/jakiro_ti10_immortal_wings/jakiro_ti10_immortal_wings"
+		"item_description"						"#DOTA_Item_Desc_jakiro_ti10_immortal_wings"
+		"item_name"								"#DOTA_Item_Pyrexaec_Forge"
+		"item_rarity"							"immortal"
+		"item_slot"								"back"
+		"item_type_name"						"#DOTA_WearableType_back"
+		"model_player"							"models/items/jakiro/jakiro_ti10_immortal_wings/jakiro_ti10_immortal_wings.vmdl"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"can_equip_as_ability_effects"
+			{
+				"attribute_class"				"can_equip_as_ability_effects"
+				"value"							"4"
+			}
+		}
+		"visuals"
+		{
+			"skip_model_combine"				"1"
+			"asset_modifier"
+			{
+				"type"							"ability_icon"
+				"asset"							"jakiro_macropyre"
+				"modifier"						"jakiro/jakiro_ti10_immortal_ability_icon/jakiro_ti10_immortal_macropyre"
+				"style"							"0"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier1"
+			{
+				"type"							"particle"
+				"asset"							"particles/units/heroes/hero_jakiro/jakiro_macropyre.vpcf"
+				"modifier"						"particles/econ/items/jakiro/jakiro_ti10_immortal/jakiro_ti10_macropyre.vpcf"
+				"apply_when_equipped_in_ability_effects_slot""4"
+			}
+			"asset_modifier2"
+			{
+				"type"							"particle_create"
+				"modifier"						"particles/econ/items/jakiro/jakiro_ti10_immortal/jakiro_ti10_immortal_ambient.vpcf"
+			}
+		}
+	}
+	"21153"
+	{
+		"name"									"Elder Convergence"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Heat of Elder Convergence"			"1"
+			"Wings of Elder Convergence"		"1"
+			"Frost of Elder Convergence"		"1"
+			"Tail of Elder Convergence"			"1"
+		}
+		"creation_date"							"2017-11-29"
+		"event_id"								"EVENT_ID_FROSTIVUS_2017"
+		"image_inventory"						"econ/sets/DOTA_Item_Frostivus_JAKIRO_Elder_Dragon_Set"
+		"item_name"								"#DOTA_Item_Elder_Convergence"
+		"item_rarity"							"rare"
+		"static_attributes"
+		{
+			"frostivus tag"
+			{
+				"attribute_class"				"frostivus_tag"
+				"value"							"2017"
+			}
+			"tradable after date"
+			{
+				"attribute_class"				"tradable_after_date"
+				"value"							"1514714400"
+			}
+		}
+	}
+	"21332"
+	{
+		"name"									"Chimeric Rapport"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Barding of Chimeric Rapport"		"1"
+			"Tail of Chimeric Rapport"			"1"
+			"Icy Glare of Chimeric Rapport"		"1"
+			"Molten Gaze of Chimeric Rapport"	"1"
+		}
+		"creation_date"							"2019-05-15"
+		"image_inventory"						"econ/sets/DOTA_Item_Chimeric_Rapport"
+		"item_name"								"#DOTA_Item_Chimeric_Rapport"
+		"item_rarity"							"rare"
+	}
+	"21500"
+	{
+		"name"									"Fissured Flight"
+		"prefab"								"bundle"
+		"bundle"
+		{
+			"Fissured Flight - Fire Head"		"1"
+			"Fissured Flight - Back"			"1"
+			"Fissured Flight - Tail"			"1"
+			"Fissured Flight - Ice Head"		"1"
+		}
+		"creation_date"							"2020-06-30"
+		"event_id"								"EVENT_ID_INTERNATIONAL_2020"
+		"image_inventory"						"econ/sets/DOTA_Item_Fissured_Flight"
+		"item_name"								"#DOTA_Item_Fissured_Flight"
+		"item_rarity"							"mythical"
+		"static_attributes"
+		{
+			"international tag"
+			{
+				"attribute_class"				"international_tag"
+				"value"							"2020"
+			}
+			"additional_tooltip_text"
+			{
+				"attribute_class"				"additional_tooltip_text"
+				"value"							"#DOTA_EconItemSet_Tooltip_Exclusive_TI10_Collectors_Cache"
+			}
+			"cannot trade"
+			{
+				"attribute_class"				"cannot_trade"
+				"value"							"1"
+			}
+		}
+	}
+}

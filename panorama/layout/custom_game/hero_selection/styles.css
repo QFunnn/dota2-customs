@@ -1,0 +1,1543 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+@define rarity_color_1: #b0c3d9;
+@define rarity_color_uncommon: #5e98d9;
+@define rarity_color_2: #4b69ff;
+@define rarity_color_3: #8847ff;
+@define rarity_color_0: #d32ce6;
+@define rarity_color_5: #eb4b4b;
+@define rarity_color_4: #e4ae39;
+@define rarity_color_arcana: #ade55c;
+@define rarity_color_seasonal: #fff34f;
+.CommonGoldNum
+{
+	font-size: 24px;
+	color: #FFCC34;
+}
+
+.CommonButtonBlue
+{
+	width: 197px;
+	height: 54px;
+	background-image: url("s2r://panorama/images/custom_game/common_resource/btnblue_png.vtex");
+}
+
+.CommonButtonBlue Label
+{
+	align: center center;
+	color: #E9E9E9;
+	font-size: 17px;
+	text-shadow: 0px 0px 1px 3 #000000;
+}
+
+.CommonButtonGrey
+{
+	width: 197px;
+	height: 54px;
+	background-image: url("s2r://panorama/images/custom_game/common_resource/btngrey_png.vtex");
+}
+
+.CommonButtonGrey Label
+{
+	align: center center;
+	color: #E9E9E9;
+	font-size: 17px;
+	text-shadow: 0px 0px 1px 3 #000000;
+}
+
+.RarityColor0
+{
+	color: rarity_color_0;
+}
+
+.RarityColor1
+{
+	color: rarity_color_1;
+}
+
+.RarityColor2
+{
+	color: rarity_color_2;
+}
+
+.RarityColor3
+{
+	color: rarity_color_3;
+}
+
+.RarityColor4
+{
+	color: rarity_color_4;
+}
+
+.RarityColor5
+{
+	color: rarity_color_5;
+}
+
+.RarityBorderColor0
+{
+	border-color: rarity_color_0;
+}
+
+.RarityBorderColor1
+{
+	border-color: rarity_color_1;
+}
+
+.RarityBorderColor2
+{
+	border-color: rarity_color_2;
+}
+
+.RarityBorderColor3
+{
+	border-color: rarity_color_3;
+}
+
+.RarityBorderColor4
+{
+	border-color: rarity_color_4;
+}
+
+.RarityBorderColor5
+{
+	border-color: rarity_color_5;
+}
+
+.RarityBGColor0
+{
+	background-color: rarity_color_0;
+}
+
+.RarityBGColor1
+{
+	background-color: rarity_color_1;
+}
+
+.RarityBGColor2
+{
+	background-color: rarity_color_2;
+}
+
+.RarityBGColor3
+{
+	background-color: rarity_color_3;
+}
+
+.RarityBGColor4
+{
+	background-color: rarity_color_4;
+}
+
+.RarityBGColor5
+{
+	background-color: rarity_color_5;
+}
+
+.RarityWashColor0
+{
+	wash-color: rarity_color_0;
+}
+
+.RarityWashColor1
+{
+	wash-color: rarity_color_1;
+}
+
+.RarityWashColor2
+{
+	wash-color: rarity_color_2;
+}
+
+.RarityWashColor3
+{
+	wash-color: rarity_color_3;
+}
+
+.RarityWashColor4
+{
+	wash-color: rarity_color_4;
+}
+
+.RarityWashColor5
+{
+	wash-color: rarity_color_5;
+}
+
+.RarityGradientColor0
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), color-stop(0.5, #ED88FF), to(#A925CA));
+}
+
+.RarityGradientColor1
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#C1C1C1), to(#768594));
+}
+
+.RarityGradientColor2
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#65B0F0), to(#254CCA));
+}
+
+.RarityGradientColor3
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#D482FF), to(#7325CA));
+}
+
+.RarityGradientColor4
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), color-stop(0.5, #FFE982), to(#CA8E25));
+}
+
+.RarityGradientColor5
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), color-stop(0.5, #FF9F70), to(#D53333));
+}
+
+.HudRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+.HeroRepick
+{
+	width: 26px;
+	height: 26px;
+	margin-left: 2px;
+	margin-right: 2px;
+	background-image: url("s2r://panorama/images/control_icons/refresh_psd.vtex");
+	background-size: 100%;
+}
+
+#PhaseTitle
+{
+	width: 436px;
+	height: 100%;
+	margin-right: 30px;
+}
+
+#PhaseTitle #PhaseTitle_text
+{
+	margin-top: 20px;
+	color: white;
+	font-size: 20px;
+	align: center top;
+	text-overflow: shrink;
+}
+
+#PhaseTitle #PhaseTitle_time
+{
+	color: white;
+	font-size: 46px;
+	margin-bottom: 20px;
+	align: center bottom;
+}
+
+#PlayerSelect
+{
+	width: fit-children;
+	align: center bottom;
+	flow-children: right;
+	margin-left: 8px;
+	margin-right: 8px;
+	margin-bottom: 8px;
+}
+
+#PlayerSelect #TeamContainer
+{
+	width: fit-children;
+	height: fit-children;
+	margin-left: 19px;
+	margin-right: 19px;
+	flow-children: right;
+}
+
+#PlayerSelect #TeamContainer #PlayerHeroContainer
+{
+	height: 120px;
+}
+
+#PlayerSelect #TeamContainer #PlayerHeroContainer #PlayerHero
+{
+	horizontal-align: center;
+	background-color: pink;
+	width: 116px;
+	height: 74px;
+	flow-children: down;
+	border: 1px solid black;
+}
+
+#PlayerSelect #TeamContainer #PlayerHeroContainer #PlayerHero #PlayerColor
+{
+	width: 100%;
+	height: 10px;
+	border-bottom: 1px solid black;
+}
+
+#PlayerSelect #TeamContainer #PlayerHeroContainer #PlayerName
+{
+	align: center bottom;
+	text-overflow: shrink;
+	color: white;
+	font-size: 20px;
+}
+
+#BanPhase
+{
+	width: 100%;
+	height: 100%;
+	background-color: #000000;
+}
+
+#BanPhase #BanPhaseBG
+{
+	width: 100%;
+	height: 100%;
+}
+
+#BanPhase #BanPhaseBG #BGScene
+{
+	width: 100%;
+	height: 100%;
+}
+
+#BanPhase #Main
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	visibility: collapse;
+	opacity: 0;
+	transition-duration: 0.3s;
+	transition-property: transform, opacity;
+	transition-timing-function: ease-in-out;
+	transform: translateX(800px);
+}
+
+#BanPhase #Main.Show
+{
+	visibility: visible;
+	opacity: 1;
+	transform: translateX(0);
+}
+
+#BanPhase #Main #BanPhaseTopBar
+{
+	width: 1678px;
+	height: 140px;
+	horizontal-align: center;
+	margin-top: 30px;
+	flow-children: right;
+}
+
+#BanPhase #Main #BanPhaseTopBar #Banned
+{
+	margin-left: 30px;
+	height: 100%;
+	width: fill-parent-flow(1);
+	flow-children: right;
+	background-color: #1b1e28f2;
+	box-shadow: inset 0 0 1px #62758B;
+}
+
+#BanPhase #Main #BanPhaseTopBar #Banned #BannedTitle
+{
+	width: 120px;
+	height: 100%;
+}
+
+#BanPhase #Main #BanPhaseTopBar #Banned #BannedTitle #BannedTitle_text
+{
+	width: 120px;
+	height: 32px;
+	font-size: 28px;
+	align: center center;
+	color: #ACBDE0;
+	text-shadow: 1px 1px 1px 2 #101010;
+	text-overflow: shrink;
+}
+
+#BanPhase #Main #BanPhaseTopBar #Banned #BannedMain
+{
+	width: 1048px;
+	height: 116px;
+	vertical-align: center;
+	flow-children: right-wrap;
+	background-color: #0a0a0a;
+}
+
+#BanPhase #Main #BanPhaseTopBar #Banned #BannedMain #BannedAbility
+{
+	width: 58px;
+	height: 58px;
+}
+
+#BanPhase #Main #BanPhaseTopBar #Banned #BannedMain #BannedAbility #BannedAbility_img
+{
+	width: 100%;
+	height: 100%;
+	margin: 4px;
+}
+
+#BanPhase #Main #BanPhaseTopBar #Banned #BannedMain #BannedAbility #BannedAbility_img:hover
+{
+	brightness: 1.5;
+}
+
+#BanPhase #Main #SelectPhaseMain
+{
+	width: 1678px;
+	height: fit-children;
+	horizontal-align: center;
+	flow-children: right;
+	padding-left: 20px;
+}
+
+#BanPhase #Main #SelectPhaseMain #HeroInfo
+{
+	width: 400px;
+}
+
+#BanPhase #Main #BanPhaseMain
+{
+	width: 1778px;
+	height: fit-children;
+	horizontal-align: center;
+	flow-children: right;
+}
+
+#BanPhase #Main #BanPhaseMain #HeroList
+{
+	width: 1304px;
+	height: 604px;
+	margin-left: 26px;
+	margin-top: 20px;
+	flow-children: right-wrap;
+}
+
+#BanPhase #Main #BanPhaseMain #HeroList #HeroGroup
+{
+	width: 48%;
+	height: 48%;
+	margin-bottom: 8px;
+	flow-children: down;
+}
+
+#BanPhase #Main #BanPhaseMain #HeroList #HeroGroup #HeroGroupIcon
+{
+	width: fit-children;
+	height: 20px;
+	padding-left: 4px;
+	flow-children: right;
+}
+
+#BanPhase #Main #BanPhaseMain #HeroList #HeroGroup #HeroGroupIcon #HeroGroupIcon_img
+{
+	width: 18px;
+	height: 18px;
+	vertical-align: center;
+}
+
+#BanPhase #Main #BanPhaseMain #HeroList #HeroGroup #HeroGroupIcon #HeroGroupIcon_text
+{
+	height: 100%;
+	color: #808fa6;
+	text-shadow: 2px 2px 4px #00000044;
+	font-size: 16px;
+	vertical-align: center;
+	padding-left: 4px;
+}
+
+#BanPhase #Main #BanPhaseMain #HeroList #HeroGroup #HeroGroupMain
+{
+	width: 100%;
+	height: 100%;
+	padding: 4px;
+	overflow: noclip;
+	flow-children: right-wrap;
+}
+
+#BanPhase #Main #BanPhaseMain #HeroList #HeroGroup #HeroGroupMain #HeroIconContainer
+{
+	width: 51px;
+	height: 93px;
+	overflow: noclip;
+}
+
+#BanPhase #Main #BanPhaseMain #HeroList #HeroGroup #HeroGroupMain #HeroIconContainer:hover #HeroIcon
+{
+	brightness: 1.5;
+	transform: translateY(-10px);
+	box-shadow: inset 0 0 2px #20DDFF;
+	z-index: 1;
+}
+
+#BanPhase #Main #BanPhaseMain #HeroList #HeroGroup #HeroGroupMain #HeroIconContainer:hover #HeroIcon #HeroIcon_movie
+{
+	width: 65px;
+	height: 82px;
+	overflow: noclip;
+	visibility: visible;
+	margin: 0px;
+}
+
+#BanPhase #Main #BanPhaseMain #HeroList #HeroGroup #HeroGroupMain #HeroIcon
+{
+	width: 51px;
+	height: 83px;
+	transition-duration: 0.1s;
+	transition-property: transform, brightness;
+	transition-timing-function: ease-in-out;
+}
+
+#BanPhase #Main #BanPhaseMain #HeroList #HeroGroup #HeroGroupMain #HeroIcon #HeroIcon_movie
+{
+	align: center center;
+	margin: 4px;
+	visibility: collapse;
+}
+
+#BanPhase #Main #BanPhaseMain #HeroList #HeroGroup #HeroGroupMain #HeroIcon #HeroIcon_img
+{
+	width: 100%;
+	height: 100%;
+	margin: 4px;
+	visibility: visible;
+}
+
+#BanPhase #Main #BanPhaseMain #HeroList #HeroGroup #HeroGroupMain #HeroIcon #HeroIcon_RecentBannedOverlay
+{
+	width: 100%;
+	height: 100%;
+	animation-name: BreathingBorder_ACBDE0;
+	animation-duration: 2s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	visibility: collapse;
+	brightness: 1.2;
+}
+
+#BanPhase #Main #BanPhaseMain #HeroList #HeroGroup #HeroGroupMain #HeroIcon #HeroIcon_RecentBannedOverlay.Show
+{
+	visibility: visible;
+}
+
+#BanPhase #Main #BanPhaseMain #HeroList #HeroGroup #HeroGroupMain #HeroIcon #HeroIcon_BannedOverlay
+{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.837);
+	background-image: url("s2r://panorama/images/hero_selection/banned_overlay_psd.vtex");
+	wash-color: #DD4A29;
+	visibility: collapse;
+}
+
+#BanPhase #Main #BanPhaseMain #HeroList #HeroGroup #HeroGroupMain #HeroIcon #HeroIcon_BannedOverlay.Show
+{
+	visibility: visible;
+}
+
+#BanPhase #Main #BanPhaseBottomBar
+{
+	width: 1678px;
+	height: 210px;
+	margin-top: 30px;
+	horizontal-align: center;
+}
+
+#BanPhase #Main #BanPhaseBottomBar #RecentBan
+{
+	width: 1170px;
+	height: 100%;
+	align: left center;
+	flow-children: down;
+	padding-left: 14px;
+	padding-right: 14px;
+	background-color: #1b1e28f2;
+	margin-left: 34px;
+}
+
+#BanPhase #Main #BanPhaseBottomBar #RecentBan #RecentBanTop
+{
+	width: 100%;
+	height: 40px;
+	margin-top: 4px;
+}
+
+#BanPhase #Main #BanPhaseBottomBar #RecentBan #RecentBanTop #RecentBanTopTitle
+{
+	vertical-align: center;
+	margin-left: 6px;
+	font-size: 26px;
+	color: #ACBDE0;
+	text-shadow: 1px 3px 4px 3 #101010;
+}
+
+#BanPhase #Main #BanPhaseBottomBar #RecentBan #RecentBanMain
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	padding-top: 6px;
+	padding-bottom: 6px;
+	flow-children: right;
+}
+
+#BanPhase #Main #BanPhaseBottomBar #RecentBan #RecentBanMain #RecentBanHeroContainer
+{
+	width: 600px;
+	height: 100%;
+	flow-children: right;
+}
+
+#BanPhase #Main #BanPhaseBottomBar #RecentBan #RecentBanMain #RecentBanHeroContainer #RecentBanHero
+{
+	width: 120px;
+	height: 100%;
+	padding-left: 6px;
+	padding-right: 6px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
+#BanPhase #Main #BanPhaseBottomBar #RecentBan #RecentBanMain #RecentBanHeroContainer #RecentBanHero:hover
+{
+	brightness: 1.5;
+}
+
+#BanPhase #Main #BanPhaseBottomBar #RecentBan #RecentBanMain #RecentBanHeroContainer #RecentBanHero #RecentBanHero_img
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+}
+
+#BanPhase #Main #BanPhaseBottomBar #RecentBan #RecentBanMain #RecentBanHeroContainer #RecentBanHero #HeroBanned_Overlay
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	background-color: rgba(0, 0, 0, 0.803);
+}
+
+#BanPhase #Main #BanPhaseBottomBar #RecentBan #RecentBanMain #RecentBanHeroContainer #RecentBanHero #HeroBanned_Overlay #HeroBanouter
+{
+	width: 100px;
+	height: 100px;
+	background-image: url("s2r://panorama/images/hud/reborn/ban_outer_psd.vtex");
+	wash-color: #DD4A29;
+	align: center center;
+}
+
+#BanPhase #Main #BanPhaseBottomBar #RecentBan #RecentBanMain #RecentBanHeroContainer #RecentBanHero #HeroBanned_Overlay #HeroBanbar
+{
+	width: 100px;
+	height: 100px;
+	background-image: url("s2r://panorama/images/hud/reborn/ban_bar_psd.vtex");
+	wash-color: #DD4A29;
+	align: center center;
+}
+
+#BanPhase #Main #BanPhaseBottomBar #RecentBan #RecentBanMain #RecentBanAbilityContainer
+{
+	width: 260px;
+	height: 100%;
+	flow-children: right-wrap;
+	margin-left: 40px;
+}
+
+#BanPhase #Main #BanPhaseBottomBar #RecentBan #RecentBanMain #RecentBanAbilityContainer #RecentBanAbility
+{
+	width: 77px;
+	height: 77px;
+	padding: 4px;
+}
+
+#BanPhase #Main #BanPhaseBottomBar #RecentBan #RecentBanMain #RecentBanAbilityContainer #RecentBanAbility #RecentBanAbility_img
+{
+	align: center center;
+}
+
+#BanPhase #Main #BanPhaseBottomBar #RecentBan #RecentBanMain #RecentBanAbilityContainer #RecentBanAbility #RecentBanAbility_img:hover
+{
+	brightness: 1.5;
+}
+
+#BanPhase #Main #BanPhaseBottomBar #RecentBan #RecentBanMain #RecentBanAbilityContainer #RecentBanAbility #AbilityBanned_Overlay
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	background-color: rgba(0, 0, 0, 0.803);
+}
+
+#BanPhase #Main #BanPhaseBottomBar #RecentBan #RecentBanMain #RecentBanAbilityContainer #RecentBanAbility #AbilityBanned_Overlay #AbilityBanouter
+{
+	width: 208px;
+	height: 208px;
+	background-image: url("s2r://panorama/images/hud/reborn/ban_outer_psd.vtex");
+	wash-color: #DD4A29;
+	align: center center;
+}
+
+#BanPhase #Main #BanPhaseBottomBar #RecentBan #RecentBanMain #RecentBanAbilityContainer #RecentBanAbility #AbilityBanned_Overlay #AbilityBanbar
+{
+	width: 208px;
+	height: 208px;
+	background-image: url("s2r://panorama/images/hud/reborn/ban_bar_psd.vtex");
+	wash-color: #DD4A29;
+	align: center center;
+}
+
+#BanPhase #Main #BanPhaseBottomBar #PlayerBan
+{
+	width: 436px;
+	height: 100%;
+	align: right center;
+	flow-children: down;
+	padding-left: 14px;
+	padding-right: 14px;
+	background-color: #1b1e28f2;
+}
+
+#BanPhase #Main #BanPhaseBottomBar #PlayerBan #PlayerBanTop
+{
+	width: 100%;
+	height: 40px;
+	margin-top: 4px;
+}
+
+#BanPhase #Main #BanPhaseBottomBar #PlayerBan #PlayerBanTop #PlayerBanTopTitle
+{
+	vertical-align: center;
+	margin-left: 6px;
+	font-size: 26px;
+	color: #ACBDE0;
+	text-shadow: 1px 3px 4px 3 #101010;
+}
+
+#BanPhase #Main #BanPhaseBottomBar #PlayerBan #PlayerBanMain
+{
+	width: fit-children;
+	height: fill-parent-flow(1);
+	padding-top: 6px;
+	padding-bottom: 6px;
+	horizontal-align: center;
+	flow-children: right;
+}
+
+#BanPhase #Main #BanPhaseBottomBar #PlayerBan #PlayerBanMain #PlayerBanHeroContainer
+{
+	width: fit-children;
+	height: 100%;
+	flow-children: right;
+}
+
+#BanPhase #Main #BanPhaseBottomBar #PlayerBan #PlayerBanMain #PlayerBanHeroContainer #PlayerBanHero
+{
+	width: 120px;
+	height: 100%;
+	padding-left: 6px;
+	padding-right: 6px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
+#BanPhase #Main #BanPhaseBottomBar #PlayerBan #PlayerBanMain #PlayerBanHeroContainer #PlayerBanHero #PlayerBanHero_img_empty
+{
+	width: 100%;
+	height: 100%;
+	background-color: #0a0a0a;
+}
+
+#BanPhase #Main #BanPhaseBottomBar #PlayerBan #PlayerBanMain #PlayerBanHeroContainer #PlayerBanHero #PlayerBanHero_img
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+}
+
+#BanPhase #Main #BanPhaseBottomBar #PlayerBan #PlayerBanMain #PlayerBanAbilityContainer
+{
+	width: fit-children;
+	height: 100%;
+	flow-children: right-wrap;
+}
+
+#BanPhase #Main #BanPhaseBottomBar #PlayerBan #PlayerBanMain #PlayerBanAbilityContainer #PlayerBanAbility
+{
+	width: 77px;
+	height: 77px;
+	padding: 4px;
+}
+
+#BanPhase #Main #BanPhaseBottomBar #PlayerBan #PlayerBanMain #PlayerBanAbilityContainer #PlayerBanAbility:hover
+{
+	brightness: 1.5;
+}
+
+#BanPhase #Main #BanPhaseBottomBar #PlayerBan #PlayerBanMain #PlayerBanAbilityContainer #PlayerBanAbility #PlayerBanAbility_img
+{
+	align: center center;
+}
+
+#BanPhase #Main #SelectPhaseBottomBar
+{
+	width: fit-children;
+	height: 210px;
+	margin-top: 30px;
+	horizontal-align: center;
+	background-color: #1b1e28f2;
+	box-shadow: inset 0 0 1px #62758B;
+	margin-left: 20px;
+}
+
+#BanPhase #Main #SelectPhaseBottomBar #Reroll
+{
+	align: center top;
+}
+
+#HeroInfo
+{
+	width: 436px;
+	height: 604px;
+	margin-top: 30px;
+	margin-left: 12px;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#171A25dd), to(#171A25dd));
+	border: 1px solid black;
+	flow-children: down;
+}
+
+#HeroInfo #HeroInfoMiddle
+{
+	width: 100%;
+	height: 340px;
+	background-color: #0a0a0a;
+	flow-children: down;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoMiddleName
+{
+	width: 100%;
+	height: 40px;
+	flow-children: right;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoMiddleName #HeroInfo_PrimaryAttr
+{
+	margin-left: 4px;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoMiddleName #HeroInfoName
+{
+	font-size: 36px;
+	color: #ACBDE0;
+	text-shadow: 1px 3px 4px 3 #101010;
+	margin-left: 4px;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoMiddleMain
+{
+	width: 100%;
+	height: 300px;
+	background-color: #0a0a0a;
+	flow-children: right;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoMovieContainer
+{
+	width: 240px;
+	height: 300px;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoMovieContainer #HeroInfoMovieBanOverlay
+{
+	width: 208px;
+	height: 264px;
+	background-color: rgba(0, 0, 0, 0.837);
+	visibility: collapse;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoMovieContainer #HeroInfoMovieBanOverlay.Show
+{
+	visibility: visible;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoMovieContainer #HeroInfoMovieBanOverlay #HeroBanouter
+{
+	width: 208px;
+	height: 208px;
+	background-image: url("s2r://panorama/images/hud/reborn/ban_outer_psd.vtex");
+	wash-color: #DD4A29;
+	align: center center;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoMovieContainer #HeroInfoMovieBanOverlay #HeroBanbar
+{
+	width: 208px;
+	height: 208px;
+	background-image: url("s2r://panorama/images/hud/reborn/ban_bar_psd.vtex");
+	wash-color: #DD4A29;
+	align: center center;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoMovieContainer #HeroInfoMovie
+{
+	width: 208px;
+	height: 264px;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoMovieContainer #HeroInfo_banButton
+{
+	width: 208px;
+	height: 54px;
+	align: left bottom;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#722217), to(#DD4A29));
+	border-top: 1px solid #ffffff05;
+	border-right: 1px solid #00000088;
+	border-left: 1px solid #ffffff05;
+	border-bottom: 1px solid #00000088;
+	box-shadow: #0000008f 1px 1px 8px 0px;
+	visibility: collapse;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoMovieContainer #HeroInfo_banButton:disabled
+{
+	saturation: 0.7;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoMovieContainer #HeroInfo_banButton:enabled:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#DD4A29dd), to(#DD4A29dd));
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoMovieContainer #HeroInfo_banButton.Show
+{
+	visibility: visible;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoMovieContainer #HeroInfo_banButton Label
+{
+	font-size: 32px;
+	color: white;
+	align: center center;
+	text-overflow: shrink;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoMovieContainer #HeroInfo_selectButton
+{
+	width: 208px;
+	height: 54px;
+	align: left bottom;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#404D65dd), to(#2B3445dd));
+	border-top: 1px solid #6F819B;
+	border-bottom: 1px solid #3F414B33;
+	border-left: 1px solid #6F819B22;
+	border-right: 1px solid #6F819B11;
+	box-shadow: #0000004f 0px 0px 12px 0px;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoMovieContainer #HeroInfo_selectButton:hover
+{
+	brightness: 1.5;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoMovieContainer #HeroInfo_selectButton Label
+{
+	align: center center;
+	font-size: 32px;
+	color: #ACBDE0;
+	text-shadow: 1px 3px 4px 3 #101010;
+	margin-left: 4px;
+	text-overflow: shrink;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoData
+{
+	width: 98px;
+	height: 100%;
+	margin-left: 4px;
+	flow-children: down;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoData #Talent
+{
+	width: 100%;
+	height: 50px;
+	margin-bottom: 4px;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoData #Talent #TalentMain
+{
+	width: 44px;
+	height: 44px;
+	align: center center;
+	background-image: url("s2r://panorama/images/spellicons/statbranch_psd.vtex");
+	visibility: collapse;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoData #Talent #TalentMain.Show
+{
+	visibility: visible;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoData #Attributes
+{
+	width: 100%;
+	height: 117px;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoData #Attributes #AttributesList
+{
+	width: 107px;
+	height: 100%;
+	align: center center;
+	flow-children: down;
+	visibility: collapse;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoData #Attributes #AttributesList.Show
+{
+	visibility: visible;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoData #Attributes #AttributesList #AttrInfo
+{
+	width: 100%;
+	height: 40px;
+	flow-children: right;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoData #Attributes #AttributesList #AttrInfo #AttrInfo_icon
+{
+	width: 28px;
+	height: 28px;
+	margin-left: 4px;
+	margin-right: 4px;
+	vertical-align: center;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoData #Attributes #AttributesList #AttrInfo #AttrInfo_num
+{
+	margin-left: 4px;
+	vertical-align: center;
+	color: white;
+	font-size: 14px;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoData #BonusStats
+{
+	width: 100%;
+	height: 120px;
+	margin-top: 4px;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoData #BonusStats #BonusStatsList
+{
+	width: 160px;
+	height: fit-children;
+	align: center center;
+	flow-children: down;
+	visibility: collapse;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoData #BonusStats #BonusStatsList.Show
+{
+	visibility: visible;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoData #BonusStats #BonusStatsList #StatInfo
+{
+	width: 90px;
+	height: 30px;
+	flow-children: right;
+	horizontal-align: center;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoData #BonusStats #BonusStatsList #StatInfo #StatInfo_icon
+{
+	width: 18px;
+	height: 18px;
+	margin-left: 4px;
+	margin-right: 4px;
+	vertical-align: center;
+}
+
+#HeroInfo #HeroInfoMiddle #HeroInfoData #BonusStats #BonusStatsList #StatInfo #StatInfo_num
+{
+	margin-left: 36px;
+	vertical-align: center;
+	color: white;
+	font-size: 14px;
+}
+
+#HeroInfo #HeroInfoBottom
+{
+	width: 100%;
+	height: 300px;
+	margin-top: 30px;
+}
+
+#HeroInfo #HeroInfoBottom #HeroInfoAbilities
+{
+	width: 350px;
+	height: 200px;
+	horizontal-align: center;
+	flow-children: right-wrap;
+}
+
+#HeroInfo #HeroInfoBottom #HeroInfoAbilities #Ability
+{
+	width: 70px;
+	height: 70px;
+}
+
+#HeroInfo #HeroInfoBottom #HeroInfoAbilities #Ability #InnateIcon
+{
+	width: 28px;
+	height: 28px;
+	align: left top;
+	margin: 4px;
+	background-color: black;
+}
+
+#HeroInfo #HeroInfoBottom #HeroInfoAbilities #Ability #AbilityImage
+{
+	width: 60px;
+	height: 60px;
+	align: center center;
+}
+
+#HeroInfo #HeroInfoBottom #HeroInfoAbilities #Ability #AbilityImage.Selected
+{
+	box-shadow: inset 0 0 4px #20DDFF;
+}
+
+#HeroInfo #HeroInfoBottom #HeroInfoAbilities #Ability #AbilityImage:hover
+{
+	brightness: 1.5;
+}
+
+#HeroInfo #HeroInfoBottom #HeroInfoAbilities #Ability #AbilityBanned_Overlay
+{
+	width: 60px;
+	height: 60px;
+	align: center center;
+	background-color: rgba(0, 0, 0, 0.803);
+}
+
+#HeroInfo #HeroInfoBottom #HeroInfoAbilities #Ability #AbilityBanned_Overlay #AbilityBanouter
+{
+	width: 208px;
+	height: 208px;
+	background-image: url("s2r://panorama/images/hud/reborn/ban_outer_psd.vtex");
+	wash-color: #DD4A29;
+	align: center center;
+}
+
+#HeroInfo #HeroInfoBottom #HeroInfoAbilities #Ability #AbilityBanned_Overlay #AbilityBanbar
+{
+	width: 208px;
+	height: 208px;
+	background-image: url("s2r://panorama/images/hud/reborn/ban_bar_psd.vtex");
+	wash-color: #DD4A29;
+	align: center center;
+}
+
+#HeroInfo #HeroInfoBottom #HeroInfo_banAbilityButton
+{
+	width: 100%;
+	height: 54px;
+	align: center bottom;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#722217), to(#DD4A29));
+	border-top: 1px solid #ffffff05;
+	border-right: 1px solid #00000088;
+	border-left: 1px solid #ffffff05;
+	border-bottom: 1px solid #00000088;
+	box-shadow: #0000008f 1px 1px 8px 0px;
+	visibility: collapse;
+}
+
+#HeroInfo #HeroInfoBottom #HeroInfo_banAbilityButton:disabled
+{
+	saturation: 0.7;
+}
+
+#HeroInfo #HeroInfoBottom #HeroInfo_banAbilityButton:enabled:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#DD4A29dd), to(#DD4A29dd));
+}
+
+#HeroInfo #HeroInfoBottom #HeroInfo_banAbilityButton.Show
+{
+	visibility: visible;
+}
+
+#HeroInfo #HeroInfoBottom #HeroInfo_banAbilityButton Label
+{
+	font-size: 32px;
+	color: white;
+	align: center center;
+	text-overflow: shrink;
+}
+
+#HeroInfo #HeroInfoBottom #HeroInfoSelectButton
+{
+	width: 100%;
+	height: 80px;
+	align: center bottom;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#404D65dd), to(#2B3445dd));
+	border-top: 1px solid #6F819B;
+	border-bottom: 1px solid #3F414B33;
+	border-left: 1px solid #6F819B22;
+	border-right: 1px solid #6F819B11;
+	box-shadow: #0000004f 0px 0px 12px 0px;
+	visibility: collapse;
+}
+
+#HeroInfo #HeroInfoBottom #HeroInfoSelectButton.Show
+{
+	visibility: visible;
+}
+
+#HeroInfo #HeroInfoBottom #HeroInfoSelectButton:hover
+{
+	brightness: 1.5;
+}
+
+#HeroInfo #HeroInfoBottom #HeroInfoSelectButton Label
+{
+	align: center center;
+	font-size: 32px;
+	color: #ACBDE0;
+	text-shadow: 1px 3px 4px 3 #101010;
+	margin-left: 4px;
+	text-overflow: shrink;
+}
+
+#StrategyPhaseRoot
+{
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	transition-duration: 1s;
+	transition-property: opacity;
+	transition-timing-function: ease-in-out;
+	opacity: 0;
+}
+
+#StrategyPhaseRoot.Show
+{
+	opacity: 1;
+}
+
+#StrategyPhaseRoot #StrategyPhaseBG
+{
+	width: 100%;
+	height: 100%;
+}
+
+#StrategyPhaseRoot #StrategyPhaseBG #BGScene
+{
+	width: 100%;
+	height: 100%;
+}
+
+#StrategyPhaseRoot #Main
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	visibility: collapse;
+	opacity: 0;
+	transition-duration: 0.3s;
+	transition-property: transform, opacity;
+	transition-timing-function: ease-in-out;
+	transform: translateX(800px);
+}
+
+#StrategyPhaseRoot #Main.Show
+{
+	visibility: visible;
+	opacity: 1;
+	transform: translateX(0);
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain
+{
+	width: 1678px;
+	margin-top: 50px;
+	horizontal-align: center;
+	flow-children: right;
+	padding-left: 8px;
+	padding-right: 22px;
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Right
+{
+	width: 466px;
+	flow-children: down;
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Right #PhaseTitle
+{
+	height: 140px;
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Left
+{
+	width: fill-parent-flow(1);
+	height: fit-children;
+	margin-top: 20px;
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Left #HeroSkin
+{
+	width: 100%;
+	height: 752px;
+	align: center center;
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Left #HeroSkin #HeroSkinCard
+{
+	align: center center;
+	width: 599px;
+	height: 678px;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_box_narrow.png");
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Left #HeroSkin #HeroSkinList
+{
+	width: 100%;
+	max-width: 100%;
+	height: fit-children;
+	align: center bottom;
+	padding-left: 120px;
+	padding-right: 120px;
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Left #HeroSkin #HeroSkinList #ArrowLeft
+{
+	width: 28px;
+	height: 52px;
+	align: left center;
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Left #HeroSkin #HeroSkinList #ArrowLeft Image
+{
+	transition-property: transform;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Left #HeroSkin #HeroSkinList #ArrowLeft Image:hover
+{
+	transform: scaleX(1.3) scaleY(1.3);
+	brightness: 1.1;
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Left #HeroSkin #HeroSkinList #ArrowRight
+{
+	width: 28px;
+	height: 52px;
+	align: right center;
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Left #HeroSkin #HeroSkinList #ArrowRight Image
+{
+	transition-property: transform;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Left #HeroSkin #HeroSkinList #ArrowRight Image:hover
+{
+	transform: scaleX(1.3) scaleY(1.3);
+	brightness: 1.1;
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Left #HeroSkin #HeroSkinList #List
+{
+	align: center center;
+	width: 800px;
+	height: 630px;
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Left #HeroSkin #HeroSkinList #List #HeroSkinContainer
+{
+	width: fit-children;
+	height: fit-children;
+	margin-left: 6px;
+	margin-right: 6px;
+	vertical-align: center;
+	transition-property: transform, z-index;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Left #HeroSkin #HeroSkinList #List #HeroSkinContainer.Selected
+{
+	align: center center;
+	transform: translateX(0px) translateZ(1px);
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Left #HeroSkin #HeroSkinList #List #HeroSkinContainer.LeftofSelected
+{
+	align: center center;
+	transform: translateX(150px) translateZ(0px);
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Left #HeroSkin #HeroSkinList #List #HeroSkinContainer.RightofSelected
+{
+	align: center center;
+	transform: translateX(-150px) translateZ(0px);
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Left #HeroSkin #HeroSkinList #List #HeroSkinContainer #HeroSkinBorder .HeroSkinBorderImageCurrent
+{
+	width: 486px;
+	height: 566px;
+	transition-property: width, height, opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+	opacity: 0;
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Left #HeroSkin #HeroSkinList #List #HeroSkinContainer #HeroSkinBorder .HeroSkinBorderImageCurrent.Selected
+{
+	opacity: 1;
+	width: 560px;
+	height: 630px;
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Left #HeroSkin #HeroSkinList #List #HeroSkinContainer #HeroSkinBorder .HeroSkinBorderImageOther
+{
+	width: 486px;
+	height: 566px;
+	transition-property: width, height, opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+	opacity: 1;
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Left #HeroSkin #HeroSkinList #List #HeroSkinContainer #HeroSkinBorder .HeroSkinBorderImageOther.Selected
+{
+	opacity: 0;
+	width: 560px;
+	height: 630px;
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Left #HeroSkin #HeroSkinList #List #HeroSkinContainer #HeroSkinTitle
+{
+	width: 100%;
+	height: 226px;
+	align: center bottom;
+	background-image: url("s2r://panorama/images/custom_game/hero_select/current_skin_mask_png.vtex");
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Left #HeroSkin #HeroSkinList #List #HeroSkinContainer #HeroSkinTitle Label
+{
+	align: center bottom;
+	font-size: 48px;
+	margin-bottom: 20px;
+	text-shadow: 1px 3px 4px 3 #101010;
+	margin-left: 4px;
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Left #HeroSkin #HeroSkinList #List #HeroSkinContainer #NotHaveOverLay
+{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.733);
+	visibility: collapse;
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Left #HeroSkin #HeroSkinList #List #HeroSkinContainer #NotHaveOverLay.Show
+{
+	visibility: visible;
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Left #HeroSkin #HeroSkinList #List #HeroSkinContainer #NotHaveOverLay #icon
+{
+	width: 99.6px;
+	height: 118.8px;
+	align: center center;
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Left #HeroSkin #HeroSkinList #List #HeroSkinContainer #HeroSkinCardSmall
+{
+	align: center center;
+	width: 482px;
+	height: 564px;
+	brightness: 0.3;
+	transition-property: brightness, width, height;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Left #HeroSkin #HeroSkinList #List #HeroSkinContainer #HeroSkinCardSmall.Selected
+{
+	width: 555px;
+	height: 628px;
+	brightness: 1.1;
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseMain #Left #HeroSkin #HeroSkinList #List #HeroSkinContainer #HeroSkinCardSmall.Have
+{
+	brightness: 0.3;
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseBottomBar
+{
+	width: fit-children;
+	height: 180px;
+	horizontal-align: center;
+	background-color: #1b1e28f2;
+	box-shadow: inset 0 0 1px #62758B;
+	margin-top: 30px;
+}
+
+#StrategyPhaseRoot #Main #StrategyPhaseBottomBar #PlayerSelect
+{
+	align: center center;
+}
+
+@keyframes 'BreathingBorder_ACBDE0'
+{
+	0%
+	{
+		box-shadow: inset 0 0 2px #ACBDE0;
+	}
+	
+	25%
+	{
+		box-shadow: inset 0 0 3px #ACBDE0;
+	}
+	
+	50%
+	{
+		box-shadow: inset 0 0 4px #ACBDE0;
+	}
+	
+	75%
+	{
+		box-shadow: inset 0 0 3px #ACBDE0;
+	}
+	
+	100%
+	{
+		box-shadow: inset 0 0 2px #ACBDE0;
+	}
+	
+}

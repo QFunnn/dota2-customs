@@ -1,0 +1,56 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"sniper_assassinate_dm2017"
+	{
+		"BaseClass"								"ability_lua"
+		"AbilityTextureName"					"sniper_assassinate_dm2017"
+		"ScriptFile"							"heroes/hero_sniper/sniper_assassinate_dm2017"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_NO"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PHYSICAL"
+		"FightRecapLevel"						"2"
+		"HasScepterUpgrade"						"1"
+		"AbilityCastRange"						"1500 1500 1500"
+		"AbilityCastRangeBuffer"				"600"
+		"AbilityCastPoint"						"2.0 2.0 2.0"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCooldown"						"24.0 20.0 16.0"
+		"AbilityManaCost"						"150 225 300"
+		"AbilityModifierSupportValue"			"0.0"
+		"AbilityValues"
+		{
+			"projectile_speed"					"2500 2500 2500"
+			"aim_duration"						"2.0"
+			"radius"
+			{
+				"value"							"375"
+				"affected_by_aoe_increase"		"1"
+			}
+			"crit_bonus"
+			{
+				"value"							"150 200 250"
+				"special_bonus_scepter"			"+100"
+			}
+			"cast_point_reduce"
+			{
+				"special_bonus_scepter"			"0.15"
+			}
+			"stun_duration"						"1.6"
+		}
+	}
+}
