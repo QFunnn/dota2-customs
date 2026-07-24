@@ -1,0 +1,81 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf57:version{4f75132e-4f5d-493c-958e-3bb4328089ba} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_nInitialParticles = 1
+	m_flConstantRadius = 0.0
+	m_ConstantColor = [ 0, 0, 0, 255 ]
+	m_nConstantSequenceNumber = 1
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_StatusEffect"
+			m_flColorWarpIntensity = 1.0
+			m_flDetail2BlendFactor = 0.6
+			m_nDetail2Combo = "DETAIL_2_COMBO_ADD"
+			m_flRimLightScale = 3.0
+			m_specularColor = [ 0, 0, 0, null ]
+			m_rimLightColor = [ 0, 0, 0, null ]
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 5.0
+				m_flRandomMax = 9.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_nFieldOutput = 22
+			m_ColorMax = [ 158, 0, 0, 0 ]
+			m_ColorMin = [ 154, 0, 0, 0 ]
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMax = [ 135, 0, 0, 255 ]
+			m_ColorMin = [ 133, 0, 0, 255 ]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_LerpEndCapScalar"
+			m_flLerpTime = 0.3
+			m_nFieldOutput = 7
+			m_flOutput = 0.0
+		},
+		{
+			_class = "C_OP_EndCapTimedDecay"
+			m_flDecayTime = 0.3
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderStatusEffect"
+			m_pTextureDetail2 = resource:"materials/particle/warp_water_ripple.vtex"
+			m_pTextureColorWarp = resource:"materials/models/heroes/statuseffects/colorwarp_rupture.vtex"
+		},
+	]
+}

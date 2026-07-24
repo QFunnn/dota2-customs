@@ -1,0 +1,180 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf60:version{cd92a366-0b0d-4811-a18d-f6d472d19709} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 16
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_flStartFadeSize = 0.85
+			m_flEndFadeSize = 1.0
+			m_flOverbrightFactor = 5.0
+			VisibilityInputs = 
+			{
+				m_flCameraBias = -30.0
+			}
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/particle_glow_03.vtex"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 0.35
+		},
+		{
+			_class = "C_OP_FadeOut"
+			m_flFadeOutTimeMax = 0.75
+			m_flFadeOutTimeMin = 0.5
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flStartScale = 0.5
+			m_flEndScale = 1.5
+		},
+		{
+			_class = "C_OP_SpinUpdate"
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.1
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+			m_nField = 16
+			m_Rate = -2.0
+			m_flEndTime = 99999.0
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade = [ 43, 69, 153, 255 ]
+		},
+		{
+			_class = "C_OP_PositionLock"
+			m_TransformInput = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 1.0
+				m_flRandomMax = 2.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.588235
+				m_flRandomMax = 0.784314
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 7
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 10.0
+				m_flRandomMax = 15.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			_class = "C_INIT_RandomSequence"
+			m_nSequenceMax = 15
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.0
+				m_flRandomMax = 360.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 4
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 5.0
+				m_flRandomMax = 10.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 5
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMax = [ 43, 130, 210, 255 ]
+			m_ColorMin = [ 96, 171, 198, 255 ]
+		},
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_fRadiusMax = 8.0
+			m_TransformInput = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 5.0, 5.0, -5.0 ]
+			m_OffsetMax = [ 5.0, 5.0, -5.0 ]
+			m_bLocalCoords = true
+			m_TransformInput = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 8.0
+			}
+		},
+	]
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 8
+}

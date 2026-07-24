@@ -1,0 +1,147 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf57:version{4f75132e-4f5d-493c-958e-3bb4328089ba} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 12
+	m_flConstantRadius = 0.75
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_ModelList = 
+			[
+				{
+					m_model = resource:"models/props_winter/present_centered.vmdl"
+				},
+			]
+			m_bAnimated = true
+			m_nLOD = 1
+			m_bIgnoreNormal = true
+			m_bForceLoopingAnimation = true
+			m_modelInput = 
+			{
+			}
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_flEndTime = 999999.0
+			m_Rate = -6.0
+			m_nField = 16
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flBias = 0.1
+			m_flEndScale = 0.0
+			m_flStartTime = 0.85
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndTime = 0.08
+			m_flStartScale = 0.0
+			m_flBias = 0.9
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 1.5
+				m_flRandomMax = 1.9
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_InitFromParentKilled"
+			m_nAttributeToCopy = 0
+		},
+		{
+			_class = "C_INIT_InitFromParentKilled"
+			m_nAttributeToCopy = 6
+		},
+		{
+			_class = "C_INIT_InitFromParentKilled"
+			m_nAttributeToCopy = 3
+		},
+		{
+			_class = "C_INIT_PositionPlaceOnGround"
+			m_CollisionGroupName = "DEBRIS"
+			m_bSetNormal = true
+			m_flOffset = 17.0
+			m_nTraceMissBehavior = "PARTICLE_TRACE_MISS_BEHAVIOR_KILL"
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.0
+				m_flRandomMax = 360.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 12
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = -30.0
+				m_flRandomMax = 30.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 20
+		},
+		{
+			_class = "C_INIT_InheritFromParentParticles"
+			m_flScale = 1.5
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_bInitFromKilledParentParticles = true
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 8.0
+			}
+		},
+	]
+	m_nBehaviorVersion = 4
+	m_nFirstMultipleOverride_BackwardCompat = 5
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"effect/jiangbing/1_drop_b_glow.vpcf"
+		},
+	]
+}

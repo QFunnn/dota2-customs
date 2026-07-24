@@ -1,0 +1,273 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.Main
+{
+	width: 100%;
+	height: 100%;
+}
+
+.WinPredict
+{
+	width: 540px;
+	height: 144px;
+	background-image: url("s2r://panorama/images/custom_game/talents/neutralrewards_png.vtex");
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2a0d3aee), to(#0d0618ee));
+	border-radius: 8px;
+	flow-children: down;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 21%;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.5s;
+}
+
+.WinPredictTop
+{
+	width: 100%;
+	flow-children: none;
+	horizontal-align: center;
+}
+
+.WinPredictTopLabel
+{
+	horizontal-align: center;
+	text-align:center;
+	font-size: 32px;
+	color: white;
+	font-family: Reaver;
+	font-weight: bold;
+	text-shadow: 1px 1px 8px 4.0 black;
+	text-overflow: shrink;
+}
+
+.WinPredictTopCounterLabel
+{
+	horizontal-align: center;
+	font-size: 32px;
+	font-weight: bold;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #ffffff ), to( #d6b5ff ) );
+	text-shadow: 0px 0px 12px #b388ffaa;
+	margin-top: 4px;
+	font-family: monospaceNumbers;
+}
+
+.PariImage
+{
+	background-image: url("s2r://");
+	background-size: 100%;
+	width: 140px;
+	height: 44px;
+	horizontal-align: center;
+	margin-top: 4px;
+	wash-color: #d4a6ff;
+	brightness: 1.2;
+	visibility: collapse;
+}
+
+.WinPredictButton
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#6a3d9a), to(#3d1b6e));
+	border: 1px solid #ffffff15;
+	border-top: 1px solid #c291ff;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#ae00ff40), to(#40035d00));
+	box-shadow: 0px 2px 4px #00000066;
+	horizontal-align: center;
+	width: 240px;
+	height: 36px;
+	margin-top: 8px;
+	transition-property: brightness, transform;
+	transition-duration: 0.15s;
+}
+
+.WinPredictButtonLabel
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #ffffff ), to( #e4c7ff ) );
+	text-shadow: 0px 0px 6px #000000aa;
+	align: center center;
+	font-size: 18px;
+	font-weight: semi-bold;
+	letter-spacing: 0.5px;
+	text-transform: uppercase;
+	font-family: defaultFont;
+}
+
+.WinPredictButton:hover
+{
+	brightness: 1.3;
+	transform: translateY(-1px);
+	box-shadow: 0px 3px 8px #00000088;
+}
+
+.WinPredictButton:active
+{
+	brightness: 0.9;
+	transform: translateY(1px);
+	box-shadow: 0px 1px 2px #00000044;
+}
+
+.IsClick
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#6a3d9a00), to(#3e1b6e00));
+	border: 1px solid #ffffff00;
+	border-top: 1px solid #c391ff00;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#ae00ff00), to(#41035d00));
+	box-shadow: 0px 2px 4px #00000000;
+}
+
+.WinPredictButton.IsClick:hover
+{
+	brightness: 1;
+	transform: translateY(0px);
+	box-shadow: 0px 3px 8px #00000000;
+}
+
+.WinPredictButton.IsClick:active
+{
+	brightness: 1;
+	transform: translateY(0px);
+	box-shadow: 0px 1px 2px #00000000;
+}
+
+.open
+{
+	transform: translateX(0px) rotateY(0deg);
+	opacity: 1;
+}
+
+@keyframes 'PulseAttention'
+{
+	0%
+	{
+		brightness: 1;
+		transform: scale3d(1, 1, 1);
+	}
+	
+	50%
+	{
+		brightness: 1.6;
+		transform: scale3d(1.03, 1.03, 1.03);
+	}
+	
+	100%
+	{
+		brightness: 1;
+		transform: scale3d(1, 1, 1);
+	}
+	
+}
+
+.WinPredict.Pulse
+{
+	animation-name: PulseAttention;
+	animation-duration: 0.8s;
+	animation-timing-function: ease-in-out;
+}
+
+.RewardRefreshPanel
+{
+	horizontal-align: right;
+	margin-top: 9px;
+	margin-right: 12px;
+	flow-children: left;
+}
+
+.RewardRefreshCount
+{
+	vertical-align: center;
+	text-align: center;
+	font-size:24px;
+	margin-right: 5px;
+	font-weight:bold;
+	color: white;
+	text-shadow: 1px 1px 4px 4.0 black;
+}
+
+.RewardRefresh
+{
+	width: 32px;
+	height: 32px;
+	background-image:url("s2r://panorama/images/custom_game/talents/double_timer_png.vtex");
+	background-size: 100%;
+	transition-property: transform;
+	transition-duration: 0.5s;
+}
+
+.RewardTimePanel
+{
+	horizontal-align: left;
+	margin-top: 9px;
+	margin-left: 12px;
+	flow-children: left;
+}
+
+.RewardTimeCount
+{
+	vertical-align: center;
+	text-align: center;
+	font-size:24px;
+	margin-left: 5px;
+	font-weight:bold;
+	color: white;
+	text-shadow: -1px 1px 4px 4.0 black;
+	text-align: left;
+}
+
+.RewardTime
+{
+	width: 32px;
+	height: 32px;
+	background-image:url("s2r://panorama/images/custom_game/talents/refresh_timer_png.vtex");
+	background-size: 100%;
+	transition-property: transform;
+	transition-duration: 0.5s;
+	clip: radial( 50.0% 50.0%, 0.0deg, -360deg);
+	transition-property: clip;
+	transition-duration: 0.1s;
+}
+
+.Buttons
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.Button
+{
+	width: 110px;
+	height: 80px;
+	border: 0px solid black;
+	box-shadow: 0px 0px 8px 0px black;
+	margin: 8px;
+	border-radius: 6px;
+	transition-property: brightness;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-out;
+}
+
+.Button:hover
+{
+	brightness: 1.3;
+}
+
+.Agree
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/vote_yes_png.vtex");
+	background-size: 100%;
+}
+
+.Decline
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/vote_no_png.vtex");
+	background-size: 100%;
+}

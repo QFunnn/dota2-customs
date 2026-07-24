@@ -1,0 +1,53 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf51:version{6d03d500-2498-454e-b833-f654e870bb3d} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 4
+	m_flConstantRadius = 180.0
+	m_flConstantLifespan = 0.5
+	m_ConstantColor = [ 123, 179, 255, 90 ]
+	m_flStopSimulationAfterTime = 10000000000.0
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/medusa_mana_shield_2_cast.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/medusa_mana_shield_2_oval_highlight.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/medusa_mana_shield_2_shell.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/medusa_mana_shield_2_oval_highlight2.vpcf"
+		},
+		{
+			m_bEndCap = true
+			m_ChildRef = resource:"particles/medusa_mana_shield_2_end.vpcf"
+		},
+	]
+}

@@ -1,0 +1,263 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf57:version{4f75132e-4f5d-493c-958e-3bb4328089ba} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 128
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_flStartFadeSize = 1.0
+			m_flEndFadeSize = 1.4
+			m_bBlendFramesSeq0 = false
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/smoke3/smoke3b.vtex"
+					m_nTextureChannels = "SPRITECARD_TEXTURE_CHANNEL_MIX_A"
+				},
+				{
+					m_hTexture = resource:"materials/particle/smoke3/smoke3b.vtex"
+					m_TextureControls = 
+					{
+						m_flZoomScale = 
+						{
+							m_nType = "PF_TYPE_LITERAL"
+							m_flLiteralValue = 4.0
+						}
+					}
+					m_nTextureChannels = "SPRITECARD_TEXTURE_CHANNEL_MIX_RGB"
+				},
+			]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_Gravity = [ 0.0, 0.0, -40.0 ]
+			m_fDrag = 0.1
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flBias = 0.75
+			m_flEndScale = 2.0
+			m_flStartScale = 0.0
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.75
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 0.14
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_RampScalarLinear"
+			m_RateMax = 1.0
+			m_RateMin = -1.0
+			m_nField = 4
+		},
+		{
+			_class = "C_OP_PositionLock"
+			m_flStartTime_max = 0.0
+			m_flStartTime_min = 0.0
+			m_TransformInput = 
+			{
+				m_nControlPoint = 2
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomSequence"
+			m_nSequenceMin = 7
+			m_nSequenceMax = 8
+		},
+		{
+			_class = "C_INIT_RandomSecondSequence"
+			m_nSequenceMax = 10
+			m_nSequenceMin = 9
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 18.0
+				m_flRandomMax = 34.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.0
+				m_flRandomMax = 360.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 4
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.070588
+				m_flRandomMax = 0.094118
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 7
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMax = [ 107, 160, 214, 255 ]
+			m_ColorMin = [ 164, 214, 240, 255 ]
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 1.0
+				m_flRandomMax = 2.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_fRadiusMin = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 1
+				m_nVectorComponent = 0
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 0.0
+			}
+			m_fRadiusMax = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 1
+				m_nVectorComponent = 0
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 0.0
+			}
+			m_fSpeedMin = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 1
+				m_nVectorComponent = 1
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 5.0
+			}
+			m_fSpeedMax = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 1
+				m_nVectorComponent = 1
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 5.0
+			}
+			m_LocalCoordinateSystemSpeedMin = 
+			{
+				m_nType = "PVEC_TYPE_FLOAT_COMPONENTS"
+				m_FloatComponentX = 
+				{
+					m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+					m_nControlPoint = 1
+					m_nVectorComponent = 2
+					m_nMapType = "PF_MAP_TYPE_MULT"
+					m_flMultFactor = 0.0
+				}
+				m_FloatComponentY = 
+				{
+					m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+					m_nControlPoint = 1
+					m_nVectorComponent = 2
+					m_nMapType = "PF_MAP_TYPE_MULT"
+					m_flMultFactor = 0.0
+				}
+				m_FloatComponentZ = 
+				{
+					m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+					m_nControlPoint = 1
+					m_nVectorComponent = 2
+					m_nMapType = "PF_MAP_TYPE_MULT"
+					m_flMultFactor = 0.0
+				}
+			}
+			m_LocalCoordinateSystemSpeedMax = 
+			{
+				m_nType = "PVEC_TYPE_FLOAT_COMPONENTS"
+				m_FloatComponentX = 
+				{
+					m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+					m_nControlPoint = 1
+					m_nVectorComponent = 2
+					m_nMapType = "PF_MAP_TYPE_MULT"
+					m_flMultFactor = 0.0
+				}
+				m_FloatComponentY = 
+				{
+					m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+					m_nControlPoint = 1
+					m_nVectorComponent = 2
+					m_nMapType = "PF_MAP_TYPE_MULT"
+					m_flMultFactor = 0.0
+				}
+				m_FloatComponentZ = 
+				{
+					m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+					m_nControlPoint = 1
+					m_nVectorComponent = 2
+					m_nMapType = "PF_MAP_TYPE_MULT"
+					m_flMultFactor = 0.0
+				}
+			}
+			m_TransformInput = 
+			{
+				m_nControlPoint = 2
+			}
+		},
+		{
+			_class = "C_INIT_InitialVelocityNoise"
+			m_vecOutputMax = [ 32.0, 32.0, 32.0 ]
+			m_vecOutputMin = [ -32.0, -32.0, -32.0 ]
+			m_TransformInput = 
+			{
+				m_nType = "PT_TYPE_INVALID"
+			}
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 0.0, 0.0, 72.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 72.0 ]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+		},
+	]
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 8
+}

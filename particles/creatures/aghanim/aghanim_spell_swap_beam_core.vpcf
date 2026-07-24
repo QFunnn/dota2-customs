@@ -1,0 +1,170 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf57:version{4f75132e-4f5d-493c-958e-3bb4328089ba} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 0
+	m_flConstantRadius = 128.0
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_FadeIn"
+			m_flFadeInTimeMin = 0.1
+			m_flFadeInTimeMax = 0.1
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.1
+		},
+		{
+			_class = "C_OP_PercentageBetweenTransforms"
+			m_flInputMin = 1.0
+			m_flInputMax = 0.0
+			m_flOutputMin = 0.5
+			m_flOutputMax = 3.0
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+			m_TransformEnd = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade = [ 161, 223, 255, 255 ]
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.31
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_CreationNoise"
+			m_flNoiseScale = 3.0
+			m_flNoiseScaleLoc = 1.0
+			m_flOutputMin = 38.0
+			m_flOutputMax = 48.0
+		},
+		{
+			_class = "C_INIT_CreationNoise"
+			m_nFieldOutput = 16
+			m_flNoiseScaleLoc = 0.00001
+		},
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_nInputMax = 20
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+	]
+	m_ForceGenerators = 
+	[
+		{
+			_class = "C_OP_RandomForce"
+			m_MinForce = [ -999.0, -999.0, -999.0 ]
+			m_MaxForce = [ 999.0, 999.0, 999.0 ]
+		},
+	]
+	m_Constraints = 
+	[
+		{
+			_class = "C_OP_ConstrainDistanceToPath"
+			m_fMinDistance = 2.0
+			m_flMaxDistance0 = 2.0
+			m_flMaxDistanceMid = 4.0
+			m_flMaxDistance1 = 0.0
+			m_flTravelTime = 0.3
+			m_PathParameters = 
+			{
+				m_flBulge = 0.4
+				m_nStartControlPointNumber = 1
+				m_nBulgeControl = 2
+				m_flMidPoint = 0.625
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/creatures/aghanim/aghanim_spell_swap_beam_solid.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/creatures/aghanim/aghanim_spell_swap_beam_noise.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/creatures/aghanim/aghanim_spell_swap_beam_src.vpcf"
+		},
+	]
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 5
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 10
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 11
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 62
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 60
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 255.0, 255.0, 255.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 61
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_ConstantColor = [ 0, 78, 175, 255 ]
+}

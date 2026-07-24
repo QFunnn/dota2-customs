@@ -1,0 +1,209 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf57:version{4f75132e-4f5d-493c-958e-3bb4328089ba} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 4
+	m_flCullRadius = -1.0
+	m_flConstantRadius = 0.7
+	m_bShouldSort = false
+	m_nMinCPULevel = 1
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_bScaleAnimationRate = true
+			m_bOrientZ = true
+			m_ModelList = 
+			[
+				{
+					m_model = resource:"models/items/kunkka/kunkka_immortal/seagull.vmdl"
+				},
+			]
+			m_bAnimated = true
+			m_nLOD = 1
+			m_bForceLoopingAnimation = true
+			m_modelInput = 
+			{
+			}
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_MaxVelocity"
+			m_flMaxVelocity = 750.0
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_Gravity = [ 0.0, 0.0, -3200.0 ]
+			m_bDisableOperator = true
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flStartScale = 0.0
+			m_flEndTime = 0.075
+		},
+		{
+			_class = "C_OP_EndCapTimedDecay"
+			m_flDecayTime = 0.25
+		},
+		{
+			_class = "C_OP_LerpEndCapScalar"
+			m_flOutput = 0.0
+			m_flLerpTime = 0.25
+			m_nFieldOutput = 7
+		},
+		{
+			_class = "C_OP_Orient2DRelToCP"
+			m_nFieldOutput = 12
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RingWave"
+			m_bEvenDistribution = true
+			m_flParticlesPerOrbit = 4.0
+			m_flInitialRadius = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 48.0
+			}
+			m_flThickness = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 10.0
+			}
+		},
+		{
+			m_bDisableOperator = true
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = -25.0
+				m_flRandomMax = 25.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 20
+		},
+		{
+			m_bDisableOperator = true
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.0
+				m_flRandomMax = 10313.240234
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 12
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 6.0
+				m_flRandomMax = 7.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.75
+				m_flRandomMax = 1.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 10
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToNamedModelSequenceScalar"
+			m_nFieldOutput = 13
+			m_nInputMax = 3
+			m_flOutputMax = 3.0
+			m_bModelFromRenderer = true
+			m_nInputMin = 1
+			m_outputMinName = "seagull_circle"
+			m_outputMaxName = "seagull_flying_circle"
+		},
+		{
+			_class = "C_INIT_Orient2DRelToCP"
+			m_nFieldOutput = 12
+			m_flRotOffset = 180.0
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMax = [ 0.0, 0.0, 256.0 ]
+			m_OffsetMin = [ 0.0, 0.0, 256.0 ]
+		},
+		{
+			_class = "C_INIT_InitialVelocityNoise"
+			m_vecOutputMin = [ -1000.0, -1000.0, 0.0 ]
+			m_vecOutputMax = [ 1000.0, 1000.0, 0.0 ]
+			m_bDisableOperator = true
+			m_TransformInput = 
+			{
+				m_nType = "PT_TYPE_INVALID"
+			}
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 4.0
+			}
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 15
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 255.0, 255.0, 255.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 16
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_nBehaviorVersion = 4
+	m_nFirstMultipleOverride_BackwardCompat = 7
+}

@@ -1,0 +1,40 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+modifier_lich_8=class({})
+
+function modifier_lich_8:IsHidden() return true end
+function modifier_lich_8:IsPurgable() return false end
+function modifier_lich_8:IsPurgeException() return false end
+function modifier_lich_8:RemoveOnDeath() return false end
+
+function modifier_lich_8:OnCreated()
+	if not IsServer() then return end
+	self:SetStackCount(1)
+    local lich_frost_shield_custom = self:GetCaster():FindAbilityByName("lich_frost_shield_custom")
+    if lich_frost_shield_custom then
+        if lich_frost_shield_custom:GetLevel() < 4 then
+            lich_frost_shield_custom:SetLevel(lich_frost_shield_custom:GetLevel() + 1)
+        end
+        lich_frost_shield_custom:UpdateTalent()
+    end
+end
+
+function modifier_lich_8:OnRefresh()
+	if not IsServer() then return end
+	self:SetStackCount(self:GetStackCount() + 1)
+end
+
+function modifier_lich_8:CheckState()
+    return
+    {
+        [MODIFIER_STATE_DISARMED] = true,
+    }
+end

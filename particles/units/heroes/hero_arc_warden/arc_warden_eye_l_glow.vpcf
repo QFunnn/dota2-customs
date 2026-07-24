@@ -1,0 +1,199 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf60:version{cd92a366-0b0d-4811-a18d-f6d472d19709} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 6
+	m_flConstantLifespan = 0.25
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_nOrientationType = "PARTICLE_ORIENTATION_ALIGN_TO_PARTICLE_NORMAL"
+			m_flAnimationRate = 0.4
+			VisibilityInputs = 
+			{
+				m_flCameraBias = 3.0
+			}
+			m_flOverbrightFactor = 10.0
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/arc_warden/arc_warden_eye.vtex"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_PositionLock"
+			m_bLockRot = true
+			m_TransformInput = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndScale = 1.5
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_bDisableOperator = true
+			m_ColorFade = [ 0, 0, 0, 255 ]
+			m_flFadeStartTime = 10.0
+			m_flFadeEndTime = 0.0
+		},
+		{
+			_class = "C_OP_NormalLock"
+			m_nControlPointNumber = 1
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 3.0
+				m_flRandomMax = 4.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 100.0
+			}
+			m_nOutputField = 4
+		},
+		{
+			_class = "C_INIT_NormalAlignToCP"
+			m_transformInput = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.75
+				m_flRandomMax = 1.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_RandomSequence"
+		},
+		{
+			_class = "C_INIT_CreateAlongPath"
+			m_PathParams = 
+			{
+				m_nStartControlPointNumber = 1
+				m_nEndControlPointNumber = 2
+			}
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_TransformInput = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.392157
+				m_flRandomMax = 0.588235
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 7
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 108, 164, 255, 255 ]
+			m_ColorMax = [ 151, 228, 255, 255 ]
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 8.0, 4.2, -4.0 ]
+			m_OffsetMax = [ 8.0, 4.2, -4.0 ]
+			m_bLocalCoords = true
+			m_TransformInput = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+		{
+			_class = "C_INIT_NormalOffset"
+			m_OffsetMin = [ 0.5, 0.0, 0.0 ]
+			m_OffsetMax = [ 0.5, 0.0, 0.0 ]
+			m_nControlPointNumber = 1
+			m_bNormalize = true
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 2.0
+			}
+		},
+		{
+			_class = "C_OP_NoiseEmitter"
+			m_flOutputMin = -5.0
+			m_flOutputMax = 5.0
+			m_flNoiseScale = 3.4278
+		},
+	]
+	m_flConstantRadius = 7.0
+	m_ConstantColor = [ 130, 108, 255, 255 ]
+	m_ConstantNormal = [ 1.0, 0.0, 0.0 ]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetSingleControlPointPosition"
+			m_nCP1 = 2
+			m_vecCP1Pos = [ 0.0, 10.0, 0.0 ]
+			m_transformInput = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+	]
+	m_nBehaviorVersion = 4
+	m_nFirstMultipleOverride_BackwardCompat = 9
+}

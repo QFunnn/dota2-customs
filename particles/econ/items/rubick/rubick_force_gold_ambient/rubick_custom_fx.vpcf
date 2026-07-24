@@ -1,0 +1,222 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf64:version{c95f3434-dfef-4a35-9913-024beddb416a} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 16
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 5
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmissionDuration = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.25
+			}
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 32.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_fRadiusMin = 100.0
+			m_fRadiusMax = 100.0
+			m_vecDistanceBias = [ 1.0, 1.0, 0.0 ]
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_BIASED"
+				m_flRandomMin = 1.0
+				m_flRandomMax = 4.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_nBiasType = "PF_BIAS_TYPE_EXPONENTIAL"
+				m_flBiasParameter = 0.25
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.0
+				m_flRandomMax = 360.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 4
+		},
+		{
+			_class = "C_INIT_RandomSequence"
+			m_nSequenceMax = 6
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+		},
+		{
+			_class = "C_INIT_InitialVelocityNoise"
+			m_vecOutputMin = [ -50.0, -50.0, 400.0 ]
+			m_vecOutputMax = [ 50.0, 50.0, 400.0 ]
+			m_TransformInput = 
+			{
+				m_nType = "PT_TYPE_INVALID"
+			}
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.1
+		},
+		{
+			_class = "C_OP_PositionLock"
+		},
+		{
+			_class = "C_OP_VectorNoise"
+			m_fl4NoiseScale = 1.0
+			m_nFieldOutput = 0
+			m_vecOutputMin = [ -2.0, -2.0, -1.0 ]
+			m_vecOutputMax = [ 2.0, 2.0, 1.0 ]
+			m_bAdditive = true
+		},
+		{
+			_class = "C_OP_OscillateVector"
+			m_bOffset = true
+			m_RateMax = [ 0.0, 0.0, 20.0 ]
+			m_FrequencyMin = [ 1.0, 1.0, 2.0 ]
+			m_FrequencyMax = [ 1.0, 1.0, 2.0 ]
+		},
+		{
+			_class = "C_OP_RampScalarSpline"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_OFF"
+			m_nField = 4
+			m_RateMin = -4.0
+			m_RateMax = 4.0
+		},
+		{
+			_class = "C_OP_EndCapTimedDecay"
+			m_flDecayTime = 0.5
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+			m_Gravity = [ 0.0, 0.0, -1200.0 ]
+		},
+		{
+			_class = "C_OP_LerpEndCapScalar"
+			m_flLerpTime = 0.25
+			m_flOutput = 0.0
+		},
+		{
+			_class = "C_OP_RampScalarLinear"
+			m_flEndTime_max = 9999.0
+			m_flEndTime_min = 9999.0
+			m_RateMax = 2.0
+			m_RateMin = 1.0
+			m_nField = 12
+		},
+		{
+			_class = "C_OP_SetPerChildControlPoint"
+			m_bSetOrientation = true
+			m_nNumControlPoints = 8
+			m_nFirstControlPoint = 3
+		},
+	]
+	m_ForceGenerators = 
+	[
+		{
+			_class = "C_OP_AttractToControlPoint"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+			m_fForceAmount = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 400.0
+			}
+			m_fFalloffPower = 0.15
+			m_TransformInput = 
+			{
+				m_nControlPoint = 1
+				m_bUseOrientation = false
+			}
+		},
+	]
+	m_Constraints = 
+	[
+		{
+			_class = "C_OP_WorldTraceConstraint"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+			m_flRadiusScale = 2.0
+			m_bBrushOnly = true
+			m_CollisionGroupName = "DEBRIS"
+			m_bKillonContact = true
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_nBodyGroupField = 18
+			m_nSubModelField = 9
+			m_nSkin = 1
+			m_bSuppressTint = true
+			m_ModelList = 
+			[
+				{
+					m_model = resource:"models/items/rubick/force_staff/fs_cube.vmdl"
+				},
+			]
+			m_bAnimated = true
+			m_nLOD = 1
+			m_bForceLoopingAnimation = true
+			m_modelInput = 
+			{
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/econ/items/rubick/rubick_force_gold_ambient/rubick_custom_fxb.vpcf"
+		},
+	]
+}

@@ -1,0 +1,113 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf62:version{c135a90d-ef52-47fa-a9b8-83a382a77471} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 16
+	m_BoundingBoxMin = [ -1510.0, -1510.0, 0.0 ]
+	m_BoundingBoxMax = [ 1510.0, 510.0, 1810.0 ]
+	m_flConstantRadius = 32.0
+	m_ConstantColor = [ 172, 160, 28, 255 ]
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderScreenShake"
+			m_nAmplitudeField = 18
+			m_flDurationScale = 1.25
+			m_flRadiusScale = 0.5
+			m_flFrequencyScale = 27.0
+			m_flAmplitudeScale = 13.0
+			m_nFilterCP = -1
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+			m_flOpEndFadeInTime = 1.0
+			m_flOpStartFadeInTime = 1.0
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_OFF"
+			m_fDrag = 0.05
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flBias = 0.95
+			m_flStartScale = 0.0
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_fRadiusMin = 10.0
+			m_fRadiusMax = 10.0
+			m_vecDistanceBias = [ 0.0, 0.0, 1.0 ]
+			m_vecDistanceBiasAbs = [ 0.0, 0.0, 1.0 ]
+			m_LocalCoordinateSystemSpeedMin = [ 0.0, 0.0, 10.0 ]
+			m_LocalCoordinateSystemSpeedMax = [ 0.0, 0.0, 10.0 ]
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 92.0
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.5
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_flInput0 = 1.0
+				m_flInput1 = 30.0
+				m_flOutput0 = 1.0
+				m_flOutput1 = 5.0
+				m_nMapType = "PF_MAP_TYPE_REMAP"
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 1
+				m_nVectorComponent = 0
+			}
+			m_nOutputField = 18
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmissionDuration = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.1
+			}
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 60.0
+			}
+		},
+	]
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 3
+}

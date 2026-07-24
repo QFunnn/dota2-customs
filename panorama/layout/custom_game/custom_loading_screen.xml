@@ -1,0 +1,78 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/scripts/custom_loading_screen.vjs_c" />
+	</scripts>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/styles/custom_loading_screen.vcss_c" />
+	</styles>
+	<Panel hittest="false" class="lyboi">
+		<Panel id="loading_screen" />
+		<Panel class="ChoosePayMethode IsOpacity" id="ChoosePayMethode">
+			<Panel class="BuyItemPanelTop">
+				<Label class="BuyItemPanelName" text="#paymethod_choose" />
+				<Panel class="Close" onactivate="PaymentClose();" />
+			</Panel>
+			<Panel class="PaymentVariants">
+				<Panel class="PaymentBlock" onactivate="RequestUrl();">
+					<Panel class="PaymentIcon FunpayIcon" />
+					<Label class="PaymentLabel" text="#funpay_choose" />
+					<Panel class="BuyItemPanel">
+						<Label class="PriceLabel" text="#payment_choose" />
+					</Panel>
+				</Panel>
+				<Panel class="PaymentBlock" onactivate="RequestUrl(&apos;true&apos;);">
+					<Panel class="PaymentIcon XsollaIcon" />
+					<Label class="PaymentLabel" text="#xsolla_choose" />
+					<Panel class="BuyItemPanel">
+						<Label class="PriceLabel" text="#payment_choose" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="PanelHintsImageLogo" id="PanelHintsImageLogo" />
+		<Panel class="PanelHints">
+			<Panel class="PanelHintsImage" id="PanelHintsImage" />
+			<Panel class="PanelHintsInformation">
+				<Label class="PanelHintsDescription" id="PanelHintsDescription" text="" />
+			</Panel>
+			<Panel class="PanelHintsNavigation">
+				<Panel class="NavigationArrowLeft" onactivate="HintsSwap(&apos;left&apos;);" />
+				<Panel class="NavigationWidgets" id="NavigationWidgets" />
+				<Panel class="NavigationArrowRight" onactivate="HintsSwap(&apos;right&apos;);" />
+			</Panel>
+		</Panel>
+		<Panel class="LinksButtons" id="LinksButtons">
+			<Panel class="LinkButton LinkColor_1" onactivate="LinkToStore();">
+				<Panel class="LinkCenter">
+					<Panel class="IconLink_1" />
+					<Label class="LinkButtonLabel" text="#ld_link_1" />
+				</Panel>
+			</Panel>
+			<Panel class="LinkButton LinkColor_2" onactivate="ExternalBrowserGoToURL(&apos;https://wodota.net/ru/heroes&apos;);">
+				<Panel class="LinkCenter">
+					<Panel class="IconLink_2" />
+					<Label class="LinkButtonLabel" text="#ld_link_2" />
+				</Panel>
+			</Panel>
+			<Panel class="LinkButton LinkColor_3" onactivate="ExternalBrowserGoToURL(&apos;https://discord.gg/hC6cQRm&apos;);">
+				<Panel class="LinkCenter">
+					<Panel class="IconLink_3" />
+					<Label class="LinkButtonLabel" text="#ld_link_3" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Image class="WowBanner" id="WowBanner" style="opacity:0;" src="s2r://panorama/images/banners/wow_2_png.vtex" onactivate="ExternalBrowserGoToURL(&apos;https://p.winline.ru/s/eolu7cNzSB?statid=7416_&amp;promocode=WOD&apos;);" />
+	</Panel>
+</root>

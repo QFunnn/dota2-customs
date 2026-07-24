@@ -1,0 +1,158 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf58:version{9bada39c-a931-42d0-abdd-e5c1b13d37a6} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 3
+	m_flConstantRadius = 1.0
+	m_ConstantColor = [ 210, 239, 159, 255 ]
+	m_bShouldSort = false
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 5
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 3.0
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 1.0
+				m_flRandomMax = 1.25
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			_class = "C_INIT_RandomSequence"
+			m_nSequenceMax = 2
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.0
+				m_flRandomMax = 360.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 12
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_flOpEndFadeInTime = 1.75
+			m_flOpStartFadeInTime = 1.75
+			m_Gravity = [ 0.0, 0.0, -500.0 ]
+		},
+		{
+			_class = "C_OP_OscillateVectorSimple"
+			m_Rate = [ 0.0, 0.0, 0.3 ]
+			m_Frequency = [ 0.0, 0.0, 0.8 ]
+			m_flOscAdd = 0.0
+			m_flOscMult = 1.0
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_bEaseInAndOut = true
+			m_flEndScale = 0.9
+			m_flStartScale = 0.9
+			m_flEndTime = 0.25
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_SetControlPointsToModelParticles"
+			m_AttachmentName = "attach_hitloc"
+			m_nFirstControlPoint = 1
+			m_bAttachment = true
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_bOrientZ = true
+			m_nBodyGroupField = 19
+			m_nSubModelField = 9
+			m_bSuppressTint = true
+			m_ModelList = 
+			[
+				{
+					m_model = resource:"models/items/wraith_king/arcana/wk_arcana_tombstone.vmdl"
+				},
+			]
+			m_bAnimated = true
+			m_nLOD = 1
+			m_flAnimationRate = 125.0
+			m_nSkin = 1
+			m_modelInput = 
+			{
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/wraith_king_blink_effect_remnant_glow.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/wraith_king_blink_effect_remnant_ember.vpcf"
+		},
+	]
+}

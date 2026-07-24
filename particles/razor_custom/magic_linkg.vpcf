@@ -1,0 +1,180 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf62:version{c135a90d-ef52-47fa-a9b8-83a382a77471} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 32
+	m_flConstantLifespan = 0.2
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderRopes"
+			m_flOverbrightFactor = 6.0
+			m_flAddSelfAmount = 2.0
+			m_bSaturateColorPreAlphaBlend = false
+			m_flRadiusScale = 0.5
+			m_flTextureVWorldSize = 174.703033
+			m_flTextureVScrollRate = -1747.030273
+			m_nMaxTesselation = 1
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/electricity/electricity_beam_white_a.vtex"
+					m_TextureControls = 
+					{
+						m_flFinalTextureScaleU = 
+						{
+							m_nType = "PF_TYPE_LITERAL"
+							m_flLiteralValue = -1.0
+						}
+					}
+				},
+			]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_Gravity = [ 0.0, 0.0, 400.0 ]
+			m_fDrag = 0.1
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_OFF"
+			m_flEndScale = 1.4
+			m_flBias = 0.15
+		},
+		{
+			_class = "C_OP_RampScalarLinear"
+			m_RateMax = 222.0
+			m_RateMin = 52.0
+			m_nField = 4
+		},
+		{
+			_class = "C_OP_OscillateScalar"
+			m_FrequencyMax = 16.0
+			m_FrequencyMin = 3.0
+			m_RateMax = -5.0
+			m_RateMin = -3.0
+			m_nField = 16
+		},
+		{
+			_class = "C_OP_DampenToCP"
+			m_flScale = 0.5
+			m_flRange = 22.0
+		},
+		{
+			_class = "C_OP_DampenToCP"
+			m_nControlPointNumber = 1
+			m_flRange = 22.0
+			m_flScale = 0.5
+		},
+		{
+			_class = "C_OP_PercentageBetweenTransforms"
+			m_flOutputMin = 2.0
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+			m_TransformEnd = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+		{
+			_class = "C_OP_LockToSavedSequentialPath"
+			m_PathParams = 
+			{
+				m_flMidPoint = 0.25
+				m_nBulgeControl = 1
+				m_nStartControlPointNumber = 1
+				m_flBulge = 0.6
+			}
+		},
+		{
+			_class = "C_OP_OscillateVector"
+			m_FrequencyMax = [ 3.0, 3.0, 3.0 ]
+			m_RateMax = [ 14.0, 14.0, 14.0 ]
+			m_RateMin = [ -14.0, -14.0, -14.0 ]
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreationNoise"
+			m_flOutputMax = 24.0
+			m_flOutputMin = 6.0
+			m_flNoiseScaleLoc = 0.1
+			m_flNoiseScale = 0.5
+		},
+		{
+			_class = "C_INIT_CreateSequentialPath"
+			m_bLoop = false
+			m_bSaveOffset = true
+			m_flNumToAssign = 32.0
+			m_PathParams = 
+			{
+				m_nStartControlPointNumber = 1
+				m_flMidPoint = 0.25
+				m_nBulgeControl = 1
+				m_flBulge = 0.6
+			}
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMax = [ 255, 201, 72, 255 ]
+			m_ColorMin = [ 255, 223, 47, 255 ]
+		},
+		{
+			_class = "C_INIT_InitialVelocityNoise"
+			m_flOffset = 25.0
+			m_flNoiseScale = 5.0
+			m_vecOutputMax = [ 116.0, 116.0, 160.0 ]
+			m_vecOutputMin = [ -116.0, -116.0, -160.0 ]
+			m_flNoiseScaleLoc = 0.5
+			m_TransformInput = 
+			{
+				m_nType = "PT_TYPE_INVALID"
+			}
+		},
+		{
+			_class = "C_INIT_CreateInEpitrochoid"
+			m_bOffsetExistingPos = true
+			m_bUseCount = true
+			m_flParticleDensity = 0.3842
+			m_flOffset = 3.0
+			m_flRadius2 = -4.7
+			m_flRadius1 = 26.0
+			m_nComponent1 = 1
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 200.0
+			}
+		},
+	]
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 3
+}

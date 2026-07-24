@@ -1,0 +1,460 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.LeaderboardWindow
+{
+	align: center center;
+	width: 650px;
+	height: 700px;
+	background-image:url("s2r://panorama/images/custom_game/talents/leaderboard_png.vtex");
+	background-size: 100%;
+	flow-children: down;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	margin-bottom: 7%;
+}
+
+.setvisible
+{
+	opacity: 1;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+}
+
+#LeaderBoardButton
+{
+	width: 30px;
+	height: 30px;
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/icon1_png.vtex");
+	background-size: 24px;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-top:13.5px;
+	margin-left: 201px;
+	opacity: 0.5;
+	wash-color: #CDF;
+	img-shadow: 0px 0px 3px 3 black;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+}
+
+#LeaderBoardButton:hover
+{
+	brightness: 3;
+}
+
+VerticalScrollBar,HTMLVerticalScrollBar
+{
+	width: 6px;
+	margin-right:3px;
+}
+
+.Close
+{
+	margin-top:2px;
+	margin-right:2px;
+	width: 26px;
+	height: 26px;
+	horizontal-align: right;
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/close_png.vtex");
+	background-size: 100%;
+	wash-color: white;
+	transition-property: wash-color;
+	transition-duration: 0.1s;
+	brightness: 3;
+}
+
+.Close:hover
+{
+	brightness: 1;
+	wash-color: #888888;
+}
+
+.LeaderboardNameLabel
+{
+	color: white;
+	align: center center;
+	font-size: 22px;
+	font-family: Reaver;
+	font-weight: bold;
+}
+
+.Leaderboardlogo
+{
+	margin-top:3px;
+	margin-left:3px;
+	margin-right:3px;
+	width: 100%;
+	height: 32px;
+}
+
+.Leaderboardblock
+{
+	width: 100%;
+	flow-children: down;
+	horizontal-align: center;
+}
+
+.RankContainerHeader
+{
+	margin-top:3px;
+	width: 100%;
+	height: 18px;
+	margin-left:3px;
+	margin-right:3px;
+	margin-bottom:5px;
+	flow-children: right;
+}
+
+.Leaderboard_rank_col
+{
+	text-align:center center;
+	height:100%;
+	width:64px;
+	font-size: 17px;
+}
+
+.Leaderboard_player_col
+{
+	text-align:center center;
+	height:100%;
+	width:264px;
+	font-size: 17px;
+}
+
+.Leaderboard_rating_col
+{
+	text-align:center center;
+	height:100%;
+	width:120px;
+	font-size: 17px;
+}
+
+.Leaderboard_reward_col
+{
+	text-align:left center;
+	height:100%;
+	width:170px;
+	font-size: 17px;
+	margin-left:10px;
+}
+
+.YouLeaderboard
+{
+	margin-top:16px;
+	margin-bottom:16px;
+	width: 80%;
+	horizontal-align: center;
+	height: 48px;
+}
+
+.AvatarLocal
+{
+	width: 48px;
+	height: 48px;
+}
+
+.InfoLocal
+{
+	margin-left: 10px;
+	height: 48px;
+	flow-children: down;
+}
+
+.LocalRating
+{
+	font-weight: bold;
+	color: green;
+}
+
+.NicknameLocal
+{
+	margin-top:3px;
+}
+
+.PlayersTable
+{
+	flow-children: down;
+	overflow: squish scroll;
+	width: 100%;
+	margin-bottom:3px;
+}
+
+.LinePlayer
+{
+	flow-children: right;
+	width: 100%;
+	height: 32px;
+	margin:3px;
+}
+
+.RankPanel
+{
+	vertical-align: center;
+	height:100%;
+	width:64px;
+	text-align: left;
+	font-size: 16px;
+}
+
+.RankImage
+{
+	width: 32px;
+	height: 32px;
+	align:center center;
+}
+
+.Rank_number
+{
+	width: 100%;
+	text-align: center;
+	align: center center;
+	font-size: 16px;
+	font-weight: bold;
+	color: white;
+}
+
+.AvatarNicknamePanel
+{
+	height:100%;
+	width:270px;
+	margin-left:6px;
+	font-size: 16px;
+	flow-children: right;
+}
+
+.RatingLabel
+{
+	text-align:center;
+	width:96px;
+	font-size: 18px;
+	font-weight: bold;
+	color: green;
+	vertical-align: center;
+}
+
+.Buttons
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.ButtonRatSmall
+{
+	width: 124px;
+	height: 30px;
+	margin:5px;
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: 100%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #cdb07dcc ), to( #6a624ecc ) );
+}
+
+.ButtonRat
+{
+	width: 124px;
+	height: 32px;
+	margin:5px;
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: 100%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #cdb07dcc ), to( #6a624ecc ) );
+}
+
+.ButtonLabelPVP
+{
+	align:center center;
+	font-weight:bold;
+	color: white;
+	text-shadow: 1px 1px 4px 1.5 black;
+	font-family: Reaver;
+	font-size: 18px;
+}
+
+.ButtonLabelPVE
+{
+	align:center center;
+	font-weight:bold;
+	color: white;
+	text-shadow: 1px 1px 4px 1.5 black;
+	font-family: Reaver;
+	font-size: 18px;
+}
+
+.ButtonRatActive
+{
+	box-shadow: 0px 0px 8px 2px #668BBC22;
+	border: 1px solid #668BBC;
+}
+
+.pppanel
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+}
+
+#PveInfo
+{
+	visibility: collapse;
+}
+
+#PlayersTablePVE2,#PlayersTablePVE3,#PlayersTablePVE1
+{
+	visibility: collapse;
+}
+
+#PanelButPVE_1
+{
+	visibility: collapse;
+}
+
+.RankCoinsDonaters
+{
+	margin:0.5%;
+	text-align: center;
+	horizontal-align: center;
+}
+
+.CoinImage
+{
+	width: 20px;
+	height: 20px;
+	margin-right: 5px;
+	background-image: url("s2r://panorama/images/custom_game/shop/wodacoin_png.vtex");
+	background-size: 100%;
+}
+
+.LocalRatingPanel
+{
+	flow-children: right;
+}
+
+.DonateButton
+{
+	width: 150px;
+	height: 30px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#60862d), to(#3d5f1c));
+	border-top: 1px solid #ffffff22;
+	border-bottom: 1px solid #00000088;
+	align: center bottom;
+	margin-bottom: 10px;
+	align: center center;
+	margin: 10px;
+}
+
+.DonateButtonLabel
+{
+	font-weight: bold;
+	align: center center;
+	color: white;
+	font-family: Reaver;
+	font-size: 18px;
+	margin-top:2px;
+	margin-left:2px;
+}
+
+.DonateButton:hover
+{
+	brightness: 1.2;
+}
+
+.rewards_list
+{
+	height: 100%;
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.effect_icon
+{
+	width: 32px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/custom_game/shop/emblem_99_png.vtex");
+	background-size: 100%;
+	margin-right: 10px;
+}
+
+.effect_icon:hover
+{
+	box-shadow: 0px 0px 8px 2px #bca16622;
+	border: 1px solid #bca166;
+}
+
+.money_reward
+{
+	flow-children: right;
+}
+
+.coin_icon
+{
+	vertical-align: center;
+	width: 32px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/custom_game/shop/wodacoin_png.vtex");
+	background-size: 100%;
+}
+
+.coin_number
+{
+	font-size: 18px;
+	font-weight: bold;
+	color: gold;
+	vertical-align: center;
+	margin-left: 5px;
+}
+
+.hero_icon
+{
+	width: 24px;
+	height: 24px;
+	margin-left: 10px;
+	vertical-align: center;
+}
+
+.HeroSoloBlock
+{
+	width: 100%;
+	height: fit-children;
+	flow-children: down;
+}
+
+.HeroSoloLine
+{
+	transition-property: brightness;
+	transition-duration: 0.1s;
+}
+
+.HeroSoloLine:hover
+{
+	brightness: 1.6;
+}
+
+.HeroSoloOpen .HeroSoloLine
+{
+	background-color: #668BBC18;
+}
+
+.HeroSoloPlayers
+{
+	width: 100%;
+	height: fit-children;
+	flow-children: down;
+	visibility: visible;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.HeroSoloPlayerLine
+{
+	margin-left: 3px;
+	width: 96%;
+	opacity: 0.85;
+}

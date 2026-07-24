@@ -1,0 +1,259 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf61:version{39d3ce1d-9442-4407-9b78-8317145b1732} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nMaxParticles = 250
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 5
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 5
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 6
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_RemapSpeedtoCP"
+			m_nInControlPointNumber = 3
+			m_flInputMin = 20.0
+			m_flInputMax = 800.0
+			m_nOutControlPointNumber = 6
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_bInitFromKilledParentParticles = true
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 11
+				m_nVectorComponent = 0
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 6.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 18.0
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.0
+				m_flRandomMax = 70.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_TransformInput = 
+			{
+				m_nControlPoint = 3
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.0
+				m_flRandomMax = 360.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 4
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 255, 209, 5, 255 ]
+			m_ColorMax = [ 255, 175, 78, 255 ]
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_flInput0 = 0.0
+				m_flInput1 = 100.0
+				m_flOutput0 = 0.0
+				m_flOutput1 = 101.0
+				m_nMapType = "PF_MAP_TYPE_REMAP"
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 5
+				m_nVectorComponent = 0
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_nFieldOutput = 7
+			m_nInputMax = 1
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMax = [ 0.0, 0.0, 128.0 ]
+			m_OffsetMin = [ 0.0, 0.0, 128.0 ]
+		},
+		{
+			_class = "C_INIT_PositionPlaceOnGround"
+			m_flOffset = 16.0
+			m_bIncludeWater = true
+			m_bSetNormal = true
+			m_flMaxTraceLength = 512.0
+			m_CollisionGroupName = "DEBRIS"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_EndCapTimedDecay"
+			m_flDecayTime = 1.0
+		},
+		{
+			_class = "C_OP_LerpEndCapScalar"
+			m_nFieldOutput = 7
+			m_flOutput = 0.0
+			m_flLerpTime = 0.5
+		},
+		{
+			_class = "C_OP_LerpEndCapScalar"
+			m_flOutput = 0.0
+		},
+		{
+			_class = "C_OP_DifferencePreviousParticle"
+			m_nFieldOutput = 16
+			m_flInputMin = 71.0
+			m_flInputMax = 72.0
+			m_flOutputMin = 1.0
+			m_flOutputMax = 0.0
+			m_bSetPreviousParticle = true
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_OFF"
+		},
+		{
+			_class = "C_OP_CycleScalar"
+			m_nDestField = 3
+			m_flStartValue = 30.0
+			m_flEndValue = 45.0
+		},
+		{
+			_class = "C_OP_RemapVisibilityScalar"
+			m_nFieldOutput = 7
+			m_flRadiusScale = 0.1
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderRopes"
+			m_nMaxTesselation = 3
+			m_flTextureVWorldSize = 250.0
+			m_flTextureVOffset = 50.0
+			m_nOrientationType = "PARTICLE_ORIENTATION_ALIGN_TO_PARTICLE_NORMAL"
+			m_flSelfIllumAmount = 1.0
+			m_bSaturateColorPreAlphaBlend = false
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/beam_liquid_viscous.vtex"
+				},
+			]
+		},
+		{
+			_class = "C_OP_RenderRopes"
+			m_nMaxTesselation = 3
+			m_flTextureVWorldSize = 250.0
+			m_flTextureVScrollRate = 27.0
+			m_flTextureVOffset = 100.0
+			m_nOrientationType = "PARTICLE_ORIENTATION_ALIGN_TO_PARTICLE_NORMAL"
+			m_flAnimationRate = 1.0
+			m_bSaturateColorPreAlphaBlend = false
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/energy_flames/beam_energy_flames_red.vtex"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+		{
+			_class = "C_OP_RenderRopes"
+			m_nMaxTesselation = 3
+			m_flTextureVWorldSize = 250.0
+			m_flTextureVScrollRate = 27.0
+			m_flTextureVOffset = 100.0
+			m_nOrientationType = "PARTICLE_ORIENTATION_ALIGN_TO_PARTICLE_NORMAL"
+			m_bSaturateColorPreAlphaBlend = false
+			m_flSelfIllumAmount = 0.841
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/beam_liquid_viscous_soft.vtex"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/techies_burn_out_path_fire_b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/techies_burn_out_path_fire_c.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/techies_burn_out_path_embers.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/techies_burn_out_path_sparks.vpcf"
+		},
+	]
+}

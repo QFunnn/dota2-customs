@@ -1,0 +1,985 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.DonateShopWindow
+{
+	align: center center;
+	width: 1200px;
+	height: 700px;
+	background-image:url("s2r://panorama/images/custom_game/talents/shop_png.vtex");
+	background-size: 100%;
+	flow-children: down;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	margin-bottom: 7%;
+}
+
+#DonateShopWindow.setvisible
+{
+	opacity: 1;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+}
+
+#DonateButton
+{
+	width: 30px;
+	height: 30px;
+	margin-top:13.5px;
+	margin-left:341px;
+	visibility: collapse;
+}
+
+#DonateButton:hover
+{
+	brightness: 3;
+}
+
+.ImageDonateButton
+{
+	width: 30px;
+	height: 30px;
+	background-image: url("s2r://panorama/images/custom_game/shop/icon2_png.vtex");
+	background-size: 24px;
+	background-repeat: no-repeat;
+	background-position: center;
+	opacity: 0.9;
+	img-shadow: 0px 0px 3px 2 black;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+}
+
+.RedAlert
+{
+	width: 10px;
+	height: 10px;
+	background-color: red;
+	border-radius: 100%;
+	horizontal-align: right;
+	vertical-align: bottom;
+	overflow: noclip;
+	animation-name: RedAlertAnimate;
+	animation-duration: 2s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	box-shadow: 0px 0px 4px 2px #fa000022;
+	margin-right: 2px;
+	margin-bottom: 2px;
+	opacity: 0;
+}
+
+.HasReward .RedAlert
+{
+	opacity: 1;
+}
+
+@keyframes 'RedAlertAnimate'
+{
+	0%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 0.9;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+.Close
+{
+	margin-top: 2px;
+	margin-right: 2px;
+	width: 26px;
+	height: 26px;
+	horizontal-align: right;
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/close_png.vtex");
+	background-size: 100%;
+	wash-color: white;
+	transition-property: wash-color;
+	transition-duration: 0.1s;
+	brightness: 3;
+}
+
+.Close:hover
+{
+	brightness: 1;
+	wash-color: #888888;
+}
+
+.DonateShopTopMenu
+{
+	margin-top: 3px;
+	margin-left: 3px;
+	margin-right: 3px;
+	width: 100%;
+	height: 32px;
+}
+
+.TopMenuInfo
+{
+	flow-children: right;
+	vertical-align: center;
+	height: 100%;
+}
+
+.AvatarLocal
+{
+	height: 32px;
+	width: 32px;
+}
+
+.InfoLocal
+{
+	flow-children: down;
+	height: 32px;
+	width: 100%;
+	margin-left: 6px;
+	margin-top: 6px;
+}
+
+.NicknameLocal
+{
+	font-size: 15px;
+	color: white;
+	font-weight: bold;
+	text-overflow: ellipsis;
+	font-family: Reaver;
+}
+
+.LocalRating
+{
+	font-weight: bold;
+	color: green;
+}
+
+.ProfileBlock
+{
+	flow-children: right;
+	width: 300px;
+	height: 32px;
+	margin-right: 10px;
+}
+
+.CrystalBlock
+{
+	flow-children: right;
+	margin-left: 3px;
+	height: 32px;
+	width: 128px;
+	tooltip-position: bottom;
+}
+
+.CrystalIcon
+{
+	vertical-align: center;
+	margin-bottom: 2px;
+	width: 28px;
+	height: 28px;
+	background-image: url("s2r://panorama/images/custom_game/shop/wodacrystal_png.vtex");
+	background-size: 100%;
+}
+
+.CrystalLabelCount
+{
+	font-weight: bold;
+	font-family: Reaver;
+	font-size: 20px;
+	vertical-align: center;
+	margin-top: 2px;
+	margin-left: 6px;
+	color: #07edd2;
+}
+
+.CoinBlock
+{
+	flow-children: right;
+	margin-left: 3px;
+	height: 32px;
+	width: 128px;
+	tooltip-position: bottom;
+}
+
+.CoinIcon
+{
+	vertical-align: center;
+	margin-bottom: 4px;
+	width: 28px;
+	height: 28px;
+	background-image: url("s2r://panorama/images/custom_game/shop/wodacoin_png.vtex");
+	background-size: 100%;
+}
+
+.MenuBlockSocial_1
+{
+	width: 52px;
+	height: 38px;
+	margin-bottom: 0px;
+	margin-left: 6px;
+	margin-right: -3px;
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#102149), to(#1e3465));
+	transform: skew(-20deg);
+	transition-property: brightness;
+	transition-duration: 0.2s;
+}
+
+.MenuBlockSocial_2
+{
+	width: 52px;
+	height: 38px;
+	margin-bottom: 0px;
+	margin-left: 6px;
+	margin-right: -3px;
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#102149cc), to(#1e3565cc));
+	transform: skew(-20deg);
+	transition-property: brightness;
+	transition-duration: 0.2s;
+	saturation: 0;
+}
+
+.MenuBlockSocial_3
+{
+	width: 52px;
+	height: 38px;
+	margin-bottom: 0px;
+	margin-left: 6px;
+	margin-right: -3px;
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#e9c730cc), to(#61480acc));
+	transform: skew(-20deg);
+	transition-property: brightness;
+	transition-duration: 0.2s;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#e9c730cc), to(#61480acc));
+}
+
+.MenuBlockSocial_1:hover
+{
+	brightness: 1.4;
+}
+
+.MenuBlockSocial_2:hover
+{
+	brightness: 1.4;
+}
+
+.MenuBlockSocial_3:hover
+{
+	brightness: 1.4;
+}
+
+.DiscordButton
+{
+	width: 34px;
+	height: 34px;
+	transform: skew(15deg);
+	background-image: url("s2r://panorama/images/custom_game/shop/ds1_png.vtex");
+	background-size: 100%;
+	align: center center;
+	img-shadow: 1px 1px 4px 1.5 black;
+	transform: skew(20deg);
+}
+
+.YoutubeButton
+{
+	width: 32px;
+	height: 32px;
+	transform: skew(15deg);
+	background-image: url("s2r://panorama/images/custom_game/shop/yt1_png.vtex");
+	background-size: 100%;
+	align: center center;
+	img-shadow: 1px 1px 4px 1.5 black;
+	transform: skew(20deg);
+}
+
+.TelegramButton
+{
+	width: 32px;
+	height: 32px;
+	transform: skew(15deg);
+	background-image: url("s2r://panorama/images/custom_game/shop/tg1_png.vtex");
+	background-size: 100%;
+	align: center center;
+	img-shadow: 1px 1px 4px 1.5 black;
+	transform: skew(20deg);
+}
+
+.CoinLabelCount
+{
+	font-weight: bold;
+	font-family: Reaver;
+	font-size: 20px;
+	vertical-align: center;
+	margin-top: 0px;
+	margin-left: 6px;
+	color: gold;
+}
+
+.WodaplusBlock
+{
+	flow-children: right;
+	margin-left: 3px;
+	height: 32px;
+	width: 128px;
+	tooltip-position: bottom;
+}
+
+.WodaplusIcon
+{
+	vertical-align: center;
+	width: 30px;
+	height: 30px;
+	background-image: url("s2r://panorama/images/custom_game/shop/dp2_png.vtex");
+	background-size: 100%;
+}
+
+.WodaplusLabelCount
+{
+	font-weight: bold;
+	font-family: Reaver;
+	font-size: 20px;
+	vertical-align: center;
+	margin-top: 0px;
+	margin-left: 6px;
+	color: white;
+}
+
+.NavigationMenu
+{
+	margin-top: 3px;
+	margin-left: 3px;
+	margin-right: 3px;
+	width: 100%;
+	height: 38px;
+	flow-children: right;
+}
+
+.MenuBlockStart
+{
+	width: 14px;
+	height: 38px;
+	margin-bottom: 0px;
+	margin-left: -8px;
+	margin-right: -3px;
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#cdb07dcc), to(#6a624ecc));
+	transform: skew(-20deg);
+}
+
+.MenuBlockEnd
+{
+	width: 100%;
+	height: 38px;
+	margin-bottom: 0px;
+	margin-left: 6px;
+	margin-right: -8px;
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#cdb07dcc), to(#6a624ecc));
+	transform: skew(-20deg);
+}
+
+.MenuProfie
+{
+	width: 200px;
+	height: 38px;
+	margin-bottom: 0px;
+	margin-left: 6px;
+	margin-right: -3px;
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#cdb07dcc), to(#6a624ecc));
+	transform: skew(-20deg);
+}
+
+.MenuHeroes
+{
+	width: 200px;
+	height: 38px;
+	margin-bottom: 0px;
+	margin-left: 6px;
+	margin-right: -3px;
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#cdb07dcc), to(#6a624ecc));
+	transform: skew(-20deg);
+}
+
+.MenuShop
+{
+	width: 200px;
+	height: 38px;
+	margin-bottom: 0px;
+	margin-left: 6px;
+	margin-right: -3px;
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#cdb07dcc), to(#6a624ecc));
+	transform: skew(-20deg);
+}
+
+.MenuInventory
+{
+	width: 200px;
+	height: 38px;
+	margin-bottom: 0px;
+	margin-left: 6px;
+	margin-right: -3px;
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#cdb07dcc), to(#6a624ecc));
+	transform: skew(-20deg);
+}
+
+.MenuHeroVotes
+{
+	width: 200px;
+	height: 38px;
+	margin-bottom: 0px;
+	margin-left: 6px;
+	margin-right: -3px;
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#cdb07dcc), to(#6a624ecc));
+	transform: skew(-20deg);
+}
+
+.MenuProfie:hover,.MenuHeroes:hover,.MenuShop:hover,.MenuInventory:hover,.MenuHeroVotes:hover
+{
+	brightness: 1.2;
+}
+
+.MenuButtonLabel
+{
+	align: center center;
+	font-weight: bold;
+	color: white;
+	text-shadow: 1px 1px 4px 1.5 black;
+	font-family: Reaver;
+	font-size: 18px;
+	transform: skew(20deg);
+}
+
+.BGColor
+{
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.DonateNewMenuButtonSelected2 .BGColor
+{
+	background-color: gradient(linear, 0% 20%, 0% 100%, from(#0fe0, to(rgba(102, 139, 188, 0.4))));
+	opacity: 1;
+}
+
+.DonateNewMenuButtonSelected
+{
+	box-shadow: 0px 0px 8px 2px #668BBC22;
+	border: 1px solid #668BBC;
+}
+
+.SubsPanels
+{
+	width: 100%;
+	height: 100%;
+}
+
+.MainPanel
+{
+	width: 100%;
+	height: 100%;
+	margin-left: 4px;
+	margin-right: 4px;
+	margin-bottom: 4px;
+	margin-top: 0px;
+	align: center center;
+}
+
+.WodaPlusBG
+{
+	background-image: url("s2r://panorama/images/dota_plus/dota_plus_bg_psd.vtex");
+	background-color: #000000;
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+
+.WodaPlusLargeIcon
+{
+	width: 536px;
+	height: 1026px;
+	margin-left: 20px;
+}
+
+.WodaPlusLargeIconImage
+{
+	width: 536px;
+	height: 1026px;
+	margin-left: 33px;
+	background-image: url("s2r://panorama/images/dota_plus/key_art_psd.vtex");
+	background-size: contain;
+	transform: scaleX( -1 );
+	background-position: center 50px;
+	background-repeat: no-repeat;
+	ignore-parent-flow: true;
+}
+
+.WodaPlusLargeInfo
+{
+	vertical-align: bottom;
+	width: 736px;
+	flow-children: down;
+	horizontal-align: center;
+	ui-scale: 80%;
+	margin-bottom: 60px;
+}
+
+.WodaPlusDP
+{
+	width: 200px;
+	height: 200px;
+	background-image: url("s2r://panorama/images/custom_game/shop/dp3_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 3px 2 black;
+	horizontal-align: center;
+}
+
+.WodaPlusHeaderLabel
+{
+	color: gradient( linear, 0% 0%, 100% 0%, from( #F8E8B9 ), color-stop( 0.5, #E4C269), to( #C79123 ) );
+	letter-spacing: 3px;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 50px;
+	text-shadow: 2px 2px 4px black;
+	margin-bottom: 8px;
+	horizontal-align: center;
+	text-overflow: shrink;
+}
+
+.WodaPlusDescriptionLabel
+{
+	horizontal-align: center;
+	width: 100%;
+	color: #ffffff90;
+	font-size: 22px;
+	text-align: center;
+	text-shadow: 0px 0px 8px 5.0 black;
+	font-weight: light;
+	text-overflow: shrink;
+}
+
+.WodaPlusSubscribeButton
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #F8E8B9 ), color-stop( 0.5, #E4C269), to( #C79123 ) );
+	border-top: 1px solid #DCD08680;
+	margin-top: 16px;
+	horizontal-align: center;
+	ui-scale: 120%;
+}
+
+.WodaPlusSubscribeButton Label
+{
+	text-align: center;
+	color: white;
+	text-transform: uppercase;
+	padding: 8px 12px;
+	font-size: 20px;
+	letter-spacing: 2px;
+	font-weight: bold;
+	horizontal-align: center;
+	text-shadow: 1px 1px 4px black;
+}
+
+.WodaPlusSubscribeButton:hover
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #d8a253 ), to( #ecdf90 ) );
+}
+
+.WodaPlusSubscribeButton:active
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #ca974d ), to( #dfd388 ) );
+}
+
+.WodaPlusContent
+{
+	vertical-align: center;
+	horizontal-align: right;
+	margin-right: 50px;
+	flow-children: down;
+}
+
+.HowToContent
+{
+	horizontal-align: center;
+	margin-top: 40px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-weight: semi-bold;
+	color: gradient( linear, 0% 0%, 100% 0%, from( #F8E8B9 ), color-stop( 0.5, #E4C269), to( #C79123 ) );
+	text-shadow: 0px 0px 10px 5 #000000;
+	font-size: 20px;
+}
+
+.ContentSliderPreview
+{
+	width: 100%;
+	padding: 0px 6px 12px 6px;
+	margin-bottom: 0px;
+}
+
+.ContentImage
+{
+	width: 100%;
+	height: 300px;
+	ui-scale: 105%;
+}
+
+.ThumbContent
+{
+	flow-children: down;
+	horizontal-align: center;
+	margin-top: 190px;
+	vertical-align: top;
+}
+
+.ContentHeaderLabel
+{
+	font-size: 30px;
+	text-align: center;
+	horizontal-align: center;
+	text-transform: uppercase;
+	line-height: 40px;
+	letter-spacing: 2px;
+	font-weight: semi-bold;
+	color: dotaPlusGoldGradient;
+	text-shadow: 0px 0px 3px 5 #000000;
+}
+
+.ContentDescriptionLabel
+{
+	font-size: 18px;
+	text-align: center;
+	horizontal-align: center;
+	font-weight: light;
+	color: #ffffff90;
+	text-shadow: 0px 0px 8px 5 #000000;
+	height: 100px;
+	width: 500px;
+	text-overflow: shrink;
+}
+
+.ContentSlider
+{
+	height: 140px;
+	flow-children: right;
+}
+
+.pass_reward_block
+{
+	width: 120px;
+	height: 120px;
+	margin: 10px;
+	border: 2px solid #0009;
+	border-bottom: 2px solid #B78946;
+	box-shadow: 0px 0px 30px 5.0 #000000;
+	background-color: #0009;
+	flow-children: none;
+	tooltip-position: top;
+	saturation: 0;
+	brightness: 0.3;
+	vertical-align: bottom;
+	transition-property: brightness, saturation, transform;
+	transition-duration: 0.2s;
+}
+
+.pass_reward_block_label
+{
+	width: 100%;
+	font-size: 14px;
+	text-align: center;
+	horizontal-align: center;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: semi-bold;
+	color: #ffffff90;
+	text-shadow: 0px 0px 3px 5 #000000;
+	vertical-align: bottom;
+	margin-bottom: 10px;
+	color: gradient( linear, 0% 0%, 100% 0%, from( #F8E8B9 ), color-stop( 0.5, #E4C269), to( #C79123 ) );
+}
+
+.pass_reward_block:hover
+{
+	brightness: 0.5;
+}
+
+.pass_image_block
+{
+	ignore-parent-flow: true;
+	width: 98%;
+	height: 98%;
+	align: center center;
+	z-index: -1;
+	saturation: 0.5;
+}
+
+.pass_reward_block:hover .pass_image_block
+{
+	saturation: 1;
+}
+
+.active_reward_info
+{
+	saturation: 1;
+	brightness: 1;
+	transform: translateY(-10px);
+}
+
+.active_reward_info.pass_reward_block:hover
+{
+	brightness: 1;
+}
+
+.Quests
+{
+	visibility: collapse;
+}
+
+#StrengthQuests
+{
+	overflow: squish scroll;
+}
+
+#AgilityQuests
+{
+	overflow: squish scroll;
+}
+
+#IntellectQuests
+{
+	overflow: squish scroll;
+}
+
+#UniversalQuests
+{
+	overflow: squish scroll;
+}
+
+.quest_container
+{
+	margin-top: 20px;
+	horizontal-align: center;
+	flow-children: right-wrap;
+}
+
+.quest_panel
+{
+	width: 560px;
+	margin-bottom: 24px;
+	margin-right: 12px;
+	margin-left: 12px;
+	margin-top: 4px;
+	height: 213px;
+	background-image: url("s2r://panorama/images/custom_game/talents/bpquest_png.vtex");
+	background-size: 100%;
+}
+
+.quest_reward_icon
+{
+	width: 144px;
+	height: 189px;
+	vertical-align: top;
+	margin-left: 12px;
+	margin-top: 12px;
+	background-image: url("s2r://panorama/images/custom_game/shop/wodacrystal_png.vtex");
+	background-size: 100%;
+}
+
+.quest_reward_icon_hover:hover
+{
+	box-shadow: 0px 0px 8px 2px #bca1666e;
+	border: 1px solid #bca166;
+}
+
+.quest_reward_name
+{
+	margin-left: 165px;
+	margin-top: 9px;
+	margin-right: 9px;
+	color: white;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 22px;
+	font-family: Reaver;
+}
+
+.quest_description
+{
+	margin-left: 166px;
+	margin-top: 40px;
+	margin-right: 9px;
+	text-align: left;
+	horizontal-align: center;
+	font-size: 16px;
+	color: white;
+	font-weight: bold;
+	font-family: Reaver;
+}
+
+.quest_progress_with_button_claim
+{
+	margin-left: 165px;
+	vertical-align: bottom;
+	margin-bottom: 9px;
+	margin-right: 9px;
+	flow-children: right;
+}
+
+.quest_progress_line
+{
+	width: 229px;
+	height: 30px;
+	margin-right:7px;
+	vertical-align: center;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #272d2eee ), to( #131617ee ) );
+}
+
+.quest_progress_bar
+{
+	width: 50%;
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#60862d), to(#3d5f1c));
+	border-top: 1px solid #ffffff22;
+	border-bottom: 1px solid #00000088;
+}
+
+.quest_progress_label
+{
+	color: white;
+	vertical-align: center;
+	font-weight: semi-bold;
+	text-align: center;
+	text-shadow: 0px 0px 3px 2 #000000;
+	horizontal-align: center;
+}
+
+.quest_button_claim
+{
+	width: 150px;
+	height: 30px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#60862d), to(#3d5f1c));
+	border-top: 1px solid #ffffff22;
+	border-bottom: 1px solid #00000088;
+	saturation: 0;
+}
+
+.quest_button_claim_label
+{
+	color: white;
+	vertical-align: center;
+	font-weight: semi-bold;
+	text-align: center;
+	text-shadow: 0px 0px 5px 3 #000000;
+	horizontal-align: center;
+}
+
+.quest_button_claim.activate
+{
+	saturation: 1;
+}
+
+.quest_button_claim.activate:hover
+{
+	brightness: 1.2;
+}
+
+.PlayerBackground
+{
+	width: 99.6%;
+	height: 88.8%;
+	horizontal-align: center;
+	margin-top: 76px;
+	ignore-parent-flow: true;
+	brightness: 0.4;
+	blur: gaussian( 2px );
+}
+
+.BattlePassBlock
+{
+	flow-children: right;
+	margin-left: 3px;
+	height: 32px;
+	tooltip-position: bottom;
+}
+
+.BattlePassIcon
+{
+	vertical-align: center;
+	width: 30px;
+	height: 30px;
+	background-image: url("s2r://panorama/images/custom_game/shop/dp4_png.vtex");
+	background-size: 100%;
+}
+
+.BattlePassLabelCount
+{
+	font-weight: bold;
+	font-family: Reaver;
+	font-size: 20px;
+	vertical-align: center;
+	margin-top: 0px;
+	margin-left: 6px;
+	color: #f7d066;
+}
+
+.DoubleTokensBlock
+{
+	flow-children: right;
+	margin-left: 50px;
+	height: 32px;
+	tooltip-position: bottom;
+}
+
+.DoubleTokensIcon
+{
+	vertical-align: center;
+	width: 30px;
+	height: 30px;
+	background-image: url("s2r://panorama/images/custom_game/talents/double_timer_png.vtex");
+	background-size: 100%;
+}
+
+.DoubleTokensLabelCount
+{
+	font-weight: bold;
+	font-family: Reaver;
+	font-size: 20px;
+	vertical-align: center;
+	margin-top: 0px;
+	margin-left: 6px;
+	color: #f7d066;
+}

@@ -1,0 +1,159 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.DamageFilterPanel
+{
+	width: 255px;
+	padding-bottom: 4px;
+	padding-top: 4px;
+	padding-left: 6px;
+	margin-top: 104px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #425663cc ), color-stop( .7, #42566377 ), to( #0000 ) );
+	flow-children: down;
+	visibility: collapse;
+}
+
+.IncomingDamagePanel
+{
+	flow-children: right;
+}
+
+.OutgoingDamagePanel
+{
+	flow-children: right;
+	margin-bottom: 6px;
+}
+
+.DamagePanelIcon
+{
+	width: 18px;
+	height: 18px;
+	vertical-align: center;
+}
+
+.IncomingDamagePanel .DamagePanelIcon
+{
+	background-image: url("s2r://panorama/images/hud/reborn/icon_armor_psd.vtex");
+	background-size: 100%;
+}
+
+.OutgoingDamagePanel .DamagePanelIcon
+{
+	background-image: url("s2r://panorama/images/hud/reborn/icon_damage_psd.vtex");
+	background-size: 100%;
+}
+
+.DamagePanelFilter
+{
+	width: 200px;
+	height: 14px;
+	background-color: gray;
+	vertical-align: center;
+	margin-left: 7px;
+	flow-children: right;
+}
+
+.PhysicalDamage
+{
+	width: 33%;
+	height: 100%;
+	background-color: #ae2f28;
+}
+
+.MagicalDamage
+{
+	width: 33%;
+	height: 100%;
+	background-color: #5b93d1;
+}
+
+.PureDamage
+{
+	width: 34%;
+	height: 100%;
+	background-color: #d8ae53;
+}
+
+.PercentLabel
+{
+	align: center center;
+	margin-top:-2px;
+	margin-bottom:-1px;
+	margin-left:2px;
+	font-size: 14px;
+	color: white;
+	text-overflow: shrink;
+	text-shadow: 2px 1px 1px 1 #000000;
+}
+
+.NormalLabel
+{
+	align: center center;
+	margin-top:-2px;
+	margin-bottom:-1px;
+	margin-left:2px;
+	font-size: 14px;
+	color: white;
+	text-overflow: shrink;
+	visibility: collapse;
+	text-shadow: 2px 1px 1px 1 #000000;
+}
+
+.IncomingDamagePanel:hover .PercentLabel
+{
+	visibility: collapse;
+}
+
+.OutgoingDamagePanel:hover .PercentLabel
+{
+	visibility: collapse;
+}
+
+.IncomingDamagePanel:hover .NormalLabel
+{
+	visibility: visible;
+}
+
+.OutgoingDamagePanel:hover .NormalLabel
+{
+	visibility: visible;
+}
+
+.UpdateCrossIcon
+{
+	width: 18px;
+	height: 18px;
+	vertical-align: center;
+	margin-left: 6px;
+	background-image: url("s2r://panorama/images/custom_game/icons/close_png.vtex");
+	background-size: 80%;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	wash-color: rgba(223, 206, 202, 0.993);
+	img-shadow: 2px 1px 1px 1 #000000;
+	opacity: 0;
+}
+
+.OutgoingDamagePanel:hover .UpdateCrossIcon
+{
+	opacity: 1;
+}
+
+.IncomingDamagePanel:hover .UpdateCrossIcon
+{
+	opacity: 1;
+}
+
+.UpdateCrossIcon:hover
+{
+	brightness: 1.4;
+}

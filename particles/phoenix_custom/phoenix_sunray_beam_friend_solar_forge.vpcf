@@ -1,0 +1,201 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf62:version{c135a90d-ef52-47fa-a9b8-83a382a77471} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 32
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_bBlendFramesSeq0 = false
+			m_flAnimationRate = 30.0
+			m_bAnimateInFPS = true
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/smoke1/smoke1.vtex"
+				},
+			]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_SpinUpdate"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndScale = 4.0
+			m_flBias = 0.7
+		},
+		{
+			_class = "C_OP_FadeOut"
+			m_flFadeOutTimeMin = 0.75
+			m_flFadeOutTimeMax = 1.0
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_Gravity = [ 0.0, 0.0, 75.0 ]
+			m_fDrag = 0.1
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_Rate = 0.5
+			m_nField = 4
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+			m_Rate = -100.0
+			m_flEndTime = 99999.0
+		},
+		{
+			_class = "C_OP_PositionLock"
+			m_bLockRot = true
+			m_flOpEndFadeOutTime = 0.6
+			m_flOpStartFadeOutTime = 0.5
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade = [ 119, 255, 82, 255 ]
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.058824
+				m_flRandomMax = 0.117647
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 7
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 1.0
+				m_flRandomMax = 1.5
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 5.0
+				m_flRandomMax = 20.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = -30.0
+				m_flRandomMax = 30.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 12
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMax = [ 135, 206, 250, 255 ]
+			m_ColorMin = [ 139, 255, 120, 255 ]
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 180.0
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 4
+		},
+		{
+			_class = "C_INIT_RandomSequence"
+			m_nSequenceMax = 15
+		},
+		{
+			_class = "C_INIT_CreateOnModel"
+		},
+		{
+			_class = "C_INIT_InitialVelocityNoise"
+			m_flNoiseScaleLoc = 0.48
+			m_vecOutputMin = [ -50.0, -50.0, 50.0 ]
+			m_vecOutputMax = [ 50.0, 50.0, 150.0 ]
+			m_TransformInput = 
+			{
+				m_nType = "PT_TYPE_INVALID"
+			}
+		},
+		{
+			_class = "C_INIT_RandomYawFlip"
+		},
+		{
+			_class = "C_INIT_InitialVelocityNoise"
+			m_vecOutputMax = [ 50.0, 50.0, 50.0 ]
+			m_vecOutputMin = [ -50.0, -50.0, -50.0 ]
+			m_flNoiseScaleLoc = 0.75
+			m_TransformInput = 
+			{
+				m_nType = "PT_TYPE_INVALID"
+			}
+		},
+		{
+			_class = "C_INIT_InitialVelocityNoise"
+			m_vecOutputMax = [ 0.0, 0.0, 150.0 ]
+			m_vecOutputMin = [ 0.0, 0.0, 50.0 ]
+			m_TransformInput = 
+			{
+			}
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 20.0
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/econ/items/phoenix/phoenix_solar_forge/creo/phoenix_sunray_beam_friend_solar_forge_magic.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/phoenix/phoenix_solar_forge/creo/phoenix_solar_forge_sunray_beam_friend_flame.vpcf"
+		},
+	]
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 8
+}

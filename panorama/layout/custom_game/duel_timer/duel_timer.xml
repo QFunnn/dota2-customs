@@ -1,0 +1,101 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/duel_timer/duel_timer.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/scripts/icon_change.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/duel_timer/duel_timer.vjs_c" />
+	</scripts>
+	<Panel hittest="false" style="width:100%;height:100%;">
+		<Panel class="panelduel" id="panelduel">
+			<Panel class="paneldueltimer">
+				<Panel class="paneldueltimer1" id="paneldueltimer1" />
+				<Panel class="paneldueltimer2" id="paneldueltimer2" />
+			</Panel>
+			<Panel class="panelheroes" id="panelheroes">
+				<Panel class="panelhero">
+					<Panel class="heroinfo1">
+						<Panel class="herotalents">
+							<Panel class="herotalentslot1">
+								<Panel class="herotalenticonstr" />
+								<Label class="herotalentlabel" id="herotalentstr1" text="0" />
+							</Panel>
+							<Panel class="herotalentslot1">
+								<Panel class="herotalenticonagi" />
+								<Label class="herotalentlabel" id="herotalentagi1" text="0" />
+							</Panel>
+							<Panel class="herotalentslot1">
+								<Panel class="herotalenticonint" />
+								<Label class="herotalentlabel" id="herotalentint1" text="0" />
+							</Panel>
+						</Panel>
+						<Panel id="heroicon1">
+							<Panel class="HeroLevelPanel_1">
+								<Label class="HeroLevelLabel" id="HeroLevelLabel_1" text="0" />
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="ItemPanel_1" id="ItemPanel_1">
+						<Panel id="ItemPanel_1_inventory" />
+						<Panel class="NeutralSlots">
+							<Panel id="ItemPanel_1_neutral" />
+							<Panel id="ItemPanel_1_neutral_passive" />
+						</Panel>
+					</Panel>
+					<Panel class="buttonpredict" id="buttonpredict1">
+						<Label class="buttonpredictlabel" text="#predict" />
+					</Panel>
+				</Panel>
+				<Panel class="vslogo" />
+				<Panel class="panelhero">
+					<Panel class="heroinfo2">
+						<Panel id="heroicon2">
+							<Panel class="HeroLevelPanel_2">
+								<Label class="HeroLevelLabel" id="HeroLevelLabel_2" text="0" />
+							</Panel>
+						</Panel>
+						<Panel class="herotalents">
+							<Panel class="herotalentslot2">
+								<Panel class="herotalenticonstr" />
+								<Label class="herotalentlabel" id="herotalentstr2" text="0" />
+							</Panel>
+							<Panel class="herotalentslot2">
+								<Panel class="herotalenticonagi" />
+								<Label class="herotalentlabel" id="herotalentagi2" text="0" />
+							</Panel>
+							<Panel class="herotalentslot2">
+								<Panel class="herotalenticonint" />
+								<Label class="herotalentlabel" id="herotalentint2" text="0" />
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="ItemPanel_2" id="ItemPanel_2">
+						<Panel id="ItemPanel_2_inventory" />
+						<Panel class="NeutralSlots Right">
+							<Panel id="ItemPanel_2_neutral" />
+							<Panel id="ItemPanel_2_neutral_passive" />
+						</Panel>
+					</Panel>
+					<Panel class="buttonpredict" id="buttonpredict2">
+						<Label class="buttonpredictlabel" text="#predict" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="PanelBoss" id="PanelBoss" />
+		</Panel>
+		<Label class="lose_arena" id="lose_arena" text="#not_lose_duel" />
+		<Label class="unlose_arena" id="unlose_arena" text="#lose_duel" />
+	</Panel>
+</root>

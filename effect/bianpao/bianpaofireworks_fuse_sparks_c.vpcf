@@ -1,0 +1,193 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf57:version{4f75132e-4f5d-493c-958e-3bb4328089ba} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 24
+	m_flConstantRadius = 2.0
+	m_flMaxDrawDistance = 1500.0
+	m_bShouldSort = false
+	m_flAggregateRadius = 512.0
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderTrails"
+			VisibilityInputs = 
+			{
+				m_flRadiusScaleMin = 0.0
+				m_flProxyRadius = 8.0
+			}
+			m_flOverbrightFactor = 6.0
+			m_flAddSelfAmount = 2.0
+			m_bSaturateColorPreAlphaBlend = false
+			m_flMaxLength = 128.0
+			m_flLengthFadeInTime = 0.051
+			m_flAnimationRate = 0.0
+			m_flRadiusScale = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.5
+			}
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/sparks/sparks.vtex"
+					m_TextureControls = 
+					{
+						m_flFinalTextureScaleV = 
+						{
+							m_nType = "PF_TYPE_LITERAL"
+							m_flLiteralValue = -1.0
+						}
+						m_flFinalTextureOffsetV = 
+						{
+							m_nType = "PF_TYPE_LITERAL"
+							m_flLiteralValue = 1.0
+						}
+					}
+				},
+			]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flBias = 0.95
+			m_flEndScale = 0.5
+			m_flStartScale = 4.0
+		},
+		{
+			_class = "C_OP_RemapCPtoVector"
+			m_vOutputMax = [ 1.0, 1.0, 1.0 ]
+			m_nFieldOutput = 6
+			m_vInputMax = [ 255.0, 255.0, 255.0 ]
+			m_nCPInput = 15
+			m_vOutputMin = [ 0.1, 0.1, 0.1 ]
+			m_flOpStrength = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 16
+				m_nVectorComponent = 0
+				m_nMapType = "PF_MAP_TYPE_REMAP"
+				m_flInput0 = 0.0
+				m_flInput1 = 1.0
+				m_flOutput0 = 0.0
+				m_flOutput1 = 1.0
+			}
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_BIASED"
+				m_flRandomMin = 0.03
+				m_flRandomMax = 0.1
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_nBiasType = "PF_BIAS_TYPE_EXPONENTIAL"
+				m_flBiasParameter = 0.25
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMax = [ 255, 182, 133, 255 ]
+			m_ColorMin = [ 255, 247, 210, 255 ]
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 4.0
+				m_flRandomMax = 12.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.0042
+				m_flRandomMax = 0.025
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 10
+		},
+		{
+			_class = "C_INIT_RandomSequence"
+			m_nSequenceMax = 4
+			m_nSequenceMin = 3
+		},
+		{
+			_class = "C_INIT_CreateFromParentParticles"
+		},
+		{
+			_class = "C_INIT_InitialVelocityNoise"
+			m_vecOutputMax = [ 264.0, 264.0, -528.0 ]
+			m_vecOutputMin = [ -264.0, -264.0, -264.0 ]
+			m_flNoiseScaleLoc = 5.0
+			m_flNoiseScale = 5.0
+			m_TransformInput = 
+			{
+				m_nType = "PT_TYPE_INVALID"
+			}
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ -1.0, -1.0, 0.0 ]
+		},
+		{
+			_class = "C_INIT_RemapTransformToVector"
+			m_vOutputMax = [ 1.0, 1.0, 1.0 ]
+			m_nFieldOutput = 6
+			m_vInputMax = [ 255.0, 255.0, 255.0 ]
+			m_vOutputMin = [ 0.1, 0.1, 0.1 ]
+			m_flOpStrength = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 16
+				m_nVectorComponent = 0
+				m_nMapType = "PF_MAP_TYPE_REMAP"
+				m_flInput0 = 0.0
+				m_flInput1 = 1.0
+				m_flOutput0 = 0.0
+				m_flOutput1 = 1.0
+			}
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+			m_TransformInput = 
+			{
+				m_nControlPoint = 15
+			}
+			m_LocalSpaceTransform = 
+			{
+				m_nType = "PT_TYPE_INVALID"
+			}
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+		},
+	]
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 6
+}

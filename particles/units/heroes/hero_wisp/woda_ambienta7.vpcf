@@ -1,0 +1,222 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf62:version{c135a90d-ef52-47fa-a9b8-83a382a77471} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 16
+	m_ConstantColor = [ 255, 233, 147, 80 ]
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 4
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 13
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 6.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.5
+				m_flRandomMax = 0.75
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 32.0
+				m_flRandomMax = 40.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_fRadiusMin = 24.0
+			m_fRadiusMax = 64.0
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.0
+				m_flRandomMax = 360.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 4
+		},
+		{
+			_class = "C_INIT_RandomYawFlip"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_VectorNoise"
+			m_fl4NoiseScale = 0.8
+			m_nFieldOutput = 0
+			m_vecOutputMin = [ -1.0, -1.0, 0.0 ]
+			m_vecOutputMax = [ 1.0, 1.0, 0.0 ]
+			m_bAdditive = true
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.05
+		},
+		{
+			_class = "C_OP_PositionLock"
+		},
+		{
+			_class = "C_OP_MovementRotateParticleAroundAxis"
+			m_vecRotAxis = [ 3.0, 1.7, 1.0 ]
+			m_flRotRate = 132.0
+		},
+		{
+			_class = "C_OP_OscillateVector"
+			m_bOffset = true
+			m_RateMin = [ -64.0, -64.0, -64.0 ]
+			m_RateMax = [ 64.0, 64.0, 64.0 ]
+			m_FrequencyMin = [ 0.125, 0.125, 0.125 ]
+			m_bProportional = false
+			m_flEndTime_min = 999999986991104.0
+			m_flEndTime_max = 999999986991104.0
+			m_bProportionalOp = false
+			m_FrequencyMax = [ 3.0, 3.0, 3.0 ]
+		},
+		{
+			_class = "C_OP_Noise"
+			m_nFieldOutput = 16
+			m_flOutputMin = 0.25
+		},
+		{
+			_class = "C_OP_Orient2DRelToCP"
+			m_flRotOffset = 180.0
+		},
+		{
+			_class = "C_OP_RemapCPtoScalar"
+			m_nCPInput = 13
+			m_nFieldOutput = 16
+			m_flOutputMin = 1.0
+			m_flOutputMax = 0.0
+			m_nSetMethod = "PARTICLE_SET_SCALE_CURRENT_VALUE"
+		},
+	]
+	m_ForceGenerators = 
+	[
+		{
+			_class = "C_OP_RandomForce"
+			m_MinForce = [ -128.0, -128.0, -128.0 ]
+			m_MaxForce = [ 128.0, 128.0, 128.0 ]
+		},
+		{
+			_class = "C_OP_TwistAroundAxis"
+			m_fForceAmount = 150.0
+		},
+		{
+			_class = "C_OP_AttractToControlPoint"
+			m_fFalloffPower = -0.05
+			m_TransformInput = 
+			{
+				m_nControlPoint = 2
+				m_bUseOrientation = false
+			}
+		},
+		{
+			_class = "C_OP_AttractToControlPoint"
+			m_fForceAmount = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = -150.0
+			}
+			m_TransformInput = 
+			{
+				m_nControlPoint = 2
+				m_bUseOrientation = false
+			}
+		},
+	]
+	m_Constraints = 
+	[
+		{
+			_class = "C_OP_ConstrainDistance"
+			m_fMaxDistance = 32.0
+		},
+		{
+			_class = "C_OP_ConstrainDistance"
+			m_nControlPointNumber = 2
+			m_fMaxDistance = 24.0
+			m_fMinDistance = 16.0
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_flAddSelfAmount = 2.0
+			m_bSaturateColorPreAlphaBlend = false
+			m_nOrientationType = "PARTICLE_ORIENTATION_WORLD_Z_ALIGNED"
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/swoop_03.vtex"
+				},
+			]
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_wisp/woda_ambienta7a.vpcf"
+		},
+	]
+}

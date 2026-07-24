@@ -1,0 +1,109 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf61:version{39d3ce1d-9442-4407-9b78-8317145b1732} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 2
+	m_nInitialParticles = 1
+	m_BoundingBoxMin = [ -10.0, -50.0, 0.0 ]
+	m_BoundingBoxMax = [ 10.0, 10.0, 240.0 ]
+	m_ConstantColor = [ 0, 0, 0, 255 ]
+	m_nBehaviorVersion = 5
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_entityName = "parent"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_hitloc"
+					m_entityName = "parent"
+				},
+			]
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetSingleControlPointPosition"
+			m_vecCP1Pos = [ 0.0, 0.0, 150.0 ]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_SetToCP"
+		},
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_nevermore/nevermore_trail_old_ground_cracks.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_nevermore/nevermore_trail_old_ground_cracks_soft.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_nevermore/nevermore_trail_old_contact.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_nevermore/nevermore_trail_old_flek_swirl.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_nevermore/nevermore_trail_old_rocks.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_nevermore/nevermore_trail_old_wispy.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_nevermore/nevermore_trail_old_ribbon_rev.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_nevermore/nevermore_trail_old_dust.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_nevermore/nevermore_trail_old_flek_hit.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_nevermore/nevermore_trail_old_ambient_swirl.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_nevermore/nevermore_trail_old_contact_edge.vpcf"
+		},
+	]
+}

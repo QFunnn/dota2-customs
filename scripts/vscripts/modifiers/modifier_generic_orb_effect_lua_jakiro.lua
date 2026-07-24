@@ -1,0 +1,198 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+modifier_generic_orb_effect_lua_jakiro = class({})
+
+--------------------------------------------------------------------------------
+-- Classifications
+function modifier_generic_orb_effect_lua_jakiro:IsHidden()
+	return true
+end
+
+function modifier_generic_orb_effect_lua_jakiro:IsDebuff()
+	return false
+end
+
+function modifier_generic_orb_effect_lua_jakiro:IsPurgable()
+	return false
+end
+
+function modifier_generic_orb_effect_lua_jakiro:GetAttributes()
+	return MODIFIER_ATTRIBUTE_PERMANENT
+end
+
+--------------------------------------------------------------------------------
+-- Initializations
+function modifier_generic_orb_effect_lua_jakiro:OnCreated( kv )
+	-- generate data
+	self.ability = self:GetAbility()
+	self.cast = false
+	self.records = {}
+end
+
+function modifier_generic_orb_effect_lua_jakiro:OnRefresh( kv )
+end
+
+function modifier_generic_orb_effect_lua_jakiro:OnDestroy( kv )
+
+end
+
+--------------------------------------------------------------------------------
+-- Modifier Effects
+function modifier_generic_orb_effect_lua_jakiro:DeclareFunctions()
+	local funcs = {
+		MODIFIER_EVENT_ON_ATTACK,
+		MODIFIER_EVENT_ON_ATTACK_FAIL,
+		MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
+		MODIFIER_EVENT_ON_ATTACK_RECORD_DESTROY,
+
+		MODIFIER_EVENT_ON_ORDER,
+
+		MODIFIER_PROPERTY_PROJECTILE_NAME,
+	}
+
+	return funcs
+end
+
+function modifier_generic_orb_effect_lua_jakiro:OnAttack( params )
+	-- if not IsServer() then return end
+	if params.attacker~=self:GetParent() then return end
+
+	-- no instant attacks
+	if params.no_attack_cooldown then return end
+
+	-- register attack if being cast and fully castable
+	if self:ShouldLaunch( params.target ) then
+		-- use mana and cd
+
+		-- record the attack
+		self.records[params.record] = true
+
+		-- run OrbFire script if available
+		if self.ability.OnOrbFire then self.ability:OnOrbFire( params ) end
+	end
+
+	self.cast = false
+end
+function modifier_generic_orb_effect_lua_jakiro:GetModifierProcAttack_Feedback( params )
+	if self.records[params.record] then
+		-- apply the effect
+		if self.ability.OnOrbImpact then self.ability:OnOrbImpact( params ) end
+	end
+end
+function modifier_generic_orb_effect_lua_jakiro:OnAttackFail( params )
+	if self.records[params.record] then
+		-- apply the fail effect
+		if self.ability.OnOrbFail then self.ability:OnOrbFail( params ) end
+	end
+end
+function modifier_generic_orb_effect_lua_jakiro:OnAttackRecordDestroy( params )
+	-- destroy attack record
+	self.records[params.record] = nil
+end
+
+function modifier_generic_orb_effect_lua_jakiro:OnOrder( params )
+	if params.unit~=self:GetParent() then return end
+
+	if params.ability then
+		-- if this ability, cast
+		if params.ability==self:GetAbility() then
+			self.cast = true
+			return
+		end
+
+		-- if casting other ability that cancel channel while casting this ability, turn off
+		local pass = false
+		local behavior = params.ability:GetBehaviorInt()
+		if self:FlagExist( behavior, DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_CHANNEL ) or 
+			self:FlagExist( behavior, DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT ) or
+			self:FlagExist( behavior, DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL )
+		then
+			local pass = true -- do nothing
+		end
+
+		if self.cast and (not pass) then
+			self.cast = false
+		end
+	else
+		-- if ordering something which cancel channel, turn off
+		if self.cast then
+			if self:FlagExist( params.order_type, DOTA_UNIT_ORDER_MOVE_TO_POSITION ) or
+				self:FlagExist( params.order_type, DOTA_UNIT_ORDER_MOVE_TO_TARGET )	or
+				self:FlagExist( params.order_type, DOTA_UNIT_ORDER_ATTACK_MOVE ) or
+				self:FlagExist( params.order_type, DOTA_UNIT_ORDER_ATTACK_TARGET ) or
+				self:FlagExist( params.order_type, DOTA_UNIT_ORDER_STOP ) or
+				self:FlagExist( params.order_type, DOTA_UNIT_ORDER_HOLD_POSITION )
+			then
+				self.cast = false
+			end
+		end
+	end
+end
+
+function modifier_generic_orb_effect_lua_jakiro:GetModifierProjectileName()
+	if not self.ability.GetProjectileName then return end
+    local modifier_generic_orb_effect_lua_jakiro_frost = self:GetParent():FindModifierByName("modifier_generic_orb_effect_lua_jakiro_frost")
+    if modifier_generic_orb_effect_lua_jakiro_frost then
+        if modifier_generic_orb_effect_lua_jakiro_frost:ShouldLaunch( self:GetCaster():GetAggroTarget() ) then
+            return modifier_generic_orb_effect_lua_jakiro_frost:GetAbility():GetProjectileName()
+        end
+    end
+	if self:ShouldLaunch( self:GetCaster():GetAggroTarget() ) then
+        print("dap")
+		return self.ability:GetProjectileName()
+	end
+end
+
+--------------------------------------------------------------------------------
+-- Helper
+function modifier_generic_orb_effect_lua_jakiro:ShouldLaunch( target )
+	-- check autocast
+	if self.ability:GetAutoCastState() then
+		-- filter whether target is valid
+		if self.ability.CastFilterResultTarget~=CDOTA_Ability_Lua.CastFilterResultTarget then
+			-- check if ability has custom target cast filter
+			if self.ability:CastFilterResultTarget( target )==UF_SUCCESS then
+				self.cast = true
+			end
+		else
+			local nResult = UnitFilter(
+				target,
+				self.ability:GetAbilityTargetTeam(),
+				self.ability:GetAbilityTargetType(),
+				self.ability:GetAbilityTargetFlags(),
+				self:GetCaster():GetTeamNumber()
+			)
+			if nResult == UF_SUCCESS then
+				self.cast = true
+			end
+		end
+	end
+
+	if self.cast and self.ability:IsFullyCastable() and (not self:GetParent():IsSilenced()) then
+		return true
+	end
+
+	return false
+end
+
+--------------------------------------------------------------------------------
+-- Helper: Flags
+function modifier_generic_orb_effect_lua_jakiro:FlagExist(a,b)--Bitwise Exist
+	local p,c,d=1,0,b
+	while a>0 and b>0 do
+		local ra,rb=a%2,b%2
+		if ra+rb>1 then c=c+p end
+		a,b,p=(a-ra)/2,(b-rb)/2,p*2
+	end
+	return c==d
+end
+--------------------------------------------------------------------------------
+-- Graphics & Animations

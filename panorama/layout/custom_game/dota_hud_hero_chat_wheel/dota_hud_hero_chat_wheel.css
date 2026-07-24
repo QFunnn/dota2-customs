@@ -1,0 +1,704 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+@define phraseOffset: 100px;
+@define defaultPhraseHeight: 105px;
+@define heroPhraseHeight: 105px;
+@define arrowOffset: 60px;
+@define phraseMinimumPadding: 20px;
+.MyWheel
+{
+	width: 100%;
+	height: 100%;
+	horizontal-align: center;
+	vertical-align: middle;
+}
+
+.Hidden
+{
+	visibility: collapse;
+}
+
+#PhrasesContainer
+{
+	width: 100%;
+	height: 100%;
+}
+
+.Phrase
+{
+	flow-children: right;
+	pre-transform-scale2d: 1;
+	height: defaultPhraseHeight;
+	transition-property: pre-transform-scale2d;
+	transition-duration: 0.1s;
+	align: center center;
+	width: 100%;
+}
+
+.Phrase Label
+{
+	transition-property: color, ui-scale;
+	transition-duration: 0.1s;
+	text-shadow: 3px 3px 2px black;
+	text-overflow: shrink;
+}
+
+.Phrase.IsSpray
+{
+	height: 64px;
+}
+
+.HeroChatWheel .Phrase
+{
+	height: heroPhraseHeight;
+}
+
+.Phrase Label
+{
+	vertical-align: middle;
+	font-size: 24px;
+	color: #ffffff;
+	font-size: 26px;
+	font-weight: bold;
+	text-align: right;
+}
+
+.LowLevelPlayer .Phrase Label
+{
+	color: #aaa;
+}
+
+.SomethingSelected .Phrase Label
+{
+	color: #aaa;
+}
+
+.SomethingSelected .Phrase.Selected
+{
+	pre-transform-scale2d: 1.3;
+}
+
+.SomethingSelected .Phrase.Selected Label
+{
+	color: #ffffff;
+}
+
+.Phrase #ChatWheelEmoticon
+{
+	margin-left: 10px;
+	width: 32px;
+	height: 32px;
+}
+
+.Phrase #ChatWheelEmoticon.Hidden
+{
+	visibility: collapse;
+}
+
+@keyframes 'TextGlowPulse'
+{
+	0%
+	{
+		text-shadow: 0px 0px 6px 1 #aae9a700;
+	}
+	
+	50%
+	{
+		text-shadow: 0px 0px 6px 1 #aae9a7dd;
+		color: #ddd;
+	}
+	
+	100%
+	{
+		text-shadow: 0px 0px 6px 1 #aae9a700;
+	}
+	
+}
+
+.ChatWheelSoundIcon
+{
+	width: 22px;
+	height: 22px;
+	margin-right: 4px;
+	background-image: url("s2r://panorama/images/hud/reborn/icon_scoreboard_mute_sound_psd.vtex");
+	background-repeat: no-repeat;
+	background-size: contain;
+	visibility: collapse;
+	vertical-align: center;
+}
+
+.Phrase.HasSound:not(.IsSpray) .ChatWheelSoundIcon
+{
+	visibility: visible;
+}
+
+.Phrase.HasSound.RequiresHeroBadgeTier .ChatWheelSoundIcon
+{
+	visibility: collapse;
+}
+
+.ChatWheelAllPrefix
+{
+	visibility: collapse;
+}
+
+.Phrase.SendToAllChat .ChatWheelAllPrefix
+{
+	visibility: visible;
+}
+
+.ChatWheelRequiredTierIcon
+{
+	width: 36px;
+	height: 36px;
+	vertical-align: center;
+	background-size: 100%;
+}
+
+.RequiresHeroBadgeTier .ChatWheelRequiredTierIcon
+{
+	visibility: visible;
+}
+
+.RequiresHeroBadgeTier:not(.RequiredTierUnlocked) Label
+{
+	opacity: 0.3;
+}
+
+.ChatWheelRequiredTierLockIcon,.ChatWheelRequiredTierLockIconShadow
+{
+	vertical-align: middle;
+	horizontal-align: center;
+	width: 14px;
+	height: 14px;
+	background-image: url("s2r://panorama/images/control_icons/lock_small_png.vtex");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.ChatWheelRequiredTierLockIconShadow
+{
+	transform: translate3d(2px, 2px, 0px);
+	wash-color: black;
+}
+
+.RequiredTierUnlocked .ChatWheelRequiredTierLockIcon,.RequiredTierUnlocked .ChatWheelRequiredTierLockIconShadow
+{
+	visibility: collapse;
+}
+
+#LineCanvas
+{
+	width: 100%;
+	height: 100%;
+	horizontal-align: center;
+	vertical-align: center;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_circle_sharp_png.vtex");
+}
+
+#Wheel
+{
+	height: 596px;
+	width: 596px;
+	align: center center;
+}
+
+.Slices
+{
+	width: 600px;
+	height: 600px;
+}
+
+.Slices #SlicesSelection
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient(radial, 50% 50%, 0% 0%, 50% 50%, from(#fffa), color-stop(0.2, #fff7), to(#fff0));
+	opacity: 0.5;
+	visibility: collapse;
+}
+
+.Slices #SlicesSelection.Hidden
+{
+	visibility: collapse;
+}
+
+.SliceBackground
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient(radial, 50% 50%, 0% 0%, 50% 50%, from(#000f), color-stop(0.5, #000c), to(#0000));
+}
+
+.SliceBackground.Even
+{
+	background-color: gradient(radial, 50% 50%, 0% 0%, 50% 50%, from(#333f), color-stop(0.5, #333c), to(#3330));
+}
+
+.SliceBackground.SecondMod
+{
+	background-color: gradient(radial, 50% 50%, 0% 0%, 50% 50%, from(#000f), color-stop(0.5, #333c), to(#4440));
+}
+
+.SliceBackground.ThirdMod
+{
+	background-color: gradient(radial, 50% 50%, 0% 0%, 50% 50%, from(#333f), color-stop(0.5, #333c), to(#3330));
+}
+
+#SlicesBackgroundContainer
+{
+	width: 100%;
+	height: 100%;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_circle_sharp_png.vtex");
+}
+
+.BackgroundPlate
+{
+	background-image: url("s2r://panorama/images/chat_wheel/background_plate_png.vtex");
+	background-position: center;
+	background-size: contain;
+	horizontal-align: center;
+	vertical-align: middle;
+	height: 180px;
+	width: 180px;
+}
+
+#WheelBG
+{
+	background-position: center;
+	background-size: contain;
+	horizontal-align: center;
+	vertical-align: middle;
+	height: 180px;
+	width: 180px;
+	transform: translateY(6px);
+}
+
+#WheelCenter
+{
+	background-image: url("s2r://panorama/images/chat_wheel/circle_png.vtex");
+	background-size: contain;
+	background-position: center;
+	horizontal-align: center;
+	vertical-align: middle;
+	height: 128px;
+	width: 128px;
+}
+
+#WheelBG2
+{
+	background-image: url("s2r://panorama/images/chat_wheel/circle_bg2_png.vtex");
+	background-size: contain;
+	background-position: center;
+	horizontal-align: center;
+	vertical-align: middle;
+	height: 128px;
+	width: 128px;
+}
+
+#WheelPointer
+{
+	background-image: url("s2r://panorama/images/chat_wheel/circle_pointer_png.vtex");
+	background-size: contain;
+	horizontal-align: center;
+	vertical-align: center;
+	height: 128px;
+	width: 128px;
+	opacity: 0.5;
+}
+
+#PointerContainer
+{
+	height: 180px;
+	width: 180px;
+	horizontal-align: center;
+	vertical-align: middle;
+}
+
+#Bubble
+{
+	background-image: url("s2r://panorama/images/chat_wheel/center_cursor_png.vtex");
+	horizontal-align: center;
+	vertical-align: middle;
+	height: 46px;
+	width: 46px;
+}
+
+#Cursor
+{
+	horizontal-align: center;
+	vertical-align: middle;
+	height: 32px;
+	width: 32px;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.5s;
+}
+
+#Cursor Image
+{
+	horizontal-align: center;
+	vertical-align: middle;
+	saturation: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.SomethingSelected #Cursor
+{
+	opacity: 1;
+	transition-duration: 0s;
+}
+
+#HeroImage
+{
+	width: 100%;
+	height: 100%;
+	visibility: visible;
+}
+
+.HeroChatWheel #HeroImage,.HasHeroImage #HeroImage
+{
+	visibility: visible;
+}
+
+.HeroChatWheel #Bubble,.HasHeroImage #Bubble
+{
+	background-image: none;
+}
+
+#Arrow
+{
+	horizontal-align: center;
+	vertical-align: middle;
+	height: 46px;
+	width: 46px;
+	margin-left: 2px;
+	brightness: 2.0;
+	transform: rotateZ(-90deg) rotateX(0deg) translate3d(0px, -60px, 0px);
+	background-image: url("s2r://panorama/images/chat_wheel/arrow_psd.vtex");
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.ChatWheelSprayImage
+{
+	visibility: collapse;
+	height: 100%;
+	width: height-percentage(100%);
+	horizontal-align: center;
+	wash-color: #fff;
+}
+
+.IsSpray .ChatWheelSprayImage
+{
+	visibility: visible;
+}
+
+.PhraseCenter
+{
+	flow-children: left;
+	horizontal-align: center;
+}
+
+#Phrase0
+{
+	margin-bottom: 235px;
+	margin-left: -10px;
+	width: 150px;
+}
+
+#Phrase0>Panel
+{
+	horizontal-align: center;
+}
+
+#Phrase1
+{
+	margin-bottom: 165px;
+	margin-left: 550px;
+	width: 450px;
+}
+
+#Phrase1>Panel
+{
+	horizontal-align: left;
+}
+
+#Phrase1 .PhraseCenter
+{
+	horizontal-align: left;
+	margin-left: 20px;
+}
+
+#Phrase2
+{
+	margin-top: 40px;
+	margin-left: 590px;
+	width: 400px;
+}
+
+#Phrase2>Panel
+{
+	horizontal-align: left;
+}
+
+#Phrase2 .PhraseCenter
+{
+	horizontal-align: left;
+}
+
+#Phrase3
+{
+	margin-top: 215px;
+	margin-left: 550px;
+	width: 500px;
+}
+
+#Phrase3 .PhraseCenter
+{
+	horizontal-align: left;
+	margin-left: 60px;
+}
+
+#Phrase4
+{
+	margin-top: 370px;
+	margin-left: 400px;
+	width: 400px;
+}
+
+#Phrase4 .PhraseCenter
+{
+	horizontal-align: left;
+	margin-left: 40px;
+}
+
+#Phrase5
+{
+	margin-top: 375px;
+	margin-right: 420px;
+	width: 400px;
+	z-index: 10;
+}
+
+#Phrase5 .PhraseCenter
+{
+	horizontal-align: right;
+	margin-right: 40px;
+}
+
+#Phrase6
+{
+	margin-top: 220px;
+	margin-right: 470px;
+	width: 400px;
+}
+
+#Phrase6 .PhraseCenter
+{
+	horizontal-align: right;
+	margin-right: 60px;
+}
+
+#Phrase6>Panel
+{
+	horizontal-align: center;
+}
+
+#Phrase7
+{
+	margin-top: 40px;
+	margin-right: 540px;
+	width: 400px;
+}
+
+#Phrase7>Panel
+{
+	horizontal-align: right;
+}
+
+#Phrase7 .PhraseCenter
+{
+	horizontal-align: right;
+}
+
+#Phrase8
+{
+	margin-bottom: 145px;
+	margin-right: 600px;
+	width: 500px;
+}
+
+#Phrase8>Panel
+{
+	horizontal-align: right;
+}
+
+#Phrase8 .PhraseCenter
+{
+	horizontal-align: right;
+}
+
+.ArrowParent
+{
+	width: 300px;
+	height: 300px;
+	align: center center;
+}
+
+.ForWheel0 #PointerContainer
+{
+	transform: rotateZ(0deg) rotateX(0deg) translate3d(0px, 0px, 0px);
+}
+
+.ForWheel1 #PointerContainer
+{
+	transform: rotateZ(45deg) rotateX(0deg) translate3d(0px, 0px, 0px);
+}
+
+.ForWheel2 #PointerContainer
+{
+	transform: rotateZ(90deg) rotateX(0deg) translate3d(0px, 0px, 0px);
+}
+
+.ForWheel3 #PointerContainer
+{
+	transform: rotateZ(135deg) rotateX(0deg) translate3d(0px, 0px, 0px);
+}
+
+.ForWheel4 #PointerContainer
+{
+	transform: rotateZ(170deg) rotateX(0deg) translate3d(0px, 0px, 0px);
+}
+
+.ForWheel5 #PointerContainer
+{
+	transform: rotateZ(200deg) rotateX(0deg) translate3d(0px, 0px, 0px);
+}
+
+.ForWheel6 #PointerContainer
+{
+	transform: rotateZ(240deg) rotateX(0deg) translate3d(0px, 0px, 0px);
+}
+
+.ForWheel7 #PointerContainer
+{
+	transform: rotateZ(270deg) rotateX(0deg) translate3d(0px, 0px, 0px);
+}
+
+.ForWheel8 #PointerContainer
+{
+	transform: rotateZ(315deg) rotateX(0deg) translate3d(0px, 0px, 0px);
+}
+
+.ForWheel0 .ArrowParent
+{
+	transform: rotateZ(0deg) rotateX(0deg) translate3d(0px, 0px, 0px);
+}
+
+.ForWheel1 .ArrowParent
+{
+	transform: rotateZ(45deg) rotateX(0deg) translate3d(0px, 0px, 0px);
+}
+
+.ForWheel2 .ArrowParent
+{
+	transform: rotateZ(90deg) rotateX(0deg) translate3d(0px, 0px, 0px);
+}
+
+.ForWheel3 .ArrowParent
+{
+	transform: rotateZ(135deg) rotateX(0deg) translate3d(0px, 0px, 0px);
+}
+
+.ForWheel4 .ArrowParent
+{
+	transform: rotateZ(170deg) rotateX(0deg) translate3d(0px, 0px, 0px);
+}
+
+.ForWheel5 .ArrowParent
+{
+	transform: rotateZ(200deg) rotateX(0deg) translate3d(0px, 0px, 0px);
+}
+
+.ForWheel6 .ArrowParent
+{
+	transform: rotateZ(240deg) rotateX(0deg) translate3d(0px, 0px, 0px);
+}
+
+.ForWheel7 .ArrowParent
+{
+	transform: rotateZ(270deg) rotateX(0deg) translate3d(0px, 0px, 0px);
+}
+
+.ForWheel8 .ArrowParent
+{
+	transform: rotateZ(315deg) rotateX(0deg) translate3d(0px, 0px, 0px);
+}
+
+.ForWheel0 .Slices #SlicesSelection
+{
+	visibility: visible;
+	clip: radial( 50.0% 50.0%, 0.0deg, 40deg);
+}
+
+.ForWheel1 .Slices #SlicesSelection
+{
+	visibility: visible;
+	clip: radial( 50.0% 50.0%, 40.0deg, 40deg);
+}
+
+.ForWheel2 .Slices #SlicesSelection
+{
+	visibility: visible;
+	clip: radial( 50.0% 50.0%, 80.0deg, 40deg);
+}
+
+.ForWheel3 .Slices #SlicesSelection
+{
+	visibility: visible;
+	clip: radial( 50.0% 50.0%, 120.0deg, 40deg);
+}
+
+.ForWheel4 .Slices #SlicesSelection
+{
+	visibility: visible;
+	clip: radial( 50.0% 50.0%, 160.0deg, 40deg);
+}
+
+.ForWheel5 .Slices #SlicesSelection
+{
+	visibility: visible;
+	clip: radial( 50.0% 50.0%, 200.0deg, 40deg);
+}
+
+.ForWheel6 .Slices #SlicesSelection
+{
+	visibility: visible;
+	clip: radial( 50.0% 50.0%, 240.0deg, 40deg);
+}
+
+.ForWheel7 .Slices #SlicesSelection
+{
+	visibility: visible;
+	clip: radial( 50.0% 50.0%, 280.0deg, 40deg);
+}
+
+.ForWheel8 .Slices #SlicesSelection
+{
+	visibility: visible;
+	clip: radial( 50.0% 50.0%, 320.0deg, 40deg);
+}

@@ -1,0 +1,62 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/damage_filter/damage_filter.vjs_c" />
+	</scripts>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/layout/custom_game/damage_filter/damage_filter.vcss_c" />
+	</styles>
+	<Panel hittest="false" style="width:100%;height:100%;">
+		<Panel class="DamageFilterPanel" id="DamageFilterPanel">
+			<Panel class="OutgoingDamagePanel">
+				<Panel class="DamagePanelIcon" />
+				<Panel class="DamagePanelFilter">
+					<Panel class="PhysicalDamage" id="PhysicalDamageOutgoing">
+						<Label class="PercentLabel" text="0%" />
+						<Label class="NormalLabel" text="0" />
+					</Panel>
+					<Panel class="MagicalDamage" id="MagicalDamageOutgoing">
+						<Label class="PercentLabel" text="0%" />
+						<Label class="NormalLabel" text="0" />
+					</Panel>
+					<Panel class="PureDamage" id="PureDamageOutgoing">
+						<Label class="PercentLabel" text="0%" />
+						<Label class="NormalLabel" text="0" />
+					</Panel>
+				</Panel>
+				<Panel class="UpdateCrossIcon" onactivate="ResetPlayerDamage(2);" />
+			</Panel>
+			<Panel class="IncomingDamagePanel">
+				<Panel class="DamagePanelIcon" />
+				<Panel class="DamagePanelFilter">
+					<Panel class="PhysicalDamage" id="PhysicalDamageIncoming">
+						<Label class="PercentLabel" text="0%" />
+						<Label class="NormalLabel" text="0" />
+					</Panel>
+					<Panel class="MagicalDamage" id="MagicalDamageIncoming">
+						<Label class="PercentLabel" text="0%" />
+						<Label class="NormalLabel" text="0" />
+					</Panel>
+					<Panel class="PureDamage" id="PureDamageIncoming">
+						<Label class="PercentLabel" text="0%" />
+						<Label class="NormalLabel" text="0" />
+					</Panel>
+				</Panel>
+				<Panel class="UpdateCrossIcon" onactivate="ResetPlayerDamage(1);" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

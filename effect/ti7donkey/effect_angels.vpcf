@@ -1,0 +1,279 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf61:version{39d3ce1d-9442-4407-9b78-8317145b1732} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 5
+	m_nInitialParticles = 1
+	m_BoundingBoxMin = [ -30.0, -30.0, -30.0 ]
+	m_BoundingBoxMax = [ 30.0, 30.0, 30.0 ]
+	m_flCullRadius = -1.0
+	m_flConstantRadius = 0.7
+	m_nConstantSequenceNumber1 = 1
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_ActivityName = "ACT_DOTA_IDLE"
+			m_ModelList = 
+			[
+				{
+					m_model = resource:"models/courier/donkey_ti7/donkey_ti7_angel.vmdl"
+				},
+			]
+			m_bOrientZ = true
+			m_bScaleAnimationRate = true
+			m_nLOD = 1
+			m_flAnimationRate = 40.0
+			m_bAnimated = true
+			m_bForceLoopingAnimation = true
+			m_modelInput = 
+			{
+			}
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_OscillateVector"
+			m_flOpFadeOscillatePeriod = 7.5
+			m_flOpEndFadeOutTime = 0.625
+			m_flOpStartFadeOutTime = 0.55
+			m_FrequencyMax = [ 3.0, 3.0, 3.0 ]
+			m_FrequencyMin = [ 2.0, 2.0, 2.0 ]
+			m_RateMax = [ 0.5, 0.5, 0.31 ]
+			m_RateMin = [ -0.5, -0.5, -0.31 ]
+		},
+		{
+			_class = "C_OP_OscillateVector"
+			m_flOpFadeOscillatePeriod = 10.0
+			m_flOpEndFadeOutTime = 0.25
+			m_flOpStartFadeOutTime = 0.2
+			m_FrequencyMax = [ 0.5, 0.5, 0.5 ]
+			m_FrequencyMin = [ 0.25, 0.25, 0.25 ]
+			m_RateMax = [ 0.5, 0.5, 0.25 ]
+			m_RateMin = [ -0.5, -0.5, -0.25 ]
+		},
+		{
+			_class = "C_OP_OscillateVector"
+			m_flOpFadeOscillatePeriod = 5.0
+			m_flOpEndFadeOutTime = 0.5
+			m_flOpStartFadeOutTime = 0.4
+			m_FrequencyMin = [ 0.25, 0.25, 0.25 ]
+			m_bProportional = false
+			m_RateMax = [ 9.0, 9.0, 9.0 ]
+			m_RateMin = [ -9.0, -9.0, -9.0 ]
+		},
+		{
+			_class = "C_OP_VectorNoise"
+			m_flOpFadeOscillatePeriod = 5.0
+			m_flOpEndFadeOutTime = 0.5
+			m_flOpStartFadeOutTime = 0.4
+			m_bAdditive = true
+			m_vecOutputMax = [ 4.0, 4.0, 0.0 ]
+			m_vecOutputMin = [ -4.0, -4.0, 0.0 ]
+			m_nFieldOutput = 0
+		},
+		{
+			_class = "C_OP_MaxVelocity"
+			m_flMaxVelocity = 128.0
+		},
+		{
+			_class = "C_OP_OrientTo2dDirection"
+			m_flOpTimeOffsetMax = 3.0
+			m_flOpFadeOscillatePeriod = 5.0
+			m_flOpEndFadeOutTime = 0.5
+			m_flOpStartFadeOutTime = 0.45
+			m_flOpEndFadeInTime = 0.1
+			m_flOpStartFadeInTime = 0.05
+			m_flSpinStrength = 0.0125
+			m_flRotOffset = 90.0
+			m_nFieldOutput = 12
+			m_flOpStrength = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 1.0
+				m_flRandomMax = 2.0
+				m_nRandomMode = "PF_RANDOM_MODE_VARYING"
+			}
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flStartScale = 0.0
+			m_flEndTime = 0.021
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndScale = 0.0
+			m_flStartTime = 0.8
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.05
+			m_Gravity = [ 0.0, 0.0, 40.0 ]
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 2.0
+				m_flRandomMax = 3.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_fRadiusMax = 16.0
+			m_vecDistanceBias = [ 1.0, 1.0, 0.0 ]
+			m_TransformInput = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = -25.0
+				m_flRandomMax = 25.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 4
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_nOutputField = 20
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_BIASED"
+				m_flRandomMin = 0.75
+				m_flRandomMax = 0.85
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_nBiasType = "PF_BIAS_TYPE_EXPONENTIAL"
+				m_flBiasParameter = 0.8125
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 1.0
+				m_flRandomMax = 1.35
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 10
+		},
+		{
+			_class = "C_INIT_PositionPlaceOnGround"
+			m_flOffset = 64.0
+			m_flMaxTraceLength = 512.0
+			m_CollisionGroupName = "DEBRIS"
+			m_bIncludeWater = true
+			m_bSetNormal = true
+			m_nTraceMissBehavior = "PARTICLE_TRACE_MISS_BEHAVIOR_KILL"
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 0.0, 0.0, -8.0 ]
+			m_OffsetMax = [ 0.0, 0.0, -10.0 ]
+			m_bLocalCoords = true
+			m_TransformInput = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+		{
+			_class = "C_INIT_RandomYawFlip"
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 3.0
+			}
+		},
+		{
+			_class = "C_OP_NoiseEmitter"
+			m_flOutputMax = 3.0
+			m_flOutputMin = -5.0
+			m_flNoiseScale = 2.0
+		},
+	]
+	m_ForceGenerators = 
+	[
+		{
+			_class = "C_OP_AttractToControlPoint"
+			m_fFalloffPower = 0.5
+			m_fForceAmount = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 75.0
+			}
+		},
+	]
+	m_Constraints = 
+	[
+		{
+			_class = "C_OP_PlanarConstraint"
+			m_bGlobalNormal = true
+		},
+		{
+			_class = "C_OP_WorldTraceConstraint"
+			m_flSlideAmount = 1.0
+			m_flBounceAmount = 1.0
+			m_nCollisionMode = "COLLISION_MODE_INITIAL_TRACE_DOWN"
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"effect/ti7donkey/effect_angels_glow.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/ti7donkey/effect_flare.vpcf"
+		},
+	]
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 6
+}

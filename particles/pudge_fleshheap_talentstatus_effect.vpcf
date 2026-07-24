@@ -1,0 +1,127 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf58:version{9bada39c-a931-42d0-abdd-e5c1b13d37a6} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_nInitialParticles = 1
+	m_flConstantRadius = 0.0
+	m_ConstantColor = [ 0, 0, 0, 255 ]
+	m_nConstantSequenceNumber = 1
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/heroes/pudge/pudge.vmdl"
+				m_nModSpecificData = 47
+				m_sequenceName = "ti10_pudge_idle_anim"
+				m_hitboxSetName = "default"
+				m_materialGroupName = "0"
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_StatusEffect"
+			m_flRimLightScale = 1.0
+			m_flSpecularScale = 120.0
+			m_flSpecularExponent = 15.0
+			m_flSpecularExponentBlendToFull = 1.0
+			m_flSpecularBlendToFull = 1.0
+			m_specularColor = [ 212, 153, 136 ]
+			m_rimLightColor = [ 222, 166, 153 ]
+		},
+		{
+			_class = "C_INIT_StatusEffect"
+			m_nDetail2Combo = "DETAIL_2_COMBO_MUL"
+			m_flDetail2Scale = 7.0
+			m_flDetail2BlendFactor = 0.6
+			m_flColorWarpIntensity = 0.785
+			m_specularColor = [ 23, 2, 0 ]
+			m_flSpecularScale = 25.0
+			m_flSpecularExponent = 25.0
+			m_flSpecularExponentBlendToFull = 1.0
+			m_flRimLightScale = 1.0
+			m_flMetalnessBlendToFull = 0.5
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_EndCapTimedDecay"
+		},
+		{
+			_class = "C_OP_AlphaDecay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+			m_flMinAlpha = 0.05
+		},
+		{
+			_class = "C_OP_LerpEndCapVector"
+			m_flLerpTime = 0.5
+		},
+		{
+			_class = "C_OP_LerpEndCapVector"
+			m_flLerpTime = 0.5
+			m_nFieldOutput = 2
+		},
+		{
+			_class = "C_OP_LerpEndCapScalar"
+			m_nFieldOutput = 16
+			m_flOutput = 0.0
+			m_flLerpTime = 0.5
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_OscillateVector"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_OFF"
+			m_nField = 2
+			m_RateMin = [ 55.0, 0.0, 0.0 ]
+			m_RateMax = [ 65.0, 0.0, 0.0 ]
+			m_FrequencyMin = [ 2.0, 1.0, 1.0 ]
+			m_FrequencyMax = [ 3.0, 1.0, 1.0 ]
+			m_bProportional = false
+			m_flEndTime_min = 999999.0
+			m_flEndTime_max = 999999.0
+			m_bProportionalOp = false
+		},
+		{
+			_class = "C_OP_ClampVector"
+			m_nFieldOutput = 2
+			m_vecOutputMax = [ 1000.0, 1.0, 1.0 ]
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderStatusEffect"
+			m_pTextureColorWarp = resource:"materials/models/heroes/statuseffects/colorwarp_redchrome.vtex"
+			m_pTextureDetail2 = resource:"materials/dev/fow_clouds_01.vtex"
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/pudge_fleshheap_talentblock_body_blob.vpcf"
+		},
+	]
+}

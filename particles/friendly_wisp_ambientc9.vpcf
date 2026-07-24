@@ -1,0 +1,96 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf61:version{39d3ce1d-9442-4407-9b78-8317145b1732} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_flConstantRadius = 16.0
+	m_nBehaviorVersion = 12
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.1
+			}
+			m_nOutputField = 1
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_PositionLock"
+		},
+		{
+			_class = "C_OP_AlphaDecay"
+			m_flMinAlpha = 0.1
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+			m_nField = 16
+			m_Rate = -3.0
+			m_flEndTime = 10000000000.0
+		},
+		{
+			_class = "C_OP_RemapCPtoVector"
+			m_flInterpRate = 1.0
+			m_nCPInput = 10
+			m_vInputMin = [ 0.0, 0.0, 1.0 ]
+			m_vInputMax = [ 1.0, 1.0, 1.0 ]
+			m_nFieldOutput = 6
+			m_vOutputMin = [ 0.5, 0.25, 2.0 ]
+			m_vOutputMax = [ 1.0, 1.0, 1.0 ]
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderDeferredLight"
+			m_flRadiusScale = 12.0
+			m_flAlphaScale = 16.0
+			m_hTexture = resource:"materials/particle/particle_glow_05.vtex"
+			m_vecColorScale = 
+			{
+				m_nType = "PVEC_TYPE_LITERAL_COLOR"
+				m_LiteralColor = [ 88, 185, 235 ]
+			}
+		},
+		{
+			_class = "C_OP_RenderSprites"
+			m_flOverbrightFactor = 5.0
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/particle_glow_05.vtex"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+	]
+}

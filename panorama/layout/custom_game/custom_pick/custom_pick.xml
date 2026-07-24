@@ -1,0 +1,118 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/custom_pick/custom_pick.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/custom_talents/custom_talents.vcss_c" />
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/scripts/icon_change.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/shop/shop_items_information.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/custom_pick/custom_pick.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="hero_portrait">
+			<Panel class="hero_portrait" />
+		</snippet>
+	</snippets>
+	<Panel class="MainPick" hittest="true">
+		<Panel id="BGScene_1" class="selection_background" hittest="false">
+			<Movie src="file://{resources}/videos/custom_game/woda_loading.webm" id="MovieBackground2" style="width:100%;height:100%;" hittest="false" controls="none" repeat="true" autoplay="onload" />
+			<MoviePanel src="file://{resources}/videos/custom_game/woda_loading.webm" id="MovieBackground" repeat="true" controls="none" hittest="false" onload="Player_Loaded();" autoplay="onload" />
+		</Panel>
+		<Panel class="custom_pick_general">
+			<Panel class="TournamentActivateButton" id="TournamentActivateButton" onactivate="TournamentModeEnable();" />
+			<Panel class="pick_timer" id="pick_timer_panel_main">
+				<DOTAParticleScenePanel class="pick_timer_particle" particleName="particles/agh_aura_ti10_2.vpcf" particleOnly="true" cameraOrigin="0 0 165" lookAt="0 0 0" fov="64" squarePixels="true" startActive="true" />
+				<Label class="pick_timer_label" text="" id="pick_timer" />
+			</Panel>
+			<Panel class="SelectBanCounter" id="SelectBanCounter">
+				<Panel class="SelectBanCounterTop">
+					<Label class="SelectBanCounterTopLabel" text="#tournament_select_bans" />
+				</Panel>
+				<Panel class="Buttons" id="Buttons">
+					<Panel class="Button SelectBan" id="Button_1" onactivate="SelectTournamentBan(1);">
+						<Label text="1" />
+					</Panel>
+					<Panel class="Button SelectBan" id="Button_2" onactivate="SelectTournamentBan(2);">
+						<Label text="2" />
+					</Panel>
+					<Panel class="Button SelectBan" id="Button_3" onactivate="SelectTournamentBan(3);">
+						<Label text="3" />
+					</Panel>
+				</Panel>
+				<Label class="SelectRandomHeroesLabel" text="#tournament_select_random_hero" />
+				<Panel class="ButtonsRandomHeroes" id="ButtonsRandomHeroes">
+					<Panel class="Button Agree" id="Button_1" onactivate="SelectRandomHero(1);" />
+					<Panel class="Button Decline" id="Button_2" onactivate="SelectRandomHero(2);" />
+				</Panel>
+			</Panel>
+			<Panel class="lobby_players" id="lobby_players" />
+			<Panel class="HeroesAndTalentsWindows">
+				<Panel class="hero_pick" id="hero_pick">
+					<Panel class="hero_attribute_info" id="InfoStr">
+						<Panel class="hero_icon_str" id="IconStr" />
+						<Panel class="hero_attribute_row" id="StrengthSelector" />
+					</Panel>
+					<Panel class="hero_attribute_info" id="InfoAgi">
+						<Panel class="hero_icon_agi" id="IconAgi" />
+						<Panel class="hero_attribute_row" id="AgilitySelector" />
+					</Panel>
+					<Panel class="hero_attribute_info" id="InfoInt">
+						<Panel class="hero_icon_int" id="IconInt" />
+						<Panel class="hero_attribute_row" id="IntellectSelector" />
+					</Panel>
+					<Panel class="hero_attribute_info" id="InfoAll">
+						<Panel class="hero_icon_all" id="IconAll" />
+						<Panel class="hero_attribute_row" id="AllSelector" />
+					</Panel>
+				</Panel>
+				<Panel class="hero_chosen" id="hero_chosen">
+					<Panel id="HeroContainerModel" />
+					<Panel id="HeroContainerAbilities" />
+					<Panel class="PickButtons">
+						<Panel id="BuyHeroButton" class="BuyHeroButton Hidden Opacity">
+							<Panel class="IconBuy" />
+						</Panel>
+						<Panel class="ChoseHero" id="ChoseHero">
+							<Panel class="Button_Text_Label" id="Button_Text_Label">
+								<Label class="ButtonText_Pick" id="ButtonText_Pick" text="#matchmaking_select" />
+								<Label class="InfoText" id="InfoText" />
+							</Panel>
+						</Panel>
+						<Panel id="SelectRandomHero" class="SelectRandomHero_hidden">
+							<Panel class="IconDice" />
+						</Panel>
+					</Panel>
+					<Panel class="PlayerLeavedPanel" id="PlayerLeavedPanel">
+						<Label class="PlayerLeavedPanelLabel" text="#Player_Leaved" />
+					</Panel>
+					<Panel class="PlayerBannedPanel" id="PlayerBanPanel">
+						<Label class="PlayerLeavedPanelLabel" html="true" text="#Player_Banned" />
+					</Panel>
+				</Panel>
+				<Panel class="TalentsHero" id="TalentsHero">
+					<Panel class="TalentsButtons">
+						<Panel class="SelectTalentButton TalentButton" id="TalentButtonStr" onactivate="SelectTalentButton(&apos;TalentButtonStr&apos;, &apos;TalentWindowsStr&apos;)" />
+						<Panel class="TalentButton" id="TalentButtonAgi" onactivate="SelectTalentButton(&apos;TalentButtonAgi&apos;, &apos;TalentWindowsAgi&apos;)" />
+						<Panel class="TalentButton" id="TalentButtonInt" onactivate="SelectTalentButton(&apos;TalentButtonInt&apos;, &apos;TalentWindowsInt&apos;)" />
+					</Panel>
+					<Panel id="TalentWindowsStr" class="TalentWindow" />
+					<Panel id="TalentWindowsAgi" class="TalentWindow" />
+					<Panel id="TalentWindowsInt" class="TalentWindow" />
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

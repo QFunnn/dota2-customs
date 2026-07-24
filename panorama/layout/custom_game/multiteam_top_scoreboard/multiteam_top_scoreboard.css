@@ -1,0 +1,575 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+@define ANIM_TIME: 0.75s;
+@define EXTRA_PADDING: 50px;
+@define M_EXTRA_PADDING: -50px;
+@keyframes 'GettingWorseAnim'
+{
+	0%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+@keyframes 'GettingBetterAnim'
+{
+	0%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 1.05;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+.CustomHudRoot
+{
+	align:center top;
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+	z-index: -10;
+}
+
+#TopBarScoreboard
+{
+	align:right top;
+	margin-right: 52.1%;
+	flow-children: left;
+}
+
+.AspectRatio4x3 #TopBarScoreboard
+{
+	align:right top;
+	margin-right: 38%;
+	flow-children: left;
+}
+
+.AspectRatio21x9 #TopBarScoreboard
+{
+	align:right top;
+	margin-right: 51.65%;
+	flow-children: left;
+}
+
+.AspectRatio16x10 #TopBarScoreboard
+{
+	align:right top;
+	margin-right: 48.65%;
+	flow-children: left;
+}
+
+#ScoreboardContainer
+{
+	flow-children: left;
+	horizontal-align: left;
+	vertical-align: top;
+}
+
+.BGTopBar
+{
+	background-image: url("s2r://panorama/images/top_bar_bg_png.vtex");
+	background-size: 100%;
+	ignore-parent-flow: true;
+	width: 100%;
+	margin-left: 6px;
+	height: 40px;
+	padding-right: 10px;
+	overflow: noclip;
+}
+
+#MultiteamScoreboard
+{
+	horizontal-align: left;
+	vertical-align: top;
+	height: 250px;
+	flow-children: right;
+}
+
+.ScoreboardTeamWrapper
+{
+	height: 100%;
+	transition-property: position;
+	transition-duration: ANIM_TIME;
+}
+
+.ScoreboardTeamWrapper.no_players
+{
+	visibility: collapse;
+}
+
+.AspectRatio4x3 .ScoreboardTeamWrapper
+{
+	overflow: noclip;
+}
+
+.ScoreboardTeamWrapper.team_getting_worse
+{
+	animation-duration: ANIM_TIME;
+	animation-timing-function: ease-in-out;
+	animation-name: GettingWorseAnim;
+	z-index: -100;
+}
+
+.ScoreboardTeamWrapper.team_getting_better
+{
+	animation-duration: ANIM_TIME;
+	animation-timing-function: ease-in-out;
+	animation-name: GettingBetterAnim;
+	z-index: 100;
+}
+
+#PlayersContainer
+{
+	flow-children: right;
+}
+
+.ScoreboardPlayerWrapper
+{
+	padding-left: -2px;
+	padding-right: -2px;
+	overflow: noclip;
+}
+
+#RespawnIndicator
+{
+	margin-top: 40px;
+	width: 60px;
+	height: 58px;
+	margin-left:6px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from (#181b1d), to (#22292f));
+	border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+	opacity: 0;
+	transition-property: transform;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-out;
+}
+
+#RespawnTimer
+{
+	color: white;
+	font-size: 16px;
+	text-align: center;
+	width: 100%;
+	vertical-align: bottom;
+	margin-bottom: 2px;
+	font-family: monospaceNumbersFont;
+	font-weight: bold;
+	text-shadow: 0px 0px 0px 2 #000000;
+}
+
+.duelicon
+{
+	horizontal-align: center;
+	margin-top: 78px;
+	margin-left: 10px;
+	width: 40px;
+	height: 40px;
+	background-image: url("s2r://panorama/images/custom_game/talents/vslogo1_png.vtex");
+	background-size: 100%;
+	transition-property: opacity;
+	transition-duration: 0.7s;
+	opacity: 0;
+}
+
+.player_duel .duelicon
+{
+	opacity: 1;
+}
+
+.player_dead .duelicon
+{
+	margin-top: 100px;
+}
+
+.hunticon
+{
+	horizontal-align: center;
+	margin-top: 78px;
+	margin-left: 10px;
+	width: 38px;
+	height: 38px;
+	background-image: url("s2r://panorama/images/custom_game/talents/huntlogo1_png.vtex");
+	background-size: 100%;
+	transition-property: opacity;
+	transition-duration: 0.7s;
+	opacity: 0;
+}
+
+.player_hunt .hunticon
+{
+	opacity: 1;
+}
+
+.player_dead .hunticon
+{
+	margin-top: 101px;
+}
+
+.PlayerPortraitWrapper
+{
+	flow-children: down;
+}
+
+#PlayerColorBar
+{
+	height: 4px;
+	background-image: url("s2r://panorama/images/hud/reborn/topbar_playerslot_vignette_psd.vtex");
+	background-size: 100%;
+	width: 60px;
+	border-bottom: 0px solid #000000;
+	background-repeat: no-repeat;
+}
+
+#HeroIcon
+{
+	width: 66px;
+	height: 36px;
+	opacity-mask: url("s2r://panorama/images/masks/topbar_heroslant_left_psd.vtex");
+}
+
+.HeroIconShadow
+{
+	width: 66px;
+	height: 36px;
+	ignore-parent-flow: true;
+	margin-top: 4px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #000 ), color-stop( 0.03, #000a ), color-stop( 0.1, #0000 ), color-stop( 0.91, #0000 ), color-stop( 0.95, #0006 ), to( #000a ) );
+	opacity-mask: url("s2r://panorama/images/masks/topbar_heroslant_left_psd.vtex");
+}
+
+.player_dead #HeroIcon
+{
+	wash-color: #CCCCCC;
+	saturation: 0;
+}
+
+.player_lose #HeroIcon
+{
+	wash-color: #CCCCCC;
+	saturation: 0;
+}
+
+.player_connection_abandoned #HeroIcon
+{
+	wash-color: #FF0000;
+	saturation: 0;
+}
+
+#rank_icon
+{
+	width: 100%;
+	height: 100%;
+	z-index: 50;
+	vertical-align: bottom;
+	horizontal-align: left;
+	margin-bottom: 10px;
+	margin-left: 4px;
+	background-size: 69px 47px;
+	background-position: 0px -4px;
+	background-repeat: no-repeat;
+}
+
+#TipButtonCustom
+{
+	height: 50px;
+	width: 100%;
+	z-index: 10;
+	opacity: 0;
+}
+
+.ScoreboardPlayerWrapper.alt_health_check #TipButtonCustom
+{
+	opacity: 1;
+}
+
+#DisconnectionIndicator
+{
+	opacity: 0;
+	width: 100%;
+	height: 25px;
+	vertical-align: center;
+}
+
+.player_connection_abandoned #DisconnectionIndicator,.player_connection_failed #DisconnectionIndicator,.player_connection_disconnected #DisconnectionIndicator
+{
+	opacity: 1;
+}
+
+#LocalTeamOverlay
+{
+	width: 100%;
+	margin-left: 4px;
+	height: 65px;
+}
+
+.ScoreboardTeamWrapper.local_player_team #LocalTeamOverlay
+{
+	box-shadow: rgba(193, 161, 73, 1) 0px 0px 2px 4px;
+	transform: skew(9deg);
+	height:37.2px;
+	width:54.4px;
+	margin-left:5.4px;
+}
+
+.player_bet #LocalTeamOverlay
+{
+	box-shadow: rgb(0, 255, 13) 0px 0px 2px 4px;
+	transform: skew(9deg);
+	height:37.2px;
+	width:54.4px;
+	margin-left:5.4px;
+}
+
+.ScoreboardTeamWrapper.has_streak #LocalTeamOverlay
+{
+	box-shadow: -3px 0px 13px 0px #f47b06;
+}
+
+.BlackScreen
+{
+	margin-top: 40px;
+	margin-left: 6px;
+	background-color: black;
+	overflow: clip;
+	width: 60px;
+	height: 20px;
+	visibility: collapse;
+}
+
+.player_lose .BlackScreen
+{
+	visibility: collapse;
+}
+
+.LevelPanel
+{
+	z-index: 10;
+	margin-top:21px;
+	margin-left:38px;
+	height:32px;
+	width:24px;
+}
+
+.player_lose .LevelPanel
+{
+	visibility: collapse;
+}
+
+.LevelBG
+{
+	height: 100%;
+	width: 100%;
+}
+
+.HeroLevel
+{
+	color: #E7D291;
+	font-size: 18px;
+	font-weight: bold;
+	font-family: defaultFont;
+	text-shadow: 0.5px 0.5px 1px 3 black;
+	text-align:right;
+	horizontal-align:right;
+	text-overflow: clip;
+}
+
+.HeroAegis
+{
+	color: red;
+	font-size: 18px;
+	font-weight: bold;
+	font-family: defaultFont;
+	text-shadow: 0.5px 0.5px 1px 3 black;
+	text-align:right;
+	horizontal-align:right;
+	text-overflow: clip;
+}
+
+#HeroAegis
+{
+	visibility: collapse;
+}
+
+.HeroOverthrowKills
+{
+	color: #07edd2;
+	font-size: 18px;
+	font-weight: bold;
+	font-family: defaultFont;
+	text-shadow: 0.5px 0.5px 1px 3 black;
+	text-align:right;
+	horizontal-align:right;
+	text-overflow: clip;
+}
+
+#HeroOverthrowKills
+{
+	visibility: collapse;
+}
+
+#TeamOverlayBar
+{
+	width: 66px;
+	height: 80px;
+}
+
+#TeamDarkenWash
+{
+	width: 100%;
+	height: 42px;
+	visibility: collapse;
+	background-color: gradient(linear, 25px 0%, 40px 0%, from(black), to(transparent));
+}
+
+#LogoAndScore
+{
+	height: 100%;
+	width: 100%;
+}
+
+#TeamScore
+{
+	horizontal-align: center;
+	font-size: 18px;
+	font-weight: bold;
+	color: #ffc600;
+	font-family: defaultFont;
+	text-shadow: 2px 2px 2px 1.5 black;
+	margin-top: 40px;
+	margin-left: 5px;
+	text-overflow: clip;
+	text-align: center;
+}
+
+.DamageComeback
+{
+	horizontal-align: center;
+	font-size: 18px;
+	font-weight: bold;
+	color: white;
+	font-family: defaultFont;
+	text-shadow: 2px 2px 2px 1.5 black;
+	margin-top: 58px;
+	margin-left: 5px;
+	text-overflow: clip;
+	text-align: center;
+	visibility: collapse;
+}
+
+.GreenComeback
+{
+	visibility: visible;
+	color: green;
+}
+
+.RedComeback
+{
+	visibility: visible;
+	color: red;
+}
+
+.player_lose #TeamScore
+{
+	visibility: collapse;
+}
+
+.player_lose .DamageComeback
+{
+	visibility: collapse;
+}
+
+.ScoreboardPlayerWrapper.player_dead #RespawnIndicator
+{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+.PlayerContainerNetworth
+{
+	z-index: 100;
+	width: 120px;
+	height: 20px;
+	background-color: black;
+	margin-top: 40px;
+	margin-left: 5px;
+	horizontal-align: center;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.25s;
+}
+
+.NetworthPanelTeamLabel
+{
+	vertical-align: center;
+	horizontal-align: center;
+	font-size: 18px;
+	font-weight: bold;
+	color: #ffc600;
+	font-family: defaultFont;
+	text-shadow: 2px 2px 2px black;
+	text-overflow: clip;
+	text-align: center;
+}
+
+.set_team_networth_visible .PlayerContainerNetworth
+{
+	opacity: 1;
+}
+
+.team_lose .PlayerContainerNetworth
+{
+	opacity: 0;
+	visibility: collapse;
+}
+
+.one_player .PlayerContainerNetworth
+{
+	opacity: 0;
+	visibility: collapse;
+}
+
+.one_player_alive .PlayerContainerNetworth
+{
+	opacity: 0;
+	visibility: collapse;
+}
+
+.team_fast_close_networth .PlayerContainerNetworth
+{
+	visibility: collapse;
+	width: 300px;
+}

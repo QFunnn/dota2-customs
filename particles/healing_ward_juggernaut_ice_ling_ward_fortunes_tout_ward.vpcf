@@ -1,0 +1,62 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf57:version{4f75132e-4f5d-493c-958e-3bb4328089ba} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 0
+	m_flConstantRadius = 15.0
+	m_ConstantColor = [ 255, 0, 0, 255 ]
+	m_nBehaviorVersion = 4
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_entityName = "parent"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 400.0, 0.0, -400.0 ]
+					m_entityName = "parent"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "flame_attachment"
+					m_entityName = "parent"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/items/juggernaut/ward/fortunes_tout/fortunes_tout.vmdl"
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/healing_ward_juggernaut_ice_ling_ward_fortunes_tout_ward_base.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/healing_ward_juggernaut_ice_ling_ward_fortunes_tout_ward_flame.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/healing_ward_juggernaut_ice_ing_ward_fortunes_tout_ward_fireflies.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/healing_ward_juggernaut_ice_ling_ward_fortunes_tout_ward_edge_sphere.vpcf"
+		},
+	]
+}

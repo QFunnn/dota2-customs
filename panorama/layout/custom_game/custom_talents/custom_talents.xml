@@ -1,0 +1,103 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/custom_talents/custom_talents.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/scripts/icon_change.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/custom_talents/custom_talents.vjs_c" />
+	</scripts>
+	<Panel style="width:100%;height:100%;" hittest="false">
+		<Panel class="EnemiesTalentsCheck" id="EnemiesTalentsCheck" />
+		<Panel class="arena_points_line" id="arena_points_line">
+			<Panel class="arena_points_line_down" id="arena_points_line_down" />
+			<Panel class="arena_points_line_up" id="arena_points_line_up" />
+			<Label class="arena_points_text" id="arena_points_text" text="0/10" />
+		</Panel>
+		<Panel class="talent_buttons" id="talent_buttons">
+			<Panel class="talent_buttons_str" id="talent_buttons_str" onactivate="OpenTalentsStr();">
+				<Panel class="talent_buttons_str_icon" />
+				<Panel class="talent_buttons_key">
+					<Label class="talent_buttons_key_label" id="talent_buttons_key_label_str" />
+				</Panel>
+			</Panel>
+			<Panel class="talent_buttons_agi" id="talent_buttons_agi" onactivate="OpenTalentsAgi();">
+				<Panel class="talent_buttons_agi_icon" />
+				<Panel class="talent_buttons_key">
+					<Label class="talent_buttons_key_label" id="talent_buttons_key_label_agi" />
+				</Panel>
+			</Panel>
+			<Panel class="talent_buttons_int" id="talent_buttons_int" onactivate="OpenTalentsInt();">
+				<Panel class="talent_buttons_int_icon" />
+				<Panel class="talent_buttons_key">
+					<Label class="talent_buttons_key_label" id="talent_buttons_key_label_int" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="talent_buttons_all haspoints" id="talent_buttons_all">
+			<Button id="LevelUpTab_Custom" onactivate="OpenTalentsAll();">
+				<Panel id="LevelUpButton_Custom">
+					<Panel id="LevelUpIcon_Custom" />
+				</Panel>
+				<Panel id="LearnModeButton_Custom" hittest="false" />
+			</Button>
+			<DOTAScenePanel id="LevelUpBurstFX_Custom" map="scenes/hud/levelupburst" animate-during-pause="true" renderdeferred="false" rendershadows="false" camera="camera_1" hittest="false" particleonly="true" />
+			<Panel class="TalentButtonsAllMain" onactivate="OpenTalentsAll();">
+				<Panel class="talent_buttons_all_on" id="talent_buttons_all_on" />
+				<Panel class="talent_buttons_all_off" id="talent_buttons_all_off" />
+			</Panel>
+		</Panel>
+		<Panel class="talent_all_panel" id="talent_all_panel" hittest="false">
+			<Panel class="talent_str_panel sethidden" id="talent_str_panel">
+				<Panel class="talent_header_str">
+					<Panel class="talent_image_str" />
+					<Panel class="talent_name_and_values_str">
+						<Label class="talent_name_str" text="#namestr" id="talent_values_str" />
+					</Panel>
+				</Panel>
+				<Panel class="talent_choose_str" id="talent_choose_str" />
+				<Panel class="talent_lowbar" id="talent_lowbar_str">
+					<Label class="talent_lowbar_free" id="talent_lowbar_free_str" />
+					<Label class="talent_lowbar_count" id="talent_lowbar_count_str" />
+				</Panel>
+			</Panel>
+			<Panel class="talent_agi_panel sethidden" id="talent_agi_panel">
+				<Panel class="talent_header_agi">
+					<Panel class="talent_image_agi" />
+					<Panel class="talent_name_and_values_agi">
+						<Label class="talent_name_agi" text="#nameagi" id="talent_values_agi" />
+					</Panel>
+				</Panel>
+				<Panel class="talent_choose_agi" id="talent_choose_agi" />
+				<Panel class="talent_lowbar" id="talent_lowbar_agi">
+					<Label class="talent_lowbar_free" id="talent_lowbar_free_agi" />
+					<Label class="talent_lowbar_count" id="talent_lowbar_count_agi" />
+				</Panel>
+			</Panel>
+			<Panel class="talent_int_panel sethidden" id="talent_int_panel">
+				<Panel class="talent_header_int">
+					<Panel class="talent_image_int" />
+					<Panel class="talent_name_and_values_int">
+						<Label class="talent_name_int" text="#nameint" id="talent_values_int" />
+					</Panel>
+				</Panel>
+				<Panel class="talent_choose_int" id="talent_choose_int" />
+				<Panel class="talent_lowbar" id="talent_lowbar_int">
+					<Label class="talent_lowbar_free" id="talent_lowbar_free_int" />
+					<Label class="talent_lowbar_count" id="talent_lowbar_count_int" />
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

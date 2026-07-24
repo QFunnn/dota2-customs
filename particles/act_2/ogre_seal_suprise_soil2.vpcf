@@ -1,0 +1,94 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf45:version{73c3d623-a141-4df2-b548-41dd786e6300} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_flConstantRadius = 20.0
+	m_ConstantNormal = [ 0.0, 0.0, 0.0 ]
+	m_nConstantSequenceNumber1 = 6
+	m_flNoDrawTimeToGoToSleep = 2.0
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_nSkinCP = 2
+			m_bOrientZ = true
+			m_nLOD = 0
+			m_ModelList = 
+			[
+				{
+					m_model = resource:"models/particle/soil_fx_a.vmdl"
+				},
+			]
+			m_bAnimated = true
+			m_bForceLoopingAnimation = true
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_flOpStartFadeInTime = 4.0
+			m_Gravity = [ 0.0, 0.0, -100.0 ]
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.4
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_CreateWithinSphere"
+		},
+		{
+			_class = "C_INIT_RemapInitialCPDirectionToRotation"
+			m_flOffsetRot = 90.0
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_bLocalCoords = true
+			m_OffsetMin = [ 160.0, -100.0, 0.0 ]
+			m_OffsetMax = [ 160.0, -100.0, 0.0 ]
+		},
+		{
+			_class = "C_INIT_PositionPlaceOnGround"
+			m_flOffset = -4.0
+			m_bSetNormal = true
+			m_CollisionGroupName = "DEBRIS"
+			m_flMaxTraceLength = 2048.0
+			m_nTraceMissBehavior = "PARTICLE_TRACE_MISS_BEHAVIOR_KILL"
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_nBehaviorVersion = 3
+	m_nFirstMultipleOverride_BackwardCompat = 3
+}

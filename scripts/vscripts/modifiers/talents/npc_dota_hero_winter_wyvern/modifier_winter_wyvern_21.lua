@@ -1,0 +1,39 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+modifier_winter_wyvern_21=class({})
+
+function modifier_winter_wyvern_21:IsHidden() return true end
+function modifier_winter_wyvern_21:IsPurgable() return false end
+function modifier_winter_wyvern_21:IsPurgeException() return false end
+function modifier_winter_wyvern_21:RemoveOnDeath() return false end
+
+function modifier_winter_wyvern_21:OnCreated()
+	if not IsServer() then return end
+	self:SetStackCount(1)
+    local winter_wyvern_frozen_cemetery = self:GetCaster():FindAbilityByName("winter_wyvern_frozen_cemetery")
+    if winter_wyvern_frozen_cemetery then
+        winter_wyvern_frozen_cemetery:SetLevel(1)
+    end
+    self:GetParent():SwapAbilities("winter_wyvern_winters_curse_custom", "winter_wyvern_frozen_cemetery", false, true)
+    local winter_wyvern_winters_curse_custom = self:GetCaster():FindAbilityByName("winter_wyvern_winters_curse_custom")
+    if winter_wyvern_winters_curse_custom then
+        winter_wyvern_winters_curse_custom:SetLevel(0)
+    end
+end
+
+function modifier_winter_wyvern_21:OnRefresh()
+	if not IsServer() then return end
+	self:SetStackCount(self:GetStackCount() + 1)
+    local winter_wyvern_frozen_cemetery = self:GetCaster():FindAbilityByName("winter_wyvern_frozen_cemetery")
+    if winter_wyvern_frozen_cemetery then
+        winter_wyvern_frozen_cemetery:SetLevel(2)
+    end
+end

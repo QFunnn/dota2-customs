@@ -1,0 +1,2093 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.talent_buttons
+{
+	margin-left:244px;
+	width:96px;
+	height:170px;
+	vertical-align:bottom;
+	background-image:url("s2r://panorama/images/hud/reborn/right_flare_bg_psd.vtex");
+	background-size:100%;
+	flow-children:down;
+}
+
+.MinimapExtraLarge .talent_buttons
+{
+	margin-left: 280px;
+}
+
+.talent_buttons_str
+{
+	margin-left:3px;
+	margin-top:24px;
+	width:46px;
+	height:46px;
+}
+
+.talent_buttons_agi
+{
+	margin-left:3px;
+	margin-top:2px;
+	width:46px;
+	height:46px;
+}
+
+.talent_buttons_int
+{
+	margin-left:3px;
+	margin-top:2px;
+	width:46px;
+	height:46px;
+}
+
+.talent_buttons_str_icon
+{
+	align:center center;
+	margin-top:1px;
+	margin-left:1px;
+	width:44px;
+	height:44px;
+	border-radius:44px;
+	background-image:url("s2r://panorama/images/custom_game/talents/str1_png.vtex");
+	background-size:100%;
+	box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.3);
+	transition-property:brightness;
+	transition-duration:0.2s;
+	transition-timing-function:ease-out;
+}
+
+.talent_buttons_agi_icon
+{
+	align:center center;
+	margin-top:1px;
+	margin-left:1px;
+	width:44px;
+	height:44px;
+	border-radius:44px;
+	background-image:url("s2r://panorama/images/custom_game/talents/agi1_png.vtex");
+	background-size:100%;
+	box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.3);
+	transition-property:brightness;
+	transition-duration:0.2s;
+	transition-timing-function:ease-out;
+}
+
+.talent_buttons_int_icon
+{
+	align:center center;
+	margin-top:1px;
+	margin-left:1px;
+	width:44px;
+	height:44px;
+	border-radius:44px;
+	background-image:url("s2r://panorama/images/custom_game/talents/int1_png.vtex");
+	background-size:100%;
+	box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.3);
+	transition-property:brightness;
+	transition-duration:0.2s;
+	transition-timing-function:ease-out;
+}
+
+.talent_buttons_str_icon:hover,.talent_buttons_agi_icon:hover,.talent_buttons_int_icon:hover
+{
+	brightness:1.6;
+}
+
+.talent_buttons_key
+{
+	width:14px;
+	height:14px;
+	background-color:#212726;
+	box-shadow:fill #000000aa 1px 1px 6px 0px;
+	border-radius:4px;
+	border:1px solid black;
+}
+
+.talent_buttons_key_label
+{
+	text-shadow: 1px 1px 0px 2 #000000;
+	font-size: 12px;
+	font-weight:normal;
+	text-align:center;
+	horizontal-align:center;
+	margin:0px 0px -2px 0px;
+	color:white;
+	margin-top: -1px;
+	font-family:Radiance;
+}
+
+.talent_all_panel
+{
+	flow-children:right;
+	width:100%;
+	height:100%;
+}
+
+.talent_str_panel
+{
+	flow-children:down;
+	width:392px;
+	height:700px;
+	vertical-align:center;
+	margin-bottom:95px;
+	visibility: collapse;
+	transition-duration: 0.2s;
+	transition-property: transform,position;
+	z-index:3;
+}
+
+.talent_agi_panel
+{
+	flow-children:down;
+	width:392px;
+	height:700px;
+	vertical-align:center;
+	margin-bottom:95px;
+	visibility: collapse;
+	transition-duration: 0.2s;
+	transition-property: transform,position;
+	z-index:2;
+}
+
+.talent_int_panel
+{
+	flow-children:down;
+	width:392px;
+	height:700px;
+	vertical-align:center;
+	margin-bottom:95px;
+	visibility: collapse;
+	transition-duration: 0.2s;
+	transition-property: transform,position;
+	z-index:1;
+}
+
+.sethidden
+{
+	transform:translate3d( -100%, 0, 0px );
+}
+
+.setvisible
+{
+	transform:translate3d( 0, 0, 0px );
+}
+
+.talent_buttons_all
+{
+	vertical-align:bottom;
+	margin-bottom:23px;
+	margin-right:4px;
+	flow-children: down;
+}
+
+.TalentButtonsAllMain
+{
+	width:64px;
+	height:64px;
+	border-radius:62px;
+	background-image:url("s2r://panorama/images/custom_game/talents/talent_tree_off_png.vtex");
+	background-size:100%;
+}
+
+.talent_buttons_all_off
+{
+	width:64px;
+	height:100%;
+	background-image:url("s2r://panorama/images/custom_game/talents/talent_tree_off_png.vtex");
+	background-size:64px;
+	transition-property: height;
+	transition-duration: 0.5s;
+}
+
+.talent_buttons_all_on
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/talent_tree_on_png.vtex");
+	background-size:64px;
+	width:64px;
+	height:64px;
+	vertical-align:bottom;
+}
+
+.haspoints .TalentButtonsAllMain
+{
+	animation-name:lvlup2;
+	animation-duration:2s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'lvlup2'
+{
+	0%
+	{
+		box-shadow: rgba(234,190,16,0.5) 0px 0px 4px 1px;
+	}
+	
+	50%
+	{
+		box-shadow: rgba(234,190,16,0.2) 0px 0px 1px 1px;
+	}
+	
+	100%
+	{
+		box-shadow: rgba(234,190,16,0.5) 0px 0px 4px 1px;
+	}
+	
+}
+
+.talent_header_str
+{
+	width:100%;
+	height:40px;
+	flow-children:right;
+}
+
+.talent_image_str
+{
+	height:36px;
+	width:36px;
+	margin-left:4px;
+	margin-bottom:4px;
+	background-image:url("s2r://panorama/images/custom_game/talents/str1_png.vtex");
+	background-size:100%;
+}
+
+.talent_name_and_values_str
+{
+	height:100%;
+	width:100%;
+}
+
+.talent_name_str
+{
+	margin-left:4px;
+	vertical-align: center;
+	color:white;
+	text-align:center;
+	font-size:28px;
+	letter-spacing:1px;
+	font-weight:bold;
+	font-family:Reaver;
+	text-shadow:2px 2px 0px 3 #00000040;
+}
+
+.talent_header_agi
+{
+	width:100%;
+	height:40px;
+	flow-children:right;
+}
+
+.talent_image_agi
+{
+	height:36px;
+	width:36px;
+	margin-left:4px;
+	margin-bottom:4px;
+	background-image:url("s2r://panorama/images/custom_game/talents/agi1_png.vtex");
+	background-size:100%;
+}
+
+.talent_name_and_values_agi
+{
+	height:100%;
+	width:100%;
+}
+
+.talent_name_agi
+{
+	margin-left:4px;
+	vertical-align: center;
+	color:white;
+	text-align:center;
+	font-size:28px;
+	letter-spacing:1px;
+	font-weight:bold;
+	font-family:Reaver;
+	text-shadow:2px 2px 0px 3 #00000040;
+}
+
+.talent_header_int
+{
+	width:100%;
+	height:40px;
+	flow-children:right;
+}
+
+.talent_image_int
+{
+	height:36px;
+	width:36px;
+	margin-left:4px;
+	margin-bottom:4px;
+	background-image:url("s2r://panorama/images/custom_game/talents/int1_png.vtex");
+	background-size:100%;
+}
+
+.talent_name_and_values_int
+{
+	height:100%;
+	width:100%;
+}
+
+.talent_name_int
+{
+	margin-left:4px;
+	vertical-align: center;
+	color:white;
+	text-align:center;
+	font-size:28px;
+	letter-spacing:1px;
+	font-weight:bold;
+	font-family:Reaver;
+	text-shadow:2px 2px 0px 3 #00000040;
+}
+
+.talent_values
+{
+	margin-left:13px;
+	margin-top:40px;
+	color:white;
+	text-align:center;
+	font-size:16px;
+	letter-spacing:1px;
+	font-weight:bold;
+	font-family:RadianceM;
+	text-shadow:2px 2px 0px 3 #00000040;
+}
+
+.talent_choose_str
+{
+	flow-children:down;
+	width:100%;
+	height:590px;
+	border-radius:8px;
+}
+
+.talent_choose_agi
+{
+	flow-children:down;
+	width:100%;
+	height:590px;
+	border-radius:8px;
+}
+
+.talent_choose_int
+{
+	flow-children:down;
+	width:100%;
+	height:590px;
+	border-radius:8px;
+}
+
+.talent_lowbar
+{
+	width:100%;
+	height:100%;
+}
+
+.npc_dota_hero_crystal_maiden_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/crystal_maiden_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_crystal_maiden_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/crystal_maiden_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_crystal_maiden_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/crystal_maiden_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_dragon_knight_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/dragon_knight_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_dragon_knight_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/dragon_knight_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_dragon_knight_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/dragon_knight_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_omniknight_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/omniknight_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_omniknight_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/omniknight_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_omniknight_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/omniknight_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_lone_druid_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/lone_druid_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_lone_druid_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/lone_druid_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_lone_druid_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/lone_druid_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_windrunner_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/windrunner_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_windrunner_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/windrunner_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_windrunner_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/windrunner_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_drow_ranger_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/drow_ranger_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_drow_ranger_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/drow_ranger_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_drow_ranger_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/drow_ranger_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_witch_doctor_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/witch_doctor_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_witch_doctor_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/witch_doctor_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_witch_doctor_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/witch_doctor_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_nevermore_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/nevermore_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_nevermore_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/nevermore_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_nevermore_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/nevermore_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_earthshaker_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/earthshaker_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_earthshaker_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/earthshaker_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_earthshaker_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/earthshaker_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_antimage_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/antimage_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_antimage_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/antimage_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_antimage_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/antimage_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_tidehunter_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/tidehunter_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_tidehunter_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/tidehunter_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_tidehunter_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/tidehunter_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_skywrath_mage_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/skywrath_mage_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_skywrath_mage_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/skywrath_mage_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_skywrath_mage_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/skywrath_mage_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_pudge_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/pudge_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_pudge_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/pudge_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_pudge_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/pudge_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_bounty_hunter_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/bounty_hunter_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_bounty_hunter_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/bounty_hunter_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_bounty_hunter_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/bounty_hunter_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_furion_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/furion_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_furion_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/furion_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_furion_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/furion_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_phantom_assassin_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/phantom_assassin_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_phantom_assassin_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/phantom_assassin_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_phantom_assassin_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/phantom_assassin_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_death_prophet_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/death_prophet_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_death_prophet_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/death_prophet_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_death_prophet_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/death_prophet_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_doom_bringer_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/doom_bringer_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_doom_bringer_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/doom_bringer_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_doom_bringer_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/doom_bringer_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_invoker_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/invoker_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_invoker_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/invoker_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_invoker_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/invoker_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_terrorblade_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/terrorblade_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_terrorblade_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/terrorblade_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_terrorblade_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/terrorblade_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_undying_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/undying_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_undying_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/undying_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_undying_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/undying_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_vengefulspirit_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/vengefulspirit_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_vengefulspirit_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/vengefulspirit_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_vengefulspirit_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/vengefulspirit_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_muerta_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/muerta_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_muerta_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/muerta_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_muerta_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/muerta_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_legion_commander_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/legion_commander_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_legion_commander_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/legion_commander_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_legion_commander_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/legion_commander_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_lion_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/lion_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_lion_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/lion_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_lion_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/lion_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_slardar_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/slardar_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_slardar_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/slardar_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_slardar_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/slardar_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_kunkka_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/kunkka_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_kunkka_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/kunkka_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_kunkka_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/kunkka_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_slark_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/slark_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_slark_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/slark_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_slark_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/slark_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_morphling_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/morphling_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_morphling_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/morphling_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_morphling_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/morphling_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_disruptor_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/disruptor_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_disruptor_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/disruptor_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_disruptor_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/disruptor_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_oracle_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/oracle_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_oracle_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/oracle_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_oracle_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/oracle_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_juggernaut_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/juggernaut_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_juggernaut_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/juggernaut_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_juggernaut_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/juggernaut_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_spectre_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/spectre_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_spectre_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/spectre_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_spectre_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/spectre_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_bristleback_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/bristleback_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_bristleback_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/bristleback_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_bristleback_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/bristleback_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_spirit_breaker_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/spirit_breaker_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_spirit_breaker_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/spirit_breaker_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_spirit_breaker_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/spirit_breaker_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_meepo_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/meepo_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_meepo_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/meepo_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_meepo_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/meepo_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_lich_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/lich_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_lich_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/lich_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_lich_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/lich_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_ancient_apparition_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/ancient_apparition_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_ancient_apparition_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/ancient_apparition_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_ancient_apparition_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/ancient_apparition_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_dazzle_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/dazzle_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_dazzle_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/dazzle_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_dazzle_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/dazzle_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_skeleton_king_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/skeleton_king_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_skeleton_king_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/skeleton_king_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_skeleton_king_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/skeleton_king_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_weaver_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/weaver_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_weaver_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/weaver_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_weaver_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/weaver_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_tiny_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/tiny_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_tiny_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/tiny_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_tiny_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/tiny_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_medusa_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/medusa_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_medusa_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/medusa_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_medusa_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/medusa_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_naga_siren_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/naga_siren_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_naga_siren_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/naga_siren_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_naga_siren_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/naga_siren_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_abaddon_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/abaddon_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_abaddon_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/abaddon_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_abaddon_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/abaddon_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_night_stalker_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/night_stalker_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_night_stalker_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/night_stalker_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_night_stalker_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/night_stalker_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_necrolyte_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/necrolyte_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_necrolyte_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/necrolyte_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_necrolyte_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/necrolyte_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_nyx_assassin_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/nyx_assassin_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_nyx_assassin_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/nyx_assassin_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_nyx_assassin_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/nyx_assassin_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_arc_warden_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/arc_warden_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_arc_warden_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/arc_warden_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_arc_warden_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/arc_warden_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_chen_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/chen_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_chen_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/chen_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_chen_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/chen_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_rubick_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/rubick_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_rubick_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/rubick_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_rubick_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/rubick_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_huskar_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/huskar_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_huskar_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/huskar_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_huskar_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/huskar_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_techies_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/techies_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_techies_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/techies_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_techies_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/techies_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_marci_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/marci_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_marci_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/marci_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_marci_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/marci_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_ursa_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/ursa_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_ursa_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/ursa_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_ursa_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/ursa_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_warlock_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/warlock_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_warlock_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/warlock_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_warlock_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/warlock_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_zuus_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/zuus_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_zuus_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/zuus_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_zuus_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/zuus_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_pangolier_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/pangolier_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_pangolier_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/pangolier_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_pangolier_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/pangolier_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_jakiro_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/jakiro_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_jakiro_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/jakiro_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_jakiro_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/jakiro_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_kez_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/kez_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_kez_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/kez_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_kez_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/kez_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_winter_wyvern_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/winter_wyvern_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_winter_wyvern_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/winter_wyvern_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_winter_wyvern_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/winter_wyvern_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_luna_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/luna_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_luna_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/luna_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_luna_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/luna_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_axe_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/axe_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_axe_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/axe_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_axe_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/axe_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_lina_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/lina_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_lina_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/lina_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_lina_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/lina_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_wisp_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/wisp_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_wisp_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/wisp_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_wisp_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/wisp_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_razor_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/razor_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_razor_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/razor_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_razor_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/razor_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_phoenix_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/phoenix_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_phoenix_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/phoenix_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_phoenix_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/phoenix_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_void_spirit_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/void_spirit_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_void_spirit_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/void_spirit_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_void_spirit_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/void_spirit_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_sniper_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/sniper_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_sniper_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/sniper_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_sniper_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/sniper_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_monkey_king_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/monkey_king_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_monkey_king_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/monkey_king_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_monkey_king_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/monkey_king_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_riki_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/riki_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_riki_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/riki_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_riki_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/riki_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_faceless_void_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/faceless_void_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_faceless_void_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/faceless_void_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_faceless_void_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/faceless_void_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_tinker_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/tinker_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_tinker_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/tinker_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_tinker_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/tinker_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_keeper_of_the_light_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/keeper_of_the_light_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_keeper_of_the_light_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/keeper_of_the_light_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_keeper_of_the_light_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/keeper_of_the_light_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_dawnbreaker_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/dawnbreaker_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_dawnbreaker_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/dawnbreaker_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_dawnbreaker_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/dawnbreaker_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_chaos_knight_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/chaos_knight_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_chaos_knight_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/chaos_knight_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_chaos_knight_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/chaos_knight_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_ogre_magi_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/ogre_magi_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_ogre_magi_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/ogre_magi_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_ogre_magi_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/ogre_magi_background_int_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_visage_str
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/visage_background_str_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_visage_agi
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/visage_background_agi_png.vtex");
+	background-size:100%;
+}
+
+.npc_dota_hero_visage_int
+{
+	background-image:url("s2r://panorama/images/custom_game/talents/visage_background_int_png.vtex");
+	background-size:100%;
+}
+
+.talent_lowbar_free
+{
+	horizontal-align:left;
+	margin-top:4px;
+	margin-left:6px;
+	color:white;
+	font-size:18px;
+	letter-spacing:1px;
+	font-weight:bold;
+	font-family:RadianceM;
+	text-shadow:2px 2px 2px 2.0 black;
+}
+
+.talent_lowbar_count
+{
+	horizontal-align:left;
+	margin-top:26px;
+	margin-left:6px;
+	color:white;
+	font-size:18px;
+	letter-spacing:1px;
+	font-weight:bold;
+	font-family:RadianceM;
+	text-shadow:2px 2px 2px 2.0 black;
+}
+
+#talent_lowbar_free_str
+{
+	visibility:collapse;
+}
+
+#talent_lowbar_count_str
+{
+	visibility:collapse;
+}
+
+#talent_lowbar_free_agi
+{
+	visibility:collapse;
+}
+
+#talent_lowbar_count_agi
+{
+	visibility:collapse;
+}
+
+#talent_lowbar_free_int
+{
+	visibility:collapse;
+}
+
+#talent_lowbar_count_int
+{
+	visibility:collapse;
+}
+
+.talent_line
+{
+	margin-top:5px;
+	flow-children:right;
+	horizontal-align:center;
+	height:78px;
+}
+
+.talent_block
+{
+	flow-children:down;
+	margin-left:3px;
+	margin-right:3px;
+	width:72px;
+	height:100%;
+}
+
+.talent_block_image
+{
+	width:100%;
+	height:72px;
+	background-image:url("s2r://");
+	background-size:100%;
+	border-radius:6px;
+}
+
+.talent_level_image
+{
+	width:100%;
+	height:6px;
+	background-image:url("s2r://panorama/images/custom_game/talents/lvl_3_3_png.vtex");
+	background-size:100%;
+	border-radius:3px;
+}
+
+.talent_lvlup
+{
+	animation-name:lvlup;
+	animation-duration:2s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'lvlup'
+{
+	0%
+	{
+		box-shadow: inset rgba(234,190,16,0.5) 0px 0px 3px 1px;
+	}
+	
+	50%
+	{
+		box-shadow: inset rgba(234,190,16,0.2) 0px 0px 1px 1px;
+	}
+	
+	100%
+	{
+		box-shadow: inset rgba(234,190,16,0.5) 0px 0px 3px 1px;
+	}
+	
+}
+
+.talent_disabled
+{
+	saturation:0;
+}
+
+.talent_nolvl
+{
+	saturation:0;
+}
+
+.talent_disabled_icon
+{
+	background-image:url("s2r://panorama/images/hud/reborn/spells_silenced_psd.vtex");
+	background-size:100%;
+	visibility:collapse;
+	width:100%;
+	height:100%;
+}
+
+.talent_disabled .talent_disabled_icon
+{
+	visibility:visible;
+}
+
+.arena_points_line
+{
+	tooltip-position:top;
+	margin-left:120px;
+	width:135px;
+	height:36px;
+	box-shadow:#00000055 0px 0px 2px 2px;
+	vertical-align: center;
+}
+
+.arena_points_line_down
+{
+	width:100%;
+	height:100%;
+	background-image:url("s2r://panorama/images/custom_game/talents/timer_low_bar1_png.vtex");
+	background-size:100%;
+}
+
+.arena_points_line_up
+{
+	height:100%;
+	width:0%;
+	background-image:url("s2r://panorama/images/custom_game/talents/timer_low_bar2_png.vtex");
+	background-size:135px 36px;
+}
+
+.arena_points_text
+{
+	align:center center;
+	font-size:22px;
+	font-weight:bold;
+	color:white;
+	text-shadow:0px 1px 0px 2.0 #00000077;
+}
+
+.EnemiesTalentsCheck
+{
+	max-width: 100%;
+	margin-top: 106px;
+	horizontal-align: center;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	flow-children: right-wrap;
+}
+
+.talent_block_image_enemy
+{
+	width: 62px;
+	height: 62px;
+	border: 0px solid black;
+	box-shadow: 0px 0px 8px 0px black;
+	margin: 3px;
+	border-radius: 6px;
+}
+
+#LevelUpTab_Custom
+{
+	width: 64px;
+	height: 36px;
+	margin-bottom: 6px;
+	opacity: 0;
+	tooltip-position: top;
+	tooltip-body-position: 50% 50%;
+	z-index: 2;
+	transition-property: opacity, brightness;
+	transition-timing-function: ease-in-out;
+	transition-duration: 0.12s;
+}
+
+#LevelUpButton_Custom
+{
+	width: 92px;
+	height: 36px;
+	background-image: url("s2r://panorama/images/hud/reborn/levelup_button_3_psd.vtex");
+	background-size: 100% 100%;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	transition-property: opacity, brightness, pre-transform-scale2d;
+	transition-timing-function: ease-in-out;
+	transition-duration: 0.12s;
+	margin-bottom: -4px;
+}
+
+#LearnModeButton_Custom
+{
+	background-image: url("s2r://panorama/images/hud/reborn/levelup_button_learnmode_psd.vtex");
+	width: 64px;
+	height: 36px;
+	horizontal-align: center;
+	margin-top: 14px;
+	z-index: 6;
+	background-size: 100% 100%;
+	background-position: 100% 100%;
+	background-repeat: no-repeat;
+	visibility: visible;
+	transition-property: opacity, brightness, pre-transform-scale2d;
+	transition-timing-function: ease-in-out;
+	transition-duration: 0.12s;
+	opacity: 0;
+}
+
+#LevelUpIcon_Custom
+{
+	horizontal-align: center;
+	vertical-align: middle;
+	width: 24px;
+	height: 24px;
+	background-image: url("s2r://panorama/images/hud/reborn/levelup_plus_well_psd.vtex");
+	background-size: 100% 100%;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	transition-property: background-image;
+	transition-duration: 0.12s;
+}
+
+#LevelUpTab_Custom:hover #LevelUpIcon_Custom
+{
+	background-image: url("s2r://panorama/images/hud/reborn/levelup_plus_fill_psd.vtex");
+}
+
+#LevelUpTab_Custom:hover #LevelUpButton_Custom
+{
+	brightness: 1.4;
+}
+
+#LevelUpTab_Custom:active #LevelUpButton_Custom
+{
+	pre-transform-scale2d: 0.9;
+}
+
+#LevelUpBurstFX_Custom
+{
+	width: 64px;
+	height: 80px;
+	margin-top: -50px;
+	ignore-parent-flow: true;
+	opacity: 0;
+}
+
+.haspoints #LevelUpTab_Custom
+{
+	opacity: 1;
+}
+
+.haspoints #LevelUpBurstFX_Custom
+{
+	opacity: 1;
+}

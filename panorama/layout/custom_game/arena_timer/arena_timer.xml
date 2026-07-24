@@ -1,0 +1,57 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/arena_timer/arena_timer.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/arena_timer/arena_timer.vjs_c" />
+	</scripts>
+	<Panel hittest="false" style="width:100%;height:100%;">
+		<Panel class="arena_and_game_timer">
+			<Panel class="arena_timer" id="duel_timer" style="visibility:collapse;">
+				<Panel class="arena_timer_line">
+					<Panel class="arena_timer_line_2">
+						<Panel class="duel_timer_line_up" id="duel_timer_line_up">
+							<Panel class="BGFX" />
+							<Panel class="TimerFX" />
+						</Panel>
+					</Panel>
+					<Label class="arena_timer_line_label" id="duel_timer_line_label" text="0:00" />
+				</Panel>
+			</Panel>
+			<Label class="arena_timer_arena_name" id="duel_timer_arena_name" text="#name_arena_7" />
+			<Panel class="arena_timer" id="arena_timer">
+				<Panel class="arena_timer_line">
+					<Panel class="arena_timer_line_2">
+						<Panel class="arena_timer_line_up" id="arena_timer_line_up">
+							<Panel class="BGFX" />
+							<Panel class="TimerFX" />
+						</Panel>
+					</Panel>
+					<Label class="arena_timer_line_label" id="arena_timer_line_label" text="0:00" />
+				</Panel>
+			</Panel>
+			<Label class="arena_timer_arena_name" id="arena_timer_arena_name" />
+			<Panel id="arena_game_timer" class="arena_game_timer">
+				<Panel id="arena_game_timer_sun_glow" class="arena_game_timer_sun_glow" />
+				<Panel id="arena_game_timer_sun" class="arena_game_timer_sun" />
+				<Label class="arena_game_timer_label" id="arena_game_timer_label" text="0:00" />
+			</Panel>
+			<Panel id="SkipArena" onactivate="skip_arena();" class="SkipArena">
+				<Label class="SkipArenaLabel" text="Skip" />
+			</Panel>
+			<Panel class="AbilitiesRound" id="AbilitiesRound" />
+		</Panel>
+	</Panel>
+</root>

@@ -1,0 +1,82 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf57:version{4f75132e-4f5d-493c-958e-3bb4328089ba} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 0
+	m_flConstantRadius = 15.0
+	m_ConstantColor = [ 255, 0, 0, 255 ]
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "flame_attachment"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/items/juggernaut/ward/fall20_juggernaut_katz_ward/fall20_juggernaut_katz_ward.vmdl"
+				m_sequenceName = "idle"
+				m_hitboxSetName = "select_low"
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/juggernaut_healing_ward_fire_aoe_radius.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/juggernaut_healing_ward_fire_fire.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/juggernaut_healing_ward_fire_ground_pulse.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/juggernaut_healing_ward_fire_flame_ribbon.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/juggernaut_healing_ward_fire_aoe_ripple.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/juggernaut_healing_ward_fire_light.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/juggernaut_healing_ward_fire_swirl_strand.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/juggernaut_healing_ward_fire_swirl_strand_02.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/juggernaut_healing_ward_fire_flames_vertical.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/juggernaut_healing_ward_fire_flames.vpcf"
+		},
+	]
+}

@@ -1,0 +1,476 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+@define BACKGROUND_COLOR: #000000;
+@define BACKGROUND_COLOR_WHITE: #FFFFFF28;
+.FlyoutScoreboardRoot
+{
+	horizontal-align: left;
+	vertical-align: top;
+	margin-top: 15%;
+	flow-children: down;
+	transform: translatex( -700px );
+	transition-property: transform;
+	transition-duration: 0.1s;
+}
+
+.FlyoutScoreboardRoot.flyout_scoreboard_visible
+{
+	transform: translatey( 0px );
+}
+
+#TeamsContainer
+{
+	flow-children: down;
+	horizontal-align: left;
+}
+
+.FlyoutTeam
+{
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.FlyoutTeam.no_players
+{
+	visibility: collapse;
+}
+
+.local_player_team.FlyoutTeam
+{
+	z-index: 99;
+}
+
+.FlyoutTeamData
+{
+	flow-children: right;
+}
+
+.TeamInfo
+{
+	height: 100%;
+}
+
+#TeamColor_GradentFromTransparentLeft
+{
+	width: 100%;
+	height: 100%;
+}
+
+#TeamColorOverlay
+{
+	width: 100%;
+	height: 100%;
+}
+
+.FlyoutPlayer
+{
+	flow-children: right;
+}
+
+#PlayersContainer
+{
+	flow-children: down;
+}
+
+.TeamId
+{
+	flow-children: right;
+}
+
+#TeamLogo
+{
+	vertical-align: top;
+	horizontal-align: right;
+	height: 32px;
+	width: 32px;
+	margin-top: 2px;
+	margin-right: 2px;
+}
+
+#TeamScore
+{
+	vertical-align: center;
+	horizontal-align: center;
+	color: #cccccc;
+	font-size: 42px;
+	text-shadow: 2px 2px 2px black;
+	font-weight: bold;
+	margin-top: -3px;
+	text-overflow: clip;
+}
+
+.one_player #TeamScore
+{
+	font-size: 32px;
+}
+
+#TeamScorePanel
+{
+	margin-top: 1px;
+	margin-left: 286px;
+	width: 49px;
+	height: 100%;
+	background-color: BACKGROUND_COLOR;
+}
+
+.Legend
+{
+	flow-children: right;
+	height:13px;
+}
+
+.Legend Label
+{
+	text-align:center;
+	text-shadow: 2px 2px 1px black;
+	text-transform: uppercase;
+	font-size: 12px;
+	color: #90999b;
+}
+
+.PlayerRow
+{
+	height: 32px;
+}
+
+#PlayerRowContainer
+{
+	flow-children: right;
+	height: 32px;
+}
+
+#HeroIcon
+{
+	height:32px;
+	width:100%;
+}
+
+#LevelContainer,#KillsContainer,#DeathsContainer,#AssistsContainer
+{
+	width:32px;
+	height: 100%;
+}
+
+.ScoreboardPanel
+{
+	background-color: BACKGROUND_COLOR;
+}
+
+.ScoreCol_Level
+{
+	width:32px;
+}
+
+.ScoreboardPanel Label
+{
+	font-size: 28px;
+	text-shadow: 2px 2px 2px black;
+}
+
+.UltimateIndicatorShared
+{
+	margin-left: 44px;
+	margin-top: 2px;
+	vertical-align: center;
+	width: 20px;
+	height: 20px;
+	background-size: 20px;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+
+#Level
+{
+	vertical-align: center;
+	horizontal-align: center;
+	color: #898b8c;
+}
+
+#Kills,#Deaths,#Assists
+{
+	vertical-align: center;
+	font-size: 18px;
+	text-align: center;
+	width: 100%;
+}
+
+#PlayerName
+{
+	text-shadow: 1px 1px 0px 2 #000000;
+	margin-top:-1px;
+	font-size: 18px;
+	font-weight:normal;
+	text-align:left;
+	horizontal-align:left;
+	color:white;
+	font-family:Radiance;
+	width:160px;
+	height:20px;
+}
+
+#PlayerRating
+{
+	margin-top:-5px;
+	color:green;
+	font-size:18px;
+	width:100%;
+	text-shadow:2px 2px 2px black;
+	font-family: defaultFont;
+}
+
+#hero_level
+{
+	color:#E7D291;
+	font-size: 18px;
+	font-weight: bold;
+	font-family: defaultFont;
+	vertical-align: center;
+	horizontal-align:center;
+	text-align:center;
+}
+
+#NetworthsPlayer
+{
+	align:center center;
+	font-size: 18px;
+	font-weight: bold;
+	color: #ffc600;
+	font-family: defaultFont;
+	text-shadow: 2px 2px 2px black;
+	text-overflow: clip;
+	text-align:center;
+}
+
+#HeroNameAndDescription
+{
+	color: #898b8c;
+	font-size: 13px;
+	text-shadow: 2px 2px 2px black;
+}
+
+#StengthTalentLabel
+{
+	align:center center;
+	font-size: 22px;
+	font-weight: bold;
+	color: white;
+	font-family: defaultFont;
+	text-shadow: 2px 2px 2px black;
+	text-overflow: clip;
+	text-align:center;
+}
+
+#AgilityTalentLabel
+{
+	align:center center;
+	font-size: 22px;
+	font-weight: bold;
+	color: white;
+	font-family: defaultFont;
+	text-shadow: 2px 2px 2px black;
+	text-overflow: clip;
+	text-align:center;
+}
+
+#IntellectTalentLabel
+{
+	align:center center;
+	font-size: 22px;
+	font-weight: bold;
+	color: white;
+	font-family: defaultFont;
+	text-shadow: 2px 2px 2px black;
+	text-overflow: clip;
+	text-align:center;
+}
+
+#MuteButton
+{
+	margin-right: 2px;
+	horizontal-align: right;
+	vertical-align: center;
+	width: 18px;
+	height: 18px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-image: url("s2r://panorama/images/custom_game/button_audio_on_psd.vtex");
+	opacity: 0.8;
+}
+
+.is_local_player #MuteButton
+{
+	visibility: collapse;
+}
+
+#MuteButton:hover
+{
+	opacity: 1;
+}
+
+.player_muted #MuteButton
+{
+	background-image: url("s2r://panorama/images/custom_game/button_audio_off_psd.vtex");
+}
+
+#TeammateGoldAmount
+{
+	margin-right: -1px;
+	margin-bottom: -2px;
+	vertical-align: bottom;
+	horizontal-align: right;
+	color: #ffd300;
+	font-size: 13px;
+	text-shadow: 2px 2px 2px black;
+	visibility: collapse;
+}
+
+.local_player_team #TeammateGoldAmount
+{
+	visibility: visible;
+}
+
+#PlayerDetailsContainer
+{
+	height: 100%;
+}
+
+#PlayerAndHeroName
+{
+	flow-children: down;
+	padding-left: 6px;
+}
+
+.is_local_player #Kills,.is_local_player #Deaths,.is_local_player #Assists,.is_local_player #Level,.is_local_player #HeroName
+{
+	color: white;
+}
+
+.ScoreCol_TeamInfo
+{
+	width: 5px;
+}
+
+.ScoreCol_PlayerDetails
+{
+	width: 170px;
+}
+
+.ScoreCol_Hero
+{
+	width: 56px;
+}
+
+.ScoreCol_Assists
+{
+	width: 32px;
+}
+
+.ScoreCol_Deaths
+{
+	width: 32px;
+}
+
+.ScoreCol_Kills
+{
+	width: 32px;
+}
+
+.ScoreCol_Avatar
+{
+	width:32px;
+}
+
+.ScoreCol_Networths
+{
+	width:64px;
+	height:100%;
+}
+
+DOTAAvatarImage
+{
+	width:32px;
+	height:32px;
+}
+
+.ScoreCol_TalentStrength
+{
+	flow-children:right;
+	width:64px;
+}
+
+.ScoreCol_TalentAgility
+{
+	flow-children:right;
+	width:64px;
+}
+
+.ScoreCol_TalentIntellect
+{
+	flow-children:right;
+	width:64px;
+}
+
+#StrengthIcon
+{
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/talents/str1_png.vtex");
+	width:32px;
+	height:32px;
+}
+
+#AgilityIcon
+{
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/talents/agi1_png.vtex");
+	width:32px;
+	height:32px;
+}
+
+#IntellectIcon
+{
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/talents/int1_png.vtex");
+	width:32px;
+	height:32px;
+}
+
+.ReportButtonPlayer
+{
+	flow-children: right;
+	height: 100%;
+	margin-left: 5px;
+	saturation: 0;
+}
+
+.ReportIcon
+{
+	background-image: url("s2r://panorama/images/conduct/report_flag_basic_png.vtex");
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 32px;
+	height: 32px;
+	border-radius: 2px;
+	box-shadow: #00000090 0px 0px 4px 0px ;
+	vertical-align: center;
+	horizontal-align: center;
+	background-size: 11px 14px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from ( #d12525 ), to ( #720606 ) );
+}
+
+.PlayerReported
+{
+	saturation: 1;
+}

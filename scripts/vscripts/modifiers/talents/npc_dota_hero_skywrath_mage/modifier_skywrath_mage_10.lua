@@ -1,0 +1,31 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+modifier_skywrath_mage_10=class({})
+
+function modifier_skywrath_mage_10:IsHidden() return true end
+function modifier_skywrath_mage_10:IsPurgable() return false end
+function modifier_skywrath_mage_10:IsPurgeException() return false end
+function modifier_skywrath_mage_10:RemoveOnDeath() return false end
+
+function modifier_skywrath_mage_10:OnCreated()
+	if not IsServer() then return end
+	self:SetStackCount(1)
+	local skywrath_mage_sky_dome = self:GetParent():FindAbilityByName("skywrath_mage_sky_dome")
+	if skywrath_mage_sky_dome then
+		skywrath_mage_sky_dome:SetLevel(1)
+		skywrath_mage_sky_dome:SetHidden(false)
+	end
+end
+
+function modifier_skywrath_mage_10:OnRefresh()
+	if not IsServer() then return end
+	self:SetStackCount(self:GetStackCount() + 1)
+end

@@ -1,0 +1,263 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.arena_and_game_timer
+{
+	margin-left:18.6%;
+	align:center top;
+}
+
+.AspectRatio4x3 .arena_and_game_timer
+{
+	margin-left:54.4%;
+	align:center top;
+}
+
+.AspectRatio16x10 .arena_and_game_timer
+{
+	margin-left:27.9%;
+	align:center top;
+}
+
+.AspectRatio21x9 .arena_and_game_timer
+{
+	margin-left:14.1%;
+	align:center top;
+}
+
+.arena_timer
+{
+	flow-children:down;
+	margin-left:83px;
+}
+
+.arena_timer_line
+{
+	width:360px;
+	flow-children:right;
+	transform: skew(-9.5deg);
+}
+
+.arena_timer_line_2
+{
+	height:40px;
+}
+
+.duel_timer_line_up
+{
+	height:40px;
+	width:220px;
+	box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.02);
+}
+
+.arena_timer_line_up
+{
+	height:40px;
+	width:220px;
+	box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.02);
+}
+
+.TimerFX
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/hud/facets/ripple_texture_png.vtex");
+	background-size: cover;
+	-s2-mix-blend-mode: screen;
+	background-position: center;
+	wash-color: #9F3C3C;
+	opacity: 0.2;
+}
+
+.BGFX
+{
+	width: 100%;
+	height: 100%;
+	opacity: 1;
+	brightness: 0.5;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #954533 ), to( #452732 ) );
+}
+
+.arena_timer_line_up .TimerFX
+{
+	wash-color: #6BAEBC;
+}
+
+.arena_timer_line_up .BGFX
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #6BAEBC ), to( #135459 ) );
+}
+
+.relax.arena_timer_line_up .BGFX
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #A2B23E ), to( #2D5A18 ) );
+}
+
+.relax.arena_timer_line_up .TimerFX
+{
+	wash-color: #A2B23E;
+}
+
+.arena_timer_line_label
+{
+	align:left center;
+	color:white;
+	font-size: 28px;
+	font-weight: bold;
+	font-family: defaultFont;
+	text-shadow: 1px 1px 1px 3 black;
+	margin-left: 6px;
+	margin-top: 2px;
+}
+
+.arena_timer_arena_name
+{
+	horizontal-align: left;
+	font-size: 18px;
+	font-weight: bold;
+	color: #ffffff;
+	font-family: defaultFont;
+	text-shadow: 2px 2px 2px 1.5 black;
+	margin-top: 41px;
+	margin-left: 90px;
+	text-overflow: clip;
+	text-align: center;
+}
+
+.arena_game_timer
+{
+	background-image:url("s2r://panorama/images/hud/reborn/bg_timer_psd.vtex");
+	height:46px;
+	width:90px;
+	background-size:100%;
+}
+
+.arena_game_timer_sun
+{
+	background-image:url("s2r://panorama/images/hud/reborn/icon_sun_psd.vtex");
+	background-size:100%;
+	margin-top:4px;
+	height:23px;
+	width:23px;
+	horizontal-align:center;
+}
+
+.arena_game_timer_label
+{
+	vertical-align:bottom;
+	margin-bottom:3px;
+	color:white;
+	text-align:center;
+	font-size:14px;
+	letter-spacing:1px;
+	font-weight:bold;
+	font-family:RadianceM;
+	horizontal-align:center;
+	text-shadow:1px 1px 0px 2.0 #00000011;
+}
+
+.arena_game_timer_sun_glow
+{
+	height:46px;
+	width:90px;
+	horizontal-align:center;
+	vertical-align:top;
+	background-size:cover;
+	background-image:url("s2r://panorama/images/hud/reborn/glow_day_psd.vtex");
+	background-repeat:no-repeat;
+	animation-name:DayNightPulse;
+	animation-duration:2.94s;
+	animation-timing-function:linear;
+	animation-iteration-count:infinite;
+}
+
+@keyframes 'DayNightPulse'
+{
+	0%
+	{
+		opacity: 0.1;
+	}
+	
+	50%
+	{
+		opacity: 0.3;
+	}
+	
+	100%
+	{
+		opacity: 0.1;
+	}
+	
+}
+
+.night_time .arena_game_timer_sun
+{
+	background-image:url("s2r://panorama/images/hud/reborn/icon_moon_psd.vtex");
+	background-size:100%;
+	transform: rotateZ(180deg);
+}
+
+.night_time .arena_game_timer_sun_glow
+{
+	background-image:url("s2r://panorama/images/hud/reborn/glow_night_psd.vtex");
+}
+
+.animation
+{
+	transition-property: width;
+	transition-duration: 1s;
+}
+
+#OverlayMapWODA
+{
+	transform: translateY(10px) translateX(-10px);
+}
+
+.SkipArena
+{
+	background-color: red;
+	width: 75px;
+	height: 25px;
+	margin-left: 7px;
+	margin-top: 44px;
+	background-image:url("s2r://panorama/images/custom_game/talents/timer_bar2_png.vtex");
+	background-size:100%;
+	visibility: collapse;
+}
+
+.SkipArenaLabel
+{
+	align: center center;
+	color: white;
+	text-shadow: 1px 1px 8px 4.0 black;
+	font-weight: bold;
+	font-size: 15px;
+	text-transform: uppercase;
+}
+
+.AbilitiesRound
+{
+	margin-top: 62px;
+	margin-left: 91px;
+	opacity: 0;
+	flow-children: right;
+}
+
+.RoundAbility
+{
+	width: 27px;
+	height: 27px;
+	margin-right: 5px;
+	background-color: rgba(0,0,0,0.9);
+	padding: 2px;
+	border-radius: 5px;
+}

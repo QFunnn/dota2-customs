@@ -1,0 +1,531 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.panelduel
+{
+	align:center top;
+	margin-top:180px;
+	width:600px;
+	height:240px;
+	background-image:url("s2r://panorama/images/custom_game/talents/panelduel_png.vtex");
+	flow-children:down;
+	transition-property:opacity;
+	transition-duration:0.2s;
+	opacity:0;
+	border-radius: 8px;
+}
+
+.paneldueltimer
+{
+	width:640px;
+	height:16px;
+	horizontal-align:center;
+	border-radius: 8px;
+}
+
+.paneldueltimer1
+{
+	width:600px;
+	height:16px;
+	background-image:url("s2r://panorama/images/custom_game/talents/timer_bar2_png.vtex");
+	background-size:600px 16px;
+}
+
+.paneldueltimer2
+{
+	height:600px;
+	width:16px;
+	background-image:url("s2r://panorama/images/custom_game/talents/dueltimer_png.vtex");
+	background-size:600px 16px;
+	background-repeat: no-repeat;
+}
+
+.panelheroes
+{
+	width:100%;
+	height:100%;
+	flow-children:right;
+	visibility: collapse;
+}
+
+.panelhero
+{
+	width:260px;
+	height:100%;
+	flow-children:down;
+}
+
+.vslogo
+{
+	width:80px;
+	height:80px;
+	margin-left:0px;
+	margin-right:0px;
+	background-image:url("s2r://panorama/images/custom_game/talents/vslogo2_png.vtex");
+	background-size:100%;
+	vertical-align:center;
+	margin-bottom:20px;
+}
+
+.heroinfo1
+{
+	flow-children:left;
+	height:96px;
+	horizontal-align:left;
+}
+
+.heroinfo2
+{
+	flow-children:left;
+	height:96px;
+	horizontal-align:right;
+}
+
+.herotalents
+{
+	flow-children:down;
+	width:84px;
+	height:96px;
+}
+
+.herotalentslot1
+{
+	horizontal-align:left;
+	flow-children:right;
+	margin-top:2px;
+	margin-left:6px;
+}
+
+.herotalentslot2
+{
+	horizontal-align:right;
+	flow-children:left;
+	margin-top:2px;
+	margin-right:6px;
+}
+
+.herotalentlabel
+{
+	text-align:center;
+	margin-left:4px;
+	margin-right:4px;
+	margin-top:2px;
+	color:white;
+	font-size:23px;
+	font-weight:bold;
+	text-shadow: 1px 1px 4px 3.0 black;
+}
+
+.herotalenticonstr
+{
+	width:30px;
+	height:30px;
+	background-image:url("s2r://panorama/images/custom_game/talents/str1_png.vtex");
+	background-size:100%;
+}
+
+.herotalenticonagi
+{
+	width:30px;
+	height:30px;
+	background-image:url("s2r://panorama/images/custom_game/talents/agi1_png.vtex");
+	background-size:100%;
+}
+
+.herotalenticonint
+{
+	width:30px;
+	height:30px;
+	background-image:url("s2r://panorama/images/custom_game/talents/int1_png.vtex");
+	background-size:100%;
+}
+
+#heroicon1
+{
+	height:96px;
+	width:175px;
+	background-size:100%;
+	border-radius:8px;
+}
+
+#heroicon2
+{
+	height:96px;
+	width:175px;
+	background-size:100%;
+	border-radius:8px;
+}
+
+#buttonpredict1
+{
+	width:260px;
+	height:41px;
+	background-image:url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size:100%;
+	horizontal-align:left;
+	transition-property:brightness;
+	transition-duration:0.1s;
+	transition-timing-function:ease-out;
+	border-radius: 8px;
+}
+
+#buttonpredict2
+{
+	width:260px;
+	height:41px;
+	background-image:url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size:100%;
+	horizontal-align:right;
+	transition-property:brightness;
+	transition-duration:0.1s;
+	transition-timing-function:ease-out;
+	border-radius: 8px;
+}
+
+.buttonpredict
+{
+	background-color:gradient( linear, 0% 0%, 0% 100%, from( #5Aa15E ), to( #87d695 ) );
+	saturation: 0;
+}
+
+.buttonpredictlabel
+{
+	color:white;
+	font-size:22px;
+	font-weight:bold;
+	horizontal-align:center;
+	vertical-align:center;
+	text-shadow: 1px 1px 8px 4.0 black;
+}
+
+#buttonpredict1:hover,#buttonpredict2:hover
+{
+	brightness:1.5;
+}
+
+.animation
+{
+	transition-property: width;
+	transition-duration: 1s;
+}
+
+.PanelBoss
+{
+	horizontal-align: center;
+	width:98%;
+	height:100%;
+	margin-bottom: 3px;
+	flow-children:down;
+	visibility: collapse;
+	background-image:url("s2r://panorama/images/new_player_intro/02-roshan_psd.vtex");
+	background-size:100%;
+}
+
+.lose_arena
+{
+	horizontal-align: center;
+	margin-top: 425px;
+	font-size:28px;
+	color:rgb(0, 255, 13);
+	font-weight:bold;
+	text-shadow: 1px 1px 3px 3.0 black;
+	opacity:0;
+	transition-property:opacity;
+	transition-duration:0.2s;
+}
+
+.unlose_arena
+{
+	horizontal-align: center;
+	margin-top: 425px;
+	font-size:28px;
+	color:red;
+	font-weight:bold;
+	text-shadow: 1px 1px 3px 3.0 black;
+	opacity:0;
+	transition-property:opacity;
+	transition-duration:0.2s;
+}
+
+.ItemPanel_1
+{
+	horizontal-align: left;
+	width:244px;
+	height:88px;
+	flow-children: right-wrap;
+	background-image:url("s2r://panorama/images/custom_game/talents/duelitems1_png.vtex");
+	background-size:244px 88px;
+	border-radius:8px;
+}
+
+.ItemPanel_2
+{
+	horizontal-align: right;
+	width:244px;
+	height:88px;
+	flow-children: left-wrap;
+	background-image:url("s2r://panorama/images/custom_game/talents/duelitems2_png.vtex");
+	background-size:244px 88px;
+	border-radius:8px;
+}
+
+#ItemPanel_1_inventory
+{
+	flow-children: right-wrap;
+	width: 175px;
+}
+
+#ItemPanel_2_inventory
+{
+	flow-children: left-wrap;
+	width: 175px;
+}
+
+DOTAItemImage
+{
+	width: 53px;
+	height: 38.5px;
+	margin-right:2px;
+	margin-left:2px;
+	margin-top:3px;
+}
+
+.NeutralSlots
+{
+	vertical-align: center;
+	horizontal-align: left;
+	margin-left:1px;
+	flow-children: down;
+}
+
+.NeutralSlots.Right
+{
+	margin-right:1px;
+	margin-left:0px;
+}
+
+#neutral_item
+{
+	border-radius:20px;
+	width: 100%;
+	height: 42px;
+}
+
+#neutral_item_passive
+{
+	border-radius:20px;
+	width: 100%;
+	height: 42px;
+	horizontal-align: center;
+}
+
+#ItemPanel_1_neutral_passive
+{
+	width: 42px;
+	height: 42px;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/hud/reborn/bg_neutral_slot_png.vtex");
+	border-radius: 50%;
+	background-size: 100%;
+	box-shadow: inset #000000f0 0px 2px 14px -2px;
+}
+
+#ItemPanel_2_neutral_passive
+{
+	width: 42px;
+	height: 42px;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/hud/reborn/bg_neutral_slot_png.vtex");
+	border-radius: 50%;
+	background-size: 100%;
+	box-shadow: inset #000000f0 0px 2px 14px -2px;
+}
+
+#ItemPanel_1_neutral
+{
+	background-image: url("s2r://panorama/images/hud/reborn/bg_neutral_slot_png.vtex");
+	border-radius: 50%;
+	background-size: 100%;
+	box-shadow: inset #000000f0 0px 2px 14px -2px;
+	width: 42px;
+	height: 42px;
+}
+
+#ItemPanel_2_neutral
+{
+	background-image: url("s2r://panorama/images/hud/reborn/bg_neutral_slot_png.vtex");
+	border-radius: 50%;
+	background-size: 100%;
+	box-shadow: inset #000000f0 0px 2px 14px -2px;
+	width: 42px;
+	height: 42px;
+}
+
+.HeroLevelPanel_1
+{
+	width: 33px;
+	height: 33px;
+	background-color: #000000FF;
+	border: 1.5px solid #E7D291;
+	border-radius: 100px;
+	vertical-align: bottom;
+	horizontal-align: left;
+	margin-left:3px;
+}
+
+.HeroLevelPanel_2
+{
+	width: 33px;
+	height: 33px;
+	background-color: #000000FF;
+	border: 1.5px solid #E7D291;
+	border-radius: 100px;
+	vertical-align: bottom;
+	horizontal-align: right;
+	margin-right:3px;
+}
+
+.HeroLevelLabel
+{
+	text-align: center;
+	vertical-align: center;
+	width: 32px;
+	font-size: 16px;
+	z-index: 50;
+	color: #E7D291;
+	text-shadow: 0px 0px 3px 3.7 #EC780E24;
+	margin-right:0.5px;
+}
+
+.panelduel.IsDuoMode
+{
+	width: 1120px;
+	height: 240px;
+}
+
+.heroes_in_panel
+{
+	width: 520px;
+	height: 100%;
+	flow-children: right;
+}
+
+.IsDuoMode .paneldueltimer
+{
+	width: 1120px;
+}
+
+.IsDuoMode .paneldueltimer1
+{
+	width: 1120px;
+	background-size:1120px 16px;
+}
+
+.IsDuoMode .paneldueltimer2
+{
+	width: 1120px;
+	background-size:1120px 16px;
+}
+
+.IsDuoMode .heroinfo2
+{
+	flow-children:right;
+	height:96px;
+	horizontal-align:right;
+}
+
+.buttonpredict_duo
+{
+	ignore-parent-flow: true;
+	width:100%;
+	height:41px;
+	background-color:gradient( linear, 0% 0%, 0% 100%, from( #5Aa15E ), to( #87d695 ) );
+	background-image:url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size:100%;
+	horizontal-align:center;
+	transition-property:brightness;
+	transition-duration:0.1s;
+	transition-timing-function:ease-out;
+	border-radius: 8px;
+	vertical-align: bottom;
+}
+
+.buttonpredict_duo_label
+{
+	color:white;
+	font-size:22px;
+	font-weight:bold;
+	horizontal-align:center;
+	vertical-align:center;
+	text-shadow: 1px 1px 8px 4.0 black;
+}
+
+.buttonpredict_duo
+{
+	saturation: 0;
+}
+
+.buttonpredict_duo:hover
+{
+	brightness: 1.5;
+}
+
+DOTAItemImage #RecipeOutputImage
+{
+	opacity: 1;
+	saturation: 0.25;
+	brightness: 2;
+	pre-transform-scale2d: 0.7;
+	transform: rotateZ(-8deg) rotateY(30deg) translateX(2px) translateY(1px);
+	border-radius: 1px;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_box_png.vtex");
+	width: 100%;
+	height: 100%;
+}
+
+#RecipeContainer
+{
+	wash-color: #d8984bff;
+	width: 100%;
+	height: 100%;
+	contrast: 0.9;
+	background-color: black;
+	opacity-mask: url("s2r://panorama/images/items/recipe_opacity_mask_nopurchase_psd.vtex");
+	overflow: clip;
+}
+
+.selected
+{
+	saturation: 1;
+}
+
+.NoBetTime.buttonpredict
+{
+	background-color:gradient( linear, 0% 0%, 0% 100%, from( #a15a5a ), to( #d68787 ) );
+	saturation: 1;
+}
+
+.NoBetTime.selected.buttonpredict
+{
+	background-color:gradient( linear, 0% 0%, 0% 100%, from( #5Aa15E ), to( #87d695 ) );
+}
+
+.NoBetTime.buttonpredict_duo
+{
+	background-color:gradient( linear, 0% 0%, 0% 100%, from( #a15a5a ), to( #d68787 ) );
+	saturation: 1;
+}
+
+.NoBetTime.selected.buttonpredict_duo
+{
+	background-color:gradient( linear, 0% 0%, 0% 100%, from( #5Aa15E ), to( #87d695 ) );
+}

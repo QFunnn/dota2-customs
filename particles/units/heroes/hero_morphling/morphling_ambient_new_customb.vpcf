@@ -1,0 +1,213 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf63:version{a6e6a69e-52d3-4527-8b9c-ff3bb91aca3e} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 128
+	m_nConstantSequenceNumber = 1
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			VisibilityInputs = 
+			{
+				m_flRadiusScaleMin = 0.0
+				m_flDistanceInputMax = 1000.0
+				m_flDistanceInputMin = 1200.0
+				m_flInputMin = 1.0
+				m_nCPin = 0
+			}
+			m_flStartFadeSize = 0.475
+			m_flEndFadeSize = 0.55
+			m_flMaxSize = 0.65
+			m_flOverbrightFactor = 2.0
+			m_flAnimationRate = 0.25
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/water_splash/water_splash.vtex"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_Gravity = [ 0.0, 0.0, 8.0 ]
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 0.125
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+		},
+		{
+			_class = "C_OP_RampScalarLinear"
+			m_nField = 4
+			m_RateMin = -3.0
+			m_RateMax = 3.0
+		},
+		{
+			_class = "C_OP_MovementRotateParticleAroundAxis"
+			m_flRotRate = 320.0
+		},
+		{
+			_class = "C_OP_PositionLock"
+			m_bLockRot = true
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade = [ 0, 36, 153, 255 ]
+			m_flFadeStartTime = 0.5
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 1.25
+				m_flRandomMax = 1.35
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 16.0
+				m_flRandomMax = 18.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 132, 177, 175, 255 ]
+			m_ColorMax = [ 63, 181, 175, 255 ]
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.411765
+				m_flRandomMax = 0.45098
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 7
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.0
+				m_flRandomMax = 360.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 4
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMax = [ 110, 242, 231, 255 ]
+			m_nFieldOutput = 22
+			m_ColorMin = [ 177, 205, 206, 255 ]
+		},
+		{
+			_class = "C_INIT_RingWave"
+			m_flParticlesPerOrbit = 3.25
+			m_bEvenDistribution = true
+			m_flInitialRadius = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 11.0
+			}
+			m_flInitialSpeedMin = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 15.0
+			}
+			m_flInitialSpeedMax = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 15.0
+			}
+			m_flYaw = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 170.0
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.607843
+				m_flRandomMax = 1.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 23
+		},
+		{
+			_class = "C_INIT_RandomYawFlip"
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_bLocalCoords = true
+			m_OffsetMin = [ 0.0, 0.0, 48.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 48.0 ]
+		},
+		{
+			_class = "C_INIT_VelocityRandom"
+			m_LocalCoordinateSystemSpeedMin = [ 0.0, 0.0, 36.0 ]
+			m_LocalCoordinateSystemSpeedMax = [ 0.0, 0.0, 36.0 ]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+		},
+	]
+	m_ForceGenerators = 
+	[
+		{
+			_class = "C_OP_AttractToControlPoint"
+			m_vecComponentScale = [ 1.0, 1.0, 0.5 ]
+			m_fFalloffPower = 0.565
+			m_fForceAmount = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 80.0
+			}
+			m_TransformInput = 
+			{
+				m_nControlPoint = 3
+				m_bUseOrientation = false
+			}
+		},
+	]
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 8
+}

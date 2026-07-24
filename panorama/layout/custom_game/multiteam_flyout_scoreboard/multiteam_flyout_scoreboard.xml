@@ -1,0 +1,40 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/styles/shared_scoreboard_styles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/multiteam_flyout_scoreboard/multiteam_flyout_scoreboard.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/icon_change.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/scripts/shared_scoreboard_updater.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/multiteam_flyout_scoreboard/multiteam_flyout_scoreboard.vjs_c" />
+	</scripts>
+	<Panel hittest="false" class="FlyoutScoreboardRoot">
+		<Panel class="Legend">
+			<Panel class="LegendPanel ScoreCol_TeamInfo" />
+			<Panel class="LegendPanel ScoreCol_Avatar" />
+			<Panel class="LegendPanel ScoreCol_Hero" />
+			<Panel class="LegendPanel ScoreCol_PlayerDetails" />
+			<Label class="LegendPanel ScoreCol_TalentStrength" text="#flayoutstr" />
+			<Label class="LegendPanel ScoreCol_TalentAgility" text="#flayoutagi" />
+			<Label class="LegendPanel ScoreCol_TalentIntellect" text="#flayoutint" />
+			<Label class="LegendPanel ScoreCol_Level" text="#flayoutlevel" />
+			<Label class="LegendPanel ScoreCol_Networths" text="#flayoutnetworths" />
+			<Label class="LegendPanel ScoreCol_Kills" text="#flayoutkills" />
+			<Label class="LegendPanel ScoreCol_Deaths" text="#flayoutdeaths" />
+			<Label class="LegendPanel ScoreCol_Assists" text="#flayoutassists" />
+		</Panel>
+		<Panel id="TeamsContainer" />
+	</Panel>
+</root>

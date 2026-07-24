@@ -1,0 +1,139 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf54:version{326b1595-45e8-4004-aa5a-3e08655ff51f} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 8
+	m_flConstantRadius = 1.0
+	m_ConstantColor = [ 59, 81, 85, 40 ]
+	m_nBehaviorVersion = 3
+	m_nFirstMultipleOverride_BackwardCompat = 5
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.5
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_RemapInitialTransformDirectionToRotation"
+			m_flOffsetRot = 90.0
+		},
+		{
+			_class = "C_INIT_RandomModelSequence"
+			m_hModel = resource:"models/heroes/oracle/oracle.vmdl"
+			m_ActivityName = "ACT_DOTA_CAST_ABILITY_2"
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 100.0
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 5
+		},
+		{
+			_class = "C_INIT_VelocityRandom"
+			m_LocalCoordinateSystemSpeedMin = [ -64.0, -64.0, 0.0 ]
+			m_LocalCoordinateSystemSpeedMax = [ 64.0, 64.0, 0.0 ]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+		},
+		{
+			_class = "C_OP_PositionLock"
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade = [ 0, 0, 0, 255 ]
+			m_flFadeStartTime = 0.2
+			m_bEaseInOut = false
+		},
+		{
+			_class = "C_OP_RemapTransformOrientationToRotations"
+			m_vecRotation = [ 0.0, -90.0, 0.0 ]
+		},
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_SpinUpdate"
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_nModelCP = 0
+			m_bOrientZ = true
+			m_hOverrideMaterial = resource:"materials/models/items/oracle/ti7_immortal_weapon/oracle_ti7_immortal_fortune_orb_add.vmat"
+			m_bAnimated = true
+			m_bForceDrawInterlevedWithSiblings = true
+			m_nLOD = 1
+			m_bForceLoopingAnimation = true
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/oracle_backtrack02.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/oracle_backtrack_warp.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/oracle_backtrack_glow.vpcf"
+		},
+	]
+}

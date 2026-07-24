@@ -1,0 +1,183 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf57:version{4f75132e-4f5d-493c-958e-3bb4328089ba} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_entityName = "parent"
+					m_attachmentName = "attach_hitloc"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_eye_m"
+					m_entityName = "parent"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_eye_l"
+					m_entityName = "parent"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_eye_r"
+					m_entityName = "parent"
+				},
+				{
+					m_iControlPoint = 10
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 5
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_jelly_l_01"
+					m_entityName = "parent"
+				},
+				{
+					m_iControlPoint = 6
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_jelly_l_02"
+					m_entityName = "parent"
+				},
+				{
+					m_iControlPoint = 7
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_jelly_r_01"
+					m_entityName = "parent"
+				},
+				{
+					m_iControlPoint = 8
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_jelly_r_02"
+					m_entityName = "parent"
+				},
+				{
+					m_iControlPoint = 9
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_jelly_tail"
+					m_entityName = "parent"
+				},
+				{
+					m_iControlPoint = 4
+					m_entityName = "parent"
+				},
+				{
+					m_iControlPoint = 11
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/courier/baby_rosh/babyroshan_winter18_flying.vmdl"
+				m_sequenceName = "Idle_flying"
+				m_hitboxSetName = "default"
+				m_materialGroupName = "0"
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"effect/jiangbing/1_gem.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/jiangbing/1_eye.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/jiangbing/1_glow.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/jiangbing/1_trail.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/jiangbing/1_sparks.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/jiangbing/1_bodytrail.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/jiangbing/1_sparks_red.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/jiangbing/1_drop.vpcf"
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 249.218002
+				m_flRandomMax = 217.141006
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_PositionLock"
+			m_bLockRot = true
+			m_TransformInput = 
+			{
+				m_nControlPoint = 3
+			}
+		},
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderDeferredLight"
+			m_flStartFalloff = 0.5
+			m_hTexture = resource:"materials/particle/circle.vtex"
+			m_vecColorScale = 
+			{
+				m_nType = "PVEC_TYPE_LITERAL_COLOR"
+				m_LiteralColor = [ 112, 219, 41 ]
+			}
+		},
+	]
+	m_nMaxParticles = 1
+}

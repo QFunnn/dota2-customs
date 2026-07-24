@@ -1,0 +1,116 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf57:version{4f75132e-4f5d-493c-958e-3bb4328089ba} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_entityName = "parent"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_entityName = "parent"
+					m_attachmentName = "attach_aegis"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/items/courier/hermit_crab/hermit_crab_aegis.vmdl"
+				m_sequenceName = "hermit_crab_ground_idle"
+				m_hitboxSetName = "select_low"
+			}
+		},
+	]
+	m_Renderers = [  ]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitSkinnedPositionFromCPSnapshot"
+			m_nSnapshotControlPointNumber = 7
+			m_bRigid = true
+			m_nControlPointNumber = 1
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.098039
+			}
+			m_nOutputField = 7
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 234, 175, 80, 255 ]
+			m_ColorMax = [ 234, 175, 80, 255 ]
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 20.0
+			}
+		},
+	]
+	m_nSnapshotControlPoint = 7
+	m_hSnapshot = resource:"particles/models/items/courier/hermit_crab/hermit_crab_aegis_fx.vsnap"
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_SnapshotRigidSkinToBones"
+			m_nControlPointNumber = 1
+		},
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 42.0
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"effect/xiexiaowo_guanjundun/1_sparks.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/xiexiaowo_guanjundun/1_rays.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/xiexiaowo_guanjundun/1_embers.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/xiexiaowo_guanjundun/1_end_embers.vpcf"
+			m_bEndCap = true
+		},
+		{
+			m_ChildRef = resource:"effect/xiexiaowo_guanjundun/1_end_flash.vpcf"
+			m_bEndCap = true
+		},
+	]
+	m_nMaxParticles = 42
+	m_nBehaviorVersion = 5
+}

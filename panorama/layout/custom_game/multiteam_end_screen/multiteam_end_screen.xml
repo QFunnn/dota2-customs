@@ -1,0 +1,70 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/multiteam_end_screen/multiteam_end_screen.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/scripts/icon_change.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/shop/shop_items_information.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/scripts/shared_scoreboard_updater.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/multiteam_end_screen/multiteam_end_screen.vjs_c" />
+	</scripts>
+	<Panel hittest="false" class="EndScreenRoot">
+		<Panel id="CustomBg">
+			<MoviePanel id="MovieBackground" class="MovieBackground" src="file://{resources}/videos/custom_game/woda_loading.webm" repeat="true" autoplay="onload" />
+		</Panel>
+		<Panel class="WodaLogo" id="WodaLogo" />
+		<Panel class="EndGameWithBanner">
+			<Panel hittest="false" class="EndScreenWindow">
+				<Panel class="IsTournamentGame" id="IsTournamentGame">
+					<Label class="TournamentHeader" text="#tournament_is_tournament_game_mode" />
+					<Panel class="TournamentInfo">
+						<Label class="TornamentBansCounter" html="true" id="TornamentBansCounter" text="#tournament_ban_in_game" />
+						<Label class="TournamentRandomHero" html="true" id="TournamentRandomHero" text="#tournament_is_random_mode" />
+					</Panel>
+				</Panel>
+				<Panel class="Legend" id="IsLegendPanel">
+					<Panel class="LegendPanel ScoreCol_TeamInfo" />
+					<Panel class="LegendPanel ScoreCol_Avatar" />
+					<Panel class="LegendPanel ScoreCol_Hero" />
+					<Panel class="LegendPanel ScoreCol_PlayerDetails" />
+					<Label class="LegendPanel ScoreCol_TalentStrength" text="#flayoutstr" />
+					<Label class="LegendPanel ScoreCol_TalentAgility" text="#flayoutagi" />
+					<Label class="LegendPanel ScoreCol_TalentIntellect" text="#flayoutint" />
+					<Label class="LegendPanel ScoreCol_Level" text="#flayoutlevel" />
+					<Label class="LegendPanel ScoreCol_Networths" text="#flayoutnetworths" />
+					<Label class="LegendPanel ScoreCol_Kills" text="#flayoutkills" />
+					<Label class="LegendPanel ScoreCol_Deaths" text="#flayoutdeaths" />
+					<Label class="LegendPanel ScoreCol_Assists" text="#flayoutassists" />
+					<Label class="LegendPanel ScoreCol_Items" text="#flayoutitems" />
+					<Label class="LegendPanel ScoreCol_RatingChange" text="#flayoutraiting" />
+					<Label class="LegendPanel ScoreCol_Coins" text="#flayoutcoins" />
+					<Label class="LegendPanel ScoreCol_Plus" text="" />
+					<Label class="LegendPanel ScoreCol_BP" text="" />
+				</Panel>
+				<Panel id="TeamsContainer" />
+				<Panel class="ButtonsEnd">
+					<Button id="StatsButton" class="ButtonPanel" onactivate="ChangeGameStats()">
+						<Label text="#CustomEndScreenStats" />
+					</Button>
+					<Button id="CloseButton" class="ButtonPanel" onactivate="Game.FinishGame();">
+						<Label text="#CustomEndScreenClose" />
+					</Button>
+				</Panel>
+			</Panel>
+			<Image class="WowBanner" src="s2r://panorama/images/banners/wow_2_png.vtex" onactivate="ExternalBrowserGoToURL(&apos;https://epicgo.link/WOD&apos;);" />
+		</Panel>
+	</Panel>
+</root>

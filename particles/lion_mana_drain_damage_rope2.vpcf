@@ -1,0 +1,224 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf54:version{326b1595-45e8-4004-aa5a-3e08655ff51f} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 12
+	m_ConstantColor = [ 189, 255, 206, 255 ]
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 4
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flStartTime = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.5
+			}
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 15.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 5.0
+				m_flRandomMax = 10.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.25
+				m_flRandomMax = 0.7
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.294118
+				m_flRandomMax = 0.392157
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 7
+		},
+		{
+			_class = "C_INIT_CreateSequentialPath"
+			m_bSaveOffset = true
+			m_flNumToAssign = 12.0
+			m_PathParams = 
+			{
+				m_nEndControlPointNumber = 1
+			}
+		},
+		{
+			_class = "C_INIT_InitialVelocityNoise"
+			m_vecOutputMax = [ 50.0, 50.0, 50.0 ]
+			m_vecOutputMin = [ -50.0, -50.0, -50.0 ]
+			m_flNoiseScaleLoc = 0.7
+			m_flNoiseScale = 2.5
+			m_TransformInput = 
+			{
+				m_nType = "PT_TYPE_INVALID"
+			}
+		},
+		{
+			_class = "C_INIT_DistanceToCPInit"
+			m_flInputMax = 5.0
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+		{
+			_class = "C_INIT_DistanceToCPInit"
+			m_nStartCP = 1
+			m_flInputMax = 5.0
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_bProportional = true
+			m_OffsetMax = [ 1.0, 1.0, 1.0 ]
+			m_OffsetMin = [ -1.0, -1.0, -1.0 ]
+		},
+		{
+			_class = "C_INIT_DistanceToCPInit"
+			m_flInputMax = 20.0
+			m_nFieldOutput = 7
+			m_nStartCP = 1
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.02
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flBias = 0.25
+			m_flStartScale = 6.0
+		},
+		{
+			_class = "C_OP_Spin"
+			m_nSpinRateDegrees = 48
+		},
+		{
+			_class = "C_OP_DistanceBetweenTransforms"
+			m_nFieldOutput = 7
+			m_flInputMax = 50.0
+			m_flInputMin = 5.0
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+			m_TransformEnd = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 0.4
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.6
+		},
+		{
+			_class = "C_OP_DampenToCP"
+			m_flRange = 50.0
+		},
+		{
+			_class = "C_OP_DampenToCP"
+			m_nControlPointNumber = 1
+			m_flRange = 50.0
+		},
+		{
+			_class = "C_OP_DecayMaintainCount"
+			m_nParticlesToMaintain = 6
+		},
+		{
+			_class = "C_OP_OscillateVectorSimple"
+			m_Rate = [ 0.5, 0.5, 0.5 ]
+			m_Frequency = [ 0.5, 0.5, 0.5 ]
+			m_flOscMult = 0.0
+		},
+		{
+			_class = "C_OP_LerpScalar"
+			m_flEndTime = 0.5
+			m_nFieldOutput = 16
+		},
+		{
+			_class = "C_OP_LockToSavedSequentialPath"
+			m_PathParams = 
+			{
+				m_nEndControlPointNumber = 1
+			}
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderRopes"
+			m_flOverbrightFactor = 2.0
+			m_flRadiusScale = 0.5
+			m_flTextureVWorldSize = 100.0
+			m_nMaxTesselation = 8
+			m_nMinTesselation = 8
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/beam_hotwhite.vtex"
+					m_TextureControls = 
+					{
+						m_flFinalTextureScaleU = 
+						{
+							m_nType = "PF_TYPE_LITERAL"
+							m_flLiteralValue = -1.0
+						}
+					}
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+	]
+}
