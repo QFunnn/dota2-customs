@@ -1,0 +1,98 @@
+name: Parse customs
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    - cron: "0 3 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    name: Build matrix
+    runs-on: ubuntu-latest
+
+    outputs:
+      matrix: ${{ steps.set.outputs.matrix }}
+      watermark: ${{ steps.wm.outputs.watermark }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Read versions.json
+        id: set
+        run: echo "matrix=$(jq -c '.' versions.json)" >> "$GITHUB_OUTPUT"
+
+      - name: Build watermark
+        id: wm
+        env:
+          WATERMARK_TEMPLATE: ${{ vars.WATERMARK_TEMPLATE }}
+        run: |
+          set -euo pipefail
+
+          BUILD="${GITHUB_SHA::7}"
+          TIME="$(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+
+          WATERMARK=$(printf '%s' "$WATERMARK_TEMPLATE" \
+            | sed \
+              -e "s|\${build}|$BUILD|g" \
+              -e "s|\${time}|$TIME|g")
+
+          {
+            echo "watermark<<__WM_EOF__"
+            echo "$WATERMARK"
+            echo "__WM_EOF__"
+          } >> "$GITHUB_OUTPUT"
+
+  update:
+    name: ${{ matrix.mod.branch_name }}
+    runs-on: ubuntu-latest
+    needs: prepare
+
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        mod: ${{ fromJson(needs.prepare.outputs.matrix) }}
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+          
+      - name: Install SteamCMD
+        run: |
+          set -euo pipefail
+          mkdir -p "$HOME/steamcmd"
+          curl -fsSL \
+            https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz \
+            | tar -xz -C "$HOME/steamcmd"
+          chmod +x "$HOME/steamcmd/steamcmd.sh"
+          echo "STEAMCMD=$HOME/steamcmd/steamcmd.sh" >> "$GITHUB_ENV"
+
+      - name: Install Source2Viewer
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$HOME/s2v"
+          gh release download \
+            --repo ValveResourceFormat/ValveResourceFormat \
+            --pattern "cli-linux-x64.zip" \
+            --output "$RUNNER_TEMP/s2v.zip"
+          unzip -oq "$RUNNER_TEMP/s2v.zip" -d "$HOME/s2v"
+          chmod +x "$HOME/s2v/Source2Viewer-CLI"
+          echo "S2V=$HOME/s2v/Source2Viewer-CLI" >> "$GITHUB_ENV"
+
+      - name: Process custom
+        env:
+          STEAM_USERNAME: ${{ secrets.STEAM_USERNAME }}
+          STEAM_PASSWORD: ${{ secrets.STEAM_PASSWORD }}
+          REPO_URL: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git
+          WORKSHOP_ID: ${{ matrix.mod.workshop_id }}
+          BRANCH: ${{ matrix.mod.branch_name }}
+          WATERMARK: ${{ needs.prepare.outputs.watermark }}
+        run: bash scripts/update.sh
