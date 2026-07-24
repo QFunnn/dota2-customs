@@ -1,0 +1,240 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+
+
+ "item_patrol_reward_1"
+{
+    "BaseClass"                      "item_lua"
+    "ScriptFile"                    "abilities/items/item_patrol_reward_1"
+
+    "Model"                             "models/gameplay/attrib_tome_xp.vmdl"
+    
+    "AbilityTextureName"            "item_tome_of_aghanim"
+    "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "ItemPermanent"                    "0"
+    "ItemInitialCharges"            "1"
+    "ItemKillable"                   "0"
+    "ItemPurchasable"                   "0" 
+    "ItemCost"                      "0"
+    "ItemSellable"                  "1"
+    "ItemStackable"                 "1"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+
+    "AbilityValues"
+    {
+
+    }
+
+}
+
+
+
+"item_patrol_reward_2"
+{
+    "BaseClass"                      "item_lua"
+    "ScriptFile"                    "abilities/items/item_patrol_reward_2"
+    "AbilityTextureName"            "item_tome_of_aghanim"
+    "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "Model"                             "models/gameplay/attrib_tome_xp.vmdl"
+    "ItemPermanent"                    "0"
+    "ItemInitialCharges"            "1"
+    "ItemKillable"                   "0"
+    "ItemPurchasable"                   "0" 
+    "ItemCost"                      "0"
+    "ItemSellable"                  "1"
+    "ItemStackable"                 "1"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+
+    "AbilityValues"
+    {
+
+    }
+
+}
+
+
+
+"item_patrol_warp_amulet"
+{
+    "BaseClass"                      "item_lua"
+    "ScriptFile"                    "abilities/items/item_patrol_warp_amulet"
+    "AbilityTextureName"            "items/warp_amulet"
+    "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+    "ItemPermanent"                    "0"
+    "ItemInitialCharges"            "1"
+    "ItemKillable"                   "0"
+    "ItemPurchasable"                   "0" 
+    "ItemCost"                      "0"
+    "ItemSellable"                  "1"
+    "ItemStackable"                 "1"
+    "AbilityCooldown"               "60"
+
+    "AbilityValues"
+    {
+        "duration"                        "3"
+        "duration_building"         "10"
+    }
+
+}
+
+
+
+
+"item_patrol_midas"
+{
+    "BaseClass"                      "item_lua"
+    "ScriptFile"                    "abilities/items/item_patrol_midas"
+    "AbilityTextureName"            "items/patrol_midas"
+    "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "ItemPermanent"                    "0"
+    "ItemInitialCharges"            "1"
+    "ItemKillable"                   "0"
+    "ItemPurchasable"                   "0" 
+    "ItemCost"                      "0"
+    "ItemSellable"                  "1"
+    "ItemStackable"                 "1"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_BASIC"
+    "AbilityCastRange"              "600"
+    "AbilityCooldown"               "15.0"
+
+    "AbilityValues"
+    {
+        "gold"                      "350"
+        "blue"                      "25"
+    }
+}
+
+
+
+
+
+
+
+"item_patrol_razor"
+{
+    "BaseClass"                      "item_lua"
+    "ScriptFile"                    "abilities/items/item_patrol_razor"
+    "AbilityTextureName"            "item_ex_machina"   
+    "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_POINT"
+    "ItemPermanent"                    "0"
+    "ItemInitialCharges"            "1"
+    "ItemKillable"                   "0"
+    "ItemPurchasable"                   "0" 
+    "ItemCost"                      "0"
+    "ItemSellable"                  "1"
+    "ItemStackable"                 "1"
+    "AbilityCooldown"               "1"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+
+    "ItemSellable"                  "1"
+    "ItemCost"                      "500"
+
+    "AbilityValues"
+    {
+        "duration"              "2"
+        "damage"                "25"
+        "speed_bonus"           "200"
+        "aoe_bonus"             "2"
+        "heal_duration"         "10"
+        "heal_tower"            "20"
+        "heal_shrine"           "100"
+        "duration_friendly"     "25"
+        
+    }
+}
+
+
+
+
+"item_patrol_vision"
+{
+    "BaseClass"                      "item_lua"
+    "ScriptFile"                    "abilities/items/item_patrol_vision"
+    "AbilityTextureName"            "item_third_eye"
+    "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "ItemPermanent"                    "0"
+    "ItemInitialCharges"            "1"
+    "ItemKillable"                   "0"
+    "ItemPurchasable"                   "0" 
+    "ItemCost"                      "0"
+    "ItemStackable"                 "1"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "AbilityCooldown"               "5"
+
+    "ItemSellable"                  "1"
+    "ItemCost"                      "500"
+    
+    "AbilityValues"
+    {
+        "duration"                      "120"
+        "radius"                        "5000"
+    }
+}
+
+
+"item_patrol_restrained_orb"
+{
+    "BaseClass"                      "item_lua"
+    "ScriptFile"                    "abilities/items/item_patrol_restrained_orb"
+    "AbilityTextureName"            "items/restrained_orb"
+    "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "ItemPermanent"                    "0"
+    "ItemInitialCharges"            "1"
+    "ItemKillable"                   "0"
+    "ItemPurchasable"                   "0" 
+    "ItemCost"                      "0"
+    "ItemSellable"                  "0"
+    "ItemStackable"                 "1"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+
+    "AbilityValues"
+    {
+        "duration"              "300"
+        "duration_tooltip"            "5"
+        "duration_delay"              "10"
+    }
+}
+
+
+
+
+
+
+"item_patrol_necro"
+{
+    "BaseClass"                      "item_lua"
+    "ScriptFile"                    "abilities/items/item_patrol_necro"
+    "AbilityTextureName"            "item_necronomicon_3"   
+    "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_POINT"
+    "ItemKillable"                   "0"
+    "ItemPurchasable"                   "0" 
+    "ItemCost"                      "0"
+    "ItemSellable"                  "1"
+    "AbilityCooldown"               "1"
+
+    "ItemSellable"                  "1"
+    "ItemCost"                      "500"
+
+    "AbilityValues"
+    {
+        "delay"             "10"
+        "damage_out"        "1.5"
+        "damage_inc"        "10"
+    }
+}
+
+
+
+}
+

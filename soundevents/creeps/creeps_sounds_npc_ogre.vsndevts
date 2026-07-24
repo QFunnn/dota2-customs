@@ -1,0 +1,186 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	Hero_Slardar.PreAttack = 
+	{
+		type = "dota_src1_3d"
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 78.0
+		distance_max = 1500.0
+		event_type = 1.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/axe/preattack01.vsnd",
+			"sounds/weapons/hero/axe/preattack02.vsnd",
+			"sounds/weapons/hero/axe/preattack03.vsnd",
+		]
+		vsnd_duration = 1.081565
+	}
+	Hero_Slardar.Attack = 
+	{
+		type = "dota_update_default"
+		volume_rand_min = -0.25
+		volume_rand_max = 0.25
+		volume = 0.75
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 78.0
+		mixgroup = "BaseAttacks"
+		spread_radius = 150.0
+		distance_max = 2500.0
+		soundevent_layer2 = "Hero_Slardar.Attack.Impact"
+		soundevent_layer2_on = 1.0
+		soundevent_layer3 = "Hero_Slardar.Attack.Post"
+		soundevent_layer3_on = 1.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/shared/impacts/heavy_blade_impact1.vsnd",
+			"sounds/weapons/hero/shared/impacts/heavy_blade_impact2.vsnd",
+			"sounds/weapons/hero/shared/impacts/heavy_blade_impact3.vsnd",
+		]
+		vsnd_duration = 0.330499
+	}
+	Hero_Slardar.Attack.Impact = 
+	{
+		type = "dota_update_default"
+		volume_rand_min = -0.149902
+		volume_rand_max = 0.149902
+		volume = 0.149902
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 0.85
+		soundlevel = 75.0
+		mixgroup = "BaseAttacks"
+		spread_radius = 150.0
+		distance_max = 2500.0
+		soundevent_layer2 = "Damage_Melee.Gore"
+		soundevent_layer2_on = 1.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/shared/large_blade/ring01.vsnd",
+			"sounds/weapons/hero/shared/large_blade/ring04.vsnd",
+			"sounds/null.vsnd",
+		]
+		vsnd_duration = 0.74585
+	}
+	Hero_Slardar.Attack.Post = 
+	{
+		type = "dota_update_default"
+		volume_rand_min = -0.25
+		volume_rand_max = 0.25
+		volume = 0.75
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 75.0
+		mixgroup = "BaseAttacks"
+		spread_radius = 150.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/shared/large_blade/follow_thru01.vsnd",
+			"sounds/weapons/hero/shared/large_blade/follow_thru02.vsnd",
+			"sounds/weapons/hero/shared/large_blade/follow_thru03.vsnd",
+		]
+		vsnd_duration = 1.034444
+	}
+	Hero_ElderTitan.PreAttack = 
+	{
+		type = "dota_src1_3d"
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 0.9
+		soundlevel = 78.0
+		distance_max = 1500.0
+		event_type = 1.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/axe/preattack01.vsnd",
+			"sounds/weapons/hero/axe/preattack02.vsnd",
+			"sounds/weapons/hero/axe/preattack03.vsnd",
+		]
+		vsnd_duration = 1.081565
+	}
+	Hero_ElderTitan.Attack = 
+	{
+		type = "dota_update_default"
+		volume_rand_min = -0.099976
+		volume_rand_max = 0.099976
+		volume = 0.699585
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 78.0
+		mixgroup = "BaseAttacks"
+		spread_radius = 150.0
+		distance_max = 2500.0
+		soundevent_layer2 = "Damage_Melee.Gore"
+		soundevent_layer2_on = 1.0
+		soundevent_layer3 = "Hero_ElderTitan.Attack.Post"
+		soundevent_layer3_on = 1.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/shared/large_blade/follow_thru01.vsnd",
+			"sounds/weapons/hero/shared/large_blade/follow_thru02.vsnd",
+			"sounds/weapons/hero/shared/large_blade/follow_thru03.vsnd",
+		]
+		vsnd_duration = 1.034444
+	}
+	Hero_ElderTitan.Attack.Post = 
+	{
+		type = "dota_update_default"
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 75.0
+		mixgroup = "BaseAttacks"
+		spread_radius = 150.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/elder_titan/attack_post01.vsnd",
+			"sounds/weapons/hero/elder_titan/attack_post02.vsnd",
+			"sounds/weapons/hero/elder_titan/attack_post03.vsnd",
+		]
+		vsnd_duration = 1.355986
+	}
+	hero_Crystal.frostbite = 
+	{
+		type = "dota_src1_3d"
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 78.0
+		distance_max = 2500.0
+		limiter_on = 0.0
+		vsnd_files = "sounds/weapons/hero/crystal_maiden/frostbite.vsnd"
+		vsnd_duration = 4.937483
+	}
+	Hero_Centaur.HoofStomp = 
+	{
+		type = "dota_update_default"
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 81.0
+		mixgroup = "Weapons"
+		spread_radius = 450.0
+		vsnd_files = "sounds/weapons/hero/centaur/hoof_stomp.vsnd"
+		vsnd_duration = 2.078231
+	}
+}

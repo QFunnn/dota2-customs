@@ -1,0 +1,119 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf62:version{c135a90d-ef52-47fa-a9b8-83a382a77471} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 0
+	m_flCullRadius = -1.0
+	m_flConstantRadius = 1.0
+	m_flConstantLifespan = 1.25
+	m_ConstantColor = [ 255, 255, 255, 15 ]
+	m_nConstantSequenceNumber = 1
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 4
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Emitters = [  ]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_nOutputField = 18
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_RemapTransformOrientationToYaw"
+			m_flRotOffset = 180.0
+		},
+		{
+			_class = "C_OP_SequenceFromModel"
+			m_flInputMax = 1000.0
+			m_nFieldOutput = 13
+			m_flOutputMax = 1000.0
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.75
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.1
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/razor/surge_speedf.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/razor/surge_speeda.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/razor/surge_speedc.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/razor/surge_speedd.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/razor/surge_speedg.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/razor/surge_speedh.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/razor/surge_speedb.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/razor/surge_speede.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/razor/surge_speedi.vpcf"
+		},
+	]
+}

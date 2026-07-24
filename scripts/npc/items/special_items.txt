@@ -1,0 +1,803 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+
+
+
+"item_invoker_custom_legendary"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "ID"                            "17000"
+    "BaseClass"                      "item_lua"
+    "ScriptFile"                    "abilities/invoker/invoker_invoke_custom"
+    "AbilityTextureName"            "items/invoker_book"                                                     // unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "FightRecapLevel"               "1"
+
+    "AbilityCooldown"               "0"
+
+    "ItemQuality"                   "rare"
+    "ShouldBeSuggested"             "1"
+    "ItemCost"                      "0"
+    "ItemPurchasable"               "0"
+    "ItemSellable"                  "0"
+    "ItemKillable"                   "0"
+    "ItemIsNeutralActiveDrop"                "1"
+
+    "AbilityManaCost"                  "150"
+    "Model"                             "models/gameplay/attrib_tome_xp.vmdl"
+
+    // Special  
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "duration"              "10"
+    }
+}
+
+
+
+
+"item_muerta_shovel_custom"
+{
+    "ID"                            "17001"
+    "BaseClass"                     "item_lua"
+    "ScriptFile"                    "abilities/items/item_muerta_shovel_custom"
+    "AbilityTextureName"            "item_trusty_shovel"                        // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+    "AbilityCooldown"               "3.0"
+    "ItemCost"                      "0"
+    "ItemPurchasable"               "0"
+    "ItemSellable"                  "0"
+    "ItemKillable"                   "0"
+    "DisplayOverheadAlertOnReceived"    "0"
+
+    "AbilityChannelTime"            "1"
+    "AbilityCastRange"              "200"
+
+    "AbilityValues"
+    {            
+        "time"              "1"
+        "radius"            "240"
+        "innate_bonus"      "3"
+        "stats"             "15"
+        "movespeed"         "30"
+
+        "quest_cd"                      "30"
+        "quest_duration"                "120"
+        "quest_goal"                    "3"    
+    }
+}
+
+
+"item_muerta_mercy_custom"
+{
+    "ID"                            "17002"
+    "BaseClass"                      "item_lua"
+    "ScriptFile"                    "abilities/items/item_muerta_mercy_custom"
+    "AbilityTextureName"            "items/mercy"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"  
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "ItemCost"                      "0"
+    "ItemPurchasable"               "0"
+    "ItemSellable"                  "0"
+    "ItemKillable"                   "0"
+    "DisplayOverheadAlertOnReceived"    "0"
+
+    "AbilityManaCost"               "50"
+    "AbilityCooldown"               "20"
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_5"
+    "AbilityCastPoint"              "0.2"
+    "AbilityCastRange"              "900"
+
+    "AbilityValues"
+    {    
+        "innate_bonus"                 "4"
+        "stats"                        "20"
+        "movespeed"                    "40"
+
+        "speed"                        "2000"
+        "start_range"                  "100"
+        "duration"                     "3"
+        "impact_stun"                  "0.2"
+        "max_range"                    "420"
+        "extra_spell_damage_percent"   "-15"
+        "slow"                         "-40"
+        "creeps"                       "50"     
+
+        "quest_cd"                      "30"
+        "quest_duration"                "120"
+        "quest_goal"                    "3"    
+    }
+}
+
+
+
+"item_muerta_mercy_and_grace_custom"
+{
+    "ID"                            "17003"
+    "BaseClass"                      "item_lua"
+    "ScriptFile"                    "abilities/items/item_muerta_mercy_custom"
+    "AbilityTextureName"            "item_muertas_gun"
+    "Model"                         "models/props_gameplay/muerta_minigame_guns.vmdl"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"  
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+    "ItemCost"                      "0"
+    "ItemPurchasable"               "0"
+    "ItemSellable"                  "0"
+    "ItemKillable"                   "0"
+    "DisplayOverheadAlertOnReceived"    "0"
+
+    "AbilityManaCost"               "50"
+    "AbilityCooldown"               "20"
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_5"
+    "AbilityCastPoint"              "0.2"
+    "AbilityCastRange"              "900"
+
+    "AbilityValues"
+    {    
+        "innate_bonus"                 "5"
+        "stats"                        "25"
+        "movespeed"                    "50"
+        
+        "speed"                        "2000"
+        "start_range"                  "100"
+        "duration"                     "3.5"
+        "impact_stun"                  "0.2"
+        "max_range"                    "420"
+        "extra_spell_damage_percent"   "-15"
+        "slow"                         "-40"
+        "leash_radius"                 "420"     
+        "has_leash"                    "1"
+
+        "quest_goal"                    "6"         
+    }
+}
+
+
+
+
+"item_muerta_mercy_and_grace_full_custom"
+{
+    "ID"                            "17004"
+    "BaseClass"                      "item_lua"
+    "ScriptFile"                    "abilities/items/item_muerta_mercy_custom"
+    "AbilityTextureName"            "items/Mercy_and_Grace"
+    "Model"                         "models/props_gameplay/muerta_minigame_guns.vmdl"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"  
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+    "ItemCost"                      "0"
+    "ItemPurchasable"               "0"
+    "ItemSellable"                  "0"
+    "ItemKillable"                   "0"
+    "DisplayOverheadAlertOnReceived"    "0"
+
+    "AbilityManaCost"               "50"
+    "AbilityCooldown"               "20"
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_5"
+    "AbilityCastPoint"              "0.2"
+    "AbilityCastRange"              "900"
+
+    "AbilityValues"
+    {    
+        "innate_bonus"                 "6"
+        "stats"                        "30"
+        "movespeed"                    "60"
+        
+        "speed"                        "2000"
+        "start_range"                  "100"
+        "duration"                     "4"
+        "impact_stun"                  "0.2"
+        "max_range"                    "420"
+        "extra_spell_damage_percent"   "-20"
+        "slow"                         "-40"
+        "leash_radius"                 "420"     
+        "has_leash"                    "1"
+        "cd_inc"                       "-50"      
+    }
+}
+
+
+
+"item_recipe_alchemist_gold_shiva"
+{
+    "ID"                            "17005"
+    "BaseClass"                     "item_datadriven"   
+    "Model"                         "models/props_gameplay/recipe.vmdl"
+    "ItemCost"                      "1"   
+    "ItemShopTags"                  ""
+    "ItemRecipe"                    "1"
+    "ItemPurchasable"               "0"
+    "ItemSellable"                  "0"
+    "ItemKillable"                  "0"
+    "ItemResult"                    "item_alchemist_gold_shiva"
+    "AbilityTextureName"            "item_recipe_shivas_guard"
+    "ItemRequirements"
+    {
+        "01"                        "item_shivas_guard_custom;item_gungir_custom"
+    }
+}
+
+
+"item_alchemist_gold_shiva"
+{
+    "ID"                            "17006"
+    "BaseClass"                     "item_lua"
+    "ScriptFile"                    "abilities/items/item_alchemist_gold_shiva"
+    "AbilityTextureName"            "items/gold_shiva"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_CHANNEL"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+    "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+
+    // Items
+    //-------------------------------------------------------------------------------------------------------------
+    "ItemStackable"                 "0"
+    "ItemPermanent"                 "1"
+    "ItemPurchasable"                 "0"
+
+    // Item Info
+    //-------------------------------------------------------------------------------------------------------------
+    "ItemCost"                      "9900"
+    "AbilityCooldown"               "16"
+    "AbilityManaCost"               "100"
+
+    "ItemQuality"                   "epic"
+    "ItemAliases"                   "radiance"
+    "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+    "ShouldBeSuggested"             "1"
+    "AbilitySharedCooldown"         "atos"
+    
+    // Special  
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "bonus_armor"          "20"
+        "bonus_hp"                  "500"
+        "bonus_mana"                "200"
+        "bonus_intellect"           "20"
+        "bonus_damage"              "8"
+        "cdr_bonus"                 "10"
+
+        "root_duration"              "2"
+        "wave_duration"             "2.5"
+
+        "damage"                "600"
+        "ticks"                 "5"
+
+        "blast_radius"          "1100"
+        "blast_speed"           "1000"
+
+        "aura_attack_speed"     "-50"
+        "aura_slow"             "-20"
+        "aura_radius"           "800"
+    }
+}
+
+
+
+"item_recipe_alchemist_gold_khanda"
+{
+    "ID"                            "17007"
+    "BaseClass"                     "item_datadriven"   
+    "Model"                         "models/props_gameplay/recipe.vmdl"
+    "ItemCost"                      "1" 
+    "ItemShopTags"                  ""
+    "ItemRecipe"                    "1"
+    "ItemPurchasable"               "0"
+    "ItemSellable"                  "0"
+    "ItemKillable"                  "0"
+    "ItemResult"                    "item_alchemist_gold_khanda"
+    "AbilityTextureName"            "item_recipe_force_field"
+    "ItemRequirements"
+    {
+        "01"                        "item_starforge_seal_custom;item_angels_demise_custom"
+    }
+}
+
+
+
+"item_alchemist_gold_khanda"
+{
+    "ID"                            "17008"
+    "BaseClass"                     "item_lua"
+    "ScriptFile"                    "abilities/items/item_alchemist_gold_khanda"
+  
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "FightRecapLevel"               "1"
+    "AbilityTextureName"            "items/gold_seal"
+    "AOERadius"                     "%impact_radius"
+    
+    // Stats    
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "14"
+    
+    // Item Info
+    //-------------------------------------------------------------------------------------------------------------
+    "ItemShopTags"                  ""
+    "ItemStackable"                 "0"
+    "ItemPermanent"                 "1"
+    "ItemPurchasable"                 "0"
+    "AbilityManaCost"               "100"
+    "AbilitySharedCooldown"         "meteor_hammer"
+    "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+    "IsTempestDoubleClonable"       "0"
+
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastRange"              "650"
+    "AbilityValues"
+    {   
+        "bonus_mana"                "300"   
+        "stats_int"                 "50"
+        "stats_agi"                 "22"
+        "stats_str"                 "22"
+        "spell_amp"                 "12"
+        "health_bonus"              "8"
+        "range_bonus"               "150"
+        "mana_regen_multiplier"     "50"
+
+        "stun_duration"     "1"
+        "impact_radius"     "400"   
+        "land_time"             "0.3"
+        "max_duration"      "1.5"
+        "burn_dps_units"        "80"
+        "impact_damage_units"       "200"
+        "damage_count"           "5"
+        "movespeed_slow"        "-50"
+         
+        "break_duration"               "5"
+        "leash_duration"          "2"
+        "crit_damage"               "50"
+        "crit_chance"               "30"
+        "crit_bonus"                "20"
+        "min_damage_to_activate"    "30"
+    }
+}
+
+
+
+
+"item_recipe_alchemist_gold_daedalus"
+{
+    "ID"                            "17009"
+    "BaseClass"                     "item_datadriven"   
+    "Model"                         "models/props_gameplay/recipe.vmdl"
+    "ItemCost"                      "1" 
+    "ItemShopTags"                  ""
+    "ItemRecipe"                    "1"
+    "ItemPurchasable"               "0"
+    "ItemSellable"                  "0"
+    "ItemKillable"                  "0"
+    "ItemResult"                    "item_alchemist_gold_daedalus"
+    "AbilityTextureName"            "item_recipe_greater_crit"
+    "ItemRequirements"
+    {
+        "01"                        "item_greater_crit_custom;item_celestial_spear_custom;"
+    }
+}
+
+
+"item_alchemist_gold_daedalus"
+{
+    "ID"                            "17010"
+    "BaseClass"                     "item_lua"
+    "ScriptFile"                    "abilities/items/item_alchemist_gold_daedalus"
+    "AbilityTextureName"            "items/gold_crit"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+
+    // Item Info
+    //-------------------------------------------------------------------------------------------------------------
+    "ItemCost"                      "8650"
+    "ItemShopTags"                  "damage;crit"
+    "ItemQuality"                   "epic"
+    "ItemPurchasable"               "0"
+    "ItemAliases"                   "daedalus"
+    "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+    "ShouldBeSuggested"             "1"
+    "AbilitySharedCooldown"         "spear"
+
+    "AbilityCastRange"              "1100"
+    "AbilityCooldown"               "15.0"
+    // Special  
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "bonus_damage"          "125"
+        "bonus_speed"           "60"
+        "bonus_health"          "300"
+        "crit_chance"           "50"
+        "crit_multiplier"       "180"
+        "crit_armor"            "1"
+        "corruption_armor"      "6"
+        "corruption_duration"   "15"
+
+        "chance_bonus"          "30"
+        "bonus_duration"        "5"
+        "projectile_speed"      "1800"
+        "leash_duration"        "4"
+        "break_radius"        "500"
+    }
+}
+
+
+
+"item_recipe_alchemist_gold_octarine"
+{
+    "ID"                            "17011"
+    "BaseClass"                     "item_datadriven"   
+    "Model"                         "models/props_gameplay/recipe.vmdl"
+    "ItemCost"                      "1" 
+    "ItemShopTags"                  ""
+    "ItemRecipe"                    "1"
+    "ItemPurchasable"               "0"
+    "ItemSellable"                  "0"
+    "ItemKillable"                  "0"
+    "ItemResult"                    "item_alchemist_gold_octarine"
+    "AbilityTextureName"            "item_recipe_octarine_core"
+    "ItemRequirements"
+    {
+        "01"                        "item_octarine_core_custom;item_bloodstone_custom"
+    }
+}
+
+
+"item_alchemist_gold_octarine"
+{
+    "ID"                            "17012"
+    "BaseClass"                     "item_lua"
+    "ScriptFile"                    "abilities/items/item_alchemist_gold_octarine"
+    "AbilityTextureName"            "items/gold_octarine"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+
+    // Item Info
+    //-------------------------------------------------------------------------------------------------------------
+    "ItemCost"                      "9475"
+    "ItemShopTags"                  "move_speed;boost_mana;mana_pool"
+    "ItemQuality"                   "rare"
+    "ItemPurchasable"               "0"
+    "ItemAliases"                   "mana;mb;octarine core"
+    "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+    "ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+    "ShouldBeSuggested"             "1"
+    "AbilityCooldown"               "30"
+    
+    // Special  
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "bonus_health"          "1000"
+        "bonus_mana"            "1000"
+        "cdr_bonus"        "10"
+        "spell_lifesteal"        "40"
+        "mana_reduce"           "25"
+        "bonus_int"             "15"
+        "duration"              "6"
+        "cd_inc"              "80"
+        "spell_amp"           "15"
+        "aura_radius"         "1000"
+        "lifesteal_active"    "120"
+        "mana_cost_active"      "100"
+    }
+}
+
+
+
+"item_recipe_alchemist_gold_satanic"
+{
+    "ID"                            "17011"
+    "BaseClass"                     "item_datadriven"   
+    "Model"                         "models/props_gameplay/recipe.vmdl"
+    "ItemCost"                      "1" 
+    "ItemShopTags"                  ""
+    "ItemRecipe"                    "1"
+    "ItemPurchasable"               "0"
+    "ItemSellable"                  "0"
+    "ItemKillable"                  "0"
+    "ItemResult"                    "item_alchemist_gold_satanic"
+    "AbilityTextureName"            "item_recipe_satanic"
+    "ItemRequirements"
+    {
+        "01"                        "item_satanic_custom;item_black_king_bar_custom"
+    }
+}
+
+
+"item_alchemist_gold_satanic"
+{
+    "ID"                            "17012"
+    "BaseClass"                     "item_lua"
+    "ScriptFile"                    "abilities/items/item_alchemist_gold_satanic"
+    "AbilityTextureName"            "items/gold_satanic"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+
+    // Item Info
+    //-------------------------------------------------------------------------------------------------------------
+    "ItemCost"                      "9475"
+    "ItemShopTags"                  "move_speed;boost_mana;mana_pool"
+    "ItemQuality"                   "rare"
+    "ItemPurchasable"               "0"
+    "ItemAliases"                   "mana;mb;octarine core"
+    "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+    "ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+    "ShouldBeSuggested"             "1"
+    "AbilityCooldown"               "30"
+    "AbilitySharedCooldown"         "bkb"
+    
+    // Special  
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "bonus_damage"              "50"
+        "bonus_strength"            "50"
+        "lifesteal"                 "30"
+        "creeps"                    "2"
+        "duration"                  "6"
+        "lifesteal_active"          "160"
+        "active_damage"             "300"
+    }
+}
+
+
+"item_recipe_alchemist_gold_cuirass"
+{
+    "ID"                            "17013"
+    "BaseClass"                     "item_datadriven"   
+    "Model"                         "models/props_gameplay/recipe.vmdl"
+    "ItemCost"                      "1" 
+    "ItemShopTags"                  ""
+    "ItemRecipe"                    "1"
+    "ItemPurchasable"               "0"
+    "ItemSellable"                  "0"
+    "ItemKillable"                  "0"
+    "ItemResult"                    "item_alchemist_gold_cuirass"
+    "AbilityTextureName"            "item_recipe_assault"
+    "ItemRequirements"
+    {
+        "01"                        "item_assault_custom;item_mjollnir_custom;"
+    }
+}
+
+"item_alchemist_gold_cuirass"
+{
+    "ID"                            "17014"
+    "BaseClass"                     "item_lua"
+    "ScriptFile"                    "abilities/items/item_alchemist_gold_cuirass"
+    "AbilityTextureName"            "items/gold_assault"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityCooldown"               "25"
+    "ItemPurchasable"               "0"
+    "AbilityManaCost"               "50"
+
+    // Item Info
+    //-------------------------------------------------------------------------------------------------------------
+    "ItemCost"                      "8750"
+    "ItemShopTags"                  "attack_speed;armor;hard_to_tag"
+    "ItemQuality"                   "epic"
+    "ItemAliases"                   "ac;assault cuirass"
+    "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+    "ShouldBeSuggested"             "1"
+    "AbilitySharedCooldown"         "mjollnir"
+    
+    // Special  
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "bonus_attack_speed"    "160"
+        "bonus_armor"           "20"
+        "bonus_damage"          "25"
+        "bonus_health"          "300"
+
+        "aura_negative_armor"   "-5"
+        "aura_resist"           "-10"
+        "aura_heal_reduce"      "-15"
+        "radius"                "800"
+         
+        "static_duration"       "10"
+        "bonus_speed"           "15"
+        "slow_duration"         "0.3"
+        "slow_proc"             "-100"
+        "proc_heal"             "2"
+        "static_cooldown"       "1.0"
+
+        "chain_chance"          "30"
+        "chain_damage"          "220"
+        "chain_strikes"         "12"
+        "chain_radius"          "650"
+        "chain_delay"           "0.25"
+        "chain_cooldown"        "0.2"
+    }
+}
+
+
+"item_recipe_alchemist_gold_skadi"
+{
+    "ID"                            "17015"
+    "BaseClass"                     "item_datadriven"   
+    "Model"                         "models/props_gameplay/recipe.vmdl"
+    "ItemCost"                      "1" 
+    "ItemShopTags"                  ""
+    "ItemRecipe"                    "1"
+    "ItemPurchasable"               "0"
+    "ItemSellable"                  "0"
+    "ItemKillable"                  "0"
+    "ItemResult"                    "item_alchemist_gold_skadi"
+    "AbilityTextureName"            "item_recipe_skadi"
+    "ItemRequirements"
+    {
+        "01"                        "item_skadi_custom;item_disperser_custom"
+    }
+}
+
+
+"item_alchemist_gold_skadi"
+{
+    "ID"                            "17016"
+    "BaseClass"                     "item_lua"
+    "ScriptFile"                    "abilities/items/item_alchemist_gold_skadi"
+    "AbilityTextureName"            "items/gold_skadi"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityCastRange"              "700"
+    "AbilityCastPoint"              "0.0"
+    "AbilityCooldown"               "15.0"
+    "AbilitySharedCooldown"         "diffusal"
+    "ItemPurchasable"               "0"
+    "AbilityManaCost"               "75"
+
+    // Item Info
+    //-------------------------------------------------------------------------------------------------------------
+    "ItemCost"                      "5300"
+    "ItemShopTags"                  "agi;str;int;hard_to_tag;mana_pool;health_pool;unique"
+    "ItemQuality"                   "artifact"
+    "ItemAliases"                   "eos;eye of skadi"
+    "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+    "ShouldBeSuggested"             "1"
+    
+    // Special  
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "bonus_agility"         "80"
+        "bonus_strength"        "40"
+        "bonus_intellect"       "40"
+        "cold_slow_ranged"      "-50"
+        "cold_duration"         "3.0"
+        "heal_reduction"        "-50"
+        "attack_slow"           "-60"
+        "feedback_mana_burn"    "40"
+        "feedback_mana_burn_illusion_melee" "12"
+        "purge_slow_duration"   "4.0"
+        "purge_slow"            "-100"
+        "damage_per_burn"       "1"
+        "self_speed"            "40"
+        "root_hits"             "5"
+        "stun_duration"         "1.6"
+    }
+}
+
+
+"item_recipe_alchemist_gold_heart"
+{
+    "ID"                            "17017"
+    "BaseClass"                     "item_datadriven"   
+    "Model"                         "models/props_gameplay/recipe.vmdl"
+    "ItemCost"                      "1" 
+    "ItemShopTags"                  ""
+    "ItemRecipe"                    "1"
+    "ItemPurchasable"               "0"
+    "ItemSellable"                  "0"
+    "ItemKillable"                  "0"
+    "ItemResult"                    "item_alchemist_gold_heart"
+    "AbilityTextureName"            "item_recipe_heart"
+    "ItemRequirements"
+    {
+        "01"                        "item_heart_custom;item_radiance_custom"
+    }
+}
+
+
+"item_alchemist_gold_heart"
+{
+    "ID"                            "17018"
+    "BaseClass"                     "item_lua"
+    "ScriptFile"                    "abilities/items/item_alchemist_gold_heart"
+    "AbilityTextureName"            "items/gold_heart"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "ItemPurchasable"               "0"
+    
+    // Item Info
+    //-------------------------------------------------------------------------------------------------------------
+    "ItemCost"                      "9050"
+    "ItemShopTags"                  "str;regen_health;health_pool"
+    "ItemQuality"                   "epic"
+    "ItemAliases"                   "hot;heart of tarrasque"
+    "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+    "ShouldBeSuggested"             "1"
+    "AbilityCooldown"               "30"
+    
+    // Special  
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "bonus_strength"        "40"
+        "bonus_damage"          "60"
+        "bonus_health"          "250"
+        "evasion"               "30"
+        "health_regen_pct"      "1.5"
+
+        "duration"              "6"
+        "active_bonus"          "2"
+        "active_regen"           "3"
+
+        "aura_radius"           "650"
+        "aura_damage"           "2.5"
+        "think_interval"        "1"
+    }
+}
+
+
+
+
+"item_grisgris_custom"
+{
+    "ID"                            "17019"
+    "BaseClass"                     "item_lua"
+    "ScriptFile"                    "abilities/witch_doctor/witch_doctor_innate_custom"
+    "AbilityTextureName"            "item_grisgris"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_UNSWAPPABLE"
+    "FightRecapLevel"               "1"
+    
+
+    // Item Info
+    //-------------------------------------------------------------------------------------------------------------
+    "ItemCost"                          "0"
+    "ItemIsNeutralActiveDrop"                   "0"
+    "ItemPurchasable"                   "0"
+    "DisplayOverheadAlertOnReceived"    "0"
+    "ItemSellable"                  "0"
+    "SpeciallyAllowedInNeutralSlot"     "0"
+    "ItemCanBeConsumed"                 "1"
+    "ItemDroppable"                 "0"
+    "AllowedInBackpack"             "0"
+
+    "Model"                         "models/props_gameplay/neutral_box.vmdl"
+    
+    // Special  
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "gold_tick_interval"        "1"
+        "kill_gold"                 "80"
+        "radius"                    "700"
+        "epic_min"                  "20"
+    }
+}
+
+
+
+
+
+}
+

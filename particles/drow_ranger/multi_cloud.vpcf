@@ -1,0 +1,220 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vrfunknown:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_flDepthSortBias = 1.0
+	m_flConstantRadius = 0.65
+	m_flAggregateRadius = 500.0
+	m_nBehaviorVersion = 4
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 4
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 9
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_RemapSpeedtoCP"
+			m_nOutControlPointNumber = 3
+			m_flInputMax = 200.0
+			m_flOutputMin = 1.0
+			m_flOutputMax = 2.0
+		},
+		{
+			_class = "C_OP_SetSingleControlPointPosition"
+			m_vecCP1Pos = [ 0.0, 0.0, 0.0 ]
+		},
+		{
+			_class = "C_OP_SetControlPointOrientation"
+		},
+		{
+			_class = "C_OP_SetSingleControlPointPosition"
+			m_nCP1 = 5
+			m_vecCP1Pos = [ 0.0, -500.0, -75.0 ]
+		},
+		{
+			_class = "C_OP_StopAfterCPDuration"
+			m_flDuration = 10.0
+			m_bDestroyImmediately = true
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_flStartTime = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.1
+			}
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.5
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+			m_nOutputField = 7
+		},
+		{
+			_class = "C_INIT_RemapQAnglesToRotation"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_ClampVector"
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_RemapTransformOrientationToYaw"
+			m_flRotOffset = -90.0
+			m_bDisableOperator = true
+			m_TransformInput = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flStartScale = 0.0
+			m_flEndScale = 1.35
+			m_flEndTime = 3.0
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_Rate = -3.0
+			m_flEndTime = 99999.0
+			m_nField = 7
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_AlphaDecay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_NormalLock"
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_SetToCP"
+			m_vecOffset = [ 10.0, 0.0, -10.0 ]
+			m_bOffsetLocal = true
+		},
+		{
+			_class = "C_OP_RemapTransformOrientationToRotations"
+			m_vecRotation = [ 0.0, -90.0, 0.0 ]
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_flAnimationRate = 1.0
+			m_flDepthBias = 64.0
+			m_flFeatheringMinDist = 10.0
+			m_bTintByFOW = true
+			m_bTintByGlobalLight = true
+			m_nFeatheringMode = "PARTICLE_DEPTH_FEATHERING_ON_OPTIONAL"
+			m_vecTexturesInput = 
+			[
+				{
+				},
+			]
+			m_nFogType = "PARTICLE_FOG_ENABLED"
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/drow_ranger/multi_clouda.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/drow_ranger/multi_cloudb.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/drow_ranger/multi_cloude.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/drow_ranger/multi_cloudf.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/drow_ranger/multi_cloudd.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/drow_ranger/multi_cloudg.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/drow_ranger/multi_cloudc.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/drow_ranger/multi_cloudh.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/drow_ranger/multi_cloud_trail.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/drow_ranger/multi_cloud_trail_dust.vpcf"
+		},
+	]
+}

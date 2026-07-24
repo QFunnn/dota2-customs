@@ -1,0 +1,114 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	Beastmaster_Boar.Attack = 
+	{
+		type = "dota_src1_3d"
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 78.0
+		distance_max = 2500.0
+		event_type = 1.0
+		vsnd_files = 
+		[
+			"sounds/weapons/creep/good/range_projectile_launch.vsnd",
+			"sounds/weapons/creep/good/range_projectile_launch2.vsnd",
+			"sounds/weapons/creep/good/range_projectile_launch3.vsnd",
+			"sounds/weapons/creep/good/range_projectile_launch4.vsnd",
+		]
+		vsnd_duration = 0.502721
+	}
+	Beastmaster_Boar.ProjectileImpact = 
+	{
+		type = "dota_src1_3d"
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 72.0
+		distance_max = 2500.0
+		limiter_on = 0.0
+		vsnd_files = 
+		[
+			"sounds/weapons/creep/good/range_projectile_impact.vsnd",
+			"sounds/weapons/creep/good/range_projectile_impact2.vsnd",
+			"sounds/weapons/creep/good/range_projectile_impact3.vsnd",
+			"sounds/weapons/creep/good/range_projectile_impact4.vsnd",
+		]
+		vsnd_duration = 0.578322
+	}
+	Hero_Beastmaster_Boar.Footsteps = 
+	{
+		type = "dota_src1_3d"
+		volume_rand_min = -0.049988
+		volume_rand_max = 0.049988
+		volume = 0.349792
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.05
+		soundlevel = 72.0
+		distance_max = 2000.0
+		event_type = 4.0
+		vsnd_files = 
+		[
+			"sounds/physics/footsteps/hero/chen/footstep01.vsnd",
+			"sounds/physics/footsteps/hero/chen/footstep02.vsnd",
+			"sounds/physics/footsteps/hero/chen/footstep03.vsnd",
+			"sounds/physics/footsteps/hero/chen/footstep04.vsnd",
+			"sounds/physics/footsteps/hero/chen/footstep05.vsnd",
+			"sounds/physics/footsteps/hero/chen/footstep06.vsnd",
+			"sounds/physics/footsteps/hero/chen/footstep07.vsnd",
+		]
+		vsnd_duration = 0.134603
+	}
+	Hero_Bristleback.ViscousGoo.Cast = 
+	{
+		type = "dota_update_default"
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 81.0
+		mixgroup = "Weapons"
+		spread_radius = 300.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/bristlebog/goo_cast.vsnd",
+		]
+		vsnd_duration = 1.513946
+	}
+	Hero_Bristleback.ViscousGoo.Target = 
+	{
+		type = "dota_update_default"
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 78.0
+		mixgroup = "Weapons"
+		spread_radius = 100.0
+		limiter_on = 1.0
+		limiter_event_name = "Hero_Bristleback.ViscousGoo.Target"
+		limiter_max = 1.0
+		limiter_stop_oldest = true
+		limiter_match_event_duration = 0.0
+		block_duration = 0.1
+		block_distance = 300.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/bristlebog/goo_target.vsnd",
+		]
+		vsnd_duration = 4.991157
+	}
+}

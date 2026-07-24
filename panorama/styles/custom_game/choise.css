@@ -1,0 +1,882 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.MainChoise
+{
+	width: 100%;
+	height: 100%;
+	ui-scale: 98%;
+	z-index: 5;
+}
+
+@keyframes 'CardBlurGray'
+{
+	0%
+	{
+		box-shadow: fill #ccc 0px 0px 6px -3px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #ccc 0px 0px 11px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #ccc 0px 0px 6px -3px;
+	}
+	
+}
+
+@keyframes 'CardBlurBlue'
+{
+	0%
+	{
+		box-shadow: fill #3485f2 0px 0px 6px -3px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #3485f2 0px 0px 12px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #3485f2 0px 0px 6px -3px;
+	}
+	
+}
+
+@keyframes 'CardBlurPurple'
+{
+	0%
+	{
+		box-shadow: fill #9e48e6 0px 0px 6px -3px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #9e48e6 0px 0px 12px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #9e48e6 0px 0px 6px -3px;
+	}
+	
+}
+
+@keyframes 'CardBlurOrange'
+{
+	0%
+	{
+		box-shadow: fill #ea752b 0px 0px 6px -3px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #ea752b 0px 0px 12px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #ea752b 0px 0px 6px -3px;
+	}
+	
+}
+
+.card_blur_gray
+{
+	animation-name: CardBlurGray;
+	animation-iteration-count: infinite;
+	animation-duration: 2s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+	border: 1px solid #999;
+}
+
+.card_blur_blue
+{
+	animation-name: CardBlurBlue;
+	animation-iteration-count: infinite;
+	animation-duration: 2s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+	border: 1px solid #3E81CB;
+}
+
+.card_blur_purple
+{
+	animation-name: CardBlurPurple;
+	animation-iteration-count: infinite;
+	animation-duration: 2s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+	border: 1px solid #952CD9;
+}
+
+.card_blur_orange
+{
+	animation-name: CardBlurOrange;
+	animation-iteration-count: infinite;
+	animation-duration: 1.8s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+	border: 1px solid #DB6920;
+}
+
+@keyframes 'CardAnimationOpen'
+{
+	0%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translate3d( 0, 10%, 0px );
+		opacity: 0;
+	}
+	
+	80%
+	{
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'CardAnimationClose'
+{
+	100%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+	0%
+	{
+		transform: translate3d( 0, 10%, 0px );
+		opacity: 0;
+	}
+	
+	20%
+	{
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'CardAnimationChosen'
+{
+	100%
+	{
+		opacity: 1;
+	}
+	
+	0%
+	{
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'AlertShow'
+{
+	0%
+	{
+		opacity: 1;
+	}
+	
+	100%
+	{
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'AlertHide'
+{
+	100%
+	{
+		opacity: 1;
+	}
+	
+	0%
+	{
+		opacity: 0;
+	}
+	
+}
+
+.alert_window_open
+{
+	animation-name: AlertShow;
+	animation-duration: 0.4s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	animation-direction: reverse;
+}
+
+.alert_window_close
+{
+	animation-name: AlertHide;
+	animation-duration: 0.4s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	animation-direction: reverse;
+}
+
+.alert_window
+{
+	width: 672px;
+	height: 108px;
+	opacity: 1;
+	background-color: rgba(10, 10, 10, 0.98);
+	align: center top;
+	border: 1px solid #f7942b;
+	margin-top: 10%;
+}
+
+.card_hidden
+{
+	visibility: collapse;
+}
+
+.card_hidden_opacity
+{
+	opacity: 0;
+}
+
+.alert_text
+{
+	font-size: 21px;
+	text-align: center;
+	align: center center;
+	color: #e7e7e7;
+	margin-left: 3%;
+	font-family: Radiance;
+	text-shadow: 1px 1px 1px 2.5 black;
+	font-weight: bold;
+}
+
+.Cards
+{
+	height: 1000px;
+	width: 1600px;
+	flow-children: right;
+	vertical-align: center;
+	horizontal-align: center;
+	margin-bottom: 130px;
+}
+
+.card
+{
+	width: 25%;
+	height: 700px;
+	z-index: 0;
+	align: center center;
+	transition-property: transform, pre-transform-scale2d;
+	transition-duration: 0.12s;
+}
+
+.card_opened:hover
+{
+	brightness: 1.3;
+	transform: translate3d( 0, -10px, 0px );
+}
+
+.card_close
+{
+	animation-name: CardAnimationClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	animation-direction: reverse;
+	pre-transform-scale2d: 0.95;
+}
+
+.card_close_chosen
+{
+	animation-name: CardAnimationChosen;
+	animation-duration: 0.5s;
+	animation-delay: 0.25s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	animation-direction: reverse;
+	transform: translate3d( 0, -10px, 0px );
+}
+
+.card_open
+{
+	animation-name: CardAnimationOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	animation-direction: reverse;
+}
+
+@keyframes 'ButtonAnimationOpen'
+{
+	0%
+	{
+		opacity: 1;
+	}
+	
+	100%
+	{
+		opacity: 0;
+	}
+	
+	80%
+	{
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'ButtonAnimationClose'
+{
+	100%
+	{
+		opacity: 1;
+	}
+	
+	0%
+	{
+		opacity: 0;
+	}
+	
+	20%
+	{
+		opacity: 0;
+	}
+	
+}
+
+.ClosePanel
+{
+	width: 200px;
+	height: 120px;
+	align: center bottom;
+	margin-bottom: 200px;
+}
+
+.ClosePanel_open
+{
+	animation-name: ButtonAnimationOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	animation-direction: reverse;
+}
+
+.ClosePanel_close
+{
+	animation-name: ButtonAnimationClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	animation-direction: reverse;
+}
+
+.card_hidden_button
+{
+	opacity: 0;
+}
+
+.CloseButton
+{
+	border-radius: 4px;
+	align: center top;
+	width: 192px;
+	height: 54px;
+	background-image: url("s2r://panorama/images/custom_game/close_button_png.vtex");
+	background-repeat: no-repeat;
+	box-shadow: fill red 0px 0px 12px -5px;
+}
+
+.RefreshButton
+{
+	border-radius: 4px;
+	align: center bottom;
+	width: 192px;
+	height: 54px;
+	background-image: url("s2r://panorama/images/custom_game/refresh_button_png.vtex");
+	background-repeat: no-repeat;
+	box-shadow: fill green 0px 0px 12px -5px;
+}
+
+.refresh_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 2px 4 black;
+	font-size: 28px;
+	align: center center;
+	margin-top: 10%;
+	text-align: center;
+}
+
+.close_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 2px 4 black;
+	font-size: 28px;
+	align: center center;
+	margin-top: 10%;
+	text-align: center;
+}
+
+@keyframes 'CardAnimation'
+{
+	0%
+	{
+		opacity: 1;
+	}
+	
+	25%
+	{
+		opacity: 0.3;
+	}
+	
+	50%
+	{
+		opacity: 1;
+	}
+	
+	75%
+	{
+		opacity: 0.05;
+	}
+	
+	100%
+	{
+		opacity: 1;
+	}
+	
+}
+
+.blur
+{
+	width: 180%;
+	height: 630px;
+	margin-bottom: 12px;
+	margin-left: -46px;
+	background-repeat: no-repeat;
+	background-size: 118% 100%;
+	align: center center;
+	animation-name: CardAnimation;
+	animation-iteration-count: infinite;
+	animation-duration: 4s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+	visibility: collapse;
+}
+
+.card_body
+{
+	border-radius: 3px;
+	width: 343px;
+	height: 474px;
+	z-index: 1;
+	visibility: visible;
+	align: center center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_ogre_magi/multicast_4_png.vtex");
+}
+
+.card_body_skill
+{
+	width: 70.65px;
+	height: 383.18px;
+	z-index: 5;
+	margin-left: 236.67px;
+	align: center center;
+	margin-bottom: 238px;
+	background-size: contain;
+}
+
+.text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 2px 4 black;
+	z-index: 2;
+	align: center center;
+	margin-top: 156.75px;
+	width: 260.68px;
+	height: 265.5px;
+	text-align: center;
+}
+
+.text_hidden
+{
+	opacity: 0;
+}
+
+.text_stacks
+{
+	font-size: 27px;
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 2px 4 black;
+	z-index: 2;
+	align: left bottom;
+	margin-bottom: 10px;
+	margin-left: 15px;
+	text-align: center;
+}
+
+.text_perma
+{
+	color: #e7e7e7;
+	font-family: defaultFont;
+	font-weight: bold;
+	text-shadow: 1px 1px 2px 4 black;
+	z-index: 2;
+	text-align: center;
+	align: center center;
+	margin-top: 400px;
+	font-size: 24px;
+}
+
+.card_icon_hero
+{
+	width: 128px;
+	height: 72.11px;
+	z-index: 2;
+	align: center center;
+	margin-bottom: 285px;
+	margin-left: 3px;
+	box-shadow: black 0px 0px 20px -3px;
+	border: 1px solid #222;
+}
+
+.card_icon
+{
+	width: 123.3px;
+	height: 90px;
+	z-index: 2;
+	align: center center;
+	margin-bottom: 282px;
+	margin-right: 0px;
+	box-shadow: black 2px 2px 15px -3px;
+	border: 1px solid #222;
+}
+
+.card_icon_skill
+{
+	width: 90px;
+	height: 90px;
+	margin-bottom: 282px;
+	align: center center;
+	margin-left: 0px;
+	z-index: 2;
+	box-shadow: black 2px 2px 15px -3px;
+	border: 1px solid #222;
+}
+
+.effects_and_cd
+{
+	flow-children: down;
+	align: right bottom;
+	margin-bottom: 4px;
+	margin-right: 6px;
+}
+
+.skill_change_icon
+{
+	width: 44px;
+	height: 44px;
+	border: 1px solid #888;
+	box-shadow: 0px 0px 10px #000;
+	border-radius: 2px;
+	align: right top;
+	margin-top: 12px;
+	margin-right: 14px;
+}
+
+.basher_icon
+{
+	width: 36px;
+	height: 36px;
+	border: 1px solid #888;
+	box-shadow: 0px 0px 10px #000;
+	border-radius: 2px;
+	align: left top;
+	margin-top: 12px;
+	margin-left: 14px;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/tooltip/basher_png.vtex");
+}
+
+.talent_cd
+{
+	padding: 4px 8px;
+	flow-children: left;
+	margin-bottom: 3px;
+}
+
+.talent_cd_icon
+{
+	width: 28px;
+	height: 28px;
+	align: center center;
+	background-image: url("s2r://panorama/images/status_icons/ability_cooldown_icon_psd.vtex");
+	background-size: contain;
+	brightness: 1.5;
+}
+
+.talent_cd_text
+{
+	align: left center;
+	font-weight: semi-bold;
+	color: #d9d9d9;
+	font-size: 24px;
+	text-shadow: 0px 0px 5px 4.0 #000000;
+	font-family: Radiance;
+	margin-right: 5px;
+	margin-top: 1px;
+}
+
+.talent_effects
+{
+	height: 44px;
+	padding: 5px;
+	flow-children: left;
+	horizontal-align: right;
+	visibility: collapse;
+}
+
+.talent_effects_hidden
+{
+	opacity: 0;
+}
+
+.talent_effects_icon_hidden
+{
+	visibility: collapse;
+}
+
+.talent_effects_icon
+{
+	margin: 0px 2px;
+	height: 30px;
+	width: 30px;
+	border: 1px solid #888;
+	box-shadow: 0px 0px 10px #000;
+	border-radius: 2px;
+	vertical-align: center;
+}
+
+.talent_effects_break
+{
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/tooltip/silver_png.vtex");
+}
+
+.talent_effects_bkb
+{
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/tooltip/bkb_png.vtex");
+}
+
+.talent_effects_dispell
+{
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/tooltip/dispell_png.vtex");
+}
+
+.talent_effects_root
+{
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/tooltip/root_png.vtex");
+}
+
+.talent_effects_purge_self
+{
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/tooltip/purge_self_png.vtex");
+}
+
+.talent_effects_block
+{
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/tooltip/linken_png.vtex");
+}
+
+.talent_effects_basher
+{
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/tooltip/basher_png.vtex");
+}
+
+.talent_effects_icon:hover
+{
+	brightness: 2;
+}
+
+.card_info
+{
+	width: 186px;
+	height: 40px;
+	align: right bottom;
+	margin-bottom: 6px;
+	margin-right: 11px;
+}
+
+.card_info_panel
+{
+	align: right center;
+	flow-children: right;
+}
+
+.card_info_text
+{
+	align: left center;
+	font-weight: semi-bold;
+	color: #ccc;
+	font-size: 23px;
+	text-shadow: 0px 0px 5px 3.0 #000000;
+	font-family: Radiance;
+	margin-left: 1px;
+	margin-bottom: 1px;
+}
+
+.card_info_text_purple
+{
+	color: gradient( linear, 0% 90%, 0% 0%, from( #e0d6eb ), to( #c8aae6 ) );
+}
+
+.card_info_text_orange
+{
+	color: gradient( linear, 0% 90%, 0% 0%, from( #fcddc2 ), to( #fcb74b ) );
+}
+
+.card_info_icon
+{
+	width: 35px;
+	height: 35px;
+	align: right center;
+	background-image: url("s2r://panorama/images/control_icons/alt_key_png.vtex");
+	background-size: contain;
+	margin-left: 5px;
+	margin-top: 3px;
+}
+
+.ability_icon
+{
+	width: 100%;
+	height: 100%;
+}
+
+.Pickrate_panel
+{
+	z-index: 9;
+	width: 84px;
+	height: 42px;
+	margin-top: 98px;
+	margin-right: 18px;
+	horizontal-align: right;
+	border-radius: 3px;
+	background-color: gradient( linear, 0% 0%, 90% 90%, from( #401507 ), to( #643121 ) );
+}
+
+.Pickrate_text
+{
+	align: center center;
+	font-weight: semi-bold;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #f9e0bb ), to( #fff442 ) );
+	font-size: 26px;
+	text-shadow: 0px 0px 5px 2.0 #000000;
+	font-family: Radiance;
+	margin-left: 3px;
+}
+
+.Pickrate_panel_high
+{
+	box-shadow: fill #e6a951 0px 0px 5px -1px;
+}
+
+.Pickrate_panel_low
+{
+	wash-color: #999;
+	saturation: 0.5;
+	border: 2px solid #b94e29;
+}
+
+.panel_collapse
+{
+	visibility: collapse;
+}
+
+.complexity_block
+{
+	width: 158px;
+	height: 52px;
+	background-color: gradient( linear, 0% 0%, 90% 90%, from( #1c0c03 ), to( #3f1d08 ) );
+	border: 1px solid #b25519;
+	border-radius: 3px;
+	horizontal-align: center;
+	margin-top: 42px;
+	flow-children: down;
+}
+
+.complexity_block_text
+{
+	align: center top;
+	font-weight: semi-bold;
+	color: gradient( linear, 0% 90%, 0% 0%, from( #fcddc2 ), to( #fcb74b ) );
+	font-size: 20px;
+	text-shadow: 0px 0px 5px 2.0 #000000;
+	font-family: Radiance;
+	margin-top: 2px;
+}
+
+.complexity_levels
+{
+	align: center center;
+	flow-children: right;
+	margin-bottom: 2px;
+}
+
+.complexity_level
+{
+	height: 16px;
+	width: 32px;
+	border-radius: 3px;
+	margin: 0px 3px;
+	background-color: gradient( linear, 0% 80%, 0% 0%, from( #c65d1b ), to( #dcab8c ) );
+	box-shadow: fill black 0px 0px 4px 0px;
+	border: 1px solid #2f1504;
+}
+
+.complexity_level_disable
+{
+	wash-color: #555;
+	saturation: 0.9;
+}

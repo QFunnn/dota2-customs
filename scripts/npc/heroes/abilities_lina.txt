@@ -1,0 +1,252 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+
+"DOTAAbilities"
+{
+
+"Version"		"1"
+
+
+"lina_dragon_slave_custom"
+{
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/lina/lina_dragon_slave_custom"	
+	"AbilityTextureName"			"lina_dragon_slave"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"FightRecapLevel"				"1"
+	"AbilitySound"					"Hero_Lina.DragonSlave"
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"1075"
+	"AbilityCastPoint"				"0.25"
+	"AbilityCooldown"				"10 9 8 7"
+	"AbilityManaCost"				"100 110 120 130"
+
+	"AbilityValues"
+	{
+
+		"dragon_slave_damage"			"60 120 180 240"
+		"dragon_slave_speed"			"1200"
+		"dragon_slave_width_initial"	
+		{
+			"value"		"275"
+			"affected_by_aoe_increase"	"1"
+		}
+		"dragon_slave_width_end"		
+		{
+			"value"			"200"
+			"affected_by_aoe_increase"	"1"
+		}
+		"dragon_slave_distance"			"1075"
+	}
+}
+
+"lina_light_strike_array_custom"
+{
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/lina/lina_light_strike_array_custom"	
+	"AbilityTextureName"			"lina_light_strike_array"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+	"FightRecapLevel"				"1"
+	"AbilitySound"					"Ability.LightStrikeArray"
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+	"AbilityCastRange"				"700"
+	"AbilityCastPoint"				"0.45 0.45 0.45 0.45"
+	"LinkedAbility"					"lina_light_strike_array_custom_legendary"
+	
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"12 11 10 9"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"100 110 120 130"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"light_strike_array_aoe"			"250"
+		"light_strike_array_delay_time"		"0.5"
+		"light_strike_array_stun_duration"	"1.2 1.4 1.6 1.8"
+		"light_strike_array_damage"			"60 100 140 180"
+	}
+}
+
+
+
+"lina_light_strike_array_custom_legendary"
+{
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/lina/lina_light_strike_array_custom"	
+	"AbilityTextureName"			"lina_flame_cloak"
+
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+	"MaxLevel"						"1"
+
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"1"
+	"AbilityCastPoint"				"0.0"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+			
+	}
+	"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+	"AbilityCastGestureSlot"		"DEFAULT"
+}
+
+
+"lina_fiery_soul_custom"
+{
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/lina/lina_fiery_soul_custom"	
+	"AbilityTextureName"			"lina_fiery_soul"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+	"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+
+	"MaxLevel"                      "4"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"fiery_soul_attack_speed_bonus"	"8 12 16 20"	
+		"fiery_soul_move_speed_bonus"	"1 1.5 2 2.5" 
+		"interval"						"1"
+		"fiery_soul_max_stacks"			"7"
+		"fiery_soul_stack_duration"		"10"
+	}
+}
+
+"lina_laguna_blade_custom"
+{
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/lina/lina_laguna_blade_custom"	
+	"AbilityTextureName"			"lina_laguna_blade"
+	"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"							// Changes dynamically with scepter	
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+	"FightRecapLevel"				"2"
+	"AbilitySound"					"Ability.LagunaBladeImpact"
+	"HasShardUpgrade"               "1" 
+
+	
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"750"
+	"AbilityCastPoint"				"0.3"
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"25"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"150 225 300"
+		
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"damage"					"250 375 500"
+		"slow"						"-40 -70 -100"
+		"damage_delay"				"0.25"
+		"slow_duration"				"2"
+		"shard_cd"					"-5"
+		"shard_bkb"					"2.5"
+		"shard_knock"				"450"
+		"shard_knock_duration"		"0.3"	
+		"aoe"						"250"	
+	}
+}
+
+
+"lina_scepter_custom"
+{
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/lina/lina_scepter_custom"	
+	"AbilityTextureName"			"lina_scepter_ability"
+
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+	"IsGrantedByScepter"				"1"
+	"MaxLevel"							"1"
+
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"20"
+	"AbilityCastPoint"				"0.1"
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"50"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"stun"						"1"
+		"damage"					"200"
+		"duration"					"3"
+		"radius"					"250"
+		"speed"						"800"	
+		"range"						"1100"	
+	}
+	"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+	"AbilityCastGestureSlot"		"DEFAULT"
+}
+
+
+
+
+"lina_innate_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/lina/lina_innate_custom"  
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	"MaxLevel"						"1"
+    "Innate"                        "1"
+
+    // Special  
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+    	"damage"		"60"
+    	"duration"		"6"
+    	"interval"		"1"
+    	"attack_cd"		"6"
+    }
+}
+
+
+
+}

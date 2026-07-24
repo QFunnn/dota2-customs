@@ -1,0 +1,492 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/info_reports/info_reports.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/items_chest.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/info_reports/configs/items_heroes_info.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/configs/main_settings.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/player_data.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/info_reports.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/leaderboard.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/chat_wheel.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/hero_progress.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/promo.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/heroes_vote.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/shards_updater.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/items_heroes.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/items_cosmetics.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/player_profile.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/items_chest.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/buy_windows.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/init.vjs_c" />
+	</scripts>
+	<Panel class="MainInfoReports" hittest="false">
+		<Panel class="info_reports_buttons" id="info_reports_buttons">
+			<Panel class="shop_button top_button" id="shop_button" />
+			<Panel class="info_button top_button square_button" id="info_button" />
+			<Panel class="leaderbord_button top_button square_button" id="leaderbord_button" />
+		</Panel>
+		<Panel class="new_promo_alert_hidden" id="new_promo_alert">
+			<Panel class="new_promo_alert_body" id="new_promo_alert_body">
+				<Panel class="new_promo_alert_content">
+					<Panel class="new_promo_alert_top">
+						<Label class="new_promo_alert_top_text" id="new_promo_alert_top_text" html="true" />
+					</Panel>
+					<Panel class="new_promo_alert_bot">
+						<Label class="new_promo_alert_bot_text" id="new_promo_alert_bot_text" html="true" />
+						<Panel class="new_promo_alert_icon" id="new_promo_alert_icon" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="new_promo_alert_arrow" id="new_promo_alert_arrow" />
+		</Panel>
+		<Panel class="active_sale_shards_panel_hidden" id="active_sale_shards_panel">
+			<Panel class="active_vote_body">
+				<Panel class="active_vote_content">
+					<Panel class="active_sale_shards_top">
+						<Label class="active_sale_shards_text_label" id="active_sale_shards_top_text" html="true" />
+					</Panel>
+					<Panel class="active_sale_shards_bot">
+						<Label class="active_sale_shards_text_label" id="active_sale_shards_bot_text" html="true" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="active_vote_arrow" />
+		</Panel>
+		<Panel class="shop_window_hidden" id="window_shop">
+			<Panel class="shop_window_main" id="shop_window_main">
+				<Panel class="shop_window_buttons" id="shop_window_buttons">
+					<Panel id="shop_items_new" />
+					<Panel class="shop_shards_sale">
+						<Label text="#buy_shards_sale_small_30" />
+					</Panel>
+					<Panel id="shop_items_sale" class="hidden_panel">
+						<Label class="shop_items_sale_text" text="#global_sale_50" />
+					</Panel>
+					<Panel class="shop_window_buttons_content" id="shop_window_buttons_content">
+						<Panel class="shop_window_buttons_top">
+							<Panel id="shard_sale_active" class="shard_sale_active_hidden">
+								<Label class="shard_sale_active_text" id="shard_sale_active_text" text="-50%" />
+							</Panel>
+							<Panel class="CloseShop" onactivate="Shop_window_hide();" />
+							<Panel class="CurrencyCount">
+								<Panel class="CurrencyIcon" />
+								<Panel class="CurrencyBackground">
+									<Label class="CurrencyNumber" id="CurrencyNumber" text="0" />
+								</Panel>
+								<Panel class="CurrencyInfo" id="CurrencyInfo" />
+							</Panel>
+							<Panel class="BuyCurrencyButton_not" id="BuyCurrencyButton" onactivate="OpenBuyCurrency();">
+								<Label class="BuyCurrencyButtonLabel" text="#buy_shards" html="true" />
+							</Panel>
+							<Panel class="BonusCurrencyButton" id="BonusCurrencyButton" onactivate="OpenBonusShards();">
+								<Panel class="BonusCurrencyIcon" />
+							</Panel>
+							<Panel class="PromoButton" id="PromoButton" onactivate="OpenPromoWindow();">
+								<Label class="PromoButtonLabel" text="#promo_button" />
+							</Panel>
+							<Panel class="GiftButton" id="GiftButton" onactivate="OpenGiftWindow();">
+								<Label class="GiftButtonLabel" text="#gift_button" />
+							</Panel>
+						</Panel>
+						<Panel class="inshop_button activate inshop_button_first" id="inshop_button_sub">
+							<Label class="inshop_button_text" id="inshop_button_text_sub" html="true" text="#shop_button_sub" />
+							<Panel class="shop_button_background shop_button_background_sub" />
+						</Panel>
+						<Panel class="inshop_button" id="inshop_button_items">
+							<Label class="inshop_button_text" id="inshop_button_text_items" html="true" text="#shop_button_items" />
+							<Panel class="shop_button_background  shop_button_background_items" />
+						</Panel>
+						<Panel class="inshop_button" id="inshop_button_chat">
+							<Label class="inshop_button_text" id="inshop_button_text_chat" html="true" text="#shop_button_chat" />
+							<Panel class="shop_button_background  shop_button_background_chat" />
+						</Panel>
+						<Panel class="inshop_button" id="inshop_button_heroes">
+							<Label class="inshop_button_text" id="inshop_button_text_heroes" html="true" text="#shop_button_heroes" />
+							<Panel class="shop_button_background  shop_button_background_heroes" />
+						</Panel>
+						<Panel class="inshop_button inshop_button_hidden" id="inshop_button_vote">
+							<Label class="inshop_button_text" id="inshop_button_text_vote" html="true" text="#shop_button_vote" />
+							<Panel class="shop_button_background  shop_button_background_vote" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="shop_window_content" id="shop_window_1">
+					<Panel class="pass_window_1">
+						<Panel class="InfoHeader_top">
+							<Panel class="InfoHeader_left">
+								<Panel class="InfoHeaderImage" />
+							</Panel>
+							<Panel class="InfoHeader_right">
+								<Label class="InfoHeaderLabel_top1" html="true" text="#pass_header_top1" />
+								<Label class="InfoHeaderLabel_top2" html="true" text="#pass_header_top2" />
+								<Label class="InfoHeaderLabel_no_sale" html="true" text="#pass_header_sale" />
+								<Label class="InfoHeaderLabel_active_sub" html="true" id="InfoHeaderLabel_active_sub" />
+								<Panel id="sub_sale_active" class="shard_sale_active_hidden">
+									<Label class="sub_sale_active_text" id="sub_sale_active_text" text="-40%" />
+								</Panel>
+								<Panel class="ButtonBuySubscribe_not" id="ButtonBuySubscribe" onactivate="CreatePlusWindow();">
+									<Label class="ButtonBuySubscribeLabel" id="ButtonBuySubscribeLabel" text="#pass_header_top_button" />
+								</Panel>
+							</Panel>
+						</Panel>
+						<Panel class="InfoHeader_bot">
+							<Label class="InfoHeader_bot_label" text="#pass_header_bot" />
+						</Panel>
+					</Panel>
+					<Panel class="pass_window_12">
+						<Label class="TextInfoPassRight" html="true" text="#pass_1" />
+					</Panel>
+					<Panel class="pass_window_fill" />
+					<Panel class="pass_window_10">
+						<Label class="TextInfoPassLeft" html="true" text="#pass_2" />
+					</Panel>
+					<Panel class="pass_window_fill" />
+					<Panel class="pass_window_3">
+						<Label class="TextInfoPassRight" html="true" text="#pass_3" />
+					</Panel>
+					<Panel class="pass_window_fill2" />
+					<Panel class="pass_window_2">
+						<Label class="TextInfoPassLeft" html="true" text="#pass_4" />
+					</Panel>
+					<Panel class="pass_window_fill" />
+					<Panel class="pass_window_11">
+						<Label class="TextInfoPassRight" html="true" text="#pass_5" />
+					</Panel>
+					<Panel class="pass_window_fill" />
+					<Panel class="pass_window_8">
+						<Label class="TextInfoPassLeft" html="true" text="#pass_6" />
+					</Panel>
+					<Panel class="pass_window_fill3" />
+					<Panel class="pass_window_5">
+						<Label class="TextInfoPassRight" html="true" text="#pass_7" />
+					</Panel>
+					<Panel class="pass_window_fill" />
+					<Panel class="pass_window_4">
+						<Label class="TextInfoPassLeft" html="true" text="#pass_8" />
+					</Panel>
+					<Panel class="pass_window_fill3" />
+					<Panel class="pass_window_9">
+						<Label class="TextInfoPassRight" html="true" text="#pass_9" />
+					</Panel>
+					<Panel class="pass_window_fill2" />
+					<Panel class="pass_window_6">
+						<Label class="TextInfoPassLeft" html="true" text="#pass_10" />
+					</Panel>
+					<Panel class="pass_window_7">
+						<Panel class="ButtonBuySubscribe_bot_not" id="ButtonBuySubscribe_bot" onactivate="CreatePlusWindow();">
+							<Label class="ButtonBuySubscribeLabel" text="#pass_header_top_button" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="shop_window_content" id="shop_window_2">
+					<Panel class="GeneralHeroInformation" id="GeneralHeroInformation" />
+					<Panel class="heroes_list_top" id="heroes_list_top">
+						<Label class="heroes_list_top_text" text="#Shop_Heroes_List" />
+					</Panel>
+					<Panel class="HeroList" id="HeroList" />
+				</Panel>
+				<Panel class="shop_window_content" id="shop_window_3">
+					<Panel class="shop_window_shop_inventory" id="shop_window_header_shop">
+						<Label class="heroes_list_top_text" text="#shop_button_items" />
+						<Panel class="buy_items_show_panel">
+							<Button class="buy_items_show_button_off" id="heroes_buy_button" />
+							<Label class="buy_items_show_button_text" text="#label_information" />
+						</Panel>
+						<Panel id="sale_info_top">
+							<Label class="sale_info_top_text" text="#active_giga_sale_inshop" html="true" />
+							<Label class="sale_info_top_text_bottom" text="#active_giga_sale_inshop_date" html="true" />
+						</Panel>
+					</Panel>
+					<Panel id="ChooseCategory">
+						<Panel class="ChooseCategoryBlock" id="ChooseCategoryItems_button" onactivate="OpenItemsContent(&apos;CategoryItems&apos;);">
+							<Panel id="ChooseCategoryBlockSale" class="hidden_panel">
+								<Label class="shop_items_sale_text" text="#global_sale_50" />
+							</Panel>
+							<Panel class="ChooseCategoryBlockIcon" id="ChooseCategoryBlockIconItems" />
+							<Label class="ChooseCategoryBlockLabel" text="#items" />
+						</Panel>
+						<Panel class="ChooseCategoryBlock" id="ChooseCategoryChest_button" onactivate="OpenItemsContent(&apos;CategoryChest&apos;);">
+							<Panel id="ChooseCategoryBlockNew" class="hidden_panel" />
+							<Panel class="ChooseCategoryBlockIcon" id="ChooseCategoryBlockIconChest" />
+							<Label class="ChooseCategoryBlockLabel" text="#Chests" />
+						</Panel>
+						<Panel class="ChooseCategoryBlock" id="ChooseCategoryPet_button" onactivate="OpenItemsContent(&apos;CategoryPets&apos;);">
+							<Panel class="ChooseCategoryBlockIcon" id="ChooseCategoryBlockIconPets" />
+							<Label class="ChooseCategoryBlockLabel" text="#pets" />
+						</Panel>
+						<Panel class="ChooseCategoryBlock" id="ChooseCategoryCosmetics_button" onactivate="OpenItemsContent(&apos;CategoryCosmetics&apos;);">
+							<Panel class="ChooseCategoryBlockIcon" id="ChooseCategoryBlockIconCosmetics" />
+							<Label class="ChooseCategoryBlockLabel" text="#Cosmetics" />
+						</Panel>
+						<Panel class="ChooseCategoryBlock" id="ChooseCategoryEffects_button" onactivate="OpenItemsContent(&apos;CategoryEffects&apos;);">
+							<Panel class="ChooseCategoryBlockIcon" id="ChooseCategoryBlockIconEffects" />
+							<Label class="ChooseCategoryBlockLabel" text="#Effects" />
+						</Panel>
+					</Panel>
+					<Panel id="CategoryChest" />
+					<Panel id="CategoryEffects" class="CategoryEffects" />
+					<Panel id="CategoryPets" />
+					<Panel id="CategoryItems">
+						<Panel class="ItemsList" id="ItemsList" />
+						<Panel class="HeroListItems" id="HeroListItems" />
+					</Panel>
+					<Panel id="CategoryCosmetics">
+						<Panel id="CategoryCosmeticsContent" hittest="true" />
+						<Panel id="CategoryCosmeticsVideo" hittest="false" />
+					</Panel>
+				</Panel>
+				<Panel class="shop_window_content" id="shop_window_4">
+					<Panel id="ChatWheelContents">
+						<Panel class="ChatWheelSoundsListButtons">
+							<Label id="ButtonLabelDefault" class="TextButtonLabel" html="true" text="#chat_wheel_general" />
+							<Label id="ButtonLabelHero" class="TextButtonLabel" html="true" text="#chat_wheel_hero" />
+						</Panel>
+						<Panel class="SoundWheelSettingsButton" id="SoundWheelSettingsButton">
+							<Label class="SoundWheelSettingsLabel" text="#SoundWheelSettings" />
+						</Panel>
+						<Panel class="TopBottomFlow" id="ChatWheelWheelPanel">
+							<Panel id="TopChatWheelPanel">
+								<Button class="ChatWheelButton" id="ChatWheelButton6" onactivate="SetActiveChatBlock( 7 );">
+									<Image class="ChatWheelSprayImage" id="SprayWheelImage" />
+									<Panel class="ChatWheelButtonContents">
+										<Label id="chat_wheel_dota_7" text="#empty" html="true" />
+									</Panel>
+								</Button>
+							</Panel>
+							<Panel id="MiddleChatWheelPanel">
+								<Panel id="ChatWheelLine1" class="ChatWheelLine" />
+								<Panel id="ChatWheelLine2" class="ChatWheelLine" />
+								<Panel id="ChatWheelLine3" class="ChatWheelLine" />
+								<Panel id="ChatWheelLine4" class="ChatWheelLine" />
+								<Panel id="LeftChatWheelContents">
+									<Button class="ChatWheelButton" id="ChatWheelButton5" onactivate="SetActiveChatBlock( 6 );">
+										<Image class="ChatWheelSprayImage" id="SprayWheelImage" />
+										<Panel class="ChatWheelButtonContents">
+											<Label id="chat_wheel_dota_6" text="#empty" html="true" />
+										</Panel>
+									</Button>
+									<Button class="ChatWheelButton" id="ChatWheelButton4" onactivate="SetActiveChatBlock( 5 );">
+										<Image class="ChatWheelSprayImage" id="SprayWheelImage" />
+										<Panel class="ChatWheelButtonContents">
+											<Label id="chat_wheel_dota_5" text="#empty" html="true" />
+										</Panel>
+									</Button>
+									<Button class="ChatWheelButton" id="ChatWheelButton3" onactivate="SetActiveChatBlock( 4 );">
+										<Image class="ChatWheelSprayImage" id="SprayWheelImage" />
+										<Panel class="ChatWheelButtonContents">
+											<Label id="chat_wheel_dota_4" text="#empty" html="true" />
+										</Panel>
+									</Button>
+								</Panel>
+								<Panel id="ChatWheelIconCenter" class="ChatDialogButtonImage" />
+								<Panel id="RightChatWheelContents">
+									<Button class="ChatWheelButton" id="ChatWheelButton7" onactivate="SetActiveChatBlock( 8 );">
+										<Image class="ChatWheelSprayImage" id="SprayWheelImage" />
+										<Panel class="ChatWheelButtonContents">
+											<Label id="chat_wheel_dota_8" text="#empty" html="true" />
+										</Panel>
+									</Button>
+									<Button class="ChatWheelButton" id="ChatWheelButton0" onactivate="SetActiveChatBlock( 1 );">
+										<Image class="ChatWheelSprayImage" id="SprayWheelImage" />
+										<Panel class="ChatWheelButtonContents">
+											<Label id="chat_wheel_dota_1" text="#empty" html="true" />
+										</Panel>
+									</Button>
+									<Button class="ChatWheelButton" id="ChatWheelButton1" onactivate="SetActiveChatBlock( 2 );">
+										<Image class="ChatWheelSprayImage" id="SprayWheelImage" />
+										<Panel class="ChatWheelButtonContents">
+											<Label id="chat_wheel_dota_2" text="#empty" html="true" />
+										</Panel>
+									</Button>
+								</Panel>
+							</Panel>
+							<Panel id="BottomChatWheelPanel">
+								<Button class="ChatWheelButton" id="ChatWheelButton2" onactivate="SetActiveChatBlock( 3 );">
+									<Image class="ChatWheelSprayImage" id="SprayWheelImage" />
+									<Panel class="ChatWheelButtonContents">
+										<Label id="chat_wheel_dota_3" text="#empty" html="true" />
+									</Panel>
+								</Button>
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="ChatWheelSoundsList">
+						<Panel class="ButtonsSwapSounds" id="ButtonsSwapSounds">
+							<Panel class="ButtonCategory selected" id="ButtonCategoryOTHER" onactivate="SwapCategorySounds(&apos;ButtonCategoryOTHER&apos;, &apos;sound_category_other&apos;)">
+								<Label class="ButtonCategoryLabel" text="OTHER" />
+							</Panel>
+							<Panel class="ButtonCategory" id="ButtonCategoryRU" onactivate="SwapCategorySounds(&apos;ButtonCategoryRU&apos;, &apos;sound_category_ru&apos;)">
+								<Label class="ButtonCategoryLabel" text="RU" />
+							</Panel>
+							<Panel class="ButtonCategory" id="ButtonCategoryENG" onactivate="SwapCategorySounds(&apos;ButtonCategoryENG&apos;, &apos;sound_category_eng&apos;)">
+								<Label class="ButtonCategoryLabel" text="ENG" />
+							</Panel>
+						</Panel>
+						<Panel class="PanelSound" id="sound_category_ru">
+							<Panel class="ChatWheelSoundsListHead">
+								<Label class="TextButtonLabelCenter" text="#chat_wheel_russian" />
+							</Panel>
+							<Panel id="ChatWheelSoundsList1" />
+						</Panel>
+						<Panel class="PanelSound" id="sound_category_eng">
+							<Panel class="ChatWheelSoundsListHead">
+								<Label class="TextButtonLabelCenter" text="#chat_wheel_english" />
+							</Panel>
+							<Panel id="ChatWheelSoundsList2" />
+						</Panel>
+						<Panel class="PanelSound" id="sound_category_other">
+							<Panel class="ChatWheelSoundsListHead">
+								<Label class="TextButtonLabelCenter" text="#chat_wheel_all" />
+							</Panel>
+							<Panel id="ChatWheelSoundsList3" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="shop_window_content" id="shop_window_6" />
+			</Panel>
+			<Panel class="shop_window_blur_hidden" id="shop_window_blur_selected_set" hittest="true" />
+			<Panel class="shop_window_blur_hidden" id="shop_window_blur" hittest="true" />
+			<Panel class="ChestHudMainPanel" id="ChestHudMainPanel">
+				<Panel class="DropItemPanel" id="DropItemPanel">
+					<DOTAParticleScenePanel id="DropEffect" class="DropEffect" particleName="particles/ui/ui_generic_rays.vpcf" renderdeferred="true" particleonly="false" startActive="true" cameraOrigin="160 0 0" lookAt="0 0 0" fov="80" />
+					<DOTAParticleScenePanel id="DropEffect_top" class="DropEffect_top" particleName="particles/ui/ui_godrays_soft_glow.vpcf" renderdeferred="true" particleonly="false" startActive="true" cameraOrigin="160 0 0" lookAt="0 0 0" fov="80" />
+					<DOTAParticleScenePanel id="DropEffect_bottom" class="DropEffect_bottom" particleName="particles/ui/ui_godrays_soft_glow.vpcf" renderdeferred="true" particleonly="false" startActive="true" cameraOrigin="160 0 0" lookAt="0 0 0" fov="80" />
+					<Panel class="DropItemContent">
+						<Label class="ItemDropName" id="ItemDropName" text="" />
+						<Panel class="ItemDropIcon" id="ItemDropIcon" />
+						<Panel class="DropButtons">
+							<Panel class="ItemDropClaimButton" id="ItemDropClaimButton">
+								<Label class="ItemDropClaimButtonLabel" text="#claim_reward" />
+							</Panel>
+							<Panel class="ItemDropRerollButton" id="ItemDropRerollButton">
+								<Label class="ItemDropClaimButtonLabel" text="#reroll_reward" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="CloseChestHudIcon" onactivate="CloseChest();" />
+				<Label class="ChestName" id="ChestName" text="" />
+				<Panel class="ChestPairRollBlock" id="ChestPairRollBlock">
+					<Panel class="ChestPairLineUnit">
+						<Label class="RollLineTitle RollLineTitlePoor" id="RollLineTitlePoor" text="#chest_pair_poor_line" />
+						<Panel class="RollLine" id="RollLine">
+							<Panel class="RollLineBg" />
+							<Panel class="pointer_top" />
+							<Panel class="pointer_bottom" />
+							<Panel class="RollItemsList">
+								<Panel class="RollItemsListMain" id="RollItemsListMain" />
+							</Panel>
+						</Panel>
+						<Panel class="OpenChestButton OpenChestButtonPair" id="OpenChestButtonPoor">
+							<Panel class="ChestCostPanel">
+								<Label class="ChestCostLabel" id="OpenChestButtonPoorLabel" text="#open_chest" />
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="ChestPairLineUnit">
+						<Label class="RollLineTitle RollLineTitleRich" id="RollLineTitleRich" text="#chest_pair_rich_line" />
+						<Panel class="RollLine RollLine2" id="RollLine2">
+							<Panel class="RollLineBg" />
+							<Panel class="pointer_top" />
+							<Panel class="pointer_bottom" />
+							<Panel class="RollLineLockOverlay">
+								<Label class="RollLineLockLabel" text="#chest_pair_rich_locked" />
+							</Panel>
+							<Panel class="RollItemsList">
+								<Panel class="RollItemsListMain" id="RollItemsListMain2" />
+							</Panel>
+						</Panel>
+						<Panel class="OpenChestButton OpenChestButtonPair" id="OpenChestButtonRich">
+							<Panel class="ChestCostPanel">
+								<Label class="ChestCostLabel" id="OpenChestButtonRichLabel" text="#open_chest" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="OpenChestButton OpenChestButtonSingle" id="OpenChestButton">
+					<Panel class="ChestCostPanel">
+						<Panel class="ChestCostIcon" id="ChestCostIcon" />
+						<Label class="ChestCostLabel" id="ChestCostLabel" text="0" />
+					</Panel>
+				</Panel>
+				<Panel class="RarePanelWithInfo" id="RarePanelWithInfo">
+					<Label class="ItemsInChestName ItemsInChestNameRare" id="RarePanelName" text="#chest_items_rare" />
+					<Panel class="RareInfoItem" onmouseover="UIShowTextTooltip( #item_chest_info_rare )" onmouseout="UIHideTextTooltip()" />
+				</Panel>
+				<Panel class="BorderItemsChestBlock BorderItemsChestBlockRare" id="RarePanelBorder" />
+				<Panel class="ItemsInChestBlock" id="ItemsInChestBlockRare" />
+				<Panel class="ItemsInChestNameBlock">
+					<Label class="ItemsInChestName" id="ItemsInChestName" text="#chest_items_normal" />
+					<Panel class="InfoOpenReroll" id="InfoOpenReroll" />
+				</Panel>
+				<Panel class="BorderItemsChestBlock" />
+				<Panel class="ItemsInChestBlock" id="ItemsInChestBlock" />
+				<Panel class="ChestBackground" />
+			</Panel>
+		</Panel>
+		<Panel class="info_window info_window_hidden" id="window_info">
+			<Panel class="info_window_top_buttons" id="info_window_top_buttons">
+				<Panel class="close_button" id="close_button">
+					<Panel class="close_icon" id="close_icon" />
+				</Panel>
+				<Panel id="info_window_buttons_panel">
+					<Panel class="window_info_button" id="info_button_player_stats">
+						<Label class="window_info_button_text" text="#Player_Stat" />
+						<Panel class="window_info_button_icon window_info_button_icon_stats" id="button_icon_1" hittest="false" />
+					</Panel>
+					<Panel class="window_info_button" id="info_button_gamelist">
+						<Label class="window_info_button_text" text="#Gamelist" />
+						<Panel class="window_info_button_icon window_info_button_icon_games" id="button_icon_3" hittest="false" />
+					</Panel>
+					<Panel class="window_info_button" id="info_button_achivments">
+						<Label class="window_info_button_text" text="#Player_achivments" />
+						<Panel class="window_info_button_icon window_info_button_icon_achivments" id="button_icon_2" hittest="false" />
+					</Panel>
+					<Panel class="window_info_button" id="info_button_settings">
+						<Label class="window_info_button_text" text="#settings_button" />
+						<Panel class="window_info_button_icon window_info_button_icon_settings" id="button_icon_4" hittest="false" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="info_window_content" id="info_window_content" />
+		</Panel>
+		<Panel class="leaderbord_window_hidden" id="leaderbord_window">
+			<Panel id="leaderbord_window_blur">
+				<Panel id="leaderbord_window_header">
+					<Panel id="leaderbord_header_text_panel">
+						<Label id="leaderbord_header_text" text="#leaderbord_header" />
+						<Panel id="leaderboard_window_season_panel" />
+					</Panel>
+					<Panel id="leaderbord_header_mode_panel">
+						<Panel id="leaderbord_header_mode_buttons">
+							<Panel id="leaderbord_button_solo" class="leaderbord_header_mode_button" onactivate="leaderbord_change_mode(1);">
+								<Label class="leaderbord_button_text" text="#leaderbord_button_solo" />
+							</Panel>
+							<Panel id="leaderbord_button_duo" class="leaderbord_header_mode_button" onactivate="leaderbord_change_mode(2);">
+								<Label class="leaderbord_button_text" text="#leaderbord_button_duo" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel id="leaderbord_window_content" />
+				<Panel class="leaderbord_window_close_panel" id="leaderbord_window_close_panel" onactivate="leaderbord_window_hide();">
+					<Panel id="leaderbord_window_close_icon" />
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

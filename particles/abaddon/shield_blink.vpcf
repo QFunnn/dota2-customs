@@ -1,0 +1,159 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vrfunknown:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetControlPointRotation"
+			m_vecRotAxis = [ 1.0, 0.0, 0.0 ]
+			m_nCP = 1
+			m_flRotRate = 1800.0
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_StopAfterCPDuration"
+			m_flDuration = 0.75
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_flStartTime = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.2
+			}
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderScreenShake"
+			m_flDurationScale = 0.25
+			m_flFrequencyScale = 3.0
+			m_flAmplitudeScale = 6.0
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/abaddon/shield_blinkg.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/abaddon/shield_blinkd.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/abaddon/shield_blinkm.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/abaddon/shield_blinki.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/abaddon/shield_blinkh.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/abaddon/shield_blinka.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/abaddon/shield_blinko.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/abaddon/shield_blink3.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/abaddon/shield_blinkf.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/abaddon/shield_blinke.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/abaddon/shield_blinkn.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/abaddon/shield_blinkk.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/abaddon/shield_blinkl.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/abaddon/shield_blinkc.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/abaddon/shield_blink_start1.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/abaddon/shield_blink_start2.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/abaddon/shield_blink_start4.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/abaddon/shield_blink_start5.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/abaddon/shield_blink_start6.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/abaddon/shield_blink_start7.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/abaddon/shield_blink_start8.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/abaddon/shield_blink_end1.vpcf"
+		},
+	]
+}

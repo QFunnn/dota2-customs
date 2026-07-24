@@ -1,0 +1,144 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vrfunknown:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_StopAfterCPDuration"
+			m_flDuration = 0.75
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_flStartTime = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.2
+			}
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderScreenShake"
+			m_flDurationScale = 0.25
+			m_flFrequencyScale = 3.0
+			m_flAmplitudeScale = 6.0
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/terrorblade/image_blinkt.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/terrorblade/image_blinkd.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/terrorblade/image_blinkb.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/terrorblade/image_blinkn.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/terrorblade/image_blinkf.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/terrorblade/image_blinko.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/terrorblade/image_blinkj.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/terrorblade/image_blinkh.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/terrorblade/image_blinkp.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/terrorblade/image_blinku.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/terrorblade/image_blinkl.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/terrorblade/image_blinks.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/terrorblade/image_blinkv.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/terrorblade/image_blinki.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/terrorblade/image_blinka.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/terrorblade/image_blinkr.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/terrorblade/image_blinkm.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/terrorblade/image_blinkk.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/terrorblade/image_blinkc.vpcf"
+		},
+	]
+}

@@ -1,0 +1,407 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+
+"DOTAAbilities"
+{
+
+"Version"		"1"
+
+
+
+
+//=================================================================================================================
+// Razor: Plasma Field
+//=================================================================================================================
+"razor_plasma_field_custom"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/razor/razor_plasma_field_custom"
+
+    "AbilityTextureName"            "razor_plasma_field"                                                            // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Ability.PlasmaField"
+
+    "LinkedAbility"                 "razor_plasma_field_custom_stop"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
+    "AbilityCastGestureSlot"        "DEFAULT"
+    "AbilityCastRange"              "0"
+    "AbilityCastPoint"              "0 0 0 0"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "13 12 11 10"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "125"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "damage_min"            "35 40 45 50"       
+        "damage_max"            "80 115 150 185"
+        "radius"                "700"
+        "speed"                     "636"  // 1.2 second to reach radius
+        "slow_min"              "5"
+        "slow_max"              "25 30 35 40"
+        "slow_duration"             "1.5"
+    }
+}
+
+
+"razor_plasma_field_custom_stop"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/razor/razor_plasma_field_custom"
+
+    "AbilityTextureName"            "razor_plasma_field"                                                            // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Ability.PlasmaField"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
+    "AbilityCastGestureSlot"        "DEFAULT"
+    "AbilityCastRange"              "0"
+    "AbilityCastPoint"              "0 0 0 0"
+
+    "LinkedAbility"                 "razor_plasma_field_custom_clone"
+
+    "MaxLevel"                      "1"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "0"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "0"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+    }
+}
+
+"razor_plasma_field_custom_clone"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/razor/razor_plasma_field_custom"
+
+    "AbilityTextureName"            "razor_static_link_secondary"                                                           // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Ability.PlasmaField"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastAnimation"          "ACT_DOTA_ATTACK"
+    "AbilityCastGestureSlot"        "DEFAULT"
+    "AbilityCastRange"              "1150"
+    "AbilityCastPoint"              "0.2"
+
+    "MaxLevel"                      "1"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "15"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "50"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "duration"          "2.5"
+        "damage"            "150"
+        "incoming"          "250"
+    }
+}
+
+
+
+
+
+
+//=================================================================================================================
+// Razor: Static Link
+//=================================================================================================================
+"razor_static_link_custom"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/razor/razor_static_link_custom"
+
+    "AbilityTextureName"            "razor_static_link"                                                 // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "AbilitySound"                  "Ability.static.start"
+    "HasShardUpgrade"               "1"
+
+    "LinkedAbility"                 "razor_static_link_custom_legendary"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+
+    "AbilityCastPoint"              "0.3 0.3 0.3 0.3"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "12"
+
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "65"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "drain_length"          "8"
+        "drain_duration"        "12 14 16 18" 
+        "drain_rate"            "6 10 14 18"
+        "target_damage"         "50"
+        "drain_range_buffer"    "250"
+        "radius"                "200"
+        "speed"                 "900"
+        "vision_radius"         "800"
+        "creeps_damage"         "-50"
+        "vision_duration"       "3.34 3.34 3.34 3.34"
+        "AbilityCastRange"              "550"
+        "shard_cast"            "-0.2"
+        "shard_mana"            "0"
+        "shard_leash"           "2.5"
+
+    }
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_2"
+}
+
+
+"razor_static_link_custom_legendary"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/razor/razor_static_link_custom"
+
+    "AbilityTextureName"            "discharge"                                                 // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "AbilitySound"                  "Ability.static.start"
+    "HasShardUpgrade"               "1"
+    "MaxLevel"                      "1"
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+
+    "AbilityCastPoint"              "0.1"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "1"
+
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "0"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+
+        "AbilityCastRange"              "550"
+
+    }
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_2"
+}
+
+
+//=================================================================================================================
+// Razor: Unstable Current (Storm Surge)
+//=================================================================================================================
+"razor_unstable_current_custom"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/razor/razor_unstable_current_custom"
+    "AbilityTextureName"            "razor_unstable_current"                                                        // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"  
+    "IsBreakable"                   "1" 
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "strike_pct_chance"     "18"
+        "strike_target_count"   "3"
+        "strike_damage"         "50 90 130 170"
+        
+        "strike_move_slow_pct"          "25 30 35 40"
+        "strike_slow_duration"          "1.0"
+        "strike_search_radius"          "700"   
+
+        "strike_internal_cd"        "3.0"
+    }
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_3"
+}
+
+//=================================================================================================================
+// Razor: Eye of the Storm
+//=================================================================================================================
+"razor_eye_of_the_storm_custom"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/razor/razor_eye_of_the_storm_custom"
+    "AbilityTextureName"            "razor_eye_of_the_storm"                                                        // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityType"                   "ABILITY_TYPE_ULTIMATE"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"  
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "FightRecapLevel"               "1"
+    "HasScepterUpgrade"         "1"
+    "AbilitySound"                  "Hero_Razor.Storm.Cast"
+
+    "LinkedAbility"             "razor_eye_of_the_storm_custom_legendary"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastAnimation"          "ACT_DOTA_OVERRIDE_ABILITY_4"
+    "AbilityCastGestureSlot"        "DEFAULT"
+    "AbilityCastPoint"              "0"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "20"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "100 150 200"
+
+    // Stats
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityModifierSupportValue"   "0.1"   // Primarily about the damage
+
+    // Specialё
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "radius"            
+        {
+            "value"     "500"       
+            "affected_by_aoe_increase"  "1"
+        }
+        "duration"          "20.0"      
+        "strike_interval"   "0.7 0.6 0.5"    
+        "armor_reduction"   "-0.5 -0.6 -0.7"        
+        "damage"            "60 75 90"      
+        "scepter_targets"   "2"
+        "scepter_interval"  "-0.1"
+        "scepter_heal_reduce"    "-1.5"
+        "scepter_heal_reduce_max"   "30"
+    }
+}
+
+
+
+"razor_eye_of_the_storm_custom_legendary"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/razor/razor_eye_of_the_storm_custom"
+    "AbilityTextureName"            "storm_legendary"                                                       // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Hero_Razor.Storm.Cast"
+
+    "MaxLevel"                  "1"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastAnimation"          "ACT_DOTA_OVERRIDE_ABILITY_4"
+    "AbilityCastGestureSlot"        "DEFAULT"
+    "AbilityCastPoint"              "0"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "1"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "0"
+
+
+    // Specialё
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+    
+    }
+}
+
+
+
+
+"razor_innate_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/razor/razor_innate_custom"  
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "Innate"                        "1"
+    "MaxLevel"                      "1"
+    "IsBreakable"                   "1"
+
+    "AbilityValues"
+    {
+        "move"      "1"
+    }
+}
+
+
+
+
+
+
+
+}

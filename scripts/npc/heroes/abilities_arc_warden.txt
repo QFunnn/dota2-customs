@@ -1,0 +1,377 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+
+"DOTAAbilities"
+{
+
+"Version"		"1"
+
+
+
+
+//=================================================================================================================
+// Arc Warden: Flux
+//=================================================================================================================
+"arc_warden_flux_custom"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/arc_warden/arc_warden_flux_custom"
+    "AbilityTextureName"            "arc_warden_flux"                                                   // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_BOTH"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Hero_ArcWarden.Flux.Target"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastPoint"              "0.3 0.3 0.3 0.3"
+    
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "10"
+    "AbilityCastRange"           "500 600 700 800"
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "75"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "duration"          "6.0"
+        "damage_per_second"  "15 30 45 60"
+        "search_radius"                 "225"
+        "think_interval"                "0.5"
+        "move_speed_slow_pct"               "-13 -17 -21 -25"   
+        "aoe_count"                         "3" 
+        "aoe_radius"                        "250"    
+    }
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
+}
+
+//=================================================================================================================
+// Arc Warden: Magnetic Field
+//=================================================================================================================
+"arc_warden_magnetic_field_custom"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/arc_warden/arc_warden_magnetic_field_custom"
+    "AbilityTextureName"            "arc_warden_magnetic_field"                                                     // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ALLIES_YES"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Hero_ArcWarden.MagneticField.Cast"
+
+    "LinkedAbility"                 "arc_warden_magnetic_field_custom_legendary"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastAnimation"          "ACT_DOTA_AW_MAGNETIC_FIELD"
+    "AbilityCastGestureSlot"        "DEFAULT"
+    "AbilityCastPoint"              "0.3"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "60 70 80 90"
+    "AbilityCastRange"              "500"
+    
+
+    "AbilityCooldown"           "12 11 10 9" 
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "radius"                    "300"
+        "duration"                  "4 5 6 7"
+        "attack_speed_bonus"         "30 60 90 120"  
+        "evasion_chance"            "100" 
+        "flight_speed"              "500"
+    }
+}
+    
+
+
+"arc_warden_magnetic_field_custom_legendary"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/arc_warden/arc_warden_magnetic_field_custom"
+    "AbilityTextureName"            "magnetic_flicker"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Hero_ArcWarden.MagneticField.Cast"
+
+    "AbilityCastGestureSlot"        "DEFAULT"
+    "AbilityCastPoint"              "0"
+    "MaxLevel"                      "1"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "0"
+    "AbilityCooldown"               "0" 
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+
+    }
+}
+
+
+//=================================================================================================================
+// Arc Warden: Spark Wraith
+//=================================================================================================================
+"arc_warden_spark_wraith_custom"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/arc_warden/arc_warden_spark_wraith_custom"
+    "AbilityTextureName"            "arc_warden_spark_wraith"                                                       // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Hero_ArcWarden.SparkWraith.Activate"
+
+    "AbilityCastRange"              "2000"
+    "AbilityCastPoint"              "0.3"
+
+    "LinkedAbility"                 "arc_warden_spark_wraith_custom_legendary"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "4.0 4.0 4.0 4.0"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "80"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "radius"                                    "375"
+        "spark_damage_base"                         "100 150 200 250" 
+        "base_activation_delay"                     "1.5"
+        "wraith_speed_base"                         "550"
+        "duration"                                  "16"    
+        "think_interval"                            "0.2"
+        "wraith_vision_radius"                      "300"
+        "wraith_vision_duration"                    "3.34"
+        "ministun_duration"                         "0.7 0.8 0.9 1"
+        "move_speed_slow_pct"                       "-100"
+        "creeps"                                    "30"
+
+        "damage_near"                               "100"
+        "tower_duration"                            "5"
+        "tower_radius"                              "1000"
+        "damage_radius"                             "200"
+    }
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_3"
+}
+
+
+"arc_warden_spark_wraith_custom_legendary"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/arc_warden/arc_warden_spark_wraith_custom"
+    "AbilityTextureName"            "astral_cascade"                                                        // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Hero_ArcWarden.SparkWraith.Activate"
+
+    "AbilityCastRange"              "1000"
+    "AbilityCastPoint"              "0.3"
+
+    "MaxLevel"                      "1"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "1"
+    "AbilityManaCost"               "100"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "channel"           "1.8"
+        "ticks"             "3"
+        "aoe_radius"        "300"
+        "damage"            "120"
+    }
+}
+
+
+//=================================================================================================================
+// Arc warden: Tempest Double
+//=================================================================================================================
+"arc_warden_tempest_double_custom"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/arc_warden/arc_warden_tempest_double_custom"
+    "AbilityTextureName"            "arc_warden_tempest_double"                                                 // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityType"                   "ABILITY_TYPE_ULTIMATE"
+    "FightRecapLevel"               "2"
+    "AbilitySound"                  "Hero_ArcWarden.TempestDouble"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+    "HasScepterUpgrade"               "1"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastPoint"              "0.15"
+    "AbilityCastAnimation"          "ACT_DOTA_OVERRIDE_ABILITY_4"
+    "AbilityCastGestureSlot"        "DEFAULT"
+    
+    "LinkedAbility"                 "arc_warden_tempest_double_custom_legendary"
+
+    "AbilityCastRange"              "700"
+
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "30 25 20"
+
+
+    // Special  
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "duration"          "18 21 24"
+        "bounty"                "180 240 300"
+        "penalty_distance"          "2000000"
+        "far_distance"              "2500"
+        "attack_damage_penalty"             "0"
+        "cd_items"              "10"
+        "damage_reduce"         "-25"
+        "health_loss"           "50"
+        "damage_inc"            "50"
+
+        "scepter_move"       "25"
+        "scepter_damage_reduce"              "-25"
+    }
+}
+
+
+"arc_warden_tempest_double_custom_legendary"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/arc_warden/arc_warden_tempest_double_custom"
+    "AbilityCastPoint"              "0"
+    "AbilityTextureName"            "arc_warden_scepter"                                                  // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+    "AbilityCastGestureSlot"        "DEFAULT"
+    "MaxLevel"                      "1"
+    "LinkedAbility"                 "arc_warden_tempest_double_custom_reunion"
+
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "1"
+    "AbilityCastAnimation"          "0"
+
+
+    // Special  
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+    
+    }
+}
+
+"arc_warden_tempest_double_custom_reunion"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/arc_warden/arc_warden_tempest_double_custom"
+    "AbilityCastPoint"              "0"
+    "AbilityTextureName"            "arc_teleport"                                                  // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+
+    "AbilityCastGestureSlot"        "DEFAULT"
+    "MaxLevel"                      "1"
+
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "12"
+
+
+    // Special  
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "channel_time"      "1.5"
+    }
+}
+
+
+"arc_warden_innate_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/arc_warden/arc_warden_innate_custom"  
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "MaxLevel"                      "1"
+    "Innate"                        "1"
+    "HasShardUpgrade"             "1"
+
+    // Special  
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "spell_damage"       "8"
+        "attack_speed"       "40"
+        "shard_bonus"        "100"
+        "shard_max"          "15"
+        "shard_stats"        "10"
+    }
+}
+
+
+
+
+
+
+
+}

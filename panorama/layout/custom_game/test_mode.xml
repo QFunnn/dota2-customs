@@ -1,0 +1,119 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/custom_game/test_mode.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/test_mode.vjs_c" />
+	</scripts>
+	<Panel class="TestMode_Main" hittest="false">
+		<Panel id="TestMode_Content" class="TestMode_hidden" hittest="false" />
+		<Panel id="TestMode_panel_and_button" class="TestMode_closed TestMode_disabled" hittest="false">
+			<Panel id="TestMode_panel" hittest="false">
+				<Panel id="TextBlockSelf" hittest="false">
+					<Label id="TextBlockSelf_text" text="#for_self" />
+					<Panel id="PlayerHero_icon" hittest="false" />
+				</Panel>
+				<Panel id="GiveItem_block" hittest="false">
+					<Panel id="GiveItem" hittest="true" onactivate="ChangeTalentWindow(2);">
+						<Label id="GiveItem_text" text="#unique_item" />
+					</Panel>
+				</Panel>
+				<Panel id="LevelsBlock" hittest="false">
+					<Panel id="OneLevel" hittest="true" onactivate="GiveLevel(1);">
+						<Label id="Level_text" text="#level_one" />
+					</Panel>
+					<Panel id="MaxLevel" hittest="true" onactivate="GiveLevel(30);">
+						<Label id="Level_text" text="#level_max" />
+					</Panel>
+				</Panel>
+				<Panel id="GoldBlock" hittest="false">
+					<Panel id="OneGold" hittest="true" onactivate="GiveGold(1000);">
+						<Label id="Gold_text" text="+1000" />
+						<Panel id="Gold_icon" hittest="false" />
+					</Panel>
+					<Panel id="MaxGold" hittest="true" onactivate="GiveGold(999999);">
+						<Label id="Gold_text" text="+9999" />
+						<Panel id="Gold_icon" hittest="false" />
+					</Panel>
+				</Panel>
+				<Panel id="TalentsList_block" hittest="false">
+					<Panel id="TalentsList" hittest="true" onactivate="ChangeTalentWindow(1);">
+						<Label id="TalentsList_text" text="#self_talent" />
+					</Panel>
+				</Panel>
+				<Panel id="CreateBotBlock" hittest="false">
+					<Panel id="CreateBot" hittest="true" onactivate="ChangeTalentWindow(3);">
+						<Label id="CreateBot_text" text="#create_hero" />
+					</Panel>
+				</Panel>
+				<Panel id="TextBlock" hittest="false">
+					<Label id="TextBlock_text" text="#for_hero" />
+					<Panel id="GiveBotTalent_icon" hittest="false" />
+				</Panel>
+				<Panel id="LevelBotsBlock" hittest="false">
+					<Panel id="OneLevelBots" hittest="true" onactivate="LevelBots(1);">
+						<Label id="Level_text" text="#level_one" />
+					</Panel>
+					<Panel id="MaxLevelBots" hittest="true" onactivate="LevelBots(30);">
+						<Label id="Level_text" text="#level_max" />
+					</Panel>
+				</Panel>
+				<Panel id="GiveBotItem_block" hittest="false">
+					<Panel id="GiveBotItem" hittest="true" onactivate="ChangeTalentWindow(4);">
+						<Label id="GiveBotItem_text" text="#bot_item" />
+					</Panel>
+				</Panel>
+				<Panel id="GiveBotTalent_block" hittest="false">
+					<Panel id="GiveBotTalent" hittest="true" onactivate="ChangeTalentWindow(5);">
+						<Label id="GiveBotTalent_text" text="#bot_talent" />
+					</Panel>
+				</Panel>
+				<Panel id="TextBlockGeneral" hittest="false">
+					<Label id="TextBlockGeneral_text" text="#for_general" />
+				</Panel>
+				<Panel id="StopTimer_block" hittest="false">
+					<Panel id="StopTimer" hittest="true" onactivate="StopTimer();">
+						<Label id="StopTimer_text" text="#stop_timer" />
+					</Panel>
+				</Panel>
+				<Panel id="WtfMode_block" hittest="false">
+					<Panel id="WtfMode" hittest="true" onactivate="WtfMode();">
+						<Label id="WtfMode_text" text="#wtf_mode" />
+					</Panel>
+				</Panel>
+				<Panel id="RefreshButton_block" hittest="false">
+					<Panel id="RefreshButton" hittest="true" onactivate="RefreshButton();">
+						<Label id="RefreshButton_text" text="#refresh_button" />
+					</Panel>
+				</Panel>
+				<Panel id="HudButton_block" hittest="false">
+					<Panel id="HudButton" hittest="true" onactivate="HudButton();">
+						<Label id="HudButton_text" text="#hud_button" />
+					</Panel>
+				</Panel>
+				<Panel id="PortraitButton_block" hittest="false">
+					<Panel id="PortraitButton" hittest="true" onactivate="OpenPortrait();">
+						<Label id="HudButton_text" text="Портрет" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="TestMode_button" class="TestMode_button" onactivate="ChangeState();" hittest="true">
+				<Panel id="TestMode_button_icon" class="TestMode_button_icon TestMode_button_closed" hittest="false" />
+			</Panel>
+		</Panel>
+		<Panel class="PortraitSettings" id="PortraitSettings">
+			<DOTAScenePanel style="width:100%;height:100%;" map="maps/portrait_settings.vmap" light="default_light123" particleonly="false" camera="camera1" renderdeferred="false" antialias="false" renderwaterreflections="false" deferredalpha="false" environment="default" />
+		</Panel>
+	</Panel>
+</root>

@@ -1,0 +1,68 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<root>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/keybinds.vjs_c" />
+	</scripts>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/custom_game/keybinds.vcss_c"/>
+	</styles>
+
+	<snippets>
+		<snippet name="KeyRegister">
+			<Panel class="CustomKeybind">
+				<DOTASettingsKeyBinder id="CustomBinder" class="HeroAbilityBindAbilityButton" />
+			</Panel>
+		</snippet>
+		<snippet name="CustomKeyRegister">
+			<Panel class="CustomKeybindContainer">
+				<Panel class="CustomKeybind" acceptinput="true">
+					<Button id="CustomBinder" class="CustomKeybinder" acceptinput="true">
+						<Label id="title" text="" />
+						<Panel id="BindingLabels">
+							<Panel id="BindingLabelsContainer">
+								<Label id="mod" class="BindingRowButton" text="" />
+								<Label id="value" class="BindingRowButton" text="" />
+							</Panel>
+							<Button id="BindingClose" />
+						</Panel>
+					</Button>
+				</Panel>
+				<Label id="CustomKeybindTitle" text="Camera" />
+			</Panel>
+		</snippet>
+	</snippets>
+
+	<Panel hittest="false" class="SettingsHud">
+		<Panel id="SettingsTop">
+			<Button id="SettingsOpen" class="TopBarIcon" onactivate="OnSettingsOpen()" />
+			<Panel class="TopBarIcon" id="TopMenuIcon_Feedback">
+				<Panel class="TopMenuButtonShadow" id="FeedbackShadow"/>
+				<Panel class="TopMenuButtonColor" id="FeedbackColor"/>
+			</Panel>
+		</Panel>
+		<Panel id="SettingsRoot">
+			<Button id="SettingsClose" onactivate="OnSettingsClose()"/>
+			<Panel id="SettingsContent">
+				<Panel id="SettingsKeybinds" >
+					<Label class="SettingsSectionTitle" text="#custom_keybindings" />
+					<Button id="SettingsKeybindReset" onactivate="ResetKeybinds()">
+						<Label text="#ui_reset_keybinds" />
+					</Button>
+					<Panel id="SettingsKeybindsList">
+						<!--                                     -->
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

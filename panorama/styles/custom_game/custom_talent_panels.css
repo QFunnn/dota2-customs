@@ -1,0 +1,7647 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.Talent_Panel_Main
+{
+	width: 100%;
+	height: 100%;
+}
+
+.level_icon_custom
+{
+	width: 182px;
+	height: 61px;
+	margin-bottom: 105px;
+	vertical-align: bottom;
+	margin-left: 29px;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: 0% 0%;
+	background-image: url("s2r://panorama/images/hud/portrait_hero_badge_frame_tier_3_psd.vtex");
+}
+
+.LifestealerInfest_Panel_hidden
+{
+	visibility: collapse;
+}
+
+.LifestealerInfest_Panel
+{
+	padding: 6px 7px;
+	align: left top;
+	margin-top: 20px;
+	margin-left: 80px;
+	flow-children: right;
+	background-color: gradient( linear, 0% 0%, 100% 100%, from( #1a1818 ), to( #221f1f ) );
+	border-radius: 2px;
+	box-shadow: fill black 0px 0px 10px -3px;
+	border: 1px solid #555;
+}
+
+.LifestealerInfest_Panel_Icon
+{
+	width: 38px;
+	height: 38px;
+	margin: 0px 3px;
+	vertical-align: center;
+	border-radius: 3px;
+	border: 1px solid #a19090;
+	box-shadow: fill black 0px 0px 12px -3px;
+}
+
+.LifestealerInfest_Panel_Icon_Blur
+{
+	wash-color: #555;
+	saturation: 0.3;
+}
+
+.LifestealerInfest_Panel_Icon_Active
+{
+	border: 1px solid #ff4d2a;
+	box-shadow: fill #ea4d10 0px 0px 7px -2px;
+}
+
+#LifestealerInfest_Panel_Rage
+{
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_life_stealer/lifestealer_rage_png.vtex");
+	background-size: 100%;
+	width: 100%;
+	height: 100%;
+}
+
+#LifestealerInfest_Panel_Wounds
+{
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_life_stealer/wounds_png.vtex");
+	background-size: 100%;
+	width: 100%;
+	height: 100%;
+}
+
+.LifestealerInfest_Cd
+{
+	font-family: Reaver;
+	font-weight: semi-bold;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #aaa ), to( #fff ) );
+	align: center center;
+	font-size: 22px;
+	text-shadow: 1px 1px 2px 3 black;
+}
+
+.PA_Hunt_Panel
+{
+	width: 200px;
+	height: 50px;
+	align: left top;
+	margin-top: 20px;
+	margin-left: 60px;
+	z-index: 100;
+	flow-children: right;
+}
+
+.PA_Hunt_Panel_hidden
+{
+	width: 200px;
+	height: 50px;
+	align: left top;
+	margin-top: 20px;
+	margin-left: 50px;
+	z-index: 100;
+	flow-children: right;
+	visibility: collapse;
+}
+
+.PA_Hunt_Bar
+{
+	width: 40%;
+	height: 65%;
+	border: 1px solid #6b4b0c;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #5b2020 ), to( #98734e ) );
+	vertical-align: center;
+	margin-left: 1%;
+	flow-children: right;
+}
+
+.PA_Hunt_Filler
+{
+	width: 95%;
+	height: 80%;
+	background-size: contain;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #c0501a ), to( #f49327 ) );
+	margin-left: 2.5%;
+	align: left center;
+	transition-property: width;
+	transition-duration: 0.2s;
+}
+
+.PA_Hunt_Icon
+{
+	width: 70px;
+	height: 40px;
+	margin-left: 1%;
+	background-size: 100%;
+	background-size: contain;
+	vertical-align: center;
+	border: 1px solid #992020;
+}
+
+.PA_Hunt_gold_icon
+{
+	width: 18%;
+	height: 90%;
+	margin-left: 1%;
+	background-size: contain;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/gold-logo_png.vtex");
+}
+
+.PA_Hunt_gold_number
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 2px 3 black;
+	z-index: 8;
+	align: left center;
+	font-size: 17px;
+	margin-left: 2%;
+	text-align: center;
+}
+
+.PA_Hunt_gold_timer
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 2px 3 black;
+	z-index: 8;
+	align: center center;
+	font-size: 21px;
+	text-align: center;
+}
+
+#Legion_Duel_Panel
+{
+	width: 400px;
+	height: 100px;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	border-radius: 4px;
+	align: center bottom;
+	margin-bottom: 230px;
+	flow-children: down;
+}
+
+.Legion_Duel_Panel_show
+{
+	animation-name: Legion_Duel_Show;
+	animation-duration: 0.3s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.Legion_Duel_Panel_hide
+{
+	animation-name: Legion_Duel_Hide;
+	animation-duration: 0.3s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.Legion_Duel_Panel_visible
+{
+	opacity: 1.3;
+	animation-name: LegionBarAnim;
+	animation-iteration-count: infinite;
+	animation-duration: 2s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.Legion_Duel_Panel_hidden
+{
+	opacity: 0;
+}
+
+#Legion_Duel_top
+{
+	width: 100%;
+	height: 35%;
+}
+
+#Legion_Duel_bot
+{
+	width: 100%;
+	height: 65%;
+}
+
+#Legion_Duel_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 2px 3 black;
+	z-index: 8;
+	align: center center;
+	font-size: 23px;
+	text-align: center;
+}
+
+#Legion_Duel_hero_1
+{
+	align: center center;
+	width: 19.96%;
+	height: 70%;
+	border: 1px solid #ccc;
+	margin-right: 32%;
+	box-shadow: fill black 0px 0px 20px -2px;
+}
+
+#Legion_Duel_hero_2
+{
+	align: center center;
+	width: 19.96%;
+	height: 70%;
+	border: 1px solid #ccc;
+	margin-left: 32%;
+	box-shadow: fill black 0px 0px 20px -2px;
+}
+
+#Legion_Duel_hero_1:hover
+{
+	brightness: 2;
+}
+
+#Legion_Duel_hero_2:hover
+{
+	brightness: 2;
+}
+
+@keyframes 'LegionBarAnim'
+{
+	0%
+	{
+		box-shadow: fill #ff9200 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #ff9200 0px 0px 12px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #ff9200 0px 0px 5px -2px;
+	}
+	
+}
+
+@keyframes 'Legion_Duel_Hide'
+{
+	0%
+	{
+		opacity: 1;
+	}
+	
+	100%
+	{
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'Legion_Duel_Show'
+{
+	0%
+	{
+		opacity: 0;
+	}
+	
+	100%
+	{
+		opacity: 1;
+	}
+	
+}
+
+#Pa_hunt_init_Panel
+{
+	width: 550px;
+	height: 110px;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	border-radius: 4px;
+	align: center bottom;
+	margin-bottom: 230px;
+	flow-children: down;
+}
+
+.Pa_hunt_init_Panel_show
+{
+	animation-name: Pa_hunt_init_Show;
+	animation-duration: 0.3s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.Pa_hunt_init_Panel_hide
+{
+	animation-name: Pa_hunt_init_Hide;
+	animation-duration: 0.3s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.Pa_hunt_init_Panel_visible
+{
+	opacity: 1.3;
+	animation-name: LegionBarAnim;
+	animation-iteration-count: infinite;
+	animation-duration: 2s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.Pa_hunt_init_Panel_hidden
+{
+	opacity: 0;
+}
+
+#Pa_hunt_init_top
+{
+	width: 100%;
+	height: 35%;
+}
+
+#Pa_hunt_init_bot
+{
+	width: 100%;
+	height: 65%;
+	flow-children: right;
+}
+
+#Pa_hunt_init_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 2px 3 black;
+	z-index: 8;
+	align: center center;
+	font-size: 23px;
+	text-align: center;
+}
+
+.Pa_hunt_init_hero
+{
+	width: 85px;
+	height: 48px;
+	margin-left: 20.8333px;
+	margin-top: 10px;
+	border: 1px solid #ccc;
+	box-shadow: fill black 0px 0px 20px -2px;
+	background-image: url("s2r://panorama/images/custom_game/no_hero_icon_png.vtex");
+	background-size: 100%;
+}
+
+.Pa_hunt_init_hero:hover
+{
+	brightness: 2;
+}
+
+.Pa_hunt_init_hero_killed
+{
+	wash-color: #ff0000;
+}
+
+.Pa_hunt_init_hero_killed:hover
+{
+	brightness: 1;
+}
+
+.Pa_hunt_init_hero_killed_overlay
+{
+	background-image: url("s2r://panorama/images/hero_selection/banned_overlay_psd.vtex");
+	background-size: 100% 100%;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	width: 80%;
+	align: center center;
+	height: 100%;
+	z-index: 100;
+	opacity: 0;
+}
+
+.Pa_hunt_init_hero_killed_overlay_show
+{
+	opacity: 1;
+}
+
+@keyframes 'Pa_hunt_init_Hide'
+{
+	0%
+	{
+		opacity: 1;
+	}
+	
+	100%
+	{
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'Pa_hunt_init_Show'
+{
+	0%
+	{
+		opacity: 0;
+	}
+	
+	100%
+	{
+		opacity: 1;
+	}
+	
+}
+
+#Tb_reflection_init_Panel
+{
+	min-width: 300px;
+	height: 110px;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	border-radius: 4px;
+	align: center bottom;
+	margin-bottom: 250px;
+	flow-children: down;
+}
+
+.Tb_reflection_init_Panel_show
+{
+	animation-name: Tb_reflection_init_Show;
+	animation-duration: 0.1s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.Tb_reflection_init_Panel_hide
+{
+	animation-name: Tb_reflection_init_Hide;
+	animation-duration: 0.1s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.Tb_reflection_init_Panel_visible
+{
+	opacity: 1.3;
+	animation-name: LegionBarAnim;
+	animation-iteration-count: infinite;
+	animation-duration: 2s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.Tb_reflection_init_Panel_hidden
+{
+	opacity: 0;
+}
+
+#Tb_reflection_init_top
+{
+	width: 100%;
+	height: 35%;
+}
+
+#Tb_reflection_init_bot
+{
+	height: 65%;
+	flow-children: right;
+	horizontal-align: center;
+}
+
+#Tb_reflection_init_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 2px 3 black;
+	z-index: 8;
+	align: center center;
+	font-size: 23px;
+	text-align: center;
+}
+
+.Tb_reflection_init_hero
+{
+	width: 85px;
+	height: 48px;
+	margin: 10px;
+	border: 1px solid #ccc;
+	box-shadow: fill black 0px 0px 20px -2px;
+	background-image: url("s2r://panorama/images/custom_game/no_hero_icon_png.vtex");
+	background-size: 100%;
+}
+
+.Tb_reflection_init_hero:hover
+{
+	brightness: 2;
+}
+
+.Tb_reflection_init_hero_killed
+{
+	wash-color: #ff0000;
+}
+
+.Tb_reflection_init_hero_killed:hover
+{
+	brightness: 1;
+}
+
+.Tb_reflection_init_hero_killed_overlay
+{
+	background-image: url("s2r://panorama/images/hero_selection/banned_overlay_psd.vtex");
+	background-size: 100% 100%;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	width: 80%;
+	align: center center;
+	height: 100%;
+	z-index: 100;
+	opacity: 0;
+}
+
+.Tb_reflection_init_hero_killed_overlay_show
+{
+	opacity: 1;
+}
+
+@keyframes 'Tb_reflection_init_Hide'
+{
+	0%
+	{
+		opacity: 1;
+	}
+	
+	100%
+	{
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'Tb_reflection_init_Show'
+{
+	0%
+	{
+		opacity: 0;
+	}
+	
+	100%
+	{
+		opacity: 1;
+	}
+	
+}
+
+#TalentUI_short_Panel
+{
+	width: 400px;
+	height: 100px;
+	align: center center;
+	margin-top: 425px;
+	z-index: 100;
+}
+
+.TalentUI_short_Panel_hidden
+{
+	visibility: collapse;
+}
+
+#TalentUI_short_Bar
+{
+	width: 80%;
+	height: 40%;
+	vertical-align: center;
+	margin-left: 1%;
+	border-radius: 5px;
+}
+
+#TalentUI_short_Filler
+{
+	width: 97%;
+	height: 70%;
+	border-radius: 3px;
+	background-size: contain;
+	margin-left: 1%;
+	align: left center;
+	transition-property: width;
+	z-index: 9;
+}
+
+#TalentUI_short_Icon
+{
+	width: 17.54%;
+	height: 70%;
+	margin-right: 1%;
+	background-size: contain;
+	align: right center;
+	border-radius: 8px;
+	z-index: 10;
+}
+
+#TalentUI_short_Number
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 2px 3 black;
+	z-index: 8;
+	align: center center;
+	font-size: 23px;
+	text-align: center;
+	z-index: 10;
+}
+
+#TalentUI_short_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #ff3f3f;
+	text-shadow: 1px 1px 2px 3 black;
+	z-index: 8;
+	align: center center;
+	font-size: 23px;
+	text-align: center;
+}
+
+#TalentUI_short_Icon_Number
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	z-index: 8;
+	align: center center;
+	text-align: center;
+}
+
+.TalentUI_short_Icon_Number_zero
+{
+	font-size: 28px;
+	text-shadow: 1px 1px 6px 5 black;
+}
+
+.TalentUI_short_Icon_Number_normal
+{
+	font-size: 34px;
+	text-shadow: 1px 1px 4px 6 black;
+}
+
+#TalentUI_short_TopText_panel
+{
+	width: 70%;
+	height: 30%;
+	margin-left: 30px;
+	margin-bottom: 5px;
+}
+
+#TalentUI_short_TopText
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #ff3f3f;
+	text-shadow: 1px 1px 2px 3 black;
+	z-index: 8;
+	align: center center;
+	font-size: 23px;
+	text-align: center;
+}
+
+.TalentUI_short_Dot
+{
+	width: 1.2%;
+	height: 80%;
+	vertical-align: center;
+	border-radius: 10px;
+	box-shadow: fill black 0px 0px 14px -2px;
+	z-index: 10;
+}
+
+#TalentUI_short_Marker
+{
+	width: 2%;
+	height: 100%;
+	vertical-align: center;
+	z-index: 10;
+	margin-left: 0%;
+	transition-property: margin-left;
+}
+
+#TalentUI_short_Line
+{
+	width: 0%;
+	height: 95%;
+	border-radius: 0px;
+	background-size: contain;
+	align: left center;
+	transition-property: width;
+	z-index: 9;
+}
+
+#TalentUI_short_Ability
+{
+	width: 100%;
+	height: 100%;
+}
+
+#TalentUI_long_Panel
+{
+	width: 200px;
+	height: 50px;
+	align: left top;
+	margin-top: 20px;
+	margin-left: 50px;
+	z-index: 100;
+	flow-children: right;
+}
+
+.TalentUI_long_Panel_hidden
+{
+	visibility: collapse;
+}
+
+.TalentUI_long_Bar
+{
+	width: 75%;
+	height: 60%;
+	vertical-align: center;
+	margin-left: 1%;
+}
+
+.TalentUI_long_Filler
+{
+	width: 50%;
+	height: 80%;
+	margin-left: 2%;
+	align: left center;
+	transition-property: width;
+}
+
+.TalentUI_long_Icon
+{
+	width: 17.54%;
+	height: 70%;
+	margin-left: 1%;
+	background-size: contain;
+	vertical-align: center;
+}
+
+.TalentUI_long_Number
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 2px 3 black;
+	z-index: 8;
+	align: center center;
+	font-size: 19px;
+	text-align: center;
+}
+
+.TalentUI_long_inactive
+{
+	wash-color: #777777;
+	saturation: 0.2;
+}
+
+.TalentUI_long_Icon_Number
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 3px 5 black;
+	z-index: 8;
+	align: right bottom;
+	margin-right: 3px;
+	margin-bottom: 1px;
+	font-size: 18px;
+	text-align: center;
+}
+
+.Default_Bar
+{
+	border: 1px solid #ccc;
+	background-color: black;
+}
+
+.Default_Filler
+{
+	background-color: #555;
+	transition-duration: 0.2s;
+}
+
+.Default_Icon
+{
+	border: 1px solid #ccc;
+	background-image: url("s2r://panorama/images/custom_game/no_skill_png.vtex");
+}
+
+.BeastPulverize_Bar
+{
+	border: 1px solid #6b4b0c;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #230c07 ), to( #462828 ) );
+}
+
+.BeastPulverize_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #c0501a ), to( #f49327 ) );
+	transition-duration: 0.3s;
+}
+
+.BeastPulverize_Icon
+{
+	border: 1px solid #fbc217;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_primal_beast/pulverize_png.vtex");
+}
+
+.BeastPulverize_Max
+{
+	animation-name: BeastPulverizeAnim;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'BeastPulverizeAnim'
+{
+	0%
+	{
+		box-shadow: fill #ffb847 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #ffb847 0px 0px 11px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #ffb847 0px 0px 5px -2px;
+	}
+	
+}
+
+.PuckOrb_Bar
+{
+	border: 1px solid #287fc3;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #051535 ), to( #0c2350 ) );
+}
+
+.PuckOrb_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #1a86da ), to( #a5d1f4 ) );
+	transition-duration: 0.3s;
+}
+
+.PuckOrb_Icon
+{
+	border: 1px solid #76bff8;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_puck/orb_png.vtex");
+}
+
+.PuckOrb_Max
+{
+	animation-name: PuckOrbAnim;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'PuckOrbAnim'
+{
+	0%
+	{
+		box-shadow: fill #73b6f5 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #73b6f5 0px 0px 11px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #73b6f5 0px 0px 5px -2px;
+	}
+	
+}
+
+.PangolierSwash_Bar
+{
+	border: 1px solid #ddc244;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #2d060e ), to( #1c0107 ) );
+}
+
+.PangolierSwash_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #b07011 ), to( #ffb847 ) );
+	transition-duration: 0.2s;
+}
+
+.PangolierSwash_Icon
+{
+	border: 1px solid #ddc244;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_pangolier/buckle_png.vtex");
+}
+
+.PangolierSwash_Max
+{
+	animation-name: PangolierSwashAnim;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'PangolierSwashAnim'
+{
+	0%
+	{
+		box-shadow: fill #ffb847 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #ffb847 0px 0px 11px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #ffb847 0px 0px 5px -2px;
+	}
+	
+}
+
+.DrowMark_Bar
+{
+	border: 1px solid #bbceef;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #011021 ), to( #051b33 ) );
+}
+
+.DrowMark_Filler
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #82a0d7 ), to( #607db3 ) );
+	transition-duration: 0.3s;
+}
+
+.DrowMark_Icon
+{
+	border: 1px solid #bbceef;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_drow_ranger/marksman_png.vtex");
+}
+
+.DrowMark_Bar_Active
+{
+	border: 1px solid #bbceef;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #011021 ), to( #051b33 ) );
+	animation-name: DrowMarkAnim;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.DrowMark_Filler_Active
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #c8d7f3 ), to( #8cabe3 ) );
+	transition-duration: 0.15s;
+}
+
+.DrowMark_Icon_Active
+{
+	border: 1px solid #bbceef;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_drow_ranger/marksman_png.vtex");
+	animation-name: DrowMarkAnim;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.DrowMark_Max
+{
+	animation-name: DrowMarkAnim;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'DrowMarkAnim'
+{
+	0%
+	{
+		box-shadow: fill #bbceef 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #bbceef 0px 0px 11px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #bbceef 0px 0px 5px -2px;
+	}
+	
+}
+
+.LegionMoment_Bar
+{
+	border: 1px solid #ffa7a6;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #1d0000 ), to( #230500 ) );
+}
+
+.LegionMoment_Filler
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #8d0100 ), to( #b51615 ) );
+	transition-duration: 0.2s;
+}
+
+.LegionMoment_Icon
+{
+	border: 1px solid #ffa7a6;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_legion_commander/moment_4_png.vtex");
+}
+
+.LegionMoment_Max
+{
+	animation-name: LegionMomentAnim;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'LegionMomentAnim'
+{
+	0%
+	{
+		box-shadow: fill #f03b3a 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #f03b3a 0px 0px 11px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #f03b3a 0px 0px 5px -2px;
+	}
+	
+}
+
+.BristTaunt_Bar
+{
+	border: 1px solid #986008;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1f0904 ), to( #250903 ) );
+}
+
+.BristTaunt_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #4b3859 ), to( #b19072 ) );
+	transition-duration: 0.2s;
+}
+
+.BristTaunt_Icon
+{
+	border: 1px solid #4b3859;
+	background-image: url("s2r://");
+}
+
+.BristTaunt_Max
+{
+	animation-name: BristTauntAnim;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'BristTauntAnim'
+{
+	0%
+	{
+		box-shadow: fill #9338e8 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #9338e8 0px 0px 11px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #9338e8 0px 0px 5px -2px;
+	}
+	
+}
+
+.AxeCall_Bar
+{
+	border: 1px solid #c8781e;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #2d060e ), to( #1c0107 ) );
+}
+
+.AxeCall_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #ae1200 ), to( #dd4533 ) );
+	transition-duration: 0.1s;
+}
+
+.AxeCall_Icon
+{
+	border: 1px solid #dd7e11;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_axe/axe_dash_png.vtex");
+}
+
+.AxeCall_Max
+{
+	animation-name: AxeCallActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'AxeCallActive'
+{
+	0%
+	{
+		box-shadow: fill #d54924 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #d54924 0px 0px 12px -2px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #d54924 0px 0px 5px -2px;
+	}
+	
+}
+
+.AxeHelix_Bar
+{
+	border: 1px solid #c8781e;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #2d060e ), to( #1c0107 ) );
+}
+
+.AxeHelix_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #924419 ), to( #ee7d31 ) );
+	transition-duration: 0.2s;
+}
+
+.AxeHelix_Icon
+{
+	border: 1px solid #dd7e11;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_axe/helix_png.vtex");
+}
+
+.AxeHunger_Bar
+{
+	border: 1px solid #c8781e;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #2d060e ), to( #1c0107 ) );
+}
+
+.AxeHunger_Filler
+{
+	background-color: gradient( linear, 100% 0%, 0% 0%, from( #e0282c ), to( #9d1418 ) );
+	transition-duration: 0.2s;
+}
+
+.AxeHunger_Icon
+{
+	border: 1px solid #dd7e11;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_axe/hunger_png.vtex");
+}
+
+.AntimageManabreak_Bar
+{
+	border: 1px solid #7ed9ff;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #000118 ), to( #070016 ) );
+	animation-name: AntimageManabreakActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.AntimageManabreak_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #326fcc ), to( #7aadfa ) );
+	transition-duration: 0.12s;
+}
+
+.AntimageManabreak_Icon
+{
+	border: 1px solid #7ed9ff;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_antimage/manabreak_png.vtex");
+	animation-name: AntimageManabreakActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'AntimageManabreakActive'
+{
+	0%
+	{
+		box-shadow: fill #36a3f0 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #36a3f0 0px 0px 13px -2px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #36a3f0 0px 0px 5px -2px;
+	}
+	
+}
+
+.AntimageBlink_Bar
+{
+	border: 1px solid #b999f9;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #09021b ), to( #0f0529 ) );
+}
+
+.AntimageBlink_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #523dce ), to( #9a8bf4 ) );
+	transition-duration: 0.15s;
+}
+
+.AntimageBlink_Icon
+{
+	border: 1px solid #b999f9;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_antimage/antimage_blink_png.vtex");
+}
+
+.AntimageBlink_Bar_Active
+{
+	border: 1px solid #b999f9;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #09021b ), to( #0f0529 ) );
+	animation-name: AntimageBlinkActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.AntimageBlink_Filler_Active
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #523dce ), to( #9a8bf4 ) );
+	transition-duration: 0.15s;
+}
+
+.AntimageBlink_Icon_Active
+{
+	border: 1px solid #b999f9;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_antimage/antimage_blink_png.vtex");
+	animation-name: AntimageBlinkActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'AntimageBlinkActive'
+{
+	0%
+	{
+		box-shadow: fill #b395f0 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #b395f0 0px 0px 13px -2px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #b395f0 0px 0px 5px -2px;
+	}
+	
+}
+
+.AntimageCounter_Bar
+{
+	border: 1px solid #8261e4;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #090220 ), to( #100535 ) );
+	animation-name: AntimageCounterActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.AntimageCounter_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #523fa7 ), to( #ad7cf1 ) );
+	transition-duration: 0.12s;
+}
+
+.AntimageCounter_Icon
+{
+	border: 1px solid #8261e4;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_antimage/counterspell_png.vtex");
+	animation-name: AntimageCounterActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'AntimageCounterActive'
+{
+	0%
+	{
+		box-shadow: fill #a78eef 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #a78eef 0px 0px 13px -2px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #a78eef 0px 0px 5px -2px;
+	}
+	
+}
+
+.LegionDuel_Bar
+{
+	border: 1px solid #cc5531;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #310e00 ), to( #1b0700 ) );
+}
+
+.LegionDuel_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #816c24 ), to( #d4b446 ) );
+	transition-duration: 0.12s;
+}
+
+.LegionDuel_Icon
+{
+	border: 1px solid #cc5531;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_legion_commander/duel_png.vtex");
+}
+
+.LegionPress_Bar
+{
+	border: 1px solid #cfa80e;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #310e00 ), to( #1b0700 ) );
+}
+
+.LegionPress_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #a45201 ), to( #cfa80e ) );
+	transition-duration: 0.12s;
+}
+
+.LegionPress_Icon
+{
+	border: 1px solid #cfa80e;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_legion_commander/press_png.vtex");
+}
+
+.LegionOddsDamage_Bar
+{
+	width: 70px;
+	height: 32px;
+	margin-left: 28px;
+	vertical-align: center;
+	border-top: 1px solid #cc5531;
+	border-left: 1px solid #cc5531;
+	border-bottom: 1px solid #cc5531;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #191001 ), to( #2a1c03 ) );
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	box-shadow: fill black 0px 0px 7px -2px;
+}
+
+.LegionOddsDamage_Icon
+{
+	width: 40px;
+	height: 40px;
+	margin-left: 0px;
+	background-size: contain;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_legion_commander/duel_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	box-shadow: fill black 0px 0px 7px -2px;
+	border: 1px solid #cc5531;
+	border-radius: 4px;
+	z-index: 999;
+}
+
+.LegionOddsDamage_Number
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 2px 3 black;
+	z-index: 8;
+	align: center center;
+	font-size: 21px;
+	text-align: center;
+}
+
+.LegionOdds_Bar
+{
+	border: 1px solid #cfa80e;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #310e00 ), to( #1b0700 ) );
+}
+
+.LegionOdds_Bar_Active
+{
+	animation-name: LegionOddsActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.LegionOdds_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #a45201 ), to( #cfa80e ) );
+	transition-duration: 0.1s;
+}
+
+.LegionOdds_Filler_Active
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #a45201 ), to( #d73211 ) );
+	transition-duration: 0.1s;
+}
+
+.LegionOdds_Icon
+{
+	border: 1px solid #cfa80e;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_legion_commander/odds_png.vtex");
+}
+
+.LegionOdds_Icon_Active
+{
+	animation-name: LegionOddsActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'LegionOddsActive'
+{
+	0%
+	{
+		box-shadow: fill #feec70 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #feec70 0px 0px 17px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #feec70 0px 0px 5px -2px;
+	}
+	
+}
+
+.AbaddonShield_Bar
+{
+	border: 1px solid #69b7f3;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #021521 ), to( #051f2e ) );
+	animation-name: AbaddonShieldActive;
+	animation-iteration-count: infinite;
+	animation-duration: 2.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.AbaddonShield_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #5d8b9e ), to( #a0c5d4 ) );
+	transition-duration: 0.1s;
+}
+
+.AbaddonShield_Icon
+{
+	border: 1px solid #69b7f3;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_abaddon/aphotic_png.vtex");
+	animation-name: AbaddonShieldActive;
+	animation-iteration-count: infinite;
+	animation-duration: 2.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.AbaddonShield_Icon_Active
+{
+	wash-color: #555555;
+	saturation: 0.1;
+}
+
+@keyframes 'AbaddonShieldActive'
+{
+	0%
+	{
+		box-shadow: fill #70aceb 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #70aceb 0px 0px 17px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #70aceb 0px 0px 5px -2px;
+	}
+	
+}
+
+.AbaddonCurse_Bar
+{
+	border: 1px solid #6cc6c9;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #031623 ), to( #062134 ) );
+}
+
+.AbaddonCurse_Bar_Active
+{
+	border: 1px solid #6cc6c9;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1e0404 ), to( #3a0a0a ) );
+	animation-name: AbaddonCurseActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.AbaddonCurse_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #305164 ), to( #517a91 ) );
+	transition-duration: 0.22s;
+}
+
+.AbaddonCurse_Filler_Active
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #56a5a8 ), to( #99e0e3 ) );
+	transition-duration: 0.22s;
+}
+
+.AbaddonCurse_Icon
+{
+	border: 1px solid #6cc6c9;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_abaddon/curse_png.vtex");
+	wash-color: #555555;
+	saturation: 0.1;
+}
+
+.AbaddonCurse_Icon_Active
+{
+	border: 1px solid #6cc6c9;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_abaddon/curse_png.vtex");
+	animation-name: AbaddonCurseActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'AbaddonCurseActive'
+{
+	0%
+	{
+		box-shadow: fill #7fdadd 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #7fdadd 0px 0px 17px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #7fdadd 0px 0px 5px -2px;
+	}
+	
+}
+
+.AlchemistUnstable_Bar
+{
+	border: 1px solid #4c000a;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1d0006 ), to( #290008 ) );
+}
+
+.AlchemistUnstable_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #a26b02 ), to( #f3b623 ) );
+	transition-duration: 0.2s;
+}
+
+.AlchemistUnstable_Icon
+{
+	border: 1px solid #4c000a;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_alchemist/unstable_png.vtex");
+}
+
+.AlchemistUnstable_Filler_Active
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #a26b02 ), to( #f3b623 ) );
+	transition-duration: 0.1s;
+}
+
+.AlchemistUnstable_Icon_Active
+{
+	border: 1px solid #e3be35;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_alchemist/unstable_throw_png.vtex");
+	animation-name: AlchemistUnstableActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.AlchemistUnstable_Bar_Active
+{
+	border: 1px solid #e3be35;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1d0006 ), to( #290008 ) );
+	animation-name: AlchemistUnstableActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'AlchemistUnstableActive'
+{
+	0%
+	{
+		box-shadow: fill #e3be35 0px 0px 6px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #e3be35 0px 0px 18px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #e3be35 0px 0px 6px -2px;
+	}
+	
+}
+
+.AlchemistPoints_Bar
+{
+	margin-top: 8px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1d1d1def ), to( #111111ef ) );
+	border-left: 2px solid #dadada;
+	border-right: 2px solid #dadada;
+	border-radius: 4px;
+	height: 34px;
+	width: 160px;
+}
+
+.AlchemistPoints_Filler
+{
+	transition-duration: 0.15s;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #717171 ), to( #959595 ) );
+	border-radius: 0px;
+	border: 1px solid #f3f3f3;
+	height: 76%;
+}
+
+.AlchemistPoints_Icon
+{
+	width: 0px;
+	height: 0px;
+}
+
+.AlchemistPoints_Number
+{
+	font-family: Radiance;
+	font-weight: bold;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #cccccc ), to( #ffffff ) );
+	z-index: 8;
+	align: center center;
+	font-size: 21px;
+	text-align: center;
+}
+
+.AlchemistWeapon_Bar
+{
+	border: 1px solid #cacaca;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #011512 ), to( #032620 ) );
+	animation-name: AlchemistWeaponActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.AlchemistWeapon_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #08661e ), to( #12c15c ) );
+	transition-duration: 0.2s;
+}
+
+.AlchemistWeapon_Icon
+{
+	border: 1px solid #cacaca;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_alchemist/greed_png.vtex");
+	animation-name: AlchemistWeaponActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'AlchemistWeaponActive'
+{
+	0%
+	{
+		box-shadow: fill #37d25a 0px 0px 6px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #37d25a 0px 0px 18px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #37d25a 0px 0px 6px -2px;
+	}
+	
+}
+
+.BloodseekerRage_Bar
+{
+	wash-color: #777777;
+	saturation: 0.1;
+	border: 1px solid #ff571c;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #1e0201 ), to( #130100 ) );
+}
+
+.BloodseekerRage_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #781d0e ), to( #bd3e2a ) );
+	transition-duration: 0.1s;
+}
+
+.BloodseekerRage_Icon
+{
+	wash-color: #777777;
+	saturation: 0.1;
+	border: 1px solid #ff571c;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_bloodseeker/bloodrage_png.vtex");
+}
+
+.BloodseekerRage_Bar_Active
+{
+	border: 1px solid #ff571c;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #1e0201 ), to( #130100 ) );
+}
+
+.BloodseekerRage_Filler_Active
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #781d0e ), to( #bd3e2a ) );
+	transition-duration: 0.1s;
+}
+
+.BloodseekerRage_Icon_Active
+{
+	border: 1px solid #ff571c;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_bloodseeker/bloodrage_png.vtex");
+}
+
+.BloodseekerRite_Bar
+{
+	border: 1px solid #ff571c;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #1e0201 ), to( #130100 ) );
+	box-shadow: fill #861704 0px 0px 13px -3px;
+}
+
+.BloodseekerRite_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #781d0e ), to( #bd3e2a ) );
+	transition-duration: 0.15s;
+}
+
+.BloodseekerRite_Icon
+{
+	border: 1px solid #ff571c;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_bloodseeker/bloodrite_png.vtex");
+	box-shadow: fill #861704 0px 0px 13px -3px;
+}
+
+.BloodseekerThirst_Bar
+{
+	border: 1px solid #bd3e2a;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #1e0201 ), to( #130100 ) );
+}
+
+.BloodseekerThirst_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 100%, from( #781d0e ), to( #bd3e2a ) );
+	transition-duration: 0.1s;
+}
+
+.BloodseekerThirst_Icon
+{
+	border: 1px solid #bd3e2a;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_bloodseeker/thirst_png.vtex");
+}
+
+.BloodseekerRupture_Bar
+{
+	border: 1px solid #ff571c;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #1e0201 ), to( #130100 ) );
+	box-shadow: fill #861704 0px 0px 13px -3px;
+}
+
+.BloodseekerRupture_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #781d0e ), to( #bd3e2a ) );
+	transition-duration: 0.25s;
+}
+
+.BloodseekerRupture_Icon
+{
+	border: 1px solid #ff571c;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_bloodseeker/rupture_png.vtex");
+	box-shadow: fill #861704 0px 0px 13px -3px;
+}
+
+.BristGoo_Bar
+{
+	border: 1px solid #899808;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #131a01 ), to( #222f04 ) );
+	animation-name: BristGooActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.BristGoo_Filler
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #ac411a ), to( #ec5f2e ) );
+	transition-duration: 0.15s;
+}
+
+.BristGoo_Icon
+{
+	border: 1px solid #899808;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_bristleback/goo_png.vtex");
+	animation-name: BristGooActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'BristGooActive'
+{
+	0%
+	{
+		box-shadow: fill #f99b22 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #f99b22 0px 0px 12px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #f99b22 0px 0px 5px -2px;
+	}
+	
+}
+
+.BristBack_Bar
+{
+	border: 1px solid #54681f;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #122102 ), to( #162802 ) );
+}
+
+.BristBack_Filler
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #946718 ), to( #d7931e ) );
+	transition-duration: 0.2s;
+}
+
+.BristBack_Icon
+{
+	border: 1px solid #54681f;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_bristleback/back_png.vtex");
+	wash-color: #777777;
+	saturation: 0.1;
+}
+
+.BristBack_Bar_Active
+{
+	border: 1px solid #54681f;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #122102 ), to( #162802 ) );
+}
+
+.BristBack_Filler_Active
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #ac411a ), to( #ec5f2e ) );
+	transition-duration: 0.2s;
+}
+
+.BristBack_Icon_Active
+{
+	border: 1px solid #54681f;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_bristleback/back_png.vtex");
+}
+
+.BristWarpath_Bar
+{
+	border: 1px solid #9f600e;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #100901 ), to( #281603 ) );
+}
+
+.BristWarpath_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #761313 ), to( #bd0d0d ) );
+	transition-duration: 0.2s;
+}
+
+.BristWarpath_Icon
+{
+	border: 1px solid #9f600e;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_bristleback/warpath_png.vtex");
+	wash-color: #777777;
+	saturation: 0.1;
+}
+
+.BristWarpath_Max
+{
+	wash-color: #fff;
+	saturation: 1;
+}
+
+.MaidenFrostbite_Bar
+{
+	border: 1px solid #678fcf;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #00284e ), to( #001428 ) );
+}
+
+.MaidenFrostbite_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #2c619c ), to( #61abff ) );
+	transition-duration: 0.15s;
+}
+
+.MaidenFrostbite_Icon
+{
+	border: 1px solid #678fcf;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_crystal_maiden/frostbite_png.vtex");
+}
+
+.MaidenAura_Bar_Active
+{
+	border: 1px solid #6accff;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #00284e ), to( #001428 ) );
+}
+
+.MaidenAura_Filler_Active
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #2c619c ), to( #61abff ) );
+	transition-duration: 0.15s;
+}
+
+.MaidenAura_Icon_Active
+{
+	border: 1px solid #6accff;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_crystal_maiden/arcane_png.vtex");
+}
+
+.EmberGuard_Bar
+{
+	border: 1px solid #cfa80e;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #271000 ), to( #0e0600 ) );
+	animation-name: EmberChainActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.EmberGuard_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #cf5600 ), to( #e5a400 ) );
+	transition-duration: 0.12s;
+}
+
+.EmberGuard_Icon
+{
+	border: 1px solid #cfa80e;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_ember_spirit/guard_png.vtex");
+	animation-name: EmberChainActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'EmberChainActive'
+{
+	0%
+	{
+		box-shadow: fill #f99b22 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #f99b22 0px 0px 17px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #f99b22 0px 0px 5px -2px;
+	}
+	
+}
+
+.EmberRemnant_Bar
+{
+	border: 1px solid #f8962b;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #270600 ), to( #402209 ) );
+}
+
+.EmberRemnant_Filler
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #c83a0d ), to( #eda306 ) );
+	transition-duration: 0.22s;
+}
+
+.EmberRemnant_Icon
+{
+	border: 1px solid #f8962b;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_ember_spirit/fireremnant_png.vtex");
+}
+
+.EmberGuard_Bar
+{
+	border: 1px solid #cfa80e;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #271000 ), to( #0e0600 ) );
+}
+
+.EmberGuard_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #cf5600 ), to( #e5a400 ) );
+	transition-duration: 0.2s;
+}
+
+.EmberGuard_Icon
+{
+	border: 1px solid #cfa80e;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_ember_spirit/guard_png.vtex");
+}
+
+.FurionSprout_Bar
+{
+	border: 1px solid #6fa028;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #310e00 ), to( #1b0700 ) );
+}
+
+.FurionSprout_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #6a8b0f ), to( #91ba22 ) );
+	transition-duration: 0.1s;
+}
+
+.FurionSprout_Icon
+{
+	border: 1px solid #6fa028;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_furion/sacred_grove_png.vtex");
+}
+
+.FurionTeleport_Bar
+{
+	border: 1px solid #897c0f;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #000711 ), to( #000f25 ) );
+}
+
+.FurionTeleport_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #a3681b ), to( #eac533 ) );
+	transition-duration: 0.1s;
+}
+
+.FurionTeleport_Icon
+{
+	border: 1px solid #897c0f;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_furion/teleport_png.vtex");
+}
+
+.FurionCall_Bar
+{
+	border: 1px solid #659852;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #002311 ), to( #001209 ) );
+}
+
+.FurionCall_Filler
+{
+	transition-duration: 0.05s;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #6c8212 ), to( #9cb82b ) );
+}
+
+.FurionCall_Icon
+{
+	border: 1px solid #659852;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_furion/curse_png.vtex");
+	wash-color: #777777;
+	saturation: 0.1;
+}
+
+.FurionCall_Icon_Active
+{
+	animation-name: FurionCallActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+	border: 1px solid #659852;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_furion/curse_png.vtex");
+}
+
+.FurionCall_Filler_Active
+{
+	transition-duration: 0.05s;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #ffde24 ), to( #f99b22 ) );
+}
+
+.FurionCall_Bar_Active
+{
+	border: 1px solid #659852;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #002311 ), to( #001209 ) );
+	animation-name: FurionCallActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'FurionCallActive'
+{
+	0%
+	{
+		box-shadow: fill #f99b22 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #f99b22 0px 0px 17px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #f99b22 0px 0px 5px -2px;
+	}
+	
+}
+
+.HoodwinkAcorn_Bar
+{
+	border: 1px solid #973030;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #0b2800 ), to( #051300 ) );
+}
+
+.HoodwinkAcorn_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #6a1111 ), to( #cc2121 ) );
+	transition-duration: 0.15s;
+}
+
+.HoodwinkAcorn_Icon
+{
+	border: 1px solid #973030;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_hoodwink/acorn_png.vtex");
+}
+
+.HoodwinkBush_Bar
+{
+	border: 1px solid #e1994c;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #0b2800 ), to( #051300 ) );
+	animation-name: HoodwinkBushActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.HoodwinkBush_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #677019 ), to( #a4d12b ) );
+	transition-duration: 0.15s;
+}
+
+.HoodwinkBush_Icon
+{
+	border: 1px solid #e1994c;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_hoodwink/bush_png.vtex");
+	animation-name: HoodwinkBushActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'HoodwinkBushActive'
+{
+	0%
+	{
+		box-shadow: fill #c1e364 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #c1e364 0px 0px 15px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #c1e364 0px 0px 5px -2px;
+	}
+	
+}
+
+.HoodwinkScurry_Bar
+{
+	border: 1px solid #757c00;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #0b2800 ), to( #051300 ) );
+}
+
+.HoodwinkScurry_Filler
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #18940c ), to( #38d028 ) );
+	transition-duration: 0.12s;
+}
+
+.HoodwinkScurry_Icon
+{
+	border: 1px solid #757c00;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_hoodwink/scurry_png.vtex");
+	wash-color: #787878;
+	saturation: 0.1;
+}
+
+.HoodwinkScurry_Filler_Active
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #ffb82f ), to( #df9911 ) );
+	transition-duration: 0.12s;
+}
+
+.HoodwinkScurry_Bar_Active
+{
+	border: 1px solid #757c00;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #0b2800 ), to( #051300 ) );
+	animation-name: HoodwinkScurryActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.HoodwinkScurry_Icon_Active
+{
+	border: 1px solid #641016;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_hoodwink/scurry_png.vtex");
+	animation-name: HoodwinkScurryActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'HoodwinkScurryActive'
+{
+	0%
+	{
+		box-shadow: fill #fff000 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #fff000 0px 0px 12px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #fff000 0px 0px 4px -2px;
+	}
+	
+}
+
+.HuskarInner_Bar
+{
+	border: 1px solid #cfa80e;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #001f19 ), to( #002c24 ) );
+}
+
+.HuskarInner_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #a45201 ), to( #cfa80e ) );
+	transition-duration: 0.1s;
+}
+
+.HuskarInner_Icon
+{
+	border: 1px solid #cfa80e;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_huskar/inner_fire_png.vtex");
+}
+
+.HuskarInner_Filler_Active
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #a45201 ), to( #cfa80e ) );
+	transition-duration: 0.1s;
+}
+
+.HuskarInner_Icon_Active
+{
+	border: 1px solid #cfa80e;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_huskar/inner_fire_png.vtex");
+	animation-name: HuskarInnerActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.HuskarInner_Bar_Active
+{
+	border: 1px solid #cfa80e;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #001f19 ), to( #002c24 ) );
+	animation-name: HuskarInnerActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'HuskarInnerActive'
+{
+	0%
+	{
+		box-shadow: fill #e6792c 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #e6792c 0px 0px 17px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #e6792c 0px 0px 5px -2px;
+	}
+	
+}
+
+.HuskarSpears_Bar
+{
+	border: 1px solid #d96f1b;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #140100 ), to( #240200 ) );
+	animation-name: HuskarInnerActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.HuskarSpears_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #a45201 ), to( #cfa80e ) );
+	transition-duration: 0.1s;
+}
+
+.HuskarSpears_Icon
+{
+	border: 1px solid #d96f1b;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_huskar/burning_spears_png.vtex");
+	animation-name: HuskarInnerActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.HuskarBlood_Bar
+{
+	border: 1px solid #d96f1b;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #140100 ), to( #240200 ) );
+	animation-name: HuskarInnerActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.HuskarBlood_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #a45201 ), to( #cfa80e ) );
+	transition-duration: 0.1s;
+}
+
+.HuskarBlood_Icon
+{
+	border: 1px solid #d96f1b;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_huskar/berserkers_blood_png.vtex");
+	animation-name: HuskarInnerActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.HuskarBreak_Bar
+{
+	width: 80px;
+	height: 32px;
+	margin-left: 20px;
+	vertical-align: center;
+	border-top: 1px solid #906013;
+	border-left: 1px solid #906013;
+	border-bottom: 1px solid #906013;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #001f19 ), to( #002c24 ) );
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	box-shadow: fill black 0px 0px 10px -2px;
+}
+
+.HuskarBreak_Icon
+{
+	width: 40px;
+	height: 40px;
+	margin-left: 0px;
+	background-size: contain;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_huskar/life_break_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	box-shadow: fill black 0px 0px 12px -2px;
+	border: 1px solid #906013;
+	border-radius: 3px;
+	z-index: 999;
+}
+
+.HuskarBreak_Number
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 2px 3 black;
+	z-index: 8;
+	align: center center;
+	font-size: 21px;
+	margin-top: 1px;
+	text-align: center;
+}
+
+.InvokerQuas_Bar
+{
+	border: 1px solid #3e2556;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #01071b ), to( #030c29 ) );
+}
+
+.InvokerQuas_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #4274d8 ), to( #7fa6f4 ) );
+	transition-duration: 0.12s;
+}
+
+.InvokerQuas_Icon
+{
+	border: 1px solid #3e2556;
+	background-image: url("s2r://panorama/images/custom_game/icons/skills/coldsnap_png.vtex");
+}
+
+.InvokerExort_Bar
+{
+	border: 1px solid #906013;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #1b0700 ), to( #2b0b00 ) );
+}
+
+.InvokerExort_Filler
+{
+	transition-duration: 0.1s;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #d57a18 ), to( #ffc53b ) );
+}
+
+.InvokerExort_Icon
+{
+	border: 1px solid #906013;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_invoker/meteor_png.vtex");
+}
+
+.InvokerExort_Max
+{
+	animation-name: InvokerExortActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'InvokerExortActive'
+{
+	0%
+	{
+		box-shadow: fill #e6792c 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #e6792c 0px 0px 14px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #e6792c 0px 0px 4px -2px;
+	}
+	
+}
+
+.InvokerWex_Bar
+{
+	width: 80px;
+	height: 32px;
+	margin-left: 20px;
+	vertical-align: center;
+	border-top: 1px solid #750087;
+	border-left: 1px solid #750087;
+	border-bottom: 1px solid #750087;
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	box-shadow: fill black 0px 0px 6px -2px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #13001c ), to( #1c0028 ) );
+}
+
+.InvokerWex_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #702381 ), to( #b436cf ) );
+	transition-duration: 0.05s;
+}
+
+.InvokerWex_Icon
+{
+	width: 40px;
+	height: 40px;
+	margin-left: 0px;
+	box-shadow: fill black 0px 0px 8px -2px;
+	border: 1px solid #e65858;
+	border-radius: 3px;
+	z-index: 999;
+	border: 1px solid #750087;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_invoker/emp_png.vtex");
+}
+
+.InvokerInvoke_Bar
+{
+	border: 1px solid #3e2556;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1e1523 ), to( #100b13 ) );
+}
+
+.InvokerInvoke_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #866f9c ), to( #d7bdf1 ) );
+	transition-duration: 0.12s;
+}
+
+.InvokerInvoke_Icon
+{
+	border: 1px solid #3e2556;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_invoker/invoke_png.vtex");
+}
+
+.JuggernautFury_Bar
+{
+	width: 70px;
+	height: 32px;
+	margin-left: 28px;
+	vertical-align: center;
+	border-top: 1px solid #d4644e;
+	border-left: 1px solid #d4644e;
+	border-bottom: 1px solid #d4644e;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1b0100 ), to( #300302 ) );
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	box-shadow: fill black 0px 0px 7px -2px;
+}
+
+.JuggernautFury_Icon
+{
+	width: 40px;
+	height: 40px;
+	margin-left: 0px;
+	background-size: contain;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_juggernaut/blade_fury_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	box-shadow: fill black 0px 0px 7px -2px;
+	border: 1px solid #d4644e;
+	border-radius: 3px;
+	z-index: 999;
+}
+
+.JuggernautFury_Number
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 2px 3 black;
+	z-index: 8;
+	align: center center;
+	font-size: 25px;
+	text-align: center;
+}
+
+.JuggernautWard_Bar
+{
+	border: 1px solid #b45719;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #310e00 ), to( #1b0700 ) );
+}
+
+.JuggernautWard_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #2c640b ), to( #5bc021 ) );
+	transition-duration: 0.1s;
+}
+
+.JuggernautWard_Icon
+{
+	border: 1px solid #b45719;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_juggernaut/healing_ward_png.vtex");
+}
+
+.JuggernautDance_Bar
+{
+	border: 1px solid #b45719;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1a0b01 ), to( #271102 ) );
+	animation-name: JuggernautDanceActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.JuggernautDance_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #903823 ), to( #fc9733 ) );
+	transition-duration: 0.12s;
+}
+
+.JuggernautDance_Icon
+{
+	border: 1px solid #b45719;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_juggernaut/blade_dance_png.vtex");
+	animation-name: JuggernautDanceActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'JuggernautDanceActive'
+{
+	0%
+	{
+		box-shadow: fill #edbd2b 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #edbd2b 0px 0px 14px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #edbd2b 0px 0px 4px -2px;
+	}
+	
+}
+
+.JuggernautOmni_Bar
+{
+	width: 70px;
+	height: 32px;
+	margin-left: 28px;
+	vertical-align: center;
+	border-top: 1px solid #c69836;
+	border-left: 1px solid #c69836;
+	border-bottom: 1px solid #c69836;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #191001 ), to( #2a1c03 ) );
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	box-shadow: fill black 0px 0px 7px -2px;
+}
+
+.JuggernautOmni_Icon
+{
+	width: 40px;
+	height: 40px;
+	margin-left: 0px;
+	background-size: contain;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_juggernaut/omnislash_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	box-shadow: fill black 0px 0px 7px -2px;
+	border: 1px solid #c69836;
+	border-radius: 3px;
+	z-index: 999;
+}
+
+.JuggernautOmni_Number
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 2px 3 black;
+	z-index: 8;
+	align: center center;
+	font-size: 22px;
+	text-align: center;
+}
+
+.LeshracEdict_Bar
+{
+	border: 1px solid #1e004c;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #03031b ), to( #05052d ) );
+	animation-name: LeshracEdictActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.LeshracEdict_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #6f4ac2 ), to( #ac8ef0 ) );
+	transition-duration: 0.2s;
+}
+
+.LeshracEdict_Icon
+{
+	border: 1px solid #1e004c;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_leshrac/edict_png.vtex");
+	animation-name: LeshracEdictActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'LeshracEdictActive'
+{
+	0%
+	{
+		box-shadow: fill #baa6e6 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #baa6e6 0px 0px 14px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #baa6e6 0px 0px 4px -2px;
+	}
+	
+}
+
+.LeshracStorm_Bar
+{
+	border: 1px solid #f59fff;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #2f1a42 ), to( #442660 ) );
+}
+
+.LeshracStorm_Filler
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #f59fff ), to( #c1ddff ) );
+	transition-duration: 0.1s;
+}
+
+.LeshracStorm_Icon
+{
+	wash-color: #666666;
+	saturation: 0.1;
+	border: 1px solid #39adff;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_leshrac/storm_png.vtex");
+}
+
+.LeshracStorm_Bar_Active
+{
+	border: 1px solid #f59fff;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #2f1a42 ), to( #442660 ) );
+	animation-name: LeshracStormActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.LeshracStorm_Filler_Active
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #f59fff ), to( #c1ddff ) );
+	transition-duration: 0.2s;
+}
+
+.LeshracStorm_Icon_Active
+{
+	border: 1px solid #39adff;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_leshrac/storm_png.vtex");
+	animation-name: LeshracStormActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'LeshracStormActive'
+{
+	0%
+	{
+		box-shadow: fill #f59fff 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #f59fff 0px 0px 14px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #f59fff 0px 0px 4px -2px;
+	}
+	
+}
+
+.LinaArray_Bar
+{
+	border: 1px solid #f8962b;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #270600 ), to( #402209 ) );
+}
+
+.LinaArray_Filler
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #c83a0d ), to( #eda306 ) );
+	transition-duration: 0.2s;
+}
+
+.LinaArray_Icon
+{
+	border: 1px solid #f8962b;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_lina/array_legendary_png.vtex");
+	wash-color: #787878;
+	saturation: 0.1;
+}
+
+.LinaArray_Filler_Active
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #ffb82f ), to( #df9911 ) );
+	transition-duration: 0.3s;
+}
+
+.LinaArray_Bar_Active
+{
+	border: 1px solid #f8962b;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #270600 ), to( #402209 ) );
+	animation-name: LinaDragonActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.LinaArray_Icon_Active
+{
+	saturation: 1;
+	wash-color: #fff;
+	border: 1px solid #641016;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_lina/array_legendary_png.vtex");
+	animation-name: LinaDragonActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.LinaDragon_Bar
+{
+	border: 1px solid #f8962b;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #270600 ), to( #402209 ) );
+}
+
+.LinaDragon_Filler
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #c83a0d ), to( #eda306 ) );
+	transition-duration: 0.2s;
+}
+
+.LinaDragon_Icon
+{
+	border: 1px solid #f8962b;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_lina/dragon_png.vtex");
+	wash-color: #787878;
+	saturation: 0.1;
+}
+
+.LinaDragon_Filler_Active
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #ffb82f ), to( #df9911 ) );
+	transition-duration: 0.3s;
+}
+
+.LinaDragon_Bar_Active
+{
+	border: 1px solid #f8962b;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #270600 ), to( #402209 ) );
+	animation-name: LinaDragonActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.LinaDragon_Icon_Active
+{
+	saturation: 1;
+	wash-color: #fff;
+	border: 1px solid #641016;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_lina/dragon_png.vtex");
+	animation-name: LinaDragonActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'LinaDragonActive'
+{
+	0%
+	{
+		box-shadow: fill #eac100 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #eac100 0px 0px 14px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #eac100 0px 0px 4px -2px;
+	}
+	
+}
+
+.MarciDispose_Bar
+{
+	border: 1px solid #c38c56;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1a0902 ), to( #2b1004 ) );
+}
+
+.MarciDispose_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #6f4f20 ), to( #d49d4a ) );
+	transition-duration: 0.2s;
+}
+
+.MarciDispose_Icon
+{
+	border: 1px solid #c38c56;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_marci/dispose_hits_png.vtex");
+	wash-color: #787878;
+	saturation: 0.1;
+}
+
+.MarciDispose_Bar_Active
+{
+	border: 1px solid #c38c56;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1a0902 ), to( #2b1004 ) );
+	animation-name: MarciDisposeActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.MarciDispose_Filler_Active
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #6f4f20 ), to( #d49d4a ) );
+	transition-duration: 0.2s;
+}
+
+.MarciDispose_Icon_Active
+{
+	border: 1px solid #c38c56;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_marci/dispose_hits_png.vtex");
+	animation-name: MarciDisposeActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'MarciDisposeActive'
+{
+	0%
+	{
+		box-shadow: fill #d69044 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #d69044 0px 0px 12px -2px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #d69044 0px 0px 5px -2px;
+	}
+	
+}
+
+.MarciRebound_Bar
+{
+	border: 1px solid #703900;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1b1800 ), to( #252200 ) );
+	animation-name: MarciReboundActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.MarciRebound_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #a27205 ), to( #d69a10 ) );
+	transition-duration: 0.2s;
+}
+
+.MarciRebound_Icon
+{
+	border: 1px solid #703900;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_marci/rebound_png.vtex");
+	animation-name: MarciReboundActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'MarciReboundActive'
+{
+	0%
+	{
+		box-shadow: fill #eec935 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #eec935 0px 0px 14px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #eec935 0px 0px 4px -2px;
+	}
+	
+}
+
+.MarciSidekick_Bar
+{
+	border: 1px solid #46a1e0;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #000a10 ), to( #042030 ) );
+}
+
+.MarciSidekick_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #ca7121 ), to( #dbc722 ) );
+	transition-duration: 0.2s;
+}
+
+.MarciSidekick_Icon
+{
+	border: 1px solid #46a1e0;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_marci/sidekick_png.vtex");
+}
+
+.MarciUnleash_Bar
+{
+	border: 1px solid #b03311;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #230c07 ), to( #462828 ) );
+	animation-name: MarciUnleashActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.MarciUnleash_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #996018 ), to( #e8a421 ) );
+	transition-duration: 0.12s;
+}
+
+.MarciUnleash_Icon
+{
+	border: 1px solid #b03311;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_marci/unleash_png.vtex");
+	animation-name: MarciUnleashActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'MarciUnleashActive'
+{
+	0%
+	{
+		box-shadow: fill #eec935 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #eec935 0px 0px 14px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #eec935 0px 0px 4px -2px;
+	}
+	
+}
+
+.MarsRebuke_Bar
+{
+	border: 1px solid #db6805;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1c0b02 ), to( #411b08 ) );
+	animation-name: MarsRebukeActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.MarsRebuke_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #a94c1c ), to( #f5933c ) );
+	transition-duration: 0.12s;
+}
+
+.MarsRebuke_Icon
+{
+	border: 1px solid #db6805;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_mars/rebuke_png.vtex");
+	animation-name: MarsRebukeActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'MarsRebukeActive'
+{
+	0%
+	{
+		box-shadow: fill #f3af1d 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #f3af1d 0px 0px 14px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #f3af1d 0px 0px 4px -2px;
+	}
+	
+}
+
+.MarsBulwark_Bar
+{
+	border: 1px solid #db6805;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #270703 ), to( #360b06 ) );
+	animation-name: MarsBulwarkActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.MarsBulwark_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #a02b1f ), to( #e67234 ) );
+	transition-duration: 0.12s;
+}
+
+.MarsBulwark_Icon
+{
+	border: 1px solid #db6805;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_mars/bulwark_png.vtex");
+	animation-name: MarsBulwarkActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'MarsBulwarkActive'
+{
+	0%
+	{
+		box-shadow: fill #f3af1d 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #f3af1d 0px 0px 14px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #f3af1d 0px 0px 4px -2px;
+	}
+	
+}
+
+.MuertaQuestDig_Bar
+{
+	width: 80px;
+	height: 32px;
+	margin-left: 22px;
+	vertical-align: center;
+	border-top: 1px solid #26dbb2;
+	border-left: 1px solid #26dbb2;
+	border-bottom: 1px solid #26dbb2;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #001814 ), to( #00332a ) );
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	box-shadow: fill black 0px 0px 6px -2px;
+	wash-color: #ddd;
+	saturation: 0.5;
+}
+
+.MuertaQuestDig_Icon
+{
+	width: 40px;
+	height: 40px;
+	margin-top: 2px;
+	margin-left: 0px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_muerta/shovel_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	box-shadow: fill black 0px 0px 6px -2px;
+	border: 1px solid #26dbb2;
+	border-radius: 3px;
+	z-index: 999;
+	wash-color: #aaa;
+	saturation: 0.5;
+}
+
+.MuertaQuestDig_Max
+{
+	wash-color: #fff;
+	saturation: 1;
+	animation-name: MuertaQuestDigActive;
+	animation-iteration-count: infinite;
+	animation-duration: 2s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.MuertaQuestDig_Number
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 2px 3 black;
+	z-index: 8;
+	align: center center;
+	font-size: 20px;
+	margin-top: 1px;
+	text-align: center;
+}
+
+.MuertaQuestGhost_Bar
+{
+	width: 80px;
+	height: 32px;
+	margin-left: 22px;
+	vertical-align: center;
+	border-top: 1px solid #26dbb2;
+	border-left: 1px solid #26dbb2;
+	border-bottom: 1px solid #26dbb2;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #001814 ), to( #00332a ) );
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	box-shadow: fill black 0px 0px 6px -2px;
+	wash-color: #ddd;
+	saturation: 0.5;
+}
+
+.MuertaQuestGhost_Icon
+{
+	width: 40px;
+	height: 40px;
+	margin-top: 2px;
+	margin-left: 0px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_muerta/ghost_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	box-shadow: fill black 0px 0px 6px -2px;
+	border: 1px solid #26dbb2;
+	border-radius: 3px;
+	z-index: 999;
+	wash-color: #aaa;
+	saturation: 0.5;
+}
+
+.MuertaQuestGhost_Max
+{
+	wash-color: #fff;
+	saturation: 1;
+	animation-name: MuertaQuestDigActive;
+	animation-iteration-count: infinite;
+	animation-duration: 2s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.MuertaQuestGhost_Number
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 2px 3 black;
+	z-index: 8;
+	align: center center;
+	font-size: 20px;
+	margin-top: 1px;
+	text-align: center;
+}
+
+.MuertaQuestLeash_Bar
+{
+	border: 1px solid #26dbb2;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #001814 ), to( #00332a ) );
+}
+
+.MuertaQuestLeash_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #19705a ), to( #37d4ac ) );
+	transition-duration: 0.15s;
+}
+
+.MuertaQuestLeash_Icon
+{
+	border: 1px solid #26dbb2;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_muerta/gun_png.vtex");
+}
+
+@keyframes 'MuertaQuestDigActive'
+{
+	0%
+	{
+		box-shadow: fill #94ffda 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #94ffda 0px 0px 12px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #94ffda 0px 0px 5px -2px;
+	}
+	
+}
+
+.MuertaDead_Bar
+{
+	border: 1px solid #4db1b3;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #021a17 ), to( #052d28 ) );
+}
+
+.MuertaDead_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #27877b ), to( #5fcbbe ) );
+	transition-duration: 0.15s;
+}
+
+.MuertaDead_Icon
+{
+	border: 1px solid #4db1b3;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_muerta/dead_shot_proc_png.vtex");
+	wash-color: #555;
+	saturation: 0.3;
+}
+
+.MuertaDead_Bar_Active
+{
+	border: 1px solid #f4a35b;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #021a17 ), to( #052d28 ) );
+	animation-name: MuertaDeadActive;
+	animation-iteration-count: infinite;
+	animation-duration: 2s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+	wash-color: #fff;
+	saturation: 1;
+}
+
+.MuertaDead_Filler_Active
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #893221 ), to( #d9543a ) );
+}
+
+.MuertaDead_Icon_Active
+{
+	border: 1px solid #f4a35b;
+	animation-name: MuertaDeadActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+	wash-color: #fff;
+	saturation: 1;
+}
+
+@keyframes 'MuertaDeadActive'
+{
+	0%
+	{
+		box-shadow: fill #de6c53 0px 0px 6px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #de6c53 0px 0px 16px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #de6c53 0px 0px 6px -2px;
+	}
+	
+}
+
+.MuertaCalling_Bar
+{
+	border: 1px solid #4db1b3;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #021a17 ), to( #052d28 ) );
+}
+
+.MuertaCalling_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #27877b ), to( #5fcbbe ) );
+	transition-duration: 0.15s;
+}
+
+.MuertaCalling_Icon
+{
+	border: 1px solid #4db1b3;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_muerta/calling_png.vtex");
+}
+
+.MuertaVeil_Bar
+{
+	border: 1px solid #db6805;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #001817 ), to( #002321 ) );
+}
+
+.MuertaVeil_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #088178 ), to( #35d6ca ) );
+	transition-duration: 0.2s;
+}
+
+.MuertaVeil_Icon
+{
+	border: 1px solid #db6805;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_muerta/veil_png.vtex");
+	wash-color: #555;
+	saturation: 0.3;
+}
+
+.MuertaVeil_Bar_Active
+{
+	animation-name: MuertaDeadActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.MuertaVeil_Icon_Active
+{
+	wash-color: #fff;
+	saturation: 1;
+	animation-name: MuertaDeadActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.OgreFireblast_Bar
+{
+	border: 1px solid #c38c56;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1a0902 ), to( #2b1004 ) );
+}
+
+.OgreFireblast_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #874a1d ), to( #da8b1b ) );
+	transition-duration: 0.2s;
+}
+
+.OgreFireblast_Icon
+{
+	border: 1px solid #c38c56;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_ogre_magi/fireblast_png.vtex");
+	wash-color: #787878;
+	saturation: 0.1;
+}
+
+.OgreFireblast_Bar_Active
+{
+	border: 1px solid #c38c56;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1a0902 ), to( #2b1004 ) );
+	animation-name: OgreFireblastActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.OgreFireblast_Filler_Active
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #874a1d ), to( #da8b1b ) );
+	transition-duration: 0.2s;
+}
+
+.OgreFireblast_Icon_Active
+{
+	border: 1px solid #c38c56;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_ogre_magi/fireblast_png.vtex");
+	animation-name: OgreFireblastActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'OgreFireblastActive'
+{
+	0%
+	{
+		box-shadow: fill #f28a3d 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #f28a3d 0px 0px 12px -2px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #f28a3d 0px 0px 5px -2px;
+	}
+	
+}
+
+.OgreIgnite_Bar
+{
+	border: 1px solid #d2a418;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1a0902 ), to( #2b1004 ) );
+	animation-name: OgreMulticastActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.OgreIgnite_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #aa5816 ), to( #d2a418 ) );
+	transition-duration: 0.1s;
+}
+
+.OgreIgnite_Icon
+{
+	border: 1px solid #d2a418;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_ogre_magi/ignite_png.vtex");
+	animation-name: OgreIgniteActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'OgreIgniteActive'
+{
+	0%
+	{
+		box-shadow: fill #f28a3d 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #f28a3d 0px 0px 12px -2px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #f28a3d 0px 0px 5px -2px;
+	}
+	
+}
+
+.OgreMulticast_Bar
+{
+	border: 1px solid #d2a418;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #071146 ), to( #020721 ) );
+	animation-name: OgreMulticastActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.OgreMulticast_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #aa5816 ), to( #d2a418 ) );
+	transition-duration: 0.15s;
+}
+
+.OgreMulticast_Icon
+{
+	border: 1px solid #d2a418;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_ogre_magi/multicast_png.vtex");
+	animation-name: OgreMulticastActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'OgreMulticastActive'
+{
+	0%
+	{
+		box-shadow: fill #eec935 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #eec935 0px 0px 14px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #eec935 0px 0px 4px -2px;
+	}
+	
+}
+
+.OgreMagiBloodlust_Panel_hidden
+{
+	visibility: collapse;
+}
+
+.OgreMagiBloodlust_Panel
+{
+	width: 250px;
+	height: 50px;
+	align: left top;
+	margin-top: 22px;
+	margin-left: 50px;
+	z-index: 100;
+	flow-children: right;
+}
+
+.OgreMagiBloodlust_Icons
+{
+	vertical-align: center;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #2d060e ), to( #1c0107 ) );
+	flow-children: right;
+	border-left: 1px solid #666;
+	border-bottom: 1px solid #666;
+	border-top: 1px solid #666;
+	box-shadow: fill black 0px 0px 3px 0px;
+}
+
+.OgreMagiBloodlust_Buff
+{
+	height: 30px;
+	width: 30px;
+	margin: 1px 1px;
+}
+
+#OgreMagiBloodlust_Buff_1
+{
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_ogre_magi/bloodlust_legendary_1_png.vtex");
+	background-size: 100%;
+}
+
+#OgreMagiBloodlust_Buff_2
+{
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_ogre_magi/bloodlust_legendary_2_png.vtex");
+	background-size: 100%;
+}
+
+#OgreMagiBloodlust_Buff_3
+{
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_ogre_magi/bloodlust_legendary_3_png.vtex");
+	background-size: 100%;
+}
+
+#OgreMagiBloodlust_Buff_4
+{
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_ogre_magi/bloodlust_legendary_4_png.vtex");
+	background-size: 100%;
+}
+
+#OgreMagiBloodlust_Timer
+{
+	height: 40px;
+	width: 40px;
+	vertical-align: center;
+	border-radius: 4px;
+	border: 1px solid #eb5129;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1c0803 ), to( #642312 ) );
+	box-shadow: fill black 0px 0px 3px 0px;
+}
+
+.OgreMagiBloodlust_Timer_Text
+{
+	font-family: Radiance;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 2px 3 black;
+	z-index: 8;
+	align: center center;
+	font-size: 23px;
+	text-align: center;
+}
+
+.OgreMagiBloodlust_Timer_Text_reroll
+{
+	font-size: 19px;
+}
+
+.OgreMagiBloodlust_Icons_border
+{
+	border-left: 1px solid #c33b18;
+	border-bottom: 1px solid #c33b18;
+	border-top: 1px solid #c33b18;
+	animation-name: OgreMagiBloodlustActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.OgreMagiBloodlust_Buff_inactive
+{
+	wash-color: #777777;
+	saturation: 0.1;
+}
+
+@keyframes 'OgreMagiBloodlustActive'
+{
+	0%
+	{
+		box-shadow: fill #ed8d37 0px 0px 6px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #ed8d37 0px 0px 15px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #ed8d37 0px 0px 6px -2px;
+	}
+	
+}
+
+.PangolierShield_Bar
+{
+	border: 1px solid #dd7e11;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #2d060e ), to( #1c0107 ) );
+	animation-name: PangolierShieldActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.PangolierShield_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #cb7e15 ), to( #ffbc61 ) );
+	transition-duration: 0.2s;
+}
+
+.PangolierShield_Icon
+{
+	border: 1px solid #ff2d2d;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_pangolier/shield_crash_damage_png.vtex");
+	animation-name: PangolierShieldActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'PangolierShieldActive'
+{
+	0%
+	{
+		box-shadow: fill #ff4949 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #ff4949 0px 0px 14px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #ff4949 0px 0px 4px -2px;
+	}
+	
+}
+
+.BeastUproar_Bar
+{
+	border: 1px solid #e48f4a;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1a0c02 ), to( #2f1705 ) );
+	animation-name: BeastUproarActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.BeastUproar_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #fca32f ), to( #c17716 ) );
+	transition-duration: 0.1s;
+}
+
+.BeastUproar_Icon
+{
+	border: 1px solid #e48f4a;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_primal_beast/blood_frenzy_png.vtex");
+	animation-name: BeastUproarActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'BeastUproarActive'
+{
+	0%
+	{
+		box-shadow: fill #fcb14f 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #fcb14f 0px 0px 14px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #fcb14f 0px 0px 4px -2px;
+	}
+	
+}
+
+.BeastCharge_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #9d2202 ), to( #dc7b33 ) );
+	transition-duration: 0.03s;
+}
+
+.BeastCharge_Icon
+{
+	border: 1px solid #db6805;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_primal_beast/onslaught_png.vtex");
+}
+
+.BeastCharge_Bar
+{
+	border: 1px solid #db6805;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #251200 ), to( #140900 ) );
+}
+
+.BeastCharge_Dot
+{
+	background-color: #fad257;
+}
+
+.PuckShift_Bar
+{
+	border: 1px solid #6b60f9;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #07021e ), to( #0f0633 ) );
+}
+
+.PuckShift_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #5053e2 ), to( #b4b6f6 ) );
+	transition-duration: 0.1s;
+}
+
+.PuckShift_Icon
+{
+	border: 1px solid #4b4fd9;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_puck/shift_png.vtex");
+}
+
+.PuckShift_Bar_Active
+{
+	border: 1px solid #6b60f9;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #07021e ), to( #0f0633 ) );
+	animation-name: PuckShiftActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.PuckShift_Filler_Active
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #5053e2 ), to( #b4b6f6 ) );
+	transition-duration: 0.1s;
+}
+
+.PuckShift_Icon_Active
+{
+	border: 1px solid #4b4fd9;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_puck/shift_png.vtex");
+	animation-name: PuckShiftActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'PuckShiftActive'
+{
+	0%
+	{
+		box-shadow: fill #b7b9f7 0px 0px 8px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #b7b9f7 0px 0px 17px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #b7b9f7 0px 0px 8px -2px;
+	}
+	
+}
+
+.PuckRift_Bar
+{
+	border: 1px solid #94d5f7;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #050f2e ), to( #0c1a48 ) );
+}
+
+.PuckRift_Filler
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #2996da ), to( #94d3fa ) );
+	transition-duration: 0.05s;
+}
+
+.PuckRift_Icon
+{
+	border: 1px solid #94d5f7;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_puck/rift_png.vtex");
+}
+
+.PuckRift_Bar_Active
+{
+	border: 1px solid #94d5f7;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #050f2e ), to( #0c1a48 ) );
+	animation-name: PuckRiftActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.PuckRift_Filler_Active
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #2996da ), to( #94d3fa ) );
+	transition-duration: 0.05s;
+}
+
+.PuckRift_Icon_Active
+{
+	border: 1px solid #94d5f7;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_puck/rift_png.vtex");
+	animation-name: PuckRiftActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'PuckRiftActive'
+{
+	0%
+	{
+		box-shadow: fill #99d4f3 0px 0px 8px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #99d4f3 0px 0px 17px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #99d4f3 0px 0px 8px -2px;
+	}
+	
+}
+
+.SkyBolt_Bar
+{
+	border: 1px solid #ecea8f;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #021622 ), to( #062334 ) );
+	animation-name: SkyBoltActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.SkyBolt_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #3a8fd7 ), to( #b2eaf3 ) );
+	transition-duration: 0.1s;
+}
+
+.SkyBolt_Icon
+{
+	border: 1px solid #ecea8f;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_skywrath_mage/sky_sword_png.vtex");
+	animation-name: SkyBoltActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'SkyBoltActive'
+{
+	0%
+	{
+		box-shadow: fill #ecec8d 0px 0px 8px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #ecec8d 0px 0px 17px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #ecec8d 0px 0px 8px -2px;
+	}
+	
+}
+
+.SkyFlare_Bar
+{
+	border: 1px solid #ecea8f;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #021622 ), to( #062334 ) );
+	animation-name: SkyFlareActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.SkyFlare_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #32797b ), to( #7cdbde ) );
+	transition-duration: 0.1s;
+}
+
+.SkyFlare_Icon
+{
+	border: 1px solid #ecea8f;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_skywrath_mage/flare_png.vtex");
+	animation-name: SkyFlareActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'SkyFlareActive'
+{
+	0%
+	{
+		box-shadow: fill #ecec8d 0px 0px 8px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #ecec8d 0px 0px 17px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #ecec8d 0px 0px 8px -2px;
+	}
+	
+}
+
+.SkyShot_Bar
+{
+	border: 1px solid #7bb6c0;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #021c20 ), to( #042a30 ) );
+}
+
+.SkyShot_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #40767e ), to( #9dd3dc ) );
+	transition-duration: 0.15s;
+}
+
+.SkyShot_Icon
+{
+	border: 1px solid #7bb6c0;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_skywrath_mage/concussive_png.vtex");
+}
+
+.SkyShot_Bar_Active
+{
+	border: 1px solid #f7e885;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #021c20 ), to( #042a30 ) );
+	animation-name: SkyShotActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.SkyShot_Filler_Active
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #40767e ), to( #9dd3dc ) );
+	transition-duration: 0.1s;
+}
+
+.SkyShot_Icon_Active
+{
+	border: 1px solid #f7e885;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_skywrath_mage/concussive_png.vtex");
+	animation-name: SkyShotActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'SkyShotActive'
+{
+	0%
+	{
+		box-shadow: fill #eeea7b 0px 0px 8px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #eeea7b 0px 0px 17px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #eeea7b 0px 0px 8px -2px;
+	}
+	
+}
+
+.ArcField_Bar
+{
+	border: 1px solid #003336;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #001f21 ), to( #001516 ) );
+}
+
+.ArcField_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #a06d1f ), to( #f2cc3e ) );
+	transition-duration: 0.1s;
+}
+
+.ArcField_Icon
+{
+	border: 1px solid #003336;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_arc_warden/magnetic_flicker_png.vtex");
+	wash-color: #787878;
+	saturation: 0.1;
+}
+
+.ArcField_Bar_Active
+{
+	border: 1px solid #003336;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #001f21 ), to( #001516 ) );
+	animation-name: ArcFieldActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.ArcField_Filler_Active
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #a06d1f ), to( #f2cc3e ) );
+	transition-duration: 0.1s;
+}
+
+.ArcField_Icon_Active
+{
+	border: 1px solid #003336;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_arc_warden/magnetic_flicker_png.vtex");
+	wash-color: #fff;
+	saturation: 1;
+	animation-name: ArcFieldActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'ArcFieldActive'
+{
+	0%
+	{
+		box-shadow: fill #feec70 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #feec70 0px 0px 11px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #feec70 0px 0px 5px -2px;
+	}
+	
+}
+
+.ArcField_Tempest_Bar
+{
+	border: 1px solid #002fc6;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #001020 ), to( #00172f ) );
+}
+
+.ArcField_Tempest_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #1d66aa ), to( #59afff ) );
+	transition-duration: 0.1s;
+}
+
+.ArcField_Tempest_Icon
+{
+	border: 1px solid #002fc6;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_arc_warden/magnetic_flicker_png.vtex");
+	wash-color: #787878;
+	saturation: 0.1;
+}
+
+.ArcField_Tempest_Bar_Active
+{
+	border: 1px solid #002fc6;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #001020 ), to( #00172f ) );
+	animation-name: ArcFieldTempestActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.ArcField_Tempest_Filler_Active
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #1d66aa ), to( #59afff ) );
+	transition-duration: 0.1s;
+}
+
+.ArcField_Tempest_Icon_Active
+{
+	border: 1px solid #002fc6;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_arc_warden/magnetic_flicker_png.vtex");
+	wash-color: #fff;
+	saturation: 1;
+	animation-name: ArcFieldTempestActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'ArcFieldTempestActive'
+{
+	0%
+	{
+		box-shadow: fill #79bfff 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #79bfff 0px 0px 11px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #79bfff 0px 0px 5px -2px;
+	}
+	
+}
+
+.ArcSparks_Bar
+{
+	border: 1px solid #80adca;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #010f16 ), to( #021a26 ) );
+}
+
+.ArcSparks_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #3e7192 ), to( #98cbec ) );
+	transition-duration: 0.2s;
+}
+
+.ArcSparks_Icon
+{
+	border: 1px solid #80adca;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_arc_warden/astral_cascade_png.vtex");
+}
+
+.ArcSparks_Max
+{
+	animation-name: ArcSparksActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'ArcSparksActive'
+{
+	0%
+	{
+		box-shadow: fill #90a3e1 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #90a3e1 0px 0px 12px -2px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #90a3e1 0px 0px 5px -2px;
+	}
+	
+}
+
+.ArcTempest_Bar
+{
+	border: 1px solid #002fc6;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #001020 ), to( #00172f ) );
+}
+
+.ArcTempest_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #5968de ), to( #96a1f4 ) );
+	transition-duration: 0.15s;
+}
+
+.ArcTempest_Icon
+{
+	border: 1px solid #002fc6;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_arc_warden/double_png.vtex");
+	wash-color: #787878;
+	saturation: 0.1;
+}
+
+.ArcTempest_Bar_Active
+{
+	border: 1px solid #fa2f42;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #001020 ), to( #00172f ) );
+	animation-name: ArcTempestActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.ArcTempest_Filler_Active
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #5968de ), to( #96a1f4 ) );
+	transition-duration: 0.15s;
+}
+
+.ArcTempest_Icon_Active
+{
+	border: 1px solid #fa2f42;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_arc_warden/double_png.vtex");
+	wash-color: #fff;
+	saturation: 1;
+	animation-name: ArcTempestActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'ArcTempestActive'
+{
+	0%
+	{
+		box-shadow: fill #d62233 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #d62233 0px 0px 11px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #d62233 0px 0px 5px -2px;
+	}
+	
+}
+
+.AxeCulling_Bar
+{
+	width: 80px;
+	height: 32px;
+	margin-left: 20px;
+	vertical-align: center;
+	border-top: 1px solid #e65858;
+	border-left: 1px solid #e65858;
+	border-bottom: 1px solid #e65858;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1c0200 ), to( #1f0400 ) );
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	box-shadow: fill black 0px 0px 10px -2px;
+}
+
+.AxeCulling_Icon
+{
+	width: 40px;
+	height: 40px;
+	margin-left: 0px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_axe/culling_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	box-shadow: fill black 0px 0px 12px -2px;
+	border: 1px solid #e65858;
+	border-radius: 3px;
+	z-index: 999;
+}
+
+.AxeCulling_Number
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 2px 3 black;
+	z-index: 8;
+	align: center center;
+	font-size: 21px;
+	text-align: center;
+}
+
+.MonkeyStrike_Bar
+{
+	border: 1px solid #eacc6b;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #191501 ), to( #302803 ) );
+	animation-name: MonkeyStrikeActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.2s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.MonkeyStrike_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #846a1e ), to( #cca52f ) );
+	transition-duration: 0.12s;
+}
+
+.MonkeyStrike_Icon
+{
+	border: 1px solid #eacc6b;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_monkey_king/boundless_png.vtex");
+	animation-name: MonkeyStrikeActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.2s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'MonkeyStrikeActive'
+{
+	0%
+	{
+		box-shadow: fill #d2c36f 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #d2c36f 0px 0px 16px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #d2c36f 0px 0px 5px -2px;
+	}
+	
+}
+
+.MonkeyBanana_Bar
+{
+	width: 80px;
+	height: 32px;
+	margin-left: 20px;
+	vertical-align: center;
+	border-top: 1px solid #a69c14;
+	border-left: 1px solid #a69c14;
+	border-bottom: 1px solid #a69c14;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #442815 ), to( #613a1e ) );
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	box-shadow: fill black 0px 0px 6px -2px;
+}
+
+.MonkeyBanana_Icon
+{
+	width: 52px;
+	height: 38px;
+	margin-left: 0px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/banana_icon_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	box-shadow: fill black 0px 0px 6px -2px;
+	border: 1px solid #a69c14;
+	border-radius: 3px;
+	z-index: 999;
+}
+
+.MonkeyBanana_Number
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 2px 3 black;
+	z-index: 8;
+	align: center center;
+	font-size: 20px;
+	margin-top: 1px;
+	text-align: center;
+}
+
+.MonkeyMastery_Bar
+{
+	border: 1px solid #a5be30;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #0f1502 ), to( #1e2a04 ) );
+}
+
+.MonkeyMastery_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #734b17 ), to( #c98b14 ) );
+	transition-duration: 0.15s;
+}
+
+.MonkeyMastery_Icon
+{
+	border: 1px solid #a5be30;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_monkey_king/mastery_png.vtex");
+}
+
+.FiendDark_Bar
+{
+	border: 1px solid #9f1010;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #0a0001 ), to( #1f0202 ) );
+	animation-name: FiendDarkActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.FiendDark_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #9e1011 ), to( #e62b2c ) );
+	transition-duration: 0.1s;
+}
+
+.FiendDark_Icon
+{
+	border: 1px solid #9f1010;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_nevermore/dark_lord_png.vtex");
+	wash-color: #fff;
+	saturation: 1;
+	animation-name: FiendDarkActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'FiendDarkActive'
+{
+	0%
+	{
+		box-shadow: fill #dd1718 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #dd1718 0px 0px 16px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #dd1718 0px 0px 5px -2px;
+	}
+	
+}
+
+.FiendRequiem_Bar
+{
+	border: 1px solid #e05866;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #0a0001 ), to( #1f0202 ) );
+}
+
+.FiendRequiem_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #9e1011 ), to( #e62b2c ) );
+	transition-duration: 0.2s;
+}
+
+.FiendRequiem_Icon
+{
+	border: 1px solid #e05866;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_nevermore/requiem_png.vtex");
+}
+
+.FiendRequiem_Max
+{
+	animation-name: FiendRequiemActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'FiendRequiemActive'
+{
+	0%
+	{
+		box-shadow: fill #dd1718 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #dd1718 0px 0px 16px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #dd1718 0px 0px 5px -2px;
+	}
+	
+}
+
+.SlarkPact_Bar
+{
+	border: 1px solid #8477e5;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #070118 ), to( #0e042a ) );
+}
+
+.SlarkPact_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #422b9b ), to( #8b70f0 ) );
+	transition-duration: 0.2s;
+}
+
+.SlarkPact_Icon
+{
+	border: 1px solid #8477e5;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_slark/pact_png.vtex");
+}
+
+.SlarkEssence_Bar
+{
+	border: 1px solid #eacc6b;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #021324 ), to( #092847 ) );
+	animation-name: SlarkEssenceActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.2s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.SlarkEssence_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #316eb9 ), to( #9bbee9 ) );
+	transition-duration: 0.1s;
+}
+
+.SlarkEssence_Icon
+{
+	border: 1px solid #eacc6b;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_slark/innate_png.vtex");
+	animation-name: SlarkEssenceActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.2s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'SlarkEssenceActive'
+{
+	0%
+	{
+		box-shadow: fill #d2c36f 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #d2c36f 0px 0px 16px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #d2c36f 0px 0px 5px -2px;
+	}
+	
+}
+
+.PudgeRot_Bar
+{
+	border: 1px solid #c0cb15;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #151802 ), to( #222602 ) );
+}
+
+.PudgeRot_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #748110 ), to( #b0b51e ) );
+	transition-duration: 0.3s;
+}
+
+.PudgeRot_Icon
+{
+	border: 1px solid #c0cb15;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_pudge/rot_png.vtex");
+}
+
+.PudgeRot_Bar_Active
+{
+	border: 1px solid #b21b10;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1d0102 ), to( #280204 ) );
+	animation-name: PudgeRotActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.PudgeRot_Filler_Active
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #871111 ), to( #c31d1d ) );
+	transition-duration: 0.3s;
+}
+
+.PudgeRot_Icon_Active
+{
+	border: 1px solid #b21b10;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_pudge/rot_png.vtex");
+	animation-name: PudgeRotActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'PudgeRotActive'
+{
+	0%
+	{
+		box-shadow: fill #c91c0f 0px 0px 6px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #c91c0f 0px 0px 18px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #c91c0f 0px 0px 6px -2px;
+	}
+	
+}
+
+.PudgeShard_Bar
+{
+	border: 1px solid #ffa7a6;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #1d0000 ), to( #230500 ) );
+}
+
+.PudgeShard_Filler
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #8d0100 ), to( #b51615 ) );
+	transition-duration: 0.2s;
+}
+
+.PudgeShard_Icon
+{
+	border: 1px solid #ffa7a6;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_pudge/flesh_png.vtex");
+}
+
+.PudgeDevour_Filler
+{
+	border-radius: 10px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #9f132b ), to( #c41b38 ) );
+	transition-duration: 0.1s;
+}
+
+.PudgeDevour_Bar
+{
+	border-radius: 10px;
+	border: 1px solid #6b4b0c;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #2e1a23 ), to( #442734 ) );
+}
+
+.PudgeDevour_Icon
+{
+	border: 1px solid #9f132b;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_pudge/flesh_1_png.vtex");
+}
+
+.QopBlink_Bar
+{
+	border: 1px solid #6e251c;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1e0709 ), to( #3c1316 ) );
+}
+
+.QopBlink_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #9b1617 ), to( #dc4243 ) );
+	transition-duration: 0.15s;
+}
+
+.QopBlink_Icon
+{
+	border: 1px solid #6e251c;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_queenofpain/blink_png.vtex");
+}
+
+.QopBlink_Max
+{
+	animation-name: QopBlinkActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'QopBlinkActive'
+{
+	0%
+	{
+		box-shadow: fill #f23f40 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #f23f40 0px 0px 16px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #f23f40 0px 0px 5px -2px;
+	}
+	
+}
+
+.QopPact_Filler
+{
+	border-radius: 10px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #890b23 ), to( #df2840 ) );
+	transition-duration: 0.2s;
+}
+
+.QopPact_Bar
+{
+	border-radius: 10px;
+	border: 1px solid #df2840;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #2a0307 ), to( #350509 ) );
+	animation-name: QopPactActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.QopPact_Icon
+{
+	border: 1px solid #df2840;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_queenofpain/queenofpain_blood_pact_png.vtex");
+	animation-name: QopPactActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'QopPactActive'
+{
+	0%
+	{
+		box-shadow: fill #f23f40 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #f23f40 0px 0px 16px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #f23f40 0px 0px 5px -2px;
+	}
+	
+}
+
+.RazorEye_Bar
+{
+	border: 1px solid #157aff;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #000b18 ), to( #001022 ) );
+}
+
+.RazorEye_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #1280c6 ), to( #53b9f9 ) );
+	transition-duration: 0.1s;
+}
+
+.RazorEye_Icon
+{
+	border: 1px solid #157aff;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_razor/eye_png.vtex");
+}
+
+.RazorEye_Bar_Active
+{
+	border: 1px solid #157aff;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #000b18 ), to( #001022 ) );
+	animation-name: RazorEyeActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.RazorEye_Filler_Active
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #1280c6 ), to( #53b9f9 ) );
+	transition-duration: 0.2s;
+}
+
+.RazorEye_Icon_Active
+{
+	border: 1px solid #157aff;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_razor/eye_png.vtex");
+	animation-name: RazorEyeActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'RazorEyeActive'
+{
+	0%
+	{
+		box-shadow: fill #88d1ff 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #88d1ff 0px 0px 16px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #88d1ff 0px 0px 5px -2px;
+	}
+	
+}
+
+.SnapfireCookie_Bar_Active
+{
+	border: 1px solid #f8962b;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #270600 ), to( #402209 ) );
+}
+
+.SnapfireCookie_Filler_Active
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #c83a0d ), to( #eda306 ) );
+	transition-duration: 0.15s;
+}
+
+.SnapfireCookie_Icon_Active
+{
+	border: 1px solid #f8962b;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_snapfire/cookie_png.vtex");
+}
+
+.SnapfireCookie_Bar
+{
+	border: 1px solid #f8962b;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #270600 ), to( #402209 ) );
+	wash-color: #777777;
+	saturation: 0.2;
+}
+
+.SnapfireCookie_Filler
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #c83a0d ), to( #eda306 ) );
+	transition-duration: 0.1s;
+	wash-color: #777777;
+	saturation: 0.2;
+}
+
+.SnapfireCookie_Icon
+{
+	border: 1px solid #f8962b;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_snapfire/cookie_png.vtex");
+	wash-color: #777777;
+	saturation: 0.2;
+}
+
+.SnapfireScatter_Bar
+{
+	border: 1px solid #f8962b;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #270600 ), to( #402209 ) );
+}
+
+.SnapfireScatter_Filler
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #c83a0d ), to( #eda306 ) );
+	transition-duration: 0.1s;
+}
+
+.SnapfireScatter_Icon
+{
+	border: 1px solid #f8962b;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_snapfire/scatter_png.vtex");
+}
+
+.SnapfireScatter_Max
+{
+	animation-name: SnapfireScatterAnim;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'SnapfireScatterAnim'
+{
+	0%
+	{
+		box-shadow: fill #f77036 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #f77036 0px 0px 11px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #f77036 0px 0px 5px -2px;
+	}
+	
+}
+
+.SnapfireLil_Bar
+{
+	border-radius: 5px;
+	border: 1px solid #6a6a6a;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #2e2e2e ), to( #1b1b1b ) );
+	box-shadow: fill #ffad00 0px 0px 9px -3px;
+}
+
+.SnapfireLil_Filler
+{
+	transition-duration: 0.1s;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #e6bd00 ), to( #fcda39 ) );
+}
+
+.SnapfireLil_Icon
+{
+	border: 1px solid #ffad00;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_snapfire/shredder_png.vtex");
+	animation-name: SnapfireLilActive;
+	animation-iteration-count: infinite;
+	animation-duration: 0.9s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.SnapfireLil_Bar_Active
+{
+	border-radius: 5px;
+	border: 1px solid #6a6a6a;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #2e2e2e ), to( #1b1b1b ) );
+	animation-name: SnapfireLilActiveMax;
+	animation-iteration-count: infinite;
+	animation-duration: 1.2s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.SnapfireLil_Filler_Active
+{
+	transition-duration: 0.1s;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #f08c13 ), to( #ed2c0e ) );
+}
+
+.SnapfireLil_Icon_Active
+{
+	border: 1px solid #ffad00;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_snapfire/shredder_png.vtex");
+	animation-name: SnapfireLilActiveMax;
+	animation-iteration-count: infinite;
+	animation-duration: 0.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'SnapfireLilActive'
+{
+	0%
+	{
+		box-shadow: fill #ffad00 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #ffad00 0px 0px 13px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #ffad00 0px 0px 4px -2px;
+	}
+	
+}
+
+@keyframes 'SnapfireLilActiveMax'
+{
+	0%
+	{
+		box-shadow: fill #f77036 0px 0px 6px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #f77036 0px 0px 16px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #f77036 0px 0px 6px -2px;
+	}
+	
+}
+
+.SnapfireScepter_Bar
+{
+	border: 1px solid #d7532f;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #350c01 ), to( #1e0701 ) );
+	animation-name: SnapfireScepterActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.SnapfireScepter_Filler
+{
+	transition-duration: 0.08s;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #9b2b11 ), to( #f48038 ) );
+}
+
+.SnapfireScepter_Icon
+{
+	border: 1px solid #d7532f;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_snapfire/scepter_spit_png.vtex");
+	animation-name: SnapfireScepterActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'SnapfireScepterActive'
+{
+	0%
+	{
+		box-shadow: fill #ffad00 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #ffad00 0px 0px 12px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #ffad00 0px 0px 4px -2px;
+	}
+	
+}
+
+.SnapfireKisses_Bar
+{
+	border: 1px solid #d7532f;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #350c01 ), to( #1e0701 ) );
+	animation-name: SnapfireKissesActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.SnapfireKisses_Filler
+{
+	transition-duration: 0.15s;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #9b2b11 ), to( #f48038 ) );
+}
+
+.SnapfireKisses_Icon
+{
+	border: 1px solid #d7532f;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_snapfire/gobble_png.vtex");
+	animation-name: SnapfireScepterActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'SnapfireKissesActive'
+{
+	0%
+	{
+		box-shadow: fill #ffad00 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #ffad00 0px 0px 12px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #ffad00 0px 0px 4px -2px;
+	}
+	
+}
+
+.CentaurStomp_Bar
+{
+	border: 1px solid #f56a28;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #0c0200 ), to( #2b0703 ) );
+}
+
+.CentaurStomp_Filler
+{
+	transition-duration: 0.15s;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #9c1a13 ), to( #e9261a ) );
+}
+
+.CentaurStomp_Icon
+{
+	border: 1px solid #f56a28;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_centaur/stomp_png.vtex");
+}
+
+.CentaurStomp_Bar_Active
+{
+	animation-name: CentaurStompActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.CentaurStomp_Icon_Active
+{
+	animation-name: CentaurStompActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'CentaurStompActive'
+{
+	0%
+	{
+		box-shadow: fill #fa6450 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #fa6450 0px 0px 14px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #fa6450 0px 0px 4px -2px;
+	}
+	
+}
+
+.CentaurEdge_Bar
+{
+	border: 1px solid #f56a28;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #0c0200 ), to( #2b0703 ) );
+	animation-name: CentaurEdgeActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.CentaurEdge_Filler
+{
+	transition-duration: 0.15s;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #9c1a13 ), to( #e9261a ) );
+}
+
+.CentaurEdge_Icon
+{
+	border: 1px solid #f56a28;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_centaur/edge_legendary_png.vtex");
+	animation-name: CentaurEdgeActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'CentaurEdgeActive'
+{
+	0%
+	{
+		box-shadow: fill #fa6450 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #fa6450 0px 0px 14px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #fa6450 0px 0px 4px -2px;
+	}
+	
+}
+
+.CentaurStampede_Bar
+{
+	border: 1px solid #e7884c;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #0e0201 ), to( #1e0402 ) );
+}
+
+.CentaurStampede_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #610b08 ), to( #d41b15 ) );
+	transition-duration: 0.2s;
+}
+
+.CentaurStampede_Icon
+{
+	border: 1px solid #e7884c;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_centaur/stampede_legendary_png.vtex");
+}
+
+.CentaurStampede_Max
+{
+	animation-name: CentaurStampedeActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'CentaurStampedeActive'
+{
+	0%
+	{
+		box-shadow: fill #e6462b 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #e6462b 0px 0px 14px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #e6462b 0px 0px 5px -2px;
+	}
+	
+}
+
+.SniperHeadshot_Bar
+{
+	border: 1px solid #9fbd08;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #151f00 ), to( #0e1400 ) );
+	animation-name: SniperHeadshotActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.SniperHeadshot_Filler
+{
+	transition-duration: 0.2s;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #6b6e10 ), to( #d4c420 ) );
+}
+
+.SniperHeadshot_Icon
+{
+	border: 1px solid #9fbd08;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_sniper/headshot_png.vtex");
+	animation-name: SniperHeadshotActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'SniperHeadshotActive'
+{
+	0%
+	{
+		box-shadow: fill #cdd408 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #cdd408 0px 0px 12px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #cdd408 0px 0px 4px -2px;
+	}
+	
+}
+
+.SvenWarcry_Bar
+{
+	border: 1px solid #fff7a7;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #00162c ), to( #012242 ) );
+	animation-name: SvenWarcryActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.SvenWarcry_Filler
+{
+	transition-duration: 0.2s;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #c8bb55 ), to( #dfd373 ) );
+}
+
+.SvenWarcry_Icon
+{
+	border: 1px solid #fff7a7;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_sven/cry_png.vtex");
+	animation-name: SvenWarcryActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'SvenWarcryActive'
+{
+	0%
+	{
+		box-shadow: fill #fff7a7 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #fff7a7 0px 0px 12px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #fff7a7 0px 0px 4px -2px;
+	}
+	
+}
+
+.SvenStrength_Bar
+{
+	border: 1px solid #b09465;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #370001 ), to( #1b0001 ) );
+}
+
+.SvenStrength_Filler
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #960303 ), to( #de1818 ) );
+	transition-duration: 0.2s;
+}
+
+.SvenStrength_Icon
+{
+	border: 1px solid #b09465;
+	border-radius: 4px;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_sven/slam_png.vtex");
+}
+
+.SvenStrength_Max
+{
+	animation-name: SvenStrengthActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'SvenStrengthActive'
+{
+	0%
+	{
+		box-shadow: fill #dab27c 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #dab27c 0px 0px 16px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #dab27c 0px 0px 5px -2px;
+	}
+	
+}
+
+.TemplarRefraction_Bar
+{
+	border: 1px solid #cdbbfb;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #291a69 ), to( #110933 ) );
+}
+
+.TemplarRefraction_Filler
+{
+	transition-duration: 0.2s;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #7f6ab8 ), to( #b39eef ) );
+}
+
+.TemplarRefraction_Icon
+{
+	border: 1px solid #cdbbfb;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_templar_assassin/refraction_png.vtex");
+}
+
+.TemplarRefraction_Filler_Active
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #b4602b ), to( #ef9b2b ) );
+	transition-duration: 0.2s;
+}
+
+.TemplarRefraction_Icon_Active
+{
+	border: 1px solid #f8e1a3;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_templar_assassin/refraction_damage_png.vtex");
+	animation-name: TemplarRefractionActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.TemplarRefraction_Bar_Active
+{
+	border: 1px solid #f8e1a3;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #350505 ), to( #590c0c ) );
+	animation-name: TemplarRefractionActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'TemplarRefractionActive'
+{
+	0%
+	{
+		box-shadow: fill #ff9200 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #ff9200 0px 0px 12px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #ff9200 0px 0px 4px -2px;
+	}
+	
+}
+
+.TemplarMeld_Bar
+{
+	border: 1px solid #cdbbfb;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #291a69 ), to( #110933 ) );
+}
+
+.TemplarMeld_Filler
+{
+	transition-duration: 0.1s;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #7f6ab8 ), to( #b39eef ) );
+}
+
+.TemplarMeld_Icon
+{
+	border: 1px solid #cdbbfb;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_templar_assassin/meld_png.vtex");
+}
+
+.TemplarMeld_Filler_Active
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #a23939 ), to( #eb4d4d ) );
+	transition-duration: 0.1s;
+}
+
+.TemplarMeld_Icon_Active
+{
+	border: 1px solid #ef5555;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_templar_assassin/meld_png.vtex");
+	animation-name: TemplarMeldActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.TemplarMeld_Bar_Active
+{
+	animation-name: TemplarMeldActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+	border: 1px solid #ef5555;
+}
+
+@keyframes 'TemplarMeldActive'
+{
+	0%
+	{
+		box-shadow: fill #f32f62 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #f32f62 0px 0px 14px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #f32f62 0px 0px 4px -2px;
+	}
+	
+}
+
+.EnigmaMalefice_Bar
+{
+	border: 1px solid #9f62ef;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #0a0228 ), to( #15064b ) );
+}
+
+.EnigmaMalefice_Filler
+{
+	transition-duration: 0.12s;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #3267d7 ), to( #779ef1 ) );
+}
+
+.EnigmaMalefice_Icon
+{
+	border: 1px solid #9f62ef;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_enigma/malefice_png.vtex");
+}
+
+.EnigmaSummon_Bar
+{
+	width: 80px;
+	height: 32px;
+	margin-left: 20px;
+	vertical-align: center;
+	border-top: 1px solid #8471fa;
+	border-left: 1px solid #8471fa;
+	border-bottom: 1px solid #8471fa;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #06001a ), to( #0a002c ) );
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	box-shadow: fill black 0px 0px 10px -2px;
+}
+
+.EnigmaSummon_Icon
+{
+	width: 40px;
+	height: 40px;
+	margin-left: 0px;
+	background-size: contain;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_enigma/conversion_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	box-shadow: fill black 0px 0px 12px -2px;
+	border: 1px solid #8471fa;
+	border-radius: 3px;
+	z-index: 999;
+}
+
+.EnigmaSummon_Number
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 2px 3 black;
+	z-index: 8;
+	align: center center;
+	font-size: 25px;
+	text-align: center;
+}
+
+.EnigmaLegendaryStack_Bar
+{
+	border: 1px solid #82a6f9;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #0a0228 ), to( #15064b ) );
+}
+
+.EnigmaLegendaryStack_Filler
+{
+	transition-duration: 0.2s;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #2265ee ), to( #437ef5 ) );
+}
+
+.EnigmaLegendaryStack_Icon
+{
+	border: 1px solid #82a6f9;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_enigma/blackhole_png.vtex");
+}
+
+.EnigmaPulse_Icon_Active
+{
+	animation-name: EnigmaPulseActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+	wash-color: #ffffff;
+	saturation: 1;
+}
+
+.EnigmaPulse_Bar_Active
+{
+	animation-name: EnigmaPulseActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'EnigmaPulseActive'
+{
+	0%
+	{
+		box-shadow: fill #af9cf4 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #af9cf4 0px 0px 14px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #af9cf4 0px 0px 4px -2px;
+	}
+	
+}
+
+.EnigmaBlack_Bar
+{
+	border: 1px solid #82a6f9;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #020524 ), to( #01020f ) );
+	border-radius: 2px;
+}
+
+.EnigmaBlack_Filler
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #2265ee ), to( #437ef5 ) );
+	transition-duration: 0.2s;
+}
+
+.EnigmaBlack_Bar_Active
+{
+	border: 1px solid #82a6f9;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #020524 ), to( #01020f ) );
+	border-radius: 2px;
+}
+
+.EnigmaBlack_Filler_Active
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #2265ee ), to( #437ef5 ) );
+	transition-duration: 0.2s;
+}
+
+.EnigmaBlack_Icon
+{
+	border: 1px solid #82a6f9;
+	border-radius: 4px;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_enigma/blackhole_3_png.vtex");
+	wash-color: #555555;
+	saturation: 0.1;
+}
+
+.EnigmaBlack_Icon_Active
+{
+	border: 1px solid #82a6f9;
+	border-radius: 4px;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_enigma/blackhole_3_png.vtex");
+	animation-name: EnigmaBlackActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'EnigmaBlackActive'
+{
+	0%
+	{
+		box-shadow: fill #64a4ee 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #64a4ee 0px 0px 13px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #64a4ee 0px 0px 4px -2px;
+	}
+	
+}
+
+.TbReflection_Bar
+{
+	border: 1px solid #b9c7d4;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #020726 ), to( #040c3a ) );
+	animation-name: TbReflectionActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.2s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.TbReflection_Filler
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #7094b9 ), to( #9cc3ec ) );
+	transition-duration: 0.25s;
+}
+
+.TbReflection_Icon
+{
+	border: 1px solid #b9c7d4;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_slark/essence_png.vtex");
+	animation-name: TbReflectionActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.2s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'TbReflectionActive'
+{
+	0%
+	{
+		box-shadow: fill #64c7f5 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #64c7f5 0px 0px 14px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #64c7f5 0px 0px 4px -2px;
+	}
+	
+}
+
+.TbMeta_Bar
+{
+	border: 1px solid #809bc0;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #020726 ), to( #040c3a ) );
+}
+
+.TbMeta_Filler
+{
+	transition-duration: 0.2s;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #3161a3 ), to( #76a6e7 ) );
+}
+
+.TbMeta_Icon
+{
+	border: 1px solid #809bc0;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_terrorblade/meta_png.vtex");
+}
+
+.TbMeta_Icon_Active
+{
+	animation-name: TbMetaActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+	border: 1px solid #e79595;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_terrorblade/zeal_png.vtex");
+}
+
+.TbMeta_Filler_Active
+{
+	transition-duration: 0.2s;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #881717 ), to( #ea5353 ) );
+}
+
+.TbMeta_Bar_Active
+{
+	border: 1px solid #e79595;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #020726 ), to( #040c3a ) );
+	animation-name: TbMetaActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'TbMetaActive'
+{
+	0%
+	{
+		box-shadow: fill #e5567b 0px 0px 3px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #e5567b 0px 0px 14px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #e5567b 0px 0px 3px -2px;
+	}
+	
+}
+
+.TrollAxes_Bar
+{
+	border: 1px solid #848484;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #1d0000 ), to( #230500 ) );
+}
+
+.TrollAxes_Filler
+{
+	transition-duration: 0.2s;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #8d0100 ), to( #b51615 ) );
+}
+
+.TrollAxes_Icon
+{
+	border: 1px solid #848484;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_troll_warlord/axes_png.vtex");
+}
+
+.TrollAxes_Bar_Active
+{
+	border: 1px solid #848484;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #00222e ), to( #000d11 ) );
+}
+
+.TrollAxes_Filler_Active
+{
+	transition-duration: 0.2s;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #0f78a2 ), to( #28a9dd ) );
+}
+
+.TrollAxes_Icon_Active
+{
+	border: 1px solid #848484;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_troll_warlord/ranged_png.vtex");
+}
+
+.TrollFervor_Bar
+{
+	border: 1px solid #f3ad83;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #200201 ), to( #350302 ) );
+	animation-name: TrollFervorActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.2s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.TrollFervor_Filler
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #c75e18 ), to( #f2c53a ) );
+	transition-duration: 0.15s;
+}
+
+.TrollFervor_Icon
+{
+	border: 1px solid #f3ad83;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_troll_warlord/fervor_png.vtex");
+	animation-name: TrollFervorActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.2s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'TrollFervorActive'
+{
+	0%
+	{
+		box-shadow: fill #f2ca50 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #f2ca50 0px 0px 14px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #f2ca50 0px 0px 4px -2px;
+	}
+	
+}
+
+.VoidShield_Bar
+{
+	border: 1px solid #c9acff;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #0e0032 ), to( #070019 ) );
+}
+
+.VoidShield_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #6f28f5 ), to( #be9cff ) );
+	transition-duration: 0.15s;
+}
+
+.VoidShield_Icon
+{
+	border: 1px solid #c9acff;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_void_spirit/pulse_png.vtex");
+}
+
+.VoidShield_Bar_Active
+{
+	border: 1px solid #e97171;
+	animation-name: VoidShieldActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.2s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.VoidShield_Filler_Active
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #911818 ), to( #ef2626 ) );
+	transition-duration: 0.15s;
+}
+
+.VoidShield_Icon_Active
+{
+	border: 1px solid #e97171;
+	animation-name: VoidShieldActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.2s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'VoidShieldActive'
+{
+	0%
+	{
+		box-shadow: fill #eb2c2c 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #eb2c2c 0px 0px 14px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #eb2c2c 0px 0px 4px -2px;
+	}
+	
+}
+
+.VoidStep_Bar
+{
+	border: 1px solid #c9acff;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #0e0032 ), to( #070019 ) );
+}
+
+.VoidStep_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #6f28f5 ), to( #be9cff ) );
+	transition-duration: 0.15s;
+}
+
+.VoidStep_Icon
+{
+	border: 1px solid #c9acff;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_void_spirit/step_png.vtex");
+}
+
+.BaneEnfeeble_Bar
+{
+	border: 1px solid #b7182b;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #0e0032 ), to( #070019 ) );
+}
+
+.BaneEnfeeble_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #592bb8 ), to( #8653f0 ) );
+	transition-duration: 0.2s;
+}
+
+.BaneEnfeeble_Icon
+{
+	border: 1px solid #b7182b;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_bane/enfeeble_png.vtex");
+}
+
+.BaneNightmare_Bar
+{
+	border: 1px solid #c9acff;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #0e0032 ), to( #070019 ) );
+}
+
+.BaneNightmare_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #6f28f5 ), to( #be9cff ) );
+	transition-duration: 0.15s;
+}
+
+.BaneNightmare_Icon
+{
+	border: 1px solid #c9acff;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_bane/nightmare_png.vtex");
+}
+
+.BaneGrip_Bar
+{
+	border: 1px solid #c9acff;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #0e0032 ), to( #070019 ) );
+}
+
+.BaneGrip_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #6f28f5 ), to( #be9cff ) );
+	transition-duration: 0.2s;
+}
+
+.BaneGrip_Icon
+{
+	border: 1px solid #c9acff;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_bane/grip_png.vtex");
+}
+
+.BaneGrip_Bar_Active
+{
+	border: 1px solid #c9acff;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #0e0032 ), to( #070019 ) );
+	animation-name: BaneGripActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.BaneGrip_Filler_Active
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #6f28f5 ), to( #be9cff ) );
+	transition-duration: 0.2s;
+}
+
+.BaneGrip_Icon_Active
+{
+	border: 1px solid #c9acff;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_bane/grip_png.vtex");
+	animation-name: BaneGripActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'BaneGripActive'
+{
+	0%
+	{
+		box-shadow: fill #c568e7 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #c568e7 0px 0px 16px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #c568e7 0px 0px 5px -2px;
+	}
+	
+}
+
+.WraithBlast_Bar
+{
+	border: 1px solid #53b493;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #021612 ), to( #052b23 ) );
+}
+
+.WraithBlast_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #246e4e ), to( #48c58f ) );
+	transition-duration: 0.15s;
+}
+
+.WraithBlast_Icon
+{
+	border: 1px solid #53b493;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_skeleton_king/blast_png.vtex");
+}
+
+.WraithCrit_Bar
+{
+	width: 80px;
+	height: 32px;
+	margin-left: 20px;
+	vertical-align: center;
+	border-top: 1px solid #de4c50;
+	border-left: 1px solid #de4c50;
+	border-bottom: 1px solid #de4c50;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #02261d ), to( #01140f ) );
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	box-shadow: fill black 0px 0px 10px -2px;
+}
+
+.WraithCrit_Icon
+{
+	width: 40px;
+	height: 40px;
+	margin-left: 0px;
+	background-size: contain;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_skeleton_king/strike_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	box-shadow: fill black 0px 0px 12px -2px;
+	border: 1px solid #de4c50;
+	border-radius: 3px;
+	z-index: 999;
+}
+
+.WraithCrit_Number
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 2px 3 black;
+	z-index: 8;
+	align: center center;
+	font-size: 25px;
+	text-align: center;
+}
+
+.ZeusArc_Bar
+{
+	border: 1px solid #b5d8f1;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #010d1e ), to( #02132b ) );
+}
+
+.ZeusArc_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #207ec4 ), to( #92c9f1 ) );
+	transition-duration: 0.2s;
+}
+
+.ZeusArc_Icon
+{
+	border: 1px solid #b5d8f1;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_zuus/arc_png.vtex");
+}
+
+.ZeusArc_Bar_Active
+{
+	animation-name: ZeusArcActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.ZeusArc_Icon_Active
+{
+	animation-name: ZeusArcActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'ZeusArcActive'
+{
+	0%
+	{
+		box-shadow: fill #b5d8f1 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #b5d8f1 0px 0px 13px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #b5d8f1 0px 0px 5px -2px;
+	}
+	
+}
+
+.ZeusJump_Bar
+{
+	border: 1px solid #b5d8f1;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #010d1e ), to( #02132b ) );
+}
+
+.ZeusJump_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #1080c0 ), to( #50b7f2 ) );
+	transition-duration: 0.22s;
+}
+
+.ZeusJump_Icon
+{
+	border: 1px solid #b5d8f1;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_zuus/jump_png.vtex");
+}
+
+.ZeusJump_Bar_Active
+{
+	border: 1px solid #b5d8f1;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #010d1e ), to( #02132b ) );
+	animation-name: ZeusJumpActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.ZeusJump_Filler_Active
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #1080c0 ), to( #50b7f2 ) );
+	transition-duration: 0.22s;
+}
+
+.ZeusJump_Icon_Active
+{
+	border: 1px solid #b5d8f1;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_zuus/jump_png.vtex");
+	animation-name: ZeusJumpActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'ZeusJumpActive'
+{
+	0%
+	{
+		box-shadow: fill #aaddfa 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #aaddfa 0px 0px 13px -2px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #aaddfa 0px 0px 5px -2px;
+	}
+	
+}
+
+.MorphWave_Bar
+{
+	border: 1px solid #a1f1f9;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #010717 ), to( #030d27 ) );
+	animation-name: MorphWaveActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.MorphWave_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #3161cb ), to( #5a9bec ) );
+	transition-duration: 0.15s;
+}
+
+.MorphWave_Icon
+{
+	border: 1px solid #a1f1f9;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_morphling/wave_png.vtex");
+	animation-name: MorphWaveActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'MorphWaveActive'
+{
+	0%
+	{
+		box-shadow: fill #78d2f7 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #78d2f7 0px 0px 13px -2px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #78d2f7 0px 0px 5px -2px;
+	}
+	
+}
+
+.MorphAdaptive_Bar
+{
+	width: 80px;
+	height: 32px;
+	margin-left: 20px;
+	vertical-align: center;
+	border-top: 1px solid #32914b;
+	border-left: 1px solid #32914b;
+	border-bottom: 1px solid #32914b;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #05241a ), to( #011d14 ) );
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	box-shadow: fill black 0px 0px 10px -2px;
+}
+
+.MorphAdaptive_Icon
+{
+	width: 40px;
+	height: 40px;
+	margin-left: 0px;
+	background-size: contain;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_morphling/attribute_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	box-shadow: fill black 0px 0px 12px -2px;
+	border: 1px solid #32914b;
+	border-radius: 3px;
+	z-index: 999;
+}
+
+.MorphAdaptive_Number
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 2px 3 black;
+	z-index: 8;
+	align: center center;
+	font-size: 22px;
+	text-align: center;
+}
+
+.MorphAttribute_Bar
+{
+	border: 1px solid #51ddad;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #051328 ), to( #020c1c ) );
+}
+
+.MorphAttribute_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #27738f ), to( #1ab1e9 ) );
+	transition-duration: 0.2s;
+}
+
+.MorphAttribute_Icon
+{
+	border: 1px solid #51ddad;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_morphling/attribute_legendary_png.vtex");
+}
+
+.MorphAttribute_Bar_Active
+{
+	border: 1px solid #dd4141;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #0a0001 ), to( #1f0202 ) );
+	animation-name: MorphAttributeActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.MorphAttribute_Filler_Active
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #137225 ), to( #20ce51 ) );
+	transition-duration: 0.15s;
+}
+
+.MorphAttribute_Icon_Active
+{
+	border: 1px solid #dd4141;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_morphling/attribute_legendary_png.vtex");
+	animation-name: MorphAttributeActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'MorphAttributeActive'
+{
+	0%
+	{
+		box-shadow: fill #e92626 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #e92626 0px 0px 16px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #e92626 0px 0px 5px -2px;
+	}
+	
+}
+
+.MorphReplicate_Bar
+{
+	border: 1px solid #a1f1f9;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #010516 ), to( #040a27 ) );
+}
+
+.MorphReplicate_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #226a82 ), to( #73cce9 ) );
+	transition-duration: 0.15s;
+}
+
+.MorphReplicate_Icon
+{
+	border: 1px solid #51ddad;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_morphling/morph_png.vtex");
+}
+
+.LifestealerWounds_Bar
+{
+	border: 1px solid #ff571c;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #1e0201 ), to( #130100 ) );
+	box-shadow: fill #861704 0px 0px 13px -3px;
+}
+
+.LifestealerWounds_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #781d0e ), to( #bd3e2a ) );
+	transition-duration: 0.12s;
+}
+
+.LifestealerWounds_Icon
+{
+	border: 1px solid #ff571c;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_life_stealer/open_wounds_legendary_png.vtex");
+	box-shadow: fill #861704 0px 0px 13px -3px;
+}
+
+.LifestealerGhoul_Bar
+{
+	border: 1px solid #81a631;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #0d1201 ), to( #1b2703 ) );
+}
+
+.LifestealerGhoul_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #8f2914 ), to( #cc4516 ) );
+	transition-duration: 0.12s;
+}
+
+.LifestealerGhoul_Icon
+{
+	border: 1px solid #81a631;
+	wash-color: #888;
+	saturation: 0.5;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_life_stealer/ghoul_png.vtex");
+}
+
+.LifestealerGhoul_Bar_Active
+{
+	border: 1px solid #81a631;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #0d1201 ), to( #1b2703 ) );
+	animation-name: LifestealerGhoulActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.LifestealerGhoul_Filler_Active
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #8f2914 ), to( #cc4516 ) );
+	transition-duration: 0.12s;
+}
+
+.LifestealerGhoul_Icon_Active
+{
+	border: 1px solid #81a631;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_life_stealer/ghoul_png.vtex");
+	animation-name: LifestealerGhoulActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'LifestealerGhoulActive'
+{
+	0%
+	{
+		box-shadow: fill #dffb42 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #dffb42 0px 0px 10px -2px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #dffb42 0px 0px 4px -2px;
+	}
+	
+}
+
+.TinkerLaser_Bar
+{
+	border: 1px solid #73caeb;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #0a1825 ), to( #142e45 ) );
+}
+
+.TinkerLaser_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #3f7a9b ), to( #adddf7 ) );
+	transition-duration: 0.15s;
+}
+
+.TinkerLaser_Icon
+{
+	border: 1px solid #73caeb;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_tinker/laser_png.vtex");
+}
+
+.TinkerMarch_Bar
+{
+	border: 1px solid #8387ab;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #191921 ), to( #292936 ) );
+}
+
+.TinkerMarch_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #5a62af ), to( #808bef ) );
+	transition-duration: 0.2s;
+}
+
+.TinkerMarch_Icon
+{
+	border: 1px solid #8387ab;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_tinker/march_png.vtex");
+}
+
+.TinkerMarch_Bar_Active
+{
+	border: 1px solid #e3c01f;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #191921 ), to( #292936 ) );
+	animation-name: TinkerMarchActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.TinkerMarch_Filler_Active
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #5a62af ), to( #808bef ) );
+	transition-duration: 0.2s;
+}
+
+.TinkerMarch_Icon_Active
+{
+	border: 1px solid #e3c01f;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_tinker/march_png.vtex");
+	animation-name: TinkerMarchActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'TinkerMarchActive'
+{
+	0%
+	{
+		box-shadow: fill #caba71 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #caba71 0px 0px 11px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #caba71 0px 0px 4px -2px;
+	}
+	
+}
+
+.TinkerMatrix_Bar
+{
+	border: 1px solid #9bb1eb;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #0a0e1e ), to( #121a36 ) );
+}
+
+.TinkerMatrix_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #586ba9 ), to( #8ca9f2 ) );
+	transition-duration: 0.2s;
+}
+
+.TinkerMatrix_Icon
+{
+	border: 1px solid #9bb1eb;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_tinker/matrix_png.vtex");
+}
+
+.TinkerMatrix_Icon_Active
+{
+	animation-name: TinkerMatrixActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.TinkerMatrix_Bar_Active
+{
+	animation-name: TinkerMatrixActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'TinkerMatrixActive'
+{
+	0%
+	{
+		box-shadow: fill #96beff 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #96beff 0px 0px 16px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #96beff 0px 0px 5px -2px;
+	}
+	
+}
+
+.WitchDoctorCask_Bar
+{
+	border: 1px solid #7ba049;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #0f1d03 ), to( #183003 ) );
+}
+
+.WitchDoctorCask_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #511f93 ), to( #9758eb ) );
+	transition-duration: 0.2s;
+}
+
+.WitchDoctorCask_Icon
+{
+	border: 1px solid #7ba049;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_witch_doctor/cask_png.vtex");
+}
+
+.WitchDoctorCask_Max
+{
+	animation-name: WitchDoctorCaskActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'WitchDoctorCaskActive'
+{
+	0%
+	{
+		box-shadow: fill #cfba63 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #cfba63 0px 0px 14px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #cfba63 0px 0px 5px -2px;
+	}
+	
+}
+
+.WitchDoctorMaledict_Bar
+{
+	border: 1px solid #cd88f4;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #040114 ), to( #070222 ) );
+}
+
+.WitchDoctorMaledict_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #6f2db9 ), to( #a561ef ) );
+	transition-duration: 0.2s;
+}
+
+.WitchDoctorMaledict_Icon
+{
+	border: 1px solid #cd88f4;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_witch_doctor/maledict_png.vtex");
+}
+
+.NyxImpale_Bar
+{
+	border: 1px solid #e1994c;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #00020b ), to( #020925 ) );
+	animation-name: NyxImpaleActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.NyxImpale_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #8d3c19 ), to( #dc8c36 ) );
+	transition-duration: 0.15s;
+}
+
+.NyxImpale_Icon
+{
+	border: 1px solid #e1994c;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_nyx_assassin/impale_png.vtex");
+	animation-name: NyxImpaleActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'NyxImpaleActive'
+{
+	0%
+	{
+		box-shadow: fill #d29d64 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #d29d64 0px 0px 15px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #d29d64 0px 0px 5px -2px;
+	}
+	
+}
+
+.NyxCarapace_Bar
+{
+	border: 1px solid #e1994c;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #00020b ), to( #020925 ) );
+}
+
+.NyxCarapace_Filler
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #8d3c19 ), to( #dc8c36 ) );
+	transition-duration: 0.12s;
+}
+
+.NyxCarapace_Icon
+{
+	border: 1px solid #e1994c;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_nyx_assassin/carapace_png.vtex");
+	wash-color: #666;
+	saturation: 0.3;
+}
+
+.NyxCarapace_Bar_Active
+{
+	border: 1px solid #c1150e;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #00020b ), to( #020925 ) );
+	animation-name: NyxCarapaceActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.NyxCarapace_Filler_Active
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #872914 ), to( #e04825 ) );
+	transition-duration: 0.12s;
+}
+
+.NyxCarapace_Icon_Active
+{
+	border: 1px solid #c1150e;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_nyx_assassin/carapace_png.vtex");
+	animation-name: NyxCarapaceActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+	wash-color: #fff;
+	saturation: 1;
+}
+
+@keyframes 'NyxCarapaceActive'
+{
+	0%
+	{
+		box-shadow: fill #ee423a 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #ee423a 0px 0px 15px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #ee423a 0px 0px 5px -2px;
+	}
+	
+}
+
+.NyxVendetta_Bar
+{
+	border: 1px solid #973030;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #020519 ), to( #04092a ) );
+}
+
+.NyxVendetta_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #6a1111 ), to( #cc2121 ) );
+	transition-duration: 0.15s;
+}
+
+.NyxVendetta_Icon
+{
+	border: 1px solid #973030;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_nyx_assassin/vendetta_png.vtex");
+}
+
+.BroodHunger_Bar
+{
+	border: 1px solid #ae3910;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #000511 ), to( #010b22 ) );
+	animation-name: BroodHungerActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.BroodHunger_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #8b2113 ), to( #e5361f ) );
+	transition-duration: 0.12s;
+}
+
+.BroodHunger_Icon
+{
+	border: 1px solid #ae3910;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_broodmother/insatiable_png.vtex");
+	animation-name: BroodHungerActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'BroodHungerActive'
+{
+	0%
+	{
+		box-shadow: fill #ffa478 0px 0px 6px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #ffa478 0px 0px 15px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #ffa478 0px 0px 6px -2px;
+	}
+	
+}
+
+.BroodBite_Bar
+{
+	border: 1px solid #d73633;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1c0105 ), to( #290309 ) );
+}
+
+.BroodBite_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #7b141b ), to( #d42e39 ) );
+	transition-duration: 0.15s;
+}
+
+.BroodBite_Icon
+{
+	border: 1px solid #d73633;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_broodmother/bite_png.vtex");
+}
+
+.BroodSpawn_Bar
+{
+	border: 1px solid #9a3131;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #020115 ), to( #040223 ) );
+}
+
+.BroodSpawn_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #4034a5 ), to( #7d72e9 ) );
+	transition-duration: 0.15s;
+}
+
+.BroodSpawn_Icon
+{
+	border: 1px solid #9a3131;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_broodmother/spawn_png.vtex");
+}
+
+.StalkerVoid_Bar
+{
+	border: 1px solid #6a76ae;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #020010 ), to( #04021f ) );
+}
+
+.StalkerVoid_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #2f3884 ), to( #7a87ee ) );
+	transition-duration: 0.2s;
+}
+
+.StalkerVoid_Icon
+{
+	border: 1px solid #6a76ae;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_night_stalker/void_png.vtex");
+}
+
+.StalkerVoid_Max
+{
+	animation-name: StalkerVoidActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'StalkerVoidActive'
+{
+	0%
+	{
+		box-shadow: fill #8c88e2 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #8c88e2 0px 0px 11px -2px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #8c88e2 0px 0px 5px -2px;
+	}
+	
+}
+
+.StalkerFear_Bar
+{
+	border: 1px solid #6a76ae;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #020010 ), to( #04021f ) );
+	animation-name: StalkerFearActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.StalkerFear_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #383d97 ), to( #777ce7 ) );
+	transition-duration: 0.12s;
+}
+
+.StalkerFear_Icon
+{
+	border: 1px solid #6a76ae;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_night_stalker/fear_png.vtex");
+	animation-name: StalkerFearActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'StalkerFearActive'
+{
+	0%
+	{
+		box-shadow: fill #5054eb 0px 0px 6px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #5054eb 0px 0px 15px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #5054eb 0px 0px 6px -2px;
+	}
+	
+}
+
+.StalkerHunter_Bar
+{
+	border: 1px solid #6a76ae;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #020010 ), to( #04021f ) );
+}
+
+.StalkerHunter_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #393ea4 ), to( #686eea ) );
+	transition-duration: 0.12s;
+}
+
+.StalkerHunter_Icon
+{
+	border: 1px solid #6a76ae;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_night_stalker/hunter_png.vtex");
+	wash-color: #777;
+	saturation: 0.4;
+}
+
+.StalkerHunter_Icon_Active
+{
+	wash-color: #fff;
+	saturation: 1;
+	animation-name: StalkerHunterActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.2s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.StalkerHunter_Filler_Active
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #5c65a7 ), to( #959fec ) );
+}
+
+.StalkerHunter_Bar_Active
+{
+	animation-name: StalkerHunterActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.2s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'StalkerHunterActive'
+{
+	0%
+	{
+		box-shadow: fill #aeb6f8 0px 0px 6px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #aeb6f8 0px 0px 16px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #aeb6f8 0px 0px 6px -2px;
+	}
+	
+}
+
+.StalkerDark_Bar
+{
+	border: 1px solid #6a76ae;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #020010 ), to( #04021f ) );
+}
+
+.StalkerDark_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #383d97 ), to( #777ce7 ) );
+	transition-duration: 0.12s;
+}
+
+.StalkerDark_Icon
+{
+	border: 1px solid #6a76ae;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_night_stalker/dark_png.vtex");
+}
+
+.JakiroDual_Bar
+{
+	width: 60px;
+	height: 30px;
+	margin-left: 28px;
+	vertical-align: center;
+	border-top: 1px solid #d37f23;
+	border-left: 1px solid #d37f23;
+	border-bottom: 1px solid #d37f23;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1b0100 ), to( #300302 ) );
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	box-shadow: fill black 0px 0px 7px -2px;
+}
+
+.JakiroDual_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #a4460e ), to( #dc971f ) );
+	border-bottom-left-radius: 3px;
+	border-top-left-radius: 3px;
+}
+
+.JakiroDual_Icon
+{
+	width: 40px;
+	height: 40px;
+	margin-left: 0px;
+	background-size: contain;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_jakiro/jakiro_dual_breath_fire_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	box-shadow: fill black 0px 0px 7px -2px;
+	border: 1px solid #d37f23;
+	border-radius: 3px;
+	z-index: 999;
+}
+
+.JakiroDual_Bar_Active
+{
+	width: 60px;
+	height: 30px;
+	margin-left: 28px;
+	vertical-align: center;
+	border-top: 1px solid #8fb9c5;
+	border-left: 1px solid #8fb9c5;
+	border-bottom: 1px solid #8fb9c5;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1b0100 ), to( #300302 ) );
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	box-shadow: fill black 0px 0px 7px -2px;
+}
+
+.JakiroDual_Icon_Active
+{
+	width: 40px;
+	height: 40px;
+	margin-left: 0px;
+	background-size: contain;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_jakiro/jakiro_dual_breath_ice_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	box-shadow: fill black 0px 0px 7px -2px;
+	border: 1px solid #8fb9c5;
+	border-radius: 3px;
+	z-index: 999;
+}
+
+.JakiroDual_Filler_Active
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #3385ac ), to( #90d6e9 ) );
+	border-bottom-left-radius: 3px;
+	border-top-left-radius: 3px;
+}
+
+.JakiroDual_Number
+{
+	opacity: 0;
+}
+
+.JakiroPath_Bar
+{
+	border: 1px solid #d37f23;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1a0901 ), to( #280e04 ) );
+}
+
+.JakiroPath_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #a4460e ), to( #dc971f ) );
+	transition-duration: 0.2s;
+}
+
+.JakiroPath_Icon
+{
+	border: 1px solid #d37f23;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_jakiro/jakiro_ice_path_fire_png.vtex");
+	wash-color: #555555;
+	saturation: 0.1;
+}
+
+.JakiroPath_Bar_Active
+{
+	border: 1px solid #8fb9c5;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #010f16 ), to( #021a26 ) );
+}
+
+.JakiroPath_Filler_Active
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #3385ac ), to( #90d6e9 ) );
+	transition-duration: 0.2s;
+}
+
+.JakiroPath_Icon_Active
+{
+	border: 1px solid #8fb9c5;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_jakiro/path_png.vtex");
+	wash-color: #555555;
+	saturation: 0.1;
+}
+
+.JakiroPath_Glow
+{
+	animation-name: JakiroPathGlow;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+	wash-color: #fff;
+	saturation: 1;
+}
+
+.JakiroPath_Glow_Active
+{
+	animation-name: JakiroPathGlowActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+	wash-color: #fff;
+	saturation: 1;
+}
+
+@keyframes 'JakiroPathGlow'
+{
+	0%
+	{
+		box-shadow: fill #e08b27 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #e08b27 0px 0px 12px -2px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #e08b27 0px 0px 5px -2px;
+	}
+	
+}
+
+@keyframes 'JakiroPathGlowActive'
+{
+	0%
+	{
+		box-shadow: fill #90a3e1 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #90a3e1 0px 0px 12px -2px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #90a3e1 0px 0px 5px -2px;
+	}
+	
+}
+
+.JakiroLiquid_Bar
+{
+	border: 1px solid #8fb9c5;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1a0901 ), to( #280e04 ) );
+}
+
+.JakiroLiquid_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #a4460e ), to( #dc971f ) );
+	transition-duration: 0.15s;
+}
+
+.JakiroLiquid_Icon
+{
+	border: 1px solid #8fb9c5;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_jakiro/jakiro_liquid_legendary_png.vtex");
+	wash-color: #555555;
+	saturation: 0.1;
+}
+
+.JakiroLiquid_Filler_Active
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #a4460e ), to( #dc971f ) );
+	transition-duration: 0.15s;
+}
+
+.JakiroLiquid_Icon_Active
+{
+	border: 1px solid #8fb9c5;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_jakiro/jakiro_liquid_legendary_png.vtex");
+	animation-name: JakiroLiquidActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.2s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+	wash-color: #fff;
+	saturation: 1;
+}
+
+.JakiroLiquid_Bar_Active
+{
+	border: 1px solid #8fb9c5;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1a0901 ), to( #280e04 ) );
+	animation-name: JakiroLiquidActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.2s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'JakiroLiquidActive'
+{
+	0%
+	{
+		box-shadow: fill #90a3e1 0px 0px 6px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #90a3e1 0px 0px 16px -4px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #90a3e1 0px 0px 6px -2px;
+	}
+	
+}

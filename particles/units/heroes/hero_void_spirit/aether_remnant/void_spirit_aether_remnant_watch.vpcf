@@ -1,0 +1,150 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf61:version{39d3ce1d-9442-4407-9b78-8317145b1732} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_flConstantRadius = 50.0
+	m_Renderers = [  ]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.05
+		},
+		{
+			_class = "C_OP_SetChildControlPoints"
+			m_nFirstControlPoint = 3
+		},
+		{
+			_class = "C_OP_RemapTransformVisibilityToScalar"
+			m_flInputMax = 0.01
+			m_nFieldOutput = 16
+			m_TransformInput = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+		{
+			_class = "C_OP_PositionLock"
+			m_TransformInput = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_TransformInput = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+		{
+			_class = "C_INIT_PositionPlaceOnGround"
+			m_flMaxTraceLength = 256.0
+			m_CollisionGroupName = "DEBRIS"
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_void_spirit/aether_remnant/void_spirit_aether_remnant_watchj.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_void_spirit/aether_remnant/void_spirit_aether_remnant_watchd.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_void_spirit/aether_remnant/void_spirit_aether_remnant_watchf.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_void_spirit/aether_remnant/void_spirit_aether_remnant_watchk.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_void_spirit/aether_remnant/void_spirit_aether_remnant_watche.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_void_spirit/aether_remnant/void_spirit_aether_remnant_watcha.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_void_spirit/aether_remnant/void_spirit_aether_remnant_watchh.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_void_spirit/aether_remnant/void_spirit_aether_remnant_watchc.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_void_spirit/aether_remnant/void_spirit_aether_remnant_watchb.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_void_spirit/aether_remnant/void_spirit_aether_remnant_watchg.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_void_spirit/aether_remnant/void_spirit_aether_remnant_watchi.vpcf"
+			m_bEndCap = true
+		},
+	]
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+}

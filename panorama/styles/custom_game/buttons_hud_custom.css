@@ -1,0 +1,567 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.ButtonsHudCustomMain
+{
+	width: 100%;
+	height: 100%;
+}
+
+.HighFiveButton
+{
+	height: 60px;
+	width: 60px;
+	margin-bottom: 100px;
+}
+
+#SettingsTop
+{
+	height: 50px;
+	width: 30%;
+	margin-left: 198px;
+	flow-children: right;
+	padding-top: 14px;
+}
+
+.TopBarIcon
+{
+	width: 30px;
+	height: 30px;
+	margin-left: 8px;
+	margin-right: 8px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	opacity: 0.5;
+	wash-color: #cdf;
+	margin-top: -1px;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	tooltip-position: bottom;
+	img-shadow: 0px 0px 3px 3 black;
+}
+
+.TopBarIcon:hover
+{
+	opacity: 1;
+	wash-color: white;
+}
+
+.TopBarIcon:active
+{
+	opacity: 1;
+	wash-color: white;
+}
+
+#SettingsOpen
+{
+	background-image: url("s2r://panorama/images/control_icons/gear_return_png.vtex");
+}
+
+#TutorialStart
+{
+	background-color: red;
+}
+
+#SettingsRoot
+{
+	width: fit-children;
+	min-width: 480px;
+	height: fit-children;
+	min-height: 150px;
+	align: center bottom;
+	background-color: gradient(linear, 0% 0%, 0% 25%, from(#232326), to(#1c1d20));
+	box-shadow: #00000099 0px 0px 8px 0px;
+	border: 2px solid #32383677;
+	padding-left: 10px;
+	padding-right: 30px;
+	padding-bottom: 10px;
+	flow-children: none;
+	visibility: collapse;
+	transition-property: transform, opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+	opacity: 0;
+	margin-left: 56%;
+	margin-bottom: 16%;
+}
+
+#SettingsRoot.open
+{
+	visibility: visible;
+	transform: translateY(0px) scale3d(1, 1, 1);
+	transition-property: transform;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+	opacity: 1;
+}
+
+#SettingsRoot.closing
+{
+	visibility: visible;
+	transform: translateY(0px) scale3d(0, 0, 0);
+	opacity: 0;
+}
+
+#SettingsClose
+{
+	vertical-align: top;
+	width: 32px;
+	height: 32px;
+	horizontal-align: right;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	margin-right: -25px;
+	margin-top: 6px;
+	opacity: 0.5;
+	wash-color: #cdf;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+#SettingsClose:hover
+{
+	opacity: 1;
+}
+
+.SettingsSectionTitle
+{
+	font-family: Reaver;
+	margin-left: 25px;
+	letter-spacing: 2px;
+	font-size: 14px;
+	font-weight: thin;
+	color: #939da0;
+	text-transform: uppercase;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#SettingsContent
+{
+	min-width: 480px;
+	width: fit-children;
+	height: fit-children;
+	flow-children: down;
+}
+
+#SettingsKeybinds
+{
+	width: 100%;
+	flow-children: down;
+	height: fit-children;
+}
+
+#SettingsKeybindReset
+{
+	min-height: 24px;
+	min-width: 100px;
+	width: fit-children;
+	height: fit-children;
+	margin-left: 12px;
+	padding: 2px 4px 2px 4px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#191e1e), to(#292e2e));
+	border: 2px solid #5e686966;
+	transition-property: border;
+	transition-duration: 0.16s;
+	transition-timing-function: ease-in-out;
+}
+
+#SettingsKeybindReset:hover
+{
+	border-color: #5b6a62;
+}
+
+#SettingsKeybindReset Label
+{
+	text-align: center;
+	font-size: 14px;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 6px 1 #000000;
+	letter-spacing: 2px;
+	transition-property: color;
+	transition-duration: 0.16s;
+	transition-timing-function: ease-in-out;
+}
+
+#SettingsKeybindReset:hover Label
+{
+	color: white;
+}
+
+#SettingsKeybindsList
+{
+	width: 100%;
+	height: fit-children;
+	flow-children: right-wrap;
+}
+
+.CustomKeybindContainer
+{
+	flow-children: down;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.CustomKeybind
+{
+	width: 90px;
+	height: 90px;
+}
+
+.CustomKeybinder
+{
+	width: 84px;
+	height: 84px;
+	margin: 12px;
+	margin-top: 13px;
+	border: 2px solid #414a45;
+	background-color: #2b2f30;
+	color: #7d8688;
+	transition-property: background-color, border, color;
+	transition-duration: 0.16s;
+	transition-timing-function: ease-in-out;
+}
+
+.CustomKeybinder:hover
+{
+	background-color: #414a45;
+	border-color: #5b6a62;
+	color: white;
+}
+
+.CustomKeybinder.active
+{
+	background-color: #323836;
+	border: 2px solid #5c99ff;
+	padding-left: 0px;
+	box-shadow: #5c99ff22 0px 0px 8px 0px;
+}
+
+.CustomKeybinder #title
+{
+	width: 100%;
+	height: 50px;
+	background-color: transparent;
+	font-size: 40px;
+	font-weight: thin;
+	vertical-align: bottom;
+	horizontal-align: right;
+	text-align: right;
+	margin-right: 4px;
+	margin-bottom: -12px;
+	padding-top: 3px;
+	text-transform: uppercase;
+	transition-property: color, background-color;
+	transition-duration: 0.16s;
+	transition-timing-function: ease-in-out;
+}
+
+.CustomKeybinder:hover #title
+{
+	color: #5c6460;
+}
+
+#BindingLabels
+{
+	width: 100%;
+	background-color: none;
+	height: 100%;
+	horizontal-align: right;
+	transition-property: background-color;
+	transition-duration: 0.16s;
+	transition-timing-function: ease-in-out;
+	color: #7d8688;
+}
+
+.CustomKeybinder.active #BindingLabels
+{
+	animation-name: BackgroundPulse;
+	animation-duration: 1.35s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'BackgroundPulse'
+{
+	0%
+	{
+		background-color: #1350a9;
+	}
+	
+	50%
+	{
+		background-color: #021088;
+	}
+	
+	100%
+	{
+		background-color: #1350a9;
+	}
+	
+}
+
+#BindingLabelsContainer
+{
+	height: 100%;
+	horizontal-align: left;
+	flow-children: none;
+}
+
+.CustomKeybinder.active #BindingLabelsContainer
+{
+	visibility: collapse;
+}
+
+#BindingLabelsContainer .BindingRowButton
+{
+	color: white;
+	font-size: 15px;
+	vertical-align: top;
+	horizontal-align: left;
+	text-align: left;
+	background-color: transparent;
+	margin-left: 4px;
+	text-shadow: 0px 0px 3px 3 #000000;
+	padding-top: 3px;
+	text-transform: uppercase;
+}
+
+#BindingLabelsContainer .BindingRowButton#mod
+{
+	visibility: collapse;
+}
+
+#BindingClose
+{
+	vertical-align: top;
+	width: 24px;
+	height: 24px;
+	horizontal-align: right;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	visibility: collapse;
+}
+
+.CustomKeybinder.active #BindingClose
+{
+	visibility: visible;
+}
+
+#CustomKeybindTitle
+{
+	text-align: center;
+	width: 100%;
+	margin-top: -10px;
+	height: fit-children;
+	text-overflow: clip;
+	font-size: 14px;
+}
+
+.SettingsList
+{
+	width: fit-children;
+	height: fit-children;
+	flow-children: down;
+}
+
+.SettingsComboBox
+{
+	width: fit-children;
+	height: 30px;
+}
+
+DOTASettingsCheckbox Label
+{
+	vertical-align: center;
+}
+
+.RightPanel
+{
+	width: 80px;
+	height: 200px;
+	align: center bottom;
+	flow-children: right-wrap;
+	transform: TranslateX(-46px);
+}
+
+.RightPanel_buttons
+{
+	width: 80px;
+	height: 127px;
+	padding: -1px;
+	align: center bottom;
+	flow-children: down;
+	background-image: url("s2r://panorama/images/custom_game/items_background_png.vtex");
+	background-size: 100%;
+}
+
+.TopPanel
+{
+	width: 300px;
+	height: 100px;
+	align: right top;
+}
+
+.TopPanel_buttons
+{
+	align: right top;
+	flow-children: right;
+	margin-top: 27px;
+	margin-right: 49px;
+	width: 242px;
+}
+
+.ObserverWard
+{
+	width: 55px;
+	height: 50px;
+	margin-top: 16px;
+	margin-left: 5px;
+}
+
+.SentryWard
+{
+	width: 55px;
+	height: 50px;
+	margin-top: 2px;
+	margin-left: 5px;
+}
+
+.SmokeMain
+{
+	width: 60px;
+	height: 35px;
+	margin-top: 29px;
+	margin-right: 1px;
+}
+
+.DustMain
+{
+	width: 60px;
+	height: 35px;
+	margin: 5px;
+	margin-top: 29px;
+	margin-right: 8px;
+}
+
+.HighFiveButtonPanel
+{
+	width: 60px;
+	height: 60px;
+	margin-right: 8px;
+	margin-top: 4px;
+}
+
+.TopIcon
+{
+	width: 60px;
+	height: 30px;
+	vertical-align: bottom;
+	background-image: url("s2r://panorama/images/conduct/ovw-bar-bg_png.vtex");
+}
+
+.InfoButton
+{
+	margin-top: 70px;
+	margin-left: 45px;
+	width: 24px;
+	height: 24px;
+	vertical-align: top;
+	background-color: #212121;
+	z-index: 2;
+	border-radius: 50%;
+	box-shadow: fill #f7942b 0px 0px 4px -1px;
+	border: 1px solid #666;
+	ignore-parent-flow: true;
+}
+
+.InfoButton_text
+{
+	text-shadow: 0px 0px 4px 3 #000000;
+	color: #ccc;
+	horizontal-align: center;
+	vertical-align: center;
+	font-family: Reaver;
+	font-size: 17.5px;
+	margin-left: 3.5px;
+	margin-top: 1px;
+	overflow: noclip noclip;
+}
+
+.WardIcon
+{
+	width: 45px;
+	height: 45px;
+	border-radius: 50%;
+	border: 1px solid #393939;
+	vertical-align: bottom;
+	box-shadow: inset #000000cc 1px 1px 8px 6px;
+}
+
+.WardHotkey
+{
+	background-color: #2127268a;
+	box-shadow: fill #000000bb 1px 0px 1px 1px;
+	border: 1px solid black;
+	border-radius: 2px;
+	z-index: 1;
+	height: 13px;
+}
+
+.WardHotkeyText
+{
+	font-size: 10px;
+	color: white;
+	text-align: center;
+	text-shadow: 1px 1px 0px 2 #000000;
+}
+
+.CooldownLabel
+{
+	font-size: 12px;
+	color: white;
+	z-index: 1;
+	vertical-align: bottom;
+	margin-left: 13px;
+	text-shadow: 1px 1px 0px 2 #000000;
+}
+
+.CountLabel
+{
+	color: white;
+	align: center bottom;
+	text-shadow: 0px 0px 3px 1 red;
+	margin-left: 28px;
+}
+
+.TopCountLabel
+{
+	color: white;
+	align: right bottom;
+	text-shadow: 0px 0px 3px 1 red;
+	margin-right: 2px;
+	font-size: 20px;
+}
+
+.TopCooldownLabel
+{
+	font-size: 14px;
+	color: white;
+	z-index: 1;
+	vertical-align: bottom;
+	margin-left: 1px;
+	text-shadow: 1px 1px 0px 2 #000000;
+}

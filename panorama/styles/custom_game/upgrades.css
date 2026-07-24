@@ -1,0 +1,142 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+@keyframes 'CardAnimation'
+{
+	0%
+	{
+		opacity: 0.5;
+	}
+	
+	50%
+	{
+		opacity: 0.1;
+	}
+	
+	100%
+	{
+		opacity: 0.5;
+	}
+	
+}
+
+@keyframes 'BlurOpen'
+{
+	0%
+	{
+		opacity: 1;
+	}
+	
+	100%
+	{
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'ButtonRight'
+{
+	0%
+	{
+		transform: rotateZ( 0deg );
+	}
+	
+	100%
+	{
+		transform: rotateZ( 180deg );
+	}
+	
+}
+
+@keyframes 'ButtonLeft'
+{
+	0%
+	{
+		transform: rotateZ( 180deg );
+	}
+	
+	100%
+	{
+		transform: rotateZ( 0deg );
+	}
+	
+}
+
+.MainUpgrades
+{
+	width: 62px;
+	height: 62px;
+	vertical-align: bottom;
+	margin-bottom: 26px;
+	margin-left: 0px;
+	margin-right: 4px;
+	z-index: 3;
+}
+
+.ButtonClose
+{
+	animation-name: ButtonRight;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	animation-direction: reverse;
+	width: 62px;
+	height: 62px;
+	vertical-align: bottom;
+	z-index: 3;
+	background-image: url("s2r://panorama/images/custom_game/logo_png.vtex");
+	background-size: contain;
+}
+
+.ButtonOpen
+{
+	animation-name: ButtonLeft;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	animation-direction: reverse;
+	width: 62px;
+	height: 62px;
+	vertical-align: bottom;
+	z-index: 3;
+	transform: rotateZ( 180deg );
+	background-image: url("s2r://panorama/images/custom_game/logo_png.vtex");
+	background-size: contain;
+}
+
+.BlurClose
+{
+	animation-name: CardAnimation;
+	animation-iteration-count: infinite;
+	animation-duration: 3s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+	width: 100%;
+	height: 100%;
+	z-index: 3;
+	background-image: url("s2r://panorama/images/custom_game/logo_blur_png.vtex");
+	background-size: contain;
+}
+
+.BlurOpen
+{
+	animation-name: BlurOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	animation-direction: reverse;
+	width: 100%;
+	height: 100%;
+	z-index: 3;
+	background-image: url("s2r://panorama/images/custom_game/logo_blur_png.vtex");
+	background-size: contain;
+}

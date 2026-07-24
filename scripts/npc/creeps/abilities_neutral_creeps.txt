@@ -1,0 +1,789 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+
+"DOTAAbilities"
+{
+
+"Version"		"1"
+
+
+
+
+
+
+"neutral_centaur_stun"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"   
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/neutral_centaur_stun"
+    "AbilityTextureName"            "centaur_khan_war_stomp"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "MaxLevel"                      "1"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastPoint"              "1"
+
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "200"
+    "AbilityCooldown"               "12"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "damage"                    "100"
+        "stun"                      "1.4"
+        "aoe"                       "250"
+        "illusion"                  "20"
+        
+    }
+    "AbilityCastAnimation"      "ACT_DOTA_OVERRIDE_ABILITY_1"
+    
+}
+
+
+
+
+"neutral_ursa_clap"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"   
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/neutral_ursa_clap"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "AbilityTextureName"            "polar_furbolg_ursa_warrior_thunder_clap"
+    "MaxLevel"                      "1"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "150"
+    "AbilityCooldown"               "8"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "slow"                      "-30"
+        "damage"                    "150"
+        "aoe"                       "250"
+        "duration"                  "3"
+        "illusion"                  "20"
+    }
+    
+}
+
+
+
+
+
+"neutral_golem_stun"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET" 
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/neutral_golem_stun"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "AbilityTextureName"            "brewmaster_earth_hurl_boulder"
+    "MaxLevel"                      "1"
+
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "150"
+    "AbilityCooldown"               "9"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "stun"                      "0.2"
+        "damage"                        "20"
+        "speed"                     "900"
+        "illusion"                  "10"
+    
+    }
+    
+}
+
+
+
+
+"neutral_ogre_armor"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET" 
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/neutral_ogre_armor"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityTextureName"            "ogre_magi_frost_armor"
+    "MaxLevel"                      "1"
+
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "30"
+    "AbilityCooldown"               "5"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "duration"                      "10"
+        "armor"                     "8"
+        "magic"                     "30"
+    }
+    
+}
+
+
+
+
+
+"neutral_satyr_shockwave"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET" 
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/neutral_satyr_shockwave"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    "AbilityTextureName"            "satyr_hellcaller_shockwave"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "MaxLevel"                      "1"
+
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "100"
+    "AbilityCooldown"               "8"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "silence"                   "2"
+        "damage"                    "150"
+        "speed"                     "700"
+        "distance"                  "800"
+        "radius"                    "200"
+        "illusion"                  "20"
+    
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+"neutral_satyr_manaburn"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE" 
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/neutral_satyr_manaburn"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "AbilityTextureName"            "satyr_soulstealer_mana_burn"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "MaxLevel"                      "1"
+
+
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "mana"                      "10"
+        "damage"                        "10"
+    }
+    
+}
+
+
+
+"neutral_satyr_purge"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET" 
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/neutral_satyr_purge"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityTextureName"            "satyr_trickster_purge"
+    "MaxLevel"                      "1"
+
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "30"
+    "AbilityCooldown"               "8"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "duration"                      "2"
+        "slow"                      "40"
+        "damage"                    "30"
+        "illusion"                  "10"
+    }
+}
+
+
+
+
+"neutral_troll_raise"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"   
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/neutral_troll_raise"
+    "AbilityTextureName"            "dark_troll_warlord_raise_dead"
+    "MaxLevel"                      "1"
+
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "50"
+    "AbilityCooldown"               "10"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "number"                        "2"
+        "duration"                      "20"    
+    }
+    
+}
+
+
+
+
+"neutral_bird_tornado"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET" 
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/neutral_bird_tornado"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+    "AbilityTextureName"            "enraged_wildkin_tornado"   
+    "MaxLevel"                      "1"
+
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "150"
+    "AbilityCooldown"               "10"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "health"                    "2"
+        "damage"                    "40"
+        "slow"                      "-30"
+        "duration"                  "10"
+        "illusion"                  "5"
+        "aoe"                       "250"
+    }
+    
+}
+
+
+
+
+
+
+
+"neutral_dragon_fire"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET" 
+    "BaseClass"                     "ability_lua"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "ScriptFile"                    "abilities/neutral_dragon_fire"
+    "AbilityTextureName"            "black_dragon_fireball"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+    "MaxLevel"                      "1"
+
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "50"
+    "AbilityCooldown"               "10"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "duration"                      "10"
+        "damage"                        "200"
+        "slow"                          "-7"
+        "damage_inc"                    "10"
+        "radius"                        "230"
+        "interval"                      "0.5"
+    }
+    
+}
+
+
+
+
+"neutral_lizard_frenzy"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"   
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/neutral_lizard_frenzy"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityTextureName"            "big_thunder_lizard_frenzy"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    "MaxLevel"                      "1"
+
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "100"
+    "AbilityCooldown"               "10"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "duration"                      "6"
+        "speed"                     "50"
+        "heal"                      "150"
+        "aoe"                       "400"
+    }
+    
+}
+
+
+"neutral_harpy_strike"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET" 
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/neutral_harpy_strike"
+    "AbilityTextureName"            "harpy_storm_chain_lightning"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+    "MaxLevel"                      "1"
+
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "50"
+    "AbilityCooldown"               "5"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "damage"                        "50"
+        "illusion"                      "20"
+    
+    }
+    
+}
+
+
+
+
+
+
+
+"neutral_golem_craggy"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE" 
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/neutral_golem_craggy"
+    "AbilityTextureName"            "tiny_craggy_exterior"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+    "MaxLevel"                      "1"
+
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "0"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "chance"                        "10"
+        "damage"                        "150"
+        "duration"                      "1"
+    }
+    
+}
+
+
+
+
+"neutral_golem_bash"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE" 
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/neutral_golem_bash"
+    "AbilityTextureName"            "brewmaster_earth_hurl_boulder"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+    "MaxLevel"                      "1"
+
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "0"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "chance"                        "15"
+        "damage"                        "150"
+        "duration"                      "1"
+    }   
+}
+
+
+
+
+
+"neutral_lizard_mkb"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE" 
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/neutral_lizard_mkb"
+    "AbilityTextureName"            "big_thunder_lizard_wardrums_aura"
+    "MaxLevel"                      "1"
+
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "0"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "break_duration"            "2"
+        "chance"                    "15"    
+    }
+}
+    
+
+
+
+
+"neutral_centaur_aura"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_PASSIVE"    
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/neutral_centaur_aura"
+    "AbilityTextureName"            "mudgolem_cloak_aura"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "MaxLevel"                      "1"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "0"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "armor"                     "6"
+        "magic"                     "15"
+    }
+}
+        
+
+
+
+
+
+
+
+
+"neutral_ursa_aura"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_PASSIVE"    
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/neutral_ursa_aura"
+    "AbilityTextureName"            "centaur_khan_endurance_aura"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "MaxLevel"                      "1"
+
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "0"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "damage"                        "20"
+        "speed"                     "20"
+    }
+}
+
+
+
+
+
+
+
+"neutral_cone_armor"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE" 
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/neutral_cone_armor"
+    "AbilityTextureName"            "pangolier_shield_crash"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    "MaxLevel"                      "1"
+
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "0"
+    "AbilityCooldown"               "9"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "duration"                      "1.6"
+        "damage"                       "50"
+        "reduce"                       "-70"
+        "health"                       "50"
+    }
+}
+
+
+
+
+
+"neutral_frostgolem_slow"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE" 
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/neutral_frostgolem_slow"
+    "AbilityTextureName"            "ancient_apparition_cold_feet"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    "MaxLevel"                      "1"
+
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "0"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+            "slow"                      "-50"
+            "heal"                      "-50"
+            "duration"                      "3"
+        
+
+    }
+}
+
+
+
+
+"neutral_frostgolem_root"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE" 
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/neutral_frostgolem_root"
+    "AbilityTextureName"            "lich_frost_nova"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    "MaxLevel"                      "1"
+
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "60"
+    "AbilityCooldown"               "5"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "delay"                     "0.8"
+        "radius"                        "200"
+        "damage"                        "500"
+        "cd"                        "5"
+    }
+}
+
+
+
+"neutral_bird_slow"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_PASSIVE"    
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/neutral_bird_slow"
+    "AbilityTextureName"            "enraged_wildkin_toughness_aura"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    "MaxLevel"                      "1"
+
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "0"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "move"                      "-10"
+        "speed"                     "-10"
+        "radius"                     "500"
+    }
+}
+
+
+
+
+
+
+
+"neutral_prawler_clap"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE" 
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/neutral_prawler_clap"
+    "AbilityTextureName"            "spawnlord_master_freeze"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    "MaxLevel"                      "1"
+
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "60"
+    "AbilityCooldown"               "10"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "aoe"                       "300"
+        "root"                      "2"
+        "duration"                  "7"
+        "armor"                     "-40"
+    }
+}
+
+
+
+"neutral_prawler_aura"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_AURA"    
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/neutral_prawler_aura"
+    "AbilityTextureName"            "spawnlord_aura"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    "MaxLevel"                      "1"
+
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "0"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "heal"                      "100"
+        "radius"                     "500"
+    }
+}
+
+
+
+
+
+}

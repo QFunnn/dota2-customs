@@ -1,0 +1,111 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf62:version{c135a90d-ef52-47fa-a9b8-83a382a77471} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nBehaviorVersion = 12
+	m_nMaxParticles = 0
+	m_flConstantRadius = 50.0
+	m_ConstantColor = [ 246, 145, 145, 255 ]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 10
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/heroes/lich/lich.vmdl"
+				m_nModSpecificData = 331
+				m_sequenceName = "idle"
+				m_hitboxSetName = "default"
+			}
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateOnModel"
+			m_nForceInModel = 1
+			m_vecDirectionBias = [ 50.0, 0.0, 0.0 ]
+			m_HitboxSetName = "head"
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 30.0, 0.0, 40.0 ]
+			m_OffsetMax = [ 30.0, 0.0, 40.0 ]
+			m_bLocalCoords = true
+			m_TransformInput = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_LockToBone"
+			m_HitboxSetName = "head"
+			m_bRigid = true
+		},
+		{
+			_class = "C_OP_SetChildControlPoints"
+			m_nFirstControlPoint = 10
+			m_bSetOrientation = true
+		},
+	]
+	m_Renderers = [  ]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/sf_ulti_gaze_head_s.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_lich/lich_gaze_head_eye.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_lich/lich_gaze_head_rays.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_lich/lich_gaze_head_eye_pupil.vpcf"
+		},
+	]
+}

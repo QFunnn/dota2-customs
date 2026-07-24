@@ -1,0 +1,102 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_PositionLock"
+			m_nControlPointNumber = 10
+			m_bLockRot = true
+		},
+		{
+			_class = "C_OP_FadeAndKill"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flStartScale = 0.4
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_bAdditive = true
+			VisibilityInputs = 
+			{
+				m_flCameraBias = 12.0
+			}
+			m_hTexture = resource:"materials/particle/particle_flares/particle_flare_001.vtex"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphere"
+			m_nControlPointNumber = 10
+			m_fRadiusMax = 15.0
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMin = 70.0
+			m_flRadiusMax = 100.0
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 14.0, 0.0, 0.0 ]
+			m_OffsetMax = [ 14.0, 0.0, 0.0 ]
+			m_nControlPointNumber = 10
+			m_bLocalCoords = true
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 255, 225, 221, 255 ]
+			m_ColorMax = [ 248, 206, 219, 255 ]
+		},
+		{
+			_class = "C_INIT_RandomAlpha"
+			m_nAlphaMin = 62
+			m_nAlphaMax = 67
+		},
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMin = 1.0
+			m_fLifetimeMax = 2.0
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 12.0
+		},
+	]
+	m_nMaxParticles = 20
+}

@@ -1,0 +1,325 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+
+"DOTAAbilities"
+{
+
+"Version"		"1"
+
+
+
+
+
+"sven_storm_bolt_custom"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/sven/sven_storm_bolt_custom" 
+    "AbilityTextureName"            "sven_storm_bolt"                                                       // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES_STRONG"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Hero_Sven.StormBoltImpact"
+    "LinkedAbility"                 "sven_storm_bolt_custom_legendary"
+
+    "HasScepterUpgrade"             "1"
+
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastRange"              "600"
+    "AbilityCastPoint"              "0.2"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "16 15 14 13"
+
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "110 115 120 125"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "bolt_speed"            "1000"
+        "bolt_stun_duration"    "1 1.2 1.4 1.6"
+        "bolt_damage"   "80 160 240 320"
+        "bolt_aoe"          "250 270 290 310"
+        "vision_radius"     "250 270 290 310"
+        "scepter_cd"       "50"     
+    }
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
+}
+
+
+
+"sven_storm_bolt_custom_legendary"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/sven/sven_storm_bolt_custom" 
+    "AbilityTextureName"            "sven_storm_bolt_secondary"                                                       // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES_STRONG"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Hero_Sven.StormBoltImpact"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastRange"              "600"
+    "AbilityCastPoint"              "0.1"
+    "MaxLevel"                      "1"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "1"
+    "AbilityManaCost"               "0"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "radius"        "450"
+        "interval"      "1"
+        "effect_duration"   "10"
+        "duration"          "2"
+        "stun"              "0.1"
+        "move_duration"     "0.3"
+        "range"             "800"
+        "move_range"        "1600"
+        "max"               "8"
+        "damage_init"       "20"
+        "damage_inc"        "20"       
+    }
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
+}
+
+
+"sven_great_cleave_custom"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/sven/sven_great_cleave_custom" 
+    "AbilityTextureName"            "sven_great_cleave"                                                 // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+    "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+    "AbilityCastPoint"              "0.2"
+    "IsBreakable"                   "1"
+    "LinkedAbility"                 "sven_great_cleave_custom_legendary"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {                       
+        "cleave_starting_width"         "150"
+        "cleave_ending_width"           "360"
+        "cleave_distance"               "700"
+        "great_cleave_damage"   "20 40 60 80"
+    }
+}
+
+
+
+"sven_great_cleave_custom_legendary"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/sven/sven_great_cleave_custom" 
+    "AbilityTextureName"            "sven_great_cleave"                                                 // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+    "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+    "AbilityCastPoint"              "0.2"
+    "IsBreakable"                   "1"
+    "LinkedAbility"                 "sven_great_cleave_custom"
+
+    "AbilityCharges"                "3"
+    "AbilityChargeRestoreTime"      "12.0"
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "0.3"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {                       
+        "cleave_starting_width"         "150"
+        "cleave_ending_width"           "360"
+        "cleave_distance"               "700"
+        "great_cleave_damage"   "20 40 60 80"
+    }
+}
+
+
+
+
+"sven_warcry_custom"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/sven/sven_warcry_custom" 
+    "AbilityTextureName"            "sven_warcry"                                                       // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ALLIES_YES"
+    "AbilitySound"                  "Hero_Sven.WarCry"
+    "HasShardUpgrade"               "1"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastAnimation"          "ACT_DOTA_OVERRIDE_ABILITY_3"
+    "AbilityCastGestureSlot"        "DEFAULT"
+    "AbilityCastPoint"              "0.0 0.0 0.0 0.0"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "18 16 14 12"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "30 35 40 45"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "movespeed"         "6 9 12 15"
+        "bonus_armor"       "5 8 11 14"     
+        "radius"        "600"
+        "duration"      "8"
+        "shard_k"       "40"
+    }
+}
+
+
+"sven_gods_strength_custom_legendary"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/sven/sven_gods_strength_custom" 
+    "AbilityTextureName"            "slam"  
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE  | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Hero_Sven.GodsStrength"
+    "MaxLevel"                      "1"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+    "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+    
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+        //"AbilityCastAnimation"            "ACT_DOTA_ATTACK"
+    "AbilityCastGestureSlot"        "DEFAULT"
+    "AbilityCastPoint"              "0.2"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "3"
+    "AbilityCastRange"              "400"
+
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "crit_damage"       "350"
+        "slow_duration"     "1"
+        "slow"              "-100"
+        "attack"            "-150"
+        "armor"             "35"
+    }   
+}
+
+
+
+
+
+"sven_gods_strength_custom"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/sven/sven_gods_strength_custom" 
+    "AbilityTextureName"            "sven_gods_strength"    
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+    "AbilityType"                   "ABILITY_TYPE_ULTIMATE"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Hero_Sven.GodsStrength"
+    "LinkedAbility"                 "sven_gods_strength_custom_legendary"
+    
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastAnimation"          "ACT_DOTA_OVERRIDE_ABILITY_4"
+    "AbilityCastGestureSlot"        "DEFAULT"
+    "AbilityCastPoint"              "0.3 0.3 0.3"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "40 35 30"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "100 125 150"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "damage"        "60 90 120" 
+        "gods_strength_duration"    "20"
+        "bonus_slow_resistance"             "30"
+    }   
+}
+
+
+
+"sven_innate_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/sven/sven_innate_custom"  
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "MaxLevel"                      "1"
+    "Innate"                        "1"
+    "IsBreakable"                   "1"
+
+    "AbilityValues"
+    {
+        "radius"        "900"
+        "outgoing"      "12"
+        "incoming"      "-12"
+    }
+}
+
+
+
+
+
+
+
+}

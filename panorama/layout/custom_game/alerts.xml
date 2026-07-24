@@ -1,0 +1,174 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/custom_game/alerts.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/alerts.vjs_c" />
+	</scripts>
+	<Panel class="MainAlerts" hittest="false">
+		<Panel class="Roshan" id="Roshan" hittest="false" />
+		<Panel id="PreGameTimerBg" class="PreGameTimerBg PreGameTimer_hidden" hittest="false" />
+		<Panel id="PreGameTimer" class="PreGameTimer PreGameTimer_hidden" hittest="false">
+			<Panel id="PreGameTimer_icon" hittest="false" />
+			<Label id="PreGameTimer_text" hittest="false" />
+		</Panel>
+		<Panel id="WaitingPlayers" class="WaitingPlayers PreGameTimer_hidden" hittest="false">
+			<Panel id="WaitingPlayers_spin" hittest="false" />
+			<Label id="WaitingPlayers_text" text="Ожидание игроков" hittest="false" />
+		</Panel>
+		<Panel id="EndPanel_alert" hittest="false" />
+		<Panel id="DuelAlert" hittest="false" />
+		<Panel id="WaveAlert" hittest="false" />
+		<Panel id="NightStalkerAlert" hittest="false" />
+		<Panel class="Patrol_timer" id="Patrol_timer" hittest="false" />
+		<Panel class="Patrol" id="Patrol" hittest="false" />
+		<Panel class="Alerts" id="Alerts" hittest="false" />
+		<Panel class="NecroAlert" id="NecroAlert" hittest="false" />
+		<Panel class="TrapAlert" id="TrapAlert" hittest="false" />
+		<Panel class="BackdoorAlert" id="BackdoorAlert" hittest="false" />
+		<Panel class="LowNet_hidden" id="LowNet" hittest="false">
+			<Panel class="LowNet_top" id="LowNet_top" hittest="false">
+				<Label class="LowNet_text" id="LowNet_text" text="#LowNet" hittest="false" />
+			</Panel>
+			<Panel class="LowNet_bot" id="LowNet_bot" hittest="false">
+				<Panel class="LowNet_gold" id="LowNet_gold" hittest="false">
+					<Panel class="LowNet_gold_icon" id="LowNet_gold_icon" hittest="false" />
+					<Label class="LowNet_gold_text" id="LowNet_gold_text" hittest="false" />
+				</Panel>
+				<Panel class="LowNet_blue" id="LowNet_blue" hittest="false">
+					<Panel class="LowNet_blue_icon" id="LowNet_blue_icon" hittest="false" />
+					<Label class="LowNet_blue_text" id="LowNet_blue_text" text="#lownet_blue" hittest="false" />
+				</Panel>
+				<Panel class="LowNet_purple" id="LowNet_purple" hittest="false">
+					<Panel class="LowNet_purple_icon" id="LowNet_purple_icon" hittest="false" />
+					<Label class="LowNet_purple_text" id="LowNet_purple_text" text="#lownet_purple" hittest="false" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="BadMap_ban_hidden" id="BadMap_ban" hittest="false">
+			<Panel class="BadMap_ban_top" id="BadMap_ban_top" hittest="false">
+				<Label class="BadMap_text" id="BadMap_ban_top_text" hittest="false" />
+			</Panel>
+			<Panel class="BadMap_ban_your_mmr" hittest="false">
+				<Label class="BadMap_text" id="BadMap_ban_your_mmr_text" hittest="false" />
+			</Panel>
+			<Panel class="BadMap_ban_map_mmr" hittest="false">
+				<Label class="BadMap_text" id="BadMap_ban_map_mmr_text" hittest="false" />
+			</Panel>
+			<Panel class="BadMap_ban_image" id="BadMap_ban_image" hittest="false" />
+		</Panel>
+		<Panel class="Unranked_alert_hidden" id="Unranked_alert">
+			<Panel class="Unranked_alert_top">
+				<Label class="BadMap_text" id="Unranked_alert_text" />
+			</Panel>
+			<Panel class="Unranked_alert_bot" id="Unranked_alert_bot">
+				<Panel class="Unranked_close" id="Unranked_close" />
+				<Panel class="Unranked_image" id="Unranked_image" />
+			</Panel>
+		</Panel>
+		<Panel id="arcana_alert" class="arcana_alert_hidden">
+			<Panel id="arcana_alert_top" class="arcana_alert_top">
+				<Label class="arcana_alert_text arcana_alert_text_top" id="arcana_alert_top_text" html="true" />
+				<Label class="arcana_alert_text arcana_alert_text_top2" id="arcana_alert_top_text2" html="true" />
+			</Panel>
+			<Panel id="arcana_alert_mid" class="arcana_alert_mid">
+				<Panel id="arcana_alert_icon" class="arcana_alert_icon" />
+			</Panel>
+			<Panel id="arcana_alert_bot" class="arcana_alert_bot">
+				<Panel class="arcana_alert_button" id="arcana_alert_button">
+					<Label class="arcana_alert_button_text" id="arcana_alert_button_text" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="twitch_alert" class="twitch_alert_hidden">
+			<Panel id="twitch_alert_top" class="twitch_alert_top">
+				<Label class="twitch_alert_text twitch_alert_text_top" id="twitch_alert_top_text" html="true" />
+				<Label class="twitch_alert_text twitch_alert_text_top2" id="twitch_alert_top_text2" html="true" />
+			</Panel>
+			<Panel id="twitch_alert_mid" class="twitch_alert_mid">
+				<Panel id="twitch_alert_icon" class="twitch_alert_icon" />
+			</Panel>
+			<Panel id="twitch_alert_bot" class="twitch_alert_bot">
+				<Panel class="twitch_alert_button" id="twitch_alert_button">
+					<Label class="twitch_alert_button_text" id="twitch_alert_button_text" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="duo_alert" class="duo_alert_hidden">
+			<Panel id="duo_alert_top" class="duo_alert_top">
+				<Label class="duo_alert_text duo_alert_text_top" id="duo_alert_top_text" html="true" />
+				<Label class="duo_alert_text duo_alert_text_top2" id="duo_alert_top_text2" html="true" />
+			</Panel>
+			<Panel id="duo_alert_mid" class="duo_alert_mid">
+				<Panel id="duo_alert_icon" class="duo_alert_icon" />
+			</Panel>
+		</Panel>
+		<Panel class="BadMap_hidden" id="BadMap" hittest="false">
+			<Panel class="BadMap_top" id="BadMap_top" hittest="false">
+				<Label class="BadMap_text" id="BadMap_top_text" hittest="false" />
+			</Panel>
+			<Panel class="BadMap_your_mmr" hittest="false">
+				<Label class="BadMap_text" id="BadMap_your_mmr_text" hittest="false" />
+			</Panel>
+			<Panel class="BadMap_map_mmr" hittest="false">
+				<Label class="BadMap_text" id="BadMap_map_mmr_text" hittest="false" />
+			</Panel>
+			<Panel class="BadMap_bottom" hittest="false">
+				<Label class="BadMap_text" id="BadMap_bottom_text" hittest="false" />
+			</Panel>
+			<Panel class="BadMap_image" id="BadMap_image" hittest="false" />
+		</Panel>
+		<Panel class="TrapTimer_hidden" id="TrapTimer" hittest="false">
+			<Panel class="TrapTimerIcon" id="TrapTimerIcon" hittest="false" />
+			<Panel class="TrapTimerBar" id="TrapTimerBar" hittest="false">
+				<Panel class="TrapTimerFiller" id="TrapTimerFiller" hittest="false" />
+				<Label class="TrapTimerText" id="TrapTimerText" hittest="false" />
+			</Panel>
+		</Panel>
+		<Panel class="NecroWave_hidden" id="NecroWave" hittest="false">
+			<Panel class="NecroWaveIcon" id="NecroWaveIcon" hittest="false" />
+			<Panel class="NecroWaveBar" id="NecroWaveBar" hittest="false">
+				<Panel class="NecroWaveFiller" id="NecroWaveFiller" hittest="false" />
+				<Label class="NecroWaveText" id="NecroWaveText" hittest="false" />
+			</Panel>
+		</Panel>
+		<Panel id="mini_alert_feed" hittest="false" />
+		<Panel class="legion_duel_alert" id="legion_duel_alert" hittest="false" />
+		<Panel class="legion_duel_status_main" id="legion_duel_status_main" hittest="false" />
+		<Panel class="muerta_quest_alert" id="muerta_quest_alert" hittest="false" />
+		<Panel class="random_talent_alert" id="random_talent_alert" hittest="false" />
+		<Panel class="DoubleRatingAlerts" id="DoubleRatingAlerts" hittest="false" />
+		<Panel class="DoubleRating_hidden" id="DoubleRating" hittest="true">
+			<Label class="DoubleRatingText" id="DoubleRatingText" hittest="false" />
+		</Panel>
+		<Panel class="DoubleRating_show_hidden DoubleRating_show_noactive" id="DoubleRating_show" hittest="true" />
+		<Panel class="UpgradeCreeps" id="UpgradeCreeps" hittest="false" />
+		<Panel class="DesroyTower" id="DesroyTower" hittest="false" />
+		<Panel class="grenade_alert" id="grenade_alert" hittest="false" />
+		<Panel class="RatingAlert" id="RatingAlert" onactivate="ExternalBrowserGoToURL(&apos;https://dota1x6.com/&apos;)" hittest="true" />
+		<Panel class="TargetAlert" id="TargetAlert" hittest="false" />
+		<Panel class="TargetTimer" id="TargetTimer" hittest="false" />
+		<Panel class="PatrolAlert" id="PatrolAlert" hittest="false" />
+		<Panel class="SafeToLeave_hidden" id="SafeToLeave" hittest="false">
+			<Label class="SafeToLeave_text" id="SafeToLeave_text" hittest="false" />
+		</Panel>
+		<Panel class="Glyph" id="Glyph" hittest="false" />
+		<Panel class="Ravager" id="Ravager" hittest="false" />
+		<Panel class="tips" id="tips" hittest="false" />
+		<Panel class="Pauses" id="Pauses" hittest="false" />
+		<Panel class="Reports" id="Reports" hittest="false" />
+		<Panel class="Ban" id="Ban" hittest="false" />
+		<Panel class="Combat_info_close" id="Combat_info" hittest="false" />
+	</Panel>
+</root>

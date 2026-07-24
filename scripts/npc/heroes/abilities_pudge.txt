@@ -1,0 +1,179 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+
+"DOTAAbilities"
+{
+
+"Version"		"1"
+
+
+
+
+"custom_pudge_meat_hook"
+{
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"abilities/pudge/custom_pudge_meat_hook"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+	"AbilityCastRange"				"1300"
+	"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+	"AbilityCooldown"				"15 14 13 12"
+	"AbilityManaCost"				"120"
+	"AbilityTextureName"			"pudge_meat_hook"
+
+	"AbilityValues"
+	{
+		"damage"				"150 220 290 360"
+		"hook_speed"			"1600.0"
+		"hook_width"		"100"
+		"hook_distance"		"1300"
+		"vision_radius"		"500 500 500 500"
+		"vision_duration"	"4.0 4.0 4.0 4.0"
+		
+	}
+}
+
+"custom_pudge_rot"
+{
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"abilities/pudge/custom_pudge_rot"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"FightRecapLevel"				"1"
+	"HasScepterUpgrade"             "1"
+	"AbilityCastPoint"				"0 0 0 0"
+	"AbilityTextureName"			"pudge_rot"
+
+	"AbilityValues"
+	{
+		"rot_radius"			"250"
+		"rot_tick"				"0.2"
+		"rot_slow"				"-14 -20 -26 -32"
+		"rot_damage"			"30 60 90 120"
+		"scepter_rot_damage_bonus"			"50"
+		"scepter_rot_radius_bonus"			"150"
+		"scepter_healing_reduction"			"-20"
+	}
+}
+
+"custom_pudge_flesh_heap"
+{
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"abilities/pudge/custom_pudge_flesh_heap"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+	"AbilityTextureName"			"pudge_flesh_heap"
+	"AbilityManaCost"			"50 60 70 80"
+	"AbilityCooldown"			"15 14 13 12"
+
+	"AbilityValues"
+	{
+		"damage_block"			"8 14 20 26"
+		"duration"				"4 5 6 7"
+	}
+}
+
+"custom_pudge_dismember"
+{
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"abilities/pudge/custom_pudge_dismember"
+	"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+	"AbilityTextureName"			"pudge_dismember"
+	"LinkedAbility"					"custom_pudge_dismember_devour"
+
+	"AbilityCastRange"				"200"
+	"AbilityCastPoint"				"0.3 0.3 0.3"
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+	"AbilityChannelAnimation"		"ACT_DOTA_CHANNEL_ABILITY_4"
+	"AbilityCooldown"				"20 19 18"
+	"AbilityManaCost"				"100 130 170"
+	
+	"AbilityValues"
+	{
+		"dismember_damage"		"80 100 120"
+		"strength_damage"		"0.3 0.5 0.7"
+		"ticks"						"6"
+		"pull_units_per_second"		"75"
+		"pull_distance_limit"		"125"
+		"animation_rate"			"1.5"
+		"duration"					"2.75"
+		"cast_range"				"200"
+		"creeps"					"100"
+		
+	}
+}
+
+
+"custom_pudge_dismember_devour"
+{
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"abilities/pudge/custom_pudge_dismember"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO | DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS"
+	"AbilityTextureName"			"pudge_eject"
+	"MaxLevel"						"1"
+
+
+	"AbilityCastRange"				"300"
+	"AbilityCastPoint"				"0.24"
+	"AbilityCooldown"				"16"
+	"AbilityManaCost"				"50"
+	
+	"AbilityValues"
+	{
+		"duration" 			"6"
+		"shield"			"20"
+		"interval"			"0.5"
+	}
+}
+
+
+"pudge_innate_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/pudge/pudge_innate_custom"  
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "Innate"                        "1"
+    "MaxLevel"						"4"
+
+	"HasShardUpgrade"			"1"
+	"DependentOnAbility"			"custom_pudge_dismember"
+
+    "AbilityValues"
+    {
+		"shard_point"			"150"
+		"shard_str"				"0.5"
+		"max_stacks"			"25"
+		"str"					"1.1 1.4 1.7 2"
+		"radius"				"600"
+    }
+}
+
+
+
+
+}

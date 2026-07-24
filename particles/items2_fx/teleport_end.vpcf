@@ -1,0 +1,231 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vrfunknown:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 8
+	m_BoundingBoxMin = [ -128.0, -128.0, -128.0 ]
+	m_BoundingBoxMax = [ 128.0, 128.0, 128.0 ]
+	m_flCullRadius = 1.0
+	m_ConstantColor = [ 136, 185, 203, 255 ]
+	m_nBehaviorVersion = 4
+	m_nFirstMultipleOverride_BackwardCompat = 5
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetSingleControlPointPosition"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_OFF"
+			m_nCP1 = 3
+			m_vecCP1Pos = [ 0.0, 0.0, 0.0 ]
+			m_transformInput = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = -10.0
+				m_flRandomMax = 10.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 4
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 128.0
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+			m_nOutputField = 7
+		},
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_TransformInput = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 0.0, 0.0, 5.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 5.0 ]
+		},
+		{
+			_class = "C_INIT_RemapTransformToVector"
+			m_vOutputMax = [ 1.0, 1.0, 1.0 ]
+			m_nFieldOutput = 6
+			m_vInputMax = [ 1.0, 1.0, 1.0 ]
+			m_bDisableOperator = true
+			m_TransformInput = 
+			{
+				m_nControlPoint = 2
+			}
+			m_LocalSpaceTransform = 
+			{
+				m_nType = "PT_TYPE_INVALID"
+			}
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_flFadeEndTime = 0.0
+			m_flFadeStartTime = 1.0
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndTime = 0.5
+			m_flStartScale = 0.75
+		},
+		{
+			_class = "C_OP_PositionLock"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_OFF"
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_flEndTime = 99999.0
+			m_Rate = -50.0
+			m_nField = 7
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_nOrientationType = "PARTICLE_ORIENTATION_WORLD_Z_ALIGNED"
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/ring01.vtex"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/items2_fx/teleport_end_i.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/items2_fx/teleport_end_spiral.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/items2_fx/teleport_end_e.vpcf"
+		},
+		{
+			m_bEndCap = true
+			m_ChildRef = resource:"particles/items2_fx/teleport_end_l.vpcf"
+		},
+		{
+			m_bEndCap = true
+			m_ChildRef = resource:"particles/items2_fx/teleport_end_n.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/items2_fx/teleport_end_m.vpcf"
+		},
+		{
+			m_bEndCap = true
+			m_ChildRef = resource:"particles/items2_fx/teleport_end_b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/items2_fx/teleport_end_playercolor.vpcf"
+		},
+		{
+			m_bEndCap = true
+			m_ChildRef = resource:"particles/items2_fx/teleport_end_flash.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/items2_fx/teleport_end_tube.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/items2_fx/teleport_end_counter.vpcf"
+		},
+		{
+			m_bEndCap = true
+			m_ChildRef = resource:"particles/items2_fx/teleport_end_ground_flash.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/items2_fx/teleport_end_dust.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/items2_fx/teleport_end_dust_bits.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/items2_fx/teleport_end_thin_beam.vpcf"
+		},
+		{
+			m_flDelay = 1.5
+			m_ChildRef = resource:"particles/items2_fx/teleport_end_h.vpcf"
+		},
+		{
+			m_bEndCap = true
+			m_ChildRef = resource:"particles/items2_fx/teleport_end_streak.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/items2_fx/teleport_end_image.vpcf"
+			m_bDisableChild = true
+		},
+	]
+}

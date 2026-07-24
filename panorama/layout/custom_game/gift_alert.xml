@@ -1,0 +1,57 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/custom_game/gift_alert.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/gift_alert.vjs_c" />
+	</scripts>
+	<Panel class="GiftAlert" hittest="false">
+		<Panel id="GiftAlert_content" hittest="false">
+			<Panel id="GiftAlert_text_alert" class="GiftAlert_text_alert" hittest="false">
+				<Panel id="GiftAlert_text_alert_panel" hittest="false">
+					<Label id="GiftAlert_text_alert_label" hittest="false" text="#gift_alert_text" html="true" />
+				</Panel>
+				<Panel id="GiftAlert_text_alert_arrow" hittest="false" />
+			</Panel>
+			<Panel id="GiftAlert_button_content" class="GiftAlert_button_content_hidden" hittest="false">
+				<Panel id="GiftAlert_button" class="GiftAlert_button" hittest="true" onactivate="OpenWindow();" />
+				<Panel id="GiftAlert_button_ping" hittest="false">
+					<Label id="GiftAlert_button_ping_text" hittest="false" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="GiftAlert_window" class="GiftAlert_window_hidden" hittest="false">
+			<Panel class="GiftAlert_close_icon" hittest="true" onactivate="OpenWindow();" />
+			<Panel id="GiftAlert_window_content" hittest="false">
+				<Panel id="GiftAlert_window_top" hittest="false">
+					<Panel id="GiftAlert_window_top_header" hittest="false">
+						<Label id="GiftAlert_window_top_text" hittest="false" text="#gift_window_header" />
+					</Panel>
+				</Panel>
+				<Panel id="GiftAlert_window_mid" hittest="false">
+					<Label id="GiftAlert_window_gift_name" hittest="false" />
+					<Panel id="GiftAlert_window_icon" hittest="false" />
+					<Panel id="GiftAlert_window_gift_msg_block" hittest="false">
+						<Label id="GiftAlert_window_gift_msg" hittest="false" />
+					</Panel>
+				</Panel>
+				<Panel id="GiftAlert_window_bot" hittest="false">
+					<Panel id="GiftAlert_window_button" hittest="true">
+						<Label id="GiftAlert_window_button_text" hittest="false" text="#gift_window_button" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

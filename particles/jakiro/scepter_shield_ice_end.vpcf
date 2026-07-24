@@ -1,0 +1,223 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vrfunknown:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 24
+	m_flConstantLifespan = 0.5
+	m_flNoDrawTimeToGoToSleep = 2.0
+	m_bShouldSort = false
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 4
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 1.0, 1.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetRandomControlPointPosition"
+			m_bUseWorldLocation = true
+			m_vecCPMaxPos = [ 1.3, 1.0, 0.0 ]
+			m_vecCPMinPos = [ 0.9, -1.0, 0.0 ]
+			m_nCP1 = 3
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 5.0
+				m_flRandomMax = 13.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMax = [ 0, 79, 168 ]
+			m_ColorMin = [ 0, 109, 166 ]
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 96.0
+			}
+		},
+		{
+			_class = "C_INIT_RingWave"
+			m_bEvenDistribution = true
+			m_flInitialRadius = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 1
+				m_nVectorComponent = 0
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 0.0001
+			}
+			m_flThickness = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 1
+				m_nVectorComponent = 1
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 0.0
+			}
+			m_flInitialSpeedMin = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 1
+				m_nVectorComponent = 2
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 2.1
+			}
+			m_flInitialSpeedMax = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 1
+				m_nVectorComponent = 2
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 2.1
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = -180.0
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 4
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMax = [ 0.0, 0.0, 4.0 ]
+			m_OffsetMin = [ 0.0, 0.0, 4.0 ]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.15
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.8
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_flFadeEndTime = 0.0
+			m_flFadeStartTime = 1.0
+		},
+		{
+			_class = "C_OP_Orient2DRelToCP"
+		},
+		{
+			_class = "C_OP_DistanceToTransform"
+			m_flInputMax = 2000.0
+			m_flOutputMax = 16.0
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_RemapCPtoScalar"
+			m_flOutputMax = 2.0
+			m_flInputMax = 2.0
+			m_nCPInput = 3
+			m_nSetMethod = "PARTICLE_SET_SCALE_CURRENT_VALUE"
+		},
+	]
+	m_Renderers = [  ]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/jakiro/scepter_shield_ice_ende.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/jakiro/scepter_shield_ice_endf.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/jakiro/scepter_shield_ice_endk.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/jakiro/scepter_shield_ice_endc.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/jakiro/scepter_shield_ice_endg.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/jakiro/scepter_shield_ice_endi.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/jakiro/scepter_shield_ice_endm.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/jakiro/scepter_shield_ice_endb.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/jakiro/scepter_shield_ice_endl.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/jakiro/scepter_shield_ice_enda.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/jakiro/scepter_shield_ice_endd.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/jakiro/scepter_shield_ice_endh.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/jakiro/scepter_shield_ice_endo.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/jakiro/scepter_shield_ice_endj.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/jakiro/scepter_shield_ice_endn.vpcf"
+		},
+	]
+}

@@ -1,0 +1,218 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_flConstantRadius = 1.0
+	m_flMaxRecreationTime = -1.0
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_bOrientZ = true
+			m_bSuppressTint = true
+			m_ModelList = 
+			[
+				{
+					m_model = resource:"models/creeps/ice_biome/undeadtusk/fx_skeleball.vmdl"
+				},
+			]
+			m_bAnimated = true
+			m_nLOD = 1
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 2.0
+			m_nOpEndCapState = 0
+		},
+		{
+			_class = "C_OP_MaxVelocity"
+			m_flMaxVelocity = 1.0
+		},
+		{
+			_class = "C_OP_SpinUpdate"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndTime = 1.5
+			m_flStartScale = 0.3
+			m_bEaseInAndOut = true
+			m_flEndScale = 0.3
+		},
+		{
+			_class = "C_OP_MovementPlaceOnGround"
+			m_flMaxTraceLength = 256.0
+			m_flOffset = 40.0
+			m_flTolerance = 16.0
+			m_bScaleOffset = true
+			m_bIncludeWater = true
+			m_CollisionGroupName = "DEBRIS"
+		},
+		{
+			_class = "C_OP_SetControlPointsToParticle"
+			m_nFirstControlPoint = 4
+			m_bSetOrientation = true
+		},
+		{
+			_class = "C_OP_RemapCPOrientationToYaw"
+			m_nCP = 4
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_flEndTime = 100000000.0
+			m_Rate = -100.0
+			m_nField = 7
+			m_nOpEndCapState = 1
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_flEndTime = 99999.0
+			m_Rate = -4.0
+			m_nField = 4
+		},
+		{
+			_class = "C_OP_EndCapTimedDecay"
+			m_flDecayTime = 0.1
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphere"
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+			m_flDegreesMin = 90.0
+			m_flDegreesMax = 90.0
+			m_nFieldOutput = 12
+		},
+		{
+			_class = "C_INIT_RemapCPtoScalar"
+			m_bDisableOperator = true
+			m_nCPInput = 2
+			m_flInputMax = 10.0
+			m_nField = 1
+			m_nFieldOutput = 1
+			m_flOutputMax = 10.0
+		},
+		{
+			_class = "C_INIT_RemapCPtoScalar"
+			m_nCPInput = 3
+			m_flInputMax = 1000.0
+			m_flOutputMax = 10.0
+			m_nField = 2
+		},
+		{
+			_class = "C_INIT_RandomScalar"
+			m_nFieldOutput = 18
+			m_flMax = 1.0
+			m_flMin = 1.0
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 1
+		},
+	]
+	m_ForceGenerators = 
+	[
+		{
+			_class = "C_OP_AttractToControlPoint"
+			m_fForceAmount = 1000000.0
+			m_fFalloffPower = 0.0
+			m_nControlPointNumber = 1
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/act_2/undead_bone_ball_smoke.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/act_2/undead_bone_ball_start_proj.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/act_2/undead_bone_ball_form.vpcf"
+		},
+		{
+			m_bEndCap = true
+			m_ChildRef = resource:"particles/act_2/undead_bone_ball_impact.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/act_2/undead_bone_ball_start_flash.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/act_2/undead_bone_ball_leading_start.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/act_2/undead_bone_ball_ring.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/act_2/undead_bone_ball_flek_start.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/act_2/undead_bone_ball_swirl_start.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/act_2/undead_bone_ball_ground_frost.vpcf"
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 1.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 1.0, 1.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 4
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+}

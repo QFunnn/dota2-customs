@@ -1,0 +1,264 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+
+"DOTAAbilities"
+{
+
+"Version"		"1"
+
+"monkey_king_boundless_strike_custom"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"                    "ability_lua"
+    "ScriptFile"                    "abilities/monkey_king/monkey_king_boundless_strike_custom"
+    "AbilityTextureName"            "monkey_king_boundless_strike"  													// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+	"FightRecapLevel"				"1"
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastPoint"				"0.4"
+	"AbilityCastRange"				"1100"
+
+	"AbilityCooldown"				"14"
+	"AbilityManaCost"				"85 90 95 100"		
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"stun"					"0.7 0.9 1.1 1.3"
+		"strike_crit_mult"		"120 140 160 180"
+		"bonus_damage"			"20 40 60 80"		
+		"strike_radius"			"150"
+		"strike_cast_range"		"1100"
+	}
+}
+
+
+"monkey_king_tree_dance_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/monkey_king/monkey_king_tree_dance_custom"  
+    "AbilityTextureName"            "monkey_king_tree_dance" 
+    "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+    "AbilityUnitTargetType"            "DOTA_UNIT_TARGET_TREE"
+    "AbilityUnitTargetTeam"            "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilitySound"                    "Hero_MonkeyKing.TreeJump.Cast"
+    "AbilityCastRange"                "900"
+    "AbilityCastPoint"                "0.1"
+    "AbilityCooldown"                "0.9 0.6 0.3 0"
+    "AbilityManaCost"                "0"
+    "AbilityCastAnimation"            "ACT_DOTA_CAST_ABILITY_2"
+    "LinkedAbility"					"monkey_king_primal_spring_custom"
+
+    "AbilityValues"
+    {
+        "leap_speed"                    	"900"
+        "jump_damage_cooldown"           	"3.0"
+        "perched_vision"            		"1200"
+        "perched_spot_height"            	"256"
+        "unperched_stunned_duration"    	"3"
+        "tree_cast"							"0.2"
+
+        "top_level_height"              "500" // нужно чтобы мк не было видно
+    }
+}
+
+
+"monkey_king_primal_spring_custom"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"                    "ability_lua"
+    "ScriptFile"                    "abilities/monkey_king/monkey_king_primal_spring_custom"
+    "AbilityTextureName"            "monkey_king_primal_spring"  												// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED |  DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+	"FightRecapLevel"				"1"
+	"AbilitySound"					"Hero_MonkeyKing.Spring.Channel"
+	"LinkedAbility"					"monkey_king_primal_spring_early_custom"
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastPoint"				"0"
+	"AbilityCastRange"				"0"
+	"AbilityChannelTime"			"1.4"
+	"AbilityManaCost"				"100"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"impact_damage"			"100 160 220 280"
+		"impact_movement_slow"	"30 40 50 60"
+		"impact_slow_duration"	"4.0"
+		"impact_radius"			"375"
+		"max_distance"			"900"
+		"speed"					"1300"
+		"creeps"				"30"
+		"tree_cast"				"-50"
+		"tree_range"			"300"	
+
+        "AbilityCharges"                "1"
+        "AbilityChargeRestoreTime"          "12"
+	}
+	"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+}
+
+//=================================================================================================================
+// Monkey King: Primal Spring (Early)
+//=================================================================================================================
+"monkey_king_primal_spring_early_custom"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                    "ability_lua"
+    "ScriptFile"                    "abilities/monkey_king/monkey_king_primal_spring_custom"
+    "AbilityTextureName"            "monkey_king_primal_spring"  													// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+	"AbilityTextureName"		"monkey_king_primal_spring"
+	"MaxLevel"						"1"
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+	"AbilityCastAnimation"			"ACT_INVALID"
+}
+
+"monkey_king_jingu_mastery_custom"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	 "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/monkey_king/monkey_king_jingu_mastery_custom"
+    "AbilityTextureName"            "monkey_king_jingu_mastery" 
+	"AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY" 
+	"AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"       
+    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+	"FightRecapLevel"				"1"
+	"AbilitySound"					"Hero_MonkeyKing.IronCudgel"
+	"AbilityCastAnimation"			"ACT_INVALID"
+
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"0"
+	"IsBreakable"					"1"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"required_hits"				"4"
+		"counter_duration"			"10"
+		"charges"					"4"
+		"bonus_attack"           
+        {
+            "value"             	"30 60 90 120"
+            "DamageTypeTooltip"     "DAMAGE_TYPE_PHYSICAL"
+        }
+		"lifesteal"					"20 40 60 80"
+		"magic_damage"				
+		{
+            "value"             	"30 60 90 120"
+            "DamageTypeTooltip"     "DAMAGE_TYPE_MAGICAL"
+        }
+		"buff_duration"				"25"
+		"buff_duration_creeps"		"6"
+		"cd"						"0.5"
+	}
+}
+
+
+"monkey_king_wukongs_command_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/monkey_king/monkey_king_wukongs_command_custom"  
+    "AbilityTextureName"            "monkey_king_wukongs_command"
+    "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
+    "AbilityUnitDamageType"            "DAMAGE_TYPE_PHYSICAL"
+    "AbilityUnitTargetType"            "DOTA_UNIT_TARGET_HERO"
+    "AbilityType"                    "ABILITY_TYPE_ULTIMATE"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+    "FightRecapLevel"                "2"
+    "AbilitySound"                    "Hero_MonkeyKing.FurArmy"
+    "LinkedAbility"					"monkey_king_innate_custom"
+	"HasShardUpgrade"				"1"
+    "HasScepterUpgrade"            "1"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastPoint"                "0.8"
+    "AbilityCastRange"                "550"
+    "AbilityCastAnimation"            "ACT_INVALID"
+
+    // Time        
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"                "24"
+    "AbilityManaCost"                "100"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+
+    "AbilityValues"
+    {
+        "bonus_armor"             "15 20 25"
+        "damage"				  "55 60 65"
+        "attack_speed"            "1.2"
+        "first_radius"            "200"
+        "second_radius"           "550"
+        "num_first_soldiers"      "2"
+        "num_second_soldiers"     "5"
+        "move_speed"              "700"
+        "duration"                "10"
+        "soldier_max"             "7"
+
+        "shard_range"			"60"
+        "shard_knock_duration"	"0.3"
+        "shard_knock_range"		"80"
+        "shard_radius"			"80"
+
+        "scepter_duration"		"8"
+        "scepter_interval"		"-0.2"
+    }
+}
+
+"monkey_king_innate_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/monkey_king/monkey_king_innate_custom"  
+    "AbilityTextureName"            "monkey_king_transfiguration"
+    "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	"MaxLevel"						"1"
+	"Innate"						"1"
+	"AbilityCooldown"				"22"
+    "AbilityCastRange"                "400"
+
+    "AbilityValues"
+   	{
+   		"duration"			"3"
+   		"delay"				"0.5"
+   		"duration_clone"	"8"
+   		"radius"			"250"
+   	}
+
+}
+
+}

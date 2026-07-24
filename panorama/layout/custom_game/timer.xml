@@ -1,0 +1,119 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/custom_game/timer.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/timer.vjs_c" />
+	</scripts>
+	<Panel class="MainTimer" hittest="false">
+		<Panel class="Timer_hidden AllDuelTimer" id="AllDuelTimer">
+			<Panel class="DuelHeader" id="DuelHeader">
+				<Label class="DuelHeaderText" id="DuelHeaderText" />
+			</Panel>
+			<Panel class="DuelHeader" id="DuelHeader">
+				<Label class="DuelHeaderText" id="DuelHeaderText" />
+			</Panel>
+			<Panel class="DuelTimerBar" id="DuelTimerBar">
+				<Panel class="DuelTimerTime" id="DuelTimerTime" />
+				<Label class="DuelTimerText" id="DuelTimerText" />
+			</Panel>
+			<Panel class="DuelLowPanel" id="DuelLowPanel">
+				<Panel class="FinalDuelBot PanelHidden" id="FinalDuelBot">
+					<Panel class="Duel_HeroesLeft" id="FinalDuelHeroLeft">
+						<Panel class="DuelHero_icon" id="FinalDuelHeroLeft_Icon1" />
+						<Panel class="DuelHero_icon" id="FinalDuelHeroLeft_Icon2" />
+						<Panel class="DuelScorePanel DuelScorePanelLeft" id="DuelScorePanelLeft">
+							<Label class="DuelScoreText" id="DuelTimerTextLeft" />
+						</Panel>
+					</Panel>
+					<Panel class="DuelVS" id="DuelVS" />
+					<Panel class="Duel_HeroesRight" id="FinalDuelHeroRight">
+						<Panel class="DuelHero_icon" id="FinalDuelHeroRight_Icon1" />
+						<Panel class="DuelHero_icon" id="FinalDuelHeroRight_Icon2" />
+						<Panel class="DuelScorePanel DuelScorePanelRight" id="DuelScorePanelRight">
+							<Label class="DuelScoreText" id="DuelTimerTextRight" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="Timer_hidden AllTimer" id="AllTimer">
+			<Panel class="EncounterWave" id="EncounterWave">
+				<Panel id="WaveNumberPanel">
+					<Panel class="WaveNumber" id="WaveNumber">
+						<Label class="WaveNumber_Text" id="WaveNumber_Text" />
+					</Panel>
+					<Panel id="PatrolInfo" class="PatrolInfo Timer_hidden">
+						<Label id="PatrolInfoTimer" />
+					</Panel>
+				</Panel>
+				<Panel class="TimerAndName" id="TimerAndName">
+					<Panel class="DuelTimer PanelHidden" id="DuelTimer">
+						<Label id="DuelTimerHeader" text="ПОДГОТОВКА" />
+						<Panel id="DuelTimerBody">
+							<Panel id="DuelTimerBack">
+								<Panel id="DuelTimerTexture" />
+							</Panel>
+							<Panel class="DuelTimer_Bar" id="DuelTimer_Bar">
+								<Panel class="DuelTimer_Filler" id="DuelTimer_Filler" />
+								<Label class="TimerText" id="DuelTimer_Text" />
+							</Panel>
+							<Panel class="NormalDuelBot" id="NormalDuelBot">
+								<Panel class="HeroesContainer" id="HeroesContainer">
+									<Panel class="HeroesContainerDinamic" id="HeroesContainerDinamic">
+										<Panel class="Duel_HeroesLeft" id="NormalDuelHeroLeft">
+											<Panel class="DuelHero_icon" id="NormalDuelHeroLeft_Icon1" />
+											<Panel class="DuelHero_icon" id="NormalDuelHeroLeft_Icon2" />
+										</Panel>
+										<Panel class="DuelVS" id="DuelVS" />
+										<Panel class="Duel_HeroesRight" id="NormalDuelHeroRight">
+											<Panel class="DuelHero_icon" id="NormalDuelHeroRight_Icon1" />
+											<Panel class="DuelHero_icon" id="NormalDuelHeroRight_Icon2" />
+										</Panel>
+									</Panel>
+								</Panel>
+								<Panel class="RewardContainer" id="RewardContainer">
+									<DOTAItemImage itemname="item_patrol_razor" class="RewardIconRazor" id="RewardIconRazor" />
+									<Label class="RewardText" id="RewardText" text="#wave_reward" />
+								</Panel>
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="CreepTimer PanelHidden" id="CreepTimer">
+						<Panel class="TimerTop" id="TimerTop">
+							<Label class="WaveName_Text" id="WaveName_Text" />
+							<Panel class="NecroWave" id="NecroWave" />
+						</Panel>
+						<Panel class="TimerBar" id="TimerBar">
+							<Panel class="TimerTime" id="TimerTime" />
+							<Label class="TimerText" id="TimerText" />
+						</Panel>
+						<Panel class="TimerBottom" id="TimerBottom">
+							<Panel class="GoldIcon" id="GoldIcon" hittest="true" html="true">
+								<Label class="GoldText" id="GoldText" />
+							</Panel>
+							<Panel class="SkillIcons" id="SkillIcons">
+								<Panel class="MkbIcon" id="MkbIcon" />
+								<DOTAAbilityImage class="SkillIcon" id="SkillIcon1" />
+								<DOTAAbilityImage class="SkillIcon" id="SkillIcon2" />
+								<DOTAAbilityImage class="SkillIcon" id="SkillIcon3" />
+								<DOTAAbilityImage class="SkillIcon" id="SkillIcon4" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

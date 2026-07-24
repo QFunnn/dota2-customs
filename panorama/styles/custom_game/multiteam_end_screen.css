@@ -1,0 +1,688 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+@define BACKGROUND_COLOR: #000000;
+.EndScreenRoot
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #000000FF ), color-stop( 0.12, #000000ff ), color-stop( 0.5, #00000022 ), to( #00000000 ) );
+}
+
+#VictoryRow
+{
+	horizontal-align: middle;
+	margin-right: 8px;
+	margin-bottom: 16px;
+	transition-property: opacity, transform;
+	transition-duration: 1s;
+	opacity: 0;
+	transform: scaleX(0) scaleY(0) translatey(-50px);
+}
+
+.endgame #VictoryRow
+{
+	opacity: 1;
+	transform: scaleX(1) scaleY(1);
+}
+
+#WinningTeamLogo
+{
+	vertical-align: center;
+	margin-right: 16px;
+}
+
+#EndScreenVictory
+{
+	font-size: 40px;
+	color: #fff;
+	text-shadow: 0px 0px 5px 5 #000;
+	vertical-align: center;
+	text-transform: uppercase;
+}
+
+#EndScreen_SocialPanel
+{
+	padding: 11px 12px;
+	align: right top;
+	box-shadow: 0px 0px 20px -5px #000000a5;
+	flow-children: right;
+	animation-duration: 1.8s;
+	animation-timing-function: ease-out;
+	animation-iteration-count: 1;
+	animation-name: BackgroundEnding;
+}
+
+#CloseButton
+{
+	width: 35px;
+	height: 35px;
+	background-image: url("s2r://panorama/images/custom_game/close_pass_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: pre-transform-scale2d, brightness;
+	transition-duration: 0.1s;
+	brightness: 2;
+	horizontal-align: center;
+	margin-left: 12px;
+}
+
+#CloseButton:hover
+{
+	brightness: 6;
+	pre-transform-scale2d: 1.1;
+}
+
+#EndScreen_SocialPanel_tg
+{
+	width: 32px;
+	height: 32px;
+	background-size: contain;
+	align: center top;
+	background-image: url("s2r://panorama/images/custom_game/telegram_white_png.vtex");
+	transition-property: pre-transform-scale2d, brightness;
+	transition-duration: 0.1s;
+	margin-left: 2px;
+	margin-top: 2px;
+	brightness: 1.6;
+}
+
+#EndScreen_SocialPanel_tg:hover
+{
+	brightness: 2.5;
+	pre-transform-scale2d: 1.1;
+}
+
+.EndScreenWindow
+{
+	width: 1150px;
+	height: 100%;
+	padding: 0px 10px;
+	align: left top;
+	margin-left: 10px;
+	box-shadow: 0px 0px 12px 0px #000000a5;
+	animation-duration: 1.8s;
+	animation-timing-function: ease-out;
+	animation-iteration-count: 1;
+	animation-name: BackgroundEnding;
+}
+
+#EndScreenAllContent
+{
+	height: 100%;
+	flow-children: right;
+	align: center center;
+}
+
+.EndScreen_Points
+{
+	height: 100%;
+	width: 540px;
+	margin-left: 30px;
+}
+
+.EndScreen_Points_collapse
+{
+	visibility: collapse;
+	opacity: 0;
+}
+
+#CloseButton:hover
+{
+	opacity: 1;
+}
+
+#CloseButton Label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #6f6f6f;
+	text-transform: uppercase;
+	opacity: 0.8;
+}
+
+#CloseButton:hover Label
+{
+	opacity: 1;
+}
+
+#CustomBg
+{
+	width: 1920px;
+	background-color: black;
+	height: 1080px;
+	animation-duration: 1.5s;
+	animation-timing-function: ease-out;
+	animation-iteration-count: 1;
+	animation-name: BackgroundEnding;
+}
+
+.BackgroundScene
+{
+	width: 100%;
+	height: 100%;
+	vertical-align: middle;
+	horizontal-align: center;
+	background-color: rgb(29, 39, 46);
+	animation-duration: 1.5s;
+	animation-timing-function: ease-out;
+	animation-iteration-count: 1;
+	animation-name: BackgroundEnding;
+}
+
+@keyframes 'BackgroundEnding'
+{
+	0%
+	{
+		opacity: 0;
+	}
+	
+	100%
+	{
+		opacity: 1;
+	}
+	
+}
+
+.AspectRatio4x3 .EndScreenWindow
+{
+	margin-right: 50px;
+}
+
+.EndScreenVictoryRow
+{
+	width: 100%;
+}
+
+.FlyoutScoreboardRoot.flyout_scoreboard_visible
+{
+	transform: translatey( 0px );
+}
+
+#TeamsContainer
+{
+	horizontal-align: right;
+	flow-children: down;
+}
+
+.EndHeroesData
+{
+	flow-children: down;
+}
+
+.FlyoutTeam
+{
+	margin-top: 3px;
+	margin-bottom: 3px;
+	transition-property: opacity, transform;
+	transition-duration: 0.5s;
+	opacity: 0;
+	transform: translatey(-50px);
+	margin-right: 8px;
+}
+
+.FlyoutTeam.team_endgame
+{
+	opacity: 1;
+	transform: translatey(0px);
+}
+
+.FlyoutTeam.no_players
+{
+	visibility: collapse;
+}
+
+.FlyoutTeamData
+{
+	flow-children: right;
+}
+
+.TeamInfo
+{
+	margin-top: 1px;
+	height: 100%;
+}
+
+.FlyoutPlayer
+{
+	flow-children: right;
+}
+
+#PlayersContainer
+{
+	flow-children: down;
+}
+
+.local_player_team #PlayersContainer
+{
+	box-shadow: fill white 0px 0px 6px 0px;
+}
+
+.TeamId
+{
+	flow-children: right;
+}
+
+#TeamLogo
+{
+	vertical-align: top;
+	horizontal-align: right;
+	height: 30px;
+	width: 30px;
+	margin-top: 2px;
+	margin-right: 2px;
+}
+
+#TeamScorePanel
+{
+	margin-top: 1px;
+	margin-left: 306px;
+	width: 79px;
+	height: 100%;
+	background-color: BACKGROUND_COLOR;
+}
+
+#TeamScore
+{
+	vertical-align: center;
+	horizontal-align: center;
+	color: #cccccc;
+	font-size: 42px;
+	text-shadow: 2px 2px 2px black;
+	font-weight: bold;
+	margin-top: -2px;
+}
+
+.one_player #TeamScore
+{
+	font-size: 30px;
+}
+
+.local_player_team #TeamScore
+{
+	color: white;
+}
+
+#EndScoreboardPanel
+{
+	align: center center;
+	flow-children: down;
+}
+
+#EndHeroesData_HeaderTalents
+{
+	margin-top: 20px;
+}
+
+.EndHeroesData_HeaderText
+{
+	font-weight: semi-bold;
+	font-size: 22px;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #aaa ), to( #fff ) );
+	font-size: 28px;
+	align: center center;
+	font-weight: bold;
+	font-family: Radiance;
+	text-shadow: 0px 0px 3px 2.0 black;
+	text-align: center;
+}
+
+#EndHeroesData_HeaderTalentsButton
+{
+	width: 25px;
+	height: 30px;
+	vertical-align: center;
+	margin-left: 8px;
+	margin-top: 0px;
+	background-image: url("s2r://panorama/images/custom_game/shop/arrow_down_png.vtex");
+	background-size: 100%;
+	wash-color: #ddd;
+}
+
+#EndHeroesData_HeaderTalentsPanel
+{
+	align: center center;
+	flow-children: right;
+}
+
+#EndHeroesData_HeaderTalentsPanel:hover
+{
+	brightness: 2;
+}
+
+.EndHeroesData_Header
+{
+	width: 100%;
+	height: 40px;
+	margin-bottom: 20px;
+	border-bottom: 3px solid #fff;
+	border-brush: gradient(radial, 50% 50%, 0% 0%, 60% 55%, from(white), to(#fff0));
+}
+
+#EndScreenTalents
+{
+	width: 100%;
+	flow-children: down;
+	z-index: -2;
+}
+
+@keyframes 'EndScreenTalents_show_anim'
+{
+	0%
+	{
+		opacity: 0;
+		transform: translate3d( 0px, -50px, 0px );
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: translate3d( 0px, 0px, 0px );
+	}
+	
+}
+
+.EndScreenTalents_show
+{
+	animation-name: EndScreenTalents_show_anim;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.Legend
+{
+	flow-children: right;
+	horizontal-align: right;
+	margin-right: 8px;
+}
+
+.Legend Label
+{
+	text-transform: uppercase;
+	font-size: 12px;
+	color: #90999b;
+}
+
+.PlayerRow
+{
+	height: 50px;
+	width: 1110px;
+	flow-children: right;
+}
+
+#PlayerRowContainer
+{
+	flow-children: right;
+	height: 50px;
+}
+
+#HeroIcon
+{
+	vertical-align: middle;
+	height: 50px;
+	border: 1px solid black;
+}
+
+#LevelContainer,#KillsContainer,#DeathsContainer,#AssistsContainer
+{
+	height: 100%;
+}
+
+.ScoreboardPanel
+{
+	background-color: BACKGROUND_COLOR;
+	margin-top: 1px;
+	margin-left: 1px;
+	height: 100%;
+}
+
+.LegendPanel
+{
+	margin-top: 1px;
+	margin-left: 1px;
+}
+
+.ScoreboardPanel Label
+{
+	font-size: 30px;
+	text-shadow: 2px 2px 2px black;
+	margin-top: -2px;
+}
+
+.UltimateIndicatorShared
+{
+	margin-left: 44px;
+	margin-top: 2px;
+	vertical-align: center;
+	width: 20px;
+	height: 20px;
+	background-size: 20px;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+
+#Level
+{
+	vertical-align: middle;
+	horizontal-align: center;
+	color: #898b8c;
+}
+
+#Kills,#Deaths,#Assists,#PlayerGoldAmount
+{
+	horizontal-align: center;
+	vertical-align: center;
+	text-align: center;
+	font-size: 20px;
+	margin-top: 3px;
+}
+
+#PlayerMmr
+{
+	align: center center;
+	font-size: 20px;
+	margin-top: 3px;
+	color: white;
+	margin-left: 5px;
+}
+
+#MmrPlus
+{
+	font-size: 20px;
+	align: center center;
+	margin-top: 3px;
+	color: gradient( linear, 90% 80%, 30% 20%, from( white ), to( #00ff48 ) );
+}
+
+#PlayerName
+{
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: -4px;
+	margin-top: 0px;
+	padding-left: 4px;
+	color: #cccccc;
+	white-space: nowrap;
+}
+
+#HeroNameAndDescription
+{
+	padding-left: 4px;
+	font-size: 13px;
+	text-shadow: 2px 2px 2px black;
+	margin-top: 0px;
+	color: #999999;
+	vertical-align: bottom;
+}
+
+#PlayerDetailsContainer
+{
+	height: 100%;
+}
+
+#PlayerAndHeroName
+{
+	height: 100%;
+}
+
+#PlayerItemsContainer
+{
+	flow-children: right;
+}
+
+#PlayerItemsContainer Image
+{
+	margin: 1px;
+	width: 68px;
+	height: 50px;
+	background-color: BACKGROUND_COLOR;
+}
+
+.is_local_player Label
+{
+	color: white;
+}
+
+.ScoreCol_TeamInfo
+{
+	width: 20px;
+}
+
+.ScoreCol_PlayerDetails
+{
+	width: 230px;
+}
+
+.ScoreCol_TeamScore
+{
+	width: 80px;
+	text-align: center;
+}
+
+.ScoreCol_Hero
+{
+	width: 83px;
+	background-size: contain;
+}
+
+.ScoreCol_Level
+{
+	width: 50px;
+	text-align: center;
+}
+
+.ScoreCol_Kills,.ScoreCol_Deaths,.ScoreCol_Assists
+{
+	width: 35px;
+	text-align: center;
+}
+
+.ScoreCol_Items
+{
+	width: 415px;
+	text-align: center;
+}
+
+.ScoreCol_Gold
+{
+	width: 70px;
+	text-align: center;
+}
+
+.ScoreCol_Mmr
+{
+	width: 90px;
+	text-align: center;
+}
+
+.ScoreCol_MmrPlus
+{
+	width: 60px;
+	text-align: center;
+}
+
+.MmrPanel
+{
+	text-align: center;
+	flow-children: right;
+	width: 100%;
+	height: 50px;
+}
+
+.TalentButton
+{
+	width: 50px;
+	height: 50px;
+	z-index: 3;
+	box-shadow: fill black 0px 0px 1px 0px;
+	background-image: url("s2r://panorama/images/custom_game/endgame_talents_png.vtex");
+	background-size: contain;
+	transition-property: pre-transform-scale2d, brightness;
+	transition-duration: 0.1s;
+}
+
+.TalentButton:hover
+{
+	brightness: 2;
+}
+
+@keyframes 'LayerGeneralEnd_show_anim'
+{
+	0%
+	{
+		opacity: 0;
+		transform: translate3d( 0px, 300px, 0px );
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: translate3d( 0px, 0px, 0px );
+	}
+	
+}
+
+.LayerGeneralEnd
+{
+	width: 950px;
+	height: 308.7px;
+	align: center center;
+	z-index: 10;
+	box-shadow: fill black 0px 0px 12px 0px;
+}
+
+.LayerGeneralEnd_HeroTalent
+{
+	width: 920px;
+	height: 308.7px;
+	align: center center;
+	z-index: 10;
+	box-shadow: fill black 0px 0px 12px 0px;
+}
+
+.LayerGeneralEnd_show
+{
+	animation-name: LayerGeneralEnd_show_anim;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.ChestGrantedPopupHolder
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	ignore-parent-flow: true;
+	z-index: 100000;
+}

@@ -1,0 +1,98 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf61:version{39d3ce1d-9442-4407-9b78-8317145b1732} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_nInitialParticles = 1
+	m_flConstantRadius = 0.0
+	m_ConstantColor = [ 0, 0, 0, 255 ]
+	m_nConstantSequenceNumber = 1
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_previewState = 
+			{
+				m_previewModel = "models/heroes/axe/axe.vmdl"
+				m_nModSpecificData = 2
+				m_sequenceName = "idle"
+				m_hitboxSetName = "default"
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_StatusEffect"
+			m_flAmbientScale = 1.0
+			m_flRimLightScale = 1.0
+			m_flSpecularScale = 1.0
+			m_flSpecularExponent = 1.0
+			m_flSpecularExponentBlendToFull = 1.0
+			m_flSpecularBlendToFull = 1.0
+			m_specularColor = [ 31, 19, 7, 255 ]
+			m_rimLightColor = [ 60, 36, 9, 255 ]
+			m_nDetail2Combo = "DETAIL_2_COMBO_OFF"
+			m_flColorWarpIntensity = 0.6
+			m_flReflectionsTintByBaseBlendToNone = 1.0
+			m_flMetalnessBlendToFull = 0.5
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+			m_nField = 7
+			m_Rate = -1.0
+			m_flStartTime = 0.8
+		},
+		{
+			_class = "C_OP_AlphaDecay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_LerpVector"
+			m_nFieldOutput = 6
+			m_flStartTime = 0.8
+		},
+		{
+			_class = "C_OP_LerpVector"
+			m_nFieldOutput = 22
+			m_flStartTime = 0.8
+		},
+		{
+			_class = "C_OP_LerpVector"
+			m_nFieldOutput = 15
+			m_flStartTime = 0.8
+		},
+		{
+			_class = "C_OP_LerpScalar"
+			m_nFieldOutput = 4
+			m_flOutput = 0.0
+			m_flStartTime = 0.8
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderStatusEffect"
+			m_pTextureColorWarp = resource:"materials/models/heroes/statuseffects/colorwarp_gods_strength.vtex"
+		},
+	]
+}

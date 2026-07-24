@@ -1,0 +1,154 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf61:version{39d3ce1d-9442-4407-9b78-8317145b1732} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_flConstantRadius = 1.0
+	m_nConstantSequenceNumber1 = 18
+	m_bShouldSort = false
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 3
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.5
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_bLocalCoords = true
+			m_OffsetMax = [ 2.0, 0.0, 0.0 ]
+			m_OffsetMin = [ 2.0, 0.0, 0.0 ]
+		},
+		{
+			_class = "C_INIT_RandomNamedModelSequence"
+			m_names = 
+			[
+				"vs_remnant_spawn",
+			]
+			m_bModelFromRenderer = true
+		},
+		{
+			_class = "C_INIT_RadiusFromCPObject"
+			m_nControlPoint = 2
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_Orient2DRelToCP"
+			m_flOpEndFadeOutTime = 0.1
+			m_flOpStartFadeOutTime = 0.1
+			m_flRotOffset = 90.0
+			m_nFieldOutput = 12
+		},
+		{
+			_class = "C_OP_EndCapTimedDecay"
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_nField = 18
+			m_Rate = 30.0
+			m_flEndTime = 0.5
+		},
+		{
+			_class = "C_OP_OscillateScalarSimple"
+			m_Rate = 0.1
+			m_Frequency = 16.0
+			m_nField = 3
+			m_flOscMult = 0.25
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_ModelList = 
+			[
+				{
+					m_model = resource:"models/void_spirit_fx.vmdl"
+				},
+			]
+			m_bOrientZ = true
+			m_nBodyGroupField = 19
+			m_nSubModelField = 19
+			m_nManualFrameField = 19
+			m_nLOD = 1
+			m_bAnimated = true
+			m_flAnimationRate = 25.0
+			m_hOverrideMaterial = resource:"materials/models/heroes/void_spirit/void_spirit_remnant_cloak_particle.vmat"
+			m_nAnimationField = 9
+			m_bOriginalModel = true
+			m_modelInput = 
+			{
+			}
+		},
+		{
+			_class = "C_OP_RenderModels"
+			m_ModelList = 
+			[
+				{
+					m_model = resource:"models/void_spirit_fx.vmdl"
+				},
+			]
+			m_bOrientZ = true
+			m_nBodyGroupField = 19
+			m_nSubModelField = 19
+			m_nManualFrameField = 19
+			m_nLOD = 1
+			m_hOverrideMaterial = resource:"materials/models/heroes/void_spirit/void_spirit_remnant_particle.vmat"
+			m_flAnimationRate = 25.0
+			m_bAnimated = true
+			m_nAnimationField = 9
+			m_bOriginalModel = true
+			m_modelInput = 
+			{
+			}
+		},
+	]
+}

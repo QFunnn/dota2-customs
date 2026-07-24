@@ -1,0 +1,285 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+
+//=================================================================================================================
+// Ability: Jakiro's Dual Breath
+//=================================================================================================================
+"jakiro_dual_breath_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/jakiro/jakiro_dual_breath_custom"
+    "AbilityTextureName"            "jakiro_dual_breath_fire"   
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Hero_Jakiro.DualBreath.Cast"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+
+    "AbilityCastPoint"              "0.25"
+    "AbilityManaCost"               "120"
+    "AbilityCooldown"                "9"  
+    "AbilityCastRange"              "850" 
+
+    // Special  
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "fire_damage"                   "20 40 60 80"    
+        "fire_slow"                     "-8 -12 -16 -20"
+        "frost_damage"                  "30 60 90 120"
+        "frost_knock"                   "160 240 320 400"
+        "frost_slow"                    "-15 -20 -25 -30"    
+        "frost_slow_attack"             "-40 -60 -80 -100"
+        "frost_knock_duration"           "0.5"
+        "slow_duration"                      "5"
+        "start_radius"          
+        {
+            "value"             "150"
+            "affected_by_aoe_increase"  "1"
+        }
+        "end_radius"            
+        {
+            "value"             "275"
+            "affected_by_aoe_increase"  "1"
+        }
+        "burn_interval"         "0.5"
+        "speed"                 "1050"
+        "fire_delay"            "0.2"
+    }       
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
+}
+
+//=================================================================================================================
+// Ability: Jakiro's Ice Path
+//=================================================================================================================
+"jakiro_ice_path_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/jakiro/jakiro_ice_path_custom"
+    "AbilityTextureName"            "jakiro_ice_path_fire"   
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES_STRONG"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Hero_Jakiro.IcePath"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastRange"              "1100"
+    "AbilityCastPoint"              "0.65"
+    "AbilityManaCost"               "80"  
+    "AbilityCooldown"               "13 12 11 10"    
+    "HasShardUpgrade"               "1"    
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "path_stun"             "0.8 1 1.2 1.4"    
+        "fire_debuff"            "8 12 16 20"   
+        "frost_debuff"           "-25 -30 -35 -40"
+        "frost_stun"             "25" 
+        "frost_duration"           "5"  
+        "path_radius"               
+        {
+            "value"                 "150"
+            "affected_by_aoe_increase"  "1"
+        }
+        "fire_duration"             "5"
+        "path_delay"                "0.2"
+        "damage"                    "50"   
+        "path_duration"             "5"  
+        "vision_duration"           "5"
+
+        "shard_stun"               "2"
+        "shard_range"               "1000"
+        "shard_speed"               "1800" 
+    }       
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_2"
+}
+  
+//=================================================================================================================
+// Ability: Jakiro's Liquid Fire
+//=================================================================================================================
+"jakiro_liquid_fire_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/jakiro/jakiro_liquid_fire_custom"
+    "AbilityTextureName"            "jakiro_liquid_fire"
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK | DOTA_ABILITY_BEHAVIOR_AOE"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    "AbilitySound"                  "Hero_Jakiro.LiquidFire"
+
+    "LinkedAbility"                 "jakiro_liquid_fire_custom_legendary"
+
+    // Stats
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "6 5 4 3"
+    "AbilityManaCost"               "20"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "fire_damage"                   "8 12 16 20"
+        "fire_damage_health"            "2.5 3 3.5 4"
+        "fire_damage_creeps"            "4"
+        "frost_damage"                  "12 20 28 36"
+        "frost_slow"                    "-25 -30 -35 -40"    
+        "frost_slow_attack"             "-20 -40 -60 -80"
+        "duration"                      "5"
+        "fire_radius"                   "300"
+        "tick_rate"                     "0.5"
+        "attack_range"                  "200"
+    }       
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_3"
+}
+
+
+"jakiro_liquid_fire_custom_legendary"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/jakiro/jakiro_liquid_fire_custom"
+    "AbilityTextureName"            "jakiro_liquid_legendary"
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "MaxLevel"                      "1"
+    "LinkedAbility"                 "jakiro_liquid_frost_custom"
+
+    "AbilityValues"
+    {
+
+    }
+}
+
+"jakiro_liquid_frost_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/jakiro/jakiro_liquid_fire_custom"
+    "AbilityTextureName"            "jakiro_liquid_ice"
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "MaxLevel"                      "1"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        
+    }       
+}
+
+//=================================================================================================================
+// Ability: Jakiro's Macropyre
+//=================================================================================================================
+"jakiro_macropyre_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/jakiro/jakiro_macropyre_custom"
+    "AbilityTextureName"            "jakiro_macropyre"
+
+    "AbilityType"                   "ABILITY_TYPE_ULTIMATE"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "FightRecapLevel"               "2"
+    "AbilitySound"                  "Hero_Jakiro.Macropyre.Cast"
+
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    
+    "AbilityCastPoint"              "0.4"
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_4"
+    "AbilityManaCost"               "120 160 200"  
+    "AbilityCastRange"              "1400"       
+
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "damage"           "100 130 160"
+        "fire_duration"             "2"
+        "frost_heal"            "30 40 50"
+        "frost_damage"          "-60"
+        "frost_slow"            "-40"
+        "duration"              "10"
+        "path_width"                
+        {
+            "value"                 "500"
+            "affected_by_aoe_increase"  "1"
+        }       
+        "burn_interval"             "0.5"
+        "frost_duration"            "0.5"
+
+        "AbilityCharges"                "1"
+        "AbilityChargeRestoreTime"          "25"
+    }   
+}
+
+"jakiro_innate_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/jakiro/jakiro_innate_custom"
+    "AbilityTextureName"            "jakiro_innate"
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+    "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+    "MaxLevel"                      "1"
+    "Innate"                        "1"
+    "HasScepterUpgrade"             "1"
+
+    "AbilityValues"
+    {
+        "fire_move"             "30"
+        "ice_reduce"            "-10"
+        
+        "scepter_shield"        "40"
+        "scepter_heal"          "50"
+        "scepter_duration"      "5"
+        "scepter_cd"            "25"
+        "scepter_radius"        "600"
+        "scepter_fire_damage"   "15"
+        "scepter_fire_duration" "4"
+        "scepter_fire_heal"     "100"
+        "scepter_fire_interval" "0.5"
+        "scepter_ice_stun"      "2.5"
+    }
+}
+
+}

@@ -1,0 +1,231 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+
+"DOTAAbilities"
+{
+
+"Version"		"1"
+
+
+"leshrac_split_earth_custom"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/leshrac/leshrac_split_earth_custom" 
+	"AbilityTextureName"			"leshrac_split_earth"													// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+	"FightRecapLevel"				"1"
+	"AbilitySound"					"Hero_Leshrac.Split_Earth"
+
+    "HasShardUpgrade"               "1"
+
+	"AbilityCastRange"				"750"
+	"AbilityCastPoint"				"0.7"
+	"AbilityCooldown"				"10"
+	"AbilityManaCost"				"80"
+	
+	"AbilityValues"	
+	{
+		"damage"			"115 170 225 300"
+		"stun"				"1 1.2 1.4 1.6"
+		"delay"				"0.1"
+		"radius"			"200"
+		"shard_delay"			"4"
+		"shard_stun"			"1.2"
+		"shard_leash"			"2"
+		"shard_damage"			"50"
+	}
+	"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+}
+
+
+"leshrac_diabolic_edict_custom"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/leshrac/leshrac_diabolic_edict_custom" 
+	"AbilityTextureName"			"leshrac_diabolic_edict"																			// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+	"FightRecapLevel"				"1"
+	"AbilitySound"					"Hero_Leshrac.Diabolic_Edict"
+
+	"AbilityCastPoint"				"0.3"
+	"AbilityCooldown"				"12 11 10 9"
+	"AbilityManaCost"				"100"
+
+	"AbilityValues"
+	{
+		"damage"				"9 16 23 30"
+		"num_explosions"		"40"
+		"duration"				"10"
+		"radius"				"500"
+		"interval"				"0.25"
+		"targets"				"3"
+	}
+	"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
+}
+
+
+"leshrac_lightning_storm_custom"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/leshrac/leshrac_lightning_storm_custom" 
+	"AbilityTextureName"			"leshrac_lightning_storm"													// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+	"FightRecapLevel"				"1"
+	"AbilitySound"					"Hero_Leshrac.Lightning_Storm"
+	
+	"AbilityCastRange"				"600"
+	"AbilityCastPoint"				"0.3"
+	"AbilityCooldown"				"5"
+	"AbilityManaCost"				"75"
+
+	"AbilityValues"
+	{
+		"damage"				"90 140 190 240"
+		"jump_count"			"5 7 9 11"
+		"slow_duration"			"0.45 0.7 0.95 1.2"
+		"radius"				"450"
+		"jump_delay"			"0.25"
+		"slow_movement_speed"	"-75"
+		"creeps"				"30"
+		
+	}
+	"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+}
+
+
+"leshrac_pulse_nova_custom_legendary"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"                    "ability_lua"
+    "ScriptFile"                    "abilities/leshrac/leshrac_pulse_nova_custom"
+    "AbilityTextureName"            "leshrac_nova_legendary"  												// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"AbilityCastAnimation"		"0"
+	"MaxLevel"					"1"
+	"AbilityValues"
+	{
+
+	}
+}
+
+
+"leshrac_pulse_nova_custom"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/leshrac/leshrac_pulse_nova_custom" 
+	"AbilityTextureName"			"leshrac_pulse_nova"															// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+	"FightRecapLevel"				"1"
+
+	"LinkedAbility"		"leshrac_pulse_nova_custom_legendary"
+
+
+	"AbilityCastPoint"				"0"
+	"AbilityCooldown"				"1.0"
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+
+
+	"AbilityValues"
+	{
+		"mana_cost_per_second"	"20 30 40"
+		"damage"				"80 120 160"
+		"mana_cost_max"			"2.5"
+		"radius"				"500"
+		"interval"				"1"
+	}
+}
+
+
+
+"leshrac_nihilism_custom"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/leshrac/leshrac_nihilism_custom" 
+	"AbilityTextureName"			"leshrac_greater_lightning_storm"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+	"FightRecapLevel"				"1"
+	"HasScepterUpgrade"				"1"
+	"MaxLevel"						"1"
+	"IsGrantedByScepter"			"1"
+	
+	"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_5"
+	"AbilityCastGestureSlot"		"DEFAULT"
+	"AbilityCooldown"				"20"
+	"AbilityManaCost"				"75"
+
+	"AbilityValues"
+	{
+		"duration"		"3"
+		"damage_inc"	"15"
+		"movespeed"		"30"
+		"slow"			"-50"
+		"radius"		"500"
+	}
+}
+
+
+
+"leshrac_innate_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/leshrac/leshrac_innate_custom"  
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "MaxLevel"                      "1"
+    "Innate"                        "1"
+
+    "AbilityValues"
+    {
+        "radius"       "0.6"
+    }
+}
+
+
+
+
+
+}

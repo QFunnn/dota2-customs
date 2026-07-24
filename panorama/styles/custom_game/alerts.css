@@ -1,0 +1,4505 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.MainAlerts
+{
+	width: 100%;
+	height: 100%;
+}
+
+@keyframes 'HideAlert'
+{
+	0%
+	{
+		opacity: 1;
+	}
+	
+	100%
+	{
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'ShowAlert'
+{
+	0%
+	{
+		opacity: 0;
+	}
+	
+	100%
+	{
+		opacity: 1;
+	}
+	
+}
+
+#EndPanel_alert
+{
+	align: center center;
+	width: 800px;
+	height: 600px;
+	margin-left: 300px;
+	z-index: 999;
+}
+
+.WaitingPlayers
+{
+	height: 46px;
+	width: 270px;
+	align: center top;
+	border-bottom: 3px solid #acacac;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #333333 ), to( #000000 ) );
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	flow-children: right;
+}
+
+.WaitingPlayers_hide
+{
+	animation-name: HideAlert;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	opacity: 0;
+}
+
+#WaitingPlayers_spin
+{
+	width: 25px;
+	height: 25px;
+	margin-left: 20px;
+	margin-bottom: 3px;
+	align: left center;
+	background-image: url("s2r://panorama/images/status_icons/loadingthrobber_round_psd.vtex");
+	background-size: 100%;
+	animation-name: SpinnerRotate;
+	animation-duration: 1.0s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+#WaitingPlayers_text
+{
+	color: white;
+	vertical-align: center;
+	horizontal-align: left;
+	letter-spacing: 1px;
+	font-family: monospaceNumbersFont;
+	font-size: 19px;
+	font-weight: bold;
+	text-align: center;
+	margin-left: 14px;
+	text-shadow: 1px 1px 3px 4.0 #00000011;
+}
+
+@keyframes 'SpinnerRotate'
+{
+	0%
+	{
+		transform: rotateZ( 360deg );
+	}
+	
+	33%
+	{
+		transform: rotateZ( 240deg );
+	}
+	
+	66%
+	{
+		transform: rotateZ( 120deg );
+	}
+	
+	100%
+	{
+		transform: rotateZ( 0deg );
+	}
+	
+}
+
+.PreGameTimerBg
+{
+	background-image: url("s2r://panorama/images/hud/reborn/bg_timer_psd.vtex");
+	background-size: 100%;
+	height: 46px;
+	width: 90px;
+	align: center top;
+}
+
+.PreGameTimer
+{
+	width: 80px;
+	height: 45px;
+	align: center top;
+	background-size: cover;
+}
+
+#PreGameTimer_icon
+{
+	width: 23px;
+	height: 23px;
+	z-index: 50;
+	margin-top: 2px;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/hud/reborn/icon_moon_psd.vtex");
+	background-size: 100%;
+	transform: scaleX(-1);
+}
+
+#PreGameTimer_text
+{
+	color: white;
+	vertical-align: bottom;
+	horizontal-align: center;
+	margin-bottom: 6px;
+	letter-spacing: 1px;
+	font-family: monospaceNumbersFont;
+	font-size: 14px;
+	font-weight: bold;
+	width: 200px;
+	text-align: center;
+	text-shadow: 1px 1px 0px 2.0 #00000011;
+}
+
+.PreGameTimer_hidden
+{
+	opacity: 0;
+}
+
+.SafeToLeave
+{
+	animation-name: ShowAlert;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 550px;
+	height: 120px;
+	border-left: 4px solid #ff4d30;
+	border-right: 4px solid #ff4d30;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #333333 ), to( #000000 ) );
+	border-radius: 10px;
+	opacity: 1;
+	align: center center;
+	margin-top: 450px;
+}
+
+.SafeToLeave_hidden
+{
+	animation-name: HideAlert;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 550px;
+	height: 120px;
+	border-left: 4px solid #ff4d30;
+	border-right: 4px solid #ff4d30;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #333333 ), to( #000000 ) );
+	border-radius: 10px;
+	opacity: 0;
+	align: center center;
+	margin-top: 450px;
+}
+
+.SafeToLeave_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	font-size: 20px;
+	text-shadow: 1px 1px 2px 4 black;
+	align: center center;
+	text-align: center;
+}
+
+.Alerts
+{
+	width: 520px;
+	height: 500px;
+	align: center top;
+	margin-top: 80px;
+	flow-children: down;
+}
+
+.Alert
+{
+	animation-name: HideAlert;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	height: 20%;
+	border-left: 4px solid #ff4d30;
+	border-right: 4px solid #ff4d30;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #333333 ), to( #000000 ) );
+	border-radius: 10px;
+	opacity: 0;
+	flow-children: right;
+}
+
+.Alert_visible
+{
+	animation-name: ShowAlert;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	height: 20%;
+	border-left: 4px solid #ff4d30;
+	border-right: 4px solid #ff4d30;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #333333 ), to( #000000 ) );
+	border-radius: 10px;
+	opacity: 1;
+	flow-children: right;
+}
+
+.Alert_content
+{
+	align: center center;
+	flow-children: right;
+}
+
+.Alert_icon
+{
+	height: 43px;
+	width: 43px;
+}
+
+.Alert_icon_right
+{
+	margin-left: 8px;
+}
+
+.Alert_icon_left
+{
+	margin-right: 8px;
+}
+
+.Alert_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	font-size: 20px;
+	text-shadow: 1px 1px 2px 4 black;
+	text-align: center;
+	align: center center;
+}
+
+.Alert_text_with_hero
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	font-size: 26px;
+	text-shadow: 1px 1px 2px 4 black;
+	align: center center;
+	text-align: center;
+}
+
+.Patrol_timer
+{
+	width: 300px;
+	height: 60px;
+	margin-left: 700px;
+	align: center top;
+}
+
+.Patrol_timer_show
+{
+	width: 100%;
+	height: 100%;
+	animation-name: ShowAlertRoshan;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	background-color: rgba(10, 10, 10, 0.99);
+	border-left: 2px solid #999999;
+	border-bottom: 2px solid #999999;
+	border-right: 2px solid #999999;
+	flow-children: right;
+}
+
+.Patrol_timer_hide
+{
+	animation-name: HideAlertRoshan;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(10, 10, 10, 0.99);
+	border-left: 2px solid #999999;
+	border-bottom: 2px solid #999999;
+	border-right: 2px solid #999999;
+	flow-children: right;
+}
+
+.Patrol_timer_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	font-size: 24px;
+	text-shadow: 1px 1px 2px 4 black;
+	align: center center;
+	text-align: center;
+}
+
+.Patrol
+{
+	width: 450px;
+	height: 60px;
+	margin-left: 700px;
+	align: center top;
+}
+
+.Patrol_count_show
+{
+	width: 100%;
+	height: 100%;
+	animation-name: ShowAlertRoshan;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	background-color: rgba(10, 10, 10, 0.99);
+	border-left: 2px solid #999999;
+	border-bottom: 2px solid #999999;
+	border-right: 2px solid #999999;
+	flow-children: right;
+}
+
+.Patrol_count_hide
+{
+	animation-name: HideAlertRoshan;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(10, 10, 10, 0.99);
+	border-left: 2px solid #999999;
+	border-bottom: 2px solid #999999;
+	border-right: 2px solid #999999;
+	flow-children: right;
+}
+
+.Patrol_Icon
+{
+	width: 10.7%;
+	height: 80%;
+	margin-left: 1.5%;
+	align: left center;
+	border: 1px solid #999999;
+	background-image: url("s2r://panorama/images/custom_game/patrol_meteor_png.vtex");
+	background-size: contain;
+}
+
+.Patrol_bar
+{
+	width: 83.5%;
+	height: 80%;
+	margin-left: 1.5%;
+	align: left center;
+	border: 1px solid #999999;
+}
+
+.Patrol_Fill
+{
+	width: 50%;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #425d25 ), color-stop( 0.2, #5BA539 ), color-stop( .5, #4D9030), to( #425d25) );
+	transition-property: width;
+	transition-duration: 0.2s;
+}
+
+.Patrol_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	font-size: 24px;
+	margin-right: 10%;
+	text-shadow: 1px 1px 2px 4 black;
+	align: center center;
+	text-align: center;
+}
+
+@keyframes 'HideAlertRoshan'
+{
+	0%
+	{
+		opacity: 1;
+		transform: translate3d( 0, 0px, 0px );
+	}
+	
+	100%
+	{
+		opacity: 0;
+		transform: translate3d( 0, -60px, 0px );
+	}
+	
+}
+
+@keyframes 'ShowAlertRoshan'
+{
+	0%
+	{
+		opacity: 0;
+		transform: translate3d( 0, -60px, 0px );
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: translate3d( 0, 0px, 0px );
+	}
+	
+}
+
+.Roshan
+{
+	animation-name: HideAlertRoshan;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 500px;
+	height: 60px;
+	margin-left: 700px;
+	background-color: rgba(10, 10, 10, 0.99);
+	border-left: 2px solid #999999;
+	border-bottom: 2px solid #999999;
+	border-right: 2px solid #999999;
+	align: center top;
+	opacity: 0;
+	flow-children: right;
+}
+
+.Roshan_visible
+{
+	animation-name: ShowAlertRoshan;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 500px;
+	height: 60px;
+	margin-left: 700px;
+	background-color: rgba(10, 10, 10, 0.99);
+	border-left: 2px solid #999999;
+	border-bottom: 2px solid #999999;
+	border-right: 2px solid #999999;
+	align: center top;
+	opacity: 1;
+	flow-children: right;
+}
+
+.Roshan_Content
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+}
+
+.Roshan_Icon
+{
+	width: 9.3%;
+	align: left center;
+	margin-left: 1.5%;
+	height: 80%;
+	background-image: url("s2r://panorama/images/custom_game/roshan_png.vtex");
+	border: 1px solid #999999;
+	background-size: contain;
+}
+
+.Roshan_Item
+{
+	width: 12%;
+	align: left center;
+	margin-left: 1.5%;
+	height: 80%;
+	border: 1px solid #999999;
+}
+
+.Roshan_Text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	font-size: 24px;
+	width: 43%;
+	margin-left: 3%;
+	text-shadow: 1px 1px 2px 4 black;
+	align: left center;
+	text-align: left;
+}
+
+#effect
+{
+	width: 100%;
+	height: 100%;
+}
+
+.Roshan_Health
+{
+	width: 70%;
+	height: 80%;
+	margin-left: 1.5%;
+	align: left center;
+	border: 1px solid #999999;
+}
+
+.Roshan_Fill
+{
+	width: 50%;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #425d25 ), color-stop( 0.2, #5BA539 ), color-stop( .5, #4D9030), to( #425d25) );
+	transition-property: width;
+	transition-duration: 0.2s;
+}
+
+.Roshan_Curse
+{
+	width: 15%;
+	height: 80%;
+	margin-left: 1.5%;
+	align: left center;
+	border: 1px solid #999999;
+	background-size: contain;
+}
+
+.Roshan_Health_Text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	font-size: 28px;
+	width: 100%;
+	text-shadow: 1px 1px 2px 4 black;
+	align: center center;
+	text-align: center;
+	margin-top: 13%;
+}
+
+.Roshan_Curse_Stack
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	font-size: 27px;
+	text-shadow: 1px 1px 2px 4 black;
+	align: center center;
+	text-align: left;
+}
+
+@keyframes 'EventOpen'
+{
+	0%
+	{
+		transform: translate3d( 100%, 0, 0px );
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'EventClose'
+{
+	0%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translate3d( 100%, 0, 0px );
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'EventOpen_left'
+{
+	0%
+	{
+		transform: translate3d( -100%, 0, 0px );
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'EventClose_left'
+{
+	0%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translate3d( -100%, 0, 0px );
+		opacity: 0;
+	}
+	
+}
+
+.Ravager
+{
+	width: 320px;
+	height: 400px;
+	align: right top;
+	margin-top: 20%;
+	flow-children: down;
+}
+
+.Ravager_show
+{
+	animation-name: EventOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	height: 16.66%;
+	background-color: rgba(10, 10, 10, 0.93);
+	border-right: 2px solid #999999;
+	border-top: 2px solid #999999;
+	border-bottom: 2px solid #999999;
+	flow-children: right;
+	visibility: visible;
+}
+
+.Ravager_hide
+{
+	animation-name: EventClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	height: 16.66%;
+	background-color: rgba(10, 10, 10, 0.93);
+	border-right: 2px solid #999999;
+	border-top: 2px solid #999999;
+	border-bottom: 2px solid #999999;
+	flow-children: right;
+	visibility: visible;
+}
+
+.ravager_portrait
+{
+	margin-left: 3%;
+	width: 14.5%;
+	height: 70%;
+	align: left center;
+	background-size: 100%;
+}
+
+.ravager_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #dedede;
+	text-shadow: 2px 2px 4px black;
+	font-size: 21px;
+	align: center center;
+	width: 100%;
+	text-align: center;
+}
+
+.Unranked_alert
+{
+	animation-name: EventRightOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 400px;
+	height: 250px;
+	margin-top: 80px;
+	align: right center;
+	flow-children: down;
+	border-left: 4px solid #ff4d30;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #323232 ), to( #000000 ) );
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
+.Unranked_alert_hidden
+{
+	animation-name: EventRightClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 400px;
+	height: 250px;
+	align: right center;
+	flow-children: down;
+	margin-top: 80px;
+	opacity: 0;
+	border-left: 4px solid #ff4d30;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #323232 ), to( #000000 ) );
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
+.Unranked_alert_top
+{
+	width: 100%;
+	height: 40%;
+}
+
+.Unranked_alert_bot
+{
+	width: 100%;
+	height: 60%;
+	flow-children: right;
+}
+
+.Unranked_close
+{
+	width: 4.5%;
+	height: 12%;
+	background-image: url("s2r://panorama/images/custom_game/close_png.vtex");
+	background-size: 100%;
+	align: left bottom;
+	margin-bottom: 6%;
+	margin-left: 2%;
+}
+
+.Unranked_image
+{
+	width: 50%;
+	height: 83%;
+	align: center top;
+	border: 1px solid #ccc;
+}
+
+.Glyph
+{
+	width: 350px;
+	height: 350px;
+	align: right center;
+	margin-top: 24%;
+}
+
+.glyph_event
+{
+	animation-name: EventOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	height: 54.59px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #2a3c3d ), to( #111111 ) );
+	border-left: 5px solid #78c8de;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	border-top: 1px solid #78c8de;
+	border-bottom: 1px solid #78c8de;
+	flow-children: right;
+	horizontal-align: right;
+}
+
+.glyph_event_close
+{
+	animation-name: EventClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #2a3c3d ), to( #111111 ) );
+	border-left: 5px solid #78c8de;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	border-top: 1px solid #78c8de;
+	border-bottom: 1px solid #78c8de;
+	height: 54.59px;
+	flow-children: right;
+	horizontal-align: right;
+}
+
+.glyph_portrait
+{
+	margin-left: 5px;
+	margin-top: 1px;
+	width: 40px;
+	height: 40px;
+	align: left center;
+	background-repeat: no-repeat;
+}
+
+.glyph_text_skill
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	text-shadow: 1px 1px 5px 2 black;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #dddddd ), to( #ffffff ) );
+	font-size: 21.5px;
+	margin-left: 11px;
+	margin-right: 10px;
+	align: center center;
+	text-align: left;
+}
+
+.pause_event
+{
+	width: 100%;
+	height: 54.95px;
+	flow-children: right;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
+.pause_event_normal
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #3b2624 ), to( #111111 ) );
+	border-left: 5px solid #db3030;
+	border-top: 1px solid #db3030;
+	border-bottom: 1px solid #db3030;
+}
+
+.pause_event_ending
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #2e382b ), to( #111111 ) );
+	border-left: 5px solid #6ee048;
+	border-top: 1px solid #6ee048;
+	border-bottom: 1px solid #6ee048;
+}
+
+.pause_event_open
+{
+	animation-name: EventOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.pause_event_close
+{
+	animation-name: EventClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.portrait
+{
+	margin-left: 10px;
+	margin-top: 2px;
+	width: 42px;
+	height: 42px;
+	align: left center;
+}
+
+.text_skill
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #dedede;
+	text-shadow: 2px 2px 4px black;
+	font-size: 22px;
+	width: 100%;
+	text-align: center;
+	vertical-align: center;
+	margin-right: 20px;
+}
+
+.Pauses
+{
+	width: 250px;
+	height: 350px;
+	margin-top: 300px;
+	align: right top;
+	flow-children: down;
+}
+
+@keyframes 'EventRightOpen'
+{
+	0%
+	{
+		transform: translate3d( 100%, 0, 0px );
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'EventRightClose'
+{
+	0%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translate3d( 100%, 0%, 0px );
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'EventReportOpen'
+{
+	0%
+	{
+		transform: translate3d( -100%, 0, 0px );
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'EventReportClose'
+{
+	0%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translate3d( -100%, 0%, 0px );
+		opacity: 0;
+	}
+	
+}
+
+.Reports
+{
+	width: 550px;
+	height: 450px;
+	align: left center;
+	flow-children: down;
+}
+
+.report_alert
+{
+	animation-name: EventReportOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	height: 20%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #373737 ), to( #000000 ) );
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	flow-children: right;
+}
+
+.report_alert_close
+{
+	animation-name: EventReportClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #373737 ), to( #000000 ) );
+	height: 20%;
+	flow-children: right;
+}
+
+.report_alert_normal
+{
+	border-right: 4px solid #ff4d30;
+}
+
+.report_alert_ranked
+{
+	border-right: 4px solid #d11616;
+}
+
+.report_label1
+{
+	width: 100%;
+	margin-top: 10px;
+}
+
+.report_label2
+{
+	width: 100%;
+	height: 40px;
+	vertical-align: bottom;
+	margin-bottom: 5px;
+}
+
+.reports_label
+{
+	width: 84%;
+	height: 100%;
+	flow-children: down;
+}
+
+.disconnect_panel
+{
+	width: 75px;
+	height: 75px;
+	background-size: contain;
+	horizontal-align: left;
+	background-image: url("s2r://panorama/images/custom_game/disconnect_png.vtex");
+}
+
+.ranked_panel
+{
+	width: 70px;
+	height: 70px;
+	background-size: contain;
+	align: left center;
+	margin-bottom: 5px;
+	background-image: url("s2r://panorama/images/rank_tier_icons/rank8b_psd.vtex");
+}
+
+.ranked_bar
+{
+	width: 400px;
+	height: 28px;
+	border-radius: 4px;
+	horizontal-align: center;
+	margin-right: 15px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1c1c20 ), to( #313236 ) );
+	border: 1px solid #928080;
+}
+
+.ranked_filler
+{
+	width: 0px;
+	height: 24px;
+	margin-left: 2px;
+	border-radius: 2px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/hud/bar_red_psd.vtex");
+	background-size: 100%;
+	brightness: 1.4;
+}
+
+.ranked_bar_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	text-shadow: 1px 1px 3px 3 black;
+	font-size: 20px;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #bbb ), to( #eee ) );
+	vertical-align: center;
+	horizontal-align: center;
+	margin-top: 2px;
+	text-align: center;
+}
+
+.avatar_panel
+{
+	width: 60px;
+	height: 60px;
+	vertical-align: center;
+	border: 1px solid #666;
+	box-shadow: fill #000 0px 0px 9px -3px;
+}
+
+.icon_label
+{
+	width: 16%;
+	height: 100%;
+}
+
+.text_report
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	text-shadow: 2px 2px 4px black;
+	font-size: 19px;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #bbb ), to( #eee ) );
+	margin-left: 15px;
+	margin-top: 5px;
+	vertical-align: center;
+	horizontal-align: center;
+	text-align: left;
+	width: 100%;
+}
+
+.text_report_ranked
+{
+	text-align: center;
+	margin-right: 22px;
+}
+
+.text_report2
+{
+	margin-top: 0px;
+}
+
+.NotValid
+{
+	animation-name: EventRightOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 550px;
+	height: 100px;
+	border-left: 4px solid #ff4d30;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #434343 ), to( #000000 ) );
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	margin-bottom: 450px;
+	align: right center;
+	flow-children: right;
+}
+
+.NotValid_close
+{
+	animation-name: EventRightClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 550px;
+	height: 100px;
+	align: right center;
+	margin-bottom: 450px;
+	flow-children: right;
+	border-left: 4px solid #ff4d30;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #434343 ), to( #000000 ) );
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
+@keyframes 'BanOpen'
+{
+	0%
+	{
+		opacity: 0;
+	}
+	
+	100%
+	{
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'BanClose'
+{
+	0%
+	{
+		opacity: 1;
+	}
+	
+	100%
+	{
+		opacity: 0;
+	}
+	
+}
+
+.Ban
+{
+	width: 500px;
+	height: 200px;
+	align: center center;
+	margin-top: 430px;
+	opacity: 0;
+	border-left: 4px solid #ff4d30;
+	border-right: 4px solid #ff4d30;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #433333 ), to( #000000 ) );
+	border-radius: 10px;
+	flow-children: down;
+}
+
+.Ban_open
+{
+	animation-name: BanOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 500px;
+	height: 200px;
+	align: center center;
+	margin-top: 430px;
+	opacity: 1;
+	border-left: 4px solid #ff4d30;
+	border-right: 4px solid #ff4d30;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #433333 ), to( #000000 ) );
+	border-radius: 10px;
+	flow-children: down;
+}
+
+.Ban_close
+{
+	animation-name: BanClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 500px;
+	height: 200px;
+	align: center center;
+	margin-top: 430px;
+	opacity: 1;
+	border-left: 4px solid #ff4d30;
+	border-right: 4px solid #ff4d30;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #433333 ), to( #000000 ) );
+	border-radius: 10px;
+	flow-children: down;
+}
+
+.Ban_top_label
+{
+	width: 100%;
+	height: 40%;
+	flow-children: right;
+}
+
+.Ban_mid_label
+{
+	width: 100%;
+	height: 60%;
+	flow-children: right;
+}
+
+.text_ban
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	text-shadow: 2px 2px 4px black;
+	font-size: 26px;
+	text-overflow: clip;
+	vertical-align: center;
+	horizontal-align: center;
+	text-align: center;
+	color: #dedede;
+}
+
+.text_ban_report
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	text-shadow: 2px 2px 4px black;
+	font-size: 23px;
+	vertical-align: center;
+	horizontal-align: center;
+	width: 100%;
+	text-align: center;
+	color: #dedede;
+}
+
+.Combat_info_close
+{
+	width: 250px;
+	height: 40px;
+	margin-top: 43%;
+	opacity: 0;
+	background-color: rgba(10, 10, 10, 0.99);
+	border-left: 1px solid #999999;
+	border-right: 1px solid #999999;
+}
+
+.Combat_info_visible
+{
+	width: 250px;
+	height: 40px;
+	margin-top: 43%;
+	opacity: 1;
+	background-color: rgba(10, 10, 10, 0.99);
+	border-left: 1px solid #999999;
+	border-right: 1px solid #999999;
+}
+
+.Combat_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	text-shadow: 2px 2px 4px black;
+	font-size: 23px;
+	vertical-align: center;
+	horizontal-align: center;
+	width: 100%;
+	text-align: center;
+	color: #dedede;
+}
+
+.Combat_left
+{
+	align: left center;
+	margin-left: 8px;
+}
+
+.Combat_right
+{
+	align: right center;
+	margin-right: 8px;
+}
+
+.tips
+{
+	width: 500px;
+	height: 500px;
+	align: left center;
+	flow-children: down;
+}
+
+@keyframes 'tipOpen'
+{
+	0%
+	{
+		transform: translateX(-1000px);
+	}
+	
+	100%
+	{
+		transform: translateX(0px);
+	}
+	
+}
+
+@keyframes 'tipClose'
+{
+	0%
+	{
+		transform: translateX(0px);
+	}
+	
+	100%
+	{
+		transform: translateX(-1000px);
+	}
+	
+}
+
+.tip
+{
+	width: 600px;
+	height: 120px;
+	align: left center;
+	opacity: 1;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-image: url("s2r://panorama/images/tooltips/hud_tip_bg_psd.vtex");
+	flow-children: right;
+	border-top: 0.6px solid #fff;
+	border-bottom: 0.6px solid #fff;
+	border-brush: gradient( linear, 0% 0%, 100% 0%, from( #b0d5ff ), color-stop( 1, #ebebeb00 ), to( #0000 ) );
+}
+
+.tip_open
+{
+	animation-name: tipOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 600px;
+	height: 120px;
+	align: left center;
+	opacity: 1;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-image: url("s2r://panorama/images/tooltips/hud_tip_bg_psd.vtex");
+	flow-children: right;
+	border-top: 0.6px solid #fff;
+	border-bottom: 0.6px solid #fff;
+	border-brush: gradient( linear, 0% 0%, 100% 0%, from( #b0d5ff ), color-stop( 1, #ebebeb00 ), to( #0000 ) );
+}
+
+.tip_close
+{
+	animation-name: tipClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 600px;
+	height: 120px;
+	align: left center;
+	opacity: 1;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-image: url("s2r://panorama/images/tooltips/hud_tip_bg_psd.vtex");
+	flow-children: right;
+	border-top: 0.6px solid #fff;
+	border-bottom: 0.6px solid #fff;
+	border-brush: gradient( linear, 0% 0%, 100% 0%, from( #b0d5ff ), color-stop( 1, #ebebeb00 ), to( #0000 ) );
+}
+
+.Wizard
+{
+	background-image: url("s2r://panorama/images/tooltips/wizard_hud_default_psd.vtex");
+	background-size: 100%;
+	width: 65px;
+	height: 100px;
+	margin-left: 25px;
+	vertical-align: center;
+}
+
+.text_tip
+{
+	vertical-align: center;
+	width: 450px;
+	font-size: 18px;
+	color: white;
+	font-weight: bold;
+	text-shadow: 2px 2px 4px black;
+	text-align: center;
+}
+
+.UpgradeCreeps
+{
+	align: left top;
+	margin-top: 450px;
+	width: 500px;
+	height: 120px;
+}
+
+.upgrade_creeps_event
+{
+	animation-name: NecroEventOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	border-right: 1px solid #999999;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	flow-children: right;
+}
+
+.upgrade_creeps_close
+{
+	animation-name: NecroEventClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	border-right: 1px solid #999999;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	height: 100%;
+	flow-children: right;
+}
+
+.upgrade_creeps_portrait
+{
+	width: 13%;
+	margin-right: 3%;
+	border: 1px solid #999999;
+	height: 40%;
+	align: right center;
+}
+
+.upgrade_creeps_main
+{
+	width: 84%;
+	height: 100%;
+	flow-children: right;
+}
+
+.upgrade_creeps_top
+{
+	width: 100%;
+	height: 40%;
+	flow-children: right;
+}
+
+.upgrade_creeps_bot
+{
+	width: 100%;
+	height: 60%;
+}
+
+.upgrade_creeps_left
+{
+	width: 15%;
+	height: 100%;
+}
+
+.upgrade_creeps_mid
+{
+	width: 85%;
+	height: 100%;
+}
+
+.upgrade_creeps_top_hero
+{
+	width: 9.5%;
+	height: 100%;
+	margin-left:1%;
+}
+
+.upgrade_creeps_top_text
+{
+	width: 95%;
+	height: 100%;
+}
+
+.upgrade_creeps_icon
+{
+	align: center center;
+	width: 74%;
+	height: 40%;
+}
+
+.upgrade_creeps_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #dedede;
+	text-shadow: 2px 2px 4px black;
+	font-size: 19px;
+	margin-left: 1%;
+	vertical-align: center;
+	horizontal-align: center;
+	text-align: center;
+}
+
+.upgrade_creeps_text_bot
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #dedede;
+	text-shadow: 2px 2px 4px black;
+	font-size: 19px;
+	margin-left: 1%;
+	vertical-align: top;
+	horizontal-align: center;
+	text-align: center;
+}
+
+.TrapTimer
+{
+	width: 200px;
+	height: 50px;
+	margin-top: 240px;
+	margin-left: 15px;
+	flow-children: right;
+}
+
+.TrapTimer_hidden
+{
+	width: 200px;
+	height: 50px;
+	margin-top: 220px;
+	margin-left: 15px;
+	flow-children: right;
+	visibility: collapse;
+}
+
+.TrapTimerBar
+{
+	width: 75%;
+	height: 50%;
+	border: 1px solid #d4daff;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #515763 ), to( #31343b ) );
+	vertical-align: center;
+	margin-left: 1%;
+}
+
+.TrapTimerFiller
+{
+	width: 55%;
+	height: 70%;
+	background-size: contain;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #6289ad ), to( #7fadd8 ) );
+	margin-left: 2%;
+	align: left center;
+	transition-property: width;
+	transition-duration: 0.2s;
+}
+
+.TrapTimerIcon
+{
+	width: 17.54%;
+	height: 70%;
+	margin-left: 3%;
+	background-size: contain;
+	vertical-align: center;
+	border: 1px solid #d4daff;
+	background-image: url("s2r://panorama/images/custom_game/trapalertmini_png.vtex");
+}
+
+.TrapTimerText
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 2px 2 black;
+	z-index: 8;
+	align: center center;
+	font-size: 19px;
+	text-align: center;
+}
+
+.NecroWave
+{
+	width: 200px;
+	height: 50px;
+	margin-top: 240px;
+	margin-left: 285px;
+	flow-children: right;
+}
+
+.NecroWave_hidden
+{
+	flow-children: right;
+	width: 200px;
+	height: 50px;
+	margin-top: 220px;
+	margin-left: 285px;
+	visibility: collapse;
+}
+
+.NecroWaveBar
+{
+	width: 75%;
+	height: 50%;
+	border: 1px solid #7a6434;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #112101 ), to( #193200 ) );
+	vertical-align: center;
+	margin-left: 1%;
+}
+
+.NecroWaveFiller
+{
+	width: 55%;
+	height: 70%;
+	background-size: contain;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #d75a0d ), to( #f6d705 ) );
+	margin-left: 2%;
+	align: left center;
+	transition-property: width;
+	transition-duration: 0.2s;
+}
+
+.NecroWaveIcon
+{
+	width: 17.54%;
+	height: 70%;
+	margin-left: 3%;
+	background-size: contain;
+	vertical-align: center;
+	border: 1px solid #7a6434;
+	background-image: url("s2r://panorama/images/custom_game/necro_mini_png.vtex");
+}
+
+.NecroWaveText
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 2px 2 black;
+	z-index: 8;
+	align: center center;
+	font-size: 19px;
+	text-align: center;
+}
+
+@keyframes 'NecroEventOpen'
+{
+	0%
+	{
+		transform: translate3d( -100%, 0, 0px );
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'NecroEventClose'
+{
+	0%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translate3d( -100%, 0, 0px );
+		opacity: 0;
+	}
+	
+}
+
+.TrapAlert
+{
+	align: left top;
+	margin-top: 240px;
+	width: 500px;
+	height: 120px;
+	z-index: 9999;
+}
+
+.trap_portrait
+{
+	width: 14.5%;
+	margin-right: 3%;
+	border: 1px solid #999999;
+	height: 60%;
+	align: right center;
+}
+
+.trap_hero_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #dedede;
+	text-shadow: 2px 2px 4px black;
+	font-size: 20px;
+	margin-left: 3%;
+	vertical-align: center;
+	text-align: left;
+}
+
+.trap_icon
+{
+	vertical-align: center;
+	width: 9.5%;
+	height: 80%;
+	margin-top: 5%;
+	margin-left: 14%;
+}
+
+.trap_text_skill
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #dedede;
+	text-shadow: 2px 2px 4px black;
+	font-size: 20px;
+	vertical-align: top;
+	horizontal-align: center;
+	text-align: center;
+}
+
+.BackdoorAlert
+{
+	align: left center;
+	margin-top: 20px;
+	width: 500px;
+	height: 120px;
+}
+
+.BackdoorAlert_event
+{
+	animation-name: NecroEventOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	border-right: 1px solid #999999;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	flow-children: right;
+}
+
+.BackdoorAlert_event_close
+{
+	animation-name: NecroEventClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	border-right: 1px solid #999999;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	height: 100%;
+	flow-children: right;
+}
+
+.BackdoorAlert_portrait
+{
+	width: 70px;
+	margin-right: 3%;
+	border: 1px solid #999999;
+	height: 70px;
+	align: right center;
+}
+
+.BackdoorAlert_main
+{
+	width: 80%;
+	height: 100%;
+	flow-children: down;
+}
+
+.BackdoorAlert_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #dedede;
+	text-shadow: 2px 2px 4px black;
+	font-size: 20px;
+	text-align: center;
+	align: center center;
+	margin-left: 2%;
+}
+
+.BackdoorAlert_text2
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #dedede;
+	text-shadow: 2px 2px 4px black;
+	font-size: 21px;
+	width: 80%;
+	align: center center;
+	text-align: center;
+	margin-left: 2%;
+}
+
+.BackdoorAlert_text3
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #dedede;
+	text-shadow: 2px 2px 4px black;
+	font-size: 20px;
+	width: 95%;
+	align: center center;
+	text-align: center;
+}
+
+.NecroAlert
+{
+	align: left top;
+	margin-top: 280px;
+	width: 500px;
+	height: 240px;
+}
+
+.necro_event
+{
+	animation-name: NecroEventOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	height: 50%;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	border-right: 1px solid #999999;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	flow-children: right;
+	opacity: 1;
+}
+
+.necro_event_close
+{
+	animation-name: NecroEventClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	border-right: 1px solid #999999;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	height: 50%;
+	flow-children: right;
+	opacity: 1;
+}
+
+.necro_event_main
+{
+	width: 80%;
+	height: 100%;
+	flow-children: down;
+}
+
+.necro_event_portraits
+{
+	width: 20%;
+	height: 100%;
+	flow-children: down;
+}
+
+.necro_event_top
+{
+	width: 100%;
+	height: 40%;
+	flow-children: right;
+}
+
+.necro_event_bottom
+{
+	width: 100%;
+	height: 60%;
+}
+
+.necro_icon
+{
+	vertical-align: center;
+	width: 9.5%;
+	height: 80%;
+	margin-top: 5%;
+	margin-left: 1%;
+}
+
+.necro_caster
+{
+	width: 80px;
+	height: 46px;
+	border: 1px solid #999999;
+	horizontal-align: center;
+	margin-top: 10px;
+	background-repeat: no-repeat;
+}
+
+.necro_portrait
+{
+	width: 63.13px;
+	height: 46px;
+	border: 1px solid #999999;
+	horizontal-align: center;
+	margin-top: 5px;
+	background-image: url("s2r://panorama/images/custom_game/necrobook_png.vtex");
+}
+
+.necro_hero_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #dedede;
+	text-shadow: 2px 2px 4px black;
+	font-size: 19px;
+	margin-left: 6%;
+	vertical-align: center;
+	horizontal-align: center;
+	text-align: center;
+}
+
+.necro_text_skill
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #dedede;
+	text-shadow: 2px 2px 4px black;
+	font-size: 20px;
+	vertical-align: center;
+	text-align: center;
+	margin-left: 2%;
+}
+
+.TargetAlert
+{
+	align: right top;
+	margin-top: 300px;
+	width: 500px;
+	height: 120px;
+}
+
+.TargetAlert_event
+{
+	animation-name: TargetAlertOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	border-left: 1px solid #999999;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	flow-children: right;
+}
+
+.TargetAlert_event_close
+{
+	animation-name: TargetAlertClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	border-left: 1px solid #999999;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	height: 100%;
+	flow-children: right;
+}
+
+.TargetAlert_right_label
+{
+	align: right top;
+	height: 100%;
+	flow-children: down;
+}
+
+.TargetAlert_left_label
+{
+	align: right top;
+	height: 100%;
+}
+
+.TargetAlert_left_label_1
+{
+	width: 65%;
+}
+
+.TargetAlert_left_label_2
+{
+	width: 75%;
+}
+
+.TargetAlert_right_label_1
+{
+	width: 35%;
+}
+
+.TargetAlert_right_label_2
+{
+	width: 25%;
+}
+
+.TargetAlert_portrait
+{
+	border: 1px solid #999999;
+}
+
+.TargetAlert_portrait_1
+{
+	width: 140px;
+	height: 80px;
+	align: center center;
+}
+
+.TargetAlert_portrait_2
+{
+	width: 84px;
+	height: 48px;
+	margin-top: 8px;
+	align: center top;
+	margin-left: 0px;
+}
+
+.TargetAlert_portrait_target
+{
+	align: right top;
+	background-image: url("s2r://panorama/images/hud/arcana/drow/drow_arcana_target_psd.vtex");
+	width: 35.714%;
+	height: 65.78%;
+	background-size: contain;
+}
+
+.TargetAlert_portrait_target_shadow
+{
+	align: right top;
+	background-image: url("s2r://panorama/images/hud/arcana/drow/drow_arcana_target_shadow_psd.vtex");
+	width: 43.75%;
+	height: 72.18%;
+	background-size: 100%;
+}
+
+.target_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #dedede;
+	text-shadow: 2px 2px 4px black;
+	font-size: 21px;
+	vertical-align: center;
+	text-align: center;
+	margin-left: 1%;
+}
+
+@keyframes 'TargetAlertOpen'
+{
+	0%
+	{
+		transform: translate3d( 100%, 0, 0px );
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'TargetAlertClose'
+{
+	0%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translate3d( 100%, 0, 0px );
+		opacity: 0;
+	}
+	
+}
+
+.TargetTimer
+{
+	align: right top;
+	margin-top: 300px;
+	width: 160px;
+}
+
+.TargetTimer_main
+{
+	animation-name: TargetAlertOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	flow-children: down;
+}
+
+.TargetTimer_main_close
+{
+	animation-name: TargetAlertClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	flow-children: down;
+}
+
+.TargetTimer_top
+{
+	width: 100%;
+}
+
+.TargetTimer_top_icons
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.TargetTimer_top_hero
+{
+	horizontal-align: center;
+	width: 100px;
+	height: 57.14px;
+	margin-top: 6px;
+	border: 1px solid #999999;
+}
+
+.TargetTimer_top_target
+{
+	align: right top;
+	background-image: url("s2r://panorama/images/hud/arcana/drow/drow_arcana_target_psd.vtex");
+	width: 38px;
+	height: 38px;
+	background-size: contain;
+	z-index: 3;
+}
+
+.TargetTimer_top_shadow
+{
+	align: right top;
+	background-image: url("s2r://panorama/images/hud/arcana/drow/drow_arcana_target_shadow_psd.vtex");
+	width: 45px;
+	height: 45px;
+	background-size: contain;
+}
+
+.TargetTimer_mid
+{
+	width: 100%;
+	height: 25px;
+	margin-top: 5px;
+}
+
+.TargetTimer_mid_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #dedede;
+	text-shadow: 2px 2px 4px black;
+	font-size: 21px;
+	align: center center;
+}
+
+.TargetTimer_gold
+{
+	width: 100%;
+	height: 25px;
+}
+
+.TargetTimer_gold_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #ffc000;
+	text-shadow: 2px 2px 4px black;
+	font-size: 19px;
+	margin-left: 58%;
+	align: center center;
+}
+
+.TargetTimer_gold_icon
+{
+	width: 14%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/gold-logo_png.vtex");
+	background-size: contain;
+	margin-left: 50%;
+}
+
+.TargetTimer_epic_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #b053ff;
+	text-shadow: 2px 2px 4px black;
+	font-size: 19px;
+	align: left center;
+	margin-left: 25%;
+}
+
+.TargetTimer_epic_icon
+{
+	width: 14%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/purple-logo_png.vtex");
+	background-size: contain;
+	margin-left: 10%;
+	align: left center;
+	margin-bottom: 7%;
+}
+
+.TargetTimer_epic
+{
+	width: 100%;
+	height: 25px;
+}
+
+.TargetTimer_damage_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #ff2e2e;
+	text-shadow: 2px 2px 4px black;
+	font-size: 19px;
+	align: center center;
+}
+
+@keyframes 'PatrolAlertOpen'
+{
+	0%
+	{
+		transform: translate3d( 100%, 0, 0px );
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'PatrolAlertClose'
+{
+	0%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translate3d( 100%, 0, 0px );
+		opacity: 0;
+	}
+	
+}
+
+.DesroyTower
+{
+	align: right top;
+	margin-top: 420px;
+	width: 500px;
+	height: 120px;
+}
+
+.DesroyTower_event
+{
+	animation-name: PatrolAlertOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	border-left: 1px solid #999999;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	flow-children: right;
+}
+
+.DesroyTower_event_close
+{
+	animation-name: PatrolAlertClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	border-left: 1px solid #999999;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	height: 100%;
+	flow-children: right;
+}
+
+.DesroyTower_left
+{
+	width: 20%;
+	height: 100%;
+}
+
+.DesroyTower_icon
+{
+	background-image: url("s2r://panorama/images/custom_game/final_duel_png.vtex");
+	background-size: 100%;
+	width: 65px;
+	height: 65px;
+	align: center center;
+	border: 1px solid #999999;
+}
+
+.DesroyTower_right
+{
+	width: 80%;
+	height: 100%;
+}
+
+.DesroyTower_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 2px 2px 4px black;
+	font-size: 20px;
+	align: center center;
+	text-align: center;
+}
+
+.grenade_alert
+{
+	align: right top;
+	margin-top: 420px;
+	width: 500px;
+	height: 120px;
+}
+
+.grenade_alert_event
+{
+	animation-name: PatrolAlertOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	border-left: 1px solid #999999;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	flow-children: right;
+}
+
+.grenade_alert_event_close
+{
+	animation-name: PatrolAlertClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	border-left: 1px solid #999999;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	height: 100%;
+	flow-children: right;
+}
+
+.grenade_alert_left
+{
+	width: 17%;
+	height: 100%;
+}
+
+.grenade_alert_icon
+{
+	background-image: url("s2r://panorama/images/custom_game/tower_push_png.vtex");
+	background-size: 100%;
+	width: 65px;
+	height: 65px;
+	margin-left: 2%;
+	align: center center;
+	border: 1px solid #999999;
+}
+
+.grenade_alert_right
+{
+	width: 83%;
+	height: 100%;
+}
+
+.grenade_alert_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 2px 2px 4px black;
+	font-size: 22px;
+	align: center center;
+	text-align: center;
+}
+
+@keyframes 'RandomAlertOpen'
+{
+	0%
+	{
+		transform: translate3d( 100%, 0, 0px );
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'RandomAlertClose'
+{
+	0%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translate3d( 100%, 0, 0px );
+		opacity: 0;
+	}
+	
+}
+
+.random_talent_alert
+{
+	align: right center;
+	margin-top: 370px;
+	width: 500px;
+	height: 120px;
+}
+
+.random_talent_alert_event
+{
+	animation-name: RandomAlertOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	border-left: 1px solid #999999;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	flow-children: down;
+}
+
+.random_talent_alert_event_close
+{
+	animation-name: RandomAlertClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	border-left: 1px solid #999999;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	height: 100%;
+	flow-children: down;
+}
+
+.random_talent_alert_top
+{
+	width: 100%;
+	height: 35%;
+	border-bottom: 1px solid #555555;
+}
+
+.random_talent_alert_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 2px 2px 4px black;
+	font-size: 20px;
+	align: center center;
+	text-align: center;
+}
+
+.random_talent_alert_bot
+{
+	width: 100%;
+	height: 65%;
+	flow-children: right;
+}
+
+.random_talent_alert_icon
+{
+	width: 10%;
+	height: 65%;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	margin-left: 8%;
+	vertical-align: center;
+	box-shadow: fill #26b6eb 0px 0px 7px -1px;
+}
+
+.random_talent_alert_icon_first
+{
+	margin-left: 18%;
+}
+
+.random_talent_alert_icon_first_gray
+{
+	margin-left: 27%;
+}
+
+@keyframes 'MuertaAlertOpen'
+{
+	0%
+	{
+		transform: translate3d( -100%, 0, 0px );
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'MuertaAlertClose'
+{
+	0%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translate3d( -100%, 0, 0px );
+		opacity: 0;
+	}
+	
+}
+
+.muerta_quest_alert
+{
+	align: left center;
+	margin-top: 280px;
+	width: 500px;
+	height: 120px;
+}
+
+.muerta_quest_alert_event
+{
+	animation-name: MuertaAlertOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	border-right: 1px solid #999999;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	flow-children: right;
+}
+
+.muerta_quest_alert_event_close
+{
+	animation-name: MuertaAlertClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	border-right: 1px solid #999999;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	height: 100%;
+	flow-children: right;
+}
+
+.muerta_quest_alert_left
+{
+	width: 84%;
+	height: 100%;
+}
+
+.muerta_quest_alert_icon
+{
+	width: 65px;
+	height: 65px;
+	margin-right: 4%;
+	align: center center;
+	border: 1px solid #999999;
+}
+
+.muerta_quest_alert_icon_1
+{
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_muerta/shovel_png.vtex");
+	background-size: 100%;
+}
+
+.muerta_quest_alert_icon_2
+{
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_muerta/recipe_png.vtex");
+	background-size: 100%;
+}
+
+.muerta_quest_alert_icon_3
+{
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_muerta/mercy_png.vtex");
+	background-size: 100%;
+}
+
+.muerta_quest_alert_icon_4
+{
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_muerta/ghost_png.vtex");
+	background-size: 100%;
+}
+
+.muerta_quest_alert_icon_5
+{
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_muerta/gun_png.vtex");
+	background-size: 100%;
+}
+
+.muerta_quest_alert_icon_6
+{
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_muerta/full_png.vtex");
+	background-size: 100%;
+}
+
+.muerta_quest_alert_right
+{
+	width: 16%;
+	height: 100%;
+}
+
+.muerta_quest_alert_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 2px 2px 4px black;
+	font-size: 20px;
+	align: center center;
+	text-align: center;
+}
+
+.PatrolAlert
+{
+	align: right top;
+	margin-top: 300px;
+	width: 500px;
+	height: 120px;
+}
+
+.PatrolAlert_event
+{
+	animation-name: PatrolAlertOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	border-left: 1px solid #999999;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	flow-children: down;
+	opacity: 1.1;
+}
+
+.PatrolAlert_event_close
+{
+	animation-name: PatrolAlertClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	border-left: 1px solid #999999;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	height: 100%;
+	flow-children: down;
+	opacity: 1.1;
+}
+
+.patrol_top
+{
+	width: 100%;
+	height: 40%;
+}
+
+.patrol_bot
+{
+	width: 100%;
+	height: 60%;
+}
+
+.patrol_bot_content
+{
+	width: 420px;
+	height: 100%;
+	flow-children: right;
+	align: center center;
+}
+
+.patrol_bot_item
+{
+	width: 70px;
+	height: 51.33px;
+	background-repeat: no-repeat;
+	border: 1px solid #999999;
+	margin-left: 11.666px;
+	background-color: red;
+}
+
+@keyframes 'RatingPanelOpen'
+{
+	0%
+	{
+		opacity: 0;
+	}
+	
+	100%
+	{
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'RatingPanelClose'
+{
+	0%
+	{
+		opacity: 1;
+	}
+	
+	100%
+	{
+		opacity: 0;
+	}
+	
+}
+
+.RatingAlert
+{
+	width: 500px;
+	height: 250px;
+	background-color: rgba(10, 10, 10, 0.93);
+	border: 2px solid #999999;
+	align: center top;
+	margin-top: 110px;
+	visibility: collapse;
+	flow-children: down;
+}
+
+.RatingAlert_show
+{
+	animation-name: RatingPanelOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 500px;
+	height: 250px;
+	background-color: rgba(10, 10, 10, 0.93);
+	border: 2px solid #999999;
+	align: center top;
+	margin-top: 110px;
+	visibility: visible;
+	flow-children: down;
+}
+
+.RatingAlert_hide
+{
+	animation-name: RatingPanelClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 500px;
+	height: 250px;
+	background-color: rgba(10, 10, 10, 0.93);
+	border: 2px solid #999999;
+	align: center top;
+	margin-top: 110px;
+	visibility: visible;
+	flow-children: down;
+}
+
+.Rating_TopLabel
+{
+	width: 100%;
+	height: 25%;
+}
+
+.Rating_MidLabel
+{
+	width: 100%;
+	height: 20%;
+}
+
+.Rating_BotLabel
+{
+	width: 100%;
+	height: 50%;
+}
+
+.Rating_Text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 2px 2px 4px black;
+	font-size: 20px;
+	align: center center;
+	text-align: center;
+}
+
+.Rating_Text_bot
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 2px 2px 4px black;
+	font-size: 20px;
+	align: center center;
+	text-align: left;
+}
+
+.Rating_Text_mid
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 2px 2px 4px black;
+	font-size: 20px;
+	align: center center;
+	text-align: center;
+	margin-right: 30%;
+}
+
+.Rating_Text_underline
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 2px 2px 4px black;
+	font-size: 20px;
+	align: center center;
+	text-align: center;
+	text-decoration: underline;
+	margin-left: 39%;
+}
+
+.Rating_Text_underline_in
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #2dc329;
+	text-shadow: 2px 2px 4px black;
+	font-size: 20px;
+	align: center center;
+	text-align: center;
+	text-decoration: underline;
+	margin-left: 39%;
+}
+
+@keyframes 'ShopAnim'
+{
+	0%
+	{
+		box-shadow: fill #38b700 0px 0px 4px 0px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #38b700 0px 0px 18px 0px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #38b700 0px 0px 4px 0px;
+	}
+	
+}
+
+.DoubleRating_show
+{
+	width: 25px;
+	height: 25px;
+	align: left center;
+	margin-top: 380px;
+	margin-left: 280px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.DoubleRating_show_hidden
+{
+	animation-name: HideAlert;
+	animation-duration: 0.3s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 25px;
+	height: 25px;
+	align: left center;
+	margin-top: 380px;
+	margin-left: 280px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	opacity: 0;
+}
+
+.DoubleRating_show_active
+{
+	background-image: url("s2r://panorama/images/custom_game/tip_off_png.vtex");
+}
+
+.DoubleRating_show_noactive
+{
+	background-image: url("s2r://panorama/images/custom_game/tip_sound_png.vtex");
+}
+
+.DoubleRating
+{
+	animation-name: ShopAnim;
+	animation-iteration-count: infinite;
+	animation-duration: 2.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+	width: 260px;
+	height: 50px;
+	align: left center;
+	margin-top: 380px;
+	margin-left: 10px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #202020 ), to( #2e2e2e ) );
+	border: 2px solid #000000;
+}
+
+.DoubleRating_notactive
+{
+	width: 260px;
+	height: 50px;
+	align: left center;
+	margin-top: 380px;
+	margin-left: 10px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #101010 ), to( #1e1e1e ) );
+	border: 2px solid #000000;
+}
+
+.DoubleRating_hidden
+{
+	animation-name: HideAlert;
+	animation-duration: 0.3s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 260px;
+	height: 50px;
+	align: left center;
+	margin-top: 380px;
+	margin-left: 10px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #202020 ), to( #2e2e2e ) );
+	border: 2px solid #000000;
+	opacity: 0;
+}
+
+.DoubleRatingText
+{
+	font-family: Radiance;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 2px 2px 4px black;
+	font-size: 23px;
+	align: center center;
+	text-align: center;
+}
+
+.DoubleRatingText_notactive
+{
+	font-family: Radiance;
+	font-weight: bold;
+	color: #606060;
+	text-shadow: 2px 2px 4px black;
+	font-size: 23px;
+	align: center center;
+	text-align: center;
+}
+
+.DoubleRatingAlerts
+{
+	width: 280px;
+	height: 350px;
+	align: left center;
+	margin-top: 0%;
+}
+
+.DoubleRating_event
+{
+	animation-name: EventOpen_left;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	height: 15.7%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #2e382b ), to( #111111 ) );
+	border-right: 5px solid #6ee048;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-top: 1px solid #6ee048;
+	border-bottom: 1px solid #6ee048;
+	flow-children: right;
+}
+
+.DoubleRating_event_close
+{
+	animation-name: EventClose_left;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #2e382b ), to( #111111 ) );
+	border-right: 5px solid #6ee048;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-top: 1px solid #6ee048;
+	border-bottom: 1px solid #6ee048;
+	height: 15.7%;
+	flow-children: right;
+}
+
+.DoubleRating_portrait
+{
+	margin-left: 19px;
+	margin-top: 1px;
+	width: 40px;
+	height: 40px;
+	background-repeat: no-repeat;
+	align: left center;
+}
+
+.DoubleRating_alert_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	text-shadow: 1px 1px 5px 2 black;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #dddddd ), to( #ffffff ) );
+	font-size: 21.5px;
+	margin-left: 25px;
+	align: center center;
+	text-align: left;
+}
+
+.BadMap_ban
+{
+	animation-name: RatingPanelOpen;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 500px;
+	height: 300px;
+	border-left: 4px solid #ff4d30;
+	border-right: 4px solid #ff4d30;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #433333 ), to( #000000 ) );
+	border-radius: 10px;
+	align: center center;
+	flow-children: down;
+}
+
+.BadMap_ban_hidden
+{
+	animation-name: RatingPanelClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 500px;
+	height: 300px;
+	border-left: 4px solid #ff4d30;
+	border-right: 4px solid #ff4d30;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #433333 ), to( #000000 ) );
+	border-radius: 10px;
+	align: center center;
+	flow-children: down;
+	opacity: 0;
+}
+
+.BadMap_ban_top
+{
+	width: 100%;
+	height: 20%;
+	margin-top: 3%;
+}
+
+.BadMap_ban_your_mmr
+{
+	width: 100%;
+	height: 10%;
+}
+
+.BadMap_ban_map_mmr
+{
+	width: 100%;
+	height: 10%;
+}
+
+.BadMap_ban_image
+{
+	width: 44%;
+	height: 45%;
+	align: center top;
+	border: 1px solid #ccc;
+	margin-top: 5%;
+}
+
+.BadMap
+{
+	animation-name: RatingPanelOpen;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 500px;
+	height: 400px;
+	align: center top;
+	margin-top: 220px;
+	flow-children: down;
+	border-left: 4px solid #ff4d30;
+	border-right: 4px solid #ff4d30;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #433333 ), to( #000000 ) );
+	border-radius: 10px;
+}
+
+.BadMap_hidden
+{
+	animation-name: RatingPanelClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 500px;
+	height: 400px;
+	align: center top;
+	margin-top: 220px;
+	flow-children: down;
+	opacity: 0;
+	border-left: 4px solid #ff4d30;
+	border-right: 4px solid #ff4d30;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #433333 ), to( #000000 ) );
+	border-radius: 10px;
+}
+
+.BadMap_top
+{
+	width: 100%;
+	height: 12%;
+}
+
+.BadMap_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	font-size: 22px;
+	text-shadow: 1px 1px 2px 4 black;
+	align: center center;
+	text-align: center;
+}
+
+.BadMap_your_mmr
+{
+	width: 100%;
+	height: 6%;
+}
+
+.BadMap_map_mmr
+{
+	width: 100%;
+	height: 8%;
+}
+
+.BadMap_bottom
+{
+	width: 100%;
+	height: 25%;
+}
+
+.BadMap_image
+{
+	width: 49.5%;
+	height: 38%;
+	align: center top;
+	border: 1px solid #ccc;
+}
+
+.InvokerScepter
+{
+	width: 100%;
+	height: 100%;
+	background-color: red;
+}
+
+@keyframes 'HideLowNet'
+{
+	0%
+	{
+		opacity: 1;
+		transform: translate3d( 0, 0px, 0px );
+	}
+	
+	100%
+	{
+		opacity: 0;
+		transform: translate3d( 450px, 0px, 0px );
+	}
+	
+}
+
+@keyframes 'ShowLowNet'
+{
+	0%
+	{
+		opacity: 0;
+		transform: translate3d( 450px, 0px, 0px );
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: translate3d( 0, 0px, 0px );
+	}
+	
+}
+
+.LowNet_hide
+{
+	animation-name: HideLowNet;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.LowNet
+{
+	width: 450px;
+	height: 120px;
+	margin-bottom: 200px;
+	align: right center;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	opacity: 1.15;
+	flow-children: down;
+	animation-name: ShowLowNet;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.LowNet_hidden
+{
+	width: 450px;
+	height: 120px;
+	margin-bottom: 200px;
+	align: right center;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	opacity: 0;
+	flow-children: down;
+}
+
+.LowNet_top
+{
+	width: 100%;
+	height: 32%;
+}
+
+.LowNet_bot
+{
+	width: 100%;
+	height: 68%;
+	flow-children: right;
+}
+
+.LowNet_text
+{
+	font-family: Radiance;
+	font-weight: bold;
+	color: #e7e7e7;
+	font-size: 23px;
+	text-shadow: 1px 1px 2px 2 black;
+	align: center top;
+	margin-top: 4%;
+	text-align: center;
+}
+
+.LowNet_gold
+{
+	width: 20%;
+	height: 100%;
+	flow-children: down;
+	margin-left: 15%;
+}
+
+.LowNet_gold_icon
+{
+	width: 56%;
+	height: 63%;
+	background-image: url("s2r://panorama/images/custom_game/gold_png.vtex");
+	background-size: 100%;
+	flow-children: down;
+	box-shadow: fill black 0px 0px 4px 0px;
+	horizontal-align: center;
+}
+
+.LowNet_gold_text
+{
+	font-family: Radiance;
+	font-weight: bold;
+	color: #fff4a0;
+	font-size: 16px;
+	text-shadow: 1px 1px 2px 2 black;
+	align: center center;
+	text-align: center;
+}
+
+.LowNet_blue
+{
+	width: 20%;
+	height: 100%;
+	flow-children: down;
+	margin-left: 5%;
+}
+
+.LowNet_blue_icon
+{
+	width: 78%;
+	height: 63%;
+	background-image: url("s2r://panorama/images/custom_game/blue_orb_png.vtex");
+	background-size: contain;
+	flow-children: down;
+	box-shadow: fill black 0px 0px 4px 0px;
+	horizontal-align: center;
+}
+
+.LowNet_blue_text
+{
+	font-family: Radiance;
+	font-weight: bold;
+	color: #fff4a0;
+	font-size: 16px;
+	text-shadow: 1px 1px 2px 2 black;
+	align: center center;
+	text-align: center;
+}
+
+.LowNet_purple
+{
+	width: 20%;
+	height: 100%;
+	flow-children: down;
+	margin-left: 5%;
+}
+
+.LowNet_purple_icon
+{
+	width: 78%;
+	height: 63%;
+	background-image: url("s2r://panorama/images/custom_game/purple_orb_png.vtex");
+	background-size: contain;
+	flow-children: down;
+	box-shadow: fill black 0px 0px 4px 0px;
+	horizontal-align: center;
+}
+
+.LowNet_purple_text
+{
+	font-family: Radiance;
+	font-weight: bold;
+	color: #fff4a0;
+	font-size: 16px;
+	text-shadow: 1px 1px 2px 2 black;
+	align: center center;
+	text-align: center;
+}
+
+.SwapPickOrbs
+{
+	width: 25px;
+	height: 25px;
+	vertical-align: center;
+	margin-left: 5px;
+	background-image: url("s2r://panorama/images/custom_game/tip_off_png.vtex");
+}
+
+.SwapPickOrbs_active
+{
+	width: 25px;
+	height: 25px;
+	vertical-align: center;
+	margin-left: 5px;
+	background-image: url("s2r://panorama/images/custom_game/tip_on_png.vtex");
+}
+
+.PickOrbs
+{
+	width: 150px;
+	width: 150px;
+	height: 40px;
+	background-color: rgba(10, 10, 10, 0.79);
+	border-left: 1px solid #999999;
+	border-right: 1px solid #999999;
+	align: right top;
+	margin-top: 10%;
+	margin-right: 8px;
+	tooltip-position: bottom;
+	flow-children: right;
+	visibility: collapse;
+}
+
+.PickOrbsText
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	text-shadow: 2px 2px 4px black;
+	font-size: 17px;
+	vertical-align: center;
+	horizontal-align: center;
+	width: 80%;
+	text-align: left;
+	color: #dedede;
+	margin-left: 10%;
+}
+
+#mini_alert_feed
+{
+	align: left center;
+	margin-top: 0px;
+	width: 250px;
+	height: 360px;
+}
+
+.mini_alert_feed_small
+{
+	ui-scale: 90%;
+}
+
+.mini_alert_feed_event_short
+{
+	width: 140px;
+	height: 58px;
+}
+
+.mini_alert_feed_event_long
+{
+	width: 175px;
+	height: 58px;
+}
+
+.mini_alert_feed_event_dinamic
+{
+	height: 58px;
+}
+
+.mini_alert_feed_event_super_long
+{
+	width: 250px;
+	height: 58px;
+}
+
+.mini_alert_feed_event
+{
+	opacity: 1.3;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	border-right: 1px solid #999999;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	border-bottom-right-radius: 4px;
+	border-top-right-radius: 4px;
+	flow-children: right;
+}
+
+.mini_alert_feed_event_open
+{
+	animation-name: MuertaAlertOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.mini_alert_feed_event_close
+{
+	animation-name: MuertaAlertClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.mini_alert_feed_icon_hero
+{
+	width: 38px;
+	height: 38px;
+	vertical-align: center;
+	margin-left: 12px;
+}
+
+.mini_alert_filler
+{
+	height: 100%;
+	width: 10px;
+}
+
+.mini_alert_text
+{
+	font-family: Radiance;
+	font-weight: bold;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #ffda83 ), to( #eaae20 ) );
+	font-size: 22px;
+	margin-left: 4px;
+	align: left center;
+	text-shadow: 1px 1px 2px 2 black;
+}
+
+.mini_alert_feed_icon_hero_dinamic
+{
+	width: 38px;
+	height: 38px;
+	vertical-align: center;
+	margin-left: 7px;
+}
+
+.mini_alert_feed_gem_icon
+{
+	width: 50px;
+	height: 38px;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/alerts_mini/tormentor_gem_png.vtex");
+	background-size: contain;
+	margin-left: 0px;
+	box-shadow: fill #7fb31d 0px 0px 7px -1px;
+	vertical-align: center;
+	margin-left: 12px;
+}
+
+.mini_alert_feed_respawn_icon
+{
+	width: 50px;
+	height: 38px;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/alerts_mini/respawn_png.vtex");
+	background-size: 100%;
+	margin-left: 0px;
+	box-shadow: fill #bdbaa6 0px 0px 7px -1px;
+	vertical-align: center;
+	margin-left: 12px;
+}
+
+.mini_alert_feed_bounty_icon
+{
+	width: 30px;
+	height: 30px;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/alerts_mini/bounty_png.vtex");
+	background-size: 100%;
+	margin-left: 0px;
+	vertical-align: center;
+	margin-left: 4px;
+}
+
+.mini_alert_feed_shard_icon
+{
+	width: 50px;
+	height: 38px;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/alerts_mini/shard_png.vtex");
+	background-size: contain;
+	margin-left: 0px;
+	box-shadow: fill #5c97ef 0px 0px 7px -1px;
+	vertical-align: center;
+	margin-left: 12px;
+}
+
+.mini_alert_feed_razor_icon
+{
+	width: 50px;
+	height: 38px;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/alerts_mini/razor_png.vtex");
+	background-size: contain;
+	margin-left: 0px;
+	box-shadow: fill #8bd7f6 0px 0px 7px -2px;
+	vertical-align: center;
+	margin-left: 12px;
+}
+
+.mini_alert_feed_necro_icon
+{
+	width: 50px;
+	height: 38px;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/alerts_mini/necro_png.vtex");
+	background-size: contain;
+	margin-left: 0px;
+	box-shadow: fill #439404 0px 0px 7px -2px;
+	vertical-align: center;
+	margin-left: 12px;
+}
+
+.mini_alert_feed_trap_icon
+{
+	width: 50px;
+	height: 38px;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/alerts_mini/trap_png.vtex");
+	background-size: contain;
+	margin-left: 0px;
+	box-shadow: fill #deeff6 0px 0px 7px -2px;
+	vertical-align: center;
+	margin-left: 12px;
+}
+
+.legion_duel_alert
+{
+	align: left center;
+	margin-top: 280px;
+	width: 480px;
+	height: 120px;
+}
+
+.legion_duel_alert_event
+{
+	animation-name: MuertaAlertOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	border-right: 1px solid #999999;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	flow-children: right;
+}
+
+.legion_duel_alert_close
+{
+	animation-name: MuertaAlertClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	border-right: 1px solid #999999;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	height: 100%;
+	flow-children: right;
+}
+
+.legion_duel_alert_left
+{
+	width: 80%;
+	height: 100%;
+	flow-children: down;
+}
+
+.legion_duel_alert_left_top
+{
+	width: 100%;
+	height: 35%;
+}
+
+.legion_duel_alert_left_bot
+{
+	width: 100%;
+	height: 65%;
+}
+
+.legion_duel_alert_right
+{
+	width: 20%;
+	height: 100%;
+}
+
+.legion_duel_alert_icon
+{
+	width: 65px;
+	height: 65px;
+	align: center center;
+	border: 1px solid #999999;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_legion_commander/duel_png.vtex");
+	background-size: contain;
+}
+
+.legion_duel_alert_text_top
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 2px 2px 4px black;
+	font-size: 22px;
+	align: center bottom;
+	text-align: center;
+}
+
+.legion_duel_alert_text_bot
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 2px 2px 4px black;
+	font-size: 18px;
+	margin-top: 0%;
+	align: center center;
+	width: 94%;
+	text-align: center;
+}
+
+.legion_duel_status_main
+{
+	align: left center;
+	margin-top: 280px;
+	width: 180px;
+	height: 58px;
+}
+
+.legion_duel_status
+{
+	animation-name: MuertaAlertOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	opacity: 1.3;
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	border-right: 1px solid #999999;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	border-bottom-right-radius: 4px;
+	border-top-right-radius: 4px;
+	flow-children: right;
+}
+
+.legion_duel_status_close
+{
+	animation-name: MuertaAlertClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	opacity: 1.3;
+	width: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	border-right: 1px solid #999999;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	border-bottom-right-radius: 4px;
+	border-top-right-radius: 4px;
+	height: 100%;
+	flow-children: right;
+}
+
+.legion_duel_status_icon_1
+{
+	width: 36px;
+	height: 36px;
+	vertical-align: center;
+	margin-left: 10%;
+}
+
+.legion_duel_status_icon_vs
+{
+	width: 42px;
+	height: 34.9px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/duel_vs_png.vtex");
+	background-size: contain;
+	margin-left: 5%;
+}
+
+.legion_duel_status_icon_2
+{
+	width: 36px;
+	height: 36px;
+	vertical-align: center;
+	margin-left: 5%;
+}
+
+#DuelAlert
+{
+	width: 500px;
+	height: 100px;
+	vertical-align: center;
+	margin-top: 280px;
+}
+
+.DuelAlert_event
+{
+	animation-name: NecroEventOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	border-right: 1px solid #999999;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	flow-children: down;
+}
+
+.DuelAlert_event_close
+{
+	animation-name: NecroEventClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+	background-size: 100%;
+	border-right: 1px solid #999999;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	height: 100%;
+	flow-children: down;
+}
+
+.DuelAlert_event_top
+{
+	width: 100%;
+	height: 40%;
+}
+
+.DuelAlert_event_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	font-size: 23px;
+	text-shadow: 1px 1px 2px 3 black;
+	align: center center;
+	text-align: center;
+}
+
+.DuelAlert_event_bot
+{
+	width: 100%;
+	height: 60%;
+}
+
+.DuelAlert_content_all
+{
+	height: 100%;
+	align: center center;
+	flow-children: right;
+}
+
+.DuelAlert_content
+{
+	height: 100%;
+	flow-children: right;
+}
+
+.DuelAlert_content_filler
+{
+	height: 80%;
+	width: 20px;
+	vertical-align: center;
+}
+
+.DuelAlert_content_not_last
+{
+	border-right: 1.5px solid #ccc;
+	border-brush: gradient( radial, 40% 50%, 0% 0%, 80% 80%, from( white ), to( #fff0 ) );
+}
+
+.DuelAlert_content_first
+{
+	margin-left: 5%;
+}
+
+.DuelAlert_content_icon
+{
+	width: 36px;
+	height: 36px;
+	vertical-align: center;
+}
+
+.DuelAlert_content_icon_vs
+{
+	width: 42px;
+	height: 34.9px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/duel_vs_png.vtex");
+	background-size: contain;
+}
+
+.arcana_alert_hidden
+{
+	visibility: collapse;
+}
+
+#arcana_alert
+{
+	width: 400px;
+	height: 300px;
+	border-left: 4px solid #e3aa71;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #323232 ), to( #000000 ) );
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	align: right center;
+	flow-children: down;
+}
+
+.arcana_alert_open
+{
+	animation-name: EventRightOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.arcana_alert_close
+{
+	animation-name: EventRightClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.arcana_alert_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	font-size: 22px;
+	text-shadow: 1px 1px 2px 3 black;
+	text-align: center;
+}
+
+.arcana_alert_icon
+{
+	width: 260px;
+	height: 150px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/shop/sub_arcana_mini_png.vtex");
+	background-size: contain;
+	box-shadow: fill #f9e0bb 0px 0px 5px -1px;
+}
+
+.arcana_alert_text_top
+{
+	align: center top;
+	margin-top: 8px;
+}
+
+.arcana_alert_text_top2
+{
+	align: center top;
+	margin-top: 35px;
+}
+
+.arcana_alert_top
+{
+	width: 100%;
+	height: 20%;
+}
+
+.arcana_alert_mid
+{
+	width: 100%;
+	height: 60%;
+}
+
+.arcana_alert_bot
+{
+	width: 100%;
+	height: 20%;
+}
+
+.arcana_alert_button:hover
+{
+	brightness: 1.2;
+	box-shadow: fill #f9e0bb 0px 0px 5px -1px;
+}
+
+.arcana_alert_button
+{
+	width: 180px;
+	height: 38px;
+	align: center top;
+	margin-top: 5px;
+	background-color: gradient( linear, 0% 0%, 50% 100%, from( #734517 ), to( #edac4a ) ) flow-children: down;
+	box-shadow: fill #f9e0bb 0px 0px 3px -1px;
+}
+
+.arcana_alert_button_text
+{
+	font-size: 20px;
+	color: white;
+	text-shadow: 0px 0px 5px 2.5 black;
+	align: center center;
+	font-weight: bold;
+	letter-spacing: 1.5px;
+	text-transform: uppercase;
+	font-family: Radiance;
+}
+
+.twitch_alert_hidden
+{
+	visibility: collapse;
+}
+
+#twitch_alert
+{
+	width: 440px;
+	height: 350px;
+	border-left: 4px solid #aa6bff;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #323232 ), to( #000000 ) );
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	align: right center;
+	flow-children: down;
+}
+
+.twitch_alert_open
+{
+	animation-name: EventRightOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.twitch_alert_close
+{
+	animation-name: EventRightClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.twitch_alert_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	font-size: 22px;
+	text-shadow: 1px 1px 2px 3 black;
+	text-align: center;
+}
+
+.twitch_alert_icon
+{
+	width: 260px;
+	height: 150px;
+	align: center top;
+	margin-top: 5px;
+	background-image: url("s2r://panorama/images/custom_game/shop/twitch_alert_png.vtex");
+	background-size: contain;
+	box-shadow: fill #f9e0bb 0px 0px 5px -1px;
+}
+
+.twitch_alert_text_top
+{
+	align: center top;
+	margin-top: 10px;
+}
+
+.twitch_alert_text_top2
+{
+	align: center top;
+	margin-top: 45px;
+}
+
+.twitch_alert_top
+{
+	width: 100%;
+	height: 30%;
+}
+
+.twitch_alert_mid
+{
+	width: 100%;
+	height: 50%;
+}
+
+.twitch_alert_bot
+{
+	width: 100%;
+	height: 20%;
+}
+
+.twitch_alert_button:hover
+{
+	brightness: 1.2;
+	box-shadow: fill #f9e0bb 0px 0px 5px -1px;
+}
+
+.twitch_alert_button
+{
+	width: 300px;
+	height: 38px;
+	align: center top;
+	margin-top: 10px;
+	background-color: gradient( linear, 0% 0%, 50% 100%, from( #581ea1 ), to( #904be5 ) ) flow-children: down;
+	box-shadow: fill #f9e0bb 0px 0px 3px -1px;
+}
+
+.twitch_alert_button_text
+{
+	font-size: 20px;
+	color: white;
+	text-shadow: 0px 0px 5px 2.5 black;
+	align: center center;
+	font-weight: bold;
+	letter-spacing: 1.5px;
+	text-transform: uppercase;
+	font-family: Radiance;
+}
+
+.duo_alert_hidden
+{
+	visibility: collapse;
+}
+
+#duo_alert
+{
+	width: 400px;
+	height: 300px;
+	border-left: 4px solid #e3aa71;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #323232 ), to( #000000 ) );
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	align: right center;
+	flow-children: down;
+}
+
+.duo_alert_open
+{
+	animation-name: EventRightOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.duo_alert_close
+{
+	animation-name: EventRightClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.duo_alert_text
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	font-size: 23px;
+	text-shadow: 1px 1px 2px 3 black;
+	text-align: center;
+}
+
+.duo_alert_icon
+{
+	width: 240px;
+	height: 169.8px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/shop/duo_shards_png.vtex");
+	background-size: contain;
+	box-shadow: fill #f9e0bb 0px 0px 5px -1px;
+}
+
+.duo_alert_text_top
+{
+	align: center top;
+	margin-top: 10px;
+}
+
+.duo_alert_text_top2
+{
+	align: center top;
+	margin-top: 42px;
+	width: 100%;
+	font-size: 22px;
+}
+
+.duo_alert_top
+{
+	width: 100%;
+	height: 30%;
+}
+
+.duo_alert_mid
+{
+	width: 100%;
+	height: 70%;
+}
+
+@keyframes 'WaveAlertGlow'
+{
+	0%
+	{
+		box-shadow: fill #f0c634 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #f0c634 0px 0px 7px -2px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #f0c634 0px 0px 4px -2px;
+	}
+	
+}
+
+@keyframes 'WaveAlertOpen'
+{
+	0%
+	{
+		transform: translate3d(0%, -100%, 0px );
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'WaveAlertClose'
+{
+	0%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translate3d( 0%, -100%, 0px );
+		opacity: 1;
+	}
+	
+}
+
+#WaveAlert
+{
+	z-index: 15;
+	width: 380px;
+	height: 150px;
+	margin-top: 155px;
+	margin-left: 75px;
+}
+
+.WaveAlert_event
+{
+	width: 345px;
+	height: 45px;
+	align: center center;
+	border-radius: 6px;
+	margin-top: 28px;
+	background-size: 100% 140%;
+	background-repeat: no-repeat;
+	background-image: url("s2r://panorama/images/hud/reborn/bg_scoreboard_psd.vtex");
+	background-color: black;
+	box-shadow: fill #f0c634 0px 0px 5px -2px;
+	animation-name: WaveAlertGlow;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.WaveAlert_event_open
+{
+	animation-name: WaveAlertOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.WaveAlert_event_close
+{
+	animation-name: WaveAlertClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.WaveAlert_text
+{
+	font-size: 21px;
+	font-family: Radiance;
+	text-align: center;
+	font-weight: semi-bold;
+	align: center center;
+	text-shadow: 1px 0px 2px 2 black;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff ), to( #ccc ) );
+}
+
+#NightStalkerAlert
+{
+	align: left top;
+	margin-top: 250px;
+	width: 580px;
+	height: 130px;
+}
+
+.NightStalker_event
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+	opacity: 1;
+	border-right: 4px solid #686ec7;
+	border-top: 1px solid #686ec7;
+	border-bottom: 1px solid #686ec7;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #353343 ), to( #000000 ) );
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+.NightStalker_event_open
+{
+	animation-name: NecroEventOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.NightStalker_event_close
+{
+	animation-name: NecroEventClose;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.NightStalker_event_left
+{
+	width: 75%;
+	height: 100%;
+}
+
+.NightStalker_event_right
+{
+	width: 25%;
+	height: 100%;
+}
+
+.NightStalker_event_icon
+{
+	width: 80px;
+	height: 80px;
+	margin-left: 15px;
+	align: left center;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_night_stalker/scepter_png.vtex");
+	background-size: 100%;
+	border: 1px solid #666;
+	box-shadow: fill #000 0px 0px 5px 0px;
+}
+
+.NightStalker_event_text
+{
+	font-family: Radiance;
+	font-weight: semi-bold;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #ccc ), to( #eee ) );
+	text-shadow: 1px 1px 3px black;
+	font-size: 22px;
+	vertical-align: center;
+	horizontal-align: center;
+	text-align: center;
+}
+
+.NightStalker_event_text_small
+{
+	font-size: 22px;
+}
+
+.ChestGrantedPopupHolder
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	ignore-parent-flow: true;
+	z-index: 100000;
+}

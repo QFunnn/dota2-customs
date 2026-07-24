@@ -1,0 +1,112 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/custom_game/custom_loading_screen.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/custom_loading_screen.vjs_c" />
+	</scripts>
+	<Panel class="MainWall" onload="init_tips();" hittest="false">
+		<Panel class="loading_custom" id="loading_custom" />
+		<Panel class="tips_panel" id="tips_panel" hittest="true">
+			<Panel class="tips_left" id="tips_left" hittest="true" />
+			<Panel class="tips_info" id="tips_info" hittest="true">
+				<Label class="tips_info_count" id="tips_info_count" hittest="true" />
+				<Label class="tips_info_text" id="tips_info_text" hittest="true" />
+			</Panel>
+			<Panel class="tips_right" id="tips_right" hittest="true" />
+		</Panel>
+		<Panel class="sponsor" id="sponsor" onactivate="click_adds();" hittest="true">
+			<Panel id="sponsor_icon1" />
+			<Panel id="sponsor_icon2" />
+		</Panel>
+		<Panel id="social_info" class="social_info">
+			<Panel id="social_main" class="social_main">
+				<Panel class="telegram" id="telegram" onactivate="ExternalBrowserGoToURL(&apos;https://t.me/Dota1x6&apos;)" hittest="true" />
+				<Panel class="discord" id="discord" onactivate="ExternalBrowserGoToURL(&apos;https://discord.gg/6Get83jFdq&apos;)" hittest="true" />
+				<Panel class="wiki" id="wiki" onactivate="ExternalBrowserGoToURL(&apos;https://dota1x6.com/heroes/&apos;)" hittest="true" />
+				<Panel class="tg_new">
+					<Label class="tg_new_text" text="New" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="info_video_main">
+			<Panel id="info_video_back" />
+			<Panel id="info_video_content">
+				<Panel id="info_video_top">
+					<Label id="info_video_top_text" html="true" text="#info_video_text0" />
+				</Panel>
+				<Panel id="info_video_center">
+					<Label id="info_video_center_text" html="true" />
+				</Panel>
+				<Panel id="info_video_media" />
+				<Panel id="info_video_bot">
+					<Panel id="info_video_slider_controller">
+						<Panel id="info_video_controller_left" />
+						<Panel class="info_video_controller_dot info_video_controller_dot_first" id="info_video_controller_dot_1" />
+						<Panel class="info_video_controller_dot" id="info_video_controller_dot_2" />
+						<Panel class="info_video_controller_dot" id="info_video_controller_dot_3" />
+						<Panel class="info_video_controller_dot" id="info_video_controller_dot_4" />
+						<Panel class="info_video_controller_dot" id="info_video_controller_dot_5" />
+						<Panel class="info_video_controller_dot" id="info_video_controller_dot_6" />
+						<Panel class="info_video_controller_dot" id="info_video_controller_dot_7" />
+						<Panel id="info_video_controller_right" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="show_dota_pass" id="show_dota_pass">
+			<Panel class="pass_window_0">
+				<Panel class="InfoHeader_top">
+					<Panel class="InfoHeader_left">
+						<Panel class="InfoHeaderImage" />
+					</Panel>
+					<Panel class="InfoHeader_right">
+						<Label class="InfoHeaderLabel_top1" html="true" text="#pass_header_top1" />
+						<Label class="InfoHeaderLabel_top2" html="true" text="#pass_header_top2" />
+						<Label class="InfoHeaderLabel_sale" id="InfoHeaderLabel_sale" html="true" text="#pass_header_sale" />
+						<Panel class="ButtonBuySubscribe" id="ButtonBuySubscribe" onactivate="check_id();">
+							<Label class="ButtonBuySubscribeLabel" text="#pass_header_top_button" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="InfoHeader_bot">
+					<Label class="InfoHeader_bot_label" text="#pass_header_bot" />
+				</Panel>
+			</Panel>
+			<Panel class="pass_slider" id="pass_slider">
+				<Panel class="slide_container" id="slide_container">
+					<Panel class="pass_window_1" id="plus_content_1">
+						<Label class="TextInfoPassRight" html="true" text="#pass_1" />
+					</Panel>
+				</Panel>
+				<Panel class="change_panel">
+					<Panel class="slider_controller">
+						<Panel class="controller_left" id="controller_left" />
+						<Panel class="controller_dot controller_dot_first" id="controller_dot_1" />
+						<Panel class="controller_dot" id="controller_dot_2" />
+						<Panel class="controller_dot" id="controller_dot_3" />
+						<Panel class="controller_dot" id="controller_dot_4" />
+						<Panel class="controller_dot" id="controller_dot_5" />
+						<Panel class="controller_dot" id="controller_dot_6" />
+						<Panel class="controller_dot" id="controller_dot_7" />
+						<Panel class="controller_dot" id="controller_dot_8" />
+						<Panel class="controller_dot" id="controller_dot_9" />
+						<Panel class="controller_dot" id="controller_dot_10" />
+						<Panel class="controller_right" id="controller_right" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

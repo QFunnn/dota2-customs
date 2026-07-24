@@ -1,0 +1,80 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Layer0"
+{
+	"shader"	"hero_fluid.vfx"
+	"F_MORPH_SUPPORTED"	"1"
+	"F_REFLECT_CUBE_MAP"	"1"
+	"g_flCubeMapPowerReflect"	"1"
+	"g_flCubeMapScalarReflect"	"0.015"
+	"g_flEdgeErosion"	"0.25"
+	"g_flEdgeSharpness"	"10"
+	"g_flInflateStrength"	"1"
+	"g_flReflectBumpStrength"	"0"
+	"g_flReflectRimPower"	"0"
+	"g_flReflectRimStrength"	"0"
+	"g_flRimLightSharpness"	"5"
+	"g_flRimLightStrength"	"1000"
+	"g_flSpecularBloom"	"0"
+	"g_flSpecularIntensity"	"1"
+	"g_flSpiralAlphaMax"	"1"
+	"g_flSpiralAlphaMin"	"0"
+	"g_flSpiralBumpStrength"	"1"
+	"g_flSpiralDisplacementStrength"	"0"
+	"g_flSpiralInflateScale"	"3"
+	"g_flSpiralInflateSpeed"	"0"
+	"g_flSpiralInflateVariance"	"0"
+	"g_flSpiralOverlaySpeedMultiple"	"1"
+	"g_vSpiralDisplacementSpeed"	"1"
+	"g_vColorTint"	"[0.282353 1.000000 0.000000 0.000000]"
+	"g_vMinLightColor"	"[1.000000 1.000000 1.000000 0.000000]"
+	"g_vRimLightColor"	"[1.000000 0.000000 0.000000 0.000000]"
+	"g_vSpiralDisplacementOffset"	"[0.000000 0.000000 0.015000 0.000000]"
+	"g_vSpiralUVScale"	"[1.000000 1.000000 0.000000 0.000000]"
+	"g_vSpiralUVSpeed"	"[1.000000 0.000000 0.000000 0.000000]"
+	"g_vTexCoordOffset"	"[0.000000 0.000000 0.000000 0.000000]"
+	"g_vTexCoordScale"	"[1.000000 1.000000 0.000000 0.000000]"
+	"TextureBloom"	"[0.000000 0.000000 0.000000 0.000000]"
+	"TextureColor"	"[0.333333 0.333333 0.333333 1.000000]"
+	"TextureCubeMapReflect"	"[1.000000 1.000000 1.000000 0.000000]"
+	"TextureDisplacementMask"	"[0.000000 0.000000 0.000000 0.000000]"
+	"TextureReflectance"	"[1.000000 1.000000 1.000000 0.000000]"
+	"TextureSelfIllumMask"	"[0.000000 0.000000 0.000000 0.000000]"
+	"TextureSpiralAlpha"	"[1.000000 1.000000 1.000000 0.000000]"
+	"TextureSpiralOverlayAlpha"	"[0.000000 0.000000 0.000000 0.000000]"
+	"TextureSpiralOverlayColor"	"[1.000000 1.000000 1.000000 1.000000]"
+	"TextureSpecular"	"amir4an/materials/models/fx/amir4an_1x6/amir4an_1x6_sphere_uv_fluid_vmat_g_tspecular_774abb4c.png"
+	"TextureSpiralNormal"	"amir4an/materials/models/fx/amir4an_1x6/amir4an_1x6_sphere_uv_fluid_normal.png"
+	"TextureSpiralOverlay"	"amir4an/materials/models/fx/amir4an_1x6/amir4an_1x6_sphere_uv_fluid_vmat_g_tspiraloverlay_715c1c6b.png"
+	"Compiled Textures"
+	{
+		"g_tColor"	"amir4an/materials/models/fx/amir4an_1x6/amir4an_1x6_sphere_uv_fluid_vmat_g_tcolor_69b3fc51.vtex"
+		"g_tCubeMapReflect"	"amir4an/materials/models/fx/amir4an_1x6/amir4an_1x6_sphere_uv_fluid_vmat_g_tcubemapreflect_ba11ee9a.vtex"
+		"g_tDisplacementMask"	"amir4an/materials/models/fx/amir4an_1x6/amir4an_1x6_sphere_uv_fluid_vmat_g_tdisplacementmask_566f475f.vtex"
+		"g_tSpecular"	"amir4an/materials/models/fx/amir4an_1x6/amir4an_1x6_sphere_uv_fluid_vmat_g_tspecular_774abb4c.vtex"
+		"g_tSpiralNormal"	"amir4an/materials/models/fx/amir4an_1x6/amir4an_1x6_sphere_uv_fluid_normal_png_88db5e31.vtex"
+		"g_tSpiralOverlay"	"amir4an/materials/models/fx/amir4an_1x6/amir4an_1x6_sphere_uv_fluid_vmat_g_tspiraloverlay_715c1c6b.vtex"
+	}
+	"DynamicParams"
+	{
+		"g_flRimLightSharpness"	"return $sharpness_outline;"
+		"g_flSpiralBumpStrength"	"return $normal_bump_strength;"
+		"g_vColorTint"	"return $color_base;"
+		"g_vMinLightColor"	"return $color_base;"
+		"g_vRimLightColor"	"return $color_outline;"
+		"g_vSpiralDisplacementOffset"	"return $spiral_dispacement_offset;"
+		"g_vSpiralUVSpeed"	"return $spiral_uv_speed;"
+	}
+	"Attributes"
+	{
+		"PreviewModel"	"models/melonity/melonity_uv_sphere.vmdl"
+	}
+}

@@ -1,0 +1,140 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf27:version{36c3961f-02a4-4c52-bf8f-6e3147d7d142} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 160
+	m_hFallback = resource:"particles/units/heroes/hero_sandking/sandking_burrowstrike_mid.vpcf"
+	m_nFallbackMaxCount = 2
+	m_flConstantRadius = 1.0
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.15
+			m_Gravity = [ 0.0, 0.0, -400.0 ]
+			m_flOpStartFadeOutTime = 0.5
+			m_flOpEndFadeOutTime = 0.7
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndTime = 0.25
+			m_flStartScale = 0.0
+			m_flBias = 0.9
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flStartTime = 0.5
+			m_flEndScale = 0.0
+			m_flBias = 0.25
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMin = 0.3
+			m_fLifetimeMax = 0.4
+		},
+		{
+			_class = "C_INIT_RandomYaw"
+		},
+		{
+			_class = "C_INIT_CreateSequentialPath"
+			m_flNumToAssign = 50.0
+			m_fMaxDistance = 22.0
+			m_PathParams = 
+			{
+				m_nEndControlPointNumber = 1
+			}
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMin = 0.5
+			m_flRadiusMax = 0.73
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+			m_flDegreesMin = -25.0
+			m_flDegreesMax = 25.0
+		},
+		{
+			_class = "C_INIT_RandomAlpha"
+		},
+		{
+			_class = "C_INIT_RandomScalar"
+			m_flMin = -0.25
+			m_flMax = 0.25
+			m_nFieldOutput = "20"
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmissionDuration = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.25
+			}
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 200.0
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_sandking/sandking_burrowstrike_cracks_background.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_sandking/sandking_burrowstrike_cracks_center.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_sandking/sandking_burrowstrike_dust.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_sandking/sandking_burrowstrike_debris.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/test_particle/sandking_burrowstrike_eruption_no_models.vpcf"
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_nBehaviorVersion = 5
+}

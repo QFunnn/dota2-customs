@@ -1,0 +1,575 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+
+"Version"		"1"
+
+"muerta_dead_shot_custom"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/muerta/muerta_dead_shot_custom" 
+    "AbilityTextureName"            "muerta_dead_shot"      
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_VECTOR_TARGETING"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_BOTH"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_BUILDING"
+    "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Hero_Muerta.DeadShot.Cast"
+    "LinkedAbility"                 "muerta_dead_shot_custom_proc"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
+    "AbilityCastPoint"              "0.15"
+
+    "AbilityCooldown"               "13 12 10 9"
+    "AbilityManaCost"               "100"
+    "AbilityCastRange"              "1000"
+
+    // Special  
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "damage"                        "100 175 250 325"
+        "ricochet_fear_duration"        "0.8 0.95 1.1 1.25"
+        "range"                         "1500"
+        "speed"                         "2000"
+        "radius"                        "150"
+        "ricochet_radius_start"         "115"
+        "ricochet_radius_end"           "115"
+        "impact_slow_percent"           "-100"
+        "impact_slow_duration"          "1"
+        "creeps_damage"                 "50"
+    }
+}
+
+"muerta_dead_shot_custom_proc"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/muerta/muerta_dead_shot_custom" 
+    "AbilityTextureName"            "dead_shot_proc"        
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Hero_Muerta.DeadShot.Cast"
+    "LinkedAbility"                 "muerta_dead_shot_custom"
+    "MaxLevel"                      "1"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
+    "AbilityCastPoint"              "0.15"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "1"
+    "AbilityManaCost"               "60"
+    "AbilityCastRange"              "1300"
+
+    // Special  
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+
+    }
+}
+
+
+//=================================================================================================================
+// MUERTA: The Calling
+//=================================================================================================================
+"muerta_the_calling_custom"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/muerta/muerta_the_calling_custom" 
+    "AbilityTextureName"            "muerta_the_calling"                                                        // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    "AbilitySound"                  "Hero_Muerta.Revenants.Cast"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastRange"              "600"
+    "AbilityCastPoint"              "0.1"
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_2"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "14"
+    "AbilityManaCost"               "125"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "damage"                        "40 80 120 160"
+        "duration"                      "6 7 8 9"
+        "silence_duration"              "0.8 1.2 1.6 2"
+        "hit_radius"                    "120"
+        "radius"                        "580"
+        "num_revenants"                    "4"
+        "speed_initial"                 "0.2"
+        "speed_max"                     "1.0"
+        "acceleration"                  "0.75"
+        "aura_movespeed_slow"           "-20"
+        "silence_creeps"                "0.5"
+        "aura_linger"                   "3"
+        "creeps_damage"                 "30"
+    }
+}
+
+
+"muerta_the_calling_custom_shard"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/muerta/muerta_the_calling_custom" 
+    "AbilityTextureName"            "muerta_calling_legendary"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "IsGrantedByShard"              "1"
+    "MaxLevel"                      "1"
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "20"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "duration"                      "2"
+        "movespeed"                     "600"
+        "hit_radius"                    "200"
+    }
+}
+
+
+//=================================================================================================================
+// MUERTA: Gunslinger
+//=================================================================================================================
+"muerta_gunslinger_custom"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/muerta/muerta_gunslinger_custom" 
+    "AbilityTextureName"            "muerta_gunslinger"                                                     // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+    "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+    //"AbilitySound"                    "Hero_PhantomAssassin.CoupDeGrace"
+
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_3"
+    "IsBreakable"                   "1"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "double_shot_chance"        "15 20 25 30"
+        "target_search_bonus_range" "175"
+        "creeps"                    "2"
+    }
+}
+
+
+
+//=================================================================================================================
+// MUERTA: Pierce the Veil
+//=================================================================================================================
+"muerta_pierce_the_veil_custom"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/muerta/muerta_pierce_the_veil_custom" 
+    "AbilityTextureName"            "muerta_pierce_the_veil"                                        // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "AbilityType"                   "ABILITY_TYPE_ULTIMATE"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+    "FightRecapLevel"               "2"
+    "AbilitySound"                  "Hero_Muerta.PierceTheVeil.Cast"
+    "AbilityCastPoint"              "0"
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_2"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "30 25 20"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "120 160 200"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "damage_reduce"             "80"
+        "bonus_speed"               "40 60 80"
+        "duration"                  "4"
+        "transform_duration"        "0.35"
+        "modelscale"                "30"
+    }
+}
+
+
+"muerta_innate_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/muerta/muerta_innate_custom"  
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "MaxLevel"                      "1"
+    "Innate"                        "1"
+    "HasScepterUpgrade"             "1"
+
+    "AbilityValues"
+    {
+        "radius"        "900"
+        "damage"        "2"
+        "max"           "6"
+        "waste"         "-50"
+    }
+}
+
+
+
+
+"npc_muerta_ursa_clap"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"   
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/muerta/npc_muerta_ursa_abilities"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityTextureName"            "polar_furbolg_ursa_warrior_thunder_clap"
+    "MaxLevel"                      "1"
+
+    "AbilityCooldown"               "5"
+    "AbilityCastPoint"              "0.8"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "stacks"                        "5"
+        "slow"                          "-50"
+        "duration"                      "4"
+        "radius"                        "400"
+    }
+}
+
+"npc_muerta_ursa_speed"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"   
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/muerta/npc_muerta_ursa_abilities"
+    "AbilityTextureName"            "ursa_overpower"
+    "MaxLevel"                      "1"
+
+    "AbilityCooldown"               "8"
+    "AbilityCastPoint"              "0.1"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "move"                      "40"
+        "speed"                     "300"
+        "attacks"                   "5"
+        "duration"                  "4"
+    }
+}
+
+"npc_muerta_ursa_passive"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE" 
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/muerta/npc_muerta_ursa_abilities"
+    "AbilityTextureName"            "ursa_fury_swipes"
+    "MaxLevel"                      "1"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "damage"                        "10"
+        "duration"                      "10"
+    }
+}
+
+
+"npc_muerta_centaur_charge"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"   
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/muerta/npc_muerta_centaur_abilities"
+    "AbilityTextureName"            "centaur_stampede"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "MaxLevel"                      "1"
+
+    "AbilityCooldown"               "8"
+    "AbilityCastPoint"              "0.5"
+    "AbilityCastRange"              "800"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "range"                 "800"   
+        "speed"              "1000" 
+        "stun"                  "1.5"
+        "additional_range"          "100"  
+    }
+}
+
+"npc_muerta_centaur_stun"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"    
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/muerta/npc_muerta_centaur_abilities"
+    "AbilityTextureName"            "centaur_hoof_stomp"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+    "MaxLevel"                      "1"
+
+    "AbilityCooldown"               "8"
+    "AbilityCastPoint"              "0"
+    "AbilityCastRange"              "450"
+    "AbilityChannelTime"            "2.8"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "radius"                 "450"   
+        "stun"                  "0.3" 
+        "delay"                 "0.9" 
+        "damage"                "25" 
+        "amount"                "3"
+    }
+}
+
+
+"npc_muerta_centaur_passive"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE" 
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/muerta/npc_muerta_centaur_abilities"
+    "AbilityTextureName"            "ogre_bruiser_ogre_smash"
+    "MaxLevel"                      "1"
+
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "stun"                          "1.5"
+        "attacks"                       "4"
+    }
+}
+
+
+
+"npc_muerta_satyr_silence"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"   
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/muerta/npc_muerta_satyr_abilities"
+    "AbilityTextureName"            "satyr_hellcaller_shockwave"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+    "MaxLevel"                      "1"
+
+    "AbilityCooldown"               "5"
+    "AbilityCastPoint"              "0.5"
+    "AbilityCastRange"              "800"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "range"                 "800"   
+        "speed"                 "700" 
+        "silence"               "3"
+        "damage"                "30"  
+    }
+}
+
+
+"npc_muerta_satyr_bkb"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"   
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/muerta/npc_muerta_satyr_abilities"
+    "AbilityTextureName"            "satyr_hellcaller_unholy_aura"
+    "MaxLevel"                      "1"
+
+    "AbilityCooldown"               "7"
+    "AbilityCastPoint"              "0.3"
+    "AbilityCastRange"              "800"
+
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "duration"                 "3" 
+        "health"                   "70"
+        "lifesteal"                "100"   
+    }
+}
+
+
+"npc_muerta_satyr_passive"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE" 
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/muerta/npc_muerta_satyr_abilities"
+    "AbilityTextureName"            "satyr_soulstealer_mana_burn"
+    "MaxLevel"                      "1"
+
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "mana"                          "9"
+        "damage"                        "1"
+    }
+}
+
+
+"npc_muerta_ogre_hit"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"   
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/muerta/npc_muerta_ogre_abilities"
+    "AbilityTextureName"            "ogre_bruiser_ogre_smash"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+    "MaxLevel"                      "1"
+
+    "AbilityCooldown"               "5"
+    "AbilityCastPoint"              "1.15"
+    "AbilityCastRange"              "600"
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "range"                 "400"   
+        "aoe"                   "200" 
+        "duration"              "3"
+        "damage"                "30" 
+        "slow"                  "-100"  
+        "heal"                  "-80" 
+        "stun"                  "0.4"   
+    }
+}
+
+
+"npc_muerta_ogre_jump"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"   
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/muerta/npc_muerta_ogre_abilities"
+    "AbilityTextureName"            "elder_titan_echo_stomp"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+    "MaxLevel"                      "1"
+
+    "AbilityCooldown"               "5"
+    "AbilityCastPoint"              "1.5"
+    "AbilityCastRange"              "450"
+    //"AbilityCastAnimation"            "ACT_DOTA_CAST_ABILITY_1"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "radius"                 "450"   
+        "duration"              "3"
+        "damage"                "30" 
+        "slow"                  "-100"  
+        "heal"                  "-80" 
+        "stun"                  "0.4"   
+    }
+}
+
+
+"npc_muerta_ogre_passive"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE" 
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/muerta/npc_muerta_ogre_abilities"
+    "AbilityTextureName"            "bristleback_warpath"
+    "MaxLevel"                      "1"
+
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "speed"                         "200"
+        "move"                          "50"
+    }
+}
+
+
+
+
+
+}

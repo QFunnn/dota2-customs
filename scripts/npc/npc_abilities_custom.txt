@@ -1,0 +1,719 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+
+
+#base "creeps/abilities_neutral_creeps.txt"
+#base "creeps/abilities_lane_creeps.txt"
+#base "creeps/abilities_neutral_creeps_active.txt"
+
+
+#base "heroes/abilities_juggernaut.txt"
+#base "heroes/abilities_phantom_assassin.txt"
+#base "heroes/abilities_huskar.txt"
+#base "heroes/abilities_shadow_fiend.txt"
+#base "heroes/abilities_legion_commander.txt"
+#base "heroes/abilities_queen_of_pain.txt"
+#base "heroes/abilities_terrorblade.txt"
+#base "heroes/abilities_bristleback.txt"
+#base "heroes/abilities_puck.txt"
+#base "heroes/abilities_void_spirit.txt"
+#base "heroes/abilities_ember_spirit.txt"
+#base "heroes/abilities_pudge.txt"
+#base "heroes/abilities_hoodwink.txt"
+#base "heroes/abilities_lina.txt"
+#base "heroes/abilities_wraith_king.txt"
+#base "heroes/abilities_troll_warlord.txt"
+#base "heroes/abilities_axe.txt"
+#base "heroes/abilities_alchemist.txt"
+#base "heroes/abilities_ogre_magi.txt"
+#base "heroes/abilities_anti_mage.txt"
+#base "heroes/abilities_primal_beast.txt"
+#base "heroes/abilities_marci.txt"
+#base "heroes/abilities_templar_assassin.txt"
+#base "heroes/abilities_bloodseeker.txt"
+#base "heroes/abilities_monkey_king.txt"
+#base "heroes/abilities_mars.txt"
+#base "heroes/abilities_zeus.txt"
+#base "heroes/abilities_leshrac.txt"
+#base "heroes/abilities_crystal_maiden.txt"
+#base "heroes/abilities_snapfire.txt"
+#base "heroes/abilities_sven.txt"
+#base "heroes/abilities_sniper.txt"
+#base "heroes/abilities_muerta.txt"
+#base "heroes/abilities_pangolier.txt"
+#base "heroes/abilities_arc_warden.txt"
+#base "heroes/abilities_invoker.txt"
+#base "heroes/abilities_razor.txt"
+#base "heroes/abilities_sand_king.txt"
+#base "heroes/abilities_nature_prophet.txt"
+#base "heroes/abilities_abaddon.txt"
+#base "heroes/abilities_drow_ranger.txt"
+#base "heroes/abilities_skywrath_mage.txt"
+#base "heroes/abilities_slark.txt"
+#base "heroes/abilities_centaur.txt"
+#base "heroes/abilities_enigma.txt"
+#base "heroes/abilities_bane.txt"
+#base "heroes/abilities_morphling.txt"
+#base "heroes/abilities_life_stealer.txt"
+#base "heroes/abilities_tinker.txt"
+#base "heroes/abilities_witch_doctor.txt"
+#base "heroes/abilities_nyx_assassin.txt"
+#base "heroes/abilities_broodmother.txt"
+#base "heroes/abilities_night_stalker.txt"
+#base "heroes/abilities_jakiro.txt"
+
+
+
+"DOTAAbilities"
+{
+"Version"		"1"
+
+"custom_ability_teleport"
+{
+    "BaseClass"                        "ability_lua"
+    "ScriptFile"                    "abilities/ui/teleport"    
+    "AbilityTextureName"			"teleport"
+    "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_CHANNEL | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+    "AbilityCooldown"                "50"
+    "AbilityChannelTime"            "3"
+    "IsOnCastBar"                    "0"
+    "MaxLevel"                        "1"
+}
+
+"custom_ability_observer"
+{
+    "BaseClass"                        "ability_lua"
+    "ScriptFile"                    "abilities/ui/observer"    
+    "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE"
+    "IsOnCastBar"                    "0"
+    "MaxLevel"                        "1"
+    "AbilityCastRange"                "500"
+    //"AbilityCharges"                "4"
+    "AbilityChargeRestoreTime"      "120"
+	"AbilityValues"
+	{
+		"cd"			"240"
+		"max"			"4"
+		"cd_duo"		"300"
+		"max_duo"		"2"
+	}
+}
+
+"custom_ability_sentry"
+{
+    "BaseClass"                        "ability_lua"
+    "ScriptFile"                    "abilities/ui/sentry"    
+    "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE"
+    "IsOnCastBar"                    "0"
+    "MaxLevel"                        "1"
+    "AbilityCastRange"                "500"
+	"AbilityValues"
+	{
+		"cd"			"240"
+		"max"			"3"
+		"cd_duo"			"360"
+		"max_duo"			"2"
+	}
+}
+
+
+"custom_bkb_effects"
+{
+    "BaseClass"                        "ability_lua"
+    "ScriptFile"                    "abilities/ui/custom_bkb_effects" 
+    "AbilityTextureName"			"bkb_effects"   
+    "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+    "IsOnCastBar"                    "0"
+    "MaxLevel"                        "1"
+    "AbilityValues"
+    {
+     
+    }        
+}
+
+
+"custom_ability_smoke"
+{
+    "BaseClass"                        "ability_lua"
+    "ScriptFile"                    "abilities/ui/smoke"    
+    "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE"
+    "IsOnCastBar"                    "0"
+    "MaxLevel"                        "1"
+	"AbilityValues"
+	{
+		"application_radius"	"1200"
+		"visibility_radius"		"1025"
+		"bonus_movement_speed"		"15"
+		"duration"				"45.0"
+		"second_cast_cooldown"	"2.0"
+		"secondary_application_radius"		"300"
+		"max"					"4"
+		"cd"					"240"
+		"max_duo"				"2"
+		"cd_duo"				"300"
+	}       
+}
+
+
+
+
+"custom_ability_dust"
+{
+    "BaseClass"                        "ability_lua"
+    "ScriptFile"                    "abilities/ui/dust"  
+    "AbilityTextureName"			"dust_ability"  
+    "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE"
+    "IsOnCastBar"                    "0"
+    "MaxLevel"                        "1"
+
+    "AbilityValues"
+    {
+        "duration"    				"12"
+        "radius"        			"1050"
+        "movespeed"        			"-20"
+        "damage"                	"25"
+        "duration_linger"			"8"
+        "start_stack"				"3"
+        "start_stack_duo"			"2"
+                   
+    }        
+}
+
+
+
+
+"custom_general_talents"
+{
+    "BaseClass"                        "ability_lua"
+    "ScriptFile"                    "abilities/general_talents/custom_general_talents"  
+    "AbilityTextureName"			"shrine_aura"  
+    "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "IsOnCastBar"                    "0"
+    "MaxLevel"                        "1"
+
+    "AbilityValues"
+    {
+                   
+    }        
+}
+
+
+
+
+
+
+
+
+
+
+
+
+"tower_stun"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"	
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/tower_abilities"
+	"AbilityTextureName"			"lich_frost_nova"
+	"MaxLevel" 						"1"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+	"AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+
+    "AbilityCooldown"				"7"
+	
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"damage"				    	"20"
+		"radius"			      		"230"
+		"aoe"			     		"900"
+		"cd"			     		"7"
+		"delay"				   		"1.3"
+	}
+}
+
+
+"tower_stun_filler"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"	
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/tower_abilities"
+	"AbilityTextureName"			"lich_frost_nova"
+	"MaxLevel" 						"1"
+	
+	"AbilityValues"
+	{
+		"armor"				    	"6"
+			
+	}
+}
+
+
+"tower_filler_aura"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"	
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/tower_abilities"
+	"AbilityTextureName"			"shrine_aura"
+	"MaxLevel" 						"1"
+	
+	"AbilityValues"
+	{
+			"damage"				    	"20"
+	}
+
+}
+
+
+"tower_plasma"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"	
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/tower_abilities"
+	"AbilityTextureName"			"razor_plasma_field"
+	"MaxLevel" 						"1"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+	"AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+
+    "AbilityCooldown"				"6"
+	
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"radius"					"950"
+		"duration"					"2"
+		"speed"						"700"  
+		"slow"						"35"
+		"cd"						"6"
+		"aoe"						"900"
+		"heal"						"80"
+		"duration_healing"			"6"
+	}
+}
+
+
+
+
+"tower_plasma_filler"
+
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"	
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/tower_abilities"
+	"AbilityTextureName"			"razor_plasma_field"
+	"MaxLevel" 						"1"
+	
+	"AbilityValues"
+	{
+			"armor"				    	"6"
+	}
+}
+
+
+
+
+"tower_aura_resist"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"	
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/tower_abilities"
+	"AbilityTextureName"			"omniknight_guardian_angel"
+	"MaxLevel" 						"1"
+	"AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+
+	
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+			"respawn"			    	"20"
+	}
+}
+
+
+
+"tower_resist_filler"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"	
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/tower_abilities"
+	"AbilityTextureName"			"omniknight_guardian_angel"
+	"MaxLevel" 						"1"
+	"AbilityValues"
+	{
+		"respawn"				    	"20"	
+	}
+}
+
+
+
+"tower_truesight"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_HIDDEN"	
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/tower_abilities"
+	"AbilityTextureName"			"backdoor_protection"
+	"MaxLevel" 						"1"
+	"AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+
+	
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+
+	}
+}
+
+
+
+"tower_aura_regen"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"	
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/tower_abilities"
+	"AbilityTextureName"			"filler_ability"
+	"MaxLevel" 						"1"
+	"AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+
+	
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"health_regen"				    	"6"
+		"mana_regen"			       		"6"
+		"damage_interval"			       "3"
+		"shrine_heal"						"10"
+		"tower_heal"						"2"
+		"spell_radius"						"900"
+		"vision_radius"						"1600"
+	}
+}
+
+
+
+
+
+
+
+	"mid_teleport"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE"	
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"					"abilities/mid_teleport"
+		"AbilityTextureName"			"filler_ability"
+		"MaxLevel" 						"1"
+		"IsOnCastBar"					"0"
+
+		
+		
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"npc_necro_melle_passive"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"	
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/npc_necro_melle_passive"
+	"AbilityTextureName"			"necronomicon_warrior_last_will"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	"MaxLevel" 						"1"
+
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"0"
+	
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"stun"				        "1.5"
+		"damage"			 		"25"
+		"duration"			 		"2"
+		"reduce"			 		"50"
+
+	}
+}
+
+
+"npc_necro_range_passive"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"	
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/npc_necro_range_passive"
+	"AbilityTextureName"			"necronomicon_archer_mana_burn"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"MaxLevel" 						"1"
+	"AbilityManaCost"				"0"
+	
+	"AbilityValues"
+	{
+		"mana"				        "3.5"
+		"slow_duration"				 "2"
+		"slow"				        "-40"
+	}
+}
+
+
+
+"patrol_tormentor_reflect_custom"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"	
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/patrol_creeps/patrol_tormentor_reflect_custom"
+	"AbilityTextureName"			"miniboss_reflect"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"MaxLevel" 						"1"
+
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"0"
+	
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"damage"				"25"
+		"radius"				"800"
+	}
+}
+
+
+"patrol_tormentor_shield_custom"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"	
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/patrol_creeps/patrol_tormentor_shield_custom"
+	"AbilityTextureName"			"miniboss_unyielding_shield"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"MaxLevel" 						"1"
+
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"0"
+	
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"damage_reduce"		"-90"
+		"health_1"			"66"
+		"health_2"			"33"
+		"invun_duration"	"2"
+		"invun_damage"		"2"
+		"radius"			"800"
+		"regen"				"10"
+		"field_cd"			"4"
+		"field_duration"	"6"
+		"death_heal"		"50"
+	}
+}
+
+
+
+
+
+"patrol_armor"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"	
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/patrol_armor"
+	"AbilityTextureName"			"dawnbreaker_luminosity"
+	"MaxLevel" 						"1"
+
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"0"
+	
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"armor"				        "-100"
+		"armor_first"				        "-90"
+		"armor_second"				   "-200"
+		"radius"			 			"900"
+		"death_duration"			 			"1"
+		
+	}
+}
+
+
+
+
+
+
+
+
+"generic_talent"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"	
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/ui/generic_talent"
+	"AbilityTextureName"			"magnataur_empower"
+	"MaxLevel" 						"1"
+
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"0"
+	
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		
+
+	}
+}
+
+
+
+
+"generic_aoe_damage"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"	
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/ui/generic_aoe_damage"
+	"AbilityTextureName"			"brewmaster_fire_permanent_immolation"
+	"MaxLevel" 						"1"
+
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"0"
+	
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		
+
+	}
+}
+
+"high_five_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/ui/high_five_custom"
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+
+    "MaxLevel"                      "1"
+
+    "AbilityTextureName"            "consumables/high_five"
+
+    "AbilityCooldown"               "60"
+
+    "AbilityValues"
+    {
+        "think_interval"        "0.2"
+        "acknowledge_range"     "700"
+        "request_duration"      "10.0"
+        "high_five_speed"       "700"
+        "acknowledged_cooldown" "1.0"
+        
+    }
+}
+
+
+
+
+"donate_pet_ability"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/ui/donate_pet_ability"
+    "AbilityTextureName"            "pet_home"
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+
+    "MaxLevel"                      "1"
+    "AbilityCooldown"               "1"
+
+    "AbilityValues"
+    {
+        
+    }
+}
+
+
+
+}

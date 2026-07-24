@@ -1,0 +1,59 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf31:version{593cd181-a1d6-4c6f-9a8c-0534e8d44db0} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/creeps/lane_creeps/creep_radiant_hulk_swipe.vpcf"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RingWave"
+			m_nControlPointNumber = 7
+			m_bDisableOperator = true
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetRandomControlPointPosition"
+			m_nCP1 = 7
+			m_vecCPMinPos = [ 50.0, -4.0, 150.0 ]
+			m_vecCPMaxPos = [ 50.0, 4.0, 150.0 ]
+		},
+		{
+			_class = "C_OP_SetControlPointOrientation"
+			m_nCP = 7
+			m_vecRotation = [ -45.0, -240.0, 180.0 ]
+		},
+		{
+			_class = "C_OP_SetControlPointPositions"
+			m_vecCP1Pos = [ 24.0, -20.0, -64.0 ]
+			m_vecCP2Pos = [ 5.0, 0.0, -50.0 ]
+			m_vecCP3Pos = [ 4.0, 0.0, -38.0 ]
+			m_vecCP4Pos = [ 1.0, 0.0, -25.0 ]
+			m_nHeadLocation = 7
+			m_bOrient = true
+		},
+		{
+			_class = "C_OP_SetParentControlPointsToChildCP"
+			m_nFirstSourcePoint = 1
+			m_bSetOrientation = true
+		},
+	]
+	m_nBehaviorVersion = 4
+}

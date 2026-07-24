@@ -1,0 +1,168 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf27:version{36c3961f-02a4-4c52-bf8f-6e3147d7d142} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 200
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
+			m_flOverbrightFactor = 0.7
+			m_hTexture = resource:"materials/particle/impact/fleks.vtex"
+			m_flAnimationRate = 1.5
+			m_nAnimationType = "ANIMATION_TYPE_FIT_LIFETIME"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_Gravity = [ 0.0, 0.0, -800.0 ]
+			m_fDrag = 0.02
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_RemapSpeed"
+			m_nFieldOutput = "5"
+			m_flInputMax = 500.0
+			m_flOutputMax = 0.5
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+		{
+			_class = "C_OP_SpinUpdate"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndScale = 0.0
+			m_flStartTime = 0.75
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 70, 30, 45, 255 ]
+			m_ColorMax = [ 170, 168, 153, 255 ]
+		},
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMin = 0.25
+			m_fLifetimeMax = 1.0
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusRandExponent = 0.125
+			m_flRadiusMax = 10.0
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+		},
+		{
+			_class = "C_INIT_RandomSequence"
+			m_nSequenceMin = 50
+			m_nSequenceMax = 63
+		},
+		{
+			_class = "C_INIT_CreationNoise"
+			m_flOutputMax = 150.0
+			m_flOutputMin = -150.0
+			m_nFieldOutput = "5"
+			m_flNoiseScaleLoc = 1.0
+			m_flNoiseScale = 3.0
+		},
+		{
+			_class = "C_INIT_CreateWithinSphere"
+			m_fRadiusMax = 5.0
+			m_nControlPointNumber = 1
+			m_LocalCoordinateSystemSpeedMax = [ 0.0, 0.0, 350.0 ]
+		},
+		{
+			_class = "C_INIT_InitialVelocityNoise"
+			m_bLocalSpace = true
+			m_vecOutputMax = [ 300.0, 300.0, 500.0 ]
+			m_vecOutputMin = [ -300.0, -300.0, 250.0 ]
+			m_flNoiseScaleLoc = 2.0
+			m_flNoiseScale = 0.0
+		},
+		{
+			_class = "C_INIT_RandomYawFlip"
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 0.0, 0.0, 200.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 200.0 ]
+		},
+		{
+			_class = "C_INIT_PositionPlaceOnGround"
+			m_flOffset = 20.0
+			m_flMaxTraceLength = 512.0
+		},
+		{
+			_class = "C_INIT_NormalOffset"
+			m_OffsetMin = [ 8.0, 8.0, 8.0 ]
+			m_OffsetMax = [ -7.0, -7.0, -7.0 ]
+			m_bNormalize = true
+		},
+		{
+			_class = "C_INIT_InheritVelocity"
+			m_flVelocityScale = 0.5
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmissionDuration = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.3
+			}
+			m_flStartTime = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.05
+			}
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 200.0
+			}
+		},
+	]
+	m_Constraints = 
+	[
+		{
+			_class = "C_OP_PlanarConstraint"
+			m_PointOnPlane = [ 0.0, 0.0, -150.0 ]
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_WorldTraceConstraint"
+			m_flBounceAmount = 3.0
+			m_bDisableOperator = true
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetControlPointRotation"
+			m_flRotRate = 250.0
+			m_bDisableOperator = true
+		},
+	]
+	m_nFirstMultipleOverride_BackwardCompat = 7
+}

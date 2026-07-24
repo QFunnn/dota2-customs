@@ -1,0 +1,85 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+// No spaces in event names, max length 32
+// All strings are case sensitive
+//
+// valid data key types are:
+//   string : a zero terminated string
+//   bool   : unsigned int, 1 bit
+//   byte   : unsigned int, 8 bit
+//   short  : signed int, 16 bit
+//   long   : signed int, 32 bit
+//   float  : float, 32 bit
+//   uint64 : unsigned int 64 bit
+//   local  : any data, but not networked to clients
+//
+// following key names are reserved:
+//   local      : if set to 1, event is not networked to clients
+//   unreliable : networked, but unreliable
+//   suppress   : never fire this event
+//   time	: firing server time
+//   eventid	: holds the event ID
+"CustomEvents"
+{
+    "talent_added"
+    {
+        "ent_index"     "short"
+        "talent"     "string"
+        "level"      "short"
+    }
+    "save_abilities"
+    {
+        "ent_index"     "short"
+    }
+    "save_talents"
+    {
+        "hero_name"     "string"
+    }
+
+    "client_modifier_linked"
+    {
+        "path"     "string"
+        "modifier_name"     "string"
+    }
+    "send_items_data"
+    {
+        "items_data"			"string"
+        "styles_list"			"string"
+        "hero_name"			    "string"
+        "player_id"			    "byte"
+    }
+    "update_portrait_lua"
+    {
+        "portrait_unit"			"string"
+    }
+    "update_killer_lua"
+    {
+        "portrait_unit"			"string"
+    }
+    "event_change_ability_icon"
+    {
+        "entindex"     "short"
+        "asset"      "string"
+        "modifier"      "string"
+        "ability_name"     "string"
+    }
+    "event_change_ability_pfx"
+    {
+        "entindex"     "short"
+        "asset"      "string"
+        "modifier"      "string"
+        "ability_name"     "string"
+    }
+    "event_init_unit"
+    {
+        "hero_name"     "string"
+    }
+}

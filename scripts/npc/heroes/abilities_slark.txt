@@ -1,0 +1,285 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+
+"DOTAAbilities"
+{
+
+"Version"		"1"
+
+//=================================================================================================================
+// Slark: Dark Pact
+//=================================================================================================================
+"slark_dark_pact_custom"
+{
+
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/slark/slark_dark_pact_custom"  
+    "AbilityTextureName"            "slark_dark_pact"
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Hero_Slark.DarkPact.Cast"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastAnimation"          "ACT_INVALID"
+    "AbilityCastPoint"              "0.001 0.001 0.001 0.001"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "10 9 8 7"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "65"    
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "delay"                 "1.5"
+        "pulse_duration"        "1.0"
+        "total_damage"          "75 150 225 300"
+        "total_pulses"          "10"
+        "pulse_interval"        "0.1"
+        "self_damage_pct"           "30"
+        "creeps"                "25"
+        "radius"                
+        {
+            "value"         "325"
+            "affected_by_aoe_increase"  "1"
+        }   
+    }
+}
+
+//=================================================================================================================
+// Slark: Pounce
+//=================================================================================================================
+"slark_pounce_custom"
+{    
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/slark/slark_pounce_custom"  
+    "AbilityTextureName"            "slark_pounce"
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Hero_Slark.Pounce.Cast"
+    "LinkedAbility"                 "slark_pounce_custom_legendary"
+    "HasScepterUpgrade"             "1"
+    "HasShardUpgrade"               "1"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "13 12 11 10"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "75"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "pounce_damage"         "0"
+        "pounce_distance"       "700"
+        "pounce_speed"          "933.33"
+        "damage"                "60 80 100 120"
+        "leash_duration"        "2.5 2.75 3 3.25"
+        "essence_stack"         "1 2 2 3"
+        "leash_radius"          "400"
+        "pounce_radius"         
+        {
+            "value"     "120"
+        }
+        "scepter_stun"                "1"
+    }
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_2"
+}
+
+"slark_pounce_custom_legendary"
+{    
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/slark/slark_pounce_custom"  
+    "AbilityTextureName"            "slark_fish_bait"
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_AOE"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Hero_Slark.Pounce.Cast"
+
+    "AbilityCastRange"              "100"
+    "AbilityCastPoint"              "0.25"
+
+    "AbilityCharges"                "2"
+    "AbilityChargeRestoreTime"      "1"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "min_dist"      "500"
+    }
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_4"
+}
+
+"slark_saltwater_shiv_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/slark/slark_saltwater_shiv_custom"  
+    "AbilityTextureName"            "slark_saltwater_shiv"
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    "AbilitySound"                  "Hero_DoomBringer.InfernalBlade.Target"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "4"
+    "AbilityCastPoint"              "0.0"
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_3"
+    "HasShardUpgrade"               "1"
+    
+    "AbilityValues"
+    {
+        "duration"                      "15"
+        "max"                           "5"
+        "health_rest_steal"             "3 4 5 6"
+        "ms_steal"                      "6 8 10 12"
+        "creeps_damage"                 "80 160 240 320"
+
+        "shard_cd"                      -2
+    }
+}
+
+
+"slark_empty_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/slark/slark_saltwater_shiv_custom"  
+    "AbilityTextureName"            "invoker_empty1"
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+    "MaxLevel"                      "0"
+    
+    "AbilityValues"
+    {
+    }
+}
+
+//=================================================================================================================
+// Slark Shadow Dance
+//=================================================================================================================
+"slark_shadow_dance_custom"
+{
+
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/slark/slark_shadow_dance_custom"  
+    "AbilityTextureName"            "slark_shadow_dance"
+
+    "AbilityType"                   "ABILITY_TYPE_ULTIMATE"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "FightRecapLevel"               "2"
+    "AbilitySound"                  "Hero_Slark.ShadowDance"
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_4"
+    "LinkedAbility"                 "slark_shadow_dance_custom_legendary"
+
+    "MaxLevel"                      "3"
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "28"
+    
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "100"       
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {           
+        "bonus_movement_speed"      "24 36 48"
+        "bonus_regen"               "60 90 120"
+        "radius"                    "900"
+        "creeps_duration"           "2"
+
+        "duration"                  "2.8 3 3.2"
+    }
+}
+
+
+//=================================================================================================================
+// Slark: Depth Shroud (shard ability )
+//=================================================================================================================
+"slark_shadow_dance_custom_legendary"
+{
+
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/slark/slark_shadow_dance_custom"  
+    "AbilityTextureName"            "slark_depth_shroud"
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "MaxLevel"                      "1"
+    "FightRecapLevel"               "1"
+
+    "AbilityCastPoint"              "0"
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_4"
+    
+    "AbilityCooldown"               "0"
+    "AbilityManaCost"               "0"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+
+    }
+}
+
+
+
+"slark_innate_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/slark/slark_innate_custom"  
+    "AbilityTextureName"            "slark_essence_shift"
+    
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "MaxLevel"                      "5"
+    "Innate"                        "1"
+    "DependentOnAbility"            "slark_saltwater_shiv_custom"
+    "IsBreakable"                   "1"
+
+    "AbilityValues"
+    {        
+        "agi_gain"                  "3"
+        "stat_loss"                 "-1"
+        "duration"              "10 15 20 25 30"
+        "duration_creeps"       "8"
+    }
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_3"
+}
+
+
+
+
+
+}

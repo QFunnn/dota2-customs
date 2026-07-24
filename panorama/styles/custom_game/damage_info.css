@@ -1,0 +1,646 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.DamageBlockWithButton
+{
+	align: right top;
+	margin-top: 125px;
+	flow-children: down;
+	width: 210px;
+	margin-right: 10px;
+	z-index: 5;
+	transition-property: width;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-out;
+}
+
+.DamageBlockWithButton_endscreen
+{
+	margin-top: 15px;
+	margin-right: 0px;
+	width: 400px;
+	align: center top;
+}
+
+.DamageBlockWithButton_opened
+{
+	width: 400px;
+}
+
+.DamageBlockWithButton_closed:hover
+{
+	pre-transform-scale2d: 1.01;
+	brightness: 1.6;
+}
+
+.DamageInfoBar
+{
+	z-index: 10;
+	width: 100%;
+	flow-children: left;
+	border-radius: 2px;
+	border: 1px solid #555;
+}
+
+.DamageInfoBar_shadow
+{
+	box-shadow: fill black 0px 0px 4px -1px;
+}
+
+.ButtonCloseDamage
+{
+	height: 100%;
+	width: 25px;
+	background-color: #000000d0;
+	background-color: rgba(10, 10, 10, 0.99);
+}
+
+.damage_close .DamageRoundHistory
+{
+	height: 0px;
+}
+
+.ButtonCloseDamageIcon
+{
+	align: center center;
+	width: 30px;
+	height: 30px;
+	background-image: url("s2r://panorama/images/control_icons/chevron-sharp-left_png.vtex");
+	background-size: 100%;
+}
+
+.damage_close .ButtonCloseDamageIcon
+{
+	transform: rotateZ(-90deg);
+}
+
+.damage_open .ButtonCloseDamageIcon
+{
+	transform: rotateZ(90deg);
+}
+
+.DamageRoundHistory
+{
+	width: 400px;
+	height: 510px;
+	transition-property: height;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-out;
+	border: 1px solid #556775;
+	flow-children: down;
+	box-shadow: #000000f5 0px 0px 8px 0px;
+}
+
+.DamageRoundBackground
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	background-color: #000000;
+	background-image: url("s2r://panorama/images/hud/reborn/bg_scoreboard_psd.vtex");
+	background-size: 100% 100%;
+	wash-color: #aaa;
+}
+
+.Damage_MenuButtons
+{
+	width: 100%;
+	height: 40px;
+	flow-children: right;
+}
+
+.MenuButton
+{
+	width: 33.33%;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #555555 ), to( #222222 ) );
+	border: 1px solid black;
+	background-color: #3A444433;
+	border-color: #4C575F44;
+}
+
+.MenuButton:hover
+{
+	brightness: 2;
+}
+
+.DamageAbilitiesIncomeButton_select
+{
+	border-color: #bf2922;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #46100e90 ), to( #89211c90 ) );
+	box-shadow: fill black 0px 0px 20px -1px;
+	z-index: 999;
+}
+
+.DamageAbilitiesButton_select
+{
+	border-color: #4e94e4;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #274cb5aa ), to( #436bddaa ) );
+	box-shadow: fill black 0px 0px 20px -1px;
+	z-index: 999;
+}
+
+.DamageAbilitiesHealingButton_select
+{
+	border-color: #51b127;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #204d0c ), to( #3c8b19aa ) );
+	box-shadow: fill black 0px 0px 20px -1px;
+	z-index: 999;
+}
+
+.MenuButtonLabel
+{
+	align: center center;
+	font-weight: bold;
+	font-size: 18px;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff ), to( #cdcdcd ) );
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.damage_close .MenuButton
+{
+	visibility: collapse;
+}
+
+.AllDamageInfo
+{
+	width: 100%;
+	height: 23px;
+	background-color: #000000da;
+	flow-children:right;
+	border-radius: 0px;
+}
+
+.DamagePhys
+{
+	height: 100%;
+	width: 0%;
+	background-color: #ae2f28;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #731a15 ), to( #b32921 ) );
+}
+
+.DamageMagical
+{
+	height: 100%;
+	width: 0%;
+	background-color: #5b93d1;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1e47b6 ), to( #6d8de5 ) );
+}
+
+.DamagePure
+{
+	height: 100%;
+	width: 0%;
+	background-color: #d8ae53;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #765818 ), to( #d39c29 ) );
+}
+
+.AllDamagePercent
+{
+	align: center center;
+	color: #f3f3f3;
+	font-weight: semi-bold;
+	font-size: 19px;
+}
+
+.DamageStatsConent
+{
+	width: 98%;
+	horizontal-align: center;
+	flow-children: down;
+}
+
+.damage_close .DamageStatsConent
+{
+	visibility: collapse;
+}
+
+.DamageStatsParent
+{
+	height: 428px;
+	width: 100%;
+	overflow: squish scroll;
+}
+
+#BattlePassTier2Only
+{
+	width: 100%;
+	margin-top: 160px;
+	text-align: center;
+	color: white;
+	font-size: 26px;
+	font-weight: bold;
+}
+
+.UnitHeroInfo
+{
+	width: 100%;
+	flow-children: right;
+	margin: 5px;
+	border-bottom: 1.5px solid #fff;
+	border-brush: gradient( radial, 50% 70%, 0% 0%, 55% 60%, from( white ), to( #fff0 ) );
+}
+
+.UnitDamagePanel
+{
+	width: 100%;
+	horizontal-align: center;
+	flow-children: right;
+	tooltip-position: bottom;
+	transition-property: transform, position;
+	transition-duration: 0.25s;
+}
+
+.UnitDamagePanelBase
+{
+	height: 30px;
+	margin-left: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.UnitDamagePanelMini
+{
+	height: 28px;
+	margin-left: 6px;
+	margin-top: 0px;
+	margin-bottom: 1px;
+}
+
+.UnitDamageInfoPanel
+{
+	width: 95%;
+	height: 100%;
+}
+
+#DamageLineBG
+{
+	width: 95%;
+	vertical-align: center;
+}
+
+#DamageLineBG2
+{
+	horizontal-align: left;
+	width: 100%;
+	margin-left: 5px;
+	transition-property: width;
+	transition-duration: 0.1s;
+}
+
+.DamageLineStart
+{
+	width: 15px;
+	height: 15px;
+	vertical-align: center;
+	border-radius: 50px;
+}
+
+.DamageLine
+{
+	width: 100%;
+	vertical-align: center;
+	horizontal-align: left;
+	border-left: 1px solid #ccc;
+	flow-children: right;
+}
+
+.SubDamageLine
+{
+	height: 100%;
+}
+
+.DamageLineBase
+{
+	height: 23px;
+	box-shadow: black 0px 0px 3px 0px;
+}
+
+.DamageLineMini
+{
+	height: 22px;
+}
+
+#DamageUnitLabel
+{
+	font-weight: bold;
+	font-size: 14px;
+	color: white;
+	align: left center;
+	z-index: 10;
+	margin-left: 12px;
+	text-shadow: 0px 0px 2px #000000;
+}
+
+.UnitPortrait
+{
+	width: 30px;
+	height: 30px;
+	vertical-align: center;
+	box-shadow: black 0px 0px 5px 0px;
+}
+
+.UnitPortraitMini
+{
+	width: 27px;
+	height: 27px;
+	vertical-align: center;
+	box-shadow: black 0px 0px 5px 0px;
+}
+
+.UnitPortrait_hero
+{
+	width: 30px;
+	height: 30px;
+}
+
+.UnitHeroInfoAbilities
+{
+	flow-children: down;
+	width: 100%;
+}
+
+.UnitDamageInfoPanelIncome
+{
+	width: 95%;
+	height: 20px;
+}
+
+.DamageLineInc
+{
+	width: 100%;
+	height: 17px;
+	vertical-align: top;
+	horizontal-align: left;
+	border-left: 1px solid #ccc;
+}
+
+#DamageLineBGPhys
+{
+	width: 95%;
+}
+
+#DamageLineBG2Phys
+{
+	horizontal-align: left;
+	width: 100%;
+	margin-left: 5px;
+	transition-property: width;
+	transition-duration: 0.1s;
+}
+
+#DamageUnitLabelPhys
+{
+	font-weight: bold;
+	font-size: 14px;
+	color: #fff;
+	align: left top;
+	z-index: 10;
+	margin-left: 12px;
+	text-shadow: 0px 0px 5px #000000;
+}
+
+#DamageLineBGMagic
+{
+	width: 95%;
+}
+
+#DamageLineBG2Magic
+{
+	horizontal-align: left;
+	width: 100%;
+	margin-left: 5px;
+	transition-property: width;
+	transition-duration: 0.1s;
+}
+
+#DamageUnitLabelMagic
+{
+	font-weight: bold;
+	font-size: 14px;
+	color: #fff;
+	align: left top;
+	z-index: 10;
+	margin-left: 12px;
+	text-shadow: 0px 0px 5px #000000;
+}
+
+#DamageLineBGPure
+{
+	width: 95%;
+}
+
+#DamageLineBG2Pure
+{
+	horizontal-align: left;
+	width: 100%;
+	margin-left: 5px;
+	transition-property: width;
+	transition-duration: 0.1s;
+}
+
+#DamageUnitLabelPure
+{
+	font-weight: bold;
+	font-size: 14px;
+	color: #fff;
+	align: left top;
+	z-index: 10;
+	margin-left: 12px;
+	text-shadow: 0px 0px 5px #000000;
+}
+
+.DamageLine_no
+{
+	background-color: #aaa;
+}
+
+.DamageLine_shield
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #62460b ), to( #f6b323 ) );
+}
+
+.DamageLine_healing
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #2a540b ), to( #59ad1a ) );
+}
+
+.DamageLine_phys
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #6d1915 ), to( #f23e34 ) );
+}
+
+.DamageLine_magical
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #3a67df ), to( #7494e6 ) );
+}
+
+.DamageLine_pure
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #7c632c ), to( #ffcd62 ) );
+}
+
+.DamageTalentColor_gray
+{
+	box-shadow: fill #c9cbce 0px 0px 4px -1px;
+	border: 1px solid #c9cbce;
+}
+
+.DamageTalentColor_blue
+{
+	box-shadow: fill #5097f8 0px 0px 4px -1px;
+	border: 1px solid #5097f8;
+}
+
+.DamageTalentColor_orange
+{
+	box-shadow: fill #f7942b 0px 0px 4px -1px;
+	border: 1px solid #f7942b;
+}
+
+.DamageTalentColor_purple
+{
+	box-shadow: fill #a943eb 0px 0px 4px -1px;
+	border: 1px solid #a943eb;
+}
+
+.panel_hidden
+{
+	visibility: collapse;
+}
+
+.TempIncoming
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.TempHeader
+{
+	font-weight: bold;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff ), to( #ccc ) );
+	text-shadow: 0px 0px 9px #000000;
+	width: 100%;
+	height: 28px;
+	vertical-align: center;
+	text-align: center;
+	font-size: 21px;
+}
+
+.TempContent
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.temp_enemy_container
+{
+	width: 100%;
+	flow-children: right;
+	margin-top: 6px;
+	padding-bottom: 5px;
+	border-bottom: 1.5px solid #fff;
+	border-brush: gradient( radial, 50% 70%, 0% 0%, 55% 60%, from( white ), to( #fff0 ) );
+}
+
+.temp_enemy_hero
+{
+	width: 32px;
+	margin-left: 4px;
+	flow-children: down;
+}
+
+.temp_enemy_hero_icon
+{
+	width: 30px;
+	height: 30px;
+	align: center center;
+}
+
+.temp_enemy_damages
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.damage_close .TopPanel
+{
+	visibility: collapse;
+}
+
+.TopPanel
+{
+	horizontal-align: right;
+	height: 28px;
+	margin-top: 6px;
+	margin-bottom: 6px;
+	width: 100%;
+	border-bottom: 2px solid #fff;
+	border-brush: gradient( radial, 50% 55%, 0% 0%, 55% 60%, from( white ), to( #fff0 ) );
+	transition-property: brightness, pre-transform-scale2d;
+	transition-duration: 0.15s;
+}
+
+.TopPanel:hover
+{
+	pre-transform-scale2d: 1.01;
+	brightness: 1.6;
+}
+
+#BottomPanelText
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #dfdfdf ), to( #bbb ) );
+	font-weight: bold;
+	vertical-align: center;
+	text-align: left;
+	text-shadow: 0px 0px 9px #000000;
+	font-size: 19px;
+}
+
+#BottomPanelCheckbox
+{
+	width: 20px;
+	height: 20px;
+	margin-right: 12px;
+	align: right center;
+	margin-left: 5px;
+	margin-top: 2px;
+	transition-property: background-color;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.BottomPanelCheckbox_inactive
+{
+	background-color: black;
+	border: 2px solid #5e686966;
+	box-shadow: #00000099 0px 0px 1px 3px;
+}
+
+.BottomPanelCheckbox_active
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #e7f6f599 ), to( #a0d6d7 ) );
+	border: 3px solid #000000;
+	box-shadow: #5b62bf77 0px 0px 5px 0px;
+}
+
+.TempTextNoData
+{
+	margin-top: 10px;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #bbb ), to( #999 ) );
+	font-style: italic;
+	align: center center;
+	text-align: center;
+	text-shadow: 0px 0px 9px #000000;
+	font-size: 17px;
+	width: 80%;
+}

@@ -1,0 +1,4281 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+_G.All_Quests =
+{
+    ["hero_quests"] =
+    {
+        ["npc_dota_hero_juggernaut"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Jugg.Quest_1",
+                ["icon"] = "Blade_Fury",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Jugg.Quest_2",
+                ["icon"] = "Healing_Ward",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Jugg.Quest_3",
+                ["icon"] = "Blade_Dance",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Jugg.Quest_4",
+                ["icon"] = "Omnislash",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Jugg.Quest_5",
+                ["icon"] = "Blade_Fury",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+            [6] = 
+            {
+                ["name"] = "Jugg.Quest_6",
+                ["icon"] = "Blade_Dance",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 150,
+            },
+            [7] = 
+            {
+                ["name"] = "Jugg.Quest_7",
+                ["icon"] = "Healing_Ward",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 30000,
+            },
+            [8] = 
+            {
+                ["name"] = "Jugg.Quest_8",
+                ["icon"] = "Omnislash",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+        },
+
+
+
+
+
+        ["npc_dota_hero_phantom_assassin"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Phantom.Quest_1",
+                ["icon"] = "Stifling_Dagger",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Phantom.Quest_2",
+                ["icon"] = "Phantom_Strike",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Phantom.Quest_3",
+                ["icon"] = "Blur",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Phantom.Quest_4",
+                ["icon"] = "Coup_de_Grace",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Phantom.Quest_5",
+                ["icon"] = "Stifling_Dagger",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 30,
+                ['number'] = 800,
+            },
+            [6] = 
+            {
+                ["name"] = "Phantom.Quest_6",
+                ["icon"] = "Phantom_Strike",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+            [7] = 
+            {
+                ["name"] = "Phantom.Quest_7",
+                ["icon"] = "Blur",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 70,
+                ["number"] = 3,
+            },
+            [8] = 
+            {
+                ["name"] = "Phantom.Quest_8",
+                ["icon"] = "Coup_de_Grace",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 15,
+                ['number'] = 2,
+            },
+        },
+
+
+
+
+
+
+
+
+
+
+        ["npc_dota_hero_huskar"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Huskar.Quest_1",
+                ["icon"] = "Inner_Fire",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Huskar.Quest_2",
+                ["icon"] = "Burning_Spears",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Huskar.Quest_3",
+                ["icon"] = "Berserkers_Blood",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Huskar.Quest_4",
+                ["icon"] = "Life_Break",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Huskar.Quest_5",
+                ["icon"] = "Inner_Fire",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 100,
+            },
+            [6] = 
+            {
+                ["name"] = "Huskar.Quest_6",
+                ["icon"] = "Burning_Spears",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 20000,
+            },
+            [7] = 
+            {
+                ["name"] = "Huskar.Quest_7",
+                ["icon"] = "Berserkers_Blood",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 150,
+                ['number'] = 40,
+            },
+            [8] = 
+            {
+                ["name"] = "Huskar.Quest_8",
+                ["icon"] = "Life_Break",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 20,
+                ['number'] = 50,
+            },
+        },
+
+
+
+
+
+
+
+        ["npc_dota_hero_nevermore"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Never.Quest_1",
+                ["icon"] = "Shadowraze",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Never.Quest_2",
+                ["icon"] = "Frenzy",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Never.Quest_3",
+                ["icon"] = "Dark_Lord",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Never.Quest_4",
+                ["icon"] = "Requiem",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Never.Quest_5",
+                ["icon"] = "Shadowraze",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 15,
+                ["number"] = 3,
+            },
+            [6] = 
+            {
+                ["name"] = "Never.Quest_6",
+                ["icon"] = "Frenzy",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 5,
+            },
+            [7] = 
+            {
+                ["name"] = "Never.Quest_7",
+                ["icon"] = "Dark_Lord",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 15000,
+            },
+            [8] = 
+            {
+                ["name"] = "Never.Quest_8",
+                ["icon"] = "Requiem",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 15,
+                ["number"] = 12,
+            },
+        },
+
+
+
+
+
+        ["npc_dota_hero_legion_commander"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Legion.Quest_1",
+                ["icon"] = "Odds",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Legion.Quest_2",
+                ["icon"] = "Press",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Legion.Quest_3",
+                ["icon"] = "Moment",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Legion.Quest_4",
+                ["icon"] = "Duel",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Legion.Quest_5",
+                ["icon"] = "Odds",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 20000,
+            },
+            [6] = 
+            {
+                ["name"] = "Legion.Quest_6",
+                ["icon"] = "Press",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 20,
+            },
+            [7] = 
+            {
+                ["name"] = "Legion.Quest_7",
+                ["icon"] = "Moment",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 15000,
+            },
+            [8] = 
+            {
+                ["name"] = "Legion.Quest_8",
+                ["icon"] = "Duel",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 160,
+            },
+        },
+
+
+
+
+
+        ["npc_dota_hero_queenofpain"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Queen.Quest_1",
+                ["icon"] = "Dagger",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Queen.Quest_2",
+                ["icon"] = "Blink",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Queen.Quest_3",
+                ["icon"] = "Scream",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Queen.Quest_4",
+                ["icon"] = "Sonic",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Queen.Quest_5",
+                ["icon"] = "Dagger",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 200,
+            },
+            [6] = 
+            {
+                ["name"] = "Queen.Quest_6",
+                ["icon"] = "Blink",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 50,
+                ["number"] = 300,
+            },
+            [7] = 
+            {
+                ["name"] = "Queen.Quest_7",
+                ["icon"] = "Scream",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+            [8] = 
+            {
+                ["name"] = "Queen.Quest_8",
+                ["icon"] = "Sonic",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 8,
+                ["number"] = 3,
+            },
+        },
+
+
+
+
+        ["npc_dota_hero_terrorblade"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Terr.Quest_1",
+                ["icon"] = "Reflection",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Terr.Quest_2",
+                ["icon"] = "Illusion",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Terr.Quest_3",
+                ["icon"] = "Meta",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Terr.Quest_4",
+                ["icon"] = "Sunder",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Terr.Quest_5",
+                ["icon"] = "Reflection",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 20000,
+            },
+            [6] = 
+            {
+                ["name"] = "Terr.Quest_6",
+                ["icon"] = "Illusion",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 150,
+            },
+            [7] = 
+            {
+                ["name"] = "Terr.Quest_7",
+                ["icon"] = "Meta",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 150,
+            },
+            [8] = 
+            {
+                ["name"] = "Terr.Quest_8",
+                ["icon"] = "Sunder",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 20000,
+            },
+        },
+
+
+
+
+
+
+        ["npc_dota_hero_bristleback"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Brist.Quest_1",
+                ["icon"] = "Goo",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Brist.Quest_2",
+                ["icon"] = "Spray",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Brist.Quest_3",
+                ["icon"] = "Back",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Brist.Quest_4",
+                ["icon"] = "Warpath",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Brist.Quest_5",
+                ["icon"] = "Goo",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 80,
+                ["number"] = 4,
+            },
+            [6] = 
+            {
+                ["name"] = "Brist.Quest_6",
+                ["icon"] = "Spray",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+            [7] = 
+            {
+                ["name"] = "Brist.Quest_7",
+                ["icon"] = "Back",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 50000,
+            },
+            [8] = 
+            {
+                ["name"] = "Brist.Quest_8",
+                ["icon"] = "Warpath",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 60,
+            },
+        },
+
+
+
+
+
+
+
+        ["npc_dota_hero_puck"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Puck.Quest_1",
+                ["icon"] = "Orb",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Puck.Quest_2",
+                ["icon"] = "Rift",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Puck.Quest_3",
+                ["icon"] = "Shift",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Puck.Quest_4",
+                ["icon"] = "Coil",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+
+
+            [5] = 
+            {
+                ["name"] = "Puck.Quest_5",
+                ["icon"] = "Orb",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25,
+                ["number"] = 300,
+            },
+            [6] = 
+            {
+                ["name"] = "Puck.Quest_6",
+                ["icon"] = "Rift",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 80,
+            },
+            [7] = 
+            {
+                ["name"] = "Puck.Quest_7",
+                ["icon"] = "Shift",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 15000,
+            },
+            [8] = 
+            {
+                ["name"] = "Puck.Quest_8",
+                ["icon"] = "Coil",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 20,
+            },
+        },
+
+
+
+
+
+
+        ["npc_dota_hero_void_spirit"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Void.Quest_1",
+                ["icon"] = "Remnant",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Void.Quest_2",
+                ["icon"] = "Astral",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Void.Quest_3",
+                ["icon"] = "Pulse",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Void.Quest_4",
+                ["icon"] = "Step",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+
+            [5] = 
+            {
+                ["name"] = "Void.Quest_5",
+                ["icon"] = "Remnant",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 60,
+            },
+            [6] = 
+            {
+                ["name"] = "Void.Quest_6",
+                ["icon"] = "Astral",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25,
+            },
+            [7] = 
+            {
+                ["name"] = "Void.Quest_7",
+                ["icon"] = "Pulse",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 15000,
+            },
+            [8] = 
+            {
+                ["name"] = "Void.Quest_8",
+                ["icon"] = "Step",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 20000,
+            },
+        },
+
+
+
+
+        ["npc_dota_hero_ember_spirit"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Ember.Quest_1",
+                ["icon"] = "Chain",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Ember.Quest_2",
+                ["icon"] = "Fist",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Ember.Quest_3",
+                ["icon"] = "Guard",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Ember.Quest_4",
+                ["icon"] = "FireRemnant",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+
+
+            [5] = 
+            {
+                ["name"] = "Ember.Quest_5",
+                ["icon"] = "Chain",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 100,
+            },
+            [6] = 
+            {
+                ["name"] = "Ember.Quest_6",
+                ["icon"] = "Fist",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 30000,
+            },
+            [7] = 
+            {
+                ["name"] = "Ember.Quest_7",
+                ["icon"] = "Guard",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 16000,
+            },
+            [8] = 
+            {
+                ["name"] = "Ember.Quest_8",
+                ["icon"] = "FireRemnant",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 30000,
+            },
+        },
+
+
+
+
+        ["npc_dota_hero_pudge"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Pudge.Quest_1",
+                ["icon"] = "Hook",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Pudge.Quest_2",
+                ["icon"] = "Rot",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Pudge.Quest_3",
+                ["icon"] = "Flesh",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Pudge.Quest_4",
+                ["icon"] = "Dismember",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+
+
+            [5] = 
+            {
+                ["name"] = "Pudge.Quest_5",
+                ["icon"] = "Hook",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 10,
+                ["number"] = 700,
+            },
+            [6] = 
+            {
+                ["name"] = "Pudge.Quest_6",
+                ["icon"] = "Rot",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 30000,
+            },
+            [7] = 
+            {
+                ["name"] = "Pudge.Quest_7",
+                ["icon"] = "Flesh",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 20,
+            },
+            [8] = 
+            {
+                ["name"] = "Pudge.Quest_8",
+                ["icon"] = "Dismember",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 15000,
+            },
+        },
+
+
+
+
+
+        ["npc_dota_hero_hoodwink"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Hoodwink.Quest_1",
+                ["icon"] = "Acorn",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Hoodwink.Quest_2",
+                ["icon"] = "Bush",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Hoodwink.Quest_3",
+                ["icon"] = "Scurry",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Hoodwink.Quest_4",
+                ["icon"] = "Sharp",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+
+
+            [5] = 
+            {
+                ["name"] = "Hoodwink.Quest_5",
+                ["icon"] = "Acorn",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+            [6] = 
+            {
+                ["name"] = "Hoodwink.Quest_6",
+                ["icon"] = "Bush",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 80,
+            },
+            [7] = 
+            {
+                ["name"] = "Hoodwink.Quest_7",
+                ["icon"] = "Scurry",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 150,
+            },
+            [8] = 
+            {
+                ["name"] = "Hoodwink.Quest_8",
+                ["icon"] = "Sharp",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 15,
+            },
+        },
+
+
+
+
+
+        ["npc_dota_hero_skeleton_king"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Wraith.Quest_1",
+                ["icon"] = "Blast",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Wraith.Quest_2",
+                ["icon"] = "Vampiric",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Wraith.Quest_3",
+                ["icon"] = "Strike",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Wraith.Quest_4",
+                ["icon"] = "Reincarnation",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+
+            
+            [5] = 
+            {
+                ["name"] = "Wraith.Quest_5",
+                ["icon"] = "Blast",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 12000,
+                ["number"] = 3,
+            },
+            [6] = 
+            {
+                ["name"] = "Wraith.Quest_6",
+                ["icon"] = "Vampiric",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 20000,
+            },
+            [7] = 
+            {
+                ["name"] = "Wraith.Quest_7",
+                ["icon"] = "Strike",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 80,
+            },
+            [8] = 
+            {
+                ["name"] = "Wraith.Quest_8",
+                ["icon"] = "Reincarnation",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 10,
+            },
+        },
+
+
+
+
+
+        ["npc_dota_hero_lina"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Lina.Quest_1",
+                ["icon"] = "Dragon",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Lina.Quest_2",
+                ["icon"] = "Array",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Lina.Quest_3",
+                ["icon"] = "Soul",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Lina.Quest_4",
+                ["icon"] = "Laguna",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+
+
+            [5] = 
+            {
+                ["name"] = "Lina.Quest_5",
+                ["icon"] = "Dragon",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 20,
+                ["number"] = 800,
+            },
+            [6] = 
+            {
+                ["name"] = "Lina.Quest_6",
+                ["icon"] = "Array",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 40,
+            },
+            [7] = 
+            {
+                ["name"] = "Lina.Quest_7",
+                ["icon"] = "Soul",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 150,
+                ["number"] = 3,
+            },
+            [8] = 
+            {
+                ["name"] = "Lina.Quest_8",
+                ["icon"] = "Laguna",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+        },
+
+
+
+
+
+
+
+        ["npc_dota_hero_troll_warlord"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Troll.Quest_1",
+                ["icon"] = "Rage",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Troll.Quest_2",
+                ["icon"] = "Axes",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Troll.Quest_3",
+                ["icon"] = "Fervor",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Troll.Quest_4",
+                ["icon"] = "Trance",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            
+            [5] = 
+            {
+                ["name"] = "Troll.Quest_5",
+                ["icon"] = "Rage",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 40,
+            },
+            [6] = 
+            {
+                ["name"] = "Troll.Quest_6",
+                ["icon"] = "Axes",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 50,
+                ["number"] = 2,
+            },
+            [7] = 
+            {
+                ["name"] = "Troll.Quest_7",
+                ["icon"] = "Fervor",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 150,
+            },
+            [8] = 
+            {
+                ["name"] = "Troll.Quest_8",
+                ["icon"] = "Trance",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 30000,
+            },
+        },
+
+
+
+
+        ["npc_dota_hero_axe"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Axe.Quest_1",
+                ["icon"] = "Call",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Axe.Quest_2",
+                ["icon"] = "Hunger",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Axe.Quest_3",
+                ["icon"] = "Helix",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Axe.Quest_4",
+                ["icon"] = "Culling",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+
+
+            [5] = 
+            {
+                ["name"] = "Axe.Quest_5",
+                ["icon"] = "Call",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 50000,
+            },
+            [6] = 
+            {
+                ["name"] = "Axe.Quest_6",
+                ["icon"] = "Hunger",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 100,
+            },
+            [7] = 
+            {
+                ["name"] = "Axe.Quest_7",
+                ["icon"] = "Helix",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 20000,
+            },
+            [8] = 
+            {
+                ["name"] = "Axe.Quest_8",
+                ["icon"] = "Culling",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 8,
+            },
+        },
+
+
+
+
+
+        ["npc_dota_hero_alchemist"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Alch.Quest_1",
+                ["icon"] = "Acid",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Alch.Quest_2",
+                ["icon"] = "Unstable",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Alch.Quest_3",
+                ["icon"] = "Greed",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Alch.Quest_4",
+                ["icon"] = "Chemical",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+
+            [5] = 
+            {
+                ["name"] = "Alch.Quest_5",
+                ["icon"] = "Acid",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 80,
+            },
+            [6] = 
+            {
+                ["name"] = "Alch.Quest_6",
+                ["icon"] = "Unstable",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 15,
+                ["number"] = 4.5,
+            },
+            [7] = 
+            {
+                ["name"] = "Alch.Quest_7",
+                ["icon"] = "Greed",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 7000,
+            },
+            [8] = 
+            {
+                ["name"] = "Alch.Quest_8",
+                ["icon"] = "Chemical",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 150,
+            },
+        },
+
+
+
+
+        ["npc_dota_hero_ogre_magi"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Ogre.Quest_1",
+                ["icon"] = "Fireblast",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Ogre.Quest_2",
+                ["icon"] = "Ignite",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Ogre.Quest_3",
+                ["icon"] = "Bloodlust",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Ogre.Quest_4",
+                ["icon"] = "Multicast",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+
+            
+            [5] = 
+            {
+                ["name"] = "Ogre.Quest_5",
+                ["icon"] = "Fireblast",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 100,
+            },
+            [6] = 
+            {
+                ["name"] = "Ogre.Quest_6",
+                ["icon"] = "Ignite",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 20000,
+            },
+            [7] = 
+            {
+                ["name"] = "Ogre.Quest_7",
+                ["icon"] = "Bloodlust",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 30,
+                ["number"] = 5,
+            },
+            [8] = 
+            {
+                ["name"] = "Ogre.Quest_8",
+                ["icon"] = "Multicast",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 160,
+            },
+        },
+
+
+
+
+
+        ["npc_dota_hero_antimage"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Anti.Quest_1",
+                ["icon"] = "manabreak",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Anti.Quest_2",
+                ["icon"] = "antimage_blink",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Anti.Quest_3",
+                ["icon"] = "counterspell",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Anti.Quest_4",
+                ["icon"] = "manavoid",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+
+            [5] = 
+            {
+                ["name"] = "Anti.Quest_5",
+                ["icon"] = "manabreak",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 10000,
+            },
+            [6] = 
+            {
+                ["name"] = "Anti.Quest_6",
+                ["icon"] = "antimage_blink",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 30000,
+                ["number"] = 3,
+            },
+            [7] = 
+            {
+                ["name"] = "Anti.Quest_7",
+                ["icon"] = "counterspell",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 12,
+            },
+            [8] = 
+            {
+                ["name"] = "Anti.Quest_8",
+                ["icon"] = "manavoid",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 10,
+                ["number"] = 50,
+            },
+        },
+
+
+
+
+
+        ["npc_dota_hero_primal_beast"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Beast.Quest_1",
+                ["icon"] = "onslaught",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Beast.Quest_2",
+                ["icon"] = "trample",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Beast.Quest_3",
+                ["icon"] = "uproar",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Beast.Quest_4",
+                ["icon"] = "pulverize",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Beast.Quest_5",
+                ["icon"] = "onslaught",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 20,
+                ["number"] = 2,
+            },
+            [6] = 
+            {
+                ["name"] = "Beast.Quest_6",
+                ["icon"] = "trample",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25,
+                ["number"] = 4,
+            },
+            [7] = 
+            {
+                ["name"] = "Beast.Quest_7",
+                ["icon"] = "uproar",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 80,
+                ["number"] = 5,
+            },
+            [8] = 
+            {
+                ["name"] = "Beast.Quest_8",
+                ["icon"] = "pulverize",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+        },
+
+
+
+
+        ["npc_dota_hero_marci"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Marci.Quest_1",
+                ["icon"] = "dispose",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Marci.Quest_2",
+                ["icon"] = "rebound",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Marci.Quest_3",
+                ["icon"] = "sidekick",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Marci.Quest_4",
+                ["icon"] = "unleash",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Marci.Quest_5",
+                ["icon"] = "dispose",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+            [6] = 
+            {
+                ["name"] = "Marci.Quest_6",
+                ["icon"] = "rebound",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 40,
+            },
+            [7] = 
+            {
+                ["name"] = "Marci.Quest_7",
+                ["icon"] = "sidekick",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 15000,
+            },
+            [8] = 
+            {
+                ["name"] = "Marci.Quest_8",
+                ["icon"] = "unleash",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 50,
+            },
+        },
+
+
+
+
+
+        ["npc_dota_hero_templar_assassin"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Templar.Quest_1",
+                ["icon"] = "refraction",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Templar.Quest_2",
+                ["icon"] = "meld",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Templar.Quest_3",
+                ["icon"] = "psiblades",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Templar.Quest_4",
+                ["icon"] = "psionic",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Templar.Quest_5",
+                ["icon"] = "refraction",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 30000,
+            },
+            [6] = 
+            {
+                ["name"] = "Templar.Quest_6",
+                ["icon"] = "meld",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 20000,
+                ["number"] = 3,
+            },
+            [7] = 
+            {
+                ["name"] = "Templar.Quest_7",
+                ["icon"] = "psiblades",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 50,
+            },
+            [8] = 
+            {
+                ["name"] = "Templar.Quest_8",
+                ["icon"] = "psionic",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 15000,
+            },
+        },
+
+
+
+
+
+
+
+        ["npc_dota_hero_bloodseeker"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Blood.Quest_1",
+                ["icon"] = "bloodrage",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Blood.Quest_2",
+                ["icon"] = "bloodrite",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Blood.Quest_3",
+                ["icon"] = "thirst",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Blood.Quest_4",
+                ["icon"] = "rupture",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+
+
+            [5] = 
+            {
+                ["name"] = "Blood.Quest_5",
+                ["icon"] = "bloodrage",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 100,
+                ["number"] = 50,
+            },
+            [6] = 
+            {
+                ["name"] = "Blood.Quest_6",
+                ["icon"] = "bloodrite",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 30,
+            },
+            [7] = 
+            {
+                ["name"] = "Blood.Quest_7",
+                ["icon"] = "thirst",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 5,
+            },
+            [8] = 
+            {
+                ["name"] = "Blood.Quest_8",
+                ["icon"] = "rupture",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+
+        },
+
+
+
+
+
+        ["npc_dota_hero_monkey_king"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Monkey.Quest_1",
+                ["icon"] = "boundless",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Monkey.Quest_2",
+                ["icon"] = "tree",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Monkey.Quest_3",
+                ["icon"] = "mastery",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Monkey.Quest_4",
+                ["icon"] = "command",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+
+            [5] = 
+            {
+                ["name"] = "Monkey.Quest_5",
+                ["icon"] = "boundless",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+            [6] = 
+            {
+                ["name"] = "Monkey.Quest_6",
+                ["icon"] = "tree",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 40,
+            },
+            [7] = 
+            {
+                ["name"] = "Monkey.Quest_7",
+                ["icon"] = "mastery",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 15000,
+            },
+            [8] = 
+            {
+                ["name"] = "Monkey.Quest_8",
+                ["icon"] = "command",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 120,
+            },
+        },
+
+
+
+
+
+        ["npc_dota_hero_mars"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Mars.Quest_1",
+                ["icon"] = "spear",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Mars.Quest_2",
+                ["icon"] = "rebuke",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Mars.Quest_3",
+                ["icon"] = "bulwark",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Mars.Quest_4",
+                ["icon"] = "arena",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Mars.Quest_5",
+                ["icon"] = "spear",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25,
+            },
+            [6] = 
+            {
+                ["name"] = "Mars.Quest_6",
+                ["icon"] = "rebuke",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+            [7] = 
+            {
+                ["name"] = "Mars.Quest_7",
+                ["icon"] = "bulwark",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+            [8] = 
+            {
+                ["name"] = "Mars.Quest_8",
+                ["icon"] = "arena",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 8,
+            },
+        },
+
+
+
+
+        ["npc_dota_hero_zuus"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Zuus.Quest_1",
+                ["icon"] = "arc",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Zuus.Quest_2",
+                ["icon"] = "bolt",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Zuus.Quest_3",
+                ["icon"] = "jump",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Zuus.Quest_4",
+                ["icon"] = "wrath",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Zuus.Quest_5",
+                ["icon"] = "arc",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 50,
+                ["number"] = 750,
+            },
+            [6] = 
+            {
+                ["name"] = "Zuus.Quest_6",
+                ["icon"] = "bolt",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+            [7] = 
+            {
+                ["name"] = "Zuus.Quest_7",
+                ["icon"] = "jump",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 100,
+            },
+            [8] = 
+            {
+                ["name"] = "Zuus.Quest_8",
+                ["icon"] = "wrath",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 8,
+            },
+        },
+
+
+
+
+        ["npc_dota_hero_leshrac"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Leshrac.Quest_1",
+                ["icon"] = "earth",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Leshrac.Quest_2",
+                ["icon"] = "edict",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Leshrac.Quest_3",
+                ["icon"] = "storm",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Leshrac.Quest_4",
+                ["icon"] = "nova",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+
+            [5] = 
+            {
+                ["name"] = "Leshrac.Quest_5",
+                ["icon"] = "earth",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 40,
+            },
+            [6] = 
+            {
+                ["name"] = "Leshrac.Quest_6",
+                ["icon"] = "edict",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 20000,
+            },
+            [7] = 
+            {
+                ["name"] = "Leshrac.Quest_7",
+                ["icon"] = "storm",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+            [8] = 
+            {
+                ["name"] = "Leshrac.Quest_8",
+                ["icon"] = "nova",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 30000,
+            },
+
+        },
+        
+
+
+
+
+        ["npc_dota_hero_crystal_maiden"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Maiden.Quest_1",
+                ["icon"] = "crystal",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Maiden.Quest_2",
+                ["icon"] = "frostbite",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Maiden.Quest_3",
+                ["icon"] = "arcane",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Maiden.Quest_4",
+                ["icon"] = "freezing",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+
+            [5] = 
+            {
+                ["name"] = "Maiden.Quest_5",
+                ["icon"] = "crystal",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 150,
+            },
+            [6] = 
+            {
+                ["name"] = "Maiden.Quest_6",
+                ["icon"] = "frostbite",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 30000,
+            },
+            [7] = 
+            {
+                ["name"] = "Maiden.Quest_7",
+                ["icon"] = "arcane",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 80,
+            },
+            [8] = 
+            {
+                ["name"] = "Maiden.Quest_8",
+                ["icon"] = "freezing",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+        },
+
+
+
+
+
+        ["npc_dota_hero_snapfire"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Snapfire.Quest_1",
+                ["icon"] = "scatter",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Snapfire.Quest_2",
+                ["icon"] = "cookie",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Snapfire.Quest_3",
+                ["icon"] = "shredder",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Snapfire.Quest_4",
+                ["icon"] = "kisses",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Snapfire.Quest_5",
+                ["icon"] = "scatter",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 50,
+            },
+            [6] = 
+            {
+                ["name"] = "Snapfire.Quest_6",
+                ["icon"] = "cookie",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 30,
+            },
+            [7] = 
+            {
+                ["name"] = "Snapfire.Quest_7",
+                ["icon"] = "shredder",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 200,
+            },
+            [8] = 
+            {
+                ["name"] = "Snapfire.Quest_8",
+                ["icon"] = "kisses",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+        },
+
+
+
+
+
+        ["npc_dota_hero_sven"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Sven.Quest_1",
+                ["icon"] = "hammer",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Sven.Quest_2",
+                ["icon"] = "cleave",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Sven.Quest_3",
+                ["icon"] = "cry",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Sven.Quest_4",
+                ["icon"] = "god",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Sven.Quest_5",
+                ["icon"] = "hammer",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 70,
+            },
+            [6] = 
+            {
+                ["name"] = "Sven.Quest_6",
+                ["icon"] = "cleave",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 15000,
+            },
+            [7] = 
+            {
+                ["name"] = "Sven.Quest_7",
+                ["icon"] = "cry",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 20000,
+                ["number"] = 4,
+            },
+            [8] = 
+            {
+                ["name"] = "Sven.Quest_8",
+                ["icon"] = "god",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 80,
+            },
+        },
+
+
+
+        ["npc_dota_hero_sniper"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Sniper.Quest_1",
+                ["icon"] = "shrapnel",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Sniper.Quest_2",
+                ["icon"] = "headshot",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Sniper.Quest_3",
+                ["icon"] = "aim",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Sniper.Quest_4",
+                ["icon"] = "assassinate",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Sniper.Quest_5",
+                ["icon"] = "shrapnel",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 80,
+            },
+            [6] = 
+            {
+                ["name"] = "Sniper.Quest_6",
+                ["icon"] = "headshot",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 120,
+            },
+            [7] = 
+            {
+                ["name"] = "Sniper.Quest_7",
+                ["icon"] = "aim",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 20000,
+                ["number"] = 700,
+            },
+            [8] = 
+            {
+                ["name"] = "Sniper.Quest_8",
+                ["icon"] = "assassinate",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 8,
+                ["number"] = 6,
+            },
+        },
+
+
+        ["npc_dota_hero_muerta"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Muerta.Quest_1",
+                ["icon"] = "dead",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Muerta.Quest_2",
+                ["icon"] = "calling",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Muerta.Quest_3",
+                ["icon"] = "gun",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Muerta.Quest_4",
+                ["icon"] = "veil",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Muerta.Quest_5",
+                ["icon"] = "dead",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 30,
+            },
+            [6] = 
+            {
+                ["name"] = "Muerta.Quest_6",
+                ["icon"] = "calling",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 100,
+            },
+            [7] = 
+            {
+                ["name"] = "Muerta.Quest_7",
+                ["icon"] = "gun",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 15000,
+            },
+            [8] = 
+            {
+                ["name"] = "Muerta.Quest_8",
+                ["icon"] = "veil",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 80,
+            },
+        },
+
+
+        ["npc_dota_hero_pangolier"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Pangolier.Quest_1",
+                ["icon"] = "buckle",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Pangolier.Quest_2",
+                ["icon"] = "shield",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Pangolier.Quest_3",
+                ["icon"] = "lucky",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Pangolier.Quest_4",
+                ["icon"] = "rolling",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Pangolier.Quest_5",
+                ["icon"] = "buckle",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 20000,
+            },
+            [6] = 
+            {
+                ["name"] = "Pangolier.Quest_6",
+                ["icon"] = "shield",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 12000,
+            },
+            [7] = 
+            {
+                ["name"] = "Pangolier.Quest_7",
+                ["icon"] = "lucky",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 60,
+            },
+            [8] = 
+            {
+                ["name"] = "Pangolier.Quest_8",
+                ["icon"] = "rolling",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 30,
+            },
+        },
+
+    
+
+        ["npc_dota_hero_arc_warden"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Arc.Quest_1",
+                ["icon"] = "flux",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Arc.Quest_2",
+                ["icon"] = "field",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Arc.Quest_3",
+                ["icon"] = "spark",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Arc.Quest_4",
+                ["icon"] = "double",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Arc.Quest_5",
+                ["icon"] = "flux",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 100,
+            },
+            [6] = 
+            {
+                ["name"] = "Arc.Quest_6",
+                ["icon"] = "field",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 120,
+            },
+            [7] = 
+            {
+                ["name"] = "Arc.Quest_7",
+                ["icon"] = "spark",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 80,
+            },
+            [8] = 
+            {
+                ["name"] = "Arc.Quest_8",
+                ["icon"] = "double",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+        },
+    
+        ["npc_dota_hero_invoker"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Invoker.Quest_1",
+                ["icon"] = "quas",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Invoker.Quest_2",
+                ["icon"] = "wex",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Invoker.Quest_3",
+                ["icon"] = "exort",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Invoker.Quest_4",
+                ["icon"] = "invoke",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Invoker.Quest_5",
+                ["icon"] = "quas",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 150,
+            },
+            [6] = 
+            {
+                ["name"] = "Invoker.Quest_6",
+                ["icon"] = "wex",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 150,
+            },
+            [7] = 
+            {
+                ["name"] = "Invoker.Quest_7",
+                ["icon"] = "exort",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 30000,
+            },
+            [8] = 
+            {
+                ["name"] = "Invoker.Quest_8",
+                ["icon"] = "invoke",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 150,
+            },
+        },
+
+
+        ["npc_dota_hero_razor"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Razor.Quest_1",
+                ["icon"] = "plasma",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Razor.Quest_2",
+                ["icon"] = "link",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Razor.Quest_3",
+                ["icon"] = "current",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Razor.Quest_4",
+                ["icon"] = "eye",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Razor.Quest_5",
+                ["icon"] = "plasma",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 80,
+            },
+            [6] = 
+            {
+                ["name"] = "Razor.Quest_6",
+                ["icon"] = "link",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 12,
+            },
+            [7] = 
+            {
+                ["name"] = "Razor.Quest_7",
+                ["icon"] = "current",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 100,
+            },
+            [8] = 
+            {
+                ["name"] = "Razor.Quest_8",
+                ["icon"] = "eye",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+        },
+
+        ["npc_dota_hero_sand_king"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Sand.Quest_1",
+                ["icon"] = "burrow",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Sand.Quest_2",
+                ["icon"] = "sand",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Sand.Quest_3",
+                ["icon"] = "stinger",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Sand.Quest_4",
+                ["icon"] = "epicenter",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Sand.Quest_5",
+                ["icon"] = "burrow",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 80,
+                ["number"] = 4,
+            },
+            [6] = 
+            {
+                ["name"] = "Sand.Quest_6",
+                ["icon"] = "sand",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 120,
+            },
+            [7] = 
+            {
+                ["name"] = "Sand.Quest_7",
+                ["icon"] = "stinger",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 30,
+            },
+            [8] = 
+            {
+                ["name"] = "Sand.Quest_8",
+                ["icon"] = "epicenter",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+        },
+
+        ["npc_dota_hero_furion"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Furion.Quest_1",
+                ["icon"] = "sprout",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Furion.Quest_2",
+                ["icon"] = "teleport",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Furion.Quest_3",
+                ["icon"] = "nature_call",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Furion.Quest_4",
+                ["icon"] = "nature_wrath",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Furion.Quest_5",
+                ["icon"] = "sprout",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 80,
+            },
+            [6] = 
+            {
+                ["name"] = "Furion.Quest_6",
+                ["icon"] = "teleport",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 80,
+                ["number"] = 5,
+            },
+            [7] = 
+            {
+                ["name"] = "Furion.Quest_7",
+                ["icon"] = "nature_call",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 15000,
+            },
+            [8] = 
+            {
+                ["name"] = "Furion.Quest_8",
+                ["icon"] = "nature_wrath",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25,
+                ["number"] = 6,
+            },
+        },
+
+        ["npc_dota_hero_abaddon"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Abaddon.Quest_1",
+                ["icon"] = "mist",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Abaddon.Quest_2",
+                ["icon"] = "aphotic",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Abaddon.Quest_3",
+                ["icon"] = "curse",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Abaddon.Quest_4",
+                ["icon"] = "borrowed",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Abaddon.Quest_5",
+                ["icon"] = "mist",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 20000,
+            },
+            [6] = 
+            {
+                ["name"] = "Abaddon.Quest_6",
+                ["icon"] = "aphotic",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 20000,
+            },
+            [7] = 
+            {
+                ["name"] = "Abaddon.Quest_7",
+                ["icon"] = "curse",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 100,
+            },
+            [8] = 
+            {
+                ["name"] = "Abaddon.Quest_8",
+                ["icon"] = "borrowed",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 15000,
+            },
+        },
+
+
+        ["npc_dota_hero_drow_ranger"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Drow.Quest_1",
+                ["icon"] = "frost",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Drow.Quest_2",
+                ["icon"] = "gust",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Drow.Quest_3",
+                ["icon"] = "multishot",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Drow.Quest_4",
+                ["icon"] = "marksman",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Drow.Quest_5",
+                ["icon"] = "frost",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 100,
+            },
+            [6] = 
+            {
+                ["name"] = "Drow.Quest_6",
+                ["icon"] = "gust",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+            [7] = 
+            {
+                ["name"] = "Drow.Quest_7",
+                ["icon"] = "multishot",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+            [8] = 
+            {
+                ["name"] = "Drow.Quest_8",
+                ["icon"] = "marksman",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 60,
+            },
+        },
+
+        ["npc_dota_hero_skywrath_mage"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Sky.Quest_1",
+                ["icon"] = "arcane_bolt",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Sky.Quest_2",
+                ["icon"] = "concussive",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Sky.Quest_3",
+                ["icon"] = "seal",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Sky.Quest_4",
+                ["icon"] = "flare",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Sky.Quest_5",
+                ["icon"] = "arcane_bolt",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+            [6] = 
+            {
+                ["name"] = "Sky.Quest_6",
+                ["icon"] = "concussive",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["number"] = 700,
+                ["goal"] = 30,
+            },
+            [7] = 
+            {
+                ["name"] = "Sky.Quest_7",
+                ["icon"] = "seal",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 80,
+            },
+            [8] = 
+            {
+                ["name"] = "Sky.Quest_8",
+                ["icon"] = "flare",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["number"] = 1.6,
+                ["goal"] = 12,
+            },
+        },
+
+        ["npc_dota_hero_slark"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Slark.Quest_1",
+                ["icon"] = "pact",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Slark.Quest_2",
+                ["icon"] = "pounce",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Slark.Quest_3",
+                ["icon"] = "essence",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Slark.Quest_4",
+                ["icon"] = "dance",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Slark.Quest_5",
+                ["icon"] = "pact",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 20000,
+            },
+            [6] = 
+            {
+                ["name"] = "Slark.Quest_6",
+                ["icon"] = "pounce",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["number"] = 700,
+                ["goal"] = 50,
+            },
+            [7] = 
+            {
+                ["name"] = "Slark.Quest_7",
+                ["icon"] = "essence",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 80,
+                ["number"] = 20,
+            },
+            [8] = 
+            {
+                ["name"] = "Slark.Quest_8",
+                ["icon"] = "dance",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["number"] = 1.6,
+                ["goal"] = 15000,
+            },
+        },
+
+        ["npc_dota_hero_centaur"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Centaur.Quest_1",
+                ["icon"] = "stomp",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Centaur.Quest_2",
+                ["icon"] = "edge",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Centaur.Quest_3",
+                ["icon"] = "retaliate",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Centaur.Quest_4",
+                ["icon"] = "stampede",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Centaur.Quest_5",
+                ["icon"] = "stomp",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 40,
+            },
+            [6] = 
+            {
+                ["name"] = "Centaur.Quest_6",
+                ["icon"] = "edge",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["number"] = 700,
+                ["goal"] = 25000,
+            },
+            [7] = 
+            {
+                ["name"] = "Centaur.Quest_7",
+                ["icon"] = "retaliate",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 300,
+            },
+            [8] = 
+            {
+                ["name"] = "Centaur.Quest_8",
+                ["icon"] = "stampede",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 45,
+            },
+        },
+
+        ["npc_dota_hero_enigma"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Enigma.Quest_1",
+                ["icon"] = "malefice",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Enigma.Quest_2",
+                ["icon"] = "conversion",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Enigma.Quest_3",
+                ["icon"] = "midnight",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Enigma.Quest_4",
+                ["icon"] = "blackhole",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Enigma.Quest_5",
+                ["icon"] = "malefice",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 50,
+            },
+            [6] = 
+            {
+                ["name"] = "Enigma.Quest_6",
+                ["icon"] = "conversion",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 20,
+            },
+            [7] = 
+            {
+                ["name"] = "Enigma.Quest_7",
+                ["icon"] = "midnight",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+            [8] = 
+            {
+                ["name"] = "Enigma.Quest_8",
+                ["icon"] = "blackhole",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 40,
+            },
+        },
+
+        ["npc_dota_hero_bane"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Bane.Quest_1",
+                ["icon"] = "enfeeble",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Bane.Quest_2",
+                ["icon"] = "brain",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Bane.Quest_3",
+                ["icon"] = "nightmare",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Bane.Quest_4",
+                ["icon"] = "grip",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Bane.Quest_5",
+                ["icon"] = "enfeeble",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 80,
+            },
+            [6] = 
+            {
+                ["name"] = "Bane.Quest_6",
+                ["icon"] = "brain",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+            [7] = 
+            {
+                ["name"] = "Bane.Quest_7",
+                ["icon"] = "nightmare",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 70,
+            },
+            [8] = 
+            {
+                ["name"] = "Bane.Quest_8",
+                ["icon"] = "grip",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+        },
+
+        ["npc_dota_hero_morphling"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Morphling.Quest_1",
+                ["icon"] = "wave",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Morphling.Quest_2",
+                ["icon"] = "adaptive",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Morphling.Quest_3",
+                ["icon"] = "attribute",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Morphling.Quest_4",
+                ["icon"] = "morph",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Morphling.Quest_5",
+                ["icon"] = "wave",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 60,
+            },
+            [6] = 
+            {
+                ["name"] = "Morphling.Quest_6",
+                ["icon"] = "adaptive",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+            [7] = 
+            {
+                ["name"] = "Morphling.Quest_7",
+                ["icon"] = "attribute",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 100,
+            },
+            [8] = 
+            {
+                ["name"] = "Morphling.Quest_8",
+                ["icon"] = "morph",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+        },
+
+        ["npc_dota_hero_life_stealer"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Lifestealer.Quest_1",
+                ["icon"] = "lifestealer_rage",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Lifestealer.Quest_2",
+                ["icon"] = "wounds",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Lifestealer.Quest_3",
+                ["icon"] = "ghoul",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Lifestealer.Quest_4",
+                ["icon"] = "infest",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Lifestealer.Quest_5",
+                ["icon"] = "lifestealer_rage",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 100,
+            },
+            [6] = 
+            {
+                ["name"] = "Lifestealer.Quest_6",
+                ["icon"] = "wounds",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 15000,
+            },
+            [7] = 
+            {
+                ["name"] = "Lifestealer.Quest_7",
+                ["icon"] = "ghoul",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 10,
+            },
+            [8] = 
+            {
+                ["name"] = "Lifestealer.Quest_8",
+                ["icon"] = "infest",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 20000,
+            },
+        },
+
+
+        ["npc_dota_hero_tinker"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Tinker.Quest_1",
+                ["icon"] = "laser",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Tinker.Quest_2",
+                ["icon"] = "march",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Tinker.Quest_3",
+                ["icon"] = "matrix",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Tinker.Quest_4",
+                ["icon"] = "rearm",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Tinker.Quest_5",
+                ["icon"] = "laser",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+            [6] = 
+            {
+                ["name"] = "Tinker.Quest_6",
+                ["icon"] = "march",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 200,
+            },
+            [7] = 
+            {
+                ["name"] = "Tinker.Quest_7",
+                ["icon"] = "matrix",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 20000,
+            },
+            [8] = 
+            {
+                ["name"] = "Tinker.Quest_8",
+                ["icon"] = "rearm",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 40,
+                ["number"] = 5,
+            },
+        },
+
+
+        ["npc_dota_hero_witch_doctor"] =
+        {
+            [1] = 
+            {
+                ["name"] = "WitchDoctor.Quest_1",
+                ["icon"] = "cask",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "WitchDoctor.Quest_2",
+                ["icon"] = "voodoo",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "WitchDoctor.Quest_3",
+                ["icon"] = "maledict",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "WitchDoctor.Quest_4",
+                ["icon"] = "deathward",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "WitchDoctor.Quest_5",
+                ["icon"] = "cask",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 80,
+            },
+            [6] = 
+            {
+                ["name"] = "WitchDoctor.Quest_6",
+                ["icon"] = "voodoo",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+            [7] = 
+            {
+                ["name"] = "WitchDoctor.Quest_7",
+                ["icon"] = "maledict",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 15,
+                ["number"] = 20,
+            },
+            [8] = 
+            {
+                ["name"] = "WitchDoctor.Quest_8",
+                ["icon"] = "deathward",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+        },
+
+        ["npc_dota_hero_nyx_assassin"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Nyx.Quest_1",
+                ["icon"] = "impale",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Nyx.Quest_2",
+                ["icon"] = "mind",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Nyx.Quest_3",
+                ["icon"] = "carapace",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Nyx.Quest_4",
+                ["icon"] = "vendetta",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Nyx.Quest_5",
+                ["icon"] = "impale",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 40,
+            },
+            [6] = 
+            {
+                ["name"] = "Nyx.Quest_6",
+                ["icon"] = "mind",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+            [7] = 
+            {
+                ["name"] = "Nyx.Quest_7",
+                ["icon"] = "carapace",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 15000,
+            },
+            [8] = 
+            {
+                ["name"] = "Nyx.Quest_8",
+                ["icon"] = "vendetta",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 80,
+                ["number"] = 6,
+            },
+        },
+
+
+        ["npc_dota_hero_broodmother"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Brood.Quest_1",
+                ["icon"] = "insatiable",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Brood.Quest_2",
+                ["icon"] = "web",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Brood.Quest_3",
+                ["icon"] = "bite",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Brood.Quest_4",
+                ["icon"] = "spawn",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Brood.Quest_5",
+                ["icon"] = "insatiable",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 120,
+            },
+            [6] = 
+            {
+                ["name"] = "Brood.Quest_6",
+                ["icon"] = "web",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 15,
+            },
+            [7] = 
+            {
+                ["name"] = "Brood.Quest_7",
+                ["icon"] = "bite",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 80,
+            },
+            [8] = 
+            {
+                ["name"] = "Brood.Quest_8",
+                ["icon"] = "spawn",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+        },
+
+        ["npc_dota_hero_night_stalker"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Stalker.Quest_1",
+                ["icon"] = "void",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Stalker.Quest_2",
+                ["icon"] = "fear",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Stalker.Quest_3",
+                ["icon"] = "hunter",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Stalker.Quest_4",
+                ["icon"] = "dark",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Stalker.Quest_5",
+                ["icon"] = "void",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+            [6] = 
+            {
+                ["name"] = "Stalker.Quest_6",
+                ["icon"] = "fear",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 80,
+            },
+            [7] = 
+            {
+                ["name"] = "Stalker.Quest_7",
+                ["icon"] = "hunter",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 6,
+            },
+            [8] = 
+            {
+                ["name"] = "Stalker.Quest_8",
+                ["icon"] = "dark",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 150,
+            },
+        },
+
+        ["npc_dota_hero_jakiro"] =
+        {
+            [1] = 
+            {
+                ["name"] = "Jakiro.Quest_1",
+                ["icon"] = "dual",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [2] = 
+            {
+                ["name"] = "Jakiro.Quest_2",
+                ["icon"] = "path",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [3] = 
+            {
+                ["name"] = "Jakiro.Quest_3",
+                ["icon"] = "liquid",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [4] = 
+            {
+                ["name"] = "Jakiro.Quest_4",
+                ["icon"] = "macropyre",
+                ["reward_shards"] = 20,
+                ["reward_exp"] = 100,
+                ["goal"] = 1,
+                ["legendary"] = 1,
+            },
+            [5] = 
+            {
+                ["name"] = "Jakiro.Quest_5",
+                ["icon"] = "dual",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+            [6] = 
+            {
+                ["name"] = "Jakiro.Quest_6",
+                ["icon"] = "path",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 80,
+            },
+            [7] = 
+            {
+                ["name"] = "Jakiro.Quest_7",
+                ["icon"] = "liquid",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 25000,
+            },
+            [8] = 
+            {
+                ["name"] = "Jakiro.Quest_8",
+                ["icon"] = "macropyre",
+                ["reward_shards"] = 15,
+                ["reward_exp"] = 80,
+                ["goal"] = 100,
+            },
+        },
+    },
+
+
+
+    ["general_quests"] =
+    {
+        [1] =
+        {
+            ["icon"] = "quest_neutrals",
+            ["reward_shards"] = 15,
+            ["reward_exp"] = 80,
+            ["goal"] = 300,
+            ["name"] = "General.Quest_1",
+        },
+        [2] =
+        {
+            ["icon"] = "quest_patrols",
+            ["reward_shards"] = 15,
+            ["reward_exp"] = 80,
+            ["goal"] = 25,
+            ["name"] = "General.Quest_2",
+        },
+        [3] =
+        {
+            ["icon"] = "quest_wards",
+            ["reward_shards"] = 15,
+            ["reward_exp"] = 80,
+            ["goal"] = 10,
+            ["name"] = "General.Quest_3",
+        },
+        [4] =
+        {
+            ["icon"] = "quest_kills",
+            ["reward_shards"] = 15,
+            ["reward_exp"] = 80,
+            ["goal"] = 10,
+            ["name"] = "General.Quest_4",
+        },
+        [5] =
+        {
+            ["icon"] = "quest_midas",
+            ["reward_shards"] = 15,
+            ["reward_exp"] = 80,
+            ["goal"] = 3000,
+            ["name"] = "General.Quest_5",
+        },
+        [6] =
+        {
+            ["icon"] = "quest_bounty",
+            ["reward_shards"] = 15,
+            ["reward_exp"] = 80,
+            ["goal"] = 30,
+            ["name"] = "General.Quest_6",
+        },
+        [7] =
+        {
+            ["icon"] = "quest_common",
+            ["reward_shards"] = 15,
+            ["reward_exp"] = 80,
+            ["goal"] = 5,
+            ["name"] = "General.Quest_7",
+        },
+        [8] =
+        {
+            ["icon"] = "quest_blue",
+            ["reward_shards"] = 15,
+            ["reward_exp"] = 80,
+            ["goal"] = 5,
+            ["name"] = "General.Quest_8",
+        },
+        [9] =
+        {
+            ["icon"] = "quest_purple",
+            ["reward_shards"] = 15,
+            ["reward_exp"] = 80,
+            ["goal"] = 3,
+            ["name"] = "General.Quest_9",
+        },
+
+        [10] =
+        {
+            ["icon"] = "quest_phys",
+            ["reward_shards"] = 15,
+            ["reward_exp"] = 80,
+            ["goal"] = 30000,
+            ["name"] = "General.Quest_10",
+            ['not_for'] = 
+            {
+                ["npc_dota_hero_zuus"] = true,
+                ["npc_dota_hero_leshrac"] = true,
+                ["npc_dota_hero_crystal_maiden"] = true,
+                ["npc_dota_hero_skywrath_mage"] = true,
+            },
+        },
+        [11] =
+        {
+            ["icon"] = "quest_pure",
+            ["reward_shards"] = 15,
+            ["reward_exp"] = 80,
+            ["goal"] = 25000,
+            ["name"] = "General.Quest_11",
+            ['only_for'] = 
+            {
+                ["npc_dota_hero_pudge"] = true,
+                ["npc_dota_hero_bloodseeker"] = true,
+                ["npc_dota_hero_leshrac"] = true,
+                ["npc_dota_hero_queenofpain"] = true,
+                ["npc_dota_hero_axe"] = true,
+                ["npc_dota_hero_bane"] = true,
+            },
+        },
+        [12] =
+        {
+            ["icon"] = "quest_magic",
+            ["reward_shards"] = 15,
+            ["reward_exp"] = 80,
+            ["goal"] = 30000,
+            ["name"] = "General.Quest_12",
+            ['not_for'] = 
+            {
+                ["npc_dota_hero_bristleback"] = true,
+                ["npc_dota_hero_alchemist"] = true,
+                ["npc_dota_hero_axe"] = true,
+                ["npc_dota_hero_bloodseeker"] = true,
+                ["npc_dota_hero_phantom_assassin"] = true,
+                ["npc_dota_hero_terrorblade"] = true,
+                ["npc_dota_hero_sven"] = true,
+                ["npc_dota_hero_bane"] = true,
+            },
+        },
+        [13] =
+        {
+            ["icon"] = "quest_bkb",
+            ["reward_shards"] = 15,
+            ["reward_exp"] = 80,
+            ["goal"] = 12000,
+            ["name"] = "General.Quest_13",
+        },
+        [14] =
+        {
+            ["icon"] = "quest_tower",
+            ["reward_shards"] = 15,
+            ["reward_exp"] = 80,
+            ["goal"] = 5000,
+            ["name"] = "General.Quest_14",
+        },
+        [15] =
+        {
+            ["icon"] = "quest_blink",
+            ["reward_shards"] = 15,
+            ["reward_exp"] = 80,
+            ["goal"] = 12000,
+            ["name"] = "General.Quest_15",
+            ["number"] = 3,
+        },
+        [16] =
+        {
+            ["icon"] = "quest_smoke",
+            ["reward_shards"] = 15,
+            ["reward_exp"] = 80,
+            ["goal"] = 4,
+            ["name"] = "General.Quest_16",
+            ["number"] = 15,
+        },
+        [17] =
+        {
+            ["icon"] = "quest_ancient",
+            ["reward_shards"] = 15,
+            ["reward_exp"] = 80,
+            ["goal"] = 30,
+            ["name"] = "General.Quest_17",
+        },
+    }
+}

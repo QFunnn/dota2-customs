@@ -1,0 +1,269 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+#PlayerTipsContainer
+{
+	margin-top: 220px;
+	horizontal-align: right;
+	height: fit-children;
+	transition-property: transform;
+	transition-timing-function: ease-out;
+	transition-duration: 0.51s;
+	flow-children: up;
+	height: 448px;
+	overflow: noclip;
+}
+
+#PlayerTipsContainer > .ToastPanel
+{
+	opacity: 0.0;
+	transform: translateX(198px);
+	horizontal-align: right;
+	transition-property: position, opacity, transform;
+	transition-duration: 0.3s;
+}
+
+#PlayerTipsContainer > .ToastVisible
+{
+	opacity: 1.0;
+	transform: none;
+}
+
+#PlayerTipContainer
+{
+	vertical-align: bottom;
+	horizontal-align: center;
+	width: 100%;
+	flow-children: down;
+	height: 85px;
+	transition-property: pre-transform-scale2d, opacity, transform;
+	transition-duration: 0.12s;
+	transition-timing-function: ease-in-out;
+}
+
+.PlayerTipContainer_low
+{
+	margin-top: 80px;
+}
+
+.PlayerTipContainer_high
+{
+	margin-top: 64px;
+}
+
+.ScoreboardPlayerWrapper.is_local_player > #PlayerTipContainer
+{
+	visibility: collapse;
+	opacity: 0;
+}
+
+.RazorCount_zero
+{
+	saturation: 0.35;
+	wash-color: #666;
+}
+
+.RazorCount_hidden
+{
+	visibility: collapse;
+}
+
+#RazorCount
+{
+	width: 44.73px;
+	height: 34px;
+	margin-top: 120px;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/alerts_mini/razor_png.vtex");
+	background-size: contain;
+	horizontal-align: center;
+	border: 1px solid #999999;
+	border-radius: 4px;
+	box-shadow: fill black 0px 0px 9px -2px;
+	opacity: 0;
+	transition-property: pre-transform-scale2d, opacity, transform;
+	transition-duration: 0.12s;
+	transition-timing-function: ease-in-out;
+}
+
+#RazorCountLabel
+{
+	font-size: 24px;
+	width: 50%;
+	margin-left: 23px;
+	margin-top: 7px;
+	text-shadow: 0px 0px 5px 7 black;
+	font-family: Radiance;
+	align: center center;
+	text-align: center;
+	color: gradient( linear, 0% 0%, 100% 0%, from( #ddd ), to( white ) );
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.IsAltDown #RazorCount
+{
+	opacity: 1;
+}
+
+#PlayerTipButton
+{
+	background-color: gradient(linear, 50% 0%, 50% 100%, from(#423621), to(#1a1e22));
+	border-top: 1px solid #76716b;
+	border-left: 1px solid #5c5750;
+	border-right: 1px solid #392f1b;
+	border-bottom: 1px solid #0d1115;
+	width: 60px;
+	height: 20px;
+	overflow: clip;
+	horizontal-align: center;
+	margin-top: 12px;
+	z-index: 1;
+	transition-property: brightness;
+	transition-duration: 0.06s;
+	transition-timing-function: ease-out;
+	box-shadow: #ff8700 0px 0px 4px -1px;
+	brightness: 1.0;
+}
+
+#PlayerTipButton:hover
+{
+	brightness: 2;
+}
+
+.PlayerTipButton_top
+{
+	margin-bottom: 2px;
+	box-shadow: #b77528 0px 0px 4px -1px;
+}
+
+#PlayerTipImage
+{
+	width: 18px;
+	height: 19.68px;
+	margin-left: 2px;
+	margin-right: 2px;
+	background-image: url("s2r://panorama/images/dota_plus/currency_icon_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#PlayerTipLabel
+{
+	font-size: 15px;
+	text-shadow: 2px 2px 4px black;
+	letter-spacing: 2px;
+	font-family: defaultFont;
+	horizontal-align: center;
+	text-align: center;
+	color: #fe9d31;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+#TipToast
+{
+	background-color: gradient(linear, 50% 0%, 50% 100%, from(#242424), to(#0f0f0f));
+	border-left: 2px solid #444444;
+	border-top: 2px solid #444444;
+	border-bottom: 2px solid #444444;
+	background-size: cover;
+	height: 115px;
+	width: 325px;
+	margin-bottom: 5px;
+	flow-children: right;
+	horizontal-align: right;
+	vertical-align: center;
+}
+
+#SourceHero
+{
+	margin-left: 20.5px;
+	width: 82px;
+	height: 100%;
+	flow-children: down;
+}
+
+#TargetHero
+{
+	margin-left: 10px;
+	width: 82px;
+	height: 100%;
+	flow-children: down;
+}
+
+.TipHeroLabel
+{
+	text-overflow: ellipsis;
+	font-size: 16px;
+	color: #ddd;
+	margin-top: 5px;
+	horizontal-align: middle;
+	text-shadow: 0px 0px 5px 1 #b77528bb;
+	width: 100%;
+	text-align: center;
+}
+
+#TipCustomImage
+{
+	width: 65px;
+	height: 65px;
+	margin-top: 13px;
+	horizontal-align: center;
+}
+
+.TipHeroImage
+{
+	width: 82px;
+	height: 44.2px;
+	margin-top: 25px;
+	box-shadow: #e09031 0px 0px 4px -1px;
+}
+
+#ArrowContainer
+{
+	margin-left: 10px;
+	width: 100px;
+	height: 100%;
+	flow-children: down;
+}
+
+#TipLabel
+{
+	margin-top: 4px;
+	margin-left: 3px;
+	horizontal-align: middle;
+	text-align: center;
+	color: #dedede;
+	text-transform: uppercase;
+	font-size: 17px;
+}
+
+#Tip
+{
+	margin-top: 50px;
+	flow-children: right;
+	horizontal-align: middle;
+}
+
+#TipImage
+{
+	width: 24px;
+	height: 26.232px;
+}
+
+#TipCountLabel
+{
+	text-align: center;
+	vertical-align: middle;
+	color: #dedede;
+}

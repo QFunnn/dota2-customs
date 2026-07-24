@@ -1,0 +1,220 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/custom_game/custom_pick.vcss_c" />
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/custom_pick.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="hero_portrait">
+			<Panel class="hero_portrait" />
+		</snippet>
+	</snippets>
+	<Panel class="MainPick" hittest="true">
+		<MoviePanel src="file://{resources}/videos/heroes/npc_dota_hero_pudge.webm" id="MovieBackground" style="opacity: 0;" controls="none" hittest="false" onload="Player_Loaded();" autoplay="onload" />
+		<DOTAScenePanel id="BGScene" class="selection_background" hittest="false" map="maps/backgrounds/pregame_phase.vmap" />
+		<Panel class="lobby_players panel_open_left" id="lobby_players">
+			<Panel class="lobby_rating" id="lobby_rating">
+				<Label class="lobby_rating_text" id="lobby_rating_text" />
+			</Panel>
+		</Panel>
+		<Panel class="hero_pick panel_open_right hero_pick_width" id="hero_pick" onactivate="hide_chosen_hero();">
+			<Panel class="BadMap_hidden BadMap" id="BadMap" hittest="false">
+				<Panel class="BadMap_top" id="BadMap_top" hittest="false">
+					<Label class="BadMap_text" id="BadMap_top_text" hittest="false" />
+				</Panel>
+				<Panel class="BadMap_your_mmr" hittest="false">
+					<Label class="BadMap_text" id="BadMap_your_mmr_text" hittest="false" />
+				</Panel>
+				<Panel class="BadMap_map_mmr" hittest="false">
+					<Label class="BadMap_text" id="BadMap_map_mmr_text" hittest="false" />
+				</Panel>
+				<Panel class="BadMap_bottom" hittest="false">
+					<Label class="BadMap_text" id="BadMap_bottom_text" hittest="false" />
+				</Panel>
+				<Panel class="BadMap_image" id="BadMap_image" hittest="false" />
+				<Panel id="BadMap_leave_panel" hittest="false">
+					<Panel class="BadMap_leave_text" hittest="false">
+						<Label class="BadMap_text" id="BadMap_leave_text" hittest="false" />
+					</Panel>
+					<Panel class="BadMap_leave_button" hittest="true" onactivate="Game.Disconnect();">
+						<Label class="BadMap_text" id="BadMap_leave_button_text" hittest="false" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="hero_pick_content">
+				<Panel id="tg_panel" class="tg_panel" hittest="true">
+					<Label id="tg_panel_text" text="#tg_pick_info" />
+					<Panel id="tg_panel_icon" />
+				</Panel>
+				<Panel class="hero_attribute_info" id="InfoStr">
+					<Panel class="hero_icon_str" id="IconStr" />
+					<Label class="hero_attribute_text" id="TextStr" text="#DOTA_Tooltip_Ability_item_power_treads_str" />
+				</Panel>
+				<Panel class="hero_attribute_row" id="StrengthSelector" />
+				<Panel class="hero_attribute_info" id="InfoAgi">
+					<Panel class="hero_icon_agi" id="IconAgi" />
+					<Label class="hero_attribute_text" id="TextAgi" text="#DOTA_Tooltip_Ability_item_power_treads_agi" />
+				</Panel>
+				<Panel class="hero_attribute_row" id="AgilitySelector" />
+				<Panel class="hero_attribute_info" id="InfoInt">
+					<Panel class="hero_icon_int" id="IconInt" />
+					<Label class="hero_attribute_text" id="TextInt" text="#DOTA_Tooltip_Ability_item_power_treads_int" />
+				</Panel>
+				<Panel class="hero_attribute_row" id="IntellectSelector" />
+				<Panel class="hero_attribute_info" id="InfoAll">
+					<Panel class="hero_icon_all" id="IconAll" />
+					<Label class="hero_attribute_text" id="TextInt" text="#stats_all" />
+				</Panel>
+				<Panel class="hero_attribute_row" id="AllSelector" />
+				<Panel id="BanStagePanel" class="BanStagePanel_hidden">
+					<Label class="BanStagePanel_text" id="BanStagePanel_text" />
+					<Label class="BanStagePanel_timer" id="BanStagePanel_timer" />
+				</Panel>
+				<Panel id="SafeToLeave" class="SafeToLeave_hidden">
+					<Panel class="SafeToLeave_panel" id="SafeToLeave_panel">
+						<Label class="SafeToLeave_text" id="SafeToLeave_text" />
+					</Panel>
+				</Panel>
+				<Panel id="SelectRandomHero_panel" class="SelectRandomHero_panel_hidden">
+					<Panel id="SelectRandomHero" class="SelectRandomHero">
+						<Panel class="IconDice" />
+						<Label class="RandomLabel" text="#DOTA_Hero_Selection_Random" />
+					</Panel>
+					<Panel class="SelectRandomHero_bonus" id="SelectRandomHero_bonus">
+						<Label class="RandomLabel_bonus" text="#shards_random_bonus_short" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="hero_chosen hero_chosen_closed" hittest="true" onactivate="" id="hero_chosen">
+			<Panel class="HeroInfo" id="HeroInfo">
+				<Panel class="MiniIcon" id="MiniIcon" />
+				<Label class="InfoText" id="InfoText" />
+			</Panel>
+			<Panel class="ChangeLog" id="ChangeLog">
+				<Panel class="Buttons" id="Buttons">
+					<Panel class="Button_ChangeLog_first" id="Button_Video">
+						<Panel class="Icon_Button" id="Icon_button_Video" />
+						<Label class="Text_Button" id="Text_button_Video" />
+					</Panel>
+					<Panel class="Button_ChangeLog" id="Button_Stats">
+						<Panel class="Icon_Button" id="Icon_button_stats" />
+						<Label class="Text_Button" id="Text_button_stats" />
+					</Panel>
+					<Panel class="Button_ChangeLog" id="Button_ChangeLog">
+						<Panel class="Icon_Button" id="Icon_button_changelog" />
+						<Label class="Text_Button" id="Text_button_changelog" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="LayerGeneralPick" id="LayerGeneralPick" />
+			<Panel class="DonateButton_not" id="DonateButton">
+				<Panel class="DonateButtonLabels" id="DonateButtonLabels">
+					<Label class="DonateButtonLabel" html="true" text="#Donate_hero" />
+					<Label class="DonateButtonLabel_plus" html="true" text="#Donate_hero_plus" />
+				</Panel>
+			</Panel>
+			<Panel class="ChoseHero" id="ChoseHero">
+				<Panel class="Button_Text_Label" id="Button_Text_Label">
+					<Label class="ButtonText_Pick" id="ButtonText_Pick" text="#matchmaking_select" />
+					<Label class="ButtonText_Hero" id="ButtonText_Hero" />
+				</Panel>
+				<Panel class="Button_HeroPortrait" id="Button_HeroPortrait" />
+			</Panel>
+		</Panel>
+		<Panel id="pick_base_main">
+			<Panel class="pick_base_players_hidden base_pick_left" id="pick_base_players">
+				<Panel class="pick_base_heroes" id="pick_base_heroes" />
+			</Panel>
+			<Panel class="pick_base_mimimap_hidden base_pick_right" id="pick_base_mimimap">
+				<Panel class="minimap_text" id="minimap_text">
+					<Label class="minimap_text_text" id="minimap_text_text" />
+				</Panel>
+				<Panel class="minimap" id="minimap">
+					<Panel class="base_icon" id="base_icon1" />
+					<Panel class="base_icon" id="base_icon2" />
+					<Panel class="base_icon" id="base_icon3" />
+					<Panel class="base_icon" id="base_icon4" />
+					<Panel class="base_icon" id="base_icon5" />
+					<Panel class="base_icon" id="base_icon6" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="HeroQuests_close HeroQuests_collapse" id="HeroQuests">
+			<Button class="HeroQuests_TopButton" id="HeroQuests_TopButton" onactivate="ShowHeroQuests();">
+				<Panel class="HeroQuestsTop_Icon_close" id="HeroQuestsTop_Icon" />
+				<Label class="HeroQuestsTop" id="HeroQuestsTop" text="#HeroQuestsTop" />
+				<Label class="HeroQuestsTop_timer" id="HeroQuestsTop_timer" />
+			</Button>
+			<Panel class="HeroQuests_Main" id="HeroQuests_Main">
+				<Panel class="HeroQuests_Quest" id="HeroQuests_Quest1">
+					<Panel class="HeroQuests_Quest_Icon_Container" id="HeroQuests_Quest_Icon_Container1">
+						<Panel class="HeroQuests_Quest_Icon" id="HeroQuests_Quest_Icon1" />
+					</Panel>
+					<Panel class="HeroQuests_Quest_Text_Container">
+						<Label class="HeroQuests_Quest_Text" id="HeroQuests_Quest_Text1" html="true" />
+					</Panel>
+					<Panel class="HeroQuests_Quest_Reward_Container" id="HeroQuests_Quest_Reward_Container1">
+						<Panel class="HeroQuests_Quest_Reward_shards">
+							<Panel class="HeroQuests_Quest_Reward_shards_icon" />
+							<Label class="HeroQuests_Quest_Reward_text" id="HeroQuests_Quest_Reward_shards_text1" html="true" />
+						</Panel>
+						<Panel class="HeroQuests_Quest_Reward_exp">
+							<Panel class="HeroQuests_Quest_Reward_exp_icon" />
+							<Label class="HeroQuests_Quest_Reward_text" id="HeroQuests_Quest_Reward_exp_text1" html="true" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="HeroQuests_Quest" id="HeroQuests_Quest2">
+					<Panel class="HeroQuests_Quest_Icon_Container" id="HeroQuests_Quest_Icon_Container2">
+						<Panel class="HeroQuests_Quest_Icon" id="HeroQuests_Quest_Icon2" />
+					</Panel>
+					<Panel class="HeroQuests_Quest_Text_Container">
+						<Label class="HeroQuests_Quest_Text" id="HeroQuests_Quest_Text2" html="true" />
+					</Panel>
+					<Panel class="HeroQuests_Quest_Reward_Container" id="HeroQuests_Quest_Reward_Container2">
+						<Panel class="HeroQuests_Quest_Reward_shards">
+							<Panel class="HeroQuests_Quest_Reward_shards_icon" />
+							<Label class="HeroQuests_Quest_Reward_text" id="HeroQuests_Quest_Reward_shards_text2" html="true" />
+						</Panel>
+						<Panel class="HeroQuests_Quest_Reward_exp">
+							<Panel class="HeroQuests_Quest_Reward_exp_icon" />
+							<Label class="HeroQuests_Quest_Reward_text" id="HeroQuests_Quest_Reward_exp_text2" html="true" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="HeroQuests_Quest" id="HeroQuests_Quest3">
+					<Panel class="HeroQuests_Quest_Icon_Container" id="HeroQuests_Quest_Icon_Container3">
+						<Panel class="HeroQuests_Quest_Icon" id="HeroQuests_Quest_Icon3" />
+					</Panel>
+					<Panel class="HeroQuests_Quest_Text_Container">
+						<Label class="HeroQuests_Quest_Text" id="HeroQuests_Quest_Text3" html="true" />
+					</Panel>
+					<Panel class="HeroQuests_Quest_Reward_Container" id="HeroQuests_Quest_Reward_Container3">
+						<Panel class="HeroQuests_Quest_Reward_shards">
+							<Panel class="HeroQuests_Quest_Reward_shards_icon" />
+							<Label class="HeroQuests_Quest_Reward_text" id="HeroQuests_Quest_Reward_shards_text3" html="true" />
+						</Panel>
+						<Panel class="HeroQuests_Quest_Reward_exp">
+							<Panel class="HeroQuests_Quest_Reward_exp_icon" />
+							<Label class="HeroQuests_Quest_Reward_text" id="HeroQuests_Quest_Reward_exp_text3" html="true" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

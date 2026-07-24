@@ -1,0 +1,581 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	Hero_Marci.PreAttack = 
+	{
+		type = "dota_src1_3d"
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 72.0
+		distance_max = 1500.0
+		delay = 0.1
+		event_type = 1.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/marci/preattack01.vsnd",
+			"sounds/weapons/hero/marci/preattack02.vsnd",
+			"sounds/weapons/hero/marci/preattack03.vsnd",
+		]
+		vsnd_duration = 0.443896
+	}
+	Hero_Marci.Attack.Impact = 
+	{
+		type = "dota_src1_3d"
+		volume_rand_min = -0.15
+		volume_rand_max = 0.0
+		volume = 1.0
+		pitch_rand_min = -0.1
+		pitch_rand_max = 0.1
+		pitch = 1.0
+		soundlevel = 75.0
+		distance_max = 2000.0
+		event_type = 1.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/marci/impact01.vsnd",
+			"sounds/weapons/hero/marci/impact02.vsnd",
+			"sounds/weapons/hero/marci/impact03.vsnd",
+			"sounds/weapons/hero/marci/impact04.vsnd",
+		]
+		vsnd_duration = 0.520544
+	}
+	Hero_Marci.Grapple.Cast = 
+	{
+		type = "dota_src1_3d"
+		volume = 1.0
+		pitch = 1.0
+		pitch_rand_min = -0.1
+		pitch_rand_max = 0.1
+		soundlevel = 75.0
+		distance_max = 2500.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/marci/dispose_cast.vsnd",
+		]
+		vsnd_duration = 1.3715
+	}
+	Hero_Marci.Grapple.Target = 
+	{
+		type = "dota_src1_3d"
+		volume = 1.0
+		pitch = 1.0
+		pitch_rand_min = -0.1
+		pitch_rand_max = 0.1
+		soundlevel = 81.0
+		distance_max = 2500.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/marci/dispose_target.vsnd",
+		]
+		vsnd_duration = 2.574312
+	}
+	Hero_Marci.Grapple.Impact.Ally = 
+	{
+		type = "dota_src1_3d"
+		volume = 1.0
+		pitch_rand_min = -0.1
+		pitch_rand_max = 0.1
+		pitch = 1.25
+		soundlevel = 75.0
+		distance_max = 2000.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/tiny/tiny_toss_impact.vsnd",
+		]
+		vsnd_duration = 2.70254
+	}
+	Hero_Marci.Grapple.Impact = 
+	{
+		type = "dota_update_default"
+		volume = 1.0
+		pitch = 1.0
+		pitch_rand_min = -0.1
+		pitch_rand_max = 0.1
+		soundlevel = 81.0
+		mixgroup = "Weapons"
+		spread_radius = 300.0
+		soundevent_layer2 = "Hero_Marci.Grapple.Stun"
+		soundevent_layer2_on = 1.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/marci/dispose_impact.vsnd",
+		]
+		vsnd_duration = 1.445583
+	}
+	Hero_Marci.Grapple.Stun = 
+	{
+		type = "dota_update_default"
+		volume = 1.0
+		pitch_rand_min = -0.1
+		pitch_rand_max = 0.1
+		pitch = 1.0
+		soundlevel = 81.0
+		mixgroup = "Weapons"
+		block_duration = 0.1
+		block_distance = 200.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/marci/dispose_stun.vsnd",
+		]
+		vsnd_duration = 2.396896
+	}
+	Hero_Marci.Rebound.Cast = 
+	{
+		type = "dota_update_default"
+		volume = 1.0
+		pitch_rand_min = -0.1
+		pitch_rand_max = 0.1
+		pitch = 1.0
+		soundlevel = 75.0
+		mixgroup = "Weapons"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/marci/rebound_cast.vsnd",
+		]
+		vsnd_duration = 1.391354
+	}
+	Hero_Marci.Rebound.Ally = 
+	{
+		type = "dota_src1_3d"
+		volume = 1.0
+		pitch = 1.0
+		pitch_rand_min = -0.1
+		pitch_rand_max = 0.1
+		soundlevel = 84.0
+		distance_max = 2500.0
+		mixgroup = "Weapons"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/marci/rebound_ally.vsnd",
+		]
+		vsnd_duration = 3.177167
+	}
+	Hero_Marci.Rebound.Leap = 
+	{
+		type = "dota_src1_3d"
+		volume = 1.0
+		pitch = 1.25
+		pitch_rand_min = -0.1
+		pitch_rand_max = 0.1
+		soundlevel = 84.0
+		distance_max = 2500.0
+		mixgroup = "Weapons"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/dawnbreaker/fire_wreath_sweep.vsnd",
+		]
+		vsnd_duration = 1.317104
+	}
+	Hero_Marci.Rebound.Impact = 
+	{
+		type = "dota_update_default"
+		volume = 1.0
+		pitch = 1.0
+		pitch_rand_min = -0.1
+		pitch_rand_max = 0.1
+		soundlevel = 81.0
+		mixgroup = "Weapons"
+		spread_radius = 300.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/marci/rebound_impact.vsnd",
+		]
+		vsnd_duration = 2.080896
+	}
+	Hero_Marci.Rebound.Damage = 
+	{
+		type = "dota_update_default"
+		volume = 1.0
+		pitch_rand_min = -0.1
+		pitch_rand_max = 0.1
+		pitch = 1.25
+		soundlevel = 81.0
+		mixgroup = "Weapons"
+		spread_radius = 300.0
+		block_duration = 0.1
+		block_distance = 200.0
+		soundevent_layer2 = "Hero_Marci.Attack"
+		soundevent_layer2_on = 1.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/marci/rebound_target.vsnd",
+		]
+		vsnd_duration = 1.442708
+	}
+	Hero_Marci.Guardian.Applied = 
+	{
+		type = "dota_update_default"
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 81.0
+		mixgroup = "Weapons"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/marci/sidekick.vsnd",
+		]
+		vsnd_duration = 2.751333
+	}
+	Hero_Marci.Unleash.Cast = 
+	{
+		type = "dota_update_default"
+		volume = 1.0
+		pitch = 1.0
+		soundlevel = 81.0
+		mixgroup = "Ultimates"
+		spread_radius = 900.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/marci/unleash_cast.vsnd",
+		]
+		vsnd_duration = 2.987375
+	}
+	Hero_Marci.Unleash.Charged.2D = 
+	{
+		type = "dota_src1_2d"
+		volume = 1.0
+		pitch = 1.0
+		mixgroup = "Weapons"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/marci/unleash_charged.vsnd",
+		]
+		vsnd_duration = 2.002063
+	}
+	Hero_Marci.Unleash.Charged = 
+	{
+		type = "dota_update_default"
+		volume = 1.0
+		pitch = 1.0
+		soundlevel = 81.0
+		mixgroup = "Weapons"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/marci/unleash_charged_3d.vsnd",
+		]
+		vsnd_duration = 1.407542
+	}
+	Hero_Marci.Unleash.Pulse = 
+	{
+		type = "dota_update_default"
+		volume = 1.0
+		pitch = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		soundlevel = 84.0
+		spread_radius = 900.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/marci/unleash_pulse.vsnd",
+		]
+		vsnd_duration = 2.885417
+	}
+	Hero_Marci.Flurry.PreAttack = 
+	{
+		type = "dota_src1_3d"
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 75.0
+		distance_max = 1500.0
+		delay = 0.1
+		event_type = 1.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/marci/preattack01.vsnd",
+			"sounds/weapons/hero/marci/preattack02.vsnd",
+			"sounds/weapons/hero/marci/preattack03.vsnd",
+		]
+		vsnd_duration = 0.443896
+	}
+	Hero_Marci.Flurry.Attack = 
+	{
+		type = "dota_update_default"
+		volume = 1.0
+		pitch_rand_min = -0.25
+		pitch_rand_max = 0.25
+		pitch = 1.25
+		soundlevel = 84.0
+		distance_max = 2500.0
+		soundevent_layer2 = "Hero_Marci.Attack.Impact"
+		soundevent_layer2_on = 1.0
+		soundevent_layer3 = "Damage_Melee.Gore"
+		soundevent_layer3_on = 1.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/marci/attack01.vsnd",
+			"sounds/weapons/hero/marci/attack02.vsnd",
+			"sounds/weapons/hero/marci/attack03.vsnd",
+		]
+		vsnd_duration = 0.398125
+	}
+	Hero_Marci.Footsteps = 
+	{
+		type = "dota_src1_3d_footsteps"
+		volume_rand_min = -0.1
+		volume_rand_max = 0.1
+		volume = 0.35
+		pitch_rand_min = -0.025
+		pitch_rand_max = 0.025
+		pitch = 1.0
+		soundlevel = 72.0
+		distance_max = 2000.0
+		event_type = 4.0
+		vsnd_files = 
+		[
+			"sounds/physics/footsteps/hero/shared/general01.vsnd",
+			"sounds/physics/footsteps/hero/shared/general02.vsnd",
+			"sounds/physics/footsteps/hero/shared/general03.vsnd",
+			"sounds/physics/footsteps/hero/shared/general04.vsnd",
+			"sounds/physics/footsteps/hero/shared/general05.vsnd",
+			"sounds/physics/footsteps/hero/shared/general06.vsnd",
+			"sounds/physics/footsteps/hero/shared/general07.vsnd",
+		]
+		vsnd_duration = 0.453787
+	}
+	Hero_Marci.SpecialDelivery.Cast = 
+	{
+		type = "dota_src1_3d"
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 81.0
+		distance_max = 2500.0
+		delay = 0.2
+		vsnd_files = "sounds/weapons/hero/marci/special_delivery_cast.vsnd"
+		vsnd_duration = 1.486599
+	}
+	Hero_Marci.SpecialDelivery.Courier = 
+	{
+		type = "dota_src1_3d"
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 81.0
+		distance_max = 2500.0
+		vsnd_files = "sounds/weapons/hero/marci/special_delivery_courier.vsnd"
+		vsnd_duration = 2.391973
+	}
+	Hero_Marci.Death = 
+	{
+		type = "dota_null_start"
+	}
+	Hero_Marci.Taunt2024 = 
+	{
+		type = "dota_src1_3d"
+		volume = 1.0
+		pitch = 1.0
+		soundlevel = 81.0
+		distance_max = 2500.0
+		event_type = 1.0
+		volume_fade_out = 1.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/marci/taunt2024_1.vsnd",
+			"sounds/weapons/hero/marci/taunt2024_2.vsnd",
+		]
+		vsnd_duration = 6.274535
+	}
+	Marci_Pet.Footsteps = 
+	{
+		type = "dota_src1_3d_footsteps"
+		volume_rand_min = -0.049988
+		volume_rand_max = 0.049988
+		volume = 0.549988
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 66.0
+		distance_max = 1500.0
+		event_type = 4.0
+		vsnd_files = 
+		[
+			"sounds/physics/movement/hero/crystal_maiden/paws01.vsnd",
+			"sounds/physics/movement/hero/crystal_maiden/paws02.vsnd",
+			"sounds/physics/movement/hero/crystal_maiden/paws03.vsnd",
+			"sounds/physics/movement/hero/crystal_maiden/paws04.vsnd",
+			"sounds/physics/movement/hero/crystal_maiden/paws05.vsnd",
+		]
+		vsnd_duration = 0.269456
+	}
+	Marci_Pet.Pant = 
+	{
+		type = "dota_src1_3d"
+		volume = 0.6
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.25
+		soundlevel = 66.0
+		distance_max = 1500.0
+		event_type = 2.0
+		vsnd_files = 
+		[
+			"sounds/physics/movement/hero/crystal_maiden/pant01.vsnd",
+			"sounds/physics/movement/hero/crystal_maiden/pant02.vsnd",
+			"sounds/physics/movement/hero/crystal_maiden/pant03.vsnd",
+			"sounds/physics/movement/hero/crystal_maiden/pant04.vsnd",
+			"sounds/null.vsnd",
+			"sounds/null.vsnd",
+		]
+		vsnd_duration = 0.39873
+	}
+	Marci_Pet.Breath = 
+	{
+		type = "dota_src1_3d"
+		volume_rand_min = -0.5
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.5
+		soundlevel = 66.0
+		distance_max = 1000.0
+		event_type = 2.0
+		vsnd_files = 
+		[
+			"sounds/physics/movement/hero/crystal_maiden/breath01.vsnd",
+			"sounds/physics/movement/hero/crystal_maiden/breath02.vsnd",
+			"sounds/physics/movement/hero/crystal_maiden/breath03.vsnd",
+			"sounds/physics/movement/hero/crystal_maiden/breath04.vsnd",
+			"sounds/null.vsnd",
+		]
+		vsnd_duration = 0.685488
+	}
+	Marci_Pet.Happy = 
+	{
+		type = "dota_src1_3d"
+		volume_rand_min = -0.099976
+		volume_rand_max = 0.099976
+		volume = 0.799683
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.25
+		soundlevel = 66.0
+		distance_max = 2000.0
+		event_type = 2.0
+		vsnd_files = 
+		[
+			"sounds/physics/movement/hero/crystal_maiden/happy01.vsnd",
+			"sounds/physics/movement/hero/crystal_maiden/happy02.vsnd",
+			"sounds/physics/movement/hero/crystal_maiden/happy03.vsnd",
+			"sounds/physics/movement/hero/crystal_maiden/happy04.vsnd",
+		]
+		vsnd_duration = 0.772925
+	}
+	Marci_Pet.idle_alt_shake = 
+	{
+		type = "dota_src1_3d"
+		volume = 1.0
+		pitch = 1.0
+		soundlevel = 66.0
+		distance_max = 2000.0
+		event_type = 2.0
+		vsnd_files = "sounds/physics/movement/hero/crystal_maiden/idle_alt_shake.vsnd"
+		vsnd_duration = 1.332812
+	}
+	Marci_Pet.idle_alt_bark = 
+	{
+		type = "dota_src1_3d"
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.25
+		soundlevel = 66.0
+		distance_max = 2000.0
+		event_type = 2.0
+		vsnd_files = "sounds/physics/movement/hero/crystal_maiden/idle_alt_bark.vsnd"
+		vsnd_duration = 0.615238
+	}
+	Marci_Pet.Ult.Howl = 
+	{
+		type = "dota_src1_3d"
+		volume = 1.0
+		pitch_rand_min = -0.1
+		pitch_rand_max = 0.1
+		pitch = 1.0
+		soundlevel = 66.0
+		volume_fade_out = 1.5
+		distance_max = 2000.0
+		vsnd_files = "sounds/physics/movement/hero/crystal_maiden/idle_alt_howl.vsnd"
+		vsnd_duration = 1.927959
+	}
+	Marci_Pet.Flee = 
+	{
+		type = "dota_src1_3d"
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.25
+		soundlevel = 66.0
+		distance_max = 2000.0
+		event_type = 2.0
+		vsnd_files = "sounds/physics/movement/hero/crystal_maiden/flee.vsnd"
+		vsnd_duration = 0.275351
+	}
+	Marci_Pet.Alert = 
+	{
+		type = "dota_src1_3d"
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 66.0
+		distance_max = 2500.0
+		event_type = 2.0
+		vsnd_files = 
+		[
+			"sounds/physics/movement/hero/crystal_maiden/alert01.vsnd",
+			"sounds/physics/movement/hero/crystal_maiden/alert02.vsnd",
+			"sounds/physics/movement/hero/crystal_maiden/alert03.vsnd",
+			"sounds/physics/movement/hero/crystal_maiden/alert04.vsnd",
+			"sounds/physics/movement/hero/crystal_maiden/alert05.vsnd",
+		]
+		vsnd_duration = 0.866667
+	}
+	Marci_Pet.Yawn = 
+	{
+		type = "dota_src1_3d"
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 66.0
+		distance_max = 2000.0
+		event_type = 2.0
+		vsnd_files = "sounds/physics/movement/hero/crystal_maiden/yawn.vsnd"
+		vsnd_duration = 1.036485
+	}
+	Marci_Pet.Scritch = 
+	{
+		type = "dota_src1_3d_footsteps"
+		volume_rand_min = -0.099976
+		volume_rand_max = 0.099976
+		volume = 0.799683
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 66.0
+		distance_max = 2000.0
+		event_type = 4.0
+		vsnd_files = 
+		[
+			"sounds/physics/movement/hero/crystal_maiden/scritch01.vsnd",
+			"sounds/physics/movement/hero/crystal_maiden/scritch02.vsnd",
+		]
+		vsnd_duration = 0.288005
+	}
+}

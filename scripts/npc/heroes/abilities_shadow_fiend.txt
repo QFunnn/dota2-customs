@@ -1,0 +1,281 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+
+"DOTAAbilities"
+{
+
+"Version"		"1"
+
+
+
+
+"custom_nevermore_shadowraze_close"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/shadow_fiend/custom_nevermore_shadowraze"																// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+	"AbilityTextureName"			"nevermore_shadowraze1"
+	"FightRecapLevel"				"1"
+	"AbilitySound"					"Hero_Nevermore.Shadowraze"
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastAnimation"			"ACT_DOTA_RAZE_1"
+	"AbilityCastPoint"				"0.55"
+
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"9"
+	"AbilityManaCost"				"80"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{	
+		"shadowraze_range"	"200"
+
+		"shadowraze_damage"	"90 160 230 300"	
+		"shadowraze_radius"	"250"	
+		"shadowraze_cooldown"	"3"
+		"stack_bonus_damage" "35 50 65 80"
+		"duration"	"8"
+	}
+}
+
+"custom_nevermore_shadowraze_medium"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/shadow_fiend/custom_nevermore_shadowraze"																// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+	"FightRecapLevel"				"1"
+	"AbilitySound"					"Hero_Nevermore.Shadowraze"
+	"AbilityTextureName"			"nevermore_shadowraze2"
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastAnimation"			"ACT_DOTA_RAZE_2"
+	"AbilityCastPoint"				"0.55"
+
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"9"
+	"AbilityManaCost"				"80"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{	
+		"shadowraze_range"	"450"
+		
+		"shadowraze_damage"	"90 160 230 300"	
+		"shadowraze_radius"	"250"	
+		"shadowraze_cooldown"	"3"
+		"stack_bonus_damage" "35 50 65 80"
+		"duration"	"8"
+
+	}
+}
+
+
+"custom_nevermore_shadowraze_far"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/shadow_fiend/custom_nevermore_shadowraze"																// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+	"FightRecapLevel"				"1"
+	"AbilitySound"					"Hero_Nevermore.Shadowraze"
+	"AbilityTextureName"			"nevermore_shadowraze3"
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastAnimation"			"ACT_DOTA_RAZE_3"
+	"AbilityCastPoint"				"0.55"
+
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"9"
+	"AbilityManaCost"				"80"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{	
+		"shadowraze_range"	"700"
+		
+		"shadowraze_damage"	"90 160 230 300"	
+		"shadowraze_radius"	"250"	
+		"shadowraze_cooldown"	"3"
+		"stack_bonus_damage" "35 50 65 80"
+		"duration"	"8"
+	}
+}
+
+
+
+"custom_nevermore_necromastery"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/shadow_fiend/custom_nevermore_necromastery"									// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	"AbilityTextureName"			"nevermore_necromastery"
+
+    "HasScepterUpgrade"           "1"
+	"MaxLevel"					"4"
+	"DependentOnAbility"		"custom_nevermore_requiem"
+	"Innate"					"1"
+
+	"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_4"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"necromastery_damage_per_soul"	"1 2 3 4"
+		"necromastery_max_souls"	"20"
+		"necromastery_soul_release"		"30"
+		"necromastery_max_souls_scepter" "5"	
+		"souls_per_kill"			"1"	
+	}
+}
+
+
+"nevermore_frenzy_custom"
+{	
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/shadow_fiend/nevermore_frenzy_custom"
+	"AbilityTextureName"			"nevermore_frenzy"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	"FightRecapLevel"				"1"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+    "HasShardUpgrade"			"1"
+
+	// Stats		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"14.0"
+	"AbilityManaCost"				"60 65 70 75"
+	
+	// Special	
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"bonus_attack_speed"						"40 55 70 85"
+		"duration"				"8"
+		"move_speed"			"5 7 9 11"
+		"soul_cost"				"5"
+		"cast_inc"				"30"
+	}
+}
+
+
+"custom_nevermore_dark_lord"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/shadow_fiend/custom_nevermore_dark_lord"																	// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	"AbilityTextureName"			"nevermore_dark_lord"
+
+    "AbilityCastPoint"				"0"
+	"IsBreakable"					"1"
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"1200"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"presence_armor_reduction"		"4 5 6 7"
+		"presence_radius"				"1200"
+		"linger_duration"				"3"
+	}
+}
+
+
+"custom_nevermore_requiem"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/shadow_fiend/custom_nevermore_requiem"																// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+	"AbilityTextureName"			"nevermore_requiem"
+	"FightRecapLevel"				"2"
+	"HasScepterUpgrade"			"1"
+	"AbilitySound"					"Hero_Nevermore.RequiemOfSouls"
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastPoint"				"1.67 1.67 1.67"
+	"AbilityCastAnimation"			""
+
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"50"
+
+	// Damage.
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"150 175 200"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{	
+		"damage"			"60 90 120"	
+		"requiem_radius"	"1000"		
+		"requiem_reduction_ms"	"-20 -25 -30"
+		"requiem_slow_duration"	"0.5"
+		"requiem_slow_duration_max"	"1.5"
+		"requiem_reduction_radius"	"700"
+		"requiem_line_width_start"	"125"
+		"requiem_line_width_end"	"300"
+		"requiem_line_speed"	"700"
+		"soul_death_release"	"0.5"
+		"scepter_duration"		"6"
+		"scepter_heal"			"50"
+		"scepter_heal_creeps"	"3"
+		"requiem_damage_pct_scepter"	"60"
+		"magic_res"					"-5 -10 -15"
+	}
+}
+
+
+
+
+}

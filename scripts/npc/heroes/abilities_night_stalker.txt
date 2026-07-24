@@ -1,0 +1,274 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+
+//=================================================================================================================
+// Night Stalker: Void
+//=================================================================================================================
+"night_stalker_void_custom"
+{
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/night_stalker/night_stalker_void_custom"	
+	"AbilityTextureName"			"night_stalker_void"
+
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+	"AbilitySound"					"Hero_Nightstalker.Void"        
+
+	// Unit Targeting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+	"FightRecapLevel"				"1"
+	"MaxLevel"						"4"
+	"LinkedAbility"					"night_stalker_void_custom_legendary"
+	
+	// Stats
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"600"
+	"AbilityCastPoint"				"0.3"
+	"AbilityManaCost"				"75 80 85 90"
+	"AbilityCooldown"				"11 10 9 8"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"damage"						"80 160 240 320"
+		"duration_night"				"1.6 2.2 2.8 3.4"
+		"duration_day"					"1.25"
+		"movespeed_slow"				"-50"
+		"attackspeed_slow"				"-50"
+		"cast_radius"					"300"
+	}
+	"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+}
+
+"night_stalker_void_custom_legendary"
+{
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/night_stalker/night_stalker_void_custom"	
+	"AbilityTextureName"			"night_stalker_void_legenday"
+
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	"MaxLevel"						"1"
+	
+	"AbilityCastPoint"				"0.2"
+	"AbilityManaCost"				"50"
+	"AbilityCooldown"				"1"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+
+	}
+	"AbilityCastAnimation"		"0"
+}
+
+//=================================================================================================================
+// Night Stalker: Crippling Fear
+//=================================================================================================================
+"night_stalker_crippling_fear_custom"
+{
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/night_stalker/night_stalker_crippling_fear_custom"	
+	"AbilityTextureName"			"night_stalker_crippling_fear"
+
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	"FightRecapLevel"				"1"
+	"AbilitySound"					"Hero_Nightstalker.Trickling_Fear"
+
+	// Unit Targeting
+	//-------------------------------------------------------------------------------------------------------------
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	
+	// Stats
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastPoint"				"0"		
+	"AbilityManaCost"				"50"
+	"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
+	"AbilityCastGestureSlot"		"DEFAULT"
+
+	"AbilityCooldown"			"12"
+		
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"duration_day"				"3.0"
+		"duration_night"			"3.5 4 4.5 5.0"
+		"dps"					"30 40 50 60"	
+		"tick_rate"				"0.5"
+		"radius"	
+		{
+			"value"		"375"
+			"affected_by_aoe_increase"	"1"
+		}
+
+	}
+}
+
+//=================================================================================================================
+// Night Stalker: Hunter in the Night
+//=================================================================================================================
+"night_stalker_midnight_feast_custom"
+{
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/night_stalker/night_stalker_midnight_feast_custom"	
+	"AbilityTextureName"			"night_stalker_midnight_feast"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+	"MaxLevel"						"4"
+	"AbilityCastPoint"				"0.2"
+	"AbilityCastRange"				"900"
+	"AbilityCooldown"				"14 12 10 8"
+	"LinkedAbility"					"night_stalker_midnight_feast_custom_charge"
+
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"cleave"							"16 24 32 40"
+		"duration"					"6"
+		"damage_base"				"8 12 16 20"
+		"damage_health"				"1.4 1.6 1.8 2"
+		"legendary_attacks"			"4"
+	}
+	"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
+}
+
+"night_stalker_midnight_feast_custom_charge"
+{
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/night_stalker/night_stalker_midnight_feast_custom"	
+	"AbilityTextureName"			"night_stalker_hunter_in_the_night"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+
+	"MaxLevel"						"1"
+	"AbilityCastPoint"				"0"
+
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+
+	}
+	"AbilityCastAnimation"		"0"
+}
+
+//=================================================================================================================
+// Night Stalker: Darkness
+//=================================================================================================================
+"night_stalker_darkness_custom"
+{
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/night_stalker/night_stalker_darkness_custom"	
+	"AbilityTextureName"			"night_stalker_darkness"
+
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+	"AbilitySound"					"Hero_Nightstalker.Darkness"
+	"LinkedAbility"					"night_stalker_darkness_custom_legendary"
+
+	// Stats
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastPoint"				"0.3"
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+
+	"AbilityManaCost"				"100 150 200"
+	"AbilityCooldown"				"35"
+    "HasShardUpgrade"               "1"
+		
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"duration"						"10 12 14"
+		"bonus_damage"					"40 60 80"
+		"bonus_day_vision"				"1000"
+		"radius"						"2000"
+		"vision_reduce"					"600"
+
+		"shard_slow"					"-50"
+		"shard_cd"						"-30"
+		"shard_chance"					"25"
+		"shard_crit"					"150"
+	}
+}
+
+"night_stalker_darkness_custom_legendary"
+{
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/night_stalker/night_stalker_darkness_custom"	
+	"AbilityTextureName"			"night_stalker_dark_legendary"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+    "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+    
+	"MaxLevel"						"1"
+	"AbilityCastPoint"				"0"
+	"AbilityManaCost"				"30"
+
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+
+	}
+	"AbilityCastAnimation"		"0"
+}
+
+//=================================================================================================================
+// Ability: Innate  hp regen bonus/penalty
+//=================================================================================================================
+"night_stalker_innate_custom"
+{
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/night_stalker/night_stalker_innate_custom"	
+
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_INNATE_UI"
+	"Innate"						"1"
+	"MaxLevel"						"1"
+	"HasScepterUpgrade"				"1"
+	"IsBreakable"					"1"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"night_timer"			"60"
+		"day_timer"				"-60"
+
+		"movespeed_init"		"15"
+		"movespeed_inc"				"1"
+		"attackspeed_init"		"40"
+		"attackspeed_inc"		"2"
+		"level_max"				"20"
+
+		"scepter_max"			"8"
+		"scepter_radius"		"4000"
+		"scepter_stats"			"4"
+		"scepter_kill_radius"	"700"
+	}
+}
+
+
+}

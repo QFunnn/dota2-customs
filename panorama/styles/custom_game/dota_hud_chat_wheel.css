@@ -1,0 +1,494 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+@define phraseOffset: 95px;
+@define defaultPhraseHeight: 35px;
+@define heroPhraseHeight: 40px;
+@define arrowOffset: 60px;
+@define phraseMinimumPadding: 20px;
+.MyWheel
+{
+	width: 100%;
+	height: 450px;
+	horizontal-align: center;
+	vertical-align: middle;
+}
+
+.Hidden
+{
+	visibility: collapse;
+}
+
+#PhrasesContainer
+{
+	width: 100%;
+	height: 100%;
+}
+
+.Phrase.IsSpray
+{
+	height: 64px;
+}
+
+.HeroChatWheel .Phrase
+{
+	height: heroPhraseHeight;
+}
+
+.Phrase.Selected
+{
+	pre-transform-scale2d: 1.3;
+}
+
+@keyframes 'TextGlowPulse'
+{
+	0%
+	{
+		text-shadow: 0px 0px 6px 1.0 #AAE9A700;
+	}
+	
+	50%
+	{
+		text-shadow: 0px 0px 6px 1.0 #AAE9A7dd;
+	}
+	
+	100%
+	{
+		text-shadow: 0px 0px 6px 1.0 #AAE9A700;
+	}
+	
+}
+
+.Phrase.Selected > Label
+{
+	animation-name: TextGlowPulse;
+	animation-duration: 1s;
+	animation-delay: 0s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.ChatWheelSoundIcon
+{
+	width: 22px;
+	height: 22px;
+	margin-right: 4px;
+	transform: translateY( 4px );
+	vertical-align: middle;
+	margin-top: -8px;
+	background-image: url("s2r://panorama/images/hud/reborn/icon_scoreboard_mute_sound_psd.vtex");
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.BirzhaReward
+{
+	width: 32px;
+	height: 32px;
+	margin-right: 4px;
+	transform: translateY( 4px );
+	vertical-align: middle;
+	margin-top: -8px;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.Phrase.HasSound:not(.IsSpray) .ChatWheelSoundIcon
+{
+	visibility: visible;
+}
+
+.Phrase.HasSound.RequiresHeroBadgeTier .ChatWheelSoundIcon
+{
+	visibility: collapse;
+}
+
+.ChatWheelAllPrefix
+{
+	visibility: collapse;
+}
+
+.Phrase.SendToAllChat .ChatWheelAllPrefix
+{
+	visibility: visible;
+}
+
+.ChatWheelRequiredTierIcon
+{
+	width: 36px;
+	height: 36px;
+	visibility: collapse;
+}
+
+.RequiresHeroBadgeTier .ChatWheelRequiredTierIcon
+{
+	visibility: visible;
+}
+
+.RequiresHeroBadgeTier:not(.RequiredTierUnlocked) Label
+{
+	opacity: 0.3;
+}
+
+.ChatWheelRequiredTierLockIcon,.ChatWheelRequiredTierLockIconShadow
+{
+	vertical-align: middle;
+	horizontal-align: center;
+	width: 14px;
+	height: 14px;
+	background-image: url("s2r://panorama/images/control_icons/lock_small_png.vtex");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.ChatWheelRequiredTierLockIconShadow
+{
+	transform: translate3d( 2px, 2px, 0px );
+	wash-color: black;
+}
+
+.RequiredTierUnlocked .ChatWheelRequiredTierLockIcon,.RequiredTierUnlocked .ChatWheelRequiredTierLockIconShadow
+{
+	visibility: collapse;
+}
+
+#Wheel
+{
+	horizontal-align: center;
+	vertical-align: middle;
+	height: 164px;
+	width: 164px;
+}
+
+#WheelBG
+{
+	background-image: url("s2r://panorama/images/chat_wheel/circle_bg_png.vtex");
+	background-size: contain;
+	horizontal-align: center;
+	vertical-align: middle;
+	height: 128px;
+	width: 128px;
+	margin-top: 11px;
+	margin-left: 4px;
+}
+
+#WheelCenter
+{
+	background-image: url("s2r://panorama/images/chat_wheel/circle_png.vtex");
+	background-size: contain;
+	horizontal-align: center;
+	vertical-align: middle;
+	height: 128px;
+	width: 128px;
+}
+
+#WheelBG2
+{
+	background-image: url("s2r://panorama/images/chat_wheel/circle_bg2_png.vtex");
+	background-size: contain;
+	horizontal-align: center;
+	vertical-align: middle;
+	height: 128px;
+	width: 128px;
+	visibility: collapse;
+}
+
+#WheelPointer
+{
+	background-image: url("s2r://panorama/images/chat_wheel/circle_pointer_png.vtex");
+	background-size: contain;
+	horizontal-align: center;
+	vertical-align: middle;
+	height: 128px;
+	width: 128px;
+}
+
+#PointerContainer
+{
+	height: 164px;
+	width: 164px;
+	horizontal-align: center;
+	vertical-align: middle;
+	margin-left: 2px;
+}
+
+#Bubble
+{
+	background-image: url("s2r://panorama/images/chat_wheel/cursor_png.vtex");
+	horizontal-align: center;
+	vertical-align: middle;
+	height: 46px;
+	width: 46px;
+}
+
+#HeroImage
+{
+	width: 100%;
+	height: 100%;
+	visibility: collapse;
+}
+
+.HeroChatWheel #HeroImage
+{
+	visibility: visible;
+}
+
+.HeroChatWheel #Bubble
+{
+	background-image: none;
+}
+
+#Arrow
+{
+	horizontal-align: center;
+	vertical-align: middle;
+	height: 46px;
+	width: 46px;
+	margin-left: 2px;
+	brightness: 2.0;
+	transform: rotateZ( -90deg ) rotateX( 0deg ) translate3d( 0px, -60px, 0px );
+	background-image: url("s2r://panorama/images/chat_wheel/arrow_psd.vtex");
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.ChatWheelSprayImage
+{
+	visibility: collapse;
+	height: 100%;
+	width: height-percentage( 100% );
+	horizontal-align: center;
+	wash-color: #fff;
+}
+
+.IsSpray .ChatWheelSprayImage
+{
+	visibility: visible;
+}
+
+.MyTooltip
+{
+	horizontal-align: center;
+	vertical-align: middle;
+	font-size: 26px;
+	color: #FFFFFF;
+	font-size: 26px;
+	font-weight: bold;
+	margin-top: 400px;
+}
+
+#Phrase0
+{
+	margin-top: 0px;
+	margin-left: 490px;
+}
+
+#Phrase0 > Panel
+{
+	horizontal-align: center;
+}
+
+#Phrase4
+{
+	margin-top: 0px;
+	margin-right: 490px;
+}
+
+#Phrase4 > Panel
+{
+	horizontal-align: center;
+}
+
+#Phrase1
+{
+	margin-top: 215px;
+	margin-left: 440px;
+}
+
+#Phrase2
+{
+	margin-top: 340px;
+	margin-left: 0px;
+}
+
+#Phrase3
+{
+	margin-top: 215px;
+	margin-right: 440px;
+}
+
+#Phrase5
+{
+	margin-bottom: 215px;
+	margin-right: 440px;
+}
+
+#Phrase5 > Panel
+{
+	horizontal-align: right;
+}
+
+#Phrase6
+{
+	margin-bottom: 340px;
+	margin-left: 0px;
+}
+
+#Phrase6 > Panel
+{
+	horizontal-align: right;
+}
+
+#Phrase7
+{
+	margin-bottom: 215px;
+	margin-left: 440px;
+}
+
+#Phrase7 > Panel
+{
+	horizontal-align: right;
+}
+
+.Phrase
+{
+	align: center center;
+	pre-transform-scale2d: 1.0;
+	height: 100%;
+	width: 100%;
+	transition-property: pre-transform-scale2d;
+	transition-duration: 0.1s;
+}
+
+.Phrase > Label
+{
+	align: center center;
+	color: white;
+	font-size: 18px;
+	font-weight: semi-bold;
+	font-family: 'Radiance';
+	text-shadow: 2px 2px 8px 3.0 #333333b0;
+	text-align: center;
+}
+
+.ForWheel6
+{
+	transform: rotateZ( 0deg ) rotateX( 0deg ) translate3d( 0px, 0px, 0px );
+}
+
+.ForWheel7
+{
+	transform: rotateZ( 45deg ) rotateX( 0deg ) translate3d( 0px, 0px, 0px );
+}
+
+.ForWheel0
+{
+	transform: rotateZ( 90deg ) rotateX( 0deg ) translate3d( 0px, 0px, 0px );
+}
+
+.ForWheel1
+{
+	transform: rotateZ( 135deg ) rotateX( 0deg ) translate3d( 0px, 0px, 0px );
+}
+
+.ForWheel2
+{
+	transform: rotateZ( 180deg ) rotateX( 0deg ) translate3d( 0px, 0px, 0px );
+}
+
+.ForWheel3
+{
+	transform: rotateZ( 225deg ) rotateX( 0deg ) translate3d( 0px, 0px, 0px );
+}
+
+.ForWheel4
+{
+	transform: rotateZ( 270deg ) rotateX( 0deg ) translate3d( 0px, 0px, 0px );
+}
+
+.ForWheel5
+{
+	transform: rotateZ( 315deg ) rotateX( 0deg ) translate3d( 0px, 0px, 0px );
+}
+
+.BlockChatWheel
+{
+	width: 50%;
+	height: 100%;
+	align: center center;
+	background-image: url("s2r://panorama/images/hero_selection/banned_overlay_psd.vtex");
+	background-size: 100% 100%;
+}
+
+.ChangeWheelButtons
+{
+	flow-children: right;
+	horizontal-align: center;
+	vertical-align: middle;
+	margin-top: 170px;
+}
+
+.ChangeWheelButtonLeft
+{
+	background-image: url("s2r://panorama/images/control_icons/arrow_min_left_psd.vtex");
+	background-size: 100%;
+	width: 16px;
+	height: 22px;
+}
+
+.ChangeWheelButtonLabel
+{
+	font-size: 18px;
+	vertical-align: center;
+	margin-left: 15px;
+	margin-right: 15px;
+	color: white;
+	font-weight: bold;
+}
+
+.ChangeWheelButtonRight
+{
+	background-image: url("s2r://panorama/images/control_icons/arrow_min_right_psd.vtex");
+	background-size: 100%;
+	width: 16px;
+	height: 22px;
+}
+
+.ChangeWheelButtonLeft:hover
+{
+	pre-transform-scale2d: 1.05;
+}
+
+.ChangeWheelButtonRight:hover
+{
+	pre-transform-scale2d: 1.05;
+}
+
+.MyPhrases
+{
+	transition-property: pre-transform-scale2d;
+	transition-duration: 0.1s;
+	horizontal-align: center;
+	vertical-align: center;
+	height: 92px;
+	width: 210px;
+	background-color: #2b2f30bf;
+	border: 2px solid #414A45;
+	border-radius: 20px;
+}
+
+.MyPhrases:hover
+{
+	pre-transform-scale2d: 1.05;
+}

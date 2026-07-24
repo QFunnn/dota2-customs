@@ -1,0 +1,511 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.GiftAlert
+{
+	width: 100%;
+	height: 100%;
+}
+
+#GiftAlert_content
+{
+	width: 300px;
+	height: 127px;
+	margin-right: 220px;
+	align: right top;
+}
+
+.GiftAlert_button_content
+{
+	width: 75px;
+	height: 75px;
+	align: right bottom;
+	transition-property: brightness, pre-transform-scale2d;
+	transition-duration: 0.1s;
+	animation-name: GiftAlertShow;
+	animation-duration: 0.4s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.GiftAlert_button_content_hidden
+{
+	width: 75px;
+	height: 75px;
+	align: right bottom;
+	animation-name: GiftAlertHide;
+	animation-duration: 0.15s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	opacity: 0;
+}
+
+.GiftAlert_button_content:hover
+{
+	brightness: 2;
+	pre-transform-scale2d: 1.05;
+}
+
+@keyframes 'GiftAlertHide'
+{
+	0%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'GiftAlertShow'
+{
+	0%
+	{
+		transform: translate3d( 0, -50%, 0px );
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'GiftButtonActive'
+{
+	0%
+	{
+		box-shadow: fill #f0bd22 0px 0px 4px -1px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #f0bd22 0px 0px 10px -1px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #f0bd22 0px 0px 4px -1px;
+	}
+	
+}
+
+.GiftAlert_button
+{
+	width: 48px;
+	height: 48px;
+	background-image: url("s2r://panorama/images/custom_game/gift_png.vtex");
+	background-size: contain;
+	align: center center;
+	border-radius: 3px;
+	animation-name: GiftButtonActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.GiftAlert_button_active
+{
+	wash-color: #666;
+	saturation: 0.5;
+	box-shadow: fill black 0px 0px 0px 0px;
+}
+
+#GiftAlert_button_ping
+{
+	width: 22px;
+	height: 22px;
+	border-radius: 50%;
+	align: right top;
+	margin-right: 5px;
+	margin-top: 5px;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #f74545 ), to( #ba1414 ) );
+	box-shadow: fill black 0px 0px 8px -3px;
+	border: 1px solid #de9b9b;
+}
+
+#GiftAlert_button_ping_text
+{
+	font-size: 15px;
+	align: center center;
+	text-align: center;
+	color: #fff;
+	font-weight: bold;
+	font-family: Radiance;
+	text-shadow: 0px 0px 5px 4.0 black;
+}
+
+.GiftAlert_window
+{
+	width: 550px;
+	height: 620px;
+	align: center center;
+	margin-bottom: 232px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #010112 ), to( #01011f ) );
+	border: 2px solid #e0dda6;
+	animation-name: GiftWindowShow;
+	animation-duration: 0.25s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.GiftAlert_window_hidden
+{
+	animation-name: GiftWindowHide;
+	animation-duration: 0.25s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	width: 550px;
+	height: 620px;
+	align: center center;
+	margin-bottom: 232px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #010112 ), to( #01011f ) );
+	border: 2px solid #e0dda6;
+	opacity: 0;
+}
+
+.GiftAlert_window_active
+{
+	animation-name: GiftWindowActive;
+	animation-iteration-count: infinite;
+	animation-duration: 2.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.GiftAlert_close_icon
+{
+	width: 28px;
+	height: 28px;
+	margin-right: 8px;
+	margin-top: 8px;
+	background-image: url("s2r://panorama/images/custom_game/close_pass_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: pre-transform-scale2d, brightness;
+	transition-duration: 0.2s;
+	brightness: 2;
+	horizontal-align: right;
+}
+
+.GiftAlert_close_icon:hover
+{
+	brightness: 6;
+	pre-transform-scale2d: 1.05;
+}
+
+@keyframes 'GiftWindowActive'
+{
+	0%
+	{
+		box-shadow: fill #f0bd22 0px 0px 2px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #f0bd22 0px 0px 13px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #f0bd22 0px 0px 2px -2px;
+	}
+	
+}
+
+@keyframes 'GiftWindowHide'
+{
+	0%
+	{
+		pre-transform-scale2d: 1;
+		opacity: 1;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1.25;
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'GiftWindowShow'
+{
+	0%
+	{
+		pre-transform-scale2d: 1.25;
+		opacity: 0;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1;
+		opacity: 1;
+	}
+	
+}
+
+#GiftAlert_window_content
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+}
+
+#GiftAlert_window_top
+{
+	width: 100%;
+	height: 20%;
+	flow-children: down;
+}
+
+#GiftAlert_window_mid
+{
+	width: 100%;
+	height: 67.2%;
+	flow-children: down;
+}
+
+#GiftAlert_window_bot
+{
+	width: 100%;
+	height: 12.8%;
+}
+
+#GiftAlert_window_top_text
+{
+	font-size: 44px;
+	align: center center;
+	margin-top: 10px;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #fceacf ), to( #fff88a) );
+	font-weight: bold;
+	font-family: Radiance;
+	text-shadow: 0px 0px 5px 3.0 black;
+}
+
+#GiftAlert_window_icon
+{
+	border: 1px solid #e0dda6;
+	box-shadow: fill #f0bd22 0px 0px 8px -2px;
+	horizontal-align: center;
+	margin-top: 20px;
+	background-repeat: no-repeat;
+}
+
+.GiftAlert_window_icon_shards
+{
+	width: 330px;
+	height: 220px;
+}
+
+.GiftAlert_window_icon_sub
+{
+	width: 320px;
+	height: 220px;
+}
+
+#GiftAlert_window_gift_name
+{
+	font-size: 32px;
+	margin-top: 0px;
+	horizontal-align: center;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #fffbc4 ), to( #ffffff ) );
+	font-weight: bold;
+	font-family: Radiance;
+	text-shadow: 0px 0px 5px 3.0 black;
+}
+
+#GiftAlert_window_button
+{
+	width: 250px;
+	height: 45px;
+	background-color: red;
+	horizontal-align: center;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #222222 ), to( #4B555D ) );
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: 100%;
+	border: 1px solid #e0dda6;
+	box-shadow: fill #e0dda6 0px 0px 6px -3px;
+}
+
+#GiftAlert_window_button:hover
+{
+	brightness: 2;
+}
+
+#GiftAlert_window_button_text
+{
+	font-size: 32px;
+	align: center center;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #ccc ), to( #ffffff ) );
+	font-weight: bold;
+	font-family: Radiance;
+	text-shadow: 0px 0px 5px 3.0 black;
+}
+
+.GiftAlert_window_gifter_block
+{
+	width: 100%;
+	height: 40px;
+	flow-children: right;
+}
+
+.GiftAlert_window_gifter_name
+{
+	font-size: 19px;
+	vertical-align: center;
+	margin-left: 3px;
+	margin-bottom: 5px;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #ccc ), to( #ddd ) );
+	font-family: Radiance;
+	text-shadow: 0px 0px 5px 3.0 black;
+	font-style: italic;
+}
+
+#GiftAlert_window_top_header
+{
+	width: 100%;
+	height: 70px;
+}
+
+.GiftAlert_window_gifter_text
+{
+	font-size: 19px;
+	margin-left: 20px;
+	margin-bottom: 7px;
+	font-style: italic;
+	vertical-align: center;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #ccc ), to( #ddd ) );
+	font-family: Radiance;
+	text-shadow: 0px 0px 5px 2.0 black;
+}
+
+#GiftAlert_window_gift_msg_block
+{
+	width: 100%;
+	height: 130px;
+}
+
+#GiftAlert_window_gift_msg
+{
+	font-size: 19px;
+	font-style: italic;
+	align: center center;
+	text-align: center;
+	width: 95%;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #ccc ), to( #ddd ) );
+	font-family: Radiance;
+	text-shadow: 0px 0px 5px 0 black;
+}
+
+.GiftAlert_text_alert
+{
+	width: 230px;
+	height: 50px;
+	margin-bottom: 12px;
+	align: left bottom;
+	flow-children: right;
+	margin-left: 2px;
+	animation-name: GiftTextShow;
+	animation-duration: 0.25s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.GiftAlert_text_alert_hidden
+{
+	width: 230px;
+	height: 50px;
+	margin-bottom: 12px;
+	align: left bottom;
+	flow-children: right;
+	margin-left: 2px;
+	opacity: 0;
+	animation-name: GiftTextHide;
+	animation-duration: 0.25s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+@keyframes 'GiftTextHide'
+{
+	0%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translate3d( 0, -50%, 0px );
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'GiftTextShow'
+{
+	0%
+	{
+		transform: translate3d( 0, -50%, 0px );
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+}
+
+#GiftAlert_text_alert_label
+{
+	font-size: 22px;
+	margin-left: 5px;
+	font-weight: bold;
+	align: center center;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #ccc ), to( #ddd ) );
+	font-family: Radiance;
+	text-shadow: 0px 0px 5px 2.0 black;
+}
+
+#GiftAlert_text_alert_panel
+{
+	width: 200px;
+	height: 50px;
+	border-left: 4px solid #f5b83d;
+	border-right: 4px solid #f5b83d;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #323232 ), to( #000000 ) );
+	border-radius: 6px;
+	border-radius: 6px;
+	vertical-align: center;
+}
+
+#GiftAlert_text_alert_arrow
+{
+	height: 50px;
+	width: 29px;
+	vertical-align: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-image: url("s2r://panorama/images/custom_game/shop/slider_right_png.vtex");
+	wash-color: #f5b83d;
+}

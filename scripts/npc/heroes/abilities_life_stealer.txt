@@ -1,0 +1,636 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+"Version"       "1"
+//=================================================================================================================
+// Lifestealer: Rage
+//=================================================================================================================
+"life_stealer_rage_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/life_stealer/life_stealer_rage_custom"   
+    "AbilityTextureName"            "life_stealer_rage"
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "AbilitySound"                  "Hero_LifeStealer.Rage"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastPoint"              "0"
+    "AbilityCastRange"              "0"
+    
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "15"
+    
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "80 100 120 140"
+        
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "duration"          "2 3 4 5"
+        "move_bonus"        "8 12 16 20"        
+        "magic_resist"      "-80"
+        "slow_resist"       "0"
+    }
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
+}
+
+
+"life_stealer_unfettered_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/life_stealer/life_stealer_unfettered_custom"   
+    "AbilityTextureName"            "life_stealer_unfettered"
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "MaxLevel"                      "1"
+    "IsGrantedByShard"              "1"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastPoint"              "0.1"
+    "AbilityCastRange"              "800"
+    
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "14"
+    
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "50"
+        
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {   
+        "speed"             "1200"
+        "stun"              "1"      
+        "min_dist"          "350"
+    }
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_3"
+}
+
+
+//=================================================================================================================
+// Lifestealer: Open Wounds
+//=================================================================================================================
+"life_stealer_open_wounds_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/life_stealer/life_stealer_open_wounds_custom"   
+    "AbilityTextureName"            "life_stealer_open_wounds"
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Hero_LifeStealer.OpenWounds.Cast"
+
+    "MaxLevel"                      "4"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastPoint"              "0.2"
+    "AbilityCastRange"              "300 400 500 600"
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_3"
+    
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "10"
+    
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "70"
+        
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "duration"              "7"
+        "heal_percent"          "20 30 40 50"   
+        "slow"                  "-50"   
+        "radius"                "350"
+        "attacks"               "4"
+        "damage"                "80 160 240 320" 
+        "creeps"                "50"
+    }
+}
+
+
+"life_stealer_open_wounds_custom_legendary"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/life_stealer/life_stealer_open_wounds_custom"   
+    "AbilityTextureName"            "open_wounds_legendary"
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+    "FightRecapLevel"               "1"
+
+    "MaxLevel"                      "1"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastPoint"              "0.2"
+    "AbilityCastAnimation"          "ACT_DOTA_LIFESTEALER_RAGE"
+    
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "0"
+    
+        
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+
+    }
+}
+
+//=================================================================================================================
+// Lifestealer: Ghoul Frenzy
+//=================================================================================================================
+"life_stealer_feast_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/life_stealer/life_stealer_feast_custom"   
+    "AbilityTextureName"            "life_stealer_feast"
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+    "FightRecapLevel"               "1"
+    "IsBreakable"                   "1"
+    "HasScepterUpgrade"                "1"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastAnimation"          "0"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "damage_base"    "8 12 16 20"
+        "damage"          "1.4 1.6 1.8 2"
+        "creeps_bonus"              "4"
+
+        "health_init"               "200"
+        "scepter_health_hero"       "60"
+        "feast_init"                "0.5"
+        "feast_bonus"               "0.1"
+        "scepter_max"               "10"
+        "scepter_timer"             "4"        
+    }
+}
+
+//=================================================================================================================
+// Lifestealer: Infest
+//=================================================================================================================
+"life_stealer_infest_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/life_stealer/life_stealer_infest_custom"   
+    "AbilityTextureName"            "life_stealer_infest"
+    
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_CUSTOM"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_CUSTOM"
+    "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+    "AbilityType"                   "ABILITY_TYPE_ULTIMATE"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Hero_LifeStealer.Infest"
+    "LinkedAbility"                 "life_stealer_infest_custom_legendary"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastPoint"              "0.2"
+    "AbilityCastAnimation"          "0"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "100 125 150"   
+    "AbilityCooldown"               "24"    
+    "AbilityCastRange"              "400"
+    
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "radius"                        "700"    
+        "damage"                        "140 220 300"          
+        "bonus_movement_speed"          "15 20 25"
+        "bonus_health"                  "400 800 1200"
+        "creep_move"                    "425"
+        "self_regen"                    "2 3 4"          
+        "infest_duration_enemy"         "4"
+        "attacks"                       "4"
+        "attacks_damage"                "50 75 100"
+    }
+}
+
+//=================================================================================================================
+// Lifestealer: Consume
+//=================================================================================================================
+"life_stealer_consume_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/life_stealer/life_stealer_infest_custom"   
+    "AbilityTextureName"            "life_stealer_consume"
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityType"                   "ABILITY_TYPE_ULTIMATE"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Hero_LifeStealer.Consume"
+    "MaxLevel"                      "3"
+    "LinkedAbility"                 "life_stealer_infest_custom"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastPoint"              "0.0"
+    "AbilityCastAnimation"          "ACT_INVALID"
+}
+
+
+
+"life_stealer_infest_custom_legendary"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/life_stealer/life_stealer_infest_custom"   
+    "AbilityTextureName"            "life_stealer_assimilate"
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityType"                   "ABILITY_TYPE_ULTIMATE"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Hero_LifeStealer.Consume"
+    "MaxLevel"                      "3"
+    "LinkedAbility"                 "life_stealer_consume_custom"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastPoint"              "0.2"
+    "AbilityCastAnimation"          "0"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "100 125 150" 
+    "AbilityCooldown"               "24"    
+
+    "AbilityValues"
+    {
+        "health_loss"           "40"
+
+        "centaur_health"        "15"
+        "centaur_bva"           "2.0"
+        "ursa_bva"              "1.5"
+
+        "regen"                 "0.5"
+        "magic"                 "40"      
+        "move"                  "375"   
+        "armor"                 "100"
+    }
+}
+
+
+
+
+//=================================================================================================================
+// Lifestealer: Feast
+//=================================================================================================================
+"life_stealer_innate_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/life_stealer/life_stealer_innate_custom"   
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+    "Innate"                        "1"
+    "IsBreakable"                   "1"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "attack_speed_init"    "20"
+        "attack_speed_inc"      "4"
+        "attack_speed_max"      "100"       
+    }
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_2"
+}
+
+
+
+
+
+
+
+
+"life_stealer_centaur_stun"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"   
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/life_stealer/infest_creeps_centaur"   
+    "AbilityTextureName"            "centaur_khan_war_stomp"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "MaxLevel"                      "3"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastPoint"              "0.3"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "70"
+    "AbilityCooldown"               "7"
+    "AbilityCastAnimation"      "0"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "damage_base"                      "50 75 100"
+        "damage"                    "8 10 12"
+        "stun"                      "1"
+        "aoe"                       "400"  
+    }
+}
+
+
+
+"life_stealer_centaur_retaliate"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"   
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/life_stealer/infest_creeps_centaur"   
+    "AbilityTextureName"            "centaur_return"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"  
+    "MaxLevel"                      "3"
+
+
+    "AbilityCooldown"               "12"
+    "AbilityManaCost"               "80"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+       "duration"                   "3"
+       "damage_return"              "60 70 80"
+       "damage_reduce"              "-20 -25 -30"
+    }
+}
+
+
+"life_stealer_centaur_bash"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"   
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/life_stealer/infest_creeps_centaur"   
+    "AbilityTextureName"            "ogre_bruiser_ogre_smash"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+    "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "MaxLevel"                      "3"
+    "IsBreakable"                   "1"
+
+
+    "AbilityCooldown"               "5"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "damage_base"                      "40 60 80"
+        "damage"                    "5 6 7"
+        "range"                     "80"
+        "stun"                      "1" 
+    }
+}
+
+
+
+
+
+"life_stealer_ursa_clap"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"   
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/life_stealer/infest_creeps_ursa"   
+    "AbilityTextureName"            "polar_furbolg_ursa_warrior_thunder_clap"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+    "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"   
+    "MaxLevel"                      "3"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "60"
+    "AbilityCooldown"               "6"
+    "AbilityCastPoint"              "0.25"
+    "AbilityCastAnimation"      "0"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "slow"                      "-30 -40 -50"
+        "damage"                    "150 175 200"
+        "count"                     "3"
+        "aoe"                       "400"
+        "duration"                  "5"
+    }
+    
+}
+
+
+"life_stealer_ursa_overpower"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"   
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/life_stealer/infest_creeps_ursa"   
+    "AbilityTextureName"            "furbolg_enrage_damage"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "MaxLevel"                      "3"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "60"
+    "AbilityCooldown"               "8"
+    "AbilityCastPoint"              "0.2"
+    "AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "speed"             "140 170 200"
+        "move"              "50 75 100"
+        "duration"          "3"
+    } 
+}
+
+
+"life_stealer_ursa_crit"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"   
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/life_stealer/infest_creeps_ursa"   
+    "AbilityTextureName"            "alpha_wolf_critical_strike"
+    "MaxLevel"                      "3"
+    "IsBreakable"                   "1"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "armor"                    "-1"
+        "duration"                  "10"
+        "max"                    "10 15 20" 
+        "heal"                      "60"
+    }
+}
+
+
+
+"life_stealer_dragon_fireball"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"   
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/life_stealer/infest_creeps_dragon"   
+    "AbilityTextureName"            "black_dragon_fireball"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "MaxLevel"                      "3"
+    "AOERadius"                     "%aoe_radius"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "60"
+    "AbilityCooldown"               "5"
+    "AbilityCastPoint"              "0.2"
+    "AbilityCastRange"              "1200"
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "projectile_speed"      "2000"
+        "aoe_radius"        "350"
+        "fire_duration"     "6"
+        "damage_init"       "200 300 400"
+        "damage_fire"           "5"
+        "damage_fire_creeps"    "100"
+        "magic_resist"      "-15"
+        "max_resist"        "5"
+        "resist_duration"   "15"
+    } 
+}
+
+
+
+"life_stealer_dragon_flight"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"   
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/life_stealer/infest_creeps_dragon"   
+    "AbilityTextureName"            "black_dragon_dragonhide_aura"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "MaxLevel"                      "3"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "100"
+    "AbilityCooldown"               "12"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "duration"          "3 3.5 4"
+        "move"              "40 60 80"
+        "vision"            "500"
+    } 
+}
+
+"life_stealer_dragon_arcane_power"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"   
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/life_stealer/infest_creeps_dragon"    
+    "AbilityTextureName"            "black_drake_magic_amplification_aura"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "MaxLevel"                      "3"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "cdr"                       "10 15 20"
+        "cast_range"                "150 225 300" 
+        "dragon_damage"         "-50"
+    }
+}
+
+
+
+}

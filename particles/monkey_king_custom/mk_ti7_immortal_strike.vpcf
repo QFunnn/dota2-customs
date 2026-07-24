@@ -1,0 +1,164 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vrfunknown:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_flConstantRadius = 250.0
+	m_flConstantLifespan = 0.3
+	m_ConstantColor = [ 245, 207, 58, 255 ]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/monkey_king_custom/mk_ti7_immortal_strike_ground_wet4.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/monkey_king_custom/monkey_king_strike_shak4e.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/monkey_king_custom/mk_ti7_immortal_strike_tip_impact.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/monkey_king_custom/mk_ti7_immortal_strike_energy.vpcf"
+			m_flDelay = 0.4
+		},
+		{
+			m_ChildRef = resource:"particles/monkey_king_custom/mk_ti7_immortal_strike_splash.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/monkey_king_custom/mk_ti7_immortal_strike_ground_dark4.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/monkey_king_custom/mk_ti7_immortal_strike_model_glow.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/monkey_king_custom/mk_ti7_immortal_strike_ground_weapon_tip4.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/monkey_king_custom/mk_ti7_immortal_strike_ground_weapon_end4.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/monkey_king_custom/mk_ti7_immortal_strike_rings_distort4.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/monkey_king_custom/mk_ti7_immortal_strike_sparks.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/monkey_king_custom/mk_ti7_immortal_strike_ground_streaks.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/monkey_king_custom/mk_ti7_immortal_strike_water_splash_l.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/monkey_king_custom/mk_ti7_immortal_strike_water_splash_r.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/monkey_king_custom/mk_ti7_immortal_strike_model.vpcf"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_SetChildControlPoints"
+			m_nFirstControlPoint = 2
+			m_bSetOrientation = true
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.5
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_TransformInput = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 100.0
+			}
+			m_nOutputField = 18
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 0.0, 0.0, 128.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 128.0 ]
+		},
+		{
+			_class = "C_INIT_PositionPlaceOnGround"
+			m_flMaxTraceLength = 256.0
+			m_CollisionGroupName = "DEBRIS"
+			m_bIncludeWater = true
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_bDisableOperator = true
+			m_vecTexturesInput = 
+			[
+				{
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_MOD2X"
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_hFallback = resource:"particles/monkey_king_custom/mk_ti7_immortal_strike_fallback_low.vpcf"
+	m_nFallbackMaxCount = 4
+	m_nBehaviorVersion = 4
+	m_nFirstMultipleOverride_BackwardCompat = 2
+}

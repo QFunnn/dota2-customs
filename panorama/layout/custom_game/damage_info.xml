@@ -1,0 +1,70 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/damage_info.vjs_c" />
+	</scripts>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/custom_game/damage_info.vcss_c" />
+	</styles>
+	<Panel hittest="false" style="width:100%;height:100%;">
+		<Panel id="DamageBlockWithButton" class="DamageBlockWithButton DamageBlockWithButton_closed panel_hidden damage_close">
+			<Panel class="DamageInfoBar" id="DamageInfoBar" onactivate="Game.DamageToggle(2);">
+				<Panel class="ButtonCloseDamage">
+					<Panel class="ButtonCloseDamageIcon" />
+				</Panel>
+				<Panel class="AllDamageInfo">
+					<Panel id="AllDamagePhys" class="DamagePhys">
+						<Label class="AllDamagePercent" id="AllDamagePhysPercent" text="0%" />
+					</Panel>
+					<Panel id="AllDamageMagical" class="DamageMagical">
+						<Label class="AllDamagePercent" id="AllDamageMagicalPercent" text="0%" />
+					</Panel>
+					<Panel id="AllDamagePure" class="DamagePure">
+						<Label class="AllDamagePercent" id="AllDamagePurePercent" text="0%" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="DamageRoundHistory" class="DamageRoundHistory">
+				<Panel class="DamageRoundBackground" />
+				<Panel id="TopPanel" class="TopPanel" hittest="true" onactivate="ChangeViewType(&apos;DamageAbilitiesHealing&apos;, &apos;DamageAbilitiesHealingButton&apos;);">
+					<Panel id="BottomPanelCheckbox" class="BottomPanelCheckbox_inactive" />
+					<Label id="TempHeader" class="TempHeader" text="#CurrentStatRecent" />
+				</Panel>
+				<Panel class="DamageStatsParent" id="DamageAbilities">
+					<Panel class="DamageStatsConent panel_hidden" id="DamageAbilities_Total" />
+					<Panel class="DamageStatsConent" id="DamageAbilities_Recent" />
+				</Panel>
+				<Panel class="DamageStatsParent" id="DamageAbilitiesIncome">
+					<Panel class="DamageStatsConent panel_hidden" id="DamageAbilitiesIncome_Total" />
+					<Panel class="DamageStatsConent" id="DamageAbilitiesIncome_Recent" />
+				</Panel>
+				<Panel class="DamageStatsParent" id="DamageAbilitiesHealing">
+					<Panel class="DamageStatsConent panel_hidden" id="DamageAbilitiesHealing_Total" />
+					<Panel class="DamageStatsConent" id="DamageAbilitiesHealing_Recent" />
+				</Panel>
+				<Panel id="Damage_MenuButtons" class="Damage_MenuButtons">
+					<Panel class="MenuButton button_select" id="DamageAbilitiesIncomeButton" onactivate="DamageToggleButton(&apos;DamageAbilitiesIncome&apos;, &apos;DamageAbilitiesIncomeButton&apos;);">
+						<Label class="MenuButtonLabel" text="#DamageAbilitiesIncome" />
+					</Panel>
+					<Panel class="MenuButton" id="DamageAbilitiesButton" onactivate="DamageToggleButton(&apos;DamageAbilities&apos;, &apos;DamageAbilitiesButton&apos;);">
+						<Label class="MenuButtonLabel" text="#DamageAbilities" />
+					</Panel>
+					<Panel class="MenuButton" id="DamageAbilitiesHealingButton" onactivate="DamageToggleButton(&apos;DamageAbilitiesHealing&apos;, &apos;DamageAbilitiesHealingButton&apos;);">
+						<Label class="MenuButtonLabel" text="#DamageAbilitiesHealing" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

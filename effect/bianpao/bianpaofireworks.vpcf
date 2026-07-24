@@ -1,0 +1,185 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf26:version{26288658-411e-4f14-b698-2e1e5d00dec6} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 8
+	m_flConstantRadius = 3.0
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_ModelList = 
+			[
+				{
+					m_model = resource:"models/particle/firecrackers.vmdl"
+				},
+			]
+			m_bAnimated = true
+			m_nLOD = 1
+			m_bForceLoopingAnimation = true
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.08
+			m_Gravity = [ 0.0, 0.0, -900.0 ]
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_flEndTime = 999999.0
+			m_Rate = -6.0
+			m_nField = "16"
+			m_nOpEndCapState = 1
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flBias = 0.125
+			m_flEndScale = 0.0
+			m_flEndTime = 5.0
+		},
+		{
+			_class = "C_OP_RotateVector"
+			m_vecRotAxisMin = [ -1.0, -1.0, -1.0 ]
+			m_vecRotAxisMax = [ 1.0, 1.0, 1.0 ]
+			m_flRotRateMin = -800.0
+			m_flRotRateMax = 800.0
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMin = 2.0
+			m_fLifetimeMax = 3.0
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+		},
+		{
+			_class = "C_INIT_CreateWithinSphere"
+			m_LocalCoordinateSystemSpeedMax = [ 0.0, 0.0, 500.0 ]
+			m_LocalCoordinateSystemSpeedMin = [ 0.0, 0.0, 250.0 ]
+			m_fSpeedMax = 250.0
+			m_vecDistanceBias = [ 1.0, 2.0, 0.5 ]
+			m_fRadiusMax = 24.0
+			m_fRadiusMin = 16.0
+			m_bLocalCoords = true
+			m_vecDistanceBiasAbs = [ 1.0, 0.0, 0.0 ]
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+			m_nFieldOutput = "12"
+		},
+		{
+			_class = "C_INIT_RandomColor"
+		},
+		{
+			_class = "C_INIT_RemapCPtoVector"
+			m_vOutputMax = [ 1.0, 1.0, 1.0 ]
+			m_nFieldOutput = "6"
+			m_vInputMax = [ 255.0, 255.0, 255.0 ]
+			m_nCPInput = 15
+			m_vOutputMin = [ 0.1, 0.1, 0.1 ]
+			m_flOpStrength = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 16
+				m_nVectorComponent = 0
+				m_nMapType = "PF_MAP_TYPE_REMAP"
+				m_flInput0 = 0.0
+				m_flInput1 = 1.0
+				m_flOutput0 = 0.0
+				m_flOutput1 = 1.0
+			}
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMax = [ 0.0, 0.0, 32.0 ]
+			m_OffsetMin = [ 0.0, 0.0, 24.0 ]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_NoiseEmitter"
+			m_flNoiseScale = 1.0
+			m_flOutputMax = 1.0
+		},
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 1
+				m_nVectorComponent = 0
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 2.5
+			}
+		},
+	]
+	m_Constraints = 
+	[
+		{
+			_class = "C_OP_WorldTraceConstraint"
+			m_CollisionGroupName = "DEBRIS"
+			m_flSlideAmount = 0.16
+			m_flBounceAmount = 0.16
+			m_bKillonContact = true
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"effect/bianpao/bianpaofireworks_fuse_sparks.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/bianpao/bianpaofireworks_b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/bianpao/bianpaofireworks_special.vpcf"
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_RENDERORIGIN_FOLLOW"
+					m_entityName = "parent"
+					m_vecOffset = [ null, null, null ]
+					m_angOffset = [ null, null, null ]
+				},
+			]
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_RemapSpeedtoCP"
+			m_flInputMin = 32.0
+			m_flInputMax = 150.0
+			m_nOutControlPointNumber = 1
+		},
+	]
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 5
+}

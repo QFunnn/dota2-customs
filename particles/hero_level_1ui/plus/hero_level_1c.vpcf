@@ -1,0 +1,82 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf54:version{326b1595-45e8-4004-aa5a-3e08655ff51f} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 6
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/heroes/pedestal/pedestal_2_ground.vmdl"
+				m_hitboxSetName = "default"
+			}
+		},
+	]
+	m_nMaxParticles = 0
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/hero_level_1ui/plus/hero_level_1c3.vpcf"
+			m_flDelay = 1.0
+		},
+		{
+			m_ChildRef = resource:"particles/hero_level_1ui/plus/hero_level_1c0.vpcf"
+			m_flDelay = 1.0
+		},
+		{
+			m_ChildRef = resource:"particles/hero_level_1ui/plus/hero_level_1c5.vpcf"
+			m_flDelay = 1.8
+		},
+		{
+			m_ChildRef = resource:"particles/hero_level_1ui/plus/hero_level_1c6.vpcf"
+			m_flDelay = 0.5
+		},
+		{
+			m_ChildRef = resource:"particles/hero_level_1prime/hero_level_1c1.vpcf"
+			m_flDelay = 1.0
+		},
+		{
+			m_ChildRef = resource:"particles/hero_level_1ui/plus/hero_level_1c4.vpcf"
+			m_flDelay = 1.0
+		},
+		{
+			m_ChildRef = resource:"particles/hero_level_1ui/plus/hero_level_1c2.vpcf"
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetSingleControlPointPosition"
+			m_nCP1 = 2
+			m_vecCP1Pos = [ 0.0, 0.0, 0.0 ]
+		},
+	]
+	m_nBehaviorVersion = 12
+}

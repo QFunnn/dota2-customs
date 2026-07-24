@@ -1,0 +1,702 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+#TestButton
+{
+	width: 100px;
+	height: 100px;
+	background-color: gray;
+	vertical-align: center;
+	horizontal-align: center;
+	opacity: 1;
+	transform: translateX( 0px );
+}
+
+.ScoreboardClosed
+{
+	transform: translateX( -160px );
+	opacity: 0;
+}
+
+#CustomScoreboard
+{
+	width: 100%;
+	height: 100%;
+	margin-top: 124px;
+	flow-children: right;
+}
+
+#Background
+{
+	min-height: 390px;
+	padding-bottom: 12px;
+	background-image: url("s2r://panorama/images/hud/reborn/bg_scoreboard_psd.vtex");
+	background-size: cover;
+	background-color: #000000da;
+	box-shadow: #000000f5 0px 0px 8px 0px;
+}
+
+.ScoreboardHeader
+{
+	height: 32px;
+	vertical-align: top;
+	flow-children: right;
+}
+
+.ScoreLabel
+{
+	color: white;
+	font-size: 30px;
+	font-weight: bold;
+	vertical-align: bottom;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 6px 1.5 #e43a0bab;
+}
+
+.ScoreColumn
+{
+	width: 48px;
+}
+
+.TeamLabel
+{
+	color: lightgray;
+	font-family: 18px;
+	font-weight: bold;
+	padding-top: 4px;
+	vertical-align: bottom;
+	letter-spacing: 1.5px;
+	width: 288px;
+	font-family: titleFont;
+	text-shadow: 0px 0px 6px 2.0 #000000a5;
+	text-transform: uppercase;
+}
+
+#HeroColumn
+{
+	height: 100%;
+}
+
+.NameColumn
+{
+	width: 288px;
+	margin-left: 8px;
+	vertical-align: center;
+}
+
+#ProfileLink
+{
+	margin-left: 8px;
+	width: 278px;
+	z-index: 1;
+}
+
+#ProfileLink Label
+{
+	font-size: 28px;
+	letter-spacing: 1000px;
+}
+
+.SubheaderDesc
+{
+	color: #afd2e3;
+	font-size: 15px;
+	font-weight: bold;
+	margin-top: 0px;
+	margin-bottom: 2px;
+	vertical-align: bottom;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.LevelColumn
+{
+	width: 48px;
+	margin-left: 2px;
+}
+
+.KDAColumn
+{
+	width: 35px;
+}
+
+.KillsColumn
+{
+	margin-left: 13px;
+}
+
+.EpicSpheresColumn
+{
+	color: #812aa6;
+	text-shadow: 0px 0px 6px 2.0 #652a7ea5;
+}
+
+.RareSpheresColumn
+{
+	color: #487fe0;
+	text-shadow: 0px 0px 6px 2.0 #1160e9a5;
+}
+
+.TipsColumn
+{
+	margin-left: 21px;
+	margin-right: 21px;
+	visibility: collapse;
+}
+
+.MuteColumn
+{
+	margin-left: 18px;
+	visibility: collapse;
+}
+
+.SoloMode .MuteColumn,.SoloMode .TipsColumn
+{
+	visibility: visible;
+}
+
+.ChatColumn
+{
+	margin-left: 64px;
+	visibility: visible;
+}
+
+.SoloMode .ChatColumn
+{
+	visibility: collapse;
+}
+
+.TeamContainer
+{
+	margin-top: 2px;
+	margin-bottom: 1px;
+	border-top: 1px solid #ffffff05;
+	border-bottom: 1px solid #ffffff03;
+}
+
+.TeamContainer.LocalTeam
+{
+	border-top: 1px solid #5C616A;
+	border-bottom: 1px solid #232323;
+}
+
+.ScoreboardPlayerContainer.LocalPlayer
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #373C3B ), color-stop( 0.4, #505959 ), color-stop( 0.6, #505959 ), to( #2F3535 ) );
+}
+
+.ScoreboardPlayerContainer
+{
+	height: 54px;
+	background-color: #111920bb;
+}
+
+.PlayerScoreColumn
+{
+	height: 100%;
+	flow-children: right;
+}
+
+#PlayerColor
+{
+	width: 4px;
+	height: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/scoreboard_playerslot_vignette_psd.vtex");
+	background-size: 92% 100%;
+	background-repeat: no-repeat;
+}
+
+.RealHeroImage
+{
+	width: 100%;
+	height: 100%;
+	vertical-align: center;
+}
+
+.ScoreboardLegendary
+{
+	height: 38px;
+	width: 38px;
+	vertical-align: center;
+	margin-left: 6px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #121212 ), to( #232323 ) );
+	background-size: 100%;
+	border: 1.5px solid #e17e1e;
+	border-radius: 4px;
+}
+
+.ScoreboardHeroImage
+{
+	width: 67px;
+	height: 38px;
+	vertical-align: center;
+	border: 1px solid black;
+}
+
+.HeroImage
+{
+	width: 100%;
+	height: 100%;
+}
+
+#PlayerAndHeroNameContainer
+{
+	width: 170px;
+	height: 100%;
+	margin-left: 8px;
+	flow-children: down;
+	vertical-align: middle;
+}
+
+#PlayerNameRow
+{
+	width: 100%;
+	height: 60%;
+}
+
+.PlayerNameLabel
+{
+	color: white;
+	font-weight: bold;
+	font-size: 20px;
+	height: 100%;
+	text-overflow: ellipsis;
+}
+
+.HeroNameLabel
+{
+	color: #a9a6aa;
+	font-size: 14px;
+	font-weight: thin;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	margin-top: -2px;
+}
+
+#ScoreboardXP
+{
+	vertical-align: center;
+	horizontal-align: center;
+	margin-bottom: 2px;
+	margin-top: -4px;
+}
+
+.PlayerLevelColumn
+{
+	margin-left: 7.5px;
+	margin-right: 7.5px;
+}
+
+.PlayerLevelCircle
+{
+	width: 31px;
+	height: 31px;
+	align: center center;
+	border-radius: 50%;
+	background-color: #121212;
+	box-shadow: #E7D291 0px 0px 8px -4px;
+}
+
+.PlayerLevelColumn Label
+{
+	font-weight: bold;
+	color: #E7D291;
+	font-family: monospaceNumbersFont;
+	text-shadow: 0px 0px 3px 2 #EC780E24;
+	font-size: 18px;
+	opacity-mask: url("s2r://panorama/images/masks/vertical_gradient_small_psd.vtex").6;
+}
+
+.PlayerKillsColumn
+{
+	margin-left: 13px;
+	background-color: gradient( linear, 100% 0%, 0% 0%, from( #ffffff00 ), color-stop( 0.1, #00000033), color-stop( 0.9, #00000033), to( #ffffff00 ) );
+}
+
+.PlayerKillsColumn Label
+{
+	font-weight: bold;
+}
+
+.PlayerKDAColumn
+{
+	width: 35px;
+	height: 100%;
+}
+
+.PlayerKDAColumn .LocalPlayer Label
+{
+	color: white;
+}
+
+.PlayerKDAColumn Label
+{
+	width: 100%;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.EpicLabel
+{
+	text-shadow: 0px 0px 6px 1.5 #994bddab;
+	color: #ddd;
+}
+
+.RareLabel
+{
+	font-weight: bold;
+	color: #ddd;
+	text-shadow: 0px 0px 6px 1.5 #5aa0e2ab;
+}
+
+.PlayerEpicSpheresColumn
+{
+	margin-left: 10px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #30333530 ), to( #9842e125 ) );
+	box-shadow: #000000f5 0px 0px 8px 0px;
+	border-right: 1px solid #222;
+	border-left: 1px solid #222;
+}
+
+.PlayerRareSpheresColumn
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #30333530 ), to( #5299c725 ) );
+	box-shadow: #000000f5 0px 0px 8px 0px;
+	border-right: 1px solid #222;
+}
+
+.PlayerEpicSpheresColumn Label
+{
+	font-weight: bold;
+}
+
+.PlayerTipsColumn
+{
+	height: 100%;
+	width: 100px;
+	margin-left: 10px;
+}
+
+.PlayerTipsColumn #PlayerTipButton
+{
+	vertical-align: middle;
+	margin-left: 12px;
+	margin-right: 12px;
+	margin-top: 0px;
+}
+
+.Team_Player.LocalPlayer #PlayerTipsColumn #PlayerTipButton
+{
+	opacity: 0.0;
+}
+
+.PlayerMuteColumn,.PlayerReportColumn
+{
+	height: 100%;
+	width: 55px;
+}
+
+.PlayerReportColumn
+{
+	visibility: collapse;
+}
+
+.SoloMode .PlayerReportColumn
+{
+	visibility: visible;
+}
+
+.MuteColumnTint,.ReportColumnTint
+{
+	width: 100%;
+	height: 100%;
+	background-color: #0006;
+}
+
+#PlayerMuteButton,#PlayerReportButton
+{
+	width: 28px;
+	height: 28px;
+	vertical-align: center;
+	horizontal-align: center;
+	opacity: 1.0;
+}
+
+.NoReports #PlayerReportButton
+{
+	brightness: 0.5;
+	saturation: 0.9;
+}
+
+.SoloMode #PlayerMuteButton
+{
+	margin-left: 6px;
+}
+
+#PlayerReportButton
+{
+	margin-right: 6px;
+}
+
+#PlayerMuteButton:hover,#PlayerReportButton:hover
+{
+	opacity: 1.25;
+}
+
+#PlayerReportButton:active
+{
+	opacity: 1.5;
+}
+
+.Team_Player.LocalPlayer #PlayerMuteColumn #PlayerMuteButton,.Team_Player.LocalPlayer #PlayerReportColumn #PlayerReportButton
+{
+	opacity: 0.0;
+}
+
+#MuteIcon
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/icon_text_voice_ok_psd.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#MuteIcon.Muted
+{
+	background-image: url("s2r://panorama/images/hud/reborn/icon_text_voice_muted_psd.vtex");
+}
+
+#ReportIcon
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from ( #d12525 ), to ( #720606 ) );
+	box-shadow: #00000090 0px 0px 4px 0px ;
+	background-image: url("s2r://panorama/images/conduct/report_flag_basic_png.vtex");
+	background-size: 11px 14px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.NoReports #ReportIcon
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from ( rgb(159, 86, 86) ), to ( #681212 ) );
+	wash-color: #aaa;
+}
+
+#EpicOrbsColumn
+{
+	width: 23px;
+	height: 23px;
+	align: center center;
+	margin-left: 17px;
+	margin-top: 5px;
+	background-size: contain;
+	background-image: url("s2r://panorama/images/custom_game/purple-logo_png.vtex");
+}
+
+#RareOrbsColumn
+{
+	width: 24px;
+	height: 24px;
+	align: center center;
+	margin-left: 10px;
+	margin-top: 5px;
+	background-size: contain;
+	background-image: url("s2r://panorama/images/custom_game/blue-logo_png.vtex");
+}
+
+.panel_hidden
+{
+	opacity: 0;
+}
+
+.hero_lost
+{
+	wash-color: #aaaaaa;
+	saturation: 0.1;
+}
+
+#ReportPanel
+{
+	margin-left: 20px;
+	margin-top: 90px;
+	background-color: rgba(10, 10, 10, 0.99);
+	border: 2px solid #3a3632;
+	box-shadow: inset #000000b0 -2px 0px 15px 0px;
+	visibility: collapse;
+}
+
+#ReportPanelBlur
+{
+	min-width: 450px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #768e8d22 ), to( #768e8d00 ) );
+	flow-children: down;
+}
+
+#ReportPanel.Visible
+{
+	visibility: visible;
+}
+
+#ReportHeader
+{
+	height: 58px;
+	width: 100%;
+	padding: 0px 15px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #070022 ), to( #02003540 ) );
+	border-bottom: 2px solid #666;
+	border-radius: 1px;
+	box-shadow: fill #000000 0px 0px 25px -2px;
+	z-index: 99999;
+}
+
+#ReportHeader Label
+{
+	color: gradient( linear, 0% 100%, 0% 0%, from( #aaa ), to( #ffffff ) );
+	font-weight: bold;
+	text-shadow: 0px 0px 5px 3.0 black;
+	height: 30px;
+	font-size: 22px;
+	font-weight: bold;
+	font-family: Radiance;
+	align: center center;
+	text-overflow: shrink;
+}
+
+#MainReportList
+{
+	height: 90px;
+	flow-children: right;
+	padding: 15px;
+}
+
+#FistHeroReport
+{
+	vertical-align: center;
+}
+
+#PlusDelimiter
+{
+	margin: 0px 12px;
+	color: white;
+	font-weight: semi-bold;
+	font-size: 42px;
+	margin-bottom: 5px;
+	vertical-align: center;
+}
+
+#HeroList
+{
+	flow-children: right;
+	vertical-align: center;
+	height: 55px;
+}
+
+.HeroReport
+{
+	width: 86px;
+	height: 50px;
+	vertical-align: center;
+	border: 1px solid #aaa;
+	margin: 0px 6px;
+}
+
+.HeroReportList
+{
+	transition-property: brightness, pre-transform-scale2d;
+	transition-duration: 0.1s;
+}
+
+.HeroReportList:hover
+{
+	brightness: 2;
+	pre-transform-scale2d: 1.04;
+}
+
+.HeroReport.Unselected
+{
+	wash-color: #555;
+	saturation: 0.5;
+}
+
+.HeroReport.Selected
+{
+	border: 2px solid #ff000066;
+}
+
+#ReportHeroImage
+{
+	width: 100%;
+	height: 100%;
+}
+
+#ReportButtonContainer
+{
+	width: 100%;
+	padding-bottom: 15px;
+	padding-top: 5px;
+}
+
+#SendReportButton
+{
+	width: 200px;
+	height: 40px;
+	align: center center;
+	border: 2px solid #3a3632;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #111111 ), to( #555555 ) );
+	transition-property: opacity, saturation, brightness;
+	transition-duration: 0.12s;
+	brightness: 0.5;
+	saturation: 0.8;
+	opacity: 0.5;
+}
+
+.ReadyToReportHero #SendReportButton
+{
+	brightness: 1.0;
+	saturation: 1.0;
+	opacity: 1.0;
+}
+
+.ReadyToReportHero #SendReportButton:hover
+{
+	brightness: 2;
+	pre-transform-scale2d: 1.02;
+}
+
+.ReadyToReportHero #SendReportButton:active
+{
+	brightness: 1.5;
+}
+
+#SendReportButton Label
+{
+	color: #ddd;
+	font-size: 22px;
+	text-align: center;
+	vertical-align: center;
+	horizontal-align: center;
+	font-weight: semi-bold;
+	width: 60%;
+	font-family: Radiance;
+	text-shadow: 5px 3px 13px black;
+}
+
+.ReadyToReportHero #SendReportButton Label
+{
+	color: white;
+}

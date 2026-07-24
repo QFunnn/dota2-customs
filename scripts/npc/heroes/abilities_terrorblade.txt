@@ -1,0 +1,302 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+
+"DOTAAbilities"
+{
+
+"Version"		"1"
+
+
+
+
+
+
+"custom_terrorblade_reflection"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/terrorblade/custom_terrorblade_reflection"									// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+	"AbilityTextureName"			"terrorblade_reflection"
+	"FightRecapLevel"				"1"
+	"AbilitySound"					"Hero_Terrorblade.Reflection"
+	"HasShardUpgrade"				"1"
+
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"12 11 10 9"
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastPoint"				"0.3"
+	"AbilityCastRange"				"700"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"60 65 70 75"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"illusion_duration"			"5"
+		"illusion_outgoing_damage"	"-70 -55 -40 -25"
+		"illusion_outgoing_tooltip"	"30 45 60 75"
+		"move_slow"					"15 20 25 30"
+		"range"						"400"
+		"attack_slow"				"15 20 25 30"
+		"shard_leash"				"3"
+	}
+	"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+}
+
+
+
+
+"custom_terrorblade_conjure_image"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/terrorblade/custom_terrorblade_conjure_image"
+	"AbilityTextureName"			"terrorblade_conjure_image"																	// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"AbilitySound"					"Hero_Terrorblade.ConjureImage"
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastPoint"				"0.15"
+
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"12"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"55 65 75 85"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"illusion_duration"					"22.0"
+		"illusion_outgoing_damage"			"-85 -80 -75 -70"	
+		"illusion_outgoing_tooltip"			"15 20 25 30"
+		"illusion_incoming_damage"			"150.0"
+		"illusion_incoming_damage_total_tooltip"			"250.0"
+		"illusion_max"						"2"
+	
+	}
+	"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
+}
+
+
+
+"custom_terrorblade_metamorphosis"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/terrorblade/custom_terrorblade_metamorphosis"
+	"AbilityTextureName"			"terrorblade_metamorphosis"													// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+	"LinkedAbility"					"terrorblade_demon_zeal_custom"
+	"AbilitySound"					"Hero_Terrorblade.Metamorphosis"
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastPoint"				"0.0"
+
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"50 45 40 35"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"100"
+
+	// Special	
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"duration"				"18"
+		"transformation_time"	"0.35"
+		"base_attack_time"		"1.5"
+		"bonus_range"			"300 350 400 450"
+		"tooltip_attack_range"			"450 500 550 600"
+		"bonus_damage"			"20 40 60 80"
+		"metamorph_aura_tooltip"				"1200"
+		
+	}
+	"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+}
+
+
+"custom_terrorblade_terror_wave"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/terrorblade/custom_terrorblade_metamorphosis"
+	"AbilityTextureName"			"terrorblade_terror_wave"																				// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"MaxLevel"						"1"
+	"FightRecapLevel"				"1"
+	"IsGrantedByScepter"			"1"
+	"HasScepterUpgrade"				"1"
+	"AbilityCastPoint"				"0.3"
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+	
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"22"
+
+	"AbilityCastRange"				"1000"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"75"
+	
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"fear_duration"		"2"
+		"scepter_radius"				"1600"
+		"scepter_speed"				"1000"
+		"scepter_spawn_delay"		"0.3"
+		"range"				"1000"
+		"radius"			"1000"
+		"blink_radius"		"150"
+		"damage"			"200"
+	}
+}
+
+
+
+
+
+
+
+"custom_terrorblade_sunder"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/terrorblade/custom_terrorblade_sunder"
+	"AbilityTextureName"			"terrorblade_sunder"								// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CUSTOM"
+	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+	"FightRecapLevel"				"2"
+	"AbilitySound"					"Hero_Terrorblade.Sunder.Target"
+
+
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"40.0 35.0 30.0"
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"475"
+	"AbilityCastPoint"				"0.35"
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"100 75 50"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"hit_point_minimum_pct"		"35 30 25"
+		
+	}
+}
+
+
+
+
+"terrorblade_demon_zeal_custom"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/terrorblade/custom_terrorblade_metamorphosis"
+	"AbilityTextureName"			"terrorblade_demon_zeal"													// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+	"MaxLevel"						"1"
+	"FightRecapLevel"				"1"
+
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+	"AbilityCastGestureSlot"		"DEFAULT"
+
+	
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"30"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"0"
+	
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+
+	}
+}
+
+
+
+
+"terrorblade_innate_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/terrorblade/terrorblade_innate_custom"  
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "Innate"                        "1"
+
+    "AbilityValues"
+    {
+
+    	"radius"		"1200"
+    	"damage_inc"	"50"
+    	"damage_reduce"		"0"
+    }
+}
+
+
+
+
+
+
+}

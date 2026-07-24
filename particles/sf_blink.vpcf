@@ -1,0 +1,221 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf62:version{c135a90d-ef52-47fa-a9b8-83a382a77471} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 25
+	m_nBehaviorVersion = 4
+	m_nFirstMultipleOverride_BackwardCompat = 5
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 1.0, 1.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 1.0, 1.0 ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmissionDuration = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.05
+			}
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 500.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.5
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 106, 17, 1 ]
+			m_ColorMax = [ 217, 68, 0 ]
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 40.0
+				m_flRandomMax = 50.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			_class = "C_INIT_CreateSequentialPath"
+			m_flNumToAssign = 25.0
+			m_PathParams = 
+			{
+				m_flMidPoint = 0.15
+				m_nBulgeControl = 1
+				m_flBulge = 0.15
+				m_nEndControlPointNumber = 1
+			}
+		},
+		{
+			m_bDisableOperator = true
+			_class = "C_INIT_InitVec"
+			m_InputValue = 
+			{
+				m_nType = "PVEC_TYPE_RANDOM_UNIFORM"
+				m_vRandomMin = [ -1.0, -1.0, -1.0 ]
+				m_vRandomMax = [ 1.0, 1.0, 1.0 ]
+			}
+			m_nOutputField = 21
+		},
+		{
+			_class = "C_INIT_DistanceToCPInit"
+			m_nFieldOutput = 7
+			m_flInputMax = 32.0
+			m_flInputMin = 2.0
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 0.0, 0.0, 96.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 96.0 ]
+		},
+		{
+			_class = "C_INIT_RemapScalarToVector"
+			m_bLocalCoords = false
+			m_vecOutputMax = [ 4.0, 0.0, 0.1 ]
+			m_vecOutputMin = [ 0.0, 0.0, 1.0 ]
+			m_nFieldOutput = 21
+			m_flInputMax = 0.05
+			m_bDisableOperator = true
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_FadeOut"
+			m_flFadeOutTimeMax = 2.0
+			m_flFadeOutTimeMin = 2.0
+		},
+		{
+			_class = "C_OP_Decay"
+			m_flOpEndFadeInTime = 3.0
+			m_flOpStartFadeInTime = 3.0
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade = [ 235, 0, 0 ]
+		},
+		{
+			_class = "C_OP_PercentageBetweenTransforms"
+			m_flOpStartFadeOutTime = 0.1
+			m_flOpEndFadeOutTime = 0.1
+			m_flOutputMin = 0.5
+			m_flOutputMax = 4.0
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+			m_TransformEnd = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+		{
+			_class = "C_OP_PercentageBetweenTransforms"
+			m_flInputMin = 0.5
+			m_nFieldOutput = 16
+			m_flOutputMin = 1.0
+			m_flOutputMax = 0.0
+			m_TransformEnd = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+		{
+			_class = "C_OP_RampScalarSplineSimple"
+			m_bEaseOut = true
+		},
+		{
+			_class = "C_OP_OscillateVector"
+			m_RateMax = [ 1.0, 1.0, 1.0 ]
+			m_FrequencyMin = [ 0.5, 0.5, 0.5 ]
+			m_nField = 21
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_VectorNoise"
+			m_nFieldOutput = 21
+			m_vecOutputMin = [ -2.0, -2.0, -2.0 ]
+			m_vecOutputMax = [ 2.0, 2.0, 2.0 ]
+			m_fl4NoiseScale = 0.075
+			m_bAdditive = true
+		},
+		{
+			_class = "C_OP_ClampVector"
+			m_nFieldOutput = 21
+			m_vecOutputMin = [ -1.0, -1.0, -1.0 ]
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderRopes"
+			m_flOverbrightFactor = 4.0
+			m_flAddSelfAmount = 1.0
+			m_bSaturateColorPreAlphaBlend = false
+			m_nScaleCP2 = 1
+			m_nScaleCP1 = 0
+			m_flRadiusScale = 0.5
+			m_flTextureVWorldSize = 0.0
+			m_flScaleVSizeByControlPointDistance = 1.0
+			m_flTextureVScrollRate = -50.0
+			m_nMaxTesselation = 5
+			m_nMinTesselation = 4
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/juggernaut/arcana/beam_omni_jugg_arcana.vtex"
+					m_TextureControls = 
+					{
+						m_flFinalTextureScaleV = 
+						{
+							m_nType = "PF_TYPE_LITERAL"
+							m_flLiteralValue = -1.0
+						}
+					}
+				},
+			]
+		},
+	]
+}

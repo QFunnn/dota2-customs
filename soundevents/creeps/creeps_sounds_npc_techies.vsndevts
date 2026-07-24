@@ -1,0 +1,142 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	Hero_Techies.PreAttack = 
+	{
+		type = "dota_src1_3d"
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 75.0
+		distance_max = 1500.0
+		event_type = 1.0
+		vsnd_files = "sounds/weapons/hero/techies/preattack.vsnd"
+		vsnd_duration = 0.520635
+	}
+	Hero_Techies.Attack = 
+	{
+		type = "dota_src1_3d"
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.05
+		soundlevel = 75.0
+		distance_max = 2500.0
+		event_type = 1.0
+		vsnd_files = "sounds/weapons/hero/techies/attack.vsnd"
+		vsnd_duration = 1.06898
+	}
+	Hero_Techies.ProjectileImpact = 
+	{
+		type = "dota_src1_3d"
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 75.0
+		distance_max = 2500.0
+		limiter_on = 0.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/techies/projectile_impact01.vsnd",
+			"sounds/weapons/hero/techies/projectile_impact02.vsnd",
+		]
+		vsnd_duration = 1.858549
+	}
+	Hero_Techies.RemoteMine.Plant = 
+	{
+		type = "dota_update_default"
+		volume = 1.0
+		pitch_rand_min = -0.01
+		pitch_rand_max = 0.01
+		pitch = 1.0
+		soundlevel = 81.0
+		mixgroup = "Weapons"
+		spread_radius = 150.0
+		vsnd_files = "sounds/weapons/hero/techies/land_mine_plant.vsnd"
+		vsnd_duration = 1.365805
+	}
+	Hero_Techies.RemoteMine.Activate = 
+	{
+		type = "dota_src1_3d"
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 0.95
+		soundlevel = 78.0
+		distance_max = 2500.0
+		mixgroup = "NoDuck"
+		event_type = 1.0
+		limiter_on = 1.0
+		limiter_event_name = "Hero_Techies.RemoteMine.Activate"
+		limiter_max = 2.0
+		vsnd_files = "sounds/weapons/hero/techies/remote_mine_activate.vsnd"
+		vsnd_duration = 0.278503
+	}
+	Hero_Techies.RemoteMine.Detonate = 
+	{
+		type = "dota_update_default"
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 150.0
+		mixgroup = "NoDuck"
+		spread_radius = 600.0
+		distance_max = 15000.0
+		soundevent_layer2 = "Hero_Techies.Debris"
+		soundevent_layer2_on = 1.0
+		soundevent_layer3 = "QuickDuck.HalfSecond"
+		soundevent_layer3_on = 1.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/techies/remote_mine01.vsnd",
+			"sounds/weapons/hero/techies/remote_mine02.vsnd",
+			"sounds/weapons/hero/techies/remote_mine03.vsnd",
+			"sounds/weapons/hero/techies/remote_mine04.vsnd",
+			"sounds/weapons/hero/techies/remote_mine05.vsnd",
+		]
+		vsnd_duration = 3.160726
+	}
+	Hero_Techies.Suicide = 
+	{
+		type = "dota_update_default"
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 81.0
+		mixgroup = "NoDuck"
+		soundevent_layer2 = "Hero_Techies.Debris"
+		soundevent_layer2_on = 1.0
+		soundevent_layer3 = "QuickDuck.HalfSecond"
+		soundevent_layer3_on = 0.0
+		vsnd_files = "sounds/weapons/hero/techies/suicide.vsnd"
+		vsnd_duration = 4.004263
+	}
+	Hero_Techies.RemoteMine.Priming = 
+	{
+		type = "dota_src1_3d"
+		volume = 1.0
+		pitch = 1.0
+		soundlevel = 81.0
+		mixgroup = "Weapons"
+		distance_max = 1600.0
+		limiter_on = 1.0
+		limiter_event_name = "Hero_Techies.RemoteMine.Priming"
+		limiter_max = 2.0
+		limiter_match_entity = 0.0
+		vsnd_files = "sounds/weapons/hero/techies/land_mine_primed.vsnd"
+		vsnd_duration = 1.367982
+	}
+}

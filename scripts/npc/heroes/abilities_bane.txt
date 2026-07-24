@@ -1,0 +1,295 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+
+"Version"       "1"
+
+//=================================================================================================================
+// Ability: Bane Enfeeble
+//=================================================================================================================
+"bane_enfeeble_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/bane/bane_enfeeble_custom"   
+    "AbilityTextureName"            "bane_enfeeble"
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"
+    "AbilitySound"                  "Hero_Bane.Enfeeble"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastPoint"              "0.2"
+    "AbilityCastRange"              "800 900 1000 1100"
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "6"
+
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "110"
+
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "damage_reduction"                      "-25 -30 -35 -40"
+        "slow"                                  "-25 -30 -35 -40"
+        "duration"                              "8"
+        "enfeeble_tick_damage"                  "12 18 24 30"
+        "damage_tick_rate"                      "1"
+        "radius"                                "300"
+        "creeps"                                "50"
+    }
+}
+
+//=================================================================================================================
+// Ability: Bane Brain Sap
+//=================================================================================================================
+"bane_brain_sap_custom"
+{    
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/bane/bane_brain_sap_custom"   
+    "AbilityTextureName"            "bane_brain_sap"
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"      
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+    "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Hero_Bane.BrainSap"
+    "LinkedAbility"                 "bane_brain_sap_custom_legendary"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastPoint"              "0.2"
+    "AbilityCastRange"              "625"
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    
+    "AbilityCooldown"       "11 10 9 8"
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "110"
+    "AbilityValues"
+    {
+        "brain_sap_damage"      "100 140 180 220"      
+        "radius"                "300"    
+        "heal"                  "70"    
+    }
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_2"
+}
+
+
+"bane_brain_sap_custom_legendary"
+{    
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/bane/bane_brain_sap_custom"   
+    "AbilityTextureName"            "brain_sap_legendary"
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "FightRecapLevel"               "1"
+
+    "MaxLevel"                      "1"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastPoint"              "0"
+    "AbilityCooldown"       "0"
+
+    "AbilityValues"
+    {
+        "damage_reduce"     "90"
+        "mana"              "25"
+    }
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_2"
+}
+
+
+//=================================================================================================================
+// Bane: Nightmare
+//=================================================================================================================
+"bane_nightmare_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/bane/bane_nightmare_custom"   
+    "AbilityTextureName"            "bane_nightmare"
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_BOTH"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+    "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ALLIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    "AbilitySound"                  "Hero_Bane.Nightmare"
+    "LinkedAbility"                 "bane_nightmare_end_custom"
+    "HasShardUpgrade"               "1"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastRange"              "550 600 650 700"
+    "AbilityCastPoint"              "0.4"
+
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "120 130 140 150" 
+    "AbilityCooldown"            "12"  
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "nightmare_invuln_time"     "1.0"
+        "animation_rate"            "0.2 0.2 0.2 0.2"
+        "duration"                  "2 2.5 3 3.5"
+        "max_damage"                "100 150 200 250"
+        "shard_cast"                "-0.2"
+        "shard_invun"               "0.5"
+        "shard_cd"                  "-35"
+    }
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_3"
+}
+
+"bane_nightmare_custom_legendary"
+{    
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/bane/bane_nightmare_custom"   
+    "AbilityTextureName"            "nightmare_legendary"
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+    "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS | DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+    "FightRecapLevel"               "1"
+
+    "MaxLevel"                      "1"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastPoint"              "0.3"
+    "AbilityCooldown"       "0"
+    "AbilityCastRange"              "800"
+
+    "AbilityValues"
+    {
+        "start_duration"        "0.4"
+        "end_duration"          "0.4"
+        "duration"              "5"
+        "effect_duration"       "15"
+        "damage"                "200"
+    }
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
+}
+
+
+//=================================================================================================================
+// Bane: Nightmare Wake Up
+//=================================================================================================================
+"bane_nightmare_end_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/bane/bane_nightmare_custom"   
+    "AbilityTextureName"            "bane_nightmare_end"
+    "LinkedAbility"                 "bane_nightmare_custom_legendary"
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+    "MaxLevel"                      "1"
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_5"
+}
+
+
+//=================================================================================================================
+// Ability: Bane Fiend's Grip
+//=================================================================================================================
+"bane_fiends_grip_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/bane/bane_fiends_grip_custom"   
+    "AbilityTextureName"            "bane_fiends_grip"
+
+    "AbilityType"                   "ABILITY_TYPE_ULTIMATE"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES_STRONG"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"  
+    "FightRecapLevel"               "2"
+    "AbilitySound"                  "Hero_Bane.FiendsGrip"
+
+    "HasScepterUpgrade"         "1"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastRange"              "625"
+    "AbilityCastPoint"              "0.2"
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_4"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "150 200 250"   
+    "AbilityCooldown"                   "38 34 30"  
+    "AbilityChannelTime"            "3"       
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "fiend_grip_ticks"      "6"
+        "fiend_grip_mana_drain"         "6 7 8"
+        "fiend_grip_damage"              "60 90 120"
+        "scepter_range"                 "100"
+        "scepter_duration"              "1"
+        "scepter_move"                  "550"
+    }
+}
+
+
+
+"bane_innate_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/bane/bane_innate_custom"  
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "MaxLevel"                      "1"
+    "Innate"                        "1"
+
+    "AbilityValues"
+    {
+        "damage"        "60"
+        "stats"         "20"
+        "max"           "12"
+        "duration"      "10"
+    }
+}
+
+
+
+}

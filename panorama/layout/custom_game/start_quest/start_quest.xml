@@ -1,0 +1,45 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/start_quest/start_quest.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/start_quest/start_quest.vjs_c" />
+	</scripts>
+	<Panel class="StartQuest" hittest="false">
+		<Panel id="StartQuestPointer" class="panel_hidden">
+			<Panel id="StartQuestPointerArrow" />
+			<Panel id="StartQuestPointerBlock">
+				<Label id="StartQuestPointerBlockText" />
+			</Panel>
+		</Panel>
+		<Panel id="StartQuestMain" hittest="false">
+			<Panel id="CurrentQuests" class="panel_hidden" hittest="true">
+				<Panel class="CurrentQuestsHeader" hittest="true" onactivate="ToggleShowQuests()">
+					<Panel id="CurrentQuestsHeaderButton" class="CurrentQuestsHeaderButton_closed" />
+					<Label id="CurrentQuestsHeaderText" text="#CurrentQuestsHeader" />
+				</Panel>
+				<Panel id="CurrentQuestsContent" class="panel_hidden" />
+				<Panel id="CurrentQuestsCompleted" class="panel_hidden" />
+			</Panel>
+			<Panel id="StartQuestAlert" class="panel_hidden">
+				<Panel class="StartQuest_background" />
+				<Panel id="StartQuestAlertClose" hittest="true">
+					<Panel id="StartQuestCloseButton" class="StartQuestCloseButton" hittest="true" onactivate="Game.EmitSound(&apos;UI.Click&apos;); HideQuestAlert();" />
+				</Panel>
+				<Panel id="StartQuestAlertIcons" hittest="true" />
+				<Panel id="StartQuestAlertContent" hittest="true" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

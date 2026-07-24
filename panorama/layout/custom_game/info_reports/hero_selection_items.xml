@@ -1,0 +1,147 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/info_reports/info_reports.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/items_chest.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/info_reports/configs/main_settings.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/configs/items_heroes_info.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/player_data.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/info_reports.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/items_heroes.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/items_cosmetics.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/shards_updater.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/buy_windows.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/items_chest.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/init_selection.vjs_c" />
+	</scripts>
+	<Panel class="HeroSelectionItemsPreviewParent panel_hidden_right_items" hittest="false">
+		<Panel class="HeroSelectionTopBar">
+			<Panel class="HeroSelectionItemsModeSwitch">
+				<Panel class="HeroSelectionItemsModeButton HeroSelectionItemsModeButtonActive" id="HeroSelectionItemsModeHero" onactivate="SetHeroSelectionItemsMode(&apos;hero&apos;);">
+					<Label text="#hero_selection_items_hero" />
+				</Panel>
+				<Panel class="HeroSelectionItemsModeButton" id="HeroSelectionItemsModeEffects" onactivate="SetHeroSelectionItemsMode(&apos;effects&apos;);">
+					<Label text="#Effects" />
+				</Panel>
+			</Panel>
+			<Panel class="HeroSelectionChestInfo" id="HeroSelectionChestInfo">
+				<Label class="HeroSelectionChestInfoLabel" id="HeroSelectionChestInfoLabel" text="" />
+				<Panel class="HeroSelectionChestOpenButton" id="HeroSelectionChestOpenButton" visible="false" onactivate="OpenSelectionChest();">
+					<Label text="#chest_pair_open_button" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="HeroSelectionItemsPreview" id="HeroSelectionItemsPreview">
+			<Panel class="shop_window_show_selection" id="window_shop">
+				<Panel class="shop_window_main">
+					<Panel class="HeroListItems" id="HeroListItemsSelection" />
+					<Panel class="CategoryEffectsSelection" id="CategoryEffectsSelection" />
+				</Panel>
+				<Panel class="shop_window_blur_hidden" id="shop_window_blur_selected_set" hittest="true" />
+				<Panel class="shop_window_blur_hidden" id="shop_window_blur" hittest="true" />
+				<Panel class="ChestHudMainPanel" id="ChestHudMainPanel">
+					<Panel class="DropItemPanel" id="DropItemPanel">
+						<DOTAParticleScenePanel id="DropEffect" class="DropEffect" particleName="particles/ui/ui_generic_rays.vpcf" renderdeferred="true" particleonly="false" startActive="true" cameraOrigin="160 0 0" lookAt="0 0 0" fov="80" />
+						<DOTAParticleScenePanel id="DropEffect_top" class="DropEffect_top" particleName="particles/ui/ui_godrays_soft_glow.vpcf" renderdeferred="true" particleonly="false" startActive="true" cameraOrigin="160 0 0" lookAt="0 0 0" fov="80" />
+						<DOTAParticleScenePanel id="DropEffect_bottom" class="DropEffect_bottom" particleName="particles/ui/ui_godrays_soft_glow.vpcf" renderdeferred="true" particleonly="false" startActive="true" cameraOrigin="160 0 0" lookAt="0 0 0" fov="80" />
+						<Panel class="DropItemContent">
+							<Label class="ItemDropName" id="ItemDropName" text="" />
+							<Panel class="ItemDropIcon" id="ItemDropIcon" />
+							<Panel class="DropButtons">
+								<Panel class="ItemDropClaimButton" id="ItemDropClaimButton">
+									<Label class="ItemDropClaimButtonLabel" text="#claim_reward" />
+								</Panel>
+								<Panel class="ItemDropRerollButton" id="ItemDropRerollButton">
+									<Label class="ItemDropClaimButtonLabel" text="#reroll_reward" />
+								</Panel>
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="CloseChestHudIcon" onactivate="CloseChest();" />
+					<Label class="ChestName" id="ChestName" text="" />
+					<Panel class="ChestPairRollBlock" id="ChestPairRollBlock">
+						<Panel class="ChestPairLineUnit">
+							<Label class="RollLineTitle RollLineTitlePoor" id="RollLineTitlePoor" text="#chest_pair_poor_line" />
+							<Panel class="RollLine" id="RollLine">
+								<Panel class="RollLineBg" />
+								<Panel class="pointer_top" />
+								<Panel class="pointer_bottom" />
+								<Panel class="RollItemsList">
+									<Panel class="RollItemsListMain" id="RollItemsListMain" />
+								</Panel>
+							</Panel>
+							<Panel class="OpenChestButton OpenChestButtonPair" id="OpenChestButtonPoor">
+								<Panel class="ChestCostPanel">
+									<Label class="ChestCostLabel" id="OpenChestButtonPoorLabel" text="#open_chest" />
+								</Panel>
+							</Panel>
+						</Panel>
+						<Panel class="ChestPairLineUnit">
+							<Label class="RollLineTitle RollLineTitleRich" id="RollLineTitleRich" text="#chest_pair_rich_line" />
+							<Panel class="RollLine RollLine2" id="RollLine2">
+								<Panel class="RollLineBg" />
+								<Panel class="pointer_top" />
+								<Panel class="pointer_bottom" />
+								<Panel class="RollLineLockOverlay">
+									<Label class="RollLineLockLabel" text="#chest_pair_rich_locked" />
+								</Panel>
+								<Panel class="RollItemsList">
+									<Panel class="RollItemsListMain" id="RollItemsListMain2" />
+								</Panel>
+							</Panel>
+							<Panel class="OpenChestButton OpenChestButtonPair" id="OpenChestButtonRich">
+								<Panel class="ChestCostPanel">
+									<Label class="ChestCostLabel" id="OpenChestButtonRichLabel" text="#open_chest" />
+								</Panel>
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="OpenChestButton OpenChestButtonSingle" id="OpenChestButton">
+						<Panel class="ChestCostPanel">
+							<Panel class="ChestCostIcon" id="ChestCostIcon" />
+							<Label class="ChestCostLabel" id="ChestCostLabel" text="0" />
+						</Panel>
+					</Panel>
+					<Panel class="RarePanelWithInfo" id="RarePanelWithInfo">
+						<Label class="ItemsInChestName ItemsInChestNameRare" id="RarePanelName" text="#chest_items_rare" />
+						<Panel class="RareInfoItem" onmouseover="UIShowTextTooltip( #item_chest_info_rare )" onmouseout="UIHideTextTooltip()" />
+					</Panel>
+					<Panel class="BorderItemsChestBlock BorderItemsChestBlockRare" id="RarePanelBorder" />
+					<Panel class="ItemsInChestBlock" id="ItemsInChestBlockRare" />
+					<Panel class="ItemsInChestNameBlock">
+						<Label class="ItemsInChestName" id="ItemsInChestName" text="#chest_items_normal" />
+						<Panel class="InfoOpenReroll" id="InfoOpenReroll" />
+					</Panel>
+					<Panel class="BorderItemsChestBlock" />
+					<Panel class="ItemsInChestBlock" id="ItemsInChestBlock" />
+					<Panel class="ChestBackground" />
+				</Panel>
+			</Panel>
+			<Panel class="PanelMenuSelection">
+				<Panel class="CrystalsPanelSelection">
+					<Panel class="CrystalIconSelection" />
+					<Label class="CrystalLabelSelection" id="CrystalLabelSelection" text="0" />
+				</Panel>
+				<Panel class="SiteUrlButton" onactivate="activate_but_button();">
+					<Label text="#buy_shards" />
+				</Panel>
+				<Panel class="SalePanel">
+					<Label text="#buy_shards_sale_30" />
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

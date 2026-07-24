@@ -1,0 +1,54 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/multiteam_top_scoreboard.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/shared_scoreboard_styles.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/player_tips.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+	</scripts>
+	<Panel hittest="false" class="ScoreboardPlayerWrapper">
+		<Panel hittest="false" id="RespawnIndicator">
+			<Label hittest="false" id="RespawnTimer" />
+		</Panel>
+		<Panel hittest="false" class="ScoreboardPlayer" id="TopHero">
+			<Button class="PlayerPortraitWrapper">
+				<Panel hittest="false" id="PlayerColorBar" />
+				<Image hittest="false" id="HeroIcon">
+					<Panel hittest="false" id="AegisIndicator" />
+					<Panel hittest="false" id="BuybackIndicator" />
+					<Panel hittest="false" id="PurpleIndicator" />
+					<Panel hittest="false" class="LevelIndicator" id="LevelIndicator" />
+				</Image>
+			</Button>
+			<Image hittest="false" id="DisconnectionIndicator" src="s2r://panorama/images/custom_game/icon_disconnect_png.vtex" />
+		</Panel>
+		<Panel class="BlackScreen" id="BlackScreen">
+			<Panel class="GoldLogo" id="GoldLogo" />
+			<Label class="PurpleText" id="PurpleScore" text="0" />
+		</Panel>
+		<Panel id="TeamOverlayBar">
+			<Panel id="TeamDarkenWash" />
+			<Panel id="LogoAndScore">
+				<Label id="TeamScore" text="999" />
+			</Panel>
+		</Panel>
+		<Panel id="PlayerTipContainer" class="PlayerTipContainer_low">
+			<Button id="PlayerTipButton" class="PlayerTipButton_top" onactivate="TipPlayer($.GetContextPanel().GetAttributeInt( &apos;player_id&apos;, -1 ));">
+				<Label id="PlayerTipLabel" text="#tip_button" />
+			</Button>
+		</Panel>
+	</Panel>
+</root>

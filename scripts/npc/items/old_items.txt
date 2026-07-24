@@ -1,0 +1,147 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+
+
+// REVENANT BROOCH
+"item_recipe_revenants_brooch_custom"
+{
+    "ID"                            "16008"
+    "BaseClass"                     "item_datadriven"
+    "Model"                         "models/props_gameplay/recipe.vmdl"
+    "AbilityTextureName"            "item_recipe_revenants_brooch"
+
+    "ItemCost"                      "800"
+    "IsObsolete"                    "1"
+    "ItemShopTags"                  ""
+
+    "ItemRecipe"                    "1"
+    "ItemResult"                    "item_revenants_brooch_custom"
+    "ItemRequirements"
+    {
+        "01"                        "item_relic;item_voodoo_mask"
+    }
+}
+
+"item_revenants_brooch_custom"
+{
+    "ID"                            "16009"
+    "BaseClass"                     "item_lua"
+    "ScriptFile"                    "abilities/items/item_revenants_brooch_custom"
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+
+    "AbilityTextureName"            "item_revenants_brooch"
+    "IsObsolete"                    "1"
+
+    "AbilityManaCost"               "0"
+    "ItemCost"                      "4900"
+    "ItemShopTags"                  "int;hard_to_tag"
+    "ItemQuality"                   "rare"
+    "ItemAliases"                   "staff;misery;sm"
+    "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+    "ShouldBeSuggested"             "1"
+
+    "AbilityValues"
+    {
+        "bonus_damage"          "70"                
+        "spell_lifesteal"       "20"    
+        "manacost_per_hit"      "3"
+        "healthcost_per_hit"    "3"
+
+        "spell_lifesteal_creep" "4"
+
+        "damage_reduction"      "0"
+        
+    }
+}
+
+
+
+"DOTA_Tooltip_Ability_item_recipe_revenants_brooch_custom" "Рецепт: Revenant's Brooch"
+
+"DOTA_Tooltip_Ability_item_revenants_brooch_custom" "Revenant's Brooch"
+"DOTA_Tooltip_Ability_item_revenants_brooch_custom_Description" "<h1>Переключаемая: Phantom Province</h1> Активация эффекта и каждая атака под его действием расходуют %manacost_per_hit%%% от макс. маны<br><br>При этом, атаки наносят магический урон, не могут промахнуться и не могут нанести критический урон. Затраты маны могут быть снижены.<br><br>Если у вашего героя нет маны, атаки расходуют %healthcost_per_hit%%% от макс. здоровья."
+"DOTA_Tooltip_Ability_item_revenants_brooch_custom_Lore" "Проклятая брошь павшего стража, блуждающего меж завесами жизни и смерти."
+"DOTA_Tooltip_Ability_item_revenants_brooch_custom_bonus_damage" "+$damage"
+"DOTA_Tooltip_ability_item_revenants_brooch_custom_spell_lifesteal"                   "%+$spell_lifesteal"
+
+"DOTA_Tooltip_modifier_revenants_brooch_custom_counter" "Revenant's Brooch"
+"DOTA_Tooltip_modifier_revenants_brooch_custom_counter_Description" "Атаками нельзя промахнуться, и они наносят магический урон."
+
+
+"DOTA_Tooltip_Ability_item_recipe_revenants_brooch_custom" "Revenant's Brooch Recipe"
+
+"DOTA_Tooltip_Ability_item_revenants_brooch_custom" "Revenant's Brooch"
+"DOTA_Tooltip_Ability_item_revenants_brooch_custom_Description" "<h1>Active: Phantom Province</h1>Effect activation and each attack consumes %manacost_per_hit%%% of max. mana<br><br>While enabled, attacks deal magical damage, cannot miss and cannot cause critical damage. Mana costs can be reduced.<br><br>If your hero has no mana, attacks cost %healthcost_per_hit%%% of max health."
+"DOTA_Tooltip_Ability_item_revenants_brooch_custom_Lore" "The cursed brooch of a fallen guardian who stalks forever between the veil of life and death."
+"DOTA_Tooltip_Ability_item_revenants_brooch_custom_bonus_damage" "+$damage"
+"DOTA_Tooltip_ability_item_revenants_brooch_custom_spell_lifesteal"                   "%+$spell_lifesteal"
+
+"DOTA_Tooltip_modifier_revenants_brooch_custom_counter" "Revenant's Brooch"
+"DOTA_Tooltip_modifier_revenants_brooch_custom_counter_Description" "Attacks have True Strike and deal magic damage."
+
+
+
+
+"item_recipe_revenants_brooch_custom"
+{
+    // General
+    "BaseClass"                     "item_datadriven"    
+    "Model"                         "models/props_gameplay/recipe.vmdl"
+    "AbilityTextureName"            "item_recipe_revenants_brooch"
+    
+    // Item Info
+    //-------------------------------------------------------------------------------------------------------------
+    "ItemCost"                      "600"   
+    "ItemShopTags"                  ""
+    
+    // Recipe
+    //-------------------------------------------------------------------------------------------------------------
+    "ItemRecipe"                    "1"
+    "ItemResult"                    "item_revenants_brooch_custom"
+    "ItemRequirements"
+    {
+        "01"                        "item_lesser_crit_custom;item_voodoo_mask"
+    }
+}
+
+//=================================================================================================================
+// Revenant's Brooch
+//=================================================================================================================
+"item_revenants_brooch_custom"
+{
+    "BaseClass"                     "item_lua"
+    "ScriptFile"                    "abilities/items/item_revenants_brooch_custom"
+    "AbilityTextureName"            "item_revenants_brooch" 
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+
+    // Stats        
+    //-------------------------------------------------------------------------------------------------------------
+
+    // Item Info
+    //-------------------------------------------------------------------------------------------------------------
+    "ItemCost"                      "3300"
+    "ItemShopTags"                  "int;hard_to_tag;crit;dps"
+    "ItemQuality"                   "rare"
+    "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+    "SuggestLategame"               "1"
+    
+    // Special  
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {               
+        "bonus_damage"          "35"                
+        "spell_lifesteal"       "14"    
+        "crit_chance"           "30"
+        "crit_multiplier"       "80"
+    }
+}

@@ -1,0 +1,199 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	Hero_Abaddon.PreAttack = 
+	{
+		type = "dota_src1_3d"
+		volume = 0.799805
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 75.0
+		distance_max = 1500.0
+		event_type = 1.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/abaddon/attack_01.vsnd",
+			"sounds/weapons/hero/abaddon/attack_02.vsnd",
+		]
+		vsnd_duration = 0.735601
+	}
+	Hero_Abaddon.Attack = 
+	{
+		type = "dota_src1_3d"
+		volume = 0.699707
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 0.95
+		soundlevel = 78.0
+		distance_max = 2500.0
+		soundevent_layer2 = "Hero_Abaddon.Attack.Ring"
+		soundevent_layer2_on = 1.0
+		soundevent_layer3 = "Hero_Abaddon.Attack.Rip"
+		soundevent_layer3_on = 1.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/abaddon/impact_01.vsnd",
+			"sounds/weapons/hero/abaddon/impact_02.vsnd",
+		]
+		vsnd_duration = 0.361179
+	}
+	Hero_Abaddon.Attack.Ring = 
+	{
+		type = "dota_src1_3d"
+		volume_rand_min = -0.024994
+		volume_rand_max = 0.024994
+		volume = 0.274994
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 0.95
+		soundlevel = 75.0
+		distance_max = 2500.0
+		soundevent_layer2 = "Damage_Melee.Gore"
+		soundevent_layer2_on = 1.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/shared/large_blade/ring01.vsnd",
+			"sounds/weapons/hero/shared/large_blade/ring02.vsnd",
+			"sounds/null.vsnd",
+		]
+		vsnd_duration = 0.802857
+	}
+	Hero_Abaddon.Attack.Rip = 
+	{
+		type = "dota_src1_3d"
+		volume_rand_min = -0.149902
+		volume_rand_max = 0.149902
+		volume = 0.849609
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 75.0
+		distance_max = 1500.0
+		rand_delay_min = 0.05
+		rand_delay_max = 0.12
+		limiter_on = 0.0
+		vsnd_files = 
+		[
+			"sounds/physics/damage/npc/rip01.vsnd",
+			"sounds/physics/damage/npc/rip02.vsnd",
+			"sounds/physics/damage/npc/rip03.vsnd",
+			"sounds/physics/damage/npc/rip04.vsnd",
+		]
+		vsnd_duration = 0.244626
+	}
+	Hero_Abaddon.Curse.Proc = 
+	{
+		type = "dota_src1_3d"
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 81.0
+		distance_max = 2500.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/abaddon/curse_proc.vsnd",
+		]
+		vsnd_duration = 2.779705
+	}
+	Hero_Abaddon.BorrowedTime = 
+	{
+		type = "dota_update_default"
+		volume = 0.699707
+		pitch = 1.0
+		soundlevel = 81.0
+		mixgroup = "Ultimates"
+		spread_radius = 300.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/abaddon/borrowed_time.vsnd",
+		]
+		vsnd_duration = 5.365941
+	}
+	Hero_Visage.SoulAssumption.Target = 
+	{
+		type = "dota_update_default"
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 84.0
+		mixgroup = "Weapons"
+		spread_radius = 300.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/visage/soul_assumption_target.vsnd",
+		]
+		vsnd_duration = 2.725714
+	}
+	Hero_Visage.SummonFamiliars.Cast = 
+	{
+		type = "dota_update_default"
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 81.0
+		mixgroup = "Weapons"
+		spread_radius = 300.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/visage/summon_familiars.vsnd",
+		]
+		vsnd_duration = 4.027732
+	}
+	Visage_Familiar.preAttack = 
+	{
+		type = "dota_src1_3d"
+		volume = 0.5
+		pitch = 1.1
+		soundlevel = 72.0
+		distance_max = 1500.0
+		event_type = 1.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/obsidian_destroyer/preattack01.vsnd",
+			"sounds/weapons/hero/obsidian_destroyer/preattack02.vsnd",
+		]
+		vsnd_duration = 1.141361
+	}
+	Visage_Familiar.Attack = 
+	{
+		type = "dota_src1_3d"
+		volume = 0.5
+		pitch = 1.1
+		soundlevel = 75.0
+		distance_max = 2500.0
+		event_type = 1.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/obsidian_destroyer/attack01.vsnd",
+			"sounds/weapons/hero/obsidian_destroyer/attack02.vsnd",
+		]
+		vsnd_duration = 0.99898
+	}
+	Visage_Familiar.projectileImpact = 
+	{
+		type = "dota_src1_3d"
+		volume = 0.5
+		pitch = 1.1
+		soundlevel = 72.0
+		distance_max = 1000.0
+		limiter_on = 0.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/obsidian_destroyer/projectile_impact01.vsnd",
+		]
+		vsnd_duration = 0.689229
+	}
+}

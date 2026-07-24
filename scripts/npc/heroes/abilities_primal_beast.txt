@@ -1,0 +1,301 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+
+"DOTAAbilities"
+{
+
+"Version"		"1"
+
+
+
+
+"primal_beast_onslaught_custom"
+{
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/primal_beast/primal_beast_onslaught_custom"	
+	"AbilityTextureName"			"primal_beast_onslaught"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+	"LinkedAbility"					"primal_beast_onslaught_release_custom"
+
+	"AbilityCastPoint"				"0"
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+	"AbilityCastGestureSlot"		"DEFAULT"
+	"AbilityCooldown"				"19 17 18 16"
+	"AbilityManaCost"				"120"
+
+	"AbilityValues"
+	{
+		"charge_speed"					"1200"
+		"chargeup_time"					"2.2"
+		"knockback_radius"				"190"
+		"max_distance"					"1700"
+		"vision_radius"					"2000"
+		"knockback_distance"			"200"
+		"knockback_damage"				"75 170 265 360"
+		"knockback_duration"			"0.3"
+		"turn_rate"						"70"
+		"base_power"					"0.15"
+		"movement_turn_rate"			"50"
+		"stun_duration"					"0.7 1 1.3 1.6"
+		
+	}
+}
+
+"primal_beast_onslaught_release_custom"	
+{
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/primal_beast/primal_beast_onslaught_custom"	
+	"AbilityTextureName"			"primal_beast_onslaught_release"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+	
+	"AbilityCastPoint"				"0.0"
+	"AbilityCastRange"				"999999"
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_7"
+	"AbilityCooldown"				"0.3"
+	"MaxLevel"						"1"
+}
+
+"primal_beast_trample_custom"
+{
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/primal_beast/primal_beast_trample_custom"	
+	"AbilityTextureName"			"primal_beast_trample"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+	"HasScepterUpgrade"				"1"
+
+	"AbilityCooldown"				"16 15 14 13"
+	"AbilityManaCost"				"100"
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+	"AbilityCastGestureSlot"		"ABSOLUTE"
+	"LinkedAbility"					"primal_beast_charge_custom"
+	
+	"AbilityValues"
+	{
+		"effect_radius"					"230"
+		"step_distance"					"140"
+		"base_damage"					"20 30 40 50"
+		"duration"						"5.5"
+		"attack_damage"					"30"
+		"scepter_radius"					"500"
+		"scepter_damage"					"100"
+		"scepter_slow"						"-100"
+		"scepter_attack_slow"				"-150"
+		"scepter_duration"					"1"
+	}
+}
+
+"primal_beast_uproar_custom"
+{
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/primal_beast/primal_beast_uproar_custom"	
+	"AbilityTextureName"			"primal_beast_uproar"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+	"AbilityCastGestureSlot"		"DEFAULT"
+	"LinkedAbility"					"primal_beast_blood_frenzy_custom"
+
+	"AbilityValues"
+	{
+		"bonus_damage_per_stack"			"10 20 30 40"
+		"stack_limit"						"6"
+		"damage_limit"						"170"
+		"stack_duration"					"8"
+		"move_slow_per_stack"				"4 6 8 10"
+		"slow_duration"						"3"
+		"damage_min"						"20"
+		"damage_max"						"2000"
+		"radius"							"900"
+		"roared_bonus_attack_speed"			"0"
+		"roared_bonus_armor"				"2 3 4 5"
+		"roar_duration"						"7"
+		"should_dispell"					"0"
+	}
+}	
+
+"primal_beast_pulverize_custom"
+{
+	"BaseClass"             			"ability_lua"
+	"ScriptFile"						"abilities/primal_beast/primal_beast_pulverize_custom"	
+	"AbilityTextureName"				"primal_beast_pulverize"
+	"AbilityType"						"ABILITY_TYPE_ULTIMATE"
+	"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_CHANNELLED  | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+	"AbilityUnitTargetTeam"				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"SpellImmunityType"					"SPELL_IMMUNITY_ENEMIES_YES"
+	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	"AbilityUnitDamageType"				"DAMAGE_TYPE_MAGICAL"
+	"AnimationIgnoresModelScale"      	"1"
+
+	"AbilityCastPoint"					"0.25"
+
+	"AbilityCastRange"					"200"
+	"AbilityManaCost"					"100 115 130"
+	"AbilityCooldown"					"28 25 22"
+
+	"AbilityValues"
+	{
+		"splash_radius"					"600"
+		"interval"						"0.75"
+		"ministun"						"0.2"
+		"damage"						"100 175 250"
+		"damage_stack"					"20 40 60"
+		"damage_stack_max"				"40 80 120"
+		"animation_rate"				"1.5"
+		"channel_time"					"2.3"
+	}
+}
+
+
+
+
+
+"primal_beast_blood_frenzy_custom"
+{
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/primal_beast/primal_beast_uproar_custom"	
+	"AbilityTextureName"			"blood_frenzy"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+	"AbilityCastGestureSlot"		"DEFAULT"
+
+	"MaxLevel"				"1"
+
+	"AbilityValues"
+	{
+		"duration"		"4"
+		"speed"			"200"
+		"heal"			"2"
+		"max"			"25"
+	}
+}	
+
+
+
+"primal_beast_charge_custom"
+{
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/primal_beast/primal_beast_trample_custom"	
+	"AbilityTextureName"			"primal_beast_trample"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+	"AbilityCooldown"				"1.1"
+	"MaxLevel"				"1"
+	"AbilityManaCost"		"0"
+
+	"AbilityValues"
+	{
+
+		"speed"								"1000"
+		
+
+	}
+}	
+
+
+"primal_beast_rock_throw"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN  | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"FightRecapLevel"				"1"
+	"MaxLevel"						"1"
+	"IsGrantedByShard"			"1"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_BOTH"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+
+
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "14"
+    "AbilityManaCost"               "85"
+    "AbilityCastPoint"              "0.25"
+    "AbilityCastRange"              "1800"
+
+    // Damage.
+    //-------------------------------------------------------------------------------------------------------------
+    
+    // Stats
+    //-------------------------------------------------------------------------------------------------------------
+    
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
+    "AbilityCastGestureSlot"        "DEFAULT"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "base_damage"
+		{
+			"value"					"325"
+			"CalculateSpellDamageTooltip"	"1"
+		}
+        "impact_radius"             
+		{
+			"value"	"225"    
+			"affected_by_aoe_increase"	"1"	
+		}
+        "min_range"               "400"
+        "min_travel_time"                 "0.65"
+        "max_travel_time"                  "1.75"
+        "bounce_travel_time"                  "0.5"
+        "stun_duration"                  "1.4"
+		"fragment_impact_distance"    "525"
+        "fragment_impact_radius"
+		{
+			"value"						"185"
+			"affected_by_aoe_increase"	"1"	
+		}
+    }
+} 
+
+
+
+"primal_beast_innate_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/primal_beast/primal_beast_innate_custom"  
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "Innate"                        "1"
+
+    "AbilityValues"
+    {
+    	"str"		"10"
+    	"model"		"1.2"
+    	"move"		"1"
+    	"range"		"4"
+    	"cleave"	"40"
+    }
+}
+
+
+
+
+
+
+}

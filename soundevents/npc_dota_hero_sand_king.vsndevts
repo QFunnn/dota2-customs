@@ -1,0 +1,591 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	SandKing.Storm_speed = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/sand_king/sand_king_sandstorm_start.vsnd",
+		]
+		volume = "0.700000"
+		pitch_rand_min = "-0.200000"
+		pitch_rand_max = "-0.100000"
+		pitch = "1.000000"
+		soundlevel = "100.000000"
+		distance_max = "1600.000000"
+		event_type = "1.000000"
+	}
+	SandKing.Stinger_stun = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/slardar/bash_stun.vsnd",
+		]
+		volume = "0.800000"
+		pitch_rand_min = "-0.150000"
+		pitch_rand_max = "-0.150000"
+		pitch = "1.000000"
+		soundlevel = "100.000000"
+		distance_max = "1600.000000"
+		event_type = "1.000000"
+	}
+	SandKing.Burrow_start = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/nyx/burrow_in.vsnd",
+		]
+		volume = "0.900000"
+		pitch_rand_min = "-0.100000"
+		pitch_rand_max = "-0.100000"
+		pitch = "1.000000"
+		soundlevel = "100.000000"
+		distance_max = "1600.000000"
+		event_type = "1.000000"
+	}
+	SandKing.Burrow_end = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/nyx/burrow_out.vsnd",
+		]
+		volume = "0.900000"
+		pitch_rand_min = "-0.300000"
+		pitch_rand_max = "-0.300000"
+		pitch = "1.000000"
+		soundlevel = "100.000000"
+		distance_max = "1600.000000"
+		event_type = "1.000000"
+	}
+	SandKing.Burrow_move = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/earth_spirit/magnetize_debris01.vsnd",
+			"sounds/weapons/hero/earth_spirit/magnetize_debris02.vsnd",
+			"sounds/weapons/hero/earth_spirit/magnetize_debris03.vsnd",
+		]
+		volume = "0.300000"
+		pitch_rand_min = "0.000000"
+		pitch_rand_max = "0.000000"
+		pitch = "1.000000"
+		soundlevel = "100.000000"
+		distance_max = "1600.000000"
+		event_type = "0.500000"
+	}
+	SandKing.Burrow_loop = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/physics/movement/hero/necrolyte/idle_loop.vsnd",
+		]
+		volume = "0.800000"
+		pitch_rand_min = "0.000000"
+		pitch_rand_max = "0.000000"
+		pitch = "1.000000"
+		soundlevel = "100.000000"
+		distance_max = "1600.000000"
+		event_type = "0.500000"
+	}
+	SandKing.Burrow_attack = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/lion/lion_impale_target_hit1.vsnd",
+			"sounds/weapons/hero/lion/lion_impale_target_hit2.vsnd",
+			"sounds/weapons/hero/lion/lion_impale_target_hit3.vsnd",
+		]
+		volume = "0.500000"
+		pitch_rand_min = "0.000000"
+		pitch_rand_max = "0.000000"
+		pitch = "1.000000"
+		soundlevel = "100.000000"
+		distance_max = "1600.000000"
+		event_type = "0.500000"
+	}
+	SandKing.Burrow_second = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/earthshaker/gravelmaw_end.vsnd",
+		]
+		volume = "1.500000"
+		pitch_rand_min = "-0.100000"
+		pitch_rand_max = "0.100000"
+		pitch = "1.000000"
+		soundlevel = "81.000000"
+		distance_max = "1600.000000"
+		event_type = "0.500000"
+	}
+	SandKing.BurrowStrike = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/heroes/sand_king/sand_king_burrow_attack.wav",
+		]
+		volume = "1.000000"
+		pitch_rand_min = "-0.050000"
+		pitch_rand_max = "0.050000"
+		pitch = "1.000000"
+		soundlevel = "81.000000"
+		distance_max = "1600.000000"
+		event_type = "0.500000"
+		vsnd_duration = 2.174467
+	}
+	SandKing.Pulse = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/heroes/sand_king/epicenter_pulse.wav",
+		]
+		volume = "3.000000"
+		pitch_rand_min = "-0.050000"
+		pitch_rand_max = "0.050000"
+		pitch = "1.000000"
+		soundlevel = "81.000000"
+		distance_max = "1600.000000"
+		event_type = "0.500000"
+		volume_fade_out = "1.000000"
+		vsnd_duration = 2.002086
+	}
+	SandKing.BurrowStrike_reverse = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/heroes/sand_king/sand_king_burrow_attack.wav",
+		]
+		volume = "1.000000"
+		pitch_rand_min = "0.300000"
+		pitch_rand_max = "0.300000"
+		pitch = "1.000000"
+		soundlevel = "81.000000"
+		distance_max = "1600.000000"
+		event_type = "0.500000"
+		vsnd_duration = 2.174467
+	}
+	SandKing.SandStorm.start = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/heroes/sand_king/sand_king_sandstorm_start.wav",
+		]
+		volume = "1.000000"
+		pitch_rand_min = "-0.050000"
+		pitch_rand_max = "0.050000"
+		pitch = "1.000000"
+		soundlevel = "81.000000"
+		distance_max = "1600.000000"
+		event_type = "0.500000"
+		vsnd_duration = 2.078254
+	}
+	SandKing.SandStorm.loop = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/heroes/sand_king/sand_king_sandstorm_loop.wav",
+		]
+		volume = "0.300000"
+		pitch_rand_min = "-0.050000"
+		pitch_rand_max = "0.050000"
+		pitch = "1.000000"
+		soundlevel = "81.000000"
+		distance_max = "1600.000000"
+		event_type = "0.500000"
+		volume_fade_out = "1.000000"
+		spread_radius = "100.000000"
+		mixgroup = "Ambience"
+		vsnd_duration = 7.727687
+	}
+	SandKing.Spider_spawn = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/nyx/burrow_out.vsnd",
+		]
+		volume = "1.000000"
+		pitch_rand_min = "-0.200000"
+		pitch_rand_max = "0.200000"
+		pitch = "1.000000"
+		soundlevel = "81.000000"
+		distance_max = "1600.000000"
+		event_type = "0.500000"
+	}
+	SandKing.Tornado_loop = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/weapons/creep/neutral/wildkin_tornado_loop.vsnd",
+		]
+		volume = "0.300000"
+		pitch_rand_min = "0.000000"
+		pitch_rand_max = "0.000000"
+		pitch = "1.000000"
+		soundlevel = "81.000000"
+		distance_max = "1600.000000"
+		event_type = "0.500000"
+		volume_fade_out = "1.000000"
+	}
+	SandKing.Sand_pull = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/invoker/tornado_cast_ti6.vsnd",
+		]
+		volume = "1.300000"
+		pitch_rand_min = "-0.050000"
+		pitch_rand_max = "-0.050000"
+		pitch = "1.000000"
+		soundlevel = "81.000000"
+		distance_max = "1600.000000"
+		event_type = "0.500000"
+	}
+	SandKing.Tornado_start = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/invoker/tornado_cast.vsnd",
+		]
+		volume = "0.600000"
+		pitch_rand_min = "0.200000"
+		pitch_rand_max = "0.200000"
+		pitch = "1.000000"
+		soundlevel = "81.000000"
+		distance_max = "1600.000000"
+		event_type = "0.500000"
+	}
+	SandKing.Tornado_damage = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/invoker/tornado_cast.vsnd",
+		]
+		volume = "1.000000"
+		pitch_rand_min = "0.200000"
+		pitch_rand_max = "0.200000"
+		pitch = "1.000000"
+		soundlevel = "81.000000"
+		distance_max = "1600.000000"
+		event_type = "0.500000"
+	}
+	SandKing.Epicenter_legendary_pre = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/earth_spirit/magnetize_cast.vsnd",
+		]
+		volume = "0.300000"
+		pitch_rand_min = "-0.100000"
+		pitch_rand_max = "-0.100000"
+		pitch = "1.000000"
+		soundlevel = "81.000000"
+		distance_max = "1600.000000"
+		event_type = "0.500000"
+		volume_fade_out = "1.000000"
+	}
+	SandKing.Epicenter_legendary_pre2 = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/invoker/meteor_cast.vsnd",
+		]
+		volume = "1.200000"
+		pitch_rand_min = "0.300000"
+		pitch_rand_max = "0.300000"
+		pitch = "1.000000"
+		soundlevel = "81.000000"
+		distance_max = "1600.000000"
+		event_type = "0.500000"
+		volume_fade_out = "1.000000"
+	}
+	SandKing.Epicenter_legendary_start = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/primal_beast/ground_pound.vsnd",
+		]
+		volume = "1.700000"
+		pitch_rand_min = "-0.100000"
+		pitch_rand_max = "-0.100000"
+		pitch = "1.000000"
+		soundlevel = "81.000000"
+		distance_max = "1600.000000"
+		event_type = "0.500000"
+	}
+	SandKing.Attack_pull = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/marci/dispose_cast.vsnd",
+		]
+		volume = "0.400000"
+		pitch_rand_min = "-0.050000"
+		pitch_rand_max = "0.050000"
+		pitch = "1.000000"
+		soundlevel = "81.000000"
+		distance_max = "1600.000000"
+		event_type = "0.500000"
+		volume_fade_out = "1.000000"
+	}
+	SandKing.Epicenter_legendary_loop = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/earth_spirit/rolling_boulder_loop.vsnd",
+		]
+		volume = "0.460000"
+		pitch_rand_min = "-0.200000"
+		pitch_rand_max = "-0.200000"
+		pitch = "1.000000"
+		soundlevel = "81.000000"
+		distance_max = "1600.000000"
+		event_type = "0.500000"
+		volume_fade_out = "1.000000"
+	}
+	SandKing.Epicenter_legendary_pulse = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/primal_beast/ground_pound.vsnd",
+		]
+		volume = "0.900000"
+		pitch_rand_min = "-0.100000"
+		pitch_rand_max = "0.100000"
+		pitch = "1.000000"
+		soundlevel = "81.000000"
+		distance_max = "1600.000000"
+		event_type = "0.500000"
+	}
+	SandKing.Finale_legerndary_start = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/lifestealer/open_wounds.vsnd",
+		]
+		volume = "1.500000"
+		pitch_rand_min = "-0.100000"
+		pitch_rand_max = "-0.100000"
+		pitch = "1.000000"
+		soundlevel = "81.000000"
+		distance_max = "1600.000000"
+		event_type = "0.500000"
+	}
+	SandKing.Finale_legerndary_caster = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/viper/poison_attack_ti7_01.vsnd",
+			"sounds/weapons/hero/viper/poison_attack_ti7_02.vsnd",
+		]
+		volume = "0.900000"
+		pitch_rand_min = "0.100000"
+		pitch_rand_max = "0.100000"
+		pitch = "1.000000"
+		soundlevel = "81.000000"
+		distance_max = "1600.000000"
+		event_type = "0.500000"
+	}
+	SandKing.Finale_legerndary_loop = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/viper/enc/nethertoxin_lp_ti8.vsnd",
+		]
+		volume = "0.600000"
+		pitch_rand_min = "0.100000"
+		pitch_rand_max = "0.100000"
+		pitch = "1.000000"
+		soundlevel = "81.000000"
+		distance_max = "1600.000000"
+		event_type = "0.500000"
+		volume_fade_out = "1.000000"
+	}
+	SandKing.Finale_legerndary_hit = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/venomancer/attack_impact1.vsnd",
+			"sounds/weapons/hero/venomancer/attack_impact2.vsnd",
+		]
+		volume = "0.600000"
+		pitch_rand_min = "-0.300000"
+		pitch_rand_max = "-0.200000"
+		pitch = "1.000000"
+		soundlevel = "81.000000"
+		distance_max = "1600.000000"
+		event_type = "0.500000"
+		volume_fade_out = "1.000000"
+	}
+	SandKing.Finale_legerndary_explode = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/venomancer/venomancer_venomous_gale_impact1.vsnd",
+			"sounds/weapons/hero/venomancer/venomancer_venomous_gale_impact2.vsnd",
+			"sounds/weapons/hero/venomancer/venomancer_venomous_gale_impact3.vsnd",
+		]
+		volume = "1.200000"
+		pitch_rand_min = "-0.200000"
+		pitch_rand_max = "-0.200000"
+		pitch = "1.000000"
+		soundlevel = "81.000000"
+		distance_max = "1600.000000"
+		event_type = "0.500000"
+		volume_fade_out = "1.000000"
+	}
+	SandKing.Double_hit = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/bloodseeker/preattack01.vsnd",
+			"sounds/weapons/hero/bloodseeker/preattack02.vsnd",
+		]
+		volume = "1.400000"
+		pitch_rand_min = "-0.050000"
+		pitch_rand_max = "0.050000"
+		pitch = "1.000000"
+		soundlevel = "81.000000"
+		distance_max = "1600.000000"
+		event_type = "0.500000"
+		volume_fade_out = "1.000000"
+	}
+	DoubleRating.npc_dota_hero_sand_king = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/vo/sandking/skg_inthebag_01.vsnd",
+			"sounds/vo/sandking/skg_inthebag_02.vsnd",
+			"sounds/vo/sandking/skg_inthebag_03.vsnd",
+		]
+		volume = "1.300000"
+	}
+	Voice.Sand.1_1 = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/heroes/sand_king/Sand.1_1.mp3",
+		]
+		volume = "1.600000"
+		vsnd_duration = 4.80653
+	}
+	Voice.Sand.1_2 = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/heroes/sand_king/Sand.1_2.mp3",
+		]
+		volume = "1.600000"
+		vsnd_duration = 2.168163
+	}
+	Voice.Sand.2_1 = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/heroes/sand_king/Sand.2_1.mp3",
+		]
+		volume = "1.600000"
+		vsnd_duration = 2.115918
+	}
+	Voice.Sand.2_2 = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/heroes/sand_king/Sand.2_2.mp3",
+		]
+		volume = "1.600000"
+		vsnd_duration = 2.507755
+	}
+	Voice.Sand.3_1 = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/heroes/sand_king/Sand.3_1.mp3",
+		]
+		volume = "1.600000"
+		vsnd_duration = 2.089796
+	}
+	Voice.Sand.3_2 = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/heroes/sand_king/Sand.3_2.mp3",
+		]
+		volume = "1.600000"
+		vsnd_duration = 1.880816
+	}
+	Voice.Sand.4_1 = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/heroes/sand_king/Sand.4_1.mp3",
+		]
+		volume = "1.600000"
+		vsnd_duration = 2.847347
+	}
+	Voice.Sand.5_1 = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/heroes/sand_king/Sand.5_1.mp3",
+		]
+		volume = "1.600000"
+		vsnd_duration = 3.500408
+	}
+	Voice.Sand.6_1 = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/heroes/sand_king/Sand.6_1.mp3",
+		]
+		volume = "1.600000"
+		vsnd_duration = 3.970612
+	}
+}

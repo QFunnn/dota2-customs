@@ -1,0 +1,229 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+
+"DOTAAbilities"
+{
+
+"Version"		"1"
+
+
+
+
+
+"custom_huskar_inner_fire"
+{
+
+	"BaseClass"             		"ability_lua"	
+	"ScriptFile"					"abilities/huskar/custom_huskar_inner_fire"													// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"			
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"		
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"   
+	"AbilitySound"					"Hero_Huskar.Inner_Vitality"
+	"AbilityTextureName"			"huskar_inner_fire"
+
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"500"
+	"AbilityCastPoint"				"0.25"
+	
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"12"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"75 100 125 150"
+	
+	
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"damage"				"105 170 235 300"
+		"radius"				"500"
+		"silence_duration"		"1.5 2 2.5 3"
+		"knockback_distance"	"400"
+		"knockback_min"			"0.4"
+		"knockback_duration"	"1"
+
+	}
+	"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+}	
+	
+
+
+"custom_huskar_burning_spear"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"             		"ability_lua"															// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"ScriptFile"					"abilities/huskar/custom_huskar_burning_spear"	
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+	"AbilitySound"					"Hero_Huskar.Burning_Spear"
+	"AbilityTextureName"			"huskar_burning_spear"
+	"LinkedAbility"					"custom_huskar_burning_spear_legendary"
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"450"
+	"AbilityCastPoint"				"0.15"
+	"AbilityDuration"				"9"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"0 0 0 0"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"health_cost"					"4"
+		"burn_damage"					"5 10 15 20"
+		"duration"						"9"
+		"bonus_range"					"50"
+		"radius"						"250"
+		"aoe_max"						"1"
+		"interval"						"0.5"
+	}
+}
+
+
+"custom_huskar_burning_spear_legendary"
+{
+	"BaseClass"             		"ability_lua"	
+	"ScriptFile"					"abilities/huskar/custom_huskar_burning_spear"													// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	"AbilityTextureName"			"berserkers_will"
+	"MaxLevel"					"1"
+	
+	"AbilityCooldown"				"0"
+	"AbilityCastPoint"				"0.15"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+
+	}
+	"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+}	
+
+
+"custom_huskar_berserkers_blood"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"             		"ability_lua"															// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"ScriptFile"					"abilities/huskar/custom_huskar_berserkers_blood"
+	"AbilityTextureName"			"huskar_berserkers_blood"	
+	"IsBreakable"					"1"
+			
+	// Special
+	
+	"AbilityValues"
+	{
+		"maximum_attack_speed"			"125 175 225 275"
+		"maximum_health_regen"			"20 30 40 50"
+		"hp_threshold_max"				"10"
+	}	
+	"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+}
+	
+
+"custom_huskar_life_break"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"             		"ability_lua"											// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"	
+		
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"ScriptFile"					"abilities/huskar/custom_huskar_life_break"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+	"AbilityTextureName"			"huskar_life_break"
+	"HasShardUpgrade"			"1"
+
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastPoint"				"0.3"
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"10"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"0 0 0"		
+	
+	
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"AbilityCastRange"					"550"
+		"charge_speed"						"1200"
+		"health_damage"						"20 25 30"
+		"health_cost_percent"				"20 25 30"
+		"attack_speed"						"-60 -100 -140"
+		"movespeed"							"-60"
+		"slow_durtion"						"4"
+		"creeps_damage"						"20"
+		"aoe_radius"						"250"
+
+		"shard_speed"						"25"
+		"shard_range"						"300"
+	}
+}
+
+
+
+"custom_huskar_innate"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"abilities/huskar/custom_huskar_innate"	
+
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_SKIP_FOR_KEYBINDS | DOTA_ABILITY_BEHAVIOR_INNATE_UI"
+	"Innate"						"1"
+	"MaxLevel"						"1"
+	"IsBreakable"						"1"
+	"HasScepterUpgrade"			"1"
+
+	"AbilityValues"
+	{
+		"heal"			"70"
+		"cooldown"		"15"
+		"scepter_duration"		"2"
+	}
+}
+
+
+
+
+
+}

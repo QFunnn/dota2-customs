@@ -1,0 +1,345 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+
+"DOTAAbilities"
+{
+
+"Version"		"1"
+
+
+
+
+"void_spirit_aether_remnant_custom"
+	{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/void_spirit/void_spirit_aether_remnant_custom"
+	"AbilityTextureName"			"void_spirit_aether_remnant"										// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT | DOTA_ABILITY_BEHAVIOR_VECTOR_TARGETING"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+	"FightRecapLevel"				"1"
+	"AbilitySound"					"Hero_VoidSpirit.AetherRemnant.Cast"
+	"HasShardUpgrade"				"1"
+
+	"LinkedAbility"					"void_spirit_aether_remnant_custom_legendary"
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastPoint"				"0.0"
+	"AbilityCastRange"				"850"
+
+	// Time
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"11"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"75 80 85 90"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"start_radius"				"90"
+		"end_radius"				"90"
+		"radius"					"300"
+		"projectile_speed"			"900"
+		"remnant_watch_distance"	"450"
+		"remnant_watch_radius"		"130"
+		"watch_path_vision_radius"	"200"
+		"activation_delay"		"0.4"
+		"impact_damage"			"90 140 190 240"
+		"pull_duration"			"1 1.2 1.4 1.6"
+		"pull_destination"		"44 50 56 62"
+		"duration"				"10.0"
+		"think_interval"		"0.1"
+		"shard_distance"		"500"
+		"shard_speed"			"200"
+		"creeps_interval"		"0.5"
+		"creeps_damage"			"50"
+		
+
+
+	}
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+	"AbilityCastGestureSlot"		"DEFAULT"
+
+}
+
+
+
+
+
+
+"void_spirit_aether_remnant_custom_legendary"
+	{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/void_spirit/void_spirit_aether_remnant_custom"
+	"AbilityTextureName"			"void_echo"									// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"	
+	"FightRecapLevel"				"1"
+	"AbilitySound"					"Hero_VoidSpirit.AetherRemnant.Cast"
+	"MaxLevel"						"1"
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastPoint"				"0"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+
+	}
+
+}
+
+
+
+
+"void_spirit_dissimilate_custom"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/void_spirit/void_spirit_dissimilate_custom"
+	"AbilityTextureName"			"void_spirit_dissimilate"		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	//"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+	"FightRecapLevel"				"1"
+	"AbilitySound"					"Hero_VoidSpirit.Dissimilate.Cast"
+	"LinkedAbility"					"void_spirit_dissimilate_custom_cancel"
+
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastPoint"				"0.3"
+
+	// Time
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"15 14 13 12"
+
+	// Damage
+	//-------------------------------------------------------------------------------------------------------------
+
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"120"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"phase_duration"		"1.1"
+		"destination_fx_radius"	"183" // proportional to distance_offset
+		"portals_per_ring"		"6"
+		"angle_per_ring_portal"	"60"
+		"first_ring_distance_offset"	"520"
+		"damage_radius"			"275"
+		"AbilityDamage"					"120 200 280 360"
+	}
+	"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+}
+
+
+
+
+
+
+"void_spirit_dissimilate_custom_cancel"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/void_spirit/void_spirit_dissimilate_custom"
+	"AbilityTextureName"			"void_spirit_dissimilate"		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE"
+	//"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+	"FightRecapLevel"				"1"
+	"MaxLevel"						"1"
+
+
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+	}
+}
+
+
+"void_spirit_resonant_pulse_custom"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/void_spirit/void_spirit_resonant_pulse_custom"
+	"AbilityTextureName"			"void_spirit_resonant_pulse"	// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+	"FightRecapLevel"				"1"
+	"AbilitySound"					"Hero_VoidSpirit.Pulse.Cast"
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"0"
+	"AbilityCastPoint"				"0.0"
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+	"AbilityCastGestureSlot"		"DEFAULT"
+
+	// Time
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"16"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"115 120 125 130"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"radius"				"500"
+		"speed"					"1200"
+		"damage"				"60 110 160 210"
+		"buff_duration"			"8.0"
+		"base_absorb_amount"	"100 150 200 250"
+		"return_projectile_speed"	"900"
+		"scepter_silence"			"2"
+		"scepter_cd"				"-3"
+		"scepter_damage"			"100"
+
+	}
+}
+
+
+
+
+
+"void_spirit_astral_step_custom"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/void_spirit/void_spirit_astral_step_custom"
+	"AbilityTextureName"			"void_spirit_astral_step"// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+	"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"FightRecapLevel"				"1"
+	"AbilitySound"					"Hero_VoidSpirit.AstralStep.Start"
+	"AnimationPlaybackRate"			"1.5" // 1.0 corresponds to cast point of 0.3
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastPoint"				"0.2"
+
+	"AbilityCharges"				"2"
+	"AbilityChargeRestoreTime"		"20"
+
+	"LinkedAbility"					"void_spirit_astral_replicant"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"100"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"radius" 				"170"
+		"min_travel_distance"	"200"
+		"max_travel_distance"	"800 900 1000"
+		"pop_damage_delay"	 	"1.25"
+		"pop_damage"			 "150 225 300"
+		"movement_slow_pct"		"40 60 80"
+
+	}
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+}
+
+
+
+
+
+"void_spirit_astral_replicant"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"					"abilities/void_spirit/void_spirit_astral_step_custom"
+	"AbilityTextureName"			"astral_replicant"		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE "
+	"FightRecapLevel"				"1"
+	"MaxLevel"						"1"
+
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"duration"				"4"
+	}
+}
+
+
+
+
+"void_spirit_innate_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/void_spirit/void_spirit_innate_custom"  
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "Innate"                        "1"
+    "MaxLevel"						"1"
+	"HasScepterUpgrade"			"1"
+
+    "AbilityValues"
+    {
+    	"bonus"			"25"
+    	"scepter_stat"		"1"
+    	"scepter_cd"		"45"
+    	"scepter_agi_bva"	"1.5"
+    	"scepter_agi_heal"	"25"
+    	"scepter_int_damage"	"8"
+    	"scepter_int_cd"		"2"
+    	"scepter_str_damage"	"2"
+    	"scepter_str_radius"	"500"
+    	"scepter_str_interval"	"1"
+    	"scepter_str_health"	"2"
+    }	
+}
+
+
+
+
+
+
+
+}

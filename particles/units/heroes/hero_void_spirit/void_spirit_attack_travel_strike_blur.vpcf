@@ -1,0 +1,195 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf65:version{48e806a9-c210-4cd8-811a-38b5ef63b195} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 13
+	m_flConstantRadius = 300.0
+	m_ConstantColor = [ 180, 180, 180, 255 ]
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 3
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/heroes/void_spirit/void_spirit.vmdl"
+				m_nModSpecificData = 686
+				m_sequenceName = "vs_travel_strike_end_v2"
+				m_nFireParticleOnSequenceFrame = 5
+				m_hitboxSetName = "default"
+				m_bAnimationNonLooping = true
+			}
+		},
+		{
+			m_name = "absorigin"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/heroes/void_spirit/void_spirit.vmdl"
+				m_nModSpecificData = 686
+				m_sequenceName = "vs_travel_strike_end"
+				m_nFireParticleOnSequenceFrame = 7
+				m_hitboxSetName = "default"
+				m_bAnimationNonLooping = true
+			}
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetControlPointOrientation"
+			m_bUseWorldLocation = true
+			m_vecRotation = [ -45.0, 0.0, 0.0 ]
+			m_vecRotationB = [ -45.0, 0.0, 0.0 ]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmissionDuration = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.17
+			}
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 90.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.7
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_RingWave"
+			m_bEvenDistribution = true
+			m_flParticlesPerOrbit = 16.0
+			m_flInitialRadius = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 165.0
+			}
+			m_flPitch = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = -20.0
+			}
+			m_flYaw = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 180.0
+			}
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_nInputMax = 9
+			m_flOutputMax = 140.0
+			m_flOutputMin = 10.0
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_nInputMax = 5
+			m_nFieldOutput = 7
+			m_flOutputMax = 0.6
+			m_bActiveRange = true
+			m_flOutputMin = 0.3
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_nInputMin = 6
+			m_nInputMax = 12
+			m_nFieldOutput = 7
+			m_flOutputMin = 0.6
+			m_flOutputMax = 0.0
+			m_bActiveRange = true
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 25.0, -25.0, 150.0 ]
+			m_OffsetMax = [ 25.0, -25.0, 150.0 ]
+			m_bLocalCoords = true
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_flOutputMin = 0.2
+			m_nInputMax = 8
+			m_nFieldOutput = 1
+			m_flOutputMax = 0.35
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 212, 129, 238, 255 ]
+			m_ColorMax = [ 207, 176, 223, 255 ]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_Decay"
+			m_flOpEndFadeInTime = 0.5
+			m_flOpStartFadeInTime = 0.5
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flBias = 0.25
+			m_flEndScale = 0.0
+			m_flStartScale = 1.25
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.8
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 0.3
+		},
+	]
+	m_Renderers = [  ]
+}

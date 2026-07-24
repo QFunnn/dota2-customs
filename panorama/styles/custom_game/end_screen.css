@@ -1,0 +1,1024 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.MainEndScreen
+{
+	width: 100%;
+	height: 100%;
+}
+
+@keyframes 'HideScreen'
+{
+	0%
+	{
+		opacity: 1;
+	}
+	
+	100%
+	{
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'ShowScreen'
+{
+	0%
+	{
+		opacity: 0;
+	}
+	
+	100%
+	{
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'ShowScreen_Points'
+{
+	0%
+	{
+		opacity: 0;
+	}
+	
+	100%
+	{
+		opacity: 1;
+	}
+	
+}
+
+.EndScreenWindow_content
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+}
+
+.EndScreenWindow_background
+{
+	width: 100%;
+	height: 60%;
+	background-image: url("s2r://panorama/images/custom_game/endscreen_header_png.vtex");
+	background-size: 100%;
+}
+
+.EndScreenWindow_background_points
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/dota_plus/dota_plus_bg_psd.vtex");
+	vertical-align: bottom;
+}
+
+.EndScreenWindow_all_glow
+{
+	width: 500px;
+	height: 600px;
+	border: 1px solid #a6750c;
+	align: center top;
+	margin-top: 220px;
+	background-size: contain;
+	animation-name: GlowAnim;
+	animation-iteration-count: infinite;
+	animation-duration: 3.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'GlowAnim'
+{
+	0%
+	{
+		box-shadow: fill #ffdc73 0px 0px 4px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #ffdc73 0px 0px 24px -10px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #ffdc73 0px 0px 4px -2px;
+	}
+	
+}
+
+.EndScreenWindow_all_hide
+{
+	width: 500px;
+	height: 600px;
+	border: 1px solid #a6750c;
+	align: center top;
+	margin-top: 220px;
+	border-radius: 10px;
+	opacity: 0;
+	animation-name: HideScreen;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.EndScreenWindow_all
+{
+	width: 500px;
+	height: 600px;
+	border: 1px solid #a6750c;
+	align: center top;
+	margin-top: 220px;
+	border-radius: 10px;
+	opacity: 1;
+	animation-name: ShowScreen;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.EndScreenPoints
+{
+	width: 100%;
+	height: 75%;
+	align: center center;
+	flow-children: down;
+	z-index: 999;
+}
+
+.PointsTop
+{
+	width: 100%;
+	height: 30%;
+	flow-children: down;
+}
+
+.ShardInfo_label_show
+{
+	opacity: 1;
+}
+
+.ShardInfo_label_hide
+{
+	opacity: 0;
+}
+
+.ShardsCount
+{
+	width: 100%;
+	height: 50%;
+	flow-children: right;
+}
+
+.ShardsCount_icon
+{
+	width: 9%;
+	height: 70%;
+	margin-left: 39%;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/dota_plus/currency_icon_png.vtex");
+	background-size: contain;
+}
+
+.ShardsCount_text
+{
+	font-family: Radiance;
+	font-weight: bold;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #ff9606 ), to( #bc5904 ) );
+	font-size: 32px;
+	margin-left: 2%;
+	text-shadow: 1px 1px 2px 4 black;
+	align: left center;
+	text-align: center;
+}
+
+.ShardsInfo_top
+{
+	width: 100%;
+	height: 25%;
+	flow-children: right;
+}
+
+.ShardsInfo_bot
+{
+	width: 100%;
+	height: 25%;
+	flow-children: right;
+}
+
+.ShardsInfo_label
+{
+	width: 50%;
+	height: 100%;
+	flow-children: right;
+}
+
+.ShardsInfo_text
+{
+	font-family: Radiance;
+	font-weight: bold;
+	color: #e7e7e7;
+	font-size: 19px;
+	margin-left: 2%;
+	text-shadow: 1px 1px 2px 4 black;
+	align: left center;
+	text-align: center;
+}
+
+.ShardsInfo_text_points
+{
+	font-family: Radiance;
+	font-weight: bold;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #ff9606 ), to( #bc5904 ) );
+	font-size: 21px;
+	margin-right: 12%;
+	text-shadow: 1px 1px 2px 4 black;
+	align: right center;
+	text-align: center;
+	text-overflow: shrink;
+}
+
+.ShardsInfo_bounty_icon
+{
+	width: 12%;
+	height: 90%;
+	margin-left: 2%;
+	background-image: url("s2r://panorama/images/custom_game/runes_png.vtex");
+	vertical-align: center;
+	background-size: contain;
+}
+
+.ShardsInfo_towers_icon
+{
+	width: 12%;
+	height: 90%;
+	margin-left: 2%;
+	background-image: url("s2r://panorama/images/custom_game/towers_png.vtex");
+	vertical-align: center;
+	background-size: contain;
+}
+
+.ShardsInfo_place_icon
+{
+	width: 12%;
+	height: 90%;
+	margin-left: 7%;
+	background-image: url("s2r://panorama/images/custom_game/places_png.vtex");
+	vertical-align: center;
+	background-size: contain;
+}
+
+.ShardsInfo_kills_icon
+{
+	width: 12%;
+	height: 90%;
+	margin-left: 7%;
+	background-image: url("s2r://panorama/images/custom_game/kills_png.vtex");
+	vertical-align: center;
+	background-size: contain;
+}
+
+.PointsMid
+{
+	width: 100%;
+	height: 40%;
+	flow-children: down;
+	margin-top: 5%;
+}
+
+.RandomBonus
+{
+	width: 40%;
+	height: 22%;
+	horizontal-align: center;
+	margin-top: 8%;
+	flow-children: right;
+}
+
+.RandomBonus_hidden
+{
+	width: 40%;
+	height: 22%;
+	horizontal-align: center;
+	margin-top: 8%;
+	flow-children: right;
+	opacity: 0;
+}
+
+.RandomBonus_icon
+{
+	width: 18%;
+	height: 90%;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/control_icons/random_dice_psd.vtex");
+	background-size: 83% 83%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-color: red;
+	margin-left: 10%;
+	border-radius: 7px;
+	border: 0.7px solid #ccc;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #404D65dd ), to( #2B3445dd ) );
+}
+
+.RandomBonus_text
+{
+	font-family: Radiance;
+	font-weight: bold;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #dd8c01 ), to( #fefe51 ) );
+	font-size: 21px;
+	text-shadow: 1px 1px 1px 3 black;
+	align: left center;
+	margin-left: 5%;
+}
+
+.HeroLevel
+{
+	width: 100%;
+	height: 25%;
+	margin-top: 10%;
+}
+
+.PlaceForLevel
+{
+	width: 100%;
+	height: 50%;
+	flow-children: right;
+}
+
+.PlaceForLevel_place
+{
+	font-family: Radiance;
+	font-weight: bold;
+	color: #e7e7e7;
+	font-size: 23px;
+	text-shadow: 1px 1px 1px 1 black;
+	align: center top;
+	text-align: right;
+	width: 50%;
+	margin-left: 3.5%;
+}
+
+.PlaceForLevel_level
+{
+	font-family: Radiance;
+	font-weight: bold;
+	color: #e7e7e7;
+	font-size: 21px;
+	text-shadow: 1px 1px 4px 3 black;
+	align: left center;
+	margin-left: 4%;
+	text-align: center;
+	color: #ddd;
+}
+
+.PlaceForLevel_exp
+{
+	font-family: Radiance;
+	font-weight: bold;
+	color: #e7e7e7;
+	font-size: 23px;
+	text-shadow: 1px 1px 4px 3 black;
+	align: right center;
+	margin-right: 4%;
+	text-align: center;
+	color: #ddd;
+}
+
+.HeroLevel_icon
+{
+	width: 9%;
+	height: 100%;
+	background-size: contain;
+	align: center center;
+	margin-right: 10%;
+	background-repeat: no-repeat;
+}
+
+.HeroLevel_bar
+{
+	width: 90%;
+	height: 18%;
+	border: 1px solid #6b4b0c;
+	border-radius: 3px;
+	horizontal-align: center;
+	margin-top: 7%;
+}
+
+.HeroLevel_bar_filler
+{
+	width: 0%;
+	height: 70%;
+	background-size: contain;
+	margin-left: 1%;
+	align: left center;
+	transition-property: width;
+	border-radius: 3px;
+}
+
+.HeroLevel_level
+{
+	width: 9%;
+	height: 88%;
+	margin-left: 10%;
+	align: center center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.HeroLevel_bar_text
+{
+	font-family: Radiance;
+	font-weight: bold;
+	color: #e7e7e7;
+	font-size: 21px;
+	text-shadow: 1px 1px 4px 3 black;
+	align: center center;
+	margin-left: 0%;
+	text-align: center;
+	color: #ddd;
+}
+
+.ShardsBotCount_info
+{
+	width: 6%;
+	height: 30%;
+	background-image: url("s2r://panorama/images/custom_game/info_png.vtex");
+	align: center bottom;
+	background-size: contain;
+	background-repeat: no-repeat;
+	margin-left: 52%;
+	margin-bottom: 15%;
+}
+
+.PointsBot
+{
+	width: 100%;
+	height: 30%;
+}
+
+.ShardsBotCount
+{
+	width: 28%;
+	height: 50%;
+	margin-top: 50%;
+	vertical-align: center;
+}
+
+.ShardsBot_hidden
+{
+	opacity: 0;
+}
+
+.ShardsBot_Plus_active
+{
+	font-family: Radiance;
+	font-weight: bold;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #f9e0bb ), to( #fff442 ) );
+	color: gradient( linear, 0% 0%, 0% 100%, from( #ff5c32 ), to( #f9993a ) );
+	font-size: 28px;
+	text-shadow: 1px 1px 1px 3 black;
+	align: center top;
+	text-align: center;
+	margin-top: 0%;
+}
+
+.ShardsBot_Plus_date
+{
+	font-family: Radiance;
+	font-weight: bold;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #ffffff ), to( #aaaaaa ) );
+	font-size: 19px;
+	text-shadow: 1px 1px 1px 3 black;
+	align: center top;
+	margin-top: 35%;
+}
+
+.ShardsBot_Plus
+{
+	font-family: Radiance;
+	font-weight: bold;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #f9e0bb ), to( #fff442 ) );
+	color: gradient( linear, 0% 0%, 0% 100%, from( #ff5c32 ), to( #f9993a ) );
+	font-size: 28px;
+	text-shadow: 1px 1px 1px 3 black;
+	align: center top;
+	text-align: center;
+	margin-top: 0%;
+}
+
+.ShardsBotCount_icon
+{
+	width: 18%;
+	height: 60%;
+	margin-left: 14%;
+	margin-bottom: 30%;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/dota_plus/currency_icon_png.vtex");
+	background-size: contain;
+	align: left bottom;
+	background-repeat: no-repeat;
+}
+
+.ShardsBotCount_text
+{
+	font-family: Radiance;
+	font-weight: bold;
+	color: #e7e7e7;
+	font-size: 19px;
+	text-shadow: 1px 1px 1px 1 black;
+	align: left bottom;
+	margin-left: 34%;
+	margin-bottom: 40%;
+	text-align: center;
+}
+
+.SubButton
+{
+	width: 40%;
+	height: 40%;
+	align: center bottom;
+	background-color: gradient( linear, 0% 0%, 90% 100%, from( #d62c00 ), to( #ff7f00 ) ) flow-children: down;
+	margin-bottom: 26%;
+	box-shadow: fill #f9e0bb 0px 0px 3px -1px;
+}
+
+.SubButton:hover
+{
+	brightness: 1.9;
+}
+
+@keyframes 'GlowAnim_button'
+{
+	0%
+	{
+		box-shadow: fill #ffff4e 0px 0px 6px -3px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #ffff4e 0px 0px 20px -10px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #ffff4e 0px 0px 6px -3px;
+	}
+	
+}
+
+.SubButton_text
+{
+	font-family: Radiance;
+	font-weight: bold;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #dd8c01 ), to( #fefe51 ) );
+	font-size: 21px;
+	text-shadow: 1px 1px 1px 3 black;
+	align: center center;
+	margin-top: 4%;
+}
+
+.SubButton_text_bot
+{
+	font-size: 20px;
+	color: white;
+	text-shadow: 0px 0px 5px 2.5 black;
+	align: center center;
+	font-weight: bold;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	font-family: Radiance;
+}
+
+.Max_points
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #f66a6a), to( #d60808 ) );
+}
+
+.HeroLevel_bar_0
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #230c07 ), to( #462828 ) );
+	box-shadow: fill #ff9200 0px 0px 6px -2px;
+}
+
+.HeroLevel_filler_0
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #c0501a ), to( #f49327 ) );
+}
+
+.HeroLevel_icon_0
+{
+	background-image: url("s2r://panorama/images/custom_game/hero_level_big_0_png.vtex");
+}
+
+.Exp_for_place_0
+{
+	color: gradient( linear, 0% 0%, 100% 0%, from( #c0501a ), to( #f49327 ) );
+}
+
+.HeroLevel_bar_1
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #2a3e46 ), to( #1e2c32 ) );
+	box-shadow: fill #79d5f3 0px 0px 6px -2px;
+}
+
+.HeroLevel_filler_1
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #b4e1f0 ), to( #85b6c7 ) );
+}
+
+.HeroLevel_icon_1
+{
+	background-image: url("s2r://panorama/images/custom_game/hero_level_big_1_png.vtex");
+}
+
+.Exp_for_place_1
+{
+	color: gradient( linear, 0% 0%, 100% 0%, from( #b4e1f0 ), to( #85b6c7 ) );
+}
+
+.HeroLevel_bar_2
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #594103 ), to( #312402 ) );
+	box-shadow: fill #f1d61f 0px 0px 6px -2px;
+}
+
+.HeroLevel_filler_2
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #c0911d ), to( #e8c216 ) );
+}
+
+.HeroLevel_icon_2
+{
+	background-image: url("s2r://panorama/images/custom_game/hero_level_big_2_png.vtex");
+}
+
+.Exp_for_place_2
+{
+	color: gradient( linear, 0% 0%, 100% 0%, from( #c0911d ), to( #e8c216 ) );
+}
+
+.HeroLevel_bar_3
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #061f6c ), to( #051549 ) );
+	box-shadow: fill #4d7ff1 0px 0px 6px -2px;
+}
+
+.HeroLevel_filler_3
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #6a98ed ), to( #32cdcf ) );
+}
+
+.HeroLevel_icon_3
+{
+	background-image: url("s2r://panorama/images/custom_game/hero_level_big_3_png.vtex");
+}
+
+.Exp_for_place_3
+{
+	color: gradient( linear, 0% 0%, 100% 0%, from( #6a98ed ), to( #32cdcf ) );
+}
+
+.HeroLevel_bar_4
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #3e2561 ), to( #2d1c45 ) );
+	box-shadow: fill #a05ae5 0px 0px 6px -2px;
+}
+
+.HeroLevel_filler_4
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #da250f ), to( #e0b816 ) );
+}
+
+.HeroLevel_icon_4
+{
+	background-image: url("s2r://panorama/images/custom_game/hero_level_big_4_png.vtex");
+}
+
+.Exp_for_place_4
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #ae40ea ), to( #a05ae5 ) );
+}
+
+.HeroLevel_bar_5
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #5a0a0f ), to( #671611 ) );
+	box-shadow: fill #ff0011 0px 0px 6px -2px;
+}
+
+.HeroLevel_filler_5
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #cc743e ), to( #fee1ae ) );
+}
+
+.HeroLevel_icon_5
+{
+	background-image: url("s2r://panorama/images/custom_game/hero_level_big_5_png.vtex");
+}
+
+.EndScreenWindow
+{
+	width: 100%;
+	height: 25%;
+	flow-children: down;
+}
+
+.Top_label
+{
+	width: 100%;
+	height: 40%;
+	flow-children: right;
+	margin-top: 5%;
+}
+
+.Mid_label
+{
+	width: 100%;
+	height: 30%;
+	flow-children: right;
+}
+
+.EndScreenWindow_close
+{
+	width: 8%;
+	height: 57%;
+	margin-right: 2%;
+	margin-top: 10%;
+	align: right top;
+	background-image: url("s2r://panorama/images/custom_game/close_pass_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center center;
+	transition-property: pre-transform-scale2d, brightness;
+	transition-duration: 0.2s;
+	brightness: 2;
+	horizontal-align: right;
+}
+
+.EndScreenWindow_close:hover
+{
+	brightness: 6;
+	pre-transform-scale2d: 1.1;
+}
+
+.EndScreenWindow_bot
+{
+	width: 100%;
+	height: 60%;
+}
+
+.EndScreenWindow_top
+{
+	width: 100%;
+	height: 40%;
+}
+
+.TopText
+{
+	color: gradient( linear, 0% 100%, 0% 0%, from( #f9e0bb ), to( #fff442 ) );
+	font-size: 42px;
+	align: center top;
+	font-weight: bold;
+	font-family: Radiance;
+	text-shadow: 0px 0px 6px 4.5 black;
+	z-index: 5;
+	margin-top: 15%;
+}
+
+.BotText
+{
+	font-family: Radiance;
+	font-weight: bold;
+	color: #e7e7e7;
+	font-size: 30px;
+	text-shadow: 1px 1px 2px 4 black;
+	align: center top;
+	margin-right: 20%;
+	margin-top: 8%;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #ffffff ), to( #aaaaaa ) );
+}
+
+.ChangeText
+{
+	font-family: Radiance;
+	font-weight: bold;
+	font-size: 30px;
+	margin-left: 1%;
+	text-shadow: 1px 1px 2px 3 black;
+	align: center top;
+	margin-left: 40%;
+	margin-top: 8%;
+}
+
+.Change_Plus
+{
+	color: gradient( linear, 0% 100%, 0% 0%, from( #0f8100 ), to( #50ff39 ) );
+}
+
+.Change_Minus
+{
+	color: gradient( linear, 0% 100%, 0% 0%, from( #bb0000 ), to( #ff3030 ) );
+}
+
+.Bottom_Button
+{
+	width: 35%;
+	height: 81%;
+	align: left top;
+	margin-left: 10%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #222222 ), to( #333333 ) );
+	border: 1px solid #999999;
+}
+
+.Bottom_Text
+{
+	font-family: Radiance;
+	font-weight: bold;
+	font-size: 22px;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 2px 4 black;
+	align: center center;
+}
+
+@keyframes 'ShowEndScreenQuest'
+{
+	0%
+	{
+		opacity: 0;
+		transform: translate3d( -300px, 0px, 0px );
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: translate3d( 0px, 0px, 0px );
+	}
+	
+}
+
+@keyframes 'HideEndScreenQuest'
+{
+	0%
+	{
+		opacity: 1;
+	}
+	
+	100%
+	{
+		opacity: 0;
+	}
+	
+}
+
+.EndScreenQuest_hidden
+{
+	width: 300px;
+	height: 150px;
+	align: center center;
+	margin-left: 900px;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #0e0701 ), to( #301b06 ) );
+	background-size: contain;
+	flow-children: down;
+	border-radius: 5px;
+	opacity: 0;
+}
+
+.EndScreenQuest_show
+{
+	width: 300px;
+	height: 150px;
+	align: center center;
+	margin-left: 900px;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #0e0701 ), to( #301b06 ) );
+	background-size: contain;
+	border: 1px solid #a6750c;
+	flow-children: down;
+	border-radius: 5px;
+	animation-name: ShowEndScreenQuest;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.EndScreenQuest
+{
+	width: 300px;
+	height: 150px;
+	align: center center;
+	margin-left: 900px;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #0e0701 ), to( #301b06 ) );
+	background-size: contain;
+	border: 1px solid #a6750c;
+	animation-name: GlowAnim;
+	animation-iteration-count: infinite;
+	animation-duration: 3.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+	flow-children: down;
+	border-radius: 5px;
+}
+
+.EndScreenQuest_hide
+{
+	width: 300px;
+	height: 150px;
+	align: center center;
+	margin-left: 900px;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #0e0701 ), to( #301b06 ) );
+	background-size: contain;
+	border: 1px solid #a6750c;
+	flow-children: down;
+	border-radius: 5px;
+	opacity: 0;
+	animation-name: HideEndScreenQuest;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.EndScreenQuest_Top
+{
+	width: 100%;
+	height: 60%;
+	flow-children: right;
+}
+
+.EndScreenQuest_Bot
+{
+	width: 100%;
+	height: 40%;
+	flow-children: right;
+}
+
+.EndScreenQuest_Bot_Container
+{
+	width: 50%;
+	height: 100%;
+}
+
+.EndScreenQuest_icon_shards
+{
+	background-image: url("s2r://panorama/images/dota_plus/currency_icon_small_png.vtex");
+	background-size: 100%;
+	width: 36px;
+	height: 36px;
+	margin-left: 20%;
+	align: left center;
+}
+
+.EndScreenQuest_icon_exp
+{
+	background-image: url("s2r://panorama/images/dota_plus/dotaplus_logo_small_png.vtex");
+	background-size: 100%;
+	width: 31px;
+	height: 36px;
+	margin-left: 20%;
+	align: left center;
+}
+
+.EndScreenQuest_icon_text
+{
+	font-size: 25px;
+	letter-spacing: 1px;
+	vertical-align: center;
+	font-weight: bold;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #f9e0bb ), to( #fff442 ) );
+	align: center center;
+	text-align: center;
+	text-shadow: 3px 3px 3px black;
+	font-family: Radiance;
+	margin-left: 30%;
+	text-shadow: 0px 0px 7px #B7894666;
+}
+
+.EndScreenQuest_icon
+{
+	width: 56px;
+	height: 56px;
+	background-size: contain;
+	border-radius: 50%;
+	vertical-align: center;
+	margin-left: 10%;
+	border: 2px solid #ffdc73;
+	box-shadow: inset #000000aa 0px 2px 3px 2px;
+}
+
+.EndScreenQuest_text
+{
+	font-family: Radiance;
+	font-weight: bold;
+	color: #e7e7e7;
+	font-size: 24px;
+	margin-right: 6%;
+	text-shadow: 1px 1px 2px 5 black;
+	align: center center;
+	text-align: center;
+}

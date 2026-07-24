@@ -1,0 +1,85 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/meepo_cheat_panel.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/meepo_cheat_panel.vjs_c" />
+	</scripts>
+	<Panel hittest="false" style="width:100%;height:100%;">
+		<Panel class="ButtonCheatPanel" id="ButtonCheatPanel" onactivate="OpenMainButton();" />
+		<Panel class="PanelChooseTypeCheat hidden" id="PanelChooseTypeCheat" hittest="false">
+			<Panel class="CheatPanel" id="CheatType_1" onactivate="OpenCheatType(1);">
+				<Panel class="ImageCheat" id="Image_1" />
+				<Label class="TextCard" text="Общие эффекты" />
+			</Panel>
+			<Panel class="CheatPanel" id="CheatType_2" onactivate="OpenCheatType(2);">
+				<Panel class="ImageCheat" id="Image_2" />
+				<Label class="TextCard" text="Эффекты на себя" />
+			</Panel>
+			<Panel class="CheatPanel" id="CheatType_3" onactivate="PanelChooseHero();">
+				<Panel class="ImageCheat" id="Image_3" />
+				<Label class="TextCard" text="Эффекты на цель" />
+			</Panel>
+		</Panel>
+		<Panel class="CheatsType hidden" id="CheatsType_1" hittest="false">
+			<Panel class="cheats_container" id="container_cheats_1" />
+			<Panel class="ButtonChild">
+				<Panel class="BackButtonCheat" onactivate="ButtonBack(&apos;main&apos;);">
+					<Label class="TextButtonaCheat" text="Назад" />
+				</Panel>
+				<Panel class="CloseButtonCheat" onactivate="ButtonBack(&apos;close&apos;);">
+					<Label class="TextButtonaCheat" text="Закрыть" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="CheatsType hidden" id="CheatsType_2" hittest="false">
+			<Panel class="cheats_container" id="container_cheats_2" />
+			<Panel class="ButtonChild">
+				<Panel class="BackButtonCheat" onactivate="ButtonBack(&apos;main&apos;);">
+					<Label class="TextButtonaCheat" text="Назад" />
+				</Panel>
+				<Panel class="CloseButtonCheat" onactivate="ButtonBack(&apos;close&apos;);">
+					<Label class="TextButtonaCheat" text="Закрыть" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="CheatsType hidden" id="CheatsType_3" hittest="false">
+			<Panel class="cheats_container" id="container_cheats_3" />
+			<Panel class="ButtonChild">
+				<Panel class="BackButtonCheat" onactivate="ButtonBack(&apos;heroes&apos;);">
+					<Label class="TextButtonaCheat" text="Назад" />
+				</Panel>
+				<Panel class="CloseButtonCheat" onactivate="ButtonBack(&apos;close&apos;);">
+					<Label class="TextButtonaCheat" text="Закрыть" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="PanelChooseTypeCheatN hidden" id="PanelChooseHero" hittest="false">
+			<Panel class="HeroesSelected" id="HeroesSelected" />
+			<Panel class="ButtonChild">
+				<Panel class="BackButtonCheat" onactivate="ButtonBack(&apos;main&apos;);">
+					<Label class="TextButtonaCheat" text="Назад" />
+				</Panel>
+				<Panel class="UpdateButtonCheat" onactivate="UpdatePlayersPanel();">
+					<Label class="TextButtonaCheat" text="Обновить" />
+				</Panel>
+				<Panel class="CloseButtonCheat" onactivate="ButtonBack(&apos;close&apos;);">
+					<Label class="TextButtonaCheat" text="Закрыть" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="EffectsTimer" id="EffectsTimer" hittest="false" />
+	</Panel>
+</root>

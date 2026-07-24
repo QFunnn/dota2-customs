@@ -1,0 +1,466 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+
+"DOTAAbilities"
+{
+
+"Version"		"1"
+
+
+
+
+"sandking_burrowstrike_custom"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/sand_king/sandking_burrowstrike_custom"
+    "AbilityTextureName"            "sandking_burrowstrike"     
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES_STRONG"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Ability.SandKing_BurrowStrike"
+
+    "LinkedAbility"                 "sandking_burrowstrike_custom_legendary"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+
+    "AbilityCastPoint"              "0.0 0.0 0.0 0.0"
+    
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "15 14 13 12"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "110 120 130 140"
+    
+    "AbilityDamage"                 "80 150 220 290"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "burrow_width"      
+        {
+            "value"     "150"
+            "affected_by_aoe_increase"  "1"
+        }
+        "burrow_duration"   "1.2 1.4 1.6 1.8"
+        "burrow_speed"      "2000"
+        "burrow_anim_time"  "0.52"
+        "AbilityCastRange"  "525 600 675 750" 
+
+    }
+}
+
+
+
+
+"sandking_burrowstrike_custom_reverse"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/sand_king/sandking_burrowstrike_custom"
+    "AbilityTextureName"            "burrowstrike_reverse"      
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Ability.SandKing_BurrowStrike"
+    "MaxLevel"                      "1"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+
+    "AbilityCastPoint"              "0.0 0.0 0.0 0.0"
+    
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "1"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "50"
+    
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+
+    }
+}
+
+
+//=================================================================================================================
+// Ability: Sand King Sand Storm
+//=================================================================================================================
+"sandking_sand_storm_custom"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/sand_king/sandking_sand_storm_custom"
+    "AbilityTextureName"            "sandking_sand_storm"                                                   // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Ability.SandKing_SandStorm.start"
+    "LinkedAbility"             "sandking_sand_storm_custom_legendary"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastRange"              "0"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "15 13 11 9"
+    "AbilityCastPoint"              "0.0 0.0 0.0 0.0"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "85"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "duration"          "25"
+        "damage_tick_rate"  "0.25"
+        "sand_storm_radius"
+        {
+            "value"     "425 500 575 650"
+            "affected_by_aoe_increase"  "1"
+        }
+        "sand_storm_damage"     "30 50 70 90" 
+    
+        "sand_storm_move_speed"     "60"
+        "timer"                 "3" 
+
+    }
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_2"
+}
+
+
+
+
+
+"sandking_sand_storm_custom_legendary"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/sand_king/sandking_sand_storm_custom"
+    "AbilityTextureName"            "sand_storm_legendary"  
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
+
+
+    "AbilityCooldown"               "6.0"
+    "MaxLevel"                      "1"
+
+    "AbilityValues"
+    {
+
+        
+    }
+}
+
+
+
+
+"sandking_scorpion_strike_custom"
+{    
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/sand_king/sandking_scorpion_strike_custom"
+    "AbilityTextureName"            "sandking_scorpion_strike" 
+
+    "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_AOE"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"  
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilitySound"                  "Hero_Kunkka.Tidebringer.Attack"
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_3"
+    "AbilityCastGestureSlot"        "DEFAULT"
+    
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastRange"              "200"
+    "FightRecapLevel"               "1"
+    "AbilityCastPoint"              "0.4"
+    "AbilityManaCost"               "35 40 45 50"
+    "HasScepterUpgrade"               "1"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "11.0 9.0 7.0 5.0"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+
+        "radius"        
+        {
+            "value"         "225 255 285 315"
+            "affected_by_aoe_increase"  "1"
+        }
+        "inner_radius"
+        {
+            "value"         "125"
+            "affected_by_aoe_increase"  "1"
+        }
+        "inner_radius_bonus_damage_pct"             "40"
+        "attack_damage"                 "35 70 105 140"
+        "debuff_duration"               "4 5 6 7"
+        "strike_slow"           "-10 -12 -14 -16"
+        "scepter_stack"                 "2"
+        "scepter_cd"                    "-80"
+    }
+}
+
+
+//=================================================================================================================
+// Ability: Sand King Caustic Finale
+//=================================================================================================================
+"sandking_caustic_finale_custom"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/sand_king/sandking_caustic_finale_custom"
+    "AbilityTextureName"            "sandking_caustic_finale"                                                   // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_SKIP_FOR_KEYBINDS | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilitySound"                  "Ability.SandKing_CausticFinale"
+
+
+    "DependentOnAbility"            "sandking_epicenter_custom"
+    "Innate"                        "1"
+    "MaxLevel"                      "4"
+    "IsBreakable"                   "1"
+
+    "AbilityCastPoint"              "0.2"
+    
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "caustic_finale_radius"      "500" 
+        "caustic_finale_damage"     "30 60 90 120" 
+        "caustic_finale_duration"   "6"    
+        "max_attacks"               "3" 
+    }
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_3"
+}
+
+//=================================================================================================================
+// Ability: Sand King Epicenter
+//=================================================================================================================
+"sandking_epicenter_custom"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/sand_king/sandking_epicenter_custom"
+    "AbilityTextureName"            "sandking_epicenter"                                                // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityType"                   "ABILITY_TYPE_ULTIMATE"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "FightRecapLevel"               "2"
+    "AbilitySound"                  "Ability.SandKing_Epicenter"
+    "HasShardUpgrade"               "1"
+
+    // Time
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "40"
+    "AbilityDuration"               "6.0"
+    "AbilityCastPoint"              "1.6"
+    "AbilityCastAnimation"          "ACT_DOTA_IDLE"
+    "AbilityChannelAnimation"       "ACT_DOTA_CHANNEL_ABILITY_4"
+
+    "LinkedAbility"                 "sandking_epicenter_custom_legendary"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "150 225 300"
+    
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {           
+        "epicenter_pulses"          "12 16 20" 
+        "epicenter_damage"          "60 70 80" 
+        "epicenter_radius_base"
+        {
+            "value"     "500" 
+            "affected_by_aoe_increase"  "1"
+        }
+        "epicenter_radius_increment"
+        {
+            "value"     "13" 
+            "affected_by_aoe_increase"  "1"
+        }
+        "epicenter_slow"        "-30 -40 -50" 
+        "epicenter_slow_as"     "-50 -55 -60" 
+        "slow_duration"         "3"
+        
+        "scepter_sand"      "2.5"
+        "scepter_slow"      "1"
+        "scepter_chance"    "20"
+
+        "shard_cast"        "-0.4"
+        "shard_break"       "3"
+        "shard_break_count"     "4"
+        "shard_radius"      "12"
+    }
+}
+
+
+"sandking_epicenter_custom_legendary"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/sand_king/sandking_epicenter_custom"
+    "AbilityTextureName"            "epicenter_legendary"       
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+
+    "MaxLevel"                      "1"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+
+    "AbilityCastAnimation"          "ACT_DOTA_IDLE"
+
+    "AbilityCastPoint"              "0.35"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "50"
+    
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "radius"                "600"
+        "duration"              "4"
+        "cd_inc"                "4"
+        "distance"              "150"
+    }
+}
+
+
+
+
+
+
+
+"sandking_burrowstrike_custom_legendary"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/sand_king/sandking_burrowstrike_custom"
+    "AbilityTextureName"            "burrowstrike_legendary"        
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+
+    "MaxLevel"                      "1"
+    "LinkedAbility"             "sandking_burrowstrike_custom_legendary_exit"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+
+    "AbilityCastPoint"              "0.3"
+    
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "0"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "50"
+    
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "speed"     "300"
+        "shield"    "25"
+        "attack_cd"     "1.5"
+        "attack_stun"   "0.2"
+        "radius"        "400"
+        "damage"        "80"
+        "damage_inc"    "75"
+    }
+}
+
+
+"sandking_burrowstrike_custom_legendary_exit"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/sand_king/sandking_burrowstrike_custom"
+    "AbilityTextureName"            "burrowstrike_legendary_end"        
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+
+    "MaxLevel"                      "1"
+    "LinkedAbility"                 "sandking_burrowstrike_custom_reverse"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+
+    "AbilityCastPoint"              "0"
+    
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "1"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "0"
+    
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+
+
+    }
+}
+
+
+
+
+
+
+
+
+}

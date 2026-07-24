@@ -1,0 +1,102 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf37:version{f9a1c8c4-159b-4786-b740-4d1a118c8f46} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_nInitialParticles = 1
+	m_flConstantRadius = 0.0
+	m_ConstantColor = [ 0, 0, 0, 255 ]
+	m_nConstantSequenceNumber = 1
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_previewState = 
+			{
+				m_previewModel = "models/heroes/phantom_assassin/phantom_assassin.vmdl"
+				m_nModSpecificData = 137
+				m_sequenceName = "phantom_assassin_idle_alt1_anim"
+				m_hitboxSetName = "default"
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_StatusEffect"
+			m_flColorWarpIntensity = 0.0
+			m_flSpecularScale = 0.5
+			m_flReflectionsTintByBaseBlendToNone = 0.125
+			m_flMetalnessBlendToFull = 0.35
+			m_specularColor = [ 152, 152, 152, null ]
+			m_rimLightColor = [ 152, 152, 152, null ]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_OscillateVectorSimple"
+			m_flOscAdd = 0.75
+			m_Frequency = [ 0.0, 0.25, 0.0 ]
+			m_Rate = [ 0.0, -5.0, 0.0 ]
+			m_nField = 15
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+			m_flOpEndFadeOutTime = 0.2
+			m_flOpStartFadeOutTime = 0.2
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_Rate = -1.0
+			m_nField = 7
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_flOpStartFadeOutTime = 0.25
+			m_flOpEndFadeOutTime = 0.5
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_OFF"
+			m_Rate = -2.0
+			m_flEndTime = 99999.0
+		},
+		{
+			_class = "C_OP_RampScalarSplineSimple"
+			m_flEndTime = 0.25
+			m_Rate = 25.0
+			m_nField = 4
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_OFF"
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+			m_nField = 4
+			m_Rate = -2.0
+			m_flEndTime = 999999.0
+		},
+		{
+			_class = "C_OP_ClampScalar"
+			m_nFieldOutput = 4
+		},
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderStatusEffect"
+			m_pTextureColorWarp = resource:"materials/models/heroes/statuseffects/colorwarp_c2015_lvl2_dire.vtex"
+		},
+	]
+}

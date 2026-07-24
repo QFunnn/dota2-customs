@@ -1,0 +1,306 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+
+"DOTAAbilities"
+{
+
+"Version"		"1"
+
+"ember_spirit_searing_chains_custom"
+{
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"abilities/ember_spirit/searing_chains"
+	"AbilityTextureName"			"ember_spirit_searing_chains"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"400"
+	"AbilityCastPoint"				"0"
+	
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"13 12 11 10"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"80 90 100 110"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"duration"						"1.5 2.0 2.5 3.0"
+		"damage_per_second"				"50 70 90 110"
+		"radius"						"400"
+		"tick_interval"					"0.5"
+		"creeps_damage"					"30"
+	}
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+}
+
+"ember_spirit_sleight_of_fist_custom"
+{
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"abilities/ember_spirit/sleight_of_fist"
+	"AbilityTextureName"			"ember_spirit_sleight_of_fist"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+	
+	"AbilityCastRange"				"650"
+	"AbilityCastPoint"				"0"
+	
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"13 11 9 7"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"60 65 70 75"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"radius"					"250 350 450 550"
+		"bonus_hero_damage"			"50 90 130 170"
+		"attack_interval"				"0.25"
+	
+	}
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+}
+
+"ember_spirit_flame_guard_custom"
+{
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"abilities/ember_spirit/flame_guard"
+	"AbilityTextureName"			"ember_spirit_flame_guard"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+	"AbilitySound"					"Hero_EmberSpirit.FlameGuard.Cast"
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"450"
+	"AbilityCastPoint"				"0"
+	
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"10"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"50 65 80 95 110"
+
+    "MaxLevel"                      "4"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"duration"						"10"
+		"absorb_amount"					"60 140 220 300"
+		"damage_per_second"				"20 30 40 50"
+		"radius"						"500"
+		"tick_interval"					"0.5"
+        
+	}
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+}
+
+
+
+
+"ember_spirit_fire_remnant_custom"
+{
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"abilities/ember_spirit/fire_remnant"
+	"AbilityTextureName"			"ember_spirit_fire_remnant"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+	"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"AbilitySound"					"Hero_EmberSpirit.FireRemnant.Cast"
+	"AbilityDraftPreAbility"		"ember_spirit_activate_fire_remnant"
+	"LinkedAbility"					"ember_spirit_fire_remnant_custom_scepter_ability"
+
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"1400"
+	"AbilityCastPoint"				"0"
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_6"
+
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"0.5"
+	"AbilityCharges"				"3"
+	"AbilityChargeRestoreTime"		"30.0"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"0"
+
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"speed_multiplier"				"250"
+		"damage"						"100 160 220"
+		"radius"						"450"
+		"duration"						"25"
+	}
+}
+
+
+"ember_spirit_activate_fire_remnant_custom"
+{
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"abilities/ember_spirit/fire_remnant"
+	"AbilityTextureName"			"ember_spirit_activate_fire_remnant"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+	"MaxLevel"						"3"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	
+	"AbilityCastPoint"				"0.2"
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+
+	"AbilityCooldown"				"0.0"
+	"AbilityManaCost"				"100 125 150"
+	"HasScepterUpgrade"				"1"
+	"HasShardUpgrade"				"1"
+
+
+	"AbilityValues"
+	{
+		"damage"						"100 160 220"
+		"radius"						"450"
+		"speed"							"1300"
+        "tower_attack_cd"						"3"
+
+        "shard_range"		"500"
+        "shard_cd"			"3"
+        "shard_damage"		"75"
+        "shard_speed"		"1800"
+	}
+}
+
+
+"ember_spirit_fire_remnant_custom_scepter_ability"
+{
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"abilities/ember_spirit/fire_remnant"
+	"AbilityTextureName"			"ember_spirit_fire_remnant"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"AbilitySound"					"Hero_EmberSpirit.FireRemnant.Cast"
+
+	"LinkedAbility"					"ember_spirit_fire_remnant_custom"
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"1400"
+	"AbilityCastPoint"				"0"
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_6"
+	"HasScepterUpgrade"				"1"
+
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"0.5"
+	"AbilityCharges"				"5"
+	"AbilityChargeRestoreTime"		"30.0"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"0"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityValues"
+	{
+		"speed_multiplier"				"350"
+		"speed_min"						"700"
+		"damage"						"100 160 220"
+		"radius"						"450"
+		"duration"						"25"
+
+	}
+}
+
+
+
+"ember_spirit_fire_remnant_burst"
+{
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"abilities/ember_spirit/fire_remnant"
+	"AbilityTextureName"			"Remnant_Burst"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+	"MaxLevel"						"3"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	
+
+	"AbilityCooldown"				"0.0"
+	"MaxLevel"						"1"
+	"AbilityCastRange"				"850"
+	"AbilityCooldown"				"75"
+
+	"AbilityValues"
+	{
+		"channel"						"1.5"
+		"range"							"400"
+		"cd_reduction"					"4"
+		"max"							"5"
+	}
+}
+
+
+"ember_spirit_innate_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/ember_spirit/ember_spirit_innate_custom"  
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	"MaxLevel"						"1"
+    "Innate"                        "1"
+	"IsBreakable"					"1"
+
+    // Special  
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+    	"damage"		"40"
+    	"interval"		"1"
+    	"duration"		"5"
+    }
+}
+
+
+
+
+
+
+
+
+
+
+}

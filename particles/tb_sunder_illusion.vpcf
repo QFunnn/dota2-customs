@@ -1,0 +1,150 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf57:version{4f75132e-4f5d-493c-958e-3bb4328089ba} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 15
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 255.0, 255.0, 255.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 16
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetControlPointRotation"
+			m_vecRotAxis = [ 1.0, 0.0, 0.0 ]
+			m_nCP = 1
+			m_flRotRate = 1800.0
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_StopAfterCPDuration"
+			m_flDuration = 0.75
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_flStartTime = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.2
+			}
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderScreenShake"
+			m_flDurationScale = 0.25
+			m_flFrequencyScale = 3.0
+			m_flAmplitudeScale = 6.0
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/econ/items/terrorblade/terrorblade_back_ti8/terrorblade_sunder_ti8_ground_dark.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/terrorblade/terrorblade_back_ti8/terrorblade_sunder_ti8_ground_ring.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/terrorblade/terrorblade_back_ti8/terrorblade_sunder_ti8_ground_scorch.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/terrorblade/terrorblade_back_ti8/terrorblade_sunder_ti8_dark_swirl.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/terrorblade/terrorblade_back_ti8/terrorblade_sunder_ti8_ground_pnt.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/terrorblade/terrorblade_back_ti8/terrorblade_sunder_ti8_dark.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/terrorblade/terrorblade_back_ti8/terrorblade_sunder_ti8_base.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/terrorblade/terrorblade_back_ti8/terrorblade_sunder_ti8_rope.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/terrorblade/terrorblade_back_ti8/terrorblade_sunder_ti8_rope_detail.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/terrorblade/terrorblade_back_ti8/terrorblade_sunder_ti8_light.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/terrorblade/terrorblade_back_ti8/terrorblade_sunder_ti8_impact.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/terrorblade/terrorblade_back_ti8/terrorblade_sunder_ti8_swirl_rope.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/terrorblade/terrorblade_back_ti8/terrorblade_sunder_ti8_elec.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/terrorblade/terrorblade_back_ti8/terrorblade_sunder_ti8_energy.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/terrorblade/terrorblade_back_ti8/terrorblade_sunder_ti8_beam.vpcf"
+		},
+	]
+}

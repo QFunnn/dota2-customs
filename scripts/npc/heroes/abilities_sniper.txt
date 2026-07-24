@@ -1,0 +1,383 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+
+"DOTAAbilities"
+{
+
+"Version"		"1"
+
+
+
+
+
+
+"sniper_shrapnel_custom"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/sniper/sniper_shrapnel_custom" 
+    "AbilityTextureName"            "sniper_shrapnel"                                                       // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Hero_Sniper.ShrapnelShatter"
+    "LinkedAbility"                 "sniper_shrapnel_custom_4"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastRange"              "1800"
+    "AbilityCastPoint"              "0.3"
+
+    // Time     
+    "AbilityCharges"                "3"
+    "AbilityChargeRestoreTime"      "25"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "75"
+
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "slow_movement_speed"   "-12 -18 -24 -30"
+        "radius"                "400 425 450 475"
+        "shrapnel_damage"       "30 45 60 75"
+        "duration"              "10.0"
+        "damage_delay"          "1.2"
+    }
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
+}
+
+
+
+"sniper_shrapnel_custom_4"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/sniper/sniper_shrapnel_custom" 
+    "AbilityTextureName"            "sniper_shrapnel"                                                       // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "FightRecapLevel"               "1"
+    "AbilitySound"                  "Hero_Sniper.ShrapnelShatter"
+    "LinkedAbility"                 "sniper_shrapnel_custom"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastRange"              "1800"
+    "AbilityCastPoint"              "0.3"
+
+    // Time     
+    "AbilityCharges"                "4"
+    "AbilityChargeRestoreTime"      "25"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "75"
+
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "slow_movement_speed"   "-12 -18 -24 -30"
+        "radius"                "400 425 450 475"
+        "shrapnel_damage"       "30 45 60 75"
+        "duration"              "10.0"
+        "damage_delay"          "1.2"
+    }
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
+}
+
+
+
+
+//=================================================================================================================
+// Sniper: Headshot
+//=================================================================================================================
+"sniper_headshot_custom"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/sniper/sniper_headshot_custom" 
+    "AbilityTextureName"            "sniper_headshot"                                                       // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"  
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "IsBreakable"                   "1"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "damage"        "20 50 80 110" 
+        "proc_chance"                   "40"
+        "knockback_distance"            "50" 
+        "slow"          "-100"
+        "slow_duration"                 "0.2 0.3 0.4 0.5"               
+    }
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_2"
+}
+
+//=================================================================================================================
+// Sniper: Take Aim
+//=================================================================================================================
+"sniper_take_aim_custom"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/sniper/sniper_take_aim_custom" 
+    "AbilityTextureName"            "sniper_take_aim"                                                                   // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "FightRecapLevel"               "1"
+
+    "MaxLevel"                      "4"
+
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "50"
+    
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "20 18 16 14"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastRange"              "0"
+    "AbilityCastPoint"              "0 0 0 0"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "duration"                      "3"
+        "active_slow"                   "-65"
+        "active_armor"                  "5 10 15 20"   
+        "active_chance"                 "100"
+        "active_range"                  "100"    
+    }
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_3"
+}
+
+//=================================================================================================================
+// Sniper: Assassinate
+//=================================================================================================================
+
+
+
+
+"sniper_assassinate_custom"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/sniper/sniper_assassinate_custom" 
+    "AbilityTextureName"            "sniper_assassinate"                                                        // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityType"                   "ABILITY_TYPE_ULTIMATE"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "FightRecapLevel"               "2"
+    "HasScepterUpgrade"                 "1"
+    "AbilitySound"                  "Ability.Assassinate"
+
+    "LinkedAbility"                 "sniper_assassinate_custom_legendary"
+
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastRange"              "3000"
+    "AbilityCastRangeBuffer"        "600"
+    "AbilityCastPoint"              "1"
+    "AbilityCastAnimation"      "0"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "18 16 14"
+
+    // Damage.
+    //-------------------------------------------------------------------------------------------------------------
+
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "175"
+    
+    // Stats
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityModifierSupportValue"   "0.0"   // Modifier just does damage
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "projectile_speed"          "2800"
+        "damage"                 "300 400 500"
+        "attack_factor"             "100 110 120"
+        "aoe_radius"                "350"
+        "distance"                  "3000"
+        "debuff_duration"           "5"
+        "scepter_stun_duration"     "1.5"
+        "scepter_duration"          "6"
+        "scepter_damage"            "2"
+        "scepter_cdr"               "2"
+        "scepter_max"               "10"   
+    }       
+}
+
+
+
+
+"sniper_assassinate_custom_legendary"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/sniper/sniper_assassinate_custom" 
+    "AbilityTextureName"            "steady_shot"       
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+
+    "MaxLevel"                      "1"
+
+    "AbilityCastRange"              "2500"
+    "AbilityCastPoint"              "0.5"
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_4"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "5"
+
+
+    "AbilityManaCost"               "0"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+        "projectile_speed"          "3300"
+        "projectile_width"          "130"
+        "damage"                    "8" 
+        "damage_creeps"             "200"   
+        "distance"                  "2500"
+        "slow"                      "-50"
+        "slow_duration"             "2"
+        "stack_duration"            "15"
+        "damage_stack"              "50"
+        "max_stack"                 "5"
+        "hit_cd"                    "80"
+    }       
+}
+
+
+
+
+"sniper_concussive_grenade"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "ID"                            "694"                                                       // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    "FightRecapLevel"               "1"
+    "IsGrantedByShard"              "1"
+    "MaxLevel"                      "1"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastPoint"              "0.1"
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_5"
+    
+    
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "17"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "50"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityValues"
+    {
+
+        "damage"
+        {
+            "value"                 "200"
+            "CalculateSpellDamageTooltip"   "1"
+        }
+        "AbilityCastRange"      
+        {
+            "value"                         "600"
+            "special_bonus_unique_sniper_grenade_range"     "+250"
+        }
+        "radius"        "375"
+        "slow"      "50"
+        "debuff_duration"       "2"
+        "knockback_height"      "100"
+        "knockback_distance"        "375"
+        "knockback_duration"        "0.3"
+        "self_push"                 
+        {
+            "value"         "1"
+            "special_bonus_unique_sniper_grenade_self_push"     "+1"
+
+        }
+    }
+}
+
+
+
+
+"sniper_innate_custom"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/sniper/sniper_innate_custom"  
+
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "MaxLevel"                      "4"
+    "Innate"                        "1"
+    "IsBreakable"                   "1"
+    "DependentOnAbility"            "sniper_assassinate_custom"
+
+    "AbilityValues"
+    {
+        "range"     "100 200 300 400"
+    }
+}
+
+
+
+
+
+
+}
