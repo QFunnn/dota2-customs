@@ -1,0 +1,50 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "elf_wolf_cripple"
+	{
+		"BaseClass"								"ability_lua"
+		"MaxLevel"								"1"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"ScriptFile"							"creature_ability/elf_wolf_cripple"
+		"AbilityTextureName"					"lycan_summon_wolves_critical_strike"
+		"AbilityValues"
+		{
+			"maim_chance"						"20"
+			"maim_duration"						"4.0"
+			"maim_movement_speed"				"15"
+			"maim_attack_speed"					"60"
+			"maim_damage"						"8"
+		}
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_1"
+	}
+	"giant_wolf_intimidate"
+	{
+		"ID"									"894"
+		"MaxLevel"								"1"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_YES_STRONG"
+		"AbilityCastPoint"						"0.2"
+		"AbilityCooldown"						"16.0"
+		"AbilityManaCost"						"50"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityValues"
+		{
+			"radius"							"300 350 400 500"
+			"damage_reduction"					"35"
+			"duration"							"4.0"
+		}
+	}
+}

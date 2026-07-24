@@ -1,0 +1,560 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+#base "heroes/alchemist_abilities.txt"
+#base "heroes/abaddon_abilities.txt"
+#base "heroes/abyssal_underlord_abilities.txt"
+#base "heroes/arc_warden_abilities.txt"
+#base "heroes/axe_abilities.txt"
+#base "heroes/bane_abilities.txt"
+#base "heroes/beastmaster_abilities.txt"
+#base "heroes/bloodseeker_abilities.txt"
+#base "heroes/bounty_hunter_abilities.txt"
+#base "heroes/centaur_warruner_abilities.txt"
+#base "heroes/clinkz_abilities.txt"
+#base "heroes/crystal_maiden_abilities.txt"
+#base "heroes/dark_seer_abilities.txt"
+#base "heroes/dark_willow_abilities.txt"
+#base "heroes/dawnbreaker_abilities.txt"
+#base "heroes/disruptor_abilities.txt"
+#base "heroes/dazzle_abilities.txt"
+#base "heroes/doom_bringer_abilities.txt"
+#base "heroes/dragon_knight_abilities.txt"
+#base "heroes/drow_ranger_abilities.txt"
+#base "heroes/earth_spirit_abilities.txt"
+#base "heroes/enigma_abilities.txt"
+#base "heroes/elder_titan_abilities.txt"
+#base "heroes/faceless_void_abilities.txt"
+#base "heroes/furion_abilities.txt"
+#base "heroes/gyrocopter_abilities.txt"
+#base "heroes/grimstroke_abilities.txt"
+#base "heroes/huskar_abilities.txt"
+#base "heroes/hoodwink_abilities.txt"
+#base "heroes/invoker_abilities.txt"
+#base "heroes/jakiro_abilities.txt"
+#base "heroes/juggernaut_abilities.txt"
+#base "heroes/keeper_of_the_light_abilities.txt"
+#base "heroes/largo_abilities.txt"
+#base "heroes/life_stealer_abilities.txt"
+#base "heroes/legion_commander_abilities.txt"
+#base "heroes/lone_druid_abilities.txt"
+#base "heroes/lina_abilities.txt"
+#base "heroes/luna_abilities.txt"
+#base "heroes/lycan_abilities.txt"
+#base "heroes/magnataur_abilities.txt"
+#base "heroes/marci_abilities.txt"
+#base "heroes/medusa_abilities.txt"
+#base "heroes/monkey_king_abilities.txt"
+#base "heroes/naga_siren_abilities.txt"
+#base "heroes/necrolyte_abilities.txt"
+#base "heroes/night_stalker_abilities.txt"
+#base "heroes/nyx_assassin_abilities.txt"
+#base "heroes/obsidian_destroyer_abilities.txt"
+#base "heroes/oracle_abilities.txt"
+#base "heroes/ogre_magi_abilities.txt"
+#base "heroes/omniknight_abilities.txt"
+#base "heroes/pangolier_abilities.txt"
+#base "heroes/phantom_assassin_abilities.txt"
+#base "heroes/puck_abilities.txt"
+#base "heroes/pudge_abilities.txt"
+#base "heroes/pugna_abilities.txt"
+#base "heroes/primal_beast_abilities.txt"
+#base "heroes/razor_abilities.txt"
+#base "heroes/rattletrap_abilities.txt"
+#base "heroes/rubick_abilities.txt"
+#base "heroes/sandking_abilities.txt"
+#base "heroes/nevermore_abilities.txt"
+#base "heroes/shredder_abilities.txt"
+#base "heroes/skeleton_king_abilities.txt"
+#base "heroes/skywrath_mage_abilities.txt"
+#base "heroes/spectre_abilities.txt"
+#base "heroes/slark_abilities.txt"
+#base "heroes/sniper_abilities.txt"
+#base "heroes/snapfire_abilities.txt"
+#base "heroes/spirit_breaker_abilities.txt"
+#base "heroes/storm_spirit_abilities.txt"
+#base "heroes/terrorblade_abilities.txt"
+#base "heroes/templar_assassin_abilities.txt"
+#base "heroes/tidehunter_abilities.txt"
+#base "heroes/tinker_abilities.txt"
+#base "heroes/tiny_abilities.txt"
+#base "heroes/tusk_abilities.txt"
+#base "heroes/undying_abilities.txt"
+#base "heroes/ursa_abilities.txt"
+#base "heroes/venomancer_abilities.txt"
+#base "heroes/vengefulspirit_abilities.txt"
+#base "heroes/visage_abilities.txt"
+#base "heroes/warlock_abilities.txt"
+#base "heroes/weaver_abilities.txt"
+#base "heroes/winter_wyvern_abilities.txt"
+#base "heroes/windrunner_abilities.txt"
+#base "heroes/wisp_abilities.txt"
+#base "heroes/witch_doctor_abilities.txt"
+#base "heroes/zeus_abilities.txt"
+#base "heroes/enchantress_abilities.txt"
+#base "heroes/morphing_abilities.txt"
+#base "heroes/death_prophet_abilities.txt"
+#base "heroes/kez_abilities.txt"
+#base "heroes/shadow_shaman_abilities.txt"
+#base "heroes/treant_abilities.txt"
+#base "heroes/viper_abilities.txt"
+
+#base "creature_ability/dummy/ability.txt"
+#base "creature_ability/enraged_wildkin/ability.txt"
+#base "creature_ability/fountain/ability.txt"
+#base "creature_ability/frog/ability.txt"
+#base "creature_ability/frostbitten/ability.txt"
+#base "creature_ability/generic/ability.txt"
+#base "creature_ability/greevil/ability.txt"
+#base "creature_ability/harpy/ability.txt"
+#base "creature_ability/large_golem/ability.txt"
+#base "creature_ability/mud_golem/ability.txt"
+#base "creature_ability/ogre/ability.txt"
+#base "creature_ability/ogreseal/ability.txt"
+#base "creature_ability/timber/ability.txt"
+#base "creature_ability/toxin/ability.txt"
+#base "creature_ability/wolf/ability.txt"
+
+#base "creature_ability/test_abilities.txt"
+
+// Dota Heroes File
+"DOTAAbilities"
+{
+	"Version"									"1"
+	"client_ability"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"creature_ability/client_ability"
+		"AbilityTextureName"					""
+		"MaxLevel"								"0"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	}
+	"empty_1"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_2"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_3"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_4"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_5"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_6"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_7"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_8"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_9"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_10"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_11"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_12"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_13"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_14"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_15"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_16"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_17"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_18"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_19"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_20"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_21"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_22"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_23"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_24"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_25"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_26"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_27"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_28"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_29"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_30"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_31"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_32"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_33"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_34"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"HasScepterUpgrade"						"1"
+		"HasShardUpgrade"               		"1"
+	}
+	"empty_35"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"HasScepterUpgrade"						"1"
+		"HasShardUpgrade"               		"1"
+	}
+	"empty_36"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"HasScepterUpgrade"						"1"
+		"HasShardUpgrade"               		"1"
+	}
+	"empty_37"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"HasScepterUpgrade"						"1"
+		"HasShardUpgrade"               		"1"
+	}
+	"empty_38"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"HasScepterUpgrade"						"1"
+		"HasShardUpgrade"               		"1"
+	}
+	"empty_39"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_40"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_special_1"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"							"DOTA_ABILITY_TYPE_ATTRIBUTES"
+	}
+	"empty_special_2"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"							"DOTA_ABILITY_TYPE_ATTRIBUTES"
+	}
+	"empty_special_3"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"							"DOTA_ABILITY_TYPE_ATTRIBUTES"
+	}
+	"empty_special_4"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"							"DOTA_ABILITY_TYPE_ATTRIBUTES"
+	}
+	"empty_special_5"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"							"DOTA_ABILITY_TYPE_ATTRIBUTES"
+	}
+	"empty_special_6"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"							"DOTA_ABILITY_TYPE_ATTRIBUTES"
+	}
+	"empty_special_7"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"							"DOTA_ABILITY_TYPE_ATTRIBUTES"
+	}
+	"empty_special_8"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"							"DOTA_ABILITY_TYPE_ATTRIBUTES"
+	}
+	"high_five_custom"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/high_five_custom"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNRESTRICTED | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
+		"AbilityCastAnimation"					"ACT_INVALID"
+		"MaxLevel"								"1"
+		"AbilityCastPoint"						"0.0"
+		"AbilityCooldown"						"60"
+		"AbilityDamage"							"0"
+		"AbilityManaCost"						"0"
+		"AbilityValues"
+		{
+			"think_interval"					"0.2"
+			"acknowledge_range"					"900"
+			"request_duration"					"10.0"
+			"high_five_speed"					"700.0"
+			"acknowledged_cooldown"				"1.0"
+		}
+	}
+	"empty_0"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_1_Repeat1"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_2_Repeat2"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_3_Repeat3"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_4_Repeat4"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_5_Repeat5"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_6_Repeat6"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_7_Repeat7"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_8_Repeat8"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_9_Repeat9"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_10_Repeat10"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_11_Repeat11"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_12_Repeat12"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_13_Repeat13"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_14_Repeat14"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_15_Repeat15"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_16_Repeat16"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_innate_ability"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_facet_ability"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"empty_special_1_Repeat17"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"							"DOTA_ABILITY_TYPE_ATTRIBUTES"
+	}
+	"empty_special_2_Repeat18"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"							"DOTA_ABILITY_TYPE_ATTRIBUTES"
+	}
+	"empty_special_3_Repeat19"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"							"DOTA_ABILITY_TYPE_ATTRIBUTES"
+	}
+	"empty_special_4_Repeat20"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"							"DOTA_ABILITY_TYPE_ATTRIBUTES"
+	}
+	"empty_special_5_Repeat21"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"							"DOTA_ABILITY_TYPE_ATTRIBUTES"
+	}
+	"empty_special_6_Repeat22"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"							"DOTA_ABILITY_TYPE_ATTRIBUTES"
+	}
+	"empty_special_7_Repeat23"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"							"DOTA_ABILITY_TYPE_ATTRIBUTES"
+	}
+	"empty_special_8_Repeat24"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"							"DOTA_ABILITY_TYPE_ATTRIBUTES"
+	}
+}

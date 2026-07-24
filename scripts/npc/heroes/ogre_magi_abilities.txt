@@ -1,0 +1,78 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"ogre_magi_multicast_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_ogre_magi/ogre_magi_multicast_lua.lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"					"ogre_magi_multicast"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"				"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ALLIES_YES"
+		"MaxLevel"								"3"
+		"HasScepterUpgrade"						"1"
+		"precache"
+		{
+			"particle"							"particles/units/heroes/hero_ogre_magi/ogre_magi_multicast.vpcf"
+			"particle"							"particles/arena/units/heroes/hero_ogre_magi/multicast_aghanims_buff.vpcf"
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts"
+		}
+		"AbilityValues"
+		{
+			"multicast_2_times"					
+			{
+				"value"										"20 35 60"
+				"special_bonus_facet_ogre_magi_fat_chance" "+0"
+                "dynamic_value"     						"true"
+			}
+			"multicast_3_times"					
+			{
+				"value"										"0 12 24"
+				"special_bonus_facet_ogre_magi_fat_chance" "+0"
+                "dynamic_value"     						"true"
+			}
+			"multicast_4_times"					
+			{
+				"value"										"0 4 8"
+				"special_bonus_facet_ogre_magi_fat_chance" "+0"
+                "dynamic_value"     						"true"
+			}
+			"multicast_delay"								"0.5"
+			"ultimate_chance_decrease_pct"
+			{
+				"value"										"50"
+			}
+			"global_chance_decrease_pct"
+			{
+				"value"										"50"
+			}
+			"strength_mult"
+            {
+                "value"                     				"0.0625"
+            }
+			"strength_for_one_pct"							"16"
+			"one_tooltip"									"1"
+		}
+	}
+	"ogre_magi_smash"
+	{
+		"AbilityUnitTargetFlags"				"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+	}
+	"ogre_magi_fireblast"
+	{
+		"HasScepterUpgrade"						"1"
+	}
+}

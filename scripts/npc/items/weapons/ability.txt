@@ -1,0 +1,320 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "item_recipe_ranged_cleave"
+	{
+		"ID"									"2317"
+		"Model"									"models/props_gameplay/recipe.vmdl"
+		"BaseClass"								"item_datadriven"
+		"AbilityTextureName"					"item_recipe"
+		"ItemCost"								"400"
+		"ItemShopTags"							""
+		"ItemPurchasable"						"1"
+		"ItemSellable"							"1"
+		"ItemRecipe"							"1"
+		"ItemResult"							"item_ranged_cleave"
+		"ItemRequirements"
+		{
+			"01"								"item_dragon_lance;item_demon_edge"
+		}
+	}
+	"item_ranged_cleave"
+	{
+		"ID"									"2318"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"item_ability/item_ranged_cleave"
+		"AbilityTextureName"					"item_ranged_cleave"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PHYSICAL"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE"
+		"ItemCost"								"4500"
+		"ItemQuality"							"artifact"
+		"ItemAliases"							"cleave;bfury;rackatee;replica;shotgun"
+		"ItemDeclarations"						"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ShouldBeSuggested"						"1"
+		"ItemPurchasable"						"1"
+		"ItemSellable"							"1"
+		"AbilityValues"
+		{
+			"bonus_str"							"15"
+			"bonus_agi"							"15"
+			"bonus_dmg"							"55"
+			"bonus_range"						"140"
+			"cleave_radius"
+			{
+				"value"							"350"
+				"affected_by_aoe_increase"		"1"
+			}
+			"cleave_dmg"						"45"
+			"cleave_cache_interval"				"0.25"
+		}
+	}
+    "item_recipe_ranged_cleave_2"
+	{
+		"ID"									"2343"
+		"Model"									"models/props_gameplay/recipe.vmdl"
+		"BaseClass"								"item_datadriven"
+		"AbilityTextureName"					"item_recipe"
+		"ItemCost"								"1500"
+		"ItemShopTags"							""
+		"ItemRecipe"							"1"
+		"ItemResult"							"item_ranged_cleave_2"
+		"ItemRequirements"
+		{
+			"01"								"item_ranged_cleave;item_ranged_cleave;"
+		}
+	}
+	"item_ranged_cleave_2"
+	{
+		"ID"									"2344"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"item_ability/item_ranged_cleave_2"
+		"AbilityTextureName"					"item_ranged_cleave_2"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PHYSICAL"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE"
+		"ItemCost"								"10500"
+		"ItemQuality"							"artifact"
+		"ItemAliases"							"cleave;bfury;rackatee;replica;shotgun"
+		"ItemDeclarations"						"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ShouldBeSuggested"						"1"
+		"ItemPurchasable"						"1"
+		"ItemSellable"							"1"
+		"AbilityValues"
+		{
+			"bonus_str"							"30"
+			"bonus_agi"							"30"
+			"bonus_dmg"							"110"
+			"bonus_range"						"200"
+			"cleave_radius"
+			{
+				"value"							"400"
+				"affected_by_aoe_increase"		"1"
+			}
+			"cleave_dmg"						"55"
+			"cleave_cache_interval"				"0.25"
+		}
+	}
+    "item_recipe_felling_axe_1_lua"
+	{
+		"ID"									"2358"
+		"Model"									"models/props_gameplay/recipe.vmdl"
+		"FightRecapLevel"						"2"
+		"BaseClass"								"item_recipe_refresher"
+		"AbilityTextureName"					"item_recipe_felling_axe_1"
+		"ItemCost"								"100"
+		"ItemShopTags"							""
+		"ItemRecipe"							"1"
+		"ItemResult"							"item_felling_axe_1_lua"
+		"ItemRequirements"
+		{
+			"01"								"item_quelling_blade;item_ring_of_protection"
+		}
+	}
+	"item_felling_axe_1_lua"
+	{
+		"ID"									"2359"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"item_ability/item_felling_axe_1_lua"
+		"AbilityTextureName"					"item_felling_axe_1"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastPoint"						"0.0"
+		"AbilityCooldown"						"0.0"
+		"AbilityManaCost"						"0"
+		"ItemCost"								"725"
+		"ItemQuality"							"component"
+		"ShouldBeSuggested"						"1"
+		"AbilityValues"
+		{
+			"bonus_armor"						"2"
+			"bonus_damage"						"8"
+			"neutral_bonus_dmg"					"10"
+		}
+	}
+	"item_recipe_felling_axe_2_lua"
+	{
+		"ID"									"2360"
+		"Model"									"models/props_gameplay/recipe.vmdl"
+		"FightRecapLevel"						"2"
+		"BaseClass"								"item_recipe_refresher"
+		"AbilityTextureName"					"item_recipe_felling_axe_2"
+		"ItemCost"								"100"
+		"ItemShopTags"							""
+		"ItemRecipe"							"1"
+		"ItemResult"							"item_felling_axe_2_lua"
+		"ItemRequirements"
+		{
+			"01"								"item_felling_axe_1_lua;item_broadsword;item_chainmail"
+		}
+	}
+	"item_felling_axe_2_lua"
+	{
+		"ID"									"2361"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"item_ability/item_felling_axe_2_lua"
+		"AbilityTextureName"					"item_felling_axe_2"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastPoint"						"0.0"
+		"AbilityCooldown"						"0.0"
+		"AbilityManaCost"						"0"
+		"ItemCost"								"2275"
+		"ItemQuality"							"component"
+		"ShouldBeSuggested"						"1"
+		"AbilityValues"
+		{
+			"bonus_armor"						"7"
+			"bonus_damage"						"30"
+			"neutral_bonus_dmg_pct"				"10"
+		}
+	}
+	"item_recipe_felling_axe_3_lua"
+	{
+		"ID"									"2362"
+		"Model"									"models/props_gameplay/recipe.vmdl"
+		"FightRecapLevel"						"2"
+		"BaseClass"								"item_recipe_refresher"
+		"AbilityTextureName"					"item_recipe_felling_axe_3"
+		"ItemCost"								"100"
+		"ItemShopTags"							""
+		"ItemRecipe"							"1"
+		"ItemResult"							"item_felling_axe_3_lua"
+		"ItemRequirements"
+		{
+			"01"								"item_felling_axe_2_lua;item_talisman_of_evasion;item_helm_of_iron_will"
+		}
+	}
+	"item_felling_axe_3_lua"
+	{
+		"ID"									"2363"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"item_ability/item_felling_axe_3_lua"
+		"AbilityTextureName"					"item_felling_axe_3"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastPoint"						"0.0"
+		"AbilityCooldown"						"0.0"
+		"AbilityManaCost"						"0"
+		"ItemCost"								"4550"
+		"ItemQuality"							"component"
+		"ShouldBeSuggested"						"1"
+		"AbilityValues"
+		{
+			"bonus_armor"						"15"
+			"bonus_damage"						"35"
+			"neutral_bonus_dmg_pct"				"20"
+			"hp_regen"							"6"
+			"bonus_evasion"						"20"
+			"bonus_attack_range"				"300"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"   "FIELD_INTEGER"
+				"bonus_evasion" "20"
+			}
+			"02"
+			{
+				"var_type"   "FIELD_INTEGER"
+				"hp_regen" "6"
+			}
+			"03"
+			{
+				"var_type"   "FIELD_INTEGER"
+				"bonus_armor" "15"
+			}
+		}
+	}
+	"item_recipe_felling_axe_4_lua"
+	{
+		"ID"									"2364"
+		"Model"									"models/props_gameplay/recipe.vmdl"
+		"FightRecapLevel"						"2"
+		"BaseClass"								"item_recipe_refresher"
+		"AbilityTextureName"					"item_recipe_felling_axe_4"
+		"ItemCost"								"100"
+		"ItemShopTags"							""
+		"ItemRecipe"							"1"
+		"ItemResult"							"item_felling_axe_4_lua"
+		"ItemRequirements"
+		{
+			"01"								"item_felling_axe_3_lua;item_hyperstone;item_platemail"
+		}
+	}
+	"item_felling_axe_4_lua"
+	{
+		"ID"									"2365"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"item_ability/item_felling_axe_4_lua"
+		"AbilityTextureName"					"item_felling_axe_4"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastPoint"						"0.0"
+		"AbilityCooldown"						"0.0"
+		"AbilityManaCost"						"0"
+		"ItemCost"								"7950"
+		"ItemQuality"							"component"
+		"ShouldBeSuggested"						"1"
+		"AbilityValues"
+		{
+			"bonus_armor"						"28"
+			"bonus_damage"						"45"
+			"neutral_bonus_dmg_pct"				"40"
+			"hp_regen"							"10"
+			"bonus_evasion"						"25"
+			"bonus_attack_range"				"300"
+			"bonus_attack_speed"				"70"
+		}
+	}
+	"item_recipe_felling_axe_5_lua"
+	{
+		"ID"									"2366"
+		"Model"									"models/props_gameplay/recipe.vmdl"
+		"FightRecapLevel"						"2"
+		"BaseClass"								"item_recipe_refresher"
+		"AbilityTextureName"					"item_recipe_felling_axe_5"
+		"ItemCost"								"550"
+		"ItemShopTags"							""
+		"ItemRecipe"							"1"
+		"ItemResult"							"item_felling_axe_5_lua"
+		"ItemRequirements"
+		{
+			"01"								"item_felling_axe_4_lua;item_relic;"
+		}
+	}
+	"item_felling_axe_5_lua"
+	{
+		"ID"									"2367"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"item_ability/item_felling_axe_5_lua"
+		"AbilityTextureName"					"item_felling_axe_5"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastPoint"						"0.0"
+		"AbilityCooldown"						"0.0"
+		"AbilityManaCost"						"0"
+		"ItemCost"								"12550"
+		"ItemQuality"							"epic"
+		"ShouldBeSuggested"						"1"
+		"AbilityValues"
+		{
+			"bonus_armor"						"30"
+			"bonus_damage"						"120"
+			"neutral_bonus_dmg_pct"				"80"
+			"hp_regen"							"15"
+			"bonus_evasion"						"30"
+			"bonus_attack_range"				"300"
+			"bonus_attack_speed"				"80"
+		}
+	}
+}

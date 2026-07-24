@@ -1,0 +1,75 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"wisp_spirits_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_wisp/wisp_spirits_lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_NO"
+		"AbilitySound"							"Hero_Wisp.Spirits.Cast"
+		"HasScepterUpgrade"						"1"
+		"LinkedAbility"							"wisp_spirits_in_lua"
+		"AbilityCastPoint"						"0"
+		"AbilityCastAnimation"					"ACT_INVALID"
+		"AbilityCooldown"						"26.0 24.0 22.0 20.0"
+		"AbilityDuration"						"19.0 19.0 19.0 19.0"
+		"AbilityManaCost"						"120 130 140 150"
+		"AbilityTextureName"					"wisp_spirits"
+		"precache"
+		{
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_wisp.vsndevts"
+			"particle"							"particles/units/heroes/hero_wisp/wisp_guardian_explosion_small.vpcf"
+			"particle"							"particles/units/heroes/hero_wisp/wisp_guardian_explosion.vpcf"
+			"particle"							"particles/units/heroes/hero_wisp/wisp_guardian.vpcf"
+		}
+		"AbilityValues"
+		{
+			"spirits_count"						"5"
+			"creep_damage"						"10 15 20 25"
+			"hero_damage"
+			{
+				"value"							"30 50 70 90"
+				"LinkedSpecialBonus"			"special_bonus_unique_wisp"
+			}
+			"revolution_time"					"2.7"
+			"min_range"							"200"
+			"max_range"
+			{
+				"value"							"650"
+				"LinkedSpecialBonus"			"special_bonus_unique_wisp_3"
+			}
+			"explode_radius"					"360"
+			"hit_radius"						"150 150 150 150"
+			"spirit_movement_rate"				"250 250 250 250"
+			"spirit_duration"					"19.0 19.0 19.0 19.0"
+		}
+	}
+	"wisp_spirits_in_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_wisp/wisp_spirits_lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"MaxLevel"								"4"
+		"AbilityTextureName"					"wisp_spirits_in"
+		"AbilityCastPoint"						"0 0 0 0"
+		"AbilityCastAnimation"					"ACT_INVALID"
+		"AbilityCooldown"						"0"
+		"LinkedAbility"							"wisp_spirits_lua"
+	}
+	"wisp_tether"
+	{
+		"AbilityUnitTargetFlags"				"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+	}
+}

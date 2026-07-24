@@ -1,0 +1,84 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"oracle_false_promise_lua"
+	{
+    	"BaseClass"                     "ability_lua"
+    	"ScriptFile"                    "heroes/hero_oracle/oracle_false_promise_lua"
+    	"AbilityTextureName"            "oracle_false_promise"
+		"AbilityType"                   "ABILITY_TYPE_ULTIMATE"
+    	"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    	"AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    	"AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+		"SpellImmunityType"             "SPELL_IMMUNITY_ALLIES_YES"
+		"AbilitySound"                  "Hero_Oracle.FalsePromise.Cast"
+
+    	"AbilityCastRange"              "700 800 900"
+    	"AbilityCastPoint"              "0.3"
+    	
+    	"AbilityManaCost"               "100 150 200"
+
+    	"SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    	"SpellImmunityType"             "SPELL_IMMUNITY_ALLIES_YES"
+		"AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_6"
+
+    	"AbilityValues"
+    	{
+    	    "duration"
+            {
+                "value"             			"7 8.5 10"
+                "special_bonus_unique_oracle"   "+1.5"
+            }
+			"AbilityCooldown"
+			{
+				"value"                             "110 85 60"
+                "special_bonus_unique_oracle_6"     "-20"
+			}
+			"bonus_armor"
+            {
+				"value"								"0"
+                "special_bonus_unique_oracle_9"     "+8"
+            }
+			"bat_bonus"
+            {
+				"value"								"0"
+                "special_bonus_scepter"             "0"
+            }
+			"spell_amp_pct"
+			{
+				"value"								"0"
+				"special_bonus_scepter"				"0"
+			}
+			"heal_amp_pct"
+            {
+                "value"                         	"100"
+            }
+			"invisible_delay"
+			{
+				"value"								"0.15"
+			}
+			"invisible"
+			{
+				"value"								"0"
+				"special_bonus_scepter"				"0"
+			}
+    	}
+	}
+	"oracle_diviners_deck"
+	{
+		"AbilityValues"
+        {
+            "int_bonus_pct"         "50"
+			"gold_bonus_pct"        "10"
+        }
+	}
+}

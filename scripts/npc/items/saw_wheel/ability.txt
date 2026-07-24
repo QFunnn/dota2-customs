@@ -1,0 +1,56 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "item_recipe_saw_wheel"
+	{
+		"ID"									"2319"
+		"Model"									"models/props_gameplay/recipe.vmdl"
+		"BaseClass"								"item_datadriven"
+		"AbilityTextureName"					"item_recipe"
+		"ItemCost"								"300"
+		"ItemShopTags"							""
+		"ItemPurchasable"						"1"
+		"ItemSellable"							"1"
+		"ItemRecipe"							"1"
+		"ItemResult"							"item_saw_wheel"
+		"ItemRequirements"
+		{
+			"01"								"item_quelling_blade;item_broadsword"
+		}
+	}
+	"item_saw_wheel"
+	{
+		"ID"									"2320"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"item_ability/item_saw_wheel"
+		"AbilityTextureName"					"item_saw_wheel"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"ItemCost"								"1450"
+		"ItemQuality"							"rare"
+		"ItemAliases"							"saw"
+		"ItemDeclarations"						"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ShouldBeSuggested"						"1"
+		"ItemPurchasable"						"1"
+		"ItemSellable"							"1"
+		"AbilityCooldown"						"6.0"
+		"AbilityManaCost"						"75"
+		"AbilityValues"
+		{
+			"bonus_dmg"							"21"
+			"whirling_radius"					"300"
+			"damage"							"70"
+			"damage_with_tree"					"200"
+			"stun_with_tree"					"1.5"
+		}
+	}
+}

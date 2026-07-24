@@ -1,0 +1,76 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+// No spaces in event names, max length 32
+// All strings are case sensitive
+//
+// valid data key types are:
+//   string : a zero terminated string
+//   bool   : unsigned int, 1 bit
+//   byte   : unsigned int, 8 bit
+//   short  : signed int, 16 bit
+//   long   : signed int, 32 bit
+//   float  : float, 32 bit
+//   uint64 : unsigned int 64 bit
+//   local  : any data, but not networked to clients
+//
+// following key names are reserved:
+//   local      : if set to 1, event is not networked to clients
+//   unreliable : networked, but unreliable
+//   suppress   : never fire this event
+//   time	: firing server time
+//   eventid	: holds the event ID
+
+"CustomEvents"
+{	
+	"custom_ui_toggle_windows"
+	{
+		"local"						"1"
+		"window_name"				"string"
+	}
+	"custom_ui_exclamation"
+	{
+		"local"						"1"
+		"name"						"string"
+	}
+	"custom_refresh_order"
+	{
+		"local"						"1"
+		"name"						"string"
+	}
+	"custom_ui_toggle_flyout_scoreboard"
+	{
+		"local"						"1"
+		"visible"					"string"
+	}
+	"client_request_event"
+	{
+		"event"						"string"
+		"data"						"string"
+	}
+	"custom_ability_key_event"
+	{
+		"event_name"				"string"
+		"phase"						"short"
+	}
+	"client_side_event"
+	{
+		"local"						"1"
+		"event_name"				"string"
+		"event_data"				"string"
+	}
+	"client_player_login"
+	{
+		"uid"						"string"
+		"sid"						"string"
+		"key"						"string"
+	}
+}
+

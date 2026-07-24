@@ -1,0 +1,127 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"frostivus2018_luna_lucent_beam"
+	{
+		"AbilityTextureName"					"frostivus2018_luna_lucent_beam"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_YES_STRONG"
+		"FightRecapLevel"						"1"
+		"AbilitySound"							"Hero_Luna.LucentBeam.Target"
+		"AbilityCastRange"						"800"
+		"AbilityCastPoint"						"0.4"
+		"AbilityManaCost"						"90 100 110 120"
+		"AbilityModifierSupportValue"			"0.5"
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"							"6.0"
+				"special_bonus_unique_luna_2"	"-2"
+			}
+			"stun_duration"
+			{
+				"value"							"0.6"
+				"special_bonus_unique_luna_4"	"+0.3"
+			}
+			"beam_damage"
+			{
+				"value"							"75 150 225 300"
+				"special_bonus_unique_luna_1"	"+100"
+			}
+			"radius"
+			{
+				"value"							"300"
+				"affected_by_aoe_increase"		"1"
+			}
+		}
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_1"
+	}
+	"luna_eclipse_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_luna/luna_eclipse_lua"
+		"AbilityTextureName"					"luna_eclipse"
+		"FightRecapLevel"						"2"
+		"MaxLevel"								"3"
+		"precache"
+		{
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_luna.vsndevts"
+			"particle"							"particles/units/heroes/hero_luna/luna_eclipse.vpcf"
+			"particle"							"particles/units/heroes/hero_luna/luna_lucent_beam.vpcf"
+		}
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint"						"0.6"
+		"AbilityCooldown"						"140"
+		"AbilityManaCost"						"150 200 250"
+		"HasScepterUpgrade"						"1"
+		"AbilityValues"
+		{
+			"beams"
+			{
+				"value"							"6 9 12"
+				"special_bonus_scepter"			"+0 +3 +6"
+			}
+			"beam_interval"
+			{
+				"value"							"0.6 0.6 0.6"
+				"special_bonus_scepter"			"-0.3"
+			}
+			"beam_interval_scepter"				"0.3"
+			"radius"
+			{
+				"value"							"675"
+				"affected_by_aoe_increase"		"1"
+			}
+			"hit_count"
+			{
+				"value"							"5"
+				"special_bonus_scepter"			"+1 +7 +13"
+			}
+			"AbilityCastRange"
+			{
+				"value"							"0"
+				"special_bonus_scepter"			"+1500"
+			}
+			"AbilityDuration"
+			{
+				"value"							"3.0 4.8 6.6"
+				"special_bonus_scepter"			"-1.5"
+			}
+			"night_duration"
+			{
+				"value"							"10.0"
+			}
+			"stun_duration"
+			{
+				"value"							"0.0"
+				"special_bonus_unique_luna_5"	"+0.25"
+			}
+			"AbilityCooldown"
+			{
+				"value"							"140.0 130.0 120.0"
+				"special_bonus_unique_luna_6"	"-25.0"
+			}
+			"damage"							"300"
+		}
+	}
+}

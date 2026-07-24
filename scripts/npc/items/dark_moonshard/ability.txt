@@ -1,0 +1,49 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "item_recipe_dark_moon_shard"
+	{
+		"ID"									"2337"
+		"BaseClass"								"item_datadriven"
+		"Model"									"models/props_gameplay/recipe.vmdl"
+		"AbilityTextureName"					"item_recipe"
+		"ItemCost"								"0"
+		"ItemShopTags"							""
+		"ItemRecipe"							"1"
+		"ItemResult"							"item_dark_moon_shard"
+		"ItemRequirements"
+		{
+			"01"								"item_moon_shard;item_moon_shard"
+		}
+	}
+	"item_dark_moon_shard"
+	{
+		"ID"									"2338"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"BaseClass"								"item_lua"
+		"AbilityTextureName"					"item_dark_moon_shard"
+		"ScriptFile"							"item_ability/item_dark_moon_shard"
+		"AbilityCastPoint"						"0.0"
+		"ItemQuality"							"consumable"
+		"ItemPurchasable"						"1"
+		"ItemStackable"							"0"
+		"ItemShareability"						"ITEM_NOT_SHAREABLE"
+		"ItemPermanent"							"0"
+		"ItemDisassembleRule"					"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"AbilityValues"
+		{
+			"base_attack_time_reduction"		"30"
+			"bonus_attack_speed"				"290"
+			"base_attack_time_min"				"1.1"
+		}
+	}
+}

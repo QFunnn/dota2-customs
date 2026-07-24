@@ -1,0 +1,71 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"vengefulspirit_magic_missile_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_vengefulspirit/vengefulspirit_magic_missile_lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"				"DOTA_UNIT_TARGET_FLAG_NONE"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_YES_STRONG"
+		"FightRecapLevel"						"1"
+		"AbilitySound"							"Hero_VengefulSpirit.MagicMissile"
+		"HasShardUpgrade"						"1"
+		"AbilityTextureName"					"vengefulspirit_magic_missile"
+		"AbilityCastPoint"						"0.3 0.3 0.3 0.3"
+		"AbilityManaCost"						"90 95 100 105"
+		"AbilityValues"
+		{
+			"magic_missile_speed"				"1350"
+			"magic_missile_stun"				"1.4 1.5 1.6 1.7"
+			"magic_missile_damage"
+			{
+				"value"							"90 180 270 360"
+				"special_bonus_unique_vengeful_spirit_1""+200"
+			}
+			"AbilityCastRange"
+			{
+				"value"							"650"
+				"special_bonus_unique_vengeful_spirit_missile_castrange" "+125"
+			}
+			"bounce_count"
+			{
+				"value"							"0"
+				"special_bonus_shard"			"+20"
+			}
+			"bonus_damage_pct"
+			{
+				"special_bonus_shard"			"+50"
+				"CalculateSpellDamageTooltip"	"0"
+			}
+			"magic_missile_stun_attack_pct"
+			{
+				"special_bonus_unique_vengeful_spirit_9"	"+40"
+			}
+			"fire_attack_count"
+			{
+				"value"										"0"
+				"special_bonus_unique_vengeful_spirit_9"	"+8"
+			}
+			"AbilityCooldown"
+			{
+				"value"							"16 14 12 10"
+				"special_bonus_unique_vengeful_spirit_5""-2"
+			}
+		}
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_1"
+	}
+}

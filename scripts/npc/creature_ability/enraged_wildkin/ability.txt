@@ -1,0 +1,50 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "enraged_wildkin_hurricane_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"MaxLevel"								"4"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"ScriptFile"							"creature_ability/enraged_wildkin_hurricane_lua"
+		"AbilityTextureName"					"enraged_wildkin_hurricane"
+		"AbilityCastRange"						"750"
+		"AbilityCastPoint"						"0"
+		"AbilityCooldown"						"22.0"
+		"AbilityManaCost"						"0"
+		"AbilityValues"
+		{
+			"distance"							"400"
+			"speed"								"1400"
+			"duration"							"0.3"
+		}
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_1"
+	}
+	"enraged_wildkin_tornado"
+	{
+		"AbilityCastRange"						"500"
+		"AbilityCastPoint"						"0.4"
+		"AbilityCooldown"						"26.0"
+		"AbilityChannelTime"					"2.0"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"duration"							"15.0"
+			"linger_duration"					"13.0"
+			"tornado_base_movespeed"			"125 140 155 185"
+		}
+	}
+}

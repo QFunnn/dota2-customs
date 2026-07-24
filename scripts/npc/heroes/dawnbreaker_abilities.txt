@@ -1,0 +1,87 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"dawnbreaker_solar_guardian"
+	{
+		"AbilityChannelTime"					"1.0"
+		"AbilityValues"
+		{
+			"airtime_duration"					"0.4"
+			"radius"
+			{
+				"value"							"700"
+				"LinkedSpecialBonus"			"special_bonus_unique_dawnbreaker_solar_guardian_radius"
+			}
+			"base_damage"						"30 50 70"
+			"base_heal"
+			{
+				"value"							"45 70 95"
+				"special_bonus_scepter"			"+15 20 25"
+			}
+			"pulse_interval"					"0.5"
+			"land_damage"						"130 160 190"
+			"land_stun_duration"				"1.5 1.75 2"
+			"max_offset_distance"				"350"
+			"scepter_channel_time"
+			{
+				"value"							"0.5"
+				"RequiresScepter"				"1"
+			}
+			"airtime_scepter_bonus"
+			{
+				"value"							"3.5"
+				"RequiresScepter"				"1"
+			}
+			"miss_rate"
+			{
+				"value"							"60"
+				"RequiresScepter"				"1"
+			}
+			"airtime_scepter_movement_speed"	"200"
+		}
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_4"
+	}
+	"dawnbreaker_luminosity_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_dawnbreaker/dawnbreaker_luminosity_lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ALLIES_YES"
+		"AbilityTextureName"					"dawnbreaker_luminosity"
+		"AbilityCastAnimation"					"ACT_DOTA_OVERRIDE_ABILITY_3"
+		"AbilityCastGestureSlot"				"DEFAULT"
+		"AbilityCastPoint"						"0.0 0.0 0.0 0.0"
+		"AbilityValues"
+		{
+			"attack_count"
+			{
+				"value"							"3"
+				"special_bonus_unique_dawnbreaker_luminosity_attack_count""-1"
+			}
+			"heal_radius"
+			{
+				"value"							"650"
+				"affected_by_aoe_increase"		"1"
+			}
+			"heal_pct"							"35 40 45 50"
+			"heal_from_creeps"					"40"
+			"bonus_damage"
+			{
+				"value"							"125 150 175 200"
+				"special_bonus_unique_dawnbreaker_luminosity_crit""+50"
+			}
+			"allied_healing_pct"				"50"
+			"bonus_damage_daytime"				"75"
+		}
+	}
+}

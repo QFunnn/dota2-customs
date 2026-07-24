@@ -1,0 +1,124 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/hud/hud_reborn.css" />
+		<include src="s2r://panorama/styles/settings/ui_ability_bar_settings.css" />
+		<include src="s2r://panorama/styles/popups/settings_slider.css" />
+		<include src="s2r://panorama/layout/custom_game/main_hud_new/settings/settings.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/main_hud_new/settings/settings.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/main_hud_new/settings/quickcast_helper.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/main_hud_new/settings/keybindings.vjs_c" />
+	</scripts>
+	<Panel class="CustomSettingsRoot" hittest="false">
+		<Panel id="CustomSettingsOverlay" class="CustomSettingsOverlay Hidden">
+			<Panel id="CustomSettingsContainer" class="SettingsContainer CustomSettingsContainer">
+				<Panel id="SettingsBody">
+					<Panel class="SettingsHeader">
+						<Panel class="SettingsSectionTitleContainer">
+							<Label class="SettingsSectionTitle" text="#HUD_Settings_SettingsHeader" />
+						</Panel>
+					</Panel>
+					<Panel id="CustomSettingsTabs" class="CustomSettingsTabs">
+						<Button id="CustomSettingsTabBans" class="CustomSettingsTab Selected" onactivate="GameUI.SwitchCustomSettingsTab(&apos;bans&apos;)">
+							<Label class="CustomSettingsTabLabel" text="#HUD_Settings_TabBans" />
+							<Panel class="CustomSettingsTabUnderline" />
+							<Panel class="CustomSettingsTabStar" />
+						</Button>
+						<Button id="CustomSettingsTabCamera" class="CustomSettingsTab" onactivate="GameUI.SwitchCustomSettingsTab(&apos;camera&apos;)">
+							<Label class="CustomSettingsTabLabel" text="#HUD_Settings_TabCamera" />
+							<Panel class="CustomSettingsTabUnderline" />
+							<Panel class="CustomSettingsTabStar" />
+						</Button>
+						<Button id="CustomSettingsTabInterface" class="CustomSettingsTab" onactivate="GameUI.SwitchCustomSettingsTab(&apos;interface&apos;)">
+							<Label class="CustomSettingsTabLabel" text="#HUD_Settings_TabInterface" />
+							<Panel class="CustomSettingsTabUnderline" />
+							<Panel class="CustomSettingsTabStar" />
+						</Button>
+						<Button id="CustomSettingsTabControls" class="CustomSettingsTab" onactivate="GameUI.SwitchCustomSettingsTab(&apos;controls&apos;)">
+							<Label class="CustomSettingsTabLabel" text="#HUD_Settings_TabControls" />
+							<Panel class="CustomSettingsTabUnderline" />
+							<Panel class="CustomSettingsTabStar" />
+						</Button>
+					</Panel>
+					<Panel class="CustomSettingsTabsDivider" />
+					<Panel id="CustomSettingsTabBody" class="CustomSettingsTabBody">
+						<Panel id="SettingsTabBans" class="CustomSettingsTabContent">
+							<Panel class="SettingsRightColumnBodyBody">
+								<Panel id="BanAbilitiesContainer" />
+							</Panel>
+						</Panel>
+						<Panel id="SettingsTabCamera" class="CustomSettingsTabContent Hidden">
+							<Panel class="SettingsLeftColumnBodyBody">
+								<DOTASettingsCheckbox id="AutoPvpWatch" class="CheckBox" onactivate="GameUI.OnCheckBoxAutoPvpWatch()">
+									<Label text="#HUD_Settings_AutoPvpWatch" />
+								</DOTASettingsCheckbox>
+								<DOTASettingsCheckbox id="AutoPveWatch" class="CheckBox" onactivate="GameUI.OnCheckBoxAutoPveWatch()">
+									<Label text="#HUD_Settings_AutoPveWatch" />
+								</DOTASettingsCheckbox>
+							</Panel>
+						</Panel>
+						<Panel id="SettingsTabInterface" class="CustomSettingsTabContent Hidden">
+							<Panel class="SettingsLeftColumnBodyBody">
+								<DOTASettingsCheckbox id="DisableChatWheelMessages" style="margin-bottom:5px;visibility:collapse;" class="CheckBox" onactivate="GameUI.OnCheckBoxDisableChatWheelMessages()">
+									<Label text="#HUD_Settings_MuteChatWheel" />
+								</DOTASettingsCheckbox>
+								<DOTASettingsCheckbox id="HidePvpOnRoundStart" style="margin-bottom:5px;" class="CheckBox" onactivate="GameUI.OnCheckBoxHidePvpOnRoundStart()">
+									<Label text="#HUD_Settings_HidePvpOnRoundStart" />
+								</DOTASettingsCheckbox>
+								<DOTASettingsSlider id="BarrageOpacity" class="compressed CustomSlider" onvaluechanged="GameUI.OnBarrageOpacityChanged()" max="100" min="0" text="#HUD_Settings_Barrage" />
+								<Label class="PlainLabel" text="#HUD_Settings_NewExtraCreature" style="margin-top:10px;" onmouseover="UIShowTextTooltipStyled(#HUD_Settings_NewExtraCreatureTooltip, OptionsTooltip)" onmouseout="UIHideTextTooltip()" />
+								<DropDown id="NewExtraCreatureDropDown" oninputsubmit="GameUI.OnDropDownNewExtraCreature()">
+									<Label id="1" text="#HUD_Settings_NewExtraCreature_OptionNone" />
+									<Label id="2" text="#HUD_Settings_NewExtraCreature_OptionMin" />
+									<Label id="3" text="#HUD_Settings_NewExtraCreature_OptionMax" />
+								</DropDown>
+								<Label class="PlainLabel" text="#HUD_Settings_AbilitySelectPosition" style="margin-top:10px;" />
+								<DropDown id="AbilitySelectPositionDropDown" oninputsubmit="GameUI.OnDropDownAbilitySelectPosition()">
+									<Label id="top" text="#HUD_Settings_AbilitySelectPosition_Top" />
+									<Label id="center" text="#HUD_Settings_AbilitySelectPosition_Center" />
+									<Label id="bottom" text="#HUD_Settings_AbilitySelectPosition_Bottom" />
+								</DropDown>
+								<Label class="PlainLabel" text="#HUD_Settings_AbilityReplaceSelectMode" style="margin-top:10px;" />
+								<Panel class="SettingsRadioGroup">
+									<RadioButton id="AbilityReplaceSelectModeHeroPanel" group="AbilityReplaceSelectMode" class="SettingsRadioButton" onactivate="GameUI.OnRadioAbilityReplaceSelectMode()">
+										<Label text="#HUD_Settings_AbilityReplaceSelectMode_HeroPanel" />
+									</RadioButton>
+									<RadioButton id="AbilityReplaceSelectModeWindow" group="AbilityReplaceSelectMode" class="SettingsRadioButton" onactivate="GameUI.OnRadioAbilityReplaceSelectMode()">
+										<Label text="#HUD_Settings_AbilityReplaceSelectMode_Window" />
+									</RadioButton>
+								</Panel>
+							</Panel>
+						</Panel>
+						<Panel id="SettingsTabControls" class="CustomSettingsTabContent Hidden">
+							<Panel class="SettingsLeftColumnBodyHeader">
+								<Label class="SettingsSectionSubSubtitleSmall" onmouseover="UIShowTextTooltipStyled(#HUD_Settings_AdditionalKeyBindingsTooltip, OptionsTooltip)" onmouseout="UIHideTextTooltip()" text="#HUD_Settings_AdditionalKeyBindings" />
+							</Panel>
+							<Panel class="SettingsLeftColumnBodyBody">
+								<Panel id="SettingsKeybindsList" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="CloseButtonContainer">
+				<Button id="CloseButton" class="ButtonPrimary LightGrey" onactivate="GameUI.ToggleCustomSettingsHud()">
+					<Image src="s2r://panorama/images/control_icons/24px/x_close.vsvg" />
+				</Button>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

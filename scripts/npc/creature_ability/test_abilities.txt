@@ -1,0 +1,135 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "test_zuus_lightning_bolt"
+	{
+		"BaseClass"								"zuus_lightning_bolt"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"						"1"
+		"AbilitySound"							"Hero_Zuus.LightningBolt"
+		"AbilityCastRange"						"99999"
+		"AbilityCastPoint"						"0.0"
+		"AbilityDamage"							"999999"
+		"AbilityCooldown"						"1"
+		"AbilityManaCost"						"1"
+		"AbilityModifierSupportValue"			"0.1"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityValues"
+		{
+			"true_sight_radius"					"750"
+			"sight_radius_day"					"750"
+			"sight_radius_night"				"750"
+			"sight_duration"					"4.5"
+			"spread_aoe"						"325"
+		}
+	}
+	"test_zuus_thundergods_wrath"
+	{
+		"BaseClass"								"zuus_thundergods_wrath"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"						"2"
+		"HasScepterUpgrade"						"1"
+		"AbilitySound"							"Hero_Zuus.GodsWrath"
+		"AbilityCastPoint"						"0.0"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_5"
+		"AbilityCooldown"						"1.0"
+		"AbilityManaCost"						"1"
+		"AbilityValues"
+		{
+			"sight_radius_day"					"500"
+			"sight_radius_night"				"500"
+			"sight_duration"					"3.0 3.0 3.0 3.0"
+			"damage"							"99999"
+		}
+	}
+	"antimage_blink_test"
+	{
+		"BaseClass"								"antimage_blink"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityCastPoint"						"0.4"
+		"AbilityCooldown"						"1"
+		"AbilityManaCost"						"1"
+		"AbilitySound"							"Hero_Antimage.Blink_out"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityValues"
+		{
+			"blink_range"
+			{
+				"value"							"30000"
+				"LinkedSpecialBonus"			"special_bonus_unique_antimage_3"
+			}
+			"min_blink_range"					"200"
+		}
+	}
+    "test_oracle_purifying_flames"
+	{
+		"BaseClass"								"oracle_purifying_flames"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_FRIENDLY | DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"				"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_YES"
+		"FightRecapLevel"						"1"
+		"AbilitySound"							"Hero_Oracle.PurifyingFlames.Damage"
+		"AbilityCastRange"						"850"
+		"AbilityCastPoint"						"0.15"
+		"AbilityCooldown"						"2.25"
+		"AbilityManaCost"						"80 85 90 95"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_3"
+		"AbilityValues"
+		{
+			"damage"							"9999"
+			"heal_per_second"					"11.0 22.0 33.0 44.0"
+			"total_heal_tooltip"				"99 198 297 396"
+			"duration"							"9.0"
+			"tick_rate"							"1.0"
+		}
+	}
+	"test_kill_one"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/test_kill_one"
+		"AbilityTextureName"					"oracle_purifying_flames"
+		"FightRecapLevel"						"1"
+		"MaxLevel"								"1"
+		"AbilityType"							"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PURE"
+		"AbilityCastPoint"						"0.0"
+		"AbilityCooldown"						"1"
+		"AbilityManaCost"						"1"
+	}
+	"test_kill_all_neutral"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/test_kill_all_neutral"
+		"AbilityTextureName"					"shredder_whirling_death"
+		"FightRecapLevel"						"1"
+		"MaxLevel"								"1"
+		"AbilityType"							"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PURE"
+		"AbilityCastPoint"						"0.0"
+		"AbilityCooldown"						"1"
+		"AbilityManaCost"						"1"
+	}
+}

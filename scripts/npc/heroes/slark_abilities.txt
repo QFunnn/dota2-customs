@@ -1,0 +1,52 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"slark_essence_shift_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_slark/slark_essence_shift_lua.lua"
+		"AbilityTextureName"					"slark_essence_shift"
+		"AbilityType"							"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_FORCE_NO_INNATE_UI"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_NO"
+        "Innate"                                "1"
+		"precache"
+		{
+			"particle"							"particles/units/heroes/hero_slark/slark_essence_shift.vpcf"
+		}
+		"AbilityValues"
+		{
+			"stat_loss"							"1"
+			"agi_gain"
+			{
+				"value"							"3"
+				"special_bonus_unique_slark_5"	"+1"
+			}
+			"creep_agi_gain"
+			{
+				"value"							"1"
+				"special_bonus_unique_slark_5"	"+1"
+			}
+			"duration"
+			{
+				"value"							"12.5"
+                "hero_levelup"                  "+2.5"
+				"special_bonus_unique_slark_4"	"+35"
+			}
+		}
+	}
+	"slark_essence_shift"
+	{
+		"Innate"								"0"
+	}
+}

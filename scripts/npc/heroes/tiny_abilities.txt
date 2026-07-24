@@ -1,0 +1,102 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"tiny_tree_grab_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_tiny/tiny_tree_grab_lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_CUSTOM"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_CUSTOM"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_NO"
+		"AbilitySound"							"Hero_Tiny.CraggyExterior.Stun"
+		"LinkedAbility"							"tiny_tree_throw_lua"
+		"HasScepterUpgrade"						"1"
+		"AbilityTextureName"					"tiny_tree_grab"
+		"AbilityDraftUltScepterAbility"			"tiny_tree_channel"
+		"Precache"
+		{
+			"particle"							"particles/units/heroes/hero_tiny/tiny_craggy_cleave.vpcf"
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts"
+		}
+		"AbilityCastRange"						"165"
+		"AbilityCastPoint"						"0.2"
+		"AbilityCooldown"						"22 19 16 13"
+		"AbilityManaCost"						"40"
+		"AbilityModifierSupportBonus"			"35"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_3"
+		"AbilityValues"
+		{
+			"speed_reduction"					"0"
+			"attack_count"
+			{
+				"value"							"5"
+				"LinkedSpecialBonus"			"special_bonus_unique_tiny_6"
+			}
+			"bonus_damage"
+			{
+				"value"							"20"
+				"LinkedSpecialBonus"			"special_bonus_unique_tiny_7"
+				"CalculateSpellDamageTooltip"	"0"
+			}
+			"bonus_damage_buildings"
+			{
+				"value"							"90 120 150 180"
+				"CalculateSpellDamageTooltip"	"0"
+			}
+			"attack_range"						"350"
+			"splash_width"						"200"
+			"splash_range"						"400"
+			"splash_pct"						"40 60 80 100"
+			"throw_splash_pct"					"150"
+			"bat_increase"						"0.0"
+		}
+	}
+	"tiny_tree_throw_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_tiny/tiny_tree_throw_lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"						"1"
+		"LinkedAbility"							"tiny_tree_grab_lua"
+		"AbilityTextureName"					"tiny_toss_tree"
+		"Precache"
+		{
+			"particle"							"particles/units/heroes/hero_tiny/tiny_tree_proj.vpcf"
+			"particle_Repeat1"					"particles/units/heroes/hero_tiny/tiny_tree_linear_proj.vpcf"
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts"
+		}
+		"AbilityCastRange"						"1200"
+		"AbilityCastPoint"						"0.2"
+		"AbilityCastAnimation"					"ACT_INVALID"
+		"AbilityValues"
+		{
+			"speed"								"900.0"
+			"range"								"1200"
+			"bonus_damage"
+			{
+				"value"							"10 20 30 40"
+				"CalculateSpellDamageTooltip"	"0"
+			}
+			"splash_radius"						"275"
+			"splash_pct"						"200"
+			"movement_slow"						"25"
+			"slow_duration"						"2.5"
+		}
+	}
+}

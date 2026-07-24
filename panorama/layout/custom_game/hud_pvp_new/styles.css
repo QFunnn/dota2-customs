@@ -1,0 +1,2338 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.HudRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+.ProgressBar
+{
+	border-radius: 5px;
+	width: 320px;
+	height: 22px;
+	border: 2px solid #232222;
+	background-color: #222222ff;
+}
+
+.ProgressBar .ProgressBarLeft
+{
+	height: 100%;
+	background-color: gradient(linear, 60% 0%, 0% 100%, from(#b6261f), to(#65211b));
+	border-radius: 3px;
+	border-top: 1px solid rgba(255, 255, 255, 0.18);
+	transition-property: position, width;
+	transition-duration: 0.6s;
+}
+
+.ProgressBar .ProgressBarRight
+{
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#222222ff), color-stop(0.1, #222222ff), to(black));
+	horizontal-align: right;
+	transition-property: position, width;
+	transition-duration: 0.6s;
+	z-index: -1;
+}
+
+#HUD_PVP
+{
+	width: fit-children;
+	height: fit-children;
+	min-width: 144px;
+	align: left top;
+	margin-top: 180px;
+	flow-children: down;
+}
+
+#HUD_PVP.Flip
+{
+	align: right top;
+}
+
+#HUD_PVP.Flip #Top
+{
+	horizontal-align: right;
+}
+
+#HUD_PVP #Top
+{
+	width: fit-children;
+	height: fit-children;
+}
+
+#HUD_PVP #Top #ToggleButton
+{
+	height: 40px;
+	width: 136px;
+	margin-top: 2px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#10151dcc), to(#060910e8));
+	border: 1px solid #ffffff14;
+	border-radius: 4px;
+	box-shadow: 0px 5px 16px #00000088;
+	opacity: 0.96;
+	transition-property: brightness, border, box-shadow, opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+#HUD_PVP #Top #ToggleButton:hover
+{
+	opacity: 1;
+	brightness: 1.08;
+	border: 1px solid #e7d29155;
+	box-shadow: 0px 7px 20px #000000aa;
+}
+
+#HUD_PVP #Top #ToggleButton #ButtonText
+{
+	height: 28px;
+	width: 88px;
+	font-size: 24px;
+	font-weight: bold;
+	text-overflow: shrink;
+	text-align: center;
+	align: left center;
+	color: #dde6f0;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+}
+
+#HUD_PVP #Top #ToggleButton #ToggleImage
+{
+	width: 38px;
+	height: 38px;
+	background-color: #00000000;
+	background-image: url("s2r://panorama/images/control_icons/expand_collapse_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 54%;
+	background-position: 50%;
+	transform: rotateZ(90deg);
+	transition-property: transform;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+	wash-color: #c8d0dc;
+	img-shadow: 0px 0px 6px 2 #00000099;
+	align: right center;
+}
+
+#HUD_PVP #Top #ToggleButton #ToggleImage.Show
+{
+	transform: rotateZ(0deg);
+}
+
+#HUD_PVP #Bottom
+{
+	width: 0px;
+	height: fit-children;
+	min-width: 0px;
+	max-height: 980px;
+	flow-children: down;
+	overflow: clip;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#080a0dfa), color-stop(0.52, #05080edc), to(#020407c8));
+	border: 0px none #00000000;
+	border-radius: 0px;
+	box-shadow: none;
+	padding: 0px;
+	opacity: 1.0;
+	blur: gaussian(0.0);
+}
+
+#HUD_PVP #Bottom #GlassOverlay
+{
+	width: 100%;
+	height: 100%;
+	background-color: #00000000;
+	opacity: 1.0;
+	ignore-parent-flow: true;
+}
+
+#HUD_PVP #Bottom.Show
+{
+	width: fit-children;
+	height: fit-children;
+	min-width: 450px;
+}
+
+#HUD_PVP #Bottom #Tags
+{
+	width: 100%;
+	height: fit-children;
+	flow-children: right;
+	overflow: clip;
+	margin-top: 10px;
+	margin-bottom: 4px;
+}
+
+#HUD_PVP #Bottom #TagDivider
+{
+	width: 100%;
+	height: 24px;
+	flow-children: none;
+	vertical-align: center;
+	margin-bottom: 0px;
+	visibility: visible;
+}
+
+#HUD_PVP #Bottom #TagDivider.HistoryMode
+{
+	height: 2px;
+	margin-bottom: 0px;
+}
+
+#HUD_PVP #Bottom #TagDivider .PvpTagDividerLine
+{
+	width: fill-parent-flow(1.0);
+	height: 1px;
+	vertical-align: center;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#2a2c3400), color-stop(0.5, #6f7480cc), to(#2a2c3400));
+	visibility: collapse;
+}
+
+#HUD_PVP #Bottom #TagDivider .PvpTagDividerGap
+{
+	width: 10px;
+	height: 1px;
+	vertical-align: center;
+	visibility: collapse;
+}
+
+#HUD_PVP #Bottom #TagDivider #PvpBetTimer
+{
+	flow-children: right;
+	height: 22px;
+	align: center center;
+	padding: 0px;
+	background-color: #00000000;
+	border: 0px solid #00000000;
+	border-radius: 0px;
+	box-shadow: none;
+}
+
+#HUD_PVP #Bottom #TagDivider #PvpBetTimer #PvpBetTimerIcon
+{
+	width: 0px;
+	height: 0px;
+	vertical-align: center;
+	margin-right: 0px;
+	wash-color: #c8d0dc;
+	img-shadow: 0px 1px 2px 2 #00000055;
+	background-image: url("s2r://panorama/images/control_icons/history_png.vtex");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}
+
+#HUD_PVP #Bottom #TagDivider #PvpBetTimer.StatusPotential #PvpBetTimerIcon
+{
+	wash-color: #d7e0ea;
+	img-shadow: 0px 1px 2px 2 #00000055;
+}
+
+#HUD_PVP #Bottom #TagDivider #PvpBetTimer.StatusPlaced #PvpBetTimerIcon
+{
+	wash-color: #d7e0ea;
+	img-shadow: 0px 1px 2px 2 #00000055;
+}
+
+#HUD_PVP #Bottom #TagDivider #PvpBetTimer.StatusSelfDuel #PvpBetTimerIcon,#HUD_PVP #Bottom #TagDivider #PvpBetTimer.StatusDuelLive #PvpBetTimerIcon
+{
+	wash-color: #d7e0ea;
+	img-shadow: 0px 1px 2px 2 #00000055;
+}
+
+#HUD_PVP #Bottom #TagDivider #PvpBetTimer.StatusDuelLive #PvpBetTimerIcon
+{
+	opacity: 1.0;
+}
+
+#HUD_PVP #Bottom #TagDivider #PvpBetTimer #PvpBetTimerText
+{
+	font-size: 14px;
+	color: #c8d0dc;
+	opacity: 0.96;
+	text-shadow: 0px 1px 2px 2 #000000aa;
+}
+
+#HUD_PVP #Bottom #TagDivider #PvpBetTimer #PvpBetTimerValue
+{
+	font-size: 15px;
+	font-weight: bold;
+	color: #64d64f;
+	text-shadow: 0px 1px 2px 2 #000000cc;
+}
+
+#HUD_PVP #Bottom #TagDivider #PvpBetTimer.PotentialWin
+{
+	padding-left: 0px;
+	padding-right: 0px;
+	border: 0px solid #00000000;
+	box-shadow: none;
+}
+
+#HUD_PVP #Bottom #Tags .Tag
+{
+	width: fill-parent-flow(0.5);
+	height: 35px;
+	padding: 0px;
+	border: 0px;
+	overflow: clip;
+	background-color: #00000000;
+	border: 0px solid #00000000;
+	border-radius: 0px;
+	background-image: none;
+	box-shadow: 0px 0px 0px #00000000;
+	opacity: 1.0;
+	transition-property: opacity;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+#HUD_PVP #Bottom #Tags .Tag:hover
+{
+	opacity: 1;
+	brightness: 1.0;
+	border: 0px solid #00000000;
+	box-shadow: 0px 0px 0px #00000000;
+	background-color: #00000000;
+	background-image: none;
+}
+
+#HUD_PVP #Bottom #Tags .Tag.Selected
+{
+	opacity: 1;
+	border: 0px solid #00000000;
+	box-shadow: 0px 0px 0px #00000000;
+	background-color: #00000000;
+	background-image: none;
+}
+
+#HUD_PVP #Bottom #Tags .Tag.Selected .TagLabel
+{
+	opacity: 1;
+	color: #ffffff;
+	text-shadow: 0px 1px 2px 2 #000000cc;
+}
+
+#HUD_PVP #Bottom #Tags .Tag .TagLabel
+{
+	width: 100%;
+	font-size: 18px;
+	text-align: center;
+	text-overflow: shrink;
+	vertical-align: center;
+	align: center top;
+	margin: 0px;
+	padding: 0px;
+	opacity: 0.55;
+	color: #b8bcc6;
+	font-weight: semi-bold;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+	visibility: visible;
+}
+
+#HUD_PVP #Bottom #Tags .Tag .TagLabel:hover
+{
+	opacity: 2;
+}
+
+#HUD_PVP #Bottom #Tags .Tag.Selected .TagLabel
+{
+	opacity: 1;
+	color: #e7d291;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+}
+
+#HUD_PVP #Bottom #Tags .TabUnderline
+{
+	width: 70%;
+	height: 2px;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 7px;
+	background-color: #caa15a00;
+}
+
+#HUD_PVP #Bottom #Tags .TabStar
+{
+	width: 8px;
+	height: 8px;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 4px;
+	background-color: #caa15a00;
+	transform: rotateZ(45deg);
+	ignore-parent-flow: true;
+}
+
+#HUD_PVP #Bottom #Tags .Tag.Selected .TabUnderline
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#caa15a00), color-stop(0.5, #caa15acc), to(#caa15a00));
+}
+
+#HUD_PVP #Bottom #Tags .Tag.Selected .TabStar
+{
+	background-color: #caa15acc;
+	box-shadow: 0px 0px 8px #caa15a55;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Tags
+{
+	height: 42px;
+	margin-top: 8px;
+	margin-bottom: 2px;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Tags .TabUnderline
+{
+	width: 62%;
+	margin-bottom: 4px;
+}
+
+#HUD_PVP #Bottom.Show.HistoryCompact #Tags
+{
+	height: 42px;
+	margin-top: 8px;
+	margin-bottom: 2px;
+}
+
+#HUD_PVP #Bottom.Show.HistoryCompact #Tags .TabUnderline
+{
+	margin-bottom: 7px;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Content
+{
+	padding: 2px 8px 2px 8px;
+}
+
+#HUD_PVP #Bottom.Show.HistoryCompact #Content
+{
+	padding-top: 0px;
+}
+
+#HUD_PVP #Bottom.Show.Compact #TagDivider
+{
+	height: 24px;
+	margin-bottom: 0px;
+	visibility: visible;
+}
+
+#HUD_PVP #Bottom.Show.HistoryCompact #TagDivider
+{
+	height: 0px;
+	margin-bottom: 0px;
+	visibility: collapse;
+}
+
+#HUD_PVP #Bottom.Show.Compact #TagDivider #PvpBetTimer
+{
+	height: 22px;
+	padding: 0px;
+	background-color: #00000000;
+	border: 0px solid #00000000;
+	border-radius: 0px;
+	box-shadow: none;
+}
+
+#HUD_PVP #Bottom.Show.Compact #TagDivider #PvpBetTimer #PvpBetTimerIcon
+{
+	width: 0px;
+	height: 0px;
+	margin-right: 0px;
+	wash-color: #d7e0ea;
+}
+
+#HUD_PVP #Bottom.Show.Compact #TagDivider #PvpBetTimer #PvpBetTimerText
+{
+	font-size: 14px;
+	color: #d7e0ea;
+	text-shadow: 0px 1px 2px 2 #000000cc;
+}
+
+#HUD_PVP #Bottom.Show.Compact #TagDivider #PvpBetTimer #PvpBetTimerValue
+{
+	font-size: 15px;
+	color: #74e35f;
+	text-shadow: 0px 1px 3px 2 #000000dd;
+}
+
+#HUD_PVP #Bottom #Content
+{
+	width: fit-children;
+	height: fit-children;
+	padding: 6px 10px 6px 10px;
+}
+
+#HUD_PVP #Bottom #Content #MainPage
+{
+	width: fit-children;
+	height: fit-children;
+	flow-children: down;
+}
+
+#HUD_PVP #Bottom #Content #History
+{
+	width: fit-children;
+	height: fit-children;
+	min-width: 430px;
+	flow-children: down;
+}
+
+#HUD_PVP #Bottom #Footer
+{
+	visibility: collapse;
+	width: 100%;
+	height: 38px;
+	flow-children: none;
+	padding: 6px 6px 6px 6px;
+	background-color: #00000000;
+	border-top: 1px solid #ffffff10;
+}
+
+#HUD_PVP #Bottom #FooterCenter
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+	align: left center;
+}
+
+#Team
+{
+	width: fit-children;
+	height: fit-children;
+	flow-children: down;
+	margin-bottom: 8px;
+}
+
+#Team #TeamMain
+{
+	width: fit-children;
+	height: fit-children;
+	flow-children: right;
+}
+
+#Team #TeamMain #TeamLeft
+{
+	width: fit-children;
+	height: fit-children;
+	flow-children: down;
+}
+
+#Team #TeamMain #TeamRight
+{
+	width: fit-children;
+	height: fit-children;
+	flow-children: down;
+	vertical-align: center;
+}
+
+#Team #TeamMain #TeamRight.SummaryMode
+{
+	width: 100%;
+	margin-left: 0px;
+	margin-top: 6px;
+	vertical-align: top;
+	horizontal-align: left;
+}
+
+#Team #TeamMain #TeamRight.SummaryMode #TeamBetListHeader,#Team #TeamMain #TeamRight.SummaryMode Label.TeamBetListHeaderLabel
+{
+	max-width: 336px;
+	text-align: center;
+	horizontal-align: center;
+	margin-bottom: 5px;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Team
+{
+	margin-bottom: 2px;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo
+{
+	padding: 0px 6px 1px 6px;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Title
+{
+	height: 19px;
+	margin-bottom: 3px;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Title #PlayerName
+{
+	width: fit-children;
+	height: 19px;
+	vertical-align: center;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Title #PlayerRole
+{
+	height: 19px;
+	min-width: 0px;
+	margin-top: 0px;
+	margin-left: 5px;
+	margin-right: 0px;
+	padding: 0px;
+	vertical-align: center;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Title #PlayerRoleTag
+{
+	height: 19px;
+	font-size: 17px;
+	letter-spacing: 0px;
+	vertical-align: center;
+	padding-top: 0px;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Title #PlayerName #PlayerNameText
+{
+	width: fit-children;
+	max-width: 108px;
+	height: 19px;
+	font-size: 17px;
+	vertical-align: center;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Top
+{
+	margin-top: 0px;
+	margin-bottom: 1px;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Top #Hero
+{
+	width: 91px;
+	height: 51px;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Items
+{
+	width: 356px;
+	height: 35px;
+	flow-children: right;
+	margin-top: 1px;
+	margin-bottom: 0px;
+	overflow: noclip;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Items #Inventory #Item
+{
+	width: 29px;
+	height: 23px;
+	margin: 1px;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Items #Backpack
+{
+	height: 25px;
+	margin-right: 5px;
+	padding-left: 4px;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Items #Backpack #BackpackItem
+{
+	width: 29px;
+	height: 23px;
+	margin: 1px;
+	opacity: 1.0;
+	saturation: 0.34;
+	brightness: 0.68;
+	wash-color: #b9c1cc66;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1b1f25ee), color-stop(0.52, #101419f2), to(#05070af6));
+	border: 1px solid #000000aa;
+	box-shadow: inset 0px 1px 0px #ffffff08, inset 0px -1px 0px #000000aa;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Items #NeutralSmoke
+{
+	height: 31px;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Items #NeutralSmoke #NeutralItem
+{
+	width: 29px;
+	height: 29px;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Items #NeutralSmoke #SmokeItem
+{
+	width: 29px;
+	height: 29px;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Abilities
+{
+	margin-top: 1px;
+	margin-bottom: 1px;
+	padding-top: 2px;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Team #TeamMain #TeamRight.SummaryMode
+{
+	margin-top: 2px;
+}
+
+#HUD_PVP #Bottom .FooterBlock
+{
+	height: 100%;
+	flow-children: right;
+	vertical-align: center;
+	overflow: noclip;
+}
+
+#HUD_PVP #Bottom #FooterLeft
+{
+	width: fill-parent-flow(1.0);
+	flow-children: right;
+}
+
+#HUD_PVP #Bottom #FooterRight
+{
+	width: 236px;
+	horizontal-align: right;
+	margin-left: 0px;
+	flow-children: right;
+	visibility: collapse;
+}
+
+#HUD_PVP #Bottom .FooterText
+{
+	vertical-align: center;
+	color: #aeb7c5;
+	font-size: 13px;
+	text-shadow: 0px 1px 2px 2 #00000055;
+	margin-right: 6px;
+	white-space: nowrap;
+	line-height: 16px;
+}
+
+#HUD_PVP #Bottom .FooterTimeValue
+{
+	vertical-align: center;
+	color: #8cff5a;
+	font-size: 14px;
+	font-weight: bold;
+	text-shadow: 0px 1px 2px 2 #00000055;
+	margin-right: 6px;
+	white-space: nowrap;
+	line-height: 16px;
+}
+
+#HUD_PVP #Bottom #FooterInfoIcon
+{
+	width: 18px;
+	height: 18px;
+	vertical-align: center;
+	margin-right: 8px;
+	wash-color: #aeb7c5;
+	img-shadow: 0px 1px 2px 2 #00000055;
+	background-image: url("s2r://panorama/images/control_icons/info_png.vtex");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}
+
+#HUD_PVP #Bottom #FooterClockIcon
+{
+	width: 18px;
+	height: 18px;
+	vertical-align: center;
+	wash-color: #aeb7c5;
+	img-shadow: 0px 1px 2px 2 #00000055;
+	background-image: url("s2r://panorama/images/control_icons/history_png.vtex");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	margin-left: 2px;
+}
+
+#HUD_PVP #Bottom .FooterSep
+{
+	vertical-align: center;
+	color: #6f748099;
+	margin-right: 6px;
+	margin-left: 0px;
+	white-space: nowrap;
+	line-height: 16px;
+}
+
+#HUD_PVP #Bottom #Content #History #BetSummary
+{
+	width: 100%;
+	height: 24px;
+	margin-top: 0px;
+	margin-bottom: 5px;
+}
+
+#HUD_PVP #Bottom.Show.HistoryCompact #Content #History #BetSummary
+{
+	height: 20px;
+	margin-top: 0px;
+	margin-bottom: 3px;
+}
+
+#HUD_PVP #Bottom #Content #History #BetSummary #SummaryLabel
+{
+	width: fit-children;
+	align: center center;
+	font-size: 15px;
+	font-weight: semi-bold;
+	color: #d7e0ea;
+	opacity: 0.95;
+	text-shadow: 0px 1px 3px 2 #000000dd;
+}
+
+#HUD_PVP #Bottom #Content #History #BetList
+{
+	width: fit-children;
+	height: fit-children;
+	max-height: 450px;
+	overflow: squish scroll;
+	margin-bottom: 2px;
+	flow-children: down;
+	horizontal-align: center;
+}
+
+#HUD_PVP #Bottom #Content #History #BetList > VerticalScrollBar
+{
+	width: 4px;
+	background-color: #ffffff10;
+	border-radius: 2px;
+	margin-right: 2px;
+}
+
+#HUD_PVP #Bottom #Content #History #BetList > VerticalScrollBar .ScrollThumb
+{
+	background-color: #e7d29188;
+	border-radius: 2px;
+}
+
+#HUD_PVP #Bottom #Content #History #BetList > VerticalScrollBar .ScrollThumb:hover
+{
+	background-color: #e7d291cc;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList
+{
+	width: fit-children;
+	height: fit-children;
+	flow-children: down;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo
+{
+	width: fit-children;
+	height: fit-children;
+	flow-children: down;
+	padding: 0px 6px 3px 6px;
+	background-color: #00000000;
+	border: 0px solid #00000000;
+	border-radius: 0px;
+	opacity: 1.0;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Title
+{
+	width: fit-children;
+	height: 22px;
+	flow-children: right;
+	margin-bottom: 4px;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Title #PlayerName
+{
+	width: fit-children;
+	height: 22px;
+	vertical-align: center;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Title #PlayerName #PlayerNameText
+{
+	min-width: 80px;
+	max-width: 80px;
+	height: 22px;
+	font-size: 19px;
+	vertical-align: center;
+	color: #dde6f0;
+	text-overflow: shrink;
+	text-shadow: 0px 1px 2px 1 #000000cc;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #PlayerRole
+{
+	width: fit-children;
+	min-width: 0px;
+	height: 22px;
+	flow-children: right;
+	margin-left: 5px;
+	margin-right: 0px;
+	margin-top: 0px;
+	padding: 0px;
+	background-color: #00000000;
+	border: 0px solid #00000000;
+	box-shadow: none;
+	vertical-align: center;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #PlayerRole #PlayerRoleIcon
+{
+	width: 22px;
+	height: 22px;
+	margin-right: 4px;
+	background-size: 100%;
+	vertical-align: center;
+	opacity: 1.0;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #PlayerRoleTag
+{
+	width: fit-children;
+	max-width: 120px;
+	height: 22px;
+	font-size: 19px;
+	color: #fff2bd;
+	font-weight: bold;
+	letter-spacing: 0px;
+	text-transform: uppercase;
+	text-overflow: shrink;
+	opacity: 1.0;
+	vertical-align: center;
+	text-shadow: 0px 1px 2px 1 #000000cc;
+	padding-top: 0px;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Top #PlayerBonusInfo
+{
+	width: 122px;
+	height: fit-children;
+	flow-children: down;
+	padding: 6px 6px 5px 11px;
+	background-color: #00000000;
+	border: 0px solid #00000000;
+	border-radius: 6px;
+	vertical-align: center;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Top
+{
+	width: fit-children;
+	height: fit-children;
+	flow-children: right;
+	margin-top: 0px;
+	margin-bottom: 2px;
+	horizontal-align: left;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Top #Hero
+{
+	width: 76.8px;
+	height: 43.2px;
+	margin-right: 4px;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Top #Hero #HeroImage
+{
+	width: 100%;
+	height: 100%;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Top #Hero #HeroLevelOuter
+{
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	border: 1px solid #393939;
+	background-color: #000000FF;
+	align: right top;
+	margin: 1px;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Top #Hero #HeroLevelOuter #HeroLevelContainer
+{
+	width: 21px;
+	height: 21px;
+	border-radius: 50%;
+	border: 1px solid #E7D291;
+	background-color: #000000FF;
+	align: center center;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Top #Hero #HeroLevelOuter #HeroLevelContainer #LevelNumber
+{
+	width: 26px;
+	height: 18px;
+	align: center center;
+	font-size: 14px;
+	color: #E7D291;
+	text-align: center;
+	text-shadow: 0px 0px 2px 3.7 #EC780E24;
+	text-overflow: shrink;
+	font-family: monospaceNumbersFont;
+	opacity-mask: url("s2r://panorama/images/masks/vertical_gradient_small_psd.vtex") 0.6;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Top #PlayerBonusInfo #Rank
+{
+	width: 100%;
+	height: fit-children;
+	font-size: 15px;
+	color: #dde6f0;
+	text-overflow: shrink;
+	text-shadow: 0px 1px 2px 2 #000000aa;
+	margin-top: 0px;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Top #PlayerBonusInfo #Matches
+{
+	width: 100%;
+	height: fit-children;
+	font-size: 15px;
+	color: #dde6f0;
+	text-overflow: shrink;
+	text-shadow: 0px 1px 2px 2 #000000aa;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Top #PlayerBonusInfo #Actor
+{
+	width: 50%;
+	height: 50%;
+	font-size: 14px;
+	color: #dde6f0;
+	text-overflow: shrink;
+	text-align: center;
+	text-shadow: 0px 1px 2px 2 #00000066;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Top #HPMana
+{
+	height: 100%;
+	width: 148px;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Top #HPMana #HP
+{
+	width: 100%;
+	height: 48%;
+	align: center top;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Top #HPMana #HP .ProgressBarLeft
+{
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#425d25), color-stop(0.2, #5BA539), color-stop(0.5, #4D9030), to(#425d25));
+	border-radius: 3px;
+	transition-property: position, width;
+	transition-duration: 0.6s;
+	brightness: 1;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Top #HPMana #HP .ProgressBarRight
+{
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#17200d), color-stop(0.2, #222e13), color-stop(0.5, #1e2911), to(#17200d));
+	horizontal-align: right;
+	transition-property: position, width;
+	transition-duration: 0.6s;
+	z-index: -1;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Top #HPMana #HP #HPLabel
+{
+	align: center center;
+	text-align: center;
+	color: white;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 0px 2 #000000;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Top #HPMana #Mana
+{
+	width: 100%;
+	height: 48%;
+	align: center bottom;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Top #HPMana #Mana .ProgressBarLeft
+{
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2b4287), color-stop(0.2, #4165ce), color-stop(0.5, #4a73ea), to(#2b4287));
+	border-radius: 3px;
+	transition-property: position, width;
+	transition-duration: 0.6s;
+	brightness: 1;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Top #HPMana #Mana .ProgressBarRight
+{
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#101932), color-stop(0.2, #172447), color-stop(0.5, #162244), to(#101932));
+	horizontal-align: right;
+	transition-property: position, width;
+	transition-duration: 0.6s;
+	z-index: -1;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Top #HPMana #Mana #ManaLabel
+{
+	align: center center;
+	text-align: center;
+	color: white;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 0px 2 #000000;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Top #ScepterShard
+{
+	width: 30px;
+	height: 100%;
+	margin: 0px 5px 0px 5px;
+	vertical-align: center;
+	flow-children: down;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Top #ScepterShard #Scepter
+{
+	width: 100%;
+	height: 65%;
+	background-image: url("s2r://panorama/images/hud/reborn/aghsstatus_scepter_psd.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Top #ScepterShard #Scepter.Active
+{
+	background-image: url("s2r://panorama/images/hud/reborn/aghsstatus_scepter_on_psd.vtex");
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Top #ScepterShard #Shard
+{
+	width: 100%;
+	height: 35%;
+	background-image: url("s2r://panorama/images/hud/reborn/aghsstatus_shard_psd.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Top #ScepterShard #Shard.Active
+{
+	background-image: url("s2r://panorama/images/hud/reborn/aghsstatus_shard_on_psd.vtex");
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main
+{
+	width: fit-children;
+	height: fit-children;
+	flow-children: down;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Abilities
+{
+	width: 408px;
+	flow-children: right-wrap;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	padding: 4px 0px 0px 0px;
+	background-color: #00000000;
+	border-top: 1px solid #ffffff12;
+	border-radius: 0px;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Abilities #Ability
+{
+	width: 35px;
+	height: 35px;
+	margin: 1px;
+	border: 0px solid #00000000;
+	background-color: #00000000;
+	opacity: 0.96;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Abilities #Ability #AbilityImage
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Abilities #Ability #AbilityImage.UnLearned
+{
+	wash-color: #5b676670;
+	opacity: 0.81;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Abilities #Ability #CooldownOverlay
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	background-color: rgba(0, 0, 0, 0.668);
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Abilities #Ability #CooldownLabel
+{
+	font-size: 11px;
+	align: center center;
+	color: white;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Abilities #Ability #LevelOverlay
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Abilities #Ability #LevelOverlay #LevelContainer
+{
+	align: right bottom;
+	width: 12px;
+	height: 12px;
+	background-color: #050910dd;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Abilities #Ability #LevelOverlay #LevelContainer #LevelLabel
+{
+	align: center center;
+	color: white;
+	font-size: 10px;
+	text-align: center;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Items
+{
+	width: 420px;
+	height: 40px;
+	flow-children: right;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	overflow: noclip;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Items #Inventory
+{
+	width: fit-children;
+	height: 100%;
+	flow-children: right;
+	margin-right: 4px;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Items #Inventory #Item
+{
+	width: 34px;
+	height: 24px;
+	margin: 2px;
+	vertical-align: center;
+	opacity: 1.0;
+	saturation: 1.0;
+	background-color: #05091033;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Items #Inventory #Item #ItemImage
+{
+	width: 100%;
+	height: 100%;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Items #Inventory #Item #ItemCooldownOverlay
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	background-color: rgba(0, 0, 0, 0.668);
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Items #Inventory #Item #ItemCooldownLabel
+{
+	font-size: 18px;
+	align: center center;
+	color: white;
+	text-align: center;
+	text-shadow: 0px 0px 4px #000000ff;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Items #Backpack
+{
+	width: fit-children;
+	height: 100%;
+	flow-children: right;
+	margin-right: 5px;
+	padding-left: 4px;
+	vertical-align: center;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Items #Backpack #BackpackItem
+{
+	width: 34px;
+	height: 24px;
+	margin: 2px;
+	vertical-align: center;
+	opacity: 1.0;
+	saturation: 0.34;
+	brightness: 0.68;
+	wash-color: #b9c1cc66;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1b1f25ee), color-stop(0.52, #101419f2), to(#05070af6));
+	border: 1px solid #000000aa;
+	box-shadow: inset 0px 1px 0px #ffffff08, inset 0px -1px 0px #000000aa;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Items #Backpack #BackpackItem #ItemImage
+{
+	width: 100%;
+	height: 100%;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Items #Backpack #BackpackItem #ItemCooldownOverlay
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	background-color: rgba(0, 0, 0, 0.668);
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Items #Backpack #BackpackItem #ItemCooldownLabel
+{
+	font-size: 16px;
+	align: center center;
+	color: white;
+	text-align: center;
+	text-shadow: 0px 0px 4px #000000ff;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Items #NeutralSmoke
+{
+	width: fit-children;
+	height: 40px;
+	flow-children: right;
+	vertical-align: center;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Items #NeutralSmoke #NeutralItem
+{
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	border: 1.5px solid #737373;
+	box-shadow: inset #000000cc 1px 1px 8px 6px;
+	background-image: url("s2r://panorama/images/hud/reborn/bg_neutral_slot_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+	margin-right: 4px;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Items #NeutralSmoke #NeutralItem #NeutralItemImage
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	box-shadow: inset 0px 0px 0px 4px #161616;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Items #NeutralSmoke #NeutralItem #ItemCooldownOverlay
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	background-color: rgba(0, 0, 0, 0.668);
+	border-radius: 50%;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Items #NeutralSmoke #NeutralItem #ItemCooldownLabel
+{
+	font-size: 16px;
+	align: center center;
+	color: white;
+	text-align: center;
+	text-shadow: 0px 0px 4px #000000ff;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Items #NeutralSmoke #SmokeItem
+{
+	width: 34px;
+	height: 34px;
+	border-radius: 50%;
+	border: 1.5px solid #737373;
+	box-shadow: inset #000000cc 1px 1px 8px 6px;
+	background-image: url("s2r://panorama/images/hud/reborn/bg_tp_slot_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+}
+
+#Team #TeamMain #TeamLeft #TeamHeroList #PlayerInfo #Main #Items #NeutralSmoke #SmokeItem #SmokeItemImage
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+}
+
+#Team #TeamMain #TeamRight #TeamBetListHeader,#Team #TeamMain #TeamRight Label.TeamBetListHeaderLabel
+{
+	width: 100%;
+	max-width: 290px;
+	min-height: 22px;
+	horizontal-align: center;
+	vertical-align: top;
+	text-align: center;
+	font-size: 13px;
+	font-weight: semi-bold;
+	color: #c8d0dc;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-shadow: 0px 1px 2px 2 #00000088;
+	margin-top: 0px;
+	margin-bottom: 8px;
+	padding-top: 2px;
+	opacity: 1.0;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Team #TeamMain #TeamRight #TeamBetListHeader,#HUD_PVP #Bottom.Show.Compact #Team #TeamMain #TeamRight Label.TeamBetListHeaderLabel
+{
+	min-height: 18px;
+	font-size: 12px;
+	margin-bottom: 3px;
+	padding-top: 0px;
+}
+
+#Team #TeamMain #TeamRight #TeamBetListSection
+{
+	width: 100%;
+	height: fit-children;
+	horizontal-align: center;
+	align: center top;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	padding: 0px;
+	overflow: clip;
+	flow-children: right-wrap;
+}
+
+#Team #TeamMain #TeamRight #TeamBetList
+{
+	width: 100%;
+	max-width: 100%;
+	height: fit-children;
+	flow-children: down;
+	horizontal-align: center;
+	align: center top;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	overflow: clip;
+}
+
+#NoBetRecords
+{
+	width: 100%;
+	height: 24px;
+	horizontal-align: center;
+	text-align: center;
+	font-size: 15px;
+	font-weight: semi-bold;
+	color: #9aa3b2;
+	text-shadow: 0px 1px 2px 2 #000000aa;
+	opacity: 0.9;
+}
+
+#Team #TeamMain #TeamRight #TeamBetList .TeamBetRow
+{
+	width: 100%;
+	height: fit-children;
+	flow-children: right;
+	horizontal-align: left;
+	margin-bottom: 5px;
+	overflow: clip;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Team #TeamMain #TeamRight #TeamBetList .TeamBetRow
+{
+	margin-bottom: 2px;
+}
+
+#Team #TeamMain #TeamRight #TeamBetList .TeamBetRowInner
+{
+	width: 336px;
+	max-width: 336px;
+	height: fit-children;
+	flow-children: right;
+	horizontal-align: left;
+	overflow: clip;
+}
+
+#BetRecord
+{
+	margin-right: 7px;
+	width: fit-children;
+	height: 25px;
+	flow-children: right;
+	overflow: clip;
+}
+
+#BetRecord #HeroIcon
+{
+	width: 22px;
+	height: 22px;
+	vertical-align: center;
+	overflow: clip;
+}
+
+#BetRecord #GoldIcon
+{
+	width: 17px;
+	height: 17px;
+	vertical-align: center;
+	overflow: clip;
+}
+
+#BetRecord #BetGold
+{
+	min-width: 0px;
+	max-height: 25px;
+	font-size: 14px;
+	font-weight: bold;
+	font-family: monospaceNumbersFont;
+	letter-spacing: 0px;
+	color: goldenrod;
+	vertical-align: center;
+	text-align: left;
+	text-shadow: 0px 1px 2px 2 #000000cc;
+	white-space: nowrap;
+	text-overflow: shrink;
+	overflow: clip;
+}
+
+#Team #TeamMain #TeamRight #Bet
+{
+	height: fit-children;
+	width: 180px;
+	align: center top;
+	flow-children: down;
+	padding: 8px 12px 9px 12px;
+	border: 0px solid #00000000;
+	border-radius: 6px;
+	box-shadow: 0px 8px 20px #00000022;
+	opacity: 1.0;
+}
+
+#Team #TeamMain #TeamRight #Bet #Top
+{
+	width: 100%;
+	height: 36px;
+	flow-children: right;
+	margin-bottom: 6px;
+	padding: 0px;
+	background-color: #00000000;
+	border: 0px solid #00000000;
+	border-radius: 0px;
+	overflow: noclip;
+	horizontal-align: center;
+}
+
+#Team #TeamMain #TeamRight #Bet #BetTimerRow
+{
+	visibility: collapse;
+}
+
+#Team #TeamMain #TeamRight #Bet #BetTimerRow #BetTimerIcon
+{
+	visibility: collapse;
+}
+
+#Team #TeamMain #TeamRight #Bet #BetTimerRow #BetTimerText
+{
+	visibility: collapse;
+}
+
+#Team #TeamMain #TeamRight #Bet #BetTimerRow #BetTimerValue
+{
+	visibility: collapse;
+}
+
+#Team #TeamMain #TeamRight #Bet #Top #BetValueField
+{
+	width: fill-parent-flow(1.0);
+	height: 34px;
+	vertical-align: center;
+	margin-left: 7px;
+	margin-right: 7px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#10141ac0), to(#080c12c8));
+	border: 1px solid #ffffff0a;
+	border-radius: 6px;
+	box-shadow: inset 0px 0px 0px 1px #00000044;
+}
+
+@keyframes 'BetPristinePulse'
+{
+	0%
+	{
+		box-shadow: 0px 0px 0px 0px #e7d29100;
+	}
+	
+	50%
+	{
+		box-shadow: 0px 0px 12px 0px #e7d29111;
+	}
+	
+	100%
+	{
+		box-shadow: 0px 0px 0px 0px #e7d29100;
+	}
+	
+}
+
+#Team #TeamMain #TeamRight #Bet #Top #BetValueField.Pristine:not(.Editing)
+{
+	animation-name: BetPristinePulse;
+	animation-duration: 1.6s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+}
+
+#Team #TeamMain #TeamRight #Bet #Top #BetValueField.Editing
+{
+	border: 1px solid #e7d291aa;
+	box-shadow: 0px 0px 10px #e7d29122;
+	background-color: #10141acc;
+}
+
+#Team #TeamMain #TeamRight #Bet #Top #BetInputEntry
+{
+	width: 1px;
+	height: 1px;
+	min-width: 0px;
+	opacity: 0.0;
+	align: center center;
+	horizontal-align: center;
+	vertical-align: center;
+	background-color: #00000000;
+	border: 0px solid #00000000;
+	box-shadow: 0px 0px 0px #00000000;
+	color: #00000000;
+	text-shadow: none;
+	padding: 0px;
+	margin: 0px;
+	font-size: 1px;
+}
+
+#Team #TeamMain #TeamRight #Bet #Top #BetValueField.Editing #BetInputEntry
+{
+	opacity: 0.0;
+	color: #00000000;
+	text-shadow: none;
+}
+
+#Team #TeamMain #TeamRight #Bet #Top #BetValueDisplay
+{
+	align: center center;
+	horizontal-align: center;
+	vertical-align: center;
+	text-align: center;
+	width: 100%;
+	color: #e7edf6;
+	font-size: 20px;
+	font-weight: bold;
+	font-family: monospaceNumbersFont;
+	letter-spacing: 0px;
+	text-shadow: 0px 1px 2px 2 #00000055;
+}
+
+#Team #TeamMain #TeamRight #Bet #Top #BetValueDisplay.Empty
+{
+	color: #8f98a8;
+	opacity: 0.72;
+}
+
+#Team #TeamMain #TeamRight #Bet #Top #BetValueField.Editing #BetValueDisplay
+{
+	opacity: 1.0;
+}
+
+#Team #TeamMain #TeamRight #Bet #Top #BetInputEntry:focus
+{
+	brightness: 1.0;
+	border: 1px solid #6f7480cc;
+	box-shadow: 0px 0px 0px #00000000;
+	background-color: #00000000;
+}
+
+#Team #TeamMain #TeamRight #Bet #Top #BetInputEntry #PlaceholderText
+{
+	align: center center;
+	margin-top: -8px;
+	width: 100%;
+	text-align: center;
+	horizontal-align: center;
+	text-overflow: shrink;
+	color: #9aa3b3;
+	text-shadow: 0px 1px 2px 1 #000000cc;
+	font-size: 14px;
+}
+
+#Team #TeamMain #TeamRight #Bet #Top .BetChangeButton
+{
+	width: 32px;
+	height: 34px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#10141ac0), to(#080c12c8));
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 15px 15px;
+	vertical-align: center;
+	border: 1px solid #ffffff0a;
+	border-radius: 6px;
+	box-shadow: 0px 5px 14px #00000055;
+	transition-duration: 0.15s;
+	transition-property: brightness, border, box-shadow, opacity, background-color;
+	transition-timing-function: ease-in-out;
+	opacity: 0.92;
+	margin: 0px;
+	padding: 0px;
+}
+
+#Team #TeamMain #TeamRight #Bet #Top #BetDecrease
+{
+	vertical-align: center;
+}
+
+#Team #TeamMain #TeamRight #Bet #Top #BetIncrease
+{
+	vertical-align: center;
+}
+
+#Team #TeamMain #TeamRight #Bet #Mid
+{
+	width: 100%;
+	height: fit-children;
+	margin-bottom: 10px;
+}
+
+#Team #TeamMain #TeamRight #Bet #Mid #BetMinMax
+{
+	horizontal-align: center;
+	vertical-align: center;
+	font-size: 14px;
+	color: #b8bcc6;
+	opacity: 0.8;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+}
+
+#Team #TeamMain #TeamRight #Bet #QuickRow
+{
+	width: 100%;
+	height: fit-children;
+	flow-children: right;
+	margin-bottom: 4px;
+}
+
+#Team #TeamMain #TeamRight #Bet #QuickRow .BetQuickButton
+{
+	width: fill-parent-flow(1.0);
+	height: 22px;
+	margin-right: 4px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#0e1014dd), to(#06080bdd));
+	border: 1px solid #ffffff0a;
+	border-radius: 999px;
+	box-shadow: 0px 5px 14px #00000055;
+	opacity: 0.92;
+	transition-property: brightness, border, box-shadow, opacity, background-color;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+#Team #TeamMain #TeamRight #Bet #QuickRow .BetQuickButton.Selected
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#f0c55aff), to(#b17316ff));
+	border: 1px solid #3a2508ff;
+	box-shadow: 0px 8px 20px #00000066;
+}
+
+#Team #TeamMain #TeamRight #Bet #QuickRow .BetQuickButton.Selected Label
+{
+	color: #1b1306;
+	text-shadow: none;
+}
+
+#Team #TeamMain #TeamRight #Bet #MaxRow .BetQuickButton
+{
+	margin-right: 0px;
+}
+
+#Team #TeamMain #TeamRight #Bet #QuickRow .BetQuickButton.Max
+{
+	border: 1px solid #8cff5a55;
+	box-shadow: 0px 0px 14px #8cff5a18;
+}
+
+#Team #TeamMain #TeamRight #Bet #MaxRow .BetQuickButton.Max:not(.MaxOnly)
+{
+	border: 1px solid #8cff5a55;
+	box-shadow: 0px 0px 14px #8cff5a18;
+}
+
+#Team #TeamMain #TeamRight #Bet #QuickRow .BetQuickButton:hover
+{
+	brightness: 1.08;
+	border: 1px solid #e7d29155;
+	box-shadow: 0px 10px 26px #00000077;
+	opacity: 1.0;
+}
+
+#Team #TeamMain #TeamRight #Bet #QuickRow .BetQuickButton.Max:hover
+{
+	border: 1px solid #8cff5a99;
+	box-shadow: 0px 0px 18px #8cff5a22;
+}
+
+#Team #TeamMain #TeamRight #Bet #MaxRow .BetQuickButton.Max:not(.MaxOnly):hover
+{
+	border: 1px solid #8cff5a99;
+	box-shadow: 0px 0px 18px #8cff5a22;
+}
+
+#Team #TeamMain #TeamRight #Bet #QuickRow .BetQuickButton:last-child
+{
+	margin-right: 0px;
+}
+
+#Team #TeamMain #TeamRight #Bet #MaxRow
+{
+	width: 100%;
+	height: fit-children;
+	flow-children: right;
+	margin-bottom: 4px;
+	overflow: clip;
+}
+
+#Team #TeamMain #TeamRight #Bet #MaxRow .BetQuickButton.MaxOnly
+{
+	width: 100%;
+	height: 30px;
+	margin-right: 0px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#0e1014dd), to(#06080bdd));
+	border: 1px solid #ffffff14;
+	border-radius: 999px;
+	box-shadow: 0px 5px 14px #00000055;
+	opacity: 0.92;
+	transition-property: brightness, border, box-shadow, opacity, background-color;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+#Team #TeamMain #TeamRight #Bet #MaxRow .BetQuickButton.MaxOnly:hover
+{
+	brightness: 1.08;
+	border: 1px solid #e7d29155;
+	box-shadow: 0px 10px 26px #00000077;
+	opacity: 1.0;
+}
+
+#Team #TeamMain #TeamRight #Bet #MaxRow .BetQuickButton.MaxOnly:active
+{
+	brightness: 0.96;
+	box-shadow: 0px 6px 16px #00000055;
+}
+
+#Team #TeamMain #TeamRight #Bet #MaxRow .BetQuickButton.Selected
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#f0c55aff), to(#b17316ff));
+	border: 1px solid #3a2508ff;
+	box-shadow: 0px 8px 20px #00000066;
+	opacity: 1.0;
+}
+
+#Team #TeamMain #TeamRight #Bet #MaxRow .BetQuickButton.Selected:hover
+{
+	brightness: 1.06;
+	border: 1px solid #5a3a0ccc;
+	box-shadow: 0px 10px 26px #00000077;
+}
+
+#Team #TeamMain #TeamRight #Bet #QuickRow .BetQuickButton Label
+{
+	align: center center;
+	horizontal-align: center;
+	vertical-align: center;
+	text-align: center;
+	color: #c6ceda;
+	font-size: 10px;
+	font-weight: semi-bold;
+	letter-spacing: 0px;
+	text-transform: uppercase;
+	text-shadow: 0px 1px 2px 2 #00000066;
+	text-overflow: shrink;
+}
+
+#Team #TeamMain #TeamRight #Bet #MaxRow .BetQuickButton.MaxOnly Label
+{
+	align: center center;
+	horizontal-align: center;
+	vertical-align: center;
+	text-align: center;
+	color: #c6ceda;
+	font-size: 10px;
+	font-weight: semi-bold;
+	letter-spacing: 0px;
+	text-transform: uppercase;
+	text-shadow: 0px 1px 2px 2 #00000066;
+	text-overflow: shrink;
+}
+
+#Team #TeamMain #TeamRight #Bet #MaxRow .BetQuickButton.MaxOnly.Selected Label
+{
+	color: #1b1306;
+	text-shadow: none;
+}
+
+#Team #TeamMain #TeamRight #Bet #QuickRow .BetQuickButton:active
+{
+	brightness: 0.96;
+	box-shadow: 0px 6px 16px #00000055;
+}
+
+#Team #TeamMain #TeamRight #Bet #Bottom
+{
+	width: 100%;
+	height: fit-children;
+	flow-children: right;
+	margin-top: 7px;
+}
+
+#Team #TeamMain #TeamRight #Bet #Bottom #BetButton
+{
+	width: 100%;
+	height: 34px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3f6c54f2), to(#244333ee));
+	border: 1px solid #6fa57acc;
+	border-radius: 3px;
+	box-shadow: 0px 6px 18px #00000077, inset 0px 1px 0px #ffffff12, inset 0px -1px 0px #00000055;
+	opacity: 1.0;
+	transition-property: brightness, box-shadow, opacity, border;
+	transition-duration: 0.12s;
+	transition-timing-function: ease-in-out;
+}
+
+#Team #TeamMain #TeamRight #Bet #Bottom #BetButton Label
+{
+	align: center center;
+	horizontal-align: center;
+	vertical-align: center;
+	text-align: center;
+	color: #e2f2e5;
+	font-size: 11px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	text-shadow: 0px 1px 2px 2 #00000088;
+	opacity: 0.98;
+	margin: 0px;
+	padding: 0px;
+	transform: none;
+}
+
+#Team #TeamMain #TeamRight #Bet #Bottom #BetButton:enabled:hover
+{
+	brightness: 1.06;
+	border: 1px solid #89c792dd;
+	box-shadow: 0px 8px 22px #00000088, inset 0px 1px 0px #ffffff24, inset 0px -1px 0px #00000066;
+}
+
+#Team #TeamMain #TeamRight #Bet #Bottom #BetButton:enabled:active
+{
+	brightness: 0.97;
+	box-shadow: 0px 4px 14px #00000099, inset 0px 1px 0px #00000044, inset 0px -1px 0px #ffffff0a;
+}
+
+#Team #TeamMain #TeamRight #Bet #Bottom #BetButton:enabled:active Label
+{
+	transform: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+#Team #TeamMain #TeamRight #Bet #Top .BetChangeButton:enabled:hover
+{
+	brightness: 1.08;
+	border: 1px solid #e7d29155;
+	box-shadow: 0px 10px 26px #00000077;
+	opacity: 1.0;
+}
+
+#Team #TeamMain #TeamRight #Bet #Top .BetChangeButton:enabled:active
+{
+	brightness: 0.94;
+	border: 1px solid #e7d29133;
+	box-shadow: 0px 3px 10px #00000066;
+	opacity: 1.0;
+}
+
+#Team #TeamMain #TeamRight #Bet #Top .BetChangeButton:disabled
+{
+	saturation: 0.6;
+	opacity: 0.6;
+}
+
+#Team #TeamMain #TeamRight #Bet #Top #BetIncrease
+{
+	background-image: url("s2r://panorama/images/custom_game/pvp_icon/icon_plus_png.vtex");
+	background-size: 20px 18px;
+}
+
+#Team #TeamMain #TeamRight #Bet #Top #BetDecrease
+{
+	background-image: url("s2r://panorama/images/custom_game/pvp_icon/icon_minus_png.vtex");
+}
+
+#Team #Versus
+{
+	width: 420px;
+	height: 24px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	flow-children: right;
+	vertical-align: center;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Team #Versus
+{
+	height: 22px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+
+#Team #Versus .PvpVersusLine
+{
+	width: fill-parent-flow(1.0);
+	height: 1px;
+	vertical-align: center;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#2a2c3400), color-stop(0.48, #6f748088), to(#2a2c3400));
+	box-shadow: none;
+}
+
+#Team #Versus .PvpVersusGap
+{
+	width: 12px;
+	height: 1px;
+	vertical-align: center;
+	visibility: visible;
+}
+
+#Team #Versus #VersusLabel
+{
+	width: fit-children;
+	height: 22px;
+	vertical-align: center;
+	position: 0px 0px 0px;
+	font-size: 17px;
+	font-weight: bold;
+	letter-spacing: 0px;
+	text-transform: uppercase;
+	text-align: center;
+	color: #f0cf7f;
+	text-shadow: 0px 1px 3px 2 #000000ff;
+	background-color: #00000000;
+	border: 0px solid #00000000;
+	border-radius: 0px;
+	box-shadow: none;
+	padding-top: 1px;
+	padding-left: 0px;
+	transform: none;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Team #Versus #VersusLabel
+{
+	width: fit-children;
+	height: 21px;
+	font-size: 16px;
+	padding-top: 1px;
+	position: 0px 0px 0px;
+}
+
+.TopTeam #TeamMain #TeamRight #Bet
+{
+	margin-top: 0px;
+}
+
+.BottomTeam #TeamMain #TeamRight #Bet
+{
+	margin-top: 0px;
+}
+
+#HUD_PVP #Bottom #Content #History #BetList #BetRecord
+{
+	height: 68px;
+	flow-children: right;
+	margin-bottom: 6px;
+	padding: 8px 0px 8px 14px;
+}
+
+#HUD_PVP #Bottom #Content #History #BetList #BetRecord #Players
+{
+	vertical-align: center;
+	margin-right: 20px;
+	flow-children: right;
+}
+
+#HUD_PVP #Bottom #Content #History #BetList #BetRecord #Players .PlayerList #HeroImage
+{
+	vertical-align: center;
+	width: 30px;
+	height: 30px;
+	border: 1px solid #00000055;
+	border-radius: 3px;
+	opacity: 0.96;
+}
+
+#HUD_PVP #Bottom #Content #History #BetList #BetRecord #Players #Winners
+{
+	flow-children: left;
+}
+
+#HUD_PVP #Bottom #Content #History #BetList #BetRecord #Players #Losers
+{
+	flow-children: right;
+}
+
+#HUD_PVP #Bottom #Content #History #BetList #BetRecord #Players #Winners
+{
+	border-radius:3px;
+	border: 1px solid #8cff5a77;
+	box-shadow: 0px 0px 8px #8cff5a33;
+	opacity: 1.0;
+}
+
+#HUD_PVP #Bottom #Content #History #BetList #BetRecord #Players #Losers
+{
+	border-radius:3px;
+	border: 1px solid #d66b6b3a;
+	saturation: 0.4;
+	brightness: 0.85;
+	opacity: 0.7;
+}
+
+#HUD_PVP #Bottom #Content #History #BetList #BetRecord #Players #Versus
+{
+	width: 30px;
+	vertical-align: center;
+	margin: 0px 3px 0px 3px;
+	flow-children: none;
+	background-image: none;
+}
+
+#HUD_PVP #Bottom #Content #History #BetList #BetRecord #Players #Versus #VersusLabel
+{
+	height: fit-children;
+	align: center center;
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	color: #b8f59a;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+}
+
+#HUD_PVP #Bottom #Content #History #BetList #BetRecord #Values
+{
+	width: fit-children;
+	height: 100%;
+	flow-children: right;
+	margin-right: 5px;
+}
+
+#HUD_PVP #Bottom #Content #History #BetList #BetRecord #Values #ValuePill
+{
+	width: 90px;
+	height: 25px;
+	align: right center;
+	flow-children: right;
+	padding: 0px 5px 0px 5px;
+	border-radius: 8px;
+	border: 1px solid #ffffff10;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#10141ac8), to(#070a0ec8));
+}
+
+#HUD_PVP #Bottom #Content #History #BetList #BetRecord #Values #ValueMeta
+{
+	width: fit-children;
+	height: 100%;
+	align: left center;
+	margin-left: 10px;
+	flow-children: right;
+	vertical-align: center;
+}
+
+#HUD_PVP #Bottom #Content #History #BetList #BetRecord #Values #ValueMeta .MetaMult
+{
+	vertical-align: center;
+	margin-left: 4px;
+	padding: 2px 3px 2px 5px;
+	border-radius: 6px;
+	border: 1px solid #e7d29155;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1c160944), to(#0c0904aa));
+	box-shadow: 0px 0px 8px #e7d29116;
+	color: #f0d99a;
+	font-size: 13px;
+	font-weight: bold;
+	font-family: monospaceNumbersFont;
+	letter-spacing: 0.5px;
+	text-shadow: 0px 1px 2px 1 #000000aa;
+}
+
+#HUD_PVP #Bottom #Content #History #BetList #BetRecord #Values #ValueMeta .MetaPair
+{
+	width: 80px;
+	vertical-align: center;
+	flow-children: right;
+	margin-left: 10px;
+	padding: 0px;
+}
+
+#HUD_PVP #Bottom #Content #History #BetList #BetRecord #Values #ValueMeta .MetaPair .MetaLabel
+{
+	vertical-align: center;
+	font-size: 10px;
+	font-weight: semi-bold;
+	color: #6a727f;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	margin-right: 5px;
+	text-shadow: 0px 1px 2px 1 #00000088;
+}
+
+#HUD_PVP #Bottom #Content #History #BetList #BetRecord #Values #ValueMeta .MetaPair .MetaValue
+{
+	vertical-align: center;
+	font-size: 14px;
+	font-weight: semi-bold;
+	font-family: monospaceNumbersFont;
+	color: #c0c7d2;
+	text-shadow: 0px 1px 2px 1 #00000099;
+}
+
+#HUD_PVP #Bottom #Content #History #BetList #BetRecord #Values #ValuePill.Win
+{
+	border: 1px solid #8cff5a44;
+	box-shadow: 0px 0px 10px #8cff5a16;
+}
+
+#HUD_PVP #Bottom #Content #History #BetList #BetRecord #Values #ValuePill.Lose
+{
+	border: 1px solid #d66b6b44;
+	box-shadow: 0px 0px 10px #d66b6b16;
+}
+
+#HUD_PVP #Bottom #Content #History #BetList #BetRecord #Values #ValuePill #GoldIcon
+{
+	width: 18px;
+	height: 18px;
+	vertical-align: center;
+	margin-left: 2px;
+	margin-right: 4px;
+	img-shadow: 0px 1px 2px 2 #00000066;
+	wash-color: #e7d291;
+}
+
+#HUD_PVP #Bottom #Content #History #BetList #BetRecord #Values #ValuePill #BetValue
+{
+	vertical-align: center;
+	width: fill-parent-flow(1.0);
+	text-align: right;
+	font-size: 16px;
+	font-weight: bold;
+	font-family: monospaceNumbersFont;
+	text-shadow: 0px 1px 2px 2 #000000aa;
+	color: #dde6f0;
+	white-space: nowrap;
+}
+
+#HUD_PVP #Bottom #Content #History #BetList #BetRecord #Values #ValuePill.Win #BetValue
+{
+	color: #8cff5a;
+}
+
+#HUD_PVP #Bottom #Content #History #BetList #BetRecord #Values #ValuePill.Lose #BetValue
+{
+	color: #d66b6b;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Content #History #BetList #BetRecord
+{
+	width: 520px;
+	max-width: 520px;
+	height: 60px;
+	padding: 6px 10px 6px 10px;
+	margin-bottom: 5px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#06101800), color-stop(0.58, #06101824), to(#0408104c));
+	border: 0px solid #00000000;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Content #History #BetList #BetRecord #Players
+{
+	width: fill-parent-flow(1.0);
+}
+
+#HUD_PVP #Bottom.Show.Compact #Content #History #BetList #BetRecord #Players .PlayerList #HeroImage
+{
+	width: 34px;
+	height: 34px;
+	margin-right: 4px;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Content #History #BetList #BetRecord #Players #Versus
+{
+	width: 36px;
+	margin: 0px 4px 0px 4px;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Content #History #BetList #BetRecord #Players #Versus #VersusLabel
+{
+	font-size: 13px;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Content #History #BetList #BetRecord #Values
+{
+	width: 150px;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Content #History #BetList #BetRecord #Values #ValuePill
+{
+	width: 148px;
+	height: 36px;
+	padding: 0px 10px 0px 8px;
+	border-radius: 7px;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Content #History #BetList #BetRecord #Values #ValuePill #GoldIcon
+{
+	width: 19px;
+	height: 19px;
+	margin-left: 4px;
+	margin-right: 6px;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Content #History #BetList #BetRecord #Values #ValuePill #BetValue
+{
+	font-size: 18px;
+}
+
+#HUD_PVP #Bottom.Show.Compact #Content #History #BetList #BetRecord #Values #ValueMeta
+{
+	width: 148px;
+	font-size: 11px;
+	margin-top: 3px;
+}

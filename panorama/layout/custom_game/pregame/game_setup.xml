@@ -1,0 +1,56 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/friend_menu.vcss_c" />
+		<include src="s2r://panorama/styles/friend_menu_home.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/pregame/game_setup.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/pregame/game_setup.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="Team">
+			<Panel class="TeamPanel" />
+		</snippet>
+		<snippet name="Player">
+			<Panel id="Player" class="Player">
+				<Panel class="AvatarFrame">
+					<DOTAAvatarImage id="Avatar" class="Avatar" />
+				</Panel>
+				<Panel id="RatingInfo" class="RatingInfo">
+					<DOTAUserName id="Username" class="Username" />
+					<Panel id="StatsLoading" class="StatsLoading">
+						<Image class="LoadingSpinner" src="s2r://panorama/images/custom_game/extract/loadingthrobber_round_png_png.vtex" />
+						<Label class="LoadingLabel" text="#HUD_TeamSelect_Loading" />
+					</Panel>
+					<Panel id="StatsValues" class="StatsValues">
+						<Panel class="StatRow">
+							<Label class="RatingLabel" text="#HUD_TeamSelect_Rating" />
+							<Label id="Rating" class="RatingText" />
+						</Panel>
+						<Panel class="StatDivider" />
+						<Panel class="StatRow">
+							<Label class="RatingLabel" text="#HUD_TeamSelect_PlayTime" />
+							<Label id="PlayTime" class="RatingText" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel style="width:100%;height:100%;" hittest="false">
+		<Panel id="TeamSelect" />
+	</Panel>
+</root>

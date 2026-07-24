@@ -1,0 +1,67 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/hud/hud_reborn.css" />
+		<include src="s2r://panorama/styles/settings/ui_ability_bar_settings.css" />
+		<include src="s2r://panorama/layout/custom_game/main_hud_new/inventory/main/main.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/main_hud_new/inventory/main.vjs_c" />
+	</scripts>
+	<Panel class="CustomInventoryRoot" hittest="false">
+		<Panel id="CustomInventoryOverlay" class="CustomInventoryOverlay Hidden">
+			<Panel id="CustomInventoryContainer" class="CustomInventoryContainer">
+				<Panel id="CustomInventoryHeader" class="CustomInventoryHeader">
+					<Panel class="CustomInventoryPlayerBlock">
+						<DOTAAvatarImage id="CustomInventoryAvatar" class="CustomInventoryAvatar" />
+						<Panel class="CustomInventoryPlayerMeta">
+							<Label id="CustomInventoryPlayerName" class="CustomInventoryPlayerName" />
+							<Panel class="CustomInventoryCoinsRow">
+								<Label id="CustomInventoryCoinsValue" class="CustomInventoryCoinsValue" text="0" />
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel id="CustomInventoryPromoBlock" class="CustomInventoryPromoBlock">
+						<Label class="CustomInventoryPromoTitle" text="#HUD_Inventory_PromoTitle" />
+						<Panel class="CustomInventoryPromoControls">
+							<TextEntry id="CustomInventoryPromoInput" class="CustomInventoryPromoInput" placeholder="#HUD_Inventory_PromoPlaceholder" maxchars="32" />
+							<Button id="CustomInventoryPromoActivate" class="CustomInventoryPromoButton" onactivate="GameUI.ActivateInventoryPromoCode()">
+								<Label class="CustomInventoryPromoButtonLabel" text="#HUD_Inventory_PromoActivate" />
+							</Button>
+						</Panel>
+						<Label id="CustomInventoryPromoStatus" class="CustomInventoryPromoStatus Hidden" text="" />
+					</Panel>
+				</Panel>
+				<Panel id="CustomInventoryTabs" class="CustomInventoryTabs">
+					<Button id="CustomInventoryTabInventory" class="CustomInventoryTabButton Selected" onactivate="GameUI.SwitchCustomInventoryTab(&apos;inventory&apos;)">
+						<Label class="CustomInventoryTabLabel" text="#HUD_Inventory_InventoryButton" />
+					</Button>
+					<Button id="CustomInventoryTabChatWheel" class="CustomInventoryTabButton" onactivate="GameUI.SwitchCustomInventoryTab(&apos;chat_wheel&apos;)">
+						<Label class="CustomInventoryTabLabel" text="#HUD_Inventory_ChatWheelButton" />
+					</Button>
+					<Button id="CustomInventoryTabShop" class="CustomInventoryTabButton" onactivate="GameUI.SwitchCustomInventoryTab(&apos;shop&apos;)">
+						<Label class="CustomInventoryTabLabel" text="#HUD_Inventory_ShopButton" />
+					</Button>
+				</Panel>
+				<Panel id="CustomInventoryTabBody" class="CustomInventoryTabBody" />
+			</Panel>
+			<Panel class="CloseButtonContainer">
+				<Button id="CloseButton" class="ButtonPrimary LightGrey" onactivate="GameUI.ToggleCustomInventoryHud()">
+					<Image src="s2r://panorama/images/control_icons/24px/x_close.vsvg" />
+				</Button>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

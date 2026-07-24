@@ -1,0 +1,227 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.HudRoundRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#RoundInfo
+{
+	margin-top: 76px;
+	opacity: 0;
+}
+
+#RoundInfo.Show
+{
+	opacity: 1;
+}
+
+#RoundInfo.Flip
+{
+	horizontal-align: right;
+}
+
+#RoundNumberContainer
+{
+	width: 75px;
+	height: 75px;
+	border-radius: 10px;
+	vertical-align: bottom;
+	background-color: gradient(radial, 50% 50%, 0% 0%, 45% 45%, from(#4d4f52), to(#171819));
+	border: 4px solid #25282a;
+}
+
+#RoundNumberTitle
+{
+	width: 100%;
+	height: 26px;
+	color: gradient(linear, 60% 0%, 0% 100%, from(#ef3e35), to(#ba3427));
+	font-size: 22px;
+	text-align: center;
+	text-shadow: 1px 1px 2px 3 #000000;
+	brightness: 1.5;
+	font-weight: bold;
+	margin-top: 4px;
+	text-transform: uppercase;
+	align: center top;
+	text-overflow: shrink;
+}
+
+#RoundNumberLabel
+{
+	color: gradient(linear, 30% 0%, 0% 100%, from(#e04b43), to(#9e281c));
+	font-size: 36px;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 2px 3 #000000;
+	text-align: center;
+	font-weight: bold;
+	brightness: 1.2;
+	width: 100%;
+	align: center bottom;
+}
+
+#RoundProgressBar
+{
+	width: 300px;
+	height: 33px;
+	margin-left: 75px;
+	vertical-align: bottom;
+	margin-bottom: 26px;
+	border: 4px solid #25282a;
+	border-left-width: 0px;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+	z-index: -1;
+}
+
+#RoundProgressBar .EOM_ProgressBar_Left
+{
+	transition-duration: 1s;
+	transition-timing-function: linear;
+}
+
+#RoundRemainingTime
+{
+	align: center center;
+	height: 100%;
+	color: white;
+	font-size: 20px;
+	margin-right: 10px;
+	text-align: center;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: clip;
+	visibility: collapse;
+}
+
+#RoundRemainingTime.Show
+{
+	visibility: visible;
+}
+
+#RoundExpireTime
+{
+	align: center center;
+	height: 100%;
+	color: #ff6464;
+	font-size: 20px;
+	margin-right: 10px;
+	text-align: center;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: clip;
+	visibility: collapse;
+}
+
+#RoundExpireTime.Show
+{
+	visibility: visible;
+}
+
+#ReadyGrid
+{
+	width: 85px;
+	height: 26px;
+	margin-right: 15px;
+	background-color: gradient(radial, 65% 65%, 5% 5%, 70% 70%, from(#971b1a), to(#4c1710));
+	border-bottom-right-radius: 7px;
+	border-bottom-left-radius: 7px;
+	align: right bottom;
+	padding: 1px;
+	padding-top: 1px;
+	flow-children: right;
+	box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+	transition-property: background-color, transform;
+	transition-duration: 0.6s;
+	z-index: -10;
+	transform: translateY(-26px);
+}
+
+#ReadyGrid.Show
+{
+	transform: translateY(0px);
+}
+
+#ReadyGrid Label
+{
+	color: #dcdcdc;
+	text-shadow: 1px 1px 2px 3 #000000;
+	align: center center;
+	text-align: center;
+}
+
+#ReadyGridContent
+{
+	align: center center;
+	width: fit-children;
+	height: fit-children;
+	flow-children: right;
+}
+
+#ReadyGrid:hover
+{
+	background-color: gradient(radial, 65% 65%, 5% 5%, 70% 70%, from(#bd1f1e), to(#5a1910));
+}
+
+#ReadyGrid:hover Label
+{
+	color: white;
+}
+
+#RoundName
+{
+	vertical-align: bottom;
+	margin-left: 80px;
+	margin-bottom: 65px;
+	font-size: 22px;
+	text-shadow: 1px 1px 2px 3 #000000;
+	color: white;
+	width: 168px;
+	height: 26px;
+	text-overflow: shrink;
+}
+
+#RoundAbilityList
+{
+	horizontal-align: right;
+	margin-bottom: 65px;
+	height: 28px;
+	width: 120px;
+	flow-children: left;
+}
+
+#RoundAbilityList DOTAAbilityImage
+{
+	width: 28px;
+	height: 28px;
+	border-radius: 4px;
+	margin: 1px 1px 0px 1px;
+}
+
+#MiniMap
+{
+	background-color: #1b1e28f2;
+	box-shadow: inset 0 0 1px #62758B;
+	align: left bottom;
+}
+
+#MiniMapPanel
+{
+	width: 260px;
+	height: 260px;
+	margin: 4px;
+}
+
+#MiniMap.Flip
+{
+	align: right bottom;
+}

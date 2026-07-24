@@ -1,0 +1,171 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.ExtenderStashHud
+{
+	width: 100%;
+	height: 100%;
+}
+
+#BonusStashButton
+{
+	align: right bottom;
+	margin-bottom: 310px;
+	width: fit-children;
+	height: 30px;
+	background-color: #1b1e28f2;
+	box-shadow: inset 0 0 1px #62758b;
+	flow-children: right;
+	opacity: 0.92;
+	transition-property: background-color, opacity, brightness, transform;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+#BonusStashButton.Flip
+{
+	align: left bottom;
+}
+
+#BonusStashButton:hover
+{
+	opacity: 1;
+	brightness: 1.25;
+	background-color: #232837f2;
+}
+
+.BonusStashButtonIcon
+{
+	width: 30px;
+	height: 30px;
+	align: right center;
+	background-color: black;
+	background-image: url("s2r://panorama/images/control_icons/expand_collapse_png.vtex");
+	background-position: 50%;
+	background-repeat: no-repeat;
+	box-shadow: inset 0 0 1px #62758b;
+	transform: rotateZ(-90deg);
+	transition-property: transform;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.BonusStashButtonIcon.Flip
+{
+	transform: rotateZ(90deg);
+}
+
+.Show .BonusStashButtonIcon
+{
+	transform: rotateZ(0deg);
+}
+
+.BonusStashButtonLabel
+{
+	width: fit-children;
+	height: 20px;
+	font-size: 18px;
+	align: left center;
+	margin-left: 10px;
+	color: white;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 2px 3 #000000;
+	transition-property: text-shadow, color;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.BonusStashButtonLabel.Flip
+{
+	text-align: right;
+	padding-right: 10px;
+}
+
+.Show .BonusStashButtonLabel
+{
+	color: #dfe9ff;
+	text-shadow: 1px 1px 2px 3 #000000;
+}
+
+#BonusStashPanel.Show
+{
+	opacity: 1;
+	transform: translateX(0);
+}
+
+#BonusStashPanel.Show.Flip
+{
+	transform: translateX(0);
+}
+
+#BonusStashPanel
+{
+	width: 291px;
+	height: 100px;
+	align: right bottom;
+	background-color: black;
+	margin-bottom: 210px;
+	background-image: url("s2r://panorama/images/hud/reborn/bg_item_build_psd.vtex");
+	background-repeat: no-repeat;
+	transform: translateX(100px);
+	opacity: 0;
+	transition-property: transform, opacity;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+#BonusStashPanel.Flip
+{
+	align: left bottom;
+	transform: translateX(-100px);
+}
+
+#InfoButton
+{
+	width: 28px;
+	height: 32px;
+	wash-color: #b5b5b5;
+	background-image: url("s2r://panorama/images/control_icons/24px/info.vsvg");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 16px 16px;
+	img-shadow: 0px 0px 8px 0 black;
+	ignore-parent-flow: true;
+	tooltip-position: left;
+	opacity: 0.8;
+	align: left top;
+}
+
+#InfoButton.Flip
+{
+	align: right top;
+}
+
+.BonusStashHeaderLabel
+{
+	text-transform: uppercase;
+	font-size: 14px;
+	color: #8da1b1;
+	margin-top: 9px;
+	font-weight: bold;
+	text-align: center;
+	letter-spacing: 1px;
+	align: center top;
+}
+
+#stash
+{
+	margin-top: 31px;
+	flow-children: right-wrap;
+	align: center top;
+	margin-left: 10px;
+}

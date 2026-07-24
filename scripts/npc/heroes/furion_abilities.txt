@@ -1,0 +1,99 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"furion_force_of_nature_lua"
+	{
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilitySound"							"Hero_Furion.ForceOfNature"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_furion/furion_force_of_nature_lua"
+		"AbilityTextureName"					"furion_force_of_nature"
+		"HasShardUpgrade"						"1"
+		"AbilityCastRange"						"750"
+		"AbilityCastPoint"						"0.5 0.5 0.5 0.5"
+		"AbilityManaCost"						"150"
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"							"32"
+				"special_bonus_unique_furion_6"	"-8"
+			}
+			"area_of_effect"					"150 225 300 375"
+			"max_treants"
+			{
+				"value"							"3 3 4 5"
+				"special_bonus_unique_furion_2"	"+3"
+			}
+			"duration"							"50 50 50 50"
+			"treant_health"
+			{
+				"value"							"550"
+				"special_bonus_unique_furion"	"x1.5"
+			}
+			"treant_dmg"
+			{
+				"value"							"13 21 29 37"
+				"special_bonus_unique_furion"	"x1.5"
+			}
+			"max_wave_limit"					"2"
+			"attri_multi"
+			{
+				"value"							"2.5"
+				"RequiresShard"					"1"
+			}
+			"shard_max_treants"
+			{
+				"value"							"1 1 2 2"
+				"special_bonus_unique_furion_2"	"+1"
+				"RequiresShard"					"1"
+			}
+		}
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_3"
+	}
+	"treant_large_tree_grab"
+	{
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_furion/treant_large_tree_grab"
+		"AbilityTextureName"					"tiny_tree_grab"
+		"MaxLevel"								"1"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PHYSICAL"
+		"AbilityValues"
+		{
+			"cleave_damage_percent"				"30"
+		}
+	}
+	"treant_large_entangle"
+	{
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_furion/treant_large_entangle"
+		"AbilityTextureName"					"lone_druid_spirit_bear_entangle"
+		"MaxLevel"								"1"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"AbilityCooldown"						"8"
+		"precache"
+		{
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_lone_druid.vsndevts"
+		}
+		"AbilityValues"
+		{
+			"trigger_chance"					"15"
+			"duration"							"2"
+			"bonus_attack_speed"				"160"
+			"attack_damage_pct"					"85"
+		}
+	}
+}

@@ -1,0 +1,47 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/hudstyles.css" />
+		<include src="s2r://panorama/styles/hud/hud_reborn.css" />
+		<include src="s2r://panorama/styles/custom_ui.css" />
+		<include src="s2r://panorama/layout/custom_game/hud_round/hud_round.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/eomdesign/inputs/eom_progressbar/eom_progressbar.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/sequence_actions.ts" />
+		<include src="s2r://panorama/scripts/custom_game/hud_round.vjs_c" />
+	</scripts>
+	<Panel class="HudRoundRoot" hittest="false">
+		<Panel id="RoundInfo">
+			<Panel id="RoundNumberContainer">
+				<Label id="RoundNumberTitle" text="#Round" />
+				<Label id="RoundNumberLabel" text="1" />
+			</Panel>
+			<Panel class="EOM_ProgressBar" id="RoundProgressBar">
+				<Panel class="EOM_ProgressBar_Left" id="RoundProgressLeft" />
+				<Panel class="EOM_ProgressBar_Right" id="RoundProgressRight" />
+				<Label id="RoundRemainingTime" text="0:00" />
+				<Label id="RoundExpireTime" text="" />
+			</Panel>
+			<Button id="ReadyGrid" hittest="true">
+				<Panel id="ReadyGridContent" />
+			</Button>
+			<Label id="RoundName" text="" />
+			<Panel id="RoundAbilityList" hittest="false" />
+		</Panel>
+		<Panel id="MiniMap">
+			<DOTAMinimap id="MiniMapPanel" />
+		</Panel>
+	</Panel>
+</root>

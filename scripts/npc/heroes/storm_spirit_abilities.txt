@@ -1,0 +1,92 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"storm_spirit_static_remnant_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_storm_spirit/storm_spirit_static_remnant_lua"
+		"AbilityTextureName"					"storm_spirit_static_remnant"
+		"FightRecapLevel"						"1"
+		"MaxLevel"								"4"
+		"AbilityType"							"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint"						"0 0 0 0"
+		"AbilityDuration"						"12.0"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityManaCost"						"70 80 90 100"
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"							"3.5"
+				"special_bonus_unique_storm_spirit_8""-1.25"
+			}
+			"static_remnant_radius"
+			{
+				"value"							"235"
+				"affected_by_aoe_increase"		"1"
+			}
+			"static_remnant_damage_radius"
+			{
+				"value"							"300"
+				"affected_by_aoe_increase"		"1"
+				"CalculateSpellDamageTooltip"	"0"
+			}
+			"static_remnant_delay"				"1.0"
+			"duration"							"12"
+			"static_remnant_damage"
+			{
+				"value"							"120 180 240 300"
+				"special_bonus_unique_storm_spirit_5""+50"
+			}
+		}
+	}
+	"storm_spirit_ball_lightning_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_storm_spirit/storm_spirit_ball_lightning_lua"
+		"AbilityTextureName"					"storm_spirit_ball_lightning"
+		"FightRecapLevel"						"1"
+		"MaxLevel"								"3"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint"						"0.3 0.3 0.3"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityManaCost"						"30"
+		"AbilityCooldown"						"1.3"
+		"AbilityDamage"							"8 12 16"
+		"AbilityValues"
+		{
+			"ball_lightning_initial_mana_percentage""7.5"
+			"ball_lightning_initial_mana_base"	"25"
+			"ball_lightning_move_speed"			"1400 1850 2300"
+			"ball_lightning_aoe"
+			{
+				"value"							"200"
+				"affected_by_aoe_increase"		"1"
+			}
+			"ball_lightning_travel_cost_base"	"10"
+			"ball_lightning_travel_cost_percent""0.65"
+			"ball_lightning_vision_radius"		"400"
+			"blocker_duration"					"5"
+			"talent_remnant_interval"
+			{
+				"value"							"0"
+				"special_bonus_unique_storm_spirit_4""+500"
+			}
+		}
+	}
+}

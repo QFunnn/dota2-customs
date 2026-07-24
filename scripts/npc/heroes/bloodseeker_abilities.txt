@@ -1,0 +1,135 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"bloodseeker_blood_mist"
+	{
+		"AbilityValues"
+		{
+			"hp_cost_per_second"
+			{
+				"value"							"2"
+				"DamageTypeTooltip"				"DAMAGE_TYPE_MAGICAL"
+			}
+		}
+	}
+	"bloodseeker_thirst_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_bloodseeker/bloodseeker_thirst_lua"
+		"AbilityTextureName"					"bloodseeker_thirst"
+		"FightRecapLevel"						"1"
+		"MaxLevel"								"4"
+		"HasScepterUpgrade"						"1"
+		"precache"
+		{
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts"
+		}
+		"AbilityType"							"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastRange"						"1600"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityValues"
+		{
+			"max_threshold_pct"					"25"
+			"bonus_movement_speed"
+			{
+				"value"							"16 24 32 40"
+				"special_bonus_unique_bloodseeker_4""+18"
+			}
+			"radius"
+			{
+				"value"							"1600"
+				"affected_by_aoe_increase"		"1"
+			}
+			"kill_heal"							"12 18 24 30"
+		}
+	}
+	"bloodseeker_blood_mist_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_bloodseeker/bloodseeker_blood_mist_lua"
+		"AbilityTextureName"					"bloodseeker_blood_mist"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"						"1"
+		"MaxLevel"								"1"
+		"IsGrantedByScepter"					"1"
+		"precache"
+		{
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts"
+		}
+		"AbilityType"							"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint"						"0.5"
+		"AbilityCooldown"						"10.0"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastRange"						"450"
+		"AbilityValues"
+		{
+			"damage"							"160"
+			"tick"								"1"
+			"range_damage_pct"					"45"
+			"range_damage_threshold"			"100"
+			"movespeed_radius"					"1"
+		}
+	}
+	"bloodseeker_bloodrage_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_bloodseeker/bloodseeker_bloodrage_lua"
+		"AbilityTextureName"					"bloodseeker_bloodrage"
+		"FightRecapLevel"						"1"
+		"MaxLevel"								"4"
+		"HasShardUpgrade"						"1"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PURE"
+		"AbilityType"							"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityCastPoint"						"0.2"
+		"AbilityCooldown"						"14 12 10 8"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityValues"
+		{
+			"duration"												"8"
+			"shard_damage_pct"										"2"
+			"attack_speed"              
+            {
+                "value"     										"60 90 120 150"
+                "special_bonus_unique_bloodseeker_5"    			"+30"
+            }
+			"spell_amp"							
+			{
+				"special_bonus_facet_bloodseeker_old_blood"         "=0"
+				"value" 											"15 20 25 30"
+			}
+			"base_damage"
+			{
+				"special_bonus_facet_bloodseeker_old_blood"         "=15 =20 =25 =30"
+				"DamageTypeTooltip"         						"DAMAGE_TYPE_PURE"
+			}
+			"health_cost_pct"
+			{
+				"DamageTypeTooltip"         						"DAMAGE_TYPE_PURE"
+				"special_bonus_unique_bloodseeker"      			"-0.7"
+				"value"												"1.4"
+			}
+			"AbilityCastRange"              
+            {
+                "value"   											"800"
+                "special_bonus_facet_bloodseeker_old_blood"         "=400"
+            }
+		}
+	}
+}

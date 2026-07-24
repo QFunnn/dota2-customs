@@ -1,0 +1,53 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "medusa_split_shot_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "heroes/hero_medusa/medusa_split_shot_lua"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityTextureName"			"medusa_split_shot"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "HasScepterUpgrade"             "1"
+        "IsBreakable"                   "1"
+        
+        "AbilityCastPoint"              "0.4 0.4 0.4 0.4"
+
+        "AbilityValues"
+        {
+            "damage_modifier"       
+            {
+                "value"     "-50 -40 -30 -20"
+                "special_bonus_unique_medusa_2" "+8"
+            }
+            "damage_modifier_tooltip"       
+            {   
+                "value"         "50 60 70 80"
+                "special_bonus_unique_medusa_2" "+8"
+            }       
+            "arrow_count"
+            {
+                "value"                     "4"
+                "special_bonus_scepter"     "+1"
+            }   
+            "process_procs"
+            {
+                "value"                     "0"
+                "special_bonus_scepter"     "+1"
+            }
+            "split_shot_bonus_range"        "150"
+            "target_cache_interval"         "0.25"
+        }
+        "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
+    }
+}

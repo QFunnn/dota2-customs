@@ -1,0 +1,203 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.ExtraCreatureHudNew
+{
+	width: 100%;
+	height: 100%;
+}
+
+#ExtraCreatureBlock
+{
+	align: center center;
+	margin-top: -200px;
+	opacity: 0;
+	transform: scale3d(0.7, 0.7, 1);
+	flow-children: down;
+	transition-property: opacity, transform;
+	transition-duration: .3s;
+}
+
+#ExtraCreatureBlock.Minimized
+{
+	flow-children: right;
+	align: center top;
+	margin-top: 150px;
+}
+
+#ExtraCreaturePanel
+{
+	flow-children: down;
+}
+
+.Minimized #ExtraCreaturePanel
+{
+	flow-children: right;
+	align: center center;
+	margin-left: 10px;
+}
+
+#ExtraCreature
+{
+	align: center top;
+	width: 400px;
+	height: 400px;
+	opacity-brush: gradient(radial, 50% 50%, 0% 0%, 50% 50%, from(#ffffff), color-stop(0.9, #ffffff), to(#ffffff00));
+	background-color: black;
+}
+
+.Minimized #ExtraCreature
+{
+	width: 100px;
+	height: 100px;
+}
+
+#ExtraCreatureBlock.fade
+{
+	opacity: 1;
+	transform: scale3d(1, 1, 1);
+	transition-duration: 0.5s;
+}
+
+#ExtraCreaturePlayerRow
+{
+	align: center top;
+	flow-children: down;
+}
+
+#ExtraCreaturePlayerRowBack
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	visibility: collapse;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#00000000), color-stop(.2, #ff50501d), color-stop(.5, #ff50504d), color-stop(.8, #ff50501d), to(#00000000));
+	opacity-mask: url("s2r://panorama/images/masks/softedge_vertical_softer_png.vtex");
+}
+
+.Minimized #ExtraCreaturePlayerRowBack
+{
+	visibility: visible;
+}
+
+.ExtraCreaturePlayerRowName
+{
+	align: center top;
+	text-align: center;
+	color: white;
+	font-size: 40px;
+	text-transform: uppercase;
+	font-weight: bold;
+	text-shadow: 1px 2px 3px 1 black;
+}
+
+.Minimized .ExtraCreaturePlayerRowName
+{
+	font-size: 20px;
+	max-width: 200px;
+}
+
+#ExtraCreaturePlayerHeroIconContainer
+{
+	width: 100px;
+	height: 100px;
+	overflow: noclip;
+	border: 1px solid #ff5050;
+	border-radius: 50%;
+	box-shadow: 0px 0px 20px #ff50504d;
+	align: center top;
+}
+
+.Minimized #ExtraCreaturePlayerHeroIconContainer
+{
+	width: 75px;
+	height: 75px;
+}
+
+.Minimized #ExtraCreaturePlayerHeroIcon
+{
+	width: 75px;
+	height: 99px;
+}
+
+#ExtraCreaturePlayerHeroIcon
+{
+	width: 100px;
+	height: 132.8px;
+}
+
+.ExtraCreaturePlayerHeroName
+{
+	align: center top;
+	text-align: center;
+	color: white;
+	text-transform: uppercase;
+	font-size: 40px;
+	font-weight: bold;
+	text-shadow: 1px 2px 3px 1 black;
+}
+
+.Minimized .ExtraCreaturePlayerHeroName
+{
+	font-size: 20px;
+	max-width: 200px;
+}
+
+.ExtraCreepLabel
+{
+	color: #ff5050;
+	font-size: 30px;
+	text-transform: uppercase;
+	align: center top;
+	font-weight: bold;
+	text-shadow: 1px 2px 3px 1 black;
+}
+
+.Minimized .ExtraCreepLabel
+{
+	font-size: 25px;
+	align: center center;
+	margin-left: 10px;
+}
+
+#ExtraCreepNameLabelPanel
+{
+	width: 500px;
+	align: center bottom;
+	margin-top: -65px;
+}
+
+.Minimized #ExtraCreepNameLabelPanel
+{
+	width: 150px;
+	align: left center;
+	margin-left: 5px;
+	margin-top: 0px;
+}
+
+.ExtraCreepNameLabel
+{
+	color: white;
+	font-size: 50px;
+	text-transform: uppercase;
+	align: center bottom;
+	text-align: center;
+	font-weight: bold;
+	text-shadow: 0px 0px 10px 0 #ff5050;
+}
+
+.Minimized .ExtraCreepNameLabel
+{
+	font-size: 23px;
+	align: left center;
+	text-align: left;
+}

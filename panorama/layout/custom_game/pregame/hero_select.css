@@ -1,0 +1,493 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.BanAbilitiesRoot
+{
+	position: 0px 0px 0px;
+	width: 1370px;
+	height: 150px;
+	horizontal-align: left;
+	vertical-align: top;
+	margin-top: 10px;
+	margin-left: 115px;
+	flow-children: right;
+	padding: 12px 16px;
+	border-radius: 3px;
+	z-index: 50;
+}
+
+.BanAbilitiesLabel
+{
+	width: 200px;
+	vertical-align: center;
+	font-size: 32px;
+	color: #c8d2e0ff;
+	text-shadow: 0px 0px 6px #000;
+}
+
+#BanAbilitiesIcons
+{
+	flow-children: right-wrap;
+	width: fill-parent-flow(1);
+	height: 100%;
+	width: 100%;
+	margin-left: 10px;
+	overflow: noclip;
+}
+
+#BanAbilitiesIcons .BanAbilitySlot
+{
+	width: 56px;
+	height: 56px;
+	min-width: 56px;
+	min-height: 56px;
+	margin: 4px;
+	ignore-parent-flow: false;
+	background-color: #00000055;
+	border: 1px solid #65707daa;
+	box-shadow: inset #000000aa 0 0 6px 0;
+	border-radius: 2px;
+}
+
+#BanAbilitiesIcons .BanAbilitySlot .BanAbilityIcon
+{
+	width: 100%;
+	height: 100%;
+}
+
+.AbilityBannedOverlay,.HeroBannedOverlay
+{
+	background-color: #00000024;
+}
+
+.AbilityBannedCrossLine
+{
+	width: 84%;
+	height: 5px;
+	horizontal-align: center;
+	vertical-align: center;
+	background-color: #d34848ff;
+	box-shadow: none;
+	border-radius: 2px;
+}
+
+.AbilityBannedCircle
+{
+	width: 82%;
+	height: 82%;
+	horizontal-align: center;
+	vertical-align: center;
+	border: 3px solid #d34848cc;
+	border-radius: 50%;
+	box-shadow: 0px 0px 3px #000000aa;
+}
+
+.HeroBannedCrossLine
+{
+	width: 78%;
+	height: 6px;
+	horizontal-align: center;
+	vertical-align: center;
+	background-color: #c83f3fff;
+	box-shadow: none;
+	border-radius: 2px;
+}
+
+.HeroBannedCircle
+{
+	width: 78%;
+	height: 58%;
+	horizontal-align: center;
+	vertical-align: center;
+	border: 4px solid #c83f3fcc;
+	border-radius: 50%;
+	box-shadow: 0px 0px 3px #000000aa;
+}
+
+.BannedCrossLineA
+{
+	transform: rotateZ(45deg);
+}
+
+.BannedCrossLineB
+{
+	transform: rotateZ(-45deg);
+}
+
+.HeroInspectBannedPortrait
+{
+	flow-children: none;
+}
+
+.BanPresetsRoot
+{
+	width: 318px;
+	height: fit-children;
+	horizontal-align: left;
+	vertical-align: center;
+	flow-children: right;
+	transform: translateX(-274px);
+	transition-property: transform;
+	transition-duration: 0.12s;
+	transition-timing-function: ease-in-out;
+	z-index: 80;
+}
+
+.BanPresetsRoot.Open
+{
+	transform: translateX(0px);
+}
+
+.BanPresetsToggle
+{
+	width: 25px;
+	height: 62px;
+	vertical-align: center;
+	margin-left: -1px;
+	background-color: DarkGreyGradientBackgroundColor;
+	border: 1px solid #65707d66;
+	border-brush: WhiteGradientBorderSoft;
+	border-left: 0px;
+	border-top-right-radius: 31px;
+	border-bottom-right-radius: 31px;
+}
+
+.BanPresetsToggle:hover
+{
+	brightness: 1.25;
+}
+
+.BanPresetsToggleArrow
+{
+	horizontal-align: center;
+	vertical-align: center;
+	font-size: 24px;
+	color: #c8d2e0cc;
+	text-shadow: 0px 0px 5px #000;
+}
+
+.BanPresetsPanel
+{
+	width: 274px;
+	max-height: 360px;
+	flow-children: down;
+	padding: 10px;
+	background-color: DarkGreyGradientBackgroundColor;
+}
+
+.BanPresetsList
+{
+	width: 100%;
+	max-height: 340px;
+	flow-children: down;
+	overflow: squish scroll;
+}
+
+.BanPresetRow
+{
+	width: 100%;
+	min-height: 38px;
+	margin-bottom: 6px;
+	padding: 8px 10px;
+	background-color: #00000066;
+	flow-children: right;
+	transition-property: brightness, background-color, border;
+	transition-duration: 0.08s;
+}
+
+.BanPresetRow:hover
+{
+	brightness: 3;
+}
+
+.BanPresetRow.Selected
+{
+	background-color: #2b3b4ccc;
+	border: 1px solid #b8c6d8ee;
+}
+
+.BanPresetRow.Empty
+{
+	brightness: 0.7;
+}
+
+.BanPresetName
+{
+	width: 100%;
+	font-size: 18px;
+	color: #d7e0ecff;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	text-shadow: 0px 0px 4px #000;
+}
+
+.PhaseTimerRoot
+{
+	position: 0px 0px 0px;
+	horizontal-align: right;
+	vertical-align: top;
+	margin-top: 40px;
+	margin-right: 180px;
+	padding: 8px 12px;
+	flow-children: down;
+	border-radius: 3px;
+	z-index: 200;
+}
+
+.PhaseTimerValue
+{
+	font-size: 65px;
+	font-weight: bold;
+	color: white;
+	horizontal-align: center;
+	text-shadow: 0px 0px 6px #000c;
+}
+
+.RecentBansRoot
+{
+	position: 0px 0px 0px;
+	horizontal-align: left;
+	vertical-align: bottom;
+	margin-bottom: 20px;
+	width: 1070px;
+	height: 200px;
+	margin-left: 120px;
+	flow-children: down;
+	padding: 12px 16px;
+	border-radius: 3px;
+	z-index: 50;
+}
+
+.RecentBansContainer
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	margin-top: 8px;
+	flow-children: right;
+	margin-bottom: 9px;
+}
+
+#RecentBansAbilities
+{
+	flow-children: right-wrap;
+	width: 500px;
+	height: 100%;
+	overflow: noclip;
+	margin-top: -15px;
+	margin-left: 35px;
+}
+
+#RecentBansAbilities .BanAbilitySlot
+{
+	width: 72px;
+	height: 72px;
+	min-width: 72px;
+	min-height: 72px;
+	margin: 4px;
+	ignore-parent-flow: false;
+	background-color: #00000055;
+	border: 1px solid #65707daa;
+	box-shadow: inset #000000aa 0 0 6px 0;
+	border-radius: 2px;
+}
+
+#RecentBansAbilities .BanAbilityIcon
+{
+	width: 100%;
+	height: 100%;
+}
+
+#RecentBansHeroes
+{
+	flow-children: right;
+	width: 520px;
+	height: 100%;
+}
+
+#RecentBansHeroes .BanHeroCard
+{
+	width: 96px;
+	height: 132px;
+	margin-right: 8px;
+	background-color: #000000aa;
+	border: 1px solid #65707daa;
+	box-shadow: fill #000a 0px 0px 8px 0px;
+	border-radius: 3px;
+	flow-children: none;
+}
+
+#RecentBansHeroes .BanHeroCardImage
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 3px;
+}
+
+#RecentBansHeroes .BanHeroCardBottomFade
+{
+	vertical-align: bottom;
+	width: 100%;
+	height: 36px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#0000), to(#000c));
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+
+.MyBansRoot
+{
+	width: 445px;
+	height: 300px;
+	vertical-align: bottom;
+	horizontal-align: right;
+	margin-bottom: 20px;
+	margin-right: 150px;
+	flow-children: down;
+	padding: 12px 16px;
+	border-radius: 3px;
+}
+
+.MyBansTitle
+{
+	font-size: 18px;
+	margin-bottom: 8px;
+	color: #c8d2e0ff;
+}
+
+#MyBansContainer
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	flow-children: down;
+	overflow: noclip;
+}
+
+.MyBansAbilities
+{
+	margin-top: 20px;
+	width: 100%;
+	flow-children: right-wrap;
+}
+
+#MyBansAbilities .BanAbilitySlot
+{
+	width: 56px;
+	height: 56px;
+	min-width: 56px;
+	min-height: 56px;
+	margin: 4px;
+	background-color: #00000055;
+	border: 1px solid #65707daa;
+	box-shadow: inset #000000aa 0 0 6px 0;
+	border-radius: 2px;
+}
+
+#MyBansHeroes
+{
+	margin-top: 5px;
+	flow-children: right;
+	width: fit-children;
+	height: fit-children;
+}
+
+#MyBansHeroes .BanHeroCard
+{
+	width: 76px;
+	height: 102px;
+	margin-right: 12px;
+	background-color: #000000aa;
+	border: 1px solid #65707daa;
+	box-shadow: fill #000a 0px 0px 8px 0px;
+	border-radius: 3px;
+	flow-children: none;
+}
+
+.CustomHeroPickRoot
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+}
+
+.CustomHeroPickRoot.Hidden
+{
+	visibility: collapse;
+}
+
+.HeroSlotRoot
+{
+	flow-children: right;
+	horizontal-align: center;
+	vertical-align: center;
+	margin-top: -120px;
+}
+
+.HeroPickSlot
+{
+	width: 380px;
+	height: 600px;
+	margin: 16px;
+}
+
+.PickButton
+{
+	vertical-align: bottom;
+	width: 100%;
+	height: 50px;
+	font-size: 25px;
+}
+
+#BanHeroName
+{
+	text-align: center;
+	margin-top: 0px;
+	vertical-align: center;
+}
+
+.DOTAFacetIcon
+{
+	margin-left: 2px;
+}
+
+.PickButton.Reroll
+{
+	horizontal-align: center;
+	vertical-align: center;
+	width: 150px;
+	margin-top: 600px;
+}
+
+.PickButton.Hidden
+{
+	visibility: collapse;
+}
+
+.TeamPickRoot
+{
+	vertical-align: bottom;
+	horizontal-align: center;
+	flow-children: right;
+	width: fit-children;
+	height: fit-children;
+	margin-left: 90px;
+}
+
+.TeamContainerInfo
+{
+	flow-children: right;
+	padding-right: 40px;
+}
+
+.PlayerPickContainer
+{
+	overflow: noclip;
+	margin-bottom: -90px;
+}

@@ -1,0 +1,72 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"gyrocopter_flak_cannon_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"ScriptFile"							"heroes/hero_gyrocopter/gyrocopter_flak_cannon_lua"
+		"AbilityTextureName"					"gyrocopter_flak_cannon"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_NO"
+		"FightRecapLevel"						"1"
+		"AbilitySound"							"Hero_Gyrocopter.FlackCannon"
+		"HasScepterUpgrade"						"1"
+		"AbilityCastPoint"						"0 0 0 0"
+		"AbilityManaCost"						"50 60 70 80"
+		"AbilityDuration"						"12"
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"							"26 24 22 20"
+				"special_bonus_unique_gyrocopter_1""-5"
+			}
+			"radius"
+			{
+				"value"							"1250"
+				"affected_by_aoe_increase"		"1"
+			}
+			"max_attacks"
+			{
+				"value"							"4 5 6 7"
+				"special_bonus_unique_gyrocopter_2""+3"
+			}
+			"projectile_speed"					"800"
+			"bonus_damage"
+			{
+				"value"							"0"
+				"special_bonus_unique_gyrocopter_flak_cannon_bonus_damage""+25"
+			}
+			"fire_rate"
+			{
+				"value"							"1.3"
+				"RequiresScepter"				"1"
+			}
+			"scepter_radius"
+			{
+				"value"							"700"
+				"RequiresScepter"				"1"
+				"affected_by_aoe_increase"		"1"
+			}
+			"scepter_bonus_target"
+			{
+				"value"							"1"
+				"RequiresScepter"				"1"
+			}
+			"radius_melee"						"350"
+			"bonus_night_vision"				"200"
+		}
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_3"
+	}
+}

@@ -1,0 +1,232 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+#TeamSelect
+{
+	padding: 12px 12px 12px;
+	horizontal-align: right;
+	vertical-align: center;
+	flow-children: down;
+	width: fit-children;
+	margin-right: 18px;
+}
+
+.TeamContainer
+{
+	flow-children: right;
+	height: fit-children;
+	width: fit-children;
+	margin-bottom: 5px;
+}
+
+.TeamBadge
+{
+	width: 38px;
+	height: 76px;
+	margin: 3px 0px 3px 4px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#0A0D10AA), to(#00000000));
+	border-left: 1px solid #6B593655;
+}
+
+.TeamIconMount
+{
+	width: 30px;
+	height: 30px;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.TeamIconMount .TeamIcon,.TeamIconMount .TeamIcon Image,.TeamIconMount .TeamIcon #IconShadow
+{
+	width: 30px;
+	height: 30px;
+}
+
+.TeamBadgeDivider
+{
+	width: 1px;
+	height: 54px;
+	horizontal-align: right;
+	vertical-align: center;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#00000000), color-stop(0.5, #A7864C66), to(#00000000));
+}
+
+.TeamPlayers
+{
+	flow-children: right;
+	width: fit-children;
+	height: fit-children;
+}
+
+.Player
+{
+	margin: 3px 4px;
+	padding: 5px 7px;
+	flow-children: right;
+	width: 270px;
+	height: 72px;
+	background-image: url("s2r://panorama/images/textures/miniprofile_rock_psd.vtex");
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#0A111BCC), color-stop(0.42, #132238D8), to(#07101FCC));
+	border-top: 1px solid #42506A66;
+	border-bottom: 1px solid #000000AA;
+	box-shadow: fill #00000066 0px 0px 8px 0px;
+}
+
+.Player:hover
+{
+	brightness: 1.12;
+}
+
+.Avatar
+{
+	horizontal-align: center;
+	vertical-align: center;
+	height: 58px;
+	width: 60px;
+}
+
+.AvatarFrame
+{
+	width: 62px;
+	height: 62px;
+	vertical-align: center;
+	flow-children: none;
+	background-color: #05080CEE;
+	box-shadow: fill #000000AA 0px 0px 6px 0px;
+}
+
+.Username
+{
+	width: 166px;
+	height: 28px;
+	vertical-align: top;
+	text-shadow: 0px 1px 4px #000000;
+}
+
+DOTAUserName Label
+{
+	text-overflow: ellipsis;
+	overflow: clip;
+	white-space: nowrap;
+	font-size: 28px;
+	font-weight: light;
+	color: #C6CBD4;
+}
+
+.RatingInfo
+{
+	vertical-align: center;
+	flow-children: none;
+	width: 166px;
+	height: 52px;
+	margin-left: 10px;
+}
+
+.StatsLoading
+{
+	width: fit-children;
+	height: fit-children;
+	horizontal-align: left;
+	vertical-align: bottom;
+	flow-children: right;
+}
+
+.StatsValues
+{
+	width: fit-children;
+	height: 20px;
+	flow-children: right;
+	vertical-align: bottom;
+	visibility: collapse;
+}
+
+.StatsLoaded .StatsLoading
+{
+	visibility: collapse;
+}
+
+.StatsLoaded .StatsValues
+{
+	visibility: visible;
+}
+
+.LoadingSpinner
+{
+	width: 20px;
+	height: 20px;
+	vertical-align: center;
+	wash-color: #A9AEAF;
+	animation-name: StatsLoadingRotate;
+	animation-duration: 0.85s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	opacity: 0.9;
+}
+
+.LoadingLabel
+{
+	vertical-align: center;
+	margin-left: 8px;
+	font-size: 14px;
+	color: #9F998A;
+	text-shadow: 0px 1px 3px #000000AA;
+}
+
+.StatRow
+{
+	width: fit-children;
+	height: 18px;
+	flow-children: right;
+	margin-right: 8px;
+}
+
+.StatDivider
+{
+	visibility: collapse;
+}
+
+.RatingText
+{
+	horizontal-align: left;
+	vertical-align: center;
+	width: fit-children;
+	font-weight: semi-bold;
+	font-size: 15px;
+	color: #E8DDBE;
+	text-shadow: 0px 1px 3px #000000DD;
+}
+
+.RatingLabel
+{
+	font-size: 15px;
+	letter-spacing: 0px;
+	color: #9A927F;
+	width: fit-children;
+	margin-right: 4px;
+	vertical-align: center;
+	text-align: left;
+	text-shadow: 0px 1px 3px #000000AA;
+}
+
+@keyframes 'StatsLoadingRotate'
+{
+	0%
+	{
+		pre-transform-rotate2d: 0deg;
+	}
+	
+	100%
+	{
+		pre-transform-rotate2d: 360deg;
+	}
+	
+}

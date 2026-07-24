@@ -1,0 +1,278 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.ChatWheelHUD
+{
+	width: 100%;
+	height: 100%;
+}
+
+#CallBody
+{
+	width: 100%;
+	height: 300px;
+	align: center center;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: .15s;
+}
+
+.ShowCall #CallBody
+{
+	opacity: 1;
+}
+
+.CenterWheel
+{
+	width: 164px;
+	height: 164px;
+	align: center center;
+}
+
+#Arrow
+{
+	width: 46px;
+	height: 46px;
+	margin-left: 2px;
+	brightness: 2;
+	opacity: 0;
+	align: center center;
+	background-image: url("s2r://panorama/images/chat_wheel/arrow_psd.vtex");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.CallLineSelected #Arrow
+{
+	opacity: 1;
+}
+
+.PointerContainer
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	margin-left: 2px;
+}
+
+#WheelPointer
+{
+	width: 128px;
+	height: 128px;
+	opacity: 0;
+	align: center center;
+	background-image: url("s2r://panorama/images/chat_wheel/circle_pointer_png.vtex");
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.CallLineSelected #WheelPointer
+{
+	opacity: 1;
+}
+
+.WheelBackground
+{
+	width: 128px;
+	height: 128px;
+	margin-top: 11px;
+	margin-left: 4px;
+	align: center center;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.WheelBackground2
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	background-image: url("s2r://panorama/images/chat_wheel/circle_png.vtex");
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.WheelBackground3
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	background-image: url("s2r://panorama/images/chat_wheel/circle_bg2_png.vtex");
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+#ChatWheelCursor
+{
+	background-image: url("s2r://panorama/images/chat_wheel/cursor_png.vtex");
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	opacity: 0;
+	width: 46px;
+	height: 46px;
+}
+
+.ShowCall #ChatWheelCursor
+{
+	opacity: 1;
+}
+
+.CallWheel
+{
+	width: 100%;
+	height: 100%;
+}
+
+.CallLine
+{
+	pre-transform-scale2d: 1.0;
+	width: fit-children;
+	height: 50px;
+	transition-property: pre-transform-scale2d;
+	transition-duration: .1s;
+	flow-children: right;
+}
+
+.CallLine.Selected
+{
+	pre-transform-scale2d: 1.4;
+}
+
+#CallLine1
+{
+	align: center top;
+	margin-top: 13px;
+}
+
+#CallLine2
+{
+	align: left top;
+	margin-left: 75px;
+	margin-top: 45px;
+}
+
+#CallLine3
+{
+	align: left center;
+	margin-left: 100px;
+}
+
+#CallLine4
+{
+	align: left bottom;
+	margin-left: 75px;
+	margin-bottom: 43px;
+}
+
+#CallLine5
+{
+	align: center bottom;
+	margin-bottom: 13px;
+}
+
+#CallLine6
+{
+	align: right bottom;
+	margin-right: 105px;
+	margin-bottom: 45px;
+}
+
+#CallLine7
+{
+	align: right center;
+	margin-right: 130px;
+}
+
+#CallLine8
+{
+	align: right top;
+	margin-right: 105px;
+	margin-top: 43px;
+}
+
+.CallSoundIcon
+{
+	width: 22px;
+	height: 22px;
+	margin-right: 4px;
+	align: left center;
+	visibility: collapse;
+	background-image: url("s2r://panorama/images/hud/reborn/icon_scoreboard_mute_sound_psd.vtex");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.TypeSound .CallSoundIcon
+{
+	visibility: visible;
+}
+
+.CallLineText
+{
+	font-size: 26px;
+	text-shadow: 1px 1.5px 0px 2 #000000;
+	color: #fff;
+	align: center center;
+	text-align: center;
+	font-weight: bold;
+	padding-right: 8px;
+}
+
+.Selected .CallLineText
+{
+	animation-name: selected_line;
+	animation-duration: 1.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'selected_line'
+{
+	0%
+	{
+		text-shadow: 1px 1.5px 5px 0 #d7eeff;
+	}
+	
+	50%
+	{
+		text-shadow: 1px 1.5px 10px 1 #d7eeff;
+	}
+	
+	100%
+	{
+		text-shadow: 1px 1.5px 5px 0 #d7eeff;
+	}
+	
+}
+
+.CallRight
+{
+	height: 250px;
+	width: 100%;
+	margin-left: 50%;
+	align: left center;
+}
+
+.CallLeft
+{
+	height: 250px;
+	width: 100%;
+	margin-right: 50%;
+	align: right center;
+}

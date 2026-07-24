@@ -1,0 +1,49 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "creature_tear_armor"
+	{
+		"BaseClass"								"ability_lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_YES"
+		"ScriptFile"							"creature_ability/creature_tear_armor"
+		"MaxLevel"								"10"
+		"AbilityTextureName"					"ursa_fury_swipes"
+		"AbilityValues"
+		{
+			"armor_reduce"						"1 2 4 8 16 32 64 128 264 512"
+		}
+	}
+    "neutral_upgrade_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"MaxLevel"								"1"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ScriptFile"							"creature_ability/neutral_upgrade_lua"
+		"AbilityTextureName"					"holdout_gods_strength"
+		"AbilityUnitTargetFlags"				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityCastRange"						"0"
+		"AbilityCastPoint"						"0"
+		"AbilityCooldown"						"0"
+		"AbilityManaCost"						"0"
+		"AbilityValues"
+		{
+			"base_attack_time_reduction"		"0.01"
+			"min_base_attack_time_reduction"	"0.2"
+			"attack_speed"						"1"
+			"bonus_armor"						"0.14"
+			"max_bonus_armor"					"8.5"
+			"bonus_magical_resistance"			"0.55"
+			"max_bonus_magical_resistance"		"33"
+		}
+	}
+}

@@ -1,0 +1,136 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf63:version{a6e6a69e-52d3-4527-8b9c-ff3bb91aca3e} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 64
+	m_flConstantRadius = 24.0
+	m_flConstantLifespan = 0.75
+	m_ConstantColor = [ 127, 184, 255, 160 ]
+	m_Renderers = [  ]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_DistanceToTransform"
+			m_flInputMax = 400.0
+			m_flOutputMin = 64.0
+			m_flOutputMax = 32.0
+			m_TransformStart = 
+			{
+				m_nControlPoint = 5
+			}
+		},
+		{
+			_class = "C_OP_MaintainSequentialPath"
+			m_flNumToAssign = 64.0
+			m_PathParams = 
+			{
+				m_flBulge = 0.4
+				m_nBulgeControl = 2
+				m_nEndControlPointNumber = 6
+				m_flMidPoint = 0.99
+			}
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 0.4
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.4
+		},
+		{
+			_class = "C_OP_SpinUpdate"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateSequentialPath"
+			m_flNumToAssign = 64.0
+			m_PathParams = 
+			{
+				m_flBulge = 0.4
+				m_nBulgeControl = 2
+				m_nEndControlPointNumber = 6
+				m_flMidPoint = 0.99
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.0
+				m_flRandomMax = 360.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 4
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 100.0
+				m_flRandomMax = 200.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 5
+		},
+		{
+			_class = "C_INIT_RandomSequence"
+			m_nSequenceMax = 1
+		},
+		{
+			_class = "C_INIT_CreateInEpitrochoid"
+			m_nComponent1 = 1
+			m_nComponent2 = 2
+			m_flRadius1 = 44.0
+			m_flRadius2 = -22.0
+			m_flParticleDensity = 0.4
+			m_bUseCount = true
+			m_bUseLocalCoords = true
+			m_bOffsetExistingPos = true
+		},
+		{
+			_class = "C_INIT_RandomYawFlip"
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_nInputMax = 63
+			m_flOutputMin = 64.0
+			m_flOutputMax = 32.0
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 64.0
+			}
+		},
+	]
+	m_nBehaviorVersion = 7
+	m_nFirstMultipleOverride_BackwardCompat = 4
+}

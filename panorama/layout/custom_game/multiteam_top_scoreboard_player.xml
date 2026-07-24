@@ -1,0 +1,37 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/custom_game/multiteam_top_scoreboard.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/shared_scoreboard_styles.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/multiteam_top_scoreboard_player.vjs_c" />
+	</scripts>
+	<Panel hittest="false" class="ScoreboardPlayerWrapper">
+		<Panel hittest="false" id="PlayerNamePanel">
+			<Label hittest="false" id="PlayerName" />
+		</Panel>
+		<Panel hittest="false" id="RespawnIndicator">
+			<Label hittest="false" id="RespawnTimer" text="123" />
+		</Panel>
+		<Panel hittest="false" class="ScoreboardPlayer">
+			<Button class="PlayerPortraitWrapper" onmouseactivate="OnHeroIconClicked(false);" ondblclick="OnHeroIconClicked(true);">
+				<Panel hittest="false" id="PlayerColorBar" />
+				<Image hittest="false" id="HeroIcon" />
+			</Button>
+			<Image hittest="false" id="DisconnectionIndicator" src="s2r://panorama/images/custom_game/icon_disconnect_png.vtex" />
+		</Panel>
+		<Image src="s2r://panorama/images/custom_game/tick_png_png.vtex" id="PlayerIsReady" />
+	</Panel>
+</root>

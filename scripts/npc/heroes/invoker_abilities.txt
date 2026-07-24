@@ -1,0 +1,216 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"invoker_invoke_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_invoker/invoker_invoke_lua"
+		"AbilityTextureName"					"invoker_invoke"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"RequiredLevel"							"1"
+		"MaxLevel"								"7"
+		"AbilityCastRange"						"0"
+		"AbilityCastPoint"						"0"
+		"AbilityCooldown"						"0"
+		"AbilityManaCost"						"0"
+		"AbilityValues"
+		{
+			"all_stats"							"1 2 3 4 5 6 7"
+			"spell_lifesteal"					"6 9 12 15 18 21 24"
+			"bonus_movespeed"					"1.8 3.6 5.4 8.4 9 10.8 12.6"
+			"cooldown_reduction"				"3 6 9 12 15 18 21"
+			"spell_amp"							"3 6 9 12 15 18 21"
+		}
+	}
+
+	"invoker_quas"
+	{
+		"HasScepterUpgrade"				"0"
+		"HasShardUpgrade"				"0"
+	}
+	"invoker_wex"
+	{
+		"HasScepterUpgrade"				"0"
+		"HasShardUpgrade"				"0"
+	}
+	"invoker_exort"
+	{
+		"HasScepterUpgrade"				"0"
+		"HasShardUpgrade"				"0"
+	}
+	"invoker_ice_wall"
+	{
+		"HasScepterUpgrade"				"0"
+		"HasShardUpgrade"				"0"
+	}
+	"invoker_tornado"
+	{
+		"HasScepterUpgrade"				"0"
+		"HasShardUpgrade"				"0"
+	}
+	"invoker_sun_strike"
+	{
+		"HasScepterUpgrade"				"1"
+		"HasShardUpgrade"				"0"
+	}
+	"invoker_ghost_walk"
+	{
+		"HasScepterUpgrade"				"0"
+		"HasShardUpgrade"				"0"
+	}
+	"invoker_emp"
+	{
+		"HasScepterUpgrade"				"0"
+		"HasShardUpgrade"				"1"
+	}
+
+	"invoker_invoke"
+	{
+		"Innate" 								"0"
+	}
+
+	//ABILITY DRAFT VERSION
+	"invoker_chaos_meteor_ad"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"							"12"
+			}
+		}
+	}
+	"invoker_deafening_blast_ad"
+	{
+		"AbilityCooldown"						"14"
+	}
+	"invoker_ghost_walk_ad"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"							"15"
+			}
+            "area_of_effect"        
+            {
+                "value"         				"450"
+                "affected_by_aoe_increase"  	"1"
+				"special_bonus_facet_invoker_quas_focus"
+                {
+                    "value"                     "0"
+                    "special_bonus_shard"       "+150"
+                }
+            }
+		}
+	}
+	"invoker_ice_wall_ad"
+	{
+		"AbilityCooldown"						"15"
+	}
+	"invoker_tornado_ad"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"							 "15"
+				"special_bonus_unique_invoker_3" "-6"
+			}
+			"wex_damage"
+			{
+				"value"							"90 165 240 315"
+			}
+			"base_damage"
+			{
+				"value"							"70"
+			}
+		}
+	}
+	"invoker_emp_ad"
+	{
+		"AbilityCooldown"               		"9"
+		"AbilityValues"
+		{
+			"drag_speed"
+			{
+				"value"							"0"
+				"special_bonus_shard"			"+175"
+			}
+			"damage_per_mana_pct"                   
+            {
+                "value"         		"60"
+                "special_bonus_shard"   "+50%"
+				"CalculateSpellDamageTooltip"   "1"
+            }
+		}
+	}
+	"invoker_cold_snap_ad"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"								"6"
+				"special_bonus_unique_invoker_9"    "-3"
+			}
+			"freeze_damage"
+			{
+				"value"								"16 30 43 56"
+			}
+		}
+	}
+	"invoker_forge_spirit_ad"
+	{
+		"AbilityValues"
+        {
+            "spirit_damage"     				"30 50 70 90"
+            "spirit_mana"       				"150 250 350 450"   
+            "spirit_armor"      				"1 3 5 7"
+            "spirit_attack_range"   			"360 470 580 690"   
+            "spirit_hp"         				"400 600 800 1000"  
+            "spirit_duration"   				"30 42 54 66"
+			"armor_per_attack"					"0.9 1.1 1.3 1.5"
+
+            "extra_spirit_count_quas"   
+            {
+                "value"                 		"1 2 2 3"
+            }
+            "extra_spirit_count_exort"
+            {
+                "value"                 		"1 2 2 3"
+            }
+            "spirit_count_ad"
+            {
+                "value"                 		"1 2 2 3"
+            }
+        }
+	}
+	"forged_spirit_melting_strike"
+    {
+        "MaxLevel"                      "1"
+        "AbilityValues"
+        {
+            "armor_removed"         "1.5"
+        }
+    }
+	"invoker_sun_strike_ad"
+	{
+		"AbilityValues"
+		{
+			"damage"
+			{
+				"value"							"162 266 370 475"
+			}
+		}
+	}
+}

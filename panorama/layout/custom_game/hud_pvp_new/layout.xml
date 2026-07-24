@@ -1,0 +1,88 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/hudstyles.css" />
+		<include src="s2r://panorama/styles/hud/hud_reborn.css" />
+		<include src="s2r://panorama/styles/custom_ui.css" />
+		<include src="s2r://panorama/layout/custom_game/hud_pvp_new/styles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/eomdesign/container/eom_panel/eom_panel.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/eomdesign/inputs/eom_progressbar/eom_progressbar.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/common.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/sequence_actions.ts" />
+		<include src="s2r://panorama/scripts/custom_game/pvp_rework.vjs_c" />
+	</scripts>
+	<Panel class="HudRoot" hittest="false">
+		<Panel id="HUD_PVP" hittest="false">
+			<Panel id="Top">
+				<Button id="ToggleButton">
+					<Label id="ButtonText" text="#PvP_main_button" />
+					<Image id="ToggleImage" />
+				</Button>
+			</Panel>
+			<Panel id="Bottom">
+				<Panel id="GlassOverlay" hittest="false" />
+				<Panel id="Tags">
+					<Button id="TagBet" class="Tag Selected">
+						<Label id="TagLabelBet" class="TagLabel" text="#PvP_main_button" />
+						<Panel class="TabUnderline" />
+						<Panel class="TabStar" />
+					</Button>
+					<Button id="TagHistory" class="Tag">
+						<Label id="TagLabelHistory" class="TagLabel" text="#PvP_Page_1" />
+						<Panel class="TabUnderline" />
+						<Panel class="TabStar" />
+					</Button>
+				</Panel>
+				<Panel id="TagDivider">
+					<Panel class="PvpTagDividerLine" />
+					<Panel class="PvpTagDividerGap" />
+					<Panel id="PvpBetTimer">
+						<Image id="PvpBetTimerIcon" />
+						<Label id="PvpBetTimerText" class="FooterText" />
+						<Label id="PvpBetTimerValue" class="FooterTimeValue" />
+					</Panel>
+					<Panel class="PvpTagDividerGap" />
+					<Panel class="PvpTagDividerLine" />
+				</Panel>
+				<Panel id="Content">
+					<Panel id="MainPage" />
+					<Panel id="History" visibility="collapse">
+						<Panel id="BetSummary">
+							<Label id="SummaryLabel" />
+						</Panel>
+						<Panel id="BetList" />
+					</Panel>
+				</Panel>
+				<Panel id="Footer" hittest="false">
+					<Panel id="FooterCenter" class="FooterBlock">
+						<Panel id="FooterLeft" class="FooterBlock">
+							<Image id="FooterInfoIcon" />
+							<Label id="FooterMinBet" class="FooterText" />
+							<Label id="FooterSep1" class="FooterSep" text="|" />
+							<Label id="FooterMaxBet" class="FooterText" />
+						</Panel>
+						<Panel id="FooterRight" class="FooterBlock">
+							<Label id="FooterBetTimeText" class="FooterText" />
+							<Label id="FooterBetTimeValue" class="FooterTimeValue" />
+							<Image id="FooterClockIcon" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

@@ -1,0 +1,61 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"bounty_hunter_track_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_bounty_hunter/bounty_hunter_track_lua"
+		"AbilityTextureName"			"bounty_hunter_track"
+		"AbilityType"                   "ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityCooldown"				"10"
+		"AbilitySound"					"Hero_BountyHunter.Target"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityCastRange"              "1000"
+        "AbilityCastPoint"              "0.3 0.3 0.3"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_4"
+		"SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+
+        "AbilityCooldown"               "10 8 6"
+        "AbilityManaCost"               "60"
+		"AbilityValues"
+		{
+			"target_damage_amp" 						"8 12 16"
+			"radius"
+			{
+				"value"									"300"
+				"affected_by_aoe_increase"				"1"
+			}
+            "bonus_gold_radius"     
+            {
+                "value"     							"1200"
+                "affected_by_aoe_increase"  			"1"
+            }
+            "bonus_gold_self"       
+            {
+                "value"     							"40 55 70"
+                "special_bonus_unique_bounty_hunter_3"  "+50"
+            }
+            "bonus_gold"            
+            {
+                "value"     							"20 30 40"
+                "special_bonus_unique_bounty_hunter_3"  "+50"
+            }
+            "duration"              					"25"
+            "gold_steal"            					"0.3 0.4 0.5"
+            "bonus_move_speed_pct"  					"12 16 20"
+		}
+	}
+}

@@ -1,0 +1,218 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf63:version{a6e6a69e-52d3-4527-8b9c-ff3bb91aca3e} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 16
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_flStartFadeSize = 0.2
+			m_flEndFadeSize = 0.25
+			m_flMaxSize = 0.25
+			m_flAnimationRate = 0.75
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/smoke/maya_wispy/wispy_v2.vtex"
+				},
+			]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flStartScale = 0.0
+			m_flEndTime = 0.25
+			m_flEndScale = 4.0
+			m_flBias = 0.95
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.65
+		},
+		{
+			_class = "C_OP_SpinUpdate"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_fSpeedMax = 3.0
+			m_fSpeedMin = 1.0
+			m_vecDistanceBias = [ 1.0, 1.0, 0.0 ]
+			m_fRadiusMin = 24.0
+			m_fRadiusMax = 64.0
+			m_LocalCoordinateSystemSpeedMax = [ 0.0, 0.0, 150.0 ]
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.5
+				m_flRandomMax = 1.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 30, 144, 255, 255 ]
+			m_ColorMax = [ 236, 236, 236, 255 ]
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.0
+				m_flRandomMax = 360.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 4
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 18.0
+				m_flRandomMax = 48.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 30.0
+				m_flRandomMax = 40.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 5
+		},
+		{
+			_class = "C_INIT_RandomYawFlip"
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 0.0, 0.0, 15.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 60.0 ]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 10.0
+			}
+		},
+	]
+	m_ForceGenerators = 
+	[
+		{
+			_class = "C_OP_TwistAroundAxis"
+			m_fForceAmount = 25.0
+		},
+		{
+			_class = "C_OP_AttractToControlPoint"
+			m_fFalloffPower = -0.1
+			m_fForceAmount = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 25.0
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_nevermore/nevermore_shadowraze_ground_cracks.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/act_2/frostbitten_icicle_groundcracks.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/act_2/frostbitten_icicle_g.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/act_2/frostbitten_icicle_column.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/act_2/frostbitten_icicle_column_b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/act_2/frostbitten_icicle_smoke.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/act_2/frostbitten_icicle_glow.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_nevermore/nevermore_shadowraze_rope.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_nevermore/nevermore_shadowraze_ground.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/act_2/frostbitten_icicle_end_smoke.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/act_2/frostbitten_icicle_embers.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_nevermore/nevermore_shadowraze_end_swirl.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_nevermore/nevermore_shadowraze_flek.vpcf"
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_nBehaviorVersion = 4
+	m_nFirstMultipleOverride_BackwardCompat = 6
+}

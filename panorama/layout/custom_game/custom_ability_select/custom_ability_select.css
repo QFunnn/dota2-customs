@@ -1,0 +1,494 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+@keyframes 'DockReveal'
+{
+	0%
+	{
+		opacity: 0.0;
+		transform: translate3d(0px, 20px, 0px);
+	}
+	
+	100%
+	{
+		opacity: 1.0;
+		transform: translate3d(0px, 0px, 0px);
+	}
+	
+}
+
+@keyframes 'ReplaceCoverPulse'
+{
+	0%
+	{
+		box-shadow: inset 0px 0px 4px 0px #d8b66a55;
+	}
+	
+	100%
+	{
+		box-shadow: inset 0px 0px 5px 1px #d8b66aaa;
+	}
+	
+}
+
+#DraggableDelimiter
+{
+	height: 60px;
+	width: 4px;
+	background-color: #00ff00;
+	box-shadow: 0px 0px 8px #00ff0080;
+}
+
+.Dragging .Cover
+{
+	visibility: collapse;
+}
+
+#drag_desc_container
+{
+	z-index: -100;
+}
+
+.drag_desc_text
+{
+	font-size: 22px;
+	align: center center;
+	color: white;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 6px 6 #000000;
+	animation-name: color_shift;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+}
+
+.AspectRatio4x3 .drag_desc_text
+{
+	margin-bottom: 10px;
+}
+
+@keyframes 'color_shift'
+{
+	0%
+	{
+		color: white;
+	}
+	
+	50%
+	{
+		color: #00ff00;
+	}
+	
+	100%
+	{
+		color: white;
+	}
+	
+}
+
+.Cover.ReplaceMode
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#05060724), to(#00000034));
+	border: 1px solid #d8b66a66;
+	border-radius: 2px;
+	animation-name: ReplaceCoverPulse;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-timing-function: ease-in-out;
+	transition-property: brightness, background-color, border, box-shadow;
+	transition-duration: 0.15s;
+}
+
+.Cover.ReplaceMode:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2b241050), to(#120f0738));
+	border: 1px solid #f0cf7fcc;
+	brightness: 1.35;
+	box-shadow: inset 0px 0px 9px 1px #f0cf7fcc;
+}
+
+.Cover.ReorderMode
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#0f14185a), to(#08101446));
+}
+
+.Cover.ReorderMode:hover
+{
+	opacity: 0.01;
+}
+
+#AbilityReplacePrompt
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	flow-children: right;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#0e1014ff), to(#06080bff));
+	border: 1px solid #2a2c34;
+	border-radius: 1px;
+	box-shadow: 0px 4px 14px #000000a0;
+	padding: 6px 6px 6px 16px;
+	opacity: 0.7;
+	transition-property: brightness, border, box-shadow, opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+#AbilityReplacePrompt:hover
+{
+	opacity: 1;
+}
+
+#AbilityReplacePromptText
+{
+	vertical-align: center;
+	color: #b8bcc6;
+	font-size: 12px;
+	font-weight: semi-bold;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+	margin-right: 14px;
+}
+
+#AbilityReplaceCancelButton
+{
+	vertical-align: center;
+	padding: 6px 16px 6px 16px;
+	color: #b8bcc6;
+	font-size: 12px;
+	font-weight: semi-bold;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#0e1014ff), to(#06080bff));
+	border: 1px solid #2a2c34;
+	border-radius: 1px;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+	transition-property: brightness, border, color, box-shadow;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+#AbilityReplaceCancelButton:hover
+{
+	brightness: 1.25;
+	color: #ffffff;
+	border: 1px solid #6f7480;
+	box-shadow: 0px 0px 8px #6f748080;
+}
+
+#AbilitySelectDock
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	width: 820px;
+	height: fit-children;
+	flow-children: down;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#0a0b0ef5), to(#04050780));
+	border: 1px solid #1a1c22;
+	border-radius: 2px;
+	box-shadow: 0px 8px 30px #000000c0;
+	padding: 8px 8px 8px 8px;
+	animation-name: DockReveal;
+	animation-duration: 0.4s;
+	animation-timing-function: ease-out;
+}
+
+#AbilitySelectDockHeader
+{
+	width: 760px;
+	height: 40px;
+	flow-children: right;
+	horizontal-align: center;
+	vertical-align: center;
+	margin-bottom: 4px;
+}
+
+#AbilitySelectDockTitleMid
+{
+	width: fill-parent-flow(1.0);
+	height: 100%;
+	flow-children: right;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.AbilitySelectHeaderButton
+{
+	width: 32px;
+	height: 32px;
+	vertical-align: center;
+	opacity: 1;
+	transition-property: opacity, brightness, background-color, border, box-shadow;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+.AbilitySelectTitleLine
+{
+	width: fill-parent-flow(1.0);
+	height: 1px;
+	vertical-align: center;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#2a2c3400), color-stop(0.5, #6f7480cc), to(#2a2c3400));
+}
+
+.AbilitySelectTitleGap
+{
+	width: 10px;
+	height: 1px;
+	vertical-align: center;
+}
+
+#AbilitySelectDockTitle
+{
+	vertical-align: center;
+	color: #b8bcc6;
+	font-size: 15px;
+	font-weight: semi-bold;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+}
+
+#AbilitySelectDockBody
+{
+	width: 100%;
+	height: fit-children;
+	flow-children: down;
+	horizontal-align: center;
+	vertical-align: top;
+}
+
+#AbilitySelectDockList
+{
+	width: 100%;
+	height: fit-children;
+	flow-children: down;
+	horizontal-align: center;
+	vertical-align: top;
+}
+
+.AbilitySelectRow
+{
+	width: 100%;
+	height: fit-children;
+	flow-children: right;
+	horizontal-align: center;
+	padding: 0px;
+	margin-bottom: 4px;
+}
+
+#AbilitySelectRowBottom
+{
+	margin-bottom: 0px;
+}
+
+.AbilitySelectCard
+{
+	width: fill-parent-flow(1.0);
+	height: 104px;
+	flow-children: down;
+	margin-right: 4px;
+	padding: 4px 4px 6px 4px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#0e1014ff), to(#06080bff));
+	border: 1px solid #2a2c345e;
+	opacity: 0.92;
+	transition-property: brightness, border, box-shadow, opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.AbilitySelectCard:hover
+{
+	opacity: 1;
+	brightness: 1.25;
+	border: 1px solid #6f7480;
+	box-shadow: 0px 0px 8px #6f748080;
+}
+
+.AbilitySelectRow .AbilitySelectCard:last-child
+{
+	margin-right: 0px;
+}
+
+.AbilitySelectCardIconWrap
+{
+	width: 72px;
+	height: 72px;
+	horizontal-align: center;
+	margin-bottom: 4px;
+}
+
+.AbilitySelectCardIcon
+{
+	width: 72px;
+	height: 72px;
+	border-radius: 2px;
+	border: 1px solid #00000080;
+}
+
+.AbilitySelectCardLabel
+{
+	width: 100%;
+	height: 18px;
+	horizontal-align: center;
+	color: #dde6f0;
+	font-size: 13px;
+	font-weight: semi-bold;
+	letter-spacing: 0px;
+	text-transform: uppercase;
+	text-overflow: shrink;
+	text-align: center;
+	text-shadow: 0px 1px 2px 1 #000000cc;
+	transition-property: color;
+	transition-duration: 0.2s;
+}
+
+.AbilitySelectCard:hover .AbilitySelectCardLabel
+{
+	color: #ffffff;
+}
+
+#AbilitySelectRandomButton
+{
+	margin-left: 8px;
+}
+
+#AbilitySelectRandomIcon
+{
+	width: 28px;
+	height: 28px;
+	horizontal-align: center;
+	vertical-align: center;
+	wash-color: #b8bcc6;
+	img-shadow: 0px 0px 0px #00000000;
+	transition-property: wash-color, brightness;
+	transition-duration: 0.15s;
+}
+
+#AbilitySelectRandomButton:hover #AbilitySelectRandomIcon
+{
+	wash-color: #ffffff;
+	brightness: 1.1;
+}
+
+#AbilitySelectDockHide
+{
+	margin-right: 8px;
+}
+
+.AbilitySelectIcon
+{
+	width: 28px;
+	height: 28px;
+	horizontal-align: center;
+	vertical-align: center;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 22px 22px;
+	wash-color: #b8bcc6;
+	img-shadow: 0px 0px 6px 2 #00000099;
+	transition-property: wash-color, brightness;
+	transition-duration: 0.2s;
+}
+
+.AbilitySelectHeaderButton:hover .AbilitySelectIcon
+{
+	wash-color: #ffffff;
+	brightness: 1.2;
+}
+
+#AbilitySelectDockHideIcon
+{
+	background-image: url("s2r://panorama/images/control_icons/eye_png.vtex");
+}
+
+#AbilitySelectDockHideSlash
+{
+	width: 30px;
+	height: 2px;
+	horizontal-align: center;
+	vertical-align: center;
+	background-color: #b8bcc6;
+	opacity: 0.9;
+	transform: rotateZ(-35deg);
+	box-shadow: 0px 0px 6px #00000099;
+	ignore-parent-flow: true;
+	transition-property: background-color, opacity;
+	transition-duration: 0.2s;
+}
+
+.AbilitySelectHeaderButton:hover #AbilitySelectDockHideSlash
+{
+	background-color: #ffffff;
+	opacity: 1;
+}
+
+#AbilitySelectShowButton
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	width: fit-children;
+	height: fit-children;
+	flow-children: right;
+	padding: 6px 16px 6px 12px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#0e1014ff), to(#06080bff));
+	border: 1px solid #2a2c34;
+	border-radius: 1px;
+	box-shadow: 0px 4px 14px #000000a0;
+	opacity: 0.92;
+	transition-property: brightness, border, box-shadow, opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+#AbilitySelectShowButton:hover
+{
+	opacity: 1;
+	brightness: 1.25;
+}
+
+#AbilitySelectShowIcon
+{
+	vertical-align: center;
+	width: 22px;
+	height: 22px;
+	wash-color: #b8bcc6;
+	img-shadow: 0px 0px 6px 2 #00000099;
+	margin-right: 10px;
+	margin-bottom: 1px;
+	transition-property: wash-color, brightness;
+	transition-duration: 0.2s;
+}
+
+#AbilitySelectShowButton:hover #AbilitySelectShowIcon
+{
+	wash-color: #ffffff;
+	brightness: 1.2;
+}
+
+#AbilitySelectShowLabel
+{
+	vertical-align: center;
+	color: #b8bcc6;
+	font-size: 12px;
+	font-weight: semi-bold;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+	transition-property: color;
+	transition-duration: 0.2s;
+}
+
+#AbilitySelectShowButton:hover #AbilitySelectShowLabel
+{
+	color: #ffffff;
+}

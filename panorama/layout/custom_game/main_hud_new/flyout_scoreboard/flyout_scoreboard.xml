@@ -1,0 +1,85 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/hudstyles.css" />
+		<include src="s2r://panorama/styles/hud/hud_reborn.css" />
+		<include src="s2r://panorama/styles/custom_ui.css" />
+		<include src="s2r://panorama/layout/custom_game/main_hud_new/flyout_scoreboard/flyout_scoreboard.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/sequence_actions.ts" />
+		<include src="s2r://panorama/scripts/custom_game/main_hud_new/flyout_scoreboard/flyout_scoreboard.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="TeamInfoSnippet">
+			<Panel class="TeamContainer" />
+		</snippet>
+		<snippet name="PlayerInfoSnippet">
+			<Panel id="PlayerInfoMainContainer" class="PlayerInfoMainContainer" flow-children="right">
+				<Panel id="PlayerInfoContainer" class="PlayerInfoContainer" flow-children="right">
+					<DOTAHeroImage id="PlayerInfoHeroIconImg" class="PlayerInfoHeroIconImg" heroimagestyle="landscape" />
+					<Panel id="PlayerInfoHeroTextInfoContainer" class="PlayerInfoHeroTextInfoContainer" flow-children="down">
+						<Panel id="PlayerInfoPlayerNameRow" class="PlayerInfoPlayerNameRow" flow-children="right">
+							<Label id="PlayerInfoPlayerName" class="PlayerInfoPlayerName" />
+							<Button id="PlayerInfoMuteButton" class="PlayerInfoMuteButton">
+								<Image id="PlayerInfoMuteButtonIcon" class="PlayerInfoMuteButtonIcon" src="s2r://panorama/images/custom_game/extract/button_audio_on_png_png.vtex" />
+							</Button>
+						</Panel>
+						<Panel id="PlayerInfoHeroContainer" class="PlayerInfoHeroContainer" flow-children="right">
+							<Panel id="PlayerInfoHeroLvlContainer" class="PlayerInfoHeroLvlContainer">
+								<Label id="PlayerInfoHeroLvlTitle" class="PlayerInfoHeroLvlTitle" text="#hero_level" />
+								<Label id="PlayerInfoHeroLvlNum" class="PlayerInfoHeroLvlNum" />
+							</Panel>
+							<Label id="PlayerInfoHeroName" class="PlayerInfoHeroName" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel id="PlayerInfoGoldContainer" class="PlayerInfoGoldContainer">
+					<Image id="PlayerInfoGoldIcon" class="PlayerInfoGoldIcon" src="s2r://panorama/images/hud/reborn/gold_small_psd.vtex" />
+					<Label id="PlayerInfoGoldValue" class="PlayerInfoGoldValue" text="0" />
+				</Panel>
+				<Panel id="PlayerInfoPvpRecordContainer" class="PlayerInfoPvpRecordContainer" flow-children="right">
+					<Label id="PvpRecordWinCount" class="PvpRecordWinCount" />
+					<Label id="PvpRecordLoseCount" class="PvpRecordLoseCount" />
+				</Panel>
+				<Panel id="PlayerInfoAbilitiesContainer" class="PlayerInfoAbilitiesContainer" />
+				<Panel id="PlayerInfoItemsBonusContainer" class="PlayerInfoItemsBonusContainer" flow-children="down">
+					<Panel id="PlayerInfoItemsScepterContainer" class="PlayerInfoItemsScepterContainer" />
+					<Panel id="PlayerInfoItemsShardContainer" class="PlayerInfoItemsShardContainer" />
+				</Panel>
+				<Panel id="PlayerInfoItemsContainer" class="PlayerInfoItemsContainer" flow-children="right" />
+				<Panel id="PlayerInfoItemNeutralSlotContainer" class="PlayerInfoItemNeutralSlotContainer" />
+				<Panel id="PlayerInfoBookContainer" class="PlayerInfoBookContainer">
+					<Panel id="PlayerInfoRelearnBookContainer" class="PlayerInfoRelearnBookContainer" />
+					<Panel id="PlayerInfoTornPageContainer" class="PlayerInfoTornPageContainer" />
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="HudScoreboardRoot" hittest="false">
+		<Panel id="HudScoreboardMainContainer" class="HudScoreboardMainContainer" hittest="false" visible="false">
+			<Panel id="HudScoreboardTitleContainer" class="HudScoreboardTitleContainer">
+				<Label id="HudScoreboardTitleHero" class="HudScoreboardTitleHero" text="#Hud_Scoreboard_title_player" />
+				<Label id="HudScoreboardTitleGold" class="HudScoreboardTitleGold" text="#Hud_Scoreboard_title_gold" />
+				<Label id="HudScoreboardTitleWin" class="HudScoreboardTitleWin" text="#Hud_Scoreboard_title_win" />
+				<Label id="HudScoreboardTitleLose" class="HudScoreboardTitleLose" text="#Hud_Scoreboard_title_lose" />
+				<Label id="HudScoreboardTitleAbility" class="HudScoreboardTitleAbility" text="#Hud_Scoreboard_title_abilities" />
+				<Label id="HudScoreboardTitleItem" class="HudScoreboardTitleItem" text="#Hud_Scoreboard_title_items" />
+				<Label id="HudScoreboardTitleBook" class="HudScoreboardTitleBook" text="Книги" />
+			</Panel>
+			<Panel id="HudScoreboardTeamsContainer" class="HudScoreboardTeamsContainer" />
+		</Panel>
+	</Panel>
+</root>

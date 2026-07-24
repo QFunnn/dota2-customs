@@ -1,0 +1,1038 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.EOM_DebugTool
+{
+	width: 100%;
+	height: 100%;
+}
+
+.ControlPanel
+{
+	flow-children: right;
+	transition-property: background-color, transform, position;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.ControlPanel.DirectionLeft
+{
+	transform: translateX(0%);
+	padding-top: 150px;
+	padding-bottom: 10px;
+}
+
+.ControlPanel.Minimized.DirectionLeft
+{
+	transform: translateX(-320px);
+}
+
+.ControlPanel.DirectionRight
+{
+	horizontal-align: right;
+	transform: translateX(0%);
+	padding-top: 150px;
+	padding-bottom: 10px;
+}
+
+.ControlPanel.DirectionRight .ControlPanelContainer
+{
+	transform: translateX(40px);
+}
+
+.ControlPanel.DirectionRight #ExpandButtonContainer
+{
+	transform: translateX(320px) rotateZ(180deg);
+}
+
+.ControlPanel.DirectionRight #ExpandButtonContainer #ExpandButton
+{
+	background-color: gradient(linear, 0% 0%, 70% 0%, from(#111111), to(#3b3b3b));
+	border-top-right-radius: 12px;
+	border-bottom-right-radius: 12px;
+}
+
+.ControlPanel.DirectionRight #ExpandButtonContainer #ExpandButton:hover
+{
+	background-color: gradient(linear, 0% 0%, 70% 0%, from(#181818), to(#474747));
+}
+
+.ControlPanel.Minimized.DirectionRight
+{
+	transform: translateX(320px);
+}
+
+.ControlPanel.DirectionTop
+{
+	align: center top;
+	transform: translateY(0%);
+	flow-children: down;
+}
+
+.ControlPanel.DirectionTop .ControlPanelContainer
+{
+	min-height: 240px;
+	width: fit-children;
+	flow-children: right;
+	padding-bottom: 0px;
+	background-color: gradient(linear, 0% 0%, 0% 70%, from(#111111), to(#222222));
+	box-shadow: #000000AA 2px 2px 8px;
+}
+
+.ControlPanel.DirectionTop .ControlPanelContainer .ControlPanelTitle
+{
+	width: 20px;
+	height: 100%;
+	flow-children: down;
+	box-shadow: fill #00000011 1px 1px 8px 1px;
+	margin: 12px 0px 12px 12px;
+}
+
+.ControlPanel.DirectionTop .ControlPanelContainer .ControlPanelTitle .CategoryHeader
+{
+	margin: 6px 0px;
+	align: center center;
+}
+
+.ControlPanel.DirectionTop .ControlPanelContainer .ControlPanelTitle .CategoryHeader .CategoryHeaderLabel
+{
+	font-size: 16px;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.ControlPanel.DirectionTop .ControlPanelContainer .ControlPanelTitle .CategoryHeaderFilledFront
+{
+	width: fit-children;
+	height: fill-parent-flow(1);
+}
+
+.ControlPanel.DirectionTop .ControlPanelContainer .ControlPanelTitle .CategoryHeaderFilledNext
+{
+	width: fit-children;
+	height: fill-parent-flow(1);
+}
+
+.ControlPanel.DirectionTop .ControlPanelContainer .ControlPanelTitle .CategoryHeaderIcon
+{
+	vertical-align: bottom;
+	margin: 2px 0px;
+}
+
+.ControlPanel.DirectionTop #ExpandButtonContainer
+{
+	width: 80px;
+	height: 40px;
+	horizontal-align: middle;
+}
+
+.ControlPanel.DirectionTop #ExpandButtonContainer #ExpandButton
+{
+	width: 80px;
+	height: 25px;
+	align: center top;
+	transform: translateX(0px);
+	background-color: gradient(linear, 0% 0%, 0% 70%, from(#111111), to(#3b3b3b));
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius: 12px;
+	border-bottom-right-radius: 12px;
+	box-shadow: #000000AA 1px 1px 6px;
+}
+
+.ControlPanel.DirectionTop #ExpandButtonContainer #ExpandButton:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 70%, from(#181818), to(#474747));
+}
+
+.ControlPanel.DirectionTop .Category
+{
+	width: 320px;
+	height: 100%;
+	flow-children: down;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2d2f31), to(hsv-transform(#2d2f31, 0, 1, 0.4)));
+	box-shadow: fill #00000011 1px 1px 8px 1px;
+	margin: 12px 6px 12px 6px;
+	transition-property: width;
+	transition-duration: 0.15s;
+}
+
+.ControlPanel.DirectionTop .Category.SingleCol
+{
+	width: 140px;
+}
+
+.ControlPanel.DirectionTop .Category .CategoryHeader
+{
+	width: 100%;
+	padding: 6px 6px 0px 6px;
+}
+
+.ControlPanel.DirectionTop .Category .CategoryHeader .CategoryHeaderLabel
+{
+	font-size: 15px;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.ControlPanel.DirectionTop .Category .CategoryButtonContainer
+{
+	flow-children: down;
+	width: 100%;
+	padding: 3px 6px 3px 6px;
+}
+
+.ControlPanel.Minimized.DirectionTop
+{
+	transform: translateY(-240px);
+}
+
+.Minimized #ExpandButton
+{
+	opacity: 0.2;
+}
+
+.Minimized #ExpandButton:hover
+{
+	opacity: 1;
+}
+
+.Row
+{
+	flow-children: right;
+	width: 100%;
+	margin: 0px 0px;
+}
+
+.ControlPanelContainer
+{
+	width: 320px;
+	flow-children: down;
+	background-color: gradient(linear, 0% 0%, 70% 0%, from(#111111), to(#222222));
+	box-shadow: #000000AA 2px 2px 8px;
+	padding-bottom: 12px;
+}
+
+#ExpandButtonContainer
+{
+	width: 40px;
+	height: 80px;
+	vertical-align: middle;
+}
+
+#ExpandButtonContainer #ExpandButton
+{
+	width: 25px;
+	height: 80px;
+	vertical-align: middle;
+	transform: translateX(0px);
+	background-color: gradient(linear, 0% 0%, 70% 0%, from(#111111), to(#3b3b3b));
+	border-top-right-radius: 12px;
+	border-bottom-right-radius: 12px;
+	box-shadow: #000000AA 1px 1px 6px;
+	transition-property: background-color, opacity;
+	transition-delay: 0s;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+#ExpandButtonContainer #ExpandButton:hover
+{
+	background-color: gradient(linear, 0% 0%, 70% 0%, from(#181818), to(#474747));
+}
+
+.ControlPanelTitle
+{
+	width: 100%;
+	flow-children: right;
+	box-shadow: fill #00000011 1px 1px 8px 1px;
+	margin: 12px 12px 0px 12px;
+}
+
+.ControlPanelTitle .CategoryHeader
+{
+	margin: 0px 6px;
+	vertical-align: center;
+}
+
+.ControlPanelTitle .CategoryHeader .CategoryHeaderLabel
+{
+	font-size: 16px;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.ControlPanelTitle .CategoryHeaderFilledFront
+{
+	width: fit-children;
+}
+
+.ControlPanelTitle .CategoryHeaderFilledNext
+{
+	width: fill-parent-flow(1);
+}
+
+.ControlPanelTitle .CategoryHeaderIcon
+{
+	vertical-align: bottom;
+	margin: 0px 2px;
+}
+
+.Category
+{
+	width: 100%;
+	flow-children: down;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2d2f31), to(hsv-transform(#2d2f31, 0, 1, 0.4)));
+	box-shadow: fill #00000011 1px 1px 8px 1px;
+	margin: 12px 12px 0px 12px;
+}
+
+.Category .CategoryHeader
+{
+	width: 100%;
+	padding: 6px 6px 0px 6px;
+}
+
+.Category .CategoryHeader .CategoryHeaderLabel
+{
+	font-size: 15px;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.Category .CategoryButtonContainer
+{
+	flow-children: down;
+	width: 100%;
+	padding: 3px 6px 3px 6px;
+}
+
+ToggleButton
+{
+	width: fill-parent-flow(1);
+	margin: 2px 2px;
+	height: 26px;
+}
+
+ToggleButton Label
+{
+	letter-spacing: 1px;
+	color: #D8DADE;
+	vertical-align: center;
+}
+
+.EOM_DropDown
+{
+	min-height: 26px;
+	padding: 0px 10px;
+	margin: 2px 2px;
+	background-color: #3e4144;
+	border: 1px solid #4e5155;
+	border-radius: 0px;
+	width: fill-parent-flow(1);
+}
+
+.EOM_DropDown:hover
+{
+	background-color: gradient(linear, 0% 0%, 70% 0%, from(#676b70), to(#3e4144));
+	border: 1px solid #686b70;
+}
+
+.EOM_DropDown:hover Label
+{
+	color: #FFF;
+}
+
+.EOM_DropDownMenuItem
+{
+	min-height: 26px;
+	padding: 0px 4px;
+}
+
+.DemoTextEntry
+{
+	margin: 2px 2px;
+	background-color: #3e4144;
+	border: 1px solid #4e5155;
+	height: 26px;
+	width: fill-parent-flow(1);
+	transition-property: background-color, border, color;
+	transition-duration: 0.15s;
+	transition-timing-function: linear;
+}
+
+.DemoTextEntry:disabled
+{
+	opacity: 0.25;
+}
+
+.DemoTextEntry > Label
+{
+	horizontal-align: center;
+	vertical-align: middle;
+	padding: 0px 4px;
+	color: #D8DADE;
+	font-size: 16px;
+	text-transform: uppercase;
+	font-family: defaultFont;
+	font-weight: normal;
+	text-overflow: shrink;
+	letter-spacing: 1px;
+}
+
+.DemoTextEntry:hover
+{
+	background-color: gradient(linear, 0% 0%, 70% 0%, from(#676b70), to(#3e4144));
+	border: 1px solid #686b70;
+}
+
+.DemoTextEntry:hover Label
+{
+	color: #FFF;
+}
+
+.DemoTextEntry:active
+{
+	background-color: #7E94B1;
+	pre-transform-scale2d: 1.02;
+}
+
+.DemoTextEntry.QuitButton
+{
+	background-color: #9E393C;
+	border: 1px solid #b64548;
+	box-shadow: 0px 0px 8px #6e070a00;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#aa8888), to(#ffaaaa));
+	pre-transform-scale2d: 1.02;
+}
+
+.DemoTextEntry.QuitButton:hover
+{
+	background-color: #da5458;
+	background-color: gradient(linear, 0% 0%, 70% 0%, from(#da5458), to(#9E393C));
+	border: 1px solid #da5458;
+	box-shadow: 0px 0px 8px #94080d3f;
+}
+
+.DemoTextEntry.GreenButton
+{
+	background-color: #42705B;
+	border: 1px solid #4e9e7a;
+	transition-property: background-color, border;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+.DemoTextEntry.GreenButton:hover
+{
+	background-color: gradient(linear, 0% 0%, 70% 0%, from(#3cc486), to(#259c67));
+	border: 1px solid #3feb9d;
+}
+
+.DemoTextEntry.RedButton
+{
+	background-color: #6D4A4E;
+	border: 1px solid #9b6369;
+	transition-property: background-color, border;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+.DemoTextEntry.RedButton:hover
+{
+	background-color: gradient(linear, 0% 0%, 70% 0%, from(#be4f5c), to(#913943));
+	border: 1px solid #eb5f70;
+}
+
+.DemoTextEntry > Label
+{
+	margin-left: 8px;
+	margin-right: 4px;
+	max-width: 80px;
+	text-overflow: shrink;
+}
+
+.DemoTextEntry TextEntry
+{
+	width: fill-parent-flow(1);
+	font-size: 16px;
+	padding: 0px 4px 0px 4px;
+	line-height: 22px;
+	border-width: 0px;
+}
+
+.DemoSlider
+{
+	margin: 2px 2px;
+	flow-children: down;
+}
+
+.DemoSlider .Title
+{
+	width: fill-parent-flow(1);
+	font-size: 18px;
+	color: #7d8688;
+}
+
+.DemoSlider .Value
+{
+	font-size: 18px;
+	color: #7d8688;
+}
+
+.EOM_SwitchContainer
+{
+	margin: 2px 2px;
+	width: fill-parent-flow(1);
+	height: 26px;
+	padding: 1px 2px;
+}
+
+.EOM_SwitchContainer .EOM_Switch
+{
+	vertical-align: center;
+}
+
+.DemoButton
+{
+	margin: 2px 2px;
+	background-color: #3e4144;
+	border: 1px solid #4e5155;
+	height: 26px;
+	width: fill-parent-flow(1);
+	transition-property: background-color, border, color;
+	transition-duration: 0.15s;
+	transition-timing-function: linear;
+}
+
+.DemoButton:disabled
+{
+	opacity: 0.25;
+}
+
+.DemoButton > Label
+{
+	horizontal-align: center;
+	vertical-align: middle;
+	padding: 0px 4px;
+	color: #D8DADE;
+	font-size: 16px;
+	text-transform: uppercase;
+	font-family: defaultFont;
+	font-weight: normal;
+	text-overflow: shrink;
+	letter-spacing: 1px;
+}
+
+.DemoButton:hover
+{
+	background-color: gradient(linear, 0% 0%, 70% 0%, from(#676b70), to(#3e4144));
+	border: 1px solid #686b70;
+}
+
+.DemoButton:hover Label
+{
+	color: #FFF;
+}
+
+.DemoButton:active
+{
+	background-color: #7E94B1;
+	pre-transform-scale2d: 1.02;
+}
+
+.DemoButton.QuitButton
+{
+	background-color: #9E393C;
+	border: 1px solid #b64548;
+	box-shadow: 0px 0px 8px #6e070a00;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#aa8888), to(#ffaaaa));
+	pre-transform-scale2d: 1.02;
+}
+
+.DemoButton.QuitButton:hover
+{
+	background-color: #da5458;
+	background-color: gradient(linear, 0% 0%, 70% 0%, from(#da5458), to(#9E393C));
+	border: 1px solid #da5458;
+	box-shadow: 0px 0px 8px #94080d3f;
+}
+
+.DemoButton.GreenButton
+{
+	background-color: #42705B;
+	border: 1px solid #4e9e7a;
+	transition-property: background-color, border;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+.DemoButton.GreenButton:hover
+{
+	background-color: gradient(linear, 0% 0%, 70% 0%, from(#3cc486), to(#259c67));
+	border: 1px solid #3feb9d;
+}
+
+.DemoButton.RedButton
+{
+	background-color: #6D4A4E;
+	border: 1px solid #9b6369;
+	transition-property: background-color, border;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+.DemoButton.RedButton:hover
+{
+	background-color: gradient(linear, 0% 0%, 70% 0%, from(#be4f5c), to(#913943));
+	border: 1px solid #eb5f70;
+}
+
+.EOM_IconButton
+{
+	wash-color: #9aa5a8;
+}
+
+.EOM_IconButton:hover
+{
+	wash-color: none;
+}
+
+.SelectionContainer
+{
+	align: center top;
+	margin-top: 200px;
+	background-color: gradient(linear, 0% 0%, 0% 25%, from(#23232666), to(#1c1d2066));
+	box-shadow: #00000099 0px 0px 8px 0px;
+	border: 2px solid #32383677;
+	opacity: 0;
+	transform: translateY(-60px);
+	transition-property: opacity, transform, width, height;
+	transition-duration: 0.2s;
+}
+
+.SelectionContainer.Show
+{
+	opacity: 1;
+	transform: translateY(0px);
+	sound: "ui_rollover_micro";
+}
+
+#SelectionPicker
+{
+	flow-children: down;
+	width: 100%;
+	height: 100%;
+	transition-property: width, height;
+	transition-duration: 0.2s;
+}
+
+#SelectionPicker.ThinSize
+{
+	width: 635px;
+	height: 360px;
+}
+
+#SelectionPicker.UnitStat
+{
+	width: 400px;
+	height: 500px;
+}
+
+#SelectionPicker.WidthSize
+{
+	width: 1700px;
+	height: 320px;
+}
+
+#SelectionPicker.SettingSize
+{
+	width: 635px;
+	height: 700px;
+}
+
+#SelectionPickerHeader
+{
+	flow-children: right;
+	width: 100%;
+	background-color: gradient(linear, 0% 0%, 70% 0%, from(#111111), to(#222222));
+	padding: 8px 12px 8px 12px;
+}
+
+#SelectionPickerHeader .FilterContainer
+{
+	vertical-align: center;
+}
+
+#SelectionPickerHeader .FilterContainer Label
+{
+	font-size: 18px;
+	padding-left: 12px;
+	vertical-align: center;
+	color: white;
+	background-color: #181818dd;
+	border: 2px solid #222222;
+	box-shadow: #000000aa 0px 0px 8px 0px;
+}
+
+#SelectionPickerHeader #SelectionTitle
+{
+	text-align: left;
+	text-overflow: shrink;
+	font-size: 22px;
+	color: #bfd2ee;
+	vertical-align: middle;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+#SelectionPickerHeader DropDown
+{
+	width: 140px;
+	vertical-align: center;
+}
+
+#SelectionPickerHeader DropDown ToggleButton
+{
+	vertical-align: center;
+	padding: 0px;
+}
+
+#SelectionPickerHeader DropDown ToggleButton Label
+{
+	margin-left: 4px;
+}
+
+#SelectionPickerHeader .EOM_IconButton
+{
+	vertical-align: center;
+	margin: 0px 4px;
+}
+
+#SelectionPickerHeader .SearchBox
+{
+	flow-children: right;
+	vertical-align: center;
+	margin-right: 12px;
+}
+
+#SelectionPickerHeader .SearchBox #SelectionSearchTextEntry
+{
+	width: 160px;
+	font-size: 16px;
+	height: 32px;
+	border-left-width: 0px;
+	padding-top: 7px;
+}
+
+#SelectionPickerHeader .SearchBox #SelectionSearchTextEntry Label
+{
+	margin-top: 0px;
+	font-size: 16px;
+}
+
+#SelectionPickerHeader .SearchBox .EOM_DropDown
+{
+	min-height: 32px;
+	padding: 0px 10px;
+	margin: 0px;
+	background-color: #3e4144;
+	border: 1px solid #4e5155;
+	border-radius: 0px;
+	width: fit-children;
+}
+
+#SelectionPickerHeader .SearchBox .EOM_DropDown:hover
+{
+	background-color: gradient(linear, 0% 0%, 70% 0%, from(#676b70), to(#3e4144));
+	border: 1px solid #686b70;
+}
+
+#SelectionPickerHeader .SearchBox .EOM_DropDown:hover Label
+{
+	color: #FFF;
+}
+
+#SelectionList
+{
+	width: 100%;
+	height: 100%;
+	padding: 6px;
+}
+
+#CustomSelectionList
+{
+	width: 100%;
+	height: 100%;
+	padding: 6px;
+}
+
+.CodeModeLabel
+{
+	wash-color: #9aa5a8;
+}
+
+.CodeModeLabel:hover
+{
+	wash-color: white;
+}
+
+.CodeModeLabel > TextButton
+{
+	align: center center;
+}
+
+.CodeModeLabel > TextButton Label
+{
+	font-size: 21px;
+	font-weight: bold;
+	color: white;
+}
+
+.CodeModeLabel > TextButton:not(:disabled):active
+{
+	brightness: 0.5;
+	sound: "ui_generic_button_click";
+}
+
+.LockIconButton.Unlock
+{
+	clip: radial(50% 48%, 90deg, 310deg);
+}
+
+#ToggleSize
+{
+	background-color: none;
+	border-width: 0px;
+}
+
+#ToggleSize #EOM_DropDown_arrow
+{
+	opacity: 0;
+}
+
+.EOM_DebugTool_AbilityPicker .EOM_DebugTool_AbilityPickerItem
+{
+	margin: 6px;
+	transition-property: brightness, saturation, opacity;
+	transition-duration: 0.1s;
+}
+
+.EOM_DebugTool_AbilityPicker .EOM_DebugTool_AbilityPickerItem:enabled:hover
+{
+	brightness: 2;
+}
+
+.EOM_DebugTool_AbilityPicker .EOM_DebugTool_AbilityPickerItem:enabled:active
+{
+	brightness: 0.5;
+	sound: "ui_generic_button_click";
+}
+
+.EOM_DebugTool_AbilityPicker .EOM_DebugTool_AbilityPickerItem:disabled
+{
+	saturation: 0;
+	opacity: 0.2;
+}
+
+.EOM_DebugTool_AbilityPicker .EOM_DebugTool_AbilityPickerItem .DOTAAbilityImage,.EOM_DebugTool_AbilityPicker .EOM_DebugTool_AbilityPickerItem DOTAAbilityImage
+{
+	width: 64px;
+	height: width-percentage(100%);
+	margin-bottom: 8px;
+	border: 1px solid black;
+}
+
+.EOM_DebugTool_AbilityPicker .EOM_DebugTool_AbilityPickerItem DOTAItemImage
+{
+	width: 60px;
+	height: width-percentage(75%);
+	margin-bottom: 8px;
+	border: 1px solid black;
+}
+
+.EOM_DebugTool_AbilityPicker .EOM_DebugTool_AbilityPickerItem DOTAHeroImage
+{
+	width: 58px;
+	height: 76px;
+	margin-bottom: 8px;
+	border: 1px solid black;
+}
+
+.EOM_DebugTool_AbilityPicker .EOM_DebugTool_AbilityPickerItem .EOM_DebugTool_AbilityPickerItemName
+{
+	width: 100%;
+	height: 20px;
+	color: #ffffff;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 1px 2px 3 #00000066;
+}
+
+.EOM_DebugTool_TextPicker .EOM_DebugTool_TextPickerItem
+{
+	margin: 2px 2px;
+	background-color: #3e4144;
+	border: 1px solid #4e5155;
+	height: 26px;
+	width: fill-parent-flow(1);
+	transition-property: background-color, border, color;
+	transition-duration: 0.15s;
+	transition-timing-function: linear;
+	width: 160px;
+}
+
+.EOM_DebugTool_TextPicker .EOM_DebugTool_TextPickerItem:disabled
+{
+	opacity: 0.25;
+}
+
+.EOM_DebugTool_TextPicker .EOM_DebugTool_TextPickerItem > Label
+{
+	horizontal-align: center;
+	vertical-align: middle;
+	padding: 0px 4px;
+	color: #D8DADE;
+	font-size: 16px;
+	text-transform: uppercase;
+	font-family: defaultFont;
+	font-weight: normal;
+	text-overflow: shrink;
+	letter-spacing: 1px;
+}
+
+.EOM_DebugTool_TextPicker .EOM_DebugTool_TextPickerItem:hover
+{
+	background-color: gradient(linear, 0% 0%, 70% 0%, from(#676b70), to(#3e4144));
+	border: 1px solid #686b70;
+}
+
+.EOM_DebugTool_TextPicker .EOM_DebugTool_TextPickerItem:hover Label
+{
+	color: #FFF;
+}
+
+.EOM_DebugTool_TextPicker .EOM_DebugTool_TextPickerItem:active
+{
+	background-color: #7E94B1;
+	pre-transform-scale2d: 1.02;
+}
+
+.EOM_DebugTool_TextPicker .EOM_DebugTool_TextPickerItem.QuitButton
+{
+	background-color: #9E393C;
+	border: 1px solid #b64548;
+	box-shadow: 0px 0px 8px #6e070a00;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#aa8888), to(#ffaaaa));
+	pre-transform-scale2d: 1.02;
+}
+
+.EOM_DebugTool_TextPicker .EOM_DebugTool_TextPickerItem.QuitButton:hover
+{
+	background-color: #da5458;
+	background-color: gradient(linear, 0% 0%, 70% 0%, from(#da5458), to(#9E393C));
+	border: 1px solid #da5458;
+	box-shadow: 0px 0px 8px #94080d3f;
+}
+
+.EOM_DebugTool_TextPicker .EOM_DebugTool_TextPickerItem.GreenButton
+{
+	background-color: #42705B;
+	border: 1px solid #4e9e7a;
+	transition-property: background-color, border;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_DebugTool_TextPicker .EOM_DebugTool_TextPickerItem.GreenButton:hover
+{
+	background-color: gradient(linear, 0% 0%, 70% 0%, from(#3cc486), to(#259c67));
+	border: 1px solid #3feb9d;
+}
+
+.EOM_DebugTool_TextPicker .EOM_DebugTool_TextPickerItem.RedButton
+{
+	background-color: #6D4A4E;
+	border: 1px solid #9b6369;
+	transition-property: background-color, border;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_DebugTool_TextPicker .EOM_DebugTool_TextPickerItem.RedButton:hover
+{
+	background-color: gradient(linear, 0% 0%, 70% 0%, from(#be4f5c), to(#913943));
+	border: 1px solid #eb5f70;
+}
+
+#EOM_DebugTool_Setting
+{
+	background-color: gradient(linear, 0% 0%, 0% 25%, from(#232326), to(#1c1d20));
+}
+
+#EOM_DebugTool_Setting #SelectionPickerHeader
+{
+	background-color: #111111;
+}
+
+#EOM_DebugTool_Setting .SettingsSection
+{
+	flow-children: down;
+	width: 100%;
+	margin-top: 12px;
+}
+
+#EOM_DebugTool_Setting .SectionHeaderAlignRight
+{
+	width: 100%;
+}
+
+#EOM_DebugTool_Setting .SectionHeader
+{
+	font-size: 24px;
+	font-weight: thin;
+	color: #939da0;
+	text-transform: uppercase;
+}
+
+#EOM_DebugTool_Setting .SectionHeaderLine
+{
+	height: 2px;
+	width: 100%;
+	margin: 2px;
+	background-color: #3b3f40;
+	margin-bottom: 12px;
+}
+
+#EOM_DebugTool_Setting .AddNewKeyBind Label
+{
+	font-size: 18px;
+}
+
+.CanRemoveKeyBind .EOM_Image
+{
+	width: 0px;
+	height: 28px;
+	opacity: 0;
+	transition-property: opacity, width;
+	transition-duration: 0.15s;
+}
+
+.CanRemoveKeyBind.deleteMode .EOM_Image
+{
+	width: 28px;
+	opacity: 1;
+}

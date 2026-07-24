@@ -1,0 +1,157 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "item_recipe_torture_pipe_1_datadriven"
+	{
+		"ID"									"2339"
+		"Model"									"models/props_gameplay/recipe.vmdl"
+		"BaseClass"								"item_datadriven"
+		"AbilityTextureName"					"item_recipe"
+		"ItemCost"								"400"
+		"ItemShopTags"							""
+		"ItemRecipe"							"1"
+		"ItemResult"							"item_torture_pipe_1_datadriven"
+		"ItemRequirements"
+		{
+			"01"								"item_spirit_vessel;item_pipe;"
+		}
+	}
+	"item_torture_pipe_1_datadriven"
+	{
+		"ID"									"2340"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"								"item_datadriven"
+		"AbilityTextureName"					"item_torture_pipe_1_datadriven"
+		"ItemCost"								"6765"
+		"ItemShopTags"							"regen_health;boost_magic_resist"
+		"ItemQuality"							"epic"
+		"ItemDeclarations"						"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS | DECLARE_PURCHASES_IN_SPEECH"
+		"Modifiers"
+		{
+			"modifier_torture_pipe_1_datadriven"
+			{
+				"Passive"						"1"
+				"IsHidden"						"1"
+				"Attributes"					"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"item_ability/torture_pipe_datadriven.lua"
+						"Function"				"ToggleTorturePipe"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"item_ability/torture_pipe_datadriven.lua"
+						"Function"				"ToggleTorturePipe"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%bonus_all_stats"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%bonus_all_stats"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_all_stats"
+					"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"		"%bonus_mana_regen"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%bonus_health_regen"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%bonus_armor"
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS""%bonus_magic_resist"
+				}
+			}
+		}
+		"AbilityValues"
+		{
+			"dot_amplify"						"0.9"
+			"bonus_all_stats"					"15"
+			"bonus_health"						"250"
+			"bonus_mana_regen"					"1.5"
+			"bonus_health_regen"				"8.5"
+			"bonus_armor"						"2"
+			"bonus_magic_resist"				"30"
+		}
+	}
+	"item_recipe_torture_pipe_2_datadriven"
+	{
+		"ID"									"2341"
+		"Model"									"models/props_gameplay/recipe.vmdl"
+		"BaseClass"								"item_datadriven"
+		"AbilityTextureName"					"item_recipe"
+		"ItemCost"								"800"
+		"ItemShopTags"							""
+		"ItemRecipe"							"1"
+		"ItemResult"							"item_torture_pipe_2_datadriven"
+		"ItemRequirements"
+		{
+			"01"								"item_torture_pipe_1_datadriven;item_torture_pipe_1_datadriven;"
+		}
+	}
+	"item_torture_pipe_2_datadriven"
+	{
+		"ID"									"2342"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"								"item_datadriven"
+		"AbilityTextureName"					"item_torture_pipe_2_datadriven"
+		"ItemCost"								"14330"
+		"ItemShopTags"							"regen_health;boost_magic_resist"
+		"ItemQuality"							"epic"
+		"ItemDeclarations"						"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS | DECLARE_PURCHASES_IN_SPEECH"
+		"Modifiers"
+		{
+			"modifier_torture_pipe_2_datadriven"
+			{
+				"Passive"						"1"
+				"IsHidden"						"1"
+				"Attributes"					"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"item_ability/torture_pipe_datadriven.lua"
+						"Function"				"ToggleTorturePipe"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"item_ability/torture_pipe_datadriven.lua"
+						"Function"				"ToggleTorturePipe"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS""%bonus_all_stats"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS""%bonus_all_stats"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS""%bonus_all_stats"
+					"MODIFIER_PROPERTY_HEALTH_BONUS""%bonus_health"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT""%bonus_mana_regen"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT""%bonus_health_regen"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS""%bonus_armor"
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS""%bonus_magic_resist"
+				}
+			}
+		}
+		"AbilityValues"
+		{
+			"dot_amplify"						"1.25"
+			"bonus_all_stats"					"30"
+			"bonus_health"						"500"
+			"bonus_mana_regen"					"3"
+			"bonus_health_regen"				"17"
+			"bonus_armor"						"4"
+			"bonus_magic_resist"				"45"
+		}
+	}
+}

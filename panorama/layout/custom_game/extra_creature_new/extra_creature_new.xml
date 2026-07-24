@@ -1,0 +1,40 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/layout/custom_game/extra_creature_new/extra_creature_new.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/extra_creature_new.vjs_c" />
+	</scripts>
+	<Panel class="ExtraCreatureHudNew" hittest="false">
+		<Panel id="ExtraCreatureBlock" hittest="false">
+			<Panel id="ExtraCreaturePlayerRowBack" />
+			<Panel id="ExtraCreaturePlayerRow">
+				<Label class="ExtraCreaturePlayerRowName" text="{s:caller_player_name}" />
+				<Panel id="ExtraCreaturePlayerHeroIconContainer">
+					<DOTAHeroMovie id="ExtraCreaturePlayerHeroIcon" heroname="pudge" heroimagestyle="portrait" hittest="false" />
+				</Panel>
+				<Label class="ExtraCreaturePlayerHeroName" text="{s:caller_hero_name}" />
+			</Panel>
+			<Label class="ExtraCreepLabel" text="#HUD_ExtraCreature_CreepSend" />
+			<Panel id="ExtraCreaturePanel">
+				<DOTAScenePanel id="ExtraCreature" unit="npc_dota_skeleton" renderdeferred="true" hittest="false" antialias="false" particleonly="false" drawbackground="true" light="light" />
+				<Panel id="ExtraCreepNameLabelPanel">
+					<Label class="ExtraCreepNameLabel" text="{s:creep_name}" />
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

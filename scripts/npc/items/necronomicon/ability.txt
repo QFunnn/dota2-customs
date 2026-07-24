@@ -1,0 +1,52 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "item_recipe_demonicon_custom"
+	{
+		"ID"									"2322"
+		"Model"									"models/props_gameplay/recipe.vmdl"
+		"BaseClass"								"item_datadriven"
+		"AbilityTextureName"					"item_recipe_demonicon"
+		"ItemCost"								"4000"
+		"ItemShopTags"							""
+		"ItemRecipe"							"1"
+		"ItemResult"							"item_demonicon_custom"
+		"ItemRequirements"
+		{
+			"01"								"item_necronomicon_3;item_necronomicon_3;"
+		}
+	}
+    "item_demonicon_custom"
+	{
+		"BaseClass"              				"item_lua"
+        "ScriptFile"             				"item_ability/item_demonicon_custom"
+        "AbilityBehavior"        				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityTextureName"     				"item_demonicon"
+        "AbilityCooldown"        				"80"
+		"AbilityManaCost"        				"0"
+		"ItemPurchasable"						"1"
+		"ItemSellable"							"1"
+		"ItemCost"								"13100"
+		"ItemQuality"							"rare"
+		"ItemDisassembleRule"					"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"AbilityValues"
+        {	
+            "bonus_strength"            		"0"
+            "bonus_intellect"       			"0"
+            "summon_duration"               	
+            {	
+                "value"             			"65"
+                "apply_curio_bonus"     		"1"
+            }
+        }
+	}
+}

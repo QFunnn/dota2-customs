@@ -1,0 +1,441 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.HudScoreboardRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+.HudScoreboardMainContainer
+{
+	width: 870px;
+	height: fit-children;
+	margin-top: 70px;
+	transform: translatey(0px) translatex(-50px);
+	transition: transform 0.3s ease-in-out 0s, opacity 0.25s ease-in-out 0s;
+	background-color: #1B1E28;
+	opacity: 0;
+	border: 0px;
+	margin-left: 6px;
+	flow-children: down;
+}
+
+.HudScoreboardMainContainer.Show
+{
+	transform: translatey(0px) translatex(0px);
+	opacity: 1;
+}
+
+.HudScoreboardTitleContainer
+{
+	width: 100%;
+	height: 20px;
+	flow-children: right;
+	margin-left: 5px;
+	margin-top: 4px;
+}
+
+.HudScoreboardTitleHero
+{
+	width: 225px;
+	text-align: center;
+	font-size: 12px;
+	color: #B3B3B3;
+}
+
+.HudScoreboardTitleGold
+{
+	width: 70px;
+	text-align: center;
+	font-size: 12px;
+	color: #B3B3B3;
+}
+
+.HudScoreboardTitleWin
+{
+	width: 45px;
+	text-align: center;
+	font-size: 12px;
+	color: #B3B3B3;
+	margin-left: 6px;
+}
+
+.HudScoreboardTitleLose
+{
+	width: 45px;
+	text-align: center;
+	font-size: 12px;
+	color: #B3B3B3;
+	margin-right: 6px;
+}
+
+.HudScoreboardTitleAbility
+{
+	width: 198px;
+	text-align: center;
+	font-size: 12px;
+	color: #B3B3B3;
+}
+
+.HudScoreboardTitleItem
+{
+	width: 145px;
+	text-align: center;
+	font-size: 12px;
+	color: #B3B3B3;
+}
+
+.HudScoreboardTitleBook
+{
+	width: 145px;
+	text-align: center;
+	font-size: 12px;
+	color: #B3B3B3;
+}
+
+.HudScoreboardTeamsContainer
+{
+	width: 100%;
+	height: fit-children;
+	flow-children: down;
+}
+
+.TeamContainer
+{
+	width: 100%;
+	height: fit-children;
+	background-color: #202B40;
+	box-shadow: inset #62758B 0px 0px 1px 0px;
+	background-size: 100%;
+	flow-children: down;
+}
+
+.PlayerInfoMainContainer
+{
+	width: 100%;
+	height: 48px;
+	margin-left: 5px;
+	flow-children: right;
+}
+
+.PlayerInfoContainer
+{
+	width: 225px;
+	height: 48px;
+	margin-left: 5px;
+	flow-children: right;
+}
+
+.PlayerInfoHeroIconImg
+{
+	height: 36px;
+	width: 64px;
+	vertical-align: center;
+}
+
+.PlayerInfoHeroTextInfoContainer
+{
+	flow-children: down;
+	height: 100%;
+	width: 150px;
+}
+
+.PlayerInfoPlayerNameRow
+{
+	width: 100%;
+	height: 16px;
+	margin-top: 4px;
+	margin-left: 6px;
+	flow-children: right;
+}
+
+.PlayerInfoPlayerName
+{
+	height: 14px;
+	width: 110px;
+	color: #B3B3B3;
+	font-size: 12px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+	vertical-align: bottom;
+}
+
+.PlayerInfoMuteButton
+{
+	width: 14px;
+	height: 14px;
+	margin-left: 4px;
+	vertical-align: center;
+	background-color: transparent;
+	border: 0px;
+	padding: 0px;
+	brightness: 0.85;
+}
+
+.PlayerInfoMuteButton:hover
+{
+	brightness: 1.2;
+}
+
+.PlayerInfoMuteButton.Hidden
+{
+	visibility: collapse;
+}
+
+.PlayerInfoMuteButtonIcon
+{
+	width: 14px;
+	height: 14px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/extract/button_audio_on_png_png.vtex");
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.PlayerInfoMuteButtonIcon.Muted
+{
+	background-image: url("s2r://panorama/images/custom_game/extract/button_audio_off_png_png.vtex");
+}
+
+.PlayerInfoHeroContainer
+{
+	flow-children: right;
+	margin-top: 6px;
+	margin-left: 6px;
+}
+
+.PlayerInfoHeroLvlContainer
+{
+	align: left center;
+	flow-children: right;
+	margin-right: 12px;
+}
+
+.PlayerInfoHeroLvlTitle
+{
+	font-size: 12px;
+	color: #7896AD;
+}
+
+.PlayerInfoHeroLvlNum
+{
+	font-size: 12px;
+	color: #FFFFFF;
+	margin-left: 2px;
+}
+
+.PlayerInfoHeroName
+{
+	font-size: 12px;
+	color: #7896AD;
+}
+
+.PlayerInfoGoldContainer
+{
+	width: 60px;
+	height: 48px;
+	flow-children: right;
+	color: #FFCC34;
+}
+
+.PlayerInfoGoldIcon
+{
+	width: 23px;
+	height: 23px;
+	horizontal-align: left;
+	vertical-align: center;
+}
+
+.PlayerInfoGoldValue
+{
+	vertical-align: center;
+	horizontal-align: right;
+	text-align: center;
+	font-weight: bold;
+	font-size: 14px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+	margin-left: 4px;
+}
+
+.PlayerInfoPvpRecordContainer
+{
+	width: 90px;
+	height: 40px;
+	vertical-align: center;
+	margin-left: 6px;
+	margin-right: 6px;
+}
+
+.PvpRecordWinCount
+{
+	width: 50%;
+	align: left center;
+	text-align: center;
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 14px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}
+
+.PvpRecordLoseCount
+{
+	width: 50%;
+	align: right center;
+	text-align: center;
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 14px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}
+
+.PlayerInfoAbilitiesContainer
+{
+	width: 198px;
+	height: 100%;
+	margin-left: 6px;
+	flow-children: right;
+}
+
+.PlayerInfoAbilitiesContainer .ImageAbility
+{
+	vertical-align: center;
+	height: 29px;
+	width: 29px;
+	margin-right: 3px;
+}
+
+.PlayerInfoItemsBonusContainer
+{
+	width: 34px;
+	height: 48px;
+	flow-children: down;
+}
+
+.PlayerInfoItemsScepterContainer
+{
+	width: 30px;
+	height: 65%;
+	background-image: url("s2r://panorama/images/hud/reborn/aghsstatus_scepter_psd.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.PlayerInfoItemsScepterContainer.Active
+{
+	background-image: url("s2r://panorama/images/hud/reborn/aghsstatus_scepter_on_psd.vtex");
+}
+
+.PlayerInfoItemsShardContainer
+{
+	width: 30px;
+	height: 35%;
+	background-image: url("s2r://panorama/images/hud/reborn/aghsstatus_shard_psd.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.PlayerInfoItemsShardContainer.Active
+{
+	background-image: url("s2r://panorama/images/hud/reborn/aghsstatus_shard_on_psd.vtex");
+}
+
+.PlayerInfoItemsContainer
+{
+	width: 96px;
+	height: 48px;
+	flow-children: right-wrap;
+}
+
+.PlayerInfoItemsContainer .ItemImage
+{
+	height: 22px;
+	width: 30px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	transform: translateX(0px) translateY(0px);
+}
+
+.PlayerInfoItemNeutralSlotContainer
+{
+	align: right center;
+	height: 23px;
+	width: 23px;
+	border-radius: 50%;
+	background-image: url("s2r://panorama/images/hud/reborn/bg_neutral_slot_png.vtex");
+	background-size: 100%;
+}
+
+.PlayerInfoItemNeutralSlotContainer .ItemNeutral
+{
+	align: center center;
+}
+
+.PlayerInfoBookContainer
+{
+	width: 120px;
+	height: 48px;
+	flow-children: right;
+}
+
+.PlayerInfoRelearnBookContainer
+{
+	margin-top: 4px;
+	margin-left: 5px;
+	width: 55px;
+	height: 35px;
+	flow-children: right;
+}
+
+.PlayerInfoRelearnBookContainer .BookImage
+{
+	margin-top: 7px;
+	border-radius: 15px;
+}
+
+.PlayerInfoRelearnBookContainer .CountLabel
+{
+	width: 50%;
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 14px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}
+
+.PlayerInfoTornPageContainer
+{
+	margin-top: 4px;
+	width: 55px;
+	height: 35px;
+	flow-children: right;
+}
+
+.PlayerInfoTornPageContainer .BookImage
+{
+	margin-top: 7px;
+	border-radius: 15px;
+}
+
+.PlayerInfoTornPageContainer .CountLabel
+{
+	width: 50%;
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 14px;
+	text-shadow: 1px 1px 2px 3 rgba(0, 0, 0, 0.81);
+	text-overflow: shrink;
+}

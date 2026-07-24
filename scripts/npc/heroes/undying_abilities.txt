@@ -1,0 +1,97 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"undying_decay_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_undying/undying_decay_lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_NO"
+		"AbilitySound"							"Hero_Undying.Decay.Cast"
+		"HasScepterUpgrade"						"1"
+		"HasShardUpgrade"						"1"
+		"AbilityTextureName"					"undying_decay"
+		"AbilityCastRange"						"650"
+		"AbilityCastPoint"						"0.45"
+		"AbilityCastAnimation"					"ACT_DOTA_UNDYING_DECAY"
+		"AbilityCastGestureSlot"				"DEFAULT"
+		"AbilityManaCost"						"100"
+		"precache"
+		{
+			"particle"							"particles/units/heroes/hero_undying/undying_decay.vpcf"
+			"particle"							"particles/units/heroes/hero_undying/undying_decay_strength_xfer.vpcf"
+			"particle"							"particles/units/heroes/hero_undying/undying_decay_strength_buff.vpcf"
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_undying.vsndevts"
+		}
+		"AbilityValues"
+		{
+			"decay_damage"
+			{
+				"value"							"0 40 80 120"
+				"special_bonus_unique_undying_8""+50"
+			}
+			"str_steal_hero"
+			{
+				"value"							"4"
+				"special_bonus_scepter"			"+4"
+			}
+			"str_steal_creep"
+			{
+				"value"							"2"
+				"special_bonus_scepter"			"+2"
+			}
+			"decay_duration"					"21.0 24.0 27.0 30.0"
+			"radius"
+			{
+				"value"							"325"
+				"affected_by_aoe_increase"		"1"
+			}
+			"str_scale_up"						"0.5"
+			"creep_damage_mult"					"200"
+			"AbilityCooldown"
+			{
+				"value"							"13 10 7 4"
+				"special_bonus_unique_undying_2""-2"
+			}
+		}
+	}
+	"undying_tombstone_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_undying/undying_tombstone_lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName"					"undying_tombstone"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"								"4"
+		"AbilityCastRange"						"400"
+		"AbilityCastPoint"						"0.6"
+		"AbilityManaCost"						"120 140 160 180"
+		"AbilityValues"
+		{
+			"zombie_duration"					"15"
+			"zombie_interval"					"4 3.6 3.2 2.8"
+			"zombie_health"						"100 125 150 175"
+			"zombie_damage"						"46"
+			"tomb_duration"						"30"
+			"max_zombie"						"20"
+			"radius"							"1200"
+			"AbilityCooldown"
+			{
+				"value"							"85 80 75 70"
+				"special_bonus_unique_undying_7""-15"
+			}
+		}
+	}
+}

@@ -1,0 +1,116 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "item_recipe_felling_shield_lua_2"
+	{
+		"Model"									"models/props_gameplay/recipe.vmdl"
+		"FightRecapLevel"						"2"
+		"BaseClass"								"item_recipe_refresher"
+		"AbilityTextureName"					"item_recipe_barricade"
+		"ItemCost"								"235"
+		"ItemShopTags"							""
+		"ItemRecipe"							"1"
+		"ItemResult"							"item_felling_shield_lua_2"
+		"ItemRequirements"
+		{
+			"01"								"item_pavise;item_falcon_blade;"
+		}
+	}
+	"item_felling_shield_lua_2"
+	{
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"item_ability/item_felling_shield_lua_2"
+		"AbilityTextureName"					"item_barricade"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastPoint"						"0.0"
+		"AbilityCooldown"						"0.0"
+		"AbilityManaCost"						"0"
+		"ItemCost"								"2115"
+		"ItemQuality"							"common"
+		"ShouldBeSuggested"						"1"
+		"ItemPurchasable"						"1"
+		"precache"
+		{
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
+		}
+		"AbilityValues"
+		{
+			"buff_chance"						"25"
+			"creep_damage_reduce"				"15"
+			"buff_duration"						"4"
+			"shield_hp_pct"						"50"
+			"shield_duration"					"5"
+			"max_shield_hp"						"300"
+			"max_hp_pct"						"600"
+			"bonus_hp"							"425"
+			"bonus_armor"						"4"
+			"bonus_mana_regen"					"5"
+			"bonus_damage"						"20"
+		}
+	}
+	"item_recipe_felling_shield_lua_3"
+	{
+		"Model"									"models/props_gameplay/recipe.vmdl"
+		"FightRecapLevel"						"2"
+		"BaseClass"								"item_recipe_refresher"
+		"AbilityTextureName"					"item_recipe_stonework_pendant"
+		"ItemCost"								"428"
+		"ItemShopTags"							""
+		"ItemRecipe"							"1"
+		"ItemResult"							"item_felling_shield_lua_3"
+		"ItemRequirements"
+		{
+			"01"								"item_felling_shield_lua_2;item_disperser;"
+		}
+	}
+	"item_felling_shield_lua_3"
+	{
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"item_ability/item_felling_shield_lua_3"
+		"AbilityTextureName"					"item_stonework_pendant"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCooldown"						"15"
+		"AbilityCastPoint"						"0.0"
+		"AbilityManaCost"						"0"
+		"ItemCost"								"4990"
+		"ItemQuality"							"rare"
+		"ShouldBeSuggested"						"1"
+		"ItemPurchasable"						"1"
+		"AbilityValues"
+		{
+			"AbilityCastRange"
+			{
+				"value"							"600"
+				"affected_by_aoe_increase"		"1"
+			}
+			"bonus_agi"							"35"
+			"bonus_int"							"15"
+			"buff_chance"						"25"
+			"creep_damage_reduce"				"25"
+			"buff_duration"						"4"
+			"shield_hp_pct"						"50"
+			"shield_duration"					"5"
+			"max_shield_hp"						"500"
+			"max_hp_base"						"8000"
+			"max_hp_pct"						"800"
+			"feedback_mana_burn"				"40"
+			"purge_rate"						"5"
+			"purge_root_duration"				"3.0"
+			"purge_slow_duration"				"4.0"
+			"damage_per_burn"					"1"
+			"bonus_hp"							"525"
+			"bonus_armor"						"5"
+			"bonus_mana_regen"					"5"
+			"bonus_damage"						"70"
+		}
+	}
+}

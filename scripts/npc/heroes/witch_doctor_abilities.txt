@@ -1,0 +1,55 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"witch_doctor_maledict_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"AbilityTextureName"					"witch_doctor_maledict"
+		"ScriptFile"							"heroes/hero_witch_doctor/witch_doctor_maledict_lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_NO"
+		"FightRecapLevel"						"1"
+		"AbilitySound"							"Hero_WitchDoctor.Maledict_Cast"
+		"AbilityCastRange"						"600"
+		"AbilityCastPoint"						"0.35 0.35 0.35 0.35"
+		"AbilityCooldown"						"30 26 22 18"
+		"AbilityDamage"							"18 22 26 30"
+		"AbilityManaCost"						"105 110 115 120"
+		"AbilityValues"
+		{
+			"radius"
+			{
+				"value"									"200"
+				"special_bonus_unique_witch_doctor_7"	"+125"
+				"affected_by_aoe_increase"				"1"
+			}
+			"bonus_damage"
+			{
+				"value"									"16 24 32 40"
+			}
+			"bonus_damage_threshold"					"100"
+			"ticks"
+			{
+				"value"									"3"
+			}
+			"AbilityDuration"
+			{
+				"value" 								"12.0"
+			}
+		}
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_5"
+	}
+}

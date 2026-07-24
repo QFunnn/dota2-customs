@@ -1,0 +1,79 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"tidehunter_anchor_smash_lua"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_tidehunter/tidehunter_anchor_smash_lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_YES"
+		"FightRecapLevel"						"1"
+		"AbilitySound"							"Hero_Tidehunter.AnchorSmash"
+		"AbilityTextureName"					"tidehunter_anchor_smash"
+		"AbilityCastRange"						"375"
+		"AbilityCastPoint"						"0.4"
+		"AbilityCooldown"						"7 6 5 4"
+		"AbilityManaCost"               		"40 45 50 55"
+		"Precache"
+		{
+			"particle"							"particles/units/heroes/hero_tidehunter/tidehunter_anchor_hero.vpcf"
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
+		}
+		"AbilityValues"
+        {
+            "attack_damage"         
+            {
+                "value"                                     "45 90 135 180"
+                "special_bonus_unique_tidehunter_9"         "+40"
+                "CalculateSpellDamageTooltip"               "0"
+            }
+            "damage_reduction"      
+            {
+                "value"                                     "-25 -30 -35 -40"
+                "special_bonus_unique_tidehunter_3"         "-30"
+                "CalculateSpellDamageTooltip"               "0"
+                "DamageTypeTooltip"                         "DAMAGE_TYPE_NONE"
+            }
+            "reduction_duration"                            "6.0 6.0 6.0 6.0"
+            "radius"                                        
+            {
+                "value" "375"
+                "affected_by_aoe_increase"  "1"
+            }
+            "attack_delay"      "0.03"
+
+            "targets_buildings"
+            {
+                "value"                                     "0"
+                "special_bonus_unique_tidehunter_10"            "+1"
+            }
+
+            "is_smash_on_attack"
+            {
+                "special_bonus_unique_tidehunter_8"         "1"
+            }
+            "smash_on_attack_chance"
+            {
+                "special_bonus_unique_tidehunter_8"         "50"
+            }
+            "smash_on_attack_cooldown"
+            {
+                "special_bonus_unique_tidehunter_8"         "0.6"
+            }
+
+            "creeps_per_stack_kraken_shell" "3"
+        }
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_3"
+	}
+}

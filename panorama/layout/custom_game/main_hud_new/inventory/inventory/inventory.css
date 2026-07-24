@@ -1,0 +1,204 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.InventoryMenu
+{
+	width: 100%;
+	height: 100%;
+}
+
+.InventoryMain
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+}
+
+#Header
+{
+	width: 100%;
+	flow-children: down;
+}
+
+#HeaderButtons
+{
+	flow-children: right-wrap;
+	margin-left: 5px;
+	margin-top: 15px;
+	align: center top;
+}
+
+.HeaderButton
+{
+	width: 175px;
+	height: 60px;
+	margin-right: 5px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#242a308a), color-stop(0.5, #1d2329bd), to(#161b20ad));
+	border: 1px solid white;
+	border-bottom: 2px solid white;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#5a5f64), color-stop(0.5, #4b5158ef), to(#353b42ef));
+	box-shadow: #00000044 0px 0px 10px 0px;
+	transition-property: brightness, background-color, border, border-brush;
+	transition-duration: .15s;
+}
+
+.HeaderButton:hover
+{
+	brightness: 1.6;
+}
+
+.HeaderButton.Selected
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3b403f8a), color-stop(0.3, #2a2e2dbd), to(#222824ad));
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#8f7a4f), color-stop(0.5, #7e6b45ef), to(#b79a63ef));
+	brightness: 1.2;
+}
+
+.HeaderButtonLabel
+{
+	color: rgb(202, 191, 160);
+	font-size: 20px;
+	max-width: 100px;
+	max-height: 48px;
+	text-transform: uppercase;
+	letter-spacing: -1px;
+	text-align: center;
+	align: center center;
+	text-shadow: 1px 2px 3px 1 rgba(0, 0, 0, 0.5);
+	transition-property: color;
+	transition-duration: .15s;
+}
+
+.Selected .HeaderButtonLabel
+{
+	color: white;
+}
+
+#ItemsContainer
+{
+	margin-top: 15px;
+	width: 100%;
+	height: fill-parent-flow(1);
+	flow-children: right-wrap;
+	align: left top;
+	margin-left: -5px;
+	padding: 10px;
+	overflow: squish scroll;
+}
+
+.WearedItem
+{
+	text-shadow: 0px 0px 12px rgba(224, 249, 255, 0.4);
+	color: rgba(255, 255, 255, 0.9);
+}
+
+.ShopItem .UnWearedItem,.ShopItem .WearedItem
+{
+	visibility: collapse;
+	opacity: 0;
+}
+
+.ShopItem.Buyed .UnWearedItem
+{
+	visibility: visible;
+	opacity: 1;
+}
+
+.ShopItem.Buyed .WearedItem
+{
+	visibility: collapse;
+	opacity: 0;
+}
+
+.ShopItem.Buyed.Weared .UnWearedItem
+{
+	visibility: collapse;
+	opacity: 0;
+}
+
+.ShopItem.Buyed.Weared .WearedItem
+{
+	visibility: visible;
+	opacity: 1;
+}
+
+.ItemWearButton
+{
+	width: 150px;
+	height: 35px;
+	align: center bottom;
+	margin-bottom: 15px;
+	background-color: gradient(linear, 8% 100%, 0% 0%, from(#2a2d2e), color-stop(0.7, #4a4e50), to(#7b6a46));
+	border: 1px solid #5b6064;
+	box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.0);
+	border-radius: 3px;
+	transform: translateY(10px);
+	transition-property: transform, opacity, box-shadow, background-color;
+	transition-duration: .1s;
+	opacity: 0;
+}
+
+.Weared .Wear
+{
+	visibility: collapse;
+}
+
+.UnWear
+{
+	visibility: collapse;
+}
+
+.Weared .UnWear
+{
+	visibility: visible;
+}
+
+.ItemWearButton:hover
+{
+	background-color: gradient(linear, 8% 100%, 0% 0%, from(#383c3f), color-stop(0.7, #666a6d), to(#9a8458));
+}
+
+.ItemWearButton:hover .ItemWearButtonText
+{
+	color: white;
+}
+
+.ShopItem:hover .ItemWearButton
+{
+	transform: translateY(0);
+	opacity: 1;
+	box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.ShopItem:hover .HasItemText
+{
+	opacity: 0;
+}
+
+.ItemWearButtonText
+{
+	align: center center;
+	width: 100%;
+	font-size: 16px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-align: center;
+	color: rgb(208, 194, 157);
+	transition-property: color;
+	transition-duration: .1s;
+}
+
+.ShopItem.Weared
+{
+	brightness: 1.5;
+	box-shadow: 0px 6px 24px 0px rgba(153, 123, 71, 0.32);
+}

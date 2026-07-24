@@ -1,0 +1,142 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/hudstyles.css" />
+		<include src="s2r://panorama/styles/hud/dota_hud_pregame.css" />
+		<include src="s2r://panorama/styles/hero_inspect.css" />
+		<include src="s2r://panorama/styles/hero_stat_icons.css" />
+		<include src="s2r://panorama/styles/facet_icon.css" />
+		<include src="s2r://panorama/styles/hud/dota_hud_hero_picking_player.css" />
+		<include src="s2r://panorama/layout/custom_game/pregame/hero_select.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/kv/heroeskv.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/pregame/hero_select.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="CustomHeroInspect">
+			<Panel>
+				<DOTAHeroInspect id="HeroInspect" class="NoHeroesSelected">
+					<Panel id="HeroInspectHeader">
+						<Panel id="HeroInspectPrimaryAttributeIcon" />
+						<Label id="HeroInspectHeroName" text="{g:dota_hero_name:inspect_hero_id}" />
+					</Panel>
+					<Panel id="HeroInspectInfo">
+						<Panel id="HeroPortraitContainer">
+							<DOTAHeroMovie id="HeroMovie" />
+						</Panel>
+						<Panel id="HeroStats" hittest="false" hittestchildren="true" />
+					</Panel>
+					<Panel id="HeroAbilities" />
+				</DOTAHeroInspect>
+			</Panel>
+		</snippet>
+		<snippet name="TeamHeroPicker">
+			<Panel>
+				<Panel id="HeroPickingPlayer">
+					<Panel class="IsLocalPlayer" hittest="false" />
+					<Panel id="PickedParticlesContainer">
+						<DOTAScenePanel class="PickedParticles" map="scenes/hud/levelupburst.vmap" camera="shot_camera" particleonly="true" />
+					</Panel>
+					<Panel id="HeroImageBorder" />
+					<Panel id="HeroImageContainer" acceptsinput="true">
+						<Panel class="SlotColor" />
+						<DOTAHeroImage id="HeroImage">
+							<Panel class="GradientTopBottom" />
+						</DOTAHeroImage>
+						<DOTAHeroBadge id="HeroBadge" badgestyle="level" />
+					</Panel>
+					<Panel id="HeroImagePickBar" />
+					<Panel id="NameContainer">
+						<Panel id="PlayerNameContainer">
+							<Panel id="NewPlayerIconPanel" onmouseout="UIHideTextTooltip();" onmouseover="UIShowTextTooltip( #DOTANewPlayerIconTooltip );" />
+							<Label id="PlayerName" text="{g:dota_filtered_string:player_name}" acceptsinput="true" allowtextselection="false" />
+							<Label id="GuildTag" text="[{g:dota_filtered_string:guild_tag}]" allowtextselection="false" />
+						</Panel>
+						<Label id="HeroName" text="{g:dota_hero_name:hero_id}" allowtextselection="false" />
+					</Panel>
+					<Panel id="DisconnectedIcon" hittest="false" />
+					<Panel id="HeroGameplayUpdatesAlert">
+						<Panel class="InfoIcon Shadow" />
+						<Panel class="InfoIcon" />
+						<Panel class="HeroGameplayUpdatePulse" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel hittest="false" style="width:100%; height:100%; overflow:noclip;">
+		<Panel id="BanPresetsRoot" class="BanPresetsRoot" visible="false">
+			<Panel id="BanPresetsPanel" class="BanPresetsPanel">
+				<Panel id="BanPresetsList" class="BanPresetsList" />
+			</Panel>
+			<Button id="BanPresetsToggle" class="BanPresetsToggle">
+				<Label id="BanPresetsToggleArrow" class="BanPresetsToggleArrow" text="&gt;" />
+			</Button>
+		</Panel>
+		<Panel id="BanAbilitiesRoot" class="BanAbilitiesRoot" hittest="false">
+			<Panel id="BanAbilitiesIcons" class="BanAbilitiesIcons" flow-children="right-wrap" />
+		</Panel>
+		<Panel id="PhaseTimerRoot" class="PhaseTimerRoot" hittest="false">
+			<Label id="PhaseTimerValue" class="PhaseTimerValue" text="00:00" />
+		</Panel>
+		<Panel id="RecentBansRoot" class="RecentBansRoot" hittest="false">
+			<Label text="#HUD_HeroSelect_RecentBans" class="RecentBansTitle" />
+			<Panel class="RecentBansContainer" flow-children="right">
+				<Panel id="RecentBansHeroes" class="RecentBansHeroes" flow-children="right" />
+				<Panel id="RecentBansAbilities" class="RecentBansAbilities" flow-children="right-wrap" />
+			</Panel>
+		</Panel>
+		<Panel id="MyBansRoot" class="MyBansRoot" hittest="false">
+			<Label text="#HUD_HeroSelect_MyBans" class="MyBansTitle" />
+			<Panel id="MyBansContainer" class="MyBansContainer" flow-children="right-wrap">
+				<Panel id="MyBansHeroes" class="MyBansHeroes" />
+				<Panel id="MyBansAbilities" class="MyBansAbilities" />
+			</Panel>
+		</Panel>
+		<Panel id="CustomHeroPickRoot" class="CustomHeroPickRoot Hidden">
+			<Panel class="HeroSlotRoot">
+				<Panel id="HeroSlot0" class="HeroPickSlot">
+					<Panel id="HeroInspectContainer0" class="HeroInspectContainer" />
+					<Button id="HeroPickButton0" class="PickButton">
+						<Label id="BanHeroName" text="#DOTA_Hero_Selection_LOCKIN" />
+					</Button>
+				</Panel>
+				<Panel id="HeroSlot1" class="HeroPickSlot">
+					<Panel id="HeroInspectContainer1" class="HeroInspectContainer" />
+					<Button id="HeroPickButton1" class="PickButton">
+						<Label id="BanHeroName" text="#DOTA_Hero_Selection_LOCKIN" />
+					</Button>
+				</Panel>
+				<Panel id="HeroSlot2" class="HeroPickSlot">
+					<Panel id="HeroInspectContainer2" class="HeroInspectContainer" />
+					<Button id="HeroPickButton2" class="PickButton">
+						<Label id="BanHeroName" text="#DOTA_Hero_Selection_LOCKIN" />
+					</Button>
+				</Panel>
+				<Panel id="HeroSlot3" class="HeroPickSlot">
+					<Panel id="HeroInspectContainer3" class="HeroInspectContainer" />
+					<Button id="HeroPickButton3" class="PickButton">
+						<Label id="BanHeroName" text="#DOTA_Hero_Selection_LOCKIN" />
+					</Button>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Button id="RerollButton" class="PickButton Reroll Hidden" onactivate="OnRerollButtonClicked()">
+			<Label id="BanHeroName" text="#DOTA_Hero_Selection_Reroll_InGame" />
+		</Button>
+		<Panel id="TeamPickRoot" class="TeamPickRoot" />
+	</Panel>
+</root>
