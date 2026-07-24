@@ -94,5 +94,6 @@ jobs:
           REPO_URL: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git
           WORKSHOP_ID: ${{ matrix.mod.workshop_id }}
           BRANCH: ${{ matrix.mod.branch_name }}
+          DECRYPT_SCRIPT: ${{ matrix.mod.decrypt_script }}
           WATERMARK: ${{ needs.prepare.outputs.watermark }}
         run: bash scripts/update.sh
