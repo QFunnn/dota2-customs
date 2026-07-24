@@ -1,0 +1,99 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.OmniscientHUD
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: .15s;
+}
+
+.OmniscientHUD.Show
+{
+	opacity: 1;
+}
+
+.OmniBody
+{
+	width: 100%;
+	height: 100%;
+	transition-property: opacity;
+	transition-duration: .15s;
+}
+
+.HalfHide .OmniBody
+{
+	opacity: 0;
+}
+
+.OmniBack
+{
+	width: 100%;
+	height: 100%;
+	background-color: #1a1f43e5;
+}
+
+#OmniContainer
+{
+	margin-top: 100px;
+	align: center top;
+	flow-children: right;
+}
+
+#SelectedHeroPanel
+{
+	margin-top: 600px;
+}
+
+.ControlButtons
+{
+	align: right bottom;
+	margin-right: 300px;
+	height: 50px;
+	width: 250px;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(rgba(77, 48, 165, 0.502)), color-stop(0.7, rgba(116, 80, 208, 0.55)), to(rgba(191, 174, 255, 0.518)));
+	box-shadow: 0px 0px 10px rgba(14, 0, 0, 0.952);
+	transition-property: brightness;
+	transition-duration: 0.1s;
+	border: 1px solid white;
+	border-brush: rgba(150, 121, 255, 0.55);
+	transition-property: background-color, border-brush, brightness, saturation;
+	transition-duration: .15s;
+}
+
+.ControlButtons:hover
+{
+	brightness: 1.5;
+}
+
+#HideButton
+{
+	margin-bottom: 200px;
+}
+
+#OmniCloseButton
+{
+	margin-bottom: 140px;
+}
+
+.ControlButtonsLabel
+{
+	font-size: 20px;
+	color: white;
+	align: center center;
+	text-transform: uppercase;
+	font-weight: semi-bold;
+	letter-spacing: 1px;
+	text-shadow: 1px 2px 3px 1 black;
+}

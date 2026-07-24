@@ -1,0 +1,150 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/custom_game/menu_pages/chat_wheel.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/menu_pages/chat_wheel.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="Item">
+			<Panel hittest="true" class="Item">
+				<Panel hittest="true" class="ItemIconContainer">
+					<Panel hittest="true" class="LockIcon" />
+					<Panel hittest="true" class="TextIcon" />
+					<Panel hittest="true" id="SoundIcon" class="SoundIcon" />
+				</Panel>
+				<Label hittest="false" class="ItemText" text="{s:itemtext}" />
+			</Panel>
+		</snippet>
+		<snippet name="Category">
+			<Panel hittest="true" class="Category">
+				<Panel hittest="false" class="CategoryHeader">
+					<Label hittest="false" class="CategoryName" text="{s:category_name}" />
+				</Panel>
+				<Panel hittest="false" id="CategoryContainer" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="ChatWheelMenu" hittest="false">
+		<Panel id="SettingsBody" hittest="false">
+			<Panel id="SettingsLeft" hittest="false">
+				<Label text="#MENU_BUTTON_chat_wheel" class="ChatWheelHeaderLabel" />
+				<Label text="#MENU_CHAT_WHEEL_Desc" class="ChatWheelDescLabel" />
+				<Panel class="SettingsChatWheel" hittest="true" onactivate="StartSelectItem(0)">
+					<Panel class="Top" hittest="false">
+						<Panel class="Top" hittest="false">
+							<Panel id="LineButton1" class="LineButton" hittest="true" onactivate="StartSelectItem(1)">
+								<Panel class="LineButtonBackHover" hittest="false" />
+								<Panel hittest="true" class="LineContent">
+									<Panel hittest="true" class="SoundIcon" />
+									<Label class="LineText" text="{s:linetext}" />
+								</Panel>
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="Center" hittest="false">
+						<Panel id="DecorLine1" class="DecorLine" hittest="false" />
+						<Panel id="DecorLine2" class="DecorLine" hittest="false" />
+						<Panel id="DecorLine3" class="DecorLine" hittest="false" />
+						<Panel id="DecorLine4" class="DecorLine" hittest="false" />
+						<Label id="CallKeyBind" text="{s:callkeybind}" />
+						<Panel class="CenterIcon" hittest="false" />
+						<Panel class="LeftButtons" hittest="false">
+							<Panel id="LineButton8" class="LineButton" hittest="true" onactivate="StartSelectItem(8)">
+								<Panel class="LineButtonBackHover" hittest="false" />
+								<Panel hittest="true" class="LineContent">
+									<Panel hittest="true" class="SoundIcon" />
+									<Label class="LineText" text="{s:linetext}" />
+								</Panel>
+							</Panel>
+							<Panel id="LineButton7" class="LineButton" hittest="true" onactivate="StartSelectItem(7)">
+								<Panel class="LineButtonBackHover" hittest="false" />
+								<Panel hittest="true" class="LineContent">
+									<Panel hittest="true" class="SoundIcon" />
+									<Label class="LineText" text="{s:linetext}" />
+								</Panel>
+							</Panel>
+							<Panel id="LineButton6" class="LineButton" hittest="true" onactivate="StartSelectItem(6)">
+								<Panel class="LineButtonBackHover" hittest="false" />
+								<Panel hittest="true" class="LineContent">
+									<Panel hittest="true" class="SoundIcon" />
+									<Label class="LineText" text="{s:linetext}" />
+								</Panel>
+							</Panel>
+						</Panel>
+						<Panel class="RightButtons" hittest="false">
+							<Panel id="LineButton2" class="LineButton" hittest="true" onactivate="StartSelectItem(2)">
+								<Panel class="LineButtonBackHover" hittest="false" />
+								<Panel hittest="true" class="LineContent">
+									<Panel hittest="true" class="SoundIcon" />
+									<Label class="LineText" text="{s:linetext}" />
+								</Panel>
+							</Panel>
+							<Panel id="LineButton3" class="LineButton" hittest="true" onactivate="StartSelectItem(3)">
+								<Panel class="LineButtonBackHover" hittest="false" />
+								<Panel hittest="true" class="LineContent">
+									<Panel hittest="true" class="SoundIcon" />
+									<Label class="LineText" text="{s:linetext}" />
+								</Panel>
+							</Panel>
+							<Panel id="LineButton4" class="LineButton" hittest="true" onactivate="StartSelectItem(4)">
+								<Panel class="LineButtonBackHover" hittest="false" />
+								<Panel hittest="true" class="LineContent">
+									<Panel hittest="true" class="SoundIcon" />
+									<Label class="LineText" text="{s:linetext}" />
+								</Panel>
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="Bottom" hittest="false">
+						<Panel id="LineButton5" class="LineButton" hittest="true" onactivate="StartSelectItem(5)">
+							<Panel class="LineButtonBackHover" hittest="false" />
+							<Panel hittest="true" class="LineContent">
+								<Panel hittest="true" class="SoundIcon" />
+								<Label class="LineText" text="{s:linetext}" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="SettingsVariantsTable" hittest="false">
+				<Panel id="Header" hittest="true">
+					<Panel id="HeaderContainer" hittest="true">
+						<Panel id="TextMenuButton" class="ButtonHeader" hittest="true" onactivate="OpenMenuPage(&apos;Text&apos;)">
+							<Label hittest="false" class="ButtonHeaderText" text="#MENU_CHAT_WHEEL_Header_Text" />
+						</Panel>
+						<Panel class="ButtonHeaderDash" hittest="false">
+							<Label class="ButtonHeaderDashText" text="/" />
+						</Panel>
+						<Panel id="SoundsMenuButton" class="ButtonHeader" hittest="true" onactivate="OpenMenuPage(&apos;Sounds&apos;)">
+							<Label hittest="false" class="ButtonHeaderText" text="#MENU_CHAT_WHEEL_Header_Sounds" />
+						</Panel>
+					</Panel>
+					<Panel id="SearchPanel" hittest="true">
+						<Panel id="SearchIcon" hittest="true" />
+						<TextEntry id="SearchByNameEntry" maxchars="200" placeholder="#MENU_CHAT_WHEEL_Search_Placeholder" />
+						<Panel id="SearchDelete" hittest="true" onactivate="ClearSearch()" />
+					</Panel>
+					<Panel id="OnlyHasItemsButton" onactivate="ToggleFilter()">
+						<ToggleButton id="FilterBox" class="Checkbox" hittest="false" />
+						<Label class="OnlyHasItemsLabel" text="#MENU_CHAT_WHEEL_Hide_not_has" hittest="false" />
+					</Panel>
+				</Panel>
+				<Panel id="Body" hittest="false" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

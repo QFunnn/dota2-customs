@@ -1,0 +1,167 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.CourierSlotsHUD
+{
+	width: 100%;
+	height: 100%;
+}
+
+#BonusStashPanel
+{
+	width: 291px;
+	height: 100px;
+	align: right bottom;
+	background-color: black;
+	margin-bottom: 210px;
+	background-image: url("s2r://panorama/images/hud/reborn/bg_item_build_psd.vtex");
+	background-repeat: no-repeat;
+	transform: translateX(100px);
+	opacity: 0;
+	transition-property: transform, opacity;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+#BonusStashPanel.Show
+{
+	opacity: 1;
+	transform: translateX(0);
+}
+
+#BonusStashButton
+{
+	align: right bottom;
+	margin-bottom: 315px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(77, 48, 165, 0.0)), color-stop(0.7, rgba(116, 80, 208, 0.55)), color-stop(0.95, rgba(191, 174, 255, 0.518)), to(rgba(191, 174, 255, 0.0)));
+	transition-property: background-color, opacity, brightness;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+	flow-children: right;
+	margin-right: 5px;
+}
+
+#BonusStashButton:hover
+{
+	opacity: 1;
+	brightness: 2;
+}
+
+.BonusStashButtonIcon
+{
+	width: 18px;
+	height: 25.2px;
+	align: right center;
+	background-image: url("s2r://panorama/images/custom_game/toggle_buttton_png.vtex");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	pre-transform-rotate2d: 180deg;
+	img-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+	margin-left: 0px;
+	transition-property: transform, pre-transform-rotate2d;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+.Show .BonusStashButtonIcon
+{
+	pre-transform-rotate2d: 0deg;
+}
+
+#BonusStashButton.Show
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(77, 48, 165, 0.1)), color-stop(0.7, rgba(116, 80, 208, 0.55)), color-stop(0.88, rgba(191, 174, 255, 0.518)), color-stop(0.95, rgba(191, 174, 255, 0.0)), to(rgba(191, 174, 255, 0.0)));
+	opacity: 1;
+	brightness: 2;
+}
+
+.BonusStashButtonLabel
+{
+	font-size: 16px;
+	align: left center;
+	margin-right: 5px;
+	color: white;
+	transition-property: text-shadow;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+.Show .BonusStashButtonLabel
+{
+	text-shadow: 0px 0px 1px 1 white;
+}
+
+#InfoButton
+{
+	width: 28px;
+	height: 32px;
+	wash-color: #b5b5b5;
+	background-image: url("s2r://panorama/images/control_icons/24px/info.vsvg");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 16px 16px;
+	img-shadow: 0px 0px 8px 0 black;
+	ignore-parent-flow: true;
+	tooltip-position: left;
+	opacity: 0.8;
+	align: left top;
+}
+
+.BonusStashHeaderLabel
+{
+	text-transform: uppercase;
+	font-size: 14px;
+	color: #8da1b1;
+	margin-top: 9px;
+	font-weight: bold;
+	text-align: center;
+	letter-spacing: 1px;
+	align: center top;
+}
+
+#stash
+{
+	margin-top: 31px;
+	flow-children: right-wrap;
+	align: center top;
+	margin-left: 10px;
+}
+
+.HintUIParticle
+{
+	width: 125px;
+	height: 125px;
+}
+
+.StashSlotWrap
+{
+	width: fit-children;
+	height: fit-children;
+}
+
+.StashChargesLabel
+{
+	ignore-parent-flow: true;
+	horizontal-align: right;
+	vertical-align: bottom;
+	margin-right: 2px;
+	margin-bottom: 1px;
+	padding: 0px 3px 0px 3px;
+	color: #ffffff;
+	font-size: 13px;
+	font-weight: bold;
+	text-shadow: 1px 1px 2px 2 #000000;
+	background-color: rgba(0, 0, 0, 0.65);
+	border-radius: 2px;
+	z-index: 100;
+}

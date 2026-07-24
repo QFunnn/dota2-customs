@@ -1,0 +1,450 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.Hidden
+{
+	opacity: 0;
+}
+
+#AbilitySelectorPanel
+{
+	flow-children: down;
+	transition-property: transform, opacity;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-in-out;
+	background-color: gradient(linear, 100% 0%, 0% 0%, from(rgba(100, 97, 250, 0.15)), to(rgba(175, 126, 253, 0.15)));
+	border: 1px solid white;
+	border-brush: gradient(radial, 0% 0%, 2% 10%, 100% 100%, from(rgba(153, 151, 254, 0.2)), to(rgba(153, 151, 254, 0.02)));
+	box-shadow: rgba(0, 0, 0, 0.625) 0px 0px 2px 0px;
+	min-width: 380px;
+	horizontal-align: center;
+}
+
+.HidePanel
+{
+	opacity: 0;
+}
+
+.AbilitySelectorPanelTop
+{
+	width: 100%;
+	height: 30px;
+	background-color: rgba(153, 151, 254, 0.25);
+	flow-children: none;
+}
+
+#AbilitySelectorTitle
+{
+	font-family: 'Radiance';
+	font-weight: bold;
+	font-size: 16px;
+	letter-spacing: 2px;
+	color: #DADADA;
+	text-shadow: 1px 2px 4px 3 rgba(0, 0, 0, 0.25);
+	align: center center;
+	text-transform: uppercase;
+	margin-left: 30px;
+}
+
+.CloseButtonTop
+{
+	width: 30px;
+	height: 30px;
+	horizontal-align: right;
+	vertical-align: top;
+	background-color: rgba(255, 0, 0, 0.2);
+	transition-property: background-color, brightness;
+	transition-duration: 0.15s;
+}
+
+.CloseButtonTop:hover
+{
+	background-color: rgba(255, 0, 0, 0.5);
+	brightness: 1.3;
+}
+
+.CloseButtonTop Image
+{
+	width: 18px;
+	height: 18px;
+	align: center center;
+	wash-color: white;
+	img-shadow: 0px 0px 4px 2.0 black;
+}
+
+#AbilitySelectorAbilityBody
+{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.AbilitySelectorRoot
+{
+	width: 78px;
+	height: 94px;
+	margin-left: 18px;
+	margin-right: 18px;
+	margin-bottom: 7px;
+	margin-top: 7px;
+}
+
+.AbilityImagePanel
+{
+	margin-top: 5px;
+	height: 66px;
+	width: 66px;
+	align: center top;
+	border: 2px solid white;
+	border-brush: gradient(radial, 0% 0%, 2% 10%, 100% 100%, from(rgb(153, 151, 254)), to(rgba(153, 151, 254, 0.02)));
+}
+
+#AbilityName
+{
+	font-size: 12px;
+	text-align: center;
+	text-overflow: shrink;
+	width: 110px;
+	color: white;
+	height: 20px;
+	vertical-align: bottom;
+	text-shadow: 0px 0px 8px 5.0 black;
+	text-transform: uppercase;
+}
+
+.LinkedAbility DOTAAbilityImage
+{
+	width: 26px;
+	height: 26px;
+	background-size: 100%;
+	border: 2px solid white;
+	border-brush: gradient(radial, 0% 0%, 2% 10%, 100% 100%, from(rgb(153, 151, 254)), to(rgba(153, 151, 254, 0.02)));
+}
+
+.LinkedAbility
+{
+	height: 30px;
+	flow-children: right;
+	vertical-align: top;
+	horizontal-align: right;
+}
+
+.LinkedAbilityCollapse
+{
+	visibility: collapse;
+}
+
+.LinkedAbilityPlusIcon
+{
+	background-image: url("s2r://panorama/images/hud/reborn/levelup_plus_well_psd.vtex");
+	background-size: 100%;
+	height: 20px;
+	width: 20px;
+	brightness: 10;
+	visibility: collapse;
+}
+
+#AbilityImage:hover
+{
+	brightness: 1.6;
+}
+
+#AbilitySelectorPanelRoot
+{
+	transform: translateY(0px) scale3d(0.1, 0.1, 0.1);
+	opacity: 0;
+	transition-property: transform, opacity;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+	flow-children: down;
+}
+
+#AbilitySelectorPanelRoot.Show
+{
+	transform: translateY(0px) scale3d(1, 1, 1);
+	opacity: 1;
+}
+
+#AbilitySelector_CloseButton
+{
+	horizontal-align: left;
+	vertical-align: center;
+	height: 40px;
+	width: 175px;
+	background-color: gradient(linear, 10% 100%, 0% 0%, from(rgba(255, 94, 94, 0.5025)), color-stop(0.5, rgba(255, 102, 102, 0.55)), to(rgba(255, 134, 134, 0.5175)));
+	box-shadow: 0px 0px 10px 1 rgba(255, 89, 89, 0.25);
+	transition-property: transform, brightness;
+	transition-duration: 0.3s;
+	border: 1px solid rgba(232, 97, 97, 1);
+}
+
+#AbilitySelector_CloseButton Label
+{
+	vertical-align: center;
+	color: white;
+	font-size: 22px;
+	font-weight: bold;
+	horizontal-align: center;
+	text-shadow: 0px 0px 4px 3 rgba(206, 74, 74, 0.45);
+	text-transform: uppercase;
+}
+
+#AbilitySelector_CloseButton:hover
+{
+	brightness: 1.2;
+}
+
+#AbilitySelector_CloseButton:active
+{
+	brightness: 0.8;
+}
+
+#AbilitySelector_CloseButton:disabled
+{
+	saturation: 0;
+}
+
+#AbilitySelectButtonPanel
+{
+	margin-top: 10px;
+	width: 365px;
+	horizontal-align: center;
+}
+
+#AbilitySelector_HideButton
+{
+	horizontal-align: right;
+	vertical-align: center;
+	height: 40px;
+	width: 175px;
+	background-color: gradient(linear, 10% 100%, 0% 0%, from(rgba(43, 102, 190, 0.75)), color-stop(0.5, rgba(44, 80, 210, 0.5)), to(rgba(61, 74, 189, 0.52)));
+	box-shadow: 0px 0px 10px 1 rgba(255, 89, 89, 0.25);
+	transition-property: transform, brightness;
+	transition-duration: 0.3s;
+	border: 1px solid rgba(32, 89, 235, 1);
+}
+
+#AbilitySelector_HideButton Label
+{
+	vertical-align: center;
+	color: white;
+	font-size: 22px;
+	font-weight: bold;
+	horizontal-align: center;
+	text-shadow: 0px 0px 4px 3 rgba(74, 127, 206, 0.45);
+	text-transform: uppercase;
+}
+
+#AbilitySelector_HideButton:hover
+{
+	brightness: 2.0;
+}
+
+#AbilitySelector_HideButton:active
+{
+	brightness: 0.5;
+}
+
+#AbilitySelector_HideButton:disabled
+{
+	saturation: 0;
+}
+
+#CooldownOverlay
+{
+	background-color: #000000dc;
+	height: 120px;
+	width: 120px;
+	z-index: 1;
+}
+
+ToggleButton .TickBox,CycleButton .TickBox,DOTASettingsCheckbox .TickBox
+{
+	width: 15px;
+	height: 15px;
+	vertical-align: center;
+	background-color: black;
+	border: 2px solid #5e686966;
+	box-shadow: #00000055 0px 0px 0px 1px;
+	transition-property: background-color, box-shadow, color, border, background-image, wash-color, pre-transform-scale2d;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.SaveSpellBookLabel
+{
+	font-size: 14px;
+	color: #f7fbfc;
+	vertical-align: center;
+}
+
+#SaveSpellBookCheckBox
+{
+	margin-top: 0px;
+	horizontal-align: center;
+}
+
+.AbilityColorEffect
+{
+	width: 100px;
+	height: 100px;
+	visibility: collapse;
+}
+
+.HasColor .AbilityColorEffect
+{
+	visibility: visible;
+}
+
+.BlueColor .AbilityColorEffectParticle
+{
+	wash-color: rgb(61, 168, 255);
+	brightness: 2;
+}
+
+.PurpleColor .AbilityColorEffectParticle
+{
+	wash-color: rgb(150, 58, 255);
+	brightness: 3;
+}
+
+.PinkColor .AbilityColorEffectParticle
+{
+	wash-color: rgb(255, 38, 244);
+	brightness: 2;
+}
+
+.AbilityColorEffectParticle
+{
+	width: 100%;
+	height: 100%;
+}
+
+.SelectorMini .AbilitySelectorPanel
+{
+	margin-top: 10%;
+	width: 472px;
+	height: 270px;
+	horizontal-align: center;
+}
+
+.SelectorMini.WideChoice .AbilitySelectorPanel
+{
+	margin-top: 10%;
+	width: 572px;
+	height: 270px;
+	horizontal-align: center;
+}
+
+.SelectorMini #AbilitySelectButtonPanel
+{
+	margin-top: 10px;
+}
+
+.AbilitySelectorPanelRootSide
+{
+	horizontal-align: right;
+	width: 340px;
+	transform: translateY(0px) scale3d(0.1, 0.1, 0.1);
+	transition-property: transform;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.AbilitySelectorPanelRootSide #AbilitySelectButtonPanel
+{
+	width: 340px;
+	margin-top: 10px;
+	padding: 10px;
+}
+
+.AbilitySelectorPanelRootSide #AbilitySelector_CloseButton
+{
+	horizontal-align: left;
+	height: 40px;
+	transition-property: transform, brightness;
+	transition-duration: 0.3s;
+	width: 150px;
+	background-color: gradient(linear, 10% 100%, 0% 0%, from(rgba(255, 94, 94, 0.5025)), color-stop(0.5, rgba(255, 102, 102, 0.55)), to(rgba(255, 134, 134, 0.5175)));
+	box-shadow: 0px 0px 10px 1 rgba(255, 89, 89, 0.25);
+	border: 1px solid rgba(232, 97, 97, 1);
+}
+
+.AbilitySelectorPanelRootSide #AbilitySelector_HideButton
+{
+	horizontal-align: right;
+	height: 40px;
+	transition-property: transform, brightness;
+	transition-duration: 0.3s;
+	width: 150px;
+	background-color: gradient(linear, 10% 100%, 0% 0%, from(rgba(43, 102, 190, 0.75)), color-stop(0.5, rgba(44, 80, 210, 0.5)), to(rgba(61, 74, 189, 0.52)));
+	box-shadow: 0px 0px 10px 1 rgba(255, 89, 89, 0.25);
+	transition-property: transform, brightness;
+	transition-duration: 0.3s;
+	border: 1px solid rgba(32, 89, 235, 1);
+}
+
+.AbilitySelectorPanelRootSide #AbilitySelector_CloseButton Label
+{
+	vertical-align: center;
+	color: white;
+	font-size: 22px;
+	font-weight: bold;
+	horizontal-align: center;
+	text-shadow: 0px 0px 4px 3 rgba(206, 74, 74, 0.45);
+	text-transform: uppercase;
+}
+
+.AbilitySelectorPanelRootSide #AbilitySelector_HideButton Label
+{
+	vertical-align: center;
+	color: white;
+	font-size: 22px;
+	font-weight: bold;
+	horizontal-align: center;
+	text-shadow: 0px 0px 4px 3 rgba(74, 127, 206, 0.45);
+	text-transform: uppercase;
+}
+
+#EffectReactWhite
+{
+	saturation: 0;
+}
+
+#CheatsInfo
+{
+	margin-top: 5px;
+	visibility: collapse;
+	max-width: 300px;
+	align: center top;
+}
+
+.IsOmniscientBook #CheatsInfo
+{
+	visibility: visible;
+}
+
+.CheatsInfoLabel
+{
+	font-size: 12px;
+	text-align: center;
+	align: center top;
+}
+
+.Drag_panel
+{
+	width: 50px;
+	height: 50px;
+	background-color: rgba(0, 0, 0, 0.3);
+	border: 3px solid white;
+}

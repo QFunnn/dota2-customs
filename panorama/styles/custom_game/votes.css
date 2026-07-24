@@ -1,0 +1,515 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.VotesHUD
+{
+	width: 100%;
+	height: 100%;
+}
+
+#VoteBody
+{
+	align: center top;
+	overflow: noclip;
+	opacity: 0;
+	transition-property: opacity, blur, brightness;
+	transition-duration: .2s;
+}
+
+#VoteBody.ShowConfirm
+{
+	blur: gaussian( 2.5 );
+	opacity: 0.7;
+	brightness: 0.5;
+}
+
+#VoteBody.ShowVotes
+{
+	opacity: 1;
+}
+
+#VoteBodyContainer
+{
+	align: center center;
+	flow-children: down;
+	padding: 100px;
+	padding-top: 90px;
+}
+
+#BackgroundParticle
+{
+	ignore-parent-flow: true;
+	align: center top;
+	width: 100%;
+	height: 100%;
+	opacity: 0.6;
+}
+
+#BackgroundParticle2
+{
+	ignore-parent-flow: true;
+	align: center top;
+	width: 100%;
+	height: 100%;
+	opacity: 0.6;
+}
+
+#VoteInstanceInfo
+{
+	width: 32px;
+	height: 32px;
+	wash-color: #b5b5b5;
+	background-image: url("s2r://panorama/images/control_icons/24px/info.vsvg");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 18px 18px;
+	img-shadow: 0px 0px 8px 0 black;
+	ignore-parent-flow: true;
+	opacity: 0.8;
+	align: right top;
+}
+
+#VoteOptionInfo
+{
+	width: 32px;
+	height: 32px;
+	wash-color: #b5b5b5;
+	background-image: url("s2r://panorama/images/control_icons/24px/info.vsvg");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 16px 16px;
+	img-shadow: 0px 0px 8px 0 black;
+	ignore-parent-flow: true;
+	opacity: 0.8;
+	align: right top;
+}
+
+.VoteHeader
+{
+	align: center top;
+	flow-children: down;
+}
+
+.VoteHeaderLabel
+{
+	align: center top;
+	font-size: 32px;
+	text-transform: uppercase;
+	font-weight: semi-bold;
+	letter-spacing: 1px;
+	color: white;
+}
+
+.VoteHeaderDescLabel
+{
+	align: center top;
+	text-align: center;
+	font-size: 11px;
+}
+
+.VoteHeaderTimerLabel
+{
+	align: center top;
+	color: white;
+	font-size: 25px;
+	margin-top: 5px;
+}
+
+.VoteHeaderTimerLabel.Warning
+{
+	color: crimson;
+}
+
+.VotesList
+{
+	flow-children: down;
+	margin-top: 5px;
+	color: #ffa60000;
+}
+
+@keyframes 'GlowVotes'
+{
+	0%
+	{
+		border: 1px solid #ffffff97;
+		box-shadow: 0px 0px 30px 0px #ffffff08;
+	}
+	
+	100%
+	{
+		border: 1px solid #ffffff1f;
+		box-shadow: 0px 0px 0px 0px #ffffff00;
+	}
+	
+}
+
+.VoteInstance
+{
+	align: center top;
+	flow-children: down;
+	background-color: rgba(0,0,0,0.6);
+	border-radius: 10px;
+	margin-top: 0px;
+	color: #ffffff08;
+	animation-name: GlowVotes;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+	animation-direction: alternate-reverse;
+	visibility: collapse;
+}
+
+.VoteInstance.ShowVisibility
+{
+	visibility: visible;
+}
+
+.VoteInstanceHeader
+{
+	align: center top;
+	flow-children: down;
+	margin-top: 5px;
+}
+
+.VoteInstanceLabel
+{
+	font-size: 20px;
+	align: center top;
+	text-transform: uppercase;
+	font-weight: semi-bold;
+	color: white;
+}
+
+.VoteInstanceOptions
+{
+	flow-children: right;
+	height: fit-children;
+	align: center top;
+	margin-top: 5px;
+	padding: 5px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.VoteOption
+{
+	width: 300px;
+	height: 100px;
+	background-color: rgba(0,0,0,0.2);
+	padding: 0px;
+	margin-left: 10px;
+	border-radius: 5px;
+	border: 1px solid rgba(182, 182, 182, 0.12);
+	flow-children: down;
+	transition-property: transform, brightness, border, background-color;
+	transition-duration: .1s;
+}
+
+.VoteOption:not(.Exception):hover
+{
+	transform: scale3d(1.03, 1.03, 1);
+	brightness: 1.5;
+	border: 1px solid rgba(182, 182, 182, 0.424);
+	background-color: rgba(45, 45, 45, 0.2);
+}
+
+.VoteOption.Exception
+{
+	brightness: 0.3;
+	saturation: 0.5;
+}
+
+.ResultOption
+{
+	margin-top: 20px;
+	align: center top;
+	margin-left: 0px;
+	margin-right: 0px;
+	padding: 0px;
+	height: 120px;
+	background-color: rgba(0,0,0,0.6);
+	border: 1px solid rgba(255, 255, 255, 0.559);
+	box-shadow: 0px 0px 30px 0px rgba(255, 255, 255, 0.04);
+}
+
+.VoteOption.SelfOption
+{
+	transform: scale3d(1.03, 1.03, 1);
+	brightness: 1.5;
+	border: 1px solid rgba(183, 176, 226, 0.424);
+	background-color: rgba(45, 45, 45, 0.2);
+}
+
+.VoteOption.SelfOption2
+{
+	background-color: rgba(0,0,0,0.6);
+	transform: scale3d(1, 1, 1);
+	brightness: 1;
+}
+
+.VoteOptionHover
+{
+	width: 100%;
+	height: 400px;
+	ignore-parent-flow: true;
+	opacity-brush: gradient(linear, 0% 0%, 0% 100%, from(rgba(0,0,0,0)), color-stop(0.3, rgba(255,255,255, 0.8)), to(rgba(255,255,255, 1)));
+	background-color: rgba(221, 209, 255, 0.03);
+	opacity-mask: url("s2r://panorama/images/masks/hero_model_preview_mask_loadout_psd.vtex");
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: .1s;
+}
+
+.VoteOption.SelfOption .VoteOptionHover
+{
+	opacity: 0.8;
+}
+
+.VoteOption.SelfOption2 .VoteOptionHover
+{
+	opacity: 0;
+}
+
+.VoteOption:hover .VoteOptionHover
+{
+	opacity: 0.8;
+}
+
+.VoteOptionHeader
+{
+	align: center top;
+	flow-children: down;
+}
+
+.ResultOptionHeader
+{
+	margin-top: 10px;
+	width: 100%;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.VoteOptionProgress
+{
+	align: center bottom;
+	flow-children: down;
+	margin-bottom: 5px;
+}
+
+.VoteOptionValue
+{
+	align: center top;
+	color: white;
+}
+
+.VoteOptionProgressbar
+{
+	width: 250px;
+	height: 16px;
+	background-color: #000000a3;
+	border-radius: 8px;
+	overflow: noclip;
+	margin-top: 3px;
+}
+
+.VoteOptionProgressbar .ProgressBarLeft
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( white ), color-stop( 0.45, #a69cdd ), color-stop( 0.55, #7071b5 ), to( #8e82e5 ) );
+	border-radius: 1px;
+	animation-name: GlowProgressBar;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+	animation-direction: alternate-reverse;
+	transition-property: width;
+	transition-duration: .1s;
+}
+
+@keyframes 'GlowProgressBar'
+{
+	0%
+	{
+		box-shadow: 0px 0px 8px #92d9ff11;
+		brightness: 1;
+	}
+	
+	100%
+	{
+		box-shadow: 0px 0px 16px #afe3ff11;
+		brightness: 1.5;
+	}
+	
+}
+
+.VoteOptionLabel
+{
+	font-size: 22px;
+	align: center top;
+	text-transform: uppercase;
+	font-weight: semi-bold;
+	color: rgb(181, 162, 255);
+	margin-top: 5px;
+}
+
+.VoteOptionDescLabel
+{
+	align: center top;
+	text-align: center;
+	font-size: 14px;
+	padding: 0px 20px;
+}
+
+#VoteResult
+{
+	align: center top;
+	margin-top: 100px;
+	flow-children: down;
+	opacity: 0;
+	transform: scale3d(1.1,1.1,1);
+	transition-property: opacity, transform;
+	transition-delay: .25s;
+	transition-duration: .1s;
+}
+
+#VoteResult.Show
+{
+	transform: scale3d(1,1,1);
+	opacity: 1;
+}
+
+.VoteResultHeader
+{
+	align: center top;
+	flow-children: down;
+}
+
+.VoteResultLabel
+{
+	align: center top;
+	font-size: 32px;
+	text-transform: uppercase;
+	font-weight: semi-bold;
+	letter-spacing: 1px;
+	color: white;
+}
+
+.VoteResultDescLabel
+{
+	align: center top;
+	text-align: center;
+	font-size: 11px;
+}
+
+#ResultVoteOptionProgressbar
+{
+	margin-bottom: 10px;
+}
+
+#VoteConfirmPanel
+{
+	width: 400px;
+	padding: 10px;
+	padding-bottom: 15px;
+	align: center top;
+	margin-top: 210px;
+	flow-children: down;
+	background-color: rgba(0,0,0,0.7);
+	border-radius: 10px;
+	animation-name: GlowVotes;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+	animation-direction: alternate-reverse;
+	transition-property: pre-transform-scale2d, opacity;
+	transition-duration: .15s;
+	pre-transform-scale2d: 0.9;
+	opacity: 0;
+}
+
+#VoteConfirmPanel.ShowConfirm
+{
+	opacity: 1;
+	pre-transform-scale2d: 1;
+}
+
+.VoteConfirmHeader
+{
+	font-size: 25px;
+	align: center top;
+	text-transform: uppercase;
+	font-weight: semi-bold;
+	color: white;
+}
+
+.VoteConfirmVote
+{
+	margin-top: 5px;
+	font-size: 18px;
+	align: center top;
+	text-transform: uppercase;
+}
+
+.Buttons
+{
+	flow-children: right;
+	align: center top;
+	margin-top: 15px;
+	margin-left: -10px;
+}
+
+.ButtonConfirm
+{
+	width: 175px;
+	height: 50px;
+	background-color: rgba(0,0,0,0.4);
+	border: 1px solid rgba(182, 182, 182, 0.2);
+	border-radius: 5px;
+	margin-left: 10px;
+	transition-property: brightness, border;
+	transition-duration: .15s;
+}
+
+.ButtonConfirm:hover
+{
+	brightness: 2;
+	border: 1px solid rgba(182, 182, 182, 0.5);
+}
+
+.ButtonConfirm:hover .ButtonLabel
+{
+	text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+}
+
+.ButtonLabel
+{
+	align: center center;
+	text-align: center;
+	font-size: 23px;
+	text-transform: uppercase;
+	font-weight: bold;
+	color: white;
+	transition-property: text-shadow;
+	transition-duration: .15s;
+}
+
+.VoteInstance.Spectating .VoteOption:hover
+{
+	transform: none;
+	brightness: 1;
+	background-color: rgba(0,0,0,0.2);
+	border: 1px solid rgba(182, 182, 182, 0.12);
+}
+
+.VoteInstance.Spectating .VoteOptionHover
+{
+	visibility: collapse;
+}

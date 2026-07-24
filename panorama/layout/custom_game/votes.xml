@@ -1,0 +1,89 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/custom_game/votes.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/votes.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="VoteInstance">
+			<Panel class="VoteInstance" hittest="false">
+				<DOTAParticleScenePanel id="BackgroundParticle" hittest="false" particleName="particles/votes/votes_back.vpcf" particleonly="true" startActive="true" cameraOrigin="175 0 0" lookAt="0 0 0" fov="100" squarePixels="true" />
+				<Panel id="VoteInstanceInfo" hittest="true" />
+				<Panel class="VoteInstanceHeader" hittest="false">
+					<Label class="VoteInstanceLabel" text="{s:instance_name}" />
+					<Label class="VoteHeaderDescLabel" text="{s:instance_desc}" html="true" />
+				</Panel>
+				<Panel id="VoteInstanceOptions" class="VoteInstanceOptions" hittest="false" />
+			</Panel>
+		</snippet>
+		<snippet name="VoteOption">
+			<Panel class="VoteOption" hittest="true">
+				<Panel class="VoteOptionHover" hittest="true" />
+				<Panel class="VoteOptionHeader" hittest="false">
+					<Label class="VoteOptionLabel" text="{s:option_name}" />
+				</Panel>
+				<Panel id="VoteOptionInfo" hittest="true" />
+				<Panel class="VoteOptionProgress" hittest="false">
+					<Label class="VoteOptionValue" text="{s:option_value}" />
+					<ProgressBar id="VoteOptionProgressbar" class="VoteOptionProgressbar" min="0" value="0" max="1" />
+				</Panel>
+				<Panel id="VoteOptionVoters" class="VoteOptionVoters" hittest="false" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="VotesHUD" hittest="false">
+		<Panel id="VoteBody" hittest="false">
+			<Panel id="VoteBodyContainer" hittest="false">
+				<Panel class="VoteHeader" hittest="false">
+					<Label class="VoteHeaderLabel" text="#VOTES_Header" />
+					<Label class="VoteHeaderDescLabel" text="#VOTES_Header_desc" html="true" />
+					<Label id="VoteHeaderTimerLabel" class="VoteHeaderTimerLabel" text="{s:timer_time}" />
+				</Panel>
+				<Panel id="VotesList" class="VotesList" hittest="false" />
+			</Panel>
+		</Panel>
+		<Panel id="VoteResult" hittest="false">
+			<Panel class="VoteResultHeader" hittest="false">
+				<Label class="VoteResultLabel" text="#VOTES_Result_Header" />
+				<Label class="VoteResultDescLabel" text="#VOTES_Result_Header_desc" html="true" />
+			</Panel>
+			<Panel id="ResultOption" class="VoteOption ResultOption" hittest="false">
+				<DOTAParticleScenePanel id="BackgroundParticle2" hittest="false" particleName="particles/votes/votes_back.vpcf" particleonly="true" startActive="true" cameraOrigin="175 0 0" lookAt="0 0 0" fov="100" squarePixels="true" />
+				<Panel class="VoteOptionHover" hittest="false" />
+				<Panel class="VoteOptionHeader ResultOptionHeader" hittest="false">
+					<Label class="VoteOptionLabel" text="{s:option_name}" hittest="false" />
+				</Panel>
+				<Panel class="VoteOptionProgress" hittest="false">
+					<Label class="VoteOptionValue" text="{s:option_value}" hittest="false" />
+					<ProgressBar id="ResultVoteOptionProgressbar" class="VoteOptionProgressbar" min="0" value="0" max="1" hittest="false" hittestchildren="false" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="VoteConfirmPanel" hittest="false">
+			<Label class="VoteConfirmHeader" text="#VOTES_Confirm_Header" hittest="false" />
+			<Label class="VoteConfirmVote" text="#VOTES_Confirm_Selected" hittest="false" />
+			<Panel class="Buttons" hittest="false">
+				<Panel id="Confirm" class="ButtonConfirm Green" hittest="true">
+					<Label class="ButtonLabel" text="#VOTES_Confirm_Yes" hittest="false" />
+				</Panel>
+				<Panel id="Reject" class="ButtonConfirm Red" hittest="true">
+					<Label class="ButtonLabel" text="#VOTES_Confirm_No" hittest="false" />
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

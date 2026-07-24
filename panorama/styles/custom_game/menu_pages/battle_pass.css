@@ -1,0 +1,400 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.BattlePassMenu
+{
+	width: 100%;
+	height: 100%;
+}
+
+#BackgroundFX
+{
+	width: 100%;
+	height: 100%;
+}
+
+#WidgetPanel
+{
+	margin-top: 85px;
+	align: center top;
+	flow-children: right;
+}
+
+#WidgetCenter
+{
+	width: 500px;
+	flow-children: down;
+}
+
+.WidgetHeader
+{
+	width: 100%;
+	height: 35px;
+}
+
+.WidgetHeaderLabel
+{
+	color: #d2bdff;
+	font-size: 16px;
+	text-transform: uppercase;
+	align: center center;
+	text-align: center;
+	font-weight: semi-bold;
+	letter-spacing: -0.5px;
+}
+
+.WidgetBody
+{
+	width: 100%;
+	height: 350px;
+	border: 1px solid rgba(196, 183, 255, 0.05);
+	box-shadow: 0px 6px 48px -4px rgba(0, 0, 0, 0.5);
+}
+
+#WidgetImage
+{
+	width: 100%;
+	height: 100%;
+	background-position: top;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-image: url("s2r://panorama/images/custom_game/bp_info/1_png.vtex");
+	transition-property: background-image;
+	transition-duration: .15s;
+}
+
+.WidgetBottom
+{
+	align: center bottom;
+	width: 100%;
+	height: 75px;
+	padding-left: 15px;
+	padding-right: 15px;
+	background-color: rgba(0,0,0,0.65);
+}
+
+.WidgetDescLabel
+{
+	align: center center;
+	text-align: center;
+	font-size: 20px;
+	color: rgb(148, 136, 172);
+	text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
+}
+
+#WidgetList
+{
+	height: 25px;
+	align: center center;
+	flow-children: right;
+	margin-top: 10px;
+}
+
+.WidgetButton
+{
+	width: 20px;
+	height: 10px;
+	background-color: rgba(103, 92, 125, 0.5);
+	margin-right: 5px;
+	border-radius: 3px;
+	transition-property: background-color;
+	transition-duration: .15s;
+}
+
+.WidgetButton.Selected
+{
+	background-color: rgba(244, 239, 255, 0.5);
+}
+
+.WidgetButton:hover
+{
+	background-color: rgba(244, 239, 255, 0.5);
+}
+
+.WidgetOverlay
+{
+	width: 100%;
+	height: 100%;
+	background-color: rgb(199, 171, 255);
+	opacity-brush: gradient(linear, 20% 70%, 0% 0%, from(#ffffff00), color-stop(0.5, #ffffff1b), to(#ffffff14));
+}
+
+.ToButton
+{
+	width: 42px;
+	height: 100%;
+	align: left center;
+	background-repeat: no-repeat;
+	background-size: 32px 56px;
+	wash-color: rgb(199, 171, 255);
+	opacity: 0.1;
+	transition-property: opacity;
+	transition-duration: .15s;
+}
+
+.ToButton:hover
+{
+	opacity: 0.5;
+}
+
+.ToLeftButton
+{
+	background-position: left center;
+	background-image: url("s2r://panorama/images/control_icons/arrow_min_left_psd.vtex");
+}
+
+.ToRightButton
+{
+	background-position: right center;
+	background-image: url("s2r://panorama/images/control_icons/arrow_min_right_psd.vtex");
+}
+
+#SubscribeInfo
+{
+	align: center top;
+	flow-children: down;
+	margin-top: 10px;
+	width: 100%;
+}
+
+.SubscribeInfoHeaderLabel
+{
+	font-size: 60px;
+	text-transform: uppercase;
+	font-weight: bold;
+	align: center top;
+	text-align: center;
+	letter-spacing: 1px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(rgb(152, 133, 193)), color-stop(0.5, rgb(209, 188, 255)), to(rgb(243, 237, 255)));
+	text-shadow: 0px 0px 10px rgba(210, 189, 255, 0.345);
+}
+
+.Blick
+{
+	animation-name: NameBlick;
+	animation-duration: 5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	color: rgb(220, 201, 255);
+	text-shadow: none;
+	margin-top: 0;
+	opacity-brush: gradient( linear, 0% 0%, 100% 100%, from( #ffffff00 ), to( #ffffff00 ) );
+}
+
+@keyframes 'NameBlick'
+{
+	0%
+	{
+		opacity-brush: gradient( linear, 0% 0%, 100% 100%, from( #ffffff00 ), to( #ffffff00 ) );
+	}
+	
+	89%
+	{
+		opacity-brush: gradient( linear, 0% 0%, 100% 100%, from( #ffffff00 ), to( #ffffff00 ) );
+	}
+	
+	90%
+	{
+		opacity-brush: gradient( linear, 0% 0%, 100% 100%, from( #ffffffff ), color-stop(0.2, #ffffff00), to( #ffffff00 ) );
+	}
+	
+	92%
+	{
+		opacity-brush: gradient( linear, 0% 0%, 100% 100%, from( #ffffff00 ), color-stop(0.2, #ffffffff), color-stop(0.4, #ffffff00), to( #ffffff00 ) );
+	}
+	
+	94%
+	{
+		opacity-brush: gradient( linear, 0% 0%, 100% 100%, from( #ffffff00 ), color-stop(0.2, #ffffff00), color-stop(0.4, #ffffffff), color-stop(0.6, #ffffff00), to( #ffffff00 ) );
+	}
+	
+	96%
+	{
+		opacity-brush: gradient( linear, 0% 0%, 100% 100%, from( #ffffff00 ), color-stop(0.4, #ffffff00), color-stop(0.6, #ffffffff), color-stop(0.8, #ffffff00), to( #ffffff00 ) );
+	}
+	
+	98%
+	{
+		opacity-brush: gradient( linear, 0% 0%, 100% 100%, from( #ffffff00 ), color-stop(0.6, #ffffff00), color-stop(0.8, #ffffffff), to( #ffffff00 ) );
+	}
+	
+	100%
+	{
+		opacity-brush: gradient( linear, 0% 0%, 100% 100%, from( #ffffff00 ), color-stop(0.8, #ffffff00), to( #ffffffff ) );
+	}
+	
+}
+
+#SubscribeInfoDesc
+{
+	flow-children: right;
+	width: 95%;
+	margin-top: 20px;
+	align: center top;
+	background-color: rgba(0,0,0,0.2);
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+	padding-bottom: 20px;
+}
+
+.SubscribeInfoDescLabel
+{
+	margin-top: 20px;
+	font-size: 20px;
+	width: fill-parent-flow(1);
+	align: center top;
+	text-align: center;
+	color: rgb(148, 136, 172);
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+#SubscribePanel
+{
+	align: center bottom;
+	margin-bottom: 20px;
+	flow-children: down;
+}
+
+.SubscribePanelHeaderLabel
+{
+	color: rgb(210, 189, 255);
+	font-size: 25px;
+	text-transform: uppercase;
+	align: center center;
+	text-align: center;
+	font-weight: semi-bold;
+	letter-spacing: -0.5px;
+}
+
+.SubscribePanelDescLabel
+{
+	font-size: 17px;
+	align: center top;
+	text-align: center;
+	color: rgb(148, 136, 172);
+	width: 460px;
+	margin-bottom: 10px;
+}
+
+#SubscribeButtons
+{
+	flow-children: down;
+	align: center top;
+}
+
+.SubscribeButtonPanel
+{
+	margin-top: 10px;
+	flow-children: right;
+}
+
+.SubscribeButton
+{
+	width: 150px;
+	height: 40px;
+	background-color: gradient(linear, 20% 100%, 0% 0%, from(#221f2aeb), color-stop(0.5, #332b44f4), to(#4b3771f6));
+	border: 1px solid white;
+	border-brush: gradient(linear, 20% 70%, 0% 0%, from(#454150), color-stop(0.5, #4e3a6bef), to(#624ca8ef));
+	box-shadow: #00000000 0px 0px 10px 0px;
+	transition-property: brightness, pre-transform-scale2d;
+	transition-duration: .15s;
+}
+
+.SubscribeButton:hover
+{
+	brightness: 2;
+}
+
+.SubscribeButton:active
+{
+	pre-transform-scale2d: 0.95;
+}
+
+.Wrapper
+{
+	flow-children: right;
+	align: center center;
+}
+
+.SubscribeButtonDescLabel
+{
+	margin-left: 5px;
+	align: left center;
+	font-size: 17px;
+	color: rgb(148, 136, 172);
+}
+
+.SubscribeButtonLabel
+{
+	color: rgb(210, 189, 255);
+	font-size: 20px;
+	text-transform: uppercase;
+	align: left center;
+	text-align: center;
+	font-weight: semi-bold;
+	letter-spacing: -0.5px;
+	margin-left: 10px;
+}
+
+.CrossedText
+{
+	align: left center;
+	margin-right: 5px;
+}
+
+.CrossLine
+{
+	width: 100%;
+	height: 2px;
+	background-color: crimson;
+	align: center center;
+	pre-transform-rotate2d: -30deg;
+}
+
+.SubscribeButtonCoinOldLabel
+{
+	color: rgb(156, 141, 188);
+	font-weight: bold;
+	align: left center;
+	font-size: 16px;
+}
+
+.SubscribeButtonCoinLabel
+{
+	color: rgb(210, 189, 255);
+	font-weight: bold;
+	align: left center;
+	font-size: 20px;
+}
+
+.NewCost
+{
+	color: rgb(156, 255, 149);
+}
+
+.SubscribeButtonCoinIcon
+{
+	margin-left: 3px;
+	background-image: url("s2r://panorama/images/custom_game/donate/battlepass/arena_coin_png.vtex");
+	background-size: 100%;
+	width: 25px;
+	height: 25px;
+	align: left center;
+}
+
+.SubscribePanelPostLabel
+{
+	margin-top: 10px;
+	align: left center;
+	font-size: 14px;
+	color: rgb(148, 136, 172);
+}

@@ -1,0 +1,617 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+@define ANIM_TIME: 0.75s;
+@define EXTRA_PADDING: 0px;
+@define M_EXTRA_PADDING: 0px;
+#RevengeTargetFrame
+{
+	height: 100%;
+	width: 100%;
+	opacity: 1;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_box_sharper_png.vtex");
+}
+
+.CustomHudRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+.CustomHudRoot.EndScreen
+{
+	opacity: 0;
+}
+
+#TopBarScoreboard
+{
+	margin-left: 33%;
+	horizontal-align: left;
+	vertical-align: top;
+}
+
+#ScoreboardContainer
+{
+	flow-children: right;
+	horizontal-align: left;
+	vertical-align: top;
+}
+
+#MultiteamScoreboard
+{
+	horizontal-align: left;
+	vertical-align: top;
+	height: 250px;
+	padding-left: EXTRA_PADDING;
+	padding-right: EXTRA_PADDING;
+	flow-children: right;
+}
+
+.ScoreboardTeamWrapper
+{
+	height: 100%;
+	transition-property: position;
+	transition-duration: ANIM_TIME;
+	margin-left: M_EXTRA_PADDING;
+	margin-right: M_EXTRA_PADDING;
+}
+
+.2x6 .ScoreboardTeamWrapper
+{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+#TeamLogo
+{
+	horizontal-align: left;
+	vertical-align: top;
+	width: 24px;
+	height: 24px;
+}
+
+.ScoreboardTeamWrapper.no_players
+{
+	visibility: collapse;
+}
+
+#ScoreboardTeam
+{
+	margin-left: EXTRA_PADDING;
+	margin-right: EXTRA_PADDING;
+}
+
+.ScoreboardTeamWrapper.team_getting_worse
+{
+	animation-duration: ANIM_TIME;
+	animation-timing-function: ease-in-out;
+	animation-name: GettingWorseAnim;
+	z-index: -100;
+}
+
+.ScoreboardTeamWrapper.team_getting_better
+{
+	animation-duration: ANIM_TIME;
+	animation-timing-function: ease-in-out;
+	animation-name: GettingBetterAnim;
+	z-index: 100;
+}
+
+@keyframes 'GettingWorseAnim'
+{
+	0%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+@keyframes 'GettingBetterAnim'
+{
+	0%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 1.05;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+#TeamStatus
+{
+	width: 100%;
+	height: 100%;
+}
+
+#TeamOverlayBar
+{
+	width: 100%;
+	height: 48px;
+}
+
+.FlowDown
+{
+	flow-children: down;
+}
+
+#PlayerColorBar
+{
+	height: 6px;
+	width: 100%;
+	border-bottom: 1px solid #000000;
+	opacity: 0;
+}
+
+#DisconnectionIndicator
+{
+	opacity: 0;
+	width: 100%;
+	height: 18px;
+	vertical-align: top;
+	margin-top: 10px;
+}
+
+.player_connection_abandoned #DisconnectionIndicator,.player_connection_failed #DisconnectionIndicator,.player_connection_disconnected #DisconnectionIndicator
+{
+	opacity: 1;
+}
+
+#ScoreRow
+{
+	width: 100%;
+}
+
+#RespawnIndicator
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	opacity: 0;
+	transition-property: transform;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-out;
+	z-index: 10;
+}
+
+#RespawnTimer
+{
+	align: center center;
+	font-size: 18px;
+	color: white;
+	text-shadow: 0 0 5px rgb(0, 0, 0);
+	font-weight: bold;
+	margin-bottom: 7px;
+}
+
+.ScoreboardPlayerWrapper.player_dead #RespawnIndicator
+{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+#LocalPlayerIndicator
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	visibility: collapse;
+	width: 40px;
+	height: 20px;
+}
+
+#UltimateIndicatorContainer
+{
+	horizontal-align: center;
+	width: 20px;
+	height: 20px;
+	margin-top: 32px;
+}
+
+.player_ultimate_not_leveled #UltimateIndicatorContainer
+{
+	visibility: collapse;
+}
+
+.not_local_player_team #UltimateIndicatorContainer
+{
+	visibility: collapse;
+}
+
+.UltimateIndicatorShared
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+
+.is_local_player #LocalPlayerIndicator
+{
+	visibility: visible;
+}
+
+#PlayerNamePanel
+{
+	margin-top: 35px;
+	width: 100%;
+	height: 49px;
+	horizontal-align: center;
+	opacity: 1;
+	transition-property: transform;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-out;
+	margin-right: 3px;
+}
+
+#PlayerName
+{
+	color: #ffffff;
+	width: 100%;
+	text-align: center;
+	vertical-align: bottom;
+	font-size: 13px;
+	text-overflow: ellipsis;
+	height: 19px;
+}
+
+.rainbow_nickname_animate
+{
+	animation-name: Colorgradient;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	font-weight: bold;
+	text-shadow: 0px 0px 8px 0 gold;
+}
+
+.rainbow_nickname
+{
+	color: gradient(linear, 100% 0%, 0% 0%, from(rgb(0, 183, 255)), color-stop(0.5, rgb(0, 255, 85)), to(#8e9198));
+	animation-name: raindbow;
+	animation-duration: 2s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'Colorgradient'
+{
+	0%
+	{
+		color: gradient(linear, 100% 0%, 0% 0%, from(#fedd45, color-stop(0.5, #fff700), to(#eebb0a));
+		text-shadow: 0px 0px 8px 0 gold;
+	}
+	
+	25%
+	{
+		color: gradient(linear, 100% 0%, 0% 0%, from(#fff700), color-stop(0.5, #eebb0a), to(#fedd45));
+		text-shadow: 0px 0px 8px 1 gold;
+	}
+	
+	50%
+	{
+		color: gradient(linear, 100% 0%, 0% 0%, from(#eebb0a), color-stop(0.5, #fedd45), to(#fff700));
+		text-shadow: 0px 0px 8px 2 gold;
+	}
+	
+	75%
+	{
+		color: gradient(linear, 100% 0%, 0% 0%, from(#fff700), color-stop(0.5, #eebb0a), to(#fedd45));
+		text-shadow: 0px 0px 8px 1 gold;
+	}
+	
+	100%
+	{
+		color: gradient(linear, 100% 0%, 0% 0%, from(#fedd45), color-stop(0.5, #fff700), to(#eebb0a));
+		text-shadow: 0px 0px 8px 0 gold;
+	}
+	
+}
+
+@keyframes 'raindbow'
+{
+	0%
+	{
+		color: gradient(linear, 100% 0%, 0% 0%, from(rgb(0, 183, 255)), color-stop(0.5, rgb(0, 255, 85)), to(#8e9198));
+	}
+	
+	25%
+	{
+		color: gradient(linear, 100% 0%, 0% 0%, from(rgb(0, 255, 85)), color-stop(0.5, #8e9198), to(rgb(0, 183, 255)));
+	}
+	
+	50%
+	{
+		color: gradient(linear, 100% 0%, 0% 0%, from(#8e9198), color-stop(0.5, rgb(0, 183, 255)), to(rgb(0, 255, 85)));
+	}
+	
+	75%
+	{
+		color: gradient(linear, 100% 0%, 0% 0%, from(rgb(0, 255, 85)), color-stop(0.5, #8e9198), to(rgb(0, 183, 255)));
+	}
+	
+	100%
+	{
+		color: gradient(linear, 100% 0%, 0% 0%, from(rgb(0, 183, 255)), color-stop(0.5, rgb(0, 255, 85)), to(#8e9198));
+	}
+	
+}
+
+#LocalTeamOverlay
+{
+	width: 100%;
+	height: 35px;
+}
+
+.LogoAndScore
+{
+	width: 72px;
+	height: 18px;
+	flow-children: right;
+	margin-top: 44px;
+	box-shadow: inset 0 0 2px rgba(30, 54, 0, 1);
+	background-color: gradient(radial, 50% 50%, 0% 0%, 60% 80%, from(#214d000a), to(#698cff8a));
+	border-radius: 2px;
+	horizontal-align: center;
+	margin-right: 5px;
+}
+
+.2x6 .LogoAndScore
+{
+	width: 100%;
+}
+
+#TeamScore
+{
+	color: white;
+	text-shadow: 0px 0px 2px 2 #000000;
+	font-weight: bold;
+	font-family: 'Radiance';
+	font-size: 14px;
+	vertical-align: center;
+}
+
+#GoldIcon
+{
+	background-image: url("s2r://panorama/images/hud/reborn/gold_small_psd.vtex");
+	background-size: 100% 100%;
+	width: 18px;
+	height: 18px;
+	margin-right: 2px;
+	vertical-align: center;
+}
+
+.GoldPanel
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+#TeamDarkenWash
+{
+	width: 100%;
+	height: 42px;
+	background-color: gradient(linear, 25px 0%, 40px 0%, from(black), to(transparent));
+}
+
+#PlayersContainer
+{
+	flow-children: right;
+}
+
+#HeroIcon
+{
+	width: 75px;
+	height: 40px;
+	opacity-mask: url("s2r://panorama/images/masks/topbar_heroslant_right_psd.vtex");
+}
+
+.player_dead #HeroIcon
+{
+	wash-color: #CCCCCC;
+	saturation: 0;
+}
+
+.player_minigame_dead #HeroIcon
+{
+	wash-color: #CCCCCC;
+	saturation: 0;
+}
+
+.player_connection_abandoned #HeroIcon
+{
+	wash-color: #FF0000;
+	saturation: 0;
+}
+
+.AegisCountPanel
+{
+	background-color: gradient(linear, 100% 0%, 0% 0%, from(rgba(151, 153, 254, 0.6)), to(rgba(60, 87, 27, 0)));
+	height: 16px;
+	width: 70px;
+	margin-top: 26px;
+	horizontal-align: right;
+	margin-right: 5px;
+	flow-children: left;
+}
+
+.AegisIcon
+{
+	width: 13px;
+	height: 13px;
+	background-image: url("s2r://panorama/images/items/topbar/aegis_psd.vtex");
+	background-size: 100% 100%;
+	margin-bottom: 1px;
+	margin-top: 1px;
+	margin-right: 2px;
+	margin-left: 1px;
+}
+
+.AegisCount
+{
+	horizontal-align: center;
+	color: orange;
+	font-size: 12px;
+	font-family: Reaver;
+	font-weight: bold;
+}
+
+.ScoreboardPlayerWrapper
+{
+	width: 80px;
+	height: 135px;
+}
+
+.PlayerPortraitWrapper
+{
+	flow-children: down;
+}
+
+.ScoreboardPlayer
+{
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#4A5637), to(#7DA753));
+	horizontal-align: center;
+}
+
+.BorderImg
+{
+	background-image: url("s2r://panorama/images/custom_game/top_hud/border_png.vtex");
+	background-size: 100%;
+	width: 76px;
+	height: 100%;
+}
+
+#TipButtonCustom
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#e0c59a), to(#ae9249));
+	background-size: 100%;
+	width: 70px;
+	height: 20px;
+	margin-right: 5px;
+	horizontal-align: center;
+	margin-top: 85px;
+	transform: translateY(-8px);
+	border: 1px solid black;
+	opacity: 0;
+	transition-property: transform, opacity, brightness;
+	transition-duration: .15s;
+	transition-timing-function: cubic-bezier(0, 0.9, 0, 0.9);
+}
+
+.AltPressed .not_local_player_team #TipButtonCustom
+{
+	opacity: 0.3;
+	transform: translateY(0px);
+}
+
+.AltPressed .is_local_player #TipButtonCustom
+{
+	opacity: 0.3;
+	transform: translateY(0px);
+}
+
+.AltPressed #TipButtonCustom:hover
+{
+	brightness: 1.1;
+	opacity: 1;
+}
+
+.TipText
+{
+	font-size: 10px;
+	text-shadow: 0px 1px 0px 2.0 black;
+	color: white;
+	align: center center;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: semi-bold;
+}
+
+#LastTimeTimer
+{
+	font-size: 16px;
+	color: white;
+	text-shadow: 1px 2px 3px 3 black;
+	background-color: rgba(0, 0, 0, 0.5);
+	padding: 3px;
+	margin-right: 5px;
+	border-radius: 5px;
+	align: center bottom;
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	transition-property: opacity, transform;
+	transition-duration: .15s;
+	transform: translateY(-8px);
+	opacity: 0;
+}
+
+.TimerWarning #LastTimeTimer
+{
+	color: crimson;
+}
+
+.AltPressed .not_local_player_team .ShowTimer #LastTimeTimer
+{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+#PlayerIsReady
+{
+	width: 10px;
+	height: 10px;
+	align: left top;
+	margin-top: 28px;
+	margin-left: 2px;
+	visibility: collapse;
+	opacity: 1;
+	border-radius: 60%;
+	z-index: 5;
+	box-shadow: inset 0 0 2px rgba(0, 255, 0, 0.5);
+}
+
+#HeroIconEffect
+{
+	width: 100%;
+	height: 100%;
+}
+
+.PlayerHeroIconFX
+{
+	width: 100%;
+	height: 130%;
+	overflow: noclip;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_box_png.vtex");
+	margin-top: -7px;
+}
+
+#TopHero
+{
+	width: 75px;
+	height: 40px;
+}

@@ -1,0 +1,285 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.RoundsTooltip
+{
+	width: 100%;
+	height: 100%;
+}
+
+#Body
+{
+	align: left top;
+	margin-top: 200px;
+	margin-left: 25px;
+	max-width: 800px;
+	max-height: 815px;
+	flow-children: down;
+	opacity: 0;
+	transform: translateY(-28px) scale3d(0.96, 0.96, 0);
+	transition-property: opacity, transform, box-shadow;
+	transition-duration: .15s;
+	transition-timing-function: cubic-bezier(0, 0.9, 0, 0.9);
+	background-color: #252b30;
+	padding: 16px;
+	border: 2px solid black;
+	box-shadow: #00000000 0px 0px 8px 0px;
+}
+
+#Body.ShowCustom
+{
+	opacity: 1;
+	transform: translateY(0) scale3d(1, 1, 0);
+	box-shadow: #00000066 0px 0px 8px 0px;
+}
+
+#Header
+{
+	align: center top;
+	flow-children: down;
+}
+
+.HeaderLabel
+{
+	font-size: 20px;
+	color: white;
+	align: center top;
+	text-transform: uppercase;
+	font-weight: semi-bold;
+	letter-spacing: -1px;
+	text-shadow: 0px 1px 4px 3.0 #000000;
+}
+
+.DescLabel
+{
+	font-size: 14px;
+	align: center top;
+	text-align: center;
+}
+
+.SpecialDesc .DescLabel
+{
+	font-size: 18px;
+	margin-top: 10px;
+	max-width: 500px;
+}
+
+#CreepsList
+{
+	flow-children: right-wrap;
+	align: center top;
+	overflow: squish scroll;
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-top: 10px;
+}
+
+.Creep
+{
+	width: 128px;
+	margin-top: 10px;
+	flow-children: down;
+}
+
+#UnitScene
+{
+	width: 128px;
+	height: 128px;
+	opacity-brush: gradient(linear, 0% 0%, 0% 100%, from(#ffffff00), color-stop(0.1, #ffffff), to(#ffffff));
+	opacity-mask: url("s2r://panorama/images/masks/hero_model_preview_mask_loadout_psd.vtex");
+}
+
+.Row
+{
+	flow-children: right;
+	align: center top;
+	width: 100%;
+}
+
+.Row2
+{
+	flow-children: right;
+	align: left center;
+}
+
+.Row3
+{
+	flow-children: right;
+	align: right center;
+}
+
+.CountPanel
+{
+	width: 32px;
+	height: 32px;
+	margin-top: -25px;
+	align: center top;
+	background-color: rgba(0, 0, 0, 0.8);
+	border-radius: 50%;
+	border: 1px solid rgb(164, 124, 234);
+}
+
+.ValueLabel
+{
+	font-size: 16px;
+	color: white;
+	text-shadow: 0px 1px 4px 2.0 #000000;
+}
+
+.CountPanel .ValueLabel
+{
+	text-align: center;
+	align: center center;
+}
+
+.CreepName
+{
+	align: center top;
+	text-align: center;
+	font-size: 14px;
+	letter-spacing: -1px;
+	color: white;
+	margin-top: 5px;
+	text-shadow: 0px 1px 4px 3.0 #000000;
+	height: 16px;
+}
+
+.Mana
+{
+	background-color: BlueGradientBackgroundColor;
+	width: 100%;
+	height: 20px;
+	margin-left: 5px;
+	margin-right: 5px;
+	border-radius: 5px;
+	margin-top: 5px;
+}
+
+.Health
+{
+	background-color: GreenGradientBackgroundColor;
+	width: 100%;
+	height: 20px;
+	margin-left: 5px;
+	margin-right: 5px;
+	border-radius: 5px;
+	margin-top: 5px;
+}
+
+.Health .ValueLabel,.Mana .ValueLabel
+{
+	align: center center;
+	font-size: 12px;
+}
+
+.ValueLabel2
+{
+	font-size: 10px;
+	color: rgb(211, 211, 211);
+	align: right center;
+	margin-right: 3px;
+	text-shadow: 0px 1px 4px 2.0 #000000;
+}
+
+.Health .ValueLabel2
+{
+	color: #3ED038;
+}
+
+.Mana .ValueLabel2
+{
+	color: #83C2FE;
+}
+
+.CreepInfo
+{
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+	flow-children: down;
+	width: 100%;
+}
+
+.CreepInfo .ValueLabel
+{
+	align: center center;
+	font-size: 12px;
+}
+
+.ValueIcon
+{
+	width: 12px;
+	height: 12px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	align: left center;
+	margin-top: -1px;
+	margin-right: 3px;
+	wash-color: LightestGrey;
+}
+
+#Damage .ValueIcon
+{
+	background-image: url("s2r://panorama/images/hud/reborn/icon_damage_psd.vtex");
+}
+
+#AttackSpeed .ValueIcon
+{
+	background-image: url("s2r://panorama/images/hud/reborn/icon_attack_speed2_psd.vtex");
+}
+
+#AttackRange .ValueIcon
+{
+	background-image: url("s2r://panorama/images/hud/reborn/icon_attack_range_psd.vtex");
+}
+
+#PhysicalResist .ValueIcon
+{
+	background-image: url("s2r://panorama/images/hud/reborn/icon_armor_psd.vtex");
+}
+
+#MagicalResist .ValueIcon
+{
+	background-image: url("s2r://panorama/images/hud/reborn/icon_magic_resist_psd.vtex");
+}
+
+#Resist .ValueIcon
+{
+	background-image: url("s2r://panorama/images/hud/reborn/icon_magic_resist_psd.vtex");
+}
+
+.ValueName
+{
+	color: LightGrey;
+	font-size: 8px;
+	text-transform: uppercase;
+	align: left center;
+}
+
+#AbilitiesList
+{
+	margin-top: 5px;
+	align: center top;
+	flow-children: right-wrap;
+	margin-left: 5px;
+}
+
+.Ability
+{
+	width: 32px;
+	height: 32px;
+	border-radius: 10px;
+	border: 1px solid rgb(148, 148, 148);
+	box-shadow: 0px 0px 10px black;
+	margin-right: 5px;
+}

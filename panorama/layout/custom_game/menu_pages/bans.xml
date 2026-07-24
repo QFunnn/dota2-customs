@@ -1,0 +1,81 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/custom_game/menu_pages/bans.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/ability_colors.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/menu_pages/bans.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="BannedItem">
+			<Panel class="BannedItemRight" hittest="false">
+				<DOTAAbilityImage id="BannedItemAbility" class="BannedItemImage" scaling="stretch-to-cover-preserve-aspect" hittest="true" />
+				<DOTAHeroImage id="BannedItemHero" class="BannedItemImage" scaling="stretch-to-cover-preserve-aspect" hittest="true" />
+				<DOTAHeroImage id="BannedItemHeroOwner" class="BannedItemHeroOwner" heroname="npc_dota_hero_pudge" heroimagestyle="icon" hittest="true" />
+			</Panel>
+		</snippet>
+		<snippet name="CategoryLine">
+			<Panel class="CategoryLine" hittest="true">
+				<Panel class="CategoryLineBack" />
+				<Panel class="CategoryLineColorStripe" hittest="false" />
+				<Label class="CategoryLineLabel" text="{s:category_name}" />
+			</Panel>
+		</snippet>
+		<snippet name="CategoryItem">
+			<Panel class="CategoryItem" hittest="true">
+				<DOTAAbilityImage id="CategoryItemAbilityImage" class="CategoryItemImage" scaling="stretch-to-cover-preserve-aspect" hittest="false" />
+				<DOTAHeroImage id="CategoryItemHeroesImage" class="CategoryItemImage" scaling="stretch-to-cover-preserve-aspect" hittest="false" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="BansMenu" hittest="false">
+		<Panel class="BannedListHeader">
+			<Panel id="BanButtons">
+				<Panel id="ButtonBanned" class="BanPageButton" onactivate="SelectPage(&apos;Banned&apos;)">
+					<Label class="BanPageButtonLabel" text="#current_game_banned" hittest="false" />
+				</Panel>
+				<Label class="DecorDelimeter" text="/" />
+				<Panel id="ButtonUnbannedSSS" class="BanPageButton" onactivate="SelectPage(&apos;UnbannedSSS&apos;)">
+					<Label class="BanPageButtonLabel" text="#current_game_unbanned_sss" hittest="false" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="Pages" hittest="false">
+			<Panel id="PageBanned" class="Pages" hittest="false">
+				<Label class="EmptyMessage" text="#EMPTY_MESSAGE" hittest="false" />
+				<Panel class="BannedListContainer" hittest="false">
+					<Label class="CurrentBannedHeaderLabel" text="#BAN_STATE_Info_Header_Heroes" hittest="false" />
+					<Panel id="CurrentBannedListHeroes" class="BannedListContainerItems" hittest="false" />
+					<Label class="CurrentBannedHeaderLabel" text="#BAN_STATE_Info_Header_Abilities" hittest="false" />
+					<Panel id="CurrentBannedListAbilities" class="BannedListContainerItems" hittest="false" />
+				</Panel>
+			</Panel>
+			<Panel id="PageUnbannedSSS" class="Pages" hittest="false">
+				<Label class="UnbannedSSSBattlePass" text="#NEED_BATTLE_PASS" hittest="false" />
+				<Panel class="InfoContainerBody" hittest="false">
+					<Panel class="InfoContainerCategories" hittest="false">
+						<Label class="InfoContainerCategoriesLabel" text="#BAN_STATE_Info_Header_Categories" hittest="false" />
+						<Panel id="InfoContainerAbilitiesCategoriesList" class="InfoContainerCategoriesList" hittest="true" />
+					</Panel>
+					<Panel class="InfoContainerListBody" hittest="false">
+						<Label class="InfoContainerCategoriesLabel" text="#BAN_STATE_Info_Header_List" hittest="false" />
+						<Panel id="InfoContainerAbilitiesList" class="InfoContainerList" hittest="true" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

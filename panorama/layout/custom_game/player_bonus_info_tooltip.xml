@@ -1,0 +1,41 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/custom_game/player_bonus_info_tooltip.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/player_bonus_info_tooltip.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="Creep">
+			<Panel class="Creep" hittest="false">
+				<DOTAScenePanel id="ExtraCreature" unit="npc_dota_skeleton" renderdeferred="true" hittest="false" antialias="false" particleonly="false" drawbackground="true" light="light" />
+				<Label class="ExtraCreatureCount" text="{s:count}" hittest="false" />
+				<Label class="ExtraCreatureName" text="{s:creep_name}" hittest="false" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="PlayerBonusInfoTooltip" hittest="false" ontooltiploaded="SetupTooltip()">
+		<Label class="HeaderLabel First" text="#ENDSCREEN_BonusInfo_BannedHeroes" hittest="false" />
+		<Panel class="Delimeter" hittest="false" />
+		<Panel id="BannedHeroesContainer" class="Container" hittest="false" />
+		<Label class="HeaderLabel" text="#ENDSCREEN_BonusInfo_BannedAbilities" hittest="false" />
+		<Panel class="Delimeter" hittest="false" />
+		<Panel id="BannedAbilitiesContainer" class="Container" hittest="false" />
+		<Label class="HeaderLabel" text="#ENDSCREEN_BonusInfo_ExtraCreeps" hittest="false" />
+		<Panel class="Delimeter" hittest="false" />
+		<Panel id="ExtraCreepsContainer" class="Container" hittest="false" />
+	</Panel>
+</root>

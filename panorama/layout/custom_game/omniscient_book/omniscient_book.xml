@@ -1,0 +1,61 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/custom_game/omniscient.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/states.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/omniscient_book.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="HeroesTab">
+			<Panel class="HeroesTab">
+				<Panel class="HeroesTabHeader">
+					<Image class="AttributeIcon" />
+					<Label class="AttributeName" text="{s:attribute_name}" />
+				</Panel>
+				<Panel class="HeroesTabLine" />
+				<Panel id="HeroesTabContainer" />
+			</Panel>
+		</snippet>
+		<snippet name="HeroCard">
+			<Panel class="HeroCard">
+				<DOTAHeroImage id="HeroCardImage" heroimagestyle="portrait" scaling="stretch-to-cover-preserve-aspect" />
+			</Panel>
+		</snippet>
+		<snippet name="BanAbility">
+			<Panel class="BanAbility" hittest="true">
+				<DOTAAbilityImage id="BanAbilityImage" scaling="stretch-to-cover-preserve-aspect" hittest="false" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="OmniscientHUD" hittest="false">
+		<Panel class="OmniBody" hittest="false">
+			<Panel class="OmniBack" />
+			<Panel id="OmniContainer" />
+			<Panel id="SelectedHeroPanel" class="SelectedHeroPanel" hittest="false">
+				<Panel id="SelectedHeroImagePanel" class="SelectedHeroImagePanel">
+					<DOTAHeroImage id="SelectedHeroImage" heroname="" heroimagestyle="portrait" scaling="stretch-to-cover-preserve-aspect" />
+				</Panel>
+				<Panel id="AbilitiesContainer" hittest="false" />
+			</Panel>
+		</Panel>
+		<Button id="HideButton" class="ControlButtons" onactivate="HideOmniscient()">
+			<Label class="ControlButtonsLabel" text="#AbilitySelection_Hide" hittest="true" />
+		</Button>
+		<Button id="OmniCloseButton" class="ControlButtons" onactivate="CloseOmniscientFull()">
+			<Label class="ControlButtonsLabel" text="#AbilitySelection_Close" hittest="true" />
+		</Button>
+	</Panel>
+</root>

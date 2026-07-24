@@ -1,0 +1,430 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/custom_game/states.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/shared_styles.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/precache.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/states.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/scripts/const.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="HeroesTab">
+			<Panel class="HeroesTab">
+				<Panel class="HeroesTabHeader">
+					<Image class="AttributeIcon" />
+					<Label class="AttributeName" text="{s:attribute_name}" />
+				</Panel>
+				<Panel class="HeroesTabLine" />
+				<Panel id="HeroesTabContainer" />
+			</Panel>
+		</snippet>
+		<snippet name="HeroCard">
+			<Panel class="HeroCard">
+				<DOTAHeroImage id="HeroCardImage" heroimagestyle="portrait" scaling="stretch-to-cover-preserve-aspect" />
+				<Panel class="FavoriteItem">
+					<Panel class="FavoriteItemIcon" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="BanAbility">
+			<Panel class="BanAbility" hittest="true">
+				<DOTAAbilityImage id="BanAbilityImage" scaling="stretch-to-cover-preserve-aspect" hittest="false" />
+				<Panel class="FavoriteItem">
+					<Panel class="FavoriteItemIcon" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="BannedItem">
+			<Panel class="BannedItemRight" hittest="true">
+				<DOTAAbilityImage id="BannedItemAbility" class="BannedItemImage" scaling="stretch-to-cover-preserve-aspect" hittest="false" />
+				<DOTAHeroImage id="BannedItemHero" class="BannedItemImage" scaling="stretch-to-cover-preserve-aspect" hittest="false" />
+				<Panel class="FavoriteItem">
+					<Panel class="FavoriteItemIcon" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="playerPanel">
+			<Panel class="playerPanel">
+				<Panel class="playerConnectProgress">
+					<Panel id="stateConnect" />
+					<Panel class="loadLine" />
+					<Panel class="playerContent">
+						<Panel id="pp_content">
+							<DOTAAvatarImage id="avatar" steamid="local" />
+							<DOTAUserName id="name" steamid="local" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="PlayerRatingBlock">
+					<Label class="PlayerRatingBlockLabel" id="PlayerRatingBlockLabel" text="{s:player_rating}" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="HeroPickCard">
+			<Panel class="HeroPickCard">
+				<Panel class="HightlightPanel" />
+				<Panel id="HeroPickSceneContainer" />
+				<Panel class="HoverPanel" />
+				<Panel id="HeroPickClickArea" class="HeroPickClickArea" />
+				<Label class="HeroPickCardHeroName" text="{s:hero_name}" />
+				<Image class="AttributeIcon Hero" />
+				<DOTAHeroImage id="HeroIcon" class="HeroIcon" heroimagestyle="icon" scaling="stretch-to-cover-preserve-aspect" hittest="false" />
+				<Panel class="AbilitiesHero">
+					<Panel class="AbilitiesSpecialHero">
+						<Panel id="HeroTalents" />
+						<DOTAAbilityImage id="HeroInnate" />
+						<Panel id="HeroAghanim" />
+					</Panel>
+					<Panel id="HeroStatsButton" class="HeroStatsButton">
+						<Label class="HeroStatsButtonLabel" text="#PICK_STATE_HeroStats_Button" />
+					</Panel>
+					<Panel id="AbilitiesContainer" />
+				</Panel>
+				<Panel class="HeroStatsTooltip" hittest="true">
+					<Panel class="HeroStatsColumns">
+						<Panel class="HeroStatsColumn">
+							<Label class="HeroStatsHeader HeroStatsAttack" text="#PICK_STATE_HeroStats_Attack" />
+							<Panel class="HeroStatsRow">
+								<Label class="HeroStatsLabel" text="#PICK_STATE_HeroStats_AttackSpeed" />
+								<Label class="HeroStatsValue" text="{s:atk_speed}" />
+							</Panel>
+							<Panel class="HeroStatsRow">
+								<Label class="HeroStatsLabel" text="#PICK_STATE_HeroStats_Damage" />
+								<Label class="HeroStatsValue" text="{s:damage}" />
+							</Panel>
+							<Panel class="HeroStatsRow">
+								<Label class="HeroStatsLabel" text="#PICK_STATE_HeroStats_AttackRange" />
+								<Label class="HeroStatsValue" text="{s:attack_range}" />
+							</Panel>
+							<Panel class="HeroStatsRow">
+								<Label class="HeroStatsLabel" text="#PICK_STATE_HeroStats_MoveSpeed" />
+								<Label class="HeroStatsValue" text="{s:move_speed}" />
+							</Panel>
+							<Panel class="HeroStatsRow">
+								<Label class="HeroStatsLabel" text="#PICK_STATE_HeroStats_ManaRegen" />
+								<Label class="HeroStatsValue" text="{s:mana_regen}" />
+							</Panel>
+						</Panel>
+						<Panel class="HeroStatsColumn">
+							<Label class="HeroStatsHeader HeroStatsDefense" text="#PICK_STATE_HeroStats_Defense" />
+							<Panel class="HeroStatsRow">
+								<Label class="HeroStatsLabel" text="#PICK_STATE_HeroStats_Armor" />
+								<Label class="HeroStatsValue" text="{s:armor}" />
+							</Panel>
+							<Panel class="HeroStatsRow">
+								<Label class="HeroStatsLabel" text="#PICK_STATE_HeroStats_PhysResist" />
+								<Label class="HeroStatsValue" text="{s:phys_resist}" />
+							</Panel>
+							<Panel class="HeroStatsRow">
+								<Label class="HeroStatsLabel" text="#PICK_STATE_HeroStats_MagicResist" />
+								<Label class="HeroStatsValue" text="{s:magic_resist}" />
+							</Panel>
+							<Panel class="HeroStatsRow">
+								<Label class="HeroStatsLabel" text="#PICK_STATE_HeroStats_HealthRegen" />
+								<Label class="HeroStatsValue" text="{s:hp_regen}" />
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="HeroStatsAttribute AttrSTR">
+						<Panel class="HeroStatsAttrHeader">
+							<Panel class="HeroStatsAttrIcon IconSTR" />
+							<Label class="HeroStatsAttrValue" text="{s:str_value}" />
+							<Label class="HeroStatsAttrGain" html="true" text="{s:str_gain}" />
+						</Panel>
+						<Label class="HeroStatsAttrDerived" html="true" text="{s:str_derived}" />
+					</Panel>
+					<Panel class="HeroStatsAttribute AttrAGI">
+						<Panel class="HeroStatsAttrHeader">
+							<Panel class="HeroStatsAttrIcon IconAGI" />
+							<Label class="HeroStatsAttrValue" text="{s:agi_value}" />
+							<Label class="HeroStatsAttrGain" html="true" text="{s:agi_gain}" />
+						</Panel>
+						<Label class="HeroStatsAttrDerived" text="{s:agi_derived}" />
+					</Panel>
+					<Panel class="HeroStatsAttribute AttrINT">
+						<Panel class="HeroStatsAttrHeader">
+							<Panel class="HeroStatsAttrIcon IconINT" />
+							<Label class="HeroStatsAttrValue" text="{s:int_value}" />
+							<Label class="HeroStatsAttrGain" html="true" text="{s:int_gain}" />
+						</Panel>
+						<Label class="HeroStatsAttrDerived" text="{s:int_derived}" />
+					</Panel>
+				</Panel>
+				<Panel id="HeroStatsClose" class="HeroStatsClose">
+					<Image class="HeroStatsCloseIcon" src="s2r://panorama/images/custom_game/close_button_png.vtex" />
+				</Panel>
+				<Panel class="LockIconPick" onmouseover="DOTAShowTextTooltip(&apos;#PICK_STATE_HeroLock_Description&apos;)" onmouseout="DOTAHideTextTooltip()" />
+			</Panel>
+		</snippet>
+		<snippet name="PickAbility">
+			<Panel class="PickAbility" hittest="true">
+				<DOTAAbilityImage id="PickAbilityImage" scaling="stretch-to-cover-preserve-aspect" hittest="false" />
+			</Panel>
+		</snippet>
+		<snippet name="CategoryLine">
+			<Panel class="CategoryLine" hittest="true">
+				<Panel class="CategoryLineBack" />
+				<Label class="CategoryLineLabel" text="{s:category_name}" />
+			</Panel>
+		</snippet>
+		<snippet name="CategoryItem">
+			<Panel class="CategoryItem" hittest="true">
+				<DOTAAbilityImage id="CategoryItemAbilityImage" class="CategoryItemImage" scaling="stretch-to-cover-preserve-aspect" hittest="false" />
+				<DOTAHeroImage id="CategoryItemHeroesImage" class="CategoryItemImage" scaling="stretch-to-cover-preserve-aspect" hittest="false" />
+				<Panel class="FavoriteItem">
+					<Panel class="FavoriteItemIcon" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="VoteInstance">
+			<Panel class="VoteInstance" hittest="false">
+				<DOTAParticleScenePanel id="BackgroundParticle" hittest="false" particleName="particles/votes/votes_back.vpcf" particleonly="true" startActive="true" cameraOrigin="175 0 0" lookAt="0 0 0" fov="100" squarePixels="true" />
+				<Panel id="VoteInstanceInfo" hittest="true" />
+				<Panel class="VoteInstanceHeader" hittest="false">
+					<Label class="VoteInstanceLabel" text="{s:instance_name}" />
+					<Label class="VoteHeaderDescLabel" text="{s:instance_desc}" html="true" />
+				</Panel>
+				<Panel id="VoteInstanceOptions" class="VoteInstanceOptions" hittest="false" />
+			</Panel>
+		</snippet>
+		<snippet name="VoteOption">
+			<Panel class="VoteOption" hittest="true">
+				<Panel class="VoteOptionHover" hittest="true" />
+				<Panel class="VoteOptionHeader" hittest="false">
+					<Label class="VoteOptionLabel" text="{s:option_name}" />
+					<Label class="VoteOptionDescLabel" text="{s:option_desc}" html="true" />
+				</Panel>
+				<Panel class="VoteOptionProgress" hittest="false">
+					<ProgressBar id="VoteOptionProgressbar" class="VoteOptionProgressbar" min="0" value="0" max="1" />
+					<Label class="VoteOptionCount" text="{s:option_count}" />
+					<Label class="VoteOptionRating" text="{s:option_rating}" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="ResultRow">
+			<Panel class="ResultRow" hittest="true">
+				<Panel class="ResultName" hittest="false">
+					<Label class="ResultNameLabel" text="{s:result_name}" />
+				</Panel>
+				<Panel class="ResultValue" hittest="false">
+					<Label class="ResultValueLabel" text="{s:result_value}" />
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="States">
+		<Panel id="PlayerLists">
+			<Label id="AverageRatingPlayers" class="AverageRatingPlayers" text="" />
+			<Panel class="LabelsListHaders">
+				<Label class="LabelsListHaders_1" text="#player_name" />
+				<Label class="LabelsListHaders_2" text="#custom_end_screen_legend_ratings" />
+			</Panel>
+			<Panel id="mainList" />
+		</Panel>
+		<Panel id="SocialButtons" class="ShowState">
+			<Panel id="DiscordButton" class="SocialButton" onactivate="ExternalBrowserGoToURL(&apos;https://discord.gg/xyNRWzFe8b&apos;)" />
+			<Panel id="TelegramButton" class="SocialButton" onactivate="ExternalBrowserGoToURL(&apos;https://t.me/AncientArena&apos;)" />
+		</Panel>
+		<Panel id="SettingsState">
+			<Panel id="VoteBody" hittest="false">
+				<Panel class="VoteHeader" hittest="false">
+					<Label class="VoteHeaderLabel" text="#VOTES_Header" />
+					<Label class="VoteHeaderDescLabel" text="#VOTES_Header_desc" html="true" />
+					<Label id="VoteHeaderTimerLabel" class="VoteHeaderTimerLabel" text="{s:timer_time}" />
+				</Panel>
+				<Panel id="VotesList" class="VotesList" hittest="false">
+					<Panel id="CustomCategories" class="CustomCategories" hittest="false">
+						<Panel class="CategoryRow" hittest="false">
+							<Panel class="CategoryBlock" hittest="false">
+								<Label class="CategoryHeader" text="#CUSTOM_VOTES_CAT_PLAYER" />
+								<Panel id="CategoryPlayerVotes" class="CategoryVotesContainer" hittest="false" />
+							</Panel>
+							<Panel class="CategoryBlock" hittest="false">
+								<Label class="CategoryHeader" text="#CUSTOM_VOTES_CAT_ABILITIES" />
+								<Panel id="CategoryAbilitiesVotes" class="CategoryVotesContainer" hittest="false" />
+							</Panel>
+						</Panel>
+						<Panel class="CategoryRow" hittest="false">
+							<Panel class="CategoryBlock" hittest="false">
+								<Label class="CategoryHeader" text="#CUSTOM_VOTES_CAT_CREEPS" />
+								<Panel id="CategoryCreepsVotes" class="CategoryVotesContainer" hittest="false" />
+							</Panel>
+							<Panel class="CategoryBlock" hittest="false">
+								<Label class="CategoryHeader" text="#CUSTOM_VOTES_CAT_ROUNDS" />
+								<Panel id="CategoryRoundsVotes" class="CategoryVotesContainer" hittest="false" />
+							</Panel>
+						</Panel>
+						<Panel class="CategoryRow" hittest="false">
+							<Panel class="CategoryBlock CategoryBlockNarrow" hittest="false">
+								<Label class="CategoryHeader" text="#CUSTOM_VOTES_CAT_SKILLS" />
+								<Panel id="CategorySkillsVotes" class="CategoryVotesContainer" hittest="false" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="Results" hittest="false">
+				<Label id="ResultsHeader" text="#VOTES_Result_mini_Header" />
+				<Label id="ResultsTime" text="{s:results_time}" />
+				<Panel id="ResultsContainer" hittest="false" />
+			</Panel>
+		</Panel>
+		<Panel id="BanState">
+			<Panel id="BanButtons">
+				<Panel id="ButtonDefault" class="BanPageButton" onactivate="SelectPage(&apos;Default&apos;)">
+					<Label class="BanPageButtonLabel" text="#BAN_STATE_DefaultPage" hittest="false" />
+				</Panel>
+				<Label class="DecorDelimeter" text="/" />
+				<Panel id="ButtonInfo" class="BanPageButton" onactivate="SelectPage(&apos;Info&apos;)">
+					<Label class="BanPageButtonLabel" text="#BAN_STATE_InfoPage" hittest="false" />
+				</Panel>
+			</Panel>
+			<Panel id="Pages" hittest="false">
+				<Panel id="PageDefault" class="Pages" hittest="false">
+					<Panel id="HeroesContainer" />
+				</Panel>
+				<Panel id="PageInfo" class="Pages" hittest="false">
+					<Panel id="InfoAbilities" class="InfoContainer" hittest="false">
+						<Panel class="InfoContainerHeader" hittest="false">
+							<Label class="InfoContainerHeaderLabel" text="#BAN_STATE_Info_Header_Abilities" hittest="false" />
+						</Panel>
+						<Panel class="InfoContainerBody" hittest="false">
+							<Panel class="InfoContainerCategories" hittest="false">
+								<Label class="InfoContainerCategoriesLabel" text="#BAN_STATE_Info_Header_Categories" hittest="false" />
+								<Panel id="InfoContainerAbilitiesCategoriesList" class="InfoContainerCategoriesList" hittest="true" />
+							</Panel>
+							<Panel class="InfoContainerListBody" hittest="false">
+								<Label class="InfoContainerCategoriesLabel" text="#BAN_STATE_Info_Header_List" hittest="false" />
+								<Panel id="InfoContainerAbilitiesList" class="InfoContainerList" hittest="true" />
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel id="InfoHeroes" class="InfoContainer" hittest="false">
+						<Panel class="InfoContainerHeader" hittest="false">
+							<Label class="InfoContainerHeaderLabel" text="#BAN_STATE_Info_Header_Heroes" hittest="false" />
+						</Panel>
+						<Panel class="InfoContainerBody" hittest="false">
+							<Panel class="InfoContainerCategories" hittest="false">
+								<Label class="InfoContainerCategoriesLabel" text="#BAN_STATE_Info_Header_Categories" hittest="false" />
+								<Panel id="InfoContainerHeroesCategoriesList" class="InfoContainerCategoriesList" hittest="false" />
+							</Panel>
+							<Panel class="InfoContainerListBody" hittest="false">
+								<Label class="InfoContainerCategoriesLabel" text="#BAN_STATE_Info_Header_List" hittest="false" />
+								<Panel id="InfoContainerHeroesList" class="InfoContainerList" hittest="true" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="MainBan" hittest="false">
+				<Label id="TimerBanState" text="{s:timer}" />
+				<Panel class="BanCenter">
+					<Label id="BattlePassInfo" text="#SubscriberInfoBanType" />
+					<Label class="SelectHeroTip" text="#BAN_STATE_SelectHero" />
+					<Panel class="SelectedHeroPanel" hittest="false">
+						<Panel id="SelectedHeroImagePanel" class="SelectedHeroImagePanel">
+							<DOTAHeroImage id="SelectedHeroImage" heroname="" heroimagestyle="portrait" scaling="stretch-to-cover-preserve-aspect" />
+							<Panel class="FavoriteItem">
+								<Panel class="FavoriteItemIcon" />
+							</Panel>
+						</Panel>
+						<Panel id="AbilitiesContainer" hittest="false" />
+					</Panel>
+					<Panel class="ButtonsPanel" hittest="false">
+						<Panel id="MakeBanButton" class="MakeBanButton" hittest="true" onactivate="MakeBan()">
+							<Panel class="ButtonWrapper" hittest="false">
+								<Label class="MakeBanButtonLabel" text="#ban_abilities" hittest="false" />
+								<Panel hittest="false" class="LockIcon" />
+							</Panel>
+						</Panel>
+						<Label class="BunCountLabel" text="#time_left" />
+						<Panel id="MakeRandomBansButton" class="MakeBanButton" hittest="true" onactivate="MakeRandomBans()" onmouseover="DOTAShowTextTooltip(&apos;#BAN_STATE_RandomBans_Desc&apos;)" onmouseout="DOTAHideTextTooltip()">
+							<Panel class="ButtonWrapper" hittest="false">
+								<Label class="MakeBanButtonLabel" text="#BAN_STATE_RandomBans" hittest="false" />
+								<Panel hittest="false" class="LockIcon" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="BannedList">
+					<Panel class="BannedListHeader">
+						<Label class="BannedListHeaderText" text="#current_game_banned" />
+					</Panel>
+					<Panel class="BannedListContainer">
+						<Panel id="BannedListHeroes" class="BannedListContainerItems" />
+						<Panel id="BannedListAbilities" class="BannedListContainerItems" />
+					</Panel>
+				</Panel>
+				<Panel class="PlayerPopularBans" hittest="false">
+					<Panel class="BannedListHeader">
+						<Label class="BannedListHeaderText" text="#recent_ban_abilities" hittest="false" />
+						<Panel class="InfoPanel" onmouseover="DOTAShowTextTooltip(&apos;#BAN_STATE_FavoriteBans_Desc&apos;)" onmouseout="DOTAHideTextTooltip()" />
+					</Panel>
+					<Panel id="PlayerPopularBansContainer" class="BannedListContainer" hittest="false">
+						<Panel id="PopularBannedListHeroes" class="BannedListContainerItems" hittest="false" />
+						<Panel id="PopularBannedListAbilities" class="BannedListContainerItems" hittest="false" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="PickState">
+			<Label id="TimerPickState" text="{s:timer}" />
+			<Panel class="CurrentBansPick" hittest="false">
+				<Panel class="BannedListHeader">
+					<Label class="BannedListHeaderText" text="#current_game_banned" hittest="false" />
+				</Panel>
+				<Panel class="BannedListContainer" hittest="false">
+					<Panel id="CurrentBannedListHeroes" class="BannedListContainerItems" hittest="false" />
+					<Panel id="CurrentBannedListAbilities" class="BannedListContainerItems" hittest="false" />
+				</Panel>
+			</Panel>
+			<Panel id="PickHeroesContainer" hittest="false" />
+			<Panel id="PickButtons" hittest="false">
+				<Panel class="RerollButton" hittest="true" onactivate="RerollHeroes()" onmouseover="DOTAShowTextTooltip(&apos;#PICK_STATE_Reroll_Desc&apos;)" onmouseout="DOTAHideTextTooltip()">
+					<Panel class="ButtonWrapper" hittest="false">
+						<Label class="RerollButtonLabel" text="#PICK_STATE_Reroll" hittest="false" />
+						<Label class="RerollCount FreeCount" text="{s:reroll_count_free}" />
+						<Label class="RerollCount PaidCount" text="{s:reroll_count_paid}" />
+						<Label class="CoinCounter" text="{s:reroll_price}" />
+						<Panel hittest="false" class="CoinIcon" />
+						<Panel hittest="false" class="LockIcon" />
+					</Panel>
+				</Panel>
+				<Panel class="RandomButton" hittest="true" onactivate="RandomHero()" onmouseover="DOTAShowTextTooltip(&apos;#PICK_STATE_Random_Desc&apos;)" onmouseout="DOTAHideTextTooltip()">
+					<Panel class="ButtonWrapper" hittest="false">
+						<Label class="RerollButtonLabel" text="#PICK_STATE_Random" hittest="false" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="PostPickLabels" hittest="false">
+				<Label class="PostPickLabel" text="#PICK_STATE_YouPickedHero" hittest="false" />
+				<Label class="PostPickLabel Hero" text="{s:hero_name}" hittest="false" />
+				<Label class="PostPickLabel" text="#PICK_STATE_WaitingForOtherPlayers" hittest="false" />
+			</Panel>
+			<Panel id="PlayerCoinsPanel" hittest="false">
+				<Label class="PlayerCoinsPanelHeader" text="#PICK_STATE_CurrentCoins" hittest="false" />
+				<Panel class="PlayerCoinsRow" hittest="false">
+					<Label class="PlayerCoinsLabel" text="{s:player_coins}" hittest="false" />
+					<Panel class="PlayerCoinIcon" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="StateSwitchMsg">
+			<Label class="StateSwitchMsgLabel" text="{s:state_name}" />
+		</Panel>
+	</Panel>
+</root>

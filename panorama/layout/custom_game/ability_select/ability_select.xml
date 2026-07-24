@@ -1,0 +1,65 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/layout/custom_game/ability_select/ability_select.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/ability_select/ability_select.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="AbilitySelectorAbility">
+			<Panel class="AbilitySelectorRoot">
+				<Panel class="AbilityImagePanel">
+					<Panel id="CooldownOverlay" class="Hidden" hittest="false" />
+					<DOTAAbilityImage id="AbilityImage" />
+					<Panel id="AbilityColorContainer" class="AbilityColorEffect">
+						<DOTAParticleScenePanel class="AbilityColorEffectParticle" particleName="particles/ability_select/ability_color_white.vpcf" particleonly="true" startActive="true" cameraOrigin="0 0 165" lookAt="0 0 0" fov="29" squarePixels="true" />
+					</Panel>
+				</Panel>
+				<Panel class="LinkedAbility">
+					<Panel id="LinkedAbilityPlusIcon" class="LinkedAbilityPlusIcon LinkedAbilityCollapse" />
+					<DOTAAbilityImage id="LinkedAbilityImage_1" class="LinkedAbilityCollapse" />
+					<DOTAAbilityImage id="LinkedAbilityImage_2" class="LinkedAbilityCollapse" />
+					<DOTAAbilityImage id="LinkedAbilityImage_3" class="LinkedAbilityCollapse" />
+				</Panel>
+				<Label id="AbilityName" text="" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel style="width:100%;height:100%;" hittest="false">
+		<Panel id="AbilitySelectorPanelRoot" hittest="false">
+			<Panel id="AbilitySelectorPanel">
+				<Panel id="AbilitySelectorPanelTop" class="AbilitySelectorPanelTop" hittest="true" draggable="true">
+					<Label id="AbilitySelectorTitle" text="#AbilitySelectorTitle" />
+					<Button id="AbilitySelector_CloseButtonTop" class="CloseButtonTop" onactivate="CloseAbilitySelect()" onmouseover="DOTAShowTextTooltip(&apos;#AbilitySelection_Close_Description&apos;)" onmouseout="DOTAHideTextTooltip()">
+						<Image src="s2r://panorama/images/control_icons/x_close_png.vtex" />
+					</Button>
+				</Panel>
+				<Panel id="CheatsInfo">
+					<Label class="CheatsInfoLabel" text="#ABILITY_SELECT_Cheats" />
+				</Panel>
+				<Panel id="AbilitySelectorAbilityBody" />
+			</Panel>
+			<Panel id="AbilitySelectButtonPanel">
+				<Button id="AbilitySelector_CloseButton" onactivate="CloseAbilitySelect()" onmouseover="DOTAShowTextTooltip(&apos;#AbilitySelection_Close_Description&apos;)" onmouseout="DOTAHideTextTooltip()">
+					<Label class="AbilitySelection_Close" id="AbilitySelection_Close" text="#AbilitySelection_Close" />
+				</Button>
+				<Button id="AbilitySelector_HideButton" onactivate="HideAbilitySelect()" onmouseover="DOTAShowTextTooltip(&apos;#AbilitySelection_Hide_Description&apos;)" onmouseout="DOTAHideTextTooltip()">
+					<Label class="AbilitySelection_Hide" text="{s:toggled_text}" />
+				</Button>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

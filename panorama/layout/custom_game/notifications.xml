@@ -1,0 +1,194 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/custom_game/notifications.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/notifications.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="LogRow">
+			<Panel class="LogRow">
+				<Panel class="LogRowBackOdd" />
+				<Panel class="LogRowMain">
+					<Panel class="LogRounds">
+						<Label id="LogRound" class="LogRoundLabel LogRowLabel" text="{s:round_num}" hittest="false" />
+					</Panel>
+					<Panel class="LogMessage">
+						<Label id="LogMessage" class="LogMessageLabel LogRowLabel" text="{s:log_text}" hittest="false" html="true" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="LogPageButton">
+			<Panel class="LogPageButton">
+				<Label class="LogPageButtonLabel" text="{s:log_button}" hittest="false" />
+			</Panel>
+		</snippet>
+		<snippet name="DamageInstance">
+			<Panel class="DamageInstance">
+				<Panel class="DamageInstanceImageContainer">
+					<DOTAAbilityImage id="DamageInstanceAbilityImage" class="DamageInstanceImage" scaling="stretch-to-cover-preserve-aspect" hittest="false" />
+					<DOTAItemImage id="DamageInstanceItemImage" class="DamageInstanceImage" scaling="stretch-to-cover-preserve-aspect" hittest="false" />
+					<Panel id="DamageInstanceUnitImage" class="DamageInstanceImage" scaling="stretch-to-cover-preserve-aspect" hittest="false" />
+				</Panel>
+				<Panel class="DamageInstanceInfo">
+					<Label class="DamageInstanceNum" text="{s:instance_damage}" hittest="false" html="true" />
+					<Panel class="DamageInstanceLine" id="DamageInstanceLine">
+						<Panel class="DamageInstanceLineStart" />
+						<Panel class="DamageInstanceLineColor" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="NotificationsHUD" hittest="false">
+		<Panel class="NotificationsMain" hittest="false">
+			<Panel id="NotificationButton" hittest="true" onactivate="ToggleNotifications()">
+				<Label class="NotificationButtonLabel" text="#NOTIFICATIONS_Button" hittest="false" />
+				<Panel class="NotificationButtonIcon" hittest="false" />
+			</Panel>
+			<Panel id="NotificationsMainMenu" class="NotificationsMainMenu" hittest="false">
+				<Panel id="SettingsBody" hittest="false">
+					<Panel id="SettingsHeader">
+						<Label class="SettingsHeaderLabel" text="#NOTIFICATIONS_Settings" hittest="false" />
+					</Panel>
+					<Panel class="SettingsRow">
+						<Label class="SettingsRowLabel" text="#NOTIFICATIONS_Settings_Filter" hittest="false" />
+					</Panel>
+					<Panel class="SettingsRow">
+						<Panel id="only_self" class="SettingsRowButton" onactivate="ToggleFilterSetting(&apos;only_self&apos;)" onmouseover="DOTAShowTextTooltip(#NOTIFICATIONS_Settings_Filter_only_self_Desc)" onmouseout="DOTAHideTextTooltip()">
+							<ToggleButton class="Checkbox" hittest="false" />
+							<Label class="SettingsRowButtonLabel" text="#NOTIFICATIONS_Settings_Filter_only_self" hittest="false" />
+						</Panel>
+					</Panel>
+					<Panel class="SettingsRow">
+						<Panel id="kills" class="SettingsRowButton" onactivate="ToggleFilterSetting(&apos;kills&apos;)" onmouseover="DOTAShowTextTooltip(#NOTIFICATIONS_Settings_Filter_kills_Desc)" onmouseout="DOTAHideTextTooltip()">
+							<ToggleButton class="Checkbox" hittest="false" />
+							<Label class="SettingsRowButtonLabel" text="#NOTIFICATIONS_Settings_Filter_kills" hittest="false" />
+						</Panel>
+					</Panel>
+					<Panel class="SettingsRow">
+						<Panel id="aegis" class="SettingsRowButton" onactivate="ToggleFilterSetting(&apos;aegis&apos;)" onmouseover="DOTAShowTextTooltip(#NOTIFICATIONS_Settings_Filter_aegis_Desc)" onmouseout="DOTAHideTextTooltip()">
+							<ToggleButton class="Checkbox" hittest="false" />
+							<Label class="SettingsRowButtonLabel" text="#NOTIFICATIONS_Settings_Filter_aegis" hittest="false" />
+						</Panel>
+					</Panel>
+					<Panel class="SettingsRow">
+						<Panel id="creep_send" class="SettingsRowButton" onactivate="ToggleFilterSetting(&apos;creep_send&apos;)" onmouseover="DOTAShowTextTooltip(#NOTIFICATIONS_Settings_Filter_creep_send_Desc)" onmouseout="DOTAHideTextTooltip()">
+							<ToggleButton class="Checkbox" hittest="false" />
+							<Label class="SettingsRowButtonLabel" text="#NOTIFICATIONS_Settings_Filter_creep_send" hittest="false" />
+						</Panel>
+					</Panel>
+					<Panel class="SettingsRow">
+						<Panel id="minigames_massarena" class="SettingsRowButton" onactivate="ToggleFilterSetting(&apos;minigames_massarena&apos;)" onmouseover="DOTAShowTextTooltip(#NOTIFICATIONS_Settings_Filter_minigames_massarena_Desc)" onmouseout="DOTAHideTextTooltip()">
+							<ToggleButton class="Checkbox" hittest="false" />
+							<Label class="SettingsRowButtonLabel" text="#NOTIFICATIONS_Settings_Filter_minigames_massarena" hittest="false" />
+						</Panel>
+					</Panel>
+					<Panel class="SettingsRow">
+						<Panel id="last_place_bonus" class="SettingsRowButton" onactivate="ToggleFilterSetting(&apos;last_place_bonus&apos;)" onmouseover="DOTAShowTextTooltip(#NOTIFICATIONS_Settings_Filter_last_place_bonus_Desc)" onmouseout="DOTAHideTextTooltip()">
+							<ToggleButton class="Checkbox" hittest="false" />
+							<Label class="SettingsRowButtonLabel" text="#NOTIFICATIONS_Settings_Filter_last_place_bonus" hittest="false" />
+						</Panel>
+					</Panel>
+					<Panel class="SettingsRow">
+						<Panel id="bets_win" class="SettingsRowButton" onactivate="ToggleFilterSetting(&apos;bets_win&apos;)" onmouseover="DOTAShowTextTooltip(#NOTIFICATIONS_Settings_Filter_bets_win_Desc)" onmouseout="DOTAHideTextTooltip()">
+							<ToggleButton class="Checkbox" hittest="false" />
+							<Label class="SettingsRowButtonLabel" text="#NOTIFICATIONS_Settings_Filter_bets_win" hittest="false" />
+						</Panel>
+					</Panel>
+					<Panel class="SettingsRow">
+						<Panel id="used_book" class="SettingsRowButton" onactivate="ToggleFilterSetting(&apos;used_book&apos;)" onmouseover="DOTAShowTextTooltip(#NOTIFICATIONS_Settings_Filter_used_book_Desc)" onmouseout="DOTAHideTextTooltip()">
+							<ToggleButton class="Checkbox" hittest="false" />
+							<Label class="SettingsRowButtonLabel" text="#NOTIFICATIONS_Settings_Filter_used_book" hittest="false" />
+						</Panel>
+					</Panel>
+					<Panel class="SettingsRow">
+						<Panel id="round_ended" class="SettingsRowButton" onactivate="ToggleFilterSetting(&apos;round_ended&apos;)" onmouseover="DOTAShowTextTooltip(#NOTIFICATIONS_Settings_Filter_round_ended_Desc)" onmouseout="DOTAHideTextTooltip()">
+							<ToggleButton class="Checkbox" hittest="false" />
+							<Label class="SettingsRowButtonLabel" text="#NOTIFICATIONS_Settings_Filter_round_ended" hittest="false" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel id="NotificationBody" hittest="false">
+					<Panel id="MainHeader">
+						<Panel id="SettingsButton" onactivate="ToggleSettings()" />
+						<Panel id="ButtonsContainer">
+							<Panel id="ButtonLog" class="PageButton" onactivate="SelectPage(&apos;Log&apos;)">
+								<Label class="PageButtonLabel" text="#NOTIFICATIONS_Log_button" hittest="false" />
+							</Panel>
+							<Label class="DecorDelimeter" text="/" />
+							<Panel id="ButtonDamage" class="PageButton" onactivate="SelectPage(&apos;Damage&apos;)">
+								<Label class="PageButtonLabel" text="#NOTIFICATIONS_Damage_button" hittest="false" />
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel id="Pages">
+						<Panel id="PageLog" class="Page Empty">
+							<Panel id="LogHeader" class="LogRowHeader">
+								<Panel id="Sortround" class="LogRounds" onactivate="ToggleSort(&apos;round&apos;)" hittest="true">
+									<Panel class="Wrapper">
+										<Label class="LogRoundLabel LogHeaderLabel" text="#NOTIFICATIONS_Row_Header_Rounds" hittest="false" />
+										<Panel class="LogRoundsSortIcon" />
+									</Panel>
+								</Panel>
+								<Panel id="Sorttext" class="LogMessage" onactivate="ToggleSort(&apos;text&apos;)" hittest="true">
+									<Panel class="Wrapper">
+										<Label class="LogMessageLabel LogHeaderLabel" text="#NOTIFICATIONS_Row_Header_Message" hittest="false" />
+										<Panel class="LogRoundsSortIcon" />
+									</Panel>
+								</Panel>
+							</Panel>
+							<Label class="EmptyMessage" text="#EMPTY_MESSAGE" hittest="false" />
+							<Panel id="LogBody">
+								<Panel id="PagesPanel">
+									<Panel id="PagesContainer" />
+								</Panel>
+								<Panel id="LogContainer" />
+							</Panel>
+						</Panel>
+						<Panel id="PageDamage" class="Page">
+							<Panel id="DamageButtonsContainer">
+								<Panel id="ButtonOutgoing" class="DamageButton" onactivate="SelectDamagePage(&apos;Outgoing&apos;)">
+									<Label class="DamageButtonLabel" text="#DamageAbilities" hittest="false" />
+								</Panel>
+								<Panel id="ButtonIncoming" class="DamageButton" onactivate="SelectDamagePage(&apos;Incoming&apos;)">
+									<Label class="DamageButtonLabel" text="#DamageAbilitiesIncome" hittest="false" />
+								</Panel>
+							</Panel>
+							<Panel id="DamagePages" class="Empty">
+								<Label class="NeedBattlePassLabel" text="#NEED_BATTLE_PASS" hittest="false" />
+								<Label class="EmptyMessage" text="#EMPTY_MESSAGE" hittest="false" />
+								<Panel id="PageOutgoing" class="DamagePage">
+									<Panel class="AllDamageHeader">
+										<Label class="AllDamageHeaderLabel" text="{s:all_damage_incoming}" hittest="false" html="true" />
+									</Panel>
+									<Panel id="OutgoingContainer" class="DamageContainer" />
+								</Panel>
+								<Panel id="PageIncoming" class="DamagePage">
+									<Panel class="AllDamageHeader">
+										<Label class="AllDamageHeaderLabel" text="{s:all_damage_incoming}" hittest="false" html="true" />
+									</Panel>
+									<Panel id="IncomingContainer" class="DamageContainer" />
+								</Panel>
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

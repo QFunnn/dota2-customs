@@ -1,0 +1,45 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/player_lose/player_lose.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/player_lose/player_lose.vjs_c" />
+	</scripts>
+	<Panel hittest="false">
+		<Panel id="PlayerLosePanel" class="Hidden" hittest="false">
+			<Label class="PlayerLoseLabel" text="#you_lose" />
+			<Panel class="PlayerLoseRank">
+				<Panel class="PlayerLoseRankInner">
+					<Label id="RankInner1" text="#your_rank" />
+					<Label id="RankInner2" text="8" />
+					<Label id="RankInner3" text="/8" />
+				</Panel>
+			</Panel>
+			<Panel class="DotaMindScore">
+				<Label id="DotaMindLabel" text="#dota_mind_score" />
+				<Panel class="DotaMindScoreInner">
+					<Label id="DotaMindInner1" class="DotaMindInner" text="0" />
+					<Label id="DotaMindInner2" class="DotaMindInner" text="→" />
+					<Label id="DotaMindInner3" class="DotaMindInner" text="0" />
+					<Label id="DotaMindInner4" class="DotaMindInner" />
+				</Panel>
+			</Panel>
+			<Label class="SafeLeaveLabel" text="#safe_leave" />
+			<Button class="ConfirmButton" onactivate="Confirm()">
+				<Label class="ConfirmButtonLabel" text="#game_lose_button" />
+			</Button>
+		</Panel>
+	</Panel>
+</root>

@@ -1,0 +1,113 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/custom_game/zxc_notifications.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/player_report.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/scripts/const.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/zxc_notifications.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/player_report.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="BannedItem">
+			<Panel class="BannedItemRight" hittest="false">
+				<DOTAAbilityImage id="BannedItemAbility" class="BannedItemImage" scaling="stretch-to-cover-preserve-aspect" hittest="true" />
+				<DOTAHeroImage id="BannedItemHero" class="BannedItemImage" scaling="stretch-to-cover-preserve-aspect" hittest="true" />
+				<DOTAHeroImage id="BannedItemHeroOwner" class="BannedItemHeroOwner" heroname="npc_dota_hero_pudge" heroimagestyle="icon" hittest="true" />
+			</Panel>
+		</snippet>
+		<snippet name="CategoryLine">
+			<Panel class="CategoryLine" hittest="true">
+				<Panel class="CategoryLineBack" />
+				<Label class="CategoryLineLabel" text="{s:category_name}" />
+			</Panel>
+		</snippet>
+		<snippet name="CategoryItem">
+			<Panel class="CategoryItem" hittest="true">
+				<DOTAAbilityImage id="CategoryItemAbilityImage" class="CategoryItemImage" scaling="stretch-to-cover-preserve-aspect" hittest="false" />
+				<DOTAHeroImage id="CategoryItemHeroesImage" class="CategoryItemImage" scaling="stretch-to-cover-preserve-aspect" hittest="false" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="ZXCNotificationsHUD" hittest="false">
+		<Panel id="ExtraCreatureBlock" hittest="false">
+			<Panel id="ExtraCreaturePlayerRowBack" />
+			<Panel id="ExtraCreaturePlayerRow">
+				<Label class="ExtraCreaturePlayerRowName" text="{s:caller_player_name}" />
+				<Panel id="ExtraCreaturePlayerHeroIconContainer">
+					<DOTAHeroMovie id="ExtraCreaturePlayerHeroIcon" heroname="pudge" heroimagestyle="portrait" hittest="false" />
+				</Panel>
+				<Label class="ExtraCreaturePlayerHeroName" text="{s:caller_hero_name}" />
+			</Panel>
+			<Label class="ExtraCreepLabel" text="#EXTRA_CREEP_SENDED_TEXT" />
+			<Panel id="ExtraCreaturePanel">
+				<DOTAScenePanel id="ExtraCreature" unit="npc_dota_skeleton" renderdeferred="true" hittest="false" antialias="false" particleonly="false" drawbackground="true" light="light" />
+				<Panel id="ExtraCreepNameLabelPanel">
+					<Label class="ExtraCreepNameLabel" text="{s:creep_name}" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="DuelNotification" hittest="true" draggable="true">
+			<Panel id="DuelNotificationBack" />
+			<Panel id="CloseDuelButton" hittest="true" onactivate="CloseDuelNotificationButton()" />
+			<Label class="DuelNotificationHeader" text="#NOTIFICATION_header" html="true" />
+			<Label class="DuelNotificationDesc" text="#NOTIFICATION_desc" html="true" />
+			<Label class="DuelNotificationEnemy" text="#NOTIFICATION_enemy" html="true" />
+			<Panel id="DuelNotificationEnemyRow">
+				<Panel id="DuelNotificationEnemyRowBack" />
+				<Label class="DuelNotificationEnemyRowName" text="{s:enemy_player_name}" />
+				<Panel id="DuelNotificationEnemyHero">
+					<DOTAHeroMovie id="HeroIcon" class="HeroIcon" heroname="pudge" heroimagestyle="portrait" hittest="false" />
+				</Panel>
+				<Label class="DuelNotificationEnemyRowHeroName" text="{s:enemy_hero_name}" />
+			</Panel>
+		</Panel>
+		<Panel id="PlayerReportRoot" class="PlayerReportRoot" hittest="false">
+			<Panel id="PlayerReportDim" class="PlayerReportDim" hittest="true" onactivate="ClosePlayerReport();" />
+			<Panel class="PlayerReportWindow" hittest="true" onactivate="PlayerReportNoop();">
+				<Panel class="PlayerReportHeader">
+					<Label class="PlayerReportTitle" text="#PlayerReport_Title" />
+					<Panel class="PlayerReportClose" hittest="true" onactivate="ClosePlayerReport();" />
+				</Panel>
+				<Panel class="PlayerReportBody">
+					<Panel class="PlayerReportTargetRow">
+						<Label class="PlayerReportTargetLabel" text="#PlayerReport_Target" />
+						<Label id="PlayerReportTargetName" class="PlayerReportTargetName" text="" />
+					</Panel>
+					<Label class="PlayerReportSectionLabel" text="#PlayerReport_Reason" />
+					<DropDown id="PlayerReportReasonDropdown" class="PlayerReportReasonDropdown" />
+					<Panel class="PlayerReportDescHeader">
+						<Label class="PlayerReportSectionLabel" text="#PlayerReport_Comment" />
+						<Label id="PlayerReportCharCounter" class="PlayerReportCharCounter" text="0/300" />
+					</Panel>
+					<TextEntry id="PlayerReportDescInput" class="PlayerReportDescInput" hittest="true" placeholder="#PlayerReport_CommentPlaceholder" maxchars="300" multiline="true" textmode="normal" />
+					<Label id="PlayerReportError" class="PlayerReportError" text="" />
+					<Panel class="PlayerReportFooter">
+						<Button id="PlayerReportCancel" class="PlayerReportBtn PlayerReportCancelBtn" hittest="true" onactivate="ClosePlayerReport();">
+							<Label text="#PlayerReport_Cancel" />
+						</Button>
+						<Button id="PlayerReportSubmit" class="PlayerReportBtn PlayerReportSubmitBtn" hittest="true">
+							<Label text="#PlayerReport_Submit" />
+						</Button>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="PlayerReportToast" class="PlayerReportToast">
+				<Label id="PlayerReportToastText" class="PlayerReportToastText" text="" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

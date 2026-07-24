@@ -1,0 +1,219 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/custom_game/menu_pages/settings.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/ability_colors.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/menu_pages/settings.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="HighlightColorRow">
+			<Panel class="HighlightColorRow" hittest="false">
+				<Label class="HighlightColorRowLabel" text="{s:label}" />
+				<Panel class="HighlightColorRowSwatch" hittest="true">
+					<Panel class="HighlightColorRowSwatchInner" hittest="false" />
+					<Label class="HighlightSwatchNoColorMark" text="✕" hittest="false" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="HighlightPaletteSwatch">
+			<Panel class="HighlightPaletteSwatch" hittest="true">
+				<Panel class="HighlightPaletteSwatchInner" hittest="false" />
+				<Label class="HighlightSwatchNoColorMark" text="✕" hittest="false" />
+			</Panel>
+		</snippet>
+		<snippet name="HL_PreviewAbility">
+			<Panel class="HL_PreviewAbility" hittest="false">
+				<Panel class="HL_PreviewAbilityButton" hittest="false">
+					<Panel class="HL_PreviewAbilityImagePanel" hittest="false">
+						<DOTAAbilityImage class="HL_PreviewAbilityImage" scaling="stretch-to-cover-preserve-aspect" hittest="false" />
+					</Panel>
+					<DOTAParticleScenePanel class="AbilityColorFx" particleName="particles/ability_select/ability_color_white.vpcf" particleonly="true" startActive="true" cameraOrigin="0 0 190" lookAt="0 0 0" fov="30" squarePixels="true" hittest="false" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="AbilityOrderAbility">
+			<Panel class="AbilityOrderRoot">
+				<Panel>
+					<DOTAAbilityImage id="AbilityImage" />
+				</Panel>
+				<Label id="AbilityName" text="" />
+				<Panel id="ButtonPanel">
+					<Button id="ButtonLeft" />
+					<Button id="LockedAbility" class="LockedAbilityLockRed" />
+					<Button id="ButtonRight" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="KeyBindPanel">
+			<Panel class="KeyBind">
+				<Panel id="KeyBindPanel" class="KeyBindPanel">
+					<Panel id="KeyBindBody" class="KeyBindBody">
+						<Panel class="KeyBindBodyBack" />
+						<DOTAAbilityImage id="BindAbilityImage" />
+						<Panel id="BindImage" />
+					</Panel>
+					<Panel class="KeyBindKeyPanel">
+						<Label class="KeyBindKey" text="{s:keybind}" />
+					</Panel>
+				</Panel>
+				<Label class="KeyBindName" text="{s:keybind_name}" />
+				<Panel id="KeyBindQuickcast" onmouseover="DOTAShowTextTooltip(#keybind_quickcast_desc)" onmouseout="DOTAHideTextTooltip()">
+					<ToggleButton class="Checkbox" id="KeyBindQuickcastCheckbox" />
+					<Label class="KeyBindQuickcastLabel" text="#keybind_quickcast" />
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="SettingsMenu" hittest="true" acceptsfocus="true">
+		<Panel class="MainSettingsContainer">
+			<Panel class="SettingLeft">
+				<Panel class="SettingsHeader">
+					<Label id="BarrageSettingTitle" text="#UISettingTitle" />
+				</Panel>
+				<Panel id="SettingsTopTabs" class="SettingsTopTabs">
+					<Button id="TabGame" class="SettingsTopTab Active" onactivate="OpenSettingsTab(&apos;Game&apos;)">
+						<Label text="#SETTINGS_TAB_GAME" />
+					</Button>
+					<Button id="TabCamera" class="SettingsTopTab" onactivate="OpenSettingsTab(&apos;Camera&apos;)">
+						<Label text="#SETTINGS_TAB_CAMERA" />
+					</Button>
+					<Button id="TabHighlight" class="SettingsTopTab" onactivate="OpenSettingsTab(&apos;Highlight&apos;)">
+						<Label text="#SETTINGS_TAB_HIGHLIGHT" />
+					</Button>
+				</Panel>
+				<Panel id="BarrageSetting" class="TabContent TabGame">
+					<Panel id="DuelNotification" class="SettingRow SettingRowDown">
+						<Panel class="SettingHeader">
+							<Label class="SettingHeaderLabel" text="#SETTINGS_DuelNotification" />
+							<Label id="SettingHeaderValue" class="SettingHeaderValue" text="{s:slider_value}" />
+						</Panel>
+						<Slider id="SettingSlider_DuelNotification" direction="horizontal" class="HorizontalSlider SettingSlider" value="10" min="0" max="10" onvaluechanged="OnChangeSlider(&apos;DuelNotification&apos;)" />
+					</Panel>
+					<Panel id="UICheckBoxes">
+						<Panel class="SettingRow">
+							<Label class="CameraLabel" text="#SETTINGS_Setting_ExtraCreatureNotif" onmouseover="DOTAShowTextTooltip(#SETTINGS_Setting_ExtraCreatureNotif_Desc)" onmouseout="DOTAHideTextTooltip()" />
+							<DropDown id="ExtraCreatureNotifDropdown" style="width: 150px; horizontal-align: right;" />
+						</Panel>
+						<Panel class="SettingRow">
+							<ToggleButton class="Checkbox" id="CheckEffectAbilitySelect" onactivate="TogglEffectAbilitySelect(false)" />
+							<Label class="CameraLabel" id="TextEffectAbilitySelect" text="#effect_ability_select" onmouseover="DOTAShowTextTooltip(#effect_ability_select_hint)" onmouseout="DOTAHideTextTooltip()" onactivate="TogglEffectAbilitySelect(true)" />
+						</Panel>
+						<Panel class="SettingRow">
+							<ToggleButton class="Checkbox" id="CheckHintsAbilitySelect" onactivate="TogglHintsAbilitySelect(false)" />
+							<Label class="CameraLabel" id="TextWidthAbilitySelect" text="#hint_enabled_button" onmouseover="DOTAShowTextTooltip(#hint_enabled_button_hint)" onmouseout="DOTAHideTextTooltip()" onactivate="TogglHintsAbilitySelect(true)" />
+						</Panel>
+						<Panel class="SettingRow">
+							<ToggleButton class="Checkbox" id="CheckNotifications" onactivate="ToggleNotificationsSetting(false)" />
+							<Label class="CameraLabel" id="TextWidthAbilitySelect" text="#notifications_setting" onmouseover="DOTAShowTextTooltip(#notifications_setting_desc)" onmouseout="DOTAHideTextTooltip()" onactivate="ToggleNotificationsSetting(true)" />
+						</Panel>
+						<Panel class="SettingRow">
+							<ToggleButton class="Checkbox" id="CheckPenguinSound" onactivate="TogglePenguinSound(false)" />
+							<Label class="CameraLabel" id="TextWidthAbilitySelect" text="#penguin_sound" onmouseover="DOTAShowTextTooltip(#penguin_sound_desc)" onmouseout="DOTAHideTextTooltip()" onactivate="TogglePenguinSound(true)" />
+						</Panel>
+						<Panel class="SettingRow">
+							<ToggleButton class="Checkbox" id="CheckAutocloseDuelInfo" onactivate="ToggleAutocloseDuelInfo(false)" />
+							<Label class="CameraLabel" id="TextWidthAbilitySelect" text="#SETTINGS_Setting_AutocloseDuelInfo" onmouseover="DOTAShowTextTooltip(#SETTINGS_Setting_AutocloseDuelInfo_Desc)" onmouseout="DOTAHideTextTooltip()" onactivate="ToggleAutocloseDuelInfo(true)" />
+						</Panel>
+						<Panel class="SettingRow">
+							<ToggleButton class="Checkbox" id="CheckAutoopenBetHistory" onactivate="ToggleAutoopenBetHistory(false)" />
+							<Label class="CameraLabel" id="TextWidthAbilitySelect" text="#SETTINGS_Setting_AutoopenBetHistory" onmouseover="DOTAShowTextTooltip(#SETTINGS_Setting_AutoopenBetHistory_Desc)" onmouseout="DOTAHideTextTooltip()" onactivate="ToggleAutoopenBetHistory(true)" />
+						</Panel>
+						<Panel class="SettingRow">
+							<ToggleButton class="Checkbox" id="CheckHideAegisHint" onactivate="ToggleHideAegisHint(false)" />
+							<Label class="CameraLabel" text="#SETTINGS_Setting_HideAegisHint" onmouseover="DOTAShowTextTooltip(#SETTINGS_Setting_HideAegisHint_Desc)" onmouseout="DOTAHideTextTooltip()" onactivate="ToggleHideAegisHint(true)" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="AbilityOrderPanel TabContent TabGame" id="AbilityOrderPanel">
+					<Label id="AbilityOrderTitle" text="#AbilityOrderTitle" />
+					<Label id="AbilityOrderSubTitle" text="#AbilityOrderSubTitle" />
+					<Label id="AbilityOrderSubTitle2" text="#AbilityOrderSubTitle2" />
+					<Panel id="AbilityOrderAbilityBody" />
+				</Panel>
+				<Panel id="CameraSettingBody" class="TabContent TabCamera Hidden">
+					<Panel id="CameraDistance" class="SettingRow SettingRowDown">
+						<Panel class="SettingHeader">
+							<Label class="SettingHeaderLabel" text="#SETTINGS_CameraDistance" />
+							<Panel class="Wrapper">
+								<Label id="SettingHeaderValueCamera" class="SettingHeaderValue" text="{s:slider_value}" />
+								<Button id="ResetCameraButton" class="ResetButton" onactivate="ResetSetting(&apos;CameraDistance&apos;)">
+									<Label text="#SETTINGS_Reset" />
+								</Button>
+							</Panel>
+						</Panel>
+						<Slider id="SettingSlider_CameraDistance" direction="horizontal" class="HorizontalSlider SettingSlider" value="1134" min="1000" max="2000" onvaluechanged="OnChangeSlider(&apos;CameraDistance&apos;)" />
+					</Panel>
+					<Panel id="CameraTabCheckBoxes">
+						<Panel class="SettingRow">
+							<ToggleButton class="Checkbox" id="CheckWatchDuelAfterRound" onactivate="ToggleWatchDuelAfterRound(false)" />
+							<Label class="CameraLabel" text="#SETTINGS_Setting_WatchDuelAfterRound" onmouseover="DOTAShowTextTooltip(#SETTINGS_Setting_WatchDuelAfterRound_Desc)" onmouseout="DOTAHideTextTooltip()" onactivate="ToggleWatchDuelAfterRound(true)" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel id="HighlightSettingBody" class="TabContent TabHighlight Hidden">
+					<Panel id="HL_Toggles">
+						<Panel class="SettingRow">
+							<ToggleButton class="Checkbox" id="HL_Toggle_Master" />
+							<Label class="CameraLabel" text="#HL_master" onactivate="HL_OnToggleLabel(&apos;Master&apos;)" />
+						</Panel>
+						<Panel class="SettingRow">
+							<ToggleButton class="Checkbox" id="HL_Toggle_Sss" />
+							<Label class="CameraLabel" text="#HL_sss" onactivate="HL_OnToggleLabel(&apos;Sss&apos;)" />
+						</Panel>
+						<Panel class="SettingRow">
+							<ToggleButton class="Checkbox" id="HL_Toggle_UseCategories" />
+							<Label class="CameraLabel" text="#HL_use_categories" onactivate="HL_OnToggleLabel(&apos;UseCategories&apos;)" />
+						</Panel>
+					</Panel>
+					<Label class="HighlightColorSectionLabel" text="#HL_SECTION_DEFAULT_COLORS" />
+					<Panel id="HL_ColorRowsBasic" />
+					<Label class="HighlightColorSectionLabel" id="HL_CategoryColorsLabel" text="#HL_SECTION_CATEGORY_COLORS" />
+					<Panel id="HL_ColorRowsCategories" />
+					<Panel id="HL_PalettePopup" class="HL_PalettePopup" hittest="true">
+						<Label class="HL_PalettePopupTitle" text="{s:popup_title}" />
+						<Panel id="HL_PaletteGrid" />
+						<Label class="HL_PreviewGridLabel" text="#HL_PREVIEW_LABEL" />
+						<Panel id="HL_PreviewGrid" />
+						<Panel id="HL_PalettePopupButtons">
+							<Button class="HL_PalettePopupConfirm" onactivate="HL_ConfirmColor()">
+								<Label text="#HL_PALETTE_CONFIRM" />
+							</Button>
+							<Button class="HL_PalettePopupClose" onactivate="ClosePalettePopup()">
+								<Label text="#HL_PALETTE_CLOSE" />
+							</Button>
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="SettingRight">
+				<Panel class="SettingsHeader">
+					<Label id="BarrageSettingTitle" text="#custom_keybindings" />
+				</Panel>
+				<Panel id="KeybindsTabs" class="KeybindsTabs">
+					<Button id="TabAbilities" class="KeybindTab Active" onactivate="OpenBindTab(&apos;Abilities&apos;)">
+						<Label text="#KEYBINDS_TAB_ABILITIES" />
+					</Button>
+					<Button id="TabOther" class="KeybindTab" onactivate="OpenBindTab(&apos;Other&apos;)">
+						<Label text="#KEYBINDS_TAB_OTHER" />
+					</Button>
+				</Panel>
+				<Panel id="SettingsKeybindsList" />
+				<Label id="CurrentGameSettings" text="#SETTINGS_CURRENT" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

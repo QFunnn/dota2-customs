@@ -1,0 +1,258 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.Hidden
+{
+	opacity: 0;
+	visibility: collapse;
+}
+
+#ActorPanel
+{
+	width: 640px;
+	height: 228px;
+	horizontal-align: center;
+	vertical-align: center;
+	flow-children: down;
+	border-radius: 5px;
+	border: 1px solid white;
+	border-brush: gradient( radial, 0% 0%, 2% 10%, 100% 100%, from( rgba(153, 151, 254, 0.4) ), to( rgba(153, 151, 254, 0.05) ) );
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #221f2af2 ), color-stop( 0.5, #201831f0 ), to( #402969ec ) );
+	box-shadow: 1px 3px 14px 2px rgba(0, 0, 0, 0.65);
+	transition-property: opacity;
+	transition-duration: 0.12s;
+}
+
+#ActorPanelTop
+{
+	width: 100%;
+	height: fill-parent-flow( 1.0 );
+}
+
+#ActorPlayer
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+	padding: 30px 30px 8px 30px;
+}
+
+#ActorPlayerImage
+{
+	width: 82px;
+	height: 82px;
+	vertical-align: center;
+	border-radius: 4px;
+	border: 1px solid #8574af;
+	box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+.HeroInfo
+{
+	flow-children: down;
+	vertical-align: center;
+	width: fill-parent-flow( 1.0 );
+	margin-left: 22px;
+	margin-right: 18px;
+}
+
+.PlayerName
+{
+	color: #ffffff;
+	font-family: 'Radiance';
+	font-size: 25px;
+	font-weight: bold;
+	text-shadow: 0px 0px 10px 1 #a06dffef;
+	text-overflow: ellipsis;
+}
+
+.HeroName
+{
+	color: #9488ac;
+	font-family: 'Radiance';
+	font-size: 16px;
+	margin-top: 5px;
+}
+
+#ActorHeroImage
+{
+	width: 148px;
+	height: 82px;
+	vertical-align: center;
+	border-radius: 4px;
+	border: 1px solid #8574af;
+	box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+#ActorActions
+{
+	width: 100%;
+	height: 74px;
+	flow-children: right;
+	padding: 0px 30px;
+	background-color: #14101e66;
+	border-top: 1px solid #5b527355;
+}
+
+#ActorActions.self
+{
+	visibility: collapse;
+}
+
+#ActorMuteBlock
+{
+	flow-children: down;
+	vertical-align: center;
+}
+
+#ActorMuteLabel
+{
+	color: #9488ac;
+	font-family: 'Radiance';
+	font-size: 13px;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+	margin-bottom: 9px;
+}
+
+#ActorMuteOpts
+{
+	flow-children: right;
+}
+
+.ActorMuteOpt
+{
+	flow-children: down;
+	margin-right: 26px;
+	padding: 1px 0px;
+}
+
+.OptLabel
+{
+	color: #b3adca;
+	font-family: 'Radiance';
+	font-size: 17px;
+	white-space: nowrap;
+	transition-property: color;
+	transition-duration: 0.1s;
+}
+
+.ActorMuteOpt:hover .OptLabel
+{
+	color: #ffffff;
+}
+
+.ActorMuteOpt.active .OptLabel
+{
+	color: #ffffff;
+}
+
+.OptStrike
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 2px;
+	vertical-align: center;
+	horizontal-align: center;
+	border-radius: 1px;
+	background-color: #ffffff00;
+	transition-property: background-color;
+	transition-duration: 0.1s;
+}
+
+.ActorMuteOpt.active .OptStrike
+{
+	background-color: #ffd622;
+}
+
+.ActorMuteOpt.active.red .OptStrike
+{
+	background-color: #ff4d4d;
+}
+
+#ActorActionsSpacer
+{
+	width: fill-parent-flow( 1.0 );
+	height: 1px;
+	vertical-align: center;
+}
+
+#ActorActionsDivider
+{
+	width: 1px;
+	height: 42px;
+	margin-right: 22px;
+	vertical-align: center;
+	background-color: #5b527355;
+}
+
+#ActorReportButton
+{
+	flow-children: right;
+	vertical-align: center;
+	padding: 8px 14px;
+	border-radius: 3px;
+	background-color: #00000026;
+	border: 1px solid rgba(224, 96, 96, 0.65);
+	transition-property: background-color;
+	transition-duration: 0.1s;
+}
+
+#ActorReportButton:hover
+{
+	background-color: rgba(224, 96, 96, 0.20);
+}
+
+#ActorReportIcon
+{
+	width: 15px;
+	height: 15px;
+	vertical-align: center;
+	margin-right: 8px;
+	background-image: url("s2r://panorama/images/custom_game/report_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+
+#ActorReportLabel
+{
+	vertical-align: center;
+	color: #e6a39b;
+	font-family: 'Radiance';
+	font-size: 15px;
+	white-space: nowrap;
+}
+
+#ActorDeclineButton
+{
+	ignore-parent-flow: true;
+	width: 26px;
+	height: 26px;
+	horizontal-align: right;
+	vertical-align: top;
+	margin-right: 12px;
+	margin-top: 12px;
+	background-image: url("s2r://panorama/images/control_icons/24px/x_close.vsvg");
+	background-size: 56%;
+	background-position: center;
+	background-repeat: no-repeat;
+	wash-color: #b9aee0;
+	transition-property: wash-color;
+	transition-duration: 0.1s;
+}
+
+#ActorDeclineButton:hover
+{
+	wash-color: #ffffff;
+}

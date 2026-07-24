@@ -1,0 +1,556 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.BetsHUD
+{
+	width: 100%;
+	height: 100%;
+}
+
+#BetHistoryHeader
+{
+	flow-children: right;
+	margin-top: 10px;
+	margin-right: 5px;
+	align: right top;
+}
+
+.HUDFlipped #BetHistoryHeader
+{
+	align: left top;
+	margin-right: 0px;
+	margin-left: 5px;
+}
+
+.BetHistoryHeaderLabel
+{
+	color: white;
+	font-size: 16px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	text-shadow: 0px 0px 10px 1 #a06dffef;
+}
+
+.Wrapper
+{
+	flow-children: down;
+	align: center center;
+}
+
+.BetHistoryAll
+{
+	flow-children: right;
+	align: center top;
+	margin-top: 3px;
+}
+
+.BetHistoryAllLabel
+{
+	font-size: 7px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	align: left center;
+	color: rgb(255, 238, 162);
+	text-shadow: 0px 0px 5px rgba(255, 208, 22, 0.4);
+}
+
+.BetHistoryNum
+{
+	font-family: monospaceNumbersFont;
+	font-weight: bold;
+	font-size: 11px;
+	color: rgb(255, 208, 22);
+	text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.7);
+	align: left center;
+}
+
+.LoseGold .BetHistoryNum
+{
+	color: rgb(255, 57, 22);
+}
+
+.LoseGold .BetHistoryAllLabel
+{
+	color: rgb(255, 171, 162);
+	text-shadow: 0px 0px 5px rgba(255, 30, 22, 0.4);
+}
+
+.BetHistoryGoldIcon
+{
+	background-image: url("s2r://panorama/images/hud/reborn/gold_small_psd.vtex");
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 13px;
+	height: 13px;
+	align: left center;
+}
+
+#BetHistoyMain .BetHistoryAll
+{
+	align: right top;
+	margin-right: 8px;
+}
+
+.HUDFlipped #BetHistoyMain .BetHistoryAll
+{
+	align: left top;
+	margin-right: 0px;
+	margin-left: 5px;
+}
+
+#BetHistoyMain .BetHistoryAllLabel
+{
+	font-size: 11px;
+}
+
+#BetHistoyMain .BetHistoryNum
+{
+	font-size: 13px;
+}
+
+#BetHistoyMain .BetHistoryGoldIcon
+{
+	width: 16px;
+	height: 16px;
+}
+
+.HUDFlipped #BetHistoyMain
+{
+	align: left top;
+	transform: translateX(-100px);
+	background-color: gradient(linear, 100% 0%, 0% 0%, from(#18161d00), color-stop(0.2, #18161d00), color-stop(0.5, #201831f1), color-stop(0.9, #402969eb), to(#6d4aa9e8));
+	border-brush: gradient(linear, 100% 0%, 0% 0%, from(#8574af00), color-stop(0.2, #8574af00), color-stop(0.5, #a06dffef), to(#a06dffef));
+	border-left: 2px solid white;
+	border-right: 0px solid #a06dffef;
+}
+
+#BetHistoyMain
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#18161d00), color-stop(0.2, #18161d00), color-stop(0.5, #201831f1), color-stop(0.9, #402969eb), to(#6d4aa9e8));
+	border: 1px solid white;
+	border-left: 0px solid white;
+	border-right: 2px solid #a06dffef;
+	border-brush: gradient(linear, 0% 0%, 100% 0%, from(#8574af00), color-stop(0.2, #8574af00), color-stop(0.5, #a06dffef), to(#a06dffef));
+	flow-children: down;
+	width: 450px;
+	max-height: 350px;
+	margin-top: 600px;
+	padding-bottom: 10px;
+	align: right top;
+	opacity: 0;
+	transform: translateX(100px);
+	transition-property: opacity, transform;
+	transition-duration: .25s;
+	transition-timing-function: cubic-bezier(0, 0.9, 0, 0.9);
+}
+
+#BetHistoyMain.Show
+{
+	opacity: 1;
+	transform: translateX(0);
+}
+
+#BetHistoryButton
+{
+	flow-children: down;
+	align: right center;
+	width: 150px;
+	height: 40px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#221f2a8a), color-stop(0.5, #201831bd), to(#402969ad));
+	border: 2px solid white;
+	border-bottom: 3px solid white;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#413a51), color-stop(0.5, #4e3a6bef), to(#633ea9ef));
+	margin-right: 15px;
+	transition-property: brightness, box-shadow, border-brush, pre-transform-scale2d;
+	transition-duration: .15s;
+}
+
+#BetHistoryButtonLabel
+{
+	font-size: 10px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	text-align: center;
+	align: center center;
+	text-shadow: 1px 2px 3px 1 rgba(0, 0, 0, 0.5);
+	color: rgb(210, 189, 255);
+	transition-property: color, text-shadow;
+	transition-duration: .15s;
+}
+
+#BetHistoryButtonLabel2
+{
+	font-size: 15px;
+}
+
+#BetHistoryButton:hover
+{
+	brightness: 2;
+}
+
+#BetHistoryButton:active
+{
+	pre-transform-scale2d: 0.95;
+}
+
+#BetHistoryButton.Show
+{
+	box-shadow: 0px 0px 10px #a06dff39;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#6a5f83), color-stop(0.5, #6c5195ef), to(#7c4fcfef));
+}
+
+.Show #BetHistoryButtonLabel
+{
+	color: white;
+	text-shadow: 0px 0px 10px 1 #a06dffef;
+}
+
+#BetHistoryContainer
+{
+	flow-children: down;
+	overflow: squish scroll;
+	width: 100%;
+}
+
+#BetHistoryContainer #VerticalScrollBar
+{
+	width: 6px;
+	height: 100%;
+	visibility: visible;
+	horizontal-align: right;
+	layout-position: fixed;
+	background-color: black;
+}
+
+#BetHistoryContainer #ScrollThumb
+{
+	min-height: 32px;
+	background-color: #b58effef;
+	border: 1px solid #aaaaaa22;
+	border-right: 1px solid #000000aa;
+}
+
+.Empty #BetHistoryContainer
+{
+	visibility: collapse;
+}
+
+#BetHistoryEmptyTitle
+{
+	color: #9488ac;
+	text-shadow: 1px 2px 3px rgba(0, 0, 0, 1);
+	font-size: 14px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	align: right top;
+	margin-top: 5px;
+	margin-right: 5px;
+	visibility: collapse;
+}
+
+.Empty #BetHistoryEmptyTitle
+{
+	visibility: visible;
+}
+
+.HistoryItemPanel
+{
+	flow-children:left;
+	align: right top;
+	margin-top: 5px;
+	padding-right: 5px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	width: 100%;
+}
+
+.HUDFlipped .HistoryItemPanel
+{
+	align: left top;
+	flow-children: right;
+	padding-right: 0px;
+	padding-left: 5px;
+}
+
+.PlusGold
+{
+	background-color: gradient( linear, 100% 0%, 0% 0%, from( #20c0122c ), to( rgba(0, 0, 0, 0) ) );
+}
+
+.MinusGold
+{
+	background-color: gradient( linear, 100% 0%, 0% 0%, from( #c012122c ), to( rgba(0, 0, 0, 0) ) );
+}
+
+.HUDFlipped .PlusGold
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #20c0122c ), to( rgba(0, 0, 0, 0) ) );
+}
+
+.HUDFlipped .MinusGold
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #c012122c ), to( rgba(0, 0, 0, 0) ) );
+}
+
+.RoundPanel
+{
+	flow-children: down;
+	align: left center;
+	margin-right: 5px;
+	margin-left: 15px;
+}
+
+.HUDFlipped .RoundPanel
+{
+	margin-right: 15px;
+	margin-left: 5px;
+}
+
+.RoundNum
+{
+	font-size: 20px;
+	color: white;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-family: monospaceNumbersFont;
+	text-shadow: 0px 0px 10px 1 #a06dffef;
+	align: center center;
+}
+
+.RoundLabel
+{
+	font-size: 10px;
+	color: #9488ac;
+	text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.9);
+	align: left center;
+}
+
+.PlayerPanel
+{
+	flow-children: right;
+	align: left center;
+}
+
+.HUDFlipped .PlayerPanel
+{
+	flow-children: left;
+}
+
+.PlayerPanel.BettedToThis
+{
+	background-color: rgba(255, 217, 0, 0.05);
+	border-radius: 5px;
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+.WinnerIcon
+{
+	width: 16px;
+	height: 16px;
+	align: left center;
+	margin-left: 3px;
+	margin-right: 3px;
+	background-image: url("s2r://panorama/images/custom_game/crown_icon_png.vtex");
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	wash-color: gold;
+	img-shadow: 0px 0px 1px black;
+	visibility: collapse;
+}
+
+.Winner .WinnerIcon
+{
+	visibility: visible;
+}
+
+.PlayerNames
+{
+	flow-children: down;
+	margin-left: 2px;
+	align: left center;
+	max-width: 75px;
+}
+
+.HUDFlipped .PlayerNames
+{
+	margin-left: 0px;
+	margin-right: 2px;
+}
+
+#SecondTeam .PlayerNames
+{
+	align: right center;
+	margin-left: 0px;
+	margin-right: 2px;
+}
+
+.HUDFlipped #SecondTeam .PlayerNames
+{
+	margin-left: 2px;
+	margin-right: 0px;
+}
+
+.PlayerHeroIcon
+{
+	width: 32px;
+	height: 32px;
+	align: left center;
+}
+
+.PlayerName
+{
+	font-size: 12px;
+	color: white;
+	text-shadow: 0px 0px 10px 1 #a06dffef;
+	height: 14px;
+	text-overflow: shrink;
+}
+
+#SecondTeam .PlayerName
+{
+	text-align: right;
+}
+
+.HUDFlipped #SecondTeam .PlayerName
+{
+	text-align: left;
+}
+
+.HUDFlipped .PlayerName
+{
+	text-align: right;
+}
+
+.PlayerHeroName
+{
+	font-size: 10px;
+	color: #9488ac;
+	text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.7);
+	text-align: left;
+	text-overflow: shrink;
+	height: 12px;
+}
+
+#SecondTeam .PlayerName
+{
+	align: right top;
+}
+
+#SecondTeam .PlayerHeroName
+{
+	align: right top;
+	text-align: right;
+}
+
+.HUDFlipped .PlayerName
+{
+	align: right top;
+}
+
+.HUDFlipped .PlayerHeroName
+{
+	align: right top;
+	text-align: right;
+}
+
+.HUDFlipped #SecondTeam .PlayerName
+{
+	align: left top;
+}
+
+.HUDFlipped #SecondTeam .PlayerHeroName
+{
+	align: left top;
+	text-align: left;
+}
+
+.HistoryGoldPanel
+{
+	margin-right: 20px;
+	align: left center;
+	flow-children: right;
+	margin-top: 3px;
+	visibility: visible;
+}
+
+.HUDFlipped .HistoryGoldPanel
+{
+	margin-right: 0px;
+	margin-left: 20px;
+}
+
+.IsLocalLose .HistoryGoldPanel
+{
+	visibility: collapse;
+}
+
+.HistoryGoldNum
+{
+	font-family: monospaceNumbersFont;
+	font-weight: bold;
+	font-size: 16px;
+	color: rgb(255, 208, 22);
+	text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.7);
+	align: left center;
+}
+
+.MinusGold .HistoryGoldNum
+{
+	color: rgb(255, 57, 22);
+}
+
+.HistoryGoldIcon
+{
+	background-image: url("s2r://panorama/images/hud/reborn/gold_small_psd.vtex");
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 20px;
+	height: 20px;
+	margin-top: -2px;
+	align: left center;
+}
+
+#Vs
+{
+	align: left center;
+	font-size: 20px;
+	color: white;
+	text-shadow: 0px 0px 10px 1 #a06dffef;
+	text-transform: uppercase;
+	font-weight: bold;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.ResultLabel
+{
+	color: rgb(255, 57, 22);
+	font-size: 12px;
+	align: left center;
+	margin-right: 15px;
+	visibility: collapse;
+}
+
+.HUDFlipped .ResultLabel
+{
+	margin-right: 0px;
+	margin-left: 15px;
+}
+
+.IsLocalLose .ResultLabel
+{
+	visibility: visible;
+}

@@ -1,0 +1,45 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/custom_game/skills.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/skills.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="SkillRow">
+			<Panel class="Skill_full" hittest="true">
+				<Panel id="SkillPanel" class="SkillPanel" scaling="stretch-to-cover-preserve-aspect" hittest="true">
+					<Panel id="CooldownOverlay" class="CooldownOverlay" hittest="true" />
+				</Panel>
+				<Label class="SkillPanelLabelDescN" text="{s:skill_desc}" html="true" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="SkillsHUD" hittest="false">
+		<Panel class="SkillSelectorPanelRoot" id="SkillSelectorPanelRoot">
+			<Panel class="SkillSelectorPanel" id="SkillSelectorPanel">
+				<Panel class="HeaderSkill">
+					<Panel class="info_panel_hover" id="info_panel_hover" />
+					<Label id="SkillSelectorTitle" text="#SkillSelectorTitle" />
+					<Button id="SkillSelector_CloseButtonTop" class="CloseButtonTopSkill" onactivate="CloseSkillSelecting()" onmouseover="DOTAShowTextTooltip(&apos;#SkillSelection_Close_Description&apos;)" onmouseout="DOTAHideTextTooltip()">
+						<Image src="s2r://panorama/images/control_icons/x_close_png.vtex" />
+					</Button>
+				</Panel>
+				<Panel class="SkillSelectorSkillBody" id="SkillSelectorSkillBody" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

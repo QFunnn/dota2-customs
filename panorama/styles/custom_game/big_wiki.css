@@ -1,0 +1,287 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.WikiMain
+{
+	width: 100%;
+	height: 100%;
+}
+
+._Main
+{
+	width: 1350px;
+	height: 900px;
+	align: center center;
+	opacity: 0;
+	transform: translateY(-50px);
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( rgba(22,22,56,0.9) ), to( rgba(46,45,102,0.8) ) );
+	border: 1px solid white;
+	border-brush: gradient( linear, 0% 0%, 20% 70%, from( #a4a3ff ), to( rgba(115, 114, 174, 0.8) ) );
+	box-shadow: #00000000 0px 0px 10px 1px;
+	transition-property: opacity, transform, box-shadow;
+	transition-duration: .2s;
+	border-radius: 2px;
+}
+
+._Main.Show
+{
+	box-shadow: #00000069 0px 0px 10px 1px;
+	opacity: 1;
+	transform: translateY(0);
+}
+
+#_MainContainer
+{
+	width: 100%;
+	height: 100%;
+	margin: 5px;
+	flow-children: right;
+}
+
+#_CloseButton
+{
+	width: 26px;
+	height: 26px;
+	background-image: url("s2r://panorama/images/control_icons/24px/x_close.vsvg");
+	background-size: 20px 20px;
+	background-position: center;
+	background-repeat: no-repeat;
+	wash-color: white;
+	transition-property: wash-color;
+	transition-duration: 0.1s;
+	img-shadow: 1px 2px 3px black;
+	margin-top: 1px;
+	align: right top;
+}
+
+#_CloseButton:hover
+{
+	wash-color: rgb(163, 131, 251);
+}
+
+#_Buttons
+{
+	flow-children: down;
+	width: 250px;
+	height: 100%;
+	background-color: rgba(0,0,0,0.3);
+	box-shadow: 1px 0px 10px -1px rgba(0, 0, 0, 0.3);
+}
+
+#_ButtonsScrollable
+{
+	width: 100%;
+	flow-children: down;
+	overflow: squish scroll;
+}
+
+#_ButtonsFixed
+{
+	width: 100%;
+	align: left bottom;
+	flow-children: down;
+	background-color: rgba(0,0,0,0.4);
+}
+
+._Button
+{
+	width: 100%;
+	flow-children: right;
+	transition-property: brightness, position;
+	transition-duration: .1s;
+	border-left: 1px solid rgb(86, 79, 100);
+}
+
+._Button.Selected
+{
+	background-color: gradient(linear, 100% 0%, 0% 0%, from(rgba(77, 48, 165, 0)), color-stop(0.7, rgba(116, 80, 208, 0.55)), to(rgba(143, 124, 210, 0.518)));
+	border-left: 1px solid rgb(255, 255, 255);
+}
+
+._Button:hover
+{
+	brightness: 1.4;
+}
+
+._Button:hover ._ButtonLabel
+{
+	color: rgb(203, 189, 231);
+}
+
+._Button.Selected ._ButtonIcon
+{
+	opacity: 1.0;
+	color: rgb(193, 164, 255);
+}
+
+._Button.Selected ._ButtonLabel
+{
+	color: rgb(193, 164, 255);
+}
+
+._Group ._Button.Selected ._ButtonLabel
+{
+	color: rgb(255, 255, 255);
+}
+
+._ButtonBack
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0.8;
+	background-color: gradient(linear, 100% 0%, 0% 0%, from(rgba(77, 48, 165, 0.5)), color-stop(0.7, rgba(116, 80, 208, 0.55)), to(rgba(191, 174, 255, 0.518)));
+	opacity-brush: gradient(linear, 100% 0%, 0% 0%, from(rgba(255, 255, 255, 0)), color-stop(0.3, rgba(255, 255, 255, 0.55)), to(rgba(255, 255, 255, 0.518)));
+	transition-property: opacity, opacity-brush;
+	transition-duration: .1s;
+}
+
+._Button:hover ._ButtonIcon
+{
+	opacity: 1.0;
+	color: rgb(203, 189, 231);
+}
+
+._ButtonIcon
+{
+	width: 20px;
+	height: 20px;
+	margin-left: 12px;
+	margin-right: 10px;
+	align: left center;
+	opacity: 0.8;
+	wash-color: rgb(210, 189, 255);
+	transition-property: opacity, wash-color;
+	transition-duration: 0.2s;
+}
+
+._ButtonLabel
+{
+	padding: 10px;
+	font-size: 19px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-shadow: 0px 2px 4px #000000;
+	font-weight: semi-bold;
+	vertical-align: center;
+	color: gradient(linear, 0px 100%, 0px 0px, from(rgb(148, 136, 172)), to(rgb(185, 170, 214)));
+	transition-property: color;
+	transition-duration: .1s;
+}
+
+._Group
+{
+	width: 100%;
+	flow-children: down;
+	height: 0px;
+	transition-property: height, opacity, transform;
+	transition-duration: .1s;
+}
+
+._Group.Selected
+{
+	height: fit-children;
+}
+
+._Group ._Button
+{
+	background-color: rgba(0, 0, 0, 0.15);
+	border-left: 2px solid rgba(86, 79, 100, 0.5);
+	margin-left: 15px;
+	margin-top: 2px;
+	width: 235px;
+	padding: 7px 0px;
+}
+
+._Group ._Button:first-child
+{
+	margin-top: 5px;
+}
+
+._Group ._Button:last-child
+{
+	margin-bottom: 5px;
+}
+
+._Group ._Button:hover
+{
+	background-color: rgba(0, 0, 0, 0.25);
+}
+
+._Group ._Button.Selected
+{
+	background-color: gradient(linear, 235px 0px, 0px 0px, from(rgba(66, 55, 93, 0)), color-stop(0.7, rgba(66, 55, 93, 0.55)), to(rgba(122, 112, 156, 0.518)));
+	border-left: 2px solid rgb(180, 150, 220);
+}
+
+._Group ._ButtonIcon
+{
+	margin-left: 20px;
+	margin-right: 6px;
+	width: 16px;
+	height: 16px;
+	opacity: 0.7;
+	color: #ffffff;
+	transition-property: opacity, color;
+	transition-duration: 0.2s;
+}
+
+._Group ._Button:hover ._ButtonIcon
+{
+	opacity: 1.0;
+	color: rgb(203, 189, 231);
+}
+
+._Group ._Button.Selected ._ButtonIcon
+{
+	opacity: 1.0;
+	color: rgb(255, 255, 255);
+}
+
+._Group ._ButtonLabel
+{
+	margin-left: 0px;
+	padding: 7px;
+	padding-left: 0px;
+	font-size: 16px;
+	text-transform: none;
+	letter-spacing: 0.5px;
+}
+
+#_Container
+{
+	width: 100%;
+	height: 100%;
+}
+
+._Category
+{
+	width: 100%;
+	height: 100%;
+	margin-left: 5px;
+	padding: 20px;
+	flow-children: down;
+	overflow: squish scroll;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: .1s;
+}
+
+._Category.Selected
+{
+	opacity: 1;
+}
+
+#AI_HELPER
+{
+	overflow: noclip;
+	height: fit-children;
+}

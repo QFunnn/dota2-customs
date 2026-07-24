@@ -1,0 +1,55 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/custom_game/menu_pages/leaderboard.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/menu_pages/leaderboard.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="Season">
+			<Panel class="Season">
+				<Label text="{s:SeasonName}" class="SeasonName" />
+				<Label text="{s:SeasonDates}" class="SeasonDates" />
+				<Panel class="SeasonInfo" hittest="false">
+					<Label text="#season_current" class="SeasonCurrent" />
+					<Label text="#season_selected" class="SeasonSelected" />
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="LeaderboardHUD" hittest="false">
+		<Panel class="LeaderboardContainer" hittest="false">
+			<Panel class="LeaderboardSeasons" hittest="false">
+				<Panel class="SeasonsHeader">
+					<Label text="#seasons_header" class="SeasonsHeaderLabel" />
+				</Panel>
+				<Panel id="SeasonsContainer" class="SeasonsContainer" hittest="false" />
+			</Panel>
+			<Panel class="LeaderboardPlayers" hittest="false">
+				<Panel class="RankContainerHeader" id="RankContainerHeaderSolo">
+					<Label text="#cha_leaderboard_rank" class="cha_leaderboard_rank" />
+					<Label text="#player" class="cha_leaderboard_map" />
+					<Label text="#cha_leaderboard_rating" class="cha_leaderboard_rating" />
+				</Panel>
+				<Panel class="Leaderboardblock" hittest="false">
+					<Panel class="RankContainer" id="RankContainerSolo" hittest="false">
+						<Panel class="PlayersTable" id="PlayersTable" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

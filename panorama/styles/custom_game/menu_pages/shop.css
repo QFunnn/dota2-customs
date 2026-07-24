@@ -1,0 +1,220 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.ShopMenu
+{
+	width: 100%;
+	height: 100%;
+}
+
+.ShopMain
+{
+	width: 100%;
+	height: 100%;
+	overflow: squish scroll;
+	flow-children: down;
+	padding-bottom: 20px;
+}
+
+.ShopMain #VerticalScrollBar
+{
+	width: 6px;
+	height: 100%;
+	visibility: visible;
+	horizontal-align: right;
+	layout-position: fixed;
+	background-color: black;
+}
+
+.ShopMain #ScrollThumb
+{
+	min-height: 32px;
+	background-color: #68568a;
+	border-top: 1px solid #aaaaaa22;
+	border-right: 1px solid #000000aa;
+}
+
+#Header
+{
+	width: 100%;
+	flow-children: down;
+}
+
+#HeaderBack
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 400px;
+	background-image: url("s2r://panorama/images/custom_game/header_image_2_jpg.vtex");
+	background-position: top;
+	background-size: cover;
+	background-repeat: no-repeat;
+	opacity: 0.2;
+	brightness: 1;
+	opacity-brush: gradient(linear, 0% 0%, 0% 100%, from(rgb(255, 255, 255)), color-stop(0.9, rgb(255, 255, 255)), to(rgba(255, 255, 255, 0)));
+}
+
+#HeaderButtons
+{
+	flow-children: right-wrap;
+	margin-top: 75px;
+	margin-left: 5px;
+	align: center top;
+}
+
+.ShopHeaderLabel
+{
+	font-size: 80px;
+	text-transform: uppercase;
+	font-weight: bold;
+	align: center top;
+	text-align: center;
+	letter-spacing: 1px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(rgb(152, 133, 193)), color-stop(0.5, rgb(209, 188, 255)), to(rgb(243, 237, 255)));
+	text-shadow: 0px 0px 10px rgba(210, 189, 255, 0.345);
+}
+
+.ShopHeaderDescLabel
+{
+	margin-top: 70px;
+	align: center top;
+	max-width: 700px;
+	text-align: center;
+	font-size: 20px;
+	color: rgb(148, 136, 172);
+	text-shadow: 1px 2px 3px black;
+}
+
+.HeaderButton
+{
+	width: 175px;
+	height: 60px;
+	margin-right: 5px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#221f2a8a), color-stop(0.5, #201831bd), to(#402969ad));
+	border: 1px solid white;
+	border-bottom: 2px solid white;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#413a51), color-stop(0.5, #4e3a6bef), to(#633ea9ef));
+	box-shadow: #00000044 0px 0px 10px 0px;
+	transition-property: brightness, background-color, border, border-brush;
+	transition-duration: .15s;
+}
+
+.HeaderButton:hover
+{
+	brightness: 1.6;
+}
+
+.HeaderButton.Selected
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3a33508a), color-stop(0.3, #261d3bbd), to(#603c92ad));
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#605777), color-stop(0.5, #4e3a6bef), to(#a06dffef));
+	brightness: 1.2;
+}
+
+.HeaderButtonLabel
+{
+	color: rgb(210, 189, 255);
+	font-size: 20px;
+	max-width: 100px;
+	max-height: 48px;
+	text-transform: uppercase;
+	letter-spacing: -1px;
+	text-align: center;
+	align: center center;
+	text-shadow: 1px 2px 3px 1 rgba(0, 0, 0, 0.5);
+	transition-property: color;
+	transition-duration: .15s;
+}
+
+.Selected .HeaderButtonLabel
+{
+	color: white;
+}
+
+#ItemsBody
+{
+	margin-top: 15px;
+	height: 550px;
+	flow-children: right-wrap;
+	align: left top;
+	margin-left: -5px;
+	padding: 10px;
+	overflow: squish noclip;
+}
+
+#ItemBuyButton
+{
+	width: 125px;
+	height: 30px;
+	margin-bottom: 18px;
+	background-color: gradient(linear, 5% 100%, 0% 0%, from(#251e33), color-stop(0.7, #452e64), to(#8e50eb));
+	align: center bottom;
+	border: 1px solid white;
+	border-brush: gradient(linear, 5% 100%, 0% 0%, from(#464150), color-stop(0.4, #452e64), to(#8e50eb));
+	box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
+	transition-property: opacity, transform, background-color, border-brush;
+	transition-duration: .15s;
+}
+
+#ItemBuyButton:hover
+{
+	background-color: gradient(linear, 5% 100%, 0% 0%, from(#251e33), color-stop(0.3, #452e64), to(#8e50eb));
+	border-brush: gradient(linear, 5% 100%, 0% 0%, from(#484150), color-stop(0.4, #452e64), to(#8e50eb));
+}
+
+.Buyed #ItemBuyButton
+{
+	opacity: 0;
+}
+
+.BuyIcon
+{
+	width: 18px;
+	height: 18px;
+	background-image: url("s2r://panorama/images/custom_game/donate/battlepass/arena_coin_png.vtex");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	align: left center;
+	margin-left: 3px;
+}
+
+.BuyText
+{
+	font-size: 18px;
+	letter-spacing: 0px;
+	align: center center;
+	text-align: center;
+	font-weight: bold;
+	color: rgb(210, 189, 255);
+}
+
+.NewLabel
+{
+	visibility: collapse;
+	layout-position: fixed;
+	z-index: 10;
+	margin-left: 5px;
+	margin-top: 5px;
+	padding: 2px 6px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#8e50eb), to(#b06dff));
+	color: white;
+	font-size: 14px;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.IsNew .NewLabel
+{
+	visibility: visible;
+}

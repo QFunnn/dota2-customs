@@ -1,0 +1,240 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/custom_game/menu.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/shared_styles.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/menu.vjs_c" />
+	</scripts>
+	<Panel class="MenuHUD" hittest="false">
+		<Panel id="MenuWindow" hittest="true" acceptsfocus="true" oncancel="ToggleMenu()">
+			<Panel id="MenuHeader" hittest="false">
+				<Panel id="PlayerMiniProfile">
+					<DOTAAvatarImage steamid="local" class="AvatarProfile" />
+					<Panel class="PlayerNameAndRating">
+						<DOTAUserName steamid="local" class="NameProfile" />
+						<Label class="PlayerRatingProfile" id="PlayerRatingProfile" text="{s:player_rating}" />
+					</Panel>
+					<Panel class="RankBadge">
+						<DOTAScenePanel class="RankFX" hittest="false" map="scenes/rank_tier_ambient" camera="camera_1" />
+						<Panel class="PlayerRankProfile" id="PlayerRankProfile" />
+						<Label class="PlayerRankProfilePlace" id="PlayerRankProfilePlace" text="{s:player_rating_place}" />
+					</Panel>
+					<Panel class="BattlePassSub">
+						<Label class="BattlePassSubStatus" text="#MENU_BATTLE_PASS_ACTIVE" />
+						<Label class="BattlePassSubEndsIn" text="#MENU_BATTLE_PASS_END_IN" />
+					</Panel>
+				</Panel>
+				<Panel class="PromocodeArea">
+					<Panel class="RowWrapper2">
+						<Label class="HeaderDescLabel" text="#MENU_HEADER_Promocode" />
+					</Panel>
+					<Panel class="RowWrapper">
+						<Panel class="ConfirmButton" onactivate="UsePromocode();" onmouseover="DOTAShowTextTooltip(&apos;#PROFILE_Promocode_entry_Description&apos;)" onmouseout="DOTAHideTextTooltip()" />
+						<TextEntry hittest="true" id="PromocodeTextEntry" multiline="false" placeholder="#PROFILE_Promocode_entry" maxchars="100" />
+					</Panel>
+				</Panel>
+				<Panel class="CoinsArea">
+					<Panel class="RowWrapper2">
+						<Label class="HeaderDescLabel" text="#MENU_HEADER_Coins" />
+					</Panel>
+					<Panel class="RowWrapper2">
+						<Panel class="CoinIcon" />
+						<Panel class="CoinRow">
+							<Panel class="CoinCountPanel">
+								<Label class="CoinCount" text="{s:player_coins}" />
+							</Panel>
+							<Panel class="CoinBuyButton" onactivate="OpenAddCoins();" onmouseover="DOTAShowTextTooltip(&apos;#PROFILE_Coins_Description&apos;)" onmouseout="DOTAHideTextTooltip()" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="MenuBody" hittest="false">
+				<Panel id="MenuButtons" hittest="false">
+					<Panel id="HeaderButtons" hittest="false">
+						<Panel id="MainButtons" hittest="false">
+							<Panel id="BattlePassButton" class="MainButton" hittest="true" onactivate="OpenMenuPage(&apos;BattlePass&apos;)">
+								<Panel class="MBBack" hittest="false" />
+								<Panel class="MBImagePanel" hittest="false">
+									<Panel class="MBImage" hittest="false" />
+								</Panel>
+								<Panel class="MBNamePanel" hittest="false">
+									<Panel class="MBNameBack" hittest="false" />
+									<Panel class="MBNamePanel" hittest="false">
+										<Panel class="MBNameBack" hittest="false" />
+										<Label hittest="false" class="MBName" text="#MENU_BUTTON_battle_pass" />
+									</Panel>
+								</Panel>
+							</Panel>
+							<Panel id="ShopButton" class="MainButton" hittest="true" onactivate="OpenMenuPage(&apos;Shop&apos;)">
+								<Panel class="MBBack" hittest="false" />
+								<Panel class="MBImagePanel" hittest="false">
+									<Panel class="MBImage" hittest="false" />
+								</Panel>
+								<Panel class="MBNamePanel" hittest="false">
+									<Panel class="MBNameBack" hittest="false" />
+									<Label hittest="false" class="MBName" text="#MENU_BUTTON_shop" />
+								</Panel>
+							</Panel>
+							<Panel id="InventoryButton" class="MainButton" hittest="true" onactivate="OpenMenuPage(&apos;Inventory&apos;)">
+								<Panel class="MBBack" hittest="false" />
+								<Panel class="MBImagePanel" hittest="false">
+									<Panel class="MBImage" hittest="false" />
+								</Panel>
+								<Panel class="MBNamePanel" hittest="false">
+									<Panel class="MBNameBack" hittest="false" />
+									<Label hittest="false" class="MBName" text="#MENU_BUTTON_inventory" />
+								</Panel>
+							</Panel>
+							<Panel id="ChatWheelButton" class="MainButton" hittest="true" onactivate="OpenMenuPage(&apos;ChatWheel&apos;)">
+								<Panel class="MBBack" hittest="false" />
+								<Panel class="MBImagePanel" hittest="false">
+									<Panel class="MBImage" hittest="false" />
+								</Panel>
+								<Panel class="MBNamePanel" hittest="false">
+									<Panel class="MBNameBack" hittest="false" />
+									<Panel class="MBNamePanel" hittest="false">
+										<Panel class="MBNameBack" hittest="false" />
+										<Label hittest="false" class="MBName" text="#MENU_BUTTON_chat_wheel" />
+									</Panel>
+								</Panel>
+							</Panel>
+							<Panel id="BansButton" class="MainButton" hittest="true" onactivate="OpenMenuPage(&apos;Bans&apos;)">
+								<Panel class="MBBack" hittest="false" />
+								<Panel class="MBImagePanel" hittest="false">
+									<Panel class="MBImage" hittest="false" />
+								</Panel>
+								<Panel class="MBNamePanel" hittest="false">
+									<Panel class="MBNameBack" hittest="false" />
+									<Panel class="MBNamePanel" hittest="false">
+										<Panel class="MBNameBack" hittest="false" />
+										<Label hittest="false" class="MBName" text="#MENU_BUTTON_bans" />
+									</Panel>
+								</Panel>
+							</Panel>
+							<Panel id="LeaderboardButton" class="MainButton" hittest="true" onactivate="OpenMenuPage(&apos;Leaderboard&apos;)">
+								<Panel class="MBBack" hittest="false" />
+								<Panel class="MBImagePanel" hittest="false">
+									<Panel class="MBImage" hittest="false" />
+								</Panel>
+								<Panel class="MBNamePanel" hittest="false">
+									<Panel class="MBNameBack" hittest="false" />
+									<Label hittest="false" class="MBName" text="#MENU_BUTTON_leaderboard" />
+								</Panel>
+							</Panel>
+							<Panel id="SettingsButton" class="MainButton" hittest="true" onactivate="OpenMenuPage(&apos;Settings&apos;)">
+								<Panel class="MBBack" hittest="false" />
+								<Panel class="MBImagePanel" hittest="false">
+									<Panel class="MBImage" hittest="false" />
+								</Panel>
+								<Panel class="MBNamePanel" hittest="false">
+									<Panel class="MBNameBack" hittest="false" />
+									<Label hittest="false" class="MBName" text="#MENU_BUTTON_settings" />
+								</Panel>
+							</Panel>
+							<Panel id="BugReportButton" class="MainButton" hittest="true" onactivate="OpenMenuPage(&apos;BugReport&apos;)">
+								<Panel class="MBBack" hittest="false" />
+								<Panel class="MBImagePanel" hittest="false">
+									<Panel class="MBImage" hittest="false" />
+								</Panel>
+								<Panel class="MBNamePanel" hittest="false">
+									<Panel class="MBNameBack" hittest="false" />
+									<Label hittest="false" class="MBName" text="#MENU_BUTTON_bug_report" />
+								</Panel>
+							</Panel>
+						</Panel>
+						<Panel class="SpecialButtonsContainer">
+							<Panel class="SpecialButton" onactivate="ExternalBrowserGoToURL(&apos;https://discord.gg/xyNRWzFe8b&apos;)">
+								<Panel class="SpecialButtonIcon" id="DiscordButton" />
+								<Label class="SpecialButtonLabel" text="Discord" />
+							</Panel>
+							<Panel class="SpecialButton" onactivate="ExternalBrowserGoToURL(&apos;https://t.me/AncientArena&apos;)">
+								<Panel class="SpecialButtonIcon" id="TelegramButton" />
+								<Label class="SpecialButtonLabel" text="Telegram" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel id="Body" hittest="true" onactivate="Fix();">
+					<Panel id="BattlePass" class="MenuBody" hittest="false" />
+					<Panel id="Shop" class="MenuBody" hittest="false" />
+					<Panel id="Inventory" class="MenuBody" hittest="false" />
+					<Panel id="ChatWheel" class="MenuBody" hittest="false" />
+					<Panel id="Bans" class="MenuBody" hittest="true" />
+					<Panel id="Leaderboard" class="MenuBody" hittest="true" />
+					<Panel id="Settings" class="MenuBody" hittest="true" />
+					<Panel id="BugReport" class="MenuBody" hittest="true" />
+				</Panel>
+			</Panel>
+			<Panel id="CloseButton" onactivate="ToggleMenu();" hittest="true" />
+		</Panel>
+		<Panel id="AddCoinsMenu" hittest="true">
+			<Panel class="AddCoinsHeader">
+				<Label class="AddCoinsHeaderLabel" text="Пополнение баланса" />
+				<Panel class="AddCoinsClose" onactivate="CloseAddCoins();" />
+			</Panel>
+			<Label class="TelegramSupport" text="#telegram_support" html="true" />
+			<Panel class="AddCoinsButton" onactivate="ExternalBrowserGoToURL(&apos;https://ancientarena.pro/donate&apos;)">
+				<Label class="AddCoinsButtonLabel" text="#MENU_GO_TO_DONATE" />
+			</Panel>
+		</Panel>
+		<Panel id="SpecialNotification" hittest="true">
+			<Label class="SpecialNotificationLabel" text="{s:special_notification_text}" />
+		</Panel>
+		<Panel id="LoadingPanel" hittest="true">
+			<Panel class="WrapperMenu" hittest="true">
+				<Label class="LoadingPanelLabel" text="#MENU_LOADING" />
+				<Panel class="LoadingIcon" />
+			</Panel>
+		</Panel>
+		<Panel id="SettingKeyBindMenu" hittest="true" acceptsfocus="true" oncancel="CloseKeyBindSetter()" onactivate="BlockActions()">
+			<Panel id="SettingKeyBindWindow" hittest="true">
+				<Panel id="SettingKeyBindHeader" hittest="true">
+					<Label class="SettingKeyBindHeaderLabel" text="#MENU_KEYBIND_HEADER" />
+					<Panel id="SettingKeyBindCloseButton" hittest="true" onactivate="CloseKeyBindSetter()" />
+				</Panel>
+				<Label class="SettingKeyBindName" text="{s:keybind_name}" />
+				<Panel id="SettingKeyBindBody" class="SettingKeyBindBody">
+					<TextEntry id="CustomKeybindEntry" class="CustomKeybindEntry" maxchars="1" />
+					<Label class="SettingKeyBindKey" text="{s:keybind}" />
+					<DropDown id="DropDownBinds" onmouseover="DOTAShowTextTooltip(#keybind_special_desc)" onmouseout="DOTAHideTextTooltip()">
+						<Label text="" id="Bind_-" />
+						<Label text="F1" id="Bind_F1" />
+						<Label text="F2" id="Bind_F2" />
+						<Label text="F3" id="Bind_F3" />
+						<Label text="F4" id="Bind_F4" />
+						<Label text="F5" id="Bind_F5" />
+						<Label text="F6" id="Bind_F6" />
+						<Label text="F7" id="Bind_F7" />
+						<Label text="F8" id="Bind_F8" />
+						<Label text="F9" id="Bind_F9" />
+						<Label text="F10" id="Bind_F10" />
+						<Label text="F11" id="Bind_F11" />
+						<Label text="F12" id="Bind_F12" />
+					</DropDown>
+				</Panel>
+				<Panel id="SettingKeyBindClearButton" hittest="true" onactivate="ClearKeyBind()">
+					<Label class="SettingKeyBindClearButtonLabel" text="#MENU_KEYBIND_CLEAR" />
+				</Panel>
+				<Panel class="SettingKeyBindDelimeter" />
+				<Label class="SettingKeyOverrideLabel" text="#MENU_KEYBIND_OVERRIDE" html="true" />
+				<Panel id="SettingKeyBindSubmitButton" hittest="true">
+					<Label class="SettingKeyBindSubmitButtonLabel" text="#MENU_KEYBIND_SUBMIT" />
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

@@ -1,0 +1,62 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/actor_confirm/actor_confirm.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/mute_prefs.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/sec_probe.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/actor_confirm/actor_confirm.vjs_c" />
+	</scripts>
+	<Panel hittest="false" style="width:100%;height:100%;">
+		<Panel class="Hidden" id="ActorPanel" hittest="true">
+			<Panel id="ActorPanelTop">
+				<Panel id="ActorPlayer">
+					<DOTAAvatarImage id="ActorPlayerImage" steamid="" />
+					<Panel class="HeroInfo">
+						<Label class="PlayerName" id="PlayerName" />
+						<Label class="HeroName" id="HeroName" />
+					</Panel>
+					<Image id="ActorHeroImage" src="" />
+				</Panel>
+			</Panel>
+			<Panel id="ActorActions">
+				<Panel id="ActorMuteBlock">
+					<Label id="ActorMuteLabel" text="#Mute_Menu_Title" />
+					<Panel id="ActorMuteOpts">
+						<Button id="ActorMuteText" class="ActorMuteOpt" onactivate="ActorToggleMute(&apos;text&apos;);" onmouseover="DOTAShowTextTooltip(#Mute_Cat_Text_Desc)" onmouseout="DOTAHideTextTooltip()">
+							<Label class="OptLabel" text="#Mute_Cat_Text" />
+							<Panel class="OptStrike" hittest="false" />
+						</Button>
+						<Button id="ActorMuteSounds" class="ActorMuteOpt" onactivate="ActorToggleMute(&apos;sounds&apos;);" onmouseover="DOTAShowTextTooltip(#Mute_Cat_Sounds_Desc)" onmouseout="DOTAHideTextTooltip()">
+							<Label class="OptLabel" text="#Mute_Cat_Sounds" />
+							<Panel class="OptStrike" hittest="false" />
+						</Button>
+						<Button id="ActorMuteOther" class="ActorMuteOpt" onactivate="ActorToggleMute(&apos;other&apos;);" onmouseover="DOTAShowTextTooltip(#Mute_Cat_Other_Desc)" onmouseout="DOTAHideTextTooltip()">
+							<Label class="OptLabel" text="#Mute_Cat_Other" />
+							<Panel class="OptStrike" hittest="false" />
+						</Button>
+					</Panel>
+				</Panel>
+				<Panel id="ActorActionsSpacer" hittest="false" />
+				<Panel id="ActorActionsDivider" hittest="false" />
+				<Button id="ActorReportButton" onactivate="ActorReport();">
+					<Panel id="ActorReportIcon" hittest="false" />
+					<Label id="ActorReportLabel" text="#PlayerReport_Action" />
+				</Button>
+			</Panel>
+			<Button id="ActorDeclineButton" hittest="true" onactivate="Cancle()" />
+		</Panel>
+	</Panel>
+</root>

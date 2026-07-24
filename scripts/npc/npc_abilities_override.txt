@@ -1,0 +1,715 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+
+#base "kv/dota_abilities.txt"
+#base "kv/custom_talents.txt"
+#base "kv/dota_talents.txt"
+
+"DOTAAbilities"
+{
+    // Удаленные предметы
+	"item_dagon" 				    "REMOVE"
+	"item_dagon_2" 				    "REMOVE"
+	"item_dagon_3" 				    "REMOVE"
+	"item_dagon_4" 				    "REMOVE"
+	"item_dagon_5" 				    "REMOVE"
+	"item_recipe_dagon" 		    "REMOVE"
+	"item_recipe_dagon_2" 		    "REMOVE"
+	"item_recipe_dagon_3" 		    "REMOVE"
+	"item_recipe_dagon_4" 		    "REMOVE"
+	"item_recipe_dagon_5" 		    "REMOVE"
+	"item_refresher"			    "REMOVE"
+	"item_recipe_refresher"		    "REMOVE"
+    "item_hand_of_midas"		    "REMOVE"
+    "item_recipe_hand_of_midas"		"REMOVE"
+    "item_recipe_rapier"            "REMOVE"
+    "item_black_grimoire"            "REMOVE"
+	"item_smoke_of_deceit"
+	{
+		"ItemPurchasable"				"0"
+	}
+	"item_rapier"
+	{
+		"ItemPurchasable"				"0"
+	}
+	"item_ghost"
+	{
+		"ItemPurchasable"				"0"
+	}
+    "item_ward_observer"
+	{
+        "ItemPurchasable"				"0"
+	}
+    "item_tpscroll"
+	{
+		"ItemPurchasable"				"0"
+	}
+	"item_travel_boots"
+	{
+		"ItemPurchasable"				"0"
+	}
+	"item_travel_boots_2"
+	{
+		"ItemPurchasable"				"0"
+	}
+    "item_hand_of_midas"
+	{
+		"AbilityChargeRestoreTime"		"120"
+        "ItemPurchasable"               "0"
+	}
+    "item_aeon_disk"
+	{
+		"ItemPurchasable"				"0"
+		"IsObsolete"                    "1"
+	}
+	"item_recipe_aeon_disk"
+	{
+		"ItemPurchasable"				"0"
+		"IsObsolete"                    "1"
+		"ItemRecipe"					"0"
+	}
+
+    // Измененные предметы
+	"item_demonicon"
+	{
+		"ItemPurchasable"				"1"
+		"ItemSellable"					"1"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+	}
+    "item_ninja_gear"
+	{	
+		"AbilityValues"
+		{
+			"duration"				    "8"
+		}
+	}
+	"item_helm_of_the_dominator"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"item_helm_of_the_overlord"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+    "item_horizon"
+	{
+		"AbilityCastRange"				"600"
+	}
+	"item_aghanims_shard"
+	{
+		"ItemStockTime"					"1"			  
+		"ItemStockInitial"				"0"
+		"ItemStockMax"					"1"
+		"ItemInitialStockTime"			"0.0"
+	}
+	"item_recipe_necronomicon"
+	{
+		"ItemPurchasable"				"1"
+		"IsObsolete"                    "0"
+	}
+	"item_recipe_necronomicon_2"
+	{
+		"ItemPurchasable"				"1"
+		"IsObsolete"                    "0"
+	}
+	"item_recipe_necronomicon_3"
+	{
+		"ItemPurchasable"				"1"
+		"IsObsolete"                    "0"
+	}
+	"item_necronomicon"
+	{
+		"ItemPurchasable"				"1"
+		"IsObsolete"                    "0"
+	}
+    "item_necronomicon_2"
+	{
+		"ItemPurchasable"				"1"
+	    "IsObsolete"                    "0"
+	}
+	"item_necronomicon_3"
+	{
+		"ItemPurchasable"				"1"
+		"IsObsolete"                    "0"
+	}
+    "item_maelstrom"
+	{
+        "ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+    }
+
+
+	//=================================================================================================================
+    // Greedy Enhancement
+    //=================================================================================================================
+    "item_enhancement_greedy"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+            
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "0"
+        "ItemIsNeutralPassiveDrop"      "1"
+        "DisplayOverheadAlertOnReceived" "0"
+        "ItemPurchasable"               "0"
+        "ItemSellable"              "0"
+        "ItemInitialCharges"            "750"
+        "ItemPermanent"                 "0"
+        "Model"                         "models/props_gameplay/neutral_box.vmdl"
+        "MaxLevel"                      "2"
+        
+
+        // Special  
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityValues"
+        {
+            "bonus_gpm"         "30 75 100 150"
+            "bonus_mana"        "200 200 250 250"
+            "bonus_damage"      "-30 -30 -60 -60"
+        }
+    }
+
+	//=================================================================================================================
+	// Tango
+	//=================================================================================================================
+	"item_tango"
+	{
+		"AbilityCastRange"				"300"
+	}
+
+	//=================================================================================================================
+    // Treant Protector: Nature's Guise
+    //=================================================================================================================
+    "treant_natures_guise"
+    {
+        "AbilityValues"
+        {
+            "radius"                    
+            {
+                "value"         "300"
+                "affected_by_aoe_increase"  "1"
+            }
+        }
+    }
+
+	//Tier 1
+	"item_trusty_shovel"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+		"CooldownPausedOutOfInventory"	"0"
+	}
+
+	"item_occult_bracelet"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	"item_unstable_wand"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	"item_mana_draught"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	"item_polliwog_charm"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	"item_spark_of_courage"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	"item_rippers_lash"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	"item_orb_of_destruction"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	//Tier 2
+	"item_iron_talon"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	"item_essence_ring"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	"item_gossamer_cape"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+		"AbilityCooldown"				"4"
+		"AbilityValues"
+		{
+			"movement_speed"			"20"
+		}
+	}
+
+	"item_searing_signet"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	"item_misericorde"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	"item_pogo_stick"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	//Tier 3
+	"item_serrated_shiv"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+		"AbilityCooldown"				"2"
+		"AbilityValues"
+		{
+			"proc_chance"				"10"
+			"hp_dmg"				"5"
+		}
+	}
+
+	"item_nemesis_curse"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	"item_gale_guard"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	"item_gunpowder_gauntlets"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	"item_whisper_of_the_dread"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	"item_ninja_gear"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	//Tier 4
+	"item_ogre_seal_totem"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	"item_crippling_crossbow"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	"item_magnifying_monocle"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	"item_ceremonial_robe"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	"item_mind_breaker"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	"item_pyrrhic_cloak"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	//Tier 5
+	"item_desolator_2_custom"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+		"ItemTier"							"5"
+	}
+
+	"item_force_boots_custom"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+		"ItemTier"							"5"
+	}
+
+	"item_mirror_shield"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+		"ItemTier"							"5"
+		"AbilityValues"
+		{
+			"block_cooldown"		"14"		// было 12
+		}
+	}
+
+	"item_apex_custom"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+		"ItemTier"							"5"
+	}
+
+	"item_ninja_gear_custom"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+		"ItemTier"							"5"
+	}
+
+	"item_ballista"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+		"ItemTier"							"5"
+	}
+
+	"item_trident"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"ItemDisassembleRule"				"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+		"ItemTier"							"5"
+	}
+
+	"item_pirate_hat_custom"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+		"ItemTier"							"5"
+	}
+
+	"item_giants_ring_custom"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+		"ItemTier"							"5"
+	}
+
+	"item_fusion_rune_custom"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+		"ItemTier"							"5"
+	}
+
+	"item_force_field"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+		"ItemTier"							"5"
+	}
+
+	"item_panic_button_custom"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+		"ItemTier"							"5"
+	}
+
+	"item_unwavering_condition"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+		"ItemTier"							"5"
+	}
+
+	"item_fallen_sky"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+		"ItemTier"							"5"
+	}
+
+	"item_demonicon"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"1"
+		"ItemSellable"				"1"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	"item_minotaur_horn"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	"item_spider_legs"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	"item_panic_button"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	"item_unrelenting_eye"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	"item_pirate_hat"
+	{
+		"ItemIsNeutralActiveDrop"				"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"				"0"
+		"SpeciallyAllowedInNeutralSlot"		"1"
+	}
+
+	//=================================================================================================================
+	// Enhancement: Mystical
+	//=================================================================================================================
+	"item_enhancement_mystical"
+	{
+		"AbilityValues"
+		{
+			"mana_regen"				"2 4 6 10"
+			"magic_res"					"5 10 15 20"
+		}
+	}
+
+	"item_enhancement_feverish"
+	{
+		"AbilityValues"
+		{
+			"cooldown_reduction" "10"
+		}
+	}
+
+	"item_sheepstick"
+	{
+		"AbilitySharedCooldown"         "hex"
+	}
+
+	"item_heavens_halberd"
+	{
+		"AbilitySharedCooldown"         "halberd"
+	}
+
+	"item_manta"
+	{
+		"AbilitySharedCooldown"         "manta"
+	}
+
+	// "lone_druid_bear_necessities"
+	// {
+	// 	"AbilityValues"
+    //     {   
+    //         "item_slots"                "8"
+    //         "bonus_stat_percent"        "0"
+    //     }
+	// }
+
+	"item_bloodthorn"
+    {
+        "AbilityValues"
+        {
+            "silence_damage_percent" "50"
+        }
+    }
+
+    // BKB-способности: увеличенный базовый КД (+40%, округлено).
+    // Нативные КД были: Blade Fury 30/28/26/24, Rage 20/19/18/17.
+    // Blade Fury: из-за таланта special_bonus_unique_juggernaut_blade_fury_cooldown
+    // базовое значение КД в современных KV хранится внутри AbilityValues,
+    // поэтому верхнеуровневый AbilityCooldown оверрайд не применяется.
+    "juggernaut_blade_fury"
+    {
+        "AbilityCooldown"   "42 39 36 34"
+        "AbilityValues"
+        {
+            "AbilityCooldown"   "42 39 36 34"
+        }
+    }
+
+    "life_stealer_rage"
+    {
+        "AbilityCooldown"   "28 27 25 24"
+    }
+
+    // Rubick Curiosity (innate): снижен бонус радиуса заклинаний и длительности эффектов за стек
+    "rubick_curiosity"
+    {
+        "AbilityValues"
+        {
+            "curiosity_aoe_bonus"       "1"
+            "curiosity_modifier_amp"    "0.1"
+        }
+    }
+
+    // Бывший silencer_glaives_of_wisdom_custom — теперь просто override ванильной
+    // способности. Кастомная Lua-механика удалена (ванильная делает то же самое).
+    // Talent IDs auto-применяются engine'ом через имена ключей в этом блоке.
+    "silencer_glaives_of_wisdom"
+    {
+        "AbilityValues"
+        {
+            // intellect_damage_pct — оставлен ванильным (35/50/65/80, talent _3 +30 auto)
+            "int_steal"
+            {
+                "value"                              "1 1 2 3"
+                "special_bonus_shard"                "+2"
+            }
+            "int_steal_duration"
+            {
+                "value"                              "20 30 40 50"
+                "special_bonus_unique_silencer_5"    "+30"
+            }
+            "permanent_int_steal_amount"
+            {
+                "value"                              "2"
+                "special_bonus_shard"                "+2"
+            }
+        }
+    }
+
+}

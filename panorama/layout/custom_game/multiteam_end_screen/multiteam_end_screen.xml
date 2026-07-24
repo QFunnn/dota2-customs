@@ -1,0 +1,85 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/layout/custom_game/multiteam_end_screen/multiteam_end_screen.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/scripts/shared_scoreboard_updater.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/multiteam_end_screen/multiteam_end_screen.vjs_c" />
+	</scripts>
+	<Panel hittest="false" class="EndScreenRoot">
+		<Panel hittest="false" class="EndScreenBackground" />
+		<Panel id="VictoryRow">
+			<Label class="EndGameMsgLabel" text="{s:end_game_msg}" />
+			<Label class="WinnerHeaderLabel" text="#ENDSCREEN_WinnerIs" />
+			<Panel class="WinnerPlayer">
+				<Label class="WinnerPlayerName" text="{s:winner_player_name}" />
+				<Panel id="WinnerPlayerHeroContainer">
+					<DOTAHeroMovie id="WinnerPlayerHeroScene" heroname="pudge" heroimagestyle="portrait" hittest="false" />
+				</Panel>
+				<Label class="WinnerPlayerHeroName" text="{s:winner_hero_name}" />
+			</Panel>
+		</Panel>
+		<Panel hittest="false" class="EndScreenScoreboard">
+			<Panel class="Legend">
+				<Panel class="LegendBackground" />
+				<Label class="LegendPanel LegendLabel ScoreCol_Player" text="#ENDSCREEN_Player" />
+				<Panel class="LegendPanel LegendLabel ScoreCol_KillsAndDeaths">
+					<Panel class="LegendHeader">
+						<Label class="LegendHeaderLabel" text="#ENDSCREEN_Duels" />
+					</Panel>
+					<Panel class="LegendBody">
+						<Label class="ScoreCol_Kills LegendLabel" text="#ENDSCREEN_Duels_wins" />
+						<Label class="ScoreCol_Deaths LegendLabel" text="#ENDSCREEN_Duels_loses" />
+					</Panel>
+				</Panel>
+				<Panel class="LegendPanel ScoreCol_Gold">
+					<Panel class="Wrapper">
+						<Label class="LegendHeaderGold LegendLabel" text="#ENDSCREEN_Gold" />
+						<Panel class="PlayerGoldIcon" />
+					</Panel>
+				</Panel>
+				<Panel class="LegendPanel ScoreCol_Bets">
+					<Panel class="Wrapper">
+						<Label class="LegendHeaderGold LegendLabel" text="#ENDSCREEN_Bets" />
+						<Panel class="PlayerGoldIcon" />
+					</Panel>
+				</Panel>
+				<Label class="LegendPanel LegendLabel ScoreCol_Books" text="#ENDSCREEN_Books" />
+				<Label class="LegendPanel LegendLabel ScoreCol_Pages" text="#ENDSCREEN_Pages" />
+				<Label class="LegendPanel LegendLabel ScoreCol_Smokes" text="#ENDSCREEN_Smokes" />
+				<Label class="LegendPanel LegendLabel ScoreCol_Aegises" text="#ENDSCREEN_Aegises" />
+				<Label class="LegendPanel LegendLabel ScoreCol_Curses" text="#ENDSCREEN_Curses" />
+				<Label class="LegendPanel LegendLabel ScoreCol_Items" text="#ENDSCREEN_Inventory" />
+				<Label class="LegendPanel LegendLabel ScoreCol_Abilities" text="#ENDSCREEN_Abilities" />
+				<Label class="LegendPanel LegendLabel ScoreCol_Other" text="#ENDSCREEN_Other" />
+				<Label class="LegendPanel LegendLabel ScoreCol_Ratings" text="#ENDSCREEN_Rating" />
+				<Label class="LegendPanel LegendLabel ScoreCol_Coins" text="#ENDSCREEN_Coins" />
+			</Panel>
+			<Panel id="TeamsContainer" />
+			<Panel class="ButtonsContainer">
+				<Button id="CloseButton" onactivate="Game.FinishGame();">
+					<Label text="#CustomEndScreenClose" />
+				</Button>
+				<Button id="ResultButton" onactivate="OpenMatchResults();">
+					<Label text="#ENDSCREEN_Open_Results" />
+				</Button>
+				<Button id="SettingsButton">
+					<Label text="#ENDSCREEN_Settings" />
+				</Button>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

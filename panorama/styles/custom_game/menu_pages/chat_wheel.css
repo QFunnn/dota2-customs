@@ -1,0 +1,656 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.ChatWheelMenu
+{
+	width: 100%;
+	height: 100%;
+}
+
+#SettingsBody
+{
+	align: center center;
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+}
+
+#SettingsLeft
+{
+	width: 64%;
+	padding: 15px;
+	align: left top;
+	flow-children: down;
+}
+
+.ChatWheelHeaderLabel
+{
+	font-size: 60px;
+	text-transform: uppercase;
+	font-weight: bold;
+	align: center top;
+	text-align: center;
+	letter-spacing: 1px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(rgb(152, 133, 193)), color-stop(0.5, rgb(209, 188, 255)), to(rgb(243, 237, 255)));
+	text-shadow: 0px 0px 10px rgba(210, 189, 255, 0.345);
+}
+
+.ChatWheelDescLabel
+{
+	margin-top: 10px;
+	align: center center;
+	font-size: 14px;
+	color: rgb(148, 136, 172);
+}
+
+.SettingsChatWheel
+{
+	margin-top: 25px;
+	width: 100%;
+	flow-children: down;
+}
+
+.Top
+{
+	width: 100%;
+}
+
+.Center
+{
+	width: 100%;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.Bottom
+{
+	width: 100%;
+}
+
+#LineButton1
+{
+	align: center top;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#221f2a8a), color-stop(0.5, #221f2a8a), to(#3d2e5aad));
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#454150), color-stop(0.5, #4e3a6bef), to(#624ca8ef));
+}
+
+#LineButton2
+{
+	align: right top;
+	margin-right: 50px;
+	background-color: gradient(linear, 10% 0%, 0% 70%, from(#221f2a8a), color-stop(0.5, #221f2a8a), to(#3d2e5aad));
+	border-brush: gradient(linear, 20% 0%, 0% 70%, from(#454150), color-stop(0.5, #4e3a6bef), to(#624ca8ef));
+}
+
+#LineButton3
+{
+	margin-right: 0px;
+	margin-top: 56px;
+	margin-bottom: 56px;
+	background-color: gradient(linear, 50% 0%, 0% 0%, from(#221f2a8a), color-stop(0.5, #221f2a8a), to(#3d2e5aad));
+	border-brush: gradient(linear, 25% 0%, 0% 0%, from(#454150), color-stop(0.5, #4e3a6bef), to(#624ca8ef));
+	align: right top;
+}
+
+#LineButton4
+{
+	align: right top;
+	margin-right: 50px;
+}
+
+#LineButton5
+{
+	align: center top;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#221f2a8a), color-stop(0.5, #221f2a8a), to(#3d2e5aad));
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#454150), color-stop(0.5, #4e3a6bef), to(#624ca8ef));
+}
+
+#LineButton6
+{
+	align: left top;
+	margin-left: 50px;
+	background-color: gradient(linear, 85% 80%, 100% 0%, from(#221f2a8a), color-stop(0, #221f2a8a), to(#3d2e5aad));
+	border-brush: gradient(linear, 75% 40%, 95% 0%, from(#454150), color-stop(0.3, #4e3a6bef), to(#624ca8ef));
+}
+
+#LineButton7
+{
+	margin-left: 0px;
+	margin-top: 56px;
+	margin-bottom: 56px;
+	background-color: gradient(linear, 50% 0%, 100% 0%, from(#221f2a8a), color-stop(0.5, #221f2a8a), to(#3d2e5aad));
+	border-brush: gradient(linear, 50% 0%, 100% 0%, from(#454150), color-stop(0.5, #4e3a6bef), to(#624ca8ef));
+}
+
+#LineButton8
+{
+	align: left bottom;
+	margin-left: 50px;
+	background-color: gradient(linear, 80% 30%, 90% 80%, from(#221f2a8a), color-stop(0.5, #221f2a8a), to(#3d2e5aad));
+	border-brush: gradient(linear, 80% 30%, 100% 60%, from(#454150), color-stop(0.5, #4e3a6bef), to(#624ca8ef));
+}
+
+.LineButton
+{
+	width: 180px;
+	height: 75px;
+	border-radius: 32px;
+	background-color: gradient(linear, 10% 70%, 0% 0%, from(#221f2a8a), color-stop(0.5, #332b44bd), to(#3d2e5aad));
+	border: 1px solid white;
+	border-brush: gradient(linear, 20% 70%, 0% 0%, from(#454150), color-stop(0.3, #4e3a6bef), to(#624ca8ef));
+	box-shadow: #00000092 0px 0px 10px 0px;
+	padding: 8px;
+	transition-property: brightness;
+	transition-duration: .1s;
+}
+
+.LineButtonBackHover
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	color: #ffffff;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #00000000 ), color-stop(.2, #2a1798), color-stop( .5, #9e49ff ), color-stop(.8, #2f1798), to( #00000000 ) );
+	align: center center;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_vertical_softer_png.vtex");
+	transition-property: opacity;
+	transition-duration: .1s;
+}
+
+.LineButton:not(.SelectingTime):hover .LineButtonBackHover
+{
+	opacity: 0.1;
+}
+
+.LineButton:not(.SelectingTime):hover
+{
+	brightness: 1.7;
+}
+
+.LineButton.SelectingTime
+{
+	animation-name: select_time;
+	animation-duration: 1.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'select_time'
+{
+	0%
+	{
+		border: 1px solid #ffffff;
+		box-shadow: 0px 0px 7px 0px #3d2b5dbc;
+		brightness: 1;
+	}
+	
+	50%
+	{
+		border: 1px solid #ffffff;
+		box-shadow: 0px 0px 10px 0px #3d2b5dbc;
+		brightness: 3;
+	}
+	
+	100%
+	{
+		border: 1px solid #ffffff;
+		box-shadow: 0px 0px 7px 0px #3d2b5dbc;
+		brightness: 1;
+	}
+	
+}
+
+.DecorLine
+{
+	width: 300px;
+	height: 3px;
+	align: center center;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #9780c816 ), color-stop( .25, #9f83cc64 ), color-stop( .3, transparent), color-stop( .7, transparent), color-stop( .75, #9f83cc64 ), to( #9780c816 ) );
+}
+
+#DecorLine2
+{
+	transform: rotateZ(45deg);
+}
+
+#DecorLine3
+{
+	transform: rotateZ(-45deg);
+}
+
+#DecorLine4
+{
+	width: 370px;
+	transform: rotateZ(90deg);
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #9780c816 ), color-stop( .28, #9f83cc64 ), color-stop( .33, transparent), color-stop( .67, transparent), color-stop( .72, #9f83cc64 ), to( #9780c816 ) );
+}
+
+.LeftButtons
+{
+	width: 400px;
+	margin-left: 11px;
+	flow-children: down;
+	align: left center;
+}
+
+.RightButtons
+{
+	width: 400px;
+	flow-children: down;
+	margin-right: 11px;
+	align: right center;
+}
+
+.CenterIcon
+{
+	align: center center;
+	background-image: url("s2r://panorama/images/settings/chat_wheel.vsvg");
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 112px;
+	height: 112px;
+	wash-color: #c99affef;
+	img-shadow: 0px 2px 16px #9063c4;
+	opacity-brush: gradient( linear, 0% 0%, 0% 100%, from( #C2CED4 ), to( #6D777B ) );
+}
+
+#SettingsVariantsTable
+{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.3);
+	border: 1px solid #363a43ef;
+	align: center top;
+	margin: 20px;
+	margin-left: 0px;
+	flow-children: down;
+	transition-property: background-color, box-shadow;
+	transition-duration: .1s;
+}
+
+#SettingsVariantsTable.SelectingTime
+{
+	background-color: #322b3fef;
+	box-shadow: 0px 0px 10px 0px #332b3fef;
+}
+
+#Header
+{
+	width: 100%;
+	z-index: 999999;
+	flow-children: down;
+	padding-bottom: 5px;
+}
+
+#SearchPanel
+{
+	margin-top: 10px;
+	margin-right: 10px;
+	width: 100%;
+	flow-children: right;
+}
+
+#SearchIcon
+{
+	width: 24px;
+	height: 24px;
+	align: left center;
+	margin: 7px;
+	background-image: url("s2r://panorama/images/control_icons/24px/search.vsvg");
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	opacity: 0.4;
+}
+
+#SearchDelete
+{
+	width: 32px;
+	height: 32px;
+	align: right center;
+	background-image: url("s2r://panorama/images/control_icons/x_close_filled_png.vtex");
+	background-size: 22px 22px;
+	background-repeat: no-repeat;
+	background-position: center;
+	opacity: 0.4;
+	margin-top: -1px;
+	transition-property: opacity;
+	transition-duration: .1s;
+	visibility: collapse;
+}
+
+#SearchDelete:hover
+{
+	opacity: 1;
+}
+
+#SearchDelete.HasText
+{
+	visibility: visible;
+}
+
+#SearchByNameEntry
+{
+	width: 290px;
+	border-radius: 6px;
+	border: 1px solid rgba(231, 218, 255, 0.05);
+	background-color: rgb(40, 37, 46);
+}
+
+#CloseButton
+{
+	width: 32px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/control_icons/24px/x_close.vsvg");
+	background-size: 80% 80%;
+	background-position: center;
+	background-repeat: no-repeat;
+	wash-color: rgb(218, 192, 97);
+	transition-property: wash-color;
+	transition-duration: 0.1s;
+	brightness: 2;
+	align: right top;
+}
+
+#CloseButton:hover
+{
+	wash-color: rgb(251, 229, 131);
+}
+
+#HeaderContainer
+{
+	margin-top: 5px;
+	align: center top;
+	flow-children: right;
+}
+
+.ButtonHeader
+{
+	height: 30px;
+}
+
+.ButtonHeader:hover .ButtonHeaderText
+{
+	color: white;
+}
+
+.ButtonHeader:hover .ButtonHeaderArrow
+{
+	wash-color: white;
+}
+
+.Selected .ButtonHeaderText
+{
+	color: white;
+}
+
+.ButtonHeaderText
+{
+	align: center center;
+	text-align: center;
+	padding: 0px 10px;
+	text-transform: uppercase;
+	font-size: 25px;
+	color: #7f768e85;
+	transition-property: color, text-shadow;
+	transition-duration: .2s;
+}
+
+.ButtonHeaderDash
+{
+	width: 25px;
+	height: 25px;
+	margin: 0px 0px;
+}
+
+.ButtonHeaderDashText
+{
+	align: center center;
+	text-align: center;
+	font-size: 25px;
+	text-transform: uppercase;
+	color: #7e768e;
+}
+
+#Body
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	align: center center;
+	transition-property: opacity;
+	transition-duration: .2s;
+	flow-children: down;
+	overflow: squish scroll;
+	margin-top: 5px;
+}
+
+#Body #VerticalScrollBar
+{
+	width: 6px;
+	height: 100%;
+	visibility: visible;
+	horizontal-align: right;
+	layout-position: fixed;
+	background-color: black;
+}
+
+#Body #ScrollThumb
+{
+	min-height: 32px;
+	background-color: #6b568a;
+	border-top: 1px solid #aaaaaa22;
+	border-right: 1px solid #000000aa;
+}
+
+.Item
+{
+	width: 100%;
+	flow-children: right;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	transition-property: brightness;
+	transition-duration: .15s;
+}
+
+.Item.Odd
+{
+	background-color: rgba(0,0,0,0.25);
+}
+
+.SelectingTime .Item:not(.Locked):hover
+{
+	brightness: 2;
+	background-color: rgba(162, 147, 186, 0.1);
+}
+
+.ItemIconContainer
+{
+	margin-left: 10px;
+	align: left center;
+	flow-children: right;
+}
+
+.ItemText
+{
+	font-size: 16px;
+	text-shadow: 1px 1.5px 0px 2 #000000;
+	color: #fff;
+	margin-left: 5px;
+	align: left center;
+	text-align: left;
+}
+
+.TypeText .TextIcon
+{
+	visibility: visible;
+}
+
+.TypeSound .SoundIcon
+{
+	visibility: visible;
+}
+
+.Locked .LockIcon
+{
+	visibility: visible;
+}
+
+.LockIcon
+{
+	width: 20px;
+	height: 20px;
+	margin-right: 5px;
+	align: center center;
+	visibility: collapse;
+	background-image: url("s2r://panorama/images/control_icons/24px/lock.svg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.TextIcon
+{
+	width: 24px;
+	height: 24px;
+	visibility: collapse;
+	background-image: url("s2r://panorama/images/control_icons/chat_wheel_icon_png.vtex");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.SoundIcon
+{
+	width: 24px;
+	height: 24px;
+	visibility: collapse;
+	background-image: url("s2r://panorama/images/hud/reborn/icon_scoreboard_mute_sound_psd.vtex");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	align: left center;
+	transition-property: brightness;
+	transition-duration: .15s;
+}
+
+.SoundIcon:hover
+{
+	brightness: 2;
+}
+
+.LineContent
+{
+	align: center center;
+	flow-children: right;
+}
+
+.LineText
+{
+	font-size: 18px;
+	text-shadow: 1px 1.5px 0px 2 #000000;
+	color: #fff;
+	text-align: center;
+	margin-left: 3px;
+	text-overflow: shrink;
+}
+
+#CallKeyBind
+{
+	align: center center;
+	text-align: center;
+	font-size: 30px;
+	color: rgb(210, 189, 255);
+	text-shadow: 1px 1.5px 0px 2 #000000;
+	font-weight: semi-bold;
+	text-transform: uppercase;
+}
+
+.Category
+{
+	width: 100%;
+	flow-children: down;
+	margin-left: 10px;
+	padding-bottom: 16px;
+}
+
+.CategoryHeader
+{
+	width: 100%;
+	border-bottom: 1px solid #ffffff0a;
+	border-brush: gradient( linear, 0% 0%, 100% 0%, from( white ), to( rgba(255, 255, 255, 0) ) );
+	margin-bottom: 4px;
+}
+
+.CategoryName
+{
+	font-size: 16px;
+	text-transform: uppercase;
+	align: left center;
+	letter-spacing: 1.5px;
+	padding-bottom: 6px;
+	color: rgb(210, 189, 255);
+}
+
+#CategoryContainer
+{
+	width: 100%;
+	flow-children: down;
+}
+
+#OnlyHasItemsButton
+{
+	flow-children: right;
+	width: 100%;
+	margin-top: 10px;
+	margin-left: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.Checkbox
+{
+	align: left center;
+	padding: 0 0;
+	margin-left: 5px;
+}
+
+.Checkbox .TickBox
+{
+	box-shadow: none;
+}
+
+.OnlyHasItemsLabel
+{
+	align: left center;
+	font-size: 16px;
+	color: rgb(195, 181, 215);
+	text-transform: uppercase;
+	margin-left: 5px;
+	text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
+}
+
+.Checked .OnlyHasItemsLabel
+{
+	color: white;
+}
+
+#OnlyHasItemsButton:not(.Checked):hover .OnlyHasItemsLabel
+{
+	color: rgb(232, 237, 246);
+}
+
+#OnlyHasItemsButton:hover .TickBox
+{
+	border: 2px solid #706979;
+}

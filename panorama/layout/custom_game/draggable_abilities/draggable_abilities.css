@@ -1,0 +1,85 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+#DraggableDelimiter
+{
+	height: 60px;
+	width: 4px;
+	background-color: #00ff00;
+}
+
+.Dragging .Cover
+{
+	visibility: collapse;
+}
+
+#drag_desc_container
+{
+	z-index: -100;
+}
+
+.drag_desc_text
+{
+	font-size: 16px;
+	align: center center;
+	color: white;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 6px 6 #000000;
+	animation-name: color_shift;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+}
+
+.AspectRatio4x3 .drag_desc_text
+{
+	margin-bottom: 10px;
+}
+
+@keyframes 'color_shift'
+{
+	0%
+	{
+		color: white;
+	}
+	
+	50%
+	{
+		color: #00ff00;
+	}
+	
+	100%
+	{
+		color: white;
+	}
+	
+}
+
+.PanelsDragDesc
+{
+	align: center top;
+	margin-top: 100px;
+	font-size: 30px;
+	text-transform: uppercase;
+	font-weight: bold;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: .1s;
+	text-shadow: 0px 0px 6px 6 #000000;
+	animation-name: color_shift;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+}
+
+.PanelsMoveActive .PanelsDragDesc
+{
+	opacity: 1;
+}

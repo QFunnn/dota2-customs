@@ -1,0 +1,791 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+#TeamListLegends
+{
+	flow-children: right;
+	margin-top: 10px;
+	height: 30px;
+	background-color: blue;
+	width: 100%;
+	background-color: gradient(linear, 100% 0%, 100% 100%, from(#11111166), color-stop(0.00, #272b3066), color-stop(0.6, #181a1e66), to(#181a1e66));
+	box-shadow: inset #000000 0px 2px 6px 3px;
+}
+
+#TeamListLegends Label
+{
+	vertical-align: center;
+}
+
+#TeamListLegend_PlayerName
+{
+	text-align: center;
+	width: 200px;
+}
+
+#PlayerName
+{
+	margin-left: 3px;
+}
+
+#PlayerNamePanel
+{
+	width: 188px;
+	flow-children: right;
+}
+
+.Hidden
+{
+	visibility: collapse;
+}
+
+.TeamSelect
+{
+	width: 100%;
+	height: 100%;
+	visibility: collapse;
+	opacity: 0;
+}
+
+#TeamSelectContainer
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+}
+
+#TeamsSelectEmptySpace
+{
+	width: fill-parent-flow(1);
+}
+
+#TeamsList
+{
+	width: 600px;
+	flow-children: down;
+	padding-left: 16px;
+	padding-right: 16px;
+	background-color: gradient(linear, 100% 0%, 100% 100%, from(#111111cc), color-stop(0.01, #202327cc), color-stop(0.2, #141619cc), to(#000000cc));
+	vertical-align: top;
+	margin-top: 350px;
+	animation-name: TeamsListAppear;
+	animation-duration: 0.75s;
+}
+
+@keyframes 'TeamsListAppear'
+{
+	0%
+	{
+		transform: translatex(100%);
+	}
+	
+	100%
+	{
+		transform: translatex(0px);
+	}
+	
+}
+
+#TeamsListGroup
+{
+	width: 100%;
+	vertical-align: center;
+	flow-children: down;
+}
+
+#TeamListHeader
+{
+	width: 100%;
+	flow-children: right;
+	color: #323232;
+}
+
+#TeamListHeaderLabel
+{
+	text-transform: uppercase;
+	font-size: 28px;
+	letter-spacing: 1px;
+	color: white;
+	margin-left: 8px;
+	vertical-align: center;
+	margin-top: 10px;
+}
+
+#TeamListLockedIcon
+{
+	width: 16px;
+	height: 16px;
+	vertical-align: center;
+	margin-bottom: 4px;
+	visibility: collapse;
+	wash-color: #aa0000ee;
+}
+
+.teams_locked #TeamListLockedIcon
+{
+	visibility: visible;
+}
+
+#TeamsListRoot
+{
+	width: 700px;
+	flow-children: down;
+	overflow: clip scroll;
+}
+
+.UnderTeamButton
+{
+	height: 32px;
+	margin-top: 8px;
+	margin-left: 6px;
+	horizontal-align: left;
+	flow-children: right;
+	visibility: collapse;
+}
+
+.AgreeToShuffle.player_has_host_privileges #ShuffleTeamAssignmentButton
+{
+	visibility: visible;
+}
+
+.UnderTeamButton Label
+{
+	font-size: 24px;
+	text-transform: uppercase;
+	margin-top: 2px;
+	margin-right: 5px;
+	color: #6e6f6f;
+	vertical-align: center;
+}
+
+.UnderTeamButton:hover Label
+{
+	color: white;
+}
+
+.UnderTeamButton:active
+{
+	sound: "ui_team_select_shuffle";
+}
+
+.UnderTeamButton Image
+{
+	width: 24px;
+	height: 24px;
+	wash-color: #888888;
+	vertical-align: center;
+}
+
+.UnderTeamButton:hover Image
+{
+	wash-color: white;
+}
+
+#GameAndPlayersRoot
+{
+	width: 350px;
+	opacity: 1;
+	visibility: visible;
+	flow-children: down;
+	visibility: collapse;
+	background-color: gradient(linear, 100% 0%, 100% 100%, from(#111111cc), color-stop(0.01, #202327cc), color-stop(0.2, #141619cc), to(#000000cc));
+}
+
+#GameInfoPanel
+{
+	margin: 16px;
+	flow-children: down;
+}
+
+#GameModeNameLabel
+{
+	font-size: 32px;
+	text-transform: uppercase;
+	visibility: collapse;
+}
+
+#MapInfoLabel
+{
+	color: #a9aaaa;
+	text-transform: uppercase;
+	visibility: collapse;
+}
+
+#StartGameCountdownTimer
+{
+	width: 96px;
+	margin-top: 32px;
+}
+
+#TeamSelectTimer
+{
+	margin-top: 8px;
+	font-size: 48px;
+	color: #CCCCCC;
+	horizontal-align: center;
+}
+
+#StartGameCountdownTimer.countdown_inactive #TeamSelectTimer
+{
+	opacity: 0.0;
+}
+
+#TimerBg
+{
+	wash-color: #222222;
+}
+
+#TimerBg,#TimerRing
+{
+	width: 70px;
+	height: 70px;
+	margin-top: 2px;
+	horizontal-align: center;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+}
+
+#TimerLabelBox
+{
+	margin-top: 76px;
+	height: 20px;
+	width: 100%;
+}
+
+#TimerLabelAutoStart
+{
+	color: #a9aaaa;
+	font-size: 16px;
+	text-transform: uppercase;
+	horizontal-align: center;
+	visibility: collapse;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+}
+
+#StartGameCountdownTimer.auto_start #TimerLabelAutoStart
+{
+	visibility: visible;
+}
+
+#TimerLabelGameStart
+{
+	color: #a9aaaa;
+	font-size: 16px;
+	text-transform: uppercase;
+	horizontal-align: center;
+	visibility: collapse;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+}
+
+#StartGameCountdownTimer.forced_start #TimerLabelGameStart
+{
+	visibility: visible;
+}
+
+#StartGameCountdownTimer.countdown_inactive #TimerBg,#StartGameCountdownTimer.countdown_inactive #TimerRing,#StartGameCountdownTimer.countdown_inactive #TimerLabelAutoStart,#StartGameCountdownTimer.countdown_inactive #TimerLabelGameStart
+{
+	opacity: 0;
+}
+
+#UnassignedPlayerPanel
+{
+	width: 100%;
+	height: fill-parent-flow (1);
+	flow-children: down;
+	margin-left: 16px;
+	margin-right: 58px;
+	opacity: 0;
+	visibility: collapse;
+}
+
+#UnassignedPlayersButton
+{
+	flow-children: down;
+	height: fill-parent-flow (1);
+	max-height: 80%;
+	width: 100%;
+	background-color: gradient(linear, 100% 0%, 100% 100%, from(#11111133), color-stop(0.00, #272b3033), color-stop(0.6, #181a1e33), to(#181a1e33));
+	box-shadow: inset #000000 0px 2px 6px 3px;
+	border-bottom: 1px solid #404b4a11;
+}
+
+#UnassignedPlayersHeader
+{
+	horizontal-align: left;
+	margin-top: 16px;
+	margin-left: 16px;
+}
+
+#UnassignedPlayersHeader Label
+{
+	font-size: 20px;
+	letter-spacing: 1px;
+	color: #667273;
+	text-transform: uppercase;
+	transition-property: color;
+	transition-duration: 0.2s;
+}
+
+#UnassignedPlayersButton:hover #UnassignedPlayersHeader Label
+{
+	font-size: 20px;
+	letter-spacing: 1px;
+	color: white;
+}
+
+#UnassignedPlayersDivider
+{
+	width: 100%;
+	height: 2px;
+	margin-left: 8px;
+	margin-right: 8px;
+	background-color: #49525555;
+}
+
+#UnassignedPlayersContainer
+{
+	width: 100%;
+	flow-children: down;
+	overflow: clip scroll;
+	margin: 16px;
+}
+
+#AutoAssignButton
+{
+	height: 32px;
+	margin-top: 8px;
+	margin-right: 8px;
+	vertical-align: top;
+	horizontal-align: left;
+	flow-children: right;
+	visibility: collapse;
+}
+
+.player_has_host_privileges #AutoAssignButton
+{
+	visibility: visible;
+}
+
+#AutoAssignButton Label
+{
+	font-size: 24px;
+	text-transform: uppercase;
+	margin-top: 2px;
+	margin-left: 5px;
+	color: #6e6f6f;
+	vertical-align: center;
+}
+
+.unassigned_players #AutoAssignButton:hover Label
+{
+	color: white;
+}
+
+.unassigned_players #AutoAssignButton:active
+{
+	sound: "ui_team_select_auto_assign";
+}
+
+#AutoAssignButton Image
+{
+	width: 24px;
+	height: 24px;
+	wash-color: #888888;
+	vertical-align: center;
+}
+
+.unassigned_players #AutoAssignButton:hover Image
+{
+	wash-color: white;
+}
+
+#LockAndStartButton
+{
+	horizontal-align: right;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2d4881cc), to(#486ca9cc));
+	box-shadow: fill #486ca922 -4px -4px 8px 8px;
+	border-top: 1px solid #ffffff03;
+	border-left: 1px solid #ffffff03;
+	visibility: collapse;
+	margin-bottom: 21px;
+	margin-right: 26px;
+	width: 280px;
+}
+
+.unassigned_players #LockAndStartButton
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#14161a), to(#23262b));
+	box-shadow: fill #00000000 0px 0px 0px 0px;
+	border-top: 1px solid #ffffff03;
+	border-left: 1px solid #ffffff03;
+}
+
+#LockAndStartButton Label
+{
+	transition-property: opacity;
+	transition-duration: 0.2s;
+}
+
+.unassigned_players #LockAndStartButton Label
+{
+	opacity: 0.1;
+}
+
+.player_has_host_privileges #LockAndStartButton
+{
+	visibility: visible;
+}
+
+.teams_locked #LockAndStartButton
+{
+	visibility: collapse;
+}
+
+.no_unassigned_players #LockAndStartButton:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2d4881cc), to(#84acff));
+	box-shadow: fill #486ca966 -4px -4px 18px 8px;
+}
+
+.no_unassigned_players #LockAndStartButton:active
+{
+	sound: "ui_team_select_lock_and_start";
+}
+
+#CancelAndUnlockButton
+{
+	horizontal-align: right;
+	visibility: collapse;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2c1b1b), to(#482e2f));
+	box-shadow: fill #552e2f00 -4px -4px 8px 9px;
+	border-top: 1px solid #3d2929;
+	border-right: 1px solid #372121;
+	border-left: 1px solid #372121;
+	border-bottom: 1px solid #2e1f21;
+	margin-bottom: 21px;
+	margin-right: 26px;
+	width: 280px;
+}
+
+#CancelAndUnlockButton:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#492121), to(#9d4c4f));
+	border-top: 1px solid #7d4141;
+	border-right: 1px solid #7a3535;
+	border-left: 1px solid #7a3535;
+	border-bottom: 1px solid #2e1f21;
+	box-shadow: fill #552e2f66 -4px -4px 8px 9px;
+}
+
+#CancelAndUnlockButton:active
+{
+	sound: "ui_team_select_cancel_and_lock";
+}
+
+.player_has_host_privileges.teams_locked #CancelAndUnlockButton
+{
+	visibility: visible;
+}
+
+.TeamSelectTeam
+{
+	width: 100%;
+	margin: 3px;
+	background-color: gradient(linear, 100% 0%, 100% 100%, from(#272b3033), color-stop(0.6, #181a1e33), to(#181a1e33));
+}
+
+.TeamSelectTeam.local_player_on_this_team
+{
+	brightness: 1.8;
+}
+
+#TeamBackgroundGradient
+{
+	width: 100%;
+	height: 100%;
+}
+
+.teams_unlocked .TeamSelectTeam:hover #TeamBackgroundGradient
+{
+	visibility: collapse;
+}
+
+#TeamBackgroundGradientHighlight
+{
+	width: 100%;
+	height: 100%;
+	visibility: collapse;
+}
+
+.teams_unlocked .TeamSelectTeam:hover #TeamBackgroundGradientHighlight
+{
+	visibility: visible;
+}
+
+#TeamGroup
+{
+	background-color: transparent;
+	width: 100%;
+	padding-left: 12px;
+	flow-children: down;
+}
+
+#TeamHeader
+{
+	width: 100%;
+	flow-children: right;
+	visibility: collapse;
+}
+
+#TeamNameLabel
+{
+	font-size: 20px;
+	vertical-align: top;
+	text-shadow: 2px 2px 2px black;
+	margin-left: 1px;
+	margin-top: 1px;
+	text-transform: uppercase;
+	white-space: nowrap;
+	width: 100%;
+}
+
+#JoinTeamLabel
+{
+	color: #444444;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-size: 20px;
+	horizontal-align: right;
+	vertical-align: center;
+	margin-top: 4px;
+	transition-property: color;
+	transition-duration: 0.2s;
+}
+
+.teams_unlocked .TeamSelectTeam:hover #JoinTeamLabel
+{
+	color: white;
+}
+
+.TeamSelectTeam.team_is_full #JoinTeamLabel
+{
+	opacity: 0;
+}
+
+.TeamSelectTeam.local_player_on_this_team #JoinTeamLabel
+{
+	opacity: 0;
+}
+
+.TeamSelectTeam.local_player_is_ready #JoinTeamLabel
+{
+	opacity: 0;
+}
+
+#TeamPlayerDivider
+{
+	width: 100%;
+	margin: 2px;
+	height: 1px;
+	background-color: #49525555;
+}
+
+#PlayerList
+{
+	width: 100%;
+	flow-children: down;
+	width: 100%;
+}
+
+#player_root
+{
+	width: 100%;
+}
+
+.player_slot
+{
+	height: 32px;
+	width: 100%;
+	flow-children: right;
+	margin-top: 2px;
+}
+
+.TeamSelectPlayer
+{
+	width: 100%;
+	flow-children: right;
+	vertical-align: middle;
+	flow-children: right;
+}
+
+DOTAAvatarImage
+{
+	width: 32px;
+	height: 32px;
+	background-color: black;
+	vertical-align: middle;
+}
+
+#PlayerIsHostPanel
+{
+	background-image: url("s2r://panorama/images/icon_star_png.vtex");
+	background-repeat: no-repeat;
+	background-size: contain;
+	overflow: noclip;
+	width: 24px;
+	height: 24px;
+	visibility: collapse;
+	margin-top: 2px;
+	margin-right: 4px;
+	margin-left: 4px;
+	visibility: collapse;
+}
+
+#PlayerName
+{
+	color: white;
+	vertical-align: middle;
+	text-shadow: 2px 2px 2px black;
+	width: fill-parent-flow(1);
+	white-space: nowrap;
+	text-overflow: shrink;
+}
+
+#PlayerLeaveTeamButton
+{
+	width: 24px;
+	height: 24px;
+	wash-color: #aa0000ee;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+	background-size: 24px 24px;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	margin: 4px;
+	visibility: collapse;
+}
+
+#PlayerLeaveTeamButton:hover
+{
+	wash-color: red;
+}
+
+.teams_unlocked .TeamSelectTeam .player_is_local #PlayerLeaveTeamButton
+{
+	visibility: collapse;
+}
+
+.TeamSelectEmptySlot
+{
+	flow-children: right;
+}
+
+.TeamSelectEmptySlot #PlayerName
+{
+	color: #454545;
+	letter-spacing: 1px;
+	font-size: 18px;
+}
+
+#EmptySlotIcon
+{
+	width: 32px;
+	height: 32px;
+	opacity: 0.7;
+	background-image: url("s2r://panorama/images/custom_game/empty_slot_avatar_png.vtex");
+	background-size: 32px 32px;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+
+.Score_Label
+{
+	width: 100px;
+	height: 100px;
+}
+
+.rank_image
+{
+	width: 30px;
+	height: 30px;
+	background-size: 100%;
+	vertical-align: top;
+}
+
+.rank_number
+{
+	font-size: 12px;
+	text-align: center;
+	text-shadow: 0px 0px 3px 3.0 black;
+	background-color: rgba(0, 0, 0, 0.2);
+	margin-top: 18px;
+	color: white;
+	width: 30px;
+	font-weight: bold;
+}
+
+#ScoreLegends
+{
+	width: 100px;
+	text-align: left;
+}
+
+.PlayTime_Label
+{
+	width: 110px;
+	color: white;
+	vertical-align: middle;
+	text-shadow: 2px 2px 2px black;
+	white-space: nowrap;
+}
+
+#PlayTimeLegends
+{
+	width: 100px;
+	text-align: left;
+}
+
+.EarlyLeave_Label
+{
+	width: 100px;
+	color: white;
+	vertical-align: middle;
+	text-shadow: 2px 2px 2px black;
+	white-space: nowrap;
+}
+
+#EarlyLeaveLegends
+{
+	width: 100px;
+}
+
+.Actor_Label
+{
+	width: 100px;
+}
+
+.ActorLegends
+{
+	width: 100px;
+}
+
+#TeamListHeaderLabelAverage
+{
+	align: right center;
+	color: white;
+	font-family: Reaver;
+	font-weight: bold;
+	font-size: 20px;
+	margin-top: 5px;
+	text-shadow: 2px 2px 2px 2 black;
+}

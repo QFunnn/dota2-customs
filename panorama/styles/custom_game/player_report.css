@@ -1,0 +1,357 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.PlayerReportRoot
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	visibility: collapse;
+	transition: opacity 0.12s ease-in-out 0s;
+}
+
+.PlayerReportRoot.PlayerReportVisible
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+.PlayerReportDim
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient( radial, 50% 45%, 0% 0%, 90% 90%, from( #00000073 ), to( #000000e6 ) );
+}
+
+.PlayerReportWindow
+{
+	width: 480px;
+	align: center center;
+	flow-children: down;
+	padding: 0px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #18161df7 ), color-stop( 0.5, #201831f2 ), to( #402969ee ) );
+	border: 1px solid white;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( #8574af ), color-stop( 0.5, #4e3a6bef ), to( #a06dffef ) );
+	box-shadow: 0px 8px 40px 0px #000000d9;
+}
+
+.PlayerReportHeader
+{
+	width: 100%;
+	height: 46px;
+	flow-children: right;
+	vertical-align: center;
+	padding: 0px 12px 0px 18px;
+	background-color: #ffffff0f;
+	border-bottom: 1px solid #a06dff55;
+}
+
+.PlayerReportTitle
+{
+	width: fill-parent-flow( 1.0 );
+	vertical-align: center;
+	color: white;
+	font-family: Roboto;
+	font-size: 18px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	text-shadow: 0px 2px 4px #000000cc;
+}
+
+.PlayerReportClose
+{
+	width: 26px;
+	height: 26px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+	background-size: 16px 16px;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	wash-color: #b6a9d6;
+	opacity: 0.85;
+}
+
+.PlayerReportClose:hover
+{
+	opacity: 1;
+	wash-color: #ff6a4d;
+}
+
+.PlayerReportBody
+{
+	width: 100%;
+	flow-children: down;
+	padding: 18px;
+}
+
+.PlayerReportTargetRow
+{
+	width: 100%;
+	flow-children: right;
+	vertical-align: center;
+	margin-bottom: 16px;
+	padding: 9px 14px;
+	background-color: #00000059;
+	border: 1px solid #a06dff33;
+}
+
+.PlayerReportTargetLabel
+{
+	color: #b6a9d6;
+	font-family: Roboto;
+	font-size: 14px;
+	margin-right: 8px;
+	vertical-align: center;
+}
+
+.PlayerReportTargetName
+{
+	color: #ff6a4d;
+	font-family: Roboto;
+	font-size: 16px;
+	font-weight: bold;
+	vertical-align: center;
+}
+
+.PlayerReportSectionLabel
+{
+	color: white;
+	font-family: Roboto;
+	font-size: 14px;
+	font-weight: bold;
+	letter-spacing: 0.5px;
+	text-transform: uppercase;
+	margin-bottom: 8px;
+}
+
+.PlayerReportReasonDropdown
+{
+	width: 442px;
+	height: 40px;
+	margin-bottom: 18px;
+	padding: 0px;
+	background-color: #12101a;
+	border: 1px solid #ffffff26;
+}
+
+.PlayerReportReasonDropdown:hover
+{
+	border-color: #a06dff99;
+}
+
+#PlayerReportReasonDropdown .DropDownChild
+{
+	width: 100%;
+	vertical-align: center;
+	text-align: left;
+	margin-left: 12px;
+	padding: 0px;
+	background-color: #00000000;
+	visibility: visible;
+	color: #e8e4f5;
+	font-family: Roboto;
+	font-size: 15px;
+}
+
+DropDownMenu
+{
+	width: 442px;
+}
+
+.PlayerReportReasonOption
+{
+	width: 100%;
+	padding: 9px 12px;
+	text-align: left;
+	vertical-align: center;
+	background-color: #12101a;
+	color: #e8e4f5;
+	font-family: Roboto;
+	font-size: 15px;
+}
+
+.PlayerReportReasonOption:hover
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #6b4ba6 ), to( #a06dff ) );
+}
+
+.PlayerReportPlaceholderOpt
+{
+	visibility: collapse;
+}
+
+.PlayerReportDescHeader
+{
+	width: 100%;
+	flow-children: right;
+	vertical-align: center;
+	margin-bottom: 6px;
+}
+
+.PlayerReportDescHeader .PlayerReportSectionLabel
+{
+	width: fill-parent-flow( 1.0 );
+	margin-bottom: 0px;
+}
+
+.PlayerReportCharCounter
+{
+	color: #ff4444;
+	font-family: Roboto;
+	font-size: 13px;
+	horizontal-align: right;
+}
+
+.PlayerReportDescInput
+{
+	width: 100%;
+	height: 84px;
+	padding: 8px 10px;
+	border: 1px solid #ffffff2b;
+	background-color: #00000080;
+	color: #e8e4f5;
+	font-family: Roboto;
+	font-size: 15px;
+}
+
+.PlayerReportDescInput:focus
+{
+	border-color: #a06dffcc;
+}
+
+.PlayerReportError
+{
+	color: #ff5a4d;
+	font-family: Roboto;
+	font-size: 13px;
+	margin-top: 8px;
+	opacity: 0;
+	visibility: collapse;
+}
+
+.PlayerReportError.Show
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+.PlayerReportFooter
+{
+	width: fit-children;
+	flow-children: right;
+	horizontal-align: center;
+	margin-top: 18px;
+}
+
+.PlayerReportBtn
+{
+	width: 130px;
+	height: 40px;
+}
+
+.PlayerReportBtn Label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	font-family: Roboto;
+	font-size: 15px;
+	font-weight: bold;
+	letter-spacing: 0.5px;
+}
+
+.PlayerReportCancelBtn
+{
+	margin-right: 12px;
+	background-color: #7a2b24;
+	border: 1px solid #c74a3c;
+}
+
+.PlayerReportCancelBtn Label
+{
+	color: #ffdad4;
+}
+
+.PlayerReportCancelBtn:hover
+{
+	background-color: #93362c;
+	border-color: #e0563f;
+}
+
+.PlayerReportSubmitBtn
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #6b4ba6 ), to( #a06dff ) );
+	border: 1px solid #c9a6ff;
+	box-shadow: 0px 1px 12px 0px #a06dff77;
+}
+
+.PlayerReportSubmitBtn Label
+{
+	color: white;
+}
+
+.PlayerReportSubmitBtn:hover
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #7d59c0 ), to( #b689ff ) );
+}
+
+.PlayerReportSubmitBtn.OnCooldown
+{
+	background-color: #2a2833;
+	border-color: #4a4557;
+	box-shadow: none;
+	saturation: 0.4;
+}
+
+.PlayerReportSubmitBtn.OnCooldown Label
+{
+	color: #8a85a0;
+}
+
+.PlayerReportToast
+{
+	align: center bottom;
+	margin-bottom: 120px;
+	padding: 10px 20px;
+	background-color: #18161df7;
+	border: 1px solid white;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( #8574af ), to( #a06dffef ) );
+	opacity: 0;
+	visibility: collapse;
+	transition: opacity 0.15s ease-in-out 0s;
+}
+
+.PlayerReportToast.Show
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+.PlayerReportToast.Error
+{
+	border-brush: none;
+	border-color: #ff5a4daa;
+}
+
+.PlayerReportToast.Success
+{
+	border-brush: none;
+	border-color: #4ade80aa;
+}
+
+.PlayerReportToastText
+{
+	color: #e8e4f5;
+	font-family: Roboto;
+	font-size: 15px;
+	horizontal-align: center;
+}

@@ -1,0 +1,318 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/layout/custom_game/hud_hero_demo/hud_hero_demo.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/hud_hero_demo/hud_hero_demo.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="AbilityRow">
+			<Panel class="AbilityInList">
+				<Panel class="AbilityImagePanel">
+					<DOTAAbilityImage id="AbilityImageForAbility" scaling="stretch-to-cover-preserve-aspect" hittest="false" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="ItemRow">
+			<Panel class="ItemInList">
+				<DOTAItemImage id="ItemImageForItem" scaling="stretch-to-cover-preserve-aspect" hittest="false" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel hittest="false" class="CustomHudRoot">
+		<Panel id="SelectHeroContainer" acceptsfocus="true" oncancel="CloseHeroPicker()">
+			<DOTAUIHeroPicker id="HeroPicker" />
+			<Button id="CancelButton" class="CloseButton" acceptsjoyfocus="true" onactivate="CloseHeroPicker()" />
+		</Panel>
+		<Panel id="SelectBotContainer" acceptsfocus="true" oncancel="CloseBotPicker()">
+			<DOTAUIHeroPicker id="HeroPicker" />
+			<Button id="CancelButton" class="CloseButton" acceptsjoyfocus="true" onactivate="CloseBotPicker()" />
+		</Panel>
+		<Panel id="SelectFacetHero" acceptsfocus="true" oncancel="CloseHeroPicker()">
+			<Button id="CancelButton" class="CloseButton" acceptsjoyfocus="true" onactivate="CloseHeroPicker()" />
+			<Label class="SelectFacetHeroLabel" text="#DEBUG_SelectFacet" />
+			<DOTAUIHeroFacetPicker id="FacetPickerMain" heroid="1" />
+		</Panel>
+		<Panel id="AbilitiesSpawnerContainer" acceptsfocus="true" oncancel="CloseAbilitiesSpawnerContainer()">
+			<Panel class="SpawnerHeaderPanel">
+				<Button class="CloseButton" acceptsjoyfocus="true" onactivate="CloseAbilitiesSpawnerContainer()" />
+				<Label class="SpawnerHeader" text="#DEBUG_Abilities" />
+			</Panel>
+			<TextEntry id="AbilitySpawnerName" maxchars="200" placeholder="#DEBUG_Placeholder_Name" />
+			<Panel id="AbilitiesSpawnerList" />
+		</Panel>
+		<Panel id="ItemSpawnerContainer" acceptsfocus="true" oncancel="CloseItemSpawnerContainer()">
+			<Panel class="SpawnerHeaderPanel">
+				<Button class="CloseButton" acceptsjoyfocus="true" onactivate="CloseItemSpawnerContainer()" />
+				<Label class="SpawnerHeader" style="width: 50%;" text="#DEBUG_Items" />
+			</Panel>
+			<TextEntry id="ItemSpawnerName" maxchars="100" placeholder="#DEBUG_Placeholder_Name" />
+			<Panel id="ItemSpawnerList" />
+		</Panel>
+		<Panel id="QuickSkillsContainer" acceptsfocus="true" oncancel="CloseQuickSkills()">
+			<Panel class="SpawnerHeaderPanel">
+				<Button class="CloseButton" acceptsjoyfocus="true" onactivate="CloseQuickSkills()" />
+				<Label class="SpawnerHeader" text="#DEBUG_QuickSkills" />
+			</Panel>
+			<Panel style="flow-children: right; padding: 6px; width: 100%;">
+				<TextEntry hittest="true" id="QuickSkillSearch" multiline="false" placeholder="#DEBUG_QuickSkills_Search" maxchars="30" style="width: fill-parent-flow(1); height: 28px; margin-right: 4px;" />
+				<TextEntry hittest="true" id="QuickSkillCount" multiline="false" placeholder="#DEBUG_QuickSkills_Count" maxchars="2" style="width: 50px; height: 28px;" />
+			</Panel>
+			<Panel id="QuickSkillsList" />
+		</Panel>
+		<Panel id="CreepsContainer" acceptsfocus="true" oncancel="CloseCreepsPanel()">
+			<Panel class="SpawnerHeaderPanel">
+				<Button class="CloseButton" acceptsjoyfocus="true" onactivate="CloseCreepsPanel()" />
+				<Label class="SpawnerHeader" text="#DEBUG_Creeps" />
+			</Panel>
+			<Panel id="CreepSelectionGrid" />
+			<Panel id="SpawnedCreepsList" />
+		</Panel>
+		<Panel id="OtherContainer" acceptsfocus="true" oncancel="CloseOtherPanel()">
+			<Panel class="SpawnerHeaderPanel">
+				<Button class="CloseButton" acceptsjoyfocus="true" onactivate="CloseOtherPanel()" />
+				<Label class="SpawnerHeader" text="#DEBUG_Other" />
+			</Panel>
+			<Panel class="CategoryButtonContainer">
+				<Panel class="Row">
+					<Button id="ToggleAltPingsBtn" class="DemoButton" acceptsjoyfocus="true" onactivate="ToggleAltPings()">
+						<Label id="ToggleAltPingsLabel" text="#DEBUG_AltPingsOn" />
+					</Button>
+				</Panel>
+				<Panel class="Row">
+					<Button class="DemoButton LeftButton" acceptsjoyfocus="true" onactivate="RespawnHero()">
+						<Label class="labelteam" text="#DEBUG_Respawn" />
+					</Button>
+					<Button class="DemoButton RightButton" acceptsjoyfocus="true" onactivate="SuicideHero()">
+						<Label class="labelteam" text="#DEBUG_Suicide" />
+					</Button>
+				</Panel>
+				<Panel class="Row">
+					<Button class="DemoButton LeftButton" acceptsjoyfocus="true" onactivate="GiveLoserCurse()">
+						<Label class="labelteam" text="#DEBUG_GiveLoserCurse" />
+					</Button>
+					<Button class="DemoButton RightButton" acceptsjoyfocus="true" onactivate="ClearLoserCurse()">
+						<Label class="labelteam" text="#DEBUG_ClearLoserCurse" />
+					</Button>
+				</Panel>
+				<Panel class="Row">
+					<Button class="DemoButton LeftButton" acceptsjoyfocus="true" onactivate="GiveReportCurse()">
+						<Label class="labelteam" text="#DEBUG_GiveReportCurse" />
+					</Button>
+					<Button class="DemoButton RightButton" acceptsjoyfocus="true" onactivate="GiveReportWarning()">
+						<Label class="labelteam" text="#DEBUG_GiveReportWarning" />
+					</Button>
+				</Panel>
+				<Panel class="Row">
+					<Button class="DemoButton" acceptsjoyfocus="true" onactivate="ClearPunishments()">
+						<Label class="labelteam" text="#DEBUG_ClearPunishments" />
+					</Button>
+				</Panel>
+				<Panel class="Row">
+					<Button class="DemoButton" acceptsjoyfocus="true" onactivate="FireCustomGameEvent_Str( TestNotification )" oncontextmenu="FireCustomGameEvent_Str( TestNotificationRight )">
+						<Label text="#DEBUG_TestNotification" />
+					</Button>
+				</Panel>
+				<Panel class="Row">
+					<Button class="DemoButton LeftButton" acceptsjoyfocus="true" onactivate="FireCustomGameEvent_Str( NewNotifications )">
+						<Label text="#DEBUG_NewNotifications" />
+					</Button>
+					<Button class="DemoButton RightButton" acceptsjoyfocus="true" onactivate="FireCustomGameEvent_Str( OldNotifications )">
+						<Label text="#DEBUG_OldNotifications" />
+					</Button>
+				</Panel>
+				<Panel class="Row">
+					<Button class="DemoButton LeftButton" acceptsjoyfocus="true" onactivate="FireCustomGameEvent_Str( DamageTable )">
+						<Label text="#DEBUG_DamageTable" />
+					</Button>
+					<Button class="DemoButton RightButton" acceptsjoyfocus="true" onactivate="FireCustomGameEvent_Str( BetTable )">
+						<Label text="#DEBUG_Bets" />
+					</Button>
+				</Panel>
+				<Panel class="Row">
+					<Button class="DemoButton LeftButton" acceptsjoyfocus="true" onactivate="FireCustomGameEvent_Str( DamageReduction )">
+						<Label text="#DEBUG_DamageReduction" />
+					</Button>
+					<Button class="DemoButton RightButton" acceptsjoyfocus="true" onactivate="FireCustomGameEvent_Str( QueueRounds )">
+						<Label text="#DEBUG_Queues" />
+					</Button>
+				</Panel>
+				<Panel class="Row">
+					<Button class="DemoButton LeftButton" acceptsjoyfocus="true" onactivate="AnalyzeNetTables()">
+						<Label class="labelteam" text="#DEBUG_NetTablesAnalyze" />
+					</Button>
+					<Button class="DemoButton RightButton" acceptsjoyfocus="true" onactivate="AnalyzePlayerTables()">
+						<Label text="#DEBUG_PlayerTablesAnalyze" />
+					</Button>
+				</Panel>
+				<Panel class="HorizontalRule" />
+				<Panel class="Row">
+					<TextEntry hittest="true" id="MaxHealthTextEntry" multiline="false" placeholder="#DEBUGGER_MaxHealth_Placeholder" maxchars="10" />
+					<Button class="DemoButton" acceptsjoyfocus="true" onactivate="ChangeMaxHealth()">
+						<Label text="#DEBUG_Set" />
+					</Button>
+				</Panel>
+				<Panel class="HorizontalRule" />
+				<Panel class="Row">
+					<Button class="RuneButton" acceptsjoyfocus="true" onactivate="FireCustomGameEvent_Str( SpawnRuneDoubleDamagePressed )" onmouseover="MouseOverRune( &apos;RuneEmoticonDoubleDamage&apos;, &apos;#DOTA_HUD_Rune_DoubleDamage&apos; )" onmouseout="MouseOutRune( &apos;RuneEmoticonDoubleDamage&apos; )">
+						<DOTAEmoticon id="RuneEmoticonDoubleDamage" alias="doubledamage" animating="false" />
+					</Button>
+					<Panel class="FillWidth" />
+					<Button class="RuneButton" acceptsjoyfocus="true" onactivate="FireCustomGameEvent_Str( SpawnRuneHastePressed )" onmouseover="MouseOverRune( &apos;RuneEmoticonHaste&apos;, &apos;#DOTA_HUD_Rune_Haste&apos; )" onmouseout="MouseOutRune( &apos;RuneEmoticonHaste&apos; )">
+						<DOTAEmoticon id="RuneEmoticonHaste" alias="haste" animating="false" />
+					</Button>
+					<Panel class="FillWidth" />
+					<Button class="RuneButton" acceptsjoyfocus="true" onactivate="FireCustomGameEvent_Str( SpawnRuneIllusionPressed )" onmouseover="MouseOverRune( &apos;RuneEmoticonIllusion&apos;, &apos;#DOTA_HUD_Rune_Illusion&apos; )" onmouseout="MouseOutRune( &apos;RuneEmoticonIllusion&apos; )">
+						<DOTAEmoticon id="RuneEmoticonIllusion" alias="illusion" animating="false" />
+					</Button>
+					<Panel class="FillWidth" />
+					<Button class="RuneButton" acceptsjoyfocus="true" onactivate="FireCustomGameEvent_Str( SpawnRuneInvisibilityPressed )" onmouseover="MouseOverRune( &apos;RuneEmoticonInvisibility&apos;, &apos;#DOTA_HUD_Rune_Invisibility&apos; )" onmouseout="MouseOutRune( &apos;RuneEmoticonInvisibility&apos; )">
+						<DOTAEmoticon id="RuneEmoticonInvisibility" alias="invisibility" animating="false" />
+					</Button>
+					<Panel class="FillWidth" />
+					<Button class="RuneButton" acceptsjoyfocus="true" onactivate="FireCustomGameEvent_Str( SpawnRuneRegenerationPressed )" onmouseover="MouseOverRune( &apos;RuneEmoticonRegeneration&apos;, &apos;#DOTA_HUD_Rune_Regeneration&apos; )" onmouseout="MouseOutRune( &apos;RuneEmoticonRegeneration&apos; )">
+						<DOTAEmoticon id="RuneEmoticonRegeneration" alias="regeneration" animating="false" />
+					</Button>
+					<Panel class="FillWidth" />
+					<Button class="RuneButton" acceptsjoyfocus="true" onactivate="FireCustomGameEvent_Str( SpawnRuneArcanePressed )" onmouseover="MouseOverRune( &apos;RuneEmoticonArcane&apos;, &apos;#DOTA_HUD_Rune_Arcane&apos; )" onmouseout="MouseOutRune( &apos;RuneEmoticonArcane&apos; )">
+						<DOTAEmoticon id="RuneEmoticonArcane" alias="arcane_rune" animating="false" />
+					</Button>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="control" class="ControlPanel" hittest="false">
+			<Panel class="ControlPanelContainer">
+				<Panel id="SpawnUnitsCategory" class="Category">
+					<Panel class="CategoryButtonContainer">
+						<Panel class="Row">
+							<Panel id="SpawnHeroButton" class="DemoButton" onactivate="ToggleHeroPicker()" acceptsjoyfocus="true">
+								<Label class="labelteam" text="#DEBUG_ChangeHero" />
+							</Panel>
+						</Panel>
+						<Panel class="Row">
+							<Panel class="DemoButton LeftButton" onactivate="FireCustomGameEvent_Str( CreateBot )" acceptsjoyfocus="true">
+								<Label class="labelteam" text="#DEBUG_CreateBot" />
+							</Panel>
+							<Button class="DemoButton RightButton" acceptsjoyfocus="true" onactivate="RefreshHero()">
+								<Label class="labelteam" text="#DEBUG_Refresh" />
+							</Button>
+						</Panel>
+						<Panel class="Row">
+							<Button class="DemoButton LeftButton" acceptsjoyfocus="true" onactivate="CreateDummy()">
+								<Label class="labelteam" text="#DEBUG_CreateDummy" />
+							</Button>
+							<Button class="DemoButton RightButton" acceptsjoyfocus="true" onactivate="DeleteDummy()">
+								<Label class="labelteam" text="#DEBUG_DeleteDummy" />
+							</Button>
+						</Panel>
+						<Panel class="Row">
+							<Button class="DemoButton" acceptsjoyfocus="true" onactivate="ToggleCreepsPanel()">
+								<Label text="#DEBUG_Creeps" />
+							</Button>
+						</Panel>
+						<Panel class="Row">
+							<Button class="DemoButton LeftButton" acceptsjoyfocus="true" onactivate="FireCustomGameEvent_Str( DummyTargetButtonPressed )">
+								<Label text="#DEBUG_MuchGold" />
+							</Button>
+							<Button class="DemoButton RightButton" acceptsjoyfocus="true" onactivate="ToggleOtherPanel()">
+								<Label text="#DEBUG_Other" />
+							</Button>
+						</Panel>
+						<Panel class="HorizontalRule" />
+						<Panel class="Row">
+							<Button class="DemoButton LeftButton" acceptsjoyfocus="true" onactivate="ChooseSkill()">
+								<Label class="labelteam" text="#DEBUG_SkillChoice" />
+							</Button>
+							<Button class="DemoButton RightButton" acceptsjoyfocus="true" onactivate="ToggleQuickSkills()">
+								<Label text="#DEBUG_QuickSkills" />
+							</Button>
+						</Panel>
+						<Panel class="Row">
+							<Button class="DemoButton" acceptsjoyfocus="true" onactivate="FireCustomGameEvent_Str( CreateDemoChest )">
+								<Label text="#DEBUG_AbilityChoice" />
+							</Button>
+						</Panel>
+						<Panel class="HorizontalRule" />
+						<Panel class="Row">
+							<TextEntry hittest="true" id="RoundTextEntry" multiline="false" placeholder="#DEBUGGER_Round_Placeholder" maxchars="3" />
+							<Button class="DemoButton" acceptsjoyfocus="true" onactivate="StartRound()">
+								<Label text="#DEBUG_StartRound" />
+							</Button>
+						</Panel>
+						<Panel class="Row">
+							<TextEntry hittest="true" id="NeutralTextEntry" multiline="false" placeholder="#DEBUGGER_Neutral_Placeholder" maxchars="1" />
+							<Button class="DemoButton" acceptsjoyfocus="true" onactivate="CraftNeutral()">
+								<Label text="#DEBUG_CraftNeutral" />
+							</Button>
+						</Panel>
+						<Panel class="Row">
+							<TextEntry hittest="true" id="TimescaleTextEntry" multiline="false" placeholder="#DEBUGGER_Timescale_Placeholder" maxchars="4" />
+							<Button class="DemoButton" acceptsjoyfocus="true" onactivate="ChangeTimescale()">
+								<Label text="#DEBUG_Change" />
+							</Button>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel id="EditUnitsCategory" class="Category">
+					<Label class="CategoryHeader" text="#DEBUG_SelectedUnits" />
+					<Panel class="CategoryButtonContainer">
+						<Panel class="Row">
+							<Button class="DemoButton LeftButton" acceptsjoyfocus="true" onactivate="SwitchAbilitiesSpawnerDisplay()">
+								<Label text="#DEBUG_Abilities" />
+							</Button>
+							<Button class="DemoButton RightButton" acceptsjoyfocus="true" onactivate="SwitchItemSpawnerDisplay()">
+								<Label text="#DEBUG_Items" />
+							</Button>
+						</Panel>
+						<Panel class="Row">
+							<Button id="LevelUpSelectedHeroesButton" class="DemoButton LeftButton" acceptsjoyfocus="true" onactivate="LevelUpSelectedHeroes()">
+								<Label text="#LevelUpSelectedHeroes_Button" />
+							</Button>
+							<Button class="DemoButton RightButton" acceptsjoyfocus="true" onactivate="MaxLevelUpSelectedHeroes()">
+								<Label text="#MaxLevelUpSelectedHeroes_Button" />
+							</Button>
+						</Panel>
+						<Panel class="Row">
+							<Button class="DemoButton LeftButton" acceptsjoyfocus="true" onactivate="ScepterSelectedHeroes()">
+								<Label text="#ScepterSelectedHeroes_Button" />
+							</Button>
+							<Button class="DemoButton RightButton" acceptsjoyfocus="true" onactivate="ShardSelectedHeroes()">
+								<Label text="#ShardSelectedHeroes_Button" />
+							</Button>
+						</Panel>
+						<Panel class="Row">
+							<Button class="DemoButton LeftButton" acceptsjoyfocus="true" onactivate="InvulnerableOn()">
+								<Label text="#InvulnOn_Button" />
+							</Button>
+							<Button class="DemoButton CenterButton" acceptsjoyfocus="true" onactivate="InvulnerableOff()">
+								<Label text="#InvulnOff_Button" />
+							</Button>
+							<Button class="DemoButton RightButton" acceptsjoyfocus="true" onactivate="ResetSelectedHeroes()">
+								<Label text="#Reset_Button" />
+							</Button>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel id="Footer" />
+			</Panel>
+			<Panel id="ControlPanelSlideThumbContainer" require-composition-layer="true" hittest="false">
+				<Button id="ControlPanelSlideThumb" acceptsjoyfocus="true" onactivate="SlideThumbActivate()">
+					<Panel class="RightArrowButtonIcon" />
+				</Button>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

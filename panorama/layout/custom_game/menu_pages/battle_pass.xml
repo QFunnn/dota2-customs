@@ -1,0 +1,91 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/custom_game/menu_pages/battle_pass.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/menu_pages/battle_pass.vjs_c" />
+	</scripts>
+	<Panel class="BattlePassMenu" hittest="false">
+		<DOTAParticleScenePanel id="BackgroundFX" hittest="false" particleName="particles/battle_pass/battle_pass_back.vpcf" startActive="true" particleonly="true" cameraOrigin="500 0 0" lookAt="0 0 0" fov="60" squarePixels="true" />
+		<Panel id="WidgetPanel" hittest="false">
+			<Panel class="ToLeftButton ToButton" hittest="true" onactivate="NextWidget(-1)" />
+			<Panel id="WidgetCenter" hittest="false">
+				<Panel class="WidgetHeader" hittest="false">
+					<Label text="#MENU_BATTLE_PASS_WIDGET_Header" class="WidgetHeaderLabel" />
+				</Panel>
+				<Panel class="WidgetBody" hittest="false">
+					<Panel id="WidgetImage" hittest="false" />
+					<Panel class="WidgetBottom" hittest="false">
+						<Label text="{s:current_widget}" class="WidgetDescLabel" />
+					</Panel>
+					<Panel class="WidgetOverlay" hittest="false" />
+				</Panel>
+				<Panel id="WidgetList" hittest="false" />
+			</Panel>
+			<Panel class="ToRightButton ToButton" hittest="true" onactivate="NextWidget(1)" />
+		</Panel>
+		<Panel id="SubscribeInfo" hittest="false">
+			<Label text="#MENU_BATTLE_PASS" class="SubscribeInfoHeaderLabel">
+				<Label hittest="false" class="SubscribeInfoHeaderLabel Blick" text="#MENU_BATTLE_PASS" />
+			</Label>
+		</Panel>
+		<Panel id="SubscribePanel" hittest="false">
+			<Label text="#MENU_BATTLE_PASS_Buy" class="SubscribePanelHeaderLabel" />
+			<Label text="#MENU_BATTLE_PASS_Buy_desc" class="SubscribePanelDescLabel" html="true" />
+			<Panel id="SubscribeButtons" hittest="false">
+				<Panel class="SubscribeButtonPanel" hittest="false">
+					<Panel class="SubscribeButton" hittest="true" onactivate="BuyBattlePass(1)">
+						<Panel class="Wrapper" hittest="false">
+							<Label text="250" class="SubscribeButtonCoinLabel" hittest="false" />
+							<Panel class="SubscribeButtonCoinIcon" hittest="false" />
+						</Panel>
+					</Panel>
+					<Label text="#MENU_BATTLE_PASS_Buy_1" class="SubscribeButtonLabel" />
+					<Label text="#MENU_BATTLE_PASS_Buy_1_desc" class="SubscribeButtonDescLabel" />
+				</Panel>
+				<Panel class="SubscribeButtonPanel" hittest="false">
+					<Panel class="SubscribeButton" hittest="true" onactivate="BuyBattlePass(3)">
+						<Panel class="Wrapper" hittest="false">
+							<Panel class="CrossedText" hittest="false">
+								<Label text="750" class="SubscribeButtonCoinOldLabel" hittest="false" />
+								<Panel class="CrossLine" hittest="false" />
+							</Panel>
+							<Label text="712" class="SubscribeButtonCoinLabel NewCost" />
+							<Panel class="SubscribeButtonCoinIcon" hittest="false" />
+						</Panel>
+					</Panel>
+					<Label text="#MENU_BATTLE_PASS_Buy_2" class="SubscribeButtonLabel" />
+					<Label text="#MENU_BATTLE_PASS_Buy_2_desc" class="SubscribeButtonDescLabel" />
+				</Panel>
+				<Panel class="SubscribeButtonPanel" hittest="false">
+					<Panel class="SubscribeButton" hittest="true" onactivate="BuyBattlePass(6)">
+						<Panel class="Wrapper" hittest="false">
+							<Panel class="CrossedText" hittest="false">
+								<Label text="1500" class="SubscribeButtonCoinOldLabel" hittest="false" />
+								<Panel class="CrossLine" hittest="false" />
+							</Panel>
+							<Label text="1350" class="SubscribeButtonCoinLabel NewCost" />
+							<Panel class="SubscribeButtonCoinIcon" hittest="false" />
+						</Panel>
+					</Panel>
+					<Label text="#MENU_BATTLE_PASS_Buy_3" class="SubscribeButtonLabel" />
+					<Label text="#MENU_BATTLE_PASS_Buy_3_desc" class="SubscribeButtonDescLabel" />
+				</Panel>
+			</Panel>
+			<Label text="#MENU_BATTLE_PASS_Desc3" class="SubscribePanelPostLabel" html="true" />
+		</Panel>
+	</Panel>
+</root>

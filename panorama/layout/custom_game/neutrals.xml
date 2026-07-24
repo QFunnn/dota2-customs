@@ -1,0 +1,92 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/custom_game/neutrals.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/neutrals.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/hud.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="ItemLine">
+			<Panel class="ItemLine" hittest="true">
+				<DOTAItemImage id="ItemImage" class="ItemImage" scaling="stretch-to-cover-preserve-aspect" hittest="true" />
+				<Label class="ItemName" text="{s:item_name}" hittest="false" />
+				<Panel class="ItemBorder" hittest="false" />
+			</Panel>
+		</snippet>
+		<snippet name="EnchantLine">
+			<Panel class="EnchantLine" hittest="true">
+				<DOTAItemImage id="EnchantImage" class="EnchantImage" scaling="stretch-to-cover-preserve-aspect" hittest="false" />
+				<Label class="EnchantName" text="{s:item_name}" hittest="false" />
+				<Label class="EnchantStats" text="{s:enchant_stats}" html="true" hittest="false" />
+				<Panel class="EnchantBorder" hittest="false" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="NeutralsHUD" hittest="false">
+		<Panel id="NeutralsCraftButton" class="NeutralsCraftButton" hittest="false">
+			<Panel id="NeutralsCraftButtonInfo" class="NeutralsCraftButtonSize" hittest="true">
+				<Panel class="NeutralsCraftButtonInfo" hittest="false">
+					<Label class="NeutralsCraftButtonInfoNextRound" text="{s:next_round}" hittest="false" />
+					<Label class="NeutralsCraftButtonInfoRoundText" text="#NEUTRALS_Round" hittest="false" />
+				</Panel>
+				<Image class="NeutralsCraftButtonInfoLock" src="s2r://panorama/images/control_icons/24px/lock.vsvg" hittest="false" />
+			</Panel>
+			<DOTAParticleScenePanel id="CraftParticle" class="NeutralsCraftActiveScene2" hittest="false" particleName="particles/ui/hud/neutral_levelup.vpcf" particleonly="true" startActive="false" cameraOrigin="225 0 0" lookAt="0 0 0" fov="60" squarePixels="true" />
+			<Panel class="NeutralsCraftButtonCraftActive" hittest="false">
+				<Panel class="NeutralsCraftButtonGlow" hittest="false" />
+				<DOTAScenePanel class="NeutralsCraftActiveScene" hittest="false" map="scenes/hud/levelupburst" camera="camera_1" />
+				<Panel id="NeutralsCraftButtonCraft" hittest="true" onactivate="ToggleCraftMenu();">
+					<Panel class="NeutralsCraftButtonCraftSize">
+						<Panel class="NeutralsCraftButtonCraftBack" hittest="false" />
+						<Image class="NeutralsCraftButtonCraftIconShadow" src="s2r://panorama/images/control_icons/24px/crafting_hammer.vsvg" hittest="false" />
+						<Image class="NeutralsCraftButtonCraftIcon" src="s2r://panorama/images/control_icons/24px/crafting_hammer.vsvg" hittest="false" />
+					</Panel>
+				</Panel>
+				<Label class="NeutralsCraftButtonCraftCount" text="{s:craft_count}" hittest="false" />
+			</Panel>
+		</Panel>
+		<Panel id="NeutralsCraftBody" hittest="false">
+			<Panel class="NeutralsCraftBodyHeader" hittest="false">
+				<Panel class="NeutralsCraftBodyHeaderBack" hittest="false" />
+				<Panel class="NeutralsCraftBodyHeaderContainer" hittest="false">
+					<Label class="NeutralsCraftBodyHeaderName" text="#NEUTRALS_CraftHeader" hittest="false" />
+					<Label class="NeutralsCraftBodyHeaderTier" text="#NEUTRALS_CraftTier" hittest="false" />
+				</Panel>
+			</Panel>
+			<Panel class="NeutralsCraftBodyHeaderDecorLine" hittest="false" />
+			<Panel class="NeutralsCraftBodyCraft" hittest="false">
+				<Panel class="ItemsContainer" hittest="false">
+					<Label class="CategoryHeader" text="#NEUTRALS_ItemsHeader" hittest="false" />
+					<Panel id="ItemsList" class="ItemsList" hittest="false" />
+				</Panel>
+				<Panel class="Separator" hittest="false">
+					<Panel class="SeparatorLine" hittest="false" />
+					<Image class="SeparatorPlus" src="s2r://panorama/images/control_icons/24px/plus.vsvg" hittest="false" />
+					<Panel class="SeparatorLine Down" hittest="false" />
+				</Panel>
+				<Panel class="EnchantsContainer" hittest="false">
+					<Label class="CategoryHeader" text="#NEUTRALS_EnchantsHeader" hittest="false" />
+					<Panel id="EnchantsList" class="EnchantsList" hittest="false" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel hittest="true" id="DFGMOldNeutralItems">
+			<Label hittest="true" id="DFGMNeutralHeader" text="#NEUTRALS_Header" />
+			<Panel hittest="true" id="DFGMOldNeutralItemsTiers" />
+		</Panel>
+	</Panel>
+</root>

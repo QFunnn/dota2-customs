@@ -1,0 +1,200 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/custom_game/big_wiki.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/big_wiki_categories.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/big_wiki.vjs_c" />
+	</scripts>
+	<Panel class="WikiMain" hittest="false">
+		<Panel id="BigWiki" class="_Main" hittest="false">
+			<Panel id="_CloseButton" onactivate="ToggleWiki()" hittest="true" />
+			<Panel id="_MainContainer" hittest="false">
+				<Panel id="_Buttons" hittest="false">
+					<Panel id="_ButtonsScrollable" hittest="false">
+						<Panel id="GAME_BASICS_Button" class="_Button" hittest="true">
+							<Image class="_ButtonIcon" src="s2r://panorama/images/custom_game/wiki/book-solid-full_png.vtex" />
+							<Label class="_ButtonLabel" text="#MENU_WIKI_Button_GAME_BASICS" />
+						</Panel>
+						<Panel id="HEROES_AND_ABILITIES_Button" class="_Button" hittest="true">
+							<Image class="_ButtonIcon" src="s2r://panorama/images/custom_game/wiki/users-solid-full_png.vtex" />
+							<Label class="_ButtonLabel" text="#MENU_WIKI_Button_HEROES_AND_ABILITIES" />
+						</Panel>
+						<Panel id="HEROES_AND_ABILITIES_Group" class="_Group" hittest="false">
+							<Panel id="HERO_SELECTION_Button" class="_Button" hittest="true">
+								<Image class="_ButtonIcon" src="s2r://panorama/images/custom_game/wiki/circle-user-solid-full_png.vtex" />
+								<Label class="_ButtonLabel" text="#MENU_WIKI_Button_HERO_SELECTION" />
+							</Panel>
+							<Panel id="ABILITIES_SYSTEM_Button" class="_Button" hittest="true">
+								<Image class="_ButtonIcon" src="s2r://panorama/images/custom_game/wiki/wand-sparkles-solid-full_png.vtex" />
+								<Label class="_ButtonLabel" text="#MENU_WIKI_Button_ABILITIES_SYSTEM" />
+							</Panel>
+						</Panel>
+						<Panel id="ITEMS_Button" class="_Button" hittest="true">
+							<Image class="_ButtonIcon" src="s2r://panorama/images/custom_game/wiki/box-solid-full_png.vtex" />
+							<Label class="_ButtonLabel" text="#MENU_WIKI_Button_ITEMS" />
+						</Panel>
+						<Panel id="ITEMS_Group" class="_Group" hittest="false">
+							<Panel id="REGULAR_ITEMS_Button" class="_Button" hittest="true">
+								<Image class="_ButtonIcon" src="s2r://panorama/images/custom_game/wiki/bag-shopping-solid-full_png.vtex" />
+								<Label class="_ButtonLabel" text="#MENU_WIKI_Button_REGULAR_ITEMS" />
+							</Panel>
+							<Panel id="NEUTRAL_ITEMS_Button" class="_Button" hittest="true">
+								<Image class="_ButtonIcon" src="s2r://panorama/images/custom_game/wiki/gem-solid-full_png.vtex" />
+								<Label class="_ButtonLabel" text="#MENU_WIKI_Button_NEUTRAL_ITEMS" />
+							</Panel>
+						</Panel>
+						<Panel id="GAME_MODES_Button" class="_Button" hittest="true">
+							<Image class="_ButtonIcon" src="s2r://panorama/images/custom_game/wiki/gamepad-solid-full_png.vtex" />
+							<Label class="_ButtonLabel" text="#MENU_WIKI_Button_GAME_MODES" />
+						</Panel>
+						<Panel id="ADVANCED_MECHANICS_Button" class="_Button" hittest="true">
+							<Image class="_ButtonIcon" src="s2r://panorama/images/custom_game/wiki/gears-solid-full_png.vtex" />
+							<Label class="_ButtonLabel" text="#MENU_WIKI_Button_ADVANCED_MECHANICS" />
+						</Panel>
+						<Panel id="PROGRESSION_Button" class="_Button" hittest="true">
+							<Image class="_ButtonIcon" src="s2r://panorama/images/custom_game/wiki/trophy-solid-full_png.vtex" />
+							<Label class="_ButtonLabel" text="#MENU_WIKI_Button_PROGRESSION" />
+						</Panel>
+					</Panel>
+					<Panel id="_ButtonsFixed" hittest="false">
+						<Panel id="AI_HELPER_Button" class="_Button" hittest="true">
+							<Image class="_ButtonIcon" src="s2r://panorama/images/custom_game/wiki/robot-solid-full_png.vtex" />
+							<Label class="_ButtonLabel" text="#MENU_WIKI_Button_AI_HELPER" />
+						</Panel>
+						<Panel id="FAQ_Button" class="_Button" hittest="true">
+							<Image class="_ButtonIcon" src="s2r://panorama/images/custom_game/wiki/circle-question-solid-full_png.vtex" />
+							<Label class="_ButtonLabel" text="#MENU_WIKI_Button_FAQ" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel id="_Container" hittest="false">
+					<Panel id="GAME_BASICS" class="_Category" hittest="false">
+						<Label class="CategoryTitle" text="#MENU_WIKI_GAME_BASICS_Title" />
+						<Label class="CategoryText" text="#MENU_WIKI_GAME_BASICS_Text1" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_GAME_BASICS_Subtitle1" />
+						<Label class="CategoryText" text="#MENU_WIKI_GAME_BASICS_Text2" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_GAME_BASICS_Subtitle2" />
+						<Label class="CategoryText" text="#MENU_WIKI_GAME_BASICS_Text3" />
+					</Panel>
+					<Panel id="GAME_MODES" class="_Category" hittest="false">
+						<Label class="CategoryTitle" text="#MENU_WIKI_GAME_MODES_Title" />
+						<Label class="CategoryText" text="#MENU_WIKI_GAME_MODES_Text1" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_GAME_MODES_Subtitle1" />
+						<Label class="CategoryText" text="#MENU_WIKI_GAME_MODES_Text2" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_GAME_MODES_Subtitle2" />
+						<Label class="CategoryText" text="#MENU_WIKI_GAME_MODES_Text3" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_GAME_MODES_Subtitle3" />
+						<Label class="CategoryText" text="#MENU_WIKI_GAME_MODES_Text4" />
+					</Panel>
+					<Panel id="ADVANCED_MECHANICS" class="_Category" hittest="false">
+						<Label class="CategoryTitle" text="#MENU_WIKI_ADVANCED_MECHANICS_Title" />
+						<Label class="CategoryText" text="#MENU_WIKI_ADVANCED_MECHANICS_Text1" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_ADVANCED_MECHANICS_Subtitle1" />
+						<Label class="CategoryText" text="#MENU_WIKI_ADVANCED_MECHANICS_Text2" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_ADVANCED_MECHANICS_Subtitle2" />
+						<Label class="CategoryText" text="#MENU_WIKI_ADVANCED_MECHANICS_Text3" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_ADVANCED_MECHANICS_Subtitle3" />
+						<Label class="CategoryText" text="#MENU_WIKI_ADVANCED_MECHANICS_Text4" />
+					</Panel>
+					<Panel id="PROGRESSION" class="_Category" hittest="false">
+						<Label class="CategoryTitle" text="#MENU_WIKI_PROGRESSION_Title" />
+						<Label class="CategoryText" text="#MENU_WIKI_PROGRESSION_Text1" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_PROGRESSION_Subtitle1" />
+						<Label class="CategoryText" text="#MENU_WIKI_PROGRESSION_Text2" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_PROGRESSION_Subtitle2" />
+						<Label class="CategoryText" text="#MENU_WIKI_PROGRESSION_Text3" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_PROGRESSION_Subtitle3" />
+						<Label class="CategoryText" text="#MENU_WIKI_PROGRESSION_Text4" />
+					</Panel>
+					<Panel id="AI_HELPER" class="_Category" hittest="false">
+						<Label class="CategoryTitle" text="#MENU_WIKI_AI_HELPER_Title" />
+						<Label class="CategoryText" text="#MENU_WIKI_AI_HELPER_Text1" />
+						<Panel id="ai-chat-container" class="AIChatContainer" hittest="false">
+							<Panel id="ai-chat-messages" class="AIChatMessages" hittest="false">
+								<Label class="AIChatWelcome" text="#MENU_WIKI_AI_HELPER_Welcome" />
+								<Label class="AIChatNote" text="#MENU_WIKI_AI_HELPER_Note" />
+							</Panel>
+							<Panel id="ai-input-container" class="AIInputContainer" hittest="false">
+								<TextEntry id="ai-input-field" class="AIInputField" placeholder="#MENU_WIKI_AI_HELPER_Placeholder" hittest="true" />
+								<Panel id="ai-send-button" class="AISendButton" hittest="true">
+									<Label class="AISendButtonLabel" text="#MENU_WIKI_AI_HELPER_Send" />
+								</Panel>
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel id="FAQ" class="_Category" hittest="false">
+						<Label class="CategoryTitle" text="#MENU_WIKI_FAQ_Title" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_FAQ_Q1" />
+						<Label class="CategoryText" text="#MENU_WIKI_FAQ_A1" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_FAQ_Q2" />
+						<Label class="CategoryText" text="#MENU_WIKI_FAQ_A2" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_FAQ_Q3" />
+						<Label class="CategoryText" text="#MENU_WIKI_FAQ_A3" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_FAQ_Q4" />
+						<Label class="CategoryText" text="#MENU_WIKI_FAQ_A4" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_FAQ_Q5" />
+						<Label class="CategoryText" text="#MENU_WIKI_FAQ_A5" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_FAQ_Q6" />
+						<Label class="CategoryText" text="#MENU_WIKI_FAQ_A6" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_FAQ_Q7" />
+						<Label class="CategoryText" text="#MENU_WIKI_FAQ_A7" />
+					</Panel>
+					<Panel id="HERO_SELECTION" class="_Category" hittest="false">
+						<Label class="CategoryTitle" text="#MENU_WIKI_HERO_SELECTION_Title" />
+						<Label class="CategoryText" text="#MENU_WIKI_HERO_SELECTION_Text1" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_HERO_SELECTION_Subtitle1" />
+						<Label class="CategoryText" text="#MENU_WIKI_HERO_SELECTION_Text2" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_HERO_SELECTION_Subtitle2" />
+						<Label class="CategoryText" text="#MENU_WIKI_HERO_SELECTION_Text3" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_HERO_SELECTION_Subtitle3" />
+						<Label class="CategoryText" text="#MENU_WIKI_HERO_SELECTION_Text4" />
+					</Panel>
+					<Panel id="ABILITIES_SYSTEM" class="_Category" hittest="false">
+						<Label class="CategoryTitle" text="#MENU_WIKI_ABILITIES_SYSTEM_Title" />
+						<Label class="CategoryText" text="#MENU_WIKI_ABILITIES_SYSTEM_Text1" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_ABILITIES_SYSTEM_Subtitle1" />
+						<Label class="CategoryText" text="#MENU_WIKI_ABILITIES_SYSTEM_Text2" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_ABILITIES_SYSTEM_Subtitle2" />
+						<Label class="CategoryText" text="#MENU_WIKI_ABILITIES_SYSTEM_Text3" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_ABILITIES_SYSTEM_Subtitle3" />
+						<Label class="CategoryText" text="#MENU_WIKI_ABILITIES_SYSTEM_Text4" />
+					</Panel>
+					<Panel id="REGULAR_ITEMS" class="_Category" hittest="false">
+						<Label class="CategoryTitle" text="#MENU_WIKI_REGULAR_ITEMS_Title" />
+						<Label class="CategoryText" text="#MENU_WIKI_REGULAR_ITEMS_Text1" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_REGULAR_ITEMS_Subtitle1" />
+						<Label class="CategoryText" text="#MENU_WIKI_REGULAR_ITEMS_Text2" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_REGULAR_ITEMS_Subtitle2" />
+						<Label class="CategoryText" text="#MENU_WIKI_REGULAR_ITEMS_Text3" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_REGULAR_ITEMS_Subtitle3" />
+						<Label class="CategoryText" text="#MENU_WIKI_REGULAR_ITEMS_Text4" />
+					</Panel>
+					<Panel id="NEUTRAL_ITEMS" class="_Category" hittest="false">
+						<Label class="CategoryTitle" text="#MENU_WIKI_NEUTRAL_ITEMS_Title" />
+						<Label class="CategoryText" text="#MENU_WIKI_NEUTRAL_ITEMS_Text1" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_NEUTRAL_ITEMS_Subtitle1" />
+						<Label class="CategoryText" text="#MENU_WIKI_NEUTRAL_ITEMS_Text2" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_NEUTRAL_ITEMS_Subtitle2" />
+						<Label class="CategoryText" text="#MENU_WIKI_NEUTRAL_ITEMS_Text3" />
+						<Label class="CategorySubtitle" text="#MENU_WIKI_NEUTRAL_ITEMS_Subtitle3" />
+						<Label class="CategoryText" text="#MENU_WIKI_NEUTRAL_ITEMS_Text4" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

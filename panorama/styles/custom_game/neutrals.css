@@ -1,0 +1,968 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+@define NeutralTier1: #BEBEBE;
+@define NeutralTier2: #92E47E;
+@define NeutralTier3: #7F93FC;
+@define NeutralTier4: #D57BFF;
+@define NeutralTier5: #FFE195;
+@define LighterGrey: #B0BCC2;
+@define baseText: #A5ADA2ff;
+.NeutralsHUD
+{
+	width: 100%;
+	height: 100%;
+}
+
+.NeutralsCraftButton
+{
+	width: 100%;
+	height: 100%;
+	align: center bottom;
+	margin-bottom: 80px;
+	padding-bottom: 30px;
+}
+
+.NeutralsCraftButtonSize
+{
+	width: 44px;
+	height: 44px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #000000 ), to( #12161a ) );
+	border: 2px solid rgba(255, 255, 255, 0.06);
+	border-radius: 50%;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( rgba(255, 255, 255, 1) ), to( rgba(255, 255, 255, 0.2) ) );
+	box-shadow: 0px 2px 16px -1px rgba(0, 0, 0, 0.5);
+	align: center bottom;
+	margin-bottom: 8px;
+}
+
+.NeutralsCraftButtonCraftCount
+{
+	align: center bottom;
+	text-align: right;
+	font-size: 20px;
+	text-transform: uppercase;
+	font-weight: bold;
+	color: white;
+	text-shadow: 0px 0px 3px 3 #000000;
+	font-family: monospaceNumbersFont;
+	margin-bottom: 50px;
+}
+
+.NeutralsCraftButtonInfo
+{
+	align: center center;
+	flow-children: down;
+	margin-top: -2px;
+}
+
+.RoundsEnd .NeutralsCraftButtonInfo
+{
+	opacity: 0;
+}
+
+.NeutralsCraftButtonInfoLock
+{
+	align: center center;
+	height: 16px;
+	width: 16px;
+	margin-top: -3px;
+	wash-color: gray;
+	opacity: 0;
+}
+
+.RoundsEnd .NeutralsCraftButtonInfoLock
+{
+	opacity: 1;
+}
+
+.NeutralsCraftButtonInfoNextRound
+{
+	align: center top;
+	color: whitesmoke;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 3px 4 #000000;
+	text-transform: uppercase;
+	font-size: 16px;
+	margin-bottom: -4px;
+	margin-top: -1px;
+}
+
+.NeutralsCraftButtonInfoRoundText
+{
+	color: rgb(151, 151, 151);
+	font-size: 10px;
+	align: center top;
+	text-align: center;
+	margin-bottom: 4px;
+}
+
+.NeutralsCraftButtonCraftActive
+{
+	width: 100%;
+	align: center bottom;
+	padding-bottom: 24px;
+	margin-bottom: -24px;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: .1s;
+}
+
+.CraftEnabled .NeutralsCraftButtonCraftActive
+{
+	opacity: 1;
+}
+
+.NeutralsCraftButtonGlow
+{
+	ignore-parent-flow: true;
+	width: 150%;
+	height: 210%;
+	margin-top: 0px;
+	background-color: gradient( radial, 50% 50%, 0% 0%, 50% 50%, from( rgb(255, 198, 75) ), color-stop( 0.5, rgba(255, 157, 0, 0.251) ), to( rgba(255, 102, 0, 0) ) );
+	align: center center;
+	-s2-mix-blend-mode: screen;
+	overflow: noclip;
+	opacity: 0.5;
+	opacity-mask: url("s2r://panorama/images/masks/sun_burst_png.vtex");
+	opacity-brush: gradient( linear, 0% 0%, 100% 0%, from( #ffffff00 ), color-stop(0.5, #fff), to( #ffffff00 ) );
+	animation-name: GlowNeutralButtonAnimation;
+	animation-duration: 0.8s;
+	animation-iteration-count:infinite;
+	animation-direction: alternate-reverse;
+}
+
+@keyframes 'GlowNeutralButtonAnimation'
+{
+	100%
+	{
+		brightness: 2.5;
+	}
+	
+}
+
+#NeutralsCraftButtonCraft
+{
+	align: center bottom;
+	padding: 8px;
+	pre-transform-scale2d: 1;
+	transform: scale3d(1.4, 1.4, 1);
+	transition-property: pre-transform-scale2d, transform;
+	transition-duration: .1s, .2s;
+	transition-delay: 0s, .1s;
+}
+
+.CraftEnabled #NeutralsCraftButtonCraft
+{
+	transform: scale3d(1, 1, 1);
+}
+
+#NeutralsCraftButtonCraft:active
+{
+	pre-transform-scale2d: 0.9;
+}
+
+#NeutralsCraftButtonCraft:active .NeutralsCraftButtonCraftBack
+{
+	box-shadow: 0px 2px 12px -1px rgba(0, 0, 0, 0.0);
+}
+
+#NeutralsCraftButtonCraft:hover .NeutralsCraftButtonCraftIcon
+{
+	opacity-brush: gradient( radial, 45% 55%, 0% 0%, 50% 50%, from( #FFFFD7 ), color-stop( 0.5, #ffec9f ), color-stop( 0.9, #d8b85e ), to( #c79b21 ) );
+}
+
+#NeutralsCraftButtonCraft:hover .NeutralsCraftButtonCraftBack
+{
+	brightness: 1.5;
+}
+
+.CraftOpened .NeutralsCraftButtonCraftBack
+{
+	box-shadow: 0px 2px 12px -1px rgba(0, 0, 0, 0.0);
+}
+
+.CraftOpened .NeutralsCraftButtonCraftIcon
+{
+	opacity-brush: gradient( radial, 45% 55%, 0% 0%, 50% 50%, from( #FFFFD7 ), color-stop( 0.5, #ffec9f ), color-stop( 0.9, #d8b85e ), to( #c79b21 ) );
+}
+
+.CraftOpened .NeutralsCraftButtonCraftBack
+{
+	brightness: 1.5;
+}
+
+.NeutralsCraftButtonCraftSize
+{
+	width: 44px;
+	height: 44px;
+	overflow: noclip;
+}
+
+.NeutralsCraftActiveScene
+{
+	width: 100%;
+	height: 80px;
+	margin-bottom: 2px;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_box_png.vtex");
+	opacity-brush: gradient( linear, 0% 0%, 0% 100%, from( #ffffff00 ), color-stop(0.2, #fff), color-stop(0.8, #fff), to( #ffffff00 ) );
+}
+
+.NeutralsCraftActiveScene2
+{
+	width: 100%;
+	height: 320px;
+	align: center bottom;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: .1s;
+	transition-delay: .2s;
+}
+
+.CraftEnabled .NeutralsCraftActiveScene2
+{
+	opacity: 1;
+}
+
+.NeutralsCraftButtonCraftBack
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient( radial, 50% 10%, 0% 0%, 90% 90%, from( #8A7946 ), color-stop( 0.6, #B8A35A), color-stop( 0.9, #D8C382), to( #fff4d3 ) );
+	border: 1px solid rgb(255, 250, 225);
+	border-brush:gradient( linear, 0% 0%, 0% 50%, from( #ffffffcf ), to( #1d191399 ) );
+	border-radius: 50%;
+	box-shadow: 0px 2px 24px -1px rgba(0, 0, 0, 0.8);
+	transition-property: box-shadow, brightness;
+	transition-duration: .1s;
+}
+
+.NeutralsCraftButtonCraftIconShadow
+{
+	align: center center;
+	height: 24px;
+	opacity-brush: rgba(255, 246, 203, 0.9);
+	margin-top: 1px;
+}
+
+.NeutralsCraftButtonCraftIcon
+{
+	opacity-brush: gradient( radial, 50% 50%, 0% 0%, 40% 40%, from( #664505 ), to( #452A07 ) );
+	align: center center;
+	height: 24px;
+	transition-property: opacity-brush;
+	transition-duration: .1s;
+}
+
+#NeutralsCraftBody
+{
+	width: 560px;
+	align: center bottom;
+	margin-bottom: 225px;
+	opacity: 0;
+	transform: translate3d(0,28px,0) scale3d(0.96, 0.96, 0);
+	transition-property: opacity, transform;
+	transition-duration: .2s;
+	transition-timing-function: cubic-bezier(0, 0.9, 0, 0.9);
+	flow-children: down;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #13171a ), to( #0b0f11 ) );
+	border: 2px solid black;
+	box-shadow: 0px 8px 40px -2px rgba(0, 0, 0, 0.6);
+}
+
+#NeutralsCraftBody.CraftOpened
+{
+	opacity: 1;
+	transform: translate3d(0,0,0) scale3d(1, 1, 0);
+}
+
+.NeutralsCraftBodyHeader
+{
+	width: 100%;
+}
+
+.NeutralsCraftBodyHeaderBack
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/hud/facets/ripple_texture_png.vtex");
+	background-size: cover;
+	background-position: center;
+	-s2-mix-blend-mode: screen;
+	opacity: 0.4;
+	opacity-brush: gradient( linear, 0% 0%, 100% 0%, from( white ), to( rgba(255, 255, 255, 0) ) );
+}
+
+.NeutralsCraftBodyHeaderContainer
+{
+	flow-children: right;
+	width: fill-parent-flow(1.0);
+	align: left center;
+	padding: 10px 8px 8px 12px;
+}
+
+.NeutralsCraftBodyHeaderName
+{
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	color: white;
+	font-size: 16px;
+	text-shadow: 0px 1px 6px black;
+}
+
+.NeutralsCraftBodyHeaderTier
+{
+	width: fill-parent-flow(1.0);
+	align: left center;
+	text-align: right;
+	font-weight: semi-bold;
+	font-size: 16px;
+	text-shadow: 0px 1px 6px black;
+	color: baseText;
+}
+
+.NeutralsCraftBodyHeaderDecorLine
+{
+	width: 100%;
+	height: 1px;
+	background-color: rgba(0, 0, 0, 0.15);
+	box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.01);
+}
+
+.NeutralsCraftBodyCraft
+{
+	flow-children: right;
+	width: 100%;
+	padding: 10px 12px 8px;
+}
+
+.ItemsContainer
+{
+	flow-children: down;
+	width: fill-parent-flow(1);
+}
+
+.CategoryHeader
+{
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+	font-size: 14px;
+	align: center center;
+	text-align: center;
+	width: 100%;
+	margin-bottom: 4px;
+	color: LighterGrey;
+	text-shadow: 0px 2px 6px black;
+}
+
+.ItemsList
+{
+	flow-children: down;
+	width: 100%;
+	height: fit-children;
+}
+
+.Separator
+{
+	height: 100%;
+	flow-children: down;
+	margin: 14px 4px 0px;
+}
+
+.SeparatorLine
+{
+	width: 1px;
+	height: fill-parent-flow(1);
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #808f9700 ), to( #808f97 ) );
+	align: center top;
+	opacity: 0.2;
+}
+
+.SeparatorLine.Down
+{
+	transform: scaleY( -1 );
+}
+
+.SeparatorPlus
+{
+	width: 14px;
+	height: width-percentage(100%);
+	margin: 4px 0px;
+	wash-color: #808f97;
+	img-shadow: 0px 1px 4px black;
+}
+
+.EnchantsContainer
+{
+	flow-children: down;
+	width: fill-parent-flow(1);
+}
+
+.EnchantsList
+{
+	flow-children: down;
+	width: 100%;
+	height: fit-children;
+}
+
+.NeutralItemTier1 .NeutralsCraftBodyHeaderTier
+{
+	color: NeutralTier1;
+}
+
+.NeutralItemTier2 .NeutralsCraftBodyHeaderTier
+{
+	color: NeutralTier2;
+}
+
+.NeutralItemTier3 .NeutralsCraftBodyHeaderTier
+{
+	color: NeutralTier3;
+}
+
+.NeutralItemTier4 .NeutralsCraftBodyHeaderTier
+{
+	color: NeutralTier4;
+}
+
+.NeutralItemTier5 .NeutralsCraftBodyHeaderTier
+{
+	color: NeutralTier5;
+}
+
+.NeutralItemTier1 .NeutralsCraftBodyHeader
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( NeutralTier1&55 ), to( NeutralTier1&05 ) );
+}
+
+.NeutralItemTier2 .NeutralsCraftBodyHeader
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( NeutralTier2&55 ), to( NeutralTier2&05 ) );
+}
+
+.NeutralItemTier3 .NeutralsCraftBodyHeader
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( NeutralTier3&55 ), to( NeutralTier3&05 ) );
+}
+
+.NeutralItemTier4 .NeutralsCraftBodyHeader
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( NeutralTier4&55 ), to( NeutralTier4&05 ) );
+}
+
+.NeutralItemTier5 .NeutralsCraftBodyHeader
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( NeutralTier5&55 ), to( NeutralTier5&05 ) );
+}
+
+.NeutralItemTier1 .NeutralsCraftBodyCraft
+{
+	background-color: gradient( radial, 0% 0%, 0% 0%, 160% 80%, from( NeutralTier1&09 ), to( NeutralTier1&00 ) );
+}
+
+.NeutralItemTier2 .NeutralsCraftBodyCraft
+{
+	background-color: gradient( radial, 0% 0%, 0% 0%, 160% 80%, from( NeutralTier2&09 ), to( NeutralTier2&00 ) );
+}
+
+.NeutralItemTier3 .NeutralsCraftBodyCraft
+{
+	background-color: gradient( radial, 0% 0%, 0% 0%, 160% 80%, from( NeutralTier3&09 ), to( NeutralTier3&00 ) );
+}
+
+.NeutralItemTier4 .NeutralsCraftBodyCraft
+{
+	background-color: gradient( radial, 0% 0%, 0% 0%, 160% 80%, from( NeutralTier4&09 ), to( NeutralTier4&00 ) );
+}
+
+.NeutralItemTier5 .NeutralsCraftBodyCraft
+{
+	background-color: gradient( radial, 0% 0%, 0% 0%, 160% 80%, from( NeutralTier5&09 ), to( NeutralTier5&00 ) );
+}
+
+.NeutralItemTier1 .NeutralsCraftBodyHeaderBack
+{
+	wash-color: NeutralTier1;
+}
+
+.NeutralItemTier2 .NeutralsCraftBodyHeaderBack
+{
+	wash-color: NeutralTier2;
+}
+
+.NeutralItemTier3 .NeutralsCraftBodyHeaderBack
+{
+	wash-color: NeutralTier3;
+}
+
+.NeutralItemTier4 .NeutralsCraftBodyHeaderBack
+{
+	wash-color: NeutralTier4;
+}
+
+.NeutralItemTier5 .NeutralsCraftBodyHeaderBack
+{
+	wash-color: NeutralTier5;
+}
+
+.NeutralItemTier1 .DFGMTierText
+{
+	color: NeutralTier1;
+}
+
+.NeutralItemTier2 .DFGMTierText
+{
+	color: NeutralTier2;
+}
+
+.NeutralItemTier3 .DFGMTierText
+{
+	color: NeutralTier3;
+}
+
+.NeutralItemTier4 .DFGMTierText
+{
+	color: NeutralTier4;
+}
+
+.NeutralItemTier5 .DFGMTierText
+{
+	color: NeutralTier5;
+}
+
+.ItemLine
+{
+	align: center top;
+	flow-children: right;
+	width: 100%;
+	height: 54px;
+	margin-bottom: 4px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( rgba(230, 250, 255, 0.04) ), to( rgba(233, 250, 255, 0.02) ) );
+	overflow: noclip;
+	tooltip-position: top;
+	transition-property: transform, brightness, background-color, border;
+	transition-duration: 0.05s, 0.1s;
+}
+
+.ItemLine:hover:not(.SelectedForCraft)
+{
+	brightness: 2.0;
+}
+
+.ItemLine:active
+{
+	brightness: 1.5;
+	transform: scale3d( 0.99, 0.99, 1 );
+}
+
+.ItemLine.SelectedForCraft
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( rgba(230, 250, 255, 0.2) ), to( rgba(233, 250, 255, 0.1) ) );
+}
+
+.SelectedForCraft .ItemImage
+{
+	brightness: 2.0;
+}
+
+.SelectedForCraft .ItemBorder
+{
+	border: 1px solid rgba(255, 255, 255, 1);
+}
+
+.SelectedForCraft .ItemName
+{
+	color: whitesmoke;
+}
+
+.ItemImage
+{
+	width: height-percentage( 133% );
+	height: 54px;
+	border: 1px solid black;
+	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+	tooltip-position: top;
+	transition-property: brightness;
+	transition-duration: 0.2s;
+}
+
+.ItemName
+{
+	font-family: titleFont;
+	font-size: 14px;
+	line-height: 1.2;
+	color: #e1e1e1;
+	width: fill-parent-flow( 1.0 );
+	align: left center;
+	padding: 0px 8px;
+	text-overflow: shrink;
+	letter-spacing: 0.5px;
+	text-shadow: 0px 1px 4px #00000090;
+	text-transform: uppercase;
+	font-weight: semi-bold;
+	max-height: 48px;
+}
+
+.ItemBorder
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	border: 1px solid rgba(255, 255, 255, 0.03);
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( white ), to( rgba(255, 255, 255, 0.6) ) );
+}
+
+.EnchantLine
+{
+	align: center top;
+	width: 100%;
+	height: 54px;
+	margin-bottom: 4px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( rgba(230, 250, 255, 0.04) ), to( rgba(233, 250, 255, 0.02) ) );
+	tooltip-position: top;
+	transition-property: transform, brightness, background-color, border;
+	transition-duration: 0.05s, 0.1s;
+	flow-children: right;
+}
+
+.EnchantLine:hover:not(.SelectedForCraft)
+{
+	brightness: 2.0;
+}
+
+.EnchantLine:active
+{
+	brightness: 1.5;
+	transform: scale3d( 0.98, 0.98, 1 );
+}
+
+.EnchantLine.SelectedForCraft
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( rgba(230, 250, 255, 0.2) ), to( rgba(233, 250, 255, 0.1) ) );
+}
+
+.SelectedForCraft .EnchantBorder
+{
+	z-index: 1;
+	border: 1px solid rgba(255, 255, 255, 1);
+}
+
+.SelectedForCraft .EnchantImage
+{
+	brightness: 2.0;
+}
+
+.SelectedForCraft .EnchantName
+{
+	color: whitesmoke;
+}
+
+.EnchantImage
+{
+	width: 32px;
+	height: width-percentage( 100% );
+	margin: 4px 16px;
+	border-radius: 50%;
+	border: 1px solid black;
+	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+	transition-property: brightness;
+	transition-duration: 0.2s;
+}
+
+.EnchantBorder
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	border: 1px solid rgba(255, 255, 255, 0.03);
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( white ), to( rgba(255, 255, 255, 0.6) ) );
+	transition-property: border;
+	transition-duration: 0.2s;
+}
+
+.EnchantStats
+{
+	align: left center;
+	font-size: 15px;
+	color: LighterGrey;
+	line-height: 1.1;
+	text-shadow: 0px 1px 4px #00000090;
+	margin-right: 8px;
+	width: fill-parent-flow( 1 );
+	max-height: 96%;
+	text-overflow: shrink;
+	margin-left: -2px;
+}
+
+.EnchantStats .GameplayVariable
+{
+	font-weight: bold;
+	color: white;
+}
+
+.EnchantStats .GameplayValues
+{
+	font-weight: bold;
+	color: white;
+}
+
+.EnchantName
+{
+	align: left bottom;
+	margin: 3px 3px;
+	width: 58px;
+	max-height: 24px;
+	font-family: titleFont;
+	ignore-parent-flow: true;
+	text-overflow: shrink;
+	font-size: 11px;
+	color: LighterGrey;
+	text-align: center;
+	text-shadow: 0px 1px 4px #00000090;
+}
+
+#DFGMOldNeutralItems
+{
+	width: 400px;
+	max-height: 525px;
+	align: center center;
+	flow-children: down;
+	overflow: squish scroll;
+}
+
+#DFGMNeutralHeader
+{
+	font-size: 14px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-weight: bold;
+	margin-left: 3px;
+	color: #a6aea3;
+	text-align: center;
+	text-shadow: 2px 2px 0px 2.0 black;
+	width: 100%;
+}
+
+#DFGMOldNeutralItemsTiers
+{
+	flow-children: down;
+	width: 100%;
+	margin: 5px 20px 0px 20px;
+}
+
+.DFGMNeutralTier
+{
+	width: 100%;
+	flow-children: down;
+	margin-bottom: 8px;
+}
+
+.DFGMNeutralTierHeader
+{
+	width: 100%;
+}
+
+.DFGMTierText
+{
+	font-size: 13px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-weight: bold;
+	margin-left: 3px;
+	color: #bfbfbf;
+}
+
+.DFGMNeutralTierHeaderRight
+{
+	align: right top;
+	flow-children: right;
+}
+
+.DFGMTierItemsPreIcon
+{
+	width: 10px;
+	height: 10px;
+	background-image: url("s2r://panorama/images/status_icons/clock_psd.vtex");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	wash-color: #333;
+	vertical-align: middle;
+	margin-bottom: 1px;
+	margin-right: 4px;
+}
+
+.IsTime .DFGMTierItemsPreIcon
+{
+	visibility: collapse;
+}
+
+.DFGMTierItemsPreTime
+{
+	font-size: 13px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	color: #666;
+}
+
+.IsTime .DFGMTierItemsPreTime
+{
+	visibility: collapse;
+}
+
+.DFGMTierItemsCount
+{
+	font-size: 13px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	color: #dedede;
+	text-align: right;
+	align: right top;
+}
+
+.DFGMNeutralTierNoItems
+{
+	width: 100%;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 10px;
+	color: #7a7a7a;
+	letter-spacing: 1px;
+	margin: 4px 0px;
+}
+
+.HasItems .DFGMNeutralTierNoItems
+{
+	visibility: collapse;
+}
+
+.DFGMNeutralTierContainer
+{
+	flow-children: right-wrap;
+	margin-top: -2px;
+	align: center top;
+}
+
+.DFGMNeutralItem
+{
+	width: 64px;
+	margin-top: 8px;
+}
+
+.DFGMNeutralItem_Main
+{
+	flow-children: down;
+	width: 100%;
+}
+
+.DFGMNeutralItem_ImageSize
+{
+	width: 50px;
+	height: 36.4px;
+	align: center top;
+	box-shadow: 0px 0px 12px #0009;
+	border: 1px solid #333333;
+}
+
+.Equipped .DFGMNeutralItem_ImageSize
+{
+	saturation: 0.2;
+	brightness: 0.2;
+	border: 1px solid #999999;
+}
+
+.PlaceUndefined .DFGMNeutralItem_ImageSize
+{
+	saturation: 0.2;
+	brightness: 0.08;
+	border: 1px solid #999999;
+}
+
+.Consumed .DFGMNeutralItem_ImageSize
+{
+	saturation: 0.2;
+	brightness: 0.08;
+	border: 1px solid #999999;
+}
+
+.InStash .DFGMNeutralItem_ImageSize
+{
+	saturation: 1.0;
+	brightness: 1.0;
+	box-shadow: 0px 0px 20px #66666620;
+	border: 1px solid gold;
+}
+
+.DFGMItemImage
+{
+	width: 100%;
+	height: 100%;
+	background-position: center;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.DFGMNeutralItem_Status
+{
+	margin-top: 6px;
+	text-transform: uppercase;
+	font-size: 10px;
+	width: 100%;
+	text-align: center;
+	letter-spacing: 1px;
+	color: #7a7a7a;
+	text-overflow: shrink;
+}
+
+.Equipped .DFGMNeutralItem_Status
+{
+	color: #787878;
+	font-style: italic;
+	font-weight: semi-bold;
+}
+
+.PlaceUndefined .DFGMNeutralItem_Status
+{
+	color: #494949;
+}
+
+.Consumed .DFGMNeutralItem_Status
+{
+	color: #666666;
+	font-style: italic;
+	font-weight: semi-bold;
+}
+
+.InStash .DFGMNeutralItem_Status
+{
+	color: #c1c1c1;
+}
+
+.DFGMNeutralItem_EquippedIcon
+{
+	width: 24px;
+	height: 24px;
+	align: right bottom;
+	margin-bottom: 14px;
+	img-shadow: 0px 0px 15px #000000;
+	opacity: 0;
+}
+
+.Equipped .DFGMNeutralItem_EquippedIcon
+{
+	opacity: 1;
+}
+
+.Consumed .DFGMNeutralItem_EquippedIcon
+{
+	opacity: 1;
+}

@@ -1,0 +1,62 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/custom_game/shared_scoreboard_styles.css" />
+		<include src="s2r://panorama/layout/custom_game/multiteam_flyout_scoreboard/multiteam_flyout_scoreboard.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/multiteam_flyout_scoreboard/script.vjs_c" />
+	</scripts>
+	<Panel class="PlayerRow">
+		<Panel id="PlayerRowContainer">
+			<Panel id="Rank" class="ScoreCol_Rank">
+				<Image id="PlayerRank" />
+				<Label id="rank_number" class="rank_number" />
+			</Panel>
+			<Panel id="Hero" class="ScoreCol_Hero ScoreboardPanel">
+				<Image id="HeroIcon" heroimagestyle="landscape" scaling="stretch-to-fit-preserve-aspect" onmouseactivate="HeroIconClicked(false);" ondblclick="HeroIconClicked(true);" />
+				<Panel hittest="false" id="HeroIconEffect" />
+			</Panel>
+			<Panel id="PlayerDetailsContainer" class="ScoreCol_PlayerDetails ScoreboardPanel">
+				<Label id="IsLeave" />
+				<Panel id="PlayerAndHeroName">
+					<Label id="PlayerName" text="AAAAA" />
+					<Label id="HeroNameAndDescription" text="#custom_scoreboard_hero_name_and_desc" />
+				</Panel>
+				<Button id="MuteButton" onactivate="ToggleMuteAll();" oncontextmenu="OpenActorPanel();" onmouseover="DOTAShowTextTooltip(#Mute_Button_Tooltip)" onmouseout="DOTAHideTextTooltip()" />
+				<Button id="ReportButton" onactivate="OpenReport();" onmouseover="DOTAShowTextTooltip(#PlayerReport_ButtonTooltip)" onmouseout="DOTAHideTextTooltip()" />
+				<Panel id="PartyIcon_team" class="PartyIcon" />
+			</Panel>
+			<Panel id="TeamScoreSpace" class="ScoreCol_TeamScore" />
+			<Panel id="KillsContainer" class="ScoreCol_Kills ScoreboardPanel">
+				<Label id="Kills" text="0" />
+			</Panel>
+			<Panel id="DeathsContainer" class="ScoreCol_Deaths ScoreboardPanel">
+				<Label id="Deaths" text="0" />
+			</Panel>
+			<Panel id="AssistsContainer" class="ScoreCol_Assists ScoreboardPanel">
+				<Label id="Assists" text="0" />
+			</Panel>
+			<Panel id="BookCounterPanel" class="ScoreCol_Assists ScoreboardPanel">
+				<Label id="BookCounter" text="0" />
+			</Panel>
+			<Panel id="PagesCounterPanel" class="ScoreCol_Assists ScoreboardPanel">
+				<Label id="PagesCounter" text="0" />
+			</Panel>
+			<Panel id="PlayerItemsContainer" />
+			<Panel id="AbilitiesContainer" />
+		</Panel>
+	</Panel>
+</root>

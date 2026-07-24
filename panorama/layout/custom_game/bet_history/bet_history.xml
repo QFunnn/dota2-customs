@@ -1,0 +1,77 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/layout/custom_game/bet_history/bet_history.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/bet_history/bet_history.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="HistoryItem">
+			<Panel class="HistoryItemPanel" hittest="false">
+				<Panel class="RoundPanel" hittest="false">
+					<Label class="RoundNum" text="{s:round_num}" />
+					<Label class="RoundLabel" text="#BET_HISTORY_Round" />
+				</Panel>
+				<Panel id="FirstTeam" class="PlayerPanel" hittest="false">
+					<DOTAHeroImage class="PlayerHeroIcon" id="HeroIcon" heroimagestyle="icon" heroname="npc_dota_hero_pudge" />
+					<Panel class="PlayerNames" hittest="false">
+						<Label class="PlayerName" text="{s:player_name}" />
+						<Label class="PlayerHeroName" text="{s:hero_name}" />
+					</Panel>
+					<Panel class="WinnerIcon" />
+				</Panel>
+				<Label id="Vs" text="VS" />
+				<Panel id="SecondTeam" class="PlayerPanel" hittest="false">
+					<Panel class="WinnerIcon" />
+					<Panel class="PlayerNames" hittest="false">
+						<Label class="PlayerName" text="{s:player_name}" />
+						<Label class="PlayerHeroName" text="{s:hero_name}" />
+					</Panel>
+					<DOTAHeroImage class="PlayerHeroIcon" id="HeroIcon" heroimagestyle="icon" heroname="npc_dota_hero_pudge" />
+				</Panel>
+				<Panel class="HistoryGoldPanel" hittest="false">
+					<Label class="HistoryGoldNum" text="{s:bet_sum}" />
+					<Label class="HistoryGoldIcon" />
+				</Panel>
+				<Label class="ResultLabel" text="#defeat" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="BetsHUD" hittest="false">
+		<Panel hittest="true" id="BetHistoryButton" onactivate="ToggleBetHistory()" onmouseover="DOTAShowTextTooltip(&apos;#bet_history_hint&apos;)" onmouseout="DOTAHideTextTooltip()">
+			<Panel class="Wrapper">
+				<Label id="BetHistoryButtonLabel" text="#BET_HISTORY_History" hittest="false" />
+				<Panel class="BetHistoryAll">
+					<Label class="BetHistoryAllLabel" text="#BET_HISTORY_WinSum" />
+					<Label class="BetHistoryNum" text="{s:bets_sum}" hittest="false" html="true" />
+					<Panel class="BetHistoryGoldIcon" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel hittest="false" id="BetHistoyMain">
+			<Panel id="BetHistoryHeader">
+				<Label class="BetHistoryHeaderLabel" text="#BET_HISTORY_History" />
+			</Panel>
+			<Panel class="BetHistoryAll">
+				<Label class="BetHistoryAllLabel" text="#BET_HISTORY_WinSum" />
+				<Label class="BetHistoryNum" text="{s:bets_sum}" hittest="false" html="true" />
+				<Panel class="BetHistoryGoldIcon" />
+			</Panel>
+			<Label id="BetHistoryEmptyTitle" text="#BET_HISTORY_No_bets" />
+			<Panel id="BetHistoryContainer" />
+		</Panel>
+	</Panel>
+</root>

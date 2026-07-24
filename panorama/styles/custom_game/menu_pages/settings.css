@@ -1,0 +1,1505 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.SettingsMenu
+{
+	width: 100%;
+	height: 100%;
+}
+
+.Hidden
+{
+	opacity: 0.0;
+}
+
+.Collapse
+{
+	visibility: collapse;
+}
+
+.SettingsSliderCustom
+{
+	flow-children: none;
+	width: 100%;
+}
+
+.SettingsHeader
+{
+	height: 40px;
+	margin-top: 10px;
+	width: 100%;
+}
+
+.KeybindsTabs
+{
+	flow-children: right;
+	width: 100%;
+	margin-top: 15px;
+	margin-bottom: 5px;
+	height: 45px;
+}
+
+.KeybindTab
+{
+	padding: 10px 30px;
+	margin-right: 3px;
+	background-color: rgba(20, 20, 30, 0.8);
+	border-bottom: 3px solid transparent;
+	transition-property: background-color, border-color;
+	transition-duration: 0.2s;
+}
+
+.KeybindTab:hover
+{
+	background-color: rgba(40, 40, 50, 0.9);
+}
+
+.KeybindTab.Selected
+{
+	background-color: rgba(50, 40, 70, 0.6);
+	border-bottom: 3px solid rgb(189, 174, 214);
+}
+
+.KeybindTab Label
+{
+	color: rgba(255, 255, 255, 0.7);
+	font-size: 16px;
+	font-weight: semi-bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.KeybindTab.Selected Label
+{
+	color: rgb(189, 174, 214);
+}
+
+.Hidden
+{
+	visibility: collapse;
+}
+
+.AbilityOrderPanel
+{
+	margin-top: 10px;
+	padding-left: 23px;
+	flow-children: down;
+	width: 100%;
+	vertical-align: center;
+	horizontal-align: left;
+	transition-property: transform, opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+#AbilityName
+{
+	horizontal-align: center;
+	color: white;
+	text-overflow: shrink;
+	height: 25px;
+	text-align: center;
+}
+
+#MatchKeySetting
+{
+	flow-children: down;
+	width: 500px;
+	padding-top: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
+	horizontal-align: center;
+}
+
+#MatchKeyTitle
+{
+	font-size: 24px;
+	color: white;
+	horizontal-align: left;
+	flow-children: down;
+	text-transform: uppercase;
+}
+
+#BarrageSetting
+{
+	margin-left: 23px;
+	flow-children: down;
+	horizontal-align: left;
+	margin-top: 15px;
+	width: 100%;
+}
+
+#BarrageSettingTitle
+{
+	align: left center;
+	flow-children: down;
+	font-size: 24px;
+	margin-left: 23px;
+	text-transform: uppercase;
+	font-weight: thin;
+	letter-spacing: 1px;
+	color: rgb(154, 151, 163);
+}
+
+#AbilityOrderTitle
+{
+	font-size: 24px;
+	color: rgb(154, 151, 163);
+	horizontal-align: left;
+	flow-children: down;
+	font-weight: thin;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	margin-bottom: 1px;
+	margin-top: 20px;
+}
+
+#AbilityOrderSubTitle
+{
+	font-size: 12px;
+	color: rgb(125, 123, 133);
+	horizontal-align: left;
+	flow-children: down;
+}
+
+#AbilityOrderSubTitle2
+{
+	font-size: 12px;
+	color: rgb(125, 123, 133);
+	horizontal-align: left;
+	flow-children: down;
+}
+
+#AbilityOrderAbilityBody
+{
+	margin-top: 20px;
+	width: 100%;
+	flow-children: right-wrap;
+	horizontal-align: center;
+}
+
+.AbilityOrderRoot
+{
+	width: 65px;
+	margin-right: 20px;
+	flow-children: down;
+}
+
+#ButtonPanel
+{
+	height: 20px;
+	width: 68px;
+	flow-children: right;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/custom_game/buttons/swap_bg_png.vtex");
+	background-size: 100%;
+}
+
+#ButtonLeft
+{
+	width: 12px;
+	height: 12px;
+	background-image: url("s2r://panorama/images/custom_game/buttons/swap_left_png.vtex");
+	background-size: 100%;
+	horizontal-align: left;
+	vertical-align: center;
+	margin-left: 6px;
+	margin-right: 6px;
+}
+
+#ButtonRight
+{
+	width: 12px;
+	height: 12px;
+	background-image: url("s2r://panorama/images/custom_game/buttons/swap_right_png.vtex");
+	background-size: 100%;
+	horizontal-align: right;
+	vertical-align: center;
+	margin-right: 6px;
+}
+
+#LockedAbility
+{
+	width: 16px;
+	height: 16px;
+	align: center center;
+}
+
+.LockedAbilityLockRed
+{
+	background-image: url("s2r://panorama/images/custom_game/lock_opened_png.vtex");
+	background-size: 100%;
+}
+
+.LockedAbilityLock
+{
+	background-image: url("s2r://panorama/images/control_icons/24px/lock.svg");
+	background-size: 100%;
+}
+
+#ButtonLeft:hover
+{
+	brightness: 2.0;
+}
+
+#ButtonRight:hover
+{
+	brightness: 2.0;
+}
+
+#ButtonLeft:disabled
+{
+	wash-color: #111111;
+}
+
+#ButtonRight:disabled
+{
+	wash-color: #111111;
+}
+
+.SettingSlider
+{
+	margin-top: 10px;
+	width: 100%;
+	height: 30px;
+}
+
+.SettingSlider.HorizontalSlider
+{
+	width: 100%;
+}
+
+#CameraSetting
+{
+	flow-children: down;
+	width: 500px;
+	padding-top: 37px;
+	padding-left: 23px;
+	horizontal-align: left;
+}
+
+Slider,RangeSlider
+{
+	margin-bottom: 0px;
+}
+
+#CameraSettingTitle
+{
+	font-family: 'Radiance';
+	font-size: 32px;
+	color: white;
+	horizontal-align: left;
+	flow-children: down;
+}
+
+.TitleInfo
+{
+	font-family: 'Radiance';
+	font-size: 32px;
+	color: white;
+	horizontal-align: left;
+	flow-children: down;
+	margin-left: 23px;
+	margin-top: 5px;
+}
+
+#CameraCheckBoxes
+{
+	align: left center;
+	flow-children: down;
+}
+
+#UICheckBoxes
+{
+	align: left center;
+	flow-children: down;
+	width: 100%;
+}
+
+#CameraSettingBody
+{
+	align: left center;
+	flow-children: down;
+	width: 100%;
+	margin-left: 23px;
+	margin-top: 15px;
+}
+
+#CameraTabCheckBoxes
+{
+	align: left center;
+	flow-children: down;
+	width: 100%;
+}
+
+.SettingRow
+{
+	width: 100%;
+	min-height: 32px;
+	margin-top: 10px;
+	flow-children: right;
+	padding-right: 40px;
+}
+
+.SettingRowDown
+{
+	flow-children: down;
+}
+
+.SettingHeader
+{
+	width: 100%;
+	height: 40px;
+}
+
+.SettingHeaderLabel
+{
+	color: rgb(189, 174, 214);
+	font-size: 20px;
+	align: left center;
+}
+
+.SettingHeaderValue
+{
+	color: white;
+	align: right center;
+	font-size: 20px;
+	text-transform: uppercase;
+	font-weight: semi-bold;
+}
+
+.ResetButton
+{
+	horizontal-align: right;
+	padding: 5px 15px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #4e3a6b ), to( #332b44 ) );
+	border: 1px solid #624ca8;
+	border-radius: 3px;
+	transition-property: brightness;
+	transition-duration: 0.1s;
+	margin-left: 10px;
+	visibility: collapse;
+}
+
+.ShowResetButton .ResetButton
+{
+	visibility: visible;
+}
+
+.ResetButton:hover
+{
+	brightness: 1.2;
+}
+
+.ResetButton:active
+{
+	brightness: 0.8;
+}
+
+.ResetButton Label
+{
+	color: #c9c3e6;
+	font-size: 16px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+#CreepsCameraContainer
+{
+	margin-top: 10px;
+	flow-children: right;
+}
+
+#MatchKeyEntryContainer
+{
+	flow-children: right;
+}
+
+.CameraLabel
+{
+	font-size: 20px;
+	margin-left: 5px;
+	vertical-align: center;
+	text-align: left;
+	color: rgb(189, 174, 214);
+}
+
+.Checkbox
+{
+	horizontal-align: center;
+	vertical-align: center;
+	width: 18px;
+	height: 18px;
+	background-color: black;
+	transition-property: background-color, box-shadow, color, border, background-image, wash-color, pre-transform-scale2d;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+	padding: 0, 0;
+}
+
+.TickBox
+{
+	border: 0px;
+}
+
+.Checkbox:selected
+{
+	border-color: black;
+	background-color: gradient(linear, 100% 0%, 50% 100%, from(#00e6ff), to(#91c8cf));
+	box-shadow: #CEBC8311 0px 0px 2px 0px;
+}
+
+#ExtraCreatureNotifDropdown
+{
+	width: 160px;
+	height: 26px;
+	vertical-align: center;
+	horizontal-align: right;
+	background-color: #14101c;
+	border: 1px solid #4e3a6b;
+	border-radius: 3px;
+	padding: 0px;
+}
+
+#ExtraCreatureNotifDropdown:hover
+{
+	border: 1px solid #624ca8;
+	brightness: 1.1;
+}
+
+#ExtraCreatureNotifDropdown Label
+{
+	vertical-align: center;
+	text-align: left;
+	margin: 0px;
+	padding-left: 8px;
+	font-size: 20px;
+	font-weight: normal;
+	font-family: 'Radiance';
+	text-transform: none;
+	text-shadow: none;
+	color: rgb(189, 174, 214);
+}
+
+#ExtraCreatureNotifDropdown .DropDownChild
+{
+	width: 100%;
+	height: 100%;
+	vertical-align: center;
+}
+
+DropDownMenu
+{
+	width: 150px;
+}
+
+.ECNotifOpt
+{
+	width: 100%;
+	height: 26px;
+	vertical-align: center;
+	text-align: left;
+	margin: 0px;
+	padding: 0px 0px 0px 8px;
+	font-size: 20px;
+	font-weight: normal;
+	font-family: 'Radiance';
+	text-transform: none;
+	text-shadow: none;
+	color: rgb(189, 174, 214);
+}
+
+.SectionHeaderLine
+{
+	height: 2px;
+	width: 100%;
+	background-color: #AAAAAA;
+	margin-top: 2px;
+	margin-bottom: 12px;
+}
+
+#MatchKeyEntry
+{
+	height: 35px;
+	width: 100px;
+	background-color: rgba(0, 0, 0, 0.5);
+	vertical-align: center;
+	line-height: 25px;
+	font-size: 20px;
+	padding: 5px;
+}
+
+#MatchWebTip
+{
+	vertical-align: center;
+	color: white;
+	height: 30px;
+}
+
+#MatchWebLink
+{
+	margin-top: 0px;
+	color: blue;
+	height: 30px;
+}
+
+#MatchWebLink Label
+{
+	vertical-align: center;
+	color: rgb(137, 207, 240);
+}
+
+#MatchKeyNoteContainer
+{
+	flow-children: down;
+	margin-left: 10px;
+}
+
+#MatchKeyLabel
+{
+	font-size: 20px;
+	vertical-align: center;
+	text-align: center;
+	height: 25px;
+	width: 100px;
+	color: white;
+}
+
+.MainSettingsContainer
+{
+	flow-children: right;
+	height: 100%;
+	width: 100%;
+}
+
+.ButtonWithChatWheel:hover
+{
+	brightness: 2;
+}
+
+.ButtonWithChatWheel
+{
+	width: 150px;
+	height: 150px;
+	flow-children: down;
+	margin-top: 10px;
+}
+
+.ChatWheelName
+{
+	horizontal-align: center;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 16px;
+	margin-top: 5px;
+}
+
+.ChatWheelImage
+{
+	width: 80px;
+	height: 80px;
+	background-image: url("s2r://panorama/images/settings_chatwheel_png.vtex");
+	background-size: 100%;
+	horizontal-align: center;
+	margin-top: 5px;
+}
+
+.ButtonWithKeyBind:hover
+{
+	brightness: 2;
+}
+
+.ButtonWithKeyBind
+{
+	width: 150px;
+	height: 150px;
+	flow-children: down;
+	margin-top: 10px;
+}
+
+.KeybindName
+{
+	horizontal-align: center;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 16px;
+	letter-spacing: 1px;
+	margin-top: 5px;
+}
+
+.KeybindImage
+{
+	width: 80px;
+	height: 80px;
+	background-image: url("s2r://panorama/images/key_illustration_psd.vtex");
+	background-size: 100%;
+	horizontal-align: center;
+	margin-top: 5px;
+}
+
+.GuideName
+{
+	align: center center;
+	text-shadow: 0px 0px 4px rgba(164, 206, 74, 0.45);
+	color: white;
+	font-family: 'Radiance';
+	font-size: 22px;
+	text-transform: uppercase;
+	font-weight: semi-bold;
+}
+
+.GuideImage
+{
+	width: 80px;
+	height: 80px;
+	background-image: url("s2r://panorama/images/hud/reborn/ping_icon_default_psd.vtex");
+	background-size: 100%;
+	horizontal-align: center;
+	margin-top: 5px;
+}
+
+.ButtonWithCustomize:hover
+{
+	brightness: 2;
+}
+
+.ButtonWithCustomize
+{
+	width: 150px;
+	height: 150px;
+	flow-children: down;
+	margin-top: 10px;
+}
+
+.CustomizeName
+{
+	horizontal-align: center;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 16px;
+	letter-spacing: 1px;
+	margin-top: 5px;
+}
+
+.CustomizeImage
+{
+	width: 80px;
+	height: 80px;
+	background-image: url("s2r://panorama/images/custom_game/user_png.vtex");
+	background-size: 100%;
+	horizontal-align: center;
+	margin-top: 5px;
+}
+
+#AbilityImage
+{
+	border: 2px solid white;
+	border-brush: gradient(radial, 0% 0%, 2% 10%, 100% 100%, from(rgb(153, 151, 254)), to(rgba(153, 151, 254, 0.02)));
+}
+
+#AbilityName
+{
+	visibility: collapse;
+}
+
+.Red
+{
+	color: red;
+}
+
+.Green
+{
+	color: green;
+}
+
+.ButtonWithCalibrate:hover
+{
+	brightness: 2;
+}
+
+.ButtonWithCalibrate
+{
+	width: 150px;
+	height: 150px;
+	flow-children: down;
+	margin-top: 10px;
+}
+
+.CalibrateName
+{
+	horizontal-align: center;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 16px;
+	letter-spacing: 1px;
+	margin-top: 5px;
+}
+
+.CalibrateImage
+{
+	width: 80px;
+	height: 80px;
+	background-image: url("s2r://panorama/images/custom_game/donate/rewards/rating_ticket_png.vtex");
+	background-size: 100%;
+	horizontal-align: center;
+	margin-top: 5px;
+}
+
+#recalib
+{
+	width: 272px;
+}
+
+.CalibrateInfo
+{
+	color: rgba(255, 255, 255, 0.5);
+	font-family: 'Radiance';
+	font-size: 14px;
+	margin-left: 23px;
+	margin-top: 5px;
+}
+
+.CalibratingComfirmed
+{
+	width: 400px;
+	height: 100px;
+	border: 1px solid #263424;
+	vertical-align: bottom;
+	horizontal-align: center;
+	margin-bottom: 29.7%;
+	margin-left: 42%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(44, 49, 43, 1)), to(rgba(28, 30, 27, 1)));
+	flow-children: down;
+	visibility: collapse;
+}
+
+.CalibratingComfirmedLabel
+{
+	horizontal-align: center;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 16px;
+	letter-spacing: 1px;
+	margin-top: 5px;
+}
+
+.GuideName_Red
+{
+	align: center center;
+	text-shadow: 0px 0px 4px rgba(206, 74, 74, 0.45);
+	color: white;
+	font-family: 'Radiance';
+	font-size: 22px;
+	text-transform: uppercase;
+	font-weight: semi-bold;
+}
+
+.SettingRight
+{
+	flow-children: down;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.2);
+	border-left: 1px solid white;
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#454150), color-stop(0.5, #4e3a6bef), to(#593e7aef));
+	box-shadow: -1px 0px 10px rgba(0,0,0,0.1);
+}
+
+.SettingLeft
+{
+	flow-children: down;
+	width: 580px;
+	height: 100%;
+	overflow: squish scroll;
+}
+
+#CurrentGameSettings
+{
+	font-size: 24px;
+	text-transform: uppercase;
+	font-weight: semi-bold;
+	letter-spacing: 1px;
+	align: center bottom;
+	margin-bottom: 20px;
+	padding: 15px;
+	background-color: rgba(12, 12, 14, 0.5);
+	border-radius: 5px;
+	border: 1px solid rgb(126, 123, 130);
+	color: rgb(145, 140, 162);
+	transition-property: brightness, color, border;
+	transition-duration: .15s;
+}
+
+#CurrentGameSettings:hover
+{
+	brightness: 2;
+	color: white;
+	border: 1px solid white;
+	tooltip-position: top;
+}
+
+#SettingsKeybindsList
+{
+	width: 100%;
+	height: fit-children;
+	flow-children: right-wrap;
+	margin-top: 10px;
+}
+
+.CustomKeybindContainer
+{
+	flow-children: down;
+	margin-left: 25px;
+	margin-right: 25px;
+	margin-top: 5px;
+	margin-bottom: 20px;
+}
+
+.bind_name
+{
+	color: white;
+	font-weight: semi-bold;
+	align: center center;
+	font-size: 18px;
+}
+
+.CustomKeybindTitle
+{
+	text-align: center;
+	width: 100%;
+	height: 12px;
+	margin-top: 5px;
+	text-overflow: clip;
+	font-size: 10px;
+	color: rgb(125, 123, 133);
+}
+
+.IsCustom .CustomKeybindTitle
+{
+	height: 26px;
+}
+
+.CustomKeybindEntry
+{
+	opacity: 0;
+	width: 0px;
+	height: 0px;
+}
+
+.ActiveBind
+{
+	padding-left: 0px;
+	animation-name: BackgroundPulse;
+	animation-duration: 0.7s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'BackgroundPulse'
+{
+	0%
+	{
+		border: 1px solid #855cff;
+	}
+	
+	50%
+	{
+		border: 3px solid #855cff;
+	}
+	
+	100%
+	{
+		border: 1px solid #855cff;
+	}
+	
+}
+
+#BindQuickcast
+{
+	margin-top: 5px;
+	flow-children: right;
+	align: center top;
+}
+
+.IsCustom #BindQuickcast
+{
+	visibility: collapse;
+}
+
+.QuickcastText
+{
+	font-size: 12px;
+	max-height: 14px;
+	text-align: center;
+	align: center center;
+	margin-top: 1px;
+	margin-left: 3px;
+	color: rgb(125, 123, 133);
+}
+
+#DropDownBinds
+{
+	background-color: none;
+	border: 0px solid white;
+	box-shadow: none;
+	align: right bottom;
+	margin-bottom: 5px;
+	margin-right: 2px;
+	width: 80px;
+	padding: 0px 0px;
+	height: 21px;
+	background-image: url("s2r://panorama/images/control_icons/24px/settings.vsvg");
+	background-size: 16px 16px;
+	background-position: right 20px center;
+	wash-color: rgb(148, 136, 172);
+	transition-property: brightness, opacity;
+	transition-duration: .15s;
+	opacity: 0;
+}
+
+.ActiveBind #DropDownBinds
+{
+	opacity: 1;
+}
+
+#DropDownBinds:hover
+{
+	brightness: 2;
+}
+
+#DropDownBinds Label
+{
+	opacity: 0;
+}
+
+.Wrapper
+{
+	flow-children: right;
+	align: right center;
+}
+
+#BindAbilityImage
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+
+.IsAbility #BindAbilityImage
+{
+	opacity: 1;
+}
+
+.IsAbility:not(.IsEmptyAbility) #BindAbilityImage
+{
+	brightness: 0.5;
+	opacity: 0.3;
+}
+
+.IsEmptyAbility #BindAbilityImage
+{
+	opacity: 0.4;
+}
+
+#BindImage
+{
+	width: 70%;
+	height: 70%;
+	align: center center;
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	opacity: 0;
+	wash-color: #d2bdff;
+}
+
+.IsBasic #BindImage
+{
+	brightness: 0.5;
+	opacity: 0.3;
+}
+
+#Keybind_OpenWiki #BindImage
+{
+	background-image: url("s2r://panorama/images/custom_game/wiki_icon_png.vtex");
+}
+
+#Keybind_OpenBans #BindImage
+{
+	background-image: url("s2r://panorama/images/custom_game/info/block_png.vtex");
+}
+
+#Keybind_OpenNotifications #BindImage
+{
+	background-image: url("s2r://panorama/images/custom_game/wiki/book-solid-full_png.vtex");
+}
+
+#Keybind_OpenBonusStash #BindImage
+{
+	background-image: url("s2r://panorama/images/custom_game/inventory_icon_png.vtex");
+}
+
+#Keybind_MoveAbilities #BindImage
+{
+	background-image: url("s2r://panorama/images/custom_game/top_menu/order_png_png.vtex");
+}
+
+#Keybind_MovePanels #BindImage
+{
+	background-image: url("s2r://panorama/images/custom_game/wiki/gears-solid-full_png.vtex");
+}
+
+.KeyBind
+{
+	flow-children: down;
+	width: 100px;
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-top: 10px;
+}
+
+.KeyBindPanel
+{
+	align: center top;
+	width: 100%;
+}
+
+.KeyBindPanel:hover .KeyBindKeyPanel
+{
+	border: 1px solid #a06dffef;
+	box-shadow: 0px 0px 10px 0px #a06dff46;
+}
+
+.KeyBindBody
+{
+	width: 80px;
+	height: 80px;
+	margin-top: 10px;
+	align: center top;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( rgb(49, 41, 66) ), to( rgb(8, 6, 11) ) );
+	border: 2px solid #614986ef;
+	border-radius: 5px;
+	box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.4);
+}
+
+.KeyBindBodyBack
+{
+	width: 100%;
+	height: 100%;
+	box-shadow: inset 0px 0px 20px rgba(0, 0, 0, 0.4);
+}
+
+.KeyBindKeyPanel
+{
+	ignore-parent-flow: true;
+	width: 30px;
+	height: 30px;
+	border-radius: 5px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( rgb(55, 46, 72) ), to( rgb(43, 35, 56) ) );
+	border: 1px solid black;
+	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+	transition-property: box-shadow, border;
+	transition-duration: .05s;
+}
+
+.KeyBindKey
+{
+	color: #d2bdff;
+	font-weight: bold;
+	align: center center;
+	text-align: center;
+	font-size: 18px;
+	height: 20px;
+	text-shadow: 0px 0px 5px 1 black;
+}
+
+.KeyBindName
+{
+	text-align: center;
+	width: 100%;
+	margin-top: 5px;
+	font-size: 10px;
+	color: rgb(125, 123, 133);
+	height: 12px;
+}
+
+.IsBasic .KeyBindName
+{
+	height: 25px;
+}
+
+#KeyBindQuickcast
+{
+	flow-children: right;
+	align: center top;
+	margin-top: 5px;
+	visibility: collapse;
+}
+
+.IsAbility #KeyBindQuickcast
+{
+	visibility: visible;
+}
+
+.KeyBindQuickcastLabel
+{
+	font-size: 12px;
+	max-height: 14px;
+	text-align: center;
+	align: center center;
+	margin-top: 1px;
+	margin-left: 3px;
+	color: rgb(125, 123, 133);
+}
+
+#KeyBindQuickcastCheckbox .TickBox
+{
+	border: 2px solid #3d324eef;
+}
+
+#KeyBindQuickcastCheckbox:selected .TickBox
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #eee7f6 ), to( #7937b8 ) );
+	border: 2px solid black;
+}
+
+.SettingMiddle
+{
+	flow-children: down;
+	width: 280px;
+	margin-left: 16px;
+	margin-right: 16px;
+}
+
+#HighlightSettingBody
+{
+	flow-children: down;
+	padding: 8px;
+}
+
+.HighlightColorSectionLabel
+{
+	color: #c89cff;
+	font-size: 13px;
+	font-weight: bold;
+	margin-top: 14px;
+	margin-bottom: 6px;
+	letter-spacing: 1px;
+}
+
+.HighlightColorRow
+{
+	flow-children: right;
+	width: 100%;
+	height: 28px;
+	margin-bottom: 4px;
+	vertical-align: center;
+}
+
+.HighlightColorRowLabel
+{
+	width: fill-parent-flow(1.0);
+	height: 100%;
+	vertical-align: center;
+	color: white;
+	font-size: 13px;
+	align: left center;
+	padding-left: 4px;
+}
+
+.HighlightColorRowSwatch
+{
+	width: 30px;
+	height: 22px;
+	vertical-align: center;
+	border: 1px solid #888;
+	background-color: #222;
+	transition-property: border, brightness;
+	transition-duration: .1s;
+}
+
+.HighlightColorRowSwatch:hover
+{
+	border: 1px solid #fff;
+	brightness: 1.3;
+}
+
+.HighlightColorRowSwatchInner
+{
+	width: 100%;
+	height: 100%;
+	background-color: transparent;
+}
+
+.HL_PalettePopup
+{
+	visibility: collapse;
+	flow-children: down;
+	width: 100%;
+	margin-top: 10px;
+	padding: 8px;
+	background-color: #1a1029;
+	border: 1px solid #6a4aaa;
+}
+
+.HL_PalettePopup.Visible
+{
+	visibility: visible;
+}
+
+.HL_PalettePopupTitle
+{
+	color: #c89cff;
+	font-size: 12px;
+	font-weight: bold;
+	margin-bottom: 6px;
+	align: center top;
+	letter-spacing: 1px;
+}
+
+#HL_PaletteGrid
+{
+	flow-children: right-wrap;
+	width: 100%;
+	margin-bottom: 6px;
+}
+
+.HighlightPaletteSwatch
+{
+	width: 30px;
+	height: 22px;
+	margin: 2px;
+	border: 1px solid #555;
+	transition-property: border, brightness;
+	transition-duration: .1s;
+}
+
+.HighlightPaletteSwatch:hover
+{
+	border: 1px solid #fff;
+	brightness: 1.4;
+}
+
+.HighlightPaletteSwatch.Current
+{
+	border: 2px solid #ffd54f;
+	box-shadow: fill #ffd54f 0px 0px 6px 0px;
+}
+
+.HighlightPaletteSwatchInner
+{
+	width: 100%;
+	height: 100%;
+}
+
+.HL_PalettePopupClose,.HL_PalettePopupConfirm
+{
+	width: 120px;
+	height: 34px;
+	padding: 0px 0px;
+	margin: 0px 6px;
+	border: 1px solid #6a4aaa;
+}
+
+.HL_PalettePopupClose Label,.HL_PalettePopupConfirm Label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: white;
+	font-size: 14px;
+	font-weight: semi-bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.HL_PalettePopupConfirm
+{
+	background-color: #4a2a8a;
+	border: 1px solid #c89cff;
+}
+
+.HL_PalettePopupConfirm:hover
+{
+	background-color: #6a3aaa;
+	brightness: 1.1;
+}
+
+.HL_PalettePopupClose
+{
+	background-color: #2a1a44;
+}
+
+.HL_PalettePopupClose:hover
+{
+	background-color: #4a2a8a;
+	brightness: 1.1;
+}
+
+.HL_PreviewGridLabel
+{
+	color: #c89cff;
+	font-size: 11px;
+	margin-top: 8px;
+	margin-bottom: 4px;
+	align: left top;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+#HL_PreviewGrid
+{
+	flow-children: right-wrap;
+	width: 100%;
+	margin-bottom: 6px;
+}
+
+.HL_PreviewAbility
+{
+	width: 60px;
+	height: 60px;
+	margin: 2px;
+	transition-property: brightness;
+	transition-duration: .1s;
+}
+
+.HL_PreviewAbilityButton
+{
+	width: 60px;
+	height: 60px;
+	align: center top;
+}
+
+.HL_PreviewAbilityImagePanel
+{
+	width: 100%;
+	height: 100%;
+	padding: 6px;
+}
+
+.HL_PreviewAbilityImage
+{
+	width: 100%;
+	height: 100%;
+	border: 1px solid #8574af;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.HL_PreviewAbility .AbilityColorFx
+{
+	width: 100%;
+	height: 100%;
+	align: center top;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_box_png.vtex");
+	visibility: collapse;
+}
+
+.HL_PreviewAbility.HasColor .AbilityColorFx
+{
+	visibility: visible;
+	brightness: 2;
+}
+
+#HL_PalettePopupButtons
+{
+	flow-children: right;
+	align: center top;
+	margin-top: 10px;
+}
+
+.SettingsTopTabs
+{
+	flow-children: right;
+	width: 100%;
+	margin-top: 15px;
+	margin-bottom: 5px;
+	height: 45px;
+}
+
+.SettingsTopTab
+{
+	padding: 10px 30px;
+	margin-right: 3px;
+	background-color: rgba(20, 20, 30, 0.8);
+	border-bottom: 3px solid transparent;
+	transition-property: background-color, border-color;
+	transition-duration: 0.2s;
+}
+
+.SettingsTopTab:hover
+{
+	background-color: rgba(40, 40, 50, 0.9);
+}
+
+.SettingsTopTab.Active
+{
+	background-color: rgba(50, 40, 70, 0.6);
+	border-bottom: 3px solid rgb(189, 174, 214);
+}
+
+.SettingsTopTab Label
+{
+	color: rgba(255, 255, 255, 0.7);
+	font-size: 16px;
+	font-weight: semi-bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.SettingsTopTab.Active Label
+{
+	color: rgb(189, 174, 214);
+}
+
+#HighlightSettingBody
+{
+	align: left center;
+	flow-children: down;
+	width: 100%;
+	margin-left: 23px;
+	margin-top: 15px;
+}
+
+#HL_Toggles
+{
+	align: left center;
+	flow-children: down;
+	width: 100%;
+}
+
+#HL_ColorRowsBasic,#HL_ColorRowsCategories
+{
+	flow-children: down;
+	width: 100%;
+	margin-top: 4px;
+	padding-right: 10px;
+}
+
+.HighlightSwatchNoColorMark
+{
+	visibility: collapse;
+	horizontal-align: center;
+	vertical-align: center;
+	color: #ff4444;
+	font-size: 18px;
+	font-weight: bold;
+	z-index: 3;
+}
+
+.HighlightPaletteSwatch.NoColor .HighlightSwatchNoColorMark,.HighlightColorRowSwatch.NoColor .HighlightSwatchNoColorMark
+{
+	visibility: visible;
+}
+
+.HighlightPaletteSwatch.NoColor .HighlightPaletteSwatchInner,.HighlightColorRowSwatch.NoColor .HighlightColorRowSwatchInner
+{
+	background-color: rgba(60, 60, 70, 0.6);
+}

@@ -1,0 +1,147 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/layout/custom_game/barrage/barrage.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/barrage/barrage.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="FinishRound">
+			<Panel class="BulletPanel" hittest="false" hittestchildren="false">
+				<Image id="HeroIcon" src="" />
+				<Label id="PlayerName" text="" />
+				<Label id="PlayerFinsh" text="#player_finish" />
+				<Label id="Plus" text=" +" />
+				<Panel id="GoldIcon" />
+				<Label id="GoldValue" />
+			</Panel>
+		</snippet>
+		<snippet name="PlayerSay">
+			<Panel class="BulletPanel" hittest="false" hittestchildren="false">
+				<Image id="HeroIcon" src="" />
+				<Label id="PlayerName" text="" />
+				<Label id="Content" />
+			</Panel>
+		</snippet>
+		<snippet name="MinigamesTeamFinish">
+			<Panel class="BulletPanel" hittest="false" hittestchildren="false">
+				<Image id="HeroIcon" src="" />
+				<Label id="PlayerName" text="" />
+				<Label id="Content" />
+			</Panel>
+		</snippet>
+		<snippet name="BetSummary">
+			<Panel class="BulletPanel" hittest="false" hittestchildren="false">
+				<Label class="Content" text="#total" />
+				<Panel id="GoldIcon" />
+				<Label id="GoldValue" />
+				<Label class="Content" text="#is_bet" />
+				<Label id="Colon" text=": " />
+				<Label id="TeamName" text="" />
+				<Panel class="TeamLogo">
+					<Image id="IconShadow" src="s2r://panorama/images/custom_game/team_icons/team_shield_shadow_01_psd.vtex" />
+					<Image id="ShieldBorder" src="s2r://panorama/images/custom_game/team_icons/team_shield_border_01_psd.vtex" />
+					<Image id="ShieldColor" src="s2r://panorama/images/custom_game/team_icons/team_shield_color_01_psd.vtex" />
+					<Image id="TeamIcon" style="wash-color: black;" src="" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="BetSummarySolo">
+			<Panel class="BulletPanel" hittest="false" hittestchildren="false">
+				<Label class="Content" text="#total" />
+				<Panel id="GoldIcon" />
+				<Label id="GoldValue" />
+				<Label class="Content" text="#is_bet" />
+				<Label id="Colon" text=": " />
+				<Image id="HeroIcon" src="" />
+				<Label id="PlayerName" text="" />
+			</Panel>
+		</snippet>
+		<snippet name="BetWin">
+			<Panel class="BulletPanel" hittest="false" hittestchildren="false">
+				<Image id="HeroIcon" src="" />
+				<Label id="PlayerName" text="" />
+				<Label class="Content" text="#bet_bonus" />
+				<Panel id="GoldIcon" />
+				<Label id="GoldValue" />
+			</Panel>
+		</snippet>
+		<snippet name="PvpWin">
+			<Panel class="BulletPanel" hittest="false" hittestchildren="false">
+				<Image id="HeroIcon" src="" />
+				<Label id="PlayerName" text="" />
+				<Label class="Content" text="#pvp_earn_bonus" />
+				<Panel id="GoldIcon" />
+				<Label id="GoldValue" />
+			</Panel>
+		</snippet>
+		<snippet name="BetJackpot">
+			<Panel class="BulletPanel" hittest="false" hittestchildren="false">
+				<Image id="HeroIcon" src="" />
+				<Label id="PlayerName" text="" />
+				<Label class="Content" text="#bet_jackpot" />
+				<Panel id="GoldIcon" />
+				<Label id="GoldValue" />
+			</Panel>
+		</snippet>
+		<snippet name="TeamLose">
+			<Panel class="BulletPanel" hittest="false" hittestchildren="false">
+				<Panel class="TeamLogo">
+					<Image id="IconShadow" src="s2r://panorama/images/custom_game/team_icons/team_shield_shadow_01_psd.vtex" />
+					<Image id="ShieldBorder" src="s2r://panorama/images/custom_game/team_icons/team_shield_border_01_psd.vtex" />
+					<Image id="ShieldColor" src="s2r://panorama/images/custom_game/team_icons/team_shield_color_01_psd.vtex" />
+					<Image id="TeamIcon" style="wash-color: black;" src="" />
+				</Panel>
+				<Label id="TeamName" text="" />
+				<Label id="PlayerName" text="" />
+				<Label class="Content" text="#team_lose" />
+			</Panel>
+		</snippet>
+		<snippet name="CompensateRelearnBook">
+			<Panel class="BulletPanel" hittest="false" hittestchildren="false">
+				<Label id="Round" text="#round" />
+				<Label id="RoundNumber" />
+				<Label id="Finished" text="#finish" />
+				<Image id="HeroIcon" src="" />
+				<Label id="PlayerName" />
+				<Label id="Content" />
+			</Panel>
+		</snippet>
+		<snippet name="SettlePumpkinKing">
+			<Panel class="BulletPanel" hittest="false" hittestchildren="false">
+				<Image id="HeroIcon" src="" />
+				<Label id="PlayerName" text="" />
+				<Label id="AttackPumpkin" text="#attack_pumpkin" />
+				<Label id="DamageValue" />
+				<Label id="DealDamage" text="#deal_damage" />
+				<Label id="Plus" text=" +" />
+				<Panel id="GoldIcon" />
+				<Label id="GoldValue" />
+			</Panel>
+		</snippet>
+		<snippet name="DonateSmile">
+			<Panel class="BulletPanel" hittest="false" hittestchildren="false">
+				<Image id="HeroIcon" src="" />
+				<Label id="PlayerName" text="" />
+				<Panel id="smile_icon" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel style="width:100%;height:100%;" hittest="false" hittestchildren="false">
+		<Panel id="BarrgeMainPanel" style="width:1925px; height:980px;margin-top:150px;" hittest="false" hittestchildren="false" />
+		<Panel class="CreepInformation" id="CreepInformation" />
+	</Panel>
+</root>

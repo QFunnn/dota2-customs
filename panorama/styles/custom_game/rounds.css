@@ -1,0 +1,514 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.RoundsHUD
+{
+	width: 100%;
+	height: 100%;
+}
+
+#RoundsMain
+{
+	width: 325px;
+	margin-top: 85px;
+	flow-children: down;
+	opacity: 0;
+	transform: translateX(-25px);
+	transition-property: opacity, transform;
+	transition-duration: .15s;
+}
+
+#RoundsMain.Show
+{
+	opacity: 1;
+	transform: translateX(0);
+}
+
+#RoundsBody
+{
+	width: 100%;
+	padding-left: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background-color: gradient(linear, 100% 0%, 0% 0%, from(rgba(77, 48, 165, 0.0)), color-stop(0.7, rgba(161, 130, 237, 0.3)), to(rgba(193, 178, 255, 0.4)));
+	flow-children: down;
+}
+
+.Duel #RoundsBody
+{
+	background-color: gradient(linear, 100% 0%, 0% 0%, from(rgba(165, 48, 58, 0)), color-stop(0.7, rgba(237, 130, 135, 0.3)), to(rgba(255, 178, 178, 0.4)));
+}
+
+.Row
+{
+	width: 100%;
+}
+
+.Row2
+{
+	align: right center;
+	flow-children: right;
+}
+
+.Row3
+{
+	flow-children: right;
+}
+
+.Row4
+{
+	margin-left: 6px;
+	flow-children: right;
+}
+
+.RoundNum
+{
+	font-size: 21px;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: -1px;
+	color: white;
+	text-shadow: 1px 2px 10px 0 black;
+}
+
+.RoundName
+{
+	align: left center;
+	font-size: 20px;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: -1px;
+	color: rgb(206, 194, 255);
+	text-shadow: 1px 2px 10px 1 black;
+}
+
+.Duel .RoundName
+{
+	color: rgb(255, 91, 91);
+	text-shadow: 1px 2px 5px 1 black;
+}
+
+.RoundState
+{
+	align: left center;
+	font-size: 15px;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: -1px;
+	color: #ccc;
+	opacity: 0.8;
+	margin-top: 2px;
+	text-shadow: 1px 2px 10px 0 black;
+}
+
+.RoundTimer
+{
+	align: left center;
+	margin-left: 10px;
+	font-size: 21px;
+	font-weight: semi-bold;
+	color: white;
+	font-family: monospaceNumbersFont;
+	letter-spacing: -1px;
+	height: 21px;
+	margin-top: -4px;
+	text-shadow: 1px 2px 10px 0 black;
+}
+
+.Warning .RoundTimer
+{
+	color: crimson;
+}
+
+.RoundInfoLabel
+{
+	align: left center;
+	font-size: 11px;
+	text-transform: uppercase;
+	color: #ccc;
+	text-shadow: 1px 2px 10px 0 black;
+}
+
+.RoundInfoButton
+{
+	width: 21px;
+	height: 21px;
+	wash-color: #b5b5b5;
+	background-image: url("s2r://panorama/images/control_icons/24px/info.vsvg");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 13px 13px;
+	img-shadow: 0px 0px 8px 0 black;
+	opacity: 0.8;
+	align: left center;
+}
+
+#RoundCreepsList
+{
+	flow-children: right;
+	margin-top: 5px;
+	overflow: noclip;
+}
+
+.Creep
+{
+	width: 24px;
+	height: 32px;
+	margin-right: 5px;
+	overflow: noclip;
+}
+
+.UnitPortrait
+{
+	width: 24px;
+	height: 32px;
+	overflow: noclip;
+}
+
+#UnitScene
+{
+	width: 24px;
+	height: 32px;
+	align: center top;
+	margin-top: 0px;
+	ignore-parent-flow: true;
+	overflow: noclip;
+}
+
+.CreepCount
+{
+	align: center bottom;
+	font-size: 14px;
+	color: white;
+	font-weight: bold;
+	font-family: monospaceNumbersFont;
+	text-shadow: 1px 2px 10px 0 black;
+}
+
+.ProgressBarContainer
+{
+	width: 100%;
+	margin-top: 5px;
+}
+
+.NoCreeps .ProgressBarContainer
+{
+	visibility: collapse;
+}
+
+.ProgressBar
+{
+	width: 100%;
+	height: 22px;
+	background-color: #0000007d;
+	border-radius: 8px;
+	overflow: noclip;
+}
+
+.ProgressBar .ProgressBarLeft
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( white ), color-stop( 0.45, #a69cdd ), color-stop( 0.55, #7071b5 ), to( #8e82e5 ) );
+	border-radius: 1px;
+	transition-property: width;
+	transition-duration: .1s;
+}
+
+.ProgressBarLabel
+{
+	align: center center;
+	font-size: 18px;
+	color: white;
+	text-shadow: 1px 2px 10px 0 black;
+}
+
+.ReadyButton
+{
+	width: 100px;
+	height: 20px;
+	margin-top: 10px;
+	align: center top;
+	background-color: gradient(radial, 50% 0%, 0% 0%, 70% 100%, from(#977bd9), to(#625296));
+	border-radius: 4px;
+	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+	border: 1px solid rgba(0, 0, 0, 0.5);
+	transition-property: box-shadow, opacity, border, brightness;
+	transition-duration: .2s;
+	opacity: 0;
+}
+
+.Duel .ReadyButton
+{
+	background-color: gradient(radial, 50% 0%, 0% 0%, 70% 100%, from(#e56161), to(#933f3f));
+}
+
+.ReadyButton.CanBeReady
+{
+	opacity: 1;
+}
+
+.ReadyButton.Ready
+{
+	box-shadow: 0 0 8px 0px #d0bcff;
+	brightness: 0.5;
+	saturation: 0.5;
+}
+
+.Duel .ReadyButton.Ready
+{
+	box-shadow: 0px 0px 8px 0px #ffbcbc;
+	brightness: 0.5;
+	saturation: 0.5;
+}
+
+.ReadyButtonLabel
+{
+	align: center center;
+	font-size: 12px;
+	font-family: 'Radiance';
+	color: #FFFFFF;
+	text-shadow: 0px 0px 2px 2 #000000;
+}
+
+.ReadyButton:not(.Ready):hover
+{
+	box-shadow: 0px 0px 8px 0px #d0bcff;
+}
+
+.Duel .ReadyButton:not(.Ready):hover
+{
+	box-shadow: 0px 0px 8px 0px #ffbcbc;
+}
+
+#DuelOpponent
+{
+	visibility: collapse;
+	margin-top: 3px;
+}
+
+.Duel #DuelOpponent
+{
+	visibility: visible;
+}
+
+.DuelOpponentLabel
+{
+	font-size: 14px;
+	color: rgb(255, 91, 91);
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: -1px;
+	text-shadow: 1px 2px 5px 1 black;
+	align: center center;
+	margin-bottom: 3px;
+}
+
+.DuelOpponentName
+{
+	font-size: 12px;
+	color: white;
+	text-transform: uppercase;
+	font-weight: bold;
+	text-shadow: 1px 2px 10px 0 black;
+	margin-left: 5px;
+	align: left center;
+	max-width: 75px;
+	height: 14px;
+}
+
+.DuelOpponentHeroName
+{
+	font-size: 12px;
+	color: white;
+	text-transform: uppercase;
+	font-weight: bold;
+	text-shadow: 1px 2px 10px 0 black;
+	align: left center;
+	margin-top: 0px;
+}
+
+.DuelOpponentHeroIcon
+{
+	width: 24px;
+	height: 24px;
+	margin-left: 3px;
+	margin-right: 3px;
+	align: left center;
+}
+
+#MoreInfo
+{
+	tooltip-body-position: 0%;
+	background-color: rgba(0,0,0,0.5);
+	border-radius: 10px;
+	padding-left: 5px;
+	padding-right: 1px;
+	margin-top: 1px;
+	border: 1px solid rgb(185, 185, 185);
+	transition-property: brightness;
+	transition-duration: .1s;
+}
+
+#MoreInfo:hover
+{
+	brightness: 2;
+}
+
+.RoundNameRow
+{
+	margin-top: 3px;
+}
+
+.RoundLastTime
+{
+	align: center center;
+	font-size: 50px;
+	font-weight: bold;
+	font-family: monospaceNumber;
+	color: white;
+	text-shadow: 1px 2px 3px black;
+	visibility: collapse;
+}
+
+.TimePulse .RoundLastTime
+{
+	visibility: visible;
+	animation-name: TimePulse;
+	animation-duration: 1.01s;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'TimePulse'
+{
+	0%
+	{
+		transform: scale3d(1,1,1);
+		opacity: 0;
+	}
+	
+	10%
+	{
+		transform: scale3d(1,1,1);
+		opacity: 0;
+	}
+	
+	20%
+	{
+		transform: scale3d(1,1,1);
+		opacity: 1;
+	}
+	
+	90%
+	{
+		transform: scale3d(3,3,3);
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: scale3d(3,3,3);
+		opacity: 0;
+	}
+	
+}
+
+.HintUIParticle
+{
+	width: 125px;
+	height: 125px;
+}
+
+#DuelSpectator
+{
+	visibility: collapse;
+	margin-top: 5px;
+	padding-left: 5px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	border-top: 1px solid white;
+	border-left: 1px solid white;
+	border-bottom: 1px solid white;
+	border-brush: gradient(linear, 0% 0%, 100% 0%, from(rgb(255, 255, 255)), to(rgba(255, 0, 0, 0.0)));
+	flow-children: down;
+	background-color: gradient(linear, 100% 0%, 0% 0%, from(rgba(165, 48, 58, 0)), color-stop(0.7, rgba(237, 130, 135, 0.3)), to(rgba(255, 178, 178, 0.4)));
+}
+
+.DuelSpectator #DuelSpectator
+{
+	visibility: visible;
+}
+
+.DuelSpectatorLabel
+{
+	font-size: 14px;
+	color: rgb(255, 68, 68);
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 0.5px;
+	text-shadow: 1px 2px 2px 1 black;
+	align: left center;
+}
+
+.DuelSpectatorName
+{
+	font-size: 12px;
+	color: white;
+	text-transform: uppercase;
+	font-weight: bold;
+	text-shadow: 1px 2px 10px 0 black;
+	align: left center;
+	max-width: 55px;
+	height: 14px;
+}
+
+.DuelSpectatorHeroIcon
+{
+	width: 24px;
+	height: 24px;
+	margin-left: 3px;
+	margin-right: 3px;
+	align: left center;
+}
+
+.DuelSpectatorHeroName
+{
+	max-width: 55px;
+	font-size: 12px;
+	color: white;
+	text-transform: uppercase;
+	font-weight: bold;
+	text-shadow: 1px 2px 10px 0 black;
+	align: left center;
+	margin-top: 0px;
+}
+
+.DuelSpectatorList
+{
+	flow-children: right;
+	margin-top: 5px;
+}
+
+.DuelSpectatorOpponent
+{
+	flow-children: right;
+	align: left center;
+}
+
+.DuelSpectatorVS
+{
+	margin-left: 5px;
+	margin-right: 5px;
+	font-weight: bold;
+	color: rgb(255, 68, 68);
+	text-shadow: 1px 2px 2px 1 black;
+	letter-spacing: 0.5px;
+	align: left center;
+}

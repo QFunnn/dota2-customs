@@ -1,0 +1,499 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.LeaderboardHUD
+{
+	width: 100%;
+	height: 100%;
+}
+
+.LeaderboardContainer
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+}
+
+.LeaderboardSeasons
+{
+	width: 200px;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+	border-right: 1px solid white;
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#454150), color-stop(0.5, #4e3a6bef), to(#593e7aef));
+	flow-children: down;
+}
+
+.SeasonsHeader
+{
+	width: 100%;
+	height: 50px;
+	border-bottom: 1px solid white;
+	border-brush: #593e7aef;
+}
+
+.SeasonsHeaderLabel
+{
+	color: white;
+	align: center center;
+	font-size: 20px;
+	font-family: Reaver;
+	font-weight: bold;
+}
+
+.SeasonsContainer
+{
+	flow-children: down;
+	width: 100%;
+	overflow: squish scroll;
+}
+
+.SeasonsContainer #VerticalScrollBar
+{
+	width: 4px;
+	height: 100%;
+	visibility: visible;
+	horizontal-align: right;
+	layout-position: fixed;
+	background-color: black;
+}
+
+.SeasonsContainer #ScrollThumb
+{
+	min-height: 32px;
+	background-color: #566d8a;
+	border-top: 1px solid #aaaaaa22;
+	border-right: 1px solid #000000aa;
+}
+
+.Season
+{
+	width: 100%;
+	height: fit-children;
+	background-color: rgba(211, 186, 255, 0.01);
+	padding-top: 10px;
+	padding-bottom: 10px;
+	flow-children: down;
+	transition-property: background-color, brightness;
+	transition-duration: 0.1s;
+}
+
+.Season:hover
+{
+	brightness: 2;
+}
+
+.Selected
+{
+	background-color: rgba(170, 137, 255, 0.1);
+}
+
+.SeasonName
+{
+	color: white;
+	font-size: 20px;
+	text-transform: uppercase;
+	font-weight: bold;
+	margin-left: 10px;
+}
+
+.SeasonDates
+{
+	color: rgba(255, 255, 255, 0.4);
+	font-size: 16px;
+	text-transform: uppercase;
+	margin-left: 10px;
+}
+
+.SeasonInfo
+{
+	width: 100%;
+	margin-top: 5px;
+}
+
+.SeasonCurrent
+{
+	color: rgb(144, 147, 238);
+	font-size: 14px;
+	text-transform: uppercase;
+	font-weight: bold;
+	margin-left: 10px;
+	align: left top;
+	opacity: 0;
+}
+
+.Current .SeasonCurrent
+{
+	opacity: 1;
+}
+
+.SeasonSelected
+{
+	color: white;
+	font-size: 14px;
+	text-transform: uppercase;
+	font-weight: bold;
+	text-align: right;
+	align: right top;
+	margin-right: 10px;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.1s;
+}
+
+.Selected .SeasonSelected
+{
+	opacity: 1;
+}
+
+.LeaderboardPlayers
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+}
+
+.Close
+{
+	width: 32px;
+	height: 32px;
+	horizontal-align: right;
+	margin-right: 0px;
+	background-image: url("s2r://panorama/images/control_icons/24px/x_close.vsvg");
+	background-size: 60%;
+	background-repeat: no-repeat;
+	background-position: center;
+	wash-color: white;
+	transition-property: wash-color;
+	transition-duration: 0.1s;
+}
+
+.Close:hover
+{
+	brightness: 1;
+	wash-color: #888888;
+}
+
+.Leaderboardlogo
+{
+	width: 100%;
+	height: 41px;
+	background-color: rgba(0, 0, 0, 0.85);
+	border-bottom: 1px solid #593e7aef;
+}
+
+.LeaderboardNameLabel
+{
+	align: center center;
+	font-family: Reaver;
+	text-shadow: 0px 0px 2px 1 rgba(212, 255, 89, 0.25);
+	color: white;
+	font-size: 20px;
+	font-weight: semi-bold;
+}
+
+.Leaderboardblock
+{
+	width: 100%;
+	height: 100%;
+	horizontal-align: center;
+	margin-bottom: 10px;
+}
+
+#RankContainerSolo
+{
+	visibility: visible;
+}
+
+.RankContainer
+{
+	width: 100%;
+	height: 100%;
+	padding-top: 8px;
+	flow-children: down;
+}
+
+.RankContainerHeader
+{
+	width: 100%;
+	height: 50px;
+	flow-children: right;
+	padding-left: 10px;
+	padding-right: 16px;
+	background-color: rgba(0,0,0,0.5);
+	border-bottom: 1px solid #593e7aef;
+}
+
+.cha_leaderboard_rank
+{
+	width: 18%;
+	text-align: center;
+	vertical-align: center;
+	font-family: 'Radiance';
+	font-size: 20px;
+	color: rgba(255, 255, 255, 0.5);
+	font-weight: semi-bold;
+}
+
+.cha_leaderboard_map
+{
+	width: 59%;
+	text-align: center;
+	vertical-align: center;
+	font-family: 'Radiance';
+	font-size: 20px;
+	color: rgba(255, 255, 255, 0.5);
+	font-weight: semi-bold;
+}
+
+.cha_leaderboard_rating
+{
+	width: 20%;
+	text-align: center;
+	vertical-align: center;
+	font-family: 'Radiance';
+	font-size: 20px;
+	color: rgba(255, 255, 255, 0.5);
+	font-weight: semi-bold;
+}
+
+.PlayersTable
+{
+	flow-children: down;
+	overflow: squish scroll;
+	width: 100%;
+}
+
+.PlayersTable #VerticalScrollBar
+{
+	width: 6px;
+	height: 100%;
+	visibility: visible;
+	horizontal-align: right;
+	layout-position: fixed;
+	background-color: rgb(28, 21, 50);
+}
+
+.PlayersTable #ScrollThumb
+{
+	min-height: 32px;
+	background-color: #5e568a;
+	border-top: 1px solid #aaaaaa22;
+	border-right: 1px solid #000000aa;
+}
+
+.LinePlayer
+{
+	width: 100%;
+	horizontal-align: center;
+	height: 56px;
+	background-color: rgba(0, 0, 0, 0.45);
+	border-radius: 4px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 10px;
+	margin-right: 16px;
+	flow-children: right;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: .2s;
+	transition-delay: .45s;
+}
+
+.LinePlayer.Appear
+{
+	opacity: 1;
+}
+
+.LinePlayer.LocalPlayer
+{
+	background-color: rgba(112, 101, 154, 0.25);
+	border: 1px solid rgba(223, 207, 255, 0.5);
+}
+
+.RankPanel
+{
+	width: 19%;
+	height: 100%;
+}
+
+.AvatarNicknamePanel
+{
+	width: 60%;
+	flow-children: right;
+	vertical-align: center;
+}
+
+.RatingLabel
+{
+	width: 20%;
+	margin-left: 5px;
+	text-align: center;
+	vertical-align: center;
+	font-size: 20px;
+	font-weight: semi-bold;
+	color: white;
+	text-shadow: 1px 2px 3px 1 black;
+}
+
+#NickLeaderboard Label
+{
+	font-size: 16px;
+	vertical-align: center;
+	font-weight: semi-bold;
+	color: white;
+	text-shadow: 1px 2px 3px black;
+}
+
+#AvatarLeaderboard
+{
+	width: 40px;
+	height: 40px;
+}
+
+.RankImage
+{
+	width: 45px;
+	height: 45px;
+	align: center center;
+	margin-right: 10px;
+}
+
+.Rank_number
+{
+	font-size: 14px;
+	text-align: center;
+	text-shadow: 0px 0px 3px 3.0 black;
+	vertical-align: bottom;
+	color: white;
+	width: 100%;
+	font-weight: bold;
+	transform: translateY(2px);
+}
+
+.DropDownChild
+{
+	color: white;
+	text-shadow: 0px 0px 4px 1 rgba(164, 206, 74, 0.45);
+	font-family: 'Radiance';
+	text-align: center;
+	text-shadow: 0px 0px 4px 1 rgba(164, 206, 74, 0.45);
+	font-size: 24px;
+	font-family: 'Radiance';
+	font-weight: semi-bold;
+	text-transform: uppercase;
+}
+
+DropDown Label,DOTASettingsEnumDropDown Label
+{
+	margin: 2px 0px 0px 0px;
+}
+
+DropDownMenu
+{
+	width: 287px;
+	margin-top: 5px;
+	box-shadow: rgba(212, 255, 89, 0) 0px 0px 0px 0px;
+}
+
+DropDownMenu Label
+{
+	height: 40px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	border: 1px solid rgba(92, 89, 255, 0.25);
+	box-shadow: 0px 0px 0px rgba(212, 255, 89, 0);
+	background-color: gradient(linear, 100% 0%, 0% 0%, from(rgba(155, 133, 255, 0.15)), color-stop(0.5, rgba(132, 155, 255, 0.5)), to(rgba(133, 141, 255, 0.15)));
+	text-shadow: 0px 0px 4px 1 rgba(164, 206, 74, 0.45);
+	font-size: 20px;
+	font-family: 'Radiance';
+	font-weight: semi-bold;
+	text-transform: uppercase;
+	padding: 6px 0px 0px 0px;
+}
+
+DropDownMenu Label:hover
+{
+	height: 40px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	border: 1px solid rgba(92, 89, 255, 0.25);
+	box-shadow: 0px 0px 0px rgba(212, 255, 89, 0);
+	background-color: gradient(linear, 100% 0%, 0% 0%, from(rgba(155, 133, 255, 0.15)), color-stop(0.5, rgba(132, 155, 255, 0.5)), to(rgba(133, 141, 255, 0.15)));
+}
+
+#ChooseMode
+{
+	width: 287px;
+	height: 40px;
+	margin-top: 15px;
+	border: 1px solid rgba(92, 89, 255, 0.25);
+	box-shadow: 0px 0px 0px rgba(212, 255, 89, 0);
+	background-color: gradient(linear, 100% 0%, 0% 0%, from(rgba(155, 133, 255, 0.15)), color-stop(0.5, rgba(132, 155, 255, 0.5)), to(rgba(133, 141, 255, 0.15)));
+}
+
+.LinePlayer_pve
+{
+	width: 100%;
+	horizontal-align: center;
+	height: 42px;
+	background-color: rgba(0, 0, 0, 0.45);
+	border-radius: 4px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	flow-children: right;
+}
+
+.RankPanel_pve
+{
+	width: 15%;
+	height: 100%;
+}
+
+.AvatarNicknamePanel_pve
+{
+	width: 50%;
+	flow-children: right;
+	vertical-align: center;
+}
+
+.RatingLabel_pve
+{
+	width: 100%;
+	margin-left: 5px;
+	text-align: center;
+	vertical-align: center;
+	font-size: 14px;
+	font-weight: semi-bold;
+	color: white;
+	font-family: 'Radiance';
+}
+
+.RankImage_pve
+{
+	width: 35px;
+	height: 35px;
+	align: center center;
+	margin-right: 10px;
+}
+
+.Rank_number_pve
+{
+	font-size: 14px;
+	text-align: center;
+	text-shadow: 0px 0px 3px 3.0 black;
+	vertical-align: center;
+	color: white;
+	width: 100%;
+	font-weight: bold;
+	transform: translateY(2px);
+}

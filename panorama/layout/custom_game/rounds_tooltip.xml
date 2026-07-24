@@ -1,0 +1,106 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/custom_game/rounds_tooltip.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/rounds_tooltip.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="Creep">
+			<Panel class="Creep" hittest="false">
+				<Label class="CreepName" text="{s:name}" hittest="false" />
+				<DOTAScenePanel id="UnitScene" unit="npc_dota_skeleton" renderdeferred="true" hittest="false" antialias="false" particleonly="false" drawbackground="true" light="light" />
+				<Panel class="CountPanel" hittest="false">
+					<Label class="ValueLabel" text="{s:count}" hittest="false" />
+				</Panel>
+				<Panel class="Health" hittest="false">
+					<Label class="ValueLabel" text="{s:health}" hittest="false" />
+					<Label class="ValueLabel2" text="{s:health_regen}" hittest="false" />
+				</Panel>
+				<Panel class="Mana" hittest="false">
+					<Label class="ValueLabel" text="{s:mana}" hittest="false" />
+					<Label class="ValueLabel2" text="{s:mana_regen}" hittest="false" />
+				</Panel>
+				<Panel class="CreepInfo" hittest="false">
+					<Panel class="Row" id="Damage" hittest="false">
+						<Panel class="Row2" hittest="false">
+							<Label class="ValueName" text="#ROUNDS_Tooltip_Variable_damage" hittest="false" />
+						</Panel>
+						<Panel class="Row3" hittest="false">
+							<Panel class="ValueIcon" hittest="false" />
+							<Label class="ValueLabel" text="{s:damage}" hittest="false" />
+						</Panel>
+					</Panel>
+					<Panel class="Row" id="AttackSpeed" hittest="false">
+						<Panel class="Row2" hittest="false">
+							<Label class="ValueName" text="#ROUNDS_Tooltip_Variable_attack_speed" hittest="false" />
+						</Panel>
+						<Panel class="Row3" hittest="false">
+							<Panel class="ValueIcon" hittest="false" />
+							<Label class="ValueLabel" text="{s:speed}" hittest="false" />
+						</Panel>
+					</Panel>
+					<Panel class="Row" id="AttackRange" hittest="false">
+						<Panel class="Row2" hittest="false">
+							<Label class="ValueName" text="#ROUNDS_Tooltip_Variable_attack_range" hittest="false" />
+						</Panel>
+						<Panel class="Row3" hittest="false">
+							<Panel class="ValueIcon" hittest="false" />
+							<Label class="ValueLabel" text="{s:range}" hittest="false" />
+						</Panel>
+					</Panel>
+					<Panel class="Row" id="PhysicalResist" hittest="false">
+						<Panel class="Row2" hittest="false">
+							<Label class="ValueName" text="#ROUNDS_Tooltip_Variable_phys_resist" hittest="false" />
+						</Panel>
+						<Panel class="Row3" hittest="false">
+							<Panel class="ValueIcon" hittest="false" />
+							<Label class="ValueLabel" text="{s:phys}" hittest="false" />
+						</Panel>
+					</Panel>
+					<Panel class="Row" id="MagicalResist" hittest="false">
+						<Panel class="Row2" hittest="false">
+							<Label class="ValueName" text="#ROUNDS_Tooltip_Variable_magic_resist" hittest="false" />
+						</Panel>
+						<Panel class="Row3" hittest="false">
+							<Panel class="ValueIcon" hittest="false" />
+							<Label class="ValueLabel" text="{s:magic}" hittest="false" />
+						</Panel>
+					</Panel>
+					<Panel class="Row" id="Resist" hittest="false">
+						<Panel class="Row2" hittest="false">
+							<Label class="ValueName" text="#ROUNDS_Tooltip_Variable_resist" hittest="false" />
+						</Panel>
+						<Panel class="Row3" hittest="false">
+							<Panel class="ValueIcon" hittest="false" />
+							<Label class="ValueLabel" text="{s:resist}" hittest="false" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel id="AbilitiesList" hittest="false" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="RoundsTooltip" hittest="false">
+		<Panel id="Body" hittest="true">
+			<Panel id="Header" hittest="true">
+				<Label class="HeaderLabel" text="#ROUNDS_MoreInfo_Header" hittest="false" />
+				<Label class="DescLabel" text="{s:desc}" hittest="false" html="true" />
+			</Panel>
+			<Panel id="CreepsList" hittest="true" />
+		</Panel>
+	</Panel>
+</root>

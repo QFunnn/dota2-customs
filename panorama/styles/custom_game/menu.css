@@ -1,0 +1,1132 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.MenuHUD
+{
+	width: 100%;
+	height: 100%;
+}
+
+#MenuToggleButton
+{
+	width: 60px;
+	height: 55px;
+	margin: 1px;
+	flow-children: down;
+	margin-left:145px;
+	margin-top:10px;
+}
+
+#MenuToggleButton:hover .MenuToggleButtonIcon
+{
+	opacity: 1;
+}
+
+.MenuToggleButtonIcon
+{
+	opacity:0.5;
+	height: 33px;
+	width: 33px;
+	horizontal-align: center;
+	background-size:100%;
+	background-image: url("s2r://panorama/images/custom_game/menu_icon_png.vtex");
+	transition-property: opacity;
+	transition-duration: .1s;
+}
+
+.MenuToggleButtonLabel
+{
+	horizontal-align: center;
+	text-align: center;
+	text-transform: uppercase;
+	color: white;
+	font-weight: bold;
+	text-shadow: 0px 0px 5px 2.0 black;
+	font-size: 8px;
+	margin-top: 0px;
+}
+
+#MenuWindow
+{
+	width: 1350px;
+	height: 900px;
+	align: center center;
+	opacity: 0;
+	transform: translateY(-50px);
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( rgba(22,22,56,0.9) ), to( rgba(46,45,102,0.8) ) );
+	border: 1px solid white;
+	border-brush: gradient( linear, 0% 0%, 20% 70%, from( #a4a3ff ), to( rgba(115, 114, 174, 0.8) ) );
+	box-shadow: #00000000 0px 0px 10px 1px;
+	transition-property: opacity, transform, box-shadow;
+	transition-duration: .2s;
+	border-radius: 2px;
+}
+
+#MenuHeader
+{
+	width: 100%;
+	height: 85px;
+	padding: 10px;
+	border-bottom: 1px solid white;
+	border-brush: gradient(linear, 100% 0%, 0% 0%, from(#7d68c300), color-stop(0.3, #7d68c3ef), color-stop(0.7, #7d68c3ef), to(#7d68c300));
+}
+
+#PlayerMiniProfile
+{
+	height: 65px;
+	padding-right: 5px;
+	flow-children: right;
+	margin-left: 5px;
+	background-color: gradient(linear, 100% 0%, 0% 0%, from(rgba(139, 113, 255, 0.0)), color-stop(0.88, rgba(141, 121, 255, 0.1)), to(rgba(141, 121, 255, 0.0)));
+}
+
+.AvatarProfile
+{
+	width: 52px;
+	height: 52px;
+	border: 1px solid white;
+	border-brush: gradient(radial, 0% 0%, 2% 10%, 100% 100%, from(#FFE279), to(#ffd87615));
+	align: left center;
+}
+
+.PlayerNameAndRating
+{
+	align: left center;
+	margin-left: 14px;
+	flow-children: down;
+	width: 170px;
+}
+
+.NameProfile
+{
+	font-family: 'Radiance';
+	font-size: 25px;
+	color: #FFFFFF;
+	font-weight: semi-bold;
+}
+
+.NameProfile Label
+{
+	font-size: 25px;
+}
+
+.PlayerRatingProfile
+{
+	color: rgba(255, 255, 255, 0.75);
+	font-size: 16px;
+	font-family: 'Radiance';
+}
+
+.RankBadge
+{
+	width: 65px;
+	height: 65px;
+	align: left center;
+}
+
+.RankFX
+{
+	width: 120%;
+	height: 120%;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_box_irregular_png.vtex");
+	align: center center;
+	overflow: noclip;
+}
+
+.PlayerRankProfile
+{
+	background-image: url("s2r://panorama/images/custom_game/ranks/rank0_png.vtex");
+	background-size: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 56px;
+	height: 56px;
+	align: center center;
+}
+
+.PlayerRankProfilePlace
+{
+	font-size: 14px;
+	text-align: center;
+	text-shadow: 0px 0px 3px 2 black;
+	color: white;
+	width: 100%;
+	font-weight: bold;
+	align: left bottom;
+	margin-bottom: 2px;
+}
+
+.BattlePassSub
+{
+	flow-children: down;
+	align: left center;
+	margin-left: 20px;
+	visibility: collapse;
+}
+
+.local_player_battle_pass_subscribed .BattlePassSub
+{
+	visibility: visible;
+}
+
+.BattlePassSubStatus
+{
+	font-size: 16px;
+	color: rgb(210, 189, 255);
+	text-transform: uppercase;
+	letter-spacing: -0.5px;
+	font-weight: semi-bold;
+}
+
+.BattlePassSubEndsIn
+{
+	font-size: 14px;
+	color: rgb(148, 136, 172);
+}
+
+.CoinsArea
+{
+	width: 200px;
+	align: right center;
+	margin-right: 25px;
+	flow-children: down;
+}
+
+.CoinIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/donate/battlepass/arena_coin_png.vtex");
+	background-size: 100%;
+	width: 32px;
+	height: 32px;
+	border-radius: 38px;
+	box-shadow: #ffcc0007 0px 0px 5px 0px;
+	align: left center;
+	z-index: 5;
+}
+
+.CoinRow
+{
+	height: 32px;
+	background-color: rgba(0,0,0,0.5);
+	border: 1px solid rgb(68, 63, 76);
+	margin-left: 25px;
+	align: left center;
+	flow-children: right;
+}
+
+.CoinBuyButton
+{
+	vertical-align: center;
+	width: 32px;
+	height: 32px;
+	horizontal-align: right;
+	background-color: gradient(radial, 50% -1%, 0% 0%, 100% 100%, from(rgba(203, 187, 238, 0.5)), to(rgba(121, 105, 160, 0.5)));
+	background-image: url("s2r://panorama/images/control_icons/plus_png.vtex");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: 70% 70%;
+}
+
+.CoinBuyButton:hover
+{
+	brightness: 1.4;
+}
+
+.CoinBuyButton:active
+{
+	brightness: 0.8;
+}
+
+.CoinCountPanel
+{
+	width: 140px;
+	height: 30px;
+	align: left center;
+}
+
+.CoinCount
+{
+	align: center center;
+	font-size: 20px;
+	font-weight: semi-bold;
+	font-family: 'Radiance';
+	text-transform: uppercase;
+	color: white;
+	text-align: right;
+}
+
+.PromocodeArea
+{
+	width: 250px;
+	align: right center;
+	margin-right: 275px;
+	flow-children: down;
+}
+
+.ConfirmButton
+{
+	width: 32px;
+	height: 32px;
+	background-color: gradient(radial, 50% -1%, 0% 0%, 100% 100%, from(rgba(203, 187, 238, 0.5)), to(rgba(121, 105, 160, 0.5)));
+	background-image: url("s2r://panorama/images/control_icons/plus_png.vtex");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: 70% 70%;
+	transition-property: brightness;
+	transition-duration: .1s;
+}
+
+.ConfirmButton:hover
+{
+	brightness: 1.4;
+}
+
+.ConfirmButton:active
+{
+	brightness: 0.8;
+}
+
+#PromocodeTextEntry
+{
+	width: 100%;
+	height: 30px;
+	font-size: 18px;
+	color: white;
+	padding: 5px 3px 6px 3px;
+	text-overflow: clip;
+	white-space: nowrap;
+	font-weight: bold;
+	letter-spacing: 1px;
+	border: 1px solid rgb(68, 63, 76);
+	background-color: rgba(0,0,0,0.5);
+	align: left center;
+}
+
+#PromocodeTextEntry Label
+{
+	margin-top: -1px;
+}
+
+.RowWrapper
+{
+	width: 100%;
+	flow-children: left;
+}
+
+.RowWrapper2
+{
+	width: 100%;
+}
+
+.HeaderDescLabel
+{
+	color: rgb(148, 136, 172);
+	font-weight: semi-bold;
+	text-transform: uppercase;
+	font-size: 13px;
+	align: right center;
+	margin-bottom: 3px;
+}
+
+#MenuBody
+{
+	width: 100%;
+	height: 812px;
+	align: center bottom;
+	flow-children: right;
+}
+
+#MenuWindow.Show
+{
+	box-shadow: #00000069 0px 0px 10px 1px;
+	opacity: 1;
+	transform: translateY(0);
+}
+
+#MenuButtons
+{
+	width: 235px;
+	height: 100%;
+	padding: 5px;
+}
+
+#HeaderButtons
+{
+	width: 100%;
+	height: 100%;
+	align: center top;
+}
+
+#CloseButton
+{
+	width: 26px;
+	height: 26px;
+	background-image: url("s2r://panorama/images/control_icons/24px/x_close.vsvg");
+	background-size: 20px 20px;
+	background-position: center;
+	background-repeat: no-repeat;
+	wash-color: white;
+	transition-property: wash-color;
+	transition-duration: 0.1s;
+	img-shadow: 1px 2px 3px black;
+	margin-top: 1px;
+	align: right top;
+}
+
+#CloseButton:hover
+{
+	wash-color: rgb(163, 131, 251);
+}
+
+#MainButtons
+{
+	flow-children: down;
+	align: center top;
+}
+
+.MBBack
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #00000000 ), color-stop(.2, #2a1798), color-stop( .5, #9e49ff ), color-stop(.8, #2f1798), to( #00000000 ) );
+	align: center center;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_vertical_softer_png.vtex");
+	transition-property: opacity;
+	transition-duration: .1s;
+}
+
+.MainButton
+{
+	width: 235px;
+	height: 75px;
+	flow-children: right;
+	margin: 5px;
+	margin-bottom: 0px;
+	background-color: gradient(linear, 20% 100%, 0% 0%, from(#221f2a8a), color-stop(0.5, #332b44bd), to(#4b3771ad));
+	border: 1px solid white;
+	border-brush: gradient(linear, 20% 70%, 0% 0%, from(#454150), color-stop(0.5, #4e3a6bef), to(#624ca8ef));
+	box-shadow: #00000044 0px 0px 10px 0px;
+	transition-property: brightness, background-color, border-brush, pre-transform-scale2d;
+	transition-duration: .1s;
+}
+
+.MainButton:not(.Toggled):hover
+{
+	brightness: 1.5;
+}
+
+.MainButton:not(.Toggled):active
+{
+	pre-transform-scale2d: 0.98;
+}
+
+.MainButton:not(.Toggled):hover .MBBack
+{
+	opacity: 0.1;
+}
+
+.MainButton.Toggled
+{
+	brightness: 1.5;
+	border-brush: gradient(linear, 20% 70%, 0% 0%, from(#58516a), color-stop(0.5, #765d9bef), to(#8974cdef));
+}
+
+.Toggled .MBBack
+{
+	opacity: 0.2;
+}
+
+.Toggled .MBName
+{
+	color: white;
+}
+
+.MBImagePanel
+{
+	width: 65px;
+	height: 65px;
+	align: center center;
+	transition-property: background-color;
+	transition-duration: .1s;
+}
+
+.MBImage
+{
+	width: 48px;
+	height: 48px;
+	align: center center;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	wash-color: rgb(172, 160, 255);
+	transition-property: wash-color;
+	transition-duration: .1s;
+}
+
+#LeaderboardButton .MBImage
+{
+	background-image: url("s2r://panorama/images/custom_game/top_menu/rank_png_png.vtex");
+	background-size: 80%;
+}
+
+#ShopButton .MBImage
+{
+	background-image: url("s2r://panorama/images/custom_game/shop_icon_png.vtex");
+	background-size: 80%;
+}
+
+#InventoryButton .MBImage
+{
+	background-image: url("s2r://panorama/images/custom_game/inventory_icon_png.vtex");
+	background-size: 80%;
+}
+
+#BattlePassButton .MBImage
+{
+	background-image: url("s2r://panorama/images/custom_game/battle_pass_icon_png.vtex");
+}
+
+#ChatWheelButton .MBImage
+{
+	background-image: url("s2r://panorama/images/settings_chatwheel_png.vtex");
+}
+
+#WikiButton .MBImage
+{
+	background-image: url("s2r://panorama/images/custom_game/wiki_icon_png.vtex");
+	background-size: 90%;
+}
+
+#BansButton .MBImage
+{
+	background-image: url("s2r://panorama/images/custom_game/info/block_png.vtex");
+}
+
+#SettingsButton .MBImage
+{
+	background-image: url("s2r://panorama/images/custom_game/top_menu/order_png.vtex");
+}
+
+#BugReportButton .MBImage
+{
+	background-image: url("s2r://panorama/images/custom_game/bug_report_icon_png.vtex");
+	background-size: 80%;
+}
+
+.InfoButton
+{
+	width: 18px;
+	height: 18px;
+	background-image: url("s2r://panorama/images/status_icons/information_psd.vtex");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	tooltip-body-position: 50% 10%;
+	vertical-align: center;
+	wash-color: #1f99df;
+	margin-left: 5px;
+}
+
+#KeysInfo
+{
+	tooltip-position: bottom;
+}
+
+.MBNamePanel
+{
+	width: 95%;
+	height: 75px;
+	align: center center;
+}
+
+.MBNamePanelContainer
+{
+	align: center center;
+	flow-children: right;
+}
+
+.MBName
+{
+	font-size: 18px;
+	color: rgb(210, 189, 255);
+	align: center center;
+	text-align: center;
+	text-shadow: 1px 2px 3px black;
+	text-transform: uppercase;
+	transition-property: color;
+	transition-duration: .1s;
+}
+
+.MBNameBack
+{
+	width: 100%;
+	height: 30px;
+	align: center center;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_vertical_softer_png.vtex");
+	transition-property: background-color;
+	transition-duration: .1s;
+}
+
+#Body
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	margin: 10px;
+	margin-left: 0px;
+	background-color: gradient(linear, 20% 100%, 0% 0%, from(#221f2a8a), color-stop(0.7, #262034bd), to(#3b2a5aad));
+	border: 1px solid white;
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#454150), color-stop(0.5, #4e3a6bef), to(#4c3e7aef));
+	box-shadow: #00000044 0px 0px 10px 0px;
+}
+
+.MenuBody
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition-property: opacity, transform;
+	transition-duration: .15s;
+	transform: scaleX(0.98) scaleY(0.98);
+}
+
+.MenuBody.Toggled
+{
+	transform: scaleX(1) scaleY(1);
+	opacity: 1;
+}
+
+.SpecialButtonsContainer
+{
+	flow-children: right;
+	align: left bottom;
+}
+
+.SpecialButton
+{
+	width: 60px;
+	height: 55px;
+	margin: 1px;
+	flow-children: down;
+}
+
+.SpecialButtonIcon
+{
+	opacity:0.5;
+	height: 33px;
+	width: 33px;
+	horizontal-align: center;
+	background-size:100%;
+	background-image: url("s2r://panorama/images/custom_game/menu_icon_png.vtex");
+	transition-property: opacity;
+	transition-duration: .1s;
+}
+
+.SpecialButton:hover .SpecialButtonIcon
+{
+	opacity: 1;
+}
+
+.SpecialButtonLabel
+{
+	horizontal-align: center;
+	text-align: center;
+	text-transform: uppercase;
+	color: white;
+	font-weight: bold;
+	text-shadow: 0px 0px 5px 2.0 black;
+	font-size: 8px;
+	margin-top: 4px;
+}
+
+#SpecialNotification
+{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.8);
+	align: center center;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: .25s;
+}
+
+#SpecialNotification.ShowSpecialNotification
+{
+	opacity: 1;
+}
+
+.SpecialNotificationLabel
+{
+	font-size: 40px;
+	font-weight: semi-bold;
+	text-transform: uppercase;
+	align: center center;
+	text-align: center;
+	max-width: 800px;
+	color: white;
+	font-family: Reaver;
+	pre-transform-scale2d: 0.9;
+	transition-property: pre-transform-scale2d;
+	transition-duration: .25s;
+}
+
+.ShowSpecialNotification .SpecialNotificationLabel
+{
+	pre-transform-scale2d: 1;
+}
+
+.Error .SpecialNotificationLabel
+{
+	color: crimson;
+}
+
+.Success .SpecialNotificationLabel
+{
+	color: lightgreen;
+}
+
+#AddCoinsMenu
+{
+	width: 400px;
+	height: 200px;
+	align: center center;
+	background-color: gradient(linear, 20% 100%, 0% 0%, from(#221f2aeb), color-stop(0.5, #332b44f4), to(#4b3771f6));
+	border: 1px solid white;
+	border-brush: gradient(linear, 20% 70%, 0% 0%, from(#454150), color-stop(0.5, #4e3a6bef), to(#624ca8ef));
+	box-shadow: #00000000 0px 0px 10px 0px;
+	flow-children: down;
+	opacity: 0;
+	pre-transform-scale2d: 0.9;
+	transition-property: opacity, pre-transform-scale2d, box-shadow;
+	transition-duration: .15s;
+}
+
+#AddCoinsMenu.ShowAddCoins
+{
+	opacity: 1;
+	pre-transform-scale2d: 1;
+	box-shadow: #00000044 0px 0px 10px 0px;
+}
+
+.AddCoinsHeader
+{
+	width: 100%;
+	height: 35px;
+	background-color: rgba(0,0,0,0.5);
+}
+
+.AddCoinsHeaderLabel
+{
+	font-size: 24px;
+	text-transform: uppercase;
+	font-weight: semi-bold;
+	letter-spacing: 1px;
+	color: rgb(210, 189, 255);
+	align: center center;
+}
+
+.AddCoinsClose
+{
+	width: 35px;
+	height: 35px;
+	background-image: url("s2r://panorama/images/control_icons/24px/x_close.vsvg");
+	background-size: 20px 20px;
+	background-position: center;
+	background-repeat: no-repeat;
+	wash-color: white;
+	transition-property: wash-color;
+	transition-duration: 0.1s;
+	img-shadow: 1px 2px 3px black;
+	margin-top: 1px;
+	align: right top;
+}
+
+.AddCoinsClose:hover
+{
+	wash-color: rgb(163, 131, 251);
+}
+
+.TelegramSupport
+{
+	font-size: 16px;
+	align: center center;
+	text-align: center;
+	margin-top: 10px;
+	color: rgb(148, 136, 172);
+}
+
+.AddCoinsButton
+{
+	width: 200px;
+	height: 40px;
+	align: center center;
+	background-color: gradient(linear, 10% 70%, 0% 0%, from(#221f2a8a), color-stop(0.5, #332b44bd), to(#4b3771ad));
+	border: 1px solid white;
+	border-brush: gradient(linear, 20% 70%, 0% 0%, from(#454150), color-stop(0.5, #4e3a6bef), to(#624ca8ef));
+	box-shadow: #00000044 0px 0px 10px 0px;
+	transition-property: brightness, pre-transform-scale2d;
+	transition-duration: .15s;
+}
+
+.AddCoinsButton:hover
+{
+	brightness: 2;
+}
+
+.AddCoinsButton:active
+{
+	pre-transform-scale2d: 0.95;
+}
+
+.AddCoinsButtonLabel
+{
+	font-size: 24px;
+	text-transform: uppercase;
+	font-weight: semi-bold;
+	letter-spacing: 1px;
+	color: rgb(173, 156, 209);
+	align: center center;
+}
+
+.Value
+{
+	color: white;
+}
+
+.ValueBold
+{
+	color: white;
+	font-weight: bold;
+}
+
+#LoadingPanel
+{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.8);
+	align: center center;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: .25s;
+}
+
+#LoadingPanel.ShowLoading
+{
+	opacity: 1;
+}
+
+.WrapperMenu
+{
+	align: center center;
+	flow-children: right;
+}
+
+.LoadingPanelLabel
+{
+	align: center center;
+	font-size: 40px;
+	color: white;
+	font-family: Reaver;
+	pre-transform-scale2d: 0.9;
+	transition-property: pre-transform-scale2d;
+	transition-duration: .25s;
+}
+
+.ShowLoading .LoadingPanelLabel
+{
+	pre-transform-scale2d: 1;
+}
+
+.LoadingIcon
+{
+	margin-left: 30px;
+	width: 60px;
+	height: 60px;
+	align: center center;
+	background-image: url("s2r://panorama/images/status_icons/loadingthrobber_round_psd.vtex");
+	background-size: 100%;
+	animation-name: SpinnerRotate;
+	animation-duration: 1.0s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'SpinnerRotate'
+{
+	0%
+	{
+		transform: rotateZ(360deg);
+	}
+	
+	50%
+	{
+		transform: rotateZ(180deg);
+	}
+	
+	100%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+}
+
+#SettingKeyBindMenu
+{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.8);
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: .15s;
+}
+
+#SettingKeyBindMenu.ShowKeyBindSetting
+{
+	opacity: 1;
+}
+
+#SettingKeyBindWindow
+{
+	width: 500px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#18161dc5), color-stop(0.5, #201831e0), to(#402969d5));
+	box-shadow: 0px 6px 24px 0px rgba(129, 89, 189, 0.1);
+	border: 1px solid white;
+	border-bottom: 2px solid white;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#8574af), color-stop(0.5, #4e3a6bef), to(#a06dffef));
+	align: center center;
+	flow-children: down;
+	pre-transform-scale2d: 0.9;
+	transition-property: pre-transform-scale2d;
+	transition-duration: .15s;
+	padding-bottom: 25px;
+}
+
+.ShowKeyBindSetting #SettingKeyBindWindow
+{
+	pre-transform-scale2d: 1;
+}
+
+#SettingKeyBindHeader
+{
+	width: 100%;
+	height: 50px;
+	background-color: rgba(0, 0, 0, 0.4);
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+.SettingKeyBindHeaderLabel
+{
+	color: #9488ac;
+	font-size: 16px;
+	text-transform: uppercase;
+	align: center center;
+	text-align: center;
+	letter-spacing: 1px;
+}
+
+#SettingKeyBindCloseButton
+{
+	width: 55px;
+	height: 35px;
+	background-image: url("s2r://panorama/images/control_icons/24px/x_close.vsvg");
+	background-size: 20px 20px;
+	background-position: center;
+	background-repeat: no-repeat;
+	brightness: 0.6;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( rgb(55, 46, 72) ), to( rgb(43, 35, 56) ) );
+	border-radius: 5px;
+	border: 1px solid white;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#8574af), to(#4e3a6bef));
+	margin-right: 6px;
+	align: right center;
+	transition-property: brightness;
+	transition-duration: .1s;
+}
+
+#SettingKeyBindCloseButton:hover
+{
+	brightness: 1;
+}
+
+.SettingKeyBindName
+{
+	margin-top: 15px;
+	align: center top;
+	font-size: 25px;
+	color: #d2bdff;
+}
+
+.SettingKeyBindBody
+{
+	width: 88px;
+	height: 88px;
+	border-radius: 5px;
+	align: center top;
+	margin-top: 15px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( rgb(55, 46, 72) ), to( rgb(43, 35, 56) ) );
+	transition-property: box-shadow, border;
+	transition-duration: .05s;
+	animation-name: KeyGlow;
+	animation-duration: 0.5s;
+	animation-direction: alternate-reverse;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'KeyGlow'
+{
+	0%
+	{
+		border: 1.5px solid #a06dffef;
+		box-shadow: 0px 0px 25px 0px rgba(160, 109, 255, 0.02);
+	}
+	
+	100%
+	{
+		border: 1.5px solid #c8abffef;
+		box-shadow: 0px 0px 25px 0px rgba(160, 109, 255, 0.275);
+	}
+	
+}
+
+#SettingKeyBindClearButton
+{
+	width: 125px;
+	height: 40px;
+	brightness: 0.6;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( rgb(55, 46, 72) ), to( rgb(43, 35, 56) ) );
+	border-radius: 5px;
+	border: 1px solid white;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#8574af), to(#4e3a6bef));
+	margin-top: 10px;
+	align: center top;
+	transition-property: brightness;
+	transition-duration: .1s;
+}
+
+#SettingKeyBindClearButton:hover
+{
+	brightness: 1;
+}
+
+.SettingKeyBindClearButtonLabel
+{
+	color: white;
+	font-size: 16px;
+	text-transform: uppercase;
+	align: center center;
+	text-align: center;
+	letter-spacing: 1px;
+	text-shadow: 1px 2px 3px 1 rgba(0, 0, 0, 0.4);
+}
+
+.SettingKeyBindDelimeter
+{
+	margin-top: 15px;
+	width: 60%;
+	height: 1px;
+	background-color: #574a6eef;
+	align: center top;
+}
+
+#SettingKeyBindSubmitButton
+{
+	width: 300px;
+	height: 50px;
+	brightness: 0.8;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( rgb(69, 57, 90) ), to( rgb(43, 36, 56) ) );
+	border-radius: 5px;
+	border: 1px solid white;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#a06dffef), to(#4e3a6bef));
+	margin-top: 15px;
+	align: center top;
+	transition-property: brightness;
+	transition-duration: .1s;
+}
+
+#SettingKeyBindSubmitButton:hover
+{
+	brightness: 1.2;
+}
+
+.SettingKeyBindSubmitButtonLabel
+{
+	color: white;
+	font-size: 20px;
+	text-transform: uppercase;
+	align: center center;
+	text-align: center;
+	letter-spacing: 1px;
+	text-shadow: 1px 2px 3px 1 rgba(0, 0, 0, 0.4);
+}
+
+.CustomKeybindEntry
+{
+	opacity: 0;
+	width: 0px;
+	height: 0px;
+}
+
+.SettingKeyBindKey
+{
+	color: #d2bdff;
+	font-weight: bold;
+	align: center center;
+	text-align: center;
+	font-size: 40px;
+	text-shadow: 0px 0px 5px 1 black;
+}
+
+#DropDownBinds
+{
+	background-color: none;
+	border: 0px solid white;
+	box-shadow: none;
+	align: right bottom;
+	margin-bottom: 5px;
+	margin-right: 2px;
+	width: 80px;
+	padding: 0px 0px;
+	height: 26px;
+	background-image: url("s2r://panorama/images/control_icons/24px/settings.vsvg");
+	background-size: 25px 25px;
+	background-position: right 27px center;
+	wash-color: rgb(148, 136, 172);
+	transition-property: brightness, opacity;
+	transition-duration: .15s;
+}
+
+#DropDownBinds:hover
+{
+	brightness: 2;
+}
+
+#DropDownBinds Label
+{
+	opacity: 0;
+}
+
+.SettingKeyOverrideLabel
+{
+	width: 90%;
+	margin-top: 15px;
+	align: center top;
+	text-align: center;
+	color: rgb(148, 136, 172);
+	visibility: collapse;
+}
+
+.Overrides .SettingKeyOverrideLabel
+{
+	visibility: visible;
+}

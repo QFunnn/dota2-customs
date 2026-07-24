@@ -1,0 +1,971 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/custom_game/duel_info.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/duel_info.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="BetMapPlayer">
+			<Panel class="BetMapPlayer" hittest="false" hittestchildren="false">
+				<Panel class="BetMapPlayerInfo" hittest="false">
+					<DOTAAvatarImage id="BetPlayerAvatar" steamid="local" class="AvatarProfile" hittest="false" hittestchildren="false" />
+					<Panel class="BetMapPlayerInfoContainer" hittest="false">
+						<Panel class="BetMapPlayerInfoNames" hittest="false">
+							<Label class="BetMapPlayerName" text="{s:bet_player_name}" hittest="false" />
+							<Panel class="BetMapPlayerInfoHero">
+								<DOTAHeroImage id="BetHeroIcon" heroimagestyle="icon" heroname="npc_dota_hero_pudge" />
+								<Label class="BetMapPlayerHeroName" text="{s:bet_hero_name}" hittest="false" />
+							</Panel>
+							<Panel class="BetNumContainer">
+								<Label class="BetNum" text="{s:bet_num}" hittest="false" html="true" />
+								<Panel class="BetMapGoldIcon" />
+							</Panel>
+						</Panel>
+						<Panel class="BetInfo">
+							<Panel class="BetLine" id="BetLine">
+								<Panel class="BetLineStart" />
+								<Panel class="BetLineColor" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="DuelInfoHUD" hittest="false">
+		<Panel id="DuelBody" hittest="false">
+			<Panel id="DuelPlayersContainer" hittest="false">
+				<Panel id="FirstTeam" hittest="false">
+					<Panel id="Player1" class="DuelPlayer" hittest="false">
+						<Panel class="DuelPlayerLeft" hittest="false">
+							<Panel class="DuelPlayerInfo" hittest="false">
+								<Panel id="PlayerMiniProfile">
+									<DOTAAvatarImage id="PlayerAvatar" steamid="local" class="AvatarProfile" hittest="false" hittestchildren="false" />
+									<Panel class="PlayerNameAndRating">
+										<Label id="PlayerNickName" class="NameProfile" hittest="false" text="{s:player_name}" />
+										<Label class="PlayerRatingProfile" id="PlayerRatingProfile" text="{s:player_rating}" />
+									</Panel>
+									<Panel class="RankBadge">
+										<DOTAScenePanel class="RankFX" hittest="false" map="scenes/rank_tier_ambient" camera="camera_1" />
+										<Panel class="PlayerRankProfile" id="PlayerRankProfile" />
+										<Label class="PlayerRankProfilePlace" id="PlayerRankProfilePlace" text="{s:player_rating_place}" />
+									</Panel>
+									<Panel class="MiniInfo">
+										<Label class="MiniInfoLabel" text="{s:player_all_games}" />
+										<Label class="MiniInfoLabel" text="{s:player_season_games}" />
+									</Panel>
+								</Panel>
+							</Panel>
+							<Panel class="DuelPlayerHero" hittest="false">
+								<Panel class="PlayerHeroInfo" hittest="false">
+									<Label class="DuelPlayerHeroName" text="{s:hero_name}" />
+									<Label class="DuelPlayerLevel" text="{s:hero_level}" />
+									<Panel class="DuelPlayerGold" hittest="false">
+										<Panel class="PlayerGoldIcon" />
+										<Label class="DuelPlayerGoldLabel" text="{s:player_gold}" />
+									</Panel>
+								</Panel>
+								<Panel class="Tabs" hittest="false">
+									<Panel class="HeroSceneTab" hittest="false">
+										<DOTAHeroMovie id="DuelPlayerHeroScene" heroname="keeper_of_the_light" heroimagestyle="portrait" hittest="true" />
+										<Panel class="PunishmentBadge" hittest="false">
+											<Panel class="PunishmentIcon" hittest="true" />
+										</Panel>
+										<Panel class="PlayerInnateAbility" id="ability_innate">
+											<Panel class="PlayerInnateAbilityIcon" />
+											<Panel id="CooldownPanel" class="CooldownPanel" />
+											<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+											<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+											<Panel id="AbilityLevels" class="Levels">
+												<Panel class="LevelBar" />
+												<Panel class="LevelBar" />
+												<Panel class="LevelBar" />
+												<Panel class="LevelBar" />
+												<Panel class="LevelBar" />
+												<Panel class="LevelBar" />
+											</Panel>
+										</Panel>
+									</Panel>
+									<Panel class="HeroInfoTab" hittest="false">
+										<Panel class="HealthAndMana" hittest="false">
+											<Panel class="HealthPanel">
+												<ProgressBar class="HHAMProgressBar" id="HealthProgressBar" min="0" max="100" value="50" />
+												<Label class="HHAMValue" text="{s:hero_health}" />
+												<Label class="HHAMRegen" text="{s:hero_health_regen}" />
+											</Panel>
+											<Panel class="ManaPanel">
+												<ProgressBar class="HHAMProgressBar" id="ManaProgressBar" min="0" max="100" value="50" />
+												<Label class="HHAMValue" text="{s:hero_mana}" />
+												<Label class="HHAMRegen" text="{s:hero_mana_regen}" />
+											</Panel>
+										</Panel>
+										<Panel id="PlayerItemsContainer">
+											<Panel id="SkillsContainer">
+												<Panel id="SkillsIcon" />
+												<Panel id="PlayerTalents" />
+											</Panel>
+											<Panel id="PlayerBasicItemsContainer">
+												<DOTAItemImage class="PlayerItem" id="item_slot_0">
+													<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+													<Panel id="CooldownPanel" class="CooldownPanel" />
+													<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+												</DOTAItemImage>
+												<DOTAItemImage class="PlayerItem" id="item_slot_1">
+													<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+													<Panel id="CooldownPanel" class="CooldownPanel" />
+													<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+												</DOTAItemImage>
+												<DOTAItemImage class="PlayerItem" id="item_slot_2">
+													<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+													<Panel id="CooldownPanel" class="CooldownPanel" />
+													<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+												</DOTAItemImage>
+												<DOTAItemImage class="PlayerItem" id="item_slot_3">
+													<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+													<Panel id="CooldownPanel" class="CooldownPanel" />
+													<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+												</DOTAItemImage>
+												<DOTAItemImage class="PlayerItem" id="item_slot_4">
+													<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+													<Panel id="CooldownPanel" class="CooldownPanel" />
+													<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+												</DOTAItemImage>
+												<DOTAItemImage class="PlayerItem" id="item_slot_5">
+													<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+													<Panel id="CooldownPanel" class="CooldownPanel" />
+													<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+												</DOTAItemImage>
+												<Panel id="PlayerBackpackItemsContainer">
+													<DOTAItemImage class="PlayerItem" id="item_slot_6" scaling="cover">
+														<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+														<Panel id="CooldownPanel" class="CooldownPanel" />
+														<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+													</DOTAItemImage>
+													<DOTAItemImage class="PlayerItem" id="item_slot_7" scaling="cover">
+														<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+														<Panel id="CooldownPanel" class="CooldownPanel" />
+														<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+													</DOTAItemImage>
+													<DOTAItemImage class="PlayerItem" id="item_slot_8" scaling="cover">
+														<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+														<Panel id="CooldownPanel" class="CooldownPanel" />
+														<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+													</DOTAItemImage>
+												</Panel>
+											</Panel>
+											<Panel id="PlayerOtherItemsContainer">
+												<Panel class="PlayerItemOther" id="PlayerNeutralItem">
+													<DOTAItemImage class="PlayerItem" id="PlayerNeutralItemIcon" scaling="stretch-to-fit-y-preserve-aspect">
+														<Panel id="CooldownPanel" class="CooldownPanel" />
+														<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+													</DOTAItemImage>
+													<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+												</Panel>
+												<Panel class="PlayerItemOther" id="PlayerSmokes">
+													<DOTAItemImage class="PlayerItem" id="PlayerSmokesIcon" scaling="stretch-to-fit-y-preserve-aspect">
+														<Panel id="CooldownPanel" class="CooldownPanel" />
+														<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+													</DOTAItemImage>
+													<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+												</Panel>
+											</Panel>
+											<Panel id="PlayerAghanimContainer">
+												<Panel class="AghanScepter" />
+												<Panel class="AghanShard" />
+											</Panel>
+										</Panel>
+									</Panel>
+								</Panel>
+							</Panel>
+							<Panel class="AbilitiesAndBuffsRow">
+								<Panel id="PlayerAbilitiesContainer">
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_0">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_1">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_2">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_3">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_4">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_5">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_6">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_7">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_8">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_9">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_10">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_11">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_12">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_13">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_14">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_15">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+								</Panel>
+								<Panel id="PlayerBuffs" />
+							</Panel>
+						</Panel>
+						<Panel class="DuelPlayerRight" hittest="false">
+							<Panel class="DuelPlayerRightBetMapContainer" hittest="false">
+								<Panel class="DuelPlayerRightBetMapBack" hittest="false" />
+								<Panel id="OpenBetMapButton" hittest="true" onactivate="ToggleBetMap()">
+									<Panel class="OpenBetMapButtonIcon" hittest="false" />
+									<Label class="OpenBetMapButtonLabel" text="#DUEL_INFO_Open_bets" hittest="false" />
+								</Panel>
+								<Panel id="JackpotGoldPanel" hittest="false">
+									<Label class="JackpotGoldLabel" text="#DUEL_INFO_Jackpot" hittest="false" />
+									<Label class="JackpotGoldLabelNum" text="{s:jackpot_gold}" hittest="false" html="true" />
+									<Panel class="JackpotGoldIcon" />
+								</Panel>
+								<Panel id="DuelPlayerRightBetMapMain" hittest="false">
+									<Panel class="DuelPlayerDelimiterContainer" hittest="false">
+										<Panel class="DuelPlayerDelimiter" hittest="false" />
+										<Panel class="DuelPlayerDot" hittest="false" />
+									</Panel>
+									<Panel id="DuelPlayerRightBetMapList" hittest="false" />
+									<Label class="BetMapNoBets" text="#DUEL_INFO_No_Bets" hittest="false" />
+									<Panel class="DuelPlayerDelimiterContainer" hittest="false">
+										<Panel class="DuelPlayerDelimiter" hittest="false" />
+										<Panel class="DuelPlayerDot" hittest="false" />
+									</Panel>
+								</Panel>
+							</Panel>
+							<Panel class="DuelPlayerRightBetContainer" hittest="false">
+								<Panel class="DuelPlayerRightBack" hittest="false" />
+								<Panel class="DuelPlayerRightInfo" hittest="false">
+									<Panel class="DuelPlayerRightDelimiterContainer" hittest="false">
+										<Panel class="DuelPlayerRightDelimiter" hittest="false" />
+										<Panel class="DuelPlayerRightDot" hittest="false" />
+									</Panel>
+									<Panel class="DuelPlayerRightInfo2" hittest="false">
+										<Label class="DuelMakeBetHeader" text="#BetBegins" />
+										<Panel id="BetGoldContainer" hittest="false">
+											<Panel class="BetGoldContainerRow" hittest="false">
+												<Panel class="BetGoldContainerTab" hittest="false">
+													<Panel id="BetUp" class="GoldUpButton Top" hittest="true" />
+													<Panel id="BetDown" class="GoldUpButton Bottom" hittest="true" />
+												</Panel>
+												<Panel class="BetGoldContainerTab" hittest="false">
+													<Panel id="BetGoldPanel" hittest="false">
+														<TextEntry id="BetTextEntry" class="BetTextEntry" textmode="numeric" placeholder="#input_gold_value" maxchars="5" />
+														<Panel class="BetGoldIcon" hittest="false" />
+													</Panel>
+												</Panel>
+											</Panel>
+											<Panel class="BetGoldContainerRow RowMargin" hittest="false">
+												<Panel id="BetMin" class="GoldUpButtton2" hittest="true">
+													<Label class="GoldUpButtton2Label" text="Min" />
+												</Panel>
+												<Slider id="GoldSlider" direction="horizontal" class="HorizontalSlider" value="0" min="0" max="1" />
+												<Panel id="BetMax" class="GoldUpButtton2" hittest="true">
+													<Label class="GoldUpButtton2Label" text="Max" />
+												</Panel>
+											</Panel>
+											<Panel class="BetGoldContainerRow RowMargin2" hittest="false">
+												<Panel id="Bet10" class="GoldUpButtton2 ButtonMargin" hittest="true">
+													<Label class="GoldUpButtton2Label" text="10%" />
+												</Panel>
+												<Panel id="Bet20" class="GoldUpButtton2 ButtonMargin" hittest="true">
+													<Label class="GoldUpButtton2Label" text="20%" />
+												</Panel>
+												<Panel id="Bet30" class="GoldUpButtton2 ButtonMargin" hittest="true">
+													<Label class="GoldUpButtton2Label" text="30%" />
+												</Panel>
+												<Panel id="Bet40" class="GoldUpButtton2 ButtonMargin" hittest="true">
+													<Label class="GoldUpButtton2Label" text="40%" />
+												</Panel>
+											</Panel>
+										</Panel>
+										<Panel id="DuelMakeBetButton">
+											<Panel id="BetProgress" hittest="false" />
+											<Label class="DuelMakeBetButtonLabel" text="{s:bet_time}" hittest="false" />
+										</Panel>
+									</Panel>
+									<Panel class="DuelPlayerRightDelimiterContainer" hittest="false">
+										<Panel class="DuelPlayerRightDelimiter" hittest="false" />
+										<Panel class="DuelPlayerRightDot" hittest="false" />
+									</Panel>
+								</Panel>
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Label class="DuelVersusLabel" text="VS" />
+				<Panel id="SecondTeam" hittest="false">
+					<Panel id="Player2" class="DuelPlayer" hittest="false">
+						<Panel class="DuelPlayerLeft" hittest="false">
+							<Panel class="DuelPlayerInfo" hittest="false">
+								<Panel id="PlayerMiniProfile">
+									<DOTAAvatarImage id="PlayerAvatar" steamid="local" class="AvatarProfile" hittest="false" hittestchildren="false" />
+									<Panel class="PlayerNameAndRating">
+										<Label id="PlayerNickName" class="NameProfile" hittest="false" text="{s:player_name}" />
+										<Label class="PlayerRatingProfile" id="PlayerRatingProfile" text="{s:player_rating}" />
+									</Panel>
+									<Panel class="RankBadge">
+										<DOTAScenePanel class="RankFX" hittest="false" map="scenes/rank_tier_ambient" camera="camera_1" />
+										<Panel class="PlayerRankProfile" id="PlayerRankProfile" />
+										<Label class="PlayerRankProfilePlace" id="PlayerRankProfilePlace" text="{s:player_rating_place}" />
+									</Panel>
+									<Panel class="MiniInfo">
+										<Label class="MiniInfoLabel" text="{s:player_all_games}" />
+										<Label class="MiniInfoLabel" text="{s:player_season_games}" />
+									</Panel>
+								</Panel>
+							</Panel>
+							<Panel class="DuelPlayerHero" hittest="false">
+								<Panel class="PlayerHeroInfo" hittest="false">
+									<Label class="DuelPlayerHeroName" text="{s:hero_name}" />
+									<Label class="DuelPlayerLevel" text="{s:hero_level}" />
+									<Panel class="DuelPlayerGold" hittest="false">
+										<Panel class="PlayerGoldIcon" />
+										<Label class="DuelPlayerGoldLabel" text="{s:player_gold}" />
+									</Panel>
+								</Panel>
+								<Panel class="Tabs" hittest="false">
+									<Panel class="HeroSceneTab" hittest="false">
+										<DOTAHeroMovie id="DuelPlayerHeroScene" heroname="keeper_of_the_light" heroimagestyle="portrait" hittest="true" />
+										<Panel class="PunishmentBadge" hittest="false">
+											<Panel class="PunishmentIcon" hittest="true" />
+										</Panel>
+										<Panel class="PlayerInnateAbility" id="ability_innate">
+											<Panel class="PlayerInnateAbilityIcon" />
+											<Panel id="CooldownPanel" class="CooldownPanel" />
+											<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+											<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+											<Panel id="AbilityLevels" class="Levels">
+												<Panel class="LevelBar" />
+												<Panel class="LevelBar" />
+												<Panel class="LevelBar" />
+												<Panel class="LevelBar" />
+												<Panel class="LevelBar" />
+												<Panel class="LevelBar" />
+											</Panel>
+										</Panel>
+									</Panel>
+									<Panel class="HeroInfoTab" hittest="false">
+										<Panel class="HealthAndMana" hittest="false">
+											<Panel class="HealthPanel">
+												<ProgressBar class="HHAMProgressBar" id="HealthProgressBar" min="0" max="100" value="50" />
+												<Label class="HHAMValue" text="{s:hero_health}" />
+												<Label class="HHAMRegen" text="{s:hero_health_regen}" />
+											</Panel>
+											<Panel class="ManaPanel">
+												<ProgressBar class="HHAMProgressBar" id="ManaProgressBar" min="0" max="100" value="50" />
+												<Label class="HHAMValue" text="{s:hero_mana}" />
+												<Label class="HHAMRegen" text="{s:hero_mana_regen}" />
+											</Panel>
+										</Panel>
+										<Panel id="PlayerItemsContainer">
+											<Panel id="SkillsContainer">
+												<Panel id="SkillsIcon" />
+												<Panel id="PlayerTalents" />
+											</Panel>
+											<Panel id="PlayerBasicItemsContainer">
+												<DOTAItemImage class="PlayerItem" id="item_slot_0">
+													<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+													<Panel id="CooldownPanel" class="CooldownPanel" />
+													<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+												</DOTAItemImage>
+												<DOTAItemImage class="PlayerItem" id="item_slot_1">
+													<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+													<Panel id="CooldownPanel" class="CooldownPanel" />
+													<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+												</DOTAItemImage>
+												<DOTAItemImage class="PlayerItem" id="item_slot_2">
+													<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+													<Panel id="CooldownPanel" class="CooldownPanel" />
+													<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+												</DOTAItemImage>
+												<DOTAItemImage class="PlayerItem" id="item_slot_3">
+													<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+													<Panel id="CooldownPanel" class="CooldownPanel" />
+													<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+												</DOTAItemImage>
+												<DOTAItemImage class="PlayerItem" id="item_slot_4">
+													<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+													<Panel id="CooldownPanel" class="CooldownPanel" />
+													<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+												</DOTAItemImage>
+												<DOTAItemImage class="PlayerItem" id="item_slot_5">
+													<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+													<Panel id="CooldownPanel" class="CooldownPanel" />
+													<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+												</DOTAItemImage>
+												<Panel id="PlayerBackpackItemsContainer">
+													<DOTAItemImage class="PlayerItem" id="item_slot_6" scaling="cover">
+														<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+														<Panel id="CooldownPanel" class="CooldownPanel" />
+														<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+													</DOTAItemImage>
+													<DOTAItemImage class="PlayerItem" id="item_slot_7" scaling="cover">
+														<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+														<Panel id="CooldownPanel" class="CooldownPanel" />
+														<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+													</DOTAItemImage>
+													<DOTAItemImage class="PlayerItem" id="item_slot_8" scaling="cover">
+														<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+														<Panel id="CooldownPanel" class="CooldownPanel" />
+														<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+													</DOTAItemImage>
+												</Panel>
+											</Panel>
+											<Panel id="PlayerOtherItemsContainer">
+												<Panel class="PlayerItemOther" id="PlayerNeutralItem">
+													<DOTAItemImage class="PlayerItem" id="PlayerNeutralItemIcon" scaling="stretch-to-fit-y-preserve-aspect">
+														<Panel id="CooldownPanel" class="CooldownPanel" />
+														<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+													</DOTAItemImage>
+													<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+												</Panel>
+												<Panel class="PlayerItemOther" id="PlayerSmokes">
+													<DOTAItemImage class="PlayerItem" id="PlayerSmokesIcon" scaling="stretch-to-fit-y-preserve-aspect">
+														<Panel id="CooldownPanel" class="CooldownPanel" />
+														<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+													</DOTAItemImage>
+													<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+												</Panel>
+											</Panel>
+											<Panel id="PlayerAghanimContainer">
+												<Panel class="AghanScepter" />
+												<Panel class="AghanShard" />
+											</Panel>
+										</Panel>
+									</Panel>
+								</Panel>
+							</Panel>
+							<Panel class="AbilitiesAndBuffsRow">
+								<Panel id="PlayerAbilitiesContainer">
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_0">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_1">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_2">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_3">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_4">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_5">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_6">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_7">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_8">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_9">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_10">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_11">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_12">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_13">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_14">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+									<Panel class="PlayerAbility" abilityname="" id="ability_slot_15">
+										<DOTAAbilityImage class="PlayerAbilityIcon" abilityname="" />
+										<Panel id="CooldownPanel" class="CooldownPanel" />
+										<Label id="CooldownLabel" class="CooldownLabel" text="{s:ability_cooldown}" />
+										<Label class="PlayerItemCharges" text="{s:item_charges}" hittest="false" />
+										<Panel id="AbilityLevels" class="Levels">
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+											<Panel class="LevelBar" />
+										</Panel>
+									</Panel>
+								</Panel>
+								<Panel id="PlayerBuffs" />
+							</Panel>
+						</Panel>
+						<Panel class="DuelPlayerRight" hittest="false">
+							<Panel class="DuelPlayerRightBetMapContainer" hittest="false">
+								<Panel class="DuelPlayerRightBetMapBack" hittest="false" />
+								<Panel id="OpenBetMapButton" hittest="true" onactivate="ToggleBetMap()">
+									<Panel class="OpenBetMapButtonIcon" hittest="false" />
+									<Label class="OpenBetMapButtonLabel" text="#DUEL_INFO_Open_bets" hittest="false" />
+								</Panel>
+								<Panel id="JackpotGoldPanel" hittest="false">
+									<Label class="JackpotGoldLabel" text="#DUEL_INFO_Jackpot" hittest="false" />
+									<Label class="JackpotGoldLabelNum" text="{s:jackpot_gold}" hittest="false" html="true" />
+									<Panel class="JackpotGoldIcon" />
+								</Panel>
+								<Panel id="DuelPlayerRightBetMapMain" hittest="false">
+									<Panel class="DuelPlayerDelimiterContainer" hittest="false">
+										<Panel class="DuelPlayerDelimiter" hittest="false" />
+										<Panel class="DuelPlayerDot" hittest="false" />
+									</Panel>
+									<Panel id="DuelPlayerRightBetMapList" hittest="false" />
+									<Label class="BetMapNoBets" text="#DUEL_INFO_No_Bets" hittest="false" />
+									<Panel class="DuelPlayerDelimiterContainer" id="Delimiter2" hittest="false">
+										<Panel class="DuelPlayerDelimiter" hittest="false" />
+										<Panel class="DuelPlayerDot" hittest="false" />
+									</Panel>
+								</Panel>
+							</Panel>
+							<Panel class="DuelPlayerRightBetContainer" hittest="false">
+								<Panel class="DuelPlayerRightBack" hittest="false" />
+								<Panel class="DuelPlayerRightInfo" hittest="false">
+									<Panel class="DuelPlayerRightDelimiterContainer" hittest="false">
+										<Panel class="DuelPlayerRightDelimiter" hittest="false" />
+										<Panel class="DuelPlayerRightDot" hittest="false" />
+									</Panel>
+									<Panel class="DuelPlayerRightInfo2" hittest="false">
+										<Label class="DuelMakeBetHeader" text="#BetBegins" />
+										<Panel id="BetGoldContainer" hittest="false">
+											<Panel class="BetGoldContainerRow" hittest="false">
+												<Panel class="BetGoldContainerTab" hittest="false">
+													<Panel id="BetUp" class="GoldUpButton Top" hittest="true" />
+													<Panel id="BetDown" class="GoldUpButton Bottom" hittest="true" />
+												</Panel>
+												<Panel class="BetGoldContainerTab" hittest="false">
+													<Panel id="BetGoldPanel" hittest="false">
+														<TextEntry id="BetTextEntry" class="BetTextEntry" textmode="numeric" placeholder="#input_gold_value" maxchars="5" />
+														<Panel class="BetGoldIcon" hittest="false" />
+													</Panel>
+												</Panel>
+											</Panel>
+											<Panel class="BetGoldContainerRow RowMargin" hittest="false">
+												<Panel id="BetMin" class="GoldUpButtton2" hittest="true">
+													<Label class="GoldUpButtton2Label" text="Min" />
+												</Panel>
+												<Slider id="GoldSlider" direction="horizontal" class="HorizontalSlider" value="0" min="0" max="1" />
+												<Panel id="BetMax" class="GoldUpButtton2" hittest="true">
+													<Label class="GoldUpButtton2Label" text="Max" />
+												</Panel>
+											</Panel>
+											<Panel class="BetGoldContainerRow RowMargin2" hittest="false">
+												<Panel id="Bet10" class="GoldUpButtton2 ButtonMargin" hittest="true">
+													<Label class="GoldUpButtton2Label" text="10%" />
+												</Panel>
+												<Panel id="Bet20" class="GoldUpButtton2 ButtonMargin" hittest="true">
+													<Label class="GoldUpButtton2Label" text="20%" />
+												</Panel>
+												<Panel id="Bet30" class="GoldUpButtton2 ButtonMargin" hittest="true">
+													<Label class="GoldUpButtton2Label" text="30%" />
+												</Panel>
+												<Panel id="Bet40" class="GoldUpButtton2 ButtonMargin" hittest="true">
+													<Label class="GoldUpButtton2Label" text="40%" />
+												</Panel>
+											</Panel>
+										</Panel>
+										<Panel id="DuelMakeBetButton">
+											<Panel id="BetProgress" hittest="false" />
+											<Label class="DuelMakeBetButtonLabel" text="{s:bet_time}" hittest="false" />
+										</Panel>
+									</Panel>
+									<Panel class="DuelPlayerRightDelimiterContainer" hittest="false">
+										<Panel class="DuelPlayerRightDelimiter" hittest="false" />
+										<Panel class="DuelPlayerRightDot" hittest="false" />
+									</Panel>
+								</Panel>
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel hittest="true" id="DuelHide" onactivate="ToggleDuelInfo();" />
+		</Panel>
+	</Panel>
+</root>

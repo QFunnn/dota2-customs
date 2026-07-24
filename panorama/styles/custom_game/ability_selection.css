@@ -1,0 +1,427 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.AbilitySelectionHUD
+{
+	width: 100%;
+	height: 100%;
+}
+
+#AbilitySelectionMain
+{
+	align: center center;
+	margin-top: -70px;
+	flow-children: down;
+	opacity: 0;
+	pre-transform-scale2d: 0.8;
+	transition-property: opacity, pre-transform-scale2d;
+	transition-duration: .25s;
+	transition-timing-function: cubic-bezier(0, 0.9, 0, 0.9);
+}
+
+#AbilitySelectionMain.Show
+{
+	opacity: 1;
+	pre-transform-scale2d: 1;
+}
+
+#AbilitySelectionBody
+{
+	align: center top;
+	max-width: 781px;
+	min-width: 650px;
+	transition-property: opacity;
+	transition-duration: .15s;
+}
+
+#AbilitySelectionBody.ToggledHide
+{
+	opacity: 0;
+}
+
+#AbilitySelectionBodyContainer
+{
+	flow-children: down;
+	padding: 30px 50px;
+	min-width: 650px;
+}
+
+#AbilitySelectionBodyBack
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient(linear, 100% 0%, 0% 0%, from(#18161d00), color-stop(0.2, #20183196), color-stop(0.4, #201831e0), color-stop(0.6, #201831e0), color-stop(0.8, #20183196), to(#40296900));
+	opacity-brush: gradient(linear, 0% 0%, 100% 0%, from(#ffffff00), color-stop(0.1, #ffffff), color-stop(0.9, #ffffff), to(#ffffff00));
+	opacity-mask: url("s2r://panorama/images/masks/scratched_box_psd.vtex");
+}
+
+#AbilitySelectionHeader
+{
+	width: 100%;
+	height: 32px;
+}
+
+.AbilitySelectionHeaderLabel
+{
+	font-size: 22px;
+	text-transform: uppercase;
+	align: center center;
+	letter-spacing: 2px;
+	color: white;
+	text-shadow: 0px 0px 10px 1 #a06dffef;
+}
+
+#CloseButton
+{
+	width: 32px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/control_icons/24px/x_close.vsvg");
+	background-size: 20px 20px;
+	background-position: center;
+	background-repeat: no-repeat;
+	wash-color: white;
+	transition-property: wash-color;
+	transition-duration: 0.1s;
+	img-shadow: 1px 2px 3px black;
+	align: right top;
+}
+
+#CloseButton:hover
+{
+	wash-color: rgb(163, 131, 251);
+}
+
+#AbilitySelectionMainBody
+{
+	flow-children: down;
+	align: center top;
+}
+
+#DescInfo
+{
+	align: center top;
+	max-width: 300px;
+}
+
+.DescInfoLabel
+{
+	color: #9488ac;
+	text-shadow: 1px 2px 3px rgba(0, 0, 0, 1);
+	font-size: 12px;
+	text-align: center;
+	align: center center;
+}
+
+#CheatsInfo
+{
+	align: center top;
+	max-width: 300px;
+	visibility: collapse;
+	margin-top: 5px;
+}
+
+.CheatsInfoLabel
+{
+	color: #9488ac;
+	text-shadow: 1px 2px 3px rgba(0, 0, 0, 1);
+	font-size: 12px;
+	text-align: center;
+	align: center center;
+}
+
+.IsDev #CheatsInfo
+{
+	visibility: visible;
+}
+
+#AbilitiesContainer
+{
+	padding: 10px;
+	padding-bottom: 2px;
+	flow-children: right-wrap;
+	align: center top;
+}
+
+.Ability
+{
+	flow-children: down;
+	width: 80px;
+	height: 110px;
+	margin-right: 2px;
+	transition-property: brightness;
+	transition-duration: .1s;
+}
+
+.AbilityBack
+{
+	ignore-parent-flow: true;
+	background-color: #8574af31;
+	opacity-brush: gradient(linear, 0% 0%, 0% 100%, from(rgba(0,0,0,0)), color-stop(0.1, rgba(255,255,255, 0.8)), to(rgba(255,255,255, 1)));
+	opacity-mask: url("s2r://panorama/images/masks/learntab_blur_mask_psd.vtex");
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: .1s;
+}
+
+.Ability:hover
+{
+	brightness: 2;
+}
+
+.Ability:hover .AbilityBack
+{
+	opacity: 1;
+}
+
+.AbilityButton
+{
+	width: 80px;
+	height: 80px;
+	align: center top;
+}
+
+.AbilityImagePanel
+{
+	width: 100%;
+	height: 100%;
+	padding: 8px;
+}
+
+#AbilityImage
+{
+	width: 100%;
+	height: 100%;
+	border: 1px solid #8574af;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.AbilityColorFx
+{
+	width: 100%;
+	height: 100%;
+	align: center top;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_box_png.vtex");
+	visibility: collapse;
+}
+
+.HasColor .AbilityColorFx
+{
+	visibility: visible;
+}
+
+.HasColor .AbilityColorFx
+{
+	brightness: 2;
+}
+
+.AbilityName
+{
+	width: 64px;
+	font-size: 10px;
+	align: center top;
+	text-align: center;
+	color: white;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 10px 1 #a06dffef;
+	text-overflow: shrink;
+}
+
+.LinkedAbilities
+{
+	ignore-parent-flow: true;
+	flow-children: left;
+	align: right top;
+}
+
+.LinkedAbility
+{
+	width: 22px;
+	height: 22px;
+	margin-left: 1.5px;
+	border: 1px solid #8574af;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+	opacity: 0;
+}
+
+.LinkedAbility.ActiveLinkedAbility
+{
+	opacity: 1;
+}
+
+.DelimiterContainer
+{
+	width: 100%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.Delimiter
+{
+	width: 100%;
+	height: 1px;
+	align: center center;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#00000000), color-stop(0.5, #a06dffef), to(#00000000));
+}
+
+.Dot
+{
+	width: 8px;
+	height: width-percentage(100%);
+	background-color: #a06dffef;
+	align: center center;
+	transform: rotateZ(45deg);
+	box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+#ButtonsPanel
+{
+	margin-top: 0px;
+	align: center top;
+	flow-children: right;
+}
+
+.Button
+{
+	width: 175px;
+	height: 40px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#221f2a8a), color-stop(0.5, #201831bd), to(#402969ad));
+	border: 2px solid white;
+	border-bottom: 3px solid white;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#413a51), color-stop(0.5, #4e3a6bef), to(#633ea9ef));
+	transition-property: brightness, box-shadow, border-brush, pre-transform-scale2d;
+	transition-duration: .15s;
+}
+
+.ButttonLabel
+{
+	align: center center;
+	text-align: center;
+	font-size: 20px;
+	text-shadow: 1px 2px 3px 1 rgba(0, 0, 0, 0.5);
+	color: rgb(210, 189, 255);
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	transition-property: color, text-shadow;
+	transition-duration: .15s;
+}
+
+#AbilitySelector_CloseButton
+{
+	margin-right: 10px;
+	transition-property: opacity;
+	transition-duration: .15s;
+}
+
+#AbilitySelector_CloseButton.ToggledHide
+{
+	opacity: 0;
+}
+
+#AbilitySelector_HideButton:active
+{
+	sound: "General.SelectAction";
+}
+
+.Button:active
+{
+	pre-transform-scale2d: 0.95;
+}
+
+.Button:hover
+{
+	brightness: 2;
+	box-shadow: 0px 0px 10px #a06dff39;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#6a5f83), color-stop(0.5, #6c5195ef), to(#7c4fcfef));
+}
+
+.Button:hover #BetHistoryButtonLabel
+{
+	color: white;
+	text-shadow: 0px 0px 10px 1 #a06dffef;
+}
+
+#ItemInstance
+{
+	width: 28px;
+	height: 28px;
+	border-radius: 50%;
+	border: 1px solid #cbafffef;
+	box-shadow: 0px 0px 10px #a06dffef;
+	align: left center;
+}
+
+#ItemInstancePanel
+{
+	align: left center;
+	visibility: collapse;
+	flow-children: right;
+}
+
+.HasInstance #ItemInstancePanel
+{
+	visibility: visible;
+}
+
+.ItemInstanceName
+{
+	font-size: 10px;
+	color: #9488ac;
+	text-shadow: 1px 2px 3px rgba(0, 0, 0, 1);
+	letter-spacing: 1px;
+	max-width: 100px;
+	align: left center;
+	margin-left: 5px;
+}
+
+#CooldownOverlay
+{
+	background-color: #000000dc;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: .1s;
+}
+
+.Cooldown #CooldownOverlay
+{
+	opacity: 1;
+}
+
+.AbilityImageBorder
+{
+	width: 100%;
+	height: 100%;
+}
+
+.Ability.IsSSS .AbilityImageBorder
+{
+	border: 2px solid #ffb81c;
+	box-shadow: 0px 0px 16px rgba(255, 184, 28, 0.65);
+}
+
+.Ability.IsSSS #AbilityImage
+{
+	border-color: transparent;
+}
+
+.Ability.IsSSS:hover
+{
+	brightness: 1;
+}
+
+.Ability.IsSSS:hover #AbilityImage,.Ability.IsSSS:hover .AbilityBack,.Ability.IsSSS:hover .AbilityColorFx,.Ability.IsSSS:hover .LinkedAbilities,.Ability.IsSSS:hover .AbilityName
+{
+	brightness: 2;
+}

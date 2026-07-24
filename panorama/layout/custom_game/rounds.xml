@@ -1,0 +1,88 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/custom_game/rounds.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/rounds.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="ItemLine">
+			<Panel class="ItemLine" hittest="true">
+				<DOTAItemImage id="ItemImage" class="ItemImage" scaling="stretch-to-cover-preserve-aspect" hittest="true" />
+				<Label class="ItemName" text="{s:item_name}" hittest="false" />
+				<Panel class="ItemBorder" hittest="false" />
+			</Panel>
+		</snippet>
+		<snippet name="EnchantLine">
+			<Panel class="EnchantLine" hittest="true">
+				<DOTAItemImage id="EnchantImage" class="EnchantImage" scaling="stretch-to-cover-preserve-aspect" hittest="false" />
+				<Label class="EnchantName" text="{s:item_name}" hittest="false" />
+				<Label class="EnchantStats" text="{s:enchant_stats}" html="true" hittest="false" />
+				<Panel class="EnchantBorder" hittest="false" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="RoundsHUD" hittest="false">
+		<Panel id="RoundsMain" hittest="false">
+			<Panel id="RoundsBody" hittest="false">
+				<Panel class="Row" hittest="false">
+					<Label class="RoundNum" text="#ROUNDS_Num" hittest="false" />
+					<Panel class="Row2" hittest="false">
+						<Label class="RoundState" text="{s:round_state}" hittest="false" />
+						<Label class="RoundTimer" text="{s:round_time}" hittest="false" />
+					</Panel>
+				</Panel>
+				<Panel class="Row3 RoundNameRow" hittest="false">
+					<Label class="RoundName" text="{s:round_name}" hittest="false" />
+					<Panel id="MoreInfo" class="Row4" hittest="true" onmouseover="DOTAShowTextTooltip(&apos;#ROUNDS_MoreInfo_tooltip&apos;)" onmouseout="DOTAHideTextTooltip()" onactivate="ToggleTooltip()">
+						<Label class="RoundInfoLabel" text="#ROUNDS_MoreInfo" hittest="false" />
+						<Panel class="RoundInfoButton" hittest="false" />
+					</Panel>
+				</Panel>
+				<Panel class="ProgressBarContainer" hittest="false">
+					<ProgressBar id="ProgressBar" class="ProgressBar" min="0" value="0" max="1" />
+					<Label class="ProgressBarLabel" text="{s:round_progress}" />
+				</Panel>
+				<Panel id="DuelOpponent" class="Row3" hittest="false">
+					<Label class="DuelOpponentLabel" text="#NOTIFICATION_enemy" hittest="false" />
+					<Label class="DuelOpponentName" text="{s:opponent_name}" hittest="false" />
+					<DOTAHeroImage id="DuelOpponentIcon" class="DuelOpponentHeroIcon" heroname="npc_dota_hero_pudge" heroimagestyle="icon" />
+					<Label class="DuelOpponentHeroName" text="{s:opponent_heroname}" hittest="false" />
+				</Panel>
+				<Panel id="DuelSpectator" hittest="false">
+					<Label class="DuelSpectatorLabel" text="#ROUNDS_DUEL_SPECTATOR" hittest="false" />
+					<Panel class="DuelSpectatorList" hittest="false">
+						<Panel class="DuelSpectatorOpponent" hittest="false">
+							<Label class="DuelSpectatorName" text="{s:f_name}" hittest="false" />
+							<DOTAHeroImage id="DuelSpectatorOpponentIconF" class="DuelSpectatorHeroIcon" heroname="npc_dota_hero_pudge" heroimagestyle="icon" />
+							<Label class="DuelSpectatorHeroName" text="{s:f_hero_name}" hittest="false" />
+						</Panel>
+						<Label class="DuelSpectatorVS" text="VS" hittest="false" />
+						<Panel class="DuelSpectatorOpponent" hittest="false">
+							<Label class="DuelSpectatorName" text="{s:s_name}" hittest="false" />
+							<DOTAHeroImage id="DuelSpectatorOpponentIconS" class="DuelSpectatorHeroIcon" heroname="npc_dota_hero_pudge" heroimagestyle="icon" />
+							<Label class="DuelSpectatorHeroName" text="{s:s_hero_name}" hittest="false" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="ReadyButton" class="ReadyButton" hittest="true" onactivate="ToggleReady()">
+				<Label class="ReadyButtonLabel" text="#ROUNDS_Ready" hittest="false" />
+			</Panel>
+		</Panel>
+		<Label class="RoundLastTime" text="{s:last_time}" hittest="false" />
+	</Panel>
+</root>

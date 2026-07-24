@@ -1,0 +1,886 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+@define BACKGROUND_COLOR: #000000;
+.EndScreenRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+.EndScreenBackground
+{
+	width: 100%;
+	height: 100%;
+	box-shadow: inset 0px 0px 150px 1px rgba(0, 0, 0, 0);
+	transition-property: box-shadow;
+	transition-duration: 1s;
+}
+
+.endgame .EndScreenBackground
+{
+	box-shadow: inset 0px 0px 150px 1px #000000FF;
+}
+
+#VictoryRow
+{
+	width: 100%;
+	flow-children: down;
+	align: center top;
+	margin-top: 50px;
+	transition-property: opacity, transform;
+	transition-duration: 0.5s;
+	opacity: 0;
+	transform: scaleX(1.25) scaleY(1.25);
+	padding-bottom: 50px;
+}
+
+.endgame #VictoryRow
+{
+	opacity: 1;
+	transform: scaleX(1) scaleY(1);
+}
+
+.EndGameMsgLabel
+{
+	font-size: 64px;
+	color: #cccccc;
+	text-transform: uppercase;
+	font-weight: semi-bold;
+	letter-spacing: 1px;
+	align: center top;
+}
+
+.Win .EndGameMsgLabel
+{
+	color: lightgreen;
+	text-shadow: 0px 0px 10px 5 rgb(18, 144, 56);
+}
+
+.Lose .EndGameMsgLabel
+{
+	color: #d84535ff;
+	text-shadow: 0px 0px 10px 5 rgb(130, 33, 33);
+}
+
+.WinnerHeaderLabel
+{
+	align: center top;
+	font-size: 16px;
+	text-transform: uppercase;
+	transition-property: opacity, transform;
+	transition-duration: 0.2s;
+	transform: scaleX(1.5) scaleY(1.5);
+	opacity: 0;
+}
+
+.has_players_in_winner_team.endgame_2 .WinnerHeaderLabel
+{
+	opacity: 1;
+	transform: scaleX(1) scaleY(1);
+}
+
+.WinnerPlayer
+{
+	align: center top;
+	flow-children: down;
+	transition-property: opacity, transform;
+	transition-duration: 0.2s;
+	transition-delay: 0.5s;
+	transform: scaleX(1.5) scaleY(1.5);
+	opacity: 0;
+}
+
+.has_players_in_winner_team.endgame_2 .WinnerPlayer
+{
+	opacity: 1;
+	transform: scaleX(1) scaleY(1);
+}
+
+.WinnerPlayerName
+{
+	align: center top;
+	text-align: center;
+	color: white;
+	font-size: 40px;
+	text-transform: uppercase;
+	font-weight: bold;
+	text-shadow: 1px 2px 3px 1 black;
+}
+
+#WinnerPlayerHeroContainer
+{
+	width: 100px;
+	height: 100px;
+	overflow: noclip;
+	border: 1px solid lightgreen;
+	border-radius: 50%;
+	box-shadow: 0px 0px 20px rgb(18, 144, 56);
+	align: center top;
+}
+
+#WinnerPlayerHeroScene
+{
+	width: 100px;
+	height: 132.8px;
+}
+
+.WinnerPlayerHeroName
+{
+	align: center top;
+	color: white;
+	text-transform: uppercase;
+	font-size: 40px;
+	font-weight: bold;
+	text-shadow: 1px 2px 3px 1 black;
+}
+
+.EndScreenScoreboard
+{
+	flow-children: down;
+	align: center top;
+	margin-top: 33%;
+	transition-property: opacity, transform;
+	transition-duration: 0.2s;
+	transition-delay: 1s;
+	transform: scaleX(1.5) scaleY(1.5);
+	opacity: 0;
+}
+
+.endgame_2 .EndScreenScoreboard
+{
+	opacity: 1;
+	transform: scaleX(1) scaleY(1);
+}
+
+.ScoreCol_Coins
+{
+	width: 70px;
+}
+
+#PlayerRankPanel
+{
+	align: center center;
+	flow-children: right;
+}
+
+#PlayerRankContainer
+{
+	align: left center;
+}
+
+#PlayerRank
+{
+	background-image: url("s2r://panorama/images/custom_game/ranks/rank0_png.vtex");
+	background-size: 100%;
+	align: center center;
+	width: 35px;
+	height: 35px;
+}
+
+.rank_number
+{
+	font-size: 12px;
+	text-align: center;
+	text-shadow: 0px 0px 3px 3.0 black;
+	horizontal-align: center;
+	margin-top: 20px;
+	color: white;
+	width: 30px;
+	font-weight: bold;
+}
+
+.rainbow_nickname
+{
+	color: gradient( linear, 100% 0%, 0% 0%, from( rgb(0, 183, 255)), color-stop( 0.5, rgb(0, 255, 85)), to( rgb(255, 196, 0)));
+}
+
+.rainbow_nickname_animate
+{
+	animation-name: Colorgradient;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	font-weight: bold;
+	text-shadow: 0px 0px 8px 0 gold;
+}
+
+@keyframes 'Colorgradient'
+{
+	0%
+	{
+		color: gradient( linear, 100% 0%, 0% 0%, from( #fedd45, color-stop( 0.5, #fff700), to( #eebb0a));
+		text-shadow: 0px 0px 8px 0 gold;
+	}
+	
+	25%
+	{
+		color: gradient( linear, 100% 0%, 0% 0%, from( #fff700), color-stop( 0.5, #eebb0a), to( #fedd45));
+		text-shadow: 0px 0px 8px 1 gold;
+	}
+	
+	50%
+	{
+		color: gradient( linear, 100% 0%, 0% 0%, from( #eebb0a), color-stop( 0.5, #fedd45), to( #fff700));
+		text-shadow: 0px 0px 8px 2 gold;
+	}
+	
+	75%
+	{
+		color: gradient( linear, 100% 0%, 0% 0%, from( #fff700), color-stop( 0.5, #eebb0a), to( #fedd45));
+		text-shadow: 0px 0px 8px 1 gold;
+	}
+	
+	100%
+	{
+		color: gradient( linear, 100% 0%, 0% 0%, from( #fedd45), color-stop( 0.5, #fff700), to( #eebb0a ));
+		text-shadow: 0px 0px 8px 0 gold;
+	}
+	
+}
+
+.ButtonsContainer
+{
+	margin-top: 30px;
+	align: center bottom;
+	flow-children: right;
+	transition-property: opacity;
+	transition-duration: .5s;
+	opacity: 0;
+}
+
+.endgame_3 .ButtonsContainer
+{
+	opacity: 1;
+}
+
+#ResultButton
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#221f2a8a), color-stop(0.5, #201831bd), to(#402969ad));
+	border: 2px solid white;
+	border-bottom: 3px solid white;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#413a51), color-stop(0.5, #4e3a6bef), to(#633ea9ef));
+	width: 300px;
+	height: 50px;
+	transition-property: brightness;
+	transition-duration: .1s;
+	margin-left: 20px;
+}
+
+#ResultButton:hover
+{
+	brightness: 2;
+}
+
+#ResultButton Label
+{
+	font-size: 25px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	text-align: center;
+	align: center center;
+	text-shadow: 1px 2px 3px 1 rgba(0, 0, 0, 0.5);
+	color: rgb(210, 189, 255);
+}
+
+#CloseButton
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#221f2a8a), color-stop(0.5, #201831bd), to(#402969ad));
+	border: 2px solid white;
+	border-bottom: 3px solid white;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#413a51), color-stop(0.5, #4e3a6bef), to(#633ea9ef));
+	width: 300px;
+	height: 50px;
+	transition-property: brightness;
+	transition-duration: .1s;
+}
+
+#CloseButton:hover
+{
+	brightness: 2;
+}
+
+#CloseButton Label
+{
+	font-size: 25px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	text-align: center;
+	align: center center;
+	text-shadow: 1px 2px 3px 1 rgba(0, 0, 0, 0.5);
+	color: rgb(210, 189, 255);
+}
+
+#CloseButton:hover Label
+{
+	color: white;
+}
+
+#SettingsButton
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#221f2a8a), color-stop(0.5, #201831bd), to(#402969ad));
+	border: 2px solid white;
+	border-bottom: 3px solid white;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#413a51), color-stop(0.5, #4e3a6bef), to(#633ea9ef));
+	width: 300px;
+	height: 50px;
+	transition-property: brightness;
+	transition-duration: .1s;
+	margin-left: 20px;
+}
+
+#SettingsButton:hover
+{
+	brightness: 2;
+}
+
+#SettingsButton Label
+{
+	font-size: 25px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	text-align: center;
+	align: center center;
+	text-shadow: 1px 2px 3px 1 rgba(0, 0, 0, 0.5);
+	color: rgb(210, 189, 255);
+}
+
+.LegendHeader
+{
+	align: center top;
+}
+
+.LegendHeaderLabel
+{
+	font-size: 10px;
+	text-transform: uppercase;
+	color: #c3c3c3;
+	text-shadow: 1px 2px 3px black;
+}
+
+.LegendBody
+{
+	margin-top: 5px;
+	flow-children: right;
+}
+
+.Legend
+{
+	flow-children: right;
+	margin-left: 4px;
+}
+
+.LegendLabel
+{
+	text-transform: uppercase;
+	font-size: 12px;
+	color: #ffffff;
+	text-shadow: 1px 2px 3px black;
+	align: center center;
+	text-align: center;
+}
+
+.LegendBackground
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(32, 19, 54, 0.9);
+	opacity-brush: gradient(linear, 0% 0%, 0% 100%, from( #ffffff00), to( #ffffff ));
+	border-bottom: 1px solid white;
+	border-left: 1px solid white;
+	border-right: 1px solid white;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from( #ffffff00), to( #9b66ffef ));
+}
+
+#TeamsContainer
+{
+	horizontal-align: right;
+	flow-children: down;
+}
+
+.FlyoutTeam
+{
+	margin-top: 10px;
+	transition-property: opacity, transform;
+	transition-duration: 0.5s;
+	opacity: 0;
+	transform: translatey(-50px);
+	margin-right: 8px;
+}
+
+.FlyoutTeam.team_endgame
+{
+	opacity: 1;
+	transform: translatey(0px);
+}
+
+.FlyoutTeam.no_players
+{
+	visibility: collapse;
+}
+
+.FlyoutTeamData
+{
+	flow-children: right;
+}
+
+.TeamInfo
+{
+	height: 100%;
+}
+
+#teamColor_Left
+{
+	width: 100%;
+	height: 100%;
+}
+
+#PlayersContainer
+{
+	flow-children: down;
+}
+
+.PlayerRow
+{
+	height: 60px;
+}
+
+#PlayerRowContainer
+{
+	flow-children: right;
+	height: 60px;
+	background-color: rgba(145, 104, 219, 0.2);
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
+	border-top: 1px solid rgba(184, 156, 235, 0.7);
+	border-bottom: 1px solid rgba(184, 156, 235, 0.7);
+}
+
+#HeroIcon
+{
+	vertical-align: middle;
+	border: 1px solid black;
+	margin-left: 5px;
+}
+
+#LevelContainer,#KillsContainer,#DeathsContainer,#AssistsContainer,#DamageContainer
+{
+	height: 100%;
+}
+
+.ScoreboardPanel
+{
+	height: 100%;
+}
+
+.LegendPanel
+{
+	align: center center;
+	padding-top: 10px;
+	padding-bottom: 7px;
+}
+
+.UltimateIndicatorShared
+{
+	margin-left: 44px;
+	margin-top: 2px;
+	vertical-align: center;
+	width: 20px;
+	height: 20px;
+	background-size: 20px;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+
+#PlayerAghanimContainer
+{
+	height: 100%;
+}
+
+.PlayerAghanimPanel
+{
+	width: 45px;
+	height: 45px;
+	align: left center;
+}
+
+#Level
+{
+	vertical-align: middle;
+	horizontal-align: center;
+	color: #898b8c;
+}
+
+#Kills,#Deaths,#Assists,#PlayerGoldAmount,#PlayerBetRewardAmount,#BookCounter,#PagesCounter,#SmokesCounter,#AegisesCounter,#CursesCounter
+{
+	horizontal-align: center;
+	vertical-align: center;
+	text-align: center;
+	font-size: 20px;
+	margin-top: 3px;
+	text-overflow: shrink;
+	font-weight: semi-bold;
+	color: white;
+}
+
+#PlayerGoldAmount,#PlayerBetRewardAmount
+{
+	color: rgb(255, 208, 22);
+}
+
+#PlayerName
+{
+	font-size: 18px;
+	font-weight: bold;
+	color: #cccccc;
+	white-space: nowrap;
+}
+
+#HeroNameAndDescription
+{
+	font-size: 16px;
+	text-shadow: 2px 2px 2px black;
+	color: rgb(210, 189, 255);
+	vertical-align: bottom;
+	text-overflow: shrink;
+}
+
+#PlayerDetailsContainer
+{
+	height: 100%;
+}
+
+#PlayerAndHeroName
+{
+	padding-left: 4px;
+	align: left center;
+	flow-children: down;
+}
+
+#AbilitiesContainer
+{
+	flow-children: right;
+	align: center center;
+}
+
+#PlayerItemsContainer
+{
+	flow-children: right;
+	align: center center;
+}
+
+#PlayerBasicItemsContainer
+{
+	flow-children: right-wrap;
+	width: 99px;
+	margin-top: -1px;
+}
+
+#PlayerBackpackItemsContainer
+{
+	margin-left: 10px;
+	flow-children: right;
+	align: left center;
+}
+
+.PlayerItem
+{
+	width: 32px;
+	height: 23.3px;
+	margin-left: 1px;
+	border: 1px solid black;
+}
+
+#PlayerBasicItemsContainer .PlayerItem
+{
+	margin-top: 1px;
+}
+
+.NeutralItem
+{
+	margin-left: 10px;
+	align: left center;
+	border-radius: 50%;
+	width: 32px;
+	height: 32px;
+}
+
+.AspectRatio4x3 #AbilitiesContainer
+{
+	flow-children: right-wrap;
+	margin-top: -1px;
+}
+
+.PlayerAbility
+{
+	width: 32px;
+	height: 32px;
+	margin-left: 1px;
+	border: 1px solid black;
+}
+
+.AspectRatio4x3 .PlayerAbility
+{
+	width: 24px;
+	height: 24px;
+	margin-top: 1px;
+}
+
+.is_local_player Label
+{
+	color: white;
+}
+
+.ScoreCol_TeamInfo
+{
+	width: 4px;
+}
+
+.ScoreCol_Player
+{
+	width: 220px;
+	text-align: center;
+}
+
+.AspectRatio4x3 .ScoreCol_Player
+{
+	width: 170px;
+}
+
+.ScoreCol_PlayerDetails
+{
+	width: 150px;
+}
+
+.AspectRatio4x3 .ScoreCol_PlayerDetails
+{
+	width: 100px;
+}
+
+.ScoreCol_KillsAndDeaths
+{
+	flow-children: down;
+}
+
+.ScoreCol_Hero
+{
+	width: 68px;
+}
+
+.ScoreCol_Level
+{
+	width: 50px;
+	text-align: center;
+}
+
+.ScoreCol_Kills,.ScoreCol_Deaths,.ScoreCol_Assists
+{
+	width: 60px;
+	text-align: center;
+}
+
+.EndPerkLabel
+{
+	font-size: 18px;
+	width: 40px;
+	text-align: center;
+	vertical-align: center;
+	margin-top: 3px;
+	margin-left: 1px;
+}
+
+.Wrapper
+{
+	flow-children: right;
+	align: center center;
+}
+
+.LegendHeaderGold
+{
+	color: #ffc862;
+	align: left center;
+}
+
+.PlayerGoldIcon
+{
+	background-image: url("s2r://panorama/images/hud/reborn/gold_small_psd.vtex");
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 19px;
+	height: 19px;
+	margin-top: 0px;
+	margin-left: 3px;
+	align: left center;
+}
+
+.ScoreCol_Items
+{
+	width: 305px;
+	text-align: center;
+}
+
+.ScoreCol_Abilities
+{
+	width: 250px;
+}
+
+.AspectRatio4x3 .ScoreCol_Abilities
+{
+	width: 100px;
+}
+
+.ScoreCol_Gold
+{
+	width: 85px;
+	text-align: center;
+}
+
+.AspectRatio4x3 .ScoreCol_Gold
+{
+	width: 70px;
+}
+
+.ScoreCol_Bets
+{
+	width: 70px;
+	text-align: center;
+}
+
+.ScoreCol_Ratings
+{
+	width: 125px;
+	text-align: center;
+}
+
+.ScoreCol_Books
+{
+	width: 50px;
+}
+
+.ScoreCol_Pages
+{
+	width: 60px;
+}
+
+.ScoreCol_Smokes
+{
+	width: 50px;
+}
+
+.ScoreCol_Aegises
+{
+	width: 50px;
+}
+
+.ScoreCol_Curses
+{
+	width: 50px;
+}
+
+#PlayerRating
+{
+	font-size: 14px;
+	text-align: center;
+	align: left center;
+}
+
+#PlayerRatingBonus
+{
+	font-size: 16px;
+	color: white;
+	text-align: center;
+	align: left center;
+	letter-spacing: -1px;
+	margin-top: -2px;
+	margin-left: 5px;
+}
+
+.RatingPlus #PlayerRatingBonus
+{
+	color: lightgreen;
+}
+
+.RatingMinus #PlayerRatingBonus
+{
+	color: crimson;
+}
+
+#Coins
+{
+	height: 100%;
+}
+
+#Coins_Number
+{
+	text-align: center;
+	align: left center;
+	color: white;
+	font-weight: bold;
+}
+
+.CoinsPlus #Coins_Number
+{
+	color: lightgreen;
+}
+
+#CoinsImage
+{
+	width: 25px;
+	height: 25px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/donate/battlepass/arena_coin_png.vtex");
+	background-size: 100%;
+	margin-left: 5px;
+}
+
+.AspectRatio4x3 #CoinsImage
+{
+	width: 20px;
+	height: 20px;
+}
+
+#HeroIconEffect
+{
+	width: 100%;
+	height: 100%;
+}
+
+.PlayerHeroIconFX
+{
+	width: 110%;
+	height: 110%;
+	overflow: noclip;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_box_png.vtex");
+	margin-top: -2px;
+	margin-left: -1px;
+}
+
+.ScoreCol_Other
+{
+	width: 50px;
+}
+
+#InfoPanel
+{
+	width: 48px;
+	height: 48px;
+	wash-color: rgb(175, 138, 243);
+	background-image: url("s2r://panorama/images/control_icons/24px/info.vsvg");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 20px 20px;
+	img-shadow: 0px 0px 8px 0 black;
+	align: center center;
+	tooltip-position: top;
+	opacity: 0.8;
+}
