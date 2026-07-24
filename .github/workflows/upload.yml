@@ -86,14 +86,19 @@ jobs:
           unzip -oq "$RUNNER_TEMP/s2v.zip" -d "$HOME/s2v"
           chmod +x "$HOME/s2v/Source2Viewer-CLI"
           echo "S2V=$HOME/s2v/Source2Viewer-CLI" >> "$GITHUB_ENV"
-
+          
       - name: Process custom
+        uses: nick-fields/retry@v4
+        with:
+          timeout_minutes: 20
+          max_attempts: 3
+          retry_wait_seconds: 300
+          command: bash scripts/update.sh
         env:
           STEAM_USERNAME: ${{ secrets.STEAM_USERNAME }}
           STEAM_PASSWORD: ${{ secrets.STEAM_PASSWORD }}
           REPO_URL: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git
           WORKSHOP_ID: ${{ matrix.mod.workshop_id }}
           BRANCH: ${{ matrix.mod.branch_name }}
-          DECRYPT_SCRIPT: ${{ matrix.mod.decrypt_script }}
           WATERMARK: ${{ needs.prepare.outputs.watermark }}
-        run: bash scripts/update.sh
+          DECRYPT_SCRIPT: ${{ matrix.mod.decrypt_script }}
