@@ -1,0 +1,554 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    // Base Abilities
+    "levelup_select_card"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/levelup_select_card"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityTextureName"            "levelup_select_card"
+        "AbilityCooldown"               "0.1"
+        "MaxLevel"                      "1"
+    }
+    "levelup_upgrade_stats"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/levelup_upgrade_stats"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityTextureName"            "firework_splitshot_0"
+        "AbilityCooldown"               "0.1"
+        "MaxLevel"                      "1"
+    }
+    "levelup_upgrade_artifacts"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/levelup_upgrade_artifacts"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityTextureName"            "levelup_upgrade_artifacts_0"
+        "AbilityCooldown"               "120"
+        "MaxLevel"                      "1"
+    }
+    "levelup_blink"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/levelup_blink"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+        "AbilityTextureName"            "levelup_blink"
+        "AbilityCooldown"               "0.1"
+        "AbilityManaCost"               "25"
+        "MaxLevel"                      "1"
+        "AbilityValues"
+        {
+            "base_max_range"            "800"
+            "movement_speed"            "4000"
+        }
+    }
+    "custom_twin_gate_portal_warp"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/custom_twin_gate_portal_warp"
+        "AbilityTextureName"            "twin_gate_portal_warp"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+        "AbilityCastRange"              "225"
+        "AbilityCastPoint"              "0.0"
+        "AbilityChannelTime"            "2.0"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+        "AbilityValues"
+        {
+            "teleport_offset"           "80"
+        }
+    }
+    "levelup_void_spirit_astral_step"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/levelup_void_spirit_astral_step"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+        "AbilityTextureName"            "levelup_astral_step"
+        "AbilityCooldown"               "0.1"
+        "AbilityManaCost"               "25"
+        "MaxLevel"                      "1"
+        "AbilityValues"
+        {
+            "max_travel_distance"       "800"
+            "radius"                    "160"
+            "attack_damage_pct"         "100"
+        }
+    }
+    "levelup_sand_king_burrowstrike"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/levelup_sand_king_burrowstrike"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+        "AbilityTextureName"            "levelup_burrowstrike"
+        "AbilityCastRange"              "800"
+        "AbilityCooldown"               "0.1"
+        "AbilityManaCost"               "25"
+        "MaxLevel"                      "1"
+        "AbilityValues"
+        {
+            "max_travel_distance"       "800"
+            "movement_speed"            "3000"
+            "radius"                    "160"
+            "int_damage_pct"            "75"
+            "stun_duration"             "0.82"
+            "knockback_duration"        "0.52"
+            "knockback_height"          "350"
+            "cast_backswing"            "0.53"
+        }
+    }
+    "levelup_mirana_leap"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/levelup_mirana_leap"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+        "AbilityTextureName"            "levelup_leap"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_3"
+        "AbilityCooldown"               "0.1"
+        "AbilityManaCost"               "25"
+        "MaxLevel"                      "1"
+        "AbilityValues"
+        {
+            "leap_distance"             "675"
+            "leap_speed"                "1250"
+            "leap_height"               "150"
+            "leap_min_duration"         "0.25"
+            "leap_bonus_duration"       "2.5"
+            "leap_speedbonus"           "25"
+            "leap_speedbonus_as"        "20"
+        }
+    }
+    "levelup_earth_spirit_rolling_boulder"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/levelup_earth_spirit_rolling_boulder"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+        "AbilityTextureName"            "levelup_rolling_boulder"
+        "AbilityCooldown"               "0.1"
+        "AbilityManaCost"               "25"
+        "MaxLevel"                      "1"
+        "AbilityValues"
+        {
+            "distance"                  "800"
+            "speed"                     "2500"
+            "radius"                    "160"
+            "str_damage_pct"            "100"
+            "stun_duration"             "0.8"
+        }
+    }
+    "levelup_boss_ability_handler"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/levelup_boss_ability_handler"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "levelup_assistant_special_handler"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/levelup_assistant_special_handler"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "abyss_mana_burn"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/abyss_mana_burn"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "abyss_double_blast"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/abyss_double_blast"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "final_boss_zap"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/final_boss_zap"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "abyss_self_nova"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/abyss_self_nova"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "aghanim_boss_shard"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/aghanim_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+
+    // ===================== Boss Rush ( Натиск Боссов ) =====================
+    "boss_rush_duel_protocol"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/boss_rush_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "boss_rush_execution_blade"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/boss_rush_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "boss_rush_hydraulic_waveform"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/boss_rush_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "boss_rush_quill_overload"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/boss_rush_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "boss_rush_purifying_malfunction"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/boss_rush_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "boss_rush_rocket_salvo"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/boss_rush_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "boss_rush_wheel_of_wonder"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/boss_rush_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "boss_rush_overwhelming_odds"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/boss_rush_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "boss_rush_counter_helix"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/boss_rush_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "boss_rush_adaptive_strike_multi"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/boss_rush_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "boss_rush_viscous_nasal_goo"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/boss_rush_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "boss_rush_false_promise_self"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/boss_rush_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "boss_rush_laser"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/boss_rush_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "boss_rush_impalement_arts"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/boss_rush_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+
+    "aghanim_boss_ray"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/aghanim_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "aghanim_boss_blink_stomp"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/aghanim_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "aghanim_boss_bath_bubble"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/aghanim_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "aghanim_boss_puddle"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/aghanim_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "aghanim_boss_waves_storm"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/aghanim_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "aghanim_boss_water_ray"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/aghanim_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "aghanim_boss_mad_wrench"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/aghanim_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "aghanim_boss_chain"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/aghanim_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "aghanim_boss_mad_chains"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/aghanim_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "aghanim_boss_mad_siled"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/aghanim_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "aghanim_boss_mech_sword"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/aghanim_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "aghanim_boss_mech_force"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/aghanim_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "aghanim_boss_mech_shield"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/aghanim_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "aghanim_boss_mech_attack"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/aghanim_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "aghanim_boss_smith_mech"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/aghanim_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "aghanim_boss_smith_jetpack"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/aghanim_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "aghanim_boss_smith_crange"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/aghanim_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "aghanim_boss_smith_bomb"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/aghanim_boss_abilities"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+    "levelup_lane_tower_handler"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/levelup_lane_tower_handler"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+        "AbilityValues"
+        {
+            "attack_range"              "800"
+            "attack_interval"           "0.9"
+            "projectile_speed"          "750"
+        }
+    }
+
+    "levelup_ultimate_handler"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/levelup_ultimate_handler"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"            "omniknight_purification"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+
+    "levelup_hero_handler"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/levelup_hero_handler"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"            ""
+        "AbilityCooldown"               "5"
+        "AbilityManaCost"               "25"
+        "MaxLevel"                      "1"
+    }
+
+    "levelup_summon_aura_handler"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/levelup_summon_aura_handler"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "MaxLevel"                      "1"
+    }
+}

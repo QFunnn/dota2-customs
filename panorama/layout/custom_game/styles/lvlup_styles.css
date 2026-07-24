@@ -1,0 +1,331 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.RareColor_common
+{
+	wash-color: rgba(211, 211, 211, 0.911);
+	brightness: 5;
+}
+
+.RareColor_rare
+{
+	wash-color: rgba(47, 102, 252, 0.911);
+	brightness: 5;
+}
+
+.RareColor_mythical
+{
+	wash-color: rgba(252, 47, 252, 0.911);
+	brightness: 5;
+}
+
+.RareColor_legendary
+{
+	wash-color: rgb(255, 104, 3);
+	brightness: 5;
+}
+
+.RareColor_immortal
+{
+	wash-color: rgb(143, 3, 3);
+	brightness: 5;
+}
+
+.RareColor_unique
+{
+	wash-color: rgb(48, 220, 96);
+	brightness: 5;
+}
+
+.ServiceNotifyDot
+{
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	horizontal-align: right;
+	vertical-align: top;
+	margin-top: 1px;
+	margin-right: 1px;
+	ignore-parent-flow: true;
+	background-color: gradient( radial, 50% 45%, 0% 0%, 60% 60%, from( #fff1f1 ), color-stop( 0.25, #ff4141 ), color-stop( 0.72, #bd0808 ), to( #610000 ) );
+	border: 1px solid #ffb6b6;
+	box-shadow: #ff1f1faa 0px 0px 7px 0px;
+	z-index: 50;
+	visibility: collapse;
+	margin: 5px;
+	animation-name: DotAnimeWobble;
+	animation-duration: 0.5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.ProfileSubNavigationButton .ServiceNotifyDot
+{
+	margin: 0px;
+	vertical-align: center;
+	margin-bottom: 2px;
+}
+
+.AchivementPanel .ServiceNotifyDot
+{
+	width: 20px;
+	height: 20px;
+	margin: 45px;
+}
+
+.ServiceNotifyDotVisible
+{
+	visibility: visible;
+}
+
+.ServiceNotifyDotHidden
+{
+	visibility: collapse;
+}
+
+@keyframes 'DotAnimeWobble'
+{
+	25%
+	{
+		transform: scale3d(0.9,0.9,0.9);
+	}
+	
+	75%
+	{
+		transform: scale3d(1,1,1);
+	}
+	
+}
+
+.ServiceCurrencyMoreButton
+{
+	width: 44px;
+	height: 44px;
+	margin-left: 12px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #2b123fdd ), color-stop( 0.45, #51207add ), to( #1a0c2bdd ) );
+	border: 1px solid #d5aaf7;
+	border-brush: gradient( linear, 0% 0%, 100% 0%, from( #ffb3ff ), color-stop( 0.35, #c45cff ), color-stop( 0.7, #7b2cff ), to( #e58cff ) );
+	border-radius: 6px;
+	box-shadow: #d35cff44 0px 0px 6px 0px;
+}
+
+.ServiceCurrencyMoreButton:hover
+{
+	brightness: 1.8;
+}
+
+.ServiceCurrencyMoreArrow
+{
+	background-image: url("s2r://panorama/images/game_hud/services/all_png.vtex");
+	background-size: cover;
+	width: 32px;
+	height: 32px;
+	align: center center;
+}
+
+.ServiceServerSyncButton
+{
+	width: 44px;
+	height: 44px;
+	margin-right: 0px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #1c3f4add ), color-stop( 0.5, #2d7e96dd ), to( #102733dd ) );
+	border: 1px solid #9fe7ff;
+	border-brush: gradient( linear, 0% 0%, 100% 0%, from( #d7fbff ), color-stop( 0.5, #51d8ff ), to( #7f73ff ) );
+	border-radius: 6px;
+	box-shadow: #65dfff44 0px 0px 4px 0px;
+}
+
+.ServiceServerSyncButton:hover
+{
+	brightness: 1.8;
+}
+
+.ServiceServerSyncButtonDisabled
+{
+	saturation: 0;
+	brightness: 1;
+	wash-color: #ffffff;
+}
+
+.ServiceServerSyncButtonDisabled:hover
+{
+	saturation: 0;
+	brightness: 1;
+}
+
+.ServiceServerSyncIcon
+{
+	width: 34px;
+	height: 34px;
+	align: center center;
+	background-image: url("s2r://panorama/images/game_hud/services/refresher_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	wash-color: #d7fbff;
+}
+
+.ServicePromocodeOpenButton
+{
+	height: 44px;
+	width: 118px;
+	padding: 0px 14px;
+	margin-right: 0px;
+	margin-left: 10px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #3c214bdd ), color-stop( 0.5, #7b2d92dd ), to( #29153bdd ) );
+	border: 1px solid #f2b3ff;
+	border-brush: gradient( linear, 0% 0%, 100% 0%, from( #ffd7ff ), color-stop( 0.5, #c65cff ), to( #7f73ff ) );
+	border-radius: 6px;
+	box-shadow: #d65cff44 0px 0px 6px 0px;
+}
+
+.ServicePromocodeOpenButton:hover
+{
+	brightness: 1.8;
+}
+
+.ServicePromocodeOpenLabel
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+	font-size: 20px;
+	text-overflow: shrink;
+	text-transform: uppercase;
+	font-weight: bold;
+	text-shadow: 0px 0px 6px 2 #000000;
+	align: center center;
+}
+
+.ServicePromocodeModal
+{
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+}
+
+.ServicePromocodeShade
+{
+	width: 100%;
+	height: 100%;
+	background-color: #000000aa;
+}
+
+.ServicePromocodeFrame
+{
+	width: 520px;
+	height: 300px;
+	flow-children: down;
+	padding: 24px;
+	align: center center;
+	background-image: url("s2r://panorama/images/game_hud/backgrounds/promo_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 5px 5 black;
+}
+
+.ServicePromocodeTitle
+{
+	color: #ffffff;
+	font-size: 28px;
+	horizontal-align: center;
+	font-family: Reaver;
+	font-weight: bold;
+	text-shadow: 0px 0px 4px 2.0 #c65cff66;
+}
+
+.ServicePromocodeDescription
+{
+	margin-top: 8px;
+	color: #cbb7da;
+	font-size: 16px;
+	text-align: center;
+}
+
+.ServicePromocodeEntry
+{
+	width: 100%;
+	height: 48px;
+	margin-top: 18px;
+	padding: 8px 12px;
+	color: #ffffff;
+	font-size: 22px;
+	background-color: #08050dcc;
+	border: 1px solid #8e5ab4;
+	border-radius: 5px;
+}
+
+.ServicePromocodeStatus
+{
+	margin-top: 10px;
+	color: #74ffd7;
+	font-size: 16px;
+	horizontal-align: center;
+}
+
+.ServicePromocodeStatusError
+{
+	color: #ff7777;
+}
+
+.ServicePromocodeActions
+{
+	width: 100%;
+	margin-top: 18px;
+	flow-children: right;
+}
+
+.ServicePromocodeActionButton
+{
+	width: fill-parent-flow(1.0);
+	height: 50px;
+	margin-right: 10px;
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_10_png.vtex");
+	background-size: 100%;
+	transition-property: brightness, transform;
+	transition-duration: 0.15s;
+}
+
+.ServicePromocodeActionButton:hover
+{
+	brightness: 1.3;
+}
+
+.ServicePromocodeCancelButton
+{
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_12_png.vtex");
+	background-size: 100%;
+}
+
+.ServicePromocodeButtonDisabled
+{
+	saturation: 0;
+	brightness: 0.45;
+}
+
+.ServicePromocodeActionLabel
+{
+	color: #ffffff;
+	font-size: 18px;
+	text-overflow: shrink;
+	font-weight: bold;
+	text-transform: uppercase;
+	align: center center;
+	text-shadow: 0px 1px 2px 2.0 #000000;
+}
+
+.ServicePromocodeCancelButton .ServicePromocodeActionLabel
+{
+	font-size: 20px;
+}
+
+.ServicePromocodeActionButton:active
+{
+	transform: scale3d(0.95, 0.95, 1);
+}

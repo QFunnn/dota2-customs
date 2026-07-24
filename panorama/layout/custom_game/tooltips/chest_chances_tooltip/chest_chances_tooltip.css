@@ -1,0 +1,236 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+#Contents
+{
+	padding: 0px;
+	margin: 0px;
+	background-color: #10171c00;
+	border: 0px solid black;
+	flow-children: none;
+	box-shadow: #00000000 0px 0px 8px 0px;
+}
+
+.ChestChancesTooltip
+{
+	width: 430px;
+}
+
+.ChestChancesTooltipBG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/tooltips/bg_png.vtex");
+	background-size: cover;
+	margin-bottom: 0px;
+	border-radius: 10px;
+	brightness: 5;
+	saturation: 0.9;
+	blur: gaussian (5px);
+}
+
+.ChestChancesTooltipBorder
+{
+	width: 100%;
+	height: 100%;
+	border-image-source: url("s2r://panorama/images/tooltips/border_png.vtex");
+	border-width: 38px;
+	border-image-slice: 140px;
+	z-index: 10;
+	brightness: 2;
+}
+
+.ChestChancesTooltipBody
+{
+	width: 100%;
+	flow-children: down;
+	padding: 20px;
+	padding-top: 15px;
+	padding-bottom: 24px;
+}
+
+.ChestChancesTitle
+{
+	width: 100%;
+	font-size: 22px;
+	font-weight: bold;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#fff5c6), to(#e7b33e));
+	text-shadow: 0px 0px 5px 3 black;
+	text-align: center;
+	text-overflow: shrink;
+}
+
+.ChestChancesDescription
+{
+	width: 360px;
+	horizontal-align: center;
+	margin-top: 6px;
+	color: #cdd6e8;
+	font-size: 15px;
+	text-align: center;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.ChestChancesList
+{
+	width: 370px;
+	max-height: 360px;
+	horizontal-align: center;
+	margin-top: 12px;
+	flow-children: down;
+	overflow: squish scroll;
+}
+
+.ChestChanceRow
+{
+	width: 100%;
+	min-height: 52px;
+	flow-children: right;
+	margin-bottom: 5px;
+	padding: 6px 8px;
+	background-color: rgba(0, 0, 0, 0.8);
+	border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.ChestChanceIcon
+{
+	width: 40px;
+	height: 40px;
+	vertical-align: center;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	img-shadow: 0px 0px 7px 2 black;
+}
+
+.ChestChanceRarityBadge
+{
+	font-family: Reaver;
+	width: 52px;
+	vertical-align: center;
+	color: #ffffff;
+	font-size: 24px;
+	font-weight: black;
+	text-align: center;
+	text-shadow: 0px 0px 5px 3 black;
+}
+
+.ChestChanceText
+{
+	width: fill-parent-flow(1);
+	flow-children: down;
+	margin-left: 10px;
+	vertical-align: center;
+}
+
+.ChestChanceName
+{
+	width: 100%;
+	color: #f1f4fb;
+	font-size: 16px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 4px 2 black;
+	text-overflow: shrink;
+}
+
+.ChestChanceMeta
+{
+	margin-top: 2px;
+	color: #9facbe;
+	font-size: 13px;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.ChestChanceValue
+{
+	font-family: Reaver;
+	width: 74px;
+	vertical-align: center;
+	color: #ffd86a;
+	font-size: 20px;
+	font-weight: semi-bold;
+	text-align: right;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.ChestChanceRow.Rarity_common
+{
+	border-color: #c9d0d666;
+}
+
+.ChestChanceRow.Rarity_rare
+{
+	border-color: #5aa8ff66;
+}
+
+.ChestChanceRow.Rarity_mythical
+{
+	border-color: #c16bff66;
+}
+
+.ChestChanceRow.Rarity_legendary
+{
+	border-color: #ffd54a88;
+}
+
+.ChestChanceRow.Rarity_immortal
+{
+	border-color: #ff595988;
+}
+
+.ChestChanceRow.Rarity_super
+{
+	border-color: white;
+	border-brush: gradient( linear, 0% 0%, 90% 100%, from( #ffe16f ), color-stop( 0.35, #ff5d90 ), color-stop( 0.65, #8b6cff ), to( #3cffd0 ) );
+}
+
+.Rarity_common .ChestChanceRarityBadge
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #ffffff ), to( gray ) );
+}
+
+.Rarity_rare .ChestChanceRarityBadge
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #7ee0f8 ), to( #119ac8 ) );
+}
+
+.Rarity_mythical .ChestChanceRarityBadge
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #e6c5fc ), to( #7723a9 ) );
+}
+
+.Rarity_legendary .ChestChanceRarityBadge
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #ffefb4 ), to( #e08d49 ) );
+}
+
+.Rarity_immortal .ChestChanceRarityBadge
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #faa1a1 ), to( #f70f0f ) );
+}
+
+.Rarity_super .ChestChanceRarityBadge
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #ffe16f ), color-stop( 0.35, #ff5d90 ), color-stop( 0.65, #8b6cff ), to( #3cffd0 ) );
+}
+
+.ChestChancesGuarantee
+{
+	width: 360px;
+	horizontal-align: center;
+	margin-top: 6px;
+	padding-bottom: 10px;
+	color: #f1d38a;
+	font-size: 14px;
+	text-align: center;
+	text-shadow: 0px 0px 4px 2 black;
+}

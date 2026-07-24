@@ -1,0 +1,568 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.StartGamePanel
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+
+.StartGamePanel.Opened
+{
+	opacity: 1;
+}
+
+.ExitCross
+{
+	z-index: 100;
+	horizontal-align: right;
+	margin-right: 10px;
+	margin-top: 10px;
+	ignore-parent-flow: true;
+	width: 64px;
+	height: 64px;
+	background-image: url("s2r://panorama/images/game_hud/icons/close_new_png.vtex");
+	background-size: 100%;
+	transition-property: brightness, transform;
+	transition-duration: 0.25s;
+	opacity: 1;
+	saturation: 0.75;
+	img-shadow: 0px 0px 1px 1 white;
+}
+
+.ExitCross:hover
+{
+	opacity: 1;
+	brightness: 2;
+}
+
+.ExitCross:active
+{
+	transform: scale3d(0.9, 0.9, 1);
+}
+
+.StartGameRestartCloseButton
+{
+	horizontal-align: right;
+	vertical-align: top;
+	margin-top: 44px;
+	margin-right: 54px;
+	opacity: 0;
+	visibility: collapse;
+	z-index: 100;
+}
+
+.StartGamePanel.RestartMode .StartGameRestartCloseButton,.StartGameRestartCloseButton.VisibleRestartClose
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+.StartGamePanelBG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/level_choose/bg_png.vtex");
+	background-size: 100%;
+}
+
+.StartGamePanelBGFade
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/level_choose/bg_fade_png.vtex");
+	background-size: 100%;
+}
+
+.PFXPortalStartGame
+{
+	width: 1200px;
+	height: 1200px;
+	align: center center;
+	opacity: 0.8;
+	transform: translateY( 30px );
+	brightness: 0.3;
+}
+
+.StartGameDifficultPanel
+{
+	width: 500px;
+	height: 600px;
+	horizontal-align: center;
+	flow-children: down;
+	margin-top: 320px;
+	z-index: 10;
+}
+
+.StartGameInfoPanel
+{
+	width: 430px;
+	min-height: 360px;
+	horizontal-align: right;
+	margin-top: 260px;
+	margin-right: 85px;
+	flow-children: down;
+	z-index: 12;
+}
+
+.StartGameLobbyProgressPanel
+{
+	width: 430px;
+	min-height: 155px;
+	horizontal-align: right;
+	margin-top: 85px;
+	margin-right: 85px;
+	flow-children: down;
+	z-index: 12;
+}
+
+.StartGameInfoPanelBG
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	margin: 15px;
+	background-image: url("s2r://panorama/images/tooltips/bg_png.vtex");
+	background-size: cover;
+	brightness: 2;
+}
+
+.StartGameInfoPanelBorder
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	border-image-source: url("s2r://panorama/images/game_hud/frames/fr19_png.vtex");
+	border-width: 30px;
+	border-image-slice: 70px;
+}
+
+.StartGameInfoPanelBody
+{
+	flow-children: down;
+	width: 100%;
+	padding: 30px 34px 30px 34px;
+}
+
+.StartGameLobbyProgressBody
+{
+	flow-children: down;
+	width: 100%;
+	padding: 20px 32px 25px 32px;
+}
+
+.StartGameLobbyProgressTitle
+{
+	width: 100%;
+	color: #ffe8ff;
+	font-size: 16px;
+	font-weight: semi-bold;
+	font-family: Reaver;
+	text-transform: uppercase;
+	text-align: center;
+	text-shadow: 0px 0px 8px 2 #000000;
+	border-bottom: 1px solid #8d57c233;
+	padding-bottom: 4px;
+}
+
+.StartGameLobbyProgressList
+{
+	width: 100%;
+	margin-top: 8px;
+	flow-children: down;
+}
+
+.StartGameLobbyProgressRow
+{
+	width: 100%;
+	height: 21px;
+	flow-children: right;
+	margin-bottom: 3px;
+}
+
+.StartGameLobbyProgressAvatar
+{
+	width: 18px;
+	height: 18px;
+	vertical-align: center;
+	margin-right: 7px;
+}
+
+.StartGameLobbyProgressName
+{
+	width: fill-parent-flow( 1 );
+	color: #d8c9e4;
+	font-size: 14px;
+	font-family: Radiance;
+	vertical-align: center;
+	text-shadow: 0px 0px 4px 2 #000000;
+	text-overflow: shrink;
+}
+
+.StartGameLobbyProgressStage
+{
+	width: 56px;
+	color: #ffd76a;
+	font-size: 15px;
+	font-weight: semi-bold;
+	font-family: Reaver;
+	text-align: right;
+	vertical-align: center;
+	text-shadow: 0px 0px 5px 2 #000000;
+}
+
+.StartGameInfoHeader
+{
+	width: 100%;
+	padding-bottom: 8px;
+	border-bottom: 1px solid #8d57c233;
+}
+
+.StartGameInfoTitle
+{
+	width: 100%;
+	color: #ffe8ff;
+	font-size: 24px;
+	font-weight: semi-bold;
+	font-family: Reaver;
+	text-transform: uppercase;
+	text-align: center;
+	text-shadow: 0px 0px 8px 2 #000000;
+}
+
+.StartGameInfoContent
+{
+	width: 100%;
+	margin-top: 12px;
+	flow-children: down;
+}
+
+.StartGameInfoSection
+{
+	width: 100%;
+	margin-bottom: 12px;
+	flow-children: down;
+}
+
+.StartGameInfoSectionTitle
+{
+	color: #f6ceff;
+	font-size: 16px;
+	font-weight: semi-bold;
+	font-family: Reaver;
+	text-shadow: 0px 0px 5px 2 #000000;
+	margin-bottom: 5px;
+	width: 100%;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #7928fcee ), color-stop( 0.2, #7b0ad8ce ), to( #00000000 ) );
+	padding-left: 5px;
+}
+
+.StartGameInfoLine
+{
+	width: 100%;
+	color: #d8c9e4;
+	font-size: 16px;
+	line-height: 20px;
+	font-family: Radiance;
+	text-shadow: 0px 0px 4px 2 #000000;
+	margin-bottom: 4px;
+}
+
+.StartGameInfoStarsLine
+{
+	width: 100%;
+	flow-children: right;
+	margin-bottom: 4px;
+}
+
+.StartGameInfoStarIcon
+{
+	width: 18px;
+	height: 18px;
+	margin-right: 6px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/tooltips/star_png.vtex");
+	background-size: 100%;
+	wash-color: gold;
+}
+
+.StartGameInfoStarsLabel
+{
+	width: fill-parent-flow( 1 );
+	margin-bottom: 0px;
+	color: #ffd76a;
+}
+
+.StartGameInfoLine.Highlight
+{
+	color: #ffe5a8;
+}
+
+.StartGameInfoLine.Muted
+{
+	color: #a799b5;
+}
+
+@keyframes 'BGScalex'
+{
+	0%
+	{
+		transform: scale3d(1, 1, 1);
+		brightness: 1;
+	}
+	
+	50%
+	{
+		transform: scale3d(1.02, 1.02, 1);
+		brightness: 0.9;
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 1, 1);
+		brightness: 1;
+	}
+	
+}
+
+.StartGameSelectorList
+{
+	width: 450px;
+	height: 475px;
+	padding-right: 14px;
+	ui-scale: 90%;
+	horizontal-align: center;
+	flow-children: down;
+	overflow: squish scroll;
+}
+
+.StartGameSelectorList VerticalScrollBar,.StartGameSelectorList HTMLVerticalScrollBar
+{
+	width: 6px;
+	height: 100%;
+	horizontal-align: right;
+	layout-position: fixed;
+	padding: 1px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #07050b ), color-stop( 0.5, #10091a ), to( #08050d ) );
+	border-left: 1px solid #6f42a822;
+}
+
+.StartGameSelectorList VerticalScrollBar .ScrollThumb,.StartGameSelectorList HTMLVerticalScrollBar .ScrollThumb
+{
+	width: 4px;
+	min-height: 34px;
+	horizontal-align: center;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #8f68c0 ), color-stop( 0.28, #6d3fa0 ), color-stop( 0.58, #48246f ), to( #211133 ) );
+	border: 1px solid #8a63b0;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( #9a78bd ), to( #3a1d5a ) );
+	box-shadow: #000000aa 0px 0px 4px 0px;
+	border-radius: 2px;
+	transition-property: brightness, background-color;
+	transition-duration: 0.15s;
+}
+
+.StartGameSelectorList VerticalScrollBar:hover .ScrollThumb,.StartGameSelectorList HTMLVerticalScrollBar:hover .ScrollThumb
+{
+	brightness: 1.08;
+}
+
+.StartGameSelectorList VerticalScrollBar:active .ScrollThumb,.StartGameSelectorList HTMLVerticalScrollBar:active .ScrollThumb
+{
+	brightness: 0.85;
+}
+
+.StartGameControlsList
+{
+	margin-top: 4px;
+	margin-bottom: 90px;
+	vertical-align: bottom;
+	horizontal-align: center;
+	flow-children: right;
+	ui-scale: 70%;
+}
+
+.DifficultButton
+{
+	horizontal-align: center;
+	width: 400px;
+	height: 80px;
+	margin: 5px;
+}
+
+.StartGameSelectorList .DifficultButton
+{
+	ui-scale: 105%;
+}
+
+.StartGameControlsList .DifficultButton
+{
+	width: 300px;
+	height: 72px;
+}
+
+.DifficultButtonBG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/level_choose/button_png.vtex");
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_11_png.vtex");
+	background-size: 100%;
+	opacity: 0.95;
+	saturation: 0;
+	brightness: 0.2;
+	transition-property: opacity, saturation, brightness;
+	transition-duration: 0.1s;
+}
+
+.HardcoreButton .DifficultButtonBG
+{
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_11_red_png.vtex");
+	background-size: 100%;
+}
+
+.HardcoreSelection .DifficultButton .DifficultButtonBG
+{
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_11_red_png.vtex");
+	background-size: 100%;
+}
+
+.DifficultButton Label
+{
+	color: rgb(253, 219, 246);
+	font-size: 22px;
+	text-align: center;
+	vertical-align: center;
+	horizontal-align: center;
+	font-weight: semi-bold;
+	font-family: Reaver;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	opacity: 0.2;
+	text-shadow: 0px 0px 5px 5 black;
+	transform: translateY( 3px );
+}
+
+.DifficultActive
+{
+	animation-name: BGScalex;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.DifficultUnlocked .DifficultButtonBG
+{
+	opacity: 1;
+	saturation: 0.9;
+	brightness: 0.2;
+}
+
+.StartGameControlsList .DifficultButton Label
+{
+	opacity: 0.5;
+}
+
+.DifficultButton.DifficultUnlocked Label
+{
+	opacity: 0.5;
+}
+
+.DifficultUnlocked:hover .DifficultButtonBG
+{
+	opacity: 1;
+	saturation: 1;
+	brightness: 1;
+}
+
+.DifficultButton.DifficultUnlocked:hover Label
+{
+	opacity: 1;
+}
+
+.DifficultActive .DifficultButtonBG
+{
+	opacity: 1;
+	saturation: 1;
+	brightness: 1;
+}
+
+.DifficultActive.DifficultButton Label
+{
+	opacity: 1;
+}
+
+.StartGameControlsList .DifficultButton .DifficultButtonBG
+{
+	opacity: 1;
+	saturation: 0.9;
+	brightness: 1;
+}
+
+.StartGameControlsList .DifficultButton:hover .DifficultButtonBG
+{
+	opacity: 1;
+	saturation: 1;
+	brightness: 1;
+}
+
+.StartGameControlsList .DifficultButton:hover Label
+{
+	opacity: 1;
+}
+
+.StartGameControlsList .DifficultButton Label
+{
+	font-size: 30px;
+	opacity: 1;
+}
+
+.StartGameControlsList .DifficultButtonBG
+{
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_10_png.vtex");
+	background-size: 100%;
+}
+
+.LockedDifficult
+{
+	width: 32px;
+	height: 32px;
+	vertical-align: center;
+	margin-left: 10px;
+	opacity: 0;
+}
+
+.start_screen_video
+{
+	width: 100%;
+	height: 100%;
+	blur: gaussian( 0 );
+	brightness: 0.75;
+	opacity: 1;
+	transform: scale3d(1,1,1);
+}
+
+.StartGamePanelBGFade2
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/level_choose/bg_fade_2_png.vtex");
+	background-size: 100%;
+}
+
+.LeaderboardCloseButton
+{
+	width: 64px;
+	height: 64px;
+	margin: 40px;
+}

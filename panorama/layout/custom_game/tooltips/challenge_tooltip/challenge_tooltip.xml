@@ -1,0 +1,37 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/layout/custom_game/tooltips/challenge_tooltip/challenge_tooltip.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/tooltips/challenge_tooltip/challenge_tooltip.vjs_c" />
+	</scripts>
+	<Panel class="challenge_tooltip_wrap" hittest="false" hittestchildren="false" ontooltiploaded="UpdateTooltip()">
+		<Panel class="AutocastWindow" id="ChallengeAutocastWindow">
+			<Panel class="AutocastWindowBG" />
+			<Label html="true" class="AutocastWindowLabel" id="ChallengeAutocastStatus" />
+		</Panel>
+		<Panel class="challenge_tooltip">
+			<Panel class="TooltipBG" id="TooltipBG" />
+			<Panel class="TooltipBody">
+				<Label html="true" class="ChallengeName" id="ChallengeName" />
+				<Label html="true" class="ChallengeDescription" id="ChallengeDescription" />
+				<Label html="true" class="RewardLabel" text="#levelup_challenge_reward" />
+				<Label html="true" class="RewardName" id="RewardName" />
+				<Label html="true" class="RewardBonus" text="#levelup_challenge_reward_bonus" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

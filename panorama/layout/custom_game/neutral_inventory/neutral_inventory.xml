@@ -1,0 +1,50 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/neutral_inventory/neutral_inventory.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/neutral_inventory/neutral_inventory.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="Item">
+			<Panel class="Item" hittest="true" draggable="true">
+				<Image hittest="false" id="ItemImage" class="ItemImage" scaling="stretch-to-fit-y-preserve-aspect" />
+				<Panel hittest="false" id="ItemCooldownPanel" class="NeutralItemCooldownPanel" visible="false" />
+				<Panel class="ItemBG" hittest="false" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="NeutralInventoryPanel" hittest="false">
+		<Panel class="NeutralsBody" hittest="false">
+			<Panel class="NeutralsBodyContainer" hittest="false">
+				<Panel id="NeutralsList" class="NeutralsList" hittest="false" />
+				<Panel class="NeutralsCraftButton" hittest="true" onactivate="CraftItems();">
+					<Label class="NeutralsCraftButtonLabel" text="Синтез" hittest="false" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="NeutralsButton" hittest="true" onactivate="Toggle();">
+			<Panel class="NeutralsButtonIcon" hittest="false" />
+		</Panel>
+		<Panel class="ActiveNeutralsBody" hittest="false">
+			<Panel id="ActiveNeutralsList" class="NeutralsList" hittest="false" />
+		</Panel>
+		<Panel id="RoshpitIndicatorPanel" class="RoshpitIndicatorPanel" hittest="true">
+			<Panel class="RoshpitIndicatorPanelBG" hittest="false" />
+			<Panel class="RoshpitIndicatorPanelIcon" hittest="false" />
+		</Panel>
+	</Panel>
+</root>

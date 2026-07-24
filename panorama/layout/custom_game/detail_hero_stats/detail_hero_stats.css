@@ -1,0 +1,491 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.DetailsStatsWindow
+{
+	align: center top;
+	width: 900px;
+	margin-top: 40px;
+	flow-children: down;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1d1830f6 ), color-stop( 0.45, #131826f4 ), to( #07090df8 ) );
+	border: 1px solid #6f58b8;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( #b69cff55 ), color-stop( 0.35, #6f58b8cc ), to( #1e1638 ) );
+	box-shadow: #000000dd 0px 0px 24px 0px;
+	opacity: 0;
+	transition-property: opacity, transform, pre-transform-scale2d;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.WindowVisible
+{
+	opacity: 1;
+}
+
+.WindowVisible .DetailsStatsWindow
+{
+	opacity: 1;
+}
+
+.ExitCross
+{
+	z-index: 100;
+	horizontal-align: right;
+	margin-right: 2px;
+	margin-top: 2px;
+	ignore-parent-flow: true;
+	width: 32px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/game_hud/icons/close_new_png.vtex");
+	img-shadow: 0px 0px 1px 1 black;
+	background-size: 100%;
+	transition-property: brightness, transform;
+	transition-duration: 0.25s;
+	opacity: 1;
+	saturation: 0.75;
+}
+
+.ExitCross:hover
+{
+	opacity: 1;
+	brightness: 2;
+}
+
+.ExitCross:active
+{
+	transform: scale3d(0.9, 0.9, 1);
+}
+
+.HeaderInfo
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.PlayerBlock
+{
+	width: 170px;
+	height: 160px;
+	flow-children: down;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #241d38 ), to( #0b0d15 ) );
+	border-right: 1px solid #4b3a76;
+	box-shadow: inset #ffffff06 0px 1px 0px 0px;
+}
+
+.PlayerAvatar
+{
+	margin-top: 18px;
+	align: center center;
+	width: 92px;
+	height: 92px;
+	border: 1px solid #b59dff;
+	box-shadow: #8b65ff55 0px 0px 10px 0px;
+	background-color: #0b0d12;
+}
+
+.PlayerAvatarImage
+{
+	width: 100%;
+	height: 100%;
+}
+
+.CurrentLevel
+{
+	margin-top: 10px;
+	horizontal-align: center;
+	color: #f2edff;
+	font-size: 13px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 6px 2 #000000;
+	letter-spacing: 0.5px;
+}
+
+.StatsListHeader
+{
+	width: fill-parent-flow(1);
+	height: 160px;
+	flow-children: right;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #171b29 ), color-stop( 0.5, #111522 ), to( #0a0d14 ) );
+	border-bottom: 1px solid #433563;
+	box-shadow: inset #ffffff05 0px 1px 0px 0px;
+}
+
+.StatsListHeaderBody
+{
+	flow-children: right;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.StatsColumnHeader
+{
+	vertical-align: center;
+	flow-children: down;
+	margin-left: 16px;
+	margin-right: 16px;
+}
+
+.StatsHeaderBlock
+{
+	width: 300px;
+	height: 34px;
+	margin-top: 7px;
+	margin-bottom: 7px;
+	flow-children: right;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #241d36 ), color-stop( 0.5, #161a27 ), to( #0a0c12 ) );
+	border: 1px solid #4a3974;
+	box-shadow: #00000088 0px 2px 6px 0px;
+}
+
+.StatsHeaderBlockKey
+{
+	vertical-align: center;
+	margin-left: 12px;
+	color: #d6c9ff;
+	font-size: 15px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 5px 2 black;
+}
+
+.StatsHeaderBlockValue
+{
+	horizontal-align: right;
+	vertical-align: center;
+	margin-right: 12px;
+	color: #ffffff;
+	font-size: 16px;
+	font-weight: bold;
+	text-shadow: 0px 0px 6px 2 #5e43b6;
+}
+
+.BodyDetailStatsBlocks
+{
+	width: 100%;
+	flow-children: down;
+	padding-top: 18px;
+	padding-bottom: 18px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #111522aa ), to( #090b10cc ) );
+}
+
+.BodyDetailStatsBlocksLine
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.BodyDetailStatsBlock
+{
+	width: 150px;
+	height: 148px;
+	margin: 10px;
+	flow-children: down;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #211934 ), color-stop( 0.45, #141927 ), to( #0a0c12 ) );
+	border: 1px solid #4d3b79;
+	box-shadow: #00000099 0px 3px 10px 0px;
+	transition-property: brightness, transform, box-shadow;
+	transition-duration: 0.18s;
+}
+
+.BodyDetailStatsBlockIcon
+{
+	margin-top: 12px;
+	width: 72px;
+	height: 72px;
+	horizontal-align: center;
+	img-shadow: 0px 0px 8px 0 #7e59ff55;
+}
+
+.DetailIcon_1
+{
+	background-image: url("s2r://panorama/images/game_hud/detail_info/gold_png.vtex");
+	background-size: 100%;
+}
+
+.DetailIcon_2
+{
+	background-image: url("s2r://panorama/images/game_hud/detail_info/wood_png.vtex");
+	background-size: 100%;
+}
+
+.DetailIcon_3
+{
+	background-image: url("s2r://panorama/images/game_hud/icons/kills_2_png.vtex");
+	background-size: 100%;
+}
+
+.DetailIcon_4
+{
+	background-image: url("s2r://panorama/images/game_hud/icons/agi1_png.vtex");
+	background-size: 100%;
+}
+
+.DetailIcon_5
+{
+	background-image: url("s2r://panorama/images/game_hud/icons/int1_png.vtex");
+	background-size: 100%;
+}
+
+.DetailIcon_6
+{
+	background-image: url("s2r://panorama/images/game_hud/detail_info/attack_speed_png.vtex");
+	background-size: 100%;
+}
+
+.DetailIcon_7
+{
+	background-image: url("s2r://panorama/images/game_hud/detail_info/attack_time_png.vtex");
+	background-size: 100%;
+}
+
+.DetailIcon_8
+{
+	background-image: url("s2r://panorama/images/game_hud/detail_info/chance_physical_crit_png.vtex");
+	background-size: 100%;
+}
+
+.DetailIcon_9
+{
+	background-image: url("s2r://panorama/images/game_hud/detail_info/physical_crit_png.vtex");
+	background-size: 100%;
+}
+
+.DetailIcon_10
+{
+	background-image: url("s2r://panorama/images/game_hud/detail_info/chance_magical_crit_png.vtex");
+	background-size: 100%;
+}
+
+.DetailIcon_11
+{
+	background-image: url("s2r://panorama/images/game_hud/detail_info/magical_crit_png.vtex");
+	background-size: 100%;
+}
+
+.DetailIcon_12
+{
+	background-image: url("s2r://panorama/images/game_hud/icons/str1_png.vtex");
+	background-size: 100%;
+}
+
+.BodyDetailStatsBlockKey
+{
+	horizontal-align: center;
+	margin-top: 7px;
+	width: 130px;
+	color: #d9ccff;
+	font-size: 12px;
+	font-weight: semi-bold;
+	text-align: center;
+	text-shadow: 0px 0px 5px 2 black;
+	text-overflow: shrink;
+}
+
+.BodyDetailStatsBlockValue
+{
+	horizontal-align: center;
+	margin-top: 4px;
+	width: 130px;
+	color: #ffffff;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 0px 0px 8px 2 #6a4bc7;
+	text-overflow: shrink;
+}
+
+.StatsFooterOthers
+{
+	width: 100%;
+	flow-children: right;
+	padding-top: 10px;
+	padding-bottom: 14px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #0d1018 ), to( #090b10 ) );
+	border-top: 1px solid #3d315d;
+}
+
+.FooterStatsMenu
+{
+	flow-children: down;
+	margin-left: 10px;
+}
+
+.FooterStatsMenuBlock
+{
+	width: 150px;
+	height: 56px;
+	margin-bottom: 8px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #241c38 ), to( #0d1018 ) );
+	border: 1px solid #4e3c78;
+	box-shadow: #00000088 0px 2px 6px 0px;
+	transition-property: brightness, transform, border-brush;
+	transition-duration: 0.2s;
+}
+
+.FooterStatsMenuBlock:hover
+{
+	brightness: 1.2;
+}
+
+.FooterStatsMenuBlock.ActiveBlockMenu
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #3a2b5f ), to( #151a27 ) );
+	border: 1px solid #b89cff;
+	box-shadow: #8b65ff44 0px 0px 10px 0px;
+}
+
+.FooterStatsMenuBlock Label
+{
+	vertical-align: center;
+	horizontal-align: center;
+	color: #f3efff;
+	font-size: 16px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 6px 2 black;
+}
+
+.FooterStatPanels
+{
+	width: fill-parent-flow(1);
+}
+
+.StatsFooterOthersList
+{
+	height: 250px;
+	margin-left: 30px;
+	margin-right: 30px;
+	horizontal-align: center;
+	flow-children: right;
+	overflow: squish scroll;
+}
+
+.StatsFooterOthersColumn
+{
+	flow-children: down;
+	margin-left: 18px;
+	margin-right: 18px;
+}
+
+.StatsFooterOthersBlock
+{
+	width: 300px;
+	height: 42px;
+	margin-bottom: 10px;
+	flow-children: right;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #211934 ), color-stop( 0.45, #141927 ), to( #0a0c12 ) );
+	border: 1px solid #46376d;
+	box-shadow: #00000077 0px 2px 6px 0px;
+}
+
+.StatsFooterOthersBlockKey
+{
+	vertical-align: center;
+	margin-left: 12px;
+	color: #d1c3ff;
+	font-size: 12px;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.StatsFooterOthersBlockValue
+{
+	horizontal-align: right;
+	vertical-align: center;
+	margin-right: 10px;
+	color: white;
+	font-size: 16px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 6px 2 #6548bf;
+}
+
+#StatsFooterOthersList2
+{
+	visibility: collapse;
+}
+
+#StatsFooterOthersList3
+{
+	visibility: collapse;
+}
+
+#StatsFooterOthersList4
+{
+	visibility: collapse;
+}
+
+VerticalScrollBar,HTMLVerticalScrollBar
+{
+	width: 6px;
+	height: 100%;
+	horizontal-align: right;
+	layout-position: fixed;
+	padding: 1px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #07050b ), color-stop( 0.5, #10091a ), to( #08050d ) );
+	border-left: 1px solid #6f42a822;
+}
+
+VerticalScrollBar .ScrollThumb,HTMLVerticalScrollBar .ScrollThumb
+{
+	width: 4px;
+	min-height: 34px;
+	horizontal-align: center;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #8f68c0 ), color-stop( 0.28, #6d3fa0 ), color-stop( 0.58, #48246f ), to( #211133 ) );
+	border: 1px solid #8a63b0;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( #9a78bd ), to( #3a1d5a ) );
+	box-shadow: #000000aa 0px 0px 4px 0px;
+	border-radius: 2px;
+	transition-property: brightness, background-color;
+	transition-duration: 0.15s;
+}
+
+VerticalScrollBar:hover .ScrollThumb,HTMLVerticalScrollBar:hover .ScrollThumb
+{
+	brightness: 1.08;
+}
+
+VerticalScrollBar:active .ScrollThumb,HTMLVerticalScrollBar:active .ScrollThumb
+{
+	brightness: 0.85;
+}
+
+HorizontalScrollBar,HTMLHorizontalScrollBar
+{
+	height: 6px;
+	width: 100%;
+	vertical-align: bottom;
+	layout-position: fixed;
+	padding: 1px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #07050b ), color-stop( 0.5, #10091a ), to( #08050d ) );
+	border-top: 1px solid #6f42a822;
+}
+
+HorizontalScrollBar .ScrollThumb,HTMLHorizontalScrollBar .ScrollThumb
+{
+	height: 4px;
+	min-width: 34px;
+	vertical-align: center;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #8f68c0 ), color-stop( 0.28, #6d3fa0 ), color-stop( 0.58, #48246f ), to( #211133 ) );
+	border: 1px solid #8a63b0;
+	border-brush: gradient( linear, 0% 0%, 100% 0%, from( #9a78bd ), to( #3a1d5a ) );
+	box-shadow: #000000aa 0px 0px 4px 0px;
+	border-radius: 2px;
+	transition-property: brightness, background-color;
+	transition-duration: 0.15s;
+}
+
+HorizontalScrollBar:hover .ScrollThumb,HTMLHorizontalScrollBar:hover .ScrollThumb
+{
+	brightness: 1.08;
+}
+
+HorizontalScrollBar:active .ScrollThumb,HTMLHorizontalScrollBar:active .ScrollThumb
+{
+	brightness: 0.85;
+}

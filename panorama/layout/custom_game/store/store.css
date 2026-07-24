@@ -1,0 +1,1495 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.StoreWindow
+{
+	align: center top;
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.WindowVisible
+{
+	opacity: 1;
+}
+
+.WindowVisible .StoreWindow
+{
+	opacity: 1;
+}
+
+.StoreBG
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	background-color: gradient( radial, 50% 30%, 0% 0%, 70% 70%, from( #2b1748 ), color-stop( 0.35, #140b25 ), color-stop( 0.75, #09050f ), to( rgb(0, 0, 0) ) );
+	background-image: url("s2r://panorama/images/game_hud/backgrounds/bg2_png.vtex");
+	background-size: 100%;
+	background-img-opacity: 0.02;
+	animation-name: BGScalex;
+	animation-duration: 7s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	z-index: -2;
+}
+
+@keyframes 'BGScalex'
+{
+	0%
+	{
+		transform: scale3d(1, 1, 1);
+		brightness: 1;
+	}
+	
+	50%
+	{
+		transform: scale3d(1.02, 1.02, 1);
+		brightness: 0.5;
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 1, 1);
+		brightness: 1;
+	}
+	
+}
+
+.PFXBackground
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	wash-color: rgb(209, 141, 255);
+	opacity: 0.2;
+	z-index: -1;
+}
+
+.ContentWindowsBG
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr1_2_png.vtex");
+	background-size: 100%;
+	background-position: 50% 50%;
+	img-shadow: 0px 0px 5px 1 black;
+	opacity: 0;
+}
+
+.IsSubWindow .ContentWindowsBG
+{
+	opacity: 0;
+}
+
+.StoreSidebar
+{
+	width: 300px;
+	vertical-align: center;
+	flow-children: down;
+	vertical-align: center;
+	padding: 32px 18px;
+}
+
+.StoreNavButton
+{
+	width: 100%;
+	height: 62px;
+	margin-bottom: 14px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #4b2a7aee ), to( #1a0f2aee ) );
+	border-top: 2px solid #b48cf3;
+	border-left: 2px solid #1a0f2a;
+	border-right: 2px solid #1a0f2a;
+	border-bottom: 2px solid #1a0f2a;
+	box-shadow: 0px 0px 3px 0px #6a3fb3aa;
+	transition-property: brightness, transform, box-shadow;
+	transition-duration: 0.15s;
+	saturation: 0.7;
+	brightness: 0.8;
+}
+
+.StoreNavButton:hover
+{
+	saturation: 1;
+	brightness: 1.2;
+	box-shadow: 0px 0px 8px 0px #8f5cffcc;
+}
+
+.StoreNavButton:active
+{
+	transform: translateX(2px) scale3d(0.98, 0.98, 1);
+}
+
+.StoreNavButton.StoreNavButtonActive
+{
+	saturation: 1;
+	brightness: 1.2;
+	box-shadow: 0px 0px 8px 0px #8f5cffcc;
+}
+
+.StoreNavButton Label
+{
+	width: 100%;
+	height: 30px;
+	text-overflow: shrink;
+	font-size: 26px;
+	font-weight: semi-bold;
+	text-align: left;
+	vertical-align: center;
+	letter-spacing: 0.3px;
+	text-shadow: 0px 0px 5px 3 black;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+	padding: 0px 18px;
+}
+
+.StoreContent
+{
+	width: 100%;
+	height: 100%;
+	margin-top: 100px;
+	margin-bottom: 100px;
+	margin-left: 0px;
+	margin-right: 50px;
+}
+
+.StoreTopBar
+{
+	margin-top: 20px;
+	width: 100%;
+	height: 56px;
+	z-index: 10;
+	ignore-parent-flow: true;
+}
+
+.StoreCurrencyRow
+{
+	horizontal-align: right;
+	flow-children: right;
+	padding-right: 100px;
+}
+
+.StoreCurrencyPanel
+{
+	width: 160px;
+	height: 44px;
+	margin-left: 12px;
+	padding: 0px 14px;
+	flow-children: right;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #2b123fdd ), color-stop( 0.45, #51207add ), to( #1a0c2bdd ));
+	border: 1px solid #d5aaf7;
+	border-brush: gradient( linear, 0% 0%, 100% 0%, from( #ffb3ff ), color-stop( 0.35, #c45cff ), color-stop( 0.7, #7b2cff ), to( #e58cff ) );
+	border-radius: 6px;
+	box-shadow: #d35cff44 0px 0px 6px 0px;
+}
+
+.StoreCurrencyIcon
+{
+	width: 32px;
+	height: 32px;
+	vertical-align: center;
+}
+
+.StoreCurrencyAmount
+{
+	margin-left: 10px;
+	vertical-align: center;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+	font-size: 24px;
+	font-weight: bold;
+	text-shadow: 0px 1px 2px 2 #000000cc;
+	text-overflow: shrink;
+}
+
+.StoreContentFrame
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	margin-top: 16px;
+	flow-children: down;
+	background-color: gradient( radial, 50% 10%, 0% 0%, 85% 85%, from( #4a3d68 ), color-stop( 0.35, #2d2542 ), color-stop( 0.7, #1b1628 ), to( #161124 ) );
+	width: 95%;
+	height: 90%;
+	align: center center;
+	background-color: transparent;
+}
+
+.IsSubWindow .StoreContentFrame
+{
+	background-color: transparent;
+}
+
+.StoreSectionTitleWrap
+{
+	width: 100%;
+	height: 52px;
+}
+
+.StoreSectionTitle
+{
+	align: center center;
+	color: #ffe788;
+	font-size: 34px;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-shadow: 0px 2px 3px 3 #3d2400;
+}
+
+.StoreSectionBody
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	margin: 40px;
+}
+
+.StoreExitCross
+{
+	z-index: 100;
+	horizontal-align: right;
+	margin-right: 10px;
+	margin-top: 10px;
+	ignore-parent-flow: true;
+	width: 64px;
+	height: 64px;
+	background-image: url("s2r://panorama/images/game_hud/icons/close_new_png.vtex");
+	background-size: 100%;
+	transition-property: brightness, transform;
+	transition-duration: 0.25s;
+	opacity: 1;
+	saturation: 0.75;
+	img-shadow: 0px 0px 1px 1 white;
+}
+
+.StoreExitCross:hover
+{
+	opacity: 1;
+	brightness: 2;
+}
+
+.StoreExitCross:active
+{
+	transform: scale3d(0.9, 0.9, 1);
+}
+
+.StoreMonthlyCardsWrap
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right-wrap;
+	overflow: noclip;
+}
+
+.MonthlyCardPanel
+{
+	width: 440px;
+	height: 700px;
+	margin: 12px;
+	flow-children: down;
+	animation-name: CardSubUp;
+	animation-duration: 3s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	pre-transform-scale2d: 0.95;
+	transition-property: pre-transform-scale2d;
+	transition-duration: 0.25s;
+	transition-timing-function: ease-in-out;
+}
+
+.MonthlyCardPanel:hover
+{
+	pre-transform-scale2d: 0.97;
+}
+
+.MonthlyCardData
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	padding: 55px;
+}
+
+.ParticleSubFx
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	transform: rotateZ(180deg);
+}
+
+.ParticleSubFxSmoke
+{
+	width: 500px;
+	height: 200px;
+	vertical-align: bottom;
+	ignore-parent-flow: true;
+	z-index: -1;
+}
+
+.ParticleSubFxSmokeBasic
+{
+	transform: translateY(60px) translateX(-20px);
+	wash-color: rgb(134, 121, 250);
+}
+
+.ParticleSubFxSmokeSlacking
+{
+	transform: translateY(60px) translateX(450px);
+	wash-color: rgb(211, 97, 240);
+}
+
+.ParticleSubFxSmokePremium
+{
+	transform: translateY(60px) translateX(910px);
+	wash-color: rgb(255, 136, 0);
+}
+
+.MonthlyCardThemeBasic .ParticleSubFx
+{
+	opacity-mask: url("s2r://panorama/images/game_hud/subs/1_mask_png.vtex") 1;
+	wash-color: rgb(134, 121, 250);
+}
+
+.MonthlyCardThemeSlacking .ParticleSubFx
+{
+	opacity-mask: url("s2r://panorama/images/game_hud/subs/2_mask_png.vtex") 1;
+	wash-color: rgb(211, 97, 240);
+}
+
+.MonthlyCardThemePremium .ParticleSubFx
+{
+	opacity-mask: url("s2r://panorama/images/game_hud/subs/3_mask_png.vtex") 1;
+	wash-color: rgb(255, 136, 0);
+}
+
+@keyframes 'CardSubUp'
+{
+	0%
+	{
+		transform: translateY(-15px);
+	}
+	
+	50%
+	{
+		transform: translateY(15px);
+	}
+	
+	100%
+	{
+		transform: translateY(-15px);
+	}
+	
+}
+
+.MonthlyCardThemeBasic
+{
+	background-image: url("s2r://panorama/images/game_hud/subs/1_png.vtex");
+	background-size: 100%;
+}
+
+.MonthlyCardThemeSlacking
+{
+	background-image: url("s2r://panorama/images/game_hud/subs/2_png.vtex");
+	background-size: 100%;
+}
+
+.MonthlyCardThemePremium
+{
+	background-image: url("s2r://panorama/images/game_hud/subs/3_png.vtex");
+	background-size: 100%;
+}
+
+.MonthlyCardHeader
+{
+	width: 100%;
+	horizontal-align: center;
+	margin-top: 140px;
+	flow-children: down;
+}
+
+.MonthlyCardTitle
+{
+	width: 100%;
+	color: white;
+	font-size: 28px;
+	font-weight: semi-bold;
+	text-transform: uppercase;
+	text-align: center;
+	text-shadow: 0px 0px 5px 4 #000000dd;
+}
+
+.MonthlyCardThemeBasic .MonthlyCardTitle
+{
+	color: rgb(206, 206, 253);
+}
+
+.MonthlyCardThemeSlacking .MonthlyCardTitle
+{
+	color: rgb(250, 198, 247);
+}
+
+.MonthlyCardThemePremium .MonthlyCardTitle
+{
+	color: rgb(253, 255, 121);
+}
+
+.MonthlyCardSubtitle
+{
+	width: 100%;
+	text-align: center;
+	color: #1d2430;
+	font-size: 18px;
+	font-weight: semi-bold;
+	color: white;
+	text-shadow: 0px 0px 3px 3 #000000dd;
+}
+
+.MonthlyCardBody
+{
+	width: 100%;
+	margin-top: 10px;
+	flow-children: down;
+}
+
+.MonthlyCardBlockTitle
+{
+	margin-top: 5px;
+	font-size: 18px;
+	font-weight: bold;
+	width: 300px;
+	color: white;
+	text-shadow: 0px 0px 3px 3 #000000dd;
+	padding-left: 5px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( rgba(2, 1, 0, 0.7) ), color-stop( 0.5, rgba(2, 1, 0, 0.7) ), to( #00000000 ) );
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+
+.MonthlyCardPerks
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.MonthlyCardPerk
+{
+	width: 100%;
+	margin-top: 6px;
+	color: #fdfdfd;
+	font-size: 14px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 5px 4 #000000bb;
+	white-space: normal;
+}
+
+.MonthlyCardRewardRow
+{
+	flow-children: right;
+	margin-top: 0px;
+}
+
+.MonthlyCardRewardRow1
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-top: 10px;
+}
+
+.MonthlyRewardPanel
+{
+	width: 64px;
+	height: 64px;
+	margin-right: 0px;
+}
+
+.MonthlyRewardPanelBG1
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_without_border_png.vtex");
+	background-size: 100%;
+	z-index: 6;
+	img-shadow: 0px 0px 10px 2 black;
+	ignore-parent-flow: true;
+}
+
+.MonthlyRewardPanelBG2
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_png.vtex");
+	background-size: 100%;
+	z-index: -1;
+	ignore-parent-flow: true;
+}
+
+.MonthlyRewardIcon
+{
+	width: 60%;
+	height: 60%;
+	align: center center;
+}
+
+.MonthlyRewardCount
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	width: 80%;
+	margin-bottom: 6px;
+	padding-top: 2px;
+	text-align: center;
+	background-color: #000000cc;
+	color: #fff5c8;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.StoreBuyButton
+{
+	width: 220px;
+	height: 60px;
+	vertical-align: bottom;
+	horizontal-align: right;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #ffd157 ), to( #d08a12 ) );
+	border: 3px solid #fff2b1;
+	box-shadow: #000000aa 0px 0px 4px 0px;
+	transition-property: brightness, transform;
+	transition-duration: 0.15s;
+	ignore-parent-flow: true;
+	horizontal-align: center;
+	margin-bottom: 35px;
+}
+
+.MonthlyCardThemeBasic .StoreBuyButton
+{
+	border: 1px solid #ffffff33;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #7fd0ff ), color-stop( 0.45, #4f7dff ), to( #2d3fa8 ) );
+}
+
+.MonthlyCardThemeSlacking .StoreBuyButton
+{
+	border: 1px solid #ffffff33;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #ff8cff ), color-stop( 0.45, #b44dff ), to( #5e1ca8 ) );
+}
+
+.MonthlyCardThemePremium .StoreBuyButton
+{
+	border: 1px solid #ffffff33;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #ffe98a ), color-stop( 0.45, #ffb400 ), to( #b85a00 ) );
+}
+
+.StoreBuyButton:hover,.StoreItemBuyButton:hover
+{
+	brightness: 1.12;
+}
+
+.StoreBuyButtonDisabled,.StorePurchaseActionButtonDisabled,.TopUpCardDisabled
+{
+	saturation: 0;
+	brightness: 0.45;
+}
+
+.StoreBuyButtonDisabled:hover,.StorePurchaseActionButtonDisabled:hover,.TopUpCardDisabled:hover
+{
+	brightness: 0.45;
+}
+
+.StoreBuyButtonDisabled:active,.StorePurchaseActionButtonDisabled:active,.TopUpCardDisabled:active
+{
+	transform: none;
+}
+
+.StoreSubscriptionDaysLabel
+{
+	width: 300px;
+	height: 60px;
+	vertical-align: bottom;
+	horizontal-align: center;
+	margin-bottom: 35px;
+	ignore-parent-flow: true;
+	text-align: center;
+	color: #fff6c7;
+	font-size: 26px;
+	font-weight: bold;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( transparent ), color-stop( 0.2, #000000dd ), color-stop( 0.8, #000000dd ), to( transparent ) );
+	padding-top: 14px;
+}
+
+.StoreBuyButton:active,.StoreItemBuyButton:active
+{
+	transform: scale3d(0.97, 0.97, 1);
+}
+
+.StoreBuyButton Label
+{
+	align: center center;
+	color: #3c2200;
+	font-size: 34px;
+	font-weight: black;
+	color: #fdfdfd;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+}
+
+.StoreProductGrid
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right-wrap;
+	overflow: squish scroll;
+}
+
+.StoreItemCard
+{
+	width: 246px;
+	height: 332px;
+	margin: 10px;
+	padding: 30px;
+	flow-children: down;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr15_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 10px 5 black;
+	brightness: 1.01;
+	animation-name: CardSubUp;
+	animation-duration: 20s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+.StoreItemCard:hover
+{
+	img-shadow: 0px 0px 5px 1 rgba(162, 0, 255, 0.5);
+	brightness: 1.1;
+}
+
+.StoreItemCard.StoreItemPurchased
+{
+	saturation: 0.15;
+	brightness: 0.45;
+}
+
+.StoreItemCard.StoreItemPurchased:hover
+{
+	img-shadow: 0px 0px 10px 5 black;
+	saturation: 0.15;
+	brightness: 0.45;
+}
+
+.StoreItemImageWrap
+{
+	width: 120px;
+	height: 120px;
+	horizontal-align: center;
+	margin-top: 25px;
+}
+
+.StoreItemImage
+{
+	width: 100%;
+	height: 100%;
+	img-shadow: 0px 0px 10px 2 black;
+}
+
+.StoreItemPurchasedLabel
+{
+	align: center center;
+	background-color: #0d0d0ddd;
+	color: #ffffff;
+	font-size: 28px;
+	font-weight: black;
+	text-shadow: 0px 1px 2px 2 #000000ee;
+	opacity: 0;
+	visibility: collapse;
+}
+
+.StoreItemName
+{
+	max-height: 30px;
+	text-overflow: shrink;
+	width: 100%;
+	text-align: center;
+	margin-top: 2px;
+	color: #fff4ce;
+	font-size: 16px;
+	font-weight: semi-bold;
+	text-shadow: 0px 1px 2px 2 #000000dd;
+	font-family: Reaver;
+	box-shadow: #000000c5 0px 0px 8px 0px;
+}
+
+.StoreItemLimit
+{
+	width: 100%;
+	margin-top: 10px;
+	color: #ffe1d3;
+	font-weight: semi-bold;
+	font-size: 18px;
+	text-align: center;
+	text-shadow: 0px 0px 3px 3 #000000;
+	box-shadow: #000000c5 0px 0px 8px 0px;
+}
+
+.StoreItemBuyButton
+{
+	margin-top: 10px;
+	horizontal-align: center;
+	width: 250px;
+	height: 30px;
+	flow-children: none;
+	box-shadow: #000000c5 0px 0px 8px 0px;
+	transition-property: brightness, transform;
+	transition-duration: 0.15s;
+}
+
+.StoreItemBuyButton.StoreItemBuyButtonDisabled
+{
+	brightness: 0.5;
+}
+
+.StoreItemBuyButtonBody
+{
+	flow-children: right;
+	align: center center;
+}
+
+.StoreItemBuyCurrency
+{
+	width: 32px;
+	height: 32px;
+	vertical-align: center;
+}
+
+.StoreItemBuyPrice
+{
+	margin-left: 8px;
+	vertical-align: center;
+	color: #ffd75a;
+	font-size: 28px;
+	font-weight: black;
+	text-shadow: 0px 1px 2px 2 #000000dd;
+}
+
+.StoreTopUpGrid
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right-wrap;
+	overflow: squish scroll;
+}
+
+.TopUpCard
+{
+	width: 250px;
+	height: 360px;
+	margin: 10px;
+	flow-children: down;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr16_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 10px 10 black;
+	ui-scale: 90%;
+	animation-name: CardSubUp;
+	animation-duration: 20s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+.TopUpCard:hover
+{
+	img-shadow: 0px 0px 5px 1 rgba(255, 153, 0, 0.5);
+	brightness: 1.1;
+}
+
+.TopUpCardDisabled:hover
+{
+	img-shadow: 0px 0px 10px 10 black;
+	brightness: 0.45;
+}
+
+.TopUpCardBG
+{
+	width: 250px;
+	height: 360px;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr16_1_png.vtex");
+	background-size: 100%;
+	ignore-parent-flow: true;
+	z-index: 10;
+}
+
+.TopUpCardContent
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	padding: 30px;
+}
+
+.TopUpBadge
+{
+	width: 100%;
+	text-align: center;
+	margin-top: 0px;
+	color: #fff4ce;
+	font-size: 20px;
+	font-weight: semi-bold;
+	text-shadow: 0px 1px 2px 2 #000000dd;
+	font-family: Reaver;
+	box-shadow: #000000c5 0px 0px 8px 0px;
+	text-transform: uppercase;
+	animation-name: SaleGradient;
+	animation-duration: 3s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'SaleGradient'
+{
+	0%
+	{
+		color: gradient(linear, 100% 0%, 0% 0%, from(#fedd45, color-stop(0.5, #fff700), to(#eebb0a));
+		text-shadow: 0px 0px 2px 0 gold;
+	}
+	
+	25%
+	{
+		color: gradient(linear, 100% 0%, 0% 0%, from(#fff700), color-stop(0.5, #eebb0a), to(#fedd45));
+		text-shadow: 0px 0px 2px 1 gold;
+	}
+	
+	50%
+	{
+		color: gradient(linear, 100% 0%, 0% 0%, from(#eebb0a), color-stop(0.5, #fedd45), to(#fff700));
+		text-shadow: 0px 0px 2px 1 gold;
+	}
+	
+	75%
+	{
+		color: gradient(linear, 100% 0%, 0% 0%, from(#fff700), color-stop(0.5, #eebb0a), to(#fedd45));
+		text-shadow: 0px 0px 2px 1 gold;
+	}
+	
+	100%
+	{
+		color: gradient(linear, 100% 0%, 0% 0%, from(#fedd45), color-stop(0.5, #fff700), to(#eebb0a));
+		text-shadow: 0px 0px 2px 0 gold;
+	}
+	
+}
+
+.TopUpImage
+{
+	width: 130px;
+	height: 130px;
+	margin-bottom: 5px;
+	margin-top: 24px;
+	horizontal-align: center;
+	img-shadow: 0px 0px 5px 3 black;
+}
+
+.TopUpTitle
+{
+	width: 100%;
+	text-align: center;
+	margin-top: 10px;
+	color: #fff4ce;
+	font-size: 16px;
+	font-weight: semi-bold;
+	text-shadow: 0px 1px 2px 2 #000000dd;
+	font-family: Reaver;
+	box-shadow: #000000c5 0px 0px 8px 0px;
+}
+
+.TopUpCrystals
+{
+	width: 100%;
+	margin-top: 8px;
+	text-align: center;
+	color: #fff9d6;
+	font-size: 28px;
+	font-weight: black;
+	text-shadow: 0px 2px 2px 2 #4a2300;
+}
+
+.TopUpBuyButton
+{
+	margin-top: 10px;
+	horizontal-align: center;
+	width: 250px;
+	height: 30px;
+	flow-children: none;
+	box-shadow: #000000c5 0px 0px 8px 0px;
+	transition-property: brightness, transform;
+	transition-duration: 0.15s;
+}
+
+.TopUpPrice
+{
+	align: center center;
+	color: #ffd75a;
+	font-size: 28px;
+	font-weight: black;
+	text-shadow: 0px 1px 2px 2 #000000dd;
+}
+
+.StoreItemBuyButton:active
+{
+	transform: none;
+}
+
+.StorePurchaseModal
+{
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+}
+
+.StorePurchaseModalBody
+{
+	width: 700px;
+	align: center center;
+	flow-children: down;
+	padding: 28px;
+}
+
+.StorePurchaseModalBodyContent
+{
+	width: 620px;
+	align: center center;
+	flow-children: down;
+	padding: 28px;
+	padding-bottom: 40px;
+	ignore-parent-flow: true;
+}
+
+.StorePurchaseModalBodyBG1
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	background-color: gradient( radial, 50% 10%, 0% 0%, 85% 85%, from( #4a3d68 ), color-stop( 0.35, #2d2542 ), color-stop( 0.7, #1b1628 ), to( #161124 ) );
+	margin-left: 20px;
+	margin-top: 18px;
+	margin-right: 20px;
+	margin-bottom: 18px;
+}
+
+.StorePurchaseModalBodyBG2
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	border-image-source: url("s2r://panorama/images/game_hud/frames/fr19_png.vtex");
+	border-width: 30px;
+	border-image-slice: 60px;
+}
+
+.StorePurchaseModalIcon
+{
+	width: 128px;
+	height: 128px;
+	horizontal-align: center;
+	margin-bottom: 14px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.StorePurchaseModalTitle
+{
+	width: 100%;
+	text-align: center;
+	color: #fff0b5;
+	font-size: 30px;
+	font-weight: bold;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+}
+
+.StorePurchaseModalText
+{
+	horizontal-align: center;
+	margin-top: 8px;
+	color: white;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.StorePurchaseModalPriceRow
+{
+	horizontal-align: center;
+	flow-children: right;
+	margin-top: 18px;
+}
+
+.StorePurchaseModalPrice
+{
+	vertical-align: center;
+	color: white;
+	font-size: 28px;
+	font-weight: bold;
+	margin-left: 8px;
+}
+
+.StorePurchaseStepper
+{
+	horizontal-align: center;
+	flow-children: right;
+	margin-top: 20px;
+}
+
+.StorePurchaseStepButton
+{
+	width: 44px;
+	height: 44px;
+}
+
+.StorePurchaseStepButton:hover
+{
+	brightness: 1.5;
+}
+
+.StorePurchaseStepButton:active
+{
+	transform: scale3d(0.9, 0.9, 1);
+}
+
+.StorePurchaseStepButtonMinus
+{
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_15_png.vtex");
+	background-size: 100%;
+}
+
+.StorePurchaseStepButtonPlus
+{
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_14_png.vtex");
+	background-size: 100%;
+}
+
+.StorePurchaseStepButton Label
+{
+	align: center center;
+	color: white;
+	font-size: 28px;
+	font-weight: bold;
+	opacity: 0;
+}
+
+.StorePurchaseQuantity
+{
+	width: 130px;
+	text-align: center;
+	vertical-align: center;
+	color: #fff0b5;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.StorePurchaseActions
+{
+	horizontal-align: center;
+	flow-children: right;
+	margin-top: 28px;
+}
+
+.StorePurchaseActionButton
+{
+	width: 200px;
+	height: 52px;
+	margin-left: 8px;
+	margin-right: 8px;
+	transition-property: brightness, transform;
+	transition-duration: 0.12s;
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_13_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.StorePurchaseCancelButton
+{
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_12_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.StorePurchaseActionButton:hover
+{
+	brightness: 1.12;
+}
+
+.StorePurchaseActionButtonDisabled:hover
+{
+	brightness: 0.45;
+}
+
+.StorePurchaseActionButton:active
+{
+	transform: scale3d(0.97, 0.97, 1);
+}
+
+.StorePurchaseActionButton Label
+{
+	align: center center;
+	color: white;
+	font-size: 24px;
+	font-weight: bold;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+}
+
+.StoreExternalPaymentModal
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	ignore-parent-flow: true;
+	z-index: 200;
+}
+
+.StoreExternalPaymentBody
+{
+	width: 720px;
+	min-height: 420px;
+	align: center center;
+	flow-children: down;
+	padding: 30px;
+	padding-bottom: 0px;
+	background-color: gradient( radial, 50% 0%, 0% 0%, 80% 90%, from( #3d285fee ), color-stop( 0.45, #201631f2 ), to( #0f0a19f8 ) );
+	border: 2px solid #cf9cff;
+	border-brush: gradient( linear, 0% 0%, 100% 100%, from( #ffdf9f ), color-stop( 0.4, #c974ff ), to( #6b35ff ) );
+	box-shadow: #b95cff55 0px 0px 24px 0px;
+}
+
+.StoreExternalPaymentClose
+{
+	width: 42px;
+	height: 42px;
+	horizontal-align: right;
+	ignore-parent-flow: true;
+	background-image: url("s2r://panorama/images/game_hud/icons/close_new_png.vtex");
+	background-size: 100%;
+	saturation: 0.8;
+	transition-property: brightness, transform;
+	transition-duration: 0.14s;
+}
+
+.StoreExternalPaymentClose:hover
+{
+	brightness: 1.8;
+}
+
+.StoreExternalPaymentClose:active
+{
+	transform: scale3d(0.92, 0.92, 1);
+}
+
+.StoreExternalPaymentHeader
+{
+	width: 100%;
+	flow-children: right;
+	padding-right: 54px;
+}
+
+.StoreExternalPaymentIcon
+{
+	width: 96px;
+	height: 96px;
+	margin-right: 18px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	img-shadow: 0px 0px 14px 2 #000000;
+}
+
+.StoreExternalPaymentTitleWrap
+{
+	width: fill-parent-flow(1);
+	vertical-align: center;
+	flow-children: down;
+}
+
+.StoreExternalPaymentTitle
+{
+	width: 100%;
+	color: #fff1bf;
+	font-size: 30px;
+	font-weight: bold;
+	text-shadow: 0px 2px 4px 3 #000000dd;
+	text-overflow: shrink;
+}
+
+.StoreExternalPaymentPrice
+{
+	margin-top: 6px;
+	color: #ffffff;
+	font-size: 22px;
+	font-weight: semi-bold;
+	text-shadow: 0px 1px 3px 2 #000000dd;
+}
+
+.StoreExternalPaymentHint
+{
+	width: 100%;
+	margin-top: 26px;
+	color: #d9d2ed;
+	font-size: 20px;
+	line-height: 25px;
+	text-align: center;
+	text-shadow: 0px 1px 2px 2 #000000cc;
+	white-space: normal;
+}
+
+.StoreExternalPaymentProviders
+{
+	width: 100%;
+	flow-children: down;
+	margin-top: 20px;
+	padding: 5px;
+}
+
+.StoreExternalPaymentProvider
+{
+	width: 100%;
+	min-height: 72px;
+	margin-bottom: 12px;
+	padding: 12px 18px;
+	flow-children: right;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #2b1744ee ), color-stop( 0.5, #512073dd ), to( #1a0b27ee ) );
+	border: 1px solid #9c6cff;
+	box-shadow: #985cff33 0px 0px 10px 0px;
+	transition-property: brightness, transform, border, box-shadow;
+	transition-duration: 0.14s;
+}
+
+.StoreExternalPaymentProvider:hover
+{
+	brightness: 1.18;
+	border: 1px solid #ffe0a0;
+	box-shadow: #f0b35c55 0px 0px 14px 0px;
+}
+
+.StoreExternalPaymentProviderDisabled
+{
+	saturation: 0;
+	brightness: 0.45;
+}
+
+.StoreExternalPaymentProviderDisabled:hover
+{
+	brightness: 0.45;
+	border: 1px solid #9c6cff;
+	box-shadow: #985cff33 0px 0px 10px 0px;
+}
+
+.StoreExternalPaymentProvider:active
+{
+	transform: scale3d(0.985, 0.985, 1);
+}
+
+.StoreExternalPaymentProviderIcon
+{
+	width: 50px;
+	height: 50px;
+	vertical-align: center;
+	margin-right: 16px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	img-shadow: 0px 0px 8px 1 #000000;
+}
+
+.StoreExternalPaymentProviderContent
+{
+	width: fill-parent-flow(1);
+	vertical-align: center;
+	flow-children: down;
+}
+
+.StoreExternalPaymentProviderTitle
+{
+	color: #fff3c8;
+	font-size: 22px;
+	font-weight: bold;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+}
+
+.StoreExternalPaymentProviderDesc
+{
+	margin-top: 4px;
+	color: #cfc8df;
+	font-size: 16px;
+	white-space: normal;
+}
+
+.StoreExternalPaymentProviderError
+{
+	width: 100%;
+	min-height: 24px;
+	margin-top: 12px;
+	color: #ff9d9d;
+	font-size: 17px;
+	text-align: center;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+}
+
+.StoreExternalPaymentUrl
+{
+	width: 100%;
+	min-height: 46px;
+	margin-top: 20px;
+	padding: 0px 14px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	flow-children: down;
+	background-color: #070410ee;
+	border: 1px solid #9c6cff;
+	transition-property: brightness, border;
+	transition-duration: 0.14s;
+}
+
+.StoreExternalPaymentUrl:hover
+{
+	brightness: 1.2;
+	border: 1px solid #e0b7ff;
+}
+
+.StoreExternalPaymentUrlLabel
+{
+	width: 100%;
+	color: #fff5d5;
+	font-size: 16px;
+	white-space: normal;
+	text-overflow: shrink;
+}
+
+.StoreExternalPaymentCopyStatus
+{
+	width: 100%;
+	min-height: 24px;
+	margin-top: 8px;
+	color: #cfc8df;
+	font-size: 16px;
+	text-align: center;
+}
+
+.StoreExternalPaymentActions
+{
+	horizontal-align: center;
+	flow-children: right;
+	margin-top: 28px;
+}
+
+.StoreExternalPaymentAction
+{
+	width: 210px;
+	height: 52px;
+	margin-left: 10px;
+	margin-right: 10px;
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_13_png.vtex");
+	background-size: 100%;
+	transition-property: brightness, transform;
+	transition-duration: 0.14s;
+}
+
+.StoreExternalPaymentBack
+{
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_12_png.vtex");
+}
+
+.StoreExternalPaymentAction:hover
+{
+	brightness: 1.15;
+}
+
+.StoreExternalPaymentAction:active
+{
+	transform: scale3d(0.96, 0.96, 1);
+}
+
+.StoreExternalPaymentAction Label
+{
+	align: center center;
+	color: white;
+	font-size: 23px;
+	font-weight: bold;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+}
+
+VerticalScrollBar,HTMLVerticalScrollBar
+{
+	width: 5px;
+	height: 100%;
+	horizontal-align: right;
+	layout-position: fixed;
+	padding: 1px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #18081a ), to( #2a0b2b ) );
+	border-left: 1px solid #e06af022;
+}
+
+VerticalScrollBar .ScrollThumb,HTMLVerticalScrollBar .ScrollThumb
+{
+	width: 8px;
+	min-height: 38px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #eba8ff ), color-stop( 0.22, #aa5fff ), color-stop( 0.55, #b91fc7 ), to( #5f0c6a ) );
+	border: 1px solid #fdbfff;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( #fad4ff ), to( #7e108d ) );
+	box-shadow: #000000cc 0px 0px 6px 0px;
+	border-radius: 2px;
+	transition-property: brightness, transform, background-color;
+	transition-duration: 0.15s;
+}
+
+VerticalScrollBar:hover .ScrollThumb,HTMLVerticalScrollBar:hover .ScrollThumb
+{
+	brightness: 1.12;
+}
+
+VerticalScrollBar:active .ScrollThumb,HTMLVerticalScrollBar:active .ScrollThumb
+{
+	brightness: 0.9;
+}
+
+HorizontalScrollBar,HTMLHorizontalScrollBar
+{
+	height: 4px;
+	width: 100%;
+	vertical-align: bottom;
+	layout-position: fixed;
+	padding: 1px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #1a0f08 ), to( #2b170b ) );
+	border-top: 1px solid #f0c96a22;
+}
+
+HorizontalScrollBar .ScrollThumb,HTMLHorizontalScrollBar .ScrollThumb
+{
+	height: 8px;
+	min-width: 38px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #fff0a8 ), color-stop( 0.22, #ffd65f ), color-stop( 0.55, #c78d1f ), to( #ff9602 ) );
+	border: 1px solid #fff4bf;
+	border-brush: gradient( linear, 0% 0%, 100% 0%, from( #fff8d4 ), to( #8d5a10 ) );
+	box-shadow: #000000cc 0px 0px 6px 0px;
+	border-radius: 2px;
+	transition-property: brightness, transform, background-color;
+	transition-duration: 0.15s;
+}
+
+HorizontalScrollBar:hover .ScrollThumb,HTMLHorizontalScrollBar:hover .ScrollThumb
+{
+	brightness: 1.12;
+}
+
+HorizontalScrollBar:active .ScrollThumb,HTMLHorizontalScrollBar:active .ScrollThumb
+{
+	brightness: 0.9;
+}

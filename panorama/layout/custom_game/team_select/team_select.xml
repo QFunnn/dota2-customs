@@ -1,0 +1,49 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/battle_pass/current_battle_pass.vcss_c" />
+		<include src="s2r://panorama/styles/play.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/team_select/team_select.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/team_select/team_select.vjs_c" />
+	</scripts>
+	<Panel hittest="false" class="TeamSelect">
+		<Panel hittest="false" id="UpUpLoadStatus" class="loading">
+			<Label id="UpUpLoadStatusLabel" class="UpUpLoadStatusLabel" text="#upup_setup_loading" />
+		</Panel>
+		<Panel hittest="false" id="TeamSelectContainer" selectionpos="auto">
+			<Panel hittest="false" id="TeamsSelectEmptySpace" />
+			<Panel id="TeamsList">
+				<Panel id="GameInfoPanel">
+					<Panel id="StartGameCountdownTimer">
+						<Panel id="TimerLabelBox">
+							<Label id="TimerLabelAutoStart" text="#custom_game_team_select_auto_start" />
+							<Label id="TimerLabelGameStart" text="#custom_game_team_select_starting" />
+							<Label id="TeamSelectTimer" text="#custom_game_team_select_timer" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel id="TeamsListGroup">
+					<Panel id="TeamsListRoot" />
+				</Panel>
+				<Panel id="GameAndPlayersRoot">
+					<Panel id="UnassignedPlayerPanel">
+						<Panel id="UnassignedPlayersContainer" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

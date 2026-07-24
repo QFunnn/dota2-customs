@@ -1,0 +1,224 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/styles/lvlup_styles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/profile/profile.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/profile/profile.vjs_c" />
+	</scripts>
+	<Panel style="width:100%;height:100%;" hittest="false">
+		<Panel class="ProfileWindow">
+			<Panel class="ProfileBG" />
+			<DOTAParticleScenePanel id="PFXBackground" class="PFXBackground" particleName="particles/replace_hud/custom_tooltip_particle.vpcf" particleonly="true" startActive="true" cameraOrigin="0 0 550" lookAt="0 0 0" fov="65" squarePixels="true" />
+			<Panel class="NavigationPanel" id="NavigationPanel">
+				<Panel class="NavigationButton Active" id="NavigationButton1" onactivate="NavigateSwitch(&apos;NavigationButton1&apos;, &apos;PassPanel&apos;);">
+					<Label text="#services_profile_nav_level" />
+				</Panel>
+				<Panel class="NavigationButton" id="NavigationButton2" onactivate="NavigateSwitch(&apos;NavigationButton2&apos;, &apos;AchivementtPanel&apos;); SelectProfileSubCategory(&apos;achievement&apos;, &apos;achievement_1&apos;);">
+					<Label text="#services_profile_nav_achievements" />
+				</Panel>
+				<Panel class="ProfileSubNavigation" id="AchievementSubNavigation">
+					<Panel class="ProfileSubNavigationButton" id="AchievementSubButton_achievement_1" onactivate="SelectProfileSubCategory(&apos;achievement&apos;, &apos;achievement_1&apos;);">
+						<Label text="#services_profile_achievement_category_1" />
+					</Panel>
+					<Panel class="ProfileSubNavigationButton" id="AchievementSubButton_achievement_2" onactivate="SelectProfileSubCategory(&apos;achievement&apos;, &apos;achievement_2&apos;);">
+						<Label text="#services_profile_achievement_category_2" />
+					</Panel>
+					<Panel class="ProfileSubNavigationButton" id="AchievementSubButton_achievement_3" onactivate="SelectProfileSubCategory(&apos;achievement&apos;, &apos;achievement_3&apos;);">
+						<Label text="#services_profile_achievement_category_3" />
+					</Panel>
+					<Panel class="ProfileSubNavigationButton" id="AchievementSubButton_achievement_4" onactivate="SelectProfileSubCategory(&apos;achievement&apos;, &apos;achievement_4&apos;);">
+						<Label text="#services_profile_achievement_category_4" />
+					</Panel>
+					<Panel class="ProfileSubNavigationButton" id="AchievementSubButton_achievement_5" onactivate="SelectProfileSubCategory(&apos;achievement&apos;, &apos;achievement_5&apos;);">
+						<Label text="#services_profile_achievement_category_5" />
+					</Panel>
+					<Panel class="ProfileSubNavigationButton" id="AchievementSubButton_achievement_6" onactivate="SelectProfileSubCategory(&apos;achievement&apos;, &apos;achievement_6&apos;);">
+						<Label text="#services_profile_achievement_category_6" />
+					</Panel>
+				</Panel>
+				<Panel class="NavigationButton" id="NavigationButton3" onactivate="NavigateSwitch(&apos;NavigationButton3&apos;, &apos;AtlasPanel&apos;); SelectProfileSubCategory(&apos;atlas&apos;, &apos;atlas_1&apos;);">
+					<Label text="#services_profile_nav_atlas" />
+				</Panel>
+				<Panel class="ProfileSubNavigation" id="AtlasSubNavigation">
+					<Panel class="ProfileSubNavigationButton" id="AtlasSubButton_atlas_1" onactivate="SelectProfileSubCategory(&apos;atlas&apos;, &apos;atlas_1&apos;);">
+						<Label text="#services_profile_atlas_category_1" />
+					</Panel>
+					<Panel class="ProfileSubNavigationButton" id="AtlasSubButton_atlas_2" onactivate="SelectProfileSubCategory(&apos;atlas&apos;, &apos;atlas_2&apos;);">
+						<Label text="#services_profile_atlas_category_2" />
+					</Panel>
+					<Panel class="ProfileSubNavigationButton" id="AtlasSubButton_atlas_3" onactivate="SelectProfileSubCategory(&apos;atlas&apos;, &apos;atlas_3&apos;);">
+						<Label text="#services_profile_atlas_category_3" />
+					</Panel>
+					<Panel class="ProfileSubNavigationButton" id="AtlasSubButton_atlas_4" onactivate="SelectProfileSubCategory(&apos;atlas&apos;, &apos;atlas_4&apos;);">
+						<Label text="#services_profile_atlas_category_4" />
+					</Panel>
+					<Panel class="ProfileSubNavigationButton" id="AtlasSubButton_atlas_5" onactivate="SelectProfileSubCategory(&apos;atlas&apos;, &apos;atlas_5&apos;);">
+						<Label text="#services_profile_atlas_category_5" />
+					</Panel>
+					<Panel class="ProfileSubNavigationButton" id="AtlasSubButton_atlas_6" onactivate="SelectProfileSubCategory(&apos;atlas&apos;, &apos;atlas_6&apos;);">
+						<Label text="#services_profile_atlas_category_6" />
+					</Panel>
+				</Panel>
+				<Panel class="NavigationButton" id="NavigationButton4" onactivate="NavigateSwitch(&apos;NavigationButton4&apos;, &apos;LevelPanel&apos;);">
+					<Label text="#services_profile_nav_blessing" />
+				</Panel>
+				<Panel class="NavigationButton" id="NavigationButton5" onactivate="NavigateSwitch(&apos;NavigationButton5&apos;, &apos;VipPanel&apos;);">
+					<Label text="#services_profile_nav_vip" />
+				</Panel>
+				<Panel class="NavigationButton" id="NavigationButton6" onactivate="NavigateSwitch(&apos;NavigationButton6&apos;, &apos;MailPanel&apos;);">
+					<Label text="#services_profile_nav_mail" />
+				</Panel>
+			</Panel>
+			<Panel class="ProfileTopBar">
+				<Panel class="ProfileCurrencyRow" id="ProfileCurrencyRow" />
+			</Panel>
+			<Panel class="ContentWindows" id="ContentWindows">
+				<Panel class="ContentWindow PassPanel ContentWindowVisible" id="PassPanel">
+					<Panel class="CrystalBGFX" />
+					<Panel class="PassLevelDataPanel">
+						<Panel class="PassLevelCircle">
+							<Panel class="PassLevelCircleBG" />
+							<Label class="PassLevelLabel" text="0" />
+						</Panel>
+						<Panel class="LevelLineData">
+							<Panel class="LevelLineDataHeader">
+								<Label class="LevelLineTitle" text="#services_profile_map_level" />
+								<Label class="LevelLineTitleInfo" text="0/500" />
+							</Panel>
+							<Panel class="LevelLinePanel">
+								<Panel class="LevelLineSync">
+									<Panel class="LevelLineShine" />
+								</Panel>
+							</Panel>
+						</Panel>
+						<Panel class="ButtonAcceptReward" id="ButtonAcceptReward" onactivate="ClaimProfileLevelRewards();">
+							<Label text="#services_common_claim" />
+						</Panel>
+					</Panel>
+					<Panel class="PassRewardsPanel" id="PassRewardsPanel" />
+				</Panel>
+				<Panel class="ContentWindow AchivementtPanel" id="AchivementtPanel">
+					<Panel class="CrystalBGFX" />
+					<Panel class="AchivementList" id="AchivementList" />
+					<Panel class="AchivementPanelInfo" id="AchivementPanelInfo" />
+				</Panel>
+				<Panel class="ContentWindow AtlasPanel" id="AtlasPanel">
+					<Panel class="CrystalBGFX" />
+					<Panel class="AtlasList" id="AtlasList" />
+					<Panel class="AtlasItemInfo" id="AtlasItemInfo" />
+				</Panel>
+				<Panel class="ContentWindow LevelPanel" id="LevelPanel">
+					<Panel class="CrystalBGFX" />
+					<Panel class="LevelBlessingTopPanel">
+						<Panel class="LevelBlessingBadge">
+							<Label class="LevelBlessingBadgeValue" id="LevelBlessingBadgeValue" text="3" />
+						</Panel>
+						<Panel class="LevelBlessingProgressWrap">
+							<Panel class="LevelBlessingProgressHeader">
+								<Label class="LevelBlessingBadgeTitle" text="#services_profile_blessing_level" />
+								<Panel class="LevelBlessingProgressMeta">
+									<Panel class="LevelBlessingExpIcon" />
+									<Label class="LevelBlessingExpText" id="LevelBlessingExpText" text="2160 / 3500" />
+								</Panel>
+							</Panel>
+							<Panel class="LevelBlessingProgressBar">
+								<Panel class="LevelBlessingProgressFill" id="LevelBlessingProgressFill">
+									<Panel class="LevelBlessingShine" />
+								</Panel>
+								<Panel class="LevelBlessingProgressBG" />
+							</Panel>
+						</Panel>
+						<Panel class="LevelBlessingClaimButton" id="LevelBlessingClaimButton">
+							<Label text="#services_common_claim" />
+						</Panel>
+					</Panel>
+					<Panel class="LevelBlessingPrivilegesPanel">
+						<Panel class="LevelBlessingPrivilegesHeader">
+							<Label text="#services_profile_blessing_privileges" />
+						</Panel>
+						<Panel class="LevelBlessingPrivilegesBody">
+							<Panel class="LevelBlessingPrivilegesList" id="LevelBlessingPrivilegesList" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="ContentWindow VipPanel" id="VipPanel">
+					<Panel class="VipOffersRow" id="VipOffersRow" />
+					<Panel class="VipProgressPanel">
+						<Panel class="VipProgressPanelBG" hittest="false" />
+						<Panel class="VipProgressPanelBGVip" hittest="false" />
+						<Panel class="VipProgressPanelBGLine" hittest="false" />
+						<Panel class="VipProgressInfo">
+							<Label class="VipLevelLabel" id="VipLevelLabel" text="#services_common_level" />
+							<Panel class="VipProgressMeta">
+								<Label class="VipProgressText" id="VipProgressText" text="0 / 100" />
+								<Label class="VipProgressHint" id="VipProgressHint" text="#services_profile_vip_next_hint" />
+							</Panel>
+						</Panel>
+						<Panel class="VipProgressBarFrame">
+							<Panel class="VipProgressBarFill" id="VipProgressBarFill" />
+						</Panel>
+						<Panel class="VipShopButton" id="VipShopButton">
+							<Label text="#services_profile_go_store" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="ContentWindow MailPanel" id="MailPanel">
+					<Panel class="EmailBG" />
+					<Panel class="MailSidebar">
+						<Panel class="MailSidebarHeader">
+							<Label text="#services_mail_inbox" />
+						</Panel>
+						<Panel class="MailInboxList" id="MailInboxList" />
+						<Panel class="MailSidebarFooter">
+							<Panel class="MailActionButton MailClaimAllButton" id="MailClaimAllButton">
+								<Label text="#services_mail_claim_all" />
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="MailContent">
+						<Panel class="MailContentHeader">
+							<Panel class="MailFieldRow">
+								<Label class="MailFieldLabel" text="#services_mail_sender" />
+								<Label class="MailFieldValue" id="MailSenderValue" text="-" />
+							</Panel>
+							<Panel class="MailFieldRow">
+								<Label class="MailFieldLabel" text="#services_mail_subject" />
+								<Label class="MailFieldValue" id="MailSubjectValue" text="-" />
+							</Panel>
+						</Panel>
+						<Panel class="MailBodyWrap">
+							<Label class="MailBodyText" id="MailBodyText" text="#services_mail_select_message" />
+						</Panel>
+						<Panel class="MailRewardsSection" id="MailRewardsSection">
+							<Panel class="MailRewardsHeader">
+								<Label text="#services_mail_attachments" />
+							</Panel>
+							<Panel class="MailRewardsList" id="MailRewardsList" />
+						</Panel>
+						<Panel class="MailActionsRow">
+							<Label class="MailStatusText" id="MailStatusText" text="" />
+							<Panel class="MailActionButton MailClaimButton" id="MailClaimButton">
+								<Label text="#services_common_claim" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="ContentWindowsBG" hittest="false" />
+			</Panel>
+			<Panel class="ExitCross" onactivate="Game.SwitchAnothersPanel(&apos;PlayerProfile&apos;);" />
+		</Panel>
+	</Panel>
+</root>

@@ -1,0 +1,128 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf65:version{48e806a9-c210-4cd8-811a-38b5ef63b195} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 0
+	m_flConstantRadius = 10.0
+	m_ConstantColor = [ 250, 247, 134, 255 ]
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 3
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "absorigin"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_ABSORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 10
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 11
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 154.8, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 12
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 163.40001, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 13
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 172.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 14
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 180.6, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/items/doom/doom_2021_immortal_weapon/doom_2021_immortal_weapon.vmdl"
+				m_nModSpecificData = 22273
+				m_sequenceName = "attack_infernal_blade"
+				m_nFireParticleOnSequenceFrame = 12
+				m_hitboxSetName = "default"
+				m_bAnimationNonLooping = true
+			}
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetControlPointPositions"
+			m_nCP1 = 11
+			m_nCP2 = 12
+			m_nCP3 = 13
+			m_nCP4 = 14
+			m_vecCP2Pos = [ 190.0, 0.0, 0.0 ]
+			m_vecCP3Pos = [ 200.0, 0.0, 0.0 ]
+			m_vecCP4Pos = [ 210.0, 0.0, 0.0 ]
+			m_bUseWorldLocation = true
+			m_vecCP1Pos = [ 180.0, 0.0, 0.0 ]
+		},
+		{
+			_class = "C_OP_SetControlPointPositions"
+			m_bUseWorldLocation = true
+			m_nCP1 = 21
+			m_nCP2 = 22
+			m_nCP3 = 23
+			m_nCP4 = 24
+			m_vecCP1Pos = [ -180.0, 0.0, 0.0 ]
+			m_vecCP2Pos = [ -90.0, 0.0, 0.0 ]
+			m_vecCP3Pos = [ 0.0, 0.0, 0.0 ]
+			m_vecCP4Pos = [ 0.0, 0.0, 0.0 ]
+		},
+		{
+			_class = "C_OP_SetParentControlPointsToChildCP"
+			m_nChildControlPoint = 10
+			m_nNumControlPoints = 4
+			m_nFirstSourcePoint = 11
+		},
+		{
+			_class = "C_OP_SetParentControlPointsToChildCP"
+			m_nChildControlPoint = 20
+			m_nNumControlPoints = 4
+			m_nFirstSourcePoint = 21
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/shard/crystal_debuff_impact_strings_core.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/shard/crystal_debuff_impact_strings_core.vpcf"
+			m_flDelay = 0.05
+		},
+		{
+			m_ChildRef = resource:"particles/shard/crystal_debuff_impact_strings_core.vpcf"
+			m_flDelay = 0.1
+		},
+		{
+			m_ChildRef = resource:"particles/shard/crystal_debuff_impact_strings_core.vpcf"
+			m_flDelay = 0.15
+		},
+	]
+}

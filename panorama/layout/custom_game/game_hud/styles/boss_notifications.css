@@ -1,0 +1,357 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.NotificationRoot
+{
+	width: 100%;
+	height: fit-children;
+	horizontal-align: center;
+	vertical-align: top;
+	margin-top: 16%;
+	flow-children: down;
+	z-index: 900;
+}
+
+.LevelupNotification
+{
+	width: 1040px;
+	height: fit-children;
+	horizontal-align: center;
+	margin-bottom: 10px;
+	opacity: 0;
+	transform: translateY(8px) scale3d(0.2, 0.2, 1);
+	flow-children: none;
+}
+
+.LevelupNotification.NotificationVisible
+{
+	opacity: 1;
+	transform: translateY(0px) scale3d(1, 1, 1);
+}
+
+.LevelupNotification.NotificationPopIn
+{
+	animation-name: LevelupNotificationPopIn;
+	animation-duration: 0.72s;
+	animation-timing-function: ease-out;
+	animation-iteration-count: 1;
+}
+
+.LevelupNotification.NotificationLeaving
+{
+	animation-name: LevelupNotificationPopOut;
+	animation-duration: 0.68s;
+	animation-timing-function: ease-in;
+	animation-iteration-count: 1;
+}
+
+.LevelupNotificationText
+{
+	width: 100%;
+	vertical-align: center;
+	horizontal-align: center;
+	color: #f1eaff;
+	font-size: 36px;
+	font-weight: bold;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 6px 4 #000000, 0px 0px 15px 1 #8f3dff, 0px 0px 28px 0 #cf75ffbb;
+}
+
+.LevelupNotificationText.NotificationTextFloating
+{
+	animation-name: LevelupNotificationFloat;
+	animation-duration: 3.4s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+.NotificationMiniboss .LevelupNotificationText
+{
+	color: #f1eaff;
+	text-shadow: 0px 0px 5px 3 #000000, 0px 0px 13px 1 #b887ff, 0px 0px 24px 0 #5df3ff77;
+}
+
+.NotificationWarning .LevelupNotificationText
+{
+	color: #fff2c4;
+	text-shadow: 0px 0px 5px 3 #000000, 0px 0px 13px 1 #ffd96a, 0px 0px 24px 0 #cf75ff99;
+}
+
+.NotificationTextGold
+{
+	color: #fff2c4;
+	text-shadow: 0px 0px 5px 3 #000000, 0px 0px 12px 1 #ffd96a;
+}
+
+.NotificationTextCyan
+{
+	color: #d9fbff;
+	text-shadow: 0px 0px 5px 3 #000000, 0px 0px 12px 1 #5df3ff;
+}
+
+@keyframes 'LevelupNotificationPopIn'
+{
+	0%
+	{
+		opacity: 0;
+		transform: translateY(8px) scale3d(0.2, 0.2, 1);
+		brightness: 1.3;
+	}
+	
+	42%
+	{
+		opacity: 1;
+		transform: translateY(-2px) scale3d(1.18, 1.18, 1);
+		brightness: 1.65;
+	}
+	
+	68%
+	{
+		opacity: 1;
+		transform: translateY(1px) scale3d(1.06, 1.06, 1);
+		brightness: 1.22;
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: translateY(0px) scale3d(1, 1, 1);
+		brightness: 1;
+	}
+	
+}
+
+@keyframes 'LevelupNotificationFloat'
+{
+	0%
+	{
+		transform: translateX(0px) translateY(0px) scale3d(1, 1, 1);
+	}
+	
+	25%
+	{
+		transform: translateX(2px) translateY(-3px) scale3d(1.012, 1.012, 1);
+	}
+	
+	50%
+	{
+		transform: translateX(-2px) translateY(1px) scale3d(1.004, 1.004, 1);
+	}
+	
+	75%
+	{
+		transform: translateX(1px) translateY(3px) scale3d(1.01, 1.01, 1);
+	}
+	
+	100%
+	{
+		transform: translateX(0px) translateY(0px) scale3d(1, 1, 1);
+	}
+	
+}
+
+@keyframes 'LevelupNotificationPopOut'
+{
+	0%
+	{
+		opacity: 1;
+		transform: translateY(0px) scale3d(1, 1, 1);
+		brightness: 1;
+	}
+	
+	24%
+	{
+		opacity: 1;
+		transform: translateY(-1px) scale3d(1.1, 1.1, 1);
+		brightness: 1.3;
+	}
+	
+	100%
+	{
+		opacity: 0;
+		transform: translateY(-5px) scale3d(0.2, 0.2, 1);
+		brightness: 0.7;
+	}
+	
+}
+
+.BossHPRoot
+{
+	width: 100%;
+	height: 100%;
+	horizontal-align: center;
+	vertical-align: top;
+	z-index: 850;
+}
+
+.BossHPPanel
+{
+	width: 680px;
+	height: 127px;
+	horizontal-align: center;
+	vertical-align: top;
+	margin-top: 102px;
+	flow-children: right;
+	opacity: 0;
+	visibility: collapse;
+	transform: translateY(-22px) scale3d(0.97, 0.97, 1);
+	transition-property: opacity, transform;
+	transition-duration: 0.22s;
+	transition-timing-function: ease-out;
+}
+
+.BossHPPanel.BossHPVisible
+{
+	visibility: visible;
+	opacity: 1;
+	transform: translateY(0px) scale3d(1, 1, 1);
+}
+
+.BossHealthBarBG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/frames/healthbar_png.vtex");
+	background-size: 100%;
+	ignore-parent-flow: true;
+	img-shadow: 0px 0px 5px 4 rgb(0, 0, 0);
+}
+
+.BossHPPortraitWrapper
+{
+	width: 80px;
+	height: 80px;
+	horizontal-align: center;
+	vertical-align: center;
+	border-radius: 100%;
+	margin-left: 13px;
+	margin-bottom: 17px;
+}
+
+.BossHPNoAvatar .BossHPPortraitWrapper
+{
+	visibility: collapse;
+}
+
+.BossAvatarCircle
+{
+	width: 80px;
+	height: 80px;
+	horizontal-align: center;
+	vertical-align: center;
+	border-radius: 100%;
+	overflow: clip;
+}
+
+.BossAvatarImage
+{
+	width: 100%;
+	height: 100%;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.BossHPContent
+{
+	flow-children: down;
+	width: 514px;
+	margin-top: 4px;
+	margin-left: 18px;
+}
+
+.BossHPHeader
+{
+	width: 100%;
+	height: 40px;
+	margin-top: 0px;
+	margin-bottom: 4px;
+}
+
+.BossNameLabel
+{
+	width: 100%;
+	letter-spacing: 1px;
+	horizontal-align: center;
+	vertical-align: center;
+	text-align: center;
+	color: white;
+	font-size: 24px;
+	font-weight: bold;
+	text-overflow: shrink;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 5px 5 #000000;
+}
+
+.BossHPBarWrapper
+{
+	width: 595px;
+	height: 30px;
+	horizontal-align: center;
+	flow-children: none;
+	border-radius: 5px;
+	border: 2px solid #2a002caa;
+	box-shadow: 0px 0px 8px 1px #000000dd;
+}
+
+.BossHPProgress
+{
+	width: 100%;
+	height: 100%;
+	horizontal-align: left;
+	vertical-align: center;
+	background-color: #050208cc;
+	border-radius: 5px;
+}
+
+.BossHPProgress .ProgressBarLeft
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #2a0505 ), color-stop( 0.48, #b81818 ), to( #ff3b3b ) );
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	background-image: url("s2r://panorama/images/hud/facets/ripple_texture_png.vtex");
+	background-size: 550px 100%;
+	background-img-opacity: 0.2;
+}
+
+.BossHPProgress .ProgressBarRight
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #140a1fcc ), to( #050208cc ) );
+}
+
+.BossHPBurnerContainer
+{
+	width: 595px;
+	height: 28px;
+	vertical-align: center;
+	horizontal-align: left;
+	overflow: clip;
+}
+
+.BossHPBurner
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0.72;
+}
+
+.BossHPPercentLabel
+{
+	width: 100%;
+	horizontal-align: center;
+	vertical-align: center;
+	color: #ffffff;
+	font-size: 16px;
+	font-weight: semi-bold;
+	text-align: center;
+	text-shadow: 0px 0px 5px 3 #000000;
+}

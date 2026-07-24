@@ -1,0 +1,2096 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.PostStageActivityPanel,.PostStageHomePanel,.PostStageRestartConfirmPanel,.MatchResultPanel,.LeaderboardPanel
+{
+	width: 100%;
+	height: 100%;
+	z-index: 50;
+	opacity: 0;
+	visibility: collapse;
+}
+
+.PostStageActivityPanel.OpenPostStageActivityPanel,.PostStageHomePanel.OpenPostStageHomePanel,.PostStageRestartConfirmPanel.OpenPostStageRestartConfirmPanel,.MatchResultPanel.VisibleMatchResultPanel,.LeaderboardPanel.VisibleLeaderboardPanel
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+.MatchResultPanel
+{
+	z-index: 85;
+	transition-property: opacity;
+	transition-duration: 0.18s;
+}
+
+.LeaderboardPanel
+{
+	z-index: 86;
+	transition-property: opacity;
+	transition-duration: 0.18s;
+}
+
+.MatchResultDim
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #0b0611dd ), color-stop( 0.45, #1a0b23ee ), to( #050308f5 ) );
+}
+
+.LeaderboardDim
+{
+	width: 100%;
+	height: 100%;
+}
+
+.LeaderboardBody
+{
+	width: 1448px;
+	height: 1086px;
+	ui-scale: 80%;
+	margin-bottom: 80px;
+	align: center center;
+	flow-children: down;
+	overflow: noclip;
+}
+
+.LeaderboardBg
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	background-image: url("s2r://panorama/images/game_hud/leaderboard/bg_png.vtex");
+	background-size: 100%;
+}
+
+.LeaderboardBorder
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+}
+
+.LeaderboardHeader
+{
+	margin-top: 32px;
+	horizontal-align: center;
+	flow-children: down;
+}
+
+.LeaderboardTitleBlock
+{
+	horizontal-align: center;
+	flow-children: down;
+}
+
+.LeaderboardTitle
+{
+	horizontal-align: center;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+	font-size: 52px;
+	font-weight: bold;
+	text-align: center;
+	text-transform: uppercase;
+	font-family: Reaver;
+	text-shadow: 0px 0px 6px 3 black;
+}
+
+.LeaderboardSubtitle
+{
+	horizontal-align: center;
+	color: #d8d0e2;
+	font-size: 18px;
+	text-align: center;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.LeaderboardPodium
+{
+	width: 100%;
+	margin-top: 160px;
+	horizontal-align: center;
+}
+
+.LeaderboardPodiumSlot
+{
+	width: 266px;
+	height: 240px;
+}
+
+.slot_podium_center
+{
+	width: 200px;
+	align: center center;
+	flow-children: down;
+}
+
+.podium_avatar_container
+{
+	horizontal-align: center;
+	width: 110px;
+	height: 110px;
+	box-shadow: #000000cc 0px 0px 10px 2px;
+	border: 2px solid white;
+}
+
+.Place1 .podium_avatar_container
+{
+	width: 145px;
+	height: 145px;
+	border-brush: #ffbb00;
+}
+
+.Place2 .podium_avatar_container
+{
+	border-brush: #e0e0e0;
+}
+
+.Place3 .podium_avatar_container
+{
+	border-brush: rgb(222, 170, 135);
+}
+
+.LeaderboardPodiumSlot.Place1
+{
+	horizontal-align: center;
+}
+
+.LeaderboardPodiumSlot.Place2
+{
+	width: 210px;
+	height: 180px;
+	margin-top: 70px;
+	margin-right: 800px;
+	horizontal-align: center;
+}
+
+.LeaderboardPodiumSlot.Place3
+{
+	width: 210px;
+	height: 180px;
+	margin-top: 70px;
+	margin-left: 800px;
+	horizontal-align: center;
+}
+
+.podium_fx_particle
+{
+	ignore-parent-flow: true;
+	align: center center;
+	width: 100%;
+	height: 100%;
+	z-index: -5;
+	margin-bottom: 20px;
+	wash-color: rgb(252, 165, 52);
+}
+
+.LeaderboardPodiumName
+{
+	width: 100%;
+	height: 24px;
+	margin-top: 10px;
+	color: #f5f0ff;
+	font-size: 20px;
+	text-transform: uppercase;
+	font-weight: semi-bold;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.LeaderboardPodiumDamage
+{
+	width: 100%;
+	color: #59f2c9;
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.Place1 .LeaderboardPodiumDamage
+{
+	font-size: 30px;
+	color: #ffbb00;
+}
+
+.Place2 .LeaderboardPodiumDamage
+{
+	color: #e0e0e0;
+}
+
+.Place3 .LeaderboardPodiumDamage
+{
+	color: rgb(222, 170, 135);
+}
+
+.LeaderboardPodiumBadges
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+}
+
+.LeaderboardPodiumBadge1
+{
+	width: 148px;
+	height: 99px;
+	background-image: url("s2r://panorama/images/game_hud/leaderboard/top1_png.vtex");
+	background-size: 100%;
+	horizontal-align: center;
+	margin-top: 220px;
+}
+
+.LeaderboardPodiumBadge2
+{
+	width: 76px;
+	height: 86px;
+	background-image: url("s2r://panorama/images/game_hud/leaderboard/top2_png.vtex");
+	background-size: 100%;
+	horizontal-align: center;
+	margin-top: 290px;
+	margin-right: 800px;
+}
+
+.LeaderboardPodiumBadge3
+{
+	width: 73px;
+	height: 83px;
+	background-image: url("s2r://panorama/images/game_hud/leaderboard/top3_png.vtex");
+	background-size: 100%;
+	horizontal-align: center;
+	margin-top: 290px;
+	margin-left: 800px;
+}
+
+.LeaderboardTableHeader,.LeaderboardRow,.LeaderboardSelfRowContent
+{
+	width: 1380px;
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.LeaderboardTableHeader
+{
+	height: 40px;
+	margin-top: 80px;
+	padding-left: 12px;
+	padding-right: 12px;
+}
+
+.LeaderboardTableHeader Label
+{
+	vertical-align: center;
+	color: #fee090;
+	font-size: 16px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.LeaderboardRows
+{
+	horizontal-align: center;
+	width: 1380px;
+	height: 300px;
+	flow-children: down;
+	overflow: squish scroll;
+}
+
+.LeaderboardRows VerticalScrollBar
+{
+	width: 6px;
+	height: 100%;
+	horizontal-align: right;
+	layout-position: fixed;
+	padding: 1px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #130d1dcc ), color-stop( 0.5, #2a1f3fee ), to( #130d1dcc ) );
+	border-left: 1px solid #b98bdf22;
+}
+
+.LeaderboardRows VerticalScrollBar .ScrollThumb
+{
+	width: 8px;
+	min-height: 38px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #d7b9ff ), color-stop( 0.35, #9a6bd1 ), color-stop( 0.72, #624086 ), to( #3a2852 ) );
+	border: 1px solid #d9c0ff;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( #efe2ff ), to( #7b54aa ) );
+	box-shadow: #000000cc 0px 0px 6px 0px;
+	border-radius: 2px;
+	transition-property: brightness, background-color;
+	transition-duration: 0.15s;
+}
+
+.LeaderboardRows VerticalScrollBar:hover .ScrollThumb
+{
+	brightness: 1.18;
+}
+
+.LeaderboardRows VerticalScrollBar:active .ScrollThumb
+{
+	brightness: 0.92;
+}
+
+.LeaderboardRow
+{
+	height: 50px;
+	margin-bottom: 5px;
+	padding: 5px 12px;
+	background-color: rgba(0, 0, 0, 0.45);
+	border: 1px solid #8f79c222;
+}
+
+.LeaderboardSelfRowContent
+{
+	height: 100%;
+	margin-bottom: 5px;
+	padding: 5px 12px;
+}
+
+.playerCellAvatarContainer
+{
+	width: 38px;
+	height: 38px;
+	vertical-align: center;
+	margin-right: 20px;
+}
+
+.LeaderboardSelfRowContent .playerCellAvatarContainer
+{
+	width: 70px;
+	height: 70px;
+}
+
+.LeaderboardRankColumn
+{
+	width: 70px;
+	text-align: center;
+}
+
+.LeaderboardPlayerColumn
+{
+	width: 860px;
+}
+
+.LeaderboardDamageColumn
+{
+	width: 210px;
+	text-align: right;
+}
+
+.LeaderboardDateColumn
+{
+	width: 170px;
+	text-align: right;
+}
+
+.LeaderboardRankValue,.LeaderboardDamageValue,.LeaderboardDateValue
+{
+	vertical-align: center;
+	color: #e8f9ff;
+	font-size: 22px;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.LeaderboardRankValue
+{
+	width: 70px;
+	text-align: center;
+	color: #fee090;
+	font-weight: semi-bold;
+}
+
+.LeaderboardPlayerCell
+{
+	width: 860px;
+	height: 100%;
+	flow-children: right;
+}
+
+.LeaderboardNameBlock
+{
+	width: 300px;
+	vertical-align: center;
+	flow-children: down;
+}
+
+.LeaderboardPlayerName
+{
+	width: 100%;
+	color: #f5f0ff;
+	font-size: 24px;
+	font-weight: semi-bold;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.LeaderboardSelfRow .LeaderboardPlayerName
+{
+	font-size: 30px;
+}
+
+.LeaderboardSelfCaption
+{
+	width: 100%;
+	color: #d5b7ff;
+	font-size: 16px;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 3px 2 black;
+}
+
+.LeaderboardDamageValue
+{
+	width: 210px;
+	text-align: right;
+	color: #fd99ec;
+	font-weight: semi-bold;
+	text-overflow: shrink;
+}
+
+.LeaderboardDateValue
+{
+	width: 170px;
+	text-align: right;
+	color: #d8d0e2;
+	font-size: 18px;
+	text-overflow: shrink;
+}
+
+.LeaderboardStatus
+{
+	align: center center;
+	margin-top: 85px;
+	color: #d8d0e2;
+	font-size: 22px;
+	text-align: center;
+	text-shadow: 0px 0px 4px 2 black;
+	visibility: collapse;
+}
+
+.LeaderboardStatus.VisibleLeaderboardStatus
+{
+	visibility: visible;
+}
+
+.LeaderboardSelfRow
+{
+	horizontal-align: center;
+	width: 1380px;
+	height: 85px;
+	margin-top: 10px;
+}
+
+.RewardTableLeaderboard
+{
+	margin-top: 132px;
+	ignore-parent-flow: true;
+	width: 630px;
+	height: 86px;
+	horizontal-align: center;
+	flow-children: right;
+	padding-left: 20px;
+}
+
+.LeaderboardRewardIcon
+{
+	width: 64px;
+	height: 64px;
+	background-image: url("s2r://panorama/images/game_hud/leaderboard/reward_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+}
+
+.LeaderboardRewardInfoContainer
+{
+	flow-children: down;
+	vertical-align: center;
+	margin-left: 10px;
+}
+
+.LeaderboardRewardInfoTitle
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+	font-weight: semi-bold;
+	font-size: 22px;
+}
+
+.LeaderboardRewardInfoSubTitle
+{
+	color: rgba(255, 255, 255, 0.616);
+}
+
+.MatchResultBody
+{
+	background-image: url("s2r://panorama/images/game_hud/end_screen/bg_png.vtex");
+	background-size: 100%;
+	width: 1384px;
+	height: 803px;
+	align: center center;
+	margin-bottom: 150px;
+}
+
+.MatchResultHeader
+{
+	width: 100%;
+	flow-children: down;
+	margin-top: 140px;
+}
+
+.MatchResultTitle
+{
+	horizontal-align: center;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff4bf ), to( #ffc64d ) );
+	font-size: 52px;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 8px 3 black;
+	font-family: Reaver;
+}
+
+.MatchResultTitle.DefeatTitle
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #f1eef8 ), to( #a7a0bb ) );
+}
+
+.MatchResultMeta
+{
+	horizontal-align: center;
+	flow-children: right;
+	margin-top: 6px;
+}
+
+.MatchResultStage,.MatchResultDuration
+{
+	margin-left: 24px;
+	margin-right: 24px;
+	color: #dffcf4;
+	font-size: 28px;
+	font-weight: semi-bold;
+	text-align: center;
+	text-shadow: 0px 0px 5px 3 black;
+}
+
+.MatchResultDuration
+{
+	color: #59f2c9;
+}
+
+.MatchResultColumns
+{
+	width: 100%;
+	height: 40px;
+	margin-top: 320px;
+	padding: 0px 12px;
+	margin-left: 30px;
+	margin-right: 30px;
+	flow-children: right;
+	background-image: url("s2r://panorama/images/game_hud/end_screen/bg2_png.vtex");
+	background-size: 100%;
+}
+
+.MatchResultColumn
+{
+	vertical-align: center;
+	color: #fee090;
+	font-size: 18px;
+	font-weight: semi-bold;
+	text-align: center;
+	text-shadow: 0px 0px 6px 3 black;
+}
+
+.PlayerColumn
+{
+	width: 230px;
+	text-align: left;
+	padding-left: 47px;
+}
+
+.LevelColumn
+{
+	width: 90px;
+}
+
+.ResourcesColumn
+{
+	width: 190px;
+}
+
+.DamageColumn
+{
+	width: 190px;
+}
+
+.RewardsColumn
+{
+	width: 430px;
+}
+
+.CardsColumn
+{
+	width: 170px;
+}
+
+.MatchResultRows
+{
+	width: 100%;
+	height: fill-parent-flow( 1.0 );
+	min-height: 356px;
+	flow-children: down;
+	margin-top: 370px;
+	margin-left: 30px;
+	margin-right: 30px;
+}
+
+.MatchResultRow
+{
+	width: 100%;
+	height: 70px;
+	margin-bottom: 6px;
+	padding: 6px 12px;
+	flow-children: right;
+	background-color: rgba(0, 0, 0, 0.5);
+	border-radius: 6px;
+}
+
+.MatchResultRowBorder
+{
+	overflow: noclip;
+	width: 100%;
+	height: 100%;
+	margin-top: -6px;
+	margin-left: -12px;
+	ignore-parent-flow: true;
+	border-image-source: url("s2r://panorama/images/game_hud/end_screen/border_png.vtex");
+	border-width: 30px;
+	border-image-slice: 70px;
+}
+
+.MatchResultRow.MvpRow
+{
+	box-shadow: hollow 0px 0px 14px -4px #f89a0dc0;
+}
+
+.MatchResultPlayerCell
+{
+	width: 230px;
+	height: 100%;
+	flow-children: right;
+}
+
+.MatchResultMvpBadge
+{
+	width: 44px;
+	height: 40px;
+	background-image: url("s2r://panorama/images/game_hud/end_screen/mvp_png.vtex");
+	background-size: 100%;
+	margin-right: 7px;
+	opacity: 0;
+	vertical-align: center;
+}
+
+.MatchResultMvpBadge.VisibleMvpBadge
+{
+	opacity: 1;
+}
+
+.MatchResultAvatar
+{
+	width: 46px;
+	height: 46px;
+	vertical-align: center;
+	margin-right: 8px;
+	border: 1px solid #b98bdf;
+}
+
+.MatchResultNameBlock
+{
+	width: 118px;
+	vertical-align: center;
+	flow-children: down;
+}
+
+.MatchResultPlayerName
+{
+	width: 100%;
+	color: #f5f0ff;
+	font-size: 20px;
+	font-weight: semi-bold;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.MatchResultLevel
+{
+	width: 90px;
+	vertical-align: center;
+	horizontal-align: center;
+	color: #e8f9ff;
+	font-size: 21px;
+	text-align: center;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.MatchResultDamage
+{
+	width: 190px;
+	margin-bottom: 10px;
+	vertical-align: center;
+	horizontal-align: center;
+	flow-children: down;
+}
+
+.MatchResultResources
+{
+	width: 190px;
+	vertical-align: center;
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.MatchResultResource
+{
+	width: 62px;
+	horizontal-align: center;
+	flow-children: down;
+}
+
+.MatchResultResourceIcon
+{
+	width: 28px;
+	height: 28px;
+	horizontal-align: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.MatchResultResourceValue
+{
+	width: 100%;
+	margin-top: 2px;
+	color: white;
+	font-size: 16px;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.MatchResultRewards
+{
+	width: 430px;
+	height: 100%;
+	vertical-align: center;
+	flow-children: right-wrap;
+}
+
+.MatchResultRewardItem
+{
+	width: 54px;
+	height: 54px;
+	margin-right: 6px;
+	vertical-align: center;
+}
+
+.MatchResultRewardBg
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 6px 2 black;
+}
+
+.MatchResultRewardBg.RareColor_rare
+{
+	wash-color: rgba(47, 102, 252, 0.911);
+	brightness: 5;
+}
+
+.MatchResultRewardBg.RareColor_mythical
+{
+	wash-color: rgba(252, 47, 252, 0.911);
+	brightness: 5;
+}
+
+.MatchResultRewardBg.RareColor_legendary
+{
+	wash-color: rgb(255, 104, 3);
+	brightness: 5;
+}
+
+.MatchResultRewardBg.RareColor_immortal
+{
+	wash-color: #ff5140;
+	brightness: 5;
+}
+
+.MatchResultRewardIcon
+{
+	width: 36px;
+	height: 36px;
+	align: center center;
+}
+
+.MatchResultRewardCount
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: -4px;
+	color: #ffffff;
+	font-size: 13px;
+	font-weight: bold;
+	text-shadow: 0px 0px 5px 3 black;
+	z-index: 4;
+}
+
+.MatchResultEmptyText
+{
+	vertical-align: center;
+	color: #b9aec8;
+	font-size: 18px;
+}
+
+.MatchResultCardsButton
+{
+	width: 160px;
+	height: 45px;
+	vertical-align: center;
+	margin-left: 10px;
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_10_png.vtex");
+	background-size: 100%;
+	transition-property: brightness, transform;
+	transition-duration: 0.15s;
+}
+
+.MatchResultCardsButton:hover
+{
+	brightness: 1.5;
+}
+
+.MatchResultCardsButton.NoCards
+{
+	saturation: 0.15;
+	brightness: 0.45;
+}
+
+.MatchResultCardsButton.NoCards:hover
+{
+	brightness: 0.45;
+	transform: translateY( 0px );
+}
+
+.MatchResultCardsButtonLabel
+{
+	align: center center;
+	width: 100%;
+	color: #ffffff;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 4px 3 black;
+}
+
+.MatchResultCloseHint
+{
+	horizontal-align: center;
+	vertical-align: center;
+	margin-top: 680px;
+	color: #d9d0e6;
+	font-size: 18px;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.MatchResultDamageValue
+{
+	width: 100%;
+	height: 28px;
+	color: rgb(255, 145, 0);
+	font-size: 19px;
+	font-weight: semi-bold;
+	text-align: center;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.MatchResultDamageLine
+{
+	width: 166px;
+	height: 18px;
+	horizontal-align: center;
+	border: 1px solid #ffffffbd;
+	border-radius: 4px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1a1026 ), to( #0d0816 ) );
+	box-shadow: inset 0px 0px 6px #000000cc;
+}
+
+.MatchResultDamageLineBack
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #120a1f ), color-stop( 0.5, #1a102a ), to( #120a1f ) );
+}
+
+.MatchResultDamageLineFrontList
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+}
+
+.MatchResultDamageLineFrontPhysical
+{
+	width: 50%;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #660606 ), color-stop( 0.3, #7a1a1a ), color-stop( 0.6, #c22b2b ), to( #ff4d4d ) );
+}
+
+.MatchResultDamageLineFrontMagical
+{
+	width: 50%;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #075eff ), color-stop( 0.3, #1a3f7a ), color-stop( 0.6, #2b6cc2 ), to( #4da6ff ) );
+}
+
+.MatchResultDamageLineFx
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/hud/facets/ripple_texture_png.vtex");
+	background-size: 360px 100%;
+	background-position: center;
+	brightness: 0;
+	z-index: 10;
+}
+
+.MatchResultDamagePercent
+{
+	align: center center;
+	color: white;
+	font-weight: semi-bold;
+	font-size: 13px;
+	text-shadow: 0px 0px 5px 3 black;
+	z-index: 11;
+}
+
+.MatchResultCardsPopup
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	visibility: collapse;
+	background-color: #000000aa;
+}
+
+.MatchResultCardsPopup.VisibleMatchResultCardsPopup
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+.MatchResultCardsBody
+{
+	width: 720px;
+	height: 520px;
+	align: center center;
+	flow-children: down;
+	padding: 18px;
+	border: 1px solid white;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, color-stop( 0.0, #cbb5f5da ), color-stop( 0.5, #cbb5f536 ), color-stop( 1.0, #cbb5f536 ) );
+	background-image: url("s2r://panorama/images/game_hud/lower_hud/card_bag_bg_png.vtex");
+	background-size: 100%;
+}
+
+.MatchResultCardsHeader
+{
+	width: 100%;
+	height: 40px;
+}
+
+.MatchResultCardsTitle
+{
+	vertical-align: center;
+	horizontal-align: center;
+	color: #fff0c8;
+	font-size: 24px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 5px 3 black;
+}
+
+.MatchResultCardsClose
+{
+	width: 42px;
+	height: 42px;
+	horizontal-align: right;
+	background-image: url("s2r://panorama/images/game_hud/icons/close_new_png.vtex");
+	img-shadow: 0px 0px 1px 1 black;
+	background-size: 100%;
+	transition-property: brightness, transform;
+	transition-duration: 0.25s;
+	opacity: 1;
+	saturation: 0.75;
+}
+
+.MatchResultCardsClose:hover
+{
+	opacity: 1;
+	brightness: 2;
+}
+
+.MatchResultCardsClose:active
+{
+	transform: scale3d(0.9, 0.9, 1);
+}
+
+.MatchResultCardsCloseLabel
+{
+	visibility: collapse;
+}
+
+.MatchResultCardsList
+{
+	horizontal-align: center;
+	width: 660px;
+	height: fill-parent-flow( 1.0 );
+	margin-top: 12px;
+	padding: 5px;
+	flow-children: right-wrap;
+	overflow: squish scroll;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+.MatchResultEmptyCards
+{
+	align: center center;
+	color: #d9d0e6;
+	font-size: 22px;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.PostStageHomeBody,.PostStageRestartConfirmBody
+{
+	align: center center;
+	flow-children: down;
+	overflow: noclip;
+	padding: 16px 20px 16px 20px;
+	border: 1px solid white;
+	box-shadow: 0px 0px 18px 0px black;
+	background-color: gradient( radial, 50% 10%, 0% 0%, 85% 85%, from( #4a3d68 ), color-stop( 0.35, #2d2542 ), color-stop( 0.7, #1b1628 ), to( #161124 ) );
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( #8f79c2 ), to( #312744 ) );
+}
+
+.PostStageActivityBody
+{
+	align: center center;
+	width: 1629px;
+	height: 909px;
+	ui-scale: 80%;
+	margin-bottom: 200px;
+}
+
+.PostStageActivityBodyBG
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	background-image: url("s2r://panorama/images/game_hud/aghs/bg_png.vtex");
+	background-size: 100%;
+}
+
+.PostStageHomeBody
+{
+	width: 470px;
+	min-height: 190px;
+}
+
+.PostStageRestartConfirmBody
+{
+	width: 720px;
+	min-height: 200px;
+}
+
+.PostStageHomeHeaderLabel,.PostStageRestartConfirmHeaderLabel
+{
+	horizontal-align: center;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff8ff ), to( #d8a8ff ) );
+	font-size: 24px;
+	font-weight: semi-bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-shadow: 0px 0px 6px 3 black;
+}
+
+.PostStageActivityHeaderLabel
+{
+	margin-top: 36px;
+	font-family: Reaver;
+	horizontal-align: center;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+	font-size: 42px;
+	font-weight: semi-bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-shadow: 0px 0px 6px 3 black;
+	ignore-parent-flow: true;
+}
+
+.PostStageActivityCloseHint
+{
+	horizontal-align: center;
+	vertical-align: center;
+	margin-top: 526px;
+	color: #d8d0e2;
+	font-size: 22px;
+	text-shadow: 0px 0px 4px 3 black;
+}
+
+.PostStageDummyCountdownPanel
+{
+	width: 900px;
+	height: 280px;
+	horizontal-align: center;
+	vertical-align: top;
+	margin-top: 160px;
+	flow-children: down;
+	z-index: 80;
+	opacity: 0;
+	visibility: collapse;
+	transition-property: opacity;
+	transition-duration: 0.12s;
+}
+
+.PostStageDummyCountdownPanel.VisibleDummyCountdown
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+.PostStageDummyCountdownTitle
+{
+	width: 100%;
+	horizontal-align: center;
+	color: #fff7ff;
+	font-size: 34px;
+	font-weight: bold;
+	text-align: center;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 6px 3 black, 0px 0px 12px 2 #7d2dff;
+}
+
+.PostStageDummyCountdownNumber
+{
+	width: 100%;
+	height: 190px;
+	horizontal-align: center;
+	margin-top: 6px;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff6ff ), color-stop( 0.45, #d164ff ), to( #741aff ) );
+	font-size: 152px;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 0px 0px 8px 4 black, 0px 0px 18px 4 #8f32ff, 0px 0px 32px 2 #d262ff;
+	opacity: 0;
+}
+
+.PostStageDummyCountdownNumber.AnimateCountdownNumber
+{
+	animation-name: PostStageDummyCountdownNumberFly;
+	animation-duration: 1s;
+	animation-timing-function: ease-out;
+	animation-iteration-count: 1;
+}
+
+@keyframes 'PostStageDummyCountdownNumberFly'
+{
+	0%
+	{
+		opacity: 0;
+		transform: translateY( 58px ) scale3d( 0.62, 0.62, 1 );
+	}
+	
+	18%
+	{
+		opacity: 1;
+		transform: translateY( 0px ) scale3d( 1.18, 1.18, 1 );
+	}
+	
+	62%
+	{
+		opacity: 1;
+		transform: translateY( -8px ) scale3d( 1, 1, 1 );
+	}
+	
+	100%
+	{
+		opacity: 0;
+		transform: translateY( -42px ) scale3d( 0.85, 0.85, 1 );
+	}
+	
+}
+
+.PostStageHomeDescriptionLabel,.PostStageRestartConfirmDescriptionLabel
+{
+	width: 100%;
+	margin-top: 14px;
+	color: white;
+	font-size: 20px;
+	text-align: center;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.PostStageHomeButtons,.PostStageRestartConfirmButtons
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-top: 25px;
+}
+
+.PostStageHomeButton,.PostStageRestartConfirmButton
+{
+	width: 150px;
+	height: 48px;
+	margin-left: 5px;
+	margin-right: 5px;
+	width: 240px;
+	height: 60px;
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_10_png.vtex");
+	background-size: 100%;
+	transition-property: brightness, opacity, transform;
+	transition-duration: 0.1s;
+}
+
+.PostStageHomeButton:hover,.PostStageRestartConfirmButton:hover
+{
+	brightness: 1.18;
+}
+
+.PostStageHomeButton.CancelButton,.PostStageRestartConfirmButton.CancelButton
+{
+	border-color: #88718f;
+}
+
+.PostStageRestartConfirmButton:active,.PostStageHomeButton:active
+{
+	transform: scale3d(0.95, 0.95, 1);
+}
+
+.PostStageHomeButton Label,.PostStageRestartConfirmButton Label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: white;
+	font-size: 22px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 5px 3 black;
+}
+
+.PostStageActivityBlockedHint
+{
+	horizontal-align: center;
+	vertical-align: center;
+	margin-top: -260px;
+	color: #ff1616;
+	font-size: 36px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 6px 3 black;
+	opacity: 0;
+	visibility: collapse;
+	z-index: 109;
+	transition-property: opacity;
+	transition-duration: 0.15s;
+	background-color: rgba(0,0,0,0.9);
+	padding: 10px;
+}
+
+.PostStageActivityBlockedHint.VisibleBlockedHint
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+.AghanimRewardPanel
+{
+	width: 280px;
+	horizontal-align: right;
+	vertical-align: top;
+	margin-top: 200px;
+	margin-right: 10px;
+	z-index: 35;
+	opacity: 0;
+	visibility: collapse;
+}
+
+.AfkRewardPanel
+{
+	width: 280px;
+	horizontal-align: right;
+	vertical-align: top;
+	margin-right: 10px;
+	z-index: 35;
+	opacity: 0;
+	visibility: collapse;
+}
+
+.AfkPossibleRewardsPanel
+{
+	margin-top: 175px;
+}
+
+.AfkReceivedRewardsPanel
+{
+	margin-top: 380px;
+}
+
+.AghanimRewardPanelBorder
+{
+	width: 100%;
+	height: 100%;
+	border-image-source: url("s2r://panorama/images/game_hud/aghs/bg_frame_png.vtex");
+	border-width: 20px;
+	border-image-slice: 70px;
+	ignore-parent-flow: true;
+}
+
+.AghanimRewardPanelBG
+{
+	margin-top: 10px;
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/aghs/bg_items_png.vtex");
+	background-size: 100%;
+	ignore-parent-flow: true;
+}
+
+.AghanimRewardPanel.VisibleAghanimRewardPanel
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+.AfkRewardPanel.VisibleAfkRewardPanel
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+.AghanimRewardPanelBody
+{
+	margin-top: 15px;
+	width: 100%;
+	flow-children: down;
+	padding: 10px 10px 12px 10px;
+}
+
+.AghanimRewardTitle
+{
+	width: 100%;
+	color: #f4d6ff;
+	font-size: 17px;
+	font-weight: semi-bold;
+	text-transform: uppercase;
+	text-align: center;
+	text-shadow: 0px 0px 5px 3 black;
+}
+
+.AghanimRewardItems
+{
+	width: 100%;
+	flow-children: right-wrap;
+	margin-top: 8px;
+	overflow: noclip;
+}
+
+.AghanimRewardItem
+{
+	width: 60px;
+	height: 60px;
+	margin: 2px;
+	overflow: noclip;
+	transition-property: brightness, box-shadow;
+	transition-duration: 0.12s;
+}
+
+.AghanimRewardItem:hover
+{
+	brightness: 1.18;
+}
+
+.AghanimRewardItem.SelectableReward:hover
+{
+	brightness: 1.18;
+}
+
+.AghanimRewardItem.SelectedReward
+{
+	brightness: 1.04;
+	box-shadow: hollow 0px 0px 10px -5px #f5c84d99;
+}
+
+.AghanimRewardItemSelectedGlow
+{
+	width: 0px;
+	height: 0px;
+	opacity: 0;
+	visibility: collapse;
+}
+
+.AghanimRewardItemBG1
+{
+	width: 60px;
+	height: 60px;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_png.vtex");
+	background-size: 100%;
+	z-index: -1;
+	ignore-parent-flow: true;
+	align: center center;
+}
+
+.AghanimRewardItemBG1.RareColor_common
+{
+	wash-color: rgba(211, 211, 211, 0.911);
+	brightness: 5;
+}
+
+.AghanimRewardItemBG1.RareColor_rare
+{
+	wash-color: rgba(47, 102, 252, 0.911);
+	brightness: 5;
+}
+
+.AghanimRewardItemBG1.RareColor_mythical
+{
+	wash-color: rgba(252, 47, 252, 0.911);
+	brightness: 5;
+}
+
+.AghanimRewardItemBG1.RareColor_legendary
+{
+	wash-color: rgb(255, 104, 3);
+	brightness: 5;
+}
+
+.AghanimRewardItemBG1.RareColor_immortal
+{
+	wash-color: rgb(143, 3, 3);
+	brightness: 5;
+}
+
+.AghanimRewardItemBG1.RareColor_super
+{
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_super_png.vtex");
+	background-size: 100%;
+}
+
+.AghanimRewardItemBG2
+{
+	width: 60px;
+	height: 60px;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_without_border_png.vtex");
+	background-size: 100%;
+	z-index: 6;
+	img-shadow: 0px 0px 8px 2 black;
+	ignore-parent-flow: true;
+	align: center center;
+}
+
+.AghanimRewardItemIcon
+{
+	width: 42px;
+	height: 42px;
+	align: center center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	img-shadow: 0px 0px 3px 4 black;
+}
+
+.AghanimRewardHint
+{
+	width: 100%;
+	margin-top: 8px;
+	color: #d8d0e2;
+	font-size: 15px;
+	text-align: center;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.AfkDailyLimitLabel
+{
+	width: 100%;
+	margin-top: 8px;
+	color: #d8d0e2;
+	font-size: 16px;
+	text-align: center;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.AfkRewardItemCount
+{
+	horizontal-align: right;
+	vertical-align: bottom;
+	min-width: 22px;
+	margin-right: 3px;
+	margin-bottom: 2px;
+	color: white;
+	font-size: 17px;
+	font-weight: bold;
+	text-align: right;
+	text-shadow: 0px 0px 4px 3 black;
+	z-index: 10;
+}
+
+.AghanimRewardHint.HiddenAfkRewardHint
+{
+	opacity: 0;
+	visibility: collapse;
+}
+
+.AghanimRewardConfirmButton
+{
+	width: 150px;
+	height: 38px;
+	horizontal-align: center;
+	margin-top: 8px;
+	opacity: 0;
+	visibility: collapse;
+	transition-property: brightness, transform;
+	transition-duration: 0.15s;
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_10_png.vtex");
+	background-size: 100%;
+}
+
+.AghanimRewardConfirmButton.VisibleConfirmButton
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+.AghanimRewardConfirmButton:active
+{
+	transform: scale3d(0.95, 0.95, 1);
+}
+
+.AghanimRewardConfirmButton:hover
+{
+	brightness: 1.18;
+}
+
+.AghanimRewardConfirmButton.DisabledConfirmButton
+{
+	saturation: 0.2;
+	brightness: 0.45;
+}
+
+.AghanimRewardConfirmButton Label
+{
+	align: center center;
+	color: white;
+	font-size: 18px;
+	font-weight: semi-bold;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 5px 3 black;
+}
+
+.AghanimContinuePanel
+{
+	width: 100%;
+	height: 100%;
+	z-index: 55;
+	opacity: 0;
+	visibility: collapse;
+}
+
+.AghanimContinuePanel.VisibleAghanimContinuePanel
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+.AghanimContinueBody
+{
+	width: 630px;
+	min-height: 210px;
+	align: center center;
+	flow-children: down;
+	padding: 16px 20px;
+	border: 1px solid white;
+	box-shadow: 0px 0px 18px 0px black;
+	background-color: gradient( radial, 50% 10%, 0% 0%, 85% 85%, from( #4a3d68 ), color-stop( 0.35, #2d2542 ), color-stop( 0.7, #1b1628 ), to( #161124 ) );
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( #8f79c2 ), to( #312744 ) );
+}
+
+.AghanimContinueTitle
+{
+	width: 100%;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff8ff ), to( #d8a8ff ) );
+	font-size: 23px;
+	font-weight: semi-bold;
+	text-transform: uppercase;
+	text-align: center;
+	text-shadow: 0px 0px 6px 3 black;
+}
+
+.AghanimContinueDescription
+{
+	width: 100%;
+	margin-top: 12px;
+	color: white;
+	font-size: 19px;
+	text-align: center;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.AghanimContinueTimer
+{
+	horizontal-align: center;
+	margin-top: 10px;
+	color: #f5e28d;
+	font-size: 32px;
+	font-weight: bold;
+	text-shadow: 0px 0px 7px 3 black;
+}
+
+.AghanimContinueButtons
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-top: 14px;
+}
+
+.AghanimContinueButton
+{
+	width: 200px;
+	height: 50px;
+	margin-left: 15px;
+	margin-right: 15px;
+	transition-property: brightness;
+	transition-duration: 0.15s;
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_10_png.vtex");
+	background-size: 100%;
+}
+
+.AghanimContinueButton.LeaveButton
+{
+	border-color: #88718f;
+}
+
+.AghanimContinueButton:hover
+{
+	brightness: 1.18;
+}
+
+.AghanimContinueButton.ChoiceLocked
+{
+	brightness: 0.62;
+	saturation: 0.45;
+}
+
+.AghanimContinueButton.ChoiceLocked:hover
+{
+	brightness: 0.62;
+}
+
+.AghanimContinueButton Label
+{
+	align: center center;
+	color: white;
+	font-size: 18px;
+	text-transform: uppercase;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 5px 3 black;
+}
+
+.AghanimContinueVotes
+{
+	horizontal-align: center;
+	margin-top: 14px;
+	flow-children: right;
+	visibility: collapse;
+	overflow: noclip;
+}
+
+.AghanimContinueVotes.VisibleAghanimContinueVotes
+{
+	visibility: visible;
+}
+
+.AghanimContinueVote
+{
+	width: 64px;
+	height: 64px;
+	margin: 0px 4px;
+	border: 1px solid #6e6577;
+	background-color: #06070bdd;
+	box-shadow: 0px 0px 6px 0px black;
+	overflow: noclip;
+}
+
+.AghanimContinueVote.VotePending
+{
+	brightness: 0.55;
+	saturation: 0.2;
+}
+
+.AghanimContinueVote.VoteContinue
+{
+	border-color: #53d46b;
+	box-shadow: 0px 0px 7px 0px #38e05d66;
+}
+
+.AghanimContinueVote.VoteLeave
+{
+	border-color: #d94f4f;
+	box-shadow: 0px 0px 7px 0px #e0383866;
+}
+
+.AghanimContinueVoteAvatar
+{
+	width: 100%;
+	height: 100%;
+}
+
+.AghanimContinueVoteBadge
+{
+	width: 40px;
+	height: 40px;
+	horizontal-align: center;
+	vertical-align: center;
+	visibility: collapse;
+}
+
+.AghanimContinueVote.VoteContinue .AghanimContinueVoteBadge
+{
+	background-image: url("s2r://panorama/images/game_hud/promo/check_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 4px 2 #000000;
+	visibility: visible;
+}
+
+.AghanimContinueVote.VoteLeave .AghanimContinueVoteBadge
+{
+	background-image: url("s2r://panorama/images/game_hud/promo/cross_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 4px 2 #000000;
+	visibility: visible;
+}
+
+.AghanimContinueVoteBadgeLabel
+{
+	align: center center;
+	color: white;
+	font-size: 15px;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 0px 0px 3px 2 black;
+	visibility: collapse;
+}
+
+.PostStageActivityBody
+{
+	flow-children: down;
+}
+
+.PostStageActivityLayout
+{
+	width: 100%;
+	height: fill-parent-flow( 1.0 );
+	margin-top: 24px;
+}
+
+.PostStageActivityList
+{
+	width: 300px;
+	flow-children: down;
+	horizontal-align: left;
+	margin-top: 90px;
+	margin-left: 60px;
+}
+
+.PostStageActivityOption
+{
+	width: 100%;
+	height: 110px;
+	flow-children: right;
+}
+
+.PostStageActivityOptionBG1
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	background-image: url("s2r://panorama/images/game_hud/aghs/button_png.vtex");
+	background-size: 100%;
+	z-index: -1;
+}
+
+.PostStageActivityOptionBG2
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	background-image: url("s2r://panorama/images/game_hud/aghs/border_png.vtex");
+	background-size: 100%;
+	z-index: 2;
+	opacity: 0;
+	transition-property: opacity, saturation, brightness;
+	transition-duration: 0.15s;
+}
+
+.PostStageActivityOption.SelectedActivity .PostStageActivityOptionBG2
+{
+	opacity: 1;
+	saturation: 1;
+}
+
+.PostStageActivityOption.SelectedActivity .PostStageActivityOptionBG1
+{
+	brightness: 2;
+}
+
+.PostStageActivityOption:hover .PostStageActivityOptionBG2
+{
+	opacity: 1;
+	saturation: 1;
+}
+
+.PostStageActivityOptionIcon
+{
+	margin-left: 30px;
+	width: 56px;
+	height: 56px;
+	vertical-align: center;
+	margin-right: 12px;
+	margin-top: 5px;
+}
+
+.DummyIcon
+{
+	background-image: url("s2r://panorama/images/dungeon/1_1_png.vtex");
+	background-size: 100%;
+	border: 1px solid gold;
+	border-radius: 6px;
+}
+
+.AghanimIcon
+{
+	background-image: url("s2r://panorama/images/dungeon/2_1_png.vtex");
+	background-size: 100%;
+	border: 1px solid gold;
+	border-radius: 6px;
+}
+
+.BossRushIcon
+{
+	background-image: url("s2r://panorama/images/dungeon/3_1_png.vtex");
+	background-size: 100%;
+	border: 1px solid gold;
+	border-radius: 6px;
+}
+
+.PostStageActivityOptionTitle
+{
+	width: fill-parent-flow( 1.0 );
+	vertical-align: center;
+	margin-top: 0px;
+	text-align: left;
+	font-size: 24px;
+	margin-right: 20px;
+	text-overflow: shrink;
+	font-weight: semi-bold;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+	margin-top: 5px;
+}
+
+.PostStageActivityPreview
+{
+	width: 780px;
+	height: 725px;
+	background-color: black;
+	ignore-parent-flow: true;
+	z-index: -5;
+	margin-left: 384px;
+	margin-top: 118px;
+}
+
+.PostStageActivityPreviewImage
+{
+	width: 100%;
+	height: 100%;
+}
+
+.PostStageActivityPreviewTitle
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff1be ), to( #d89b42 ) );
+	font-size: 34px;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 8px 3 black;
+	width: 100%;
+	text-align: center;
+	background-color: rgba(0,0,0,0.9);
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.PostStageActivityInfo
+{
+	horizontal-align: right;
+	margin-right: 52px;
+	width: 390px;
+	margin-top: 110px;
+	flow-children: down;
+}
+
+.PostStageActivityInfoBlock
+{
+	width: 100%;
+	height: 290px;
+	margin-bottom: 18px;
+	padding: 18px 20px;
+	flow-children: down;
+}
+
+.PostStageActivityInfoTitle
+{
+	width: 100%;
+	text-align: center;
+	color: #f1d797;
+	font-size: 22px;
+	font-weight: semi-bold;
+	text-overflow: shrink;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 5px 3 black;
+}
+
+.PostStageActivityDescription
+{
+	width: 100%;
+	margin-top: 30px;
+	color: #e5ddef;
+	font-size: 21px;
+	line-height: 27px;
+	text-shadow: 0px 0px 4px 2 black;
+	text-overflow: shrink;
+}
+
+.PostStageActivityRewards
+{
+	width: 100%;
+	margin-top: 20px;
+	flow-children: down;
+}
+
+.PostStageActivityReward
+{
+	width: 100%;
+	height: 62px;
+	margin-bottom: 8px;
+	flow-children: right;
+}
+
+.PostStageActivityRewardIconWrap
+{
+	width: 58px;
+	height: 58px;
+	vertical-align: center;
+	margin-right: 12px;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_png.vtex");
+	background-size: 100%;
+}
+
+.PostStageActivityRewardIcon
+{
+	width: 42px;
+	height: 42px;
+	align: center center;
+}
+
+.PostStageActivityRewardCount
+{
+	horizontal-align: right;
+	vertical-align: bottom;
+	margin-right: -2px;
+	margin-bottom: -3px;
+	color: white;
+	font-size: 15px;
+	font-weight: bold;
+	text-shadow: 0px 0px 4px 3 black;
+}
+
+.PostStageActivityRewardLabel
+{
+	vertical-align: center;
+	width: fill-parent-flow( 1.0 );
+	color: #ffffff;
+	font-size: 20px;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.PostStageActivityStartButton
+{
+	width: 270px;
+	height: 68px;
+	horizontal-align: center;
+	margin-top: 8px;
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_10_png.vtex");
+	background-size: 100%;
+	transition-property: brightness, saturation, transform;
+	transition-duration: 0.12s;
+}
+
+.PostStageActivityStartButton:hover
+{
+	brightness: 1.3;
+}
+
+.PostStageActivityStartButton:active
+{
+	transform: scale3d(0.95, 0.95, 1);
+}
+
+.PostStageActivityStartButton.DisabledStartButton
+{
+	saturation: 0.15;
+	brightness: 0.45;
+}
+
+.PostStageActivityStartButton.DisabledStartButton:hover
+{
+	brightness: 0.45;
+}
+
+.PostStageActivityStartButtonLabel
+{
+	align: center center;
+	color: white;
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 5px 3 black;
+}
+
+.PostStageActivityOption.DisabledActivity,.PostStageActivityOption.SelectedActivity.DisabledActivity
+{
+	saturation: 0.15;
+	brightness: 0.45;
+	box-shadow: none;
+	border-color: #4d4259;
+}
+
+.PostStageActivityOption.SelectedActivity.DisabledActivity:hover
+{
+	brightness: 0.45;
+	transform: none;
+}

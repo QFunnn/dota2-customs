@@ -1,0 +1,92 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/layout/custom_game/tooltips/ability_tooltip/ability_tooltip.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/const.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/tooltips/ability_tooltip/ability_tooltip.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="ArtefactEBonus">
+			<Panel class="ArtefactEBonusPanel">
+				<Panel class="ArtefactEBonusPanelPin" />
+				<Label id="Name" class="ArtefactEBonusPanelName" html="true" />
+				<Label id="Value" class="ArtefactEBonusPanelValue" html="true" />
+				<Panel class="ArtefactEBonusPanelTier">
+					<Label id="Tier" class="ArtefactEBonusPanelTierLabel" html="true" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="CardStatLine">
+			<Panel class="CardBaseBonusLine">
+				<Panel class="CardBaseBonusPin" />
+				<Label id="StatLabel" class="CardBaseBonusLabel" html="true" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="ability_tooltip" hittest="false" hittestchildren="false" ontooltiploaded="UpdateTooltip()">
+		<Panel class="TooltipBG" />
+		<Panel class="TooltipBorder" />
+		<Panel class="TooltipBody">
+			<Panel class="AbilityImage">
+				<Panel class="AbilityBorder" />
+				<Image class="AbilityTexture" id="AbilityTexture" />
+			</Panel>
+			<Panel class="AbilityNamePanel">
+				<Label text="AbilityName" id="AbilityName" />
+			</Panel>
+			<Panel class="Limer" />
+			<Panel class="AbilityData" id="AbilityData" />
+			<Panel class="AbilityArtefactEStats" id="AbilityArtefactEStats" />
+			<Panel class="AbilityStats" id="AbilityStats" />
+			<Panel class="AbilityDescriptionPanel">
+				<Panel class="AbilityDescriptionHeader">
+					<Label class="AbilityDescriptionHeaderLabel" id="AbilityDescriptionHeaderLabel" text="AbilityDescriptionHeaderLabel" />
+					<Panel class="CooldownsManaCost" id="CooldownsManaCost">
+						<Panel class="ManaCostPanel" id="ManaCostPanel">
+							<Panel class="ManaCostIcon" />
+							<Label class="ManaCostLabel" id="ManaCostLabel" text="0" />
+						</Panel>
+						<Panel class="CurrencyCost" id="CurrencyCost">
+							<Panel class="CurrencyCostIcon" id="CurrencyCostIcon" />
+							<Label class="CurerncyCostLabel" id="CurerncyCostLabel" text="0" />
+						</Panel>
+						<Panel class="CooldownCostPanel" id="CooldownCostPanel">
+							<Panel class="CooldownCostIcon" />
+							<Label class="CooldownCostLabel" id="CooldownCostLabel" text="0" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Label class="AbilityDescription" id="AbilityDescription" text="AbilityDescription" />
+			</Panel>
+			<Panel class="AbilityDescriptionPanel IsPassiveColor" id="AbilityDescriptionPanelArtefact">
+				<Panel class="AbilityDescriptionHeader">
+					<Label class="AbilityDescriptionHeaderLabel" id="AbilityDescriptionEffectArtefactHeaderLabel" text="AbilityDescriptionHeaderLabel" />
+					<Panel class="CooldownsManaCost" id="CooldownsManaCost">
+						<Panel class="CooldownCostPanel" id="CooldownCostEffectArtefactPanel">
+							<Panel class="CooldownCostIcon" />
+							<Label class="CooldownCostLabel" id="CooldownCostEffectArtefactLabel" text="0" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Label class="AbilityDescription" id="AbilityDescriptionEffectArtefact" text="AbilityDescription" />
+			</Panel>
+			<Panel class="AbilityLore" id="AbilityLore">
+				<Label class="AbilityLoreLabel" id="AbilityLoreLabel" text="AbilityLore" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

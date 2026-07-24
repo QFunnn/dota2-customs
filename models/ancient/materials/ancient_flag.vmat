@@ -1,0 +1,85 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Layer0"
+{
+	"shader"	"hero.vfx"
+	"F_ALPHA_TEST"	"1"
+	"F_DETAIL"	"1"
+	"F_ENABLE_WIND"	"1"
+	"F_MASKS_1"	"1"
+	"g_flAlphaTestReference"	"0.7"
+	"g_flAmbientScale"	"0.639"
+	"g_flBloomScale"	"1"
+	"g_flBloomShift"	"1"
+	"g_flCloakBlurAmount"	"0.005"
+	"g_flCloakIntensity"	"0.85"
+	"g_flCloakRefractAmount"	"0.1"
+	"g_flDetailBlendFactor"	"1"
+	"g_flDetailBlendToFull"	"0"
+	"g_flDetailTexCoordRotation"	"0"
+	"g_flDiffuseModulationAmount"	"1"
+	"g_flEnvMapBlendToFull"	"0"
+	"g_flFresnelModulatesAlpha"	"0"
+	"g_flMaterialCloakFactor"	"0"
+	"g_flMetalnessBlendToFull"	"0"
+	"g_flOverbrightFactor"	"1"
+	"g_flReflectionsTintByBaseBlendToNone"	"0"
+	"g_flRimLightScale"	"1"
+	"g_flSelfIllumBlendToFull"	"0"
+	"g_flSpecularBlendToFull"	"0"
+	"g_flSpecularExponent"	"32"
+	"g_flSpecularExponentBlendToFull"	"0"
+	"g_flSpecularScale"	"1"
+	"g_flTexCoordRotation"	"0"
+	"g_flWindFlexibility"	"0.63"
+	"g_flWindHighFrequencyEffects"	"0.898"
+	"g_flWindLowFrequencyEffects"	"0.13"
+	"g_flWindSpeedMultiplier"	"0.359"
+	"g_vBloomColor"	"[0.000000 0.949020 1.000000 0.000000]"
+	"g_vCloakColorTint"	"[1.000000 1.000000 1.000000 0.000000]"
+	"g_vDetail1ColorTint"	"[1.000000 1.000000 1.000000 0.000000]"
+	"g_vDetailTexCoordOffset"	"[0.000000 0.000000 0.000000 0.000000]"
+	"g_vDetailTexCoordScale"	"[5.707000 5.832000 0.000000 0.000000]"
+	"g_vRimLightColor"	"[1.000000 1.000000 1.000000 0.000000]"
+	"g_vSpecularColor"	"[1.000000 1.000000 1.000000 0.000000]"
+	"g_vTexCoordOffset"	"[0.000000 0.000000 0.000000 0.000000]"
+	"g_vTexCoordScale"	"[1.000000 1.000000 0.000000 0.000000]"
+	"TextureMetalnessMask"	"[0.063000 0.063000 0.063000 0.000000]"
+	"TextureWindRandomNoise"	"[1.000000 0.000000 0.000000 0.000000]"
+	"TextureColor"	"models/ancient/materials/flags/material.png"
+	"TextureTranslucency"	"models/ancient/materials/flags/material.png"
+	"TextureDetail"	"materials/models/heroes/spirit_breaker/spiritbreaker_glow_detail.png"
+	"TextureFresnelWarpRim"	"materials/default/default_fresnelwarprim.tga"
+	"TextureFresnelWarpColor"	"materials/default/default_fresnelwarprim_d9279d65-G.png"
+	"TextureFresnelWarpSpec"	"materials/default/default_fresnelwarprim_d9279d65-B.png"
+	"TextureDetailMask"	"models/ancient/materials/flags/details/material.png"
+	"TextureDiffuseWarpMask"	"models/ancient/materials/flags/details/material.png"
+	"TextureSelfIllumMask"	"models/ancient/materials/flags/details/material.png"
+	"TextureNormal"	"models/ancient/materials/flags/material.png"
+	"TextureWindMask"	"models/ancient/materials/flags/winds/material.png"
+	"TextureWindNoise"	"models/ancient/materials/ancient_flag_vmat_g_twindnoise_5fdf4be.png"
+	"Compiled Textures"
+	{
+		"g_tColor"	"models/ancient/materials/flags/material.004_basecolor_png_f6596c7e.vtex"
+		"g_tDetail"	"materials/models/heroes/spirit_breaker/spiritbreaker_glow_detail_psd_1cf1fad5.vtex"
+		"g_tFresnelWarp"	"materials/default/default_fresnelwarprim_tga_d9279d65.vtex"
+		"g_tMasks1"	"models/ancient/materials/flags/details/material.004_basecolor_png_db6f07a.vtex"
+		"g_tNormal"	"models/ancient/materials/flags/material.004_normal_png_dfd8245a.vtex"
+		"g_tWindMask"	"models/ancient/materials/flags/winds/material.004_basecolor_png_83dade55.vtex"
+		"g_tWindNoise"	"models/ancient/materials/ancient_flag_vmat_g_twindnoise_5fdf4be.vtex"
+	}
+	"DynamicParams"
+	{
+		"g_flBloomScale"	"return (sin(time*2)*.2)+.1;"
+		"g_flDetailBlendFactor"	"return (sin(time*1)*.3)+.7;"
+		"g_vDetailTexCoordOffset"	"return frac(time*.1);"
+	}
+}

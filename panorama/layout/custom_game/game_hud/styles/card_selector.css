@@ -1,0 +1,1095 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.CardSelectorPanel
+{
+	width: 400px;
+	height: 100px;
+	horizontal-align: right;
+	ignore-parent-flow: true;
+	margin-right: 76.5px;
+	margin-bottom: 158px;
+	vertical-align: bottom;
+	border: 1px solid white;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, color-stop( 0.0, #cbb5f536 ), color-stop( 0.5, #cbb5f536 ), color-stop( 1.0, transparent ) );
+	background-image: url("s2r://panorama/images/game_hud/lower_hud/card_selector_png.vtex");
+	background-size: 100%;
+}
+
+.CardSelectorPanelExpanded
+{
+	width: 450px;
+}
+
+.CardSelectorPanelExpandedWide
+{
+	width: 500px;
+}
+
+.CardSelectorList
+{
+	horizontal-align: center;
+	flow-children: right;
+	vertical-align: center;
+}
+
+.CardPanel
+{
+	width: 60px;
+	height: 70px;
+	background-color: rgb(12, 12, 12);
+	margin: 4px;
+	border: 1px solid rgb(203, 152, 245);
+	box-shadow: 0px 0px 5px 1px rgba(203, 152, 245, 0.1);
+	border-radius: 5px;
+}
+
+.CardBGStashImage
+{
+	width: 100%;
+	height: 100%;
+}
+
+.CardKillsCounterStash
+{
+	vertical-align: bottom;
+	horizontal-align: center;
+	color: white;
+	text-shadow: 0px 0px 5px 3 black;
+	font-weight: semi-bold;
+	font-size: 16px;
+	margin-bottom: 5px;
+	text-transform: uppercase;
+}
+
+.PanelChooseCard
+{
+	width: 100%;
+	height: 100%;
+	z-index: -2;
+}
+
+.SelectorRestoreButtons
+{
+	flow-children: right;
+	align: center bottom;
+	margin-bottom: 300px;
+	opacity: 0;
+	visibility: collapse;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+}
+
+.SelectorRestoreButtons .SelectorRestoreButton
+{
+	visibility: visible;
+}
+
+.SelectorRestoreButtons .SelectorRestoreButtonLabel
+{
+	width: 100%;
+	margin-bottom: 5px;
+	font-size: 12px;
+	text-align: center;
+	text-overflow: shrink;
+}
+
+.CollapsedCardSelector .PanelChooseBodyCard,.CollapsedCardSelector .PanelReplaceCard
+{
+	opacity: 0;
+	visibility: collapse;
+}
+
+.PanelChooseBodyCard
+{
+	flow-children: down;
+	align: center center;
+	margin-bottom: 230px;
+}
+
+.ChooseCardList
+{
+	flow-children: right;
+	align: center center;
+	opacity: 0;
+	transform: scale3d(0.2, 0.2, 0.2);
+	transition-property: opacity, transform;
+	transition-duration: 0.3s;
+}
+
+.OpenCardPanel .ChooseCardList
+{
+	opacity: 1;
+	transform: scale3d(1,1,1);
+}
+
+.MoreCardSelection .ChooseCardList
+{
+	transform: scale3d(0.85,0.85,0.85);
+}
+
+.ChooseCardButtonContainer
+{
+	margin-left: 20px;
+	margin-right: 20px;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.3s;
+}
+
+.ChooseCardButtonInfo
+{
+	width: 100%;
+	margin-left: 20px;
+	margin-right: 20px;
+	horizontal-align: center;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( transparent ), color-stop( 0.2, rgba(0, 0, 0, 0.9) ), color-stop( 0.8, rgba(0, 0, 0, 0.9) ), to( transparent ) );
+	margin-top: 58px;
+	z-index: 5;
+}
+
+.ChooseCardButtonInfo Label
+{
+	color: white;
+	font-weight: semi-bold;
+	font-size: 14px;
+	vertical-align: center;
+	horizontal-align: center;
+	text-shadow: 0px 0px 5px 3 black;
+	padding-left: 5px;
+	padding-right: 5px;
+	text-transform: uppercase;
+}
+
+.ChooseCardButtons
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.OpenCardPanel .ChooseCardButtonContainer
+{
+	opacity: 1;
+}
+
+.ButtonsInReplace .ChooseCardButtonContainer
+{
+	opacity: 1;
+}
+
+.ChooseCardButton
+{
+	transition-property: brightness, transform;
+	transition-duration: 0.2s, 0.1s;
+}
+
+.ChooseCardButton:hover
+{
+	brightness: 1.5;
+}
+
+.ChooseCardButton:active
+{
+	transform: scale3d(0.98, 0.98, 0.98);
+}
+
+.ChooseCardButtonReroll
+{
+	min-width: 250px;
+	height: 60px;
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_13_png.vtex");
+	background-size: 100%;
+}
+
+.ChooseCardButtonCancel
+{
+	min-width: 250px;
+	height: 60px;
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_12_png.vtex");
+	background-size: 100%;
+}
+
+.ChooseCardButtonLabel
+{
+	color: white;
+	font-weight: semi-bold;
+	font-size: 26px;
+	margin-left: 5px;
+	margin-right: 5px;
+	vertical-align: center;
+	horizontal-align: center;
+	text-shadow: 0px 0px 5px 3 black;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.ChooseCardBase
+{
+	margin: 20px;
+	width: 330px;
+	height: 630px;
+	flow-children: down;
+	animation-name: wobble;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.ChooseCardBaseBG
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	z-index: -2;
+	brightness: 5;
+	background-image: url("s2r://panorama/images/game_hud/selector/card_bg4_png.vtex");
+	background-size: cover;
+}
+
+.ChooseCardBaseBorder
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	z-index: -2;
+	border-image-source: url("s2r://panorama/images/game_hud/selector/card_border_test_png.vtex");
+	border-width: 10px;
+	border-image-slice: 70px;
+	background-image: url("s2r://panorama/images/game_hud/selector/bg_11_png.vtex");
+	background-size: cover;
+	opacity: 0;
+}
+
+.ChooseCardBaseBG2
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	z-index: -2;
+	background-image: url("s2r://panorama/images/game_hud/selector/bg_4_png.vtex");
+	background-size: cover;
+	brightness: 2;
+	opacity: 0.1;
+}
+
+.CardBasePFX
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	brightness: 10;
+	z-index: -1;
+	opacity: 0.1;
+}
+
+.CardBasePFXBorder
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	brightness: 10;
+	z-index: 1;
+	opacity: 0.1;
+}
+
+.CardRarityCommon .CardBasePFX
+{
+	opacity: 0;
+}
+
+.CardRarityCommon .CardBasePFXBorder
+{
+	opacity: 0.01;
+}
+
+.CardRarityCommon .ChooseCardBaseBG,.CardRarityCommon .ChooseCardBaseBG2,.CardRarityCommon .ChooseCardBaseBorder,.CardRarityCommon .CardBasePFXBorder
+{
+	wash-color: #b8bec7;
+}
+
+.CardRarityRare .ChooseCardBaseBG,.CardRarityRare .ChooseCardBaseBG2,.CardRarityRare .ChooseCardBaseBorder,.CardRarityRare .CardBasePFXBorder
+{
+	wash-color: #5aa8ff;
+}
+
+.CardRarityEpic .ChooseCardBaseBG,.CardRarityEpic .ChooseCardBaseBG2,.CardRarityEpic .ChooseCardBaseBorder,.CardRarityEpic .CardBasePFXBorder
+{
+	wash-color: #c16bff;
+}
+
+.CardRarityLegendary .ChooseCardBaseBG,.CardRarityLegendary .ChooseCardBaseBG2,.CardRarityLegendary .ChooseCardBaseBorder,.CardRarityLegendary .CardBasePFXBorder
+{
+	wash-color: #ffd54a;
+}
+
+.CardRarityMythical .ChooseCardBaseBG,.CardRarityMythical .ChooseCardBaseBG2,.CardRarityMythical .ChooseCardBaseBorder,.CardRarityMythical .CardBasePFXBorder
+{
+	wash-color: #ff3b30;
+}
+
+.CardRaritySSS .ChooseCardBaseBG,.CardRaritySSS .ChooseCardBaseBG2,.CardRaritySSS .ChooseCardBaseBorder,.CardRaritySSS .CardBasePFXBorder
+{
+	wash-color: #7dfcff;
+}
+
+@keyframes 'wobble'
+{
+	25%
+	{
+		transform: rotateX(0deg) rotateY(-1deg) rotateZ(0deg);
+	}
+	
+	75%
+	{
+		transform: rotateX(0deg) rotateY(1deg) rotateZ(0deg);
+	}
+	
+}
+
+.ChooseCardBase.CardRarityCommon
+{
+	border-brush: gradient( linear, 0% 0%, 0% 100%, color-stop( 0.0, #b8bec7 ), color-stop( 0.70, rgb(59, 57, 57) ), color-stop( 1.0, transparent ) );
+}
+
+.ChooseCardBase.CardRarityRare
+{
+	border-brush: gradient( linear, 0% 0%, 0% 100%, color-stop( 0.0, #5aa8ff ), color-stop( 0.70, rgb(59, 57, 57) ), color-stop( 1.0, transparent ) );
+}
+
+.ChooseCardBase.CardRarityEpic
+{
+	border-brush: gradient( linear, 0% 0%, 0% 100%, color-stop( 0.0, #c16bff ), color-stop( 0.70, rgb(59, 57, 57) ), color-stop( 1.0, transparent ) );
+}
+
+.ChooseCardBase.CardRarityLegendary
+{
+	border-brush: gradient( linear, 0% 0%, 0% 100%, color-stop( 0.0, #ffd54a ), color-stop( 0.70, rgb(59, 57, 57) ), color-stop( 1.0, transparent ) );
+}
+
+.ChooseCardBase.CardRarityMythical
+{
+	border-brush: gradient( linear, 0% 0%, 0% 100%, color-stop( 0.0, #ff3b30 ), color-stop( 0.70, rgb(59, 57, 57) ), color-stop( 1.0, transparent ) );
+}
+
+.ChooseCardBase.CardRaritySSS
+{
+	border-brush: gradient( linear, 0% 0%, 100% 100%, color-stop( 0.0, #ff4df0 ), color-stop( 0.35, #7dfcff ), color-stop( 0.70, #ffd84a ), color-stop( 1.0, transparent ) );
+}
+
+.ChooseCardBase.CardRarityCommon:hover
+{
+	box-shadow: hollow 0px 0px 22px -2px #b8bec7;
+}
+
+.ChooseCardBase.CardRarityRare:hover
+{
+	box-shadow: hollow 0px 0px 22px -2px #5aa8ff;
+}
+
+.ChooseCardBase.CardRarityEpic:hover
+{
+	box-shadow: hollow 0px 0px 22px -2px #c16bff;
+}
+
+.ChooseCardBase.CardRarityLegendary:hover
+{
+	box-shadow: hollow 0px 0px 22px -2px #ffd54a;
+}
+
+.ChooseCardBase.CardRarityMythical:hover
+{
+	box-shadow: hollow 0px 0px 22px -2px #ff3b30;
+}
+
+.ChooseCardBase.CardRaritySSS:hover
+{
+	box-shadow: hollow 0px 0px 26px -1px #7dfcff;
+}
+
+.ChooseCardBaseImage
+{
+	border-radius: 10px;
+	horizontal-align: center;
+	margin-top: 8px;
+	width: 120px;
+	height: 160px;
+	border: 2px solid rgb(0, 0, 0);
+}
+
+.ChooseCardBaseImage.CardRarityCommon,.CardPanel.CardRarityCommon,.ReplaceCardBasePanelImgBox.CardRarityCommon,.InventoryCardChild.CardRarityCommon
+{
+	border: 1px solid #b8bec7;
+	box-shadow: 0px 0px 6px 0px #b8bec744;
+}
+
+.ChooseCardBaseImage.CardRarityRare,.CardPanel.CardRarityRare,.ReplaceCardBasePanelImgBox.CardRarityRare,.InventoryCardChild.CardRarityRare
+{
+	border: 1px solid #5aa8ff;
+	box-shadow: 0px 0px 6px 0px #5aa8ff44;
+}
+
+.ChooseCardBaseImage.CardRarityEpic,.CardPanel.CardRarityEpic,.ReplaceCardBasePanelImgBox.CardRarityEpic,.InventoryCardChild.CardRarityEpic
+{
+	border: 1px solid #c16bff;
+	box-shadow: 0px 0px 6px 0px #c16bff44;
+}
+
+.ChooseCardBaseImage.CardRarityLegendary,.CardPanel.CardRarityLegendary,.ReplaceCardBasePanelImgBox.CardRarityLegendary,.InventoryCardChild.CardRarityLegendary
+{
+	border: 1px solid #ffd54a;
+	box-shadow: 0px 0px 6px 0px #ffd54a44;
+}
+
+.ChooseCardBaseImage.CardRarityMythical,.CardPanel.CardRarityMythical,.ReplaceCardBasePanelImgBox.CardRarityMythical,.InventoryCardChild.CardRarityMythical
+{
+	border: 1px solid #ff3b30;
+	box-shadow: 0px 0px 6px 0px #ff3b3044;
+}
+
+.ChooseCardBaseImage.CardRaritySSS,.CardPanel.CardRaritySSS,.ReplaceCardBasePanelImgBox.CardRaritySSS,.InventoryCardChild.CardRaritySSS
+{
+	border: 1px solid #7dfcff;
+	box-shadow: 0px 0px 10px 0px #7dfcff88;
+}
+
+.ChooseCardBaseName
+{
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 5px;
+	font-size: 18px;
+	height: 24px;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: center;
+	width: 100%;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 5px 3.0 black;
+	font-family: Reaver;
+	letter-spacing: 0.4px;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#faf6ef), to(#e9c57c));
+}
+
+.CardRarityCommon .ChooseCardBaseName
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#faf6ef), to(#b8bec7));
+}
+
+.CardRarityRare .ChooseCardBaseName
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#faf6ef), to(#5aa8ff));
+}
+
+.CardRarityEpic .ChooseCardBaseName
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#faf6ef), to(#c16bff));
+}
+
+.CardRarityLegendary .ChooseCardBaseName
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#faf6ef), to(#ffd54a));
+}
+
+.CardRarityMythical .ChooseCardBaseName
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#faf6ef), to(#ff3b30));
+}
+
+.CardRaritySSS .ChooseCardBaseName
+{
+	color: gradient(linear, 0% 0%, 100% 0%, from(#ff4df0), color-stop(0.35, #7dfcff), color-stop(0.65, #ffd84a), to(#7cff6b));
+}
+
+.ChooseCardBaseBundleData
+{
+	margin-top: 5px;
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.ChooseCardBaseBundleDataName
+{
+	color: rgb(255, 0, 0);
+	text-shadow: 0px 0px 5px 3 black;
+	font-weight: semi-bold;
+	font-size: 14px;
+	vertical-align: center;
+	horizontal-align: center;
+	text-transform: uppercase;
+}
+
+.ChooseCardBaseBundleDataName.CardRarityCommon,.ReplaceCardBasePanelBundle.CardRarityCommon
+{
+	color: #b8bec7;
+}
+
+.ChooseCardBaseBundleDataName.CardRarityRare,.ReplaceCardBasePanelBundle.CardRarityRare
+{
+	color: #5aa8ff;
+}
+
+.ChooseCardBaseBundleDataName.CardRarityEpic,.ReplaceCardBasePanelBundle.CardRarityEpic
+{
+	color: #c16bff;
+}
+
+.ChooseCardBaseBundleDataName.CardRarityLegendary,.ReplaceCardBasePanelBundle.CardRarityLegendary
+{
+	color: #ffd54a;
+}
+
+.ChooseCardBaseBundleDataName.CardRarityMythical,.ReplaceCardBasePanelBundle.CardRarityMythical
+{
+	color: #ff3b30;
+}
+
+.ChooseCardBaseBundleDataName.CardRaritySSS,.ReplaceCardBasePanelBundle.CardRaritySSS
+{
+	color: #7dfcff;
+}
+
+.ChooseCardBaseBundleDataCounter
+{
+	color: white;
+	text-shadow: 0px 0px 5px 3 black;
+	font-weight: semi-bold;
+	font-size: 16px;
+	horizontal-align: center;
+	text-transform: uppercase;
+	margin-left: 5px;
+}
+
+.ChooseCardBaseImageAnimateStash
+{
+	width: 60px;
+	height: 70px;
+	z-index: 5;
+	transition-property: transform, position, opacity;
+	transition-duration: 0.5s, 0.5s, 0.5s;
+	border-radius: 5px;
+}
+
+.ChooseCardBaseImageAnimateStashFaster
+{
+	width: 60px;
+	height: 70px;
+	z-index: 5;
+	transition-property: transform, position, opacity;
+	transition-duration: 0.25s, 0.25s, 0.25s;
+	border-radius: 5px;
+}
+
+.FadeAnimate
+{
+	animation-name: FadeCardDestroy;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'FadeCardDestroy'
+{
+	0%
+	{
+		saturation: 0;
+		brightness: 0.2;
+		transform: scaleX( 1.05 ) scaleY( 1.05 );
+	}
+	
+	50%
+	{
+		saturation: 1;
+		brightness: 1;
+		transform: scaleX( 1. ) scaleY( 1. );
+	}
+	
+	100%
+	{
+		saturation: 0;
+		brightness: 0.2;
+		transform: scaleX( 1.05 ) scaleY( 1.05 );
+	}
+	
+}
+
+.Limer
+{
+	horizontal-align: center;
+	width: 300px;
+	height: 12px;
+	background-image: url("s2r://panorama/images/tooltips/limer_png.vtex");
+	background-size: 100%;
+	margin-top: 5px;
+}
+
+.ChooseCardBaseBonusListPanel
+{
+	flow-children: down;
+	width: 280px;
+	horizontal-align: center;
+	margin-top: 20px;
+}
+
+.ChooseCardBaseBonusLine
+{
+	flow-children: right;
+	margin-bottom: 10px;
+}
+
+.ChooseCardBaseBonusPin
+{
+	vertical-align: top;
+	margin-top: 2px;
+	margin-left: 4px;
+	margin-right: 4px;
+	width: 12px;
+	height: 14px;
+	background-image: url("s2r://panorama/images/tooltips/dot_png.vtex");
+	background-size: 100%;
+}
+
+.ChooseCardBaseBonusLabel
+{
+	color: white;
+	font-size: 16px;
+	text-shadow: 0px 0px 5px 3 black;
+}
+
+.ChooseCardBaseBundleBonusPanel
+{
+	flow-children: down;
+	width: 280px;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 20px;
+}
+
+.ChooseCardBaseBundleBonusHeader
+{
+	width: 100%;
+	height: 30px;
+}
+
+.ChooseCardBaseBundleBonusPanelBG
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/tooltips/bundle_bg_png.vtex");
+	background-size: 100%;
+	brightness: 10;
+	z-index: -1;
+}
+
+.ChooseCardBaseBundleBonusHeaderLabel
+{
+	horizontal-align: center;
+	width: 100%;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#faf6ef), to(#a7a5a2));
+	text-align: center;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	brightness: 5;
+	font-weight: semi-bold;
+	font-family: Reaver;
+	font-size: 16px;
+	vertical-align: center;
+	text-shadow: 0px 0px 5px 3 black;
+}
+
+.ChooseCardBaseBundleBonusHeaderLabel.CardRarityCommon
+{
+	wash-color: #9b9c9e;
+}
+
+.ChooseCardBaseBundleBonusHeaderLabel.CardRarityRare
+{
+	wash-color: #2c6fbe;
+}
+
+.ChooseCardBaseBundleBonusHeaderLabel.CardRarityEpic
+{
+	wash-color: #7d3bb3;
+}
+
+.ChooseCardBaseBundleBonusHeaderLabel.CardRarityLegendary
+{
+	wash-color: #b68a12;
+}
+
+.ChooseCardBaseBundleBonusHeaderLabel.CardRarityMythical
+{
+	wash-color: #a51c14;
+}
+
+.ChooseCardBaseBundleBonusHeaderLabel.CardRaritySSS
+{
+	wash-color: #7dfcff;
+}
+
+.CardRarityCommon .ChooseCardBaseBundleBonusPanelBG
+{
+	wash-color: #6f7781;
+}
+
+.CardRarityRare .ChooseCardBaseBundleBonusPanelBG
+{
+	wash-color: #2c6fbe;
+}
+
+.CardRarityEpic .ChooseCardBaseBundleBonusPanelBG
+{
+	wash-color: #7d3bb3;
+}
+
+.CardRarityLegendary .ChooseCardBaseBundleBonusPanelBG
+{
+	wash-color: #b68a12;
+}
+
+.CardRarityMythical .ChooseCardBaseBundleBonusPanelBG
+{
+	wash-color: #a51c14;
+}
+
+.CardRaritySSS .ChooseCardBaseBundleBonusPanelBG
+{
+	wash-color: #7dfcff;
+}
+
+.ChooseCardBaseBundleBonusLabel
+{
+	color: white;
+	font-weight: thin;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	text-overflow: shrink;
+	padding: 5px;
+	width: 330px;
+	border: 1px solid rgba(128, 128, 128, 0.1);
+	border-top: 0px solid white;
+	background-color: rgba(0, 0, 0, 0.9);
+}
+
+.PanelReplaceCard
+{
+	flow-children: down;
+	align: center center;
+	margin-bottom: 200px;
+	visibility: collapse;
+}
+
+.PanelReplaceCardBody
+{
+	width: 900px;
+	height: 500px;
+	background-color: gradient( radial, 50% 10%, 0% 0%, 85% 85%, from( #4a3d68 ), color-stop( 0.35, #2d2542 ), color-stop( 0.7, #1b1628 ), to( #0d0a14 ) );
+	border: 1px solid #6f5c96;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( #8f79c2 ), to( #312744 ) );
+	box-shadow: 0px 0px 10px 1px black;
+	flow-children: down;
+	margin-bottom: 20px;
+}
+
+.PanelReplaceCardWide .PanelReplaceCardBody
+{
+	width: 1060px;
+}
+
+.PanelReplaceCardExtraWide .PanelReplaceCardBody
+{
+	width: 1220px;
+}
+
+.PanelReplaceBorderStyle
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	align: center center;
+	border: 1px solid rgba(74, 40, 112, 0.4);
+	box-shadow: inset 0px 0px 2px rgba(157, 108, 255, 0.2);
+}
+
+.PanelReplaceCardHeaderLabel
+{
+	color: white;
+	font-weight: semi-bold;
+	font-size: 36px;
+	horizontal-align: center;
+	text-transform: uppercase;
+	margin-top: 10px;
+	text-shadow: 0px 0px 5px 3 black;
+	text-overflow: shrink;
+}
+
+.PanelReplaceCardData
+{
+	margin-top: 10px;
+	flow-children: down;
+	width: 100%;
+	height: 100%;
+	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+	border-top: 1px solid rgba(74, 40, 112, 0.4);
+}
+
+.ReplaceCardBasePanel
+{
+	width: 140px;
+	flow-children: down;
+	horizontal-align: center;
+	margin: 10px;
+}
+
+.ReplaceCardBasePanelBundle
+{
+	height: 16px;
+	text-overflow: shrink;
+	width: 100%;
+	text-align: center;
+	horizontal-align: center;
+	color: gold;
+	text-shadow: 0px 0px 5px 3 black;
+	font-weight: semi-bold;
+	font-size: 14px;
+	text-transform: uppercase;
+}
+
+.ReplaceCardBasePanelImgBox
+{
+	width: 100px;
+	height: 120px;
+	margin: 4px;
+	border-radius: 5px;
+	background-color: rgb(12, 12, 12);
+	border: 1px solid rgb(203, 152, 245);
+	box-shadow: 0px 0px 5px 1px rgba(203, 152, 245, 0.1);
+	horizontal-align: center;
+	transition-property: brightness, box-shadow, saturation;
+	transition-duration: 0.25s, 0.25s;
+}
+
+.ReplaceCardBasePanelImgBoxActive:hover
+{
+	brightness: 1.2;
+	saturation: 1.1;
+	border: 1px solid #b18cff;
+	box-shadow: 0px 0px 8px #9d6cff55;
+}
+
+.ReplaceCardBasePanelImg
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 5px;
+}
+
+.ReplaceCardBasePanelCardName
+{
+	width: 100%;
+	text-align: center;
+	height: 16px;
+	text-overflow: shrink;
+	horizontal-align: center;
+	color: white;
+	text-shadow: 0px 0px 5px 3 black;
+	font-weight: semi-bold;
+	font-size: 14px;
+	margin-top: 5px;
+	text-transform: uppercase;
+}
+
+.ReplaceCardArrow
+{
+	width: 50px;
+	height: 50px;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/game_hud/replace_card/arrow_png.vtex");
+	background-size: 100%;
+	background-size: 100%;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	animation-name: ArrowSpinner;
+	animation-duration: 2s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	wash-color: rgba(110, 49, 253, 0.5);
+	opacity: 0.8;
+}
+
+@keyframes 'ArrowSpinner'
+{
+	0%
+	{
+		transform: rotateZ(360deg);
+	}
+	
+	50%
+	{
+		transform: rotateZ(180deg);
+	}
+	
+	100%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+}
+
+.PfxUIReplaceCard
+{
+	ignore-parent-flow: true;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	wash-color: rgb(209, 141, 255);
+	opacity: 0.2;
+	margin-top: 62px;
+}
+
+.ReplaceCardStashList
+{
+	margin-top: 10px;
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.PanelInventoryCard
+{
+	width: 400px;
+	height: 220px;
+	vertical-align: bottom;
+	horizontal-align: center;
+	margin-bottom: 260px;
+	margin-left: 510px;
+	border: 1px solid white;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, color-stop( 0.0, #cbb5f5da ), color-stop( 0.5, #cbb5f536 ), color-stop( 1.0, #cbb5f536 ) );
+	background-image: url("s2r://panorama/images/game_hud/lower_hud/card_bag_bg_png.vtex");
+	background-size: 100%;
+	saturation: 1;
+	transform: translateY(100px);
+	opacity: 0;
+	transition-property: opacity, transform;
+	transition-duration: 0.3s;
+}
+
+.PanelInventoryCard.VisibleInventoryCard
+{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+.CardInventoryList
+{
+	flow-children: right-wrap;
+	overflow: squish scroll;
+	width: 100%;
+	height: 100%;
+	margin: 2px;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.InventoryCardChild
+{
+	width: 60px;
+	height: 70px;
+	background-color: rgb(12, 12, 12);
+	margin: 2px;
+	border: 1px solid rgb(203, 152, 245);
+	box-shadow: 0px 0px 5px 1px rgba(203, 152, 245, 0.1);
+	border-radius: 5px;
+	transition-property: brightness, box-shadow;
+	transition-duration: 0.25s, 0.25s;
+}
+
+.InventoryCardChildImg
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 5px;
+}
+
+.ChooseCardBaseEffectsListPanel
+{
+	flow-children: down;
+	width: 280px;
+	horizontal-align: center;
+	margin-top: 5px;
+}
+
+.ChooseCardBaseEffectPanel
+{
+	flow-children: down;
+	width: 100%;
+}
+
+.ChooseCardBaseEffectPanelHeader
+{
+	width: 330px;
+	height: 25px;
+	horizontal-align: center;
+	flow-children: right;
+	background-image: url("s2r://panorama/images/tooltips/active_effect_png.vtex");
+	background-size: 100%;
+}
+
+.ChooseCardBaseEffectPanelName
+{
+	width: 220px;
+	font-size: 16px;
+	vertical-align: center;
+	margin-left: 10px;
+	text-overflow: shrink;
+	font-weight: semi-bold;
+	color: rgb(253, 214, 37);
+	text-shadow: 0px 0px 5px 3.0 black;
+}
+
+.ChooseCardBaseEffectPanelCooldownPanel
+{
+	flow-children: right;
+	margin-left: 4px;
+	margin-right: 4px;
+	vertical-align: center;
+}
+
+.ChooseCardBaseEffectPanelCooldownIcon
+{
+	width: 18px;
+	height: 18px;
+	background-image: url("s2r://panorama/images/status_icons/ability_cooldown_icon_psd.vtex");
+	background-size: 100%;
+}
+
+.ChooseCardBaseEffectPanelCooldownLabel
+{
+	margin-left: 2px;
+	font-size: 16px;
+	font-weight: semi-bold;
+	color: white;
+	text-shadow: 0px 0px 5px 3.0 black;
+}
+
+.ChooseCardBaseEffectPanelBody
+{
+	width: 330px;
+	horizontal-align: center;
+	text-align: left;
+	background-color: rgba(0, 0, 0, 0.7);
+	padding: 5px;
+	font-size: 16px;
+	color: white;
+	border: 1px solid rgba(128, 128, 128, 0.1);
+	border-top: 0px solid white;
+	background-color: rgba(0, 0, 0, 0.9);
+}

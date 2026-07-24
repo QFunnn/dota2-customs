@@ -1,0 +1,359 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.MainContainer
+{
+	width: 100%;
+	height: 100%;
+	z-index: -100;
+}
+
+.UnitHealthBarContainer
+{
+	flow-children: down;
+	z-index: -100;
+	width: 200px;
+}
+
+.UnitHealthBar
+{
+	horizontal-align: center;
+	flow-children: down;
+}
+
+.UnitHealthBarLine
+{
+	width: 150px;
+	height: 12px;
+	box-shadow: black 0px 0px 5px 1.5px;
+	border-radius: 4px;
+	horizontal-align: center;
+}
+
+.OpacityHealthBars.UnitHealthBar
+{
+	opacity: 0;
+}
+
+.HealthLineBack
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #0d1520 ), color-stop( 0.2, #131a2e ), color-stop( .5, #111929), to( #0d1820) );
+}
+
+.HealthBarFront
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 4px;
+}
+
+.HealthBarBG
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #9b2c2c ), to( #f70606 ) );
+}
+
+.HealthBarOverlay
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/hud/facets/ripple_texture_png.vtex");
+	background-size: 200px 100%;
+	background-position: center;
+	opacity: 1;
+	brightness: 0;
+}
+
+.HealthPercent
+{
+	color: white;
+	font-size: 14px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 5px 3 black;
+	horizontal-align: center;
+	vertical-align: center;
+	margin-top: -2.3px;
+}
+
+.HeroHealthBarContainer
+{
+	flow-children: right;
+	z-index: -100;
+}
+
+.AvatarHero
+{
+	width: 40px;
+	height: 40px;
+	border-radius: 100%;
+	border: 2px solid black;
+}
+
+.AvatarHeroIMG
+{
+	width: 100%;
+	height: 100%;
+}
+
+.InfoContainers
+{
+	width: 170px;
+	border: 1px solid black;
+	vertical-align: center;
+	margin-left: -8px;
+	z-index: -1;
+	box-shadow: black 0px 0px 5px 1px;
+	border-radius: 4px;
+	flow-children: down;
+}
+
+.HeroHealthBar
+{
+	width: 200px;
+	height: 10px;
+	margin-left: 10px;
+	padding-right: 2px;
+}
+
+.HeroManaBar
+{
+	width: 200px;
+	height: 10px;
+	margin-left: 10px;
+	padding-right: 2px;
+	margin-top: 2px;
+}
+
+.ManaLineBack
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #0d1520 ), color-stop( 0.2, #131a2e ), color-stop( .5, #111929), to( #0d1820) );
+}
+
+.ManaBarFront
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 4px;
+}
+
+.ManaBarBG
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #2641dd ), to( #2a61f7 ) );
+}
+
+.ManaBarOverlay
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/hud/facets/ripple_texture_png.vtex");
+	background-size: 200px 100%;
+	background-position: center;
+	opacity: 1;
+	brightness: 0;
+}
+
+.Ally .HealthBarBG
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #5cce28 ), to( #408b1d ) );
+}
+
+.UnitName
+{
+	color: white;
+	text-shadow: 0px 0px 5px 3 black;
+	font-size: 16px;
+	font-weight: semi-bold;
+	horizontal-align: center;
+	vertical-align: center;
+	visibility: collapse;
+}
+
+.AdminID
+{
+	color: white;
+	text-shadow: 0px 0px 5px 3 black;
+	font-size: 16px;
+	font-weight: semi-bold;
+	horizontal-align: center;
+	vertical-align: center;
+	visibility: collapse;
+}
+
+.UnitTimer
+{
+	flow-children: down;
+	horizontal-align: center;
+	margin-bottom: 4px;
+	visibility: collapse;
+}
+
+.UnitTimerLabels
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.UnitTimerLabelTime
+{
+	color: #ce6528;
+	width: 20px;
+	text-align: center;
+	text-shadow: 0px 0px 5px 3 black;
+	font-size: 18px;
+	font-weight: semi-bold;
+	text-overflow: shrink;
+	vertical-align: center;
+	margin-right: 1px;
+}
+
+.UnitTimerIcon
+{
+	width: 16px;
+	height: 16px;
+	background-image: url("s2r://panorama/images/game_hud/icons/clock_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+	wash-color: #ce6528;
+	img-shadow: 0px 0px 1px 3 black;
+	margin-left: 1px;
+}
+
+.UnitTimerLine
+{
+	width: 200px;
+	height: 4px;
+	background-color: black;
+	border-radius: 4px;
+	box-shadow: 0px 0px 5px 0px black;
+}
+
+.UnitTimerLineFront
+{
+	width: 100%;
+	height: 100%;
+	background-color: #8b4f1d;
+}
+
+.IsOrangeHealth .HealthBarBG
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #ce6528 ), to( #8b4f1d ) );
+}
+
+.IsGoldHealth .HealthBarBG
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #fad714 ), to( #a57204 ) );
+}
+
+.IsTimerEnable .UnitTimer
+{
+	visibility: visible;
+}
+
+.IsPurpleHealth .HealthBarBG
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #7028ce ), to( #631d8b ) );
+}
+
+.IsMeritHealth .HealthBarBG
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #23d8c5 ), to( #1a7bbf ) );
+}
+
+.IsMeritHealth .HealthPercent
+{
+	font-size: 13px;
+}
+
+.IsUnitNameEnable .UnitName
+{
+	visibility: visible;
+	margin-bottom: 5px;
+}
+
+.IsInteractionLabelOnly .UnitHealthBarLine
+{
+	visibility: collapse;
+}
+
+.IsInteractionLabelOnly.IsUnitNameEnable .UnitName
+{
+	margin-bottom: 0px;
+}
+
+.IsPostStageDummy .HealthBarBG
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #8f3dff ), to( #f062ff ) );
+}
+
+.IsPostStageDummy .HealthLineBack
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #13c8ff ), to( #67f7ff ) );
+}
+
+.IsPostStageDummy .UnitHealthBarLine
+{
+	width: 210px;
+	height: 16px;
+	border: 1px solid #f1d4ff88;
+	box-shadow: 0px 0px 8px 1px #000000, 0px 0px 9px 0px #8f3dff;
+}
+
+.IsPostStageDummy .HealthPercent
+{
+	width: 100%;
+	font-size: 13px;
+	text-overflow: shrink;
+	text-align: center;
+}
+
+.IsAfkDummy .HealthBarBG
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #8f3dff ), to( #f062ff ) );
+}
+
+.IsAfkDummy .HealthLineBack
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #13c8ff ), to( #67f7ff ) );
+}
+
+.IsAfkDummy .UnitHealthBarLine
+{
+	width: 210px;
+	height: 16px;
+	border: 1px solid #9ff0ff88;
+	box-shadow: 0px 0px 8px 1px #000000, 0px 0px 9px 0px #13c8ff;
+}
+
+.IsAfkDummy .HealthPercent
+{
+	width: 100%;
+	font-size: 13px;
+	text-overflow: shrink;
+	text-align: center;
+}
+
+.IsUnitNameEnable .UnitTimer
+{
+	margin-bottom: 1px;
+}
+
+.Hidden
+{
+	opacity: 0;
+}

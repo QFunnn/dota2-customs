@@ -1,0 +1,213 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/debug_panel/debug_panel.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/const.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/debug_panel/debug_panel.vjs_c" />
+	</scripts>
+	<Panel class="CustomHudRoot" hittest="false">
+		<Button id="DebugPanelButton" onmouseover="UIShowTextTooltip( Debug )" onmouseout="UIHideTextTooltip()" onactivate="Toggle()" />
+		<Panel id="DebugPanelRoot" class="Minimized" hittest="false">
+			<Panel class="ControlPanel">
+				<Panel class="ControlPanelContainer">
+					<Panel class="Category">
+						<Panel class="CategoryButtonContainer">
+							<Panel class="Row">
+								<Button class="DemoButton MiddleButton" acceptsjoyfocus="true" onactivate="OnTeleportRequest()">
+									<Label text="TP To Camera" />
+								</Button>
+							</Panel>
+							<Panel class="Row MiniRow">
+								<Button class="DemoButton LeftButton" acceptsjoyfocus="true" onactivate="OnChangeLevelRequest(1)">
+									<Label text="+1 Lvl" />
+								</Button>
+								<Button class="DemoButton RightButton" acceptsjoyfocus="true" onactivate="OnChangeLevelRequest(10)">
+									<Label text="+10 Lvl" />
+								</Button>
+							</Panel>
+							<Panel class="Row MiniRow">
+								<Button class="DemoButton LeftButton" acceptsjoyfocus="true" onactivate="OnToggleModifierRequest(&apos;modifier_invulnerable&apos;)">
+									<Label text="Invuln" />
+								</Button>
+								<Button class="DemoButton RightButton" acceptsjoyfocus="true" onactivate="OnToggleModifierRequest(&apos;modifier_dazzle_shallow_grave&apos;)">
+									<Label text="Grave" />
+								</Button>
+							</Panel>
+							<Panel class="Row">
+								<Button class="DemoButton LeftButton" acceptsjoyfocus="true" onactivate="OnHurtMeBadPressed()">
+									<Label text="Almost Kill" />
+								</Button>
+								<Button class="DemoButton RightButton" acceptsjoyfocus="true" onactivate="OnKillPressed(false)" oncontextmenu="OnKillPressed(true)">
+									<Label text="Kill" />
+								</Button>
+							</Panel>
+							<Panel class="Row">
+								<Button class="DemoButton MiddleButton" acceptsjoyfocus="true" onactivate="OnRespawnPressed()">
+									<Label text="Respawn" />
+								</Button>
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="Category">
+						<Panel class="CategoryButtonContainer">
+							<Panel class="Row">
+								<Button class="DemoButton MiddleButton" acceptsjoyfocus="true" onactivate="OnChooseCardButtonPressed()">
+									<Label text="Choose Card" />
+								</Button>
+							</Panel>
+							<Panel class="Row">
+								<Button class="DemoButton MiddleButton" acceptsjoyfocus="true" onactivate="OnChooseHeroButtonPressed()">
+									<Label text="Choose Hero" />
+								</Button>
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="Category">
+						<Panel class="CategoryButtonContainer">
+							<Label class="ResourceLabel" text="Gold" />
+							<Panel class="Row">
+								<Button class="DemoButton ResourceButton LeftButton" acceptsjoyfocus="true" onactivate="OnChangeGoldRequest(false)">
+									<Label text="-" />
+								</Button>
+								<TextEntry id="GoldTextEntry" class="ResourceTextEntry" maxchars="8" text="1000" />
+								<Button class="DemoButton ResourceButton RightButton" acceptsjoyfocus="true" onactivate="OnChangeGoldRequest(true)">
+									<Label text="+" />
+								</Button>
+							</Panel>
+							<Panel class="Row MiniRow">
+								<Button class="DemoButton LeftButton" acceptsjoyfocus="true" onactivate="OnSetGoldRequest(0)">
+									<Label text="Min" />
+								</Button>
+								<Button class="DemoButton RightButton" acceptsjoyfocus="true" onactivate="OnSetGoldRequest(999999)">
+									<Label text="Max" />
+								</Button>
+							</Panel>
+							<Label class="ResourceLabel" text="Wood" />
+							<Panel class="Row">
+								<Button class="DemoButton ResourceButton LeftButton" acceptsjoyfocus="true" onactivate="OnChangeResourceRequest(&apos;wood&apos;, false)">
+									<Label text="-" />
+								</Button>
+								<TextEntry id="WoodTextEntry" class="ResourceTextEntry" maxchars="8" text="1000" />
+								<Button class="DemoButton ResourceButton RightButton" acceptsjoyfocus="true" onactivate="OnChangeResourceRequest(&apos;wood&apos;, true)">
+									<Label text="+" />
+								</Button>
+							</Panel>
+							<Panel class="Row MiniRow">
+								<Button class="DemoButton LeftButton" acceptsjoyfocus="true" onactivate="OnSetResourceRequest(&apos;wood&apos;, 0)">
+									<Label text="Min" />
+								</Button>
+								<Button class="DemoButton RightButton" acceptsjoyfocus="true" onactivate="OnSetResourceRequest(&apos;wood&apos;, 999999)">
+									<Label text="Max" />
+								</Button>
+							</Panel>
+							<Label class="ResourceLabel" text="Kills" />
+							<Panel class="Row">
+								<Button class="DemoButton ResourceButton LeftButton" acceptsjoyfocus="true" onactivate="OnChangeResourceRequest(&apos;kills&apos;, false)">
+									<Label text="-" />
+								</Button>
+								<TextEntry id="KillsTextEntry" class="ResourceTextEntry" maxchars="8" text="1000" />
+								<Button class="DemoButton ResourceButton RightButton" acceptsjoyfocus="true" onactivate="OnChangeResourceRequest(&apos;kills&apos;, true)">
+									<Label text="+" />
+								</Button>
+							</Panel>
+							<Panel class="Row MiniRow">
+								<Button class="DemoButton LeftButton" acceptsjoyfocus="true" onactivate="OnSetResourceRequest(&apos;kills&apos;, 0)">
+									<Label text="Min" />
+								</Button>
+								<Button class="DemoButton RightButton" acceptsjoyfocus="true" onactivate="OnSetResourceRequest(&apos;kills&apos;, 999999)">
+									<Label text="Max" />
+								</Button>
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="Category">
+						<Panel class="CategoryButtonContainer">
+							<Panel class="Row">
+								<Button class="DemoButton MiddleButton" acceptsjoyfocus="true" onactivate="OnStageNextRequest()">
+									<Label text="Next Stage" />
+								</Button>
+							</Panel>
+							<Panel class="Row">
+								<Button class="DemoButton MiddleButton" acceptsjoyfocus="true" onactivate="OnStageRestartRequest()">
+									<Label text="Restart Current Stage" />
+								</Button>
+							</Panel>
+							<Panel class="Row">
+								<Button class="DemoButton MiddleButton" acceptsjoyfocus="true" onactivate="OnStageKillAllEnemiesRequest()">
+									<Label text="Kill All Enemies" />
+								</Button>
+							</Panel>
+							<Panel class="Row">
+								<Button class="DemoButton MiddleButton" acceptsjoyfocus="true" onactivate="OnStageBossNowRequest()">
+									<Label text="Boss Now" />
+								</Button>
+							</Panel>
+							<Label class="ResourceLabel" text="Boss Rush Bosses" />
+							<Panel class="Row MiniRow">
+								<Button class="DemoButton MiddleButton" acceptsjoyfocus="true" onactivate="OnSpawnBossRushBossRequest(&apos;automaton_legion_commander&apos;)">
+									<Label text="Leg" />
+								</Button>
+								<Button class="DemoButton MiddleButton" acceptsjoyfocus="true" onactivate="OnSpawnBossRushBossRequest(&apos;automaton_axe&apos;)">
+									<Label text="Axe" />
+								</Button>
+								<Button class="DemoButton MiddleButton" acceptsjoyfocus="true" onactivate="OnSpawnBossRushBossRequest(&apos;automaton_morphling&apos;)">
+									<Label text="Morph" />
+								</Button>
+								<Button class="DemoButton MiddleButton" acceptsjoyfocus="true" onactivate="OnSpawnBossRushBossRequest(&apos;automaton_bristleback&apos;)">
+									<Label text="Brist" />
+								</Button>
+							</Panel>
+							<Panel class="Row MiniRow">
+								<Button class="DemoButton MiddleButton" acceptsjoyfocus="true" onactivate="OnSpawnBossRushBossRequest(&apos;automaton_oracle&apos;)">
+									<Label text="Orac" />
+								</Button>
+								<Button class="DemoButton MiddleButton" acceptsjoyfocus="true" onactivate="OnSpawnBossRushBossRequest(&apos;tinker&apos;)">
+									<Label text="Tink" />
+								</Button>
+								<Button class="DemoButton MiddleButton" acceptsjoyfocus="true" onactivate="OnSpawnBossRushBossRequest(&apos;ringmaster&apos;)">
+									<Label text="Ring" />
+								</Button>
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="Category">
+						<Panel class="CategoryButtonContainer">
+							<Panel class="Row">
+								<ToggleButton id="WtfModeCheckbox" class="DemoToggleButton LeftButton" acceptsjoyfocus="true" onactivate="OnWtfModeToggle()">
+									<Label text="WTF Mode" />
+								</ToggleButton>
+								<ToggleButton id="AutoKillCheckbox" class="DemoToggleButton RightButton" acceptsjoyfocus="true" onactivate="OnAutoKillToggle()">
+									<Label text="AutoKill" />
+								</ToggleButton>
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="DebugPickerPanel" class="DebugPickerPanel" hittest="true">
+				<Panel class="DebugPickerHeader">
+					<Label id="DebugPickerTitle" class="DebugPickerTitle" text="" />
+					<Button class="DebugPickerCloseButton" onactivate="CloseDebugPicker()">
+						<Label text="x" />
+					</Button>
+				</Panel>
+				<Panel id="DebugPickerGrid" class="DebugPickerGrid" />
+				<Label id="DebugPickerEmptyLabel" class="DebugPickerEmptyLabel" text="No entries" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

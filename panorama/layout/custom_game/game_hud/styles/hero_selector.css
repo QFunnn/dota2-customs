@@ -1,0 +1,558 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.ChooseNewHeroPanel
+{
+	width: 100%;
+	height: 100%;
+	z-index: -2;
+}
+
+.ChooseNewHeroPanelData
+{
+	flow-children: down;
+	align: center center;
+	margin-bottom: 190px;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.3s;
+}
+
+.VisibleChooseNewHeroPanelData.ChooseNewHeroPanelData
+{
+	opacity: 1;
+}
+
+.ChooseNewHeroButtons
+{
+	flow-children: right;
+	align: center bottom;
+	margin-bottom: 300px;
+}
+
+.ChooseNewHeroButtonStartChallenge
+{
+	width: 70px;
+	height: 70px;
+	box-shadow: fill black 0px 0px 10px -2px;
+	background-image: url("s2r://panorama/images/game_hud/icons/roshan_1_png.vtex");
+	background-size: 100%;
+	border: 2px solid rgba(188, 91, 253, 0.2);
+	margin: 5px;
+	border-radius: 100%;
+	visibility: collapse;
+}
+
+.ChooseNewHeroButtonOpenHeroCards
+{
+	width: 70px;
+	height: 70px;
+	box-shadow: fill black 0px 0px 10px -2px;
+	background-image: url("s2r://panorama/images/game_hud/icons/roshan_2_png.vtex");
+	background-size: 100%;
+	border: 2px solid rgba(188, 91, 253, 0.2);
+	margin: 5px;
+	border-radius: 100%;
+	visibility: collapse;
+}
+
+.ChooseNewHeroButtonStartChallenge:hover
+{
+	box-shadow: fill #f0bd22 0px 0px 10px -2px;
+}
+
+.ChooseNewHeroButtonOpenHeroCards:hover
+{
+	box-shadow: fill #f0bd22 0px 0px 10px -2px;
+}
+
+.ChooseNewHeroButtonStartChallengeCounter
+{
+	color: white;
+	font-weight: semi-bold;
+	font-size: 18px;
+	vertical-align: bottom;
+	horizontal-align: center;
+	text-shadow: 0px 0px 5px 10 black;
+	text-transform: uppercase;
+}
+
+.ChooseNewHeroButtonOpenHeroCardsCounter
+{
+	color: white;
+	font-weight: semi-bold;
+	font-size: 18px;
+	vertical-align: bottom;
+	horizontal-align: center;
+	text-shadow: 0px 0px 5px 3 black;
+	text-transform: uppercase;
+}
+
+.ChooseNewHeroCardsList
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.ChooseNewHeroCard
+{
+	width: 300px;
+	height: 426px;
+	margin: 10px;
+}
+
+.ChooseNewHeroCard.CardRarityCommon:hover
+{
+	box-shadow: fill 0px 0px 22px -10px #b8bec7;
+}
+
+.ChooseNewHeroCard.CardRarityRare:hover
+{
+	box-shadow: fill 0px 0px 22px -10px #5aa8ff;
+}
+
+.ChooseNewHeroCard.CardRarityEpic:hover
+{
+	box-shadow: fill 0px 0px 22px -10px #c16bff;
+}
+
+.ChooseNewHeroCard.CardRarityLegendary:hover
+{
+	box-shadow: fill 0px 0px 22px -10px #ffd54a;
+}
+
+.ChooseNewHeroCard.CardRarityMythical:hover
+{
+	box-shadow: fill 0px 0px 22px -10px #ff3b30;
+}
+
+.ChooseNewHeroCard.CardRaritySSS:hover
+{
+	box-shadow: fill 0px 0px 24px -10px #ff8aef;
+}
+
+.ChooseNewHeroCardBG
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	z-index: -2;
+	brightness: 5;
+	background-image: url("s2r://panorama/images/game_hud/hero_select/bg1_png.vtex");
+	background-size: 100%;
+}
+
+.ChooseNewHeroCardBorder
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	z-index: -2;
+	border-image-source: url("s2r://panorama/images/game_hud/selector/card_border_test_png.vtex");
+	border-width: 10px;
+	border-image-slice: 70px;
+	background-image: url("s2r://panorama/images/game_hud/selector/bg_11_png.vtex");
+	background-size: cover;
+	opacity: 0;
+}
+
+.ChooseNewHeroCardBG2
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	z-index: -2;
+	background-image: url("s2r://panorama/images/game_hud/hero_select/bg2_png.vtex");
+	background-size: 100%;
+	brightness: 5;
+}
+
+.ChooseNewHeroCardPFX
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	brightness: 10;
+	opacity: 0.1;
+	opacity-mask: url("s2r://panorama/images/game_hud/hero_select/mask_png.vtex") 1;
+}
+
+.CardRarityCommon .CardBasePFX
+{
+	opacity: 0;
+}
+
+.CardRarityCommon .CardBasePFXBorder
+{
+	opacity: 0.01;
+}
+
+.CardRarityCommon .ChooseNewHeroCardBG2,.CardRarityCommon .ChooseNewHeroCardBorder
+{
+	wash-color: #b8bec7;
+}
+
+.CardRarityRare .ChooseNewHeroCardBG2,.CardRarityRare .ChooseNewHeroCardBorder
+{
+	wash-color: #5aa8ff;
+}
+
+.CardRarityEpic .ChooseNewHeroCardBG2,.CardRarityEpic .ChooseNewHeroCardBorder
+{
+	wash-color: #c16bff;
+}
+
+.CardRarityLegendary .ChooseNewHeroCardBG2,.CardRarityLegendary .ChooseNewHeroCardBorder
+{
+	wash-color: #fcc617;
+}
+
+.CardRarityMythical .ChooseNewHeroCardBG2,.CardRarityMythical .ChooseNewHeroCardBorder
+{
+	wash-color: #ff3434;
+}
+
+.CardRaritySSS .ChooseNewHeroCardBG2,.CardRaritySSS .ChooseNewHeroCardBorder
+{
+	wash-color: #ff8aef;
+}
+
+.CardRarityCommon .ChooseNewHeroCardBG
+{
+	wash-color: #b8bec7;
+}
+
+.CardRarityRare .ChooseNewHeroCardBG
+{
+	wash-color: rgba(90, 168, 255, 0.9);
+}
+
+.CardRarityEpic .ChooseNewHeroCardBG
+{
+	wash-color: rgba(193, 107, 255, 0.9);
+}
+
+.CardRarityLegendary .ChooseNewHeroCardBG
+{
+	wash-color: rgba(250, 194, 11, 0.9);
+}
+
+.CardRarityMythical .ChooseNewHeroCardBG
+{
+	wash-color: rgba(253, 23, 23, 0.9);
+}
+
+.CardRaritySSS .ChooseNewHeroCardBG
+{
+	wash-color: rgba(255, 138, 239, 0.9);
+}
+
+.ChooseNewHeroCard.CardRarityCommon .ChooseNewHeroCardBG
+{
+	img-shadow: 0px 0px 5px 3 black;
+}
+
+.ChooseNewHeroCard.CardRarityRare .ChooseNewHeroCardBG
+{
+	img-shadow: 0px 0px 5px 3 black;
+}
+
+.ChooseNewHeroCard.CardRarityEpic .ChooseNewHeroCardBG
+{
+	img-shadow: 0px 0px 5px 3 black;
+}
+
+.ChooseNewHeroCard.CardRarityLegendary .ChooseNewHeroCardBG
+{
+	img-shadow: 0px 0px 5px 3 black;
+}
+
+.ChooseNewHeroCard.CardRarityMythical .ChooseNewHeroCardBG
+{
+	img-shadow: 0px 0px 5px 3 black;
+}
+
+.ChooseNewHeroCard.CardRaritySSS .ChooseNewHeroCardBG
+{
+	img-shadow: 0px 0px 5px 3 black;
+}
+
+.ChooseNewHeroCardImage
+{
+	ignore-parent-flow: true;
+	width: 265px;
+	height: 240px;
+	horizontal-align: center;
+	margin-top: 15px;
+	z-index: -5;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+.CardRaritySSS .ChooseNewHeroCardImage
+{
+	border: 1px solid #ff8aef;
+	box-shadow: 0px 0px 8px 0px #ff8aef66;
+}
+
+.ChooseNewHeroCardHeroAbility
+{
+	ignore-parent-flow: true;
+	width: 70px;
+	height: 70px;
+	horizontal-align: center;
+	margin-top: 292px;
+	z-index: -5;
+}
+
+.ChooseNewHeroCardHeroName
+{
+	ignore-parent-flow: true;
+	color: white;
+	font-weight: semi-bold;
+	font-size: 24px;
+	horizontal-align: center;
+	text-shadow: 0px 0px 5px 3 black;
+	text-transform: uppercase;
+	vertical-align: bottom;
+	margin-bottom: 32px;
+}
+
+.CardRarityCommon .ChooseNewHeroCardHeroName
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#faf6ef), to(#b8bec7));
+}
+
+.CardRarityRare .ChooseNewHeroCardHeroName
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#faf6ef), to(#5aa8ff));
+}
+
+.CardRarityEpic .ChooseNewHeroCardHeroName
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#faf6ef), to(#c16bff));
+}
+
+.CardRarityLegendary .ChooseNewHeroCardHeroName
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#faf6ef), to(#fae630));
+}
+
+.CardRarityMythical .ChooseNewHeroCardHeroName
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#faf6ef), to(#ff3b30));
+}
+
+.CardRaritySSS .ChooseNewHeroCardHeroName
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#faf6ef), to(#ff8aef));
+}
+
+.ChooseNewHeroButtonsCards
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.ChooseNewHeroButtonContainer
+{
+	margin-left: 20px;
+	margin-right: 20px;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.3s;
+}
+
+.VisibleChooseNewHeroPanelData .ChooseNewHeroButtonContainer
+{
+	opacity: 1;
+}
+
+.ChooseNewHeroButtonInfo
+{
+	width: 100%;
+	margin-left: 20px;
+	margin-right: 20px;
+	horizontal-align: center;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( transparent ), color-stop( 0.2, rgba(0, 0, 0, 0.9) ), color-stop( 0.8, rgba(0, 0, 0, 0.9) ), to( transparent ) );
+	margin-top: 58px;
+	z-index: 5;
+}
+
+.ChooseNewHeroButtonInfoBody
+{
+	vertical-align: center;
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.ChooseNewHeroButtonInfo Label
+{
+	color: white;
+	font-weight: semi-bold;
+	font-size: 18px;
+	vertical-align: center;
+	horizontal-align: center;
+	text-shadow: 0px 0px 5px 3 black;
+	padding-left: 5px;
+	padding-right: 5px;
+	text-transform: uppercase;
+}
+
+.ChooseNewHeroButtonLabel
+{
+	color: white;
+	font-weight: semi-bold;
+	font-size: 26px;
+	margin-left: 5px;
+	margin-right: 5px;
+	vertical-align: center;
+	horizontal-align: center;
+	text-shadow: 0px 0px 5px 3 black;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.ChooseNewHeroButton
+{
+	transition-property: brightness;
+	transition-duration: 0.2s;
+}
+
+.ChooseNewHeroButton:hover
+{
+	brightness: 1.2;
+}
+
+.ChooseNewHeroButtonReroll
+{
+	min-width: 250px;
+	height: 60px;
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_13_png.vtex");
+	background-size: 100%;
+}
+
+.ChooseNewHeroButtonCancel
+{
+	min-width: 250px;
+	height: 60px;
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_12_png.vtex");
+	background-size: 100%;
+}
+
+.RefreshHeroListCostIcon
+{
+	vertical-align: center;
+	width: 20px;
+	height: 20px;
+	background-image: url("s2r://panorama/images/game_hud/icons/kills_2_png.vtex");
+	background-size: 100%;
+}
+
+.CloseIconKillsButton .RefreshHeroListCostIcon
+{
+	visibility: collapse;
+}
+
+.hero_attribute_bonus_panel
+{
+	margin-bottom: 148px;
+	vertical-align: bottom;
+	height: 24px;
+	width: 100%;
+	margin-left: 40px;
+	margin-right: 40px;
+}
+
+.hero_attribute_bonus_label
+{
+	color: white;
+	max-height: 20px;
+	text-shadow: 0px 0px 5px 5 black;
+	margin-left: 5px;
+	margin-right: 5px;
+	align: center center;
+	text-align: center;
+	font-size: 14px;
+	text-overflow: shrink;
+	font-family: Reaver;
+	text-transform: uppercase;
+	letter-spacing: 0.6px;
+}
+
+.hero_attribute_bonus_label_0
+{
+	color: rgb(253, 137, 137);
+}
+
+.hero_attribute_bonus_label_1
+{
+	color: rgb(165, 253, 124);
+}
+
+.hero_attribute_bonus_label_2
+{
+	color: rgb(114, 213, 252);
+}
+
+.hero_attribute_bonus_label_3
+{
+	color: rgb(252, 250, 114);
+}
+
+.ChooseNewHeroQualityPanel
+{
+	horizontal-align: right;
+	width: 40px;
+	height: 40px;
+	margin-top: 14px;
+	margin-right: 32px;
+}
+
+.ChooseNewHeroQualityLabel
+{
+	color: white;
+	font-weight: semi-bold;
+	font-size: 28px;
+	vertical-align: center;
+	horizontal-align: center;
+	text-align: center;
+	width: 100%;
+	text-shadow: 0px 0px 5px 3 black;
+	text-transform: uppercase;
+}
+
+.CardRaritySSS .ChooseNewHeroQualityLabel
+{
+	color: #ff8aef;
+	font-size: 20px;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 5px 3 black;
+}
+
+.ChooseNewHeroStatPanel
+{
+	width: 46px;
+	height: 46px;
+	background-color: rgb(0, 0, 0);
+	ignore-parent-flow: true;
+	border-radius: 100%;
+	margin-left: 28px;
+	margin-top: 14px;
+	z-index: -5;
+}
+
+.ChooseNewHeroStatIcon
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+}

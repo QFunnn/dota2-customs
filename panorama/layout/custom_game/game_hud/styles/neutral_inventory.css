@@ -1,0 +1,360 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.NeutralInventoryPanel
+{
+	flow-children: down;
+	horizontal-align: right;
+	vertical-align: bottom;
+	margin-right: 337px;
+	margin-bottom: 100px;
+}
+
+.NeutralsBody
+{
+	background-image: url("s2r://panorama/images/game_hud/lower_hud/inventory_bg_placeholder_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	opacity: 0;
+	transform: translateY(28px);
+	transition-property: opacity, transform;
+	transition-duration: .2s;
+	transition-timing-function: cubic-bezier(0, 0.9, 0, 0.9);
+}
+
+.ActiveNeutralsBody
+{
+	align: center center;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: .2s;
+	transition-timing-function: cubic-bezier(0, 0.9, 0, 0.9);
+	margin-bottom: 10px;
+}
+
+.IsNeutralsActive .ActiveNeutralsBody
+{
+	opacity: 1;
+}
+
+.IsNeutralsActive.NeutralsToggled .NeutralsBody
+{
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.NeutralsList
+{
+	flow-children: right-wrap;
+	max-width: 160px;
+	align: center top;
+}
+
+.NeutralsList2
+{
+	horizontal-align: center;
+}
+
+.NeutralsBodyContainer
+{
+	margin: 2px;
+	border: 1px solid #8467b2;
+	align: center center;
+	padding: 10px;
+	padding-bottom: 15px;
+	flow-children: down;
+}
+
+.NeutralsCraftButton
+{
+	margin-top: 15px;
+	align: center top;
+	width: 125px;
+	height: 30px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #4b2a7aee ), to( #1a0f2aee ) );
+	border-top: 2px solid #b48cf3;
+	border-left: 2px solid #1a0f2a;
+	border-right: 2px solid #1a0f2a;
+	border-bottom: 2px solid #1a0f2a;
+	box-shadow: 0px 0px 3px 0px #6a3fb3aa;
+	saturation: 0.7;
+	brightness: 0.8;
+	transition-property: saturation, brightness, box-shadow, transform;
+	transition-duration: .15s;
+}
+
+.NeutralsCraftButton:hover
+{
+	box-shadow: 0px 0px 8px 0px #8f5cffcc;
+	saturation: 1;
+	brightness: 1.2;
+}
+
+.NeutralsCraftButton:active
+{
+	transform: scale3d(0.95, 0.95, 1);
+}
+
+.NeutralsCraftButtonLabel
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+	text-shadow: 0px 0px 5px 3 black;
+	letter-spacing: 0.3px;
+	font-weight: semi-bold;
+	font-size: 20px;
+	text-transform: uppercase;
+	text-align: center;
+	align: center center;
+}
+
+.NeutralsButton
+{
+	width: 40px;
+	height: 40px;
+	margin-top: 20px;
+	transition-property: brightness, transform, opacity;
+	transition-duration: .15s, .25s;
+	transition-timing-function: cubic-bezier(0, 0.9, 0, 0.9);
+	opacity: 0;
+	horizontal-align: center;
+	margin-left: 20px;
+}
+
+.IsNeutralsActive .NeutralsButton
+{
+	opacity: 1;
+}
+
+.NeutralsButton:hover
+{
+	brightness: 1.5;
+}
+
+.NeutralsButton:active
+{
+	transform: scale3d(0.95, 0.95, 1);
+}
+
+.NeutralsToggled .NeutralsButton
+{
+	transform: rotateX(180deg);
+}
+
+.NeutralsButtonIcon
+{
+	background-image: url("s2r://panorama/images/game_hud/menu_icons/11_png.vtex");
+	background-size: 100%;
+	width: 32px;
+	height: 32px;
+	align: center center;
+	brightness: 4;
+	img-shadow: 0px 0px 5px 3 black;
+}
+
+.Item
+{
+	width: 48px;
+	height: 48px;
+	overflow: clip;
+	transition-property: saturation, transform, brightness, border, box-shadow;
+	transition-duration: .1s;
+	border: 1px solid transparent;
+	box-shadow: 0px 0px 0px 0px transparent;
+}
+
+.Item.IsActiveNeutralSlot
+{
+	border-radius: 50%;
+	width: 55px;
+	height: 55px;
+	box-shadow: 0px 0px 5px 0px black;
+	border: 2px solid black;
+}
+
+.Item.Rarity_1
+{
+	border: 1.5px solid rgb(203, 206, 208);
+	box-shadow: 0px 0px 5px -1px rgb(249, 252, 255);
+}
+
+.Item.Rarity_2
+{
+	border: 1.5px solid rgb(166, 222, 106);
+	box-shadow: 0px 0px 5px -1px rgb(158, 255, 93);
+}
+
+.Item.Rarity_3
+{
+	border: 1.5px solid rgb(0, 149, 255);
+	box-shadow: 0px 0px 5px -1px rgb(96, 152, 255);
+}
+
+.Item.Rarity_4
+{
+	border: 1.5px solid rgb(149, 0, 255);
+	box-shadow: 0px 0px 5px -1px rgb(206, 128, 255);
+}
+
+.Item.Rarity_5
+{
+	border: 1.5px solid rgb(255, 222, 37);
+	box-shadow: 0px 0px 5px -1px rgb(255, 235, 144);
+}
+
+.Item.Rarity_6
+{
+	border: 1.5px solid rgb(255, 135, 37);
+	box-shadow: 0px 0px 5px -1px rgb(255, 168, 107);
+}
+
+.Item.Rarity_7
+{
+	border: 1.5px solid rgb(255, 73, 37);
+	box-shadow: 0px 0px 5px -1px rgb(255, 127, 107);
+}
+
+.Item.dragging_from
+{
+	saturation: 0.2;
+	brightness: 0.2;
+	transform: scale3d(0.9, 0.9, 1);
+}
+
+.Item.potential_drop_target:not(.dragging_from)
+{
+	brightness: 2;
+	transform: scale3d(0.93, 0.93, 1);
+}
+
+.Item.potential_drop_target.dragging_from
+{
+	brightness: 0.4;
+	transform: scale3d(0.93, 0.93, 1);
+}
+
+.ItemImage
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+}
+
+.IsActiveNeutralSlot .ItemImage
+{
+	border-radius: 50%;
+	width: 65%;
+	height: 65%;
+	z-index: 2;
+}
+
+.NeutralItemCooldownPanel
+{
+	width: 65%;
+	height: 65%;
+	align: center center;
+	border-radius: 50%;
+	background-color: rgba(0, 0, 0, 0.9);
+	z-index: 3;
+	opacity: 0;
+}
+
+.NeutralItemCooldownPanel.IsCoolingDown
+{
+	opacity: 1;
+}
+
+.NeutralItemBG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/lower_hud/item_bg_png.vtex");
+	background-size: 100%;
+	saturation: 0.8;
+	img-shadow: 0px 0px 5px 5 black;
+	align: center center;
+}
+
+.IsActiveNeutralSlot .NeutralItemBG
+{
+	background-image: url("s2r://panorama/images/game_hud/lower_hud/store_refresh_bg_png.vtex");
+	border-radius: 50%;
+	border: 2px solid rgb(44, 44, 44);
+	z-index: 1;
+}
+
+.RoshpitIndicatorPanel
+{
+	width: 42px;
+	height: 42px;
+	align: center center;
+	background-color: black;
+	border-radius: 50%;
+	border: 1px solid rgb(130, 130, 130);
+	box-shadow: 0px 0px 5px 1px #d4ecff30;
+	opacity: 0;
+	visibility: collapse;
+	margin-bottom: 10px;
+	transition-property: opacity;
+	transition-duration: .2s;
+	transition-timing-function: cubic-bezier(0, 0.9, 0, 0.9);
+}
+
+.IsNeutralsActive .RoshpitIndicatorPanel
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+.RoshpitIndicatorPanel.IsAlive
+{
+	border: 1px solid #a5ff84c8;
+	box-shadow: 0px 0px 5px 1px #a5ff8422;
+}
+
+.RoshpitIndicatorPanelBG
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient( radial, 50% 65%, 0% 0%, 55% 55%, from(#d4ecff30), color-stop(0.5, #c5d5ff15), to(#67bbff00) );
+}
+
+.IsAlive .RoshpitIndicatorPanelBG
+{
+	background-color: gradient( radial, 50% 45%, 0% 0%, 58% 58%, from( #a5ff8422 ), color-stop( 0.5, #afff8417 ), to( #FFFFFF00 ) );
+}
+
+.RoshpitIndicatorPanelIcon
+{
+	background-image: url("s2r://panorama/images/hud/reborn/roshan_timer_roshan_psd.vtex");
+	background-size: cover;
+	background-repeat: no-repeat;
+	width: 36px;
+	height: width-percentage(100%);
+	align: center center;
+	margin-bottom: 2px;
+	saturation: 0.6;
+}
+
+.IsAlive .RoshpitIndicatorPanelIcon
+{
+	saturation: 1;
+}
+
+.DragImage
+{
+	width: 65px;
+	height: 65px;
+	border-radius: 10px;
+	border: 1px solid rgb(203, 152, 245);
+	box-shadow: 0px 0px 5px 1px rgba(203, 152, 245, 0.1);
+}

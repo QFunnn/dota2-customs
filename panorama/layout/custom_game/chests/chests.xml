@@ -1,0 +1,80 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/styles/lvlup_styles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/chests/chests.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/chests/chests.vjs_c" />
+	</scripts>
+	<Panel style="width:100%;height:100%;" hittest="false">
+		<Panel class="ChestsWindow">
+			<Panel class="ChestsTopBar">
+				<Panel class="ChestsCurrencyRow" id="ChestsCurrencyRow" />
+			</Panel>
+			<Panel class="ChestsExitCross" onactivate="Game.SwitchAnothersPanel(&apos;Chests&apos;);" />
+			<Panel class="ChestsSidebar" id="ChestsSidebar" />
+			<Panel class="ChestsContent" id="ChestsContent">
+				<Panel class="ChestsMainFrame">
+					<Panel class="ChestHeroBlock">
+						<Label class="ChestMainTitle" id="ChestMainTitle" text="#services_chest_title" />
+						<Label class="ChestMainSubtitle" id="ChestMainSubtitle" text="" />
+						<Panel class="ChestProbabilityButton" id="ChestProbabilityButton">
+							<Label text="#services_chest_probability" />
+						</Panel>
+					</Panel>
+					<Panel class="ChestCenterShowcase">
+						<Panel class="ChestVisualCard" id="ChestVisualCard">
+							<Panel class="ChestRewardsArea" id="ChestRewardsArea" />
+							<Panel class="ChestVideoFx" id="ChestVideoFx" />
+						</Panel>
+					</Panel>
+					<Panel class="LowBottomChest">
+						<Panel class="ChestProgressArea" id="ChestProgressArea">
+							<Panel class="ChestProgressCountWrap">
+								<Label class="ChestProgressCountValue" id="ChestProgressCountValue" text="0" />
+								<Label class="ChestProgressCountLabel" text="#services_chest_progress" />
+							</Panel>
+							<Panel class="ChestMilestoneTrack">
+								<Panel class="ChestMilestoneTrackLine">
+									<Panel class="ChestMilestoneBar" id="ChestMilestoneBar">
+										<Panel class="ChestMilestoneBarShine" />
+									</Panel>
+								</Panel>
+								<Panel class="ChestMilestoneMarkers" id="ChestMilestoneMarkers" />
+							</Panel>
+						</Panel>
+						<Panel class="ChestActionsArea">
+							<Panel class="ChestOpenButtonsRow">
+								<Panel class="ChestOpenButton ChestOpenButtonSingle" id="ChestOpenOneButton">
+									<Panel class="ButtonBG" />
+									<Label text="#services_chest_open_1" />
+								</Panel>
+								<Panel class="ChestOpenButton ChestOpenButtonMulti" id="ChestOpenTenButton">
+									<Panel class="ButtonBG" />
+									<Label text="#services_chest_open_10" />
+								</Panel>
+								<Panel class="ChestBackButton" id="ChestBackButton">
+									<Panel class="ButtonBG" />
+									<Label text="#services_common_back" />
+								</Panel>
+							</Panel>
+						</Panel>
+						<Label class="ChestGuaranteeText" id="ChestGuaranteeText" text="" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

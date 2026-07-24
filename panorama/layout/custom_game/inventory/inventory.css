@@ -1,0 +1,5213 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.InventoryWindow
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#24170f), to(#0e0b10));
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.WindowVisible
+{
+	opacity: 1;
+}
+
+.WindowVisible .InventoryWindow
+{
+	opacity: 1;
+}
+
+.InventoryBG
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	background-color: gradient( radial, 50% 30%, 0% 0%, 70% 70%, from( #2b1748 ), color-stop( 0.35, #140b25 ), color-stop( 0.75, #09050f ), to( rgb(0, 0, 0) ) );
+	background-image: url("s2r://panorama/images/game_hud/backgrounds/bg2_png.vtex");
+	background-size: 100%;
+	background-img-opacity: 0.02;
+	animation-name: BGScalex;
+	animation-duration: 7s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	z-index: -2;
+}
+
+@keyframes 'BGScalex'
+{
+	0%
+	{
+		transform: scale3d(1, 1, 1);
+		brightness: 1;
+	}
+	
+	50%
+	{
+		transform: scale3d(1.02, 1.02, 1);
+		brightness: 0.5;
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 1, 1);
+		brightness: 1;
+	}
+	
+}
+
+.PFXBackground
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	wash-color: rgb(209, 141, 255);
+	opacity: 0.2;
+	z-index: -1;
+}
+
+.InventorySidebar
+{
+	width: 300px;
+	vertical-align: center;
+	flow-children: down;
+	vertical-align: center;
+	padding: 32px 18px;
+}
+
+.InventoryNavButton
+{
+	width: 100%;
+	height: 62px;
+	margin-bottom: 14px;
+	padding: 0px 18px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #4b2a7aee ), to( #1a0f2aee ) );
+	border-top: 2px solid #b48cf3;
+	border-left: 2px solid #1a0f2a;
+	border-right: 2px solid #1a0f2a;
+	border-bottom: 2px solid #1a0f2a;
+	box-shadow: 0px 0px 3px 0px #6a3fb3aa;
+	transition-property: brightness, transform, box-shadow;
+	transition-duration: 0.15s;
+	saturation: 0.7;
+	brightness: 0.8;
+}
+
+.InventoryNavButton:hover
+{
+	saturation: 1;
+	brightness: 1.2;
+	box-shadow: 0px 0px 8px 0px #8f5cffcc;
+}
+
+.InventoryNavButton:active
+{
+	transform: translateX(2px) scale3d(0.98, 0.98, 1);
+}
+
+.InventoryNavButtonActive
+{
+	saturation: 1;
+	brightness: 1.2;
+	box-shadow: 0px 0px 8px 0px #8f5cffcc;
+}
+
+.InventoryNavButtonLabel
+{
+	width: 100%;
+	height: 30px;
+	text-overflow: shrink;
+	font-size: 26px;
+	font-weight: semi-bold;
+	text-align: left;
+	vertical-align: center;
+	letter-spacing: 0.3px;
+	text-shadow: 0px 0px 5px 3 black;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+}
+
+.InventoryMain
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	flow-children: down;
+	padding: 14px 28px 24px 0px;
+}
+
+.InventoryTopBar
+{
+	margin-top: 20px;
+	width: 100%;
+	height: 56px;
+	z-index: 10;
+	ignore-parent-flow: true;
+}
+
+.InventoryCurrencyRow
+{
+	horizontal-align: right;
+	flow-children: right;
+	padding-right: 100px;
+}
+
+.InventoryCurrencyPanel
+{
+	width: 160px;
+	height: 44px;
+	margin-left: 12px;
+	padding: 0px 14px;
+	flow-children: right;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #2b123fdd ), color-stop( 0.45, #51207add ), to( #1a0c2bdd ) );
+	border: 1px solid #d5aaf7;
+	border-brush: gradient( linear, 0% 0%, 100% 0%, from( #ffb3ff ), color-stop( 0.35, #c45cff ), color-stop( 0.7, #7b2cff ), to( #e58cff ) );
+	border-radius: 6px;
+	box-shadow: #d35cff44 0px 0px 6px 0px;
+}
+
+.InventoryCurrencyIcon
+{
+	width: 32px;
+	height: 32px;
+	vertical-align: center;
+}
+
+.InventoryCurrencyAmount
+{
+	margin-left: 10px;
+	vertical-align: center;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+	font-size: 24px;
+	font-weight: bold;
+	text-shadow: 0px 1px 2px 2 #000000cc;
+	text-overflow: shrink;
+}
+
+.InventoryContentFrame
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	padding: 20px;
+}
+
+.InventoryContentBody
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+}
+
+.InventoryExitCross
+{
+	z-index: 100;
+	horizontal-align: right;
+	margin-right: 10px;
+	margin-top: 10px;
+	ignore-parent-flow: true;
+	width: 64px;
+	height: 64px;
+	background-image: url("s2r://panorama/images/game_hud/icons/close_new_png.vtex");
+	background-size: 100%;
+	transition-property: brightness, transform;
+	transition-duration: 0.25s;
+	opacity: 1;
+	saturation: 0.75;
+	img-shadow: 0px 0px 1px 1 white;
+}
+
+.InventoryExitCross:hover
+{
+	opacity: 1;
+	brightness: 2;
+}
+
+.InventoryExitCross:active
+{
+	transform: scale3d(0.9, 0.9, 1);
+}
+
+.InventoryBigSectionTitle
+{
+	width: 100%;
+	height: 34px;
+	color: #ffde62;
+	font-size: 26px;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 0px 2px 3px 3 #381f00;
+}
+
+.InventoryHeaderRow
+{
+	width: 100%;
+	height: 34px;
+	flow-children: right;
+}
+
+.InventoryHeaderTitle
+{
+	width: fill-parent-flow(1);
+	font-size: 26px;
+	font-weight: semi-bold;
+	vertical-align: center;
+	color: #ffde62;
+	text-shadow: 0px 2px 3px 3 #381f00;
+}
+
+.InventoryHeaderMeta
+{
+	color: #d0d0c3;
+	font-size: 18px;
+	vertical-align: center;
+}
+
+.InventorySubTabsRow
+{
+	width: 100%;
+	height: 48px;
+	flow-children: right;
+	margin-bottom: 12px;
+}
+
+.InventorySubTabButton
+{
+	width: fill-parent-flow(1);
+	height: 40px;
+	border-radius: 4px;
+	vertical-align: center;
+	margin-right: 8px;
+	padding: 0px 8px;
+	border: 2px solid white;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#944423), to(#c57237));
+}
+
+.InventorySubTabsRow .InventorySubTabButton:last-child
+{
+	margin-right: 0px;
+}
+
+.InventorySubTabButtonActive
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#6e350c), to(#ee6221));
+}
+
+.InventorySubTabButton Label
+{
+	align: center center;
+	color: #ffa764;
+	font-size: 20px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 4px 3 #000000dd;
+	width: 100%;
+	text-overflow: shrink;
+	text-align: center;
+}
+
+.InventorySubTabButtonActive Label
+{
+	color: white;
+}
+
+.InventoryActionButton,.InventoryNeutralButton,.InventoryAppliedButton,.InventoryDangerButton
+{
+	height: 52px;
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_9_png.vtex");
+	background-size: 100%;
+}
+
+.InventoryNeutralButton
+{
+	width: 300px;
+	height: 60px;
+	horizontal-align: center;
+}
+
+.InventoryAppliedButton
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#4e5a5e), to(#2d3639));
+	border-color: #9ba8aa;
+}
+
+.InventoryDangerButton
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#d54c59), to(#7b1626));
+	border-color: #efb0b7;
+}
+
+.InventoryActionButton Label,.InventoryAppliedButton Label,.InventoryDangerButton Label
+{
+	align: center center;
+	color: #fff8d4;
+	font-size: 24px;
+	font-weight: semi-bold;
+	text-shadow: 0px 2px 2px 3 #000000cc;
+}
+
+.InventoryNeutralButton Label
+{
+	align: center center;
+	color: #fff8d4;
+	font-size: 22px;
+	font-weight: semi-bold;
+	text-shadow: 0px 2px 2px 3 #000000cc;
+	text-overflow: shrink;
+}
+
+.InventoryEquipmentRoot
+{
+	width: 1600px;
+	height: 900px;
+	vertical-align: center;
+	flow-children: right;
+}
+
+.InventoryEquipmentRootBG
+{
+	ignore-parent-flow: true;
+	z-index: -2;
+	width: 100%;
+	height: 100%;
+	margin: 10px;
+	background-image: url("s2r://panorama/images/game_hud/backgrounds/bg11_png.vtex");
+	background-size: 100%;
+	blur: gaussian (4px);
+	brightness: 0.5;
+	box-shadow: 0px 0px 8px 1px #000000;
+}
+
+.InventoryEquipmentRootBorder
+{
+	ignore-parent-flow: true;
+	opacity: 1;
+	brightness: 1;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	border-image-source: url("s2r://panorama/images/game_hud/inventory/border_png.vtex");
+	border-width: 15px;
+	border-image-slice: 30px;
+}
+
+.StorageColumn
+{
+	width: 600px;
+	height: 890px;
+	padding: 12px;
+	flow-children: down;
+	ui-scale: 90%;
+	vertical-align: center;
+	box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px 0px;
+	margin-left: 5px;
+	margin-right: 5px;
+	border: 1px solid white;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(transparent), color-stop(0.05, rgba(255, 125, 4, 0.1)), to(transparent));
+}
+
+.EquipmentColumn
+{
+	width: 500px;
+	ui-scale: 90%;
+	vertical-align: center;
+	height: 890px;
+	padding: 12px;
+	flow-children: down;
+	box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px 0px;
+	margin-left: 5px;
+	margin-right: 5px;
+	border: 1px solid white;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(transparent), color-stop(0.05, rgba(255, 125, 4, 0.1)), to(transparent));
+}
+
+.ForgeColumn
+{
+	width: 500px;
+	height: 890px;
+	ui-scale: 90%;
+	vertical-align: center;
+	padding: 12px;
+	flow-children: down;
+	box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px 0px;
+	margin-left: 5px;
+	margin-right: 5px;
+	border: 1px solid white;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(transparent), color-stop(0.05, rgba(255, 125, 4, 0.1)), to(transparent));
+}
+
+.InventoryEquipmentRootContent
+{
+	ignore-parent-flow: true;
+	vertical-align: center;
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.EquipmentSlotsGrid
+{
+	horizontal-align: center;
+	width: 280px;
+	flow-children: right-wrap;
+}
+
+.EquipmentSetSlot
+{
+	width: 128px;
+	height: 128px;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.set_rarity_scene
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	overflow: noclip;
+	horizontal-align: center;
+	opacity: 1;
+	wash-color: rgb(255, 123, 0);
+	z-index: 10;
+	brightness: 10;
+}
+
+.EquipmentSetSlotEmpty .set_rarity_scene
+{
+	brightness: 1;
+}
+
+.EquipmentSetSlotItem
+{
+	width: 128px;
+	height: 128px;
+	overflow: noclip;
+}
+
+.EquipmentSetSlotItemBG1
+{
+	width: 150px;
+	height: 150px;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_png.vtex");
+	background-size: 100%;
+	z-index: -1;
+	ignore-parent-flow: true;
+	align: center center;
+}
+
+.RareColor_super.EquipmentSetSlotItemBG1
+{
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_super_png.vtex");
+	background-size: 100%;
+}
+
+.EquipmentSetSlotItemBG2
+{
+	width: 150px;
+	height: 150px;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_without_border_png.vtex");
+	background-size: 100%;
+	z-index: 6;
+	img-shadow: 0px 0px 10px 2 black;
+	ignore-parent-flow: true;
+	align: center center;
+}
+
+.EquipmentSetSlotIcon
+{
+	width: 80%;
+	height: 80%;
+	align: center center;
+	img-shadow: 0px 0px 3px 5 black;
+}
+
+.icon_without_item
+{
+	width: 90px;
+	height: 90px;
+	align: center center;
+	opacity: 0.5;
+	img-shadow: 0px 0px 10px 2 rgba(255, 115, 0, 0.1);
+	saturation: 0.5;
+}
+
+.EquipmentSetSlot0 .icon_without_item
+{
+	background-image: url("s2r://panorama/images/game_hud/inventory/slot2_png.vtex");
+	background-size: 100%;
+}
+
+.EquipmentSetSlot1 .icon_without_item
+{
+	background-image: url("s2r://panorama/images/game_hud/inventory/slot3_png.vtex");
+	background-size: 100%;
+}
+
+.EquipmentSetSlot2 .icon_without_item
+{
+	background-image: url("s2r://panorama/images/game_hud/inventory/slot1_png.vtex");
+	background-size: 100%;
+}
+
+.EquipmentSetSlot3 .icon_without_item
+{
+	background-image: url("s2r://panorama/images/game_hud/inventory/slot4_png.vtex");
+	background-size: 100%;
+}
+
+.EquipmentSetSlot4 .icon_without_item
+{
+	background-image: url("s2r://panorama/images/game_hud/inventory/slot5_png.vtex");
+	background-size: 100%;
+}
+
+.EquipmentSetSlot5 .icon_without_item
+{
+	background-image: url("s2r://panorama/images/game_hud/inventory/slot6_png.vtex");
+	background-size: 100%;
+}
+
+.stats_item_info
+{
+	width: 100%;
+	height: 100%;
+	margin-top: 8px;
+	padding: 12px;
+	flow-children: down;
+	box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 8px 0px;
+	border: 1.5px solid white;
+	border-brush: gradient(linear, 100% 0%, 0% 100%, from(transparent), color-stop(0.5, rgba(255, 125, 4, 1)), to(transparent));
+	overflow: squish scroll;
+}
+
+.EquippedSetsContainer
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.EquippedSetsTitle
+{
+	width: 100%;
+	color: #f0c060;
+	font-size: 16px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.EquippedSetsRow
+{
+	width: 100%;
+	margin-top: 4px;
+	flow-children: right;
+}
+
+.EquippedSetCell
+{
+	flow-children: down;
+	margin-right: 10px;
+	horizontal-align: left;
+}
+
+.EquippedSetIcon
+{
+	width: 40px;
+	height: 40px;
+	horizontal-align: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.EquippedSetCell:hover .EquippedSetIcon
+{
+	wash-color: rgba(255, 255, 255, 0.35);
+}
+
+.EquippedSetCount
+{
+	horizontal-align: center;
+	margin-top: 2px;
+	color: white;
+	font-size: 14px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 3px 2 black;
+}
+
+.StorageGrid
+{
+	horizontal-align: center;
+	height: fill-parent-flow(1);
+	flow-children: right-wrap;
+	overflow: squish scroll;
+	box-shadow: hollow rgba(0, 0, 0, 0.4) 0px 0px 8px 0px;
+}
+
+.StorageCell
+{
+	width: 70px;
+	height: 70px;
+	margin-left: 3px;
+	margin-right: 3px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	background-color: rgba(0, 0, 0, 0.8);
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(0, 0, 0, 0.4)), to(rgba(0, 0, 0, 0.8)));
+	border: 1.5px solid #494949b9;
+	box-shadow: hollow 0px 0px 1px 1px #000000;
+}
+
+.StorageCellItem
+{
+	width: 70px;
+	height: 70px;
+	overflow: noclip;
+}
+
+.StorageCellItem.StorageCellItemSelected
+{
+	box-shadow: inset 0px 0px 8px 1px rgb(255, 123, 0);
+}
+
+.StorageCellItemSelected .StorageCellItemBG2
+{
+	wash-color: rgb(255, 238, 0);
+	brightness: 100;
+}
+
+.StorageCellItemBG1
+{
+	width: 80px;
+	height: 80px;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_png.vtex");
+	background-size: 100%;
+	z-index: -1;
+	ignore-parent-flow: true;
+	align: center center;
+}
+
+.RareColor_super.StorageCellItemBG1
+{
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_super_png.vtex");
+	background-size: 100%;
+}
+
+.StorageCellItemBG2
+{
+	width: 80px;
+	height: 80px;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_without_border_png.vtex");
+	background-size: 100%;
+	z-index: 6;
+	img-shadow: 0px 0px 10px 2 black;
+	ignore-parent-flow: true;
+	align: center center;
+}
+
+.StorageCellIcon
+{
+	width: 80%;
+	height: 80%;
+	align: center center;
+	img-shadow: 0px 0px 1px 3 black;
+}
+
+.StorageCellItemCount
+{
+	min-width: 28px;
+	height: 20px;
+	horizontal-align: right;
+	vertical-align: bottom;
+	margin-right: 4px;
+	margin-bottom: 4px;
+	padding: 0px 4px;
+	color: #ffffff;
+	font-size: 15px;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 0px 1px 2px 2 #000000;
+	background-color: #000000dd;
+	border: 1px solid #d6a94a99;
+	border-radius: 3px;
+	z-index: 20;
+}
+
+.StorageCellLockIcon
+{
+	width: 22px;
+	height: 22px;
+	horizontal-align: left;
+	vertical-align: bottom;
+	margin-left: -2px;
+	margin-bottom: 2px;
+	background-image: url("s2r://panorama/images/game_hud/companion/locked_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 4px 2 black;
+	z-index: 25;
+	brightness: 5;
+}
+
+.ItemSetIconOverlay
+{
+	width: 32px;
+	height: 32px;
+	horizontal-align: right;
+	vertical-align: bottom;
+	margin-right: 2px;
+	margin-bottom: 2px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	img-shadow: 0px 0px 3px 2 black;
+	z-index: 26;
+}
+
+.StorageCellItem .ItemSetIconOverlay
+{
+	width: 24px;
+	height: 24px;
+}
+
+.EquipmentSetSlotItem .ItemSetIconOverlay
+{
+	width: 42px;
+	height: 42px;
+	margin: 8px;
+}
+
+.ItemStrengthenLevelOverlay
+{
+	horizontal-align: right;
+	vertical-align: top;
+	margin-right: 3px;
+	margin-top: 2px;
+	color: #4dff5a;
+	font-size: 18px;
+	font-weight: bold;
+	text-shadow: 1px 1px 3px 2.0 black;
+	z-index: 27;
+}
+
+.EquipmentSetSlotItem .ItemStrengthenLevelOverlay
+{
+	font-size: 22px;
+	margin-right: 8px;
+	margin-top: 6px;
+}
+
+.ForgeSetHeader
+{
+	width: 100%;
+	flow-children: right;
+	margin-bottom: 10px;
+	padding: 6px;
+	background-color: rgba(0, 0, 0, 0.3);
+	border: 1px solid rgba(255, 125, 4, 0.4);
+}
+
+.ForgeSetIconWrap
+{
+	width: 56px;
+	height: 56px;
+	vertical-align: center;
+	margin-right: 10px;
+	background-color: rgba(0, 0, 0, 0.5);
+	border: 1px solid #6a6a5e;
+}
+
+.ForgeSetIcon
+{
+	width: 90%;
+	height: 90%;
+	align: center center;
+	img-shadow: 0px 0px 3px 2 black;
+}
+
+.ForgeSetName
+{
+	vertical-align: center;
+	color: #ffd951;
+	font-size: 20px;
+	font-weight: bold;
+	text-shadow: 0px 1px 3px 3 #000000;
+	text-overflow: shrink;
+}
+
+.ForgeSetBonusList
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.ForgeSetBonusRow
+{
+	width: 100%;
+	color: #8a8a80;
+	font-size: 16px;
+	margin-bottom: 4px;
+	text-shadow: 0px 1px 2px 2 #000000cc;
+}
+
+.ForgeSetBonusActive
+{
+	color: #ffcf6a;
+}
+
+.StorageFilterRow
+{
+	width: 100%;
+	flow-children: right;
+	horizontal-align: right;
+	margin-top: 0px;
+	margin-bottom: 4px;
+}
+
+.StorageFilterButton
+{
+	width: 190px;
+	height: 34px;
+	horizontal-align: center;
+	flow-children: right;
+	border: 2px solid white;
+	border-radius: 4px;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#944423), to(#c57237));
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#6e350c), to(#ee6221));
+}
+
+.StorageFilterButton:hover
+{
+	brightness: 1.5;
+}
+
+.StorageFilterLabel
+{
+	width: fill-parent-flow(1.0);
+	vertical-align: center;
+	margin-left: 10px;
+	color: #f0ead0;
+	font-size: 16px;
+	text-overflow: shrink;
+	color: white;
+	font-size: 20px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 4px 3 #000000dd;
+}
+
+.StorageFilterArrow
+{
+	width: 34px;
+	height: 34px;
+	vertical-align: center;
+	wash-color: #cbb27a;
+	background-image: url("s2r://panorama/images/game_hud/icons/arrow_dropdown_png.vtex");
+	background-size: 70% 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.ForgeContextMenu
+{
+	flow-children: down;
+	width: 210px;
+	padding: 6px;
+	border-radius: 6px;
+	border: 2px solid white;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#944423), to(#c57237));
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2c1b0e), to(#150c05));
+	box-shadow: rgba(0, 0, 0, 0.75) 0px 4px 14px 0px;
+}
+
+.ForgeContextButton
+{
+	width: 100%;
+	height: 42px;
+	flow-children: right;
+	padding: 0px 10px;
+	border-radius: 4px;
+	margin-bottom: 4px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3a1e0d), to(#2a1608));
+}
+
+.ForgeContextButton:last-child
+{
+	margin-bottom: 0px;
+}
+
+.ForgeContextButton:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#6e350c), to(#ee6221));
+}
+
+.StorageFilterOptionActive
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#7a3d08), to(#c9781f));
+}
+
+.ForgeContextLabel
+{
+	width: 100%;
+	vertical-align: center;
+	text-align: center;
+	color: #ffa764;
+	font-size: 19px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 4px 3 #000000dd;
+	text-overflow: shrink;
+}
+
+.ForgeContextButton:hover .ForgeContextLabel
+{
+	color: white;
+}
+
+.RareText_common
+{
+	color: #ffffff;
+}
+
+.RareText_rare
+{
+	color: #6aa8ff;
+}
+
+.RareText_mythical
+{
+	color: #c86bf0;
+}
+
+.RareText_legendary
+{
+	color: #f0b45a;
+}
+
+.RareText_immortal
+{
+	color: #ff6f7b;
+}
+
+.RareText_super
+{
+	color: gradient( linear, 0% 0%, 90% 100%, from( #ffe16f ), color-stop( 0.35, #ff5d90 ), color-stop( 0.65, #8b6cff ), to( #3cffd0 ) );
+}
+
+.StorageButtonsRow
+{
+	flow-children: right;
+	margin-top: 12px;
+	horizontal-align: center;
+}
+
+.StorageButtonsRow .InventoryActionButton
+{
+	width: 180px;
+	margin-right: 4px;
+	margin-left: 4px;
+}
+
+.ForgePlusFrame
+{
+	width: 100%;
+	height: 170px;
+	margin-bottom: 12px;
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#5f625c), to(#2a2d29));
+	border: 2px solid #838375;
+}
+
+.ForgePlusLabel
+{
+	align: center center;
+	color: #ffd951;
+	font-size: 92px;
+	font-weight: bold;
+	text-shadow: 0px 2px 3px 3 #381f00;
+}
+
+.ForgeFurnaceFrame
+{
+	horizontal-align: center;
+	width: 390px;
+	height: 360px;
+	margin-bottom: 12px;
+	background-image: url("s2r://panorama/images/game_hud/inventory/furnace_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 10px 1 rgba(250, 89, 26, 0.2);
+}
+
+.furnace_particle
+{
+	width: 150px;
+	height: 150px;
+	transform: translateX(120px) translateY(170px);
+	z-index: 1;
+}
+
+.furnace_particle_lava
+{
+	width: 150px;
+	height: 150px;
+	transform: translateX(120px) translateY(250px);
+	opacity: 1;
+	brightness: 2;
+}
+
+.ForgeFurnaceFrame2
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/inventory/furnace_2_png.vtex");
+	background-size: 100%;
+	z-index: 2;
+}
+
+.progress_level
+{
+	width: 40px;
+	z-index: 10;
+	font-size: 24px;
+	text-align: center;
+	vertical-align: center;
+	margin-left: 10.5px;
+	color: rgb(253, 224, 200);
+	text-shadow: 0px 0px 5px 6 black;
+	font-weight: semi-bold;
+}
+
+.furnace_particle_level
+{
+	width: 50px;
+	height: 50px;
+	z-index: -1;
+	transform: translateX(8px) translateY(4px);
+	brightness: 5;
+	opacity: 0.8;
+}
+
+.progress_line
+{
+	align: center center;
+	color: white;
+	font-family: Reaver;
+	text-shadow: 0px 0px 5px 4 #000000;
+	font-size: 16px;
+	margin-top: 1px;
+}
+
+.ForgeProgressBar
+{
+	horizontal-align: center;
+	width: 300px;
+	height: 60px;
+	margin-top: 0px;
+	background-image: url("s2r://panorama/images/game_hud/inventory/frame_png.vtex");
+	background-size: 100%;
+}
+
+.ForgeProgressBarLine
+{
+	width: 242px;
+	height: 26px;
+	margin-bottom: 3px;
+	margin-left: 54px;
+	vertical-align: center;
+	opacity-mask: url("s2r://panorama/images/game_hud/inventory/frame_mask_png.vtex") 1;
+}
+
+.progressBG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/inventory/frame2_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 2px 2 rgba(0, 0, 0, 1);
+	z-index: 10;
+}
+
+.ForgeProgressFill
+{
+	width: 0%;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #ffd412 ), to( #da4004 ) );
+}
+
+.ForgeStatsTitle
+{
+	margin-top: 12px;
+	color: #f0df96;
+	font-size: 22px;
+	font-weight: semi-bold;
+	text-align: center;
+	horizontal-align: center;
+}
+
+.ForgeStatsBox
+{
+	width: 100%;
+	height: 100%;
+	margin-top: 8px;
+	padding: 12px;
+	flow-children: down;
+	box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 8px 0px;
+	border: 1.5px solid white;
+	overflow: squish scroll;
+	border-brush: gradient(linear, 100% 0%, 0% 100%, from(transparent), color-stop(0.5, rgba(255, 125, 4, 1)), to(transparent));
+}
+
+.how_to_up_forge
+{
+	horizontal-align: center;
+	flow-children: right;
+	margin: 10px;
+}
+
+.how_to_up_forge_icon
+{
+	width: 20px;
+	height: 20px;
+	background-image: url("s2r://panorama/images/game_hud/icons/info_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+	margin-right: 5px;
+	tooltip-position: bottom;
+	opacity: 1;
+	brightness: 1.4;
+}
+
+.how_to_up_forge_label
+{
+	color: white;
+	font-size: 16px;
+	text-align: center;
+	vertical-align: center;
+	text-overflow: shrink;
+}
+
+.ForgeStatPanel
+{
+	width: 100%;
+	height: 34px;
+	flow-children: right;
+	border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+	margin-bottom: 5px;
+}
+
+.ForgeStatLabel
+{
+	color: #f0f0ea;
+	font-size: 16px;
+	letter-spacing: 0.4px;
+	text-align: center;
+	vertical-align: center;
+	font-family: Reaver;
+	text-overflow: shrink;
+}
+
+.ForgeStatLabel2
+{
+	color: #f0f0ea;
+	font-size: 18px;
+	text-align: center;
+	vertical-align: center;
+	horizontal-align: right;
+}
+
+.ForgeCraftPanel
+{
+	width: 500px;
+	height: 890px;
+	ui-scale: 90%;
+	vertical-align: center;
+	padding: 12px;
+	flow-children: down;
+	box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px 0px;
+	margin-left: 5px;
+	margin-right: 5px;
+	border: 1px solid white;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(transparent), color-stop(0.05, rgba(255, 125, 4, 0.1)), to(transparent));
+}
+
+.ForgeCraftTabs
+{
+	width: 100%;
+	flow-children: right;
+	horizontal-align: center;
+	margin-top: 6px;
+	margin-bottom: 8px;
+}
+
+.ForgeCraftTabButton
+{
+	width: fill-parent-flow(1.0);
+	height: 46px;
+	margin: 2px;
+	border-radius: 4px;
+	border: 2px solid white;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#944423), to(#c57237));
+}
+
+.ForgeCraftTabButtonActive
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#6e350c), to(#ee6221));
+}
+
+.ForgeCraftTabLabel
+{
+	align: center center;
+	color: #ffa764;
+	font-size: 20px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 4px 3 #000000dd;
+	width: 100%;
+	text-overflow: shrink;
+	text-align: center;
+}
+
+.ForgeCraftTabButtonActive .ForgeCraftTabLabel
+{
+	color: white;
+}
+
+.ForgeCraftBody
+{
+	width: 100%;
+	height: fill-parent-flow(1.0);
+	flow-children: down;
+	overflow: squish scroll;
+	padding: 6px;
+}
+
+.ForgeCraftHint
+{
+	horizontal-align: center;
+	flow-children: right;
+	margin-top: 4px;
+	margin-bottom: 10px;
+}
+
+.ForgeCraftHintIcon
+{
+	width: 20px;
+	height: 20px;
+	vertical-align: center;
+	margin-right: 6px;
+	background-image: url("s2r://panorama/images/game_hud/icons/info_png.vtex");
+	background-size: 100%;
+	tooltip-position: bottom;
+	brightness: 1.4;
+}
+
+.ForgeCraftHintLabel
+{
+	color: #e9c57c;
+	font-size: 17px;
+	font-weight: semi-bold;
+	vertical-align: center;
+	text-align: center;
+	text-shadow: 0px 1px 2px 2 #000000cc;
+	text-overflow: shrink;
+}
+
+.ForgeCraftItemHeader
+{
+	width: 100%;
+	min-height: 100px;
+	flow-children: right;
+	margin-bottom: 10px;
+	padding: 8px;
+	box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 8px 0px;
+	border: 1px solid rgba(255, 125, 4, 0.5);
+	border: 1.5px solid white;
+	border-brush: gradient(linear, 100% 0%, 0% 100%, from(transparent), color-stop(0.5, rgba(255, 125, 4, 1)), to(transparent));
+}
+
+.ForgeCraftItemHeaderEmpty
+{
+	flow-children: down;
+}
+
+.ForgeCraftPickHint
+{
+	align: center center;
+	width: 100%;
+	color: #c8c8be;
+	font-size: 20px;
+	text-align: center;
+}
+
+.ForgeCraftItemIconWrap
+{
+	width: 88px;
+	height: 88px;
+	vertical-align: center;
+	margin-right: 12px;
+	overflow: noclip;
+}
+
+.ForgeCraftItemIcon
+{
+	width: 80%;
+	height: 80%;
+	align: center center;
+	img-shadow: 0px 0px 2px 3 black;
+}
+
+.ForgeCellItemBG1
+{
+	width: 100px;
+	height: 100px;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_png.vtex");
+	background-size: 100%;
+	z-index: -1;
+	ignore-parent-flow: true;
+	align: center center;
+}
+
+.RareColor_super.ForgeCellItemBG1
+{
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_super_png.vtex");
+	background-size: 100%;
+}
+
+.ForgeellItemBG2
+{
+	width: 100px;
+	height: 100px;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_without_border_png.vtex");
+	background-size: 100%;
+	z-index: 6;
+	ignore-parent-flow: true;
+	align: center center;
+}
+
+.ForgeCraftItemInfo
+{
+	flow-children: down;
+	vertical-align: center;
+	width: fill-parent-flow(1.0);
+}
+
+.ForgeCraftItemName
+{
+	color: #e9c57c;
+	font-size: 22px;
+	font-weight: bold;
+	text-overflow: shrink;
+}
+
+.ForgeCraftItemMeta
+{
+	color: #d0d0c6;
+	font-size: 16px;
+	margin-top: 4px;
+	text-overflow: shrink;
+}
+
+.ForgeCraftCategoryBody
+{
+	padding: 5px;
+	width: 100%;
+	flow-children: down;
+	margin-bottom: 8px;
+	min-height: 280px;
+	box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 8px 0px;
+	border: 1px solid white;
+	border-brush: gradient(linear, 100% 0%, 0% 100%, from(transparent), color-stop(0.5, rgba(255, 125, 4, 1)), to(transparent));
+}
+
+.ForgeCraftStatList
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.ForgeCraftStatRow
+{
+	width: 100%;
+	height: 32px;
+	flow-children: right;
+	border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+	margin-bottom: 4px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.ForgeCraftStatRowSelected
+{
+	background-color: rgba(255, 125, 4, 0.15);
+}
+
+.ForgeCraftCheckbox
+{
+	width: 20px;
+	height: 20px;
+	vertical-align: center;
+	margin-right: 8px;
+	background-color: rgba(0, 0, 0, 0.6);
+	border: 1px solid #9a9a8a;
+}
+
+.ForgeCraftCheckboxChecked
+{
+	border: 1px solid #ffcf6a;
+	background-image: url("s2r://panorama/images/game_hud/promo/check_png.vtex");
+	background-size: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	img-shadow: 0px 0px 4px 2 #000000;
+}
+
+.ForgeCraftStatName
+{
+	color: #f0f0ea;
+	font-size: 16px;
+	vertical-align: center;
+	font-family: Reaver;
+	text-overflow: shrink;
+}
+
+.ForgeCraftStatStars
+{
+	flow-children: right;
+	vertical-align: center;
+	margin-left: 6px;
+}
+
+.ForgeCraftStatStar
+{
+	width: 14px;
+	height: 14px;
+	margin-left: 1px;
+	vertical-align: center;
+	wash-color: rgb(255, 196, 0);
+	background-image: url("s2r://panorama/images/tooltips/star_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 3px 2 black;
+}
+
+.ForgeCraftStatValue
+{
+	color: #8ee06a;
+	font-size: 17px;
+	vertical-align: center;
+	horizontal-align: right;
+	text-align: right;
+	text-overflow: shrink;
+}
+
+.ForgeCraftBlessingRow
+{
+	width: 100%;
+	flow-children: right;
+	margin-top: 10px;
+	margin-bottom: 4px;
+}
+
+.ForgeCraftBlessingLabel
+{
+	color: #e8e8de;
+	font-size: 16px;
+	vertical-align: center;
+	text-overflow: shrink;
+}
+
+.ForgeCraftSoonLabel
+{
+	width: 100%;
+	color: #d0a94a;
+	font-size: 18px;
+	text-align: center;
+	horizontal-align: center;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.ForgeCraftPotentialPreview
+{
+	width: 100%;
+	color: #ffd951;
+	font-size: 20px;
+	text-align: center;
+	horizontal-align: center;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.ForgeCraftPotentialAttempts
+{
+	width: 100%;
+	color: #b9c2d2;
+	font-size: 16px;
+	text-align: center;
+	horizontal-align: center;
+	margin-bottom: 16px;
+}
+
+.ForgeCraftPotentialAttemptsEmpty
+{
+	color: #ff5a5a;
+	font-weight: semi-bold;
+}
+
+.ForgeCraftSectionLabel
+{
+	padding-left: 4px;
+	width: 100%;
+	color: #f0c060;
+	font-size: 18px;
+	font-weight: semi-bold;
+	margin-top: 8px;
+	margin-bottom: 6px;
+	text-shadow: 0px 1px 2px 2 #000000cc;
+}
+
+.ForgeCraftMaterials
+{
+	width: 100%;
+	flow-children: right-wrap;
+}
+
+.ForgeCraftMaterial
+{
+	width: 60px;
+	height: 96px;
+	flow-children: down;
+	margin: 6px;
+}
+
+.ForgeCraftMaterialIconWrap
+{
+	width: 64px;
+	height: 64px;
+	horizontal-align: center;
+	overflow: noclip;
+}
+
+.ForgeCraftMaterialBG1
+{
+	width: 76px;
+	height: 76px;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_png.vtex");
+	background-size: 100%;
+	z-index: -1;
+	ignore-parent-flow: true;
+	align: center center;
+}
+
+.RareColor_super.ForgeCraftMaterialBG1
+{
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_super_png.vtex");
+	background-size: 100%;
+}
+
+.ForgeCraftMaterialBG2
+{
+	width: 76px;
+	height: 76px;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_without_border_png.vtex");
+	background-size: 100%;
+	z-index: 6;
+	img-shadow: 0px 0px 8px 2 black;
+	ignore-parent-flow: true;
+	align: center center;
+}
+
+.ForgeCraftMaterialIcon
+{
+	width: 80%;
+	height: 80%;
+	align: center center;
+	img-shadow: 0px 0px 3px 2 black;
+}
+
+.ForgeCraftMaterialAmount
+{
+	width: 100%;
+	color: #dcdcd2;
+	font-size: 16px;
+	text-align: center;
+	horizontal-align: center;
+	margin-top: 2px;
+	font-family: Reaver;
+	text-overflow: shrink;
+}
+
+.ForgeCraftMaterialInsufficient
+{
+	color: #ff5a5a;
+}
+
+.ForgeCraftMaterialInactive
+{
+	saturation: 0.15;
+	opacity: 0.45;
+}
+
+.ForgeCraftBottom
+{
+	width: 100%;
+	flow-children: down;
+	vertical-align: bottom;
+	ignore-parent-flow: true;
+}
+
+.ForgeCraftFooter
+{
+	width: 100%;
+	flow-children: down;
+	margin-top: 10px;
+	padding: 8px;
+	background-color: rgba(0, 0, 0, 0.35);
+	border: 1px solid rgba(255, 125, 4, 0.4);
+}
+
+.ForgeCraftChance
+{
+	color: #ffd951;
+	font-size: 18px;
+	horizontal-align: center;
+	text-align: center;
+}
+
+.ForgeCraftPotentialCost
+{
+	color: #e8e8de;
+	font-size: 17px;
+	horizontal-align: center;
+	text-align: center;
+	margin-top: 4px;
+}
+
+.ForgeCraftResult
+{
+	color: #8ee06a;
+	font-size: 18px;
+	font-weight: bold;
+	horizontal-align: center;
+	text-align: center;
+	margin-top: 4px;
+}
+
+.ForgeCraftResultFail
+{
+	color: #ff5a5a;
+}
+
+.ForgeCraftButtons
+{
+	width: 100%;
+	flow-children: right;
+	horizontal-align: center;
+	margin-top: 12px;
+}
+
+.ForgeCraftButtons .InventoryActionButton,.ForgeCraftButtons .InventoryDangerButton
+{
+	width: fill-parent-flow(1.0);
+	margin-left: 6px;
+	margin-right: 6px;
+}
+
+.InventoryActionButtonDisabled
+{
+	saturation: 0.2;
+	opacity: 0.6;
+}
+
+.EquipmentSetSlotForgeSelected
+{
+	background-color: rgba(255, 125, 4, 0.35);
+}
+
+.InventoryAppearanceRoot
+{
+	width: 1600px;
+	height: 900px;
+	vertical-align: center;
+	flow-children: right;
+	border-image-source: url("s2r://panorama/images/game_hud/inventory/border3_png.vtex");
+	border-width: 15px;
+	border-image-slice: 30px;
+}
+
+.InventoryAppearanceRootBG
+{
+	ignore-parent-flow: true;
+	z-index: -2;
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/backgrounds/bg12_png.vtex");
+	background-size: 100%;
+	blur: gaussian (2px);
+	brightness: 0.5;
+	box-shadow: 0px 0px 8px 1px #000000;
+}
+
+.AppearanceSubmenu
+{
+	width: 220px;
+	height: 100%;
+	vertical-align: center;
+	flow-children: down;
+	margin-top: 5px;
+	background-image: url("s2r://panorama/images/game_hud/inventory/border6_png.vtex");
+	background-size: 110%;
+	background-img-opacity: 0.8;
+}
+
+.AppearanceSubmenuButton
+{
+	width: 100%;
+	height: 44px;
+	background-color: #00000033;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+	transition-property: background-color;
+	transition-duration: 0.15s;
+}
+
+.AppearanceSubmenuButtonBG
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	opacity: 1;
+	saturation: 0;
+	opacity: 0.1;
+}
+
+.AppearanceSubmenuButton0 .AppearanceSubmenuButtonBG
+{
+	background-image: url("s2r://panorama/images/game_hud/inventory/tab4_png.vtex");
+	background-size: 100%;
+}
+
+.AppearanceSubmenuButton1 .AppearanceSubmenuButtonBG
+{
+	background-image: url("s2r://panorama/images/game_hud/inventory/tab3_png.vtex");
+	background-size: 100%;
+}
+
+.AppearanceSubmenuButton2 .AppearanceSubmenuButtonBG
+{
+	background-image: url("s2r://panorama/images/game_hud/inventory/tab_png.vtex");
+	background-size: 100%;
+}
+
+.AppearanceSubmenuButton3 .AppearanceSubmenuButtonBG
+{
+	background-image: url("s2r://panorama/images/game_hud/inventory/tab2_png.vtex");
+	background-size: 100%;
+}
+
+.AppearanceSubmenuButton4 .AppearanceSubmenuButtonBG
+{
+	background-image: url("s2r://panorama/images/game_hud/inventory/tab1_png.vtex");
+	background-size: 100%;
+}
+
+.AppearanceSubmenuButton5 .AppearanceSubmenuButtonBG
+{
+	background-image: url("s2r://panorama/images/game_hud/inventory/tab_png.vtex");
+	background-size: 100%;
+}
+
+.AppearanceSubmenuButton:hover .AppearanceSubmenuButtonBG
+{
+	opacity: 1;
+	saturation: 1;
+}
+
+.AppearanceSubmenuButtonActive .AppearanceSubmenuButtonBG
+{
+	opacity: 1;
+	saturation: 1;
+}
+
+.AppearanceSubmenuButton Label
+{
+	vertical-align: center;
+	margin-left: 54px;
+	color: #e8e8e8;
+	font-size: 18px;
+	text-overflow: shrink;
+	height: 20px;
+	padding-right: 5px;
+}
+
+.AppearanceSubmenuButton:hover Label
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+}
+
+.AppearanceSubmenuButtonActive Label
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+}
+
+.AppearanceItemsColumn
+{
+	padding: 0px;
+	width: 400px;
+	height: 100%;
+	flow-children: down;
+	border-right: 1px solid #ffffff;
+	border-left: 1px solid #ffffff;
+	box-shadow: rgba(0, 0, 0, 0.8) 0px 0px 8px 0px;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(transparent), color-stop(0.5, rgba(155, 96, 250, 0.075)), to(transparent));
+	border-image-source: url("s2r://panorama/images/game_hud/inventory/border_png.vtex");
+	border-width: 2px;
+	border-image-slice: 25px;
+}
+
+.AppearanceItemGrid
+{
+	horizontal-align: center;
+	flow-children: right-wrap;
+	padding-top: 10px;
+}
+
+.AppearanceCard
+{
+	width: 175px;
+	height: 180px;
+	margin: 6px;
+	flow-children: down;
+	saturation: 0.8;
+	padding: 4px;
+}
+
+.AppearanceCardBG
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	background-image: url("s2r://panorama/images/game_hud/inventory/item2_png.vtex");
+	background-size: 100%;
+	transition-property: brightness, saturation;
+	transition-duration: 0.05s;
+}
+
+.AppearanceCardEquipped
+{
+	saturation: 1;
+	brightness: 1.2;
+}
+
+.AppearanceCardLocked
+{
+	saturation: 0.1;
+	brightness: 0.3;
+}
+
+.item_fx_inventory
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0.4;
+	wash-color: #7c44fd;
+}
+
+.AppearanceCardLocked .item_fx_inventory
+{
+	opacity: 0;
+}
+
+.AppearanceCard:hover .AppearanceCardBG
+{
+	brightness: 2;
+	img-shadow: 0px 0px 2px 1 rgb(151, 90, 250);
+}
+
+.AppearanceCardEquipped .AppearanceCardBG
+{
+	saturation: 1;
+	brightness: 1.2;
+	img-shadow: 0px 0px 4px 2 rgba(114, 90, 250, 0.1);
+}
+
+.AppearanceCardLocked .AppearanceCardBG
+{
+	img-shadow: 0px 0px 4px 2 rgba(114, 90, 250, 0);
+}
+
+.AppearanceCardActive .AppearanceCardBG
+{
+	brightness: 2;
+	img-shadow: 0px 0px 2px 1 rgb(151, 90, 250);
+}
+
+.AppearanceCardPreview
+{
+	margin-top: 15px;
+	width: 110px;
+	height: 110px;
+	horizontal-align: center;
+}
+
+.AppearanceCardName
+{
+	horizontal-align: center;
+	width: 150px;
+	margin-top: 2px;
+	color: #d4d4d4;
+	font-size: 16px;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 5px 5 #000000cc;
+	font-weight: semi-bold;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #ffffff ), color-stop( 0.35, #d9b3fd ), color-stop( 0.7, #9b4dff ), to( #6a1bbd ) );
+}
+
+.AppearancePreviewColumn
+{
+	width: 600px;
+	height: 100%;
+}
+
+.AppearancePreviewColumnBG
+{
+	width: 600px;
+	height: 230px;
+	ignore-parent-flow: true;
+	z-index: -1;
+	vertical-align: bottom;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/game_hud/inventory/pod3_png.vtex");
+	background-size: 100%;
+	opacity: 0.99;
+	brightness: 0.7;
+	transform: translateX(-8px) translateY(-10px);
+}
+
+.AppearanceBigPreview
+{
+	width: 400px;
+	height: 400px;
+	vertical-align: center;
+	margin-bottom: 100px;
+	horizontal-align: center;
+	animation-name: CardSubUp;
+	animation-duration: 5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'CardSubUp'
+{
+	0%
+	{
+		transform: translateY(-15px);
+	}
+	
+	50%
+	{
+		transform: translateY(15px);
+	}
+	
+	100%
+	{
+		transform: translateY(-15px);
+	}
+	
+}
+
+.AppearanceBigPreviewIcon
+{
+	width: 100%;
+	height: 100%;
+	img-shadow: 0px 0px 20px 3 rgba(151, 90, 250, 0.5);
+}
+
+.AppearancePreviewColumn .InventoryActionButton,.AppearancePreviewColumn .InventoryAppliedButton
+{
+	width: 220px;
+	horizontal-align: center;
+	margin-top: 14px;
+	transition-property: brightness, transform;
+	transition-duration: 0.25s;
+}
+
+.InventoryActionButton:hover
+{
+	brightness: 1.5;
+}
+
+.InventoryActionButton:active
+{
+	transform: scale3d(0.9, 0.9, 1);
+}
+
+.InventoryActionButton2
+{
+	width: 220px;
+	horizontal-align: center;
+	margin-top: 14px;
+	transition-property: brightness, transform;
+	transition-duration: 0.25s;
+	height: 52px;
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_10_png.vtex");
+	background-size: 100%;
+	vertical-align: bottom;
+	margin-bottom: 5px;
+}
+
+.InventoryActionButton2:hover
+{
+	brightness: 1.5;
+}
+
+.InventoryActionButton2:active
+{
+	transform: scale3d(0.9, 0.9, 1);
+}
+
+.InventoryActionButton2.InventoryActionButtonDisabled:hover
+{
+	brightness: 1;
+}
+
+.InventoryActionButton2.InventoryActionButtonDisabled:active
+{
+	transform: none;
+}
+
+.InventoryActionButton2.AppearanceApplyButtonUnequip
+{
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_12_png.vtex");
+	background-size: 100%;
+}
+
+.InventoryActionButton2.AppearanceApplyButtonLocked
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+.InventoryActionButton2.AppearanceApplyButtonLocked:hover
+{
+	brightness: 0.5;
+}
+
+.InventoryActionButton2.AppearanceApplyButtonLocked:active
+{
+	transform: none;
+}
+
+.InventoryActionButton2 Label
+{
+	align: center center;
+	color: white;
+	font-weight: semi-bold;
+	font-size: 22px;
+	text-shadow: 0px 0px 2px 3 #000000cc;
+}
+
+.AppearanceDescriptionPanel
+{
+	flow-children: down;
+	vertical-align: bottom;
+	horizontal-align: center;
+	width: 430px;
+	height: 178px;
+	margin-bottom: 60px;
+}
+
+.AppearanceDescriptionTitle
+{
+	horizontal-align: center;
+	margin-top: 2px;
+	color: #d4d4d4;
+	font-size: 22px;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 5px 5 #000000cc;
+	font-weight: semi-bold;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #ffffff ), color-stop( 0.35, #d9b3fd ), color-stop( 0.7, #9b4dff ), to( #6a1bbd ) );
+}
+
+.AppearanceDescription
+{
+	horizontal-align: center;
+	color: #f0e5c4;
+	font-size: 16px;
+	text-align: center;
+	white-space: normal;
+	margin-top: 15px;
+}
+
+.AppearanceSpecialBonusPanel
+{
+	width: 100%;
+	horizontal-align: center;
+	margin-top: 10px;
+	flow-children: down;
+}
+
+.AppearanceSpecialBonusTitle
+{
+	horizontal-align: center;
+	color: #f7d786;
+	font-size: 14px;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 0px;
+	text-shadow: 0px 0px 4px 3 #000000cc;
+}
+
+.AppearanceSpecialBonusRow
+{
+	width: 100%;
+	min-height: 22px;
+	flow-children: right;
+	margin-top: 2px;
+}
+
+.AppearanceSpecialBonusRowLocked
+{
+	saturation: 0;
+	brightness: 0.55;
+}
+
+.AppearanceSpecialBonusStars
+{
+	width: 34px;
+	color: #ffd75c;
+	font-size: 14px;
+	font-weight: semi-bold;
+	text-align: right;
+	text-shadow: 0px 0px 4px 3 #000000cc;
+}
+
+.AppearanceSpecialBonusText
+{
+	width: fill-parent-flow(1);
+	margin-left: 8px;
+	color: #f0e5c4;
+	font-size: 13px;
+	line-height: 16px;
+	white-space: normal;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 4px 3 #000000cc;
+}
+
+.AppearanceHeroAbilities
+{
+	horizontal-align: center;
+	flow-children: right;
+	margin-top: 20px;
+}
+
+.AppearanceHeroAbility
+{
+	width: 64px;
+	height: 64px;
+	margin: 0px 6px;
+	border: 1px solid #8b68bd;
+	border-radius: 4px;
+	background-color: #120a1dcc;
+	background-size: 100%;
+	box-shadow: #000000aa 0px 0px 5px 1px;
+	transition-property: brightness, transform;
+	transition-duration: 0.15s;
+}
+
+.AppearanceHeroAbility:hover
+{
+	brightness: 1.5;
+}
+
+.AppearanceHeroAbility:active
+{
+	transform: scale3d(0.94, 0.94, 1);
+}
+
+.AppearanceInfoColumn
+{
+	width: 26%;
+	height: 100%;
+	flow-children: down;
+}
+
+.AppearanceInfoCard
+{
+	width: 100%;
+	height: 100%;
+	padding: 14px;
+	flow-children: down;
+	background-image: url("s2r://panorama/images/game_hud/inventory/border5_png.vtex");
+	background-size: 106%;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.AppearanceInfoMiniIcon
+{
+	width: 140px;
+	height: 140px;
+	horizontal-align: center;
+}
+
+.AppearanceInfoTitle
+{
+	width: 100%;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #ffffff ), color-stop( 0.35, #d9b3fd ), color-stop( 0.7, #9b4dff ), to( #6a1bbd ) );
+	font-size: 22px;
+	font-weight: semi-bold;
+	text-align: center;
+	color: white;
+}
+
+.AppearanceLevelScroll
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	padding-right: 8px;
+	flow-children: down;
+	overflow: squish scroll;
+}
+
+.AppearanceLevelBlock
+{
+	width: 100%;
+	margin: 2px;
+	margin-bottom: 10px;
+	flow-children: down;
+	background-color: #000000d5;
+	border: 1px solid white;
+	border-brush: gradient(linear, 100% 0%, 0% 100%, from(transparent), color-stop(0.5, rgb(255, 167, 4)), to(transparent));
+}
+
+.AppearanceLevelBlockLocked
+{
+	saturation: 0;
+	brightness: 0.45;
+}
+
+.AppearanceStarsRow
+{
+	height: 24px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #fccb28ee ), color-stop( 0.2, #d8a80ace ), to( #00000000 ) );
+	width: 100%;
+	padding-left: 6px;
+	flow-children: right;
+}
+
+.AppearanceStar
+{
+	width: 18px;
+	height: 18px;
+	margin-right: 4px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/game_hud/icons/stars2_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 2px 2 rgb(151, 90, 250);
+	img-shadow: 0px 0px 2px 2 black;
+}
+
+.AppearanceBonusLine
+{
+	width: 100%;
+	height: 26px;
+	margin-top: 2px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+}
+
+.AppearanceBonusLineBonus_1
+{
+	color: white;
+	font-size: 14px;
+	font-family: Reaver;
+	padding-left: 4px;
+	vertical-align: center;
+}
+
+.AppearanceBonusLineBonus_2
+{
+	color: white;
+	font-weight: semi-bold;
+	font-size: 16px;
+	horizontal-align: right;
+	padding-right: 4px;
+	vertical-align: center;
+}
+
+.AppearanceNeedPanel
+{
+	width: 100%;
+	padding-top: 8px;
+	padding-bottom: 4px;
+	flow-children: down;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #14072000 ), color-stop( 0.35, #140720ee ), to( #050208f8 ) );
+	z-index: 2;
+}
+
+.AppearanceNeedTitle
+{
+	width: 100%;
+	font-weight: semi-bold;
+	color: white;
+	font-size: 18px;
+	text-align: center;
+}
+
+.AppearanceNeedRow
+{
+	width: 100%;
+	flow-children: down;
+	margin-top: 10px;
+}
+
+.AppearanceNeedItem
+{
+	horizontal-align: center;
+	width: 74px;
+	height: 74px;
+	overflow: noclip;
+}
+
+.AppearanceNeedItemBG
+{
+	width: 90px;
+	height: 90px;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_png.vtex");
+	background-size: 100%;
+	z-index: -1;
+	ignore-parent-flow: true;
+	align: center center;
+	overflow: noclip;
+}
+
+.AppearanceNeedItemBG2
+{
+	width: 90px;
+	height: 90px;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_without_border_png.vtex");
+	background-size: 100%;
+	z-index: 6;
+	img-shadow: 0px 0px 10px 2 black;
+	ignore-parent-flow: true;
+	align: center center;
+	overflow: noclip;
+}
+
+.RareColor_super.AppearanceNeedItemBG
+{
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_super_png.vtex");
+	background-size: 100%;
+}
+
+.AppearanceNeedIcon
+{
+	width: 60px;
+	height: 60px;
+	align: center center;
+	horizontal-align: center;
+	img-shadow: 0px 0px 10px 4 black;
+}
+
+.AppearanceNeedText
+{
+	horizontal-align: center;
+	margin-top: 6px;
+	text-align: center;
+	color: white;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.InventoryTalentRoot,.InventorySuperTalentRoot
+{
+	horizontal-align: center;
+	vertical-align: center;
+	flow-children: down;
+}
+
+.TalentConfigColumn
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.TalentConfigButton
+{
+	width: 180px;
+	height: 42px;
+	margin-bottom: 8px;
+	margin: 4px;
+	background-image: url("s2r://panorama/images/game_hud/talents/button2_png.vtex");
+	background-size: 100%;
+	saturation: 0.5;
+	brightness: 0.5;
+	transition-property: brightness, saturation;
+	transition-duration: 0.2s;
+}
+
+.TalentConfigButton:hover
+{
+	saturation: 1;
+	brightness: 1;
+}
+
+.TalentConfigButtonActive
+{
+	saturation: 1;
+	brightness: 1;
+}
+
+.TalentConfigButton Label
+{
+	vertical-align: center;
+	horizontal-align: center;
+	color: #ddd;
+	font-size: 18px;
+}
+
+.TalentConfigButtonActive Label
+{
+	color: #fcbb17;
+}
+
+.TalentBoard,.SuperTalentBoard
+{
+	height: 1300px;
+}
+
+.SuperTalentBoard
+{
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#3f0d13), to(#21070b));
+}
+
+.TalentNodeGrid
+{
+	width: 1500px;
+	height: 800px;
+	ui-scale: 95%;
+	transform: translateX(90px) translateY(-30px);
+	padding-left: 20px;
+	opacity-mask: url("s2r://panorama/images/game_hud/talents/mask_start_png.vtex") 1;
+	opacity-mask-position: 0px 0px;
+	opacity-mask-scale: 0%;
+	transition-property: opacity-mask-scale;
+	transition-duration: 1s;
+}
+
+.grid_BG_lines
+{
+	ignore-parent-flow: true;
+	width: 1145px;
+	height: 464px;
+	background-image: url("s2r://panorama/images/game_hud/talents/lines_png.vtex");
+	background-size: 100%;
+	z-index: -1;
+	align: center center;
+	ui-scale: 120%;
+	opacity: 1;
+}
+
+.TalentNode
+{
+	width: 105px;
+	height: 100px;
+	align: center center;
+	overflow: noclip;
+	transition-property: ui-scale;
+	transition-duration: 0.1s;
+}
+
+.TalentNodeBG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/talents/block4_png.vtex");
+	background-size: 100%;
+	brightness: 2;
+}
+
+.TalentNodeIcon
+{
+	width: 40px;
+	height: 40px;
+	background-image: url("s2r://panorama/images/game_hud/talents/test_png.vtex");
+	background-size: 100%;
+	align: center center;
+	opacity: 1;
+	img-shadow: 0px 0px 5px 1 rgba(255, 255, 255, 0.5);
+}
+
+.TalentNodeProgress
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/talents/block4_png.vtex");
+	background-size: 100%;
+	brightness: 2;
+	z-index: 10;
+	opacity-mask: url("s2r://panorama/images/game_hud/talents/mask_start_png.vtex") 1;
+	opacity-mask-position: 0px 0px;
+	opacity-mask-scale: 0%;
+	brightness: 2;
+}
+
+.TalentNodeProgressIcon
+{
+	width: 40px;
+	height: 40px;
+	background-image: url("s2r://panorama/images/game_hud/talents/test_png.vtex");
+	background-size: 100%;
+	align: center center;
+	brightness: 2;
+}
+
+.TalentNodeGolden .TalentNodeBG
+{
+	wash-color: rgb(255, 205, 69);
+}
+
+.TalentNodeGolden .TalentNodeIcon
+{
+	wash-color: rgb(255, 208, 0);
+}
+
+.TalentNodeGreen .TalentNodeBG
+{
+	wash-color: rgb(69, 255, 131);
+}
+
+.TalentNodeGreen .TalentNodeIcon
+{
+	wash-color: rgb(86, 255, 142);
+}
+
+.TalentNodeOrange .TalentNodeBG
+{
+	wash-color: rgb(255, 97, 69);
+}
+
+.TalentNodeOrange .TalentNodeIcon
+{
+	wash-color: rgb(255, 123, 83);
+}
+
+.TalentNodeBlue .TalentNodeBG
+{
+	wash-color: rgb(69, 171, 255);
+}
+
+.TalentNodeBlue .TalentNodeIcon
+{
+	wash-color: rgb(67, 207, 250);
+}
+
+.TalentNodeGolden .TalentNodeProgress
+{
+	wash-color: rgb(255, 205, 69);
+}
+
+.TalentNodeGreen .TalentNodeProgress
+{
+	wash-color: rgb(69, 255, 131);
+}
+
+.TalentNodeOrange .TalentNodeProgress
+{
+	wash-color: rgb(255, 97, 69);
+}
+
+.TalentNodeBlue .TalentNodeProgress
+{
+	wash-color: rgb(69, 171, 255);
+}
+
+.TalentNodeGolden .TalentNodeProgressIcon
+{
+	wash-color: rgb(255, 208, 0);
+}
+
+.TalentNodeGreen .TalentNodeProgressIcon
+{
+	wash-color: rgb(86, 255, 142);
+}
+
+.TalentNodeOrange .TalentNodeProgressIcon
+{
+	wash-color: rgb(255, 123, 83);
+}
+
+.TalentNodeBlue .TalentNodeProgressIcon
+{
+	wash-color: rgb(67, 207, 250);
+}
+
+.TalentNodeLevelLabel
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	color: #ffffff;
+	font-size: 12px;
+	transform: translateY(12px);
+	font-weight: thin;
+	font-family: Reaver;
+	text-align: center;
+	text-shadow: 0px 0px 4px 4 black;
+	z-index: 30;
+}
+
+.TalentNodeLocked .TalentNodeLevelLabel
+{
+	opacity: 0;
+}
+
+.TalentNodeLocked
+{
+	saturation: 0.25;
+	brightness: 0.55;
+}
+
+.TalentNodeMaxLevel .TalentNodeLevelLabel
+{
+	color: #ffd86a;
+	border-color: rgba(255, 216, 106, 0.45);
+}
+
+.TalentNode:hover
+{
+	ui-scale: 140%;
+}
+
+.TalentNode.TalentNode0:hover
+{
+	brightness: 1;
+	transform: scale3d(1, 1, 1);
+	ui-scale: 130%;
+}
+
+.node_pfx_ring
+{
+	width: 126px;
+	height: 126px;
+	transform: translateY(1px);
+	z-index: 10;
+	overflow: noclip;
+	opacity: 1;
+	align: center center;
+}
+
+.node_pfx_ring_mini
+{
+	width: 88px;
+	height: 88px;
+	z-index: 10;
+	overflow: noclip;
+	opacity: 1;
+	align: center center;
+}
+
+.TalentNodeGolden .node_pfx_ring_mini
+{
+	wash-color: rgb(255, 205, 69);
+}
+
+.TalentNodeGreen .node_pfx_ring_mini
+{
+	wash-color: rgb(69, 255, 131);
+}
+
+.TalentNodeOrange .node_pfx_ring_mini
+{
+	wash-color: rgb(255, 97, 69);
+}
+
+.TalentNodeBlue .node_pfx_ring_mini
+{
+	wash-color: rgb(69, 171, 255);
+}
+
+.node_pfx_line_center
+{
+	width: 500px;
+	height: 500px;
+	z-index: -1;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.node_pfx_line_center1
+{
+	transform: translateY(10px) translateX(-17px);
+}
+
+.node_pfx_line_center2
+{
+	transform: translateY(10px) translateX(-188px);
+}
+
+.node_pfx_line_center3
+{
+	transform: translateY(-94px) translateX(-102px);
+}
+
+.node_pfx_line_center4
+{
+	transform: translateY(94px) translateX(-102px);
+}
+
+.node_pfx_pip_center
+{
+	width: 70px;
+	height: 70px;
+	horizontal-align: center;
+	vertical-align: center;
+	brightness: 3;
+}
+
+.node_pfx_pip_14
+{
+	width: 70px;
+	height: 70px;
+	horizontal-align: center;
+	vertical-align: center;
+	brightness: 3;
+	transform: translateY(15px) translateX(-622px);
+	hue-rotation: 80deg;
+}
+
+.node_pfx_pip_28
+{
+	width: 70px;
+	height: 70px;
+	horizontal-align: center;
+	vertical-align: center;
+	brightness: 3;
+	transform: translateY(10px) translateX(513px);
+	hue-rotation: 280deg;
+}
+
+.node_pfx_line
+{
+	width: 500px;
+	height: 500px;
+	z-index: -1;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.node_pfx_pip_center1
+{
+	transform: translateY(10px) translateX(35px);
+	hue-rotation: 280deg;
+}
+
+.node_pfx_pip_center2
+{
+	transform: translateY(10px) translateX(-235px);
+	hue-rotation: 80deg;
+}
+
+.node_pfx_pip_center3
+{
+	transform: translateY(-143px) translateX(-102px);
+	hue-rotation: 90deg;
+}
+
+.node_pfx_pip_center4
+{
+	transform: translateY(150px) translateX(-102px);
+	hue-rotation: 220deg;
+	hue-rotation: 180deg;
+}
+
+.node_pfx_line_id_1
+{
+	transform: translateY(-190px) translateX(-152px);
+	hue-rotation: 120deg;
+}
+
+.node_pfx_line_id_2
+{
+	transform: translateY(-145px) translateX(-52px);
+	hue-rotation: 120deg;
+}
+
+.node_pfx_line_id_3
+{
+	transform: translateY(-200px) translateX(-102px);
+	hue-rotation: 120deg;
+}
+
+.node_pfx_line_id_4
+{
+	transform: translateY(-200px) translateX(-102px);
+	hue-rotation: 120deg;
+}
+
+.node_pfx_line_id_5
+{
+	transform: translateY(-200px) translateX(-102px);
+	hue-rotation: 120deg;
+}
+
+.node_pfx_line_id_6
+{
+	transform: translateY(200px) translateX(-102px);
+	hue-rotation: 220deg;
+}
+
+.node_pfx_line_id_7
+{
+	transform: translateY(200px) translateX(-102px);
+	hue-rotation: 220deg;
+}
+
+.node_pfx_line_id_8
+{
+	transform: translateY(200px) translateX(-102px);
+	hue-rotation: 220deg;
+}
+
+.node_pfx_line_id_9
+{
+	transform: translateY(200px) translateX(-102px);
+	hue-rotation: 220deg;
+}
+
+.node_pfx_line_id_10
+{
+	transform: translateY(200px) translateX(-102px);
+	hue-rotation: 220deg;
+}
+
+.node_pfx_line_id_11
+{
+	transform: translateY(100px) translateX(-450px);
+	hue-rotation: 85deg;
+}
+
+.node_pfx_line_id_12
+{
+	transform: translateY(100px) translateX(-450px);
+	hue-rotation: 85deg;
+}
+
+.node_pfx_line_id_13
+{
+	transform: translateY(100px) translateX(-450px);
+	hue-rotation: 85deg;
+}
+
+.node_pfx_line_id_14
+{
+	transform: translateY(100px) translateX(-450px);
+	hue-rotation: 85deg;
+}
+
+.node_pfx_line_id_14_1
+{
+	transform: translateY(100px) translateX(-450px);
+	hue-rotation: 85deg;
+}
+
+.node_pfx_line_id_14_2
+{
+	transform: translateY(100px) translateX(-450px);
+	hue-rotation: 85deg;
+}
+
+.node_pfx_line_id_15
+{
+	transform: translateY(100px) translateX(-450px);
+	hue-rotation: 85deg;
+}
+
+.node_pfx_line_id_16
+{
+	transform: translateY(100px) translateX(-450px);
+	hue-rotation: 85deg;
+}
+
+.node_pfx_line_id_17
+{
+	transform: translateY(100px) translateX(-450px);
+	hue-rotation: 85deg;
+}
+
+.node_pfx_line_id_18
+{
+	transform: translateY(-200px) translateX(-450px);
+	hue-rotation: 85deg;
+}
+
+.node_pfx_line_id_19
+{
+	transform: translateY(-200px) translateX(-450px);
+	hue-rotation: 85deg;
+}
+
+.node_pfx_line_id_20
+{
+	transform: translateY(-200px) translateX(-450px);
+	hue-rotation: 85deg;
+}
+
+.node_pfx_line_id_21
+{
+	transform: translateY(-200px) translateX(-450px);
+	hue-rotation: 85deg;
+}
+
+.node_pfx_line_id_22
+{
+	transform: translateY(-200px) translateX(-450px);
+	hue-rotation: 85deg;
+}
+
+.node_pfx_line_id_23
+{
+	transform: translateY(-200px) translateX(-250px) scaleX(-1);
+	hue-rotation: 280deg;
+}
+
+.node_pfx_line_id_24
+{
+	transform: translateY(-200px) translateX(-250px) scaleX(-1);
+	hue-rotation: 280deg;
+}
+
+.node_pfx_line_id_25
+{
+	transform: translateY(-200px) translateX(-250px) scaleX(-1);
+	hue-rotation: 280deg;
+}
+
+.node_pfx_line_id_34
+{
+	transform: translateY(100px) translateX(-250px) scaleX(-1);
+	hue-rotation: 280deg;
+}
+
+.node_pfx_line_id_35
+{
+	transform: translateY(100px) translateX(-250px) scaleX(-1);
+	hue-rotation: 280deg;
+}
+
+.node_pfx_line_id_33
+{
+	transform: translateY(100px) translateX(-250px) scaleX(-1);
+	hue-rotation: 280deg;
+}
+
+.node_pfx_line_id_28
+{
+	transform: translateY(100px) translateX(-250px) scaleX(-1);
+	hue-rotation: 280deg;
+}
+
+.node_pfx_line_id_28_1
+{
+	width: 530px;
+	transform: translateY(100px) translateX(-250px) scaleX(-1);
+	hue-rotation: 280deg;
+}
+
+.node_pfx_line_id_28_2
+{
+	transform: translateY(100px) translateX(-250px) scaleX(-1);
+	hue-rotation: 280deg;
+}
+
+.node_pfx_line_id_29
+{
+	transform: translateY(92px) translateX(-340px) scaleX(-1);
+	hue-rotation: 280deg;
+}
+
+.node_pfx_line_id_30
+{
+	transform: translateY(92px) translateX(-340px) scaleX(-1);
+	hue-rotation: 280deg;
+}
+
+.node_pfx_line_id_27
+{
+	transform: translateY(100px) translateX(-100px) scaleX(-1);
+	hue-rotation: 280deg;
+}
+
+.node_pfx_line_id_26
+{
+	transform: translateY(50px) translateX(-300px) scaleX(-1);
+	hue-rotation: 280deg;
+}
+
+.node_pfx_line_id_31
+{
+	transform: translateY(100px) translateX(-250px) scaleX(-1);
+	hue-rotation: 280deg;
+}
+
+.node_pfx_line_id_32
+{
+	transform: translateY(100px) translateX(-280px) scaleX(-1);
+	hue-rotation: 280deg;
+}
+
+.TalentNode0
+{
+	background-image: url("s2r://panorama/images/game_hud/talents/center_2_png.vtex");
+	background-size: 100%;
+	opacity: 1;
+	x: -102px;
+	y: 7px;
+	ui-scale: 130%;
+	transition-property: brightness;
+	transition-duration: 0.1s;
+}
+
+.TalentNode0 .TalentNodeBG
+{
+	visibility: collapse;
+}
+
+.TalentNode1
+{
+	width: 64px;
+	height: 64px;
+	x: -200px;
+	y: -185px;
+	ui-scale: 130%;
+}
+
+.TalentNode2
+{
+	width: 64px;
+	height: 64px;
+	x: -5px;
+	y: -185px;
+	ui-scale: 130%;
+}
+
+.TalentNode3
+{
+	width: 64px;
+	height: 64px;
+	x: -101px;
+	y: -307px;
+	ui-scale: 130%;
+}
+
+.TalentNode4
+{
+	width: 64px;
+	height: 64px;
+	x: -270px;
+	y: -280px;
+	ui-scale: 130%;
+}
+
+.TalentNode5
+{
+	width: 64px;
+	height: 64px;
+	x: 70px;
+	y: -280px;
+	ui-scale: 130%;
+}
+
+.TalentNode6
+{
+	width: 64px;
+	height: 64px;
+	x: -200px;
+	y: 215px;
+	ui-scale: 130%;
+}
+
+.TalentNode7
+{
+	width: 64px;
+	height: 64px;
+	x: -5px;
+	y: 215px;
+	ui-scale: 130%;
+}
+
+.TalentNode8
+{
+	width: 64px;
+	height: 64px;
+	x: -101px;
+	y: 290px;
+	ui-scale: 130%;
+}
+
+.TalentNode9
+{
+	width: 64px;
+	height: 64px;
+	x: -285px;
+	y: 305px;
+	ui-scale: 130%;
+}
+
+.TalentNode10
+{
+	width: 64px;
+	height: 64px;
+	x: 88px;
+	y: 305px;
+	ui-scale: 130%;
+}
+
+.TalentNode11
+{
+	width: 64px;
+	height: 64px;
+	x: -335px;
+	y: 124px;
+	ui-scale: 130%;
+}
+
+.TalentNode12
+{
+	width: 64px;
+	height: 64px;
+	x: -440px;
+	y: 220px;
+	ui-scale: 130%;
+}
+
+.TalentNode13
+{
+	width: 64px;
+	height: 64px;
+	x: -560px;
+	y: 300px;
+	ui-scale: 130%;
+}
+
+.TalentNode14
+{
+	width: 64px;
+	height: 64px;
+	x: -480px;
+	y: 20px;
+	ui-scale: 130%;
+}
+
+.TalentNode15
+{
+	width: 64px;
+	height: 64px;
+	x: -590px;
+	y: 134px;
+	ui-scale: 130%;
+}
+
+.TalentNode16
+{
+	width: 64px;
+	height: 64px;
+	x: -710px;
+	y: 95px;
+	ui-scale: 130%;
+}
+
+.TalentNode17
+{
+	width: 64px;
+	height: 64px;
+	x: -710px;
+	y: -35px;
+	ui-scale: 130%;
+}
+
+.TalentNode18
+{
+	width: 64px;
+	height: 64px;
+	x: -570px;
+	y: -90px;
+	ui-scale: 130%;
+}
+
+.TalentNode19
+{
+	width: 64px;
+	height: 64px;
+	x: -690px;
+	y: -160px;
+	ui-scale: 130%;
+}
+
+.TalentNode20
+{
+	width: 64px;
+	height: 64px;
+	x: -582px;
+	y: -260px;
+	ui-scale: 130%;
+}
+
+.TalentNode21
+{
+	width: 64px;
+	height: 64px;
+	x: -420px;
+	y: -190px;
+	ui-scale: 130%;
+}
+
+.TalentNode22
+{
+	width: 64px;
+	height: 64px;
+	x: -325px;
+	y: -90px;
+	ui-scale: 130%;
+}
+
+.TalentNode23
+{
+	width: 64px;
+	height: 64px;
+	x: 130px;
+	y: -90px;
+	ui-scale: 130%;
+}
+
+.TalentNode24
+{
+	width: 64px;
+	height: 64px;
+	x: 230px;
+	y: -190px;
+	ui-scale: 130%;
+}
+
+.TalentNode25
+{
+	width: 64px;
+	height: 64px;
+	x: 420px;
+	y: -250px;
+	ui-scale: 130%;
+}
+
+.TalentNode26
+{
+	width: 64px;
+	height: 64px;
+	x: 550px;
+	y: -160px;
+	ui-scale: 130%;
+}
+
+.TalentNode27
+{
+	width: 64px;
+	height: 64px;
+	x: 360px;
+	y: -80px;
+	ui-scale: 130%;
+}
+
+.TalentNode28
+{
+	width: 64px;
+	height: 64px;
+	x: 280px;
+	y: 15px;
+	ui-scale: 130%;
+}
+
+.TalentNode29
+{
+	width: 64px;
+	height: 64px;
+	x: 600px;
+	y: 70px;
+	ui-scale: 130%;
+}
+
+.TalentNode30
+{
+	width: 64px;
+	height: 64px;
+	x: 600px;
+	y: -45px;
+	ui-scale: 130%;
+}
+
+.TalentNode31
+{
+	width: 64px;
+	height: 64px;
+	x: 425px;
+	y: 135px;
+	ui-scale: 130%;
+}
+
+.TalentNode32
+{
+	width: 64px;
+	height: 64px;
+	x: 555px;
+	y: 245px;
+	ui-scale: 130%;
+}
+
+.TalentNode33
+{
+	width: 64px;
+	height: 64px;
+	x: 140px;
+	y: 125px;
+	ui-scale: 130%;
+}
+
+.TalentNode34
+{
+	width: 64px;
+	height: 64px;
+	x: 235px;
+	y: 215px;
+	ui-scale: 130%;
+}
+
+.TalentNode35
+{
+	width: 64px;
+	height: 64px;
+	x: 365px;
+	y: 295px;
+	ui-scale: 130%;
+}
+
+.TalentNodeNotActive .TalentNodeBG
+{
+	saturation: 0;
+	wash-color: gray;
+}
+
+.TalentNodeNotActive .TalentNodeIcon
+{
+	saturation: 0;
+	wash-color: gray;
+}
+
+.TalentNodeNotActive .node_pfx_ring_mini
+{
+	opacity: 0;
+}
+
+.TalentLineNotActive
+{
+	opacity: 0;
+}
+
+.SuperTalentNode
+{
+	ignore-parent-flow: true;
+}
+
+.TalentFooter
+{
+	flow-children: down;
+	vertical-align: bottom;
+	horizontal-align: center;
+	ignore-parent-flow: true;
+}
+
+.TalentLevelBar
+{
+	horizontal-align: center;
+	width: 1285px;
+	height: 63px;
+	margin-top: 12px;
+}
+
+.TalentLevelBarBG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/talents/level_png.vtex");
+	background-size: 100%;
+}
+
+.TalentLevelPin
+{
+	width: 26px;
+	height: 26px;
+	background-image: url("s2r://panorama/images/game_hud/talents/pip_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+	saturation: 0;
+}
+
+.TalentLevelPin_active
+{
+	background-image: url("s2r://panorama/images/game_hud/talents/pip_active_png.vtex");
+	background-size: 100%;
+	saturation: 1;
+	brightness: 2;
+	img-shadow: 0px 0px 10px 3 rgba(255, 196, 0, 0.25);
+}
+
+.TalentLevelPin1
+{
+	transform: translateX(159px) translateY(-1px);
+}
+
+.TalentLevelPin2
+{
+	transform: translateX(298px) translateY(-1px);
+}
+
+.TalentLevelPin3
+{
+	transform: translateX(438px) translateY(-1px);
+}
+
+.TalentLevelPin4
+{
+	transform: translateX(598px) translateY(-1px);
+}
+
+.TalentLevelPin5
+{
+	transform: translateX(755px) translateY(-1px);
+}
+
+.TalentLevelPin6
+{
+	transform: translateX(926px) translateY(-1px);
+}
+
+.TalentLevelPin7
+{
+	transform: translateX(1095px) translateY(-1px);
+}
+
+.TalentLevelPin8
+{
+	transform: translateX(1260px) translateY(-1px);
+}
+
+.TalentLevelPin9
+{
+	transform: translateX(1390px) translateY(-1px);
+}
+
+.TalentLevelLabel
+{
+	width: 40px;
+	height: 30px;
+	text-align: center;
+	color: #f7e9a2;
+	font-size: 22px;
+	vertical-align: center;
+	margin-left: 11px;
+	font-weight: semi-bold;
+	font-family: Reaver;
+	text-shadow: 0px 0px 5px 6 black;
+}
+
+.InventoryTalentActionButton
+{
+	width: 220px;
+	horizontal-align: center;
+	margin-top: 14px;
+	transition-property: brightness, transform;
+	transition-duration: 0.25s;
+	height: 52px;
+	background-image: url("s2r://panorama/images/game_hud/talents/button_png.vtex");
+	background-size: 100%;
+	vertical-align: bottom;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.InventoryTalentActionButton:hover
+{
+	brightness: 1.5;
+}
+
+.InventoryTalentActionButton:active
+{
+	transform: scale3d(0.9, 0.9, 1);
+}
+
+.InventoryTalentActionButtonDisabled,.InventoryTalentActionButtonDisabled:hover,.InventoryTalentActionButtonDisabled:active
+{
+	saturation: 0;
+	brightness: 0.45;
+	transform: none;
+}
+
+.InventoryTalentActionButton Label
+{
+	align: center center;
+	color: white;
+	font-weight: semi-bold;
+	font-size: 22px;
+	text-shadow: 0px 0px 2px 3 #000000cc;
+}
+
+.TalentLevelLine
+{
+	width: 1210px;
+	height: 14px;
+	background-color: black;
+	vertical-align: center;
+	transform: translateX(68px) translateY(-1.2px);
+	z-index: -1;
+	brightness: 1.4;
+}
+
+.TalentLevelLineFront
+{
+	width: 50%;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #fff2a6 ), color-stop( 0.08, #ffd85b ), color-stop( 0.22, #ffbf2f ), color-stop( 0.48, #f2a51a ), color-stop( 0.72, #d97c0d ), color-stop( 0.90, #ffb52f ), to( #ffe07a ));
+}
+
+.TalentMilestonesRow
+{
+	width: 100%;
+	margin-top: 4px;
+	overflow: noclip;
+}
+
+.TalentLevelTitle
+{
+	width: 160px;
+	color: #ddd;
+	font-size: 18px;
+	margin-left: -75px;
+}
+
+.TalentMilestonesRow Label
+{
+	color: #d8d8d8;
+	font-size: 16px;
+	text-align: right;
+}
+
+.TalentLevelTitls0
+{
+	margin-left: 164px;
+}
+
+.TalentLevelTitls1
+{
+	margin-left: 302px;
+}
+
+.TalentLevelTitls2
+{
+	margin-left: 440px;
+}
+
+.TalentLevelTitls3
+{
+	margin-left: 600px;
+}
+
+.TalentLevelTitls4
+{
+	margin-left: 755px;
+}
+
+.TalentLevelTitls5
+{
+	margin-left: 926px;
+}
+
+.TalentLevelTitls6
+{
+	margin-left: 1097px;
+}
+
+.TalentLevelTitls7
+{
+	margin-left: 1260px;
+}
+
+.TalentButtonsRow
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-top: 22px;
+}
+
+.TalentButtonsRow .InventoryActionButton,.TalentButtonsRow .InventoryDangerButton
+{
+	width: 180px;
+	margin-left: 20px;
+}
+
+.TalentButtonsRowSuper
+{
+	ignore-parent-flow: true;
+	flow-children: right;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 24px;
+}
+
+.TalentButtonsRowSuper .InventoryActionButton,.TalentButtonsRowSuper .InventoryDangerButton
+{
+	width: 180px;
+	margin: 0px 10px;
+}
+
+.TalentResetConfirmModal
+{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.74);
+	z-index: 1000;
+}
+
+.TalentResetConfirmCard
+{
+	width: 600px;
+	flow-children: down;
+	horizontal-align: center;
+	vertical-align: center;
+	padding: 26px;
+	background-color: gradient( radial, 50% 10%, 0% 0%, 85% 85%, from( #4a3d68 ), color-stop( 0.35, #2d2542 ), color-stop( 0.7, #1b1628 ), to( #161124 ) );
+	border: 2px solid #6f5c96;
+	box-shadow: #000000cc 0px 0px 10px 2px;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( #8f79c2 ), to( #312744 ) );
+}
+
+.TalentResetConfirmTitle
+{
+	width: 100%;
+	text-align: center;
+	color: #ffd86a;
+	font-size: 24px;
+	font-weight: bold;
+	text-shadow: 0px 0px 5px 3 black;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.TalentResetConfirmText
+{
+	width: fit-children;
+	max-width: 100%;
+	margin-top: 14px;
+	flow-children: right-wrap;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.TalentResetConfirmTextLabel
+{
+	color: #dce6f2;
+	font-size: 17px;
+	line-height: 22px;
+	text-align: center;
+	text-shadow: 0px 0px 4px 2 black;
+	vertical-align: center;
+}
+
+.TalentResetConfirmCoinIcon
+{
+	width: 24px;
+	height: 24px;
+	margin-left: 6px;
+	margin-right: 4px;
+	vertical-align: center;
+	img-shadow: 0px 0px 5px 2 #000000;
+}
+
+.TalentResetConfirmCost
+{
+	color: #ffd86a;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 0px 0px 4px 2 black;
+	vertical-align: center;
+	margin-right: 4px;
+}
+
+.TalentResetConfirmButtons
+{
+	horizontal-align: center;
+	margin-top: 22px;
+	flow-children: right;
+}
+
+.TalentResetConfirmButtons .InventoryTalentActionButton
+{
+	margin: 0px 8px;
+}
+
+.SuperTalentCircleWrap
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+}
+
+.InventoryStoneRoot
+{
+	width: 1600px;
+	height: 900px;
+	vertical-align: center;
+	flow-children: right;
+	border-image-source: url("s2r://panorama/images/game_hud/inventory/border3_png.vtex");
+	border-width: 15px;
+	border-image-slice: 30px;
+	background-image: url("s2r://panorama/images/game_hud/stones/bg_png.vtex");
+	background-size: 100%;
+}
+
+.StoneCollectionColumn
+{
+	width: 64%;
+	height: 100%;
+	padding-right: 16px;
+	flow-children: down;
+	box-shadow: rgba(0, 0, 0, 0.9) 0px 0px 8px 2px;
+}
+
+.StoneSpecialColumn
+{
+	width: fill-parent-flow(1);
+	vertical-align: center;
+	flow-children: down;
+	box-shadow: rgba(0, 0, 0, 0.95) 0px 0px 8px 2px;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+.StoneTierBlock
+{
+	width: 100%;
+	height: 220px;
+	margin-bottom: -10px;
+	background-image: url("s2r://panorama/images/game_hud/stones/stone_line_png.vtex");
+	background-size: 100%;
+}
+
+.StoneTierBlock1
+{
+	background-image: url("s2r://panorama/images/game_hud/stones/stone_line1_png.vtex");
+}
+
+.StoneTierBlock2
+{
+	background-image: url("s2r://panorama/images/game_hud/stones/stone_line2_png.vtex");
+}
+
+.StoneTierBlock3
+{
+	background-image: url("s2r://panorama/images/game_hud/stones/stone_line3_png.vtex");
+}
+
+.StoneTierBlock4
+{
+	background-image: url("s2r://panorama/images/game_hud/stones/stone_line4_png.vtex");
+}
+
+.StoneTierBlock5
+{
+	background-image: url("s2r://panorama/images/game_hud/stones/stone_line5_png.vtex");
+}
+
+.StoneTierHeader
+{
+	width: 100%;
+	height: 50px;
+}
+
+.StoneTierHeader1
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #ffffff ), to( #252525 ) );
+	font-size: 24px;
+	font-weight: bold;
+	vertical-align: center;
+	margin-left: 110px;
+	margin-top: 8px;
+	text-shadow: 0px 2px 2px 3 #000000cc;
+}
+
+.StoneTierBlock1 .StoneTierHeader1
+{
+	text-shadow: 0px 2px 2px 3 #000000cc;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #7ee0f8 ), to( #119ac8 ) );
+}
+
+.StoneTierBlock2 .StoneTierHeader1
+{
+	text-shadow: 0px 2px 2px 3 #000000cc;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #e6c5fc ), to( #7723a9 ) );
+}
+
+.StoneTierBlock3 .StoneTierHeader1
+{
+	text-shadow: 0px 2px 2px 3 #000000cc;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #ffefb4 ), to( #e08d49 ) );
+}
+
+.StoneTierBlock4 .StoneTierHeader1
+{
+	text-shadow: 0px 2px 2px 3 #000000cc;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #faa1a1 ), to( #f70f0f ) );
+}
+
+.StoneTierBlock5 .StoneTierHeader1
+{
+	text-shadow: 0px 2px 2px 3 #000000cc;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #ff0000 ), color-stop( 0.16, #ff7f00 ), color-stop( 0.33, #ffff00 ), color-stop( 0.50, #00ff00 ), color-stop( 0.66, #00bfff ), color-stop( 0.83, #9191fd ), to( #8b00ff ) );
+}
+
+.StoneTierHeader2
+{
+	color: #949494;
+	font-size: 20px;
+	horizontal-align: right;
+	vertical-align: center;
+	margin-right: 40px;
+	font-family: Reaver;
+}
+
+.StoneTierItems
+{
+	horizontal-align: center;
+	vertical-align: center;
+	margin-top: 30px;
+	flow-children: right-wrap;
+}
+
+.StoneCard
+{
+	width: 150px;
+	height: 150px;
+	margin-left: 30px;
+	margin-right: 30px;
+	vertical-align: center;
+}
+
+.StoneSpecialSlot
+{
+	width: 144px;
+	height: 150px;
+	margin: 0px 14px 14px 0px;
+	padding: 8px;
+	flow-children: down;
+	background-image: url("s2r://panorama/images/game_hud/stones/stone_rare_png.vtex");
+	background-size: 100%;
+}
+
+.StoneSpecialSlot:hover
+{
+	img-shadow: 0px 0px 1px 0 rgba(255, 208, 0, 1);
+}
+
+.StoneSpecialSlotIcon
+{
+	width: 86px;
+	height: 86px;
+	align: center center;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	brightness: 1.8;
+	img-shadow: 0px 0px 4px 3 black;
+}
+
+.StoneCardLocked .StoneSpecialSlotIcon
+{
+	saturation: 0.3;
+	brightness: 0.35;
+}
+
+.StoneSpecialSlot0
+{
+	transform: translateX(40px) translateY(50px);
+}
+
+.StoneSpecialSlot1
+{
+	transform: translateX(190px) translateY(50px);
+}
+
+.StoneSpecialSlot2
+{
+	transform: translateX(340px) translateY(50px);
+}
+
+.StoneSpecialSlot3
+{
+	transform: translateX(40px) translateY(194px);
+}
+
+.StoneSpecialSlot4
+{
+	transform: translateX(190px) translateY(194px);
+}
+
+.StoneSpecialSlot5
+{
+	transform: translateX(340px) translateY(194px);
+}
+
+.StoneCardLocked .StoneCardIcon
+{
+	saturation: 0.5;
+	brightness: 0.3;
+}
+
+.StoneCardLocked .gem_fx
+{
+	opacity: 0;
+}
+
+.StoneCardLocked.StoneCard Label
+{
+	opacity: 0;
+}
+
+.StoneCard Label
+{
+	horizontal-align: center;
+	text-align: center;
+	font-size: 18px;
+	color: #fff;
+	font-weight: semi-bold;
+	margin-top: 5px;
+	text-align: center;
+}
+
+.StoneCardIcon
+{
+	width: 90px;
+	height: 90px;
+	align: center center;
+	img-shadow: 0px 0px 2px 4 black;
+	brightness: 2;
+}
+
+.StoneTierBlock1 .StoneCardIcon
+{
+	transform: translateX(-5px);
+}
+
+.StoneTierBlock2 .StoneCardIcon
+{
+	transform: translateX(-5px);
+}
+
+.StoneTierBlock3 .StoneCardIcon
+{
+	transform: translateX(-3px);
+}
+
+.StoneTierBlock4 .StoneCardIcon
+{
+	transform: translateX(-3px);
+}
+
+.StoneTierBlock5 .StoneCardIcon
+{
+	transform: translateX(0px);
+}
+
+.gem_fx
+{
+	width: 100%;
+	height: 100%;
+	transform: translateX(-3px);
+	ignore-parent-flow: true;
+	z-index: 10;
+	opacity: 0.3;
+	opacity-mask: url("s2r://panorama/images/game_hud/stones/fx_mask_png.vtex") 1;
+}
+
+.StoneTierBlock1 .gem_fx
+{
+	wash-color: rgb(127, 196, 252);
+}
+
+.StoneTierBlock2 .gem_fx
+{
+	wash-color: rgb(247, 93, 247);
+}
+
+.StoneTierBlock3 .gem_fx
+{
+	wash-color: rgb(252, 168, 43);
+}
+
+.StoneTierBlock4 .gem_fx
+{
+	wash-color: red;
+}
+
+.StoneTierBlock5 .gem_fx
+{
+	wash-color: rgb(0, 238, 255);
+}
+
+.StoneCard:hover .StoneCardIcon
+{
+	brightness: 3;
+}
+
+.StoneCard.StoneCardLocked:hover .StoneCardIcon
+{
+	brightness: 0.4;
+}
+
+.StoneTierBlock3 .StoneCardIcon
+{
+	width: 108px;
+	height: 108px;
+	z-index: -1;
+}
+
+.StoneTierBlock4 .StoneCardIcon
+{
+	width: 108px;
+	height: 108px;
+	z-index: -1;
+}
+
+.StoneTierBlock5 .StoneCardIcon
+{
+	width: 108px;
+	height: 108px;
+	z-index: -1;
+}
+
+.StoneCardName
+{
+	width: 100%;
+	margin-top: 10px;
+	color: #d8d8d8;
+	font-size: 16px;
+	text-align: center;
+}
+
+.StoneSpecialTitle
+{
+	width: 100%;
+	color: #ff7ad7;
+	font-size: 28px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.StoneSpecialGrid
+{
+	width: 530px;
+	height: 360px;
+	margin-bottom: 20px;
+}
+
+.StoneSpecialGridBG
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	brightness: 3;
+	background-image: url("s2r://panorama/images/game_hud/stones/stone_block_png.vtex");
+	background-size: 100%;
+}
+
+.StoneChestCard
+{
+	width: 100%;
+	height: 400px;
+	background-image: url("s2r://panorama/images/game_hud/stones/chest_block_png.vtex");
+	background-size: 100%;
+	margin-top: 20px;
+}
+
+.StoneChestContent
+{
+	vertical-align: bottom;
+	horizontal-align: center;
+	margin-bottom: 20px;
+	flow-children: down;
+}
+
+.StoneChestImage
+{
+	width: 100%;
+	height: 180px;
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#4f2f4f), to(#1d1626));
+	margin-bottom: 12px;
+	opacity: 0;
+}
+
+.StoneChestCard .InventoryActionButton
+{
+	width: 200px;
+	horizontal-align: center;
+}
+
+.StoneChestTitle
+{
+	font-size: 20px;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+	font-weight: bold;
+	text-align: center;
+	horizontal-align: center;
+	margin-top: 16px;
+}
+
+.StoneSpecialGridTitle
+{
+	font-size: 20px;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+	font-weight: bold;
+	text-align: center;
+	horizontal-align: center;
+	margin-top: 18px;
+	ignore-parent-flow: true;
+}
+
+.StoneChestCostRow
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-top: 2px;
+}
+
+.StoneChestCostIcon
+{
+	width: 26px;
+	height: 26px;
+}
+
+.StoneChestCostText
+{
+	margin-left: 8px;
+	color: #79ff8f;
+	font-size: 22px;
+	font-weight: bold;
+}
+
+.InventoryLockedOverlay
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	background-color: #000000bb;
+}
+
+.InventoryLockedEmblem
+{
+	width: 380px;
+	height: 380px;
+	align: center center;
+	background-color: gradient(radial, 50% 50%, 0% 0%, 50% 50%, from(#d0d8ff20), to(#d0d8ff00));
+}
+
+.InventoryLockedText
+{
+	align: center center;
+	margin-top: 20px;
+	color: #f2d371;
+	font-size: 26px;
+	font-weight: semi-bold;
+	text-shadow: 0px 2px 2px 3 #000000dd;
+}
+
+VerticalScrollBar,HTMLVerticalScrollBar
+{
+	width: 5px;
+	height: 100%;
+	horizontal-align: right;
+	layout-position: fixed;
+	padding: 1px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1a0f08 ), to( #2b170b ) );
+	border-left: 1px solid #f0c96a22;
+}
+
+VerticalScrollBar .ScrollThumb,HTMLVerticalScrollBar .ScrollThumb
+{
+	width: 8px;
+	min-height: 38px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #fff0a8 ), color-stop( 0.22, #ffd65f ), color-stop( 0.55, #c78d1f ), to( #6a430c ) );
+	border: 1px solid #fff4bf;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( #fff8d4 ), to( #8d5a10 ) );
+	box-shadow: #000000cc 0px 0px 6px 0px;
+	border-radius: 2px;
+	transition-property: brightness, transform, background-color;
+	transition-duration: 0.15s;
+}
+
+VerticalScrollBar:hover .ScrollThumb,HTMLVerticalScrollBar:hover .ScrollThumb
+{
+	brightness: 1.12;
+}
+
+VerticalScrollBar:active .ScrollThumb,HTMLVerticalScrollBar:active .ScrollThumb
+{
+	brightness: 0.9;
+}
+
+HorizontalScrollBar,HTMLHorizontalScrollBar
+{
+	height: 4px;
+	width: 100%;
+	vertical-align: bottom;
+	layout-position: fixed;
+	padding: 1px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #1a0f08 ), to( #2b170b ) );
+	border-top: 1px solid #f0c96a22;
+}
+
+HorizontalScrollBar .ScrollThumb,HTMLHorizontalScrollBar .ScrollThumb
+{
+	height: 8px;
+	min-width: 38px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #fff0a8 ), color-stop( 0.22, #ffd65f ), color-stop( 0.55, #c78d1f ), to( #ff9602 ) );
+	border: 1px solid #fff4bf;
+	border-brush: gradient( linear, 0% 0%, 100% 0%, from( #fff8d4 ), to( #8d5a10 ) );
+	box-shadow: #000000cc 0px 0px 6px 0px;
+	border-radius: 2px;
+	transition-property: brightness, transform, background-color;
+	transition-duration: 0.15s;
+}
+
+HorizontalScrollBar:hover .ScrollThumb,HTMLHorizontalScrollBar:hover .ScrollThumb
+{
+	brightness: 1.12;
+}
+
+HorizontalScrollBar:active .ScrollThumb,HTMLHorizontalScrollBar:active .ScrollThumb
+{
+	brightness: 0.9;
+}
+
+.TalentGuideOverlay
+{
+	width: 100%;
+	height: 100%;
+	z-index: 9000;
+	background-color: #000000d1;
+}
+
+.TalentGuideWindow
+{
+	width: 840px;
+	height: 720px;
+	horizontal-align: center;
+	vertical-align: center;
+	flow-children: down;
+	padding: 12px 30px 28px 30px;
+	background-color: gradient( radial, 50% 10%, 0% 0%, 85% 85%, from( #4a3d68 ), color-stop( 0.35, #2d2542 ), color-stop( 0.7, #1b1628 ), to( #161124 ) );
+	border: 1px solid #6f5c96;
+	box-shadow: #000000bf 0px 0px 34px 0px;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( #8f79c2 ), to( #312744 ) );
+}
+
+.TalentGuideTitle
+{
+	horizontal-align: center;
+	font-size: 26px;
+	color: #f6d994;
+	text-shadow: 0px 0px 4px 3.0 #000000;
+	margin-bottom: 14px;
+	font-family: Reaver;
+	font-weight: semi-bold;
+}
+
+.TalentGuideVideoFrame
+{
+	width: 700px;
+	height: 394px;
+	horizontal-align: center;
+	border: 1px solid #6f5c96;
+	box-shadow: #000000bf 0px 0px 5px 0px;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( #8f79c2 ), to( #312744 ) );
+}
+
+.TalentGuideVideo
+{
+	width: 100%;
+	height: 100%;
+}
+
+.TalentGuideText
+{
+	width: 700px;
+	horizontal-align: center;
+	margin-top: 20px;
+	font-size: 20px;
+	color: #fdfaf1;
+	font-family: Reaver;
+	text-align: center;
+	white-space: normal;
+}
+
+.TalentGuideDescription
+{
+	width: 700px;
+	horizontal-align: center;
+	margin-top: 12px;
+	font-size: 16px;
+	color: #b9ab8e;
+	text-align: center;
+	white-space: normal;
+}
+
+.TalentGuideContinueButton
+{
+	width: 260px;
+	height: 62px;
+	horizontal-align: center;
+	margin-top: 24px;
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_10_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	transition-property: brightness, transform;
+	transition-duration: 0.2s;
+}
+
+.TalentGuideContinueButton:hover
+{
+	brightness: 1.5;
+}
+
+.TalentGuideContinueButton:active
+{
+	transform: scale3d(0.9, 0.9, 1);
+}
+
+.TalentGuideContinueLabel
+{
+	align: center center;
+	color: white;
+	font-weight: semi-bold;
+	font-size: 24px;
+	text-shadow: 0px 0px 2px 3 #000000cc;
+}
+
+.CompanionsRoot
+{
+	width: 1600px;
+	height: 900px;
+	vertical-align: center;
+	flow-children: right;
+}
+
+.CompanionsListColumn
+{
+	width: 560px;
+	height: 100%;
+	flow-children: down;
+	margin-right: 12px;
+	background-image: url("s2r://panorama/images/game_hud/companion/bg_list_png.vtex");
+	background-size: 100%;
+}
+
+.CompanionsCenterColumn
+{
+	width: 500px;
+	height: 885px;
+	flow-children: down;
+	margin-right: 12px;
+	background-image: url("s2r://panorama/images/game_hud/companion/bg_current_png.vtex");
+	background-size: 100%;
+}
+
+.CompanionsBlessingColumn
+{
+	width: 420px;
+	height: 890px;
+	flow-children: down;
+	background-image: url("s2r://panorama/images/game_hud/companion/bg_bless_png.vtex");
+	background-size: 100%;
+}
+
+.CompanionSectionTitle
+{
+	width: 100%;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+	font-size: 24px;
+	font-weight: semi-bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-shadow: 0px 0px 6px 3 black;
+	margin-bottom: 10px;
+	font-family: Reaver;
+	text-align: center;
+	margin-top: 50px;
+}
+
+.CompanionSectionTitle2
+{
+	width: 100%;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+	font-size: 24px;
+	font-weight: semi-bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-shadow: 0px 0px 6px 3 black;
+	margin-bottom: 10px;
+	font-family: Reaver;
+	text-align: center;
+	margin-top: 38px;
+}
+
+.CompanionGrid
+{
+	horizontal-align: center;
+	height: fill-parent-flow(1.0);
+	flow-children: right-wrap;
+	margin-bottom: 25px;
+	padding-right: 20px;
+	padding-left: 20px;
+}
+
+.CompanionSceneWrap
+{
+	width: 100%;
+	height: 480px;
+	flow-children: none;
+}
+
+.CompanionSceneBG
+{
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	brightness: 1;
+}
+
+.CompanionScene
+{
+	width: 100%;
+	height: 100%;
+}
+
+.CompanionDetails
+{
+	width: 100%;
+	height: fill-parent-flow(1.0);
+	flow-children: down;
+	padding: 8px 42px;
+}
+
+.CompanionActionsRow
+{
+	flow-children: right;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 20px;
+}
+
+.CompanionBuyBox
+{
+	flow-children: down;
+	margin-left: 20px;
+}
+
+.CompanionBlessingList
+{
+	margin-top: 30px;
+	horizontal-align: center;
+	height: fill-parent-flow(1.0);
+	flow-children: down;
+	padding-left: 40px;
+	padding-right: 40px;
+}
+
+.CompanionBlessingRow
+{
+	margin-bottom: 10px;
+	width: 327px;
+	height: 171px;
+	flow-children: down;
+	background-image: url("s2r://panorama/images/game_hud/companion/bless_bg_png.vtex");
+	background-size: 100%;
+}
+
+.CompanionBlessingTop
+{
+	width: 100%;
+	height: fill-parent-flow(1.0);
+	flow-children: right;
+	padding: 14px 16px 6px 16px;
+}
+
+.CompanionBlessingIcon
+{
+	width: 90px;
+	height: 90px;
+	vertical-align: center;
+	margin-right: 12px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.CompanionBlessingInfo
+{
+	width: fill-parent-flow(1.0);
+	flow-children: down;
+	vertical-align: center;
+}
+
+.CompanionBlessingName
+{
+	width: 100%;
+	color: #f1f4fb;
+	font-size: 18px;
+	font-weight: semi-bold;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.CompanionBlessingDesc
+{
+	width: 100%;
+	margin-top: 3px;
+	color: #c2c8d6;
+	font-size: 13px;
+	line-height: 16px;
+	white-space: normal;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.CompanionBlessingEffect
+{
+	width: 100%;
+	margin-top: 5px;
+	color: #6fe08a;
+	font-size: 15px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.CompanionBlessingBottom
+{
+	width: 100%;
+	height: 38px;
+	flow-children: right;
+	vertical-align: bottom;
+	padding: 0px 18px 12px 18px;
+}
+
+.CompanionBlessingStars
+{
+	vertical-align: center;
+}
+
+.CompanionBlessingStarRow
+{
+	flow-children: right;
+	vertical-align: center;
+}
+
+.CompanionBlessingStar
+{
+	width: 18px;
+	height: 18px;
+	margin-right: 4px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/game_hud/companion/bless_level_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 2px 2 black;
+	brightness: 2;
+}
+
+.CompanionBlessingStar.CompanionBlessingStarLit
+{
+	background-image: url("s2r://panorama/images/game_hud/companion/bless_level2_png.vtex");
+	background-size: 100%;
+}
+
+.CompanionBlessingLevel
+{
+	vertical-align: center;
+	horizontal-align: right;
+	color: #ffd86a;
+	font-size: 18px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.CompanionInfoName
+{
+	width: 100%;
+	color: white;
+	font-size: 30px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 5px 3 black;
+}
+
+.CompanionInfoMeta
+{
+	width: 100%;
+	flow-children: right;
+	margin-top: 4px;
+}
+
+.CompanionInfoType
+{
+	color: #75d2ff;
+	font-size: 18px;
+	margin-right: 14px;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.CompanionInfoRarity
+{
+	font-size: 18px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.CompanionXpBar
+{
+	width: 100%;
+	height: 18px;
+	margin-top: 12px;
+	border-radius: 3px;
+	background-color: #0c0e16cc;
+	border: 1px solid #4a5066;
+	flow-children: none;
+}
+
+.CompanionXpFill
+{
+	height: 100%;
+	border-radius: 3px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #ffe16f ), to( #fab112 ) );
+	transition-property: width;
+	transition-duration: 0.2s;
+}
+
+.CompanionXpLabel
+{
+	width: 100%;
+	text-align: center;
+	vertical-align: center;
+	color: #ffffff;
+	font-size: 14px;
+	margin-top: 1px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 4px 3 black;
+}
+
+.CompanionBlessingPlaceholder
+{
+	width: 100%;
+	color: #9aa0b5;
+	font-size: 18px;
+	margin-top: 20px;
+	text-align: center;
+}
+
+.CompanionCardType
+{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	width: 100%;
+	color: #75d2ff;
+	font-size: 14px;
+	text-align: center;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.CompanionPriceRow
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.CompanionPriceIcon
+{
+	width: 28px;
+	height: 28px;
+	vertical-align: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-right: 6px;
+}
+
+.CompanionPriceLabel
+{
+	vertical-align: center;
+	color: #f0d76d;
+	font-size: 20px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 4px 2 black;
+}
+
+.CompanionCard
+{
+	width: 160px;
+	height: 420px;
+	margin: 6px;
+	flow-children: down;
+	padding: 4px;
+}
+
+.CompanionCardBG
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	background-image: url("s2r://panorama/images/game_hud/companion/frame4_png.vtex");
+	background-size: 100%;
+	transition-property: brightness, saturation;
+	transition-duration: 0.05s;
+	brightness: 1;
+}
+
+.CompanionCardBG2
+{
+	brightness: 1;
+	width: 100%;
+	height: 100%;
+	z-index: -4;
+	ignore-parent-flow: true;
+	background-image: url("s2r://panorama/images/game_hud/companion/bg_unit_png.vtex");
+	background-size: 100%;
+	opacity-mask: url("s2r://panorama/images/game_hud/companion/frame_mask_png.vtex") 1;
+}
+
+.CompanionCard:hover .CompanionCardBG
+{
+	img-shadow: 0px 0px 4px 1 rgb(151, 90, 250);
+}
+
+.CompanionCardEquipped .CompanionCardBG
+{
+	background-image: url("s2r://panorama/images/game_hud/companion/frame5_png.vtex");
+	background-size: 100%;
+}
+
+.CompanionCardLocked .CompanionCardPreviewPanel
+{
+	saturation: 0;
+}
+
+.CompanionCardPreviewLocked
+{
+	img-shadow: 0px 0px 4px 2 black;
+	width: 45px;
+	height: 45px;
+	background-image: url("s2r://panorama/images/game_hud/companion/locked_png.vtex");
+	background-size: 100%;
+	align: center center;
+	opacity: 0;
+	z-index: 10;
+}
+
+.CompanionCardLocked .CompanionCardPreviewLocked
+{
+	opacity: 1;
+}
+
+.CompanionCardActive .CompanionCardBG
+{
+	img-shadow: 0px 0px 4px 1 rgb(151, 90, 250);
+}
+
+.CompanionSceneRareBG
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	z-index: -3;
+	opacity-mask: url("s2r://panorama/images/game_hud/companion/frame_mask_png.vtex") 1;
+	opacity: 0.4;
+}
+
+.CompanionCardPreview
+{
+	width: 100%;
+	height: 100%;
+	margin-top: 80px;
+}
+
+.CompanionCardScene
+{
+	width: 900px;
+	height: 900px;
+	transform: translateY(-40px);
+	align: center center;
+	overflow: noclip;
+}
+
+.assistant_flame_dragon_preview
+{
+	width: 400px;
+	height: 400px;
+	transform: translateY(-0px) translateX(-8px);
+}
+
+.assistant_void_dragoon_preview
+{
+	width: 600px;
+	height: 600px;
+	transform: translateY(-100px) translateX(-8px);
+}
+
+.assistant_meow_preview
+{
+	width: 400px;
+	height: 400px;
+	transform: translateY(-0px) translateX(-8px);
+}
+
+.assistant_pika_preview
+{
+	width: 600px;
+	height: 600px;
+	transform: translateY(-100px) translateX(-8px);
+}
+
+.assistant_puff_preview
+{
+	width: 450px;
+	height: 450px;
+	transform: translateY(-50px) translateX(-8px);
+}
+
+.assistant_slow_preview
+{
+	width: 450px;
+	height: 450px;
+	transform: translateY(-50px) translateX(-8px);
+}
+
+.CompanionCardPreviewPanel
+{
+	brightness: 1.5;
+	width: 144px;
+	height: 280px;
+	horizontal-align: center;
+	z-index: -2;
+	overflow: noclip;
+	opacity-brush: gradient(linear, 0% 100%, 0% 0%, from(transparent), to(rgba(255, 255, 255, 1)));
+}
+
+.CompanionCardRarityBadge
+{
+	ignore-parent-flow: true;
+	z-index: 2;
+	horizontal-align: center;
+	vertical-align: top;
+	margin-top: 12px;
+	font-family: Reaver;
+	font-size: 48px;
+	font-weight: black;
+	color: #ffffff;
+	text-shadow: 0px 0px 5px 3 black;
+}
+
+.CompanionRarity_common .CompanionCardRarityBadge
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #ffffff ), to( gray ) );
+}
+
+.CompanionRarity_rare .CompanionCardRarityBadge
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #7ee0f8 ), to( #119ac8 ) );
+}
+
+.CompanionRarity_mythical .CompanionCardRarityBadge
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #e6c5fc ), to( #7723a9 ) );
+}
+
+.CompanionRarity_legendary .CompanionCardRarityBadge
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #ffefb4 ), to( #e08d49 ) );
+}
+
+.CompanionRarity_immortal .CompanionCardRarityBadge
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #faa1a1 ), to( #f70f0f ) );
+}
+
+.CompanionRarity_super .CompanionCardRarityBadge
+{
+	color: gradient( linear, 0% 0%, 90% 100%, from( #ffe16f ), color-stop( 0.35, #ff5d90 ), color-stop( 0.65, #8b6cff ), to( #3cffd0 ) );
+}
+
+.CompanionRarity_unique .CompanionCardRarityBadge
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #b6ffce ), to( #1f9e4a ) );
+}
+
+.CompanionRarity_common .CompanionCardName
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #ffffff ), to( gray ) );
+}
+
+.CompanionRarity_rare .CompanionCardName
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #7ee0f8 ), to( #119ac8 ) );
+}
+
+.CompanionRarity_mythical .CompanionCardName
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #e6c5fc ), to( #7723a9 ) );
+}
+
+.CompanionRarity_legendary .CompanionCardName
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #ffefb4 ), to( #e08d49 ) );
+}
+
+.CompanionRarity_immortal .CompanionCardName
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #faa1a1 ), to( #f70f0f ) );
+}
+
+.CompanionRarity_super .CompanionCardName
+{
+	color: gradient( linear, 0% 0%, 90% 100%, from( #ffe16f ), color-stop( 0.35, #ff5d90 ), color-stop( 0.65, #8b6cff ), to( #3cffd0 ) );
+}
+
+.CompanionRarity_unique .CompanionCardName
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #b6ffce ), to( #1f9e4a ) );
+}
+
+.CompanionCardName
+{
+	horizontal-align: center;
+	width: 120px;
+	margin-top: 2px;
+	font-size: 22px;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 5px 5 #000000cc;
+	font-weight: semi-bold;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #ffffff ), color-stop( 0.35, #d9b3fd ), color-stop( 0.7, #9b4dff ), to( #6a1bbd ) );
+}
+
+.CompanionStarsRow
+{
+	horizontal-align: center;
+	height: 24px;
+	padding-left: 6px;
+	flow-children: right;
+}
+
+.CompanionStarsRowCurrent
+{
+	height: 24px;
+	flow-children: right;
+}
+
+.CompanionStar
+{
+	width: 18px;
+	height: 18px;
+	margin-right: 4px;
+	vertical-align: center;
+	img-shadow: 0px 0px 2px 2 black;
+}
+
+.CompanionStar.CompanionStarLit
+{
+	background-image: url("s2r://panorama/images/game_hud/companion/star2_png.vtex");
+	background-size: 100%;
+}
+
+.CompanionStar.CompanionStarDim
+{
+	background-image: url("s2r://panorama/images/game_hud/companion/star_png.vtex");
+	background-size: 100%;
+}
+
+.CompanionStatPanel
+{
+	width: 100%;
+	height: 24px;
+	margin-top: 12px;
+	flow-children: right;
+	border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+	margin-bottom: 3px;
+}
+
+.CompanionStatLabel
+{
+	color: #f0f0ea;
+	font-size: 16px;
+	letter-spacing: 1px;
+	text-align: center;
+	vertical-align: center;
+	font-family: Reaver;
+	text-overflow: shrink;
+}
+
+.CompanionStatLabel2
+{
+	color: #f0f0ea;
+	font-size: 18px;
+	text-align: center;
+	vertical-align: center;
+	horizontal-align: right;
+}
+
+.CompanionSpecialPanel
+{
+	width: 100%;
+	horizontal-align: center;
+	margin-top: 12px;
+	flow-children: down;
+}
+
+.CompanionSpecialTitle
+{
+	font-weight: semi-bold;
+	horizontal-align: left;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+	font-size: 18px;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 4px 3 #000000cc;
+}
+
+.CompanionSpecialRow
+{
+	width: 100%;
+	min-height: 22px;
+	flow-children: right;
+	margin-top: 2px;
+}
+
+.CompanionSpecialRowLocked
+{
+	saturation: 0;
+	brightness: 0.55;
+}
+
+.CompanionSpecialText
+{
+	width: fill-parent-flow(1);
+	color: #f0e5c4;
+	font-size: 16px;
+	line-height: 16px;
+	white-space: normal;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 4px 3 #000000cc;
+}
+
+.CompanionActionButton
+{
+	width: 220px;
+	horizontal-align: center;
+	margin-top: 4px;
+	transition-property: brightness, transform;
+	transition-duration: 0.25s;
+	height: 52px;
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_10_png.vtex");
+	background-size: 100%;
+	vertical-align: bottom;
+	margin-bottom: 5px;
+}
+
+.CompanionActionButton:hover
+{
+	brightness: 1.5;
+}
+
+.CompanionActionButton:active
+{
+	transform: scale3d(0.9, 0.9, 1);
+}
+
+.CompanionActionButton.CompanionActionButtonDisabled
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+.CompanionActionButton.CompanionActionButtonDisabled:hover
+{
+	brightness: 0.5;
+}
+
+.CompanionActionButton.CompanionActionButtonDisabled:active
+{
+	transform: none;
+}
+
+.CompanionActionButton Label
+{
+	align: center center;
+	color: white;
+	font-weight: semi-bold;
+	font-size: 22px;
+	text-shadow: 0px 0px 2px 3 #000000cc;
+}
+
+.CompanionRarity_common
+{
+	color: #d3d3d3;
+}
+
+.CompanionRarity_rare
+{
+	color: #2f66fc;
+}
+
+.CompanionRarity_mythical
+{
+	color: #fc2ffc;
+}
+
+.CompanionRarity_legendary
+{
+	color: #ff6803;
+}
+
+.CompanionRarity_immortal
+{
+	color: #ff5140;
+}
+
+.CompanionRarity_super
+{
+	color: #ffd75c;
+}
+
+.CompanionRarity_unique
+{
+	color: #30dc60;
+}
+
+.particle_fx_container_forge
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+}

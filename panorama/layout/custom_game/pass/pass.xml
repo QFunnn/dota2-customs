@@ -1,0 +1,60 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/styles/lvlup_styles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/pass/pass.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/store/store.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/pass/pass.vjs_c" />
+	</scripts>
+	<Panel style="width:100%;height:100%;" hittest="false">
+		<Panel class="PassWindow">
+			<Panel class="PassBG" />
+			<DOTAParticleScenePanel id="PFXBackground" class="PFXBackground" particleName="particles/replace_hud/custom_tooltip_particle.vpcf" particleonly="true" startActive="true" cameraOrigin="0 0 550" lookAt="0 0 0" fov="65" squarePixels="true" />
+			<Panel class="PassSidebar" id="PassSidebar" />
+			<Panel class="PassTopBar">
+				<Panel class="PassCurrencyRow" id="PassCurrencyRow" />
+			</Panel>
+			<Panel class="PassMain">
+				<Panel class="PassTrackFrame">
+					<Panel class="PassTrackViewport" id="PassTrackViewport" />
+				</Panel>
+				<Panel class="PassBottomBar">
+					<Panel class="PassProgressBar">
+						<Panel class="PassProgressFill" id="PassProgressFill">
+							<Panel class="LevelBlessingShine" />
+						</Panel>
+					</Panel>
+					<Panel class="PassBottomBarBG" />
+					<Panel class="PassBottomCenter">
+						<Panel class="PassBottomLeft">
+							<Label class="PassCurrentLevelLabel" id="PassCurrentLevelLabel" text="#services_common_level" />
+							<Label class="PassCurrentLevel" id="PassCurrentLevel" text="8" />
+						</Panel>
+						<Panel class="PassExpRow">
+							<Panel class="PassExpIcon" />
+							<Label class="PassExpValue" id="PassExpValue" text="0/100" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="PassBottomRight">
+					<Panel class="PassClaimAllWrap" id="PassClaimAllWrap" />
+					<Panel class="PassBuyButton" id="PassBuyButton" />
+				</Panel>
+			</Panel>
+			<Panel class="ExitCross" onactivate="Game.SwitchAnothersPanel(&apos;PassWindow&apos;);" />
+		</Panel>
+	</Panel>
+</root>

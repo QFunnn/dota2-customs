@@ -1,0 +1,718 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.PassWindow
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#13081d), to(#1f0f2e));
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.WindowVisible
+{
+	opacity: 1;
+}
+
+.WindowVisible .PassWindow
+{
+	opacity: 1;
+}
+
+.PassBG
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	background-color: gradient( radial, 50% 30%, 0% 0%, 70% 70%, from( #2b1748 ), color-stop( 0.35, #140b25 ), color-stop( 0.75, #09050f ), to( rgb(0, 0, 0) ) );
+	background-image: url("s2r://panorama/images/game_hud/backgrounds/bg2_png.vtex");
+	background-size: 100%;
+	background-img-opacity: 0.02;
+	animation-name: BGScalex;
+	animation-duration: 7s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	z-index: -2;
+}
+
+@keyframes 'BGScalex'
+{
+	0%
+	{
+		transform: scale3d(1, 1, 1);
+		brightness: 1;
+	}
+	
+	50%
+	{
+		transform: scale3d(1.02, 1.02, 1);
+		brightness: 0.5;
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 1, 1);
+		brightness: 1;
+	}
+	
+}
+
+.PFXBackground
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	wash-color: rgb(209, 141, 255);
+	opacity: 0.2;
+	z-index: -1;
+}
+
+.PassTopBar
+{
+	margin-top: 20px;
+	width: 100%;
+	height: 56px;
+	z-index: 10;
+	ignore-parent-flow: true;
+}
+
+.PassCurrencyRow
+{
+	horizontal-align: right;
+	flow-children: right;
+	padding-right: 100px;
+}
+
+.PassCurrencyPanel
+{
+	width: 160px;
+	height: 44px;
+	margin-left: 12px;
+	padding: 0px 14px;
+	flow-children: right;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #2b123fdd ), color-stop( 0.45, #51207add ), to( #1a0c2bdd ) );
+	border: 1px solid #d5aaf7;
+	border-brush: gradient( linear, 0% 0%, 100% 0%, from( #ffb3ff ), color-stop( 0.35, #c45cff ), color-stop( 0.7, #7b2cff ), to( #e58cff ) );
+	border-radius: 6px;
+	box-shadow: #d35cff44 0px 0px 6px 0px;
+}
+
+.PassCurrencyIcon
+{
+	width: 32px;
+	height: 32px;
+	vertical-align: center;
+}
+
+.PassCurrencyAmount
+{
+	margin-left: 10px;
+	vertical-align: center;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+	font-size: 24px;
+	font-weight: bold;
+	text-shadow: 0px 1px 2px 2 #000000cc;
+	text-overflow: shrink;
+}
+
+.ExitCross
+{
+	z-index: 100;
+	horizontal-align: right;
+	margin-right: 10px;
+	margin-top: 10px;
+	ignore-parent-flow: true;
+	width: 64px;
+	height: 64px;
+	background-image: url("s2r://panorama/images/game_hud/icons/close_new_png.vtex");
+	background-size: 100%;
+	transition-property: brightness, transform;
+	transition-duration: 0.25s;
+	opacity: 1;
+	saturation: 0.75;
+	img-shadow: 0px 0px 1px 1 white;
+}
+
+.ExitCross:hover
+{
+	opacity: 1;
+	brightness: 2;
+}
+
+.ExitCross:active
+{
+	transform: scale3d(0.9, 0.9, 1);
+}
+
+.PassSceneGlow
+{
+	ignore-parent-flow: true;
+	width: 520px;
+	height: 520px;
+	background-color: gradient(radial, 50% 50%, 0% 0%, 50% 50%, from(#d259ff22), to(#d259ff00));
+}
+
+.PassSceneGlowLeft
+{
+	margin-left: 240px;
+	margin-top: 180px;
+}
+
+.PassSceneGlowRight
+{
+	horizontal-align: right;
+	margin-right: 260px;
+	margin-top: 100px;
+	wash-color: #f2b55522;
+}
+
+.PassSidebar
+{
+	width: 220px;
+	height: 100%;
+	padding: 120px 12px 90px 30px;
+	flow-children: down;
+}
+
+.PassSidebarButton
+{
+	width: 170px;
+	height: 180px;
+	margin-bottom: 20px;
+	flow-children: down;
+	transition-property: brightness, transform;
+	transition-duration: 0.16s;
+}
+
+.PassSidebarButton:hover
+{
+	brightness: 1.15;
+}
+
+.PassSidebarButton:active
+{
+	transform: scale3d(0.98, 0.98, 1);
+	brightness: 1.15;
+}
+
+.PassSidebarIcon
+{
+	width: 110px;
+	height: 110px;
+	horizontal-align: center;
+	img-shadow: 0px 0px 5px 1 rgb(186, 20, 252);
+}
+
+.PassSidebarTitle
+{
+	width: 100%;
+	margin-top: 4px;
+	color: #ffe26f;
+	font-size: 18px;
+	font-weight: semi-bold;
+	text-align: center;
+	text-shadow: 0px 2px 3px 3 #000000dd;
+}
+
+.PassSidebarButtonActive .PassSidebarTitle
+{
+	color: #fff4b5;
+}
+
+.PassMain
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	padding: 86px 32px 26px 0px;
+	flow-children: down;
+}
+
+.PassTrackFrame
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	border: 1px solid #70388a56;
+	box-shadow: #00000088 0px 0px 12px 5px;
+}
+
+.PassTrackViewport
+{
+	width: 100%;
+	height: 100%;
+}
+
+.PassTrackRoot
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+}
+
+.PassLaneLabels
+{
+	width: 230px;
+	height: 100%;
+	flow-children: down;
+}
+
+.ParticleLaneFx
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	z-index: -1;
+	align: center center;
+	brightness: 4;
+}
+
+.PassLaneLabelFree .ParticleLaneFx
+{
+	saturation: 0;
+	opacity: 0.05;
+}
+
+.PassLaneLabel
+{
+	width: 100%;
+	height: 50%;
+	flow-children: down;
+}
+
+.PassLaneLabelFree
+{
+	background-image: url("s2r://panorama/images/game_hud/pass/bg1_png.vtex");
+	background-size: 100% 100%;
+	background-position: center;
+	box-shadow: inset rgba(0, 0, 0, 0.863) 0px 0px 6px 0px;
+}
+
+.PassLaneLabelPremium
+{
+	background-image: url("s2r://panorama/images/game_hud/pass/bg2_png.vtex");
+	background-size: 100% 100%;
+	background-position: center;
+	box-shadow: inset rgba(0, 0, 0, 0.863) 0px 0px 6px 0px;
+}
+
+.PassLaneEmblem
+{
+	width: 128px;
+	height: 128px;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/game_hud/pass/icon6_png.vtex");
+	background-size: 100%;
+}
+
+.PassLaneContent
+{
+	flow-children: down;
+	vertical-align: center;
+	horizontal-align: center;
+}
+
+.PassLaneLabelPremium .PassLaneEmblem
+{
+	background-image: url("s2r://panorama/images/game_hud/pass/icon5_png.vtex");
+	background-size: 100%;
+}
+
+.PassLaneText
+{
+	width: 100%;
+	margin-top: 10px;
+	color: white;
+	font-size: 24px;
+	font-weight: semi-bold;
+	text-align: center;
+	text-shadow: 0px 0px 3px 4 #000000dd;
+	font-family: Reaver;
+	letter-spacing: 1px;
+}
+
+.PassRewardsScroller
+{
+	width: fill-parent-flow(1);
+	flow-children: right;
+	height: 100%;
+}
+
+.PassRewardsRow
+{
+	flow-children: right;
+	height: 100%;
+}
+
+.PassLevelColumn
+{
+	width: 178px;
+	height: 100%;
+	margin-right: 14px;
+	padding: 0px 0px 0px 0px;
+	flow-children: down;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from(rgba(223, 227, 234, 0.1)), color-stop(0.25, rgba(116, 118, 121, 0.2)), color-stop(0.5, transparent), color-stop(0.75, rgba(89, 31, 143, 0.2)), to(rgba(177, 12, 228, 0.01)) );
+	border: 1px solid white;
+	border-bottom: 0px;
+	border-top: 0px;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from(rgba(223, 227, 234, 0.02)), color-stop(0.25, rgba(116, 118, 121, 1)), color-stop(0.5, transparent), color-stop(0.75, rgb(124, 12, 228)), to(rgba(185, 12, 228, 0.05)) );
+}
+
+.PassLevelColumnLocked
+{
+	saturation: 0.45;
+	brightness: 0.65;
+}
+
+.PassLevelColumnReady
+{
+	animation-name: PassRewardReadyPulse;
+	animation-duration: 1.15s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+.PassLevelColumnClaimed
+{
+	saturation: 0.8;
+}
+
+.PassLevelColumnCurrent .PassLevelHeader
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(255, 166, 0, 0.1)), color-stop(0.25, rgba(255, 166, 0, 0.6)), color-stop(0.75, rgba(255, 166, 0, 0.6)), to(rgba(255, 166, 0, 0.1)));
+}
+
+.PassLevelHeader
+{
+	width: 100%;
+	height: 30px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(transparent), color-stop(0.25, rgba(0, 0, 0, 0.4)), color-stop(0.75, rgba(0, 0, 0, 0.4)), to(transparent));
+}
+
+.PassLevelHeaderText
+{
+	align: center center;
+	color: #ffffff;
+	font-size: 22px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 3px 2 #000000dd;
+}
+
+.PassRewardCell
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	margin-top: 12px;
+	padding: 18px 8px;
+	flow-children: down;
+}
+
+.PassRewardCellLocked
+{
+	saturation: 0.25;
+	brightness: 0.55;
+}
+
+.PassRewardCellReady
+{
+	saturation: 1;
+	brightness: 1.2;
+}
+
+.PassRewardCellPremiumLocked
+{
+	wash-color: #6c6c6caa;
+}
+
+.PassRewardCellClaimed
+{
+	saturation: 0.85;
+	brightness: 0.9;
+}
+
+.PassRewardItem
+{
+	width: 100px;
+	height: 100px;
+	horizontal-align: center;
+	margin-bottom: 10px;
+}
+
+.PassRewardItemBG1
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_without_border_png.vtex");
+	background-size: 100%;
+	z-index: 6;
+	img-shadow: 0px 0px 10px 2 black;
+	ignore-parent-flow: true;
+}
+
+.PassRewardItemBG2
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_png.vtex");
+	background-size: 100%;
+	z-index: -1;
+	ignore-parent-flow: true;
+}
+
+.PassRewardIcon
+{
+	width: 60%;
+	height: 60%;
+	opacity: 1;
+	align: center center;
+	img-shadow: 0px 0px 5px 1 rgba(255, 166, 0, 1);
+}
+
+.PassRewardCount
+{
+	width: 80%;
+	text-align: center;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 3px;
+	padding: 1px 4px;
+	background-color: #000000cc;
+	color: #ffe7a8;
+	font-size: 17px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.PassRewardClaimCheck
+{
+	width: 34px;
+	height: 34px;
+	horizontal-align: right;
+	vertical-align: top;
+	margin-top: 2px;
+	margin-right: 2px;
+	background-image: url("s2r://panorama/images/game_hud/promo/check_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 4px 2 #000000;
+	visibility: collapse;
+	z-index: 20;
+}
+
+.PassRewardCellClaimed .PassRewardClaimCheck
+{
+	visibility: visible;
+}
+
+@keyframes 'PassRewardReadyPulse'
+{
+	0%
+	{
+		saturation: 0.85;
+		brightness: 0.85;
+	}
+	
+	50%
+	{
+		saturation: 1.15;
+		brightness: 1.45;
+	}
+	
+	100%
+	{
+		saturation: 0.85;
+		brightness: 0.85;
+	}
+	
+}
+
+.PassBottomBar
+{
+	horizontal-align: center;
+	width: 900px;
+	height: 160px;
+	margin-top: 16px;
+	flow-children: right;
+}
+
+.PassBottomBarBG
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	background-image: url("s2r://panorama/images/game_hud/pass/bar_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 10px 1 rgba(255, 166, 0, 0.082);
+}
+
+.PassBottomLeft
+{
+	flow-children: right;
+}
+
+.PassCurrentLevel
+{
+	vertical-align: center;
+	color: #ffe25f;
+	font-size: 32px;
+	font-weight: bold;
+	margin-left: 8px;
+	text-shadow: 0px 2px 3px 4 #3f2400;
+}
+
+.PassCurrentLevelLabel
+{
+	vertical-align: center;
+	color: #fff6dc;
+	font-size: 16px;
+	margin-left: 14px;
+	font-weight: semi-bold;
+	text-shadow: 0px 2px 2px 3 #000000cc;
+}
+
+.PassBottomCenter
+{
+	margin-left: 240px;
+	margin-top: 50px;
+	width: 595px;
+	flow-children: right;
+	ignore-parent-flow: true;
+}
+
+.PassExpRow
+{
+	vertical-align: center;
+	flow-children: right;
+	horizontal-align: right;
+}
+
+.PassExpIcon
+{
+	width: 30px;
+	height: 30px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/game_hud/services/battlepass_exp_png.vtex");
+	background-size: 100%;
+}
+
+.PassExpValue
+{
+	vertical-align: center;
+	margin-left: 4px;
+	color: #fef3cb;
+	font-size: 20px;
+	font-weight: bold;
+	text-shadow: 0px 2px 2px 3 #000000cc;
+}
+
+.PassProgressBar
+{
+	width: 608px;
+	height: 26px;
+	margin-top: 18px;
+	background-color: #1b120e;
+	border: 2px solid #4b2d14;
+	ignore-parent-flow: true;
+	margin-left: 230px;
+	margin-top: 86px;
+	border-radius: 30px;
+}
+
+.PassProgressFill
+{
+	width: 50%;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #ffc812 ), to( #f1e31e ) );
+	border-radius: 30px;
+}
+
+.LevelBlessingShine
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/stats_store/7_png.vtex");
+	background-size: 640px 30px;
+	background-position: center;
+	background-repeat: repeat;
+	brightness: 525;
+	wash-color: rgb(247, 143, 7);
+}
+
+.PassBottomRight
+{
+	vertical-align: bottom;
+	horizontal-align: right;
+	flow-children: down;
+	ignore-parent-flow: true;
+}
+
+.PassBuyButton
+{
+	width: 300px;
+	height: 66px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#f6dc63), to(#9a6d17));
+	border: 3px solid #f4e0a1;
+	transition-property: brightness, transform;
+	transition-duration: 0.15s;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #ebbe42 ), color-stop( 0.18, #ffd85c ), color-stop( 0.52, #d49a1f ), color-stop( 0.78, #9c6810 ), to( #5e3a08 ) );
+	border: 2px solid #ebd5ab;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( #fffbe0 ), to( #b87a18 ) );
+	box-shadow: #000000cc 0px 0px 6px 3px;
+}
+
+.PassClaimAllButton
+{
+	width: 300px;
+	height: 66px;
+	horizontal-align: right;
+	transition-property: brightness, transform;
+	transition-duration: 0.15s;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #b97cff ), color-stop( 0.18, #d8a6ff ), color-stop( 0.52, #8e49e6 ), color-stop( 0.78, #5d239f ), to( #2d0f52 ) );
+	border: 2px solid #d9b8ff;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( #f7eaff ), to( #7a33d1 ) );
+	box-shadow: #000000cc 0px 0px 6px 3px;
+}
+
+.PassClaimAllButtonDisabled
+{
+	saturation: 0.1;
+	brightness: 0.45;
+}
+
+.PassClaimAllWrap
+{
+	width: 300px;
+	height: 66px;
+	vertical-align: bottom;
+	horizontal-align: right;
+	margin-bottom: 10px;
+}
+
+.PassClaimAllButton:hover,.PassBuyButton:hover
+{
+	brightness: 1.12;
+}
+
+.PassClaimAllButton:active,.PassBuyButton:active
+{
+	transform: scale3d(0.98, 0.98, 1);
+}
+
+.PassClaimAllButton Label,.PassBuyButton Label
+{
+	align: center center;
+	color: #fff8d5;
+	font-size: 24px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 3px 3 #000000cc;
+}

@@ -1,0 +1,63 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vrfunknown:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 0
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 6
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "core"
+					m_entityName = "self_with_wearables"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "eye_L"
+					m_entityName = "self_with_wearables"
+				},
+				{
+					m_iControlPoint = 4
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "eye_R"
+					m_entityName = "self_with_wearables"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/creep/pine_vulture/pine_vulture.vmdl"
+				m_sequenceName = "idle"
+				m_hitboxSetName = "default"
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/companions/slow_2c.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/companions/slow_2d.vpcf"
+		},
+	]
+}

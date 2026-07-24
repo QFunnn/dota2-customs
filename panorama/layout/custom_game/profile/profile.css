@@ -1,0 +1,2631 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.ProfileWindow
+{
+	align: center top;
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.ProfileBG
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	background-color: gradient( radial, 50% 30%, 0% 0%, 70% 70%, from( #2b1748 ), color-stop( 0.35, #140b25 ), color-stop( 0.75, #09050f ), to( rgb(0, 0, 0) ) );
+	background-image: url("s2r://panorama/images/game_hud/backgrounds/bg2_png.vtex");
+	background-size: 100%;
+	background-img-opacity: 0.02;
+	animation-name: BGScalex;
+	animation-duration: 7s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	z-index: -2;
+}
+
+@keyframes 'BGScalex'
+{
+	0%
+	{
+		transform: scale3d(1, 1, 1);
+		brightness: 1;
+	}
+	
+	50%
+	{
+		transform: scale3d(1.02, 1.02, 1);
+		brightness: 0.5;
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 1, 1);
+		brightness: 1;
+	}
+	
+}
+
+.PFXBackground
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	wash-color: rgb(209, 141, 255);
+	opacity: 0.2;
+	z-index: -1;
+}
+
+.ProfileTopBar
+{
+	margin-top: 20px;
+	width: 100%;
+	height: 56px;
+	z-index: 10;
+	ignore-parent-flow: true;
+}
+
+.ProfileCurrencyRow
+{
+	horizontal-align: right;
+	flow-children: right;
+	padding-right: 100px;
+}
+
+.ProfileCurrencyPanel
+{
+	width: 160px;
+	height: 44px;
+	margin-left: 12px;
+	padding: 0px 14px;
+	flow-children: right;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #2b123fdd ), color-stop( 0.45, #51207add ), to( #1a0c2bdd ) );
+	border: 1px solid #d5aaf7;
+	border-brush: gradient( linear, 0% 0%, 100% 0%, from( #ffb3ff ), color-stop( 0.35, #c45cff ), color-stop( 0.7, #7b2cff ), to( #e58cff ) );
+	border-radius: 6px;
+	box-shadow: #d35cff44 0px 0px 6px 0px;
+}
+
+.ProfileCurrencyIcon
+{
+	width: 32px;
+	height: 32px;
+	vertical-align: center;
+}
+
+.ProfileCurrencyAmount
+{
+	margin-left: 10px;
+	vertical-align: center;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+	font-size: 24px;
+	font-weight: bold;
+	text-shadow: 0px 1px 2px 2 #000000cc;
+	text-overflow: shrink;
+}
+
+.ExitCross
+{
+	z-index: 100;
+	horizontal-align: right;
+	margin-right: 10px;
+	margin-top: 10px;
+	ignore-parent-flow: true;
+	width: 64px;
+	height: 64px;
+	background-image: url("s2r://panorama/images/game_hud/icons/close_new_png.vtex");
+	background-size: 100%;
+	transition-property: brightness, transform;
+	transition-duration: 0.25s;
+	opacity: 1;
+	saturation: 0.75;
+	img-shadow: 0px 0px 1px 1 white;
+}
+
+.ExitCross:hover
+{
+	opacity: 1;
+	brightness: 2;
+}
+
+.ExitCross:active
+{
+	transform: scale3d(0.9, 0.9, 1);
+}
+
+.NavigationPanel
+{
+	width: 300px;
+	vertical-align: center;
+	flow-children: down;
+	vertical-align: center;
+	padding: 32px 18px;
+}
+
+.NavigationButton
+{
+	width: 100%;
+	height: 62px;
+	margin-bottom: 14px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #4b2a7aee ), to( #1a0f2aee ) );
+	border-top: 2px solid #b48cf3;
+	border-left: 2px solid #1a0f2a;
+	border-right: 2px solid #1a0f2a;
+	border-bottom: 2px solid #1a0f2a;
+	box-shadow: 0px 0px 3px 0px #6a3fb3aa;
+	transition-property: brightness, transform, box-shadow;
+	transition-duration: 0.15s;
+	saturation: 0.7;
+	brightness: 0.8;
+}
+
+.NavigationButton.Active
+{
+	saturation: 1;
+	brightness: 1.2;
+	box-shadow: 0px 0px 8px 0px #8f5cffcc;
+}
+
+.NavigationButton:hover
+{
+	saturation: 1;
+	brightness: 1.2;
+	box-shadow: 0px 0px 8px 0px #8f5cffcc;
+}
+
+.NavigationButton:active
+{
+	transform: translateX(2px) scale3d(0.98, 0.98, 1);
+}
+
+.NavigationButton Label
+{
+	width: 100%;
+	height: 30px;
+	text-overflow: shrink;
+	font-size: 26px;
+	font-weight: semi-bold;
+	text-align: left;
+	vertical-align: center;
+	letter-spacing: 0.3px;
+	text-shadow: 0px 0px 5px 3 black;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+	padding: 0px 18px;
+}
+
+.ProfileSubNavigation
+{
+	width: 100%;
+	horizontal-align: right;
+	flow-children: down;
+	margin-top: -6px;
+	margin-bottom: 10px;
+	visibility: collapse;
+}
+
+.ProfileSubNavigation.ProfileSubNavigationVisible
+{
+	visibility: visible;
+}
+
+.ProfileSubNavigationButton
+{
+	width: 100%;
+	height: 38px;
+	margin-bottom: 6px;
+	padding: 0px 12px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #31204fee ), to( #12091fee ) );
+	border: 1px solid #5b3a8f;
+	transition-property: brightness, transform, saturation;
+	transition-duration: 0.15s;
+	saturation: 0.65;
+	brightness: 0.75;
+}
+
+.ProfileSubNavigationButton.Active
+{
+	saturation: 1;
+	brightness: 1.15;
+	border: 1px solid #b48cf3;
+}
+
+.ProfileSubNavigationButton:hover
+{
+	saturation: 1;
+	brightness: 1.12;
+}
+
+.ProfileSubNavigationButton:active
+{
+	transform: translateX(2px) scale3d(0.98, 0.98, 1);
+}
+
+.ProfileSubNavigationButton Label
+{
+	width: 100%;
+	vertical-align: center;
+	font-size: 19px;
+	font-weight: semi-bold;
+	text-align: left;
+	color: #e8d7ff;
+	text-shadow: 0px 0px 4px 3 black;
+	text-overflow: shrink;
+}
+
+.ContentWindows
+{
+	width: 100%;
+	height: 100%;
+	margin-top: 100px;
+	margin-bottom: 100px;
+	margin-left: 0px;
+	margin-right: 50px;
+}
+
+.ContentWindowsBG
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr1_2_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 5px 1 black;
+}
+
+.ContentWindow
+{
+	background-color: gradient( radial, 50% 10%, 0% 0%, 85% 85%, from( #4a3d68 ), color-stop( 0.35, #2d2542 ), color-stop( 0.7, #1b1628 ), to( #161124 ) );
+	width: 95%;
+	height: 90%;
+	visibility: collapse;
+	align: center center;
+}
+
+.PassPanel
+{
+	flow-children: down;
+}
+
+.HeaderTitle
+{
+	horizontal-align: center;
+	padding: 0px 20px;
+}
+
+.HeaderTitle Label
+{
+	margin-top: 20px;
+	align: center center;
+	color: #fff4c5;
+	font-size: 24px;
+	font-weight: bold;
+	text-shadow: 0px 1px 3px 3 #000000dd;
+}
+
+.PassLevelDataPanel
+{
+	width: 100%;
+	margin-top: 25px;
+	margin-left: 125px;
+	margin-right: 125px;
+	padding: 20px 24px;
+	flow-children: right;
+}
+
+.PassLevelCircle
+{
+	width: 86px;
+	height: 86px;
+}
+
+.PassLevelCircleBG
+{
+	width: 86px;
+	height: 86px;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr2_png.vtex");
+	background-size: 100%;
+	wash-color: rgb(255, 208, 0);
+	img-shadow: 0px 0px 4px 2 #000000;
+	saturation: 0.7;
+	brightness: 0.8;
+}
+
+.PassLevelLabel
+{
+	align: center center;
+	color: #f4dbb0;
+	font-size: 32px;
+	font-weight: bold;
+	text-shadow: 0px 1px 3px 3 #000000dd;
+	text-align: center;
+}
+
+.LevelLineData
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	margin-left: 10px;
+	flow-children: down;
+}
+
+.LevelLineDataHeader
+{
+	width: 100%;
+}
+
+.LevelLineTitle
+{
+	font-size: 16px;
+	text-align: left;
+	margin-top: 10px;
+	margin-left: 5px;
+	color: rgb(255, 213, 108);
+	text-shadow: 0px 1px 2px 2 #000000cc;
+}
+
+.LevelLineTitleInfo
+{
+	color: rgb(255, 213, 108);
+	font-size: 18px;
+	text-shadow: 0px 1px 2px 2 #000000cc;
+	horizontal-align: right;
+	margin-top: 10px;
+	margin-right: 5px;
+}
+
+.LevelLinePanel
+{
+	width: 100%;
+	height: 24px;
+	ignore-parent-flow: true;
+	vertical-align: center;
+	border: 2px solid #23150f;
+	background-color: #18100e;
+	border-radius: 12px;
+}
+
+.LevelLineSync
+{
+	border-radius: 15px;
+	width: 50%;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #ffc812 ), to( #f1e31e ) );
+	border: 2px solid rgba(255, 187, 0, 0.5);
+}
+
+.LevelLineShine
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/hud/facets/ripple_texture_png.vtex");
+	background-size: 1000px 100%;
+	background-position: center;
+	brightness: 0;
+	animation-name: LevelLineShineAnim;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	wash-color: rgb(255, 94, 0);
+}
+
+@keyframes 'LevelLineShineAnim'
+{
+	0%
+	{
+		transform: scale3d(1, 1, 1);
+		brightness: 1;
+	}
+	
+	50%
+	{
+		transform: scale3d(1.02, 1.02, 1);
+		brightness: 0;
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 1, 1);
+		brightness: 1;
+	}
+	
+}
+
+.ButtonAcceptReward
+{
+	width: 170px;
+	height: 48px;
+	margin-left: 20px;
+	vertical-align: center;
+	transition-property: brightness, transform, border, saturation;
+	transition-duration: 0.15s;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #ebbe42 ), color-stop( 0.18, #ffd85c ), color-stop( 0.52, #d49a1f ), color-stop( 0.78, #9c6810 ), to( #5e3a08 ) );
+	border: 1px solid #fff2b2;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( #fffbe0 ), to( #b87a18 ) );
+	box-shadow: #000000cc 0px 0px 6px 1px;
+	saturation: 0;
+	brightness: 0.4;
+}
+
+.ButtonAcceptReward.ButtonAcceptRewardActive
+{
+	saturation: 1;
+	brightness: 1;
+}
+
+.ButtonAcceptReward.ButtonAcceptRewardActive:hover
+{
+	brightness: 1.15;
+}
+
+.ButtonAcceptReward.ButtonAcceptRewardActive:active
+{
+	transform: scale3d(0.97, 0.97, 1);
+	brightness: 0.9;
+}
+
+.ButtonAcceptReward Label
+{
+	align: center center;
+	margin: 5px 10px;
+	color: #fff4b5;
+	font-size: 28px;
+	font-weight: semi-bold;
+	text-shadow: 0px 1px 3px 3 #000000dd;
+	text-align: center;
+	text-overflow: shrink;
+}
+
+.PassRewardsPanel
+{
+	horizontal-align: center;
+	width: 91%;
+	height: 530px;
+	margin-top: 20px;
+	padding: 18px;
+	flow-children: right;
+	overflow: scroll squish;
+	border: 1px solid rgba(249, 252, 105, 0.5);
+	box-shadow: #07021486 0px 0px 15px 0px inset;
+	background-color: rgba(0, 0, 0, 0.644);
+	border-radius: 10px;
+}
+
+.PassRewardPanel
+{
+	width: 250px;
+	height: 100%;
+	margin: 0px 18px 0px 0px;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr3_png.vtex");
+	background-size: 100%;
+}
+
+.PassRewardPanel.PassRewardPanelLocked
+{
+	saturation: 0;
+	brightness: 0.2;
+}
+
+.PassRewardPanel.PassRewardPanelReady
+{
+	animation-name: PassRewardReadyPulse;
+	animation-duration: 1.15s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'PassRewardReadyPulse'
+{
+	0%
+	{
+		saturation: 0.5;
+		brightness: 0.75;
+	}
+	
+	50%
+	{
+		saturation: 0.5;
+		brightness: 1.35;
+	}
+	
+	100%
+	{
+		saturation: 0.5;
+		brightness: 0.75;
+	}
+	
+}
+
+.PassRewardLevel
+{
+	horizontal-align: center;
+	font-size: 48px;
+	color: #fb7dff;
+	color: white;
+	text-shadow: 0px 0px 10px 5 black;
+	margin-top: 105px;
+	margin-left: 4px;
+	width: 50px;
+	text-overflow: shrink;
+	text-align: center;
+	font-family: Reaver;
+	font-family: unifrakturcook;
+	font-weight: bold;
+	opacity: 0.4;
+}
+
+.PassRewardItemsList
+{
+	margin-top: 110px;
+	max-width: 170px;
+	vertical-align: center;
+	horizontal-align: center;
+	flow-children: right-wrap;
+}
+
+.ParticlePassFx
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	opacity: 0.05;
+	opacity-mask: url("s2r://panorama/images/game_hud/frames/fr3_mask_png.vtex") 1;
+}
+
+.PassRewardItem
+{
+	width: 85px;
+	height: 85px;
+	horizontal-align: center;
+}
+
+.PassRewardItem.PassRewardItemLocked
+{
+	saturation: 0;
+}
+
+.PassRewardItem.PassRewardItemReady
+{
+	saturation: 0.5;
+}
+
+.PassRewardBorder
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr5_without_border_png.vtex");
+	background-size: 100%;
+	z-index: 6;
+	img-shadow: 0px 0px 10px 2 black;
+}
+
+.PassRewardBorderBG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr5_png.vtex");
+	background-size: 100%;
+	z-index: -1;
+}
+
+.PassRewardItemIcon
+{
+	width: 60%;
+	height: 60%;
+	align: center center;
+	img-shadow: 0px 0px 4px 5 black;
+}
+
+.PassRewardItemCount
+{
+	font-size: 16px;
+	font-weight: bold;
+	background-color: #000000dd;
+	vertical-align: bottom;
+	width: 80%;
+	horizontal-align: center;
+	margin-bottom: 8px;
+	text-align: center;
+	color: white;
+	padding-bottom: 4px;
+}
+
+.AchivementtPanel
+{
+	flow-children: right;
+}
+
+.CrystalBGFX
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	background-image: url("s2r://panorama/images/game_hud/backgrounds/bg6_png.vtex");
+	background-size: 50%;
+	-s2-mix-blend-mode: screen;
+	opacity: 0.1;
+	brightness: 0.2;
+	saturation: 0.8;
+	blur: gaussian(3);
+}
+
+.AchivementList
+{
+	width: 1130px;
+	height: 100%;
+	padding: 20px;
+	padding-top: 30px;
+	padding-bottom: 40px;
+	padding-left: 10px;
+	flow-children: down;
+	overflow: clip scroll;
+}
+
+.AchivementDesc
+{
+	padding: 2px;
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.AchivementPanelInfo
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	padding: 18px;
+	background-color: gradient( linear, 0% 0%, 100% 100%, from( rgba(83, 64, 107, 0.3) ), to( rgba(42, 7, 58, 0.3) ) );
+	box-shadow: #00000066 0px 0px 12px 0px inset;
+	flow-children: down;
+}
+
+.AchivementPanel
+{
+	margin: 4px;
+	width: 270px;
+	height: 270px;
+	flow-children: down;
+	horizontal-align: center;
+	transition-property: brightness, transform, border;
+	transition-duration: 0.15s;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr4_without_border_png.vtex");
+	background-size: 100%;
+	brightness: 1.01;
+}
+
+.AchivementPanelBG
+{
+	width: 80%;
+	height: 80%;
+	align: center center;
+	ignore-parent-flow: true;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr6_png.vtex");
+	background-size: 100%;
+	saturation: 0.6;
+	brightness: 0.7;
+	box-shadow: #000000e3 0px 0px 40px 1px inset;
+	blur: gaussian(1.5);
+}
+
+.AchivementPanelBGBorder
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr4_without_border_png.vtex");
+	background-size: 100%;
+}
+
+.AchivementPanel.HasAchivimentHover:hover
+{
+	img-shadow: 0px 0px 3px 1 rgba(255, 217, 0, 0.3);
+	brightness: 1.12;
+	transform: translateY(-2px);
+}
+
+.AchivementActive
+{
+	img-shadow: 0px 0px 3px 1 rgba(255, 217, 0, 0.3);
+	brightness: 1.12;
+}
+
+.Achivement_Body
+{
+	flow-children: down;
+	align: center center;
+	width: 100%;
+	height: 100%;
+	padding: 40px;
+}
+
+.AchivementIcon
+{
+	horizontal-align: center;
+	width: 100px;
+	height: 100px;
+	border: 1px solid rgb(192, 165, 9);
+	background-color: #1b1a17;
+	margin-top: 15px;
+	box-shadow: #000000f8 0px 0px 8px 0px inset;
+	border-radius: 10px;
+}
+
+.AchivementData
+{
+	margin-top: 4px;
+	width: 100%;
+	flow-children: down;
+}
+
+.AchivementDataHeader
+{
+	width: 100%;
+	flow-children: none;
+}
+
+.AchivementDataHeaderLevel
+{
+	color: #f2e6d1;
+	font-size: 14px;
+	font-weight: semi-bold;
+	text-shadow: 0px 1px 3px 3 #000000dd;
+}
+
+.AchivementDataHeaderProgressLabel
+{
+	color: #f2e6d1;
+	font-size: 14px;
+	font-weight: semi-bold;
+	horizontal-align: right;
+	text-shadow: 0px 1px 3px 3 #000000dd;
+}
+
+.AchivementDataLine
+{
+	margin-top: 4px;
+	width: 100%;
+	height: 8px;
+	border: 1px solid #1d130f;
+	background-color: #16100d;
+	border-radius: 15px;
+	box-shadow: rgba(255, 217, 0, 0.171) 0px 0px 6px 0px;
+}
+
+.AchivementDataLineSync
+{
+	width: 50%;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #ffc812 ), to( #f1e31e ) );
+	border: 2px solid rgba(255, 187, 0, 0.5);
+	border-radius: 15px;
+}
+
+.AchivementName
+{
+	margin-top: 10px;
+	width: 100%;
+	color: #f8e7bb;
+	font-size: 18px;
+	text-align: center;
+	text-shadow: 0px 1px 3px 3 #000000dd;
+}
+
+.AchivementBlockInfo
+{
+	width: 100%;
+	height: 240px;
+	background-color: #5a4b3d66;
+	border: 1px solid rgba(255, 255, 255, 0.05);
+	background-color: rgba(0, 0, 0, 0.8);
+	margin-top: 18px;
+	flow-children: down;
+}
+
+.AchivementBlockInfoSecond
+{
+	width: 100%;
+	height: 120px;
+	background-color: #5a4b3d66;
+	border: 1px solid rgba(255, 255, 255, 0.05);
+	background-color: rgba(0, 0, 0, 0.8);
+	margin-top: 18px;
+	flow-children: down;
+}
+
+.AchivementBlockInfoHeader
+{
+	width: 100%;
+	height: 30px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #fca728ee ), color-stop( 0.2, #d8900ace ), to( #00000000 ) );
+	border: 1.5px solid white;
+	border-brush: gradient( linear, 0% 0%, 100% 0%, from( #fcad02 ), color-stop( 0.2, #fcad02 ), to( #00000000 ) );
+	padding-left: 7px;
+	margin: 1px;
+}
+
+.AchivementBlockInfoHeaderLabel
+{
+	vertical-align: center;
+	text-align: left;
+	color: #fff6d0;
+	font-size: 16px;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-shadow: 0px 0px 6px 2 black;
+}
+
+.AchivementBodyText
+{
+	color: #fff6d0;
+	font-size: 16px;
+	padding: 10px;
+	width: 100%;
+	height: 100%;
+	text-shadow: 0px 0px 6px 2 black;
+	text-overflow: shrink;
+	font-size: 14px;
+	font-family: Reaver;
+}
+
+.AchivementBlockButtonClaim
+{
+	width: 220px;
+	height: 48px;
+	horizontal-align: center;
+	margin-top: 20px;
+	transition-property: transform;
+	transition-duration: 0.15s;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #ebbe42 ), color-stop( 0.18, #ffd85c ), color-stop( 0.52, #d49a1f ), color-stop( 0.78, #9c6810 ), to( #5e3a08 ) );
+	border: 1px solid #fff2b2;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( #fffbe0 ), to( #b87a18 ) );
+	box-shadow: #000000cc 0px 0px 6px 1px;
+}
+
+.AchivementBlockButtonClaim.AchivementBlockButtonClaimDisabled
+{
+	saturation: 0;
+	brightness: 0.4;
+}
+
+.AchivementBlockButtonClaim:hover
+{
+	brightness: 1.15;
+}
+
+.AchivementBlockButtonClaim.AchivementBlockButtonClaimDisabled:hover
+{
+	brightness: 0.4;
+}
+
+.AchivementBlockButtonClaim:active
+{
+	transform: scale3d(0.97, 0.97, 1);
+}
+
+.AchivementBlockButtonClaim.AchivementBlockButtonClaimDisabled:active
+{
+	transform: none;
+}
+
+.AchivementBlockButtonClaimLabel
+{
+	align: center center;
+	margin: 5px 10px;
+	color: #fff4b5;
+	font-size: 28px;
+	font-weight: semi-bold;
+	text-shadow: 0px 1px 3px 3 #000000dd;
+	text-align: center;
+	text-overflow: shrink;
+}
+
+.AchivementRewardScroll
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	flow-children: down;
+	overflow: squish scroll;
+}
+
+.AchivementRewardItem
+{
+	width: 300px;
+	height: 65px;
+	margin: 2px;
+	horizontal-align: center;
+}
+
+.AchivementRewardItemBG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_5_png.vtex");
+	background-size: 100%;
+}
+
+.AchivementRewardItemBG.AchivementRewardItemBGLocked
+{
+	brightness: 0.3;
+	saturation: 0;
+}
+
+.AchivementRewardLevel
+{
+	font-size: 30px;
+	color: white;
+	vertical-align: center;
+	width: 30px;
+	text-align: center;
+	margin-left: 28px;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+	text-shadow: 0px 1px 3px 3 #000000dd;
+	font-family: Reaver;
+}
+
+.AchivementRewardRewardsList
+{
+	width: 200px;
+	height: 45px;
+	margin-left: 75px;
+	vertical-align: center;
+	flow-children: right;
+}
+
+.AchivementRewardPanel
+{
+	width: 45px;
+	height: 45px;
+}
+
+.AchivementRewardIcon
+{
+	width: 70%;
+	height: 70%;
+	align: center center;
+	background-image: url("s2r://panorama/images/game_hud/icons/gold_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 10px 2 black;
+}
+
+.AchivementRewardCount
+{
+	horizontal-align: right;
+	vertical-align: bottom;
+	margin-right: 2px;
+	margin-bottom: 0px;
+	color: #fff4b5;
+	font-size: 14px;
+	font-weight: semi-bold;
+	text-shadow: 0px 1px 2px 3 #000000dd;
+	z-index: 8;
+	text-overflow: shrink;
+}
+
+.AchivementRewardBorder_1
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_without_border_png.vtex");
+	background-size: 100%;
+	z-index: 6;
+	img-shadow: 0px 0px 10px 2 black;
+}
+
+.AchivementRewardBorder_2
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_png.vtex");
+	background-size: 100%;
+	z-index: -1;
+}
+
+.AtlasPanel
+{
+	flow-children: right;
+}
+
+.AtlasList
+{
+	width: 1100px;
+	height: 100%;
+	padding: 14px;
+	flow-children: down;
+	overflow: clip scroll;
+	padding: 20px;
+	padding-top: 40px;
+	padding-bottom: 40px;
+	padding-left: 10px;
+}
+
+.AtlasItemInfo
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	padding: 18px;
+	flow-children: down;
+	background-color: gradient( linear, 0% 0%, 100% 100%, from( rgba(83, 64, 107, 0.3) ), to( rgba(42, 7, 58, 0.3) ) );
+	box-shadow: #00000066 0px 0px 12px 0px inset;
+}
+
+.AtlasDesc
+{
+	flow-children: right;
+	horizontal-align: center;
+	padding: 2px;
+}
+
+.AtlasItemPanel
+{
+	width: 240px;
+	height: 240px;
+	flow-children: down;
+	horizontal-align: center;
+	transition-property: brightness, transform, border;
+	transition-duration: 0.15s;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr7_png.vtex");
+	background-size: 100%;
+	saturation: 0.5;
+	brightness: 0.1;
+}
+
+.AtlasItemPanel.AtlasItemPanelOwned
+{
+	saturation: 1;
+	brightness: 1;
+}
+
+.AtlasItemPanel.HasAtlasItemHover:hover
+{
+	brightness: 0.2;
+	transform: translateY(-2px);
+	img-shadow: 0px 0px 7px 1 rgba(255, 217, 0, 0.3);
+}
+
+.AtlasItemPanel.AtlasItemPanelOwned.HasAtlasItemHover:hover
+{
+	brightness: 1.12;
+	transform: translateY(-2px);
+	img-shadow: 0px 0px 7px 1 rgba(255, 217, 0, 0.3);
+}
+
+.AtlasItemActive
+{
+	brightness: 0.2;
+	img-shadow: 0px 0px 7px 1 rgba(255, 217, 0, 0.3);
+}
+
+.AtlasItemPanelOwned .AtlasItemActive
+{
+	brightness: 1.12;
+	img-shadow: 0px 0px 7px 1 rgba(255, 217, 0, 0.3);
+}
+
+.AtlasItemPanelBorderBG
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr7_png.vtex");
+	background-size: 100%;
+	z-index: 5;
+}
+
+.AtlasItemPanelBorder
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	z-index: 6;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr7_1_png.vtex");
+	background-size: 100%;
+}
+
+.RareColor_super .AtlasItemPanelBorder
+{
+	background-image: url("s2r://panorama/images/game_hud/frames/fr7_1_super_png.vtex");
+	background-size: 100%;
+}
+
+.AtlasItemPanelIcon
+{
+	width: 200px;
+	height: 150px;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr8_png.vtex");
+	background-size: 100%;
+	box-shadow: #00000066 0px 0px 8px 0px inset;
+	horizontal-align: center;
+	margin-top: 20px;
+	border-bottom: 1px solid rgb(94, 92, 92);
+}
+
+.RareColor_super .AtlasItemPanelIcon
+{
+	background-image: url("s2r://panorama/images/game_hud/frames/fr8_super_png.vtex");
+	background-size: 100%;
+	brightness: 3;
+}
+
+.AtlasItemPanelIconImage
+{
+	width: 128px;
+	height: 128px;
+	ignore-parent-flow: true;
+	align: center center;
+	margin-bottom: 40px;
+	img-shadow: 0px 0px 0px 4 black;
+}
+
+.AtlasItemPanelName
+{
+	vertical-align: center;
+	width: 70%;
+	horizontal-align: center;
+	color: #f1e3bd;
+	font-weight: semi-bold;
+	font-size: 16px;
+	text-align: center;
+	text-shadow: 0px 1px 3px 3 #000000cc;
+	margin-top: 0px;
+	margin-bottom: 30px;
+	text-overflow: shrink;
+}
+
+.AtlasItemPanelBorderBottom
+{
+	horizontal-align: center;
+	ignore-parent-flow: true;
+	width: 80%;
+	height: 60px;
+	margin-bottom: 17px;
+	vertical-align: bottom;
+	z-index: -1;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr9_png.vtex");
+	background-size: 100%;
+	opacity-mask: url("s2r://panorama/images/game_hud/frames/fr9_mask_png.vtex") 1;
+	brightness: 2;
+}
+
+.RareColor_super .AtlasItemPanelBorderBottom
+{
+	background-image: url("s2r://panorama/images/game_hud/frames/fr9_super_png.vtex");
+	background-size: 100%;
+}
+
+.AtlasItemBlockInformationHeader
+{
+	width: 100%;
+	height: 30px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #fca728ee ), color-stop( 0.2, #d8900ace ), to( #00000000 ) );
+	border: 1.5px solid white;
+	border-brush: gradient( linear, 0% 0%, 100% 0%, from( #fcad02 ), color-stop( 0.2, #fcad02 ), to( #00000000 ) );
+	padding-left: 7px;
+	margin: 1px;
+}
+
+.AtlasItemBlockInformationHeaderLabel
+{
+	vertical-align: center;
+	text-align: left;
+	color: #fff6d0;
+	font-size: 16px;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-shadow: 0px 0px 6px 2 black;
+}
+
+.AtlasItemBlockInformation
+{
+	width: 100%;
+	height: 400px;
+	background-color: #5a4b3d66;
+	border: 1px solid rgba(255, 255, 255, 0.05);
+	background-color: rgba(0, 0, 0, 0.8);
+	margin-top: 18px;
+	flow-children: down;
+}
+
+.AtlasItemBlockInformationBody
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	overflow: squish scroll;
+}
+
+.atlas_buff_panel
+{
+	width: 330px;
+	min-height: 70px;
+	margin: 10px;
+}
+
+.atlas_buff_panel.AtlasBuffOwned
+{
+	saturation: 1;
+	brightness: 1;
+}
+
+.atlas_buff_panel_BG
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0.9;
+	brightness: 1.2;
+	background-image: url("s2r://panorama/images/game_hud/profile/atlas2_png.vtex");
+	background-size: 100%;
+	saturation: 0;
+	brightness: 0.2;
+	margin: 6px;
+}
+
+.atlas_buff_panel_BG_border
+{
+	width: 100%;
+	height: 100%;
+	opacity: 1;
+	brightness: 1.2;
+	saturation: 0;
+	brightness: 0.2;
+	border-image-source: url("s2r://panorama/images/game_hud/profile/atlas1_png.vtex");
+	border-width: 20px;
+	border-image-slice: 70px;
+}
+
+.atlas_buff_panel_BG.AtlasBuffOwned
+{
+	saturation: 1;
+	brightness: 1;
+}
+
+.atlas_buff_panel_BG_border.AtlasBuffOwned
+{
+	saturation: 1;
+	brightness: 1;
+}
+
+.atlas_buff_panel_label
+{
+	align: center center;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+	text-transform: uppercase;
+	font-size: 18px;
+	margin: 8px;
+	width: 280px;
+	text-align: center;
+	text-overflow: shrink;
+	font-weight: semi-bold;
+	font-family: Reaver;
+	saturation: 0;
+	brightness: 0.2;
+}
+
+.atlas_buff_panel_label.AtlasBuffOwned
+{
+	saturation: 1;
+	brightness: 1;
+}
+
+.LevelPanel
+{
+	flow-children: down;
+}
+
+.LevelBlessingTopPanel
+{
+	horizontal-align: center;
+	width: 1300px;
+	height: 195px;
+	flow-children: right;
+	margin-top: 60px;
+	ui-scale: 80%;
+	background-image: url("s2r://panorama/images/game_hud/stats_store/1_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 6px 3 black;
+}
+
+.LevelBlessingBadge
+{
+	width: 199px;
+	height: 218px;
+	ui-scale: 65%;
+	transform: translateX(52px) translateY(17px);
+	vertical-align: center;
+	flow-children: down;
+	background-image: url("s2r://panorama/images/game_hud/stats_store/4_png.vtex");
+	background-size: 100%;
+}
+
+.LevelBlessingBadgeValue
+{
+	horizontal-align: center;
+	text-align: center;
+	color: #cb99fa;
+	font-size: 80px;
+	margin-top: 15px;
+	font-weight: semi-bold;
+	font-family: Reaver;
+	text-shadow: 0px 0px 6px 3 black;
+	align: center center;
+}
+
+.LevelBlessingBadgeTitle
+{
+	text-align: center;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+	font-size: 20px;
+	vertical-align: bottom;
+	margin-bottom: 2px;
+	font-weight: semi-bold;
+	text-overflow: shrink;
+	horizontal-align: left;
+	margin-left: 55px;
+}
+
+.LevelBlessingProgressWrap
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	margin-left: 18px;
+	flow-children: down;
+	vertical-align: bottom;
+}
+
+.LevelBlessingProgressHeader
+{
+	width: 100%;
+	flow-children: none;
+	margin-right: 14px;
+	transform: translateY(65px);
+}
+
+.LevelBlessingProgressMeta
+{
+	horizontal-align: right;
+	flow-children: right;
+}
+
+.LevelBlessingExpIcon
+{
+	img-shadow: 0px 0px 6px 3 black;
+	width: 40px;
+	height: 40px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/game_hud/services/god_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.LevelBlessingExpText
+{
+	margin-left: 5px;
+	vertical-align: center;
+	color: rgb(255, 213, 108);
+	font-size: 28px;
+	font-weight: bold;
+	text-shadow: 0px 2px 2px 2 #000000cc;
+}
+
+.LevelBlessingProgressBar
+{
+	width: 890px;
+	height: 40px;
+	vertical-align: center;
+	transform: translateX(45px) translateY(10px);
+	background-image: url("s2r://panorama/images/game_hud/stats_store/3_png.vtex");
+	background-size: 100%;
+}
+
+.LevelBlessingProgressBG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/stats_store/5_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 5px 2 black;
+	brightness: 1.4;
+}
+
+.LevelBlessingProgressFill
+{
+	width: 0%;
+	height: 90%;
+	vertical-align: center;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #7b3cff ), to( #d36bff ) );
+	border-radius: 30px;
+	margin-left: 5px;
+	margin-right: 5px;
+	box-shadow: inset #220f38aa 0px 0px 10px 0px;
+}
+
+.LevelBlessingShine
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/stats_store/7_png.vtex");
+	background-size: 890px 30px;
+	background-position: center;
+	background-repeat: repeat;
+	brightness: 25;
+	wash-color: rgb(132, 26, 231);
+}
+
+.LevelBlessingClaimButton
+{
+	width: 170px;
+	height: 58px;
+	margin-right: 44px;
+	transition-property: brightness, saturation, transform;
+	transition-duration: 0.15s;
+	background-image: url("s2r://panorama/images/game_hud/stats_store/2_png.vtex");
+	background-size: 100%;
+	margin-top: 92px;
+	opacity: 1;
+	saturation: 0;
+	brightness: 0.2;
+}
+
+.LevelBlessingClaimButton.LevelBlessingClaimButtonActive
+{
+	saturation: 1;
+	brightness: 1;
+}
+
+.LevelBlessingClaimButton.LevelBlessingClaimButtonActive:hover
+{
+	brightness: 1.15;
+}
+
+.LevelBlessingClaimButton.LevelBlessingClaimButtonActive:active
+{
+	transform: scale3d(0.97, 0.97, 1);
+}
+
+.LevelBlessingClaimButton Label
+{
+	align: center center;
+	margin: 4px 10px;
+	color: #fff3bd;
+	font-size: 28px;
+	font-weight: semi-bold;
+	text-shadow: 0px 1px 3px 3 #000000dd;
+}
+
+.LevelBlessingPrivilegesPanel
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	margin-top: 18px;
+	flow-children: down;
+}
+
+.LevelBlessingPrivilegesHeader
+{
+	width: 1000px;
+	height: 82px;
+	width: 1692px;
+	height: 230px;
+	ui-scale: 60%;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr11_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 5px 2 black;
+}
+
+.LevelBlessingPrivilegesHeader Label
+{
+	margin-top: 30px;
+	align: center center;
+	color: #ffe8a0;
+	font-size: 60px;
+	font-weight: bold;
+	text-shadow: 0px 0px 5px 3 black;
+}
+
+.LevelBlessingPrivilegesBody
+{
+	width: 100%;
+	margin-left: 22px;
+	margin-right: 22px;
+	height: fill-parent-flow(1);
+	margin-top: 14px;
+	flow-children: down;
+	ui-scale: 70%;
+}
+
+.LevelBlessingPrivilegesList
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	overflow: squish scroll;
+}
+
+.LevelBlessingPrivilegeItem
+{
+	horizontal-align: center;
+	width: 1200px;
+	height: 82px;
+	ui-scale: 90%;
+	margin-bottom: 14px;
+	flow-children: right;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr10_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 5px 2 black;
+}
+
+.LevelBlessingPrivilegeItem.LevelBlessingPrivilegeInactive
+{
+	wash-color: #7f7f7f;
+	saturation: 0.4;
+}
+
+.LevelBlessingPrivilegeStatus
+{
+	width: 220px;
+	text-align: center;
+	vertical-align: center;
+	color: #fff1a6;
+	font-size: 22px;
+	font-weight: bold;
+	text-shadow: 0px 1px 2px 2 #000000bb;
+}
+
+.LevelBlessingPrivilegeText
+{
+	width: fill-parent-flow(1);
+	vertical-align: center;
+	text-align: center;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+	font-size: 22px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 5px 3 black;
+}
+
+.VipPanel
+{
+	flow-children: down;
+	padding: 24px 34px 18px 34px;
+	background-image: url("s2r://panorama/images/game_hud/backgrounds/bg4_png.vtex");
+	background-size: 100% 100%;
+	background-position: 50% 50%;
+	background-img-opacity: 0.6;
+}
+
+.VipHeaderBlock
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.VipHeaderTitle
+{
+	horizontal-align: center;
+	color: #ffd64d;
+	font-size: 48px;
+	font-weight: semi-bold;
+	text-transform: uppercase;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 6px 4 black;
+	letter-spacing: 2px;
+}
+
+.VipHeaderSubtitle
+{
+	horizontal-align: center;
+	margin-top: -6px;
+	color: #ffd8a1;
+	font-size: 24px;
+	text-shadow: 0px 0px 6px 2 black;
+}
+
+.VipOffersRow
+{
+	horizontal-align: center;
+	vertical-align: center;
+	flow-children: right;
+}
+
+.VipOffersViewport
+{
+	flow-children: right;
+}
+
+.VipOffersArrow
+{
+	width: 70px;
+	height: 118px;
+	vertical-align: center;
+	margin-left: 8px;
+	margin-right: 8px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #4b2a7a ), to( #1a0f2a ) );
+	border-top: 2px solid #b48cf3;
+	border-left: 2px solid #1a0f2a;
+	border-right: 2px solid #1a0f2a;
+	border-bottom: 2px solid #1a0f2a;
+	box-shadow: 0px 0px 8px 0px #8f5cffcc;
+	transition-property: brightness, transform;
+	transition-duration: 0.12s;
+}
+
+.VipOffersArrow:hover
+{
+	brightness: 1.18;
+}
+
+.VipOffersArrow:active
+{
+	transform: scale3d(0.94, 0.94, 1);
+}
+
+.VipOffersArrow.VipOffersArrowDisabled
+{
+	saturation: 0;
+	brightness: 0.35;
+	box-shadow: none;
+}
+
+.VipOffersArrow.VipOffersArrowDisabled:hover
+{
+	brightness: 0.35;
+}
+
+.VipOffersArrow.VipOffersArrowDisabled:active
+{
+	transform: none;
+}
+
+.VipOffersArrow Label
+{
+	align: center center;
+	color: #fff2b8;
+	font-size: 54px;
+	font-weight: bold;
+	text-shadow: 0px 0px 6px 3 #000000cc;
+}
+
+.VipOfferPanel
+{
+	width: 1024px;
+	height: 1024px;
+	ui-scale: 65%;
+	flow-children: down;
+	background-image: url("s2r://panorama/images/game_hud/other/vip_chest_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 5px 5 black;
+}
+
+.VipOfferPanelLocked
+{
+	saturation: 0;
+	brightness: 0.42;
+}
+
+.VipOfferPanelPurchased
+{
+	saturation: 0.65;
+	brightness: 0.78;
+}
+
+.VipOfferPanel1
+{
+	margin-right: -60px;
+}
+
+.VipOfferPanel2
+{
+	margin-left: -60px;
+}
+
+.VipOfferTitle
+{
+	height: 60px;
+	width: 520px;
+	margin-top: 120px;
+	horizontal-align: center;
+	text-align: center;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+	font-size: 48px;
+	font-weight: bold;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 4px 3 black;
+}
+
+.VipOfferRewardsFrame
+{
+	width: 540px;
+	horizontal-align: center;
+	margin-top: 240px;
+	height: 170px;
+}
+
+.VipOfferRewardsList
+{
+	horizontal-align: center;
+	vertical-align: top;
+	flow-children: right;
+}
+
+.VipRewardItem
+{
+	width: 150px;
+	height: 150px;
+	margin: 5px;
+	flow-children: down;
+}
+
+.VipOfferRewardsListSmall .VipRewardItem
+{
+	width: 120px;
+	height: 120px;
+	margin: 5px;
+}
+
+.VipRewardItemBG1
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr5_without_border_png.vtex");
+	background-size: 100%;
+	z-index: 6;
+	img-shadow: 0px 0px 10px 2 black;
+	ignore-parent-flow: true;
+}
+
+.VipRewardItemBG2
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr5_png.vtex");
+	background-size: 100%;
+	z-index: -1;
+	ignore-parent-flow: true;
+}
+
+.RareColor_super.VipRewardItemBG2
+{
+	background-image: url("s2r://panorama/images/game_hud/frames/fr5_super_png.vtex");
+	background-size: 100%;
+}
+
+.VipRewardIcon
+{
+	width: 100px;
+	height: 100px;
+	horizontal-align: center;
+	align: center center;
+	ignore-parent-flow: true;
+	opacity: 0.95;
+}
+
+.VipOfferRewardsListSmall .VipRewardIcon
+{
+	width: 70px;
+	height: 70px;
+}
+
+.VipRewardCount
+{
+	width: 120px;
+	horizontal-align: center;
+	padding-top: 2px;
+	padding-bottom: 14px;
+	text-align: center;
+	color: #ffffff;
+	font-size: 22px;
+	font-weight: bold;
+	background-color: #0a0a0acc;
+	border: 2px solid #272727;
+	text-shadow: 0px 2px 2px 2 #000000ee;
+	vertical-align: bottom;
+	margin-bottom: 10px;
+	ignore-parent-flow: true;
+}
+
+.VipOfferRewardsListSmall .VipRewardCount
+{
+	width: 90px;
+	padding-bottom: 4px;
+}
+
+.ServiceRewardClaimed
+{
+	saturation: 0.75;
+	brightness: 0.82;
+}
+
+.ServiceRewardClaimCheck
+{
+	ignore-parent-flow: true;
+	width: 54px;
+	height: 54px;
+	horizontal-align: right;
+	vertical-align: top;
+	margin-top: 2px;
+	margin-right: 2px;
+	background-image: url("s2r://panorama/images/game_hud/promo/check_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 4px 2 #000000;
+	z-index: 20;
+}
+
+.VipOfferBuyButton
+{
+	width: 420px;
+	height: 60px;
+	horizontal-align: center;
+	margin-top: 142px;
+	transition-property: brightness, transform;
+	transition-duration: 0.15s;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #4b2a7a ), to( #1a0f2a ) );
+	border-top: 2px solid #b48cf3;
+	border-left: 2px solid #1a0f2a;
+	border-right: 2px solid #1a0f2a;
+	border-bottom: 2px solid #1a0f2a;
+	box-shadow: 0px 0px 3px 0px #000000;
+	box-shadow: 0px 0px 8px 0px #8f5cffcc;
+}
+
+.VipOfferBuyButton:hover
+{
+	brightness: 1.15;
+}
+
+.VipOfferBuyButton.VipOfferBuyButtonDisabled
+{
+	saturation: 0;
+	brightness: 0.48;
+	box-shadow: none;
+}
+
+.VipOfferBuyButton.VipOfferBuyButtonDisabled:hover
+{
+	brightness: 0.48;
+}
+
+.VipOfferBuyButton:active
+{
+	transform: scale3d(0.97, 0.97, 1);
+}
+
+.VipOfferBuyButton.VipOfferBuyButtonDisabled:active
+{
+	transform: none;
+}
+
+.VipOfferBuyBody
+{
+	flow-children: right;
+	align: center center;
+}
+
+.VipOfferBuyCurrencyIcon
+{
+	width: 34px;
+	height: 34px;
+	vertical-align: center;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/game_hud/services/stone_png.vtex");
+	margin-right: 6px;
+}
+
+.VipOfferBuyPrice
+{
+	vertical-align: center;
+	color: white;
+	font-size: 34px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 6px 3 #000000aa;
+}
+
+.VipOfferLimit
+{
+	horizontal-align: center;
+	padding-left: 180px;
+	padding-right: 180px;
+	margin-top: 8px;
+	text-align: center;
+	color: white;
+	font-size: 26px;
+	font-weight: bold;
+	text-shadow: 0px 0px 4px 3 #000000bb;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( transparent ), color-stop( 0.2, rgba(0, 0, 0, 0.9) ), color-stop( 0.8, rgba(0, 0, 0, 0.9) ), to( transparent ) );
+}
+
+.VipOfferStateLabel
+{
+	ignore-parent-flow: true;
+	horizontal-align: center;
+	margin-top: 360px;
+	padding: 8px 42px;
+	color: #d9d9d9;
+	font-size: 42px;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 0px 0px 8px 4 #000000;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( transparent ), color-stop( 0.22, #000000dd ), color-stop( 0.78, #000000dd ), to( transparent ) );
+	border-top: 2px solid #777777;
+	border-bottom: 2px solid #777777;
+	opacity: 0;
+}
+
+.ParticleChest
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+}
+
+.VipProgressPanel
+{
+	horizontal-align: center;
+	width: 1400px;
+	height: 242px;
+	flow-children: right;
+	ui-scale: 80%;
+	margin-bottom: 5px;
+	ignore-parent-flow: true;
+	vertical-align: bottom;
+}
+
+.VipProgressPanelBG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr12_png.vtex");
+	background-size: 100%;
+	ignore-parent-flow: true;
+}
+
+.VipProgressPanelBGVip
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr12_1_png.vtex");
+	background-size: 100%;
+	ignore-parent-flow: true;
+}
+
+.VipProgressPanelBGLine
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr12_2_png.vtex");
+	background-size: 100%;
+	ignore-parent-flow: true;
+	z-index: 10;
+}
+
+.VipProgressInfo
+{
+	ignore-parent-flow: true;
+	flow-children: right;
+	margin-top: 76px;
+	margin-left: 380px;
+	width: 700px;
+}
+
+.VipLevelLabel
+{
+	vertical-align: bottom;
+	color: #ffe048;
+	font-size: 32px;
+	font-weight: semi-bold;
+	text-transform: uppercase;
+	text-shadow: 0px 2px 0px 3 #3b1900;
+}
+
+.VipProgressMeta
+{
+	vertical-align: center;
+	horizontal-align: right;
+	flow-children: down;
+}
+
+.VipProgressText
+{
+	color: #37ff61;
+	font-size: 28px;
+	font-weight: bold;
+	text-shadow: 0px 1px 2px 2 #000000cc;
+	width: 100%;
+	text-align: right;
+}
+
+.VipProgressHint
+{
+	margin-top: 6px;
+	color: #f2d89d;
+	font-size: 18px;
+	text-overflow: shrink;
+}
+
+.VipProgressBarFrame
+{
+	width: 730px;
+	height: 40px;
+	vertical-align: center;
+	margin-left: 366px;
+	margin-top: 80px;
+	background-color: #1b0f0f;
+	border: 2px solid #68473b;
+	border-radius: 14px;
+	box-shadow: #00000088 0px 0px 8px 0px inset;
+}
+
+.VipProgressBarFill
+{
+	width: 0%;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #ffca1a ), to( #c04802 ) );
+	box-shadow: #ecb00988 0px 0px 8px 0px inset;
+	border-radius: 30px;
+	brightness: 2;
+}
+
+.VipShopButton
+{
+	margin-top: 98px;
+	margin-left: 25px;
+	width: 200px;
+	height: 68px;
+	transition-property: brightness, transform;
+	transition-duration: 0.15s;
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_6_png.vtex");
+	background-size: 100%;
+}
+
+.VipShopButton:hover
+{
+	brightness: 1.15;
+}
+
+.VipShopButton:active
+{
+	transform: scale3d(0.97, 0.97, 1);
+}
+
+.VipShopButton Label
+{
+	align: center center;
+	margin: 5px 10px;
+	color: #fff4b5;
+	font-size: 28px;
+	font-weight: semi-bold;
+	text-shadow: 0px 1px 3px 3 #000000dd;
+	text-align: center;
+	text-overflow: shrink;
+}
+
+.ContentWindowVisible
+{
+	visibility: visible;
+}
+
+.WindowVisible
+{
+	opacity: 1;
+}
+
+.WindowVisible .ProfileWindow
+{
+	opacity: 1;
+}
+
+.MailPanel
+{
+	flow-children: right;
+}
+
+.EmailBG
+{
+	width: 100%;
+	height: 100%;
+	z-index: -5;
+	background-image: url("s2r://panorama/images/game_hud/backgrounds/bg5_png.vtex");
+	background-size: 100% 100%;
+	background-position: center;
+	ignore-parent-flow: true;
+}
+
+.MailSidebar
+{
+	width: 560px;
+	height: 100%;
+	flow-children: down;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #b0a79866 ), to( #877b6d55 ) );
+	border: 2px solid #4d4034;
+	box-shadow: #00000088 0px 0px 12px 0px;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-bottom: 30px;
+	padding-top: 30px;
+}
+
+.MailSidebarHeader
+{
+	margin-top: 20px;
+	width: 100%;
+	padding-bottom: 5px;
+	border-bottom: 1px solid rgba(0,0,0,0.5);
+}
+
+.MailSidebarHeader Label
+{
+	color: #f5d06d;
+	font-size: 28px;
+	font-weight: semi-bold;
+	text-shadow: 0px 1px 3px 3 #00000088;
+}
+
+.MailInboxList
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	margin-top: 12px;
+	flow-children: down;
+	overflow: squish scroll;
+}
+
+.MailSidebarFooter
+{
+	width: 100%;
+	padding-top: 12px;
+}
+
+.MailContent
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	margin-left: 0px;
+	flow-children: down;
+	background-color: gradient( linear, 0% 0%, 100% 100%, from( #c7beb380 ), to( #7d706399 ) );
+	border: 2px solid #5b4d42;
+	box-shadow: #00000088 0px 0px 12px 0px;
+	padding: 50px;
+}
+
+.MailContentHeader
+{
+	width: 100%;
+	flow-children: down;
+	border-bottom: 1px solid #8f8377bb;
+	padding-bottom: 8px;
+}
+
+.MailFieldRow
+{
+	width: 100%;
+	flow-children: right;
+	margin-bottom: 10px;
+}
+
+.MailFieldLabel
+{
+	color: #f1cb6c;
+	font-size: 28px;
+	font-weight: semi-bold;
+	text-shadow: 0px 1px 3px 3 #00000088;
+	vertical-align: center;
+}
+
+.MailFieldValue
+{
+	vertical-align: center;
+	margin-left: 10px;
+	width: fill-parent-flow(1);
+	color: #2f251c;
+	font-size: 18px;
+	font-weight: semi-bold;
+	text-shadow: 0px 1px 2px 2 #ffffff22;
+}
+
+.MailBodyWrap
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	margin-top: 18px;
+	background-color: #61554b66;
+	border: 1px solid #736558aa;
+	padding: 20px;
+}
+
+.MailBodyText
+{
+	width: 100%;
+	color: #231c17;
+	font-size: 20px;
+	line-height: 32px;
+	white-space: normal;
+	font-family: Reaver;
+}
+
+.MailRewardsSection
+{
+	width: 100%;
+	flow-children: down;
+	margin-top: 18px;
+}
+
+.MailRewardsHeader
+{
+	width: 100%;
+	padding-bottom: 8px;
+	border-bottom: 1px solid #66584baa;
+}
+
+.MailRewardsHeader Label
+{
+	color: #f1cb6c;
+	font-size: 26px;
+	font-weight: semi-bold;
+	text-shadow: 0px 1px 3px 3 #00000088;
+}
+
+.MailRewardsList
+{
+	width: 100%;
+	min-height: 98px;
+	margin-top: 12px;
+	flow-children: right-wrap;
+}
+
+.MailRewardItem
+{
+	width: 92px;
+	height: 92px;
+	margin-right: 12px;
+	margin-bottom: 12px;
+}
+
+.MailRewardItemBG1
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr5_without_border_png.vtex");
+	background-size: 100%;
+	z-index: 6;
+	img-shadow: 0px 0px 10px 2 black;
+	ignore-parent-flow: true;
+}
+
+.MailRewardItemBG2
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr5_png.vtex");
+	background-size: 100%;
+	z-index: -1;
+	ignore-parent-flow: true;
+}
+
+.MailRewardIcon
+{
+	width: 60px;
+	height: 60px;
+	horizontal-align: center;
+	align: center center;
+	ignore-parent-flow: true;
+	opacity: 0.95;
+}
+
+.MailRewardCount
+{
+	min-width: 28px;
+	padding: 2px 6px;
+	horizontal-align: right;
+	vertical-align: bottom;
+	margin: 0px 10px 10px 0px;
+	background-color: #000000dd;
+	color: #f7f0d9;
+	font-size: 18px;
+	font-weight: semi-bold;
+	text-align: center;
+	text-shadow: 0px 1px 2px 2 #000000aa;
+	z-index: 10;
+}
+
+.MailActionsRow
+{
+	width: 100%;
+	margin-top: 8px;
+	flow-children: right;
+}
+
+.MailStatusText
+{
+	width: fill-parent-flow(1);
+	color: #382c22;
+	font-size: 22px;
+	vertical-align: center;
+	font-weight: semi-bold;
+}
+
+.MailActionButton
+{
+	horizontal-align: center;
+	min-width: 330px;
+	height: 54px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #b69137 ), to( #7b5c1b ) );
+	border: 2px solid #e7cc79;
+	box-shadow: #000000aa 0px 0px 8px 0px;
+	transition-property: brightness, transform;
+	transition-duration: 0.15s;
+}
+
+.MailActionButton Label
+{
+	align: center center;
+	color: #fff5c7;
+	font-size: 28px;
+	font-weight: semi-bold;
+	text-shadow: 0px 1px 3px 3 #000000cc;
+	margin: 5px;
+}
+
+.MailActionButton:hover
+{
+	brightness: 1.2;
+}
+
+.MailActionButton:active
+{
+	transform: scale3d(0.96, 0.96, 0.96);
+}
+
+.MailActionButton.MailActionButtonDisabled
+{
+	saturation: 0.2;
+	brightness: 0.55;
+}
+
+.MailInboxItem
+{
+	width: 100%;
+	flow-children: down;
+	margin-bottom: 10px;
+	padding: 12px;
+	border: 1px solid #6d5e50;
+	background-color: #4d433bcc;
+	transition-property: background-color, border, brightness;
+	transition-duration: 0.15s;
+}
+
+.MailInboxItem:hover
+{
+	brightness: 1.15;
+}
+
+.MailInboxItem.MailInboxItemSelected
+{
+	border: 1px solid #f0ce72;
+	background-color: #67584ccc;
+}
+
+.MailInboxItem.MailInboxItemNew
+{
+	border-left: 4px solid #f0ce72;
+}
+
+.MailInboxHeader
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.MailInboxSubject
+{
+	width: fill-parent-flow(1);
+	color: #f2ead7;
+	font-size: 22px;
+	font-weight: semi-bold;
+	text-overflow: shrink;
+}
+
+.MailInboxBadge
+{
+	padding: 2px 8px;
+	margin-left: 6px;
+	background-color: #8b6b25;
+}
+
+.MailInboxBadge Label
+{
+	color: #fff1c0;
+	font-size: 16px;
+	font-weight: semi-bold;
+	text-shadow: 0px 1px 2px 2 #000000aa;
+}
+
+.MailInboxSender
+{
+	margin-top: 6px;
+	color: #d9cbb8;
+	font-size: 18px;
+}
+
+.MailInboxPreview
+{
+	margin-top: 4px;
+	color: #b4a596;
+	font-size: 18px;
+	text-overflow: shrink;
+}
+
+.MailInboxMeta
+{
+	margin-top: 8px;
+	color: #9f8e7d;
+	font-size: 16px;
+}
+
+VerticalScrollBar,HTMLVerticalScrollBar
+{
+	width: 10px;
+	height: 100%;
+	horizontal-align: right;
+	layout-position: fixed;
+	padding: 1px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1a0f08 ), to( #2b170b ) );
+	border-left: 1px solid #f0c96a22;
+}
+
+.AchivementRewardScroll VerticalScrollBar,HTMLVerticalScrollBar
+{
+	width: 4px;
+}
+
+VerticalScrollBar .ScrollThumb,HTMLVerticalScrollBar .ScrollThumb
+{
+	width: 8px;
+	min-height: 38px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #fff0a8 ), color-stop( 0.22, #ffd65f ), color-stop( 0.55, #c78d1f ), to( #6a430c ) );
+	border: 1px solid #fff4bf;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( #fff8d4 ), to( #8d5a10 ) );
+	box-shadow: #000000cc 0px 0px 6px 0px;
+	border-radius: 2px;
+	transition-property: brightness, transform, background-color;
+	transition-duration: 0.15s;
+}
+
+VerticalScrollBar:hover .ScrollThumb,HTMLVerticalScrollBar:hover .ScrollThumb
+{
+	brightness: 1.12;
+}
+
+VerticalScrollBar:active .ScrollThumb,HTMLVerticalScrollBar:active .ScrollThumb
+{
+	brightness: 0.9;
+}
+
+HorizontalScrollBar,HTMLHorizontalScrollBar
+{
+	height: 4px;
+	width: 100%;
+	vertical-align: bottom;
+	layout-position: fixed;
+	padding: 1px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #1a0f08 ), to( #2b170b ) );
+	border-top: 1px solid #f0c96a22;
+}
+
+HorizontalScrollBar .ScrollThumb,HTMLHorizontalScrollBar .ScrollThumb
+{
+	height: 8px;
+	min-width: 38px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #fff0a8 ), color-stop( 0.22, #ffd65f ), color-stop( 0.55, #c78d1f ), to( #ff9602 ) );
+	border: 1px solid #fff4bf;
+	border-brush: gradient( linear, 0% 0%, 100% 0%, from( #fff8d4 ), to( #8d5a10 ) );
+	box-shadow: #000000cc 0px 0px 6px 0px;
+	border-radius: 2px;
+	transition-property: brightness, transform, background-color;
+	transition-duration: 0.15s;
+}
+
+HorizontalScrollBar:hover .ScrollThumb,HTMLHorizontalScrollBar:hover .ScrollThumb
+{
+	brightness: 1.12;
+}
+
+HorizontalScrollBar:active .ScrollThumb,HTMLHorizontalScrollBar:active .ScrollThumb
+{
+	brightness: 0.9;
+}
+
+.AtlasPurchaseBlock
+{
+	horizontal-align: center;
+	margin-top: 7px;
+	flow-children: down;
+}
+
+.AtlasPurchasePrice
+{
+	horizontal-align: center;
+	vertical-align: center;
+	flow-children: right;
+}
+
+.AtlasPurchaseCurrencyIcon
+{
+	width: 34px;
+	height: 34px;
+	vertical-align: center;
+	margin-right: 10px;
+}
+
+.AtlasPurchasePriceAmount
+{
+	vertical-align: center;
+	color: #ffd879;
+	font-size: 20px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 5px 2 #000000;
+}
+
+.AtlasPurchaseButton
+{
+	margin-top: 5px;
+	width: 200px;
+	height: 52px;
+	horizontal-align: center;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_10_png.vtex");
+	background-size: 100%;
+	saturation: 1;
+	brightness: 1;
+}
+
+.AtlasPurchaseButton:hover
+{
+	brightness: 1.6;
+}
+
+.AtlasPurchaseButton:active
+{
+	brightness: 0.8;
+}
+
+.AtlasPurchaseButton.AtlasPurchaseButtonDisabled
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+.AtlasPurchaseButton.AtlasPurchaseButtonDisabled:hover
+{
+	brightness: 0.5;
+}
+
+.AtlasPurchaseButton.AtlasPurchaseButtonDisabled:active
+{
+	brightness: 0.5;
+}
+
+.AtlasPurchaseButtonLabel
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: white;
+	font-size: 18px;
+	font-weight: semi-bold;
+	text-align: center;
+	text-shadow: 0px 0px 5px 3 #000000;
+	text-overflow: shrink;
+}

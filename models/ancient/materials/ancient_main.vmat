@@ -1,0 +1,76 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Layer0"
+{
+	"shader"	"hero.vfx"
+	"F_DETAIL"	"1"
+	"F_MASK_CUBE_MAP_BY_METALNESS"	"1"
+	"F_MASKS_1"	"1"
+	"F_SPECULAR_CUBE_MAP"	"1"
+	"g_flAmbientScale"	"0.81"
+	"g_flBloomScale"	"0.356"
+	"g_flBloomShift"	"1"
+	"g_flCloakBlurAmount"	"0.005"
+	"g_flCloakIntensity"	"0.85"
+	"g_flCloakRefractAmount"	"0.1"
+	"g_flCubeMapScalar"	"1.18"
+	"g_flDetailBlendFactor"	"0.372"
+	"g_flDetailBlendToFull"	"0"
+	"g_flDetailTexCoordRotation"	"128.094"
+	"g_flDiffuseModulationAmount"	"1"
+	"g_flEnvMapBlendToFull"	"0"
+	"g_flFresnelModulatesAlpha"	"0"
+	"g_flMaterialCloakFactor"	"0"
+	"g_flMetalnessBlendToFull"	"0.115"
+	"g_flReflectionsTintByBaseBlendToNone"	"0"
+	"g_flRimLightScale"	"1"
+	"g_flSelfIllumBlendToFull"	"0"
+	"g_flSpecularBlendToFull"	"0.123"
+	"g_flSpecularExponent"	"32.785"
+	"g_flSpecularExponentBlendToFull"	"0"
+	"g_flSpecularScale"	"3.19"
+	"g_flTexCoordRotation"	"0"
+	"g_vBloomColor"	"[0.000000 0.431373 1.000000 0.000000]"
+	"g_vCloakColorTint"	"[1.000000 1.000000 1.000000 0.000000]"
+	"g_vDetail1ColorTint"	"[1.000000 1.000000 1.000000 0.000000]"
+	"g_vDetailTexCoordOffset"	"[0.000000 0.000000 0.000000 0.000000]"
+	"g_vDetailTexCoordScale"	"[8.000000 8.000000 0.000000 0.000000]"
+	"g_vRimLightColor"	"[1.000000 1.000000 1.000000 0.000000]"
+	"g_vSpecularColor"	"[1.000000 1.000000 1.000000 0.000000]"
+	"g_vTexCoordOffset"	"[0.000000 0.000000 0.000000 0.000000]"
+	"g_vTexCoordScale"	"[1.000000 1.000000 0.000000 0.000000]"
+	"TextureColor"	"models/ancient/materials/main/material_basecolor.png"
+	"TextureTranslucency"	"models/ancient/materials/main/material_basecolor_e19f2ba0_trans.png"
+	"TextureCubeMap"	"materials/models/heroes/alchemist/alchemist_body_color_cube.png"
+	"TextureDetail"	"materials/models/heroes/chen/chen_base_motion_detail.png"
+	"TextureFresnelWarpRim"	"materials/default/default_fresnelwarprim.tga"
+	"TextureFresnelWarpColor"	"materials/default/default_fresnelwarprim_d9279d65-G.png"
+	"TextureFresnelWarpSpec"	"materials/default/default_fresnelwarprim_d9279d65-B.png"
+	"TextureDetailMask"	"models/ancient/materials/main/detail/material_basecolor.png"
+	"TextureDiffuseWarpMask"	"models/ancient/materials/main/detail/material_basecolor_d00b4f56_diffusemask.png"
+	"TextureMetalnessMask"	"models/ancient/materials/main/detail/material_basecolor_d00b4f56_metalnessmask.png"
+	"TextureSelfIllumMask"	"models/ancient/materials/main/detail/material_basecolor_d00b4f56_selfillummask.png"
+	"TextureNormal"	"models/ancient/materials/main/material_normal.png"
+	"Compiled Textures"
+	{
+		"g_tColor"	"models/ancient/materials/main/material_basecolor_png_e19f2ba0.vtex"
+		"g_tCubeMap"	"materials/models/heroes/alchemist/alchemist_body_color_cube_psd_350ada0.vtex"
+		"g_tDetail"	"materials/models/heroes/chen/chen_base_motion_detail_psd_54c30d58.vtex"
+		"g_tFresnelWarp"	"materials/default/default_fresnelwarprim_tga_d9279d65.vtex"
+		"g_tMasks1"	"models/ancient/materials/main/detail/material_basecolor_png_d00b4f56.vtex"
+		"g_tNormal"	"models/ancient/materials/main/material_normal_png_1ce80440.vtex"
+	}
+	"DynamicParams"
+	{
+		"g_flBloomScale"	"return (sin(time*2)*.2)+.5;"
+		"g_vDetailTexCoordOffset"	"return frac(time*.1);"
+	}
+}

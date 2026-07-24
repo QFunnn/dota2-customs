@@ -1,0 +1,524 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+#Contents
+{
+	padding: 0px;
+	margin: 0px;
+	background-color: #10171c00;
+	border: 2px solid rgba(0, 0, 0, 0);
+	flow-children: none;
+	box-shadow: #00000000 0px 0px 8px 0px;
+}
+
+.ability_tooltip
+{
+	width: 350px;
+	border: 1px solid red;
+}
+
+.TooltipBG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/tooltips/bg_png.vtex");
+	background-size: cover;
+	margin-bottom: 0px;
+	border-radius: 10px;
+	brightness: 5;
+	saturation: 0.9;
+	blur: gaussian (5px);
+}
+
+.TooltipBorder
+{
+	width: 100%;
+	height: 100%;
+	border-image-source: url("s2r://panorama/images/tooltips/border_png.vtex");
+	border-width: 30px;
+	border-image-slice: 130px;
+	z-index: 10;
+}
+
+.TooltipBody
+{
+	width: 100%;
+	flow-children: down;
+	padding-bottom: 30px;
+}
+
+.AbilityImage
+{
+	margin-top: 10px;
+	horizontal-align: center;
+	width: 70px;
+	height: 70px;
+}
+
+.AbilityBorder
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/lower_hud/ability_bg_placeholder_png.vtex");
+	background-size: 100%;
+	z-index: 10;
+}
+
+.AbilityTexture
+{
+	width: 88%;
+	height: 88%;
+	align: center center;
+}
+
+.AbilityNamePanel
+{
+	width: 250px;
+	height: 30px;
+	horizontal-align: center;
+	margin-top: 5px;
+}
+
+.AbilityNamePanel Label
+{
+	font-size: 22px;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: center;
+	width: 100%;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 5px 3.0 black;
+	font-family: Reaver;
+	letter-spacing: 0.4px;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#faf6ef), to(#e9c57c));
+}
+
+.Limer
+{
+	horizontal-align: center;
+	width: 300px;
+	height: 12px;
+	background-image: url("s2r://panorama/images/tooltips/limer_png.vtex");
+	background-size: 100%;
+}
+
+.AbilityData
+{
+	margin-top: -5px;
+	flow-children: down;
+	width: 100%;
+}
+
+.Limer2
+{
+	ignore-parent-flow: true;
+	horizontal-align: center;
+	width: 350px;
+	margin-left: -4px;
+	height: 30px;
+	margin-top: 10px;
+	background-image: url("s2r://panorama/images/tooltips/limer2_png.vtex");
+	background-size: 100%;
+}
+
+.AbilityDataLabel
+{
+	horizontal-align: center;
+	color: white;
+	font-size: 18px;
+	margin-top: 8px;
+	text-shadow: 0px 0px 5px 3.0 black;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.AbilityStats
+{
+	flow-children: down;
+	width: 280px;
+	horizontal-align: center;
+	margin-top: 0px;
+}
+
+.CardBaseBonusLine
+{
+	flow-children: right;
+	margin-bottom: 10px;
+}
+
+.CardBaseBonusPin
+{
+	width: 12px;
+	height: 14px;
+	vertical-align: center;
+	margin-left: 4px;
+	margin-right: 4px;
+	background-image: url("s2r://panorama/images/tooltips/dot_png.vtex");
+	background-size: 100%;
+}
+
+.CardBaseBonusLabel
+{
+	color: white;
+	font-size: 16px;
+}
+
+.AbilityDescriptionPanel
+{
+	flow-children: down;
+	width: 100%;
+}
+
+.AbilityDescriptionHeader
+{
+	margin-top: 10px;
+	width: 320px;
+	height: 30px;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/tooltips/active_effect_png.vtex");
+	background-size: 100%;
+}
+
+.IsPassiveColor .AbilityDescriptionHeader
+{
+	background-image: url("s2r://panorama/images/tooltips/passive_effect_png.vtex");
+	background-size: 100%;
+}
+
+.AbilityDescriptionHeaderLabel
+{
+	width: 230px;
+	color: rgb(253, 214, 37);
+	font-size: 16px;
+	vertical-align: center;
+	margin-left: 10px;
+	text-shadow: 0px 0px 5px 3.0 black;
+	text-overflow: shrink;
+	font-weight: semi-bold;
+}
+
+.IsPassiveColor .AbilityDescriptionHeaderLabel
+{
+	color: rgb(185, 220, 253);
+}
+
+.CooldownsManaCost
+{
+	flow-children: right;
+	horizontal-align: right;
+	vertical-align: center;
+	margin-right: 2px;
+}
+
+.ManaCostPanel
+{
+	flow-children: right;
+	margin-left: 4px;
+	margin-right: 4px;
+}
+
+.ManaCostIcon
+{
+	width: 18px;
+	height: 18px;
+	background-image: url("s2r://panorama/images/status_icons/ability_manacost_icon_psd.vtex");
+	background-size: 100%;
+}
+
+.ManaCostLabel
+{
+	margin-left: 2px;
+	font-size: 16px;
+	font-weight: semi-bold;
+	color: white;
+	text-shadow: 0px 0px 5px 3.0 black;
+}
+
+.CooldownCostPanel
+{
+	flow-children: right;
+	margin-left: 4px;
+	margin-right: 4px;
+}
+
+.CooldownCostIcon
+{
+	width: 18px;
+	height: 18px;
+	background-image: url("s2r://panorama/images/status_icons/ability_cooldown_icon_psd.vtex");
+	background-size: 100%;
+}
+
+.CooldownCostLabel
+{
+	margin-left: 2px;
+	font-size: 16px;
+	font-weight: semi-bold;
+	color: white;
+	text-shadow: 0px 0px 5px 3.0 black;
+}
+
+.AbilityDescription
+{
+	border: 1px solid rgba(128, 128, 128, 0.1);
+	border-top: 0px solid white;
+	width: 320px;
+	horizontal-align: center;
+	text-align: left;
+	background-color: rgba(0, 0, 0, 0.9);
+	padding: 10px;
+	font-size: 16px;
+	color: white;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+.AbilityLore
+{
+	width: 310px;
+	height: 110px;
+	text-align: left;
+	horizontal-align: center;
+	margin-top: 10px;
+	border-image-source: url("s2r://panorama/images/tooltips/border_lore_png.vtex");
+	border-width: 20px;
+	border-image-slice: 32px;
+}
+
+.AbilityLoreLabel
+{
+	align: center center;
+	width: 100%;
+	text-align: center;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #ffffff ), to( #d79cff ) );
+}
+
+.IsArtefactLore
+{
+	border-width: 0px;
+	border-image-slice: 0px;
+	background-image: url("s2r://panorama/images/tooltips/lore_special_png.vtex");
+	background-size: 100%;
+	height: 70px;
+}
+
+.IsArtefactLore .AbilityLoreLabel
+{
+	margin-left: 45px;
+	width: 250px;
+	text-align: left;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #ffffff ), to( #7daffa ) );
+}
+
+.CurrencyCost
+{
+	flow-children: right;
+	margin-left: 4px;
+	margin-right: 4px;
+}
+
+.CurrencyCostIcon
+{
+	width: 18px;
+	height: 18px;
+	background-image: url("s2r://panorama/images/game_hud/icons/gold_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+}
+
+.IsWoodIcon.CurrencyCostIcon
+{
+	background-image: url("s2r://panorama/images/game_hud/icons/wood_png.vtex");
+	background-size: 100%;
+}
+
+.CurerncyCostLabel
+{
+	color: gold;
+	font-size: 16px;
+	text-shadow: 0px 0px 5px 3.0 black;
+	margin-left: 2px;
+	vertical-align: center;
+	font-weight: semi-bold;
+}
+
+.AbilityArtefactEStats
+{
+	horizontal-align: center;
+	width: 330px;
+	flow-children: down;
+	margin-top: 10px;
+}
+
+.ArtefactEBonusPanel
+{
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	height: 30px;
+	width: 330px;
+	flow-children: right;
+	margin-bottom: 2px;
+	border-radius: 5px;
+	background-color: rgba(0, 0, 0, 0.95);
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#c0c0c0), to(#414242));
+}
+
+.ArtefactEBonusPanelPin
+{
+	vertical-align: center;
+	margin-left: 5px;
+	width: 12px;
+	height: 14px;
+	background-image: url("s2r://panorama/images/tooltips/dot_png.vtex");
+	background-size: 100%;
+}
+
+.ArtefactEBonusPanelName
+{
+	color: white;
+	font-size: 16px;
+	text-shadow: 0px 0px 5px 3.0 black;
+	margin-left: 5px;
+	vertical-align: center;
+}
+
+.ArtefactEBonusPanelValue
+{
+	color: gold;
+	font-size: 16px;
+	text-shadow: 0px 0px 5px 3.0 black;
+	margin-left: 5px;
+	vertical-align: center;
+}
+
+.ArtefactEBonusPanelTier
+{
+	width: 50px;
+	height: 24px;
+	horizontal-align: right;
+	vertical-align: center;
+	margin-right: 2px;
+	background-image: url("s2r://panorama/images/tooltips/tier0_png.vtex");
+	background-size: 100%;
+}
+
+.ArtefactEBonusPanelTierLabel
+{
+	color: white;
+	font-size: 16px;
+	margin-left: 2px;
+	text-shadow: 0px 0px 1px 3 black;
+	align: center center;
+	font-weight: semi-bold;
+}
+
+.label_artefact_panel
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.AftefactBonusTier_0 .ArtefactEBonusPanelTier
+{
+	background-image: url("s2r://panorama/images/tooltips/tier0_png.vtex");
+	background-size: 100%;
+}
+
+.AftefactBonusTier_1 .ArtefactEBonusPanelTier
+{
+	background-image: url("s2r://panorama/images/tooltips/tier1_png.vtex");
+	background-size: 100%;
+}
+
+.AftefactBonusTier_2 .ArtefactEBonusPanelTier
+{
+	background-image: url("s2r://panorama/images/tooltips/tier2_png.vtex");
+	background-size: 100%;
+}
+
+.AftefactBonusTier_3 .ArtefactEBonusPanelTier
+{
+	background-image: url("s2r://panorama/images/tooltips/tier3_png.vtex");
+	background-size: 100%;
+}
+
+.AftefactBonusTier_4 .ArtefactEBonusPanelTier
+{
+	background-image: url("s2r://panorama/images/tooltips/tier4_png.vtex");
+	background-size: 100%;
+}
+
+.AftefactBonusTier_5 .ArtefactEBonusPanelTier
+{
+	background-image: url("s2r://panorama/images/tooltips/tier5_png.vtex");
+	background-size: 100%;
+}
+
+.AftefactBonusTier_0 .ArtefactEBonusPanelTierLabel
+{
+	color: rgb(105, 104, 104);
+}
+
+.AftefactBonusTier_1 .ArtefactEBonusPanelTierLabel
+{
+	color: rgb(247, 243, 243);
+}
+
+.AftefactBonusTier_2 .ArtefactEBonusPanelTierLabel
+{
+	color: rgb(146, 255, 255);
+}
+
+.AftefactBonusTier_3 .ArtefactEBonusPanelTierLabel
+{
+	color: rgb(253, 121, 253);
+}
+
+.AftefactBonusTier_4 .ArtefactEBonusPanelTierLabel
+{
+	color: rgb(252, 190, 139);
+}
+
+.AftefactBonusTier_5 .ArtefactEBonusPanelTierLabel
+{
+	color: rgb(253, 166, 166);
+}
+
+.ArtefactEBonusPanel.AftefactBonusTier_0
+{
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#c0c0c0), to(#414242));
+}
+
+.ArtefactEBonusPanel.AftefactBonusTier_1
+{
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(rgb(133, 133, 133)), to(#414242));
+}
+
+.ArtefactEBonusPanel.AftefactBonusTier_2
+{
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(rgb(146, 255, 255)), to(#414242));
+}
+
+.ArtefactEBonusPanel.AftefactBonusTier_3
+{
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(rgb(253, 121, 253)), to(#414242));
+}
+
+.ArtefactEBonusPanel.AftefactBonusTier_4
+{
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(rgb(252, 190, 139)), to(#414242));
+}
+
+.ArtefactEBonusPanel.AftefactBonusTier_5
+{
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(rgb(253, 166, 166)), to(#414242));
+}

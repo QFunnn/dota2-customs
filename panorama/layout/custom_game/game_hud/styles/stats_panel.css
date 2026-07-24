@@ -1,0 +1,255 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.StatsPlayerPanel
+{
+	width: 300px;
+	flow-children: down;
+	margin-top: 120px;
+}
+
+.StatsNavigation
+{
+	width: 100%;
+	height: 30px;
+	flow-children: right;
+}
+
+.StatsNavigationButton
+{
+	margin: 4px;
+	width: fill-parent-flow(1);
+	height: 26px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #2a1740 ), to( #1b112b ));
+	border: 1px solid #5a3a8a33;
+	border-radius: 4px;
+	transition-property: brightness, saturation, background-color, border;
+	transition-duration: 0.2s;
+	brightness: 0.7;
+	saturation: 0.6;
+}
+
+.StatsNavigationButton:hover
+{
+	brightness: 1.2;
+	saturation: 1;
+	border: 1px solid #a56bff;
+	box-shadow: 0px 0px 6px #7c3cff88;
+}
+
+.StatsNavigateActive
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #7a3cff ), to( #3a1f7a ));
+	border: 1px solid #caa6ff;
+	brightness: 1.3;
+	saturation: 1;
+	box-shadow: 0px 0px 8px #9b5cffaa;
+}
+
+.StatsNavigationButton Label
+{
+	font-size: 16px;
+	font-weight: semi-bold;
+	color: #e6dbff;
+	text-shadow: 0px 0px 6px 2 #000000;
+	align: center center;
+	text-align: center;
+}
+
+.StatsListParent
+{
+	width: 100%;
+}
+
+.PlayersStatsList
+{
+	width: 100%;
+	flow-children: down;
+}
+
+#PlayersStatsDamageList
+{
+	visibility: collapse;
+	height: 340px;
+}
+
+#PlayersStatsAllList
+{
+	visibility: collapse;
+}
+
+.PlayerStatPanel
+{
+	margin: 4px;
+	flow-children: right;
+	width: 100%;
+	height: 50px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #140d22 ), color-stop( 0.5, #1b1230 ), to( #140d22 ));
+	border: 1px solid #b568fd5e;
+	border-radius: 6px;
+	box-shadow: 0px 0px 8px #000000cc;
+}
+
+.CurrencyStatsColumn_limiter
+{
+	width: 220px;
+	height: 1px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #140d2200 ), color-stop( 0.05, #b48cf3 ), color-stop( 0.5, #b48cf3 ), to( #140d2200 ));
+	ignore-parent-flow: true;
+	vertical-align: center;
+	opacity: 0.4;
+}
+
+.PlayerStatAvatar
+{
+	width: 40px;
+	height: 40px;
+	vertical-align: center;
+	margin-left: 5px;
+}
+
+.CurrencyStats
+{
+	margin-left: 10px;
+	flow-children: right;
+	vertical-align: center;
+}
+
+.CurrencyStatsColumn
+{
+	width: 100px;
+	flow-children: down;
+}
+
+.CurrencyStat
+{
+	flow-children: right;
+	margin: 4px;
+}
+
+.CurrencyStatIcon
+{
+	width: 16px;
+	height: 16px;
+	vertical-align: center;
+}
+
+.CurrrencyStatLabel
+{
+	color: white;
+	font-weight: semi-bold;
+	font-size: 14px;
+	vertical-align: center;
+	margin-left: 2px;
+}
+
+.PlayerDamageAbilityStat
+{
+	margin: 4px;
+	margin-bottom: 2px;
+	flow-children: down;
+	width: 100%;
+	height: 50px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #140d22 ), color-stop( 0.5, #1b1230 ), to( #140d22 ));
+	border: 1px solid #b568fd5e;
+	border-radius: 6px;
+	box-shadow: 0px 0px 8px #000000cc;
+}
+
+.PlayerDamageAbilityStatHeader
+{
+	width: 100%;
+	height: 20px;
+}
+
+.PlayerDamageAbilityStatHeaderAbilityName
+{
+	color: white;
+	font-weight: semi-bold;
+	font-size: 14px;
+	vertical-align: center;
+	margin-left: 5px;
+	vertical-align: center;
+}
+
+.PlayerDamageAbilityStatHeaderDamageCounter
+{
+	horizontal-align: right;
+	color: white;
+	font-weight: semi-bold;
+	font-size: 14px;
+	vertical-align: center;
+	margin-right: 5px;
+}
+
+.PlayerDamageAbilityStatBodyLine
+{
+	vertical-align: bottom;
+	margin-bottom: 5px;
+	horizontal-align: center;
+	width: 280px;
+	height: 20px;
+	border: 1px solid #ffffffbd;
+	border-radius: 4px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1a1026 ), to( #0d0816 ));
+	box-shadow: inset 0px 0px 6px #000000cc;
+}
+
+.PlayerDamageAbilityStatBodyLineBack
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #120a1f ), color-stop( 0.5, #1a102a ), to( #120a1f ));
+}
+
+.PlayerDamageAbilityStatBodyLineFrontList
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+}
+
+.PlayerDamageAbilityStatBodyLineFrontListFX
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/hud/facets/ripple_texture_png.vtex");
+	background-size: 450px 100%;
+	background-position: center;
+	brightness: 0;
+	z-index: 10;
+}
+
+.PlayerDamageAbilityStatBodyLineFrontPhysical
+{
+	width: 50%;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #660606 ), color-stop( 0.3, #7a1a1a ), color-stop( 0.6, #c22b2b ), to( #ff4d4d ));
+}
+
+.PlayerDamageAbilityStatBodyLineFrontMagical
+{
+	width: 50%;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #075eff ), color-stop( 0.3, #1a3f7a ), color-stop( 0.6, #2b6cc2 ), to( #4da6ff ));
+}
+
+.PlayerDamageAbilityStatBodyLinePercent
+{
+	align: center center;
+	color: white;
+	font-weight: semi-bold;
+	font-size: 14px;
+	text-shadow: 0px 0px 5px 3 black;
+	z-index: 11;
+}

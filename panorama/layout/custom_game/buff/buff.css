@@ -1,0 +1,108 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+#buffs_list
+{
+	flow-children: right;
+}
+
+.BuffRoot
+{
+	margin: 1px;
+	border-radius: 6px;
+	tooltip-position: top;
+}
+
+#BuffFrame
+{
+	box-shadow: fill #00000099 0px 0px 4px 0px;
+	border-radius: 50%;
+	width: 36px;
+	height: 36px;
+}
+
+.no_buff.BuffRoot
+{
+	visibility: collapse;
+}
+
+#StackCount
+{
+	text-shadow: 0px 0px 6px 6 #000000;
+	margin: 2px;
+	horizontal-align: right;
+	font-size: 18px;
+	z-index: 12;
+	font-family: Reaver;
+	font-weight: semi-bold;
+	text-align: center;
+	width: 100%;
+	color: white;
+	align: center center;
+	visibility: collapse;
+}
+
+.has_stacks #StackCount
+{
+	visibility: visible;
+}
+
+#BuffImage
+{
+	width: 36px;
+	height: 36px;
+	box-shadow: inset #000000aa 0px 1px 16px 1px;
+	align: center center;
+	border-radius: 50%;
+	z-index: -5;
+}
+
+#AbilityImage
+{
+	width: 100%;
+	height: 100%;
+}
+
+.item_buff #AbilityImage
+{
+	visibility: collapse;
+}
+
+#ItemImage
+{
+	width: 100%;
+	height: 100%;
+}
+
+.ability_buff #ItemImage
+{
+	visibility: collapse;
+}
+
+.CircularDuration
+{
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+	background-image: url("s2r://panorama/images/hud/reborn/buff_outline_psd.vtex");
+	background-position: 50% 50%;
+	background-size: 95% 95%;
+	border-radius: 50%;
+	background-repeat: no-repeat;
+	wash-color: #6bbd2f;
+	brightness: 4;
+}
+
+.is_debuff .CircularDuration
+{
+	wash-color: #e43c10;
+}

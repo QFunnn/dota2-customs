@@ -1,0 +1,68 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/custom_healthbar/custom_healthbar.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/custom_healthbar/custom_healthbar.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="UnitHealthBar">
+			<Panel class="UnitHealthBarContainer Hidden" hittest="false" hittestchildren="false">
+				<Panel class="UnitHealthBar OpacityHealthBars" hittest="false">
+					<Panel class="UnitTimer">
+						<Panel class="UnitTimerLabels">
+							<Label class="UnitTimerLabelTime" id="UnitTimerLabelTime" text="" />
+							<Panel class="UnitTimerIcon" />
+						</Panel>
+					</Panel>
+					<Label class="AdminID" id="AdminID" text="" />
+					<Label class="UnitName" id="UnitName" text="" />
+					<Panel class="UnitHealthBarLine">
+						<Panel class="HealthLineBack" id="HealthLineBack" />
+						<Panel class="HealthBarFront" id="HealthBarFront">
+							<Panel class="HealthBarBG" id="HealthBarBG" />
+							<Panel class="HealthBarOverlay" />
+						</Panel>
+						<Label class="HealthPercent" id="HealthPercent" text="" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="HeroHealthBar">
+			<Panel class="HeroHealthBarContainer Hidden" hittest="false" hittestchildren="false">
+				<Panel class="AvatarHero">
+					<DOTAAvatarImage id="AvatarHeroIMG" class="AvatarHeroIMG" steamid="local" />
+				</Panel>
+				<Panel class="InfoContainers">
+					<Panel class="HeroHealthBar" hittest="false">
+						<Panel class="HealthLineBack" />
+						<Panel class="HealthBarFront" id="HealthBarFront">
+							<Panel class="HealthBarBG" />
+							<Panel class="HealthBarOverlay" />
+						</Panel>
+					</Panel>
+					<Panel class="HeroManaBar" hittest="false">
+						<Panel class="ManaLineBack" />
+						<Panel class="ManaBarFront" id="ManaBarFront">
+							<Panel class="ManaBarBG" />
+							<Panel class="ManaBarOverlay" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="MainContainer" hittest="false" />
+</root>

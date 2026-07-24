@@ -1,0 +1,320 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "BoneMarkupList"
+				children = [  ]
+				bone_cull_type = "None"
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						name = "ti10_radiant_tower_model_editor"
+						filename = "models/custom_tower/custom_tower_ti10_radiant_tower_model_editor.dmx"
+					},
+				]
+			},
+			{
+				_class = "AttachmentList"
+				children = 
+				[
+					{
+						_class = "Attachment"
+						name = "attach_mouth"
+						ignore_rotation = false
+						parent_bone = "head_0"
+						relative_origin = [ 16.8241, 6.911896, 0.634512 ]
+						relative_angles = [ 0.0, 7.0, 90.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_attack1"
+						ignore_rotation = false
+						parent_bone = "head_0"
+						relative_origin = [ 16.8241, 6.911896, 0.634512 ]
+						relative_angles = [ 0.0, 7.0, 90.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_attack2"
+						ignore_rotation = false
+						parent_bone = "head_0"
+						relative_origin = [ 16.8241, 6.911896, 0.634512 ]
+						relative_angles = [ 0.0, 7.0, 90.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_hitloc"
+						ignore_rotation = false
+						parent_bone = "body_1"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+				]
+			},
+			{
+				_class = "WeightListList"
+				children = 
+				[
+					{
+						_class = "WeightList"
+						name = "_empty_anim_weightlist"
+						weights = [  ]
+					},
+				]
+			},
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					{
+						_class = "AnimFile"
+						name = "ti10_radiant_tower_idle"
+						source_filename = "models/custom_tower/ti10_radiant_tower_idle.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_IDLE"
+						activity_weight = 1
+					},
+					{
+						_class = "AnimFile"
+						name = "ti10_radiant_tower_attack"
+						source_filename = "models/custom_tower/ti10_radiant_tower_attack.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_ATTACK"
+						activity_weight = 1
+						children = 
+						[
+							{
+								_class = "ExtractMotion"
+								extract_tx = true
+								extract_ty = true
+								extract_tz = false
+								extract_rz = false
+								linear = false
+								quadratic = false
+								motion_type = "uniform"
+							},
+						]
+					},
+					{
+						_class = "AnimFile"
+						name = "ti10_radiant_tower_death"
+						source_filename = "models/custom_tower/ti10_radiant_tower_death.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_DIE"
+						activity_weight = 1
+						children = 
+						[
+							{
+								_class = "ExtractMotion"
+								extract_tx = true
+								extract_ty = true
+								extract_tz = false
+								extract_rz = false
+								linear = false
+								quadratic = false
+								motion_type = "uniform"
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "GameDataList"
+				children = 
+				[
+					{
+						_class = "GenericGameData"
+						name = "ti10_radiant_tower_ambient"
+						game_class = "particle_cfg"
+						game_keys = 
+						{
+							name = resource:"particles/econ/world/towers/ti10_radiant_tower/ti10_radiant_tower_ambient.vpcf"
+							config = "preview"
+						}
+					},
+				]
+			},
+			{
+				_class = "HitboxSetList"
+				children = 
+				[
+					{
+						_class = "HitboxSet"
+						name = "select_low"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -30.127661, -45.196018, -43.647339 ]
+								hitbox_maxs = [ 67.255676, 44.458832, 43.64732 ]
+								name = "root"
+								parent_bone = "root"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "select_high"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -112.1502, -65.214905, -59.64085 ]
+								hitbox_maxs = [ 250.359299, 67.464218, 65.865944 ]
+								name = "root1"
+								parent_bone = "root"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "Skeleton"
+				children = 
+				[
+					{
+						_class = "Bone"
+						name = "root"
+						origin = [ -0.0, -0.0, 0.0 ]
+						angles = [ -83.890381, 179.999924, 90.000061 ]
+						do_not_discard = true
+						children = 
+						[
+							{
+								_class = "Bone"
+								name = "body_0"
+								origin = [ 77.791245, 0.000046, 0.000048 ]
+								angles = [ 0.000005, -23.84281, 0.000002 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "body_1"
+										origin = [ 61.514458, 0.000015, 0.000045 ]
+										angles = [ -0.000001, 12.678383, -0.000001 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "body_2"
+												origin = [ 49.801147, 0.000076, 0.000057 ]
+												angles = [ -0.000002, 42.97123, -0.000009 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "body_3"
+														origin = [ 52.060455, 0.000214, 0.000091 ]
+														angles = [ 0.000004, 37.976204, -0.000022 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "neck_0"
+																origin = [ 45.926231, 0.000214, 0.000109 ]
+																angles = [ 0.000004, 31.902348, -0.000077 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "head_0"
+																		origin = [ 31.114504, 0.000183, 0.000109 ]
+																		angles = [ -0.000014, 6.090356, 0.000114 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "mouth_0"
+																				origin = [ 10.039589, 16.249619, 0.000078 ]
+																				angles = [ 0.000022, 20.908428, 179.999878 ]
+																				do_not_discard = true
+																			},
+																			{
+																				_class = "Bone"
+																				name = "cheek_0_l"
+																				origin = [ 10.954494, 17.384598, 34.276314 ]
+																				angles = [ -32.224346, 166.4151, 92.746902 ]
+																				do_not_discard = true
+																			},
+																			{
+																				_class = "Bone"
+																				name = "cheek_0_r"
+																				origin = [ 10.954422, 17.384064, -34.276234 ]
+																				angles = [ -32.224327, -13.584878, 92.74678 ]
+																				do_not_discard = true
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "base"
+								origin = [ 0.0, 0.0, -0.0 ]
+								angles = [ -90.0, -51.110039, -30.709291 ]
+								do_not_discard = true
+							},
+						]
+					},
+				]
+			},
+		]
+	}
+}

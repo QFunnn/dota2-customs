@@ -1,0 +1,2095 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.PromoWindow
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#081223), to(#1a0810));
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.24s;
+	transition-timing-function: ease-in-out;
+}
+
+.WindowVisible
+{
+	opacity: 1;
+}
+
+.WindowVisible .PromoWindow
+{
+	opacity: 1;
+}
+
+.PromoBG
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	background-color: gradient( radial, 50% 30%, 0% 0%, 70% 70%, from( #2b1748 ), color-stop( 0.35, #140b25 ), color-stop( 0.75, #09050f ), to( rgb(0, 0, 0) ) );
+	background-image: url("s2r://panorama/images/game_hud/backgrounds/bg2_png.vtex");
+	background-size: 100%;
+	background-img-opacity: 0.02;
+	animation-name: BGScalex;
+	animation-duration: 7s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	z-index: -2;
+}
+
+@keyframes 'BGScalex'
+{
+	0%
+	{
+		transform: scale3d(1, 1, 1);
+		brightness: 1;
+	}
+	
+	50%
+	{
+		transform: scale3d(1.02, 1.02, 1);
+		brightness: 0.5;
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 1, 1);
+		brightness: 1;
+	}
+	
+}
+
+.PFXBackground
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	wash-color: rgb(209, 141, 255);
+	opacity: 0.2;
+	z-index: -1;
+}
+
+.PromoSceneGlow
+{
+	ignore-parent-flow: true;
+	width: 520px;
+	height: 520px;
+	wash-color: #2ce6ff33;
+	background-color: gradient(radial, 50% 50%, 0% 0%, 50% 50%, from(#56c9ff22), to(#56c9ff00));
+}
+
+.PromoSceneGlowLeft
+{
+	margin-left: 180px;
+	margin-top: 120px;
+}
+
+.PromoSceneGlowRight
+{
+	horizontal-align: right;
+	margin-right: 220px;
+	margin-top: 160px;
+	wash-color: #ff9a4f22;
+}
+
+.PromoSidebar
+{
+	width: 300px;
+	vertical-align: center;
+	flow-children: down;
+	vertical-align: center;
+	padding: 32px 18px;
+}
+
+.PromoNavButton
+{
+	width: 100%;
+	height: 62px;
+	margin-bottom: 14px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #4b2a7aee ), to( #1a0f2aee ) );
+	border-top: 2px solid #b48cf3;
+	border-left: 2px solid #1a0f2a;
+	border-right: 2px solid #1a0f2a;
+	border-bottom: 2px solid #1a0f2a;
+	box-shadow: 0px 0px 3px 0px #6a3fb3aa;
+	transition-property: brightness, transform, box-shadow;
+	transition-duration: 0.15s;
+	saturation: 0.7;
+	brightness: 0.8;
+}
+
+.PromoNavButton:hover
+{
+	saturation: 1;
+	brightness: 1.2;
+	box-shadow: 0px 0px 8px 0px #8f5cffcc;
+}
+
+.PromoNavButton:active
+{
+	transform: translateX(2px) scale3d(0.98, 0.98, 1);
+}
+
+.PromoNavButtonActive
+{
+	saturation: 1;
+	brightness: 1.2;
+	box-shadow: 0px 0px 8px 0px #8f5cffcc;
+}
+
+.PromoNavButtonLabel
+{
+	width: 100%;
+	height: 30px;
+	text-overflow: shrink;
+	font-size: 26px;
+	font-weight: semi-bold;
+	text-align: left;
+	vertical-align: center;
+	letter-spacing: 0.3px;
+	text-shadow: 0px 0px 5px 3 black;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+	padding: 0px 18px;
+}
+
+.PromoNavBadge
+{
+	width: 16px;
+	height: 16px;
+	horizontal-align: right;
+	margin-right: 2px;
+	margin-top: 2px;
+	border-radius: 50%;
+	background-color: #d63825;
+	visibility: collapse;
+}
+
+.PromoContent
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	flow-children: down;
+	padding: 16px 26px 24px 0px;
+}
+
+.PromoTopBar
+{
+	margin-top: 20px;
+	width: 100%;
+	height: 56px;
+	z-index: 10;
+	ignore-parent-flow: true;
+}
+
+.PromoCurrencyRow
+{
+	horizontal-align: right;
+	flow-children: right;
+	padding-right: 100px;
+}
+
+.PromoCurrencyPanel
+{
+	width: 160px;
+	height: 44px;
+	margin-left: 12px;
+	padding: 0px 14px;
+	flow-children: right;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #2b123fdd ), color-stop( 0.45, #51207add ), to( #1a0c2bdd ) );
+	border: 1px solid #d5aaf7;
+	border-brush: gradient( linear, 0% 0%, 100% 0%, from( #ffb3ff ), color-stop( 0.35, #c45cff ), color-stop( 0.7, #7b2cff ), to( #e58cff ) );
+	border-radius: 6px;
+	box-shadow: #d35cff44 0px 0px 6px 0px;
+}
+
+.PromoCurrencyIcon
+{
+	width: 32px;
+	height: 32px;
+	vertical-align: center;
+}
+
+.PromoCurrencyAmount
+{
+	text-overflow: shrink;
+	margin-left: 10px;
+	vertical-align: center;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+	font-size: 24px;
+	font-weight: bold;
+	text-shadow: 0px 1px 2px 2 #000000cc;
+}
+
+.PromoContentFrame
+{
+	width: 1594px;
+	height: 850px;
+	vertical-align: center;
+	overflow: noclip;
+}
+
+.PromoQuestBG
+{
+	width: 1594px;
+	height: 850px;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr17_png.vtex");
+	background-size: 100%;
+	ignore-parent-flow: true;
+	img-shadow: 0px 0px 60px 10 black;
+}
+
+.PromoSectionBody
+{
+	width: 100%;
+	height: 100%;
+	overflow: squish scroll;
+}
+
+.PromoExitCross
+{
+	z-index: 100;
+	horizontal-align: right;
+	margin-right: 10px;
+	margin-top: 10px;
+	ignore-parent-flow: true;
+	width: 64px;
+	height: 64px;
+	background-image: url("s2r://panorama/images/game_hud/icons/close_new_png.vtex");
+	background-size: 100%;
+	transition-property: brightness, transform;
+	transition-duration: 0.25s;
+	opacity: 1;
+	saturation: 0.75;
+	img-shadow: 0px 0px 1px 1 white;
+}
+
+.PromoExitCross:hover
+{
+	opacity: 1;
+	brightness: 2;
+}
+
+.PromoExitCross:active
+{
+	transform: scale3d(0.9, 0.9, 1);
+}
+
+.PromoSplitRoot
+{
+	width: 100%;
+	height: 100%;
+	flow-children: none;
+}
+
+.PromoShowcase
+{
+	width: 940px;
+	height: 850px;
+	flow-children: down;
+	z-index: -1;
+	ui-scale: 92%;
+	transform: translateX(55px) translateY(50px);
+}
+
+.PromoShowcaseTasks
+{
+	background-image: url("s2r://panorama/images/game_hud/promo/q_bg_png.vtex");
+	background-size: 100% 100%;
+}
+
+.left_progress
+{
+	width: 100%;
+	height: 850px;
+	z-index: -1;
+	ignore-parent-flow: true;
+	background-image: url("s2r://panorama/images/game_hud/promo/q_bg22_png.vtex");
+	background-size: 940px 850px;
+	background-repeat: no-repeat;
+	brightness: 1;
+}
+
+.PromoShowcaseTitleWrap
+{
+	flow-children: down;
+	margin: 100px;
+	margin-top: 60px;
+}
+
+.PromoShowcaseTitle
+{
+	font-size: 42px;
+	color: white;
+	text-transform: uppercase;
+	font-family: Reaver;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 0px 0px 12px 3 #7444aacc;
+	color: rgb(242, 227, 248);
+	text-shadow: 0px 0px 12px 3 #6f13bb2c;
+}
+
+.PromoShowcaseSubtitle
+{
+	font-size: 14px;
+	horizontal-align: center;
+	color: white;
+	text-transform: uppercase;
+	font-family: Reaver;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 0px 0px 3px 3 #000000cc;
+	color: rgb(252, 228, 122);
+}
+
+.PromoShowcaseProgress
+{
+	font-size: 24px;
+	color: white;
+	text-transform: uppercase;
+	font-family: Reaver;
+	font-weight: bold;
+	text-align: center;
+	horizontal-align: center;
+	margin-top: 30px;
+	text-shadow: 0px 0px 3px 3 #000000cc;
+}
+
+.PromoMilestoneWrap
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+}
+
+.PromoMilestoneNode
+{
+	width: 100px;
+	flow-children: down;
+}
+
+.PromoMilestoneContent
+{
+	width: 100px;
+	height: 100px;
+	horizontal-align: center;
+}
+
+.PromoMilestoneReady .PromoMilestoneContent
+{
+	brightness: 1.7;
+	animation-name: PromoMilestoneReadyPulse;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+.PromoMilestoneClaimed .PromoMilestoneContent
+{
+	saturation: 0.55;
+	brightness: 0.75;
+}
+
+.PromoMilestoneNode0
+{
+	transform: translateY(400px) translateX(160px);
+}
+
+.PromoMilestoneNode1
+{
+	transform: translateY(610px) translateX(50px);
+}
+
+.PromoMilestoneNode2
+{
+	transform: translateY(690px) translateX(230px);
+}
+
+.PromoMilestoneNode3
+{
+	transform: translateY(630px) translateX(420px);
+}
+
+.PromoMilestoneNode4
+{
+	transform: translateY(530px) translateX(590px);
+}
+
+.PromoMilestoneNode5
+{
+	transform: translateY(510px) translateX(830px);
+}
+
+.PromoMilestoneBG1
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_without_border_png.vtex");
+	background-size: 100%;
+	z-index: 6;
+	img-shadow: 0px 0px 10px 5 black;
+	ignore-parent-flow: true;
+}
+
+.PromoMilestoneBG2
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_png.vtex");
+	background-size: 100%;
+	z-index: -1;
+	ignore-parent-flow: true;
+}
+
+.PromoMilestoneIcon
+{
+	width: 60%;
+	height: 60%;
+	align: center center;
+	horizontal-align: center;
+	opacity: 0.95;
+}
+
+.PromoMilestoneCount
+{
+	width: 85px;
+	horizontal-align: center;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	text-align: center;
+	color: #ffffff;
+	font-size: 18px;
+	font-weight: bold;
+	background-color: #0a0a0acc;
+	text-shadow: 0px 2px 2px 2 #000000ee;
+	vertical-align: bottom;
+	margin-bottom: 10px;
+}
+
+.PromoMilestoneNeed
+{
+	width: 85px;
+	horizontal-align: center;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	text-align: center;
+	color: #ffffff;
+	font-size: 18px;
+	font-weight: bold;
+	background-color: #000000c2;
+	text-shadow: 0px 2px 2px 2 #000000ee;
+	vertical-align: bottom;
+	margin-bottom: 15px;
+	border-radius: 10px;
+	box-shadow: hollow 0px 0px 8px 0px #8e75c410;
+}
+
+.PromoMilestoneReady .PromoMilestoneNeed
+{
+	color: #ffe88a;
+	box-shadow: 0px 0px 6px 0px #ffc54366;
+}
+
+.PromoMilestoneCheck
+{
+	width: 34px;
+	height: 34px;
+	horizontal-align: right;
+	vertical-align: top;
+	margin-top: 4px;
+	margin-right: 4px;
+	background-image: url("s2r://panorama/images/game_hud/promo/check_png.vtex");
+	background-size: 100% 100%;
+	z-index: 12;
+	img-shadow: 0px 0px 8px 2 #000000dd;
+}
+
+@keyframes 'PromoMilestoneReadyPulse'
+{
+	0%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1.02, 1.02, 1);
+	}
+	
+}
+
+.PromoTaskListPanel
+{
+	width: 653px;
+	height: 850px;
+	flow-children: down;
+	horizontal-align: right;
+	transform: translateX(-93px) translateY(85px);
+	ui-scale: 88%;
+}
+
+.PromoTaskListTabs
+{
+	width: 590px;
+	height: 45px;
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.PromoInnerTab
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	margin: 3px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #7938c4 ), to( #3c157c ));
+	border: 1px solid black;
+	border-radius: 4px;
+	transition-property: brightness, saturation, background-color, border;
+	transition-duration: 0.2s;
+	brightness: 0.7;
+	saturation: 0.6;
+}
+
+.PromoInnerTab:hover
+{
+	brightness: 1.3;
+	saturation: 1;
+	border: 1px solid #a56bff;
+	box-shadow: 0px 0px 6px #7c3cff88;
+}
+
+.PromoInnerTabActive
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #7a3cff ), to( #3a1f7a ));
+	border: 2px solid #13022e77;
+	brightness: 1.3;
+	saturation: 1;
+	box-shadow: 0px 0px 4px #9b5cffaa;
+}
+
+.PromoInnerTab Label
+{
+	font-size: 16px;
+	font-weight: semi-bold;
+	color: #e6dbff;
+	text-shadow: 0px 0px 6px 2 #000000;
+	align: center center;
+	text-align: center;
+}
+
+.PromoInnerTabActive Label
+{
+	color: #fff6bf;
+}
+
+.PromoTaskListBody
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	padding: 14px;
+	margin-top: 20px;
+	flow-children: down;
+	overflow: squish scroll;
+}
+
+.PromoTaskListFooter
+{
+	width: 100%;
+	padding: 14px;
+	padding-top: 0px;
+	margin-bottom: 20px;
+}
+
+.PromoCompactTaskCard
+{
+	width: 100%;
+	min-height: 108px;
+	margin-bottom: 12px;
+}
+
+.PromoCompactTaskCardReady .PromoCompactTaskCardBG
+{
+	opacity: 0.95;
+	brightness: 6;
+	box-shadow: 0px 0px 16px 1px #ffc54344;
+}
+
+.PromoCompactTaskCardClaimed
+{
+	saturation: 0.55;
+	brightness: 0.75;
+}
+
+.PromoCompactTaskCardLocked
+{
+	saturation: 0.35;
+	brightness: 0.55;
+}
+
+.PromoCompactTaskCardContent
+{
+	width: 100%;
+	vertical-align: center;
+	padding: 10px 12px;
+	flow-children: right;
+}
+
+.PromoCompactTaskCardBG
+{
+	z-index: -1;
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	brightness: 5;
+	background-image: url("s2r://panorama/images/game_hud/promo/q_frame_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 2px 3 black;
+	opacity: 0.7;
+}
+
+.PromoCalendarBG
+{
+	z-index: -2;
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	brightness: 2;
+	background-image: url("s2r://panorama/images/game_hud/promo/day_bg_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 2px 3 black;
+	opacity: 0.7;
+}
+
+.PromoCalendarBG1
+{
+	z-index: 2;
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	brightness: 2;
+	background-image: url("s2r://panorama/images/game_hud/promo/day_bg_1_png.vtex");
+	background-size: 100%;
+	opacity: 1;
+}
+
+.PromoCompactTaskLeft
+{
+	width: 300px;
+	flow-children: down;
+}
+
+.PromoCompactTaskTitle
+{
+	color: #f7f7e0;
+	font-size: 18px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 3px 3 #000000cc;
+}
+
+.PromoCompactTaskDescription
+{
+	margin-top: 2px;
+	color: #cfd4c9;
+	font-size: 16px;
+	white-space: normal;
+}
+
+.PromoCompactProgressBar
+{
+	width: 100%;
+	height: 23px;
+	margin-top: 8px;
+	background-color: #23261e;
+	border: 1px solid #4e5548;
+	border-radius: 8px;
+}
+
+.PromoCompactProgressFill
+{
+	width: 50%;
+	height: 100%;
+	border-radius: 8px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #ffc812 ), to( #f1e31e ) );
+}
+
+.PromoCompactProgressValue
+{
+	vertical-align: center;
+	horizontal-align: center;
+	margin-top: 2px;
+	text-shadow: 0px 0px 3px 3 #000000cc;
+	color: #ffffff;
+	font-size: 18px;
+	font-weight: semi-bold;
+}
+
+.PromoCompactRewards
+{
+	flow-children: right-wrap;
+	margin-left: 10px;
+	vertical-align: center;
+}
+
+.PromoCompactTaskState
+{
+	width: 150px;
+	horizontal-align: right;
+	vertical-align: center;
+	text-align: center;
+	color: #ff442f;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.PromoCompactTaskCardClaimed .PromoCompactTaskState
+{
+	color: #92e68b;
+}
+
+.PromoCompactTaskCardLocked .PromoCompactTaskState
+{
+	color: #c9b46a;
+}
+
+.PromoRewardTask
+{
+	width: 60px;
+	height: 60px;
+	margin: 2px;
+}
+
+.reward_bg_1
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_without_border_png.vtex");
+	background-size: 100%;
+	z-index: 6;
+	img-shadow: 0px 0px 10px 2 black;
+	ignore-parent-flow: true;
+}
+
+.reward_bg_2
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_png.vtex");
+	background-size: 100%;
+	z-index: -1;
+	ignore-parent-flow: true;
+}
+
+.PromoRewardSmall
+{
+	width: 70px;
+	height: 70px;
+	margin-right: 8px;
+}
+
+.PromoRewardLarge
+{
+	width: 120px;
+	height: 120px;
+	horizontal-align: center;
+}
+
+.PromoRewardPoster
+{
+	width: 100px;
+	height: 100px;
+	margin-bottom: 0px;
+}
+
+.PromoRewardIcon
+{
+	width: 70%;
+	height: 70%;
+	align: center center;
+}
+
+.PromoRewardCount
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	width: 100%;
+	margin-left: 12px;
+	margin-right: 12px;
+	margin-bottom: 10px;
+	text-align: center;
+	background-color: #000000cc;
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.PromoRewardTask .PromoRewardCount
+{
+	margin-left: 4px;
+	margin-right: 4px;
+	margin-bottom: 6px;
+}
+
+.PromoRewardSmall .PromoRewardCount
+{
+	margin-left: 8px;
+	margin-right: 8px;
+	margin-bottom: 6px;
+}
+
+.PromoRewardLarge .PromoRewardCount
+{
+	margin-left: 12px;
+	margin-right: 12px;
+	margin-bottom: 10px;
+	font-size: 20px;
+}
+
+.PromoActionButton,.PromoActionButton2,.PromoTaskClaimButton,.PromoTinyButton,.PromoThrowButton
+{
+	width: 150px;
+	height: 48px;
+	transition-property: brightness, transform;
+	transition-duration: 0.15s;
+	horizontal-align: right;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #ebbe42 ), color-stop( 0.18, #ffd85c ), color-stop( 0.52, #d49a1f ), color-stop( 0.78, #9c6810 ), to( #5e3a08 ) );
+	border: 2px solid #ebd5ab;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( #fffbe0 ), to( #b87a18 ) );
+	box-shadow: #000000cc 0px 0px 2px 2px;
+}
+
+.PromoActionButton2
+{
+	width: 250px;
+	height: 48px;
+	horizontal-align: center;
+	margin-top: 20px;
+}
+
+.PromoClaimAllButton
+{
+	width: 250px;
+	height: 48px;
+	transition-property: brightness, transform;
+	transition-duration: 0.15s;
+	horizontal-align: center;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #b97cff ), color-stop( 0.18, #d8a6ff ), color-stop( 0.52, #8e49e6 ), color-stop( 0.78, #5d239f ), to( #2d0f52 ) );
+	border: 2px solid #d9b8ff;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( #f7eaff ), to( #7a33d1 ) );
+	box-shadow: #000000cc 0px 0px 6px 3px;
+}
+
+.PromoTaskClaimButton
+{
+	vertical-align: center;
+}
+
+.PromoActionButton:hover,.PromoActionButton2:hover,.PromoTaskClaimButton:hover,.PromoClaimAllButton:hover,.PromoTinyButton:hover,.PromoThrowButton:hover
+{
+	brightness: 1.12;
+}
+
+.PromoActionButton:active,.PromoActionButton2:active,.PromoTaskClaimButton:active,.PromoClaimAllButton:active,.PromoTinyButton:active,.PromoThrowButton:active
+{
+	transform: scale3d(0.98, 0.98, 1);
+}
+
+.PromoActionButton Label,.PromoActionButton2 Label,.PromoTaskClaimButton Label,.PromoClaimAllButton Label,.PromoTinyButton Label,.PromoThrowButton Label
+{
+	align: center center;
+	color: #fff8d5;
+	font-size: 22px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 2px 3 #000000cc;
+}
+
+.PromoTinyButton
+{
+	width: 220px;
+	margin-left: 12px;
+}
+
+.PromoThrowButton
+{
+	width: 260px;
+	height: 58px;
+}
+
+.PromoThrowButtonBlue
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#52d1ff), to(#225dc6));
+}
+
+.PromoThrowButtonRed
+{
+	margin-left: 30px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#ff8d69), to(#b82f2d));
+}
+
+.PromoInviteClaimButton
+{
+	width: 201px;
+	height: 49px;
+	transition-property: brightness, transform;
+	transition-duration: 0.15s;
+	horizontal-align: center;
+	margin-top: 5px;
+	background-image: url("s2r://panorama/images/game_hud/promo/invite_button_png.vtex");
+	background-size: 100%;
+}
+
+.PromoInviteClaimButton:hover
+{
+	brightness: 1.12;
+}
+
+.PromoInviteClaimButton:active
+{
+	transform: scale3d(0.98, 0.98, 1);
+}
+
+.PromoInviteClaimButton Label
+{
+	align: center center;
+	color: #edcfff;
+	font-size: 22px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 2px 3 #000000cc;
+}
+
+.PromoButtonDisabled
+{
+	brightness: 0.45;
+	saturation: 0.15;
+}
+
+.PromoButtonDisabled:hover
+{
+	brightness: 0.45;
+}
+
+.PromoButtonDisabled:active
+{
+	transform: none;
+}
+
+.PromoEntryDisabled
+{
+	brightness: 0.55;
+	saturation: 0.1;
+}
+
+.PromoCalendarScene
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+}
+
+.PromoCalendarHeader
+{
+	width: 1440px;
+	horizontal-align: center;
+	margin-top: 50px;
+	height: 230px;
+	flow-children: right;
+	box-shadow: inset #000000e7 0px 0px 10px 3px;
+}
+
+.PromoCalendarThemeMoon .PromoCalendarHeader
+{
+	background-image: url("s2r://panorama/images/game_hud/promo/day_bg_2_png.vtex");
+	background-size: 100%;
+	saturation: 0.95;
+}
+
+.PromoCalendarThemeFire .PromoCalendarHeader
+{
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#53251a), to(#130d15));
+}
+
+.PromoCalendarTitleBlock
+{
+	margin-left: 70px;
+	margin-top: 50px;
+	flow-children: down;
+}
+
+.PromoCalendarSubTitle
+{
+	color: #ff8aef;
+	font-size: 28px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 12px 5 #000000cc;
+}
+
+.PromoCalendarTitle
+{
+	color: #ffe444;
+	color: rgb(248, 227, 38);
+	font-size: 72px;
+	font-weight: bold;
+	text-shadow: 0px 0px 12px 52 #000000;
+	font-family: Reaver;
+}
+
+.PromoCalendarInfoText
+{
+	margin-top: 12px;
+	color: white;
+	font-size: 22px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 12px 52 #000000;
+}
+
+.PromoCalendarClaimWrap
+{
+	margin-top: 15px;
+	vertical-align: center;
+	margin-left: 45px;
+	margin-bottom: 25px;
+	padding: 5px;
+}
+
+.PromoCalendarClaimButton
+{
+	width: 220px;
+	height: 50px;
+	align: center center;
+}
+
+.PromoCalendarDaysFrame
+{
+	horizontal-align: center;
+	width: 1400px;
+	height: 500px;
+	padding: 10px 18px 18px 18px;
+}
+
+.PromoCalendarDays
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+}
+
+.PromoTallDayCard
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	margin-right: 12px;
+	padding: 16px 10px 10px 10px;
+	flow-children: down;
+	border: 1px solid white;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( rgba(255, 210, 120, 0.22) ), color-stop( 0.18, rgba(255, 140, 40, 0.35) ), color-stop( 0.38, rgba(255, 80, 20, 0.28) ), color-stop( 0.55, rgba(180, 20, 10, 0.16) ), color-stop( 0.75, rgba(255, 90, 0, 0.24) ), to( rgba(255, 220, 120, 0.05) ) );
+	box-shadow: inset #00000077 0px 0px 10px 1px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( rgba(255, 210, 120, 0.22) ), color-stop( 0.18, rgba(255, 140, 40, 0.35) ), color-stop( 0.38, rgba(255, 80, 20, 0.28) ), color-stop( 0.55, rgba(180, 20, 10, 0.16) ), color-stop( 0.75, rgba(255, 90, 0, 0.24) ), to( rgba(255, 220, 120, 0.05) ) );
+}
+
+.PromoTallDayCardLocked
+{
+	saturation: 0;
+	brightness: 0.55;
+}
+
+.PromoTallDayCardReady
+{
+	saturation: 1;
+	animation-name: PromoDailyReadyBlink;
+	animation-duration: 0.6s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	box-shadow: hollow rgba(255, 217, 0, 0.5) 0px 0px 10px 1px;
+}
+
+@keyframes 'PromoDailyReadyBlink'
+{
+	0%
+	{
+		brightness: 0.85;
+		box-shadow: hollow rgba(255, 217, 0, 0.5) 0px 0px 5px 1px;
+	}
+	
+	100%
+	{
+		brightness: 1.35;
+		box-shadow: hollow rgba(255, 217, 0, 1) 0px 0px 10px 1px;
+	}
+	
+}
+
+.PromoTallDayRewards
+{
+	horizontal-align: center;
+	height: fill-parent-flow(1);
+	flow-children: down;
+	horizontal-align: center;
+	margin-top: 12px;
+}
+
+.PromoTallDayLabel
+{
+	width: 100%;
+	text-align: center;
+	color: #fff4cd;
+	font-size: 26px;
+	font-weight: bold;
+	text-shadow: 0px 2px 2px 3 #000000cc;
+}
+
+.PromoClaimedStamp
+{
+	horizontal-align: center;
+	margin-top: -12px;
+	padding: 4px 12px;
+	background-color: #2f6d35dd;
+	color: #e6ffdf;
+	font-size: 20px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.PromoSurveyScene
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	background-image: url("s2r://panorama/images/game_hud/promo/opros2_png.vtex");
+	background-size: 100%;
+}
+
+.PromoInviteScene
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	background-image: url("s2r://panorama/images/game_hud/promo/invite_bg2_png.vtex");
+	background-size: 100%;
+}
+
+.PromoInviteExchangeBar,.PromoInviteInfoBar
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.PromoInviteInfoBar
+{
+	margin-top: 80px;
+	padding: 18px;
+	width: 1594px;
+	height: 194px;
+	ui-scale: 70%;
+	horizontal-align: center;
+}
+
+.PromoInviteInfoBarContent
+{
+	horizontal-align: center;
+	flow-children: right;
+	margin-top: 20px;
+	padding: 5px;
+}
+
+.PromoInviteExchangeBar
+{
+	padding: 0px 0px 10px 0px;
+	horizontal-align: right;
+}
+
+.PromoTopEntry,.PromoWideEntry
+{
+	horizontal-align: center;
+	height: 46px;
+	padding: 8px 12px;
+	background-color: #191919;
+	border: 2px solid #4a4233;
+	color: #ffffff;
+	font-size: 22px;
+	border-radius: 10px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #4e1a7883 ), color-stop( 0.25, #3a125d80 ), color-stop( 0.55, #441174b6 ), color-stop( 0.8, #350c61dd ), to( #270747cc ) );
+	border: 1px solid #000000;
+	box-shadow: #000000fd 0px 0px 10px 0px;
+}
+
+.PromoTopEntry
+{
+	width: 280px;
+}
+
+.PromoWideEntry
+{
+	width: 520px;
+}
+
+.PromoInviteOwnInfo
+{
+	flow-children: down;
+	horizontal-align: center;
+}
+
+.PromoInviteOwnCode
+{
+	color: #d8d8d8;
+	font-size: 36px;
+	font-weight: bold;
+	text-shadow: 0px 0px 2px 5 #000000cc;
+	horizontal-align: center;
+}
+
+.PromoInviteOwnCount
+{
+	margin-top: 8px;
+	color: white;
+	font-size: 22px;
+	horizontal-align: center;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 2px 3 #000000cc;
+}
+
+.PromoInviteGridFrame
+{
+	margin-top: 60px;
+	padding: 50px;
+	padding-top: 25px;
+	ui-scale: 80%;
+	horizontal-align: center;
+}
+
+.PromoInviteGrid
+{
+	flow-children: right-wrap;
+	overflow: squish scroll;
+}
+
+.PromoInviteRewardCard
+{
+	width: 256px;
+	height: 256px;
+	margin: 8px 18px 18px 8px;
+	padding: 12px;
+	flow-children: down;
+	background-image: url("s2r://panorama/images/game_hud/promo/invite_block_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 10px 2 rgb(81, 2, 155);
+}
+
+.PromoInviteRewardCardReady
+{
+	animation-name: PromoDailyReadyBlink;
+	animation-duration: 0.6s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+.PromoInviteRewardCardClaimed
+{
+	brightness: 0.1;
+	saturation: 1;
+}
+
+.PromoInviteRewardCardTitle
+{
+	margin-top: 20px;
+	width: 100%;
+	color: white;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 0px 0px 2px 2 black;
+}
+
+.PromoInviteRewardCardItems
+{
+	width: 100%;
+	flow-children: down;
+	horizontal-align: center;
+}
+
+.PromoInviteRewardCardNeed
+{
+	width: 100%;
+	text-align: center;
+	color: white;
+	font-size: 20px;
+	font-weight: semi-bold;
+}
+
+.PromoSurveyPaper
+{
+	margin-top: 90px;
+	width: 1000px;
+	ui-scale: 90%;
+	horizontal-align: center;
+	flow-children: down;
+	padding-bottom: 30px;
+}
+
+.PromoSurveyPaperTitle
+{
+	width: 100%;
+	text-align: center;
+	color: rgb(223, 176, 253);
+	font-size: 36px;
+	font-weight: bold;
+	margin-top: 18px;
+	margin-bottom: 40px;
+	text-shadow: 0px 0px 5px 3 black;
+}
+
+.PromoSurveyBlock
+{
+	width: 100%;
+	margin-top: 20px;
+	padding: 14px;
+	flow-children: down;
+	border: 2px solid #a18d6a00;
+}
+
+.PromoSurveyBlockTitle
+{
+	color: #fdc274ea;
+	font-size: 28px;
+	font-weight: semi-bold;
+	font-family: Reaver;
+	text-shadow: 0px 0px 4px 3 #000000e5;
+	width: 70%;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #4d24044f ), color-stop( 0.1, #4d24044f ), to( #00000000 ) );
+	border-brush: gradient( linear, 0% 0%, 100% 0%, from( #883f04dc ), color-stop( 0.1, #883f04dc ), to( #00000000 ) );
+	border: 1px solid white;
+	border-left: 0px;
+	padding-left: 10px;
+}
+
+.PromoSurveySourceGrid
+{
+	width: 100%;
+	flow-children: right-wrap;
+	margin-top: 12px;
+}
+
+.PromoSurveyChoice
+{
+	width: 19%;
+	height: 44px;
+	margin: 0px 8px 8px 0px;
+	padding: 0px 10px;
+	flow-children: right;
+	background-color: #00000008;
+	border: 2px solid #8b6b42;
+}
+
+.PromoSurveyBinaryChoice
+{
+	width: 160px;
+	margin-top: 12px;
+}
+
+.PromoSurveyChoiceActive
+{
+	border: 2px solid #4f8f42;
+	background-color: #d8e9c3;
+}
+
+.PromoSurveyCheckbox
+{
+	width: 28px;
+	height: 28px;
+	vertical-align: center;
+	background-color: #dfd2b4;
+	border: 2px solid #89724d;
+}
+
+.PromoSurveyChoiceActive .PromoSurveyCheckbox
+{
+	background-image: url("s2r://panorama/images/game_hud/promo/check_png.vtex");
+	background-size: 100%;
+}
+
+.PromoSurveyChoiceLabel
+{
+	width: fill-parent-flow(1);
+	margin-left: 10px;
+	vertical-align: center;
+	color: #332416;
+	font-size: 18px;
+}
+
+.PromoSurveyFeedbackBlock
+{
+	margin-top: 0px;
+	height: 150px;
+}
+
+.PromoSurveyFeedbackEntry
+{
+	width: 88%;
+	height: 92px;
+	padding: 10px 12px;
+	color: #f7ead6;
+	font-size: 20px;
+	background-color: #00000008;
+	border: 2px solid #8b6b42;
+	text-shadow: 0px 1px 2px 2 #000000;
+}
+
+.PromoSurveyFeedbackEntry:focus
+{
+	border: 2px solid #f0bc75;
+	box-shadow: #d7923a44 0px 0px 12px 1px;
+}
+
+.PromoSurveyFeedbackHint
+{
+	margin-top: 6px;
+	color: #c9b493;
+	font-size: 16px;
+	text-shadow: 0px 1px 2px 2 #000000;
+	visibility: collapse;
+}
+
+.PromoSurveyFeedbackHintError
+{
+	color: #ff8b78;
+}
+
+.PromoSurveyRewardBar
+{
+	width: 1000px;
+	height: 80px;
+	margin-top: 28px;
+	flow-children: right;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(168, 74, 44, 0.8)), to(rgba(110, 37, 20, 0.8)));
+	border: 2px solid #a56e4b;
+}
+
+.PromoSurveyRewardText
+{
+	width: 240px;
+	vertical-align: center;
+	color: #ffdba0;
+	font-size: 24px;
+	margin-left: 20px;
+	font-weight: semi-bold;
+	text-align: left;
+}
+
+.PromoSurveyRewardItems
+{
+	width: fill-parent-flow(1);
+	flow-children: right;
+	horizontal-align: right;
+}
+
+.PromoSurveySendButton
+{
+	width: 220px;
+	height: 58px;
+	horizontal-align: center;
+	margin-top: 22px;
+}
+
+.PromoAheadMedallion
+{
+	width: 170px;
+	height: 170px;
+	margin-top: 24px;
+	margin-left: 44px;
+	flow-children: down;
+	background-color: gradient(radial, 50% 50%, 0% 0%, 50% 50%, from(#ffde6a88), to(#ffde6a00));
+}
+
+.PromoAheadMedallionIcon
+{
+	width: 120px;
+	height: 120px;
+	horizontal-align: center;
+	background-color: #00000055;
+	border: 3px solid #7a5512;
+	border-radius: 50%;
+}
+
+.PromoAheadMedallionValue
+{
+	width: 100%;
+	text-align: center;
+	color: #fff5be;
+	font-size: 36px;
+	font-weight: bold;
+	text-shadow: 0px 2px 2px 3 #000000cc;
+}
+
+.PromoAheadButtons
+{
+	width: 100%;
+	flow-children: right;
+	horizontal-align: center;
+	margin-top: 280px;
+}
+
+.PromoAheadCosts
+{
+	width: 100%;
+	flow-children: right;
+	horizontal-align: center;
+	margin-top: 16px;
+}
+
+.PromoAheadCost
+{
+	flow-children: right;
+	margin: 0px 70px;
+}
+
+.PromoAheadCostIcon
+{
+	width: 34px;
+	height: 34px;
+}
+
+.PromoAheadCostLabel
+{
+	margin-left: 8px;
+	vertical-align: center;
+	color: #fff9c5;
+	font-size: 22px;
+	font-weight: bold;
+	text-shadow: 0px 2px 2px 3 #000000cc;
+}
+
+.promo_event_video
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	z-index: -10;
+}
+
+.PromoShowcaseEvent .left_progress
+{
+	visibility: collapse;
+}
+
+.PromoEventBottom
+{
+	width: 100%;
+	flow-children: down;
+	ignore-parent-flow: true;
+	vertical-align: bottom;
+	horizontal-align: center;
+	margin-bottom: 40px;
+}
+
+.PromoEventCurrency
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-top: 0px;
+}
+
+.PromoEventCurrencyIcon
+{
+	width: 56px;
+	height: 56px;
+	vertical-align: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.PromoEventCurrencyAmount
+{
+	margin-left: 12px;
+	vertical-align: center;
+	font-size: 40px;
+	font-weight: bold;
+	font-family: Reaver;
+	color: #fff9c5;
+	text-shadow: 0px 2px 4px 3 #000000cc;
+}
+
+.PromoEventCurrencyHint
+{
+	width: 32px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/game_hud/icons/info1_png.vtex");
+	background-size: 100%;
+	margin-left: 14px;
+	vertical-align: center;
+	box-shadow: black 0px 0px 12px 1px;
+	border-radius: 100%;
+}
+
+.PromoEventEnds
+{
+	horizontal-align: center;
+	margin-top: 16px;
+	font-size: 20px;
+	font-family: Reaver;
+	font-weight: bold;
+	color: rgb(252, 228, 122);
+	text-shadow: 0px 0px 3px 3 #000000cc;
+}
+
+.PromoEventWaterButtons
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-top: 16px;
+}
+
+.PromoEventWaterButton
+{
+	width: 270px;
+	height: 74px;
+	margin: 0px 12px;
+	padding: 3px;
+	flow-children: none;
+}
+
+.PromoEventWaterButton:hover
+{
+	brightness: 1.12;
+}
+
+.PromoEventWaterButton:active
+{
+	transform: scale3d(0.97, 0.97, 1);
+}
+
+.PromoEventWaterButtonBG
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	background-size: 100% 100%;
+	opacity: 0.85;
+}
+
+.PromoEventWaterButtonSingle .PromoEventWaterButtonBG
+{
+	background-image: url("s2r://panorama/images/game_hud/chest/button1_png.vtex");
+	wash-color: #9cf7fa;
+	img-shadow: 0px 0px 5px 1.0 rgba(156, 247, 250, 0.5);
+}
+
+.PromoEventWaterButtonAll .PromoEventWaterButtonBG
+{
+	background-image: url("s2r://panorama/images/game_hud/chest/button_png.vtex");
+	wash-color: #fcde73;
+	img-shadow: 0px 0px 5px 1.0 rgba(255, 215, 0, 0.5);
+}
+
+.PromoEventWaterButtonInner
+{
+	width: fit-children;
+	height: fit-children;
+	flow-children: down;
+	align: center center;
+}
+
+.PromoEventWaterButtonTitle
+{
+	horizontal-align: center;
+	color: #fefefe;
+	font-size: 24px;
+	font-weight: bold;
+	text-shadow: 0px 0px 5px 3 #000000dd;
+}
+
+.PromoEventWaterButtonCost
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-top: 4px;
+}
+
+.PromoEventWaterButtonCostIcon
+{
+	width: 24px;
+	height: 24px;
+	vertical-align: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.PromoEventWaterButtonCostAmount
+{
+	margin-left: 6px;
+	vertical-align: center;
+	color: #fff8d5;
+	font-size: 20px;
+	font-weight: bold;
+	text-shadow: 0px 0px 3px 3 #000000cc;
+}
+
+.PromoEventWaterButtonDisabled
+{
+	brightness: 0.45;
+	saturation: 0.15;
+}
+
+.PromoEventWaterButtonDisabled:hover
+{
+	brightness: 0.45;
+}
+
+.PromoEventWaterButtonDisabled:active
+{
+	transform: none;
+}
+
+.PromoEventEmpty
+{
+	width: 100%;
+	horizontal-align: center;
+	vertical-align: center;
+	text-align: center;
+	font-size: 28px;
+	font-family: Reaver;
+	font-weight: bold;
+	color: rgb(242, 227, 248);
+	text-shadow: 0px 0px 6px 3 #000000cc;
+}
+
+.PromoEventSplit
+{
+	width: 100%;
+	height: 100%;
+	flow-children: none;
+}
+
+.PromoEventQuestBG
+{
+	width: 1594px;
+	height: 850px;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr17_png.vtex");
+	background-size: 100%;
+	ignore-parent-flow: true;
+	img-shadow: 0px 0px 60px 10 black;
+}
+
+.PromoEventShowcase
+{
+	width: 940px;
+	height: 850px;
+	flow-children: down;
+	z-index: -1;
+	ui-scale: 92%;
+	transform: translateX(55px) translateY(50px);
+}
+
+.PromoEventShowcaseTitleWrap
+{
+	flow-children: down;
+	horizontal-align: center;
+	margin-top: 60px;
+}
+
+.PromoEventShowcaseTitle
+{
+	font-size: 42px;
+	text-transform: uppercase;
+	font-family: Reaver;
+	font-weight: bold;
+	text-align: center;
+	horizontal-align: center;
+	color: rgb(242, 227, 248);
+	text-shadow: 0px 0px 12px 8 black;
+}
+
+.PromoEventShowcaseSubtitle
+{
+	font-size: 14px;
+	horizontal-align: center;
+	text-transform: uppercase;
+	font-family: Reaver;
+	font-weight: bold;
+	text-align: center;
+	color: rgb(252, 228, 122);
+	text-shadow: 0px 0px 3px 5 #000000cc;
+}
+
+.PromoEventList
+{
+	width: 653px;
+	height: 850px;
+	flow-children: down;
+	horizontal-align: right;
+	transform: translateX(-93px) translateY(85px);
+	ui-scale: 88%;
+}
+
+.PromoEventTabs
+{
+	width: 590px;
+	height: 45px;
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.PromoEventTab
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	margin: 3px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #7938c4 ), to( #3c157c ));
+	border: 1px solid black;
+	border-radius: 4px;
+	transition-property: brightness, saturation, background-color, border;
+	transition-duration: 0.2s;
+	brightness: 0.7;
+	saturation: 0.6;
+}
+
+.PromoEventTab:hover
+{
+	brightness: 1.3;
+	saturation: 1;
+	border: 1px solid #a56bff;
+	box-shadow: 0px 0px 6px #7c3cff88;
+}
+
+.PromoEventTabActive
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #7a3cff ), to( #3a1f7a ));
+	border: 2px solid #13022e77;
+	brightness: 1.3;
+	saturation: 1;
+	box-shadow: 0px 0px 4px #9b5cffaa;
+}
+
+.PromoEventTab Label
+{
+	font-size: 16px;
+	font-weight: semi-bold;
+	color: #e6dbff;
+	text-shadow: 0px 0px 6px 2 #000000;
+	align: center center;
+	text-align: center;
+}
+
+.PromoEventTabActive Label
+{
+	color: #fff6bf;
+}
+
+.PromoEventListBody
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	padding: 14px;
+	margin-top: 20px;
+	flow-children: down;
+	overflow: squish scroll;
+}
+
+.PromoEventCard
+{
+	width: 100%;
+	min-height: 108px;
+	margin-bottom: 12px;
+}
+
+.PromoEventCardReady .PromoEventCardBG
+{
+	opacity: 0.95;
+	brightness: 6;
+	box-shadow: 0px 0px 16px 1px #ffc54344;
+}
+
+.PromoEventCardClaimed
+{
+	saturation: 0.55;
+	brightness: 0.75;
+}
+
+.PromoEventCardBG
+{
+	z-index: -1;
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	brightness: 5;
+	background-image: url("s2r://panorama/images/game_hud/promo/q_frame_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 2px 3 black;
+	opacity: 0.7;
+}
+
+.PromoEventCardContent
+{
+	width: 100%;
+	vertical-align: center;
+	padding: 10px 12px;
+	flow-children: right;
+}
+
+.PromoEventCardLeft
+{
+	width: 250px;
+	flow-children: down;
+}
+
+.PromoEventCardTitle
+{
+	color: #f7f7e0;
+	font-size: 18px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 3px 3 #000000cc;
+}
+
+.PromoEventProgressBar
+{
+	width: 100%;
+	height: 23px;
+	margin-top: 8px;
+	background-color: #23261e;
+	border: 1px solid #4e5548;
+	border-radius: 8px;
+}
+
+.PromoEventProgressFill
+{
+	width: 50%;
+	height: 100%;
+	border-radius: 8px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #6fe36a ), to( #d7f01e ) );
+}
+
+.PromoEventProgressValue
+{
+	vertical-align: center;
+	horizontal-align: center;
+	margin-top: 2px;
+	text-shadow: 0px 0px 3px 3 #000000cc;
+	color: #ffffff;
+	font-size: 18px;
+	font-weight: semi-bold;
+}
+
+.PromoEventCardRewards
+{
+	flow-children: right-wrap;
+	margin-left: 2px;
+	vertical-align: center;
+}
+
+.PromoEventCardState
+{
+	width: 150px;
+	horizontal-align: right;
+	vertical-align: center;
+	text-align: center;
+	color: #ff442f;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.PromoEventCardClaimed .PromoEventCardState
+{
+	color: #92e68b;
+}
+
+.PromoEventClaimButton
+{
+	width: 150px;
+	height: 48px;
+	vertical-align: center;
+	horizontal-align: right;
+	transition-property: brightness, transform;
+	transition-duration: 0.15s;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #ebbe42 ), color-stop( 0.18, #ffd85c ), color-stop( 0.52, #d49a1f ), color-stop( 0.78, #9c6810 ), to( #5e3a08 ) );
+	border: 2px solid #ebd5ab;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( #fffbe0 ), to( #b87a18 ) );
+	box-shadow: #000000cc 0px 0px 2px 2px;
+}
+
+.PromoEventClaimButton:hover
+{
+	brightness: 1.12;
+}
+
+.PromoEventClaimButton:active
+{
+	transform: scale3d(0.98, 0.98, 1);
+}
+
+.PromoEventClaimButton Label
+{
+	align: center center;
+	color: #fff8d5;
+	font-size: 22px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 2px 3 #000000cc;
+}
+
+.PromoEventReward
+{
+	width: 60px;
+	height: 60px;
+	margin: 0px;
+}
+
+.PromoEventRewardBG1
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_without_border_png.vtex");
+	background-size: 100%;
+	z-index: 6;
+	img-shadow: 0px 0px 0px 2 black;
+	ignore-parent-flow: true;
+}
+
+.PromoEventRewardBG2
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_png.vtex");
+	background-size: 100%;
+	z-index: -1;
+	ignore-parent-flow: true;
+}
+
+.RareColor_super.PromoEventRewardBG2
+{
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_super_png.vtex");
+	background-size: 100%;
+}
+
+.PromoEventRewardIcon
+{
+	width: 70%;
+	height: 70%;
+	align: center center;
+}
+
+.PromoEventRewardCount
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	width: 100%;
+	margin-left: 4px;
+	margin-right: 4px;
+	margin-bottom: 6px;
+	text-align: center;
+	background-color: #000000cc;
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: bold;
+}

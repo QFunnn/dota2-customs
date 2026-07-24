@@ -1,0 +1,62 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/layout/custom_game/tooltips/neutral_item_tooltip/neutral_item_tooltip.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/tooltips/neutral_item_tooltip/neutral_item_tooltip.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="NeutralItemStatLine">
+			<Panel class="NeutralItemStatLine">
+				<Panel class="NeutralItemStatPin" />
+				<Label id="StatLabel" class="NeutralItemStatLabel" html="true" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="NeutralItemTooltip" hittest="false" hittestchildren="false" ontooltiploaded="UpdateTooltip()">
+		<Panel class="TooltipBG" />
+		<Panel class="TooltipBorder" />
+		<Panel class="TooltipBody">
+			<Panel class="ItemHeader">
+				<Panel class="ItemImagePanel">
+					<Image id="ItemImage" class="ItemImage" scaling="stretch-to-fit-preserve-aspect" />
+					<Panel class="ItemImageBorder" />
+				</Panel>
+				<Panel class="ItemHeaderInfo">
+					<Label id="ItemName" class="ItemName" html="true" />
+					<Label id="ItemRarity" class="ItemRarity" />
+				</Panel>
+			</Panel>
+			<Panel class="Limer" />
+			<Panel id="ItemStats" class="ItemStats" />
+			<Panel id="ItemEffectPanel" class="ItemEffectPanel">
+				<Panel class="ItemEffectHeader">
+					<Label id="ItemEffectHeader" class="ItemEffectHeaderLabel" />
+				</Panel>
+				<Panel class="ItemEffectBody">
+					<Panel class="ItemEffectTitleRow">
+						<Label id="ItemEffectName" class="ItemEffectName" />
+						<Panel id="ItemEffectCooldown" class="ItemEffectCooldown">
+							<Panel class="ItemEffectCooldownIcon" />
+							<Label id="ItemEffectCooldownValue" class="ItemEffectCooldownValue" />
+						</Panel>
+					</Panel>
+					<Label id="ItemEffectDescription" class="ItemEffectDescription" html="true" />
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

@@ -1,0 +1,172 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf65:version{48e806a9-c210-4cd8-811a-38b5ef63b195} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 35
+	m_nConstantSequenceNumber = 4
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 3
+	m_flConstantLifespan = 0.5
+	m_ConstantColor = [ 255, 255, 0, 255 ]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 500.0, 500.0, 500.0 ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 35.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RingWave"
+			m_flParticlesPerOrbit = 27.0
+			m_bEvenDistribution = true
+			m_flInitialRadius = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 1
+				m_nVectorComponent = 0
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 1.0
+			}
+			m_flThickness = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 1
+				m_nVectorComponent = 1
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 0.0
+			}
+			m_flInitialSpeedMin = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 1
+				m_nVectorComponent = 2
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 0.0
+			}
+			m_flInitialSpeedMax = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 1
+				m_nVectorComponent = 2
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 0.0
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 20.0
+				m_flRandomMax = 50.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_flOutputMax = 0.0
+			m_flOutputMin = 1.0
+			m_nFieldOutput = 7
+			m_nInputMax = 34
+			m_nInputMin = 30
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_nFieldOutput = 7
+			m_nInputMax = 4
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+		{
+			_class = "C_INIT_PositionPlaceOnGround"
+			m_flOffset = 5.0
+			m_flMaxTraceLength = 512.0
+			m_CollisionGroupName = "DEBRIS"
+			m_bIncludeWater = true
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndScale = 1.5
+		},
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndScale = 0.0
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_OscillateScalar"
+			m_RateMin = 10.0
+			m_RateMax = 30.0
+			m_FrequencyMin = 0.1
+			m_FrequencyMax = 0.2
+			m_nField = 3
+			m_flEndTime_min = 999999.0
+			m_flEndTime_max = 99999.0
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 1.2
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderRopes"
+			m_nOrientationType = "PARTICLE_ORIENTATION_ALIGN_TO_PARTICLE_NORMAL"
+			m_flRadiusScale = 0.5
+			m_flTextureVWorldSize = 555.555542
+			m_nMaxTesselation = 3
+			m_nMinTesselation = 3
+			m_flTextureVScrollRate = 30.0
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/beam_jagged_06.vtex"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+	]
+}

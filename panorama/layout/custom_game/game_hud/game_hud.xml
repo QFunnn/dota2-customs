@@ -1,0 +1,709 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/game_hud/styles/game_hud.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/game_hud/styles/top_hud.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/game_hud/styles/boss_notifications.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/game_hud/styles/stats_panel.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/game_hud/styles/card_selector.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/game_hud/styles/neutral_roshan_bonus.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/game_hud/styles/post_stage_activity.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/game_hud/styles/hero_selector.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/game_hud/styles/upgrade_selector.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/game_hud/styles/navigation_menu.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/game_hud/styles/start_game.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/game_hud/styles/neutral_inventory.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/const.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/scripts/keybinds.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/game_hud/scripts/game_hud.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/game_hud/scripts/events.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="NeutralInventoryItem">
+			<Panel class="Item" hittest="true" draggable="true">
+				<Image hittest="false" id="ItemImage" class="ItemImage" scaling="stretch-to-fit-y-preserve-aspect" />
+				<Panel hittest="false" id="ItemCooldownPanel" class="NeutralItemCooldownPanel" visible="false" />
+				<Panel class="NeutralItemBG" hittest="false" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel hittest="false" style="width:100%;height:100%;">
+		<Panel class="LogoCG" hittest="false" />
+		<Panel class="NotificationRoot" id="NotificationRoot" hittest="false" hittestchildren="false" />
+		<Panel class="TutorialOverlayRoot" id="TutorialOverlayRoot" hittest="false">
+			<Panel class="TutorialTargetFrame" id="TutorialTargetFrame" hittest="false" />
+			<Panel class="TutorialHintPanel" id="TutorialHintPanel" hittest="false">
+				<Panel class="TutorialHintGlow" hittest="false" />
+				<Panel class="TutorialHintBody" hittest="false">
+					<Label class="TutorialHintTitle" id="TutorialHintTitle" text="#levelup_tutorial_title" hittest="false" />
+					<Label class="TutorialHintText" id="TutorialHintText" text="" hittest="false" />
+					<Label class="TutorialHintReward" id="TutorialHintReward" text="#levelup_tutorial_reward_wood" hittest="false" />
+				</Panel>
+				<Panel class="TutorialHintClose" id="TutorialHintClose" hittest="true" />
+			</Panel>
+		</Panel>
+		<Panel class="BossHPRoot" id="BossHPRoot" hittest="false" hittestchildren="false">
+			<Panel id="BossHPPanel" class="BossHPPanel" hittest="false">
+				<Panel class="BossHPPortraitWrapper">
+					<Panel class="BossAvatarCircle">
+						<Image id="BossAvatarImage" class="BossAvatarImage" scaling="stretch-to-fit-preserve-aspect" />
+					</Panel>
+				</Panel>
+				<Panel class="BossHPContent" hittest="false">
+					<Panel class="BossHPHeader" hittest="false">
+						<Label id="BossNameLabel" class="BossNameLabel" text="" hittest="false" />
+					</Panel>
+					<Panel class="BossHPBarWrapper" hittest="false">
+						<ProgressBar id="BossHPProgress" class="BossHPProgress" value="1.0" hittest="false" />
+						<Panel class="BossHPBurnerContainer" id="hp_burner_container" hittest="false">
+							<Panel class="BossHPBurner" id="hp_burner" hittest="false" />
+						</Panel>
+						<Label id="BossHPPercentLabel" class="BossHPPercentLabel" text="100%" hittest="false" />
+					</Panel>
+				</Panel>
+				<Panel class="BossHealthBarBG" />
+			</Panel>
+		</Panel>
+		<Panel class="DeathPanel" id="DeathPanel" hittest="false" />
+		<Panel class="TopHud" id="TopHud">
+			<Panel class="CurrentWavePanel">
+				<Panel class="CurrentWavePanelBG" />
+				<Label id="CurrentWaveLabel" text="" />
+			</Panel>
+			<Panel class="GameTimer">
+				<Panel class="GameTimerBG" />
+				<Label id="CurrentTimeLabel" text="00:00" />
+			</Panel>
+			<Panel class="CurrentDifficult">
+				<Panel class="CurrentDifficultBG" />
+				<Label id="CurrentDifficultLabel" text="" />
+			</Panel>
+		</Panel>
+		<Panel class="ChooseNewHeroPanel" hittest="false">
+			<Panel class="ChooseNewHeroPanelData" id="ChooseNewHeroPanelData">
+				<Panel class="ChooseNewHeroCardsList" id="ChooseNewHeroCardsList" />
+				<Panel class="ChooseNewHeroButtonsCards" hittest="false">
+					<Panel class="ChooseNewHeroButtonContainer">
+						<Panel class="ChooseNewHeroButton ChooseNewHeroButtonReroll" onactivate="RefreshHeroCardEvent();">
+							<Label class="ChooseNewHeroButtonLabel" text="#levelup_card_refresh" />
+						</Panel>
+						<Panel class="ChooseNewHeroButtonInfo" id="ChooseNewHeroButtonInfoRefresher">
+							<Panel class="ChooseNewHeroButtonInfoBody">
+								<Panel class="RefreshHeroListCostIcon" />
+								<Label id="ChooseNewHeroButtonInfoUpdater" html="true" text="0" />
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="ChooseNewHeroButtonContainer">
+						<Panel class="ChooseNewHeroButton ChooseNewHeroButtonCancel" onactivate="SwitchHeroCardsPanel();">
+							<Label class="ChooseNewHeroButtonLabel" text="#levelup_card_hide" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="ChooseNewHeroButtons" hittest="false">
+				<Panel class="ChooseNewHeroButtonStartChallenge" id="ChooseNewHeroButtonStartChallenge" onactivate="ButtonStartChallenge();">
+					<Label class="ChooseNewHeroButtonStartChallengeCounter" id="ChooseNewHeroButtonStartChallengeCounter" text="1" />
+				</Panel>
+				<Panel class="ChooseNewHeroButtonOpenHeroCards" id="ChooseNewHeroButtonOpenHeroCards" onactivate="SwitchHeroCardsPanel();">
+					<Label class="ChooseNewHeroButtonOpenHeroCardsCounter" id="ChooseNewHeroButtonOpenHeroCardsCounter" text="1" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="PanelInventoryCard" id="PanelInventoryCard">
+			<Panel class="CardInventoryList" id="CardInventoryList" />
+		</Panel>
+		<Panel class="PanelChooseCard" id="PanelChooseCard" hittest="false">
+			<Panel class="PanelChooseBodyCard" id="PanelChooseBodyCard" hittest="false">
+				<Panel class="ChooseCardList" id="ChooseCardList" />
+				<Panel class="ChooseCardButtons" hittest="false">
+					<Panel class="ChooseCardButtonContainer">
+						<Panel class="ChooseCardButton ChooseCardButtonReroll" id="ChooseCardButtonReroll">
+							<Label class="ChooseCardButtonLabel" text="#levelup_card_refresh" />
+						</Panel>
+						<Panel class="ChooseCardButtonInfo">
+							<Label id="ChooseCardButtonInfoUpdater" html="true" text="" />
+						</Panel>
+					</Panel>
+					<Panel class="ChooseCardButtonContainer">
+						<Panel class="ChooseCardButtonInfo">
+							<Label text="#levelup_card_cancel_info" />
+						</Panel>
+						<Panel class="ChooseCardButton ChooseCardButtonCancel" id="ChooseCardButtonCancel">
+							<Label class="ChooseCardButtonLabel" text="#levelup_card_cancel" />
+						</Panel>
+					</Panel>
+					<Panel class="ChooseCardButtonContainer">
+						<Panel class="ChooseCardButton ChooseCardButtonCancel" id="ChooseCardButtonHide" onactivate="SetCardSelectorCollapsed(true);">
+							<Label class="ChooseCardButtonLabel" text="#levelup_card_hide" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="PanelReplaceCard" id="PanelReplaceCard">
+				<Panel class="PanelReplaceCardBody">
+					<Panel class="PanelReplaceBorderStyle" />
+					<Label class="PanelReplaceCardHeaderLabel" text="#levelup_card_replace" />
+					<Panel class="PanelReplaceCardData" id="PanelReplaceCardData" />
+					<DOTAParticleScenePanel class="PfxUIReplaceCard" particleName="particles/replace_hud/custom_tooltip_particle.vpcf" particleonly="true" startActive="true" cameraOrigin="0 0 550" lookAt="0 0 0" fov="65" squarePixels="true" />
+				</Panel>
+				<Panel class="ChooseCardButtons ButtonsInReplace">
+					<Panel class="ChooseCardButtonContainer">
+						<Panel class="ChooseCardButton ChooseCardButtonReroll" id="CardButtonReplaceBack">
+							<Label class="ChooseCardButtonLabel" text="#levelup_card_back" />
+						</Panel>
+					</Panel>
+					<Panel class="ChooseCardButtonContainer">
+						<Panel class="ChooseCardButtonInfo">
+							<Label text="#levelup_card_cancel_info" />
+						</Panel>
+						<Panel class="ChooseCardButton ChooseCardButtonCancel" id="CardButtonReplaceCancel">
+							<Label class="ChooseCardButtonLabel" text="#levelup_card_cancel" />
+						</Panel>
+					</Panel>
+					<Panel class="ChooseCardButtonContainer">
+						<Panel class="ChooseCardButton ChooseCardButtonCancel" id="CardButtonReplaceHide" onactivate="SetCardSelectorCollapsed(true);">
+							<Label class="ChooseCardButtonLabel" text="#levelup_card_hide" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="NeutralRoshanBonusPanel" id="NeutralRoshanBonusPanel" hittest="false">
+			<Panel class="NeutralRoshanBonusBody" id="NeutralRoshanBonusBody" hittest="true">
+				<Label class="NeutralRoshanBonusHeaderLabel" text="#neutral_roshan_bonus_panel_title" />
+				<Panel class="NeutralRoshanBonusList" id="NeutralRoshanBonusList" />
+				<Label class="NeutralRoshanBonusProgress" id="NeutralRoshanBonusProgress" />
+			</Panel>
+			<Label class="NeutralRoshanBonusCloseHint" id="NeutralRoshanBonusCloseHint" hittest="false" text="#neutral_roshan_bonus_panel_close_hint" />
+		</Panel>
+		<Panel class="ArtefactSelectorPanel" id="ArtefactSelectorPanel" hittest="false">
+			<Panel class="ArtefactSelectorBody" id="ArtefactSelectorBody" hittest="true">
+				<Label class="ArtefactSelectorHeaderLabel" text="#neutral_roshan_artefact_selector_title" />
+				<Panel class="ArtefactSelectorList" id="ArtefactSelectorList" />
+				<Panel class="ArtefactSelectorButtons" hittest="false">
+					<Panel class="ArtefactSelectorButtonContainer">
+						<Panel class="ChooseCardButton ChooseCardButtonReroll" id="ArtefactSelectorRerollButton">
+							<Label class="ChooseCardButtonLabel" text="#levelup_card_refresh" />
+						</Panel>
+						<Panel class="ChooseCardButtonInfo">
+							<Label id="ArtefactSelectorRerollInfo" html="true" text="" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="ArtefactSelectorHideButtons" hittest="false">
+					<Panel class="ChooseCardButtonContainer">
+						<Panel class="ChooseCardButton ChooseCardButtonCancel" id="ArtefactSelectorHideButton" onactivate="SetArtefactSelectorCollapsed(true);">
+							<Label class="ChooseCardButtonLabel" text="#levelup_card_hide" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="SelectorRestoreButtons ArtefactSelectorRestoreButtons" id="ArtefactSelectorRestoreButtons" hittest="false">
+				<Panel class="ChooseNewHeroButtonOpenHeroCards SelectorRestoreButton ArtefactSelectorRestoreButton" id="ArtefactSelectorRestoreButton" onactivate="SetArtefactSelectorCollapsed(false);">
+					<Label class="ChooseNewHeroButtonOpenHeroCardsCounter SelectorRestoreButtonLabel" text="#levelup_card_show" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="PostStageActivityPanel" id="PostStageActivityPanel" hittest="false">
+			<Panel class="PostStageActivityBody" id="PostStageActivityBody" hittest="true">
+				<Label class="PostStageActivityHeaderLabel" text="#post_stage_activity_panel_title" />
+				<Panel class="PostStageActivityList">
+					<Panel class="PostStageActivityOption" id="PostStageDummyOption">
+						<Panel class="PostStageActivityOptionIcon DummyIcon" />
+						<Label class="PostStageActivityOptionTitle" text="#post_stage_activity_dummy" />
+					</Panel>
+					<Panel class="PostStageActivityOption" id="PostStageAghanimOption">
+						<Panel class="PostStageActivityOptionIcon AghanimIcon" />
+						<Label class="PostStageActivityOptionTitle" text="#post_stage_activity_aghanim" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Label class="PostStageActivityCloseHint" text="#post_stage_activity_panel_close_hint" />
+		</Panel>
+		<Panel class="PostStageHomePanel" id="PostStageHomePanel" hittest="false">
+			<Panel class="PostStageHomeBody" id="PostStageHomeBody" hittest="true">
+				<Label class="PostStageHomeHeaderLabel" text="#post_stage_home_panel_title" />
+				<Label class="PostStageHomeDescriptionLabel" text="#post_stage_home_panel_description" />
+				<Panel class="PostStageHomeButtons">
+					<Panel class="PostStageHomeButton ConfirmButton" id="PostStageHomeConfirmButton">
+						<Label text="#post_stage_home_confirm" />
+					</Panel>
+					<Panel class="PostStageHomeButton CancelButton" id="PostStageHomeCancelButton">
+						<Label text="#post_stage_home_cancel" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="PostStageDummyCountdownPanel" id="PostStageDummyCountdownPanel" hittest="false">
+			<Label class="PostStageDummyCountdownTitle" id="PostStageDummyCountdownTitle" text="#post_stage_dummy_countdown_title" />
+			<Label class="PostStageDummyCountdownNumber" id="PostStageDummyCountdownNumber" text="5" />
+		</Panel>
+		<Label class="PostStageActivityBlockedHint" id="PostStageActivityBlockedHint" text="#post_stage_activity_blocked" hittest="false" />
+		<Panel class="AfkRewardPanel AfkPossibleRewardsPanel" id="AfkRewardsPanel" hittest="true">
+			<Panel class="AghanimRewardPanelBG" />
+			<Panel class="AghanimRewardPanelBorder" />
+			<Panel class="AghanimRewardPanelBody">
+				<Label class="AghanimRewardTitle" text="#levelup_afk_rewards_title" />
+				<Panel class="AghanimRewardItems" id="AfkRewardsItems" />
+				<Label class="AfkDailyLimitLabel" id="AfkDailyLimitLabel" text="" />
+			</Panel>
+		</Panel>
+		<Panel class="AfkRewardPanel AfkReceivedRewardsPanel" id="AfkReceivedRewardsPanel" hittest="true">
+			<Panel class="AghanimRewardPanelBG" />
+			<Panel class="AghanimRewardPanelBorder" />
+			<Panel class="AghanimRewardPanelBody">
+				<Label class="AghanimRewardTitle" text="#levelup_afk_received_rewards_title" />
+				<Panel class="AghanimRewardItems" id="AfkReceivedRewardItems" />
+				<Label class="AghanimRewardHint" id="AfkReceivedRewardHint" text="#levelup_afk_no_rewards" />
+			</Panel>
+		</Panel>
+		<Panel class="AghanimRewardPanel" id="AghanimRewardPanel" hittest="true">
+			<Panel class="AghanimRewardPanelBG" />
+			<Panel class="AghanimRewardPanelBorder" />
+			<Panel class="AghanimRewardPanelBody">
+				<Label class="AghanimRewardTitle" id="AghanimRewardTitle" text="#post_stage_aghanim_rewards_title" />
+				<Panel class="AghanimRewardItems" id="AghanimRewardItems" />
+				<Label class="AghanimRewardHint" id="AghanimRewardHint" text="#post_stage_aghanim_rewards_preview_hint" />
+				<Panel class="AghanimRewardConfirmButton" id="AghanimRewardConfirmButton">
+					<Label text="#post_stage_aghanim_rewards_confirm" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="AghanimContinuePanel" id="AghanimContinuePanel" hittest="false">
+			<Panel class="AghanimContinueBody" hittest="true">
+				<Label class="AghanimContinueTitle" id="AghanimContinueTitle" text="#post_stage_aghanim_continue_title" />
+				<Label class="AghanimContinueDescription" text="#post_stage_aghanim_continue_description" />
+				<Label class="AghanimContinueTimer" id="AghanimContinueTimer" text="15" />
+				<Panel class="AghanimContinueButtons">
+					<Panel class="AghanimContinueButton ContinueButton" id="AghanimContinueButton">
+						<Label text="#post_stage_aghanim_continue_confirm" />
+					</Panel>
+					<Panel class="AghanimContinueButton LeaveButton" id="AghanimLeaveButton">
+						<Label text="#post_stage_aghanim_continue_leave" />
+					</Panel>
+				</Panel>
+				<Panel class="AghanimContinueVotes" id="AghanimContinueVotes" />
+			</Panel>
+		</Panel>
+		<Panel class="MatchResultPanel" id="MatchResultPanel" hittest="true">
+			<Panel class="MatchResultDim" id="MatchResultDim" />
+			<Panel class="MatchResultBody" hittest="true">
+				<Panel class="MatchResultHeader">
+					<Label class="MatchResultTitle" id="MatchResultTitle" text="#match_result_victory" />
+					<Panel class="MatchResultMeta">
+						<Label class="MatchResultStage" id="MatchResultStage" text="1-1" />
+						<Label class="MatchResultDuration" id="MatchResultDuration" text="00:00" />
+					</Panel>
+				</Panel>
+				<Panel class="MatchResultColumns">
+					<Label class="MatchResultColumn PlayerColumn" text="#match_result_column_player" />
+					<Label class="MatchResultColumn LevelColumn" text="#match_result_column_level" />
+					<Label class="MatchResultColumn ResourcesColumn" text="#match_result_column_resources" />
+					<Label class="MatchResultColumn DamageColumn" text="#match_result_column_damage" />
+					<Label class="MatchResultColumn RewardsColumn" text="#match_result_column_rewards" />
+					<Label class="MatchResultColumn CardsColumn" text="#match_result_column_cards" />
+				</Panel>
+				<Panel class="MatchResultRows" id="MatchResultRows" />
+			</Panel>
+			<Label class="MatchResultCloseHint" text="#match_result_close_hint" />
+			<Panel class="MatchResultCardsPopup" id="MatchResultCardsPopup" hittest="true">
+				<Panel class="MatchResultCardsBody" hittest="true">
+					<Panel class="MatchResultCardsHeader">
+						<Label class="MatchResultCardsTitle" id="MatchResultCardsTitle" text="#match_result_cards_title" />
+						<Panel class="MatchResultCardsClose" id="MatchResultCardsCloseButton">
+							<Label class="MatchResultCardsCloseLabel" text="×" />
+						</Panel>
+					</Panel>
+					<Panel class="MatchResultCardsList" id="MatchResultCardsList" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="LeaderboardPanel" id="LeaderboardPanel" hittest="false">
+			<Panel class="LeaderboardDim" id="LeaderboardDim" hittest="false" />
+			<Panel class="LeaderboardBody" id="LeaderboardBody" hittest="true">
+				<Panel class="LeaderboardBg" />
+				<Panel class="LeaderboardBorder" />
+				<Panel class="ExitCross LeaderboardCloseButton" onactivate="CloseLeaderboardPanel()" />
+				<Panel class="LeaderboardHeader">
+					<Panel class="LeaderboardTitleBlock">
+						<Label class="LeaderboardTitle" text="#dummy_leaderboard_title" />
+						<Label class="LeaderboardSubtitle" text="#dummy_leaderboard_subtitle" />
+					</Panel>
+				</Panel>
+				<Panel class="RewardTableLeaderboard">
+					<Panel class="LeaderboardRewardIcon" />
+					<Panel class="LeaderboardRewardInfoContainer">
+						<Label class="LeaderboardRewardInfoTitle" text="#leaderboard_reward_info_title" />
+						<Label class="LeaderboardRewardInfoSubTitle" text="#leaderboard_reward_info_subtitle" />
+					</Panel>
+				</Panel>
+				<Panel class="LeaderboardPodiumBadges" hittest="false" hittestchildren="false">
+					<Panel class="LeaderboardPodiumBadge1" />
+					<Panel class="LeaderboardPodiumBadge2" />
+					<Panel class="LeaderboardPodiumBadge3" />
+				</Panel>
+				<Panel class="LeaderboardPodium" id="LeaderboardPodium" />
+				<Panel class="LeaderboardTableHeader">
+					<Label class="LeaderboardRankColumn" text="#dummy_leaderboard_column_rank" />
+					<Label class="LeaderboardPlayerColumn" text="#dummy_leaderboard_column_player" />
+					<Label class="LeaderboardDamageColumn" text="#dummy_leaderboard_column_damage" />
+					<Label class="LeaderboardDateColumn" text="#dummy_leaderboard_column_date" />
+				</Panel>
+				<Panel class="LeaderboardRows" id="LeaderboardRows" />
+				<Label class="LeaderboardStatus" id="LeaderboardStatus" text="" />
+				<Panel class="LeaderboardSelfRow" id="LeaderboardSelfRow" />
+			</Panel>
+		</Panel>
+		<Panel class="SwapAttributesStatsPanel" id="SwapAttributesStatsPanel">
+			<Panel class="SwapAttributesStatsHeader">
+				<Label text="#levelup_attribute_conversion_title" />
+			</Panel>
+			<Panel class="SwapAttributesStatsList" id="SwapAttributesStatsList" />
+		</Panel>
+		<Panel class="LowerHud" id="LowerHud" hittest="false">
+			<Panel class="MinimapContainer">
+				<Panel class="minimap_block" acceptsinput="true">
+					<Panel class="MinimapBlockParent">
+						<Panel class="MapScale">
+							<DOTAMinimap class="minimap_container" id="minimap_container" require-composition-layer="true" />
+						</Panel>
+					</Panel>
+					<Panel class="MinimapBGImg" />
+				</Panel>
+			</Panel>
+			<Panel class="GameHudNotifications" id="GameHudNotifications" hittest="false" hittestchildren="false" />
+			<Panel class="CenterLowerHud" hittest="false">
+				<Panel class="HudSkinBG" />
+				<DOTAParticleScenePanel class="HudSkinPFX" particleName="particles/custom_hud/hud_border.vpcf" particleonly="true" startActive="true" cameraOrigin="0 0 552" lookAt="0 0 0" fov="110" squarePixels="true" />
+				<Panel class="CardSelectorPanel" id="CardSelectorPanel">
+					<Panel class="CardSelectorList" id="CardSelectorList">
+						<Panel class="CardPanel" id="CardStashPanel_1" />
+						<Panel class="CardPanel" id="CardStashPanel_2" />
+						<Panel class="CardPanel" id="CardStashPanel_3" />
+						<Panel class="CardPanel" id="CardStashPanel_4" />
+						<Panel class="CardPanel" id="CardStashPanel_5" />
+						<Panel class="CardPanel CardStashBonusSlot" id="CardStashPanel_6" style="visibility: collapse;" />
+						<Panel class="CardPanel CardStashBonusSlot" id="CardStashPanel_7" style="visibility: collapse;" />
+					</Panel>
+				</Panel>
+				<Panel class="BuffsAndDebuffs" id="BuffsAndDebuffs" />
+				<Panel class="UpgradeStatsLevel" id="UpgradeStatsLevel">
+					<Panel class="UpgradeStatsList" id="UpgradeStatsList" />
+				</Panel>
+				<Panel class="HeroAvatarAndStats" hittest="false">
+					<Panel class="HudLeftInfoBlock">
+						<Panel class="AutoVictoryButton" id="AutoVictoryButton" visible="false" onactivate="OnAutoVictoryButtonActivate();">
+							<Panel class="AutoVictoryButtonIcon" id="AutoVictoryButtonIcon" hittest="true" />
+							<Label class="AutoVictoryTokenCount" id="AutoVictoryTokenCount" text="0" hittest="false" />
+						</Panel>
+						<Panel id="RoshpitIndicatorPanel" class="RoshpitIndicatorPanel" hittest="true">
+							<Panel class="RoshpitIndicatorPanelBG" hittest="false" />
+							<Panel class="RoshpitIndicatorPanelIcon" hittest="false" />
+						</Panel>
+						<Panel class="HeroLevel">
+							<Panel class="HeroLevelCircleBack" />
+							<Panel class="HeroLevelInner" />
+							<Panel class="HeroLevelCircleActive" id="HeroLevelCircleActive" />
+							<Label class="HeroLevelLabel" id="HeroLevelLabel" text="0" />
+						</Panel>
+					</Panel>
+					<Panel class="HeroAvatar">
+						<Label class="HeroName" id="HeroName" text="TestName" />
+						<DOTAPortrait id="HeroAvatarImage" class="HeroAvatarImage" onmouseover="DOTAHUDShowVisionRange();" onmouseout="DOTAHUDHideVisionRange();" />
+						<Panel class="HeroAvatarBG" />
+						<Panel class="DetailInfoButton" onactivate="Game.SwitchAnothersPanel(&apos;detail_hero_stats&apos;)">
+							<Label text="#levelup_detail_info" />
+						</Panel>
+					</Panel>
+					<Panel class="HeroStats" id="HeroStats">
+						<Panel class="StatsInfomationPanel">
+							<Panel class="StatsInformationPanelChild StatIconDamage">
+								<Label text="0" class="BaseStatsLabel" id="BaseStatsLabelDamage" />
+								<Label text="0" class="AddStatsLabel" id="AddStatsLabelDamage" />
+								<Panel class="StatsIcon" />
+							</Panel>
+						</Panel>
+						<Panel class="StatsInfomationPanel">
+							<Panel class="StatsInformationPanelChild StatIconArmor">
+								<Label text="0" class="BaseStatsLabel" id="BaseStatsLabelArmor" />
+								<Label text="0" class="AddStatsLabel" id="AddStatsLabelArmor" />
+								<Panel class="StatsIcon" />
+							</Panel>
+						</Panel>
+						<Panel class="StatsInfomationPanel">
+							<Panel class="StatsInformationPanelChild StatIconMovespeed">
+								<Label text="0" class="BaseStatsLabel" id="BaseStatsLabelSpeed" />
+								<Panel class="StatsIcon" />
+							</Panel>
+						</Panel>
+						<Panel class="StatsInfomationPanel">
+							<Panel class="StatsInformationPanelChild StatIconStrength">
+								<Label text="0" class="BaseStatsLabel" id="BaseStatsLabelStr" />
+								<Label text="0" class="AddStatsLabel" id="AddStatsLabelStr" />
+								<Panel class="StatsIcon" />
+							</Panel>
+						</Panel>
+						<Panel class="StatsInfomationPanel">
+							<Panel class="StatsInformationPanelChild StatIconAgility">
+								<Label text="0" class="BaseStatsLabel" id="BaseStatsLabelAgi" />
+								<Label text="0" class="AddStatsLabel" id="AddStatsLabelAgi" />
+								<Panel class="StatsIcon" />
+							</Panel>
+						</Panel>
+						<Panel class="StatsInfomationPanel">
+							<Panel class="StatsInformationPanelChild StatIconIntellect">
+								<Label text="0" class="BaseStatsLabel" id="BaseStatsLabelInt" />
+								<Label text="0" class="AddStatsLabel" id="AddStatsLabelInt" />
+								<Panel class="StatsIcon" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="AbilitiesAndBars">
+					<Panel class="AbilitiesList" id="AbilitiesList" />
+					<Panel class="HealthBar">
+						<Panel class="HealthBarBack" />
+						<Panel class="HealthBarFront" id="HealthBarFront">
+							<Panel class="HealthBarFrontFrame" />
+						</Panel>
+						<Label class="HealthBarLabel" id="HealthBarLabel" text="" />
+						<Label class="HealthRegen" id="HealthRegen" text="" />
+					</Panel>
+					<Panel class="ManaBar">
+						<Panel class="ManaBarBack" />
+						<Panel class="ManaBarFront" id="ManaBarFront">
+							<Panel class="HealthBarFrontFrame" />
+						</Panel>
+						<Label class="ManaBarLabel" id="ManaBarLabel" text="" />
+						<Label class="ManaRegen" id="ManaRegen" text="" />
+					</Panel>
+				</Panel>
+				<Panel class="ItemsContainer" id="ItemsContainer">
+					<Panel class="ItemsContainerBG" />
+					<Panel class="ItemsList" id="ItemsList1" />
+					<Panel class="ItemsList" id="ItemsList2" />
+				</Panel>
+				<Panel class="RightLowerHudBlock">
+					<Panel class="ActiveNeutralsBody" hittest="false">
+						<Panel id="ActiveNeutralsList" class="NeutralsList2" hittest="false" />
+					</Panel>
+					<Panel class="AbyssButton" id="AbyssButton" onactivate="StartAbyssTrial();">
+						<DOTAParticleScenePanel hittest="false" id="AbyssButtonParticle" class="AbyssButtonParticle" particleName="particles/wood_ui_pfx/time_fx.vpcf" particleOnly="true" cameraOrigin="0 0 195" lookAt="0 0 0" fov="65" squarePixels="true" startActive="true" />
+						<Panel class="AbyssButtonIcon" id="AbyssButtonIcon">
+							<Panel class="AbyssCooldownPanel" id="AbyssCooldownPanel" visible="false" hittest="false" />
+							<Label class="AbyssCooldownLabel" id="AbyssCooldownLabel" text="0" visible="false" hittest="false" />
+						</Panel>
+						<Panel class="AbilityHotkey" hittest="false">
+							<Label id="abyss_label_keybind" text="G" hittest="false" />
+						</Panel>
+						<Label class="AbyssLevel" id="AbyssLevel" text="" hittest="false" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="GameCurrencyPanel">
+				<Panel class="CurrencyList">
+					<Panel class="GoldCurrencyPanel CurrencyPanelStyle" id="CurrencyGoldButton">
+						<Panel class="CurrencyIcon IconGold" />
+						<Label class="CurrencyText" id="CurrencyGold" text="0" />
+					</Panel>
+					<Panel class="WoodCurrencyPanel CurrencyPanelStyle" id="CurrencyWoodButton">
+						<Panel class="CurrencyIcon IconWood" />
+						<Label class="CurrencyText" id="CurrencyWood" text="0" />
+					</Panel>
+					<Panel class="WeaponCurrencyPanel CurrencyPanelStyle" id="CurrencyWeaponButton">
+						<Panel class="CurrencyIcon IconKills" />
+						<Label class="CurrencyText" id="CurrencyWeapon" text="0" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="StatsPlayerPanel" id="StatsPlayerPanel">
+			<Panel class="StatsNavigation" id="StatsNavigation">
+				<Panel class="StatsNavigationButton StatsNavigateActive" id="EconomyStatsNavigation" onactivate="ChangeStatsWindow(&apos;EconomyStatsNavigation&apos;, &apos;PlayersStatsEconomyList&apos;);">
+					<Label text="#levelup_stats_economy" />
+				</Panel>
+				<Panel class="StatsNavigationButton" id="DamageStatsNavigation" onactivate="ChangeStatsWindow(&apos;DamageStatsNavigation&apos;, &apos;PlayersStatsDamageList&apos;);">
+					<Label text="#levelup_stats_damage" />
+				</Panel>
+				<Panel class="StatsNavigationButton" id="AllStatsNavigation" onactivate="ChangeStatsWindow(&apos;AllStatsNavigation&apos;, &apos;PlayersStatsAllList&apos;);">
+					<Label text="#levleup_stats_stats" />
+				</Panel>
+			</Panel>
+			<Panel class="StatsListParent" id="StatsListParent">
+				<Panel class="PlayersStatsList" id="PlayersStatsEconomyList" />
+				<Panel class="PlayersStatsList" id="PlayersStatsDamageList" />
+				<Panel class="PlayersStatsList" id="PlayersStatsAllList" />
+			</Panel>
+		</Panel>
+		<Panel class="SpawnChallengersPanel" id="SpawnChallengersPanel">
+			<Label class="SpawnChallangersHeaderLabel" text="#levelup_challenge_header_panel" />
+			<Panel class="ChallengerList">
+				<Panel class="ChallengerButton GoldChallenge" id="GoldChallengeButton" onactivate="StartChallengerSpawn(&apos;gold_trial&apos;);">
+					<Panel class="ChallengerIcon" />
+					<Panel class="ChallangerCooldownPanel" />
+					<Label class="ChallangerCooldownLabel" text="0" />
+					<DOTAParticleScenePanel class="ChallengerParticle" particleName="particles/challenge_fx/challenge_fx.vpcf" particleOnly="true" cameraOrigin="0 0 75" lookAt="0 0 0" fov="65" squarePixels="true" startActive="true" />
+					<Label class="ChallengerCount" text="0" />
+				</Panel>
+				<Panel class="ChallengerButton ExpChallenge" id="ExpChallengeButton" onactivate="StartChallengerSpawn(&apos;exp_trial&apos;);">
+					<Panel class="ChallengerIcon" />
+					<Panel class="ChallangerCooldownPanel" />
+					<Label class="ChallangerCooldownLabel" text="0" />
+					<DOTAParticleScenePanel class="ChallengerParticle" particleName="particles/challenge_fx/challenge_fx.vpcf" particleOnly="true" cameraOrigin="0 0 75" lookAt="0 0 0" fov="65" squarePixels="true" startActive="true" />
+					<Label class="ChallengerCount" text="0" />
+				</Panel>
+				<Panel class="ChallengerButton KillsChallenge" id="KillsChallengeButton" onactivate="StartChallengerSpawn(&apos;kills_trial&apos;);">
+					<Panel class="ChallengerIcon" />
+					<Panel class="ChallangerCooldownPanel" />
+					<Label class="ChallangerCooldownLabel" text="0" />
+					<DOTAParticleScenePanel class="ChallengerParticle" particleName="particles/challenge_fx/challenge_fx.vpcf" particleOnly="true" cameraOrigin="0 0 75" lookAt="0 0 0" fov="65" squarePixels="true" startActive="true" />
+					<Label class="ChallengerCount" text="0" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="GameItemsStorePanel" id="GameItemsStorePanel">
+			<Panel class="GameItemsStoreMain">
+				<Label class="GameItemsStoreHeaderLabel" text="#levelup_black_store_header" />
+				<Panel class="GameItemsStoreList" id="GameItemsStoreList" />
+			</Panel>
+			<Panel class="GameItemsStoreButtonChange">
+				<Panel class="GameItemsStoreButtonChangeBody">
+					<Panel class="GameItemsStoreButtonChangeDataPrice">
+						<Label class="GameItemsStoreButtonChangeDataPriceLabel" id="GameItemsStoreButtonChangeDataPriceLabel" text="" />
+						<Panel class="GameItemsStoreButtonChangeDataPriceIcon" />
+					</Panel>
+					<Panel class="RefreshButtonStoreCircle" onactivate="UpdateBlackStoreButton();">
+						<Panel class="RefreshButtonStoreCircleBG" id="RefreshButtonStoreCircleBG" />
+					</Panel>
+					<Panel class="GameItemsStoreButtonChangeDataCooldown">
+						<Panel class="GameItemsStoreButtonChangeDataCooldownIcon" />
+						<Label class="GameItemsStoreButtonChangeDataCooldownLabel" id="GameItemsStoreButtonChangeDataCooldownLabel" text="" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="TopLeftButtonsList" id="TopLeftButtonsList">
+			<Panel class="TopLeftButton ButtonExitGame" id="ExitGameTopButton" onactivate="OpenExitGameConfirm()">
+				<Panel class="TopLeftButtonImg" />
+				<Label text="#levelup_game_top_button_exit" />
+			</Panel>
+			<Panel class="TopLeftButton ButtonKeyBinds" id="TopLeftSettingsButton" onactivate="Game.OpenSettingsFromTopButton()">
+				<Panel class="TopLeftButtonImg" />
+				<Label text="#levelup_game_top_button_settings" />
+			</Panel>
+			<Panel class="TopLeftButton ButtonProfile" onactivate="Game.SwitchAnothersPanel(&apos;PlayerProfile&apos;)">
+				<Panel class="TopLeftButtonImg" />
+				<Label text="#levelup_game_top_button_profile" />
+			</Panel>
+			<Panel class="TopLeftButton ButtonEquip" onactivate="Game.SwitchAnothersPanel(&apos;PlayerInventory&apos;)">
+				<Panel class="TopLeftButtonImg" />
+				<Label text="#levelup_game_top_button_inventory" />
+			</Panel>
+			<Panel class="TopLeftButton ButtonStore" onactivate="Game.SwitchAnothersPanel(&apos;StoreWindow&apos;)">
+				<Panel class="TopLeftButtonImg" />
+				<Label text="#levelup_game_top_button_store" />
+			</Panel>
+			<Panel class="TopLeftButton ButtonChests" onactivate="Game.SwitchAnothersPanel(&apos;ChestsWindow&apos;)">
+				<Panel class="TopLeftButtonImg" />
+				<Label text="#levelup_game_top_button_chests" />
+			</Panel>
+			<Panel class="TopLeftButton ButtonPromo" onactivate="Game.SwitchAnothersPanel(&apos;PromoWindow&apos;)">
+				<Panel class="TopLeftButtonImg" />
+				<Label text="#levelup_game_top_button_promo" />
+			</Panel>
+			<Panel class="TopLeftButton ButtonPass" onactivate="Game.SwitchAnothersPanel(&apos;PassWindow&apos;)">
+				<Panel class="TopLeftButtonImg" />
+				<Label text="#levelup_game_top_button_pass" />
+			</Panel>
+			<Panel class="TopLeftButton ButtonLeaderboard" id="LeaderboardTopButton" onactivate="OpenLeaderboardPanel()">
+				<Panel class="TopLeftButtonImg" />
+				<Label text="#levelup_game_top_button_leaderboard" />
+			</Panel>
+			<Panel class="TopLeftButton ButtonMatchResult HiddenMatchResultTopButton" id="MatchResultTopButton" onactivate="OpenCachedMatchResultPanel()">
+				<Panel class="TopLeftButtonImg" />
+				<Label text="#levelup_game_top_button_match_result" />
+			</Panel>
+		</Panel>
+		<Panel class="StartGamePanel" id="StartGamePanel">
+			<Panel class="StartGamePanelBG" />
+			<DOTAParticleScenePanel hittest="false" id="PFXPortalStartGame" class="PFXPortalStartGame" particleName="particles/start_game_portal/start_game_portal.vpcf" particleonly="true" startActive="true" cameraOrigin="300 0 0" lookAt="0 0 0" fov="65" squarePixels="true" />
+			<Panel id="StartGameDifficultPanel" class="StartGameDifficultPanel">
+				<Panel class="StartGameSelectorList" id="StartGameSelectorList" />
+				<Panel class="StartGameControlsList" id="StartGameControlsList" />
+			</Panel>
+			<Panel id="StartGameLobbyProgressPanel" class="StartGameLobbyProgressPanel">
+				<Panel class="StartGameInfoPanelBG" />
+				<Panel class="StartGameInfoPanelBorder" />
+				<Panel class="StartGameLobbyProgressBody">
+					<Label class="StartGameLobbyProgressTitle" text="#start_game_lobby_progress_title" />
+					<Panel id="StartGameLobbyProgressList" class="StartGameLobbyProgressList" />
+				</Panel>
+			</Panel>
+			<Panel id="StartGameInfoPanel" class="StartGameInfoPanel">
+				<Panel class="StartGameInfoPanelBG" />
+				<Panel class="StartGameInfoPanelBorder" />
+				<Panel class="StartGameInfoPanelBody">
+					<Panel class="StartGameInfoHeader">
+						<Label id="StartGameInfoTitle" class="StartGameInfoTitle" text="" />
+					</Panel>
+					<Panel id="StartGameInfoContent" class="StartGameInfoContent" />
+				</Panel>
+			</Panel>
+			<Panel class="StartGamePanelBGFade" hittest="false" />
+			<MoviePanel class="start_screen_video" hittest="false" src="file://{resources}/videos/start_screen.webm" repeat="true" autoplay="onload" />
+			<Panel class="StartGamePanelBGFade2" hittest="false" />
+			<Panel class="ExitCross StartGameRestartCloseButton" id="StartGameRestartCloseButton" />
+			<Panel class="PostStageRestartConfirmPanel" id="PostStageRestartConfirmPanel" hittest="false">
+				<Panel class="PostStageRestartConfirmBody" id="PostStageRestartConfirmBody" hittest="true">
+					<Label id="PostStageRestartConfirmHeaderLabel" class="PostStageRestartConfirmHeaderLabel" text="#post_stage_restart_confirm_title" />
+					<Label id="PostStageRestartConfirmDescriptionLabel" class="PostStageRestartConfirmDescriptionLabel" html="true" text="#post_stage_restart_confirm_description" />
+					<Panel class="PostStageRestartConfirmButtons">
+						<Panel class="PostStageRestartConfirmButton ConfirmButton" id="PostStageRestartConfirmButton">
+							<Label id="PostStageRestartConfirmButtonLabel" text="#post_stage_restart_confirm" />
+						</Panel>
+						<Panel class="PostStageRestartConfirmButton CancelButton" id="PostStageRestartCancelButton">
+							<Label text="#post_stage_home_cancel" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="AnothersPanels" id="AnothersPanels" hittest="false" />
+		<Panel class="ServicesRewardPopup" id="ServicesRewardPopup" hittest="true" onactivate="HideServicesRewardPopup();">
+			<Panel class="ServicesRewardPopupDim" />
+			<Panel class="ServicesRewardPopupBody" hittest="false">
+				<Label class="ServicesRewardPopupTitle" id="ServicesRewardPopupTitle" text="#services_reward_popup_title" />
+				<Panel class="ServicesRewardPopupItems" id="ServicesRewardPopupItems" />
+				<Label class="ServicesRewardPopupHint" text="#services_reward_popup_hint" />
+			</Panel>
+		</Panel>
+		<Panel class="NeutralInventoryPanel" id="NeutralInventoryPanel" hittest="false">
+			<Panel class="NeutralsBody" hittest="false">
+				<Panel class="NeutralsBodyContainer" hittest="false">
+					<Panel id="NeutralsList" class="NeutralsList" hittest="false" />
+					<Panel class="NeutralsCraftButton" id="NeutralsCraftButton" hittest="true" onactivate="CraftNeutralItems();">
+						<Label class="NeutralsCraftButtonLabel" text="#neutral_inventory_craft" hittest="false" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="NeutralsButton" hittest="true" onactivate="ToggleNeutralInventory();">
+				<Panel class="NeutralsButtonIcon" hittest="false" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

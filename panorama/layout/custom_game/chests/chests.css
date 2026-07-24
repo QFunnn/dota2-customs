@@ -1,0 +1,918 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.ChestsWindow
+{
+	align: center top;
+	width: 100%;
+	height: 100%;
+	flow-children: none;
+	background-color: gradient( linear, 0% 0%, 100% 100%, from( #0f1226 ), to( #050609 ) );
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.WindowVisible
+{
+	opacity: 1;
+}
+
+.WindowVisible .ChestsWindow
+{
+	opacity: 1;
+}
+
+.ChestsTopBar
+{
+	margin-top: 20px;
+	width: 100%;
+	height: 56px;
+	z-index: 10;
+}
+
+.ChestsCurrencyRow
+{
+	horizontal-align: right;
+	flow-children: right;
+	padding-right: 100px;
+}
+
+.ChestCurrencyPanel
+{
+	width: 160px;
+	height: 44px;
+	margin-left: 12px;
+	padding: 0px 14px;
+	flow-children: right;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #2b123fdd ), color-stop( 0.45, #51207add ), to( #1a0c2bdd ) );
+	border: 1px solid #d5aaf7;
+	border-brush: gradient( linear, 0% 0%, 100% 0%, from( #ffb3ff ), color-stop( 0.35, #c45cff ), color-stop( 0.7, #7b2cff ), to( #e58cff ) );
+	border-radius: 6px;
+	box-shadow: #d35cff44 0px 0px 6px 0px;
+}
+
+.ChestCurrencyIcon
+{
+	width: 32px;
+	height: 32px;
+	vertical-align: center;
+	img-shadow: 0px 0px 5px 3 black;
+}
+
+.ChestCurrencyAmount
+{
+	margin-left: 10px;
+	vertical-align: center;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+	font-size: 24px;
+	font-weight: bold;
+	text-shadow: 0px 1px 2px 2 #000000cc;
+}
+
+.ChestsSidebar
+{
+	width: 220px;
+	vertical-align: center;
+	padding: 120px 12px 90px 30px;
+	flow-children: down;
+	z-index: 10;
+}
+
+.ChestNavButton
+{
+	padding: 5px;
+	width: 170px;
+	margin-bottom: 30px;
+	flow-children: down;
+	transition-property: brightness, transform;
+	transition-duration: 0.16s;
+}
+
+.ChestNavButton:hover
+{
+	brightness: 1.15;
+}
+
+.ChestNavButton:active
+{
+	transform: scale3d(0.98, 0.98, 1);
+	brightness: 1.15;
+}
+
+.ChestNavIcon
+{
+	width: 100px;
+	height: 100px;
+	horizontal-align: center;
+	img-shadow: 0px 0px 15px 5 rgb(0, 0, 0);
+}
+
+.ChestNavLabel
+{
+	margin-top: 5px;
+	width: 100%;
+	color: #ffe26f;
+	font-size: 18px;
+	font-weight: semi-bold;
+	text-align: center;
+	text-shadow: 0px 2px 3px 3 #000000dd;
+}
+
+#chest_nav_sky .ChestNavIcon
+{
+	background-image: url("s2r://panorama/images/game_hud/chest/icon2_png.vtex");
+	background-size: 100%;
+}
+
+#chest_nav_night .ChestNavIcon
+{
+	background-image: url("s2r://panorama/images/game_hud/chest/icon6_png.vtex");
+	background-size: 100%;
+}
+
+#chest_nav_nature .ChestNavIcon
+{
+	background-image: url("s2r://panorama/images/game_hud/chest/icon3_png.vtex");
+	background-size: 100%;
+}
+
+#chest_nav_companion .ChestNavIcon
+{
+	background-image: url("s2r://panorama/images/game_hud/chest/icon7_png.vtex");
+	background-size: 100%;
+}
+
+.ChestsContent
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+}
+
+.ChestsMainFrame
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+}
+
+.ChestHeroBlock
+{
+	margin-top: 90px;
+	horizontal-align: center;
+	flow-children: down;
+}
+
+.ChestMainTitle
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #fff2b8 ), to( #fab112 ) );
+	font-size: 36px;
+	font-weight: black;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 0px 4 #301a00;
+	horizontal-align: center;
+}
+
+.ChestMainSubtitle
+{
+	color: #ffffff;
+	font-size: 20px;
+	font-weight: semi-bold;
+	text-shadow: 0px 1px 3px 3 #000000cc;
+	horizontal-align: center;
+}
+
+.ChestProbabilityButton
+{
+	width: 260px;
+	height: 36px;
+	horizontal-align: center;
+	margin-top: 5px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #f7d97acc ), color-stop( 0.35, #c99a32bb ), color-stop( 0.7, #8a5a12aa ), to( #4e2f0899 ) );
+	border: 1px solid #f2d58a;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( #fff8d6 ), color-stop( 0.2, #ffe89b ), color-stop( 0.5, #d9a63d ), color-stop( 0.8, #8b5b12 ), to( #3b2207 ) );
+	box-shadow: fill #ffd86a22 0px 0px 4px 1px;
+	transition-property: brightness, transform;
+	transition-duration: 0.15s;
+}
+
+.ChestProbabilityButton:hover
+{
+	brightness: 1.2;
+}
+
+.ChestProbabilityButton:active
+{
+	brightness: 0.85;
+}
+
+.ChestProbabilityButton Label
+{
+	align: center center;
+	margin: 4px 10px;
+	color: #f3f8ff;
+	font-size: 18px;
+	font-weight: semi-bold;
+	text-shadow: 0px 1px 3px 3 #000000dd;
+}
+
+.ChestCenterShowcase
+{
+	z-index: -1;
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+}
+
+.ChestVisualCard
+{
+	width: 100%;
+	height: 100%;
+	background-color: black;
+}
+
+.ChestVideoFx
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	brightness: 0.5;
+}
+
+.LowBottomChest
+{
+	flow-children: down;
+	vertical-align: bottom;
+	horizontal-align: center;
+	margin-bottom: 20px;
+	z-index: 10;
+}
+
+.ChestProgressArea
+{
+	flow-children: down;
+	opacity: 1;
+	transform: translateY(0px);
+	transition-property: opacity, transform;
+	transition-duration: 0.2s;
+	horizontal-align: center;
+	overflow: noclip;
+	padding-right: 40px;
+	padding-left: 40px;
+}
+
+.ChestProgressArea.ChestProgressAreaHidden
+{
+	opacity: 0;
+}
+
+.ChestProgressCountWrap
+{
+	horizontal-align: center;
+	flow-children: down;
+}
+
+.ChestProgressCountValue
+{
+	text-align: center;
+	color: #ffe02a;
+	font-size: 32px;
+	font-weight: black;
+	text-shadow: 0px 2px 2px 3 #2f1500;
+	horizontal-align: center;
+}
+
+.ChestProgressCountLabel
+{
+	text-align: center;
+	color: #dce9ff;
+	font-size: 18px;
+	text-shadow: 0px 1px 3px 3 #000000dd;
+	horizontal-align: center;
+}
+
+.ChestMilestoneTrack
+{
+	width: 800px;
+	horizontal-align: center;
+	flow-children: down;
+}
+
+.ChestMilestoneBarShine
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/stats_store/7_png.vtex");
+	background-size: 600px 30px;
+	background-position: center;
+	background-repeat: repeat;
+	brightness: 10;
+	opacity: 0.9;
+}
+
+.ChestMilestoneTrackLine
+{
+	width: 100%;
+	margin-left: 10px;
+	margin-right: 10px;
+	height: 12px;
+	margin-top: 20px;
+	background-color: #101114dd;
+	border: 1px solid #5c4d2d;
+	border-radius: 7px;
+}
+
+.ChestMilestoneBar
+{
+	width: 0%;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #f5cd42 ), to( #fff7a2 ) );
+	box-shadow: #ffca2b55 0px 0px 10px 0px;
+}
+
+.ChestMilestoneMarkers
+{
+	width: 100%;
+	margin-top: -20px;
+}
+
+.ChestMilestoneMarker
+{
+	flow-children: down;
+	margin-left: -20px;
+}
+
+.ChestMilestoneMarkerContent
+{
+	horizontal-align: right;
+	flow-children: down;
+}
+
+.ChestMilestoneIcon
+{
+	width: 30px;
+	height: 30px;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/game_hud/chest/reward_png.vtex");
+	background-size: 100% 100%;
+	saturation: 0;
+	wash-color: #CDF;
+	overflow: noclip;
+	opacity: 0.5;
+}
+
+.ChestMilestoneReached .ChestMilestoneIcon
+{
+	saturation: 1;
+	wash-color: white;
+	opacity: 1;
+}
+
+.ChestMilestoneLabel
+{
+	width: 100%;
+	horizontal-align: center;
+	margin-top: 4px;
+	text-align: center;
+	color: #f3f3f3;
+	font-size: 14px;
+	text-shadow: 0px 0px 0px 3 #000000cc;
+}
+
+.ChestMilestoneReached .ChestMilestoneLabel
+{
+	color: #ffca2b;
+	text-shadow: 0px 1px 2px 2 #000000cc;
+}
+
+.ChestActionsArea
+{
+	margin-top: 16px;
+	flow-children: down;
+	horizontal-align: center;
+}
+
+.ChestOpenButtonsRow
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.ChestOpenButton,.ChestBackButton
+{
+	width: 280px;
+	height: 66px;
+	margin: 0px 14px;
+	transition-property: brightness, transform, position;
+	transition-duration: 0.15s;
+	padding: 3px;
+}
+
+.ButtonBG
+{
+	width: 100%;
+	height: 100%;
+}
+
+.ChestOpenButtonSingle .ButtonBG
+{
+	background-image: url("s2r://panorama/images/game_hud/chest/button1_png.vtex");
+	background-size: 100%;
+	opacity: 0.8;
+	wash-color: #9cf7fa;
+	img-shadow: 0px 0px 5px 1.0 rgba(156, 247, 250, 0.5);
+}
+
+.ChestOpenButtonMulti .ButtonBG
+{
+	background-image: url("s2r://panorama/images/game_hud/chest/button_png.vtex");
+	background-size: 100%;
+	opacity: 0.8;
+	wash-color: #fcde73;
+	img-shadow: 0px 0px 5px 1.0 rgba(255, 215, 0, 0.5);
+}
+
+.ChestBackButton .ButtonBG
+{
+	background-image: url("s2r://panorama/images/game_hud/chest/button3_png.vtex");
+	background-size: 100%;
+	opacity: 0.8;
+	img-shadow: 0px 0px 5px 1.0 rgba(255, 255, 255, 0.5);
+}
+
+.ChestOpenButton:hover,.ChestBackButton:hover
+{
+	brightness: 1.12;
+}
+
+.ChestOpenButton:active,.ChestBackButton:active
+{
+	transform: scale3d(0.97, 0.97, 1);
+}
+
+.ChestOpenButton Label,.ChestBackButton Label
+{
+	width: 350px;
+	text-align: center;
+	align: center center;
+	color: #fefefe;
+	font-size: 28px;
+	font-weight: bold;
+	text-shadow: 0px 0px 5px 3 #000000dd;
+}
+
+.ChestGuaranteeText
+{
+	width: 1000px;
+	horizontal-align: center;
+	margin-top: 18px;
+	text-align: center;
+	color: #ffffff;
+	font-size: 20px;
+	font-weight: semi-bold;
+	text-shadow: 0px 1px 3px 3 #000000ee;
+	opacity: 1;
+	transform: translateY(0px);
+	transition-property: opacity, transform;
+	transition-duration: 0.22s;
+}
+
+.ChestGuaranteeText.ChestGuaranteeTextHidden
+{
+	opacity: 0;
+}
+
+.ChestRewardsArea
+{
+	vertical-align: center;
+	horizontal-align: center;
+	flow-children: right;
+	z-index: 10;
+	margin-left: 120px;
+}
+
+.ChestRewardsSingle
+{
+	margin-left: 0px;
+}
+
+.ChestRewardsHint
+{
+	width: 100%;
+	vertical-align: center;
+	text-align: center;
+	color: #e4f1ff;
+	font-size: 30px;
+	text-shadow: 0px 1px 3px 3 #000000ee;
+}
+
+.ChestRewardCard
+{
+	width: 150px;
+	height: 500px;
+	margin: 0px 2px;
+	flow-children: down;
+	opacity: 1;
+	transition-property: opacity, transform;
+	transition-duration: 0.2s;
+	opacity: 0;
+	transform: translateX(0px);
+}
+
+.ParticleDroppedFx
+{
+	ignore-parent-flow: true;
+	width: 150px;
+	height: 500px;
+	opacity-mask: url("s2r://panorama/images/game_hud/chest/mask_new_png.vtex") 1;
+	z-index: -1;
+	brightness: 4;
+	opacity: 1;
+}
+
+.ChestRewardCardFrame
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/game_hud/chest/frame_new_png.vtex");
+	background-size: 100%;
+	opacity-mask: url("s2r://panorama/images/game_hud/chest/mask_new_png.vtex") 1;
+	img-shadow: 0px 0px 25px 5 rgba(255, 255, 255, 0.4);
+	brightness: 2;
+	animation-name: FrameShadows;
+	animation-duration: 2s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'FrameShadows'
+{
+	0%
+	{
+		img-shadow: 0px 0px 25px 5 rgba(255, 255, 255, 0.4);
+	}
+	
+	50%
+	{
+		img-shadow: 0px 0px 5px 5 rgba(255, 255, 255, 0.2);
+	}
+	
+	100%
+	{
+		img-shadow: 0px 0px 25px 5 rgba(255, 255, 255, 0.4);
+	}
+	
+}
+
+.ChestRewardCardBG
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	opacity-mask: url("s2r://panorama/images/game_hud/chest/mask_new_png.vtex") 1;
+	opacity: 0.5;
+}
+
+.ChestRewardCardContent
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	padding-top: 80px;
+	flow-children: down;
+}
+
+.ChestRewardsSingle .ChestRewardCard
+{
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	opacity: 0;
+	transform: translateX(0px);
+}
+
+.ChestRewardCard.ChestRewardCardPending
+{
+	opacity: 0;
+	transform: translateX(-180px) rotateX(180deg);
+	brightness: 10;
+}
+
+.ChestRewardsSingle .ChestRewardCard.ChestRewardCardPending
+{
+	opacity: 0;
+	transform: translateX(0px);
+}
+
+.ChestRewardCard.ChestRewardCardVisible
+{
+	opacity: 1;
+	transform: translateX(0px);
+}
+
+.ChestRewardsSingle .ChestRewardCard
+{
+	horizontal-align: center;
+}
+
+.ChestTierC .ChestRewardCardBG,.ChestTierB .ChestRewardCardBG
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #5f6d81 ), to( #353d4e ) );
+}
+
+.ChestTierA .ChestRewardCardBG
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #6b53b6 ), to( #362561 ) );
+}
+
+.ChestTierS .ChestRewardCardBG
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #d4a52b ), to( #6e4812 ) );
+}
+
+.ChestTierSSR .ChestRewardCardBG
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #ff8e53 ), to( #8d2020 ) );
+}
+
+.ChestTierC .ChestRewardCardFrame,.ChestTierB .ChestRewardCardFrame
+{
+	wash-color: #7587a0;
+}
+
+.ChestTierA .ChestRewardCardFrame
+{
+	wash-color: #a488fa;
+}
+
+.ChestTierS .ChestRewardCardFrame
+{
+	wash-color: #fab907;
+}
+
+.ChestTierSSR .ChestRewardCardFrame
+{
+	wash-color: #fa5e0b;
+}
+
+.ChestTierC .ParticleDroppedFx,.ChestTierB .ParticleDroppedFx
+{
+	wash-color: #7587a0;
+}
+
+.ChestTierA .ParticleDroppedFx
+{
+	wash-color: #a488fa;
+}
+
+.ChestTierS .ParticleDroppedFx
+{
+	wash-color: #fab907;
+}
+
+.ChestTierSSR .ParticleDroppedFx
+{
+	wash-color: #fa5e0b;
+}
+
+.ChestRewardTier
+{
+	width: 100%;
+	margin-top: 10px;
+	text-align: center;
+	color: #ffffff;
+	font-size: 42px;
+	font-weight: black;
+	text-shadow: 0px 1px 3px 3 #000000dd;
+}
+
+.ChestRewardIcon
+{
+	width: 100px;
+	height: 100px;
+	horizontal-align: center;
+	margin-top: 34px;
+}
+
+.ChestRewardIconConverted
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+.ChestRewardConvertedOverlay
+{
+	width: 100%;
+	height: 160px;
+	ignore-parent-flow: true;
+	flow-children: down;
+	horizontal-align: center;
+	vertical-align: center;
+	z-index: 5;
+	margin-top: 0px;
+	margin-bottom: 70px;
+}
+
+.ChestRewardConvertedLabel
+{
+	width: 100%;
+	text-align: center;
+	color: #ffe8a6;
+	font-size: 16px;
+	font-weight: bold;
+	text-shadow: 0px 1px 3px 3 #000000dd;
+}
+
+.ChestRewardConvertedItem
+{
+	width: 80px;
+	height: 80px;
+	horizontal-align: center;
+	margin-top: 4px;
+	background-image: url("s2r://panorama/images/game_hud/frames/fr13_png.vtex");
+	background-size: 100% 100%;
+}
+
+.ChestRewardConvertedIcon
+{
+	width: 52px;
+	height: 52px;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.ChestRewardConvertedCount
+{
+	horizontal-align: right;
+	vertical-align: bottom;
+	min-width: 24px;
+	height: 20px;
+	padding: 0px 5px;
+	margin-right: -5px;
+	margin-bottom: -4px;
+	color: #ffe8a6;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 0px 1px 2px 2 #000000dd;
+}
+
+.ChestRewardIconCount
+{
+	horizontal-align: right;
+	vertical-align: bottom;
+	min-width: 30px;
+	height: 24px;
+	padding: 0px 6px;
+	margin-right: -6px;
+	margin-bottom: -4px;
+	color: #ffe8a6;
+	font-size: 22px;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 0px 1px 2px 2 #000000dd;
+}
+
+.ChestRewardName
+{
+	width: 100%;
+	margin-top: 42px;
+	margin-left: 12px;
+	margin-right: 12px;
+	text-align: center;
+	text-overflow: shrink;
+	color: #ffffff;
+	font-size: 18px;
+	font-weight: semi-bold;
+	text-shadow: 0px 1px 3px 3 #000000dd;
+	white-space: normal;
+}
+
+.ChestsExitCross
+{
+	z-index: 100;
+	horizontal-align: right;
+	margin-right: 10px;
+	margin-top: 10px;
+	ignore-parent-flow: true;
+	width: 64px;
+	height: 64px;
+	background-image: url("s2r://panorama/images/game_hud/icons/close_new_png.vtex");
+	background-size: 100%;
+	transition-property: brightness, transform;
+	transition-duration: 0.25s;
+	opacity: 1;
+	saturation: 0.75;
+	img-shadow: 0px 0px 1px 1 white;
+}
+
+.ChestsExitCross:hover
+{
+	opacity: 1;
+	brightness: 2;
+}
+
+.ChestsExitCross:active
+{
+	transform: scale3d(0.9, 0.9, 1);
+}
+
+.ChestTierUR .ChestRewardCardBG
+{
+	opacity: 0.6;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #ffe16f ), color-stop( 0.35, #ff5d90 ), color-stop( 0.65, #8b6cff ), to( #3cffd0 ) );
+}
+
+.ChestTierUR .ChestRewardCardFrame
+{
+	background-image: url("s2r://panorama/images/game_hud/chest/frame_super_png.vtex");
+	background-size: 100%;
+}
+
+.ChestTierUR .ParticleDroppedFx
+{
+	wash-color: #9fffe9;
+}
+
+.ChestMilestoneActive .ChestMilestoneIcon
+{
+	saturation: 1;
+	brightness: 1.6;
+	wash-color: white;
+	opacity: 1;
+	animation-name: ChestMilestoneReadyPulse;
+	animation-duration: 0.9s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+}
+
+.ChestMilestoneLocked .ChestMilestoneIcon
+{
+	saturation: 0;
+	brightness: 0.5;
+	opacity: 0.45;
+}
+
+.ChestMilestoneClaimed .ChestMilestoneIcon
+{
+	saturation: 1;
+	brightness: 0.8;
+	opacity: 0.85;
+}
+
+.ChestMilestoneClaimCheck
+{
+	width: 24px;
+	height: 24px;
+	margin-top: -26px;
+	horizontal-align: center;
+	text-align: center;
+	color: #b8ff7a;
+	font-size: 22px;
+	font-weight: bold;
+	text-shadow: 0px 1px 3px 2 #000000dd;
+	opacity: 0;
+	background-image: url("s2r://panorama/images/game_hud/promo/check_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 4px 2 #000000;
+}
+
+.ChestMilestoneClaimed .ChestMilestoneClaimCheck
+{
+	opacity: 1;
+}
+
+.ChestMilestoneActive:hover .ChestMilestoneIcon
+{
+	brightness: 2.2;
+}
+
+@keyframes 'ChestMilestoneReadyPulse'
+{
+	0%
+	{
+		brightness: 1.1;
+	}
+	
+	50%
+	{
+		brightness: 2.3;
+	}
+	
+	100%
+	{
+		brightness: 1.1;
+	}
+	
+}

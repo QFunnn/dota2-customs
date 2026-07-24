@@ -1,0 +1,427 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf65:version{48e806a9-c210-4cd8-811a-38b5ef63b195} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 80
+	m_flConstantRadius = 40.0
+	m_flConstantLifespan = 0.25
+	m_ConstantColor = [ 36, 189, 185, 255 ]
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 3
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 6000.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 1.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 62
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 6
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_StopAfterCPDuration"
+			m_flDuration = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 3
+				m_nVectorComponent = 1
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 1.0
+			}
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmissionDuration = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 3.0
+			}
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_nMapType = "PF_MAP_TYPE_DIRECT"
+				m_flLiteralValue = 160.0
+				m_nControlPoint = 0
+				m_nScalarAttribute = 3
+				m_nVectorAttribute = 6
+				m_nVectorComponent = 0
+				m_flRandomMin = 0.0
+				m_flRandomMax = 1.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_flLOD0 = 0.0
+				m_flLOD1 = 0.0
+				m_flLOD2 = 0.0
+				m_flLOD3 = 0.0
+				m_flNoiseOutputMin = 0.0
+				m_flNoiseOutputMax = 1.0
+				m_flNoiseScale = 0.1
+				m_vecNoiseOffsetRate = [ 0.0, 0.0, 0.0 ]
+				m_flNoiseOffset = 0.0
+				m_nNoiseOctaves = 1
+				m_nNoiseTurbulence = "PF_NOISE_TURB_NONE"
+				m_nNoiseType = "PF_NOISE_TYPE_PERLIN"
+				m_nNoiseModifier = "PF_NOISE_MODIFIER_NONE"
+				m_flNoiseTurbulenceScale = 1.0
+				m_flNoiseTurbulenceMix = 0.5
+				m_flNoiseImgPreviewScale = 1.0
+				m_bNoiseImgPreviewLive = true
+				m_nInputMode = "PF_INPUT_MODE_CLAMPED"
+				m_flMultFactor = 1.0
+				m_flInput0 = 0.0
+				m_flInput1 = 1.0
+				m_flOutput0 = 0.0
+				m_flOutput1 = 1.0
+				m_nBiasType = "PF_BIAS_TYPE_STANDARD"
+				m_flBiasParameter = 0.0
+				m_Curve = 
+				{
+					m_spline = [  ]
+					m_tangents = [  ]
+					m_vDomainMins = [ 0.0, 0.0 ]
+					m_vDomainMaxs = [ 0.0, 0.0 ]
+				}
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.25
+				m_flRandomMax = 0.5
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_CreateSequentialPathV2"
+			m_bLoop = false
+			m_fMaxDistance = 8.0
+			m_flNumToAssign = 480.0
+			m_PathParams = 
+			{
+				m_nEndControlPointNumber = 1
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 90.0
+				m_flRandomMax = 128.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+			m_nOutputField = 10
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMax = [ 0.0, 0.0, 1024.0 ]
+			m_OffsetMin = [ 0.0, 0.0, 1024.0 ]
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.588235
+			}
+			m_nOutputField = 7
+		},
+		{
+			_class = "C_INIT_InitVec"
+			m_InputValue = 
+			{
+				m_nType = "PVEC_TYPE_RANDOM_UNIFORM_OFFSET"
+				m_vRandomMin = [ 0.0, 0.0, 50.0 ]
+				m_vRandomMax = [ 0.0, 0.0, 250.0 ]
+				m_nVectorAttribute = 0
+				m_vVectorAttributeScale = [ 1.0, 1.0, 1.0 ]
+			}
+			m_nOutputField = 2
+		},
+		{
+			_class = "C_INIT_PositionPlaceOnGround"
+			m_flOffset = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_nMapType = "PF_MAP_TYPE_DIRECT"
+				m_flLiteralValue = 1.0
+				m_nControlPoint = 0
+				m_nScalarAttribute = 3
+				m_nVectorAttribute = 6
+				m_nVectorComponent = 0
+				m_flRandomMin = 0.0
+				m_flRandomMax = 1.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_flLOD0 = 0.0
+				m_flLOD1 = 0.0
+				m_flLOD2 = 0.0
+				m_flLOD3 = 0.0
+				m_flNoiseOutputMin = 0.0
+				m_flNoiseOutputMax = 1.0
+				m_flNoiseScale = 0.1
+				m_vecNoiseOffsetRate = [ 0.0, 0.0, 0.0 ]
+				m_flNoiseOffset = 0.0
+				m_nNoiseOctaves = 1
+				m_nNoiseTurbulence = "PF_NOISE_TURB_NONE"
+				m_nNoiseType = "PF_NOISE_TYPE_PERLIN"
+				m_nNoiseModifier = "PF_NOISE_MODIFIER_NONE"
+				m_flNoiseTurbulenceScale = 1.0
+				m_flNoiseTurbulenceMix = 0.5
+				m_flNoiseImgPreviewScale = 1.0
+				m_bNoiseImgPreviewLive = true
+				m_nInputMode = "PF_INPUT_MODE_CLAMPED"
+				m_flMultFactor = 1.0
+				m_flInput0 = 0.0
+				m_flInput1 = 1.0
+				m_flOutput0 = 0.0
+				m_flOutput1 = 1.0
+				m_nBiasType = "PF_BIAS_TYPE_STANDARD"
+				m_flBiasParameter = 0.0
+				m_Curve = 
+				{
+					m_spline = [  ]
+					m_tangents = [  ]
+					m_vDomainMins = [ 0.0, 0.0 ]
+					m_vDomainMaxs = [ 0.0, 0.0 ]
+				}
+			}
+			m_flMaxTraceLength = 2048.0
+			m_CollisionGroupName = "DEBRIS"
+			m_bSetNormal = true
+			m_bIncludeWater = true
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_LerpScalar"
+			m_nFieldOutput = 10
+			m_flOutput = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_nMapType = "PF_MAP_TYPE_DIRECT"
+				m_flLiteralValue = 0.25
+				m_nControlPoint = 0
+				m_nScalarAttribute = 3
+				m_nVectorAttribute = 6
+				m_nVectorComponent = 0
+				m_flRandomMin = 0.0
+				m_flRandomMax = 1.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_flLOD0 = 0.0
+				m_flLOD1 = 0.0
+				m_flLOD2 = 0.0
+				m_flLOD3 = 0.0
+				m_flNoiseOutputMin = 0.0
+				m_flNoiseOutputMax = 1.0
+				m_flNoiseScale = 0.1
+				m_vecNoiseOffsetRate = [ 0.0, 0.0, 0.0 ]
+				m_flNoiseOffset = 0.0
+				m_nNoiseOctaves = 1
+				m_nNoiseTurbulence = "PF_NOISE_TURB_NONE"
+				m_nNoiseType = "PF_NOISE_TYPE_PERLIN"
+				m_nNoiseModifier = "PF_NOISE_MODIFIER_NONE"
+				m_flNoiseTurbulenceScale = 1.0
+				m_flNoiseTurbulenceMix = 0.5
+				m_flNoiseImgPreviewScale = 1.0
+				m_bNoiseImgPreviewLive = true
+				m_nInputMode = "PF_INPUT_MODE_CLAMPED"
+				m_flMultFactor = 1.0
+				m_flInput0 = 0.0
+				m_flInput1 = 1.0
+				m_flOutput0 = 0.0
+				m_flOutput1 = 1.0
+				m_nBiasType = "PF_BIAS_TYPE_STANDARD"
+				m_flBiasParameter = 0.0
+				m_Curve = 
+				{
+					m_spline = [  ]
+					m_tangents = [  ]
+					m_vDomainMins = [ 0.0, 0.0 ]
+					m_vDomainMaxs = [ 0.0, 0.0 ]
+				}
+			}
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndScale = 0.0
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade = [ 8, 88, 91 ]
+			m_flFadeStartTime = 0.25
+		},
+		{
+			_class = "C_OP_SetChildControlPoints"
+			m_nFirstControlPoint = 3
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderTrails"
+			m_flAnimationRate = 1.0
+			m_flLengthFadeInTime = 0.2
+			m_bIgnoreDT = true
+			m_bCannotBeRefracted = false
+			m_flTailAlphaScale = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.0
+			}
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/particle_glow_irregular1_brightmod.vtex"
+					m_TextureControls = 
+					{
+						m_flFinalTextureScaleV = 
+						{
+							m_nType = "PF_TYPE_LITERAL"
+							m_flLiteralValue = -1.0
+						}
+						m_flFinalTextureOffsetV = 
+						{
+							m_nType = "PF_TYPE_LITERAL"
+							m_flLiteralValue = 1.0
+						}
+					}
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/econ/items/elder_titan/elder_titan_2021/elder_titan_2021_earth_splitter_impact_screenshake.vpcf"
+			m_bEndCap = true
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/elder_titan/elder_titan_2021/elder_titan_2021_earth_splitter_endcap_distortion.vpcf"
+			m_bEndCap = true
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/elder_titan/elder_titan_2021/elder_titan_2021_earth_splitter_beam_graphical_left.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/elder_titan/elder_titan_2021/elder_titan_2021_earth_splitter_beam_graphical_right.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/elder_titan/elder_titan_2021/elder_titan_2021_ground_crack_rope.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/elder_titan/elder_titan_2021/elder_titan_2021_earth_splitter_dirt_beam.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/elder_titan/elder_titan_2021/elder_titan_2021_earth_splitter_dirt_beam_left.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/elder_titan/elder_titan_2021/elder_titan_2021_earth_splitter_ground_crack_beam_squiggly_right.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/elder_titan/elder_titan_2021/elder_titan_2021_earth_splitter_ground_crack_beam_squiggly_left.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/elder_titan/elder_titan_2021/elder_titan_2021_earth_splitter_dirt_beam_right.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/elder_titan/elder_titan_2021/elder_titan_2021_earth_splitter_cracks.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/elder_titan/elder_titan_2021/elder_titan_2021_earth_splitter_rock_leading.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/elder_titan/elder_titan_2021/elder_titan_2021_earth_splitter_endcap_saw_arcs.vpcf"
+			m_bEndCap = true
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/elder_titan/elder_titan_2021/elder_titan_2021_earth_splitter_endcap_glow.vpcf"
+			m_bEndCap = true
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/elder_titan/elder_titan_2021/elder_titan_2021_earth_splitter_endcap_light.vpcf"
+			m_bEndCap = true
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/elder_titan/elder_titan_2021/elder_titan_2021_earth_splitter_endcap_steam.vpcf"
+			m_bEndCap = true
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/elder_titan/elder_titan_2021/elder_titan_2021_earth_splitter_circular_sequence.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/elder_titan/elder_titan_2021/elder_titan_2021_earth_splitter_impact_dust.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/elder_titan/elder_titan_2021/elder_titan_2021_earth_splitter_impact_sparks.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/elder_titan/elder_titan_2021/elder_titan_2021_earth_splitter_impact_ring.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/elder_titan/elder_titan_2021/elder_titan_2021_earth_splitter_cast_shake.vpcf"
+		},
+	]
+}

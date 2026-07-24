@@ -1,0 +1,67 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/layout/custom_game/tooltips/card_tooltip/card_tooltip.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/tooltips/card_tooltip/card_tooltip.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="CardStatLine">
+			<Panel class="CardBaseBonusLine">
+				<Panel class="CardBaseBonusPin" />
+				<Label id="StatLabel" class="CardBaseBonusLabel" html="true" />
+			</Panel>
+		</snippet>
+		<snippet name="CardEffect">
+			<Panel class="CardBaseEffectPanel">
+				<Panel class="CardBaseEffectPanelHeader">
+					<Label id="EffectName" class="CardBaseEffectPanelName" />
+					<Panel id="CooldownPanel" class="CardBaseEffectPanelCooldownPanel">
+						<Panel class="CardBaseEffectPanelCooldownIcon" />
+						<Label id="CooldownLabel" class="CardBaseEffectPanelCooldownLabel" />
+					</Panel>
+				</Panel>
+				<Panel class="CardBaseEffectPanelBody">
+					<Label id="EffectDescription" class="CardBaseBonusLabel" html="true" />
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="card_tooltip" hittest="false" hittestchildren="false" ontooltiploaded="UpdateTooltip()">
+		<Panel class="TooltipBG" id="TooltipBG" />
+		<Panel class="TooltipBG2" id="TooltipBG2" />
+		<Panel class="TooltipBorder" />
+		<Panel class="TooltipBody">
+			<Panel class="CardImagePanel" id="CardImagePanel">
+				<Image class="CardImage" id="CardImage" />
+				<Panel class="CardBorder" />
+			</Panel>
+			<Panel class="CardNamePanel" id="CardNamePanel">
+				<Label text="CardName" id="CardName" />
+			</Panel>
+			<Panel class="Limer" />
+			<Panel class="CardStats" id="CardStats" />
+			<Panel class="EffectsCard" id="EffectsCard" />
+			<Panel class="BundleData" id="BundleData">
+				<Panel class="BundleHeaderTop">
+					<Panel class="BundleBG" id="BundleBG" />
+					<Label class="BundleDataHeader" html="true" id="BundleDataHeader" text="" />
+				</Panel>
+				<Label class="BundleDataDescription" html="true" id="BundleDataDescription" text="" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

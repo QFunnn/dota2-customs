@@ -1,0 +1,29 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/buff/buff.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/buff/buff.vjs_c" />
+	</scripts>
+	<Panel class="BuffRoot" hittest="false">
+		<Button id="BuffFrame" onactivate="OnBuffClicked()" onmouseover="BuffShowTooltip()" onmouseout="BuffHideTooltip()">
+			<Panel id="BuffImage">
+				<DOTAAbilityImage id="AbilityImage" hittest="false" />
+				<DOTAItemImage id="ItemImage" scaling="stretch-to-fit-y-preserve-aspect" hittest="false" />
+			</Panel>
+			<Panel class="CircularDuration" id="CircularDuration" />
+			<Label id="StackCount" />
+		</Button>
+	</Panel>
+</root>

@@ -1,0 +1,249 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.TopLeftButtonsList
+{
+	margin-top: 12px;
+	margin-left: 15px;
+	flow-children: right;
+	z-index: 1000;
+}
+
+.TopLeftButton
+{
+	flow-children: down;
+	margin-right: 10px;
+	padding-top: 2px;
+}
+
+.TopLeftButton .ServiceNotifyDot
+{
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	horizontal-align: right;
+	vertical-align: top;
+	margin-top: -2px;
+	margin-right: 5px;
+	ignore-parent-flow: true;
+	background-color: gradient( radial, 50% 50%, 0% 0%, 60% 60%, from( #fff1f1 ), color-stop( 0.4, #ff4141 ), color-stop( 0.72, #bd0808 ), to( #610000 ) );
+	border: 1px solid #ffb6b6;
+	box-shadow: #ff1f1faa 0px 0px 4px 0px;
+	z-index: 50;
+	visibility: collapse;
+	margin-top: 0px;
+	animation-name: DotAnimeWobble;
+	animation-duration: 0.5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.TopLeftButton .ServiceNotifyDotVisible
+{
+	visibility: visible;
+}
+
+.TopLeftButton .ServiceNotifyDotHidden
+{
+	visibility: collapse;
+}
+
+@keyframes 'DotAnimeWobble'
+{
+	25%
+	{
+		transform: scale3d(0.9,0.9,0.9);
+	}
+	
+	75%
+	{
+		transform: scale3d(1,1,1);
+	}
+	
+}
+
+.TopLeftButton Label
+{
+	color: white;
+	text-align: center;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 5px 3 black;
+	font-size: 15px;
+	text-overflow: shrink;
+	width: 50px;
+	horizontal-align: center;
+}
+
+.TopLeftButtonImg
+{
+	width: 32px;
+	height: 32px;
+	brightness: 6;
+	img-shadow: 0px 0px 5px 3 black;
+	wash-color: rgba(209, 25, 255, 0.712);
+	horizontal-align: center;
+	transition-property: brightness;
+	transition-duration: 0.2s;
+	opacity: 0.8;
+}
+
+.TopLeftButton:hover .TopLeftButtonImg
+{
+	brightness: 8;
+	opacity: 1;
+}
+
+.TopLeftButton.HiddenMatchResultTopButton
+{
+	visibility: collapse;
+}
+
+.ButtonKeyBinds .TopLeftButtonImg
+{
+	background-image: url("s2r://panorama/images/game_hud/menu_icons/7_png.vtex");
+	background-size: 100%;
+}
+
+.ButtonProfile .TopLeftButtonImg
+{
+	background-image: url("s2r://panorama/images/game_hud/menu_icons/6_png.vtex");
+	background-size: 100%;
+}
+
+.ButtonEquip .TopLeftButtonImg
+{
+	background-image: url("s2r://panorama/images/game_hud/menu_icons/5_png.vtex");
+	background-size: 100%;
+}
+
+.ButtonStore .TopLeftButtonImg
+{
+	background-image: url("s2r://panorama/images/game_hud/menu_icons/4_png.vtex");
+	background-size: 100%;
+}
+
+.ButtonChests .TopLeftButtonImg
+{
+	background-image: url("s2r://panorama/images/game_hud/menu_icons/8_png.vtex");
+	background-size: 100%;
+}
+
+.ButtonPromo .TopLeftButtonImg
+{
+	background-image: url("s2r://panorama/images/game_hud/menu_icons/2_png.vtex");
+	background-size: 100%;
+}
+
+.ButtonPass .TopLeftButtonImg
+{
+	background-image: url("s2r://panorama/images/game_hud/menu_icons/1_png.vtex");
+	background-size: 100%;
+}
+
+.ButtonLeaderboard .TopLeftButtonImg
+{
+	background-image: url("s2r://panorama/images/game_hud/menu_icons/10_png.vtex");
+	background-size: 100%;
+}
+
+.ButtonMatchResult .TopLeftButtonImg
+{
+	background-image: url("s2r://panorama/images/game_hud/menu_icons/3_png.vtex");
+	background-size: 100%;
+}
+
+.ButtonExitGame .TopLeftButtonImg
+{
+	background-image: url("s2r://panorama/images/game_hud/menu_icons/11_png.vtex");
+	background-size: 100%;
+}
+
+.ExitGameConfirmOverlay
+{
+	width: 100%;
+	height: 100%;
+	z-index: 2000;
+	background-color: #000000aa;
+}
+
+.ExitGameConfirmWindow
+{
+	align: center center;
+	width: 460px;
+	flow-children: down;
+	padding: 24px;
+	background-color: gradient( radial, 50% 10%, 0% 0%, 85% 85%, from( #4a3d68 ), color-stop( 0.35, #2d2542 ), color-stop( 0.7, #1b1628 ), to( #0d0a14 ) );
+	border: 1px solid #6f5c96;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( #8f79c2 ), to( #312744 ) );
+	box-shadow: 0px 0px 10px 1px black;
+}
+
+.ExitGameConfirmTitle
+{
+	horizontal-align: center;
+	color: white;
+	font-size: 24px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 5px 3 black;
+	margin-bottom: 12px;
+}
+
+.ExitGameConfirmSaveLabel
+{
+	horizontal-align: center;
+	color: #d8d0e2;
+	font-size: 17px;
+	text-shadow: 0px 0px 4px 2 black;
+	margin-bottom: 20px;
+}
+
+.ExitGameConfirmSaveLabel.ExitGameSaveOld
+{
+	color: #ff8a5c;
+}
+
+.ExitGameConfirmButtons
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.ExitGameConfirmButton
+{
+	width: 160px;
+	height: 42px;
+	margin: 0px 10px;
+	transition-property: brightness;
+	transition-duration: 0.15s;
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_10_png.vtex");
+	background-size: 100%;
+}
+
+.ExitGameConfirmButton:hover
+{
+	brightness: 1.5;
+}
+
+.ExitGameConfirmButton.ExitGameLeaveButton
+{
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_12_png.vtex");
+	background-size: 100%;
+}
+
+.ExitGameConfirmButton Label
+{
+	align: center center;
+	color: white;
+	font-size: 18px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 4px 2 black;
+}

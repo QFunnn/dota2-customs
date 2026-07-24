@@ -1,0 +1,594 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.SettingsWindow
+{
+	align: center top;
+	width: 1000px;
+	margin-top: 150px;
+	flow-children: down;
+	opacity: 0;
+	transition-property: opacity, box-shadow;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+	background-color: gradient( radial, 50% 10%, 0% 0%, 85% 85%, from( #4a3d68 ), color-stop( 0.35, #2d2542 ), color-stop( 0.7, #1b1628 ), to( #161124 ) );
+	border: 1px solid #6f5c96;
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from( #8f79c2 ), to( #312744 ) );
+}
+
+.SettingsList
+{
+	flow-children: right;
+}
+
+.SettingsKeyBinds
+{
+	width: 700px;
+	height: 500px;
+	background-color: rgba(0, 0, 0, 0.5);
+	flow-children: down;
+}
+
+.SettingsOther
+{
+	width: 300px;
+	height: 500px;
+	background-color: rgba(0, 0, 0, 0.2);
+	flow-children: down;
+}
+
+.SettingsWindowHeader
+{
+	margin-top: 20px;
+	width: 100%;
+}
+
+.SettingsWindowHeader Label
+{
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	text-overflow: shrink;
+	align: center center;
+	text-shadow: 1px 1px 1px 1 black;
+}
+
+.SettingsBody
+{
+	flow-children: down;
+	width: 100%;
+	margin-top: 20px;
+}
+
+.settings_toggle_row
+{
+	width: 270px;
+	height: 52px;
+	horizontal-align: center;
+	img-shadow: 0px 0px 2px 3 black;
+	background-image: url("s2r://panorama/images/game_hud/settings/mini_bg2_png.vtex");
+	background-size: 100%;
+	margin-bottom: 5px;
+}
+
+.settings_toggle_button
+{
+	width: 100%;
+	height: 100%;
+	vertical-align: center;
+	flow-children: right;
+}
+
+.settings_toggle_label
+{
+	color: white;
+	font-size: 16px;
+	width: fill-parent-flow(1);
+	margin-right: 5px;
+	vertical-align: center;
+	text-shadow: 0px 0px 5px 3 black;
+	text-overflow: shrink;
+	font-weight: thin;
+	letter-spacing: 0.2px;
+	vertical-align: center;
+	margin-left: 16px;
+}
+
+.settings_toggle_status_button
+{
+	width: 80px;
+	height: 28px;
+	vertical-align: center;
+	margin-right: 15px;
+	background-image: url("s2r://panorama/images/game_hud/settings/tumbler2_png.vtex");
+	background-size: 100%;
+	transition-property: brightness;
+	transition-duration: 0.25s;
+}
+
+.settings_toggle_status
+{
+	width: 56px;
+	margin-left: 5px;
+	vertical-align: center;
+	color: #fc6262;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 1px 1px 1px 1 black;
+	text-overflow: shrink;
+	text-transform: uppercase;
+}
+
+.settings_toggle_button_active .settings_toggle_status
+{
+	color: #c8ffd2;
+}
+
+.settings_toggle_button_active .settings_toggle_status_button
+{
+	background-image: url("s2r://panorama/images/game_hud/settings/tumbler_png.vtex");
+	background-size: 100%;
+}
+
+.settings_toggle_button:hover .settings_toggle_status_button
+{
+	brightness: 2;
+}
+
+.settings_slider_row
+{
+	margin-bottom: 5px;
+	width: 270px;
+	height: 76px;
+	horizontal-align: center;
+	padding: 10px 16px 8px 16px;
+	flow-children: down;
+	img-shadow: 0px 0px 2px 3 black;
+	background-image: url("s2r://panorama/images/game_hud/settings/mini_bg2_png.vtex");
+	background-size: 100%;
+}
+
+.settings_slider_header
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.settings_slider_label
+{
+	width: fill-parent-flow(1);
+	color: white;
+	font-size: 16px;
+	font-weight: thin;
+	text-shadow: 0px 0px 5px 3 black;
+	text-overflow: shrink;
+}
+
+.settings_slider_value
+{
+	width: 45px;
+	color: #c8ffd2;
+	font-size: 15px;
+	font-weight: bold;
+	text-align: right;
+	text-shadow: 1px 1px 1px 1 black;
+}
+
+.settings_slider
+{
+	width: 100%;
+	height: 24px;
+	margin-top: 8px;
+}
+
+.keybinds_category_panel
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.keybind_ability_panel
+{
+	width: 80px;
+	height: 80px;
+	margin: 2px;
+	ui-scale: 105%;
+}
+
+.keybind_ability_icon
+{
+	width: 64px;
+	height: 64px;
+	ui-scale: 80%;
+	align: center center;
+	opacity: 0.75;
+}
+
+.keybind_ability_icon_border
+{
+	width: 64px;
+	height: 64px;
+	align: center center;
+	background-image: url("s2r://panorama/images/game_hud/lower_hud/ability_bg_placeholder_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 5px 3.0 black;
+	opacity: 0.5;
+}
+
+.keybind_ability_icon_border_golden
+{
+	background-image: url("s2r://panorama/images/game_hud/lower_hud/ability_bg_gold_placeholder_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 5px 1.0 black;
+	opacity: 1;
+	wash-color: rgb(255, 251, 25);
+}
+
+.key_bind_button
+{
+	width: 35px;
+	height: 35px;
+	background-color: black;
+	horizontal-align: right;
+	border-radius: 3px;
+	transition-property: box-shadow;
+	transition-duration: 0.1s;
+}
+
+.keybind_ability_panel .key_bind_button
+{
+	width: 24px;
+	height: 24px;
+	horizontal-align: left;
+	box-shadow: rgba(172, 128, 245, 0.5) 0px 0px 1px 0.5px;
+}
+
+.key_bind_button_text
+{
+	vertical-align: center;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 1px 1 black;
+	horizontal-align: center;
+	text-transform: uppercase;
+}
+
+.keybind_ability_panel .key_bind_button_text
+{
+	font-size: 16px;
+}
+
+.keybind_ability_panel:hover .key_bind_button
+{
+	box-shadow: gold 0px 0px 5px 1px;
+}
+
+.keybinds_category_items
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.keybind_item_panel
+{
+	width: 80px;
+	height: 80px;
+	margin: 2px;
+	ui-scale: 105%;
+}
+
+.keybind_item_icon
+{
+	width: 64px;
+	height: 64px;
+	ui-scale: 100%;
+	align: center center;
+	background-image: url("s2r://panorama/images/items/emptyitembg_png.vtex");
+	background-size: 100%;
+}
+
+.keybind_ability_item_border
+{
+	width: 64px;
+	height: 64px;
+	background-image: url("s2r://panorama/images/game_hud/lower_hud/item_bg_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 5px 5 black;
+	saturation: 0.8;
+	align: center center;
+}
+
+.keybind_item_panel .key_bind_button
+{
+	width: 24px;
+	height: 24px;
+	horizontal-align: left;
+	box-shadow: rgba(172, 128, 245, 0.5) 0px 0px 1px 0.5px;
+}
+
+.keybind_item_panel.keybind_item_panel_other .key_bind_button
+{
+	box-shadow: rgba(255, 255, 255, 0.5) 0px 0px 1px 0.5px;
+}
+
+.keybind_item_panel .key_bind_button_text
+{
+	font-size: 16px;
+}
+
+.keybind_item_panel:hover .key_bind_button
+{
+	box-shadow: gold 0px 0px 5px 1px;
+}
+
+.keybinds_title_category_panel
+{
+	horizontal-align: center;
+	color: white;
+	width: 100%;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 18px;
+	font-weight: bold;
+	margin: 10px;
+	padding-bottom: 10px;
+	border-bottom: 0.5px solid white;
+	border-brush: gradient( linear, 0% 0%, 100% 0%, from( rgba(255, 255, 255, 0) ), color-stop( 0.5, rgba(180, 140, 243, 0.2) ), color-stop( 0.5, rgba(180, 140, 243, 0.2) ), to( rgba(255, 0, 0, 0) ));
+}
+
+.keybind_line
+{
+	flow-children: right;
+	width: 200px;
+	height: 35px;
+	margin: 6px;
+	margin-right: 0px;
+	background-color: rgba(0, 0, 0, 0.5);
+	border: 1px solid rgba(255, 255, 255, 0.05);
+	overflow: noclip;
+}
+
+.key_bind_label
+{
+	width: 165px;
+	height: 14px;
+	vertical-align: center;
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
+	padding-left: 10px;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 1px 1 black;
+}
+
+.key_bind_button:focus
+{
+	animation-name: KeyBindFocused;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'KeyBindFocused'
+{
+	0%
+	{
+		box-shadow: gold 0px 0px 5px 1px;
+	}
+	
+	50%
+	{
+		box-shadow: gold 0px 0px 0px 1px;
+	}
+	
+	100%
+	{
+		box-shadow: gold 0px 0px 5px 1px;
+	}
+	
+}
+
+.SettingsButtons
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-top: 4px;
+}
+
+.SettingButton
+{
+	width: 240px;
+	height: 60px;
+	background-image: url("s2r://panorama/images/game_hud/buttons/button_10_png.vtex");
+	background-size: 100%;
+	horizontal-align: center;
+	margin-top: 30px;
+	transition-property: brightness, opacity, transform;
+	transition-duration: 0.1s;
+	margin: 10px;
+	opacity: 0.9;
+}
+
+.SettingButton:hover
+{
+	brightness: 1.1;
+	img-shadow: 0px 0px 3px 0 rgba(119, 0, 255, 0.445);
+	opacity: 1;
+}
+
+.SettingButton:active
+{
+	transform: scale3d(0.95, 0.95, 1);
+}
+
+.SettingButton Label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: white;
+	font-weight: semi-bold;
+	font-size: 22px;
+	text-overflow: shrink;
+	text-align: center;
+	text-shadow: 0px 0px 5px 3 black;
+	color: white;
+}
+
+.ExitCross
+{
+	z-index: 100;
+	horizontal-align: right;
+	margin-right: 2px;
+	margin-top: 2px;
+	ignore-parent-flow: true;
+	width: 32px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/game_hud/icons/close_new_png.vtex");
+	img-shadow: 0px 0px 1px 1 black;
+	background-size: 100%;
+	transition-property: brightness, transform;
+	transition-duration: 0.25s;
+	opacity: 1;
+	saturation: 0.75;
+}
+
+.ExitCross:hover
+{
+	opacity: 1;
+	brightness: 2;
+}
+
+.ExitCross:active
+{
+	transform: scale3d(0.9, 0.9, 1);
+}
+
+.WindowVisible
+{
+	opacity: 1;
+}
+
+.WindowVisible .SettingsWindow
+{
+	opacity: 1;
+	box-shadow: 0px 0px 10px 1px black;
+}
+
+Slider,RangeSlider
+{
+	width: 34px;
+	height: 140px;
+	margin-bottom: 20px;
+}
+
+#SliderTrack
+{
+	height: 128px;
+	width: 18px;
+	align: center center;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#05080b), color-stop(0.45, #111a20), color-stop(0.55, #19262e), to(#05080b));
+	border: 2px solid #53646d88;
+	border-radius: 6px;
+	box-shadow: #000000cc 0px 0px 4px 2px;
+	z-index: 2;
+}
+
+#SliderTrackProgress
+{
+	width: 10px;
+	height: 99%;
+	align: center center;
+	border-radius: 5px;
+	z-index: 3;
+}
+
+#SliderTrackRangeFill
+{
+	width: 10px;
+	height: 99%;
+	align: center center;
+	z-index: 3;
+}
+
+#SliderTrackRangeFillInner
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+}
+
+.SliderThumb
+{
+	width: 34px;
+	height: 18px;
+	z-index: 6;
+}
+
+Slider.HorizontalSlider,SlottedSlider.HorizontalSlider,RangeSlider.HorizontalSlider
+{
+	width: 420px;
+	height: 34px;
+}
+
+Slider.HorizontalSlider #SliderTrack,SlottedSlider.HorizontalSlider #SliderTrack,RangeSlider.HorizontalSlider #SliderTrack
+{
+	width: 100%;
+	height: 18px;
+	padding: 10px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#05080b), color-stop(0.5, #16222a), to(#05080b));
+	border: 1px solid #53646d88;
+	border-radius: 2px;
+	box-shadow: #000000cc 0px 0px 0px 1px;
+}
+
+Slider.HorizontalSlider #SliderTrackProgress,SlottedSlider.HorizontalSlider #SliderTrackProgress,RangeSlider.HorizontalSlider #SliderTrackRangeFill
+{
+	width: 100%;
+	height: 10px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#d15cff), color-stop(0.45, #9c24ff), to(#7c5cff));
+	border-radius: 2px;
+}
+
+Slider.HorizontalSlider #SliderTrackProgress:disabled,SlottedSlider.HorizontalSlider #SliderTrackProgress:disabled,RangeSlider.HorizontalSlider #SliderTrackRangeFill:disabled
+{
+	width: 100%;
+	height: 10px;
+	box-shadow: inset black -2px 1px 3px 0px;
+	margin-left: 1px;
+}
+
+Slider.HorizontalSlider .SliderThumb,SlottedSlider.HorizontalSlider .SliderThumb,RangeSlider.HorizontalSlider .SliderThumb
+{
+	width: 18px;
+	height: 34px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#f8e8ff), color-stop(0.45, #8d7fc9), to(#362640) );
+	border: 1px solid #ddb9ff99;
+	border-radius: 2px;
+	box-shadow: black 0px 0px 2px 1px;
+}
+
+Slider.HorizontalSlider .SliderThumb:hover,SlottedSlider.HorizontalSlider .SliderThumb:hover,RangeSlider.HorizontalSlider .SliderThumb:hover
+{
+	box-shadow: #8c00ffaa 0px 0px 4px 1px;
+}
+
+Slider.HorizontalSlider .SliderThumb:disabled,SlottedSlider.HorizontalSlider .SliderThumb:disabled,RangeSlider.HorizontalSlider .SliderThumb:disabled
+{
+	background-color: #333333;
+	border: 2px solid #444444;
+	box-shadow: none;
+}

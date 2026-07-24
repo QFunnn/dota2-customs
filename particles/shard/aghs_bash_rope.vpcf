@@ -1,0 +1,179 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf65:version{48e806a9-c210-4cd8-811a-38b5ef63b195} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 48
+	m_flConstantRadius = 127.0
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderRopes"
+			m_nMaxTesselation = 3
+			m_flTessScale = 0.0
+			m_flTextureVWorldSize = 10000000.0
+			m_flTextureVOffset = 0.957031
+			m_nScaleCP1 = 0
+			m_nScaleCP2 = 1
+			m_nOrientationType = "PARTICLE_ORIENTATION_WORLD_Z_ALIGNED"
+			m_flSourceAlphaValueToMapToOne = 0.7
+			m_bSaturateColorPreAlphaBlend = false
+			m_flOverbrightFactor = 0.25
+			m_nHSVShiftControlPoint = 62
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/beam_edge_06.vtex"
+				},
+			]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.22
+		},
+		{
+			_class = "C_OP_MovementPlaceOnGround"
+			m_flOffset = 48.0
+			m_flMaxTraceLength = 2048.0
+			m_flTolerance = 0.0
+			m_flTraceOffset = 512.0
+			m_CollisionGroupName = "DEBRIS"
+			m_bIncludeWater = true
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flBias = 0.75
+			m_flStartScale = 0.5
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade = [ 127, 94, 73, 255 ]
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RingWave"
+			m_flParticlesPerOrbit = 130.0
+			m_bEvenDistribution = true
+			m_flInitialRadius = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 1
+				m_nVectorComponent = 0
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 0.1
+			}
+			m_flThickness = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 1
+				m_nVectorComponent = 1
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 0.0
+			}
+			m_flInitialSpeedMin = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 1
+				m_nVectorComponent = 2
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 6.0
+			}
+			m_flInitialSpeedMax = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 1
+				m_nVectorComponent = 2
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 6.0
+			}
+			m_flYaw = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 292.0
+			}
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMax = [ 0.0, 0.0, 40.0 ]
+			m_OffsetMin = [ 0.0, 0.0, 40.0 ]
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+			m_nOutputField = 7
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_nFieldOutput = 16
+			m_nInputMin = 1
+			m_nInputMax = 5
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_nFieldOutput = 16
+			m_nInputMin = 43
+			m_nInputMax = 47
+			m_flOutputMin = 1.0
+			m_flOutputMax = 0.0
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 255, 105, 24, 255 ]
+			m_ColorMax = [ 255, 121, 3, 255 ]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 48.0
+			}
+		},
+	]
+	m_ConstantColor = [ 255, 105, 24, 255 ]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 3
+	m_flConstantLifespan = 0.25
+}
