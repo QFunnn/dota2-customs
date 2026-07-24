@@ -1,0 +1,40 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+#base "kv/abilities/ablts_item.kv"
+#base "kv/abilities/items_drop.kv"
+"DOTAAbilities"
+{
+    "item_blank"
+	{
+		// "ID"					"1709"
+		"BaseClass"				"item_datadriven"
+		"AbilityTextureName"	"item_lockicon"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemKillable"			"0"
+		"ItemSellable"			"0"
+		"ItemPurchasable"		"0"
+		"ItemDroppable"			"0"
+		"AllowedInBackpack"		"1"
+	}
+
+	"item_js2lua"
+	{
+		"BaseClass"				"item_lua"
+		"ScriptFile"			"abilities/js2lua"
+		"AbilityTextureName"	"item_lockicon"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemKillable"			"0"
+		"ItemSellable"			"0"
+		"ItemPurchasable"		"0"
+		"ItemDroppable"			"0"
+		"AllowedInBackpack"		"0"
+	}
+}

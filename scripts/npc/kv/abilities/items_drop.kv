@@ -1,0 +1,660 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"items_drop"
+{
+    // _ItemName: 金币
+    // _Description: 
+    "item_gold_custom"
+    {
+        "name"                              "item_gold_custom"
+        "id"                                "1080001"
+        "Enable"                            "1"
+        "ItemLabel"                         "gold"
+        "BaseClass"                         "item_datadriven"
+        "Model"                             "models/props_gameplay/gold_bag.vmdl"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "ItemKillable"                      "0"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _ItemName: 木材
+    // _Description: 
+    "item_wood_custom"
+    {
+        "name"                              "item_wood_custom"
+        "id"                                "1080002"
+        "Enable"                            "1"
+        "ItemLabel"                         "wood"
+        "BaseClass"                         "item_datadriven"
+        "Model"                             "models/props_gameplay/branch.vmdl"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "ItemKillable"                      "0"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _ItemName: 局内装备
+    // _Description: 
+    "item_game_item"
+    {
+        "name"                              "item_game_item"
+        "id"                                "1080003"
+        "Enable"                            "1"
+        "ItemLabel"                         "game_item"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "gameplay_item/item_game_item"
+        "Model"                             "models/props_gameplay/drop_item.vmdl"
+        "ModelScale"                        "1"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "MinimapIcon"                       "minimap_item"
+        "MinimapIconSize"                   "256"
+        "ItemStacked"                       "1"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _ItemName: 吞噬丹
+    // _Description: 
+    "item_devour"
+    {
+        "name"                              "item_devour"
+        "id"                                "1080004"
+        "Enable"                            "1"
+        "ItemLabel"                         "consumable"
+        "Rarity"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "gameplay_item/consumable/item_devour"
+        "Model"                             "models/props_gameplay/devour/devour.vmdl"
+        "ModelScale"                        "1"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "1"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _ItemName: 双倍神符
+    // _Description: 攻击增幅+100%，持续30秒
+    "item_rune_doubledamage"
+    {
+        "name"                              "item_rune_doubledamage"
+        "id"                                "1080005"
+        "Enable"                            "1"
+        "ItemLabel"                         "consumable"
+        "Rarity"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "gameplay_item/consumable/item_rune_doubledamage"
+        "Model"                             "models/props_gameplay/rune_doubledamage01.vmdl"
+        "Effect"                            "particles/generic_gameplay/rune_doubledamage.vpcf"
+        "ModelScale"                        "1"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "1"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "AbilityValues"
+        {
+            "val"                           "100"
+            "duration"                      "30"
+        }
+    }
+
+    // _ItemName: 恢复神符
+    // _Description: 每秒恢复4%的最大生命值和2%的魔法值，持续30秒
+    "item_rune_regeneration"
+    {
+        "name"                              "item_rune_regeneration"
+        "id"                                "1080006"
+        "Enable"                            "1"
+        "ItemLabel"                         "consumable"
+        "Rarity"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "gameplay_item/consumable/item_rune_regeneration"
+        "Model"                             "models/props_gameplay/rune_regeneration01.vmdl"
+        "Effect"                            "particles/generic_gameplay/rune_regeneration.vpcf"
+        "ModelScale"                        "1"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "1"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "AbilityValues"
+        {
+            "val"                           "4"
+            "val1"                          "2"
+            "duration"                      "30"
+        }
+    }
+
+    // _ItemName: 赏金神符
+    // _Description: 杀敌金币+100%，持续45秒
+    "item_rune_bounty"
+    {
+        "name"                              "item_rune_bounty"
+        "id"                                "1080007"
+        "Enable"                            "1"
+        "ItemLabel"                         "consumable"
+        "Rarity"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "gameplay_item/consumable/item_rune_bounty"
+        "Model"                             "models/props_gameplay/rune_goldxp.vmdl"
+        "Effect"                            "particles/generic_gameplay/rune_bounty.vpcf"
+        "ModelScale"                        "1"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "1"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "AbilityValues"
+        {
+            "val"                           "100"
+            "duration"                      "45"
+        }
+    }
+
+    // _ItemName: 奥术神符
+    // _Description: 技能急速+200，持续30秒
+    "item_rune_arcane"
+    {
+        "name"                              "item_rune_arcane"
+        "id"                                "1080008"
+        "Enable"                            "1"
+        "ItemLabel"                         "consumable"
+        "Rarity"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "gameplay_item/consumable/item_rune_arcane"
+        "Model"                             "models/props_gameplay/rune_arcane.vmdl"
+        "Effect"                            "particles/generic_gameplay/rune_arcane.vpcf"
+        "ModelScale"                        "1"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "1"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "AbilityValues"
+        {
+            "val"                           "200"
+            "duration"                      "30"
+        }
+    }
+
+    // _ItemName: 急速神符
+    // _Description: 攻速+200%，移速+100%，持续30秒
+    "item_rune_haste"
+    {
+        "name"                              "item_rune_haste"
+        "id"                                "1080009"
+        "Enable"                            "1"
+        "ItemLabel"                         "consumable"
+        "Rarity"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "gameplay_item/consumable/item_rune_haste"
+        "Model"                             "models/props_gameplay/rune_haste01.vmdl"
+        "Effect"                            "particles/generic_gameplay/rune_haste.vpcf"
+        "ModelScale"                        "1"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "1"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "AbilityValues"
+        {
+            "val"                           "200"
+            "val1"                          "100"
+            "duration"                      "30"
+        }
+    }
+
+    // _ItemName: 暴怒神符
+    // _Description: 物理暴击+50%，魔法暴击+50%，真伤暴击+50%，持续30秒
+    "item_rune_crit"
+    {
+        "name"                              "item_rune_crit"
+        "id"                                "1080010"
+        "Enable"                            "1"
+        "ItemLabel"                         "consumable"
+        "Rarity"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "gameplay_item/consumable/item_rune_crit"
+        "Model"                             "models/props_gameplay/rune_invisibility01.vmdl"
+        "Effect"                            "particles/generic_gameplay/rune_invisibility.vpcf"
+        "ModelScale"                        "1"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "1"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "AbilityValues"
+        {
+            "val"                           "50"
+            "val1"                          "50"
+            "val2"                          "50"
+            "duration"                      "30"
+        }
+    }
+
+    // _ItemName: 属性神符
+    // _Description: 每击杀1名敌人，获得1点随机属性，持续45秒。
+    "item_rune_stats"
+    {
+        "name"                              "item_rune_stats"
+        "id"                                "1080011"
+        "Enable"                            "1"
+        "ItemLabel"                         "consumable"
+        "Rarity"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "gameplay_item/consumable/item_rune_stats"
+        "Model"                             "models/props_gameplay/rune_xp.vmdl"
+        "Effect"                            "particles/generic_gameplay/rune_wisdom.vpcf"
+        "ModelScale"                        "1"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "1"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "AbilityValues"
+        {
+            "val"                           "1"
+            "val1"                          "1"
+            "duration"                      "45"
+        }
+    }
+
+    // _ItemName: 全能神符
+    // _Description: 生命增幅+30%，全属性增幅+30%，护甲+100，格挡+100，持续30秒。
+    "item_rune_all"
+    {
+        "name"                              "item_rune_all"
+        "id"                                "1080012"
+        "Enable"                            "1"
+        "ItemLabel"                         "consumable"
+        "Rarity"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "gameplay_item/consumable/item_rune_all"
+        "Model"                             "models/props_gameplay/rune_shield01.vmdl"
+        "Effect"                            "particles/generic_gameplay/rune_shield.vpcf"
+        "ModelScale"                        "1"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "1"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "AbilityValues"
+        {
+            "val"                           "30"
+            "val1"                          "30"
+            "val2"                          "100"
+            "val3"                          "100"
+            "duration"                      "30"
+        }
+    }
+
+    // _ItemName: 英雄卡
+    // _Description: 抽取一次英雄
+    "item_hero_card"
+    {
+        "name"                              "item_hero_card"
+        "id"                                "1080013"
+        "Enable"                            "1"
+        "ItemLabel"                         "consumable"
+        "Rarity"                            "5"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "gameplay_item/consumable/item_hero_card"
+        "Model"                             "models/props_gameplay/red_box.vmdl"
+        "ModelScale"                        "1"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "1"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _ItemName: 高级英雄卡
+    // _Description: 抽取一次高级英雄
+    "item_hero_up_card"
+    {
+        "name"                              "item_hero_up_card"
+        "id"                                "1080014"
+        "Enable"                            "1"
+        "ItemLabel"                         "consumable"
+        "Rarity"                            "6"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "gameplay_item/consumable/item_hero_up_card"
+        "Model"                             "models/props_gameplay/red_box.vmdl"
+        "ModelScale"                        "1"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "1"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _ItemName: 小仙丹
+    // _Description: 吃掉提升当前百分之5全属性
+    "item_xiandan_small"
+    {
+        "name"                              "item_xiandan_small"
+        "id"                                "1080015"
+        "Enable"                            "1"
+        "ItemLabel"                         "consumable"
+        "Rarity"                            "2"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "gameplay_item/consumable/item_xiandan_small"
+        "Model"                             "models/props_gameplay/red_box.vmdl"
+        "ModelScale"                        "1"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "ItemStacked"                       "1"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "AbilityValues"
+        {
+            "val"                           "5"
+        }
+    }
+
+    // _ItemName: 中仙丹
+    // _Description: 吃掉提升当前百分之8全属性
+    "item_xiandan_middle"
+    {
+        "name"                              "item_xiandan_middle"
+        "id"                                "1080016"
+        "Enable"                            "1"
+        "ItemLabel"                         "consumable"
+        "Rarity"                            "3"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "gameplay_item/consumable/item_xiandan_middle"
+        "Model"                             "models/props_gameplay/red_box.vmdl"
+        "ModelScale"                        "1"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "ItemStacked"                       "1"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "AbilityValues"
+        {
+            "val"                           "8"
+        }
+    }
+
+    // _ItemName: 大仙丹
+    // _Description: 吃掉提升当前百分之10全属性
+    "item_xiandan_big"
+    {
+        "name"                              "item_xiandan_big"
+        "id"                                "1080017"
+        "Enable"                            "1"
+        "ItemLabel"                         "consumable"
+        "Rarity"                            "5"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "gameplay_item/consumable/item_xiandan_big"
+        "Model"                             "models/props_gameplay/red_box.vmdl"
+        "ModelScale"                        "1"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "ItemStacked"                       "1"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "AbilityValues"
+        {
+            "val"                           "10"
+        }
+    }
+
+    // _ItemName: 变异合剂
+    // _Description: 立即刷出一堆分裂精英怪
+    "item_mutant_mixture"
+    {
+        "name"                              "item_mutant_mixture"
+        "id"                                "1080018"
+        "Enable"                            "1"
+        "ItemLabel"                         "consumable"
+        "Rarity"                            "3"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "gameplay_item/consumable/item_mutant_mixture"
+        "Model"                             "models/props_gameplay/bottle_mango001.vmdl"
+        "ModelScale"                        "1"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "1"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "AbilityValues"
+        {
+            "count"                         "5"
+        }
+    }
+
+    // _ItemName: 生长合剂
+    // _Description: 加快你的小怪刷新速度，持续20秒可叠加，效果
+    "item_grow_mixture"
+    {
+        "name"                              "item_grow_mixture"
+        "id"                                "1080019"
+        "Enable"                            "1"
+        "ItemLabel"                         "consumable"
+        "Rarity"                            "3"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "gameplay_item/consumable/item_grow_mixture"
+        "Model"                             "models/props_gameplay/bottle_rejuvenation.vmdl"
+        "ModelScale"                        "1"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "1"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "AbilityValues"
+        {
+            "duration"                      "20"
+            "spd"                           "50"
+        }
+    }
+
+    // _ItemName: 属性转换石
+    // _Description: 选择一项属性，将其当前15%转换成另一项属性
+    "item_attribute_stone"
+    {
+        "name"                              "item_attribute_stone"
+        "id"                                "1080020"
+        "Enable"                            "1"
+        "ItemLabel"                         "consumable"
+        "Rarity"                            "5"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "gameplay_item/consumable/item_attribute_stone"
+        "Model"                             "models/props_gameplay/crystal_shards/crystal_shards.vmdl"
+        "ModelScale"                        "1"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "1"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "AbilityValues"
+        {
+            "val"                           "15"
+        }
+    }
+
+    // _ItemName: 神赐吞噬丹
+    // _Description: 吞噬EX卡牌
+    "item_devour_ex"
+    {
+        "name"                              "item_devour_ex"
+        "id"                                "1080021"
+        "Enable"                            "1"
+        "ItemLabel"                         "consumable"
+        "Rarity"                            "6"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "gameplay_item/consumable/item_devour_ex"
+        "Model"                             "models/props_gameplay/heart001b.vmdl"
+        "ModelScale"                        "1"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "1"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _ItemName: N级悬赏令
+    // _Description: 使用后随机吞噬一个N级海盗卡，并根据吞噬卡牌稀有度获取奖励
+    "item_reward_order_1"
+    {
+        "name"                              "item_reward_order_1"
+        "id"                                "1080022"
+        "Enable"                            "1"
+        "ItemLabel"                         "consumable"
+        "Rarity"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "gameplay_item/consumable/item_reward_order_1"
+        "Model"                             "models/props_gameplay/recipe.vmdl"
+        "ModelScale"                        "1"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "1"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _ItemName: R级悬赏令
+    // _Description: 使用后随机吞噬一个R级及以下海盗卡（优先吞噬高品质的），并根据吞噬卡牌稀有度获取奖励
+    "item_reward_order_2"
+    {
+        "name"                              "item_reward_order_2"
+        "id"                                "1080023"
+        "Enable"                            "1"
+        "ItemLabel"                         "consumable"
+        "Rarity"                            "2"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "gameplay_item/consumable/item_reward_order_2"
+        "Model"                             "models/props_gameplay/recipe.vmdl"
+        "ModelScale"                        "1"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "1"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _ItemName: SR级悬赏令
+    // _Description: 使用后随机吞噬一个SR级及以下海盗卡（优先吞噬高品质的），并根据吞噬卡牌稀有度获取奖励
+    "item_reward_order_3"
+    {
+        "name"                              "item_reward_order_3"
+        "id"                                "1080024"
+        "Enable"                            "1"
+        "ItemLabel"                         "consumable"
+        "Rarity"                            "3"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "gameplay_item/consumable/item_reward_order_3"
+        "Model"                             "models/props_gameplay/recipe.vmdl"
+        "ModelScale"                        "1"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "1"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _ItemName: SSR级悬赏令
+    // _Description: 使用后随机吞噬一个SSR级及以下海盗卡（优先吞噬高品质的），并根据吞噬卡牌稀有度获取奖励
+    "item_reward_order_4"
+    {
+        "name"                              "item_reward_order_4"
+        "id"                                "1080025"
+        "Enable"                            "1"
+        "ItemLabel"                         "consumable"
+        "Rarity"                            "4"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "gameplay_item/consumable/item_reward_order_4"
+        "Model"                             "models/props_gameplay/recipe.vmdl"
+        "ModelScale"                        "1"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "1"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _ItemName: UR级悬赏令
+    // _Description: 使用后随机吞噬一个UR级及以下海盗卡（优先吞噬高品质的），并根据吞噬卡牌稀有度获取奖励
+    "item_reward_order_5"
+    {
+        "name"                              "item_reward_order_5"
+        "id"                                "1080026"
+        "Enable"                            "1"
+        "ItemLabel"                         "consumable"
+        "Rarity"                            "5"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "gameplay_item/consumable/item_reward_order_5"
+        "Model"                             "models/props_gameplay/recipe.vmdl"
+        "ModelScale"                        "1"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "1"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _ItemName: 黄金猿
+    // _Description: 使用后立即获得羁绊卡牌：黄金猿
+    // 在背包中出售也能卖个好价格
+    // 注：使用后会直接移除牌库中的海盗卡组
+    "item_golden_ape"
+    {
+        "name"                              "item_golden_ape"
+        "id"                                "1080027"
+        "Enable"                            "1"
+        "ItemLabel"                         "consumable"
+        "Rarity"                            "4"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "gameplay_item/consumable/item_golden_ape"
+        "Model"                             "models/props_gameplay/gold_coin_overthrow.vmdl"
+        "ModelScale"                        "1"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "1"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "AbilityValues"
+        {
+        }
+    }
+
+}

@@ -1,0 +1,892 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"ablts_xianhun_rsnc"
+{
+    // _name: 裂甲之击
+    // _Description: 攻击时有5%概率使得目标【8~15】秒内护甲降低50%，每个目标只会受到1次该效果
+    "xianhun_rsnc_10610001"
+    {
+        "name"                              "xianhun_rsnc_10610001"
+        "id"                                "10610001"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "8"
+        "max_val"                           "15"
+        "AbilityValues"
+        {
+            "val1"                          "5"
+            "val2"                          "50"
+            "val3"                          "1"
+        }
+    }
+
+    // _name: 连环暴戮
+    // _Description: 普攻暴击后有8%的概率追加【1~2】（计算时，四舍五入）次暴击伤害
+    "xianhun_rsnc_10610002"
+    {
+        "name"                              "xianhun_rsnc_10610002"
+        "id"                                "10610002"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "1"
+        "max_val"                           "2"
+        "AbilityValues"
+        {
+            "val"                           "1"
+        }
+    }
+
+    // _name: 连击迸发
+    // _Description: 攻击有5%概率会使得下一次普攻时额外造成【1~2】（计算时，四舍五入）次普攻伤害
+    "xianhun_rsnc_10610003"
+    {
+        "name"                              "xianhun_rsnc_10610003"
+        "id"                                "10610003"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "1"
+        "max_val"                           "2"
+        "AbilityValues"
+        {
+            "val"                           "5"
+        }
+    }
+
+    // _name: 机缘倍至
+    // _Description: 获得宝箱奖励时有【10%~15%】概率翻倍
+    "xianhun_rsnc_10610004"
+    {
+        "name"                              "xianhun_rsnc_10610004"
+        "id"                                "10610004"
+        "BaseClass"                         "ability_datadriven"
+        "ratio"                             "1"
+        "min_val"                           "10"
+        "max_val"                           "15"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _name: 瞬影绝杀
+    // _Description: D闪后，下次攻击造成的伤害提升【150%~180%】
+    "xianhun_rsnc_10610005"
+    {
+        "name"                              "xianhun_rsnc_10610005"
+        "id"                                "10610005"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "150"
+        "max_val"                           "180"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _name: 闪袭连斩
+    // _Description: D闪会对触碰敌人造成【1~2】（计算时，四舍五入）次普攻伤害
+    "xianhun_rsnc_10610006"
+    {
+        "name"                              "xianhun_rsnc_10610006"
+        "id"                                "10610006"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "1"
+        "max_val"                           "2"
+        "AbilityValues"
+        {
+            "val"                           "150"
+        }
+    }
+
+    // _name: 羁绊祝福
+    // _Description: 每次羁绊卡牌激活套装时，5秒内造成伤害提升【20%~30%】
+    "xianhun_rsnc_10610007"
+    {
+        "name"                              "xianhun_rsnc_10610007"
+        "id"                                "10610007"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "20"
+        "max_val"                           "30"
+        "AbilityValues"
+        {
+            "val"                           "5"
+        }
+    }
+
+    // _name: 成长聚源
+    // _Description: 每次升级，全属性加成+0.5%，最高【8%~12%】
+    "xianhun_rsnc_10610008"
+    {
+        "name"                              "xianhun_rsnc_10610008"
+        "id"                                "10610008"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "8"
+        "max_val"                           "12"
+        "AbilityValues"
+        {
+            "val"                           "0.5"
+        }
+    }
+
+    // _name: 祈佑爆发
+    // _Description: 祈福期间，前10秒造成所有伤害提高【15%~30%】
+    "xianhun_rsnc_10610009"
+    {
+        "name"                              "xianhun_rsnc_10610009"
+        "id"                                "10610009"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "15"
+        "max_val"                           "30"
+        "AbilityValues"
+        {
+            "val"                           "10"
+        }
+    }
+
+    // _name: 涅槃涤尘
+    // _Description: 死亡后立即复活，并对周围1000范围内所有敌人造成自身生命*【5~10】的自适应伤害，
+    // 并在接下来的5秒内受到伤害降低50%，该效果有5分钟冷却时间
+    "xianhun_rsnc_10610010"
+    {
+        "name"                              "xianhun_rsnc_10610010"
+        "id"                                "10610010"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "5"
+        "max_val"                           "10"
+        "AbilityValues"
+        {
+            "val1"                          "1000"
+            "val2"                          "5"
+            "val3"                          "50"
+            "val4"                          "5"
+        }
+    }
+
+    // _name: 力魄觉醒
+    // _Description: 转职成力量英雄时，力量加成+【3%~7%】
+    "xianhun_rsnc_10610011"
+    {
+        "name"                              "xianhun_rsnc_10610011"
+        "id"                                "10610011"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "3"
+        "max_val"                           "7"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _name: 力贯多重
+    // _Description: 当转职为力量或通用型英雄4次及以上时，力量系英雄技能加成【5%~10%】
+    "xianhun_rsnc_10610012"
+    {
+        "name"                              "xianhun_rsnc_10610012"
+        "id"                                "10610012"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "5"
+        "max_val"                           "10"
+        "AbilityValues"
+        {
+            "val"                           "4"
+        }
+    }
+
+    // _name: 疾影凝华
+    // _Description: 转职成敏捷英雄时，敏捷加成+【3%~7%】
+    "xianhun_rsnc_10610013"
+    {
+        "name"                              "xianhun_rsnc_10610013"
+        "id"                                "10610013"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "3"
+        "max_val"                           "7"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _name: 疾风叠影
+    // _Description: 当转职为敏捷或通用型英雄4次及以上时，敏捷系英雄技能加成【5%~10%】
+    "xianhun_rsnc_10610014"
+    {
+        "name"                              "xianhun_rsnc_10610014"
+        "id"                                "10610014"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "5"
+        "max_val"                           "10"
+        "AbilityValues"
+        {
+            "val"                           "4"
+        }
+    }
+
+    // _name: 智核升维
+    // _Description: 转职成智力英雄时，智力加成+【3%~7%】
+    "xianhun_rsnc_10610015"
+    {
+        "name"                              "xianhun_rsnc_10610015"
+        "id"                                "10610015"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "3"
+        "max_val"                           "7"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _name: 智极慧涌
+    // _Description: 当转职为智力或通用型英雄4次及以上时，智力系英雄技能加成【5%~10%】
+    "xianhun_rsnc_10610016"
+    {
+        "name"                              "xianhun_rsnc_10610016"
+        "id"                                "10610016"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "5"
+        "max_val"                           "10"
+        "AbilityValues"
+        {
+            "val"                           "4"
+        }
+    }
+
+    // _name: 掠影猎杀
+    // _Description: 对85%及以上生命值敌人造成伤害提高【15%~25%】
+    "xianhun_rsnc_10610017"
+    {
+        "name"                              "xianhun_rsnc_10610017"
+        "id"                                "10610017"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "15"
+        "max_val"                           "25"
+        "AbilityValues"
+        {
+            "val"                           "85"
+        }
+    }
+
+    // _name: 绝境收割
+    // _Description: 对【15%~25%】及以下生命值敌人造成伤害提高15%
+    "xianhun_rsnc_10610018"
+    {
+        "name"                              "xianhun_rsnc_10610018"
+        "id"                                "10610018"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "15"
+        "max_val"                           "25"
+        "AbilityValues"
+        {
+            "val"                           "15"
+        }
+    }
+
+    // _name: 余烬战意
+    // _Description: 开局获得攻击加成+100%，但每分钟降低【8%~15%】攻击加成，10分钟后不再降低
+    "xianhun_rsnc_10610019"
+    {
+        "name"                              "xianhun_rsnc_10610019"
+        "id"                                "10610019"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "8"
+        "max_val"                           "15"
+        "AbilityValues"
+        {
+            "val1"                          "100"
+            "val2"                          "10"
+        }
+    }
+
+    // _name: 斩妖增益
+    // _Description: 对秘境怪造成伤害+【10%~15%】
+    "xianhun_rsnc_10610020"
+    {
+        "name"                              "xianhun_rsnc_10610020"
+        "id"                                "10610020"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "10"
+        "max_val"                           "15"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _name: 召唤扩容
+    // _Description: 所有召唤物同时存在上限+【1~2】（计算时，四舍五入）
+    "xianhun_rsnc_10610021"
+    {
+        "name"                              "xianhun_rsnc_10610021"
+        "id"                                "10610021"
+        "BaseClass"                         "ability_datadriven"
+        "ratio"                             "1"
+        "min_val"                           "1"
+        "max_val"                           "2"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _name: 群聚之力
+    // _Description: 召唤物造成伤害+2%*同时存在数量，最高【5%~10%】
+    "xianhun_rsnc_10610022"
+    {
+        "name"                              "xianhun_rsnc_10610022"
+        "id"                                "10610022"
+        "BaseClass"                         "ability_datadriven"
+        "ratio"                             "1"
+        "min_val"                           "5"
+        "max_val"                           "10"
+        "AbilityValues"
+        {
+            "val"                           "2"
+        }
+    }
+
+    // _name: 黑市蕴源
+    // _Description: 每次刷新黑市，全属性加成+0.1%，最高【8%~12%】
+    "xianhun_rsnc_10610023"
+    {
+        "name"                              "xianhun_rsnc_10610023"
+        "id"                                "10610023"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "8"
+        "max_val"                           "12"
+        "AbilityValues"
+        {
+            "val"                           "0.1"
+        }
+    }
+
+    // _name: 破军之势
+    // _Description: 有进攻boss在场时，【15~25】秒内boss增伤+30%
+    "xianhun_rsnc_10610024"
+    {
+        "name"                              "xianhun_rsnc_10610024"
+        "id"                                "10610024"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "15"
+        "max_val"                           "25"
+        "AbilityValues"
+        {
+            "val"                           "30"
+        }
+    }
+
+    // _name: 旧影克伐
+    // _Description: 对存档怪伤害+【15%~25%】
+    "xianhun_rsnc_10610025"
+    {
+        "name"                              "xianhun_rsnc_10610025"
+        "id"                                "10610025"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "8"
+        "max_val"                           "12"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _name: 器魂觉醒
+    // _Description: 每次主武器升阶时，全属性加成+0.2%，最高【8%~12%】
+    "xianhun_rsnc_10610026"
+    {
+        "name"                              "xianhun_rsnc_10610026"
+        "id"                                "10610026"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "8"
+        "max_val"                           "12"
+        "AbilityValues"
+        {
+            "val"                           "0.2"
+        }
+    }
+
+    // _name: 市集融魂
+    // _Description: 每次购买黑市道具时，全属性加成+0.5%，最高【8%~12%】
+    "xianhun_rsnc_10610027"
+    {
+        "name"                              "xianhun_rsnc_10610027"
+        "id"                                "10610027"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "800"
+        "max_val"                           "2000"
+        "AbilityValues"
+        {
+            "val"                           "0.5"
+        }
+    }
+
+    // _name: 集卡凝魄
+    // _Description: 每次抽取卡牌时，全属性+40，最高【800~2000】（向下取整）
+    "xianhun_rsnc_10610028"
+    {
+        "name"                              "xianhun_rsnc_10610028"
+        "id"                                "10610028"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "8"
+        "max_val"                           "15"
+        "AbilityValues"
+        {
+            "val"                           "40"
+        }
+    }
+
+    // _name: 绝地逆涌
+    // _Description: 当胜利女神血量低于30%时，【8~15】秒内获得效果多重数量+10，弹射次数+10，每局只生效1次
+    "xianhun_rsnc_10610029"
+    {
+        "name"                              "xianhun_rsnc_10610029"
+        "id"                                "10610029"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "10"
+        "max_val"                           "20"
+        "AbilityValues"
+        {
+            "val1"                          "30"
+            "val2"                          "10"
+            "val3"                          "10"
+            "val4"                          "1"
+        }
+    }
+
+    // _name: 远域贯杀
+    // _Description: 对600范围外敌人造成伤害+【10%~20%】
+    "xianhun_rsnc_10610030"
+    {
+        "name"                              "xianhun_rsnc_10610030"
+        "id"                                "10610030"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "25"
+        "max_val"                           "50"
+        "min_val2"                          "25"
+        "max_val2"                          "50"
+        "AbilityValues"
+        {
+            "val"                           "600"
+        }
+    }
+
+    // _name: 残喘回生
+    // _Description: 当生命值低于30%时，生命回复加成+【25%~50%】，当魔法值低于30%时，魔法回复加成+【25%~50%】
+    "xianhun_rsnc_10610031"
+    {
+        "name"                              "xianhun_rsnc_10610031"
+        "id"                                "10610031"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "15"
+        "max_val"                           "30"
+        "min_val2"                          "0"
+        "max_val2"                          "15"
+        "AbilityValues"
+        {
+            "val1"                          "30"
+            "val2"                          "30"
+        }
+    }
+
+    // _name: 聚重散轻
+    // _Description: 多重数量大于弹射数量时，多重伤害+【15%~30%】，弹射伤害-【0%~15%】
+    "xianhun_rsnc_10610032"
+    {
+        "name"                              "xianhun_rsnc_10610032"
+        "id"                                "10610032"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "15"
+        "max_val"                           "30"
+        "min_val2"                          "0"
+        "max_val2"                          "15"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _name: 散逸聚空
+    // _Description: 多重数量小于弹射数量时，弹射伤害+【15%~30%】，多重伤害-【0%~15%】
+    "xianhun_rsnc_10610033"
+    {
+        "name"                              "xianhun_rsnc_10610033"
+        "id"                                "10610033"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "10"
+        "max_val"                           "20"
+        "min_val2"                          "10"
+        "max_val2"                          "20"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _name: 双流归一
+    // _Description: 多重数量等于弹射数量时，多重伤害+【10%~20%】，弹射伤害+【10%~20%】
+    "xianhun_rsnc_10610034"
+    {
+        "name"                              "xianhun_rsnc_10610034"
+        "id"                                "10610034"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "5"
+        "max_val"                           "10"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _name: 同频共振
+    // _Description: 当场上所有玩家主属性都一致时，战力最高玩家当前的主属性加成+【5%~10%】*玩家数量，当有多个玩家拥有该效果时，只生效最高效果
+    "xianhun_rsnc_10610035"
+    {
+        "name"                              "xianhun_rsnc_10610035"
+        "id"                                "10610035"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "1"
+        "ratio"                             "1"
+        "min_val"                           "5"
+        "max_val"                           "10"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _name: 力魂升格
+    // _Description: 仙魂上力量类词条效果+【5%~10%】
+    "xianhun_rsnc_10610036"
+    {
+        "name"                              "xianhun_rsnc_10610036"
+        "id"                                "10610036"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "2"
+        "ratio"                             "1"
+        "min_val"                           "5"
+        "max_val"                           "10"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _name: 敏魄凝华
+    // _Description: 仙魂上敏捷类词条效果+【5%~10%】
+    "xianhun_rsnc_10610037"
+    {
+        "name"                              "xianhun_rsnc_10610037"
+        "id"                                "10610037"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "2"
+        "ratio"                             "1"
+        "min_val"                           "5"
+        "max_val"                           "10"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _name: 智蕴升华
+    // _Description: 仙魂上智力类词条效果+【5%~10%】
+    "xianhun_rsnc_10610038"
+    {
+        "name"                              "xianhun_rsnc_10610038"
+        "id"                                "10610038"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "2"
+        "ratio"                             "1"
+        "min_val"                           "5"
+        "max_val"                           "10"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _name: 命源固本
+    // _Description: 仙魂上生命类词条效果+【5%~10%】
+    "xianhun_rsnc_10610039"
+    {
+        "name"                              "xianhun_rsnc_10610039"
+        "id"                                "10610039"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "2"
+        "ratio"                             "1"
+        "min_val"                           "2.5"
+        "max_val"                           "5"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _name: 射魂叠影
+    // _Description: 仙魂上多射类词条效果+【2.5%~5%】
+    "xianhun_rsnc_10610040"
+    {
+        "name"                              "xianhun_rsnc_10610040"
+        "id"                                "10610040"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "2"
+        "ratio"                             "1"
+        "min_val"                           "5"
+        "max_val"                           "10"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _name: 武魄淬锋
+    // _Description: 仙魂上物理类词条效果+【5%~10%】
+    "xianhun_rsnc_10610041"
+    {
+        "name"                              "xianhun_rsnc_10610041"
+        "id"                                "10610041"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "2"
+        "ratio"                             "1"
+        "min_val"                           "5"
+        "max_val"                           "10"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _name: 法源精粹
+    // _Description: 仙魂上魔法类词条效果+【5%~10%】
+    "xianhun_rsnc_10610042"
+    {
+        "name"                              "xianhun_rsnc_10610042"
+        "id"                                "10610042"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "2"
+        "ratio"                             "1"
+        "min_val"                           "5"
+        "max_val"                           "10"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _name: 攻魄凝刃
+    // _Description: 仙魂上攻击类词条效果+【5%~10%】
+    "xianhun_rsnc_10610043"
+    {
+        "name"                              "xianhun_rsnc_10610043"
+        "id"                                "10610043"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "2"
+        "ratio"                             "1"
+        "min_val"                           "5"
+        "max_val"                           "10"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _name: 力主他弱
+    // _Description: 仙魂上力量词条效果+【7.5%~15%】，敏捷和智力词条效果-【0%~2.5%】
+    "xianhun_rsnc_10610044"
+    {
+        "name"                              "xianhun_rsnc_10610044"
+        "id"                                "10610044"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "2"
+        "ratio"                             "1"
+        "min_val"                           "7.5"
+        "max_val"                           "15"
+        "min_val2"                          "0"
+        "max_val2"                          "2.5"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _name: 敏主他弱
+    // _Description: 仙魂上敏捷词条效果+【7.5%~15%】，力量和智力词条效果-【0%~2.5%】
+    "xianhun_rsnc_10610045"
+    {
+        "name"                              "xianhun_rsnc_10610045"
+        "id"                                "10610045"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "2"
+        "ratio"                             "1"
+        "min_val"                           "7.5"
+        "max_val"                           "15"
+        "min_val2"                          "0"
+        "max_val2"                          "2.5"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _name: 智主他弱
+    // _Description: 仙魂上智力词条效果+【7.5%~15%】，力量和敏捷词条效果-【0%~2.5%】
+    "xianhun_rsnc_10610046"
+    {
+        "name"                              "xianhun_rsnc_10610046"
+        "id"                                "10610046"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "2"
+        "ratio"                             "1"
+        "min_val"                           "7.5"
+        "max_val"                           "15"
+        "min_val2"                          "0"
+        "max_val2"                          "2.5"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _name: 奇数凝华
+    // _Description: 仙魂上基数条词条效果+【2.5%~5%】
+    "xianhun_rsnc_10610047"
+    {
+        "name"                              "xianhun_rsnc_10610047"
+        "id"                                "10610047"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "4"
+        "ratio"                             "1"
+        "min_val"                           "2.5"
+        "max_val"                           "5"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _name: 偶魄增效
+    // _Description: 仙魂上偶数条词条效果+【2.5%~5%】
+    "xianhun_rsnc_10610048"
+    {
+        "name"                              "xianhun_rsnc_10610048"
+        "id"                                "10610048"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "4"
+        "ratio"                             "1"
+        "min_val"                           "2.5"
+        "max_val"                           "5"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _name: 玄机独耀
+    // _Description: 仙魂上随机1条（服务端确定哪1条词条，客户端显示确定的词条）（随机库第1|2|..8条=1|1|...1），词条效果+【10%~20%】
+    // 最终客户端上的显示表现为：仙魂上第5条词条效果+15%【10%~20%】
+    "xianhun_rsnc_10610049"
+    {
+        "name"                              "xianhun_rsnc_10610049"
+        "id"                                "10610049"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "3"
+        "ratio"                             "1"
+        "min_val"                           "10"
+        "max_val"                           "20"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _name: 双元共耀
+    // _Description: 仙魂上随机2条（服务端确定哪2条词条，可重复，客户端显示确定的词条）（随机库第1|2|..8条=1|1|...1），词条效果+【5%~10%】
+    // 最终客户端上的显示表现为：仙魂上第3，5条词条效果+18%【6%~12%】
+    "xianhun_rsnc_10610050"
+    {
+        "name"                              "xianhun_rsnc_10610050"
+        "id"                                "10610050"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "3"
+        "ratio"                             "1"
+        "min_val"                           "5"
+        "max_val"                           "10"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _name: 三华聚顶
+    // _Description: 仙魂上随机3条（服务端确定哪3条词条，可重复，客户端显示确定的词条）（随机库第1|2|..8条=1|1|...1），词条效果+【4.2%~8.5%】
+    "xianhun_rsnc_10610051"
+    {
+        "name"                              "xianhun_rsnc_10610051"
+        "id"                                "10610051"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "3"
+        "ratio"                             "1"
+        "min_val"                           "4.2"
+        "max_val"                           "8.5"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _name: 四象归元
+    // _Description: 仙魂上随机4条（服务端确定哪4条词条，可重复，客户端显示确定的词条）（随机库第1|2|..8条=1|1|...1），词条效果+【3.5%~7%】
+    "xianhun_rsnc_10610052"
+    {
+        "name"                              "xianhun_rsnc_10610052"
+        "id"                                "10610052"
+        "BaseClass"                         "ability_datadriven"
+        "type"                              "3"
+        "ratio"                             "1"
+        "min_val"                           "3.5"
+        "max_val"                           "7"
+        "AbilityValues"
+        {
+        }
+    }
+
+}

@@ -1,0 +1,78 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf63:version{a6e6a69e-52d3-4527-8b9c-ff3bb91aca3e} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 0
+	m_flConstantRadius = 1.0
+	m_ConstantColor = [ 255, 96, 96, 255 ]
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 5
+	m_nSnapshotControlPoint = 6
+	m_hSnapshot = resource:"particles/models/props_gameplay/team_portal/team_portal/team_portal_model.vsnap"
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "game"
+			m_drivers = 
+			[
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_portal"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_portal_reverse"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 10
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 12
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/props_gameplay/team_portal/team_portal.vmdl"
+				m_sequenceName = "team_portal_FX_static"
+				m_hitboxSetName = "select_high"
+				m_materialGroupName = "0"
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/tower/tower_door_blue/tower_door_blueb.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/tower/tower_door_blue/tower_door_blued.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/tower/tower_door_blue/tower_door_bluee.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/tower/tower_door_blue/tower_door_bluea.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/tower/tower_door_blue/tower_door_bluec.vpcf"
+		},
+	]
+}

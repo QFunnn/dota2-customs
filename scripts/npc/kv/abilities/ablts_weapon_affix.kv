@@ -1,0 +1,852 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"ablts_weapon_affix"
+{
+    // _Name: 每秒金币
+    // _Description: 每秒金币+5
+    "weapon_affix_1"
+    {
+        "name"                              "weapon_affix_1"
+        "id"                                "1070001"
+        "Enable"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600181"                   "5"
+        }
+    }
+
+    // _Name: 杀敌加成
+    // _Description: 杀敌加成+5%
+    "weapon_affix_2"
+    {
+        "name"                              "weapon_affix_2"
+        "id"                                "1070002"
+        "Enable"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600170"                   "5"
+        }
+    }
+
+    // _Name: 木材加成
+    // _Description: 木材加成+10%
+    "weapon_affix_3"
+    {
+        "name"                              "weapon_affix_3"
+        "id"                                "1070003"
+        "Enable"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600169"                   "10"
+        }
+    }
+
+    // _Name: 筑基丹
+    // _Description: 吃掉提升当前百分之5全属性，小仙丹*1
+    "weapon_affix_4"
+    {
+        "name"                              "weapon_affix_4"
+        "id"                                "1070004"
+        "Enable"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_4"
+        "AbilityValues"
+        {
+            "val"                           "1"
+        }
+    }
+
+    // _Name: 吞噬
+    // _Description: 吞噬羁绊时，30%几率获得伤害加成+0.5%
+    "weapon_affix_5"
+    {
+        "name"                              "weapon_affix_5"
+        "id"                                "1070005"
+        "Enable"                            "1"
+        "IsOnly"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_5"
+        "AbilityValues"
+        {
+            "chance"                        "30"
+            "val"                           "0.5"
+        }
+    }
+
+    // _Name: 学霸秒A
+    // _Description: 180秒后获得【羁绊吞噬丹】*1，木材+150【唯一】
+    "weapon_affix_6"
+    {
+        "name"                              "weapon_affix_6"
+        "id"                                "1070006"
+        "Enable"                            "1"
+        "IsOnly"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_6"
+        "AbilityValues"
+        {
+            "duration"                      "180"
+            "val"                           "1"
+            "val1"                          "150"
+        }
+    }
+
+    // _Name: B!B!B!选B!
+    // _Description: 500秒后获得【英雄转职卡】*1【唯一】
+    "weapon_affix_7"
+    {
+        "name"                              "weapon_affix_7"
+        "id"                                "1070007"
+        "Enable"                            "1"
+        "IsOnly"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_7"
+        "AbilityValues"
+        {
+            "duration"                      "500"
+            "val"                           "1"
+        }
+    }
+
+    // _Name: 闭眼选C
+    // _Description: 随机获得1500~3000点物理固伤
+    "weapon_affix_8"
+    {
+        "name"                              "weapon_affix_8"
+        "id"                                "1070008"
+        "Enable"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_8"
+        "AbilityValues"
+        {
+            "min"                           "1500"
+            "max"                           "3000"
+        }
+    }
+
+    // _Name: 诅咒宝箱
+    // _Description: 宝物选择次数+1
+    "weapon_affix_9"
+    {
+        "name"                              "weapon_affix_9"
+        "id"                                "1070009"
+        "Enable"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_9"
+        "AbilityValues"
+        {
+            "val"                           "1"
+        }
+    }
+
+    // _Name: 我种下一颗种子
+    // _Description: 180秒后宝物选择次数+2
+    "weapon_affix_10"
+    {
+        "name"                              "weapon_affix_10"
+        "id"                                "1070010"
+        "Enable"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_10"
+        "AbilityValues"
+        {
+            "duration"                      "180"
+            "val"                           "2"
+        }
+    }
+
+    // _Name: 杀敌力量
+    // _Description: 杀敌力量+0.2
+    "weapon_affix_11"
+    {
+        "name"                              "weapon_affix_11"
+        "id"                                "1070011"
+        "Enable"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600186"                   "0.2"
+        }
+    }
+
+    // _Name: 杀敌敏捷
+    // _Description: 杀敌敏捷+0.2
+    "weapon_affix_12"
+    {
+        "name"                              "weapon_affix_12"
+        "id"                                "1070012"
+        "Enable"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600187"                   "0.2"
+        }
+    }
+
+    // _Name: 杀敌智力
+    // _Description: 杀敌智力+0.2
+    "weapon_affix_13"
+    {
+        "name"                              "weapon_affix_13"
+        "id"                                "1070013"
+        "Enable"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600188"                   "0.2"
+        }
+    }
+
+    // _Name: 九转金丹
+    // _Description: 炼制丹药：吃掉提升当前百分之8全属性，金丹*1
+    "weapon_affix_14"
+    {
+        "name"                              "weapon_affix_14"
+        "id"                                "1070014"
+        "Enable"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_14"
+        "AbilityValues"
+        {
+            "val"                           "1"
+        }
+    }
+
+    // _Name: 死灵仪式
+    // _Description: 每100杀敌，召唤1只不知疲倦的骷髅弓手【唯一】
+    "weapon_affix_15"
+    {
+        "name"                              "weapon_affix_15"
+        "id"                                "1070015"
+        "Enable"                            "1"
+        "IsOnly"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_15"
+        "AbilityValues"
+        {
+            "val"                           "100"
+            "val1"                          "1"
+            "inherit_atk"                   "100"
+            "inherit_hp"                    "50"
+            "duration"                      "60"
+        }
+    }
+
+    // _Name: 伐木累
+    // _Description: 每秒木材+1
+    "weapon_affix_16"
+    {
+        "name"                              "weapon_affix_16"
+        "id"                                "1070016"
+        "Enable"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600182"                   "1"
+        }
+    }
+
+    // _Name: EXP GET !
+    // _Description: 每秒经验+5
+    "weapon_affix_17"
+    {
+        "name"                              "weapon_affix_17"
+        "id"                                "1070017"
+        "Enable"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600184"                   "5"
+        }
+    }
+
+    // _Name: 搞钱
+    // _Description: 每秒金币+10
+    "weapon_affix_18"
+    {
+        "name"                              "weapon_affix_18"
+        "id"                                "1070018"
+        "Enable"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600181"                   "10"
+        }
+    }
+
+    // _Name: 深蓝！力量加点
+    // _Description: 随机获得800~3000点力量
+    "weapon_affix_19"
+    {
+        "name"                              "weapon_affix_19"
+        "id"                                "1070019"
+        "Enable"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_19"
+        "AbilityValues"
+        {
+            "min"                           "800"
+            "max"                           "3000"
+        }
+    }
+
+    // _Name: 深蓝！敏捷加点
+    // _Description: 随机获得800~3000点敏捷
+    "weapon_affix_20"
+    {
+        "name"                              "weapon_affix_20"
+        "id"                                "1070020"
+        "Enable"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_20"
+        "AbilityValues"
+        {
+            "min"                           "800"
+            "max"                           "3000"
+        }
+    }
+
+    // _Name: 深蓝！智力加点
+    // _Description: 随机获得800~3000点智力
+    "weapon_affix_21"
+    {
+        "name"                              "weapon_affix_21"
+        "id"                                "1070021"
+        "Enable"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_21"
+        "AbilityValues"
+        {
+            "min"                           "800"
+            "max"                           "3000"
+        }
+    }
+
+    // _Name: 混沌造化丹
+    // _Description: 炼制丹药：吃掉提升当前百分之10全属性，六味金丹*1
+    "weapon_affix_22"
+    {
+        "name"                              "weapon_affix_22"
+        "id"                                "1070022"
+        "Enable"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_22"
+        "AbilityValues"
+        {
+            "val"                           "1"
+        }
+    }
+
+    // _Name: 吸取力量
+    // _Description: 任意召唤物死亡时，获得全属性+30
+    "weapon_affix_23"
+    {
+        "name"                              "weapon_affix_23"
+        "id"                                "1070023"
+        "Enable"                            "1"
+        "IsOnly"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_23"
+        "AbilityValues"
+        {
+            "val"                           "30"
+        }
+    }
+
+    // _Name: 
+    // _Description: 攻击有10%几率短时间内（6s）弥补属性+544，适应属性+544
+    "weapon_affix_24"
+    {
+        "name"                              "weapon_affix_24"
+        "id"                                "1070024"
+        "Enable"                            "1"
+        "IsOnly"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_24"
+        "AbilityValues"
+        {
+            "chance"                        "10"
+            "val"                           "544"
+            "val1"                          "544"
+            "duration"                      "6"
+        }
+    }
+
+    // _Name: 物理固伤
+    // _Description: 立即获得当前敏捷*50%的物理固伤【唯一】
+    "weapon_affix_25"
+    {
+        "name"                              "weapon_affix_25"
+        "id"                                "1070025"
+        "Enable"                            "1"
+        "IsOnly"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_25"
+        "AbilityValues"
+        {
+            "val"                           "50"
+        }
+    }
+
+    // _Name: 法术固伤
+    // _Description: 立即获得当前智力*50%魔法固伤【唯一】
+    "weapon_affix_26"
+    {
+        "name"                              "weapon_affix_26"
+        "id"                                "1070026"
+        "Enable"                            "1"
+        "IsOnly"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_26"
+        "AbilityValues"
+        {
+            "val"                           "50"
+        }
+    }
+
+    // _Name: 
+    // _Description: 攻击700码外的敌人时，攻击伤害额外提高25%
+    "weapon_affix_27"
+    {
+        "name"                              "weapon_affix_27"
+        "id"                                "1070027"
+        "Enable"                            "1"
+        "IsOnly"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_27"
+        "AbilityValues"
+        {
+            "radius"                        "700"
+            "val"                           "25"
+        }
+    }
+
+    // _Name: 
+    // _Description: 真伤造成伤害时有10%几率击晕目标2秒
+    "weapon_affix_28"
+    {
+        "name"                              "weapon_affix_28"
+        "id"                                "1070028"
+        "Enable"                            "1"
+        "IsOnly"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_28"
+        "AbilityValues"
+        {
+            "duration"                      "2"
+            "chance"                        "10"
+        }
+    }
+
+    // _Name: 分裂
+    // _Description: 每1分裂数量，杀敌力量+0.1
+    "weapon_affix_29"
+    {
+        "name"                              "weapon_affix_29"
+        "id"                                "1070029"
+        "Enable"                            "1"
+        "IsOnly"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_29"
+        "AbilityValues"
+        {
+            "val"                           "1"
+            "val1"                          "0.1"
+        }
+    }
+
+    // _Name: 多重
+    // _Description: 每1多重数量，杀敌敏捷+0.1
+    "weapon_affix_30"
+    {
+        "name"                              "weapon_affix_30"
+        "id"                                "1070030"
+        "Enable"                            "1"
+        "IsOnly"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_30"
+        "AbilityValues"
+        {
+            "val"                           "1"
+            "val1"                          "0.1"
+        }
+    }
+
+    // _Name: 弹射
+    // _Description: 每1弹射数量，杀敌智力+0.1
+    "weapon_affix_31"
+    {
+        "name"                              "weapon_affix_31"
+        "id"                                "1070031"
+        "Enable"                            "1"
+        "IsOnly"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_31"
+        "AbilityValues"
+        {
+            "val"                           "1"
+            "val1"                          "0.1"
+        }
+    }
+
+    // _Name: 神器加成
+    // _Description: 随机获得6%~15%的本源属性加成
+    "weapon_affix_32"
+    {
+        "name"                              "weapon_affix_32"
+        "id"                                "1070032"
+        "Enable"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_32"
+        "AbilityValues"
+        {
+            "min"                           "6"
+            "max"                           "15"
+        }
+    }
+
+    // _Name: 从不在意召唤物的强弱
+    // _Description: 每次进行召唤时，全属性+100
+    "weapon_affix_33"
+    {
+        "name"                              "weapon_affix_33"
+        "id"                                "1070033"
+        "Enable"                            "1"
+        "IsOnly"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_33"
+        "AbilityValues"
+        {
+            "val"                           "100"
+        }
+    }
+
+    // _Name: 
+    // _Description: 每次施法，随机使三围其中之一永久提高（1~20）点，冷却5秒
+    "weapon_affix_34"
+    {
+        "name"                              "weapon_affix_34"
+        "id"                                "1070034"
+        "Enable"                            "1"
+        "IsOnly"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_34"
+        "AbilityValues"
+        {
+            "cd"                            "5"
+            "val"                           "1"
+            "val1"                          "20"
+        }
+    }
+
+    // _Name: 受伤使我兴奋
+    // _Description: 每损失10%生命，伤害加成+10%，最高50%【唯一】
+    "weapon_affix_35"
+    {
+        "name"                              "weapon_affix_35"
+        "id"                                "1070035"
+        "Enable"                            "1"
+        "IsOnly"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_35"
+        "AbilityValues"
+        {
+            "val"                           "10"
+            "val1"                          "10"
+            "val2"                          "50"
+        }
+    }
+
+    // _Name: 大意了没有闪
+    // _Description: 攻击有25%几率损失1%生命，生命值低于50%时，命中+30，攻击速度+25%
+    "weapon_affix_36"
+    {
+        "name"                              "weapon_affix_36"
+        "id"                                "1070036"
+        "Enable"                            "1"
+        "IsOnly"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_36"
+        "AbilityValues"
+        {
+            "chance"                        "25"
+            "val"                           "1"
+            "val1"                          "50"
+            "val2"                          "30"
+            "val3"                          "25"
+        }
+    }
+
+    // _Name: 力量加成
+    // _Description: 随机获得8%~20%的力量加成
+    "weapon_affix_37"
+    {
+        "name"                              "weapon_affix_37"
+        "id"                                "1070037"
+        "Enable"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_37"
+        "AbilityValues"
+        {
+            "val"                           "8"
+            "val1"                          "20"
+        }
+    }
+
+    // _Name: 敏捷加成
+    // _Description: 随机获得8%~20%的敏捷加成
+    "weapon_affix_38"
+    {
+        "name"                              "weapon_affix_38"
+        "id"                                "1070038"
+        "Enable"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_38"
+        "AbilityValues"
+        {
+            "val"                           "8"
+            "val1"                          "20"
+        }
+    }
+
+    // _Name: 智力加成
+    // _Description: 随机获得8%~20%的智力加成
+    "weapon_affix_39"
+    {
+        "name"                              "weapon_affix_39"
+        "id"                                "1070039"
+        "Enable"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_39"
+        "AbilityValues"
+        {
+            "val"                           "8"
+            "val1"                          "20"
+        }
+    }
+
+    // _Name: 攻击真伤加成
+    // _Description: 随机获得8%~20%的攻击真伤加成
+    "weapon_affix_40"
+    {
+        "name"                              "weapon_affix_40"
+        "id"                                "1070040"
+        "Enable"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_40"
+        "AbilityValues"
+        {
+            "val"                           "8"
+            "val1"                          "20"
+        }
+    }
+
+    // _Name: 冥想
+    // _Description: 每次施法时，法术固伤+2
+    "weapon_affix_41"
+    {
+        "name"                              "weapon_affix_41"
+        "id"                                "1070041"
+        "Enable"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_41"
+        "AbilityValues"
+        {
+            "val"                           "2"
+        }
+    }
+
+    // _Name: 
+    // _Description: 每次施法短时间内（10s）攻击加成+5%
+    "weapon_affix_42"
+    {
+        "name"                              "weapon_affix_42"
+        "id"                                "1070042"
+        "Enable"                            "1"
+        "IsOnly"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_42"
+        "AbilityValues"
+        {
+            "duration"                      "10"
+            "val"                           "5"
+        }
+    }
+
+    // _Name: 闪爆闪爆
+    // _Description: 每1%闪避提升2%物理暴伤【唯一】
+    "weapon_affix_43"
+    {
+        "name"                              "weapon_affix_43"
+        "id"                                "1070043"
+        "Enable"                            "1"
+        "IsOnly"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_43"
+        "AbilityValues"
+        {
+            "val"                           "1"
+            "val1"                          "2"
+        }
+    }
+
+    // _Name: 
+    // _Description: 每1%闪避提升2%魔法暴伤【唯一】
+    "weapon_affix_44"
+    {
+        "name"                              "weapon_affix_44"
+        "id"                                "1070044"
+        "Enable"                            "1"
+        "IsOnly"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_44"
+        "AbilityValues"
+        {
+            "val"                           "1"
+            "val1"                          "2"
+        }
+    }
+
+    // _Name: 
+    // _Description: 每1%闪避提升2%真伤暴伤【唯一】
+    "weapon_affix_45"
+    {
+        "name"                              "weapon_affix_45"
+        "id"                                "1070045"
+        "Enable"                            "1"
+        "IsOnly"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_45"
+        "AbilityValues"
+        {
+            "val"                           "1"
+            "val1"                          "2"
+        }
+    }
+
+    // _Name: 
+    // _Description: 每次施法短时间内（4s）自身免疫一切伤害
+    "weapon_affix_46"
+    {
+        "name"                              "weapon_affix_46"
+        "id"                                "1070046"
+        "Enable"                            "1"
+        "IsOnly"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_46"
+        "AbilityValues"
+        {
+            "duration"                      "4"
+        }
+    }
+
+    // _Name: 闭眼选C
+    // _Description: 随机获得1500~3000点魔法固伤
+    "weapon_affix_47"
+    {
+        "name"                              "weapon_affix_47"
+        "id"                                "1070047"
+        "Enable"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_47"
+        "AbilityValues"
+        {
+            "min"                           "1500"
+            "max"                           "3000"
+        }
+    }
+
+    // _Name: 
+    // _Description: 每1000点力量提升1%攻击加成（最高提升100%）
+    "weapon_affix_48"
+    {
+        "name"                              "weapon_affix_48"
+        "id"                                "1070048"
+        "Enable"                            "1"
+        "IsOnly"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_48"
+        "AbilityValues"
+        {
+            "val"                           "1000"
+            "val1"                          "1"
+            "val2"                          "100"
+        }
+    }
+
+    // _Name: 
+    // _Description: 每1000点敏捷提升1%攻击加成（最高提升100%）
+    "weapon_affix_49"
+    {
+        "name"                              "weapon_affix_49"
+        "id"                                "1070049"
+        "Enable"                            "1"
+        "IsOnly"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_49"
+        "AbilityValues"
+        {
+            "val"                           "1000"
+            "val1"                          "1"
+            "val2"                          "100"
+        }
+    }
+
+    // _Name: 
+    // _Description: 每1000点智力提升1%攻击加成（最高提升100%）
+    "weapon_affix_50"
+    {
+        "name"                              "weapon_affix_50"
+        "id"                                "1070050"
+        "Enable"                            "1"
+        "IsOnly"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_50"
+        "AbilityValues"
+        {
+            "val"                           "1000"
+            "val1"                          "1"
+            "val2"                          "100"
+        }
+    }
+
+    // _Name: 
+    // _Description: 法术伤害有10%几率，在短时间内（7s)使法术暴击伤害+20%，（可叠加，冷却1s)
+    "weapon_affix_51"
+    {
+        "name"                              "weapon_affix_51"
+        "id"                                "1070051"
+        "Enable"                            "1"
+        "IsOnly"                            "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/weapon/weapon_affix_51"
+        "AbilityValues"
+        {
+            "chance"                        "10"
+            "duration"                      "7"
+            "val"                           "20"
+            "val1"                          "1"
+        }
+    }
+
+}

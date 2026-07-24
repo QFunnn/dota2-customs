@@ -1,0 +1,4413 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.TipIcon
+{
+	width: 15px;
+	height: 15px;
+	background-image: url("s2r://panorama/images/status_icons/information_psd.vtex");
+	background-size: 100%;
+}
+
+.TipLabel
+{
+	padding-left: 20px;
+	color: #909090;
+	font-size: 15px;
+	text-shadow: 1px 1px 2px 1 #000;
+	background-image: url("s2r://panorama/images/status_icons/information_psd.vtex");
+	background-size: 15px 15px;
+	background-position: left center;
+	background-repeat: no-repeat;
+	background-img-opacity: 0.6;
+}
+
+.TipLabel.HasTooltip
+{
+	border-bottom: 1px solid #90909066;
+}
+
+@keyframes 'NewTagAnim'
+{
+	0%
+	{
+		box-shadow: 0 0 2px 0.5px rgba(255, 0, 0, 0.2);
+	}
+	
+	50%
+	{
+		box-shadow: 0 0 4px 1px rgba(255, 0, 0, 0.5);
+	}
+	
+	100%
+	{
+		box-shadow: 0 0 2px 0.5px rgba(255, 0, 0, 0.2);
+	}
+	
+}
+
+.NewTagIcon
+{
+	width: 9px;
+	height: width-percentage(100%);
+	align: right top;
+	margin: 10px;
+	background-color: #ff0000ee;
+	border: 1px solid #000;
+	border-radius: 50%;
+	animation-name: NewTagAnim;
+	animation-duration: 0.8s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+#LoadingPanel
+{
+	width: 100%;
+	height: 100%;
+}
+
+#LoadingPanel > .BG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/loading/loading_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#LogoPanel
+{
+	width: 100%;
+	height: 100%;
+}
+
+#LogoPanel > .BG
+{
+	width: 1000px;
+	height: width-percentage(47.52964427%);
+	align: center bottom;
+	margin-bottom: 60px;
+}
+
+#TipContainer
+{
+	align: center bottom;
+	margin-bottom: 8px;
+	width: 660px;
+	height: 90px;
+}
+
+#TipContainer > .BG
+{
+	width: 100%;
+	height: 100%;
+}
+
+#TipContainer > .Body
+{
+	width: 100%;
+	height: 100%;
+	padding: 8px;
+}
+
+#TipContainer #TipText
+{
+	horizontal-align: center;
+	margin-right: 8px;
+	margin-left: 8px;
+	max-width: 500px;
+	height: 100%;
+	padding: 2px;
+}
+
+#TipContainer #TipLabel
+{
+	vertical-align: center;
+	color: #ffffff;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 6px 6 #0e0e0e;
+}
+
+#TipContainer #NextTip
+{
+	horizontal-align: right;
+	background-image: url("s2r://");
+}
+
+#TipContainer .TipButton
+{
+	vertical-align: center;
+	width: 18px;
+	height: 18px;
+	background-size: 80% 80%;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	wash-color: white;
+}
+
+#CommunityPanel
+{
+	width: 650px;
+	align: left bottom;
+	margin-bottom: 320px;
+	flow-children: up;
+}
+
+#CommunityPanel .Community
+{
+	margin: 5px 0px 5px 8px;
+	visibility: collapse;
+	flow-children: right;
+}
+
+#CommunityPanel .Community:hover
+{
+	brightness: 1.5;
+}
+
+#CommunityPanel .Community:hover:active
+{
+	brightness: 1;
+}
+
+#CommunityPanel .Community Image
+{
+	width: 40px;
+	height: 40px;
+	align: left center;
+}
+
+#CommunityPanel .Community Label
+{
+	align: left center;
+	margin-left: 10px;
+	color: #ffffff;
+	font-size: 20px;
+	border-bottom: 1px solid #ffffff;
+	text-shadow: 2px 2px 4px 2 #000;
+}
+
+.Language_schinese #CommunityPanel .QQGroup
+{
+	visibility: visible;
+}
+
+.Language_schinese #CommunityPanel .Discord
+{
+	visibility: visible;
+}
+
+.Language_english #CommunityPanel .Discord
+{
+	visibility: visible;
+}
+
+#ChatPanel
+{
+	width: 100%;
+	height: 100%;
+}
+
+.Yzy_ItemImage
+{
+	width: 100%;
+	height: 100%;
+}
+
+.Yzy_ItemImage:hover
+{
+	brightness: 1.5;
+}
+
+.Yzy_ItemImage:active
+{
+	brightness: 1;
+}
+
+.Yzy_ItemImage.Rarity_1 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/common/frame/frame_1_png.vtex");
+}
+
+.Yzy_ItemImage.Rarity_2 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/common/frame/frame_2_png.vtex");
+}
+
+.Yzy_ItemImage.Rarity_3 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/common/frame/frame_3_png.vtex");
+}
+
+.Yzy_ItemImage.Rarity_4 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/common/frame/frame_4_png.vtex");
+}
+
+.Yzy_ItemImage.Rarity_5 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/common/frame/frame_5_png.vtex");
+}
+
+.Yzy_ItemImage.Rarity_6 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/common/frame/frame_6_png.vtex");
+}
+
+.Yzy_ItemImage.Rarity_7 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/common/frame/frame_7_png.vtex");
+}
+
+.Yzy_ItemImage > .ItemImage
+{
+	width: 100%;
+	height: 100%;
+	padding: 7px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.Yzy_ItemImage > .BG
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.Yzy_Label
+{
+	font-size: 18px;
+	color: #ffffff;
+	text-shadow: #000 1px 1px 0px 4;
+}
+
+.Yzy_Label.Rarity_1
+{
+	color: #b0c3d9;
+}
+
+.Yzy_Label.Rarity_2
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 80% 80%, from(#f0ffd5), color-stop(0.5, #7eff67), to(#00c864));
+}
+
+.Yzy_Label.Rarity_3
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 80% 80%, from(#9bdddd), color-stop(0.7, #7189ff), to(#0077ff));
+}
+
+.Yzy_Label.Rarity_4
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 80% 80%, from(#fed5ff), color-stop(0.5, #cb8bff), to(#5900ff));
+}
+
+.Yzy_Label.Rarity_5
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 70% 70%, from(#f4ffd5), color-stop(0.3, #fff34f), to(#ffae00));
+}
+
+.Yzy_Label.Rarity_6
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 90% 90%, from(#fbc7dd), color-stop(0.5, #fd5d5d), to(#ff0000));
+}
+
+.Yzy_Label.Rarity_7
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 80% 80%, from(#ff6e7f), color-stop(0.2, #fd5dd0), to(#bfe9ff));
+}
+
+.Yzy_Loading
+{
+	align: center center;
+}
+
+.Yzy_Loading.Wave
+{
+	flow-children: right;
+}
+
+.Yzy_Loading.Wave Panel
+{
+	width: 6px;
+	height: 40px;
+	background-color: white;
+	margin: 0px 3px;
+	border-radius: 10px;
+	animation-name: Yzy_Loading_Wave;
+	animation-duration: 0.8s;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'Yzy_Loading_Wave'
+{
+	0%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	50%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+}
+
+.Yzy_Loading.Wave .WaveCol1
+{
+	animation-name: Yzy_Loading_Wave1;
+}
+
+@keyframes 'Yzy_Loading_Wave1'
+{
+	0%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	50%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+}
+
+.Yzy_Loading.Wave .WaveCol2
+{
+	animation-name: Yzy_Loading_Wave2;
+}
+
+@keyframes 'Yzy_Loading_Wave2'
+{
+	0%
+	{
+		transform: scale3d(1, 0.38268343, 1);
+	}
+	
+	12.5%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	62.5%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.38268343, 1);
+	}
+	
+}
+
+.Yzy_Loading.Wave .WaveCol3
+{
+	animation-name: Yzy_Loading_Wave3;
+}
+
+@keyframes 'Yzy_Loading_Wave3'
+{
+	0%
+	{
+		transform: scale3d(1, 0.70710678, 1);
+	}
+	
+	25%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	75%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.70710678, 1);
+	}
+	
+}
+
+.Yzy_Loading.Wave .WaveCol4
+{
+	animation-name: Yzy_Loading_Wave4;
+}
+
+@keyframes 'Yzy_Loading_Wave4'
+{
+	0%
+	{
+		transform: scale3d(1, 0.92387953, 1);
+	}
+	
+	37.5%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	87.5%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.92387953, 1);
+	}
+	
+}
+
+.Yzy_Loading.Wave .WaveCol5
+{
+	animation-name: Yzy_Loading_Wave5;
+}
+
+@keyframes 'Yzy_Loading_Wave5'
+{
+	0%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	50%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+}
+
+.Yzy_Loading.Wave .WaveCol6
+{
+	animation-name: Yzy_Loading_Wave6;
+}
+
+@keyframes 'Yzy_Loading_Wave6'
+{
+	0%
+	{
+		transform: scale3d(1, 0.92387953, 1);
+	}
+	
+	12.5%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	62.5%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.92387953, 1);
+	}
+	
+}
+
+.Yzy_Loading.Wave .WaveCol7
+{
+	animation-name: Yzy_Loading_Wave7;
+}
+
+@keyframes 'Yzy_Loading_Wave7'
+{
+	0%
+	{
+		transform: scale3d(1, 0.70710678, 1);
+	}
+	
+	25%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	75%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.70710678, 1);
+	}
+	
+}
+
+.Yzy_Loading.Wave .WaveCol8
+{
+	animation-name: Yzy_Loading_Wave8;
+}
+
+@keyframes 'Yzy_Loading_Wave8'
+{
+	0%
+	{
+		transform: scale3d(1, 0.38268343, 1);
+	}
+	
+	37.5%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	87.5%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.38268343, 1);
+	}
+	
+}
+
+.Yzy_Loading.Matrix
+{
+	width: 120px;
+	height: 120px;
+	flow-children: down;
+	transform: rotateZ(-90deg);
+}
+
+.Yzy_Loading.Matrix .Row
+{
+	background-color: white;
+	border-radius: 50%;
+	width: height-percentage(100%);
+	height: 100%;
+	margin: 5px;
+	animation-name: Yzy_Loading_Matrix;
+	animation-duration: 1.6s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'Yzy_Loading_Matrix'
+{
+	50%
+	{
+		transform: scale3d(0.5, 0.5, 1);
+	}
+	
+}
+
+.Yzy_Loading.Matrix .Row1
+{
+	width: 100%;
+	height: 25%;
+	flow-children: right;
+}
+
+.Yzy_Loading.Matrix .Row2
+{
+	width: 100%;
+	height: 25%;
+	flow-children: right;
+}
+
+.Yzy_Loading.Matrix .Row2 .Row
+{
+	animation-delay: 0.2s;
+}
+
+.Yzy_Loading.Matrix .Row3
+{
+	width: 100%;
+	height: 25%;
+	flow-children: right;
+}
+
+.Yzy_Loading.Matrix .Row3 .Row
+{
+	animation-delay: 0.4s;
+}
+
+.Yzy_Loading.Matrix .Row4
+{
+	width: 100%;
+	height: 25%;
+	flow-children: right;
+}
+
+.Yzy_Loading.Matrix .Row4 .Row
+{
+	animation-delay: 0.6s;
+}
+
+.Yzy_Loading.PointSpin
+{
+	width: 24px;
+	height: 24px;
+	transform: rotateZ(45deg);
+	animation-name: YzyLoading_PointSpin;
+	animation-duration: 1.2s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'YzyLoading_PointSpin'
+{
+	0%
+	{
+		transform: rotateZ(360deg);
+	}
+	
+	50%
+	{
+		transform: rotateZ(180deg);
+	}
+	
+	100%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+}
+
+.Yzy_Loading.PointSpin Panel
+{
+	width: 36%;
+	height: 36%;
+	border-radius: 50%;
+	background-color: white;
+}
+
+.Yzy_Loading.PointSpin > .Point1
+{
+	opacity: 1;
+}
+
+.Yzy_Loading.PointSpin > .Point2
+{
+	horizontal-align: right;
+	opacity: 0.7;
+}
+
+.Yzy_Loading.PointSpin > .Point3
+{
+	align: right bottom;
+	opacity: 0.4;
+}
+
+.Yzy_Loading.PointSpin > .Point4
+{
+	align: left bottom;
+	opacity: 0.1;
+}
+
+.Yzy_Loading.Circle
+{
+	width: 50px;
+	height: 50px;
+	align: center center;
+	background-image: url("s2r://panorama/images/status_icons/loadingthrobber_round_psd.vtex");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: contain;
+	animation-name: YzyLoading_Circle;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: reverse;
+}
+
+@keyframes 'YzyLoading_Circle'
+{
+	0%
+	{
+		transform: rotateZ(359.9deg);
+	}
+	
+	50%
+	{
+		transform: rotateZ(180deg);
+	}
+	
+	100%
+	{
+		transform: rotateZ(0.1deg);
+	}
+	
+}
+
+.Yzy_ProgressBar
+{
+	width: 320px;
+	height: 22px;
+	background-color: #2A284FFF;
+	padding: 5px;
+}
+
+.Yzy_ProgressBar > .Yzy_ProgressBar_Left
+{
+	height: 100%;
+	transition-property: position, width;
+	transition-duration: 0.6s;
+	background-color: #D5B661FF;
+	border-radius: 0px;
+}
+
+.Yzy_ProgressBar > .Yzy_ProgressBar_Right
+{
+	height: 100%;
+	horizontal-align: right;
+	background-color: #2A284FFF;
+	transition-property: position, width;
+	transition-duration: 0.6s;
+	z-index: -1;
+}
+
+.Yzy_Button
+{
+	width: 138px;
+	height: width-percentage(36.3%);
+	transition-property: brightness;
+	transition-duration: 0.05s;
+	saturation: 0.5;
+	brightness: 0.5;
+}
+
+.Yzy_Button:enabled
+{
+	saturation: 1;
+	brightness: 1;
+}
+
+.Yzy_Button:enabled:hover
+{
+	brightness: 1.5;
+}
+
+.Yzy_Button:enabled:hover:active
+{
+	brightness: 5.5;
+	sound: "ui_generic_button_click";
+}
+
+.Yzy_Button.Small
+{
+	width: 135px;
+	height: width-percentage(36.3%);
+}
+
+.Yzy_Button > .Image
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.Yzy_Button > .Text
+{
+	align: center center;
+	margin-bottom: 4px;
+	text-align: center;
+	color: #fff;
+	font-size: 22px;
+	text-shadow: 0px 2px 0px 1 #000000;
+	text-overflow: shrink;
+	transition-property: color, opacity;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.Yzy_Button.btn_grey > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_grey_png.vtex");
+}
+
+.Yzy_Button.btn_grey.Small > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_grey_s_png.vtex");
+}
+
+.Yzy_Button.btn_green > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_green_png.vtex");
+}
+
+.Yzy_Button.btn_green.Small > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_green_s_png.vtex");
+}
+
+.Yzy_Button.btn_blue > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_blue_png.vtex");
+}
+
+.Yzy_Button.btn_blue.Small > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_blue_s_png.vtex");
+}
+
+.Yzy_Button.btn_purple > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_purple_png.vtex");
+}
+
+.Yzy_Button.btn_purple.Small > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_purple_s_png.vtex");
+}
+
+.Yzy_Button.btn_golden > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_golden_png.vtex");
+}
+
+.Yzy_Button.btn_golden.Small > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_golden_png.vtex");
+}
+
+.Yzy_Button.btn_red > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_red_png.vtex");
+}
+
+.Yzy_Button.btn_red.Small > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_red_s_png.vtex");
+}
+
+.Yzy_Icon:hover
+{
+	brightness: 1.5;
+}
+
+.Yzy_Icon > .Icon
+{
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.Yzy_Icon.icon_gold > .Icon
+{
+	width: 33px;
+	height: width-percentage(109.09090909%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_gold_png.vtex");
+}
+
+.Yzy_Icon.icon_wood > .Icon
+{
+	width: 33px;
+	height: width-percentage(133.33333333%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_wood_png.vtex");
+}
+
+.Yzy_Icon.icon_kill > .Icon
+{
+	width: 36px;
+	height: width-percentage(102.77777778%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_kill_png.vtex");
+}
+
+.Yzy_Icon.icon_crystal > .Icon
+{
+	width: 25px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_crystal_png.vtex");
+}
+
+.Yzy_Icon.icon_lock > .Icon
+{
+	width: 43px;
+	height: width-percentage(137.20930233%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_lock_png.vtex");
+}
+
+.Yzy_Icon.icon_lock2 > .Icon
+{
+	width: 48px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_lock2_png.vtex");
+}
+
+.Yzy_Icon.icon_unlock2 > .Icon
+{
+	width: 48px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_unlocked2_png.vtex");
+}
+
+.Yzy_Icon.icon_equip_lock > .Icon
+{
+	width: 21px;
+	height: width-percentage(80.95238095%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_equip_lock_png.vtex");
+}
+
+.Yzy_Icon.icon_equip_wear > .Icon
+{
+	width: 52px;
+	height: width-percentage(101.92307692%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_equip_wear_png.vtex");
+}
+
+.Yzy_Icon.icon_arrow > .Icon
+{
+	width: 41px;
+	height: width-percentage(70.73170732%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_arrow_png.vtex");
+}
+
+.Yzy_Icon.icon_arrow_1 > .Icon
+{
+	width: 53px;
+	height: width-percentage(71.69811321%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_arrow_1_png.vtex");
+}
+
+.Yzy_Icon.icon_star > .Icon
+{
+	width: 64px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_star_png.vtex");
+}
+
+.Yzy_Icon.icon_tips > .Icon
+{
+	width: 37px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_tips_png.vtex");
+}
+
+.Yzy_Icon.icon_life > .Icon
+{
+	width: 128px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_life_png.vtex");
+}
+
+.Yzy_Icon.icon_y > .Icon
+{
+	width: 66px;
+	height: width-percentage(84.84848485%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_y_png.vtex");
+}
+
+.Yzy_Icon.icon_x > .Icon
+{
+	width: 54px;
+	height: width-percentage(88.88888889%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_x_png.vtex");
+}
+
+.Yzy_Icon.icon_up > .Icon
+{
+	width: 30px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_up_png.vtex");
+}
+
+.Yzy_Icon.icon_n > .Icon
+{
+	width: 57px;
+	height: width-percentage(63.15789474%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_n_png.vtex");
+}
+
+.Yzy_Icon.icon_r > .Icon
+{
+	width: 42px;
+	height: width-percentage(85.71428571%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_r_png.vtex");
+}
+
+.Yzy_Icon.icon_sr > .Icon
+{
+	width: 61px;
+	height: width-percentage(59.01639344%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_sr_png.vtex");
+}
+
+.Yzy_Icon.icon_ssr > .Icon
+{
+	width: 80px;
+	height: width-percentage(45%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_ssr_png.vtex");
+}
+
+.Yzy_Icon.icon_ur > .Icon
+{
+	width: 80px;
+	height: width-percentage(45%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_ur_png.vtex");
+}
+
+.Yzy_Icon.icon_new > .Icon
+{
+	width: 54px;
+	height: width-percentage(48.14814815%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_new_png.vtex");
+}
+
+.Yzy_Icon.icon_score > .Icon
+{
+	width: 22px;
+	height: width-percentage(127.27272727%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_score_png.vtex");
+}
+
+.Yzy_Icon.icon_wechat > .Icon
+{
+	width: 657px;
+	height: width-percentage(87.97564688%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_wechat_png.vtex");
+}
+
+.Yzy_Icon.icon_alipay > .Icon
+{
+	width: 120px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_alipay_png.vtex");
+}
+
+.Yzy_Icon.icon_destiny_star > .Icon
+{
+	width: 25px;
+	height: width-percentage(104%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_destiny_star_png.vtex");
+}
+
+.Yzy_Icon.icon_system_lock > .Icon
+{
+	width: 25px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/pings/ping_icon_retreat_psd.vtex");
+}
+
+.Yzy_Icon.icon_archive > .Icon
+{
+	width: 26px;
+	height: width-percentage(92.30769231%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_archive_png.vtex");
+}
+
+.Yzy_Icon.icon_archive_dis > .Icon
+{
+	width: 22px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_archive_dis_png.vtex");
+}
+
+.Yzy_IconButton
+{
+	transition-property: brightness;
+	transition-duration: 0.05s;
+}
+
+.Yzy_IconButton:disabled
+{
+	saturation: 0;
+	brightness: 0.8;
+}
+
+.Yzy_IconButton:enabled:hover
+{
+	brightness: 1.5;
+}
+
+.Yzy_IconButton:enabled:hover:active
+{
+	brightness: 5.5;
+	sound: "ui_generic_button_click";
+}
+
+.Yzy_IconButton > .Icon
+{
+	vertical-align: center;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.Yzy_IconButton > .Text
+{
+	vertical-align: center;
+}
+
+.Yzy_IconButton.icon_btn_close > .Icon
+{
+	width: 37px;
+	height: width-percentage(91.89189189%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_close_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_close_1 > .Icon
+{
+	width: 80px;
+	height: width-percentage(105%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_close_1_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_serch > .Icon
+{
+	width: 24px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_serch_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_tips > .Icon
+{
+	width: 42px;
+	height: width-percentage(100%);
+	background-image: url("s2r://");
+}
+
+.Yzy_IconButton.icon_btn_arrow > .Icon
+{
+	width: 32px;
+	height: width-percentage(125%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_arrow_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_filter01 > .Icon
+{
+	width: 22px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_filter01_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_filter02 > .Icon
+{
+	width: 22px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_filter02_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_add > .Icon
+{
+	width: 34px;
+	height: width-percentage(94.11764706%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_add_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_add_1 > .Icon
+{
+	width: 42px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_add_1_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_sub > .Icon
+{
+	width: 42px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_sub_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_lock > .Icon
+{
+	width: 28px;
+	height: width-percentage(121.42857143%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_lock_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_refresh > .Icon
+{
+	width: 40px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_refresh_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_arrange > .Icon
+{
+	width: 40px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_arrange_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_reset > .Icon
+{
+	width: 32px;
+	height: width-percentage(106.25%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_reset_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_query > .Icon
+{
+	width: 32px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_query_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_break > .Icon
+{
+	width: 32px;
+	height: width-percentage(106.25%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_break_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_cdk > .Icon
+{
+	width: 66px;
+	height: width-percentage(57.57575758%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_cdk_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_overview > .Icon
+{
+	width: 30px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_overview_png.vtex");
+}
+
+.Yzy_IconRarity
+{
+	width: 300px;
+	height: width-percentage(60%);
+}
+
+.Yzy_IconRarity.1
+{
+	background-image: url("s2r://");
+	background-size: 100%;
+}
+
+.Yzy_IconRarity.2
+{
+	background-image: url("s2r://panorama/images/custom_game/common/icon_rarity/icon_rarity_2_png.vtex");
+	background-size: 100%;
+}
+
+.Yzy_IconRarity.3
+{
+	background-image: url("s2r://panorama/images/custom_game/common/icon_rarity/icon_rarity_3_png.vtex");
+	background-size: 100%;
+}
+
+.Yzy_IconRarity.4
+{
+	background-image: url("s2r://panorama/images/custom_game/common/icon_rarity/icon_rarity_4_png.vtex");
+	background-size: 100%;
+}
+
+.Yzy_IconRarity.5
+{
+	background-image: url("s2r://panorama/images/custom_game/common/icon_rarity/icon_rarity_5_png.vtex");
+	background-size: 100%;
+}
+
+.Yzy_IconRarity.6
+{
+	background-image: url("s2r://panorama/images/custom_game/common/icon_rarity/icon_rarity_6_png.vtex");
+	background-size: 100%;
+}
+
+.Yzy_Attribute
+{
+	flow-children: right;
+}
+
+.Yzy_Attribute Label
+{
+	vertical-align: center;
+	margin: 1px;
+	font-size: 16px;
+	color: #fff;
+	text-shadow: #000 1px 1px 4px 3;
+}
+
+.Yzy_Attribute > .Value
+{
+	color: #34ec1a;
+	font-weight: semi-bold;
+	margin: 2px;
+}
+
+.Yzy_Attribute .AbilityValues,.Yzy_Attribute .NumberValues
+{
+	color: #00ff00;
+	font-weight: semi-bold;
+}
+
+.Yzy_Attribute .GameplayValues.CurLvl
+{
+	color: #00ff00;
+	font-weight: semi-bold;
+}
+
+.Yzy_Description
+{
+	font-size: 16px;
+	color: #fff;
+	text-shadow: #000 0px 0px 4px 2;
+}
+
+.Yzy_Description .AbilityValues
+{
+	color: #00ff00;
+	font-weight: semi-bold;
+}
+
+.Yzy_Description .GameplayValues.CurLvl
+{
+	color: #00ff00;
+	font-weight: semi-bold;
+}
+
+.Yzy_ServiceItem
+{
+	width: 96px;
+	height: width-percentage(100%);
+}
+
+.Yzy_ServiceItem.Rarity_1 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/service/item_rarity_bg/item_rarity_bg_1_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.Yzy_ServiceItem.Rarity_2 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/service/item_rarity_bg/item_rarity_bg_2_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.Yzy_ServiceItem.Rarity_3 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/service/item_rarity_bg/item_rarity_bg_3_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.Yzy_ServiceItem.Rarity_4 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/service/item_rarity_bg/item_rarity_bg_4_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.Yzy_ServiceItem.Rarity_5 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/service/item_rarity_bg/item_rarity_bg_5_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.Yzy_ServiceItem.Rarity_6 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/service/item_rarity_bg/item_rarity_bg_6_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.Yzy_ServiceItem.Rarity_7 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/service/item_rarity_bg/item_rarity_bg_7_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.Yzy_ServiceItem > .BG
+{
+	width: 100%;
+	height: 100%;
+}
+
+.Yzy_ServiceItem #ItemImage
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+}
+
+.Yzy_ServiceItem #ItemCount
+{
+	align: right bottom;
+	color: white;
+	font-size: 14px;
+	margin-right: 4px;
+	margin-bottom: 4px;
+	text-shadow: #000 1px 1px 1px 2;
+}
+
+.Yzy_ServiceItemName
+{
+	text-overflow: shrink;
+	color: #FFEFDA;
+	font-size: 20px;
+	text-shadow: 0px 0px 2px 2 #000000;
+}
+
+.Yzy_ServiceAssetCost
+{
+	align: center center;
+	flow-children: right-wrap;
+}
+
+.Yzy_ServiceAssetCost .AssetCostRow
+{
+	margin: 0px 5px;
+	flow-children: right;
+}
+
+.Yzy_ServiceAssetCost .AssetCostRow #ItemImage
+{
+	width: 30px;
+	height: 30px;
+	align: center center;
+}
+
+.Yzy_ServiceAssetCost .AssetCostRow #ItemCount
+{
+	align: center center;
+	color: white;
+	font-size: 18px;
+	text-shadow: #000 0px 0px 4px 2;
+}
+
+.Yzy_ServiceTokenImage
+{
+	width: 50px;
+	height: width-percentage(100%);
+	align: center center;
+	img-shadow: 0px 0px 2px 1 #000000;
+}
+
+.ServiceLayoutPanel
+{
+	width: 100%;
+	height: 100%;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer
+{
+	width: 100%;
+	height: 100%;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutLeft
+{
+	flow-children: right;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutLeft #ServiceLayoutMenu > .BG
+{
+	width: 309px;
+	height: 957px;
+	margin-top: 106px;
+	margin-left: 8px;
+	background-image: url("s2r://panorama/images/custom_game/service/layout/menu_bg_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutLeft #ServiceLayoutMenu > .ServiceLayoutMenuContainer
+{
+	margin-top: 150px;
+	margin-left: 0px;
+	margin-bottom: 50px;
+	flow-children: down;
+	overflow: squish scroll;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_vertical_vscroll_wide_psd.vtex");
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutLeft #ServiceLayoutMenu > .ServiceLayoutMenuContainer > VerticalScrollBar
+{
+	width: 4px;
+	horizontal-align: left;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutLeft #ServiceLayoutMenu > .ServiceLayoutMenuContainer .TabButton
+{
+	height: 98px;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutLeft #ServiceLayoutMenu > .ServiceLayoutMenuContainer .TabButton > .LockPane
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://");
+	background-repeat: no-repeat;
+	background-position: center;
+	opacity: 0;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutLeft #ServiceLayoutMenu > .ServiceLayoutMenuContainer .TabButton.Lock > .LockPane
+{
+	opacity: 1;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutLeft #ServiceLayoutMenu > .ServiceLayoutMenuContainer .ServiceLayoutMenuItem
+{
+	width: height-percentage(346.93877551%);
+	height: 98px;
+	transition-property: transform;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-in;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutLeft #ServiceLayoutMenu > .ServiceLayoutMenuContainer .ServiceLayoutMenuItem > .BG
+{
+	width: 315px;
+	height: 94px;
+	vertical-align: center;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-image: url("s2r://panorama/images/custom_game/service/layout/menu_btn_bg_png.vtex");
+	transition-property: background-image;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-in;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutLeft #ServiceLayoutMenu > .ServiceLayoutMenuContainer .ServiceLayoutMenuItem > .Icon
+{
+	width: 70px;
+	height: 70px;
+	margin-left: 8px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/service/menu_icon/activitysevendays_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	transition-property: wash-color;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-in;
+	wash-color: #B7B7B7;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutLeft #ServiceLayoutMenu > .ServiceLayoutMenuContainer .ServiceLayoutMenuItem > .Content
+{
+	margin-top: 6px;
+	margin-left: 90px;
+	vertical-align: center;
+	flow-children: right;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutLeft #ServiceLayoutMenu > .ServiceLayoutMenuContainer .ServiceLayoutMenuItem .Text
+{
+	max-width: 150px;
+	height: 32px;
+	align: left center;
+	color: #B7B7B7;
+	text-shadow: 1px 1px 2px 2 #000000;
+	font-weight: bold;
+	font-size: 22px;
+	text-overflow: shrink;
+	transition-property: color;
+	transition-duration: 0.12s;
+	transition-timing-function: ease-out;
+	transition-delay: 0.05s;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutLeft #ServiceLayoutMenu > .ServiceLayoutMenuContainer .ServiceLayoutMenuItem .NewTagIcon
+{
+	align: left top;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutLeft #ServiceLayoutMenu > .ServiceLayoutMenuContainer .ServiceLayoutMenuItem .NewActivityTagIcon
+{
+	align: left top;
+	width: 30px;
+	height: width-percentage(110.41666667%);
+	background-image: url("s2r://");
+	background-size: 100% 100%;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutLeft #ServiceLayoutMenu > .ServiceLayoutMenuContainer .ServiceLayoutMenuItem.Selected
+{
+	transform: translateX(38px);
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutLeft #ServiceLayoutMenu > .ServiceLayoutMenuContainer .ServiceLayoutMenuItem:hover > .BG,.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutLeft #ServiceLayoutMenu > .ServiceLayoutMenuContainer .ServiceLayoutMenuItem.Selected > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/service/layout/menu_btn_bg_selected_png.vtex");
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutLeft #ServiceLayoutMenu > .ServiceLayoutMenuContainer .ServiceLayoutMenuItem:hover > .Icon,.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutLeft #ServiceLayoutMenu > .ServiceLayoutMenuContainer .ServiceLayoutMenuItem.Selected > .Icon
+{
+	wash-color: white;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutLeft #ServiceLayoutMenu > .ServiceLayoutMenuContainer .ServiceLayoutMenuItem:hover .Text,.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutLeft #ServiceLayoutMenu > .ServiceLayoutMenuContainer .ServiceLayoutMenuItem.Selected .Text
+{
+	color: white;
+	transition-timing-function: ease-in;
+	transition-delay: 0.1s;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutRight
+{
+	width: 100%;
+	height: 100%;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutRight .ServiceLayoutContent
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-in;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutRight .ServiceLayoutContent.Show
+{
+	opacity: 1;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutRight .ServiceLayoutContent #ServiceLayoutSubMenu
+{
+	width: 220px;
+	height: 100%;
+	margin-top: 120px;
+	margin-left: 330px;
+	padding-top: 132px;
+	padding-left: 32px;
+	z-index: 10;
+	flow-children: down;
+	background-image: url("s2r://panorama/images/custom_game/service/layout/sub_menu_bg_png.vtex");
+	background-size: 202px 877px;
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutRight .ServiceLayoutContent #ServiceLayoutSubMenu .TabButton
+{
+	width: 250px;
+	height: 66px;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutRight .ServiceLayoutContent #ServiceLayoutSubMenu .TabButton > .ServiceLayoutSubMenuItem
+{
+	width: 180px;
+	height: 66px;
+	flow-children: right;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutRight .ServiceLayoutContent #ServiceLayoutSubMenu .TabButton > .ServiceLayoutSubMenuItem .BGBox
+{
+	align: left center;
+	ignore-parent-flow: true;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutRight .ServiceLayoutContent #ServiceLayoutSubMenu .TabButton > .ServiceLayoutSubMenuItem .BGBox > .BG
+{
+	width: 209px;
+	height: 46px;
+	align: left center;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	saturation: 0.3;
+	brightness: 0.3;
+	opacity: 0.5;
+	transition-property: saturation, brightness, opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-out;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutRight .ServiceLayoutContent #ServiceLayoutSubMenu .TabButton > .ServiceLayoutSubMenuItem .BGBox > .Tag
+{
+	width: 37px;
+	height: 38px;
+	align: left center;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 26px 28px;
+	background-image: url("s2r://");
+	img-shadow: #000 0px 0px 4px 2;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutRight .ServiceLayoutContent #ServiceLayoutSubMenu .TabButton > .ServiceLayoutSubMenuItem > .Text
+{
+	max-height: 35px;
+	align: left bottom;
+	margin-bottom: 16px;
+	text-overflow: shrink;
+	font-weight: bold;
+	font-size: 18px;
+	color: #B7B7B7;
+	letter-spacing: 4px;
+	text-transform: uppercase;
+	text-shadow: 1px 3px 1px 1 #000000;
+	transition-property: color, letter-spacing, font-size;
+	transition-duration: 0.2s;
+	transition-timing-function: linear;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutRight .ServiceLayoutContent #ServiceLayoutSubMenu .TabButton > .ServiceLayoutSubMenuItem > .NewTagIcon
+{
+	align: left top;
+	margin-left: -5px;
+	margin-top: 15px;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutRight .ServiceLayoutContent #ServiceLayoutSubMenu .TabButton > .ServiceLayoutSubMenuItem > .NewActivityTagIcon
+{
+	align: left center;
+	width: 30px;
+	height: width-percentage(110.41666667%);
+	background-image: url("s2r://");
+	background-size: 100% 100%;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutRight .ServiceLayoutContent #ServiceLayoutSubMenu .TabButton > .ServiceLayoutSubMenuItem:selected .BGBox > .BG
+{
+	saturation: 1;
+	brightness: 1;
+	opacity: 1;
+	background-image: url("s2r://");
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutRight .ServiceLayoutContent #ServiceLayoutSubMenu .TabButton > .ServiceLayoutSubMenuItem:selected .BGBox > .Tag
+{
+	background-size: 37px 38px;
+	background-image: url("s2r://");
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutRight .ServiceLayoutContent #ServiceLayoutSubMenu .TabButton > .ServiceLayoutSubMenuItem:selected > .NewActivityTagIcon
+{
+	margin-left: -20px;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutRight .ServiceLayoutContent #ServiceLayoutSubMenu .TabButton > .ServiceLayoutSubMenuItem:selected > .Text
+{
+	letter-spacing: 8px;
+	font-size: 24px;
+	color: #ffffff;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutRight .ServiceLayoutContent #ServiceLayoutSubMenu .TabButton > .ServiceLayoutSubMenuItem:hover > .Text
+{
+	color: #ffffff;
+	text-decoration: underline;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutRight .ServiceLayoutContent .ServiceLayoutSubContent
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+
+.ServiceLayoutPanel > .ServiceLayoutContainer #ServiceLayoutRight .ServiceLayoutContent .ServiceLayoutSubContent.Show
+{
+	opacity: 1;
+}
+
+.Yzy_ServiceItem > .ServiceCommonPanel
+{
+	width: 84px;
+	height: width-percentage(100%);
+}
+
+.Yzy_ServiceItem > .ServiceCommonPanel.Rarity_1:not(.NoBg)
+{
+	border: 1px solid #fff;
+	border-brush: gradient(linear, 30% 100%, 80% 0%, from(#cccccc), color-stop(0.08, #e4e4e4), color-stop(0.38, #f3f3f3), color-stop(0.68, #b4b4b4), color-stop(0.8, #6e6e6e), to(#616161));
+	box-shadow: rgba(35, 40, 45, 0.9) 1px 1px 12px 0px;
+	background-image: url("s2r://panorama/images/custom_game/service/item_rarity_bg/item_rarity_bg_1_png.vtex");
+	background-img-opacity: 0.5;
+	background-size: 100%;
+}
+
+.Yzy_ServiceItem > .ServiceCommonPanel.Rarity_2:not(.NoBg)
+{
+	border: 1px solid #fff;
+	border-brush: gradient(linear, 30% 100%, 80% 0%, from(#27cc27), color-stop(0.08, #50e750), color-stop(0.38, #aff5ad), color-stop(0.68, #20c00b), color-stop(0.8, #0e7505), to(#0b6417));
+	box-shadow: rgba(35, 47, 19, 0.9) 1px 1px 12px 0px;
+	background-image: url("s2r://panorama/images/custom_game/service/item_rarity_bg/item_rarity_bg_2_png.vtex");
+	background-img-opacity: 0.5;
+	background-size: 100%;
+}
+
+.Yzy_ServiceItem > .ServiceCommonPanel.Rarity_3:not(.NoBg)
+{
+	border: 1px solid #fff;
+	border-brush: gradient(linear, 30% 100%, 80% 0%, from(#2798cc), color-stop(0.08, #50b0e7), color-stop(0.38, #add2f5), color-stop(0.68, #0b96c0), color-stop(0.8, #055575), to(#0b3c64));
+	box-shadow: rgba(18, 25, 60, 0.9) 1px 1px 12px 0px;
+	background-image: url("s2r://panorama/images/custom_game/service/item_rarity_bg/item_rarity_bg_3_png.vtex");
+	background-img-opacity: 0.5;
+	background-size: 100%;
+}
+
+.Yzy_ServiceItem > .ServiceCommonPanel.Rarity_4:not(.NoBg)
+{
+	border: 1px solid #fff;
+	border-brush: gradient(linear, 30% 100%, 80% 0%, from(#9827cc), color-stop(0.08, #bc50e7), color-stop(0.38, #e4adf5), color-stop(0.68, #960bc0), color-stop(0.8, #6c0575), to(#4f0b64));
+	box-shadow: rgba(31, 15, 60, 0.9) 1px 1px 12px 0px;
+	background-image: url("s2r://panorama/images/custom_game/service/item_rarity_bg/item_rarity_bg_4_png.vtex");
+	background-img-opacity: 0.5;
+	background-size: 100%;
+}
+
+.Yzy_ServiceItem > .ServiceCommonPanel.Rarity_5:not(.NoBg)
+{
+	border: 1px solid #fff;
+	border-brush: gradient(linear, 30% 100%, 80% 0%, from(#cc8727), color-stop(0.08, #e7a850), color-stop(0.38, #f5d7ad), color-stop(0.68, #c0780b), color-stop(0.8, #754705), to(#643f0b));
+	box-shadow: rgba(65, 52, 8, 0.9) 1px 1px 12px 0px;
+	background-image: url("s2r://panorama/images/custom_game/service/item_rarity_bg/item_rarity_bg_5_png.vtex");
+	background-img-opacity: 0.5;
+	background-size: 100%;
+}
+
+.Yzy_ServiceItem > .ServiceCommonPanel.Rarity_6:not(.NoBg)
+{
+	border: 1px solid #fff;
+	border-brush: gradient(linear, 30% 100%, 80% 0%, from(#cc2727), color-stop(0.08, #e75050), color-stop(0.38, #f5adad), color-stop(0.68, #c00b0b), color-stop(0.8, #750505), to(#640b0b));
+	box-shadow: rgba(49, 11, 11, 0.9) 1px 1px 12px 0px;
+	background-image: url("s2r://panorama/images/custom_game/service/item_rarity_bg/item_rarity_bg_6_png.vtex");
+	background-img-opacity: 0.5;
+	background-size: 100%;
+}
+
+.Yzy_ServiceItem > .ServiceCommonPanel.Rarity_7:not(.NoBg)
+{
+	border: 1px solid #fff;
+	border-brush: gradient(linear, 30% 100%, 80% 0%, from(#ce748d), color-stop(0.08, #c469d4), color-stop(0.48, #aae1ef), color-stop(0.68, #8ad6ff), color-stop(0.8, #187d8f), to(#4477c8));
+	box-shadow: rgba(49, 11, 39, 0.9) 1px 1px 12px 0px;
+	background-image: url("s2r://panorama/images/custom_game/service/item_rarity_bg/item_rarity_bg_7_png.vtex");
+	background-img-opacity: 0.5;
+	background-size: 100%;
+}
+
+.Yzy_ServiceItem > .ServiceCommonPanel #ItemImage
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	img-shadow: #000 0px 0px 6px;
+}
+
+.Yzy_ServiceItem > .ServiceCommonPanel #ItemCount
+{
+	align: right bottom;
+	margin-right: 1px;
+	color: white;
+	font-size: 14px;
+	text-shadow: #000 0px 0px 4px 2;
+}
+
+.Yzy_ServiceItemName
+{
+	align: center center;
+}
+
+.Yzy_ServiceItemName > .ServiceCommonTitle
+{
+	color: white;
+	font-size: 14px;
+	font-family: titleFont;
+	text-shadow: #0006 2px 4px 6px 3;
+}
+
+.ServiceAssetGroup
+{
+	align: right top;
+	margin-right: 100px;
+	margin-top: 20px;
+	flow-children: right;
+}
+
+.ServiceAssetGroup .ServiceItemAsset
+{
+	width: 130px;
+	height: 34px;
+	margin: 0px 10px;
+}
+
+.ServiceAssetGroup .ServiceItemAsset > .BG
+{
+	width: 174px;
+	height: 34px;
+	align: center center;
+	box-shadow: #00000080 0px 0px 0px 3;
+	border: 1px solid black;
+}
+
+.ServiceAssetGroup .ServiceItemAsset > .Body
+{
+	width: 100%;
+	height: 100%;
+}
+
+.ServiceAssetGroup .ServiceItemAsset > .Body > .AssetImage
+{
+	align: left center;
+}
+
+.ServiceAssetGroup .ServiceItemAsset > .Body > .AssetCount
+{
+	align: center center;
+	width: 180px;
+	height: 35px;
+	padding: 2px 25px 0px 50px;
+	font-size: 22px;
+	color: #ccc;
+	text-align: center;
+	font-weight: bold;
+	text-overflow: shrink;
+}
+
+.ServiceAssetGroup .ServiceItemAsset > .Body > .Yzy_IconButton
+{
+	align: right center;
+}
+
+.ServiceAssetCostRow
+{
+	align: center center;
+	flow-children: right-wrap;
+}
+
+.ServiceAssetCostRow > .ServiceCostPanel
+{
+	margin: 0px 5px;
+	flow-children: right;
+}
+
+.ServiceAssetCostRow > .ServiceCostPanel .Yzy_ServiceItem
+{
+	width: 30px;
+	height: 30px;
+}
+
+.ServiceAssetCostRow > .ServiceCostPanel .Yzy_ServiceItem .ServiceCommonPanel
+{
+	tooltip-position: top;
+}
+
+.ServiceAssetCostRow > .ServiceCostPanel .Yzy_ServiceItem .ServiceStarPanel
+{
+	align: center center;
+}
+
+.ServiceAssetCostRow > .ServiceCostPanel > .Group
+{
+	flow-children: down;
+}
+
+.ServiceAssetCostRow > .ServiceCostPanel > .Group > .BindGroup
+{
+	flow-children: right;
+}
+
+.ServiceAssetCostRow > .ServiceCostPanel #CostLabel
+{
+	align: left center;
+	margin-left: 5px;
+	color: #ccc;
+	text-shadow: #000 1px 1px 0px 1px;
+}
+
+.ServiceAssetCostRow > .ServiceCostPanel #CostLabel.NotEnough
+{
+	color: #c54527;
+}
+
+#ProcessingRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#Processing
+{
+	width: 100%;
+	height: 100%;
+}
+
+#Processing > .CommonProcessing
+{
+	width: 60px;
+	height: 60px;
+	align: center center;
+	opacity: 0;
+}
+
+#Processing > .CommonProcessing.Show
+{
+	opacity: 1;
+}
+
+#Processing > .MouseProcessing
+{
+	width: 28px;
+	height: 28px;
+	opacity: 0;
+}
+
+#Processing > .MouseProcessing.Show
+{
+	opacity: 1;
+}
+
+#Processing > .MouseTip
+{
+	margin: 50px 0px 0px 15px;
+	transition-property: opacity;
+	transition-duration: 0.1s;
+}
+
+#Processing > .MouseTip #MouseTipLabel
+{
+	padding: 10px;
+	color: #fff;
+	font-size: 16px;
+	font-family: titleFont;
+	text-shadow: #000a 0px 2px 4px 6;
+}
+
+#Processing > .MouseTip #MouseTipLabel .warning,#Processing > .MouseTip #MouseTipLabel .yellow
+{
+	color: gradient(radial, 30% 30%, 0% 0%, 70% 70%, from(#f4ffd5), color-stop(0.3, #ffd64f), to(#ff7b00));
+	color: gradient(linear, 0% 0%, 0% 100%, from(#fffb00), color-stop(0, #fffb00), to(#ff5e00));
+	text-shadow: #330000 0px 3px 6px 6;
+}
+
+#Processing > .MouseTip #MouseTipLabel .error,#Processing > .MouseTip #MouseTipLabel .red
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#ffaace), color-stop(0.7, #fd5d5d), to(#ff0000));
+	text-shadow: #330000 0px 3px 6px 6;
+}
+
+#Processing > .MouseTip #MouseTipLabel .pass,#Processing > .MouseTip #MouseTipLabel .green
+{
+	color: greenyellow;
+}
+
+#Processing > .MouseTip.TipType_error
+{
+	animation-name: MouseTipErrorShake;
+	animation-duration: 0.08s;
+	animation-delay: 0.05s;
+	animation-iteration-count: 2;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes 'MouseTipErrorShake'
+{
+	0%
+	{
+		transform: translateX(0);
+	}
+	
+	25%
+	{
+		transform: translateX(-6px);
+	}
+	
+	75%
+	{
+		transform: translateX(6px);
+	}
+	
+	100%
+	{
+		transform: translateX(0);
+	}
+	
+}
+
+.ShopItem.Rarity_1 > .BG
+{
+	background-image: url("s2r://");
+}
+
+.ShopItem.Rarity_1 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/service/archives/common/rarity_bg_1_png.vtex");
+}
+
+.ShopItem.Rarity_2 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/service/archives/common/rarity_bg_2_png.vtex");
+}
+
+.ShopItem.Rarity_3 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/service/archives/common/rarity_bg_3_png.vtex");
+}
+
+.ShopItem.Rarity_4 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/service/archives/common/rarity_bg_4_png.vtex");
+}
+
+.ShopItem.Rarity_5 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/service/archives/common/rarity_bg_5_png.vtex");
+}
+
+.ShopItem.Rarity_6 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/service/archives/common/rarity_bg_6_png.vtex");
+}
+
+.ShopItem:hover > .BG
+{
+	brightness: 1.4;
+}
+
+.ShopItem:hover > .HoverBorder
+{
+	opacity: 1;
+	brightness: 1.4;
+}
+
+.ShopItem:hover Image,.ShopItem:hover .Body > .Yzy_ServiceItem
+{
+	brightness: 1.4;
+}
+
+.ShopItem > .BG
+{
+	width: 216px;
+	height: 247px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/service/archives/common/rarity_bg_1_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	brightness: 0.9;
+	transition-property: brightness;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in;
+}
+
+.ShopItem > .HoverBorder
+{
+	width: 190px;
+	height: 252px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/service/archives/common/rarity_bg_selected_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in;
+}
+
+.ShopItem > .Body
+{
+	width: 254px;
+	height: 356px;
+	overflow: noclip;
+	tooltip-position: top;
+	tooltip-arrow-position: 50%;
+}
+
+.ShopItem > .Body.has > .BG
+{
+	background-color: gradient(linear, 30% 30%, 0% 100%, from(#6f92a022), to(#00386663));
+	box-shadow: #0008 0px 0px 12px 1px;
+}
+
+.ShopItem > .Body:hover #ShopItemUsed
+{
+	border-brush: gradient(linear, 0% 100%, 120% 0%, from(#cc872766), color-stop(0.1, #e7a850aa), color-stop(0.2, #f5d7ad), color-stop(0.3, #f5d7ad), color-stop(0.65, #e7a850aa), to(#cc872766));
+}
+
+.ShopItem > .Body > .Yzy_ServiceItem
+{
+	width: 175px;
+	align: center center;
+	brightness: 0.9;
+	transition-property: brightness;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in;
+}
+
+.ShopItem > .Body > .ItemName
+{
+	width: 100%;
+	font-size: 20px;
+	color: #FFF;
+	text-shadow: 0px 0px 3px 3 #000;
+	margin-top: 78px;
+	text-align: center;
+	padding: 0px 30px;
+}
+
+.ShopItem > .Body > .ItemCount
+{
+	align: right bottom;
+	margin-right: 48px;
+	margin-bottom: 90px;
+	padding: 0 6px 0 15px;
+	background-image: url("s2r://panorama/images/custom_game/service/shop/item_count_bg_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	text-align: center;
+	font-size: 20px;
+	color: aliceblue;
+	text-shadow: 1px 1px 3px 3 #000000;
+}
+
+.ShopItem > .Body > .CostContainer
+{
+	width: 160px;
+	height: 59px;
+	align: center bottom;
+	margin-bottom: 6px;
+	overflow: noclip;
+}
+
+.ShopItem > .Body > .CostContainer.HasOriginPrice > .BG
+{
+	width: 168px;
+	height: 59px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/service/shop/price_bg_has_origin_price_png.vtex");
+}
+
+.ShopItem > .Body > .CostContainer.HasOriginPrice > .Body > .CurrencyIcon
+{
+	margin-bottom: 0;
+}
+
+.ShopItem > .Body > .CostContainer.HasOriginPrice > .Body > .CostLabel
+{
+	margin-bottom: 0px;
+	color: #A5D63F;
+}
+
+.ShopItem > .Body > .CostContainer > .BG
+{
+	width: 168px;
+	height: 59px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/service/shop/price_bg_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.ShopItem > .Body > .CostContainer > .Body
+{
+	height: 100%;
+}
+
+.ShopItem > .Body > .CostContainer > .Body > .CurrencyIcon
+{
+	horizontal-align: left;
+	margin-left: 12px;
+	vertical-align: bottom;
+	margin-bottom: 12px;
+	background-size: 100%;
+	font-size: 22px;
+	font-weight: bold;
+	color: aliceblue;
+	text-shadow: 0px 0px 6px 3 black;
+	text-align: center;
+	line-height: 34px;
+}
+
+.ShopItem > .Body > .CostContainer > .Body > .CurrencyIcon.Yzy_ServiceTokenImage
+{
+	margin-bottom: 0;
+}
+
+.ShopItem > .Body > .CostContainer > .Body > .CostLabel
+{
+	width: 100%;
+	width: fill-parent-flow(1);
+	vertical-align: bottom;
+	margin-bottom: 12px;
+	text-align: center;
+	font-size: 22px;
+	color: aliceblue;
+	text-shadow: 0px 0px 4px 4 black;
+}
+
+.ShopItem > .Body > .CostOriginPrice
+{
+	align: center bottom;
+	margin-bottom: 28px;
+}
+
+.ShopItem > .Body > .CostOriginPrice > .CostLabel
+{
+	font-size: 20px;
+	color: #A89D9D;
+	text-shadow: 0px 0px 4px 4 black;
+	margin: 0px 6px;
+}
+
+.ShopItem > .Body > .CostOriginPrice > .LineThrough
+{
+	width: 100%;
+	height: 2px;
+	background-color: #A89D9D;
+	vertical-align: center;
+}
+
+.ShopItem > .Body > .LimitInfo
+{
+	width: 160px;
+	margin-bottom: 74px;
+	horizontal-align: center;
+	vertical-align: bottom;
+}
+
+.ShopItem > .Body > .LimitInfo > .LimitLabel
+{
+	width: 100%;
+	text-align: center;
+	font-size: 18px;
+	color: #FFEDC4;
+	text-shadow: 0px 2px 2px 2 black;
+}
+
+.ShopItem > .Body > .ShopItemExpireTime
+{
+	width: 100%;
+	height: 24px;
+	margin-top: 20px;
+	padding: 4px;
+	align: right top;
+	overflow: noclip;
+	transform: rotateZ(10deg) translate3d(50px, 0px, 0px);
+	border-radius: 5px;
+	color: gradient(radial, 50% 35%, 0% 0%, 70% 70%, from(#f4ffd5), color-stop(0.3, #fff34f), to(#ffae00));
+	font-size: 18px;
+	text-align: center;
+	text-shadow: #000 2px 2px 4px 2;
+}
+
+.ShopItem > .Body > .ShopItemOverTime
+{
+	width: 100%;
+	height: 24px;
+	margin-top: 20px;
+	padding: 4px;
+	align: right top;
+	overflow: noclip;
+	transform: rotateZ(10deg) translate3d(50px, 0px, 0px);
+	border-radius: 5px;
+	color: gradient(radial, 50% 35%, 0% 0%, 80% 80%, from(#fed5ff), color-stop(0.5, #cb8bff), to(#5900ff));
+	font-size: 18px;
+	text-align: center;
+	text-shadow: #000 2px 2px 4px 2;
+}
+
+.ShopItem > .Body > .ShopItemLimitTime
+{
+	width: 100%;
+	height: 24px;
+	margin-top: 20px;
+	padding: 4px;
+	align: right top;
+	overflow: noclip;
+	transform: rotateZ(10deg) translate3d(50px, 0px, 0px);
+	border-radius: 5px;
+	color: gradient(radial, 50% 35%, 0% 0%, 90% 90%, from(#fbc7dd), color-stop(0.5, #fd5d5d), to(#ff0000));
+	font-size: 18px;
+	text-align: center;
+	text-shadow: #000 2px 2px 4px 2;
+}
+
+.ShopItemSalePanel
+{
+	width: 100%;
+	height: 100%;
+	overflow: noclip;
+}
+
+.ShopItemSalePanel > .Box
+{
+	width: 100%;
+	height: 100%;
+	overflow: noclip;
+	flow-children: down;
+}
+
+.ShopItemSalePanel > .Box .SaleTopPanel
+{
+	padding: 2px;
+	overflow: noclip;
+	align: right top;
+}
+
+.ShopItemSalePanel > .Box .SaleTopPanel.Hot
+{
+	height: 44px;
+	width: 44px;
+	margin-top: 40px;
+	margin-right: 20px;
+	background-image: url("s2r://panorama/images/custom_game/service/shop/hot_bg_png.vtex");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.ShopItemSalePanel > .Box .SaleTopPanel.FirstDouble
+{
+	width: 89px;
+	height: 113px;
+	background-image: url("s2r://panorama/images/custom_game/service/shop/tag_double_png.vtex");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.ShopItemSalePanel > .Box .SaleTopPanel.ShopItemTime
+{
+	width: 250px;
+	margin-top: 20px;
+	padding: 4px;
+	align: right top;
+	overflow: noclip;
+	transform: rotateZ(10deg) translate3d(50px, 0px, 0px);
+}
+
+.ShopItemSalePanel > .Box .SaleTopPanel.ShopItemTime Label
+{
+	font-size: 18px;
+}
+
+.ShopItemSalePanel > .Box .SaleTopPanel.LeftStyle
+{
+	align: left top;
+	transform: rotateZ(-10deg) translate3d(-20px, 0px, 0px);
+}
+
+.ShopItemSalePanel > .Box .SaleTopPanel > .BG
+{
+	width: 100%;
+	height: 100%;
+}
+
+.ShopItemSalePanel > .Box .SaleTopPanel Label
+{
+	align: center center;
+	padding: 0px 12px;
+	font-size: 22px;
+	text-transform: uppercase;
+	text-overflow: shrink;
+	text-align: center;
+}
+
+.ShopItemSalePanel > .Box .SaleTopPanel > .ShopBuyGiftPanel
+{
+	align: center center;
+	flow-children: right;
+}
+
+.ShopItemSalePanel > .Box .SaleTopPanel > .ShopBuyGiftPanel > .ShopBuyGiftIcon
+{
+	width: 25px;
+	height: width-percentage(100%);
+	background-size: 100% 100%;
+	background-position: 0% 0%;
+	background-repeat: no-repeat;
+	img-shadow: 1px 1px 2px 1 #000;
+	text-shadow: #000a 0px 0px 6px 4;
+}
+
+.ShopItemSalePanel > .Box .SaleTopPanel > .ShopBuyGiftPanel Label
+{
+	align: center center;
+	font-size: 22px;
+	text-transform: uppercase;
+	text-overflow: shrink;
+	text-align: center;
+}
+
+.ShopItemSalePanel > .Box .SaleTopPanel > .ShopBuyActiveGiftPanel
+{
+	align: center center;
+	flow-children: right;
+}
+
+.ShopItemSalePanel > .Box .SaleTopPanel > .ShopBuyActiveGiftPanel > .ShopBuyActiveGiftIcon
+{
+	width: 25px;
+	height: width-percentage(100%);
+	background-size: 100% 100%;
+	background-position: 0% 0%;
+	background-repeat: no-repeat;
+	img-shadow: 1px 1px 2px 1 #000;
+	text-shadow: #000a 0px 0px 6px 4;
+}
+
+.ShopItemSalePanel > .Box .SaleTopPanel > .ShopBuyActiveGiftPanel Label
+{
+	align: center center;
+	font-size: 22px;
+	text-transform: uppercase;
+	text-overflow: shrink;
+	text-align: center;
+}
+
+.ShopItemSalePanel > .Box .SteamStyle > .BG
+{
+	border: 1px solid #254917;
+	background-color: #4C6B22;
+	color: #dbf384;
+	border: 1px solid #494617;
+}
+
+.ShopItemSalePanel > .Box .SteamStyle Label
+{
+	color: #dbf384;
+}
+
+.ShopItemSalePanel > .Box .GoldStyle Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#efdb86), color-stop(0.5, #d0aa46), to(#D0A73C));
+}
+
+.ShopItemSalePanel > .Box .GreenStyle > .BG
+{
+	border-radius: 4px;
+	border: 1.5px solid #fff;
+	border-brush: gradient(linear, 30% 100%, 80% 0%, from(#4fd837), color-stop(0.08, #50e750), color-stop(0.38, #aff5ad), color-stop(0.68, #59c00b), color-stop(0.8, #367505), to(#1b640b));
+	padding: 1px;
+	background-color: #00270288;
+}
+
+.ShopItemSalePanel > .Box .GreenStyle Label
+{
+	color: #b0c3d9;
+	text-shadow: 0px 0px 6px 4 #000a;
+}
+
+.ShopItemSalePanel > .Box .BlueStyle > .BG
+{
+	border-radius: 4px;
+	border: 1.5px solid #fff;
+	border-brush: gradient(linear, 30% 100%, 80% 0%, from(#2798cc), color-stop(0.08, #50b0e7), color-stop(0.38, #add2f5), color-stop(0.68, #0b96c0), color-stop(0.8, #055575), to(#0b3c64));
+	padding: 1px;
+	background-color: #001227cc;
+}
+
+.ShopItemSalePanel > .Box .BlueStyle Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#86b7ef), color-stop(0.5, #4692d0), to(#3cc6d0));
+	text-shadow: 0px 0px 6px 4 #000a;
+}
+
+.ShopItemSalePanel > .Box .RedStyle Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#ef8686), color-stop(0.5, #d04646), to(#d03c3c));
+	text-shadow: 0px 0px 6px 4 #000a;
+}
+
+.ShopItemDetail
+{
+	width: 100%;
+	horizontal-align: left;
+}
+
+.ShopItemDetail > .Body
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.ShopItemDetail > .Body #ShopItemDetailTitle
+{
+	width: 100%;
+	height: 35px;
+	padding-top: 5px;
+	padding-left: 60px;
+	border-bottom: 2px solid #9e9e9e;
+	color: #542828;
+	font-size: 22px;
+	text-shadow: #542828 1px 1px 2px 1;
+	text-overflow: shrink;
+}
+
+.ShopItemRewardDetail
+{
+	horizontal-align: center;
+	flow-children: right-wrap;
+	margin-top: 10px;
+}
+
+.ShopItemRewardDetail > .RewardRow
+{
+	flow-children: down;
+	margin: 4px 4px;
+}
+
+.ShopItemRewardDetail > .RewardRow > .Body
+{
+	width: 90px;
+	flow-children: down;
+}
+
+.ShopItemRewardDetail > .RewardRow > .Body > .Yzy_ServiceItem
+{
+	horizontal-align: center;
+	width: 80px;
+}
+
+.ShopItemRewardDetail > .RewardRow > .Body .Yzy_ServiceItemName
+{
+	width: 100%;
+	height: 36px;
+	align: center bottom;
+	padding-top: 10px;
+	text-overflow: shrink;
+	text-align: center;
+	font-size: 18px;
+	color: aliceblue;
+	text-shadow: 0px 0px 2px 2 black;
+	background-color: #000;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#00000000), color-stop(0.15, #000000e6), color-stop(0.85, #000000e6), to(#00000000));
+}
+
+.ShopItemRewardDetail > .RewardRow #ShopItemCount
+{
+	align: center center;
+	margin-top: 5px;
+	color: white;
+	font-size: 20px;
+	text-shadow: #000 0px 0px 4px 2;
+}
+
+#CommonPopup
+{
+	width: 1174px;
+	height: 767px;
+	align: center center;
+	animation-name: CommonPopup;
+	animation-duration: 0.2s;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes 'CommonPopup'
+{
+	0%
+	{
+		opacity: 0;
+		pre-transform-scale2d: 0.3;
+	}
+	
+	100%
+	{
+		opacity: 1;
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+#CommonPopup > .BG
+{
+	width: 1094px;
+	height: 687px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/service/popup/common_popup/bg_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#CommonPopup > .Body
+{
+	width: 100%;
+	height: 100%;
+}
+
+#CommonPopup > .Body > .Title
+{
+	width: 558px;
+	height: 50px;
+	align: center top;
+	margin-top: 70px;
+}
+
+#CommonPopup > .Body > .Title > .BG
+{
+	width: 381px;
+	height: 27px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/service/popup/reward_popup/title_bg_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#CommonPopup > .Body > .Title > .TitleLabel
+{
+	align: center center;
+	font-size: 20px;
+	color: aliceblue;
+	text-shadow: #00000076 1px 1px 2px 1;
+}
+
+#CommonPopup > .Body > .Body
+{
+	align: center center;
+}
+
+#CommonPopup > .Body > .Body > .ContextLabel
+{
+	align: center center;
+	color: #6E5353;
+	font-size: 24px;
+	text-shadow: #6e535376 1px 1px 2px 1;
+	text-overflow: shrink;
+	text-align: center;
+}
+
+#CommonPopup > .Body > .OperateBtn
+{
+	align: center bottom;
+	margin-bottom: 130px;
+	flow-children: right;
+}
+
+#CommonPopup > .Body > .OperateBtn > .ConfirmBtn
+{
+	width: 150px;
+	margin: 0px 50px;
+}
+
+#CommonPopup > .Body > .OperateBtn > .CancelBtn
+{
+	width: 150px;
+	margin: 0px 50px;
+}
+
+#CommonPopup > .Body > .CloseBtn_x
+{
+	align: right top;
+	margin-right: 10px;
+	margin-top: 10px;
+}
+
+#RewardPopup
+{
+	width: 1094px;
+	height: 687px;
+	align: center center;
+	animation-name: ShowRewardPopup;
+	animation-duration: 0.2s;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes 'ShowRewardPopup'
+{
+	0%
+	{
+		opacity: 0;
+		pre-transform-scale2d: 0.3;
+	}
+	
+	100%
+	{
+		opacity: 1;
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+#RewardPopup > .BG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/service/popup/reward_popup/bg_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#RewardPopup > .Body
+{
+	width: 100%;
+	height: 100%;
+}
+
+#RewardPopup > .Body > .Title
+{
+	width: 558px;
+	height: 50px;
+	align: center top;
+	margin-top: 30px;
+}
+
+#RewardPopup > .Body > .Title > .BG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/service/popup/reward_popup/title_bg_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#RewardPopup > .Body > .Title > .TitleLabel
+{
+	align: center center;
+	font-size: 20px;
+	color: aliceblue;
+	text-shadow: #00000076 1px 1px 2px 1;
+}
+
+#RewardPopup > .Body > .Body
+{
+	align: center center;
+	flow-children: right-wrap;
+	overflow: squish scroll;
+}
+
+#RewardPopup > .Body > .Body .RewardPanel
+{
+	margin: 2px;
+	flow-children: down;
+}
+
+#RewardPopup > .Body > .CloseBtn
+{
+	width: 230px;
+	align: center bottom;
+	margin-bottom: 50px;
+}
+
+#RewardPopup > .Body > .CloseBtn_1
+{
+	align: right top;
+}
+
+#ShopPayPopup
+{
+	width: 1174px;
+	height: 921px;
+	align: center center;
+	animation-name: ShopPayPopup;
+	animation-duration: 0.2s;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes 'ShopPayPopup'
+{
+	0%
+	{
+		opacity: 0;
+		pre-transform-scale2d: 0.3;
+	}
+	
+	100%
+	{
+		opacity: 1;
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+#ShopPayPopup > .BG
+{
+	width: 1094px;
+	height: 841px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/service/popup/pay_popup/bg_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#ShopPayPopup > .Body
+{
+	width: 100%;
+	height: 100%;
+	padding: 5px;
+}
+
+#ShopPayPopup > .Body > .Title
+{
+	align: center top;
+	margin-top: 70px;
+}
+
+#ShopPayPopup > .Body > .Title > .BG
+{
+	width: 381px;
+	height: 27px;
+	background-image: url("s2r://panorama/images/custom_game/service/popup/pay_popup/title_bg_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#ShopPayPopup > .Body > .Title > .TitleLabel
+{
+	align: center center;
+	font-size: 24px;
+	color: aliceblue;
+	text-shadow: 0px 2px 2px 2 #000000;
+}
+
+#ShopPayPopup > .Body > .Body
+{
+	width: 1094px;
+	height: 666px;
+	align: center top;
+	margin-top: 150px;
+	overflow: noclip;
+}
+
+#ShopPayPopup > .Body > .Body > .ShopItem
+{
+	horizontal-align: left;
+	margin-left: 10px;
+	ui-scale: 100%;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent
+{
+	width: 100%;
+	height: 100%;
+	padding-left: 300px;
+	flow-children: down;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ShopItemBuyCost,#ShopPayPopup > .Body > .Body > .RightContent > .ShopItemBuyCount
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ShopItemBuyCost
+{
+	margin-top: 60px;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ShopItemBuyCost > .ShopItemBuyCostTitle
+{
+	width: 100px;
+	vertical-align: center;
+	color: #6E5353;
+	font-size: 20px;
+	text-shadow: #6e535376 1px 1px 2px 1;
+	text-overflow: shrink;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ShopItemBuyCost > .ShopItemBuyCostLabel
+{
+	width: 258px;
+	vertical-align: center;
+	color: #6E5353;
+	font-size: 20px;
+	text-shadow: #6e535376 1px 1px 2px 1;
+	text-overflow: shrink;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ShopItemBuyCount
+{
+	margin-top: 10px;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ShopItemBuyCount > .ShopItemBuyCountTitle
+{
+	width: 100px;
+	vertical-align: center;
+	color: #6E5353;
+	font-size: 20px;
+	text-shadow: #6e535376 1px 1px 2px 1;
+	text-overflow: shrink;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ShopItemBuyCount > .Body
+{
+	width: 258px;
+	vertical-align: center;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ShopItemBuyCount > .Body > .Yzy_NumberEntryAdjust
+{
+	width: 258px;
+	flow-children: right;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ShopItemBuyCount > .Body > .Yzy_NumberEntryAdjust > .Yzy_IconButton
+{
+	width: 46px;
+	vertical-align: center;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ShopItemBuyCount > .Body > .Yzy_NumberEntryAdjust > .Yzy_IconButton > .Icon
+{
+	width: 100%;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ShopItemBuyCount > .Body > .Yzy_NumberEntryAdjust TextEntry
+{
+	width: 130px;
+	height: 32px;
+	margin: 0 18px;
+	vertical-align: center;
+	background-color: #585454;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ShopItemBuyCount > .Body > .Yzy_NumberEntryAdjust TextEntry #PlaceholderText,#ShopPayPopup > .Body > .Body > .RightContent > .ShopItemBuyCount > .Body > .Yzy_NumberEntryAdjust TextEntry Label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	margin-top: 0px;
+	font-size: 20px;
+	color: white;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .QRCodeContent
+{
+	margin-top: 40px;
+	horizontal-align: center;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .QRCodeContent.NotSchinese
+{
+	opacity: 0;
+	visibility: collapse;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .QRCodeContent > .QRCode
+{
+	width: 134px;
+	height: width-percentage(100%);
+	align: center center;
+	background-color: #fff;
+	box-shadow: #0008 5px 5px 1px 1px;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .QRCodeContent > .QRCode.Loading
+{
+	background-color: #000000dc;
+	box-shadow: none;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .QRCodeContent > .QRCode.Alipay
+{
+	margin-right: 260px;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .QRCodeContent > .QRCode.Wechat
+{
+	margin-left: 260px;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .QRCodeContent > .QRCode > .Body
+{
+	align: center center;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .QRCodeContent > .QRCode > .PaymentIcon
+{
+	width: 20%;
+	height: width-percentage(100%);
+	align: center center;
+	background-color: white;
+	background-size: 100%;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ForeignContent
+{
+	visibility: collapse;
+	height: 220px;
+	margin-top: 40px;
+	horizontal-align: center;
+	vertical-align: top;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ForeignContent.NotSchinese
+{
+	visibility: visible;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ForeignContent > .PaymentGroup
+{
+	flow-children: right;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ForeignContent > .PaymentGroup > .PaymentButton
+{
+	width: 200px;
+	height: 80px;
+	margin: 10px;
+	background-color: #f3f3f3;
+	border: 2px solid whitesmoke;
+	border-radius: 3px;
+	padding: 5px 10px;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ForeignContent > .PaymentGroup > .PaymentButton:hover
+{
+	brightness: 1.1;
+	box-shadow: 0px 0px 10px 3 #0000001a;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ForeignContent > .PaymentGroup > .PaymentButton > .Icon
+{
+	width: 100%;
+	height: 100%;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ForeignContent > .PaymentGroup #Stripe > .Icon
+{
+	background-image: url("s2r://panorama/images/custom_game/common/icon/payment/stripe_png.vtex");
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ForeignContent > .PaymentGroup #Paypal > .Icon
+{
+	background-image: url("s2r://panorama/images/custom_game/common/icon/payment/paypal_png.vtex");
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ForeignContent > .PaymentLink
+{
+	align: center bottom;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ForeignContent > .PaymentLink > .LoadingIcon
+{
+	opacity: 0;
+	width: 30px;
+	height: 30px;
+	margin-bottom: 12px;
+	background-image: url("s2r://panorama/images/status_icons/loadingthrobber_round_psd.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	animation-name: LoadingIconAnmt;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-direction: reverse;
+	animation-timing-function: linear;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ForeignContent > .PaymentLink > .LoadingIcon.Loading
+{
+	opacity: 1;
+}
+
+@keyframes 'LoadingIconAnmt'
+{
+	0%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+	50%
+	{
+		transform: rotateZ(180deg);
+	}
+	
+	100%
+	{
+		transform: rotateZ(360deg);
+	}
+	
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ForeignContent > .PaymentLink > .Body
+{
+	flow-children: down;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ForeignContent > .PaymentLink > .Body > Label
+{
+	horizontal-align: center;
+	margin-bottom: 8px;
+	font-weight: bold;
+	color: #6E5353;
+	font-size: 20px;
+	text-shadow: #6e535376 1px 1px 2px 1;
+	text-overflow: shrink;
+	background-color: #f3f3f333;
+	border: 2px solid whitesmoke;
+	border-radius: 3px;
+	padding: 5px 10px;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ForeignContent > .PaymentLink > .Body > Label:hover
+{
+	text-decoration: underline;
+	brightness: 1.1;
+	box-shadow: 0px 0px 10px 3 #0000001a;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ForeignContent > .PaymentLink > .Body > Label:active
+{
+	brightness: 0.9;
+	box-shadow: 0px 0px 10px 3 #0000001a;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ForeignContent > .PaymentLink > .Body > .PaymentLinkLabelBtn
+{
+	horizontal-align: center;
+	color: #6E5353;
+	font-size: 20px;
+	text-shadow: #6e535376 1px 1px 2px 1;
+	text-overflow: shrink;
+	background-color: #f3f3f333;
+	border: 2px solid whitesmoke;
+	border-radius: 3px;
+	padding: 5px 10px;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .ForeignContent > .PaymentLink > .Body > .PaymentLinkLabelBtn:hover
+{
+	text-decoration: underline;
+	brightness: 1.1;
+	box-shadow: 0px 0px 10px 3 #0000001a;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .PayOrderStatus
+{
+	height: 25px;
+	horizontal-align: center;
+	margin-top: 20px;
+	flow-children: right;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .PayOrderStatus > .PayOrderStatusLabel
+{
+	align: left bottom;
+	font-size: 18px;
+	color: #6E5353;
+	text-shadow: #6e535376 1px 1px 2px 1;
+}
+
+#ShopPayPopup > .Body > .Body > .RightContent > .PayOrderStatus > .WaitPayLabel
+{
+	animation-name: WaitPayLabelAnmt;
+	animation-duration: 1.5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'WaitPayLabelAnmt'
+{
+	0%
+	{
+		clip: rect(0%, 0%, 100%, 0%);
+	}
+	
+	100%
+	{
+		clip: rect(0%, 100%, 100%, 0%);
+	}
+	
+}
+
+#ShopPayPopup > .Body > .PayTip
+{
+	align: left bottom;
+	margin-left: 350px;
+	margin-bottom: 100px;
+	flow-children: down;
+}
+
+#ShopPayPopup > .Body > .PayTip > .PayTipRow
+{
+	flow-children: right;
+	margin-bottom: 2px;
+}
+
+#ShopPayPopup > .Body > .PayTip > .PayTipRow > .TipIcon
+{
+	align: left center;
+	margin-right: 5px;
+	wash-color: #999;
+}
+
+#ShopPayPopup > .Body > .PayTip > .PayTipRow > Label
+{
+	align: left center;
+	color: #6E5353;
+	font-size: 16px;
+	text-shadow: #6e535376 1px 1px 2px 1;
+}
+
+#ShopPayPopup > .Body > .CloseBtn_x
+{
+	align: right top;
+	margin-right: 10px;
+	margin-top: 10px;
+}
+
+#ShopBuyItemPopup
+{
+	width: 1174px;
+	height: 921px;
+	align: center center;
+	animation-name: ShopBuyItemPopup;
+	animation-duration: 0.2s;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes 'ShopBuyItemPopup'
+{
+	0%
+	{
+		opacity: 0;
+		pre-transform-scale2d: 0.3;
+	}
+	
+	100%
+	{
+		opacity: 1;
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+#ShopBuyItemPopup > .BG
+{
+	width: 1094px;
+	height: 841px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/service/popup/buy_item_popup/bg_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#ShopBuyItemPopup > .Body
+{
+	width: 100%;
+	height: 100%;
+}
+
+#ShopBuyItemPopup > .Body > .Title
+{
+	align: center top;
+	margin-top: 80px;
+}
+
+#ShopBuyItemPopup > .Body > .Title > .BG
+{
+	width: 381px;
+	height: 27px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/service/popup/reward_popup/title_bg_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#ShopBuyItemPopup > .Body > .Title > .TitleLabel
+{
+	align: center center;
+	font-size: 24px;
+	color: aliceblue;
+	text-shadow: 0px 2px 2px 2 #000000;
+}
+
+#ShopBuyItemPopup > .Body > .Body
+{
+	width: 100%;
+	height: 700px;
+	margin-top: 180px;
+	padding-bottom: 200px;
+	overflow: noclip;
+}
+
+#ShopBuyItemPopup > .Body > .Body > .ShopItem
+{
+	horizontal-align: left;
+	margin-left: 60px;
+	ui-scale: 100%;
+}
+
+#ShopBuyItemPopup > .Body > .Body > .ShopItemDetail
+{
+	width: 100%;
+	horizontal-align: left;
+	padding-left: 345px;
+	padding-right: 55px;
+}
+
+#ShopBuyItemPopup > .Body > .Body > .ShopItemDetail .ShopItemRewardDetail
+{
+	margin-top: 20px;
+}
+
+#ShopBuyItemPopup > .Body > .Body > .ShopItemBuyCost,#ShopBuyItemPopup > .Body > .Body > .ShopItemBuyCount
+{
+	flow-children: right;
+	vertical-align: bottom;
+	horizontal-align: center;
+	margin-left: 180px;
+}
+
+#ShopBuyItemPopup > .Body > .Body > .ShopItemBuyCost
+{
+	margin-bottom: 50px;
+}
+
+#ShopBuyItemPopup > .Body > .Body > .ShopItemBuyCost > .ShopItemBuyCostTitle
+{
+	width: 100px;
+	vertical-align: center;
+	color: #6E5353;
+	font-size: 20px;
+	text-shadow: #6e535376 1px 1px 2px 1;
+	text-overflow: shrink;
+}
+
+#ShopBuyItemPopup > .Body > .Body > .ShopItemBuyCost > .Body
+{
+	width: 258px;
+	flow-children: right;
+}
+
+#ShopBuyItemPopup > .Body > .Body > .ShopItemBuyCost > .Body > .CurrencyIcon
+{
+	width: 40px;
+	height: 40px;
+	vertical-align: center;
+	background-size: 100%;
+}
+
+#ShopBuyItemPopup > .Body > .Body > .ShopItemBuyCost > .Body > .ShopItemBuyCostLabel
+{
+	vertical-align: center;
+	font-size: 18px;
+	color: #E1CFB3;
+	text-shadow: 0px 0px 2px 2 #000000;
+}
+
+#ShopBuyItemPopup > .Body > .Body > .ShopItemBuyCount > .ShopItemBuyCountTitle
+{
+	width: 100px;
+	vertical-align: center;
+	color: #6E5353;
+	font-size: 20px;
+	text-shadow: #6e535376 1px 1px 2px 1;
+	text-overflow: shrink;
+}
+
+#ShopBuyItemPopup > .Body > .Body > .ShopItemBuyCount > .Body
+{
+	width: 258px;
+	vertical-align: center;
+}
+
+#ShopBuyItemPopup > .Body > .Body > .ShopItemBuyCount > .Body > .Yzy_NumberEntryAdjust
+{
+	flow-children: right;
+}
+
+#ShopBuyItemPopup > .Body > .Body > .ShopItemBuyCount > .Body > .Yzy_NumberEntryAdjust > .Yzy_IconButton
+{
+	width: 46px;
+	vertical-align: center;
+}
+
+#ShopBuyItemPopup > .Body > .Body > .ShopItemBuyCount > .Body > .Yzy_NumberEntryAdjust TextEntry
+{
+	width: 130px;
+	height: 32px;
+	margin: 0 18px;
+	vertical-align: center;
+	background-color: #585454;
+}
+
+#ShopBuyItemPopup > .Body > .Body > .ShopItemBuyCount > .Body > .Yzy_NumberEntryAdjust TextEntry #PlaceholderText,#ShopBuyItemPopup > .Body > .Body > .ShopItemBuyCount > .Body > .Yzy_NumberEntryAdjust TextEntry Label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	margin-top: 0px;
+	font-size: 20px;
+	color: white;
+}
+
+#ShopBuyItemPopup > .Body > .Body > .QRCode
+{
+	width: 160px;
+	height: width-percentage(100%);
+	align: center center;
+	margin-top: 100px;
+	border-radius: 10px;
+	background-color: gradient(linear, 30% 30%, 0% 100%, from(#6f92a033), to(#00386693));
+	box-shadow: #0008 0px 0px 12px 1px;
+}
+
+#ShopBuyItemPopup > .Body > .Body > .QRCode.Alipay
+{
+	margin-right: 300px;
+}
+
+#ShopBuyItemPopup > .Body > .Body > .QRCode.Wechat
+{
+	margin-left: 300px;
+}
+
+#ShopBuyItemPopup > .Body > .Body > .QRCode > .Body
+{
+	align: center center;
+	box-shadow: #000a 0px 0px 24px 1px;
+}
+
+#ShopBuyItemPopup > .Body > .Body > .QRCode > .PaymentIcon
+{
+	width: 20%;
+	height: width-percentage(100%);
+	align: center center;
+	background-color: white;
+	background-size: 100%;
+}
+
+#ShopBuyItemPopup > .Body > .Body > .PayOrderStatus
+{
+	height: 25px;
+	align: center bottom;
+	margin-bottom: 170px;
+	flow-children: right;
+}
+
+#ShopBuyItemPopup > .Body > .Body > .PayOrderStatus > .PayOrderStatusLabel
+{
+	align: left bottom;
+	font-size: 18px;
+	color: #E1CFB3;
+	text-shadow: 0px 0px 2px 2 #000000;
+}
+
+#ShopBuyItemPopup > .Body > .Body > .PayOrderStatus > .WaitPayLabel
+{
+	animation-name: WaitPayLabelAnmt;
+	animation-duration: 1.5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'WaitPayLabelAnmt'
+{
+	0%
+	{
+		clip: rect(0%, 0%, 100%, 0%);
+	}
+	
+	100%
+	{
+		clip: rect(0%, 100%, 100%, 0%);
+	}
+	
+}
+
+#ShopBuyItemPopup > .Body > .BuyItemBtn
+{
+	width: 150px;
+	align: center bottom;
+	margin-bottom: 130px;
+	margin-left: 450px;
+}
+
+#ShopBuyItemPopup > .Body > .CancelBtn
+{
+	width: 150px;
+	align: center bottom;
+	margin-bottom: 130px;
+	margin-right: 150px;
+}
+
+#ShopBuyItemPopup > .Body > .CloseBtn_x
+{
+	align: right top;
+}
+
+#ShopBuyItemSuccessPopup
+{
+	width: 1154px;
+	height: 747px;
+	align: center center;
+	animation-name: ShopBuyItemSuccessPopup;
+	animation-duration: 0.2s;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes 'ShopBuyItemSuccessPopup'
+{
+	0%
+	{
+		opacity: 0;
+		pre-transform-scale2d: 0.3;
+	}
+	
+	100%
+	{
+		opacity: 1;
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+#ShopBuyItemSuccessPopup > .BG
+{
+	width: 1094px;
+	height: 687px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/service/popup/reward_popup/bg_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#ShopBuyItemSuccessPopup > .Body
+{
+	width: 100%;
+	height: 100%;
+}
+
+#ShopBuyItemSuccessPopup > .Body > .Title
+{
+	width: 558px;
+	height: 50px;
+	align: center top;
+	margin-top: 60px;
+}
+
+#ShopBuyItemSuccessPopup > .Body > .Title > .BG
+{
+	width: 381px;
+	height: 27px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/service/popup/reward_popup/title_bg_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#ShopBuyItemSuccessPopup > .Body > .Title > .TitleLabel
+{
+	align: center center;
+	font-size: 20px;
+	color: aliceblue;
+	text-shadow: 0px 2px 2px 2 #000000;
+}
+
+#ShopBuyItemSuccessPopup > .Body > .Body
+{
+	align: center center;
+	flow-children: right-wrap;
+	overflow: squish scroll;
+}
+
+#ShopBuyItemSuccessPopup > .Body > .Body > .ShopItemRewardDetail
+{
+	margin: 2px;
+	align: center center;
+}
+
+#ShopBuyItemSuccessPopup > .Body > .CloseBtn
+{
+	width: 134px;
+	align: center bottom;
+	margin-bottom: 150px;
+}
+
+#ShopBuyItemSuccessPopup > .Body > .CloseBtn_1
+{
+	align: right top;
+}
+
+.DrawWishPopup
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	animation-name: ShopDrawWishPopup;
+	animation-duration: 0.2s;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes 'ShopDrawWishPopup'
+{
+	0%
+	{
+		opacity: 0;
+		pre-transform-scale2d: 0.3;
+	}
+	
+	100%
+	{
+		opacity: 1;
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+.DrawWishPopup > .Header
+{
+	width: 504px;
+	height: 174px;
+	margin-top: 50px;
+	align: center top;
+	z-index: 1;
+	background-image: url("s2r://panorama/images/custom_game/service/draw/wish/title_png.vtex");
+	background-size: 100%;
+}
+
+.DrawWishPopup > .BG
+{
+	width: 1763px;
+	height: 877px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/service/draw/wish/bg_png.vtex");
+	background-size: 100%;
+}
+
+.DrawWishPopup > .Body
+{
+	width: 100%;
+	height: 100%;
+	margin: 70px 75px 50px 75px;
+	flow-children: right;
+	vertical-align: center;
+}
+
+.DrawWishPopup > .Body > .WishContainer
+{
+	width: 400px;
+	height: 720px;
+	margin-left: 135px;
+	margin-top: 125px;
+	flow-children: down;
+}
+
+.DrawWishPopup > .Body > .WishContainer > .WishTitle
+{
+	horizontal-align: center;
+	margin-top: 80px;
+	font-size: 24px;
+	color: #F0DCB1;
+	text-shadow: #000 1px 1px 1px 2;
+}
+
+.DrawWishPopup > .Body > .WishContainer > .WishImageBox
+{
+	width: 255px;
+	height: 291px;
+	align: center top;
+	margin-top: 20px;
+	background-image: url("s2r://panorama/images/custom_game/service/draw/wish/icon_add_png.vtex"), url("s2r://panorama/images/custom_game/service/draw/wish/bg_item_png.vtex");
+	background-size: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.DrawWishPopup > .Body > .WishContainer > .WishImageBox > .WishImage
+{
+	width: 210px;
+	height: 210px;
+	align: center center;
+	margin-bottom: 10px;
+	opacity-mask: url("s2r://panorama/images/custom_game/masks/paper_edge_png.vtex");
+}
+
+.DrawWishPopup > .Body > .WishContainer > .DestinyStar
+{
+	align: center top;
+	margin-top: -20px;
+	margin-bottom: 20px;
+	flow-children: right;
+}
+
+.DrawWishPopup > .Body > .WishContainer > .DestinyStar > .Yzy_Icon
+{
+	width: 25px;
+	margin: 0px 2px;
+	brightness: 0.5;
+	saturation: 0.5;
+	wash-color: #0008;
+}
+
+.DrawWishPopup > .Body > .WishContainer > .DestinyStar > .Yzy_Icon > .Icon
+{
+	img-shadow: #000a 1px 1px 2px 4;
+}
+
+.DrawWishPopup > .Body > .WishContainer > .DestinyStar > .Yzy_Icon.Active
+{
+	brightness: 1;
+	saturation: 1;
+	wash-color: #0000;
+}
+
+.DrawWishPopup > .Body > .WishContainer > .WishItemLab
+{
+	width: 200px;
+	padding: 5px 0px;
+	align: center top;
+	margin-top: 0px;
+	font-size: 24px;
+	color: white;
+	text-align: center;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#00000000), color-stop(0.4, #000000dd), color-stop(0.6, #000000dd), to(#00000000));
+}
+
+.DrawWishPopup > .Body > .WishContainer > .WishTips
+{
+	horizontal-align: center;
+	margin-top: 30px;
+	font-size: 20px;
+	color: #DDA561;
+}
+
+.DrawWishPopup > .Body > .WishContainer > .SaveBtn
+{
+	width: 272px;
+	height: 76px;
+	horizontal-align: center;
+	margin-top: 40px;
+	padding-right: 50px;
+	padding-bottom: 10px;
+	margin-left: 30px;
+	background-image: url("s2r://panorama/images/custom_game/service/draw/wish/btn_png.vtex");
+	background-size: 100%;
+}
+
+.DrawWishPopup > .Body > .WishContainer > .SaveBtn Label
+{
+	align: center center;
+	color: #582682;
+	text-shadow: 1px 1px 0px 1 #000;
+	font-size: 24px;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.DrawWishPopup > .Body > .WishContainer > .SaveBtn:hover
+{
+	brightness: 1.2;
+}
+
+.DrawWishPopup > .Body > .WishContainer > .SaveBtn:hover:active
+{
+	brightness: 1;
+}
+
+.DrawWishPopup > .Body > .WishList
+{
+	width: 1120px;
+	height: 700px;
+	margin-top: 150px;
+	padding: 20px 0px 20px 20px;
+	flow-children: right-wrap;
+	overflow: clip scroll;
+}
+
+.DrawWishPopup > .Body > .WishList VerticalScrollBar
+{
+	width: 8px;
+	height: 95%;
+	margin-right: 0px;
+	vertical-align: center;
+	border-radius: 3px;
+	background-color: #3F3856;
+	border: 0px solid #FFFF9C;
+}
+
+.DrawWishPopup > .Body > .WishList VerticalScrollBar > .ScrollThumb
+{
+	border-width: 0px;
+	border-radius: 3px;
+	background-color: #AE8F60;
+	border: 0px solid #D79D65;
+}
+
+.DrawWishPopup > .Body > .WishList > .WishItemRow
+{
+	margin: 0px 50px;
+}
+
+.DrawWishPopup > .Body > .WishList > .WishItemRow > .BG
+{
+	width: 255px;
+	height: 291px;
+	background-image: url("s2r://panorama/images/custom_game/service/draw/wish/bg_item_png.vtex");
+	background-size: 100%;
+}
+
+.DrawWishPopup > .Body > .WishList > .WishItemRow > .WishImage
+{
+	width: 210px;
+	height: 210px;
+	align: center top;
+	margin-top: 38px;
+	opacity-mask: url("s2r://panorama/images/custom_game/masks/paper_edge_png.vtex");
+}
+
+.DrawWishPopup > .Body > .WishList > .WishItemRow > .DestinyStar
+{
+	align: center top;
+	margin-top: 260px;
+	flow-children: right;
+}
+
+.DrawWishPopup > .Body > .WishList > .WishItemRow > .DestinyStar > .Yzy_Icon
+{
+	width: 25px;
+	margin: 0px 2px;
+	brightness: 0.5;
+	saturation: 0.5;
+	wash-color: #0008;
+}
+
+.DrawWishPopup > .Body > .WishList > .WishItemRow > .DestinyStar > .Yzy_Icon > .Icon
+{
+	img-shadow: #000a 1px 1px 2px 4;
+}
+
+.DrawWishPopup > .Body > .WishList > .WishItemRow > .DestinyStar > .Yzy_Icon.Active
+{
+	brightness: 1;
+	saturation: 1;
+	wash-color: #0000;
+}
+
+.DrawWishPopup > .Body > .WishList > .WishItemRow > .WishName
+{
+	width: 200px;
+	padding: 5px 0px;
+	align: center top;
+	margin-top: 300px;
+	font-size: 24px;
+	color: white;
+	text-align: center;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#00000000), color-stop(0.4, #000000dd), color-stop(0.6, #000000dd), to(#00000000));
+}
+
+.DrawWishPopup > .Body > .WishList > .WishItemRow:hover
+{
+	brightness: 1.2;
+}
+
+.DrawWishPopup > .Body > .WishList > .WishItemRow:hover:active
+{
+	brightness: 1;
+}
+
+.DrawWishPopup > .Body > .CloseBtn_x
+{
+	align: right top;
+	margin-right: 50px;
+	margin-top: 50px;
+}
+
+.DrawContentPopup
+{
+	width: 840px;
+	height: 901px;
+	align: center center;
+}
+
+.DrawContentPopup > .BG
+{
+	width: 100%;
+	height: 100%;
+	box-shadow: #00000080 0px 0px 4px 2;
+	border: 1px solid black;
+}
+
+.DrawContentPopup > .Body
+{
+	width: 100%;
+	height: 100%;
+}
+
+.DrawContentPopup > .Body > .Header
+{
+	width: 100%;
+	horizontal-align: center;
+	margin-top: 35px;
+}
+
+.DrawContentPopup > .Body > .Header > .Title
+{
+	height: 40px;
+	align: center top;
+	margin-top: 3px;
+	padding-left: 12px;
+	color: #c0b183;
+	font-size: 24px;
+	text-align: left;
+	font-weight: thin;
+	text-shadow: 2px 2px 4px 2 #000000b3;
+	text-overflow: shrink;
+}
+
+.DrawContentPopup > .Body > .Header > .Description
+{
+	width: 710px;
+	height: 100px;
+	align: center top;
+	margin-top: 90px;
+	color: white;
+	font-size: 18px;
+	text-overflow: shrink;
+	text-align: center;
+	text-shadow: 2px 2px 3px 2 #000000b3;
+}
+
+.DrawContentPopup > .Body > .Body
+{
+	width: 100%;
+	height: 100%;
+	margin-top: 200px;
+	flow-children: up;
+}
+
+.DrawContentPopup > .Body > .Body .RewardRarityRow
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	margin: 4px 0px;
+	horizontal-align: center;
+}
+
+.DrawContentPopup > .Body > .Body .RewardRarityRow.Rarity_1 > .Header > .Title
+{
+	color: #b0c3d9;
+}
+
+.DrawContentPopup > .Body > .Body .RewardRarityRow.Rarity_2 > .Header > .Title
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 80% 80%, from(#f0ffd5), color-stop(0.5, #7eff67), to(#00c864));
+}
+
+.DrawContentPopup > .Body > .Body .RewardRarityRow.Rarity_3 > .Header > .Title
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 80% 80%, from(#9bdddd), color-stop(0.7, #7189ff), to(#0077ff));
+}
+
+.DrawContentPopup > .Body > .Body .RewardRarityRow.Rarity_4 > .Header > .Title
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 80% 80%, from(#fed5ff), color-stop(0.5, #cb8bff), to(#5900ff));
+}
+
+.DrawContentPopup > .Body > .Body .RewardRarityRow.Rarity_5 > .Header > .Title
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 70% 70%, from(#f4ffd5), color-stop(0.3, #fff34f), to(#ffae00));
+}
+
+.DrawContentPopup > .Body > .Body .RewardRarityRow.Rarity_6 > .Header > .Title
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 90% 90%, from(#fbc7dd), color-stop(0.5, #fd5d5d), to(#ff0000));
+}
+
+.DrawContentPopup > .Body > .Body .RewardRarityRow > .Header
+{
+	width: 100%;
+}
+
+.DrawContentPopup > .Body > .Body .RewardRarityRow > .Header > .Title
+{
+	align: left top;
+	margin-top: 5px;
+	margin-left: 35px;
+	color: white;
+	font-size: 18px;
+	font-family: titleFont;
+	border-bottom: 1px solid #fff;
+	z-index: 2;
+}
+
+.DrawContentPopup > .Body > .Body .RewardRarityRow > .Body
+{
+	max-width: 700px;
+	align: center center;
+	margin: 5px 0px 5px 30px;
+	flow-children: right-wrap;
+	overflow: clip scroll;
+}
+
+.DrawContentPopup > .Body > .Body .RewardRarityRow > .Body VerticalScrollBar
+{
+	width: 8px;
+	height: 95%;
+	margin-right: 0px;
+	vertical-align: center;
+	border-radius: 3px;
+	background-color: #3F3856;
+	border: 0px solid #FFFF9C;
+}
+
+.DrawContentPopup > .Body > .Body .RewardRarityRow > .Body VerticalScrollBar > .ScrollThumb
+{
+	border-width: 0px;
+	border-radius: 3px;
+	background-color: #AE8F60;
+	border: 0px solid #D79D65;
+}
+
+.DrawContentPopup > .Body > .Body .RewardRarityRow > .Body .Yzy_ServiceItem
+{
+	width: 50px;
+	margin: 3px;
+}
+
+.DrawRecordPopup
+{
+	width: 840px;
+	height: 791px;
+	align: center center;
+}
+
+.DrawRecordPopup > .BG
+{
+	width: 100%;
+	height: 100%;
+	box-shadow: #000000 0px 0px 4px 2;
+	border: 2px solid black;
+}
+
+.DrawRecordPopup > .Body
+{
+	width: 100%;
+	height: 100%;
+}
+
+.DrawRecordPopup > .Body > .Header
+{
+	width: 100%;
+	height: 40px;
+	horizontal-align: center;
+	margin-top: 45px;
+}
+
+.DrawRecordPopup > .Body > .Header > Label
+{
+	align: center top;
+	margin-top: 3px;
+	padding-left: 12px;
+	color: #c0b183;
+	font-size: 24px;
+	text-align: left;
+	font-weight: thin;
+	text-shadow: 2px 2px 4px 2 #000000b3;
+	text-overflow: shrink;
+}
+
+.DrawRecordPopup > .Body > .Body
+{
+	width: 900px;
+	align: center top;
+	margin-top: 86px;
+	flow-children: down;
+}
+
+.DrawRecordPopup > .Body > .Body > .Header
+{
+	width: 100%;
+	height: 26px;
+	flow-children: right;
+	background-color: #000;
+}
+
+.DrawRecordPopup > .Body > .Body > .Header > .DrawRecordTitle
+{
+	width: 100px;
+	height: 20px;
+	margin-right: 5px;
+	padding-left: 2px;
+	font-size: 18px;
+	text-align: center;
+	color: #DCD086FF;
+	text-transform: uppercase;
+	font-weight: thin;
+	letter-spacing: 2px;
+	text-overflow: shrink;
+}
+
+.DrawRecordPopup > .Body > .Body > .Header > .DrawRecordDataTitle
+{
+	width: 108px;
+}
+
+.DrawRecordPopup > .Body > .Body > .Header > .DrawRecordRewardBoxTitle
+{
+	width: 520px;
+}
+
+.DrawRecordPopup > .Body > .Body > .Body
+{
+	width: 100%;
+	height: 600px;
+	padding: 10px;
+	flow-children: down;
+}
+
+.DrawRecordPopup > .Body > .Body > .Body > .DrawRecordRow
+{
+	width: 100%;
+	padding: 4px 0px;
+	margin: 4px 0px;
+	flow-children: right;
+}
+
+.DrawRecordPopup > .Body > .Body > .Body > .DrawRecordRow > Label
+{
+	width: 100px;
+	margin-right: 5px;
+	height: 20px;
+	align: center center;
+	text-align: center;
+	font-size: 18px;
+	font-weight: thin;
+	text-overflow: shrink;
+}
+
+.DrawRecordPopup > .Body > .Body > .Body > .DrawRecordRow.OddRow
+{
+	background-color: gradient(linear, 0% 0%, 140% 0%, from(#32383Af4), to(#000000));
+}
+
+.DrawRecordPopup > .Body > .Body > .Body > .DrawRecordRow.EvenRow
+{
+	background-color: gradient(linear, 0% 0%, 140% 0%, from(#22282Af4), to(#000000));
+}
+
+.DrawRecordPopup > .Body > .Body > .Body .DrawRecordData
+{
+	width: 108px;
+}
+
+.DrawRecordPopup > .Body > .Body > .Body .DrawRecordRewardBox
+{
+	width: 520px;
+}
+
+.DrawRecordPopup > .Body > .Body > .Body .DrawRecordRewardBox > .Body
+{
+	align: center center;
+	flow-children: right;
+}
+
+.DrawRecordPopup > .Body > .Body > .Body .DrawRecordRewardBox > .Body .Yzy_ServiceItem
+{
+	width: 40px;
+	height: 40px;
+	margin: 0px 6px;
+}
+
+.DrawRecordPopup > .Body > .Body > .Body .DrawRecordRewardBox > .Body .Yzy_ServiceItem > .Body
+{
+	border-radius: 4px;
+}
+
+.DrawRecordPopup > .Body > .Body > .Yzy_Loading
+{
+	align: center center;
+	ignore-parent-flow: true;
+}
+
+.DrawRecordPopup > .Body > .Body > .DrawRecordEmptyLabel
+{
+	align: center center;
+	font-size: 20px;
+	color: white;
+	text-shadow: #000000 1px 1px 4px 2;
+	ignore-parent-flow: true;
+}
+
+.DrawRecordPopup > .Body > .Body > .PageSwitchBtnBox
+{
+	align: center bottom;
+	flow-children: right;
+}
+
+.DrawRecordPopup > .Body > .Body > .PageSwitchBtnBox > Label
+{
+	width: 30px;
+	align: center center;
+	color: white;
+	font-size: 20px;
+	text-align: center;
+	text-overflow: shrink;
+}
+
+.DrawRecordPopup > .Body > .Body > .PageSwitchBtnBox > Button
+{
+	width: 24px;
+	height: width-percentage(100%);
+	align: center center;
+	background-size: auto 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-img-opacity: 0.5;
+}
+
+.DrawRecordPopup > .Body > .Body > .PageSwitchBtnBox > Button:enabled:hover
+{
+	background-img-opacity: 1;
+}
+
+.DrawRecordPopup > .Body > .Body > .PageSwitchBtnBox > Button:enabled:hover:active
+{
+	pre-transform-scale2d: 0.9;
+}
+
+.DrawRecordPopup > .Body > .Body > .PageSwitchBtnBox #LeftBtn
+{
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_left_png.vtex");
+}
+
+.DrawRecordPopup > .Body > .Body > .PageSwitchBtnBox #RightBtn
+{
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_right_png.vtex");
+}
+
+.Popup
+{
+	width: 100%;
+	height: 100%;
+}
+
+.Popup #PopupRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#Popup
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+#Popup.ShowPopup
+{
+	opacity: 1;
+}
+
+#Popup > .BG
+{
+	width: 100%;
+	height: 100%;
+	background-color: #060606bf;
+	blur: gaussian(5);
+	transition-property: background-color;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+#Popup > .Body
+{
+	width: 100%;
+	height: 100%;
+}

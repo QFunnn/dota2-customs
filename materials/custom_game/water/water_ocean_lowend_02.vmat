@@ -1,0 +1,58 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Layer0"
+{
+	"shader"	"global_lit_simple.vfx"
+	"F_ENABLE_WIND"	"1"
+	"F_NORMAL_MAP"	"1"
+	"F_PAINT_VERTEX_COLORS"	"1"
+	"F_SPECULAR"	"1"
+	"g_flBumpStrength"	"2.218"
+	"g_flSpecularBloom"	"1.504"
+	"g_flSpecularIntensity"	"1.421"
+	"g_flWindFlexibility"	"1"
+	"g_flWindHighFrequencyEffects"	"5"
+	"g_flWindLinearity"	"0.1"
+	"g_flWindLowFrequencyEffects"	"5"
+	"g_flWindSpeedMultiplier"	"0.315"
+	"g_vColorTint"	"[1.000000 1.000000 1.000000 0.000000]"
+	"g_vTexCoordOffset"	"[0.000000 0.000000 0.000000 0.000000]"
+	"g_vTexCoordScale"	"[0.500000 0.500000 0.000000 0.000000]"
+	"TextureBloom"	"[1.000000 1.000000 1.000000 0.000000]"
+	"TextureColor"	"materials/custom_game/water/water_ocean_lowend_02_color.png"
+	"TextureTranslucency"	"materials/custom_game/water/water_ocean_lowend_02_575bc1f3_trans.png"
+	"TextureNormal"	"materials/custom_game/water/water_ocean_lowend_01_normal.png"
+	"TextureReflectance"	"materials/custom_game/water/water_ocean_lowend_01_refl.png"
+	"TextureSelfIllum"	"materials/custom_game/water/water_ocean_lowend_01_88ae7ef7-G.png"
+	"TextureWindMask"	"materials/default/default_mask.tga"
+	"TextureWindNoise"	"materials/dev/two_channel_noise.png"
+	"Compiled Textures"
+	{
+		"g_tColor"	"materials/custom_game/water/water_ocean_lowend_02_color_psd_575bc1f3.vtex"
+		"g_tNormal"	"materials/custom_game/water/water_ocean_lowend_01_normal_tga_396e6694.vtex"
+		"g_tSpecular"	"materials/custom_game/water/water_ocean_lowend_01_refl_tga_88ae7ef7.vtex"
+		"g_tWindMask"	"materials/default/default_mask_tga_4528a0a9.vtex"
+		"g_tWindNoise"	"materials/dev/two_channel_noise_psd_93f8d443.vtex"
+	}
+	"DynamicParams"
+	{
+		"g_vTexCoordOffset"	"v0 = frac(.1*time());\nv1 = -1*frac(.1*time());\nreturn float2(v0,v1);"
+	}
+	"Attributes"
+	{
+		"dota.nav.walkable"	"1"
+	}
+	"SystemAttributes"
+	{
+		"WorldMappingHeight"	"256"
+		"WorldMappingWidth"	"256"
+	}
+}

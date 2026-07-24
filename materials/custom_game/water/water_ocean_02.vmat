@@ -1,0 +1,76 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Layer0"
+{
+	"shader"	"water_dota.vfx"
+	"F_FLOW_NORMALS"	"1"
+	"F_FRESNEL"	"1"
+	"F_USE_FOG_COLOR"	"1"
+	"g_flBaseBloom"	"0.01"
+	"g_flBloomPower"	"0"
+	"g_flBumpStrength"	"0.2"
+	"g_flFlowTimeScale"	"0.22"
+	"g_flForceFogOverrideMax"	"0"
+	"g_flForceFogOverrideMin"	"0"
+	"g_flLowEndBaseBloom"	"1"
+	"g_flLowEndBloomPower"	"10"
+	"g_flLowEndBumpStrength"	"0.15"
+	"g_flLowEndReflectionPower"	"1.203"
+	"g_flLowEndSurfaceFactor"	"0.448"
+	"g_flLowEndSurfaceMinimumColor"	"0.373"
+	"g_flLowEndSurfaceOpacity"	"0.672"
+	"g_flNoiseStrength"	"2"
+	"g_flNoiseUvScale"	"0.0005"
+	"g_flNormalFlowLerpExp"	"1"
+	"g_flNormalFlowTimeIntervalInSeconds"	"0.65"
+	"g_flNormalFlowUvScrollDistance"	"0.1"
+	"g_flNormalUvScale"	"500"
+	"g_flReflectance"	"0.2"
+	"g_flReflectionAmount"	"0.214"
+	"g_flReflectionPower"	"0.45"
+	"g_flRefractionAmount"	"0.2"
+	"g_flWaterDepth"	"400"
+	"g_flWaterFogShadowFactor"	"0.2"
+	"g_flWorldPositionScale"	"1"
+	"g_vLowEndReflectionColor"	"[1.000000 0.956863 0.772549 0.000000]"
+	"g_vLowEndReflectionDir"	"[0.321000 -1.000000 0.273000 0.000000]"
+	"g_vLowEndSurfaceColor"	"[0.094118 0.415686 0.552941 1.000000]"
+	"g_vReflectionColor"	"[1.000000 1.000000 1.000000 1.000000]"
+	"g_vReflectionDir"	"[0.000000 -0.005000 1.000000 0.000000]"
+	"g_vReflectionTint"	"[1.000000 1.000000 1.000000 0.000000]"
+	"g_vRefractionTint"	"[1.000000 1.000000 1.000000 1.000000]"
+	"g_vTexCoordScale"	"[1.000000 1.000000 0.000000 0.000000]"
+	"g_vWaterFogColor"	"[0.223529 0.564706 0.549020 1.000000]"
+	"TextureFlow"	"[0.882353 0.078431 0.000000 0.000000]"
+	"TextureNoise"	"materials/custom_game/water/water_ocean_01_noise.png"
+	"TextureNormal"	"materials/custom_game/water/water_ocean_01_normal.png"
+	"Compiled Textures"
+	{
+		"g_tFlow"	"materials/custom_game/water/water_ocean_02_vmat_g_tflow_5ad97bfa.vtex"
+		"g_tNoise"	"materials/custom_game/water/water_ocean_01_noise_tga_486b2ce2.vtex"
+		"g_tNormal"	"materials/custom_game/water/water_ocean_01_normal_tga_55e39267.vtex"
+	}
+	"DynamicParams"
+	{
+		"g_flFlowTimeScale"	"v0 = lerp(1,2.5,.5);\nreturn sin(v0);"
+	}
+	"Attributes"
+	{
+		"mapbuilder.nonsolid"	"1"
+		"mapbuilder.water"	"1"
+	}
+	"SystemAttributes"
+	{
+		"WorldMappingHeight"	"1"
+		"WorldMappingWidth"	"1"
+		"PhysicsSurfaceProperties"	"water"
+	}
+}

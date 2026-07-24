@@ -1,0 +1,4603 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "BoneMarkupList"
+				children = [  ]
+				bone_cull_type = "None"
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						name = "diregull001"
+						filename = "models/creeps/ice_biome/diregull/diregull_diregull001.dmx"
+					},
+				]
+			},
+			{
+				_class = "AttachmentList"
+				children = 
+				[
+					{
+						_class = "Attachment"
+						name = "attach_wing_r"
+						ignore_rotation = false
+						parent_bone = "finger_R_R3C0"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ 0.000007, -0.000005, 0.000005 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_eye_r"
+						ignore_rotation = false
+						parent_bone = "head1"
+						relative_origin = [ 8.999969, -4.5, 2.000004 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_eye_l"
+						ignore_rotation = false
+						parent_bone = "head1"
+						relative_origin = [ 8.999985, 4.5, 2.0 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_attack1"
+						ignore_rotation = false
+						parent_bone = "head1"
+						relative_origin = [ 9.999985, 2.0, -7.0 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_spine_1"
+						ignore_rotation = false
+						parent_bone = "neck03"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_wing_l"
+						ignore_rotation = false
+						parent_bone = "finger_L_R3C0"
+						relative_origin = [ 0.0, -0.000015, -0.000008 ]
+						relative_angles = [ -0.000014, -0.000008, -0.000002 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_spine_2"
+						ignore_rotation = false
+						parent_bone = "spine1"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_hitloc"
+						ignore_rotation = false
+						parent_bone = "spine1"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_spine_5"
+						ignore_rotation = false
+						parent_bone = "tail_R1C0"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ 0.0, -0.000002, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_spine_4"
+						ignore_rotation = false
+						parent_bone = "spike07"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ 0.000001, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_spine_3"
+						ignore_rotation = false
+						parent_bone = "spine1_1"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+				]
+			},
+			{
+				_class = "PoseParamList"
+				children = 
+				[
+					{
+						_class = "PoseParam"
+						name = "turn"
+						poseparam_min = -1.0
+						poseparam_max = 1.0
+						poseparam_looping = false
+						poseparam_loop = 0.0
+					},
+				]
+			},
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "death"
+								source_filename = "models/creeps/ice_biome/diregull/death.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DIE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 33
+										event_keys = 
+										{
+											name = "BodyImpact_Common.Heavy"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "defeat"
+								source_filename = "models/creeps/ice_biome/diregull/defeat.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DEFEAT"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "victory"
+								source_filename = "models/creeps/ice_biome/diregull/victory.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_VICTORY"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "idle_flying"
+								source_filename = "models/creeps/ice_biome/diregull/idle_flying.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 23
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "idle_flying_alt"
+								source_filename = "models/creeps/ice_biome/diregull/idle_flying_alt.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE_RARE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 25
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 56
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 88
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 119
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 146
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 178
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 207
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 236
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 265
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 298
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 326
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "attack_flying_low_anim"
+								source_filename = "models/creeps/ice_biome/diregull/attack_flying_low_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 9
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "attack_flying_fast_low"
+								source_filename = "models/creeps/ice_biome/diregull/attack_flying_fast_low.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 9
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "attack_flying_faster_low"
+								source_filename = "models/creeps/ice_biome/diregull/attack_flying_faster_low.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 9
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "attack_flying_fastest_low"
+								source_filename = "models/creeps/ice_biome/diregull/attack_flying_fastest_low.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 9
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "attack_flying_arctic_burn"
+								source_filename = "models/creeps/ice_biome/diregull/attack_flying_arctic_burn.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 7
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "attack_flying_arctic_burn_fast"
+								source_filename = "models/creeps/ice_biome/diregull/attack_flying_arctic_burn_fast.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 9
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "attack_flying_arctic_burn_faster"
+								source_filename = "models/creeps/ice_biome/diregull/attack_flying_arctic_burn_faster.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 9
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "attack_flying_arctic_burn_fastest"
+								source_filename = "models/creeps/ice_biome/diregull/attack_flying_arctic_burn_fastest.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 9
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "cast01_arctic_burn"
+								source_filename = "models/creeps/ice_biome/diregull/cast01_arctic_burn.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_1"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 19
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 35
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "cast01_arctic_burn_end"
+								source_filename = "models/creeps/ice_biome/diregull/cast01_arctic_burn_end.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ARCTIC_BURN_END"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 10
+										event_keys = 
+										{
+											name = "Hero_winter_wyvern.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 17
+										event_keys = 
+										{
+											name = "Hero_winter_wyvern.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "cast02_splinter_blast_flying"
+								source_filename = "models/creeps/ice_biome/diregull/cast02_splinter_blast_flying.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_2"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 10
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 43
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "cast03_cold_embrace_flying"
+								source_filename = "models/creeps/ice_biome/diregull/cast03_cold_embrace_flying.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_3"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 5
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "cast04_winters_curse_flying"
+								source_filename = "models/creeps/ice_biome/diregull/cast04_winters_curse_flying.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_4"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 9
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 49
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "flail_flying"
+								source_filename = "models/creeps/ice_biome/diregull/flail_flying.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_FLAIL"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 9
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 18
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "stun_flying"
+								source_filename = "models/creeps/ice_biome/diregull/stun_flying.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DISABLED"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 38
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "stun_flying_low"
+								source_filename = "models/creeps/ice_biome/diregull/stun_flying_low.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DISABLED"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 38
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "portrait"
+								source_filename = "models/creeps/ice_biome/diregull/portrait.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAPTURE"
+								activity_weight = 10
+							},
+							{
+								_class = "AnimFile"
+								name = "portrait_dupe"
+								source_filename = "models/creeps/ice_biome/diregull/portrait_dupe.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAPTURE"
+								activity_weight = 10
+							},
+							{
+								_class = "AnimFile"
+								name = "portrait_alt"
+								source_filename = "models/creeps/ice_biome/diregull/portrait_alt.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAPTURE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "teleport_end"
+								source_filename = "models/creeps/ice_biome/diregull/teleport_end.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_TELEPORT_END"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 19
+										event_keys = 
+										{
+											name = "BodyImpact_Common.Medium"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 8
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "spawn"
+								source_filename = "models/creeps/ice_biome/diregull/spawn.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_SPAWN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 10
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 22
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 0
+										event_keys = 
+										{
+											name = resource:"particles/units/heroes/hero_winter_wyvern/wyvern_spawn.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = ""
+											attachment_type = "absorigin"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "spawn_loadout"
+								source_filename = "models/creeps/ice_biome/diregull/spawn_loadout.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_SPAWN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 10
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 43
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 76
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_SPEECH"
+										event_frame = 43
+										event_keys = 
+										{
+											concept = "TLK_DOTA_CUSTOM"
+											criteria = "special_spawn=winter_wyvern_loadout_spawn,classname=portrait_world_unit"
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "idle_flying_loadout"
+								source_filename = "models/creeps/ice_biome/diregull/idle_flying_loadout.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_LOADOUT"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 23
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "teleport_flying"
+								source_filename = "models/creeps/ice_biome/diregull/teleport_flying.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_TELEPORT"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 2
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 18
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 46
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 56
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 71
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 99
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "teleport_flying_low"
+								source_filename = "models/creeps/ice_biome/diregull/teleport_flying_low.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_TELEPORT"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 2
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 18
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 46
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 56
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 71
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 99
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "versus_burn"
+								source_filename = "models/creeps/ice_biome/diregull/versus_burn.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_VERSUS"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 2
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "idle_flying_low_anim"
+								source_filename = "models/creeps/ice_biome/diregull/idle_flying_low_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 23
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "cast02_splinter_blast_flying_low_anim"
+								source_filename = "models/creeps/ice_biome/diregull/cast02_splinter_blast_flying_low_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_2"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 10
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 43
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "cast03_cold_embrace_flying_low_anim"
+								source_filename = "models/creeps/ice_biome/diregull/cast03_cold_embrace_flying_low_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_3"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 5
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "cast04_winters_curse_flying_low_anim"
+								source_filename = "models/creeps/ice_biome/diregull/cast04_winters_curse_flying_low_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_4"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 9
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 49
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "flail_flying_low_anim"
+								source_filename = "models/creeps/ice_biome/diregull/flail_flying_low_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_FLAIL"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 9
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 18
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "run_flying_haste_low"
+								source_filename = "models/creeps/ice_biome/diregull/run_flying_haste_low.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 29
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "run_flying_haste"
+								source_filename = "models/creeps/ice_biome/diregull/run_flying_haste.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 29
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "capture_teleport"
+								source_filename = "models/creeps/ice_biome/diregull/capture_teleport.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAPTURE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 23
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "run_flying"
+								source_filename = "models/creeps/ice_biome/diregull/run_flying.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN"
+								activity_weight = 6
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 29
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimAddLayer"
+										anim_name = "turns"
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "run_flying_alt"
+								source_filename = "models/creeps/ice_biome/diregull/run_flying_alt.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 29
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 56
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 67
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 122
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 152
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 182
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 209
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 64
+										event_keys = 
+										{
+											name = resource:"particles/units/heroes/hero_winter_wyvern/wyvern_flying_alt_wings.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_wing_l"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = "attach_wing_r"
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimAddLayer"
+										anim_name = "turns"
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "run_flying_right_alt"
+								source_filename = "models/creeps/ice_biome/diregull/run_flying_right_alt.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 29
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 56
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 67
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 122
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 152
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 182
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 209
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 64
+										event_keys = 
+										{
+											name = resource:"particles/units/heroes/hero_winter_wyvern/wyvern_flying_alt_wings.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_wing_l"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = "attach_wing_r"
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimAddLayer"
+										anim_name = "turns"
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "run_flying_low_anim"
+								source_filename = "models/creeps/ice_biome/diregull/run_flying_low_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN"
+								activity_weight = 6
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 29
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimAddLayer"
+										anim_name = "turns"
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "run_flying_alt_low_anim"
+								source_filename = "models/creeps/ice_biome/diregull/run_flying_alt_low_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 28
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 56
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 67
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 122
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 152
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 182
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 209
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 64
+										event_keys = 
+										{
+											name = resource:"particles/units/heroes/hero_winter_wyvern/wyvern_flying_alt_wings.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_wing_l"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = "attach_wing_r"
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimAddLayer"
+										anim_name = "turns"
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "run_flying_right_alt_low_anim"
+								source_filename = "models/creeps/ice_biome/diregull/run_flying_right_alt_low_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 29
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 56
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 67
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 122
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 152
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 182
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 209
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 64
+										event_keys = 
+										{
+											name = resource:"particles/units/heroes/hero_winter_wyvern/wyvern_flying_alt_wings.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_wing_l"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = "attach_wing_r"
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimAddLayer"
+										anim_name = "turns"
+									},
+								]
+							},
+						]
+						name = "base"
+					},
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "ww_taunt_smoke"
+								source_filename = "models/creeps/ice_biome/diregull/ww_taunt_smoke.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_TAUNT"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 48
+										event_keys = 
+										{
+											name = resource:"particles/units/heroes/hero_winter_wyvern/wyvern_taunt_ring.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack1"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 64
+										event_keys = 
+										{
+											name = resource:"particles/units/heroes/hero_winter_wyvern/wyvern_taunt_ring.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack1"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 80
+										event_keys = 
+										{
+											name = resource:"particles/units/heroes/hero_winter_wyvern/wyvern_taunt_ring.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack1"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_SPEECH"
+										event_frame = 5
+										event_keys = 
+										{
+											concept = "TLK_DOTA_TAUNT"
+											criteria = "taunt_type=cool_smoke"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 12
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 89
+										event_keys = 
+										{
+											name = "hero_winter_wyvern.wing_movement"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+						]
+						name = "item"
+					},
+					{
+						_class = "AnimBindPose"
+						name = "bindPose"
+					},
+					{
+						_class = "AnimFile"
+						name = "@run_flying_alt_low_anim"
+						source_filename = "models/creeps/ice_biome/diregull/@run_flying_alt_low_anim.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = true
+						children = 
+						[
+							{
+								_class = "ExtractMotion"
+								extract_tx = true
+								extract_ty = false
+								extract_tz = false
+								extract_rz = false
+								linear = false
+								quadratic = false
+								motion_type = "uniform"
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 28
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 56
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 67
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 122
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 152
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 182
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 209
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+								event_frame = 64
+								event_keys = 
+								{
+									name = resource:"particles/units/heroes/hero_winter_wyvern/wyvern_flying_alt_wings.vpcf"
+									detach_from_owner = false
+									always_run = false
+									stop_on_seq_change = false
+									stop_immediately = false
+									use_layer_sequence = false
+									tags = null
+									attachment_point = "attach_wing_l"
+									attachment_type = "point_follow"
+									attachment_point_cp1 = "attach_wing_r"
+									attachment_type_cp1 = "point_follow"
+								}
+							},
+						]
+					},
+					{
+						_class = "AnimFile"
+						name = "@run_flying_right_alt_low_anim"
+						source_filename = "models/creeps/ice_biome/diregull/@run_flying_right_alt_low_anim.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = true
+						children = 
+						[
+							{
+								_class = "ExtractMotion"
+								extract_tx = true
+								extract_ty = false
+								extract_tz = false
+								extract_rz = false
+								linear = false
+								quadratic = false
+								motion_type = "uniform"
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 29
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 56
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 67
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 122
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 152
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 182
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 209
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+								event_frame = 64
+								event_keys = 
+								{
+									name = resource:"particles/units/heroes/hero_winter_wyvern/wyvern_flying_alt_wings.vpcf"
+									detach_from_owner = false
+									always_run = false
+									stop_on_seq_change = false
+									stop_immediately = false
+									use_layer_sequence = false
+									tags = null
+									attachment_point = "attach_wing_l"
+									attachment_type = "point_follow"
+									attachment_point_cp1 = "attach_wing_r"
+									attachment_type_cp1 = "point_follow"
+								}
+							},
+						]
+					},
+					{
+						_class = "AnimFile"
+						name = "@run_flying_low_anim"
+						source_filename = "models/creeps/ice_biome/diregull/@run_flying_low_anim.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = true
+						children = 
+						[
+							{
+								_class = "ExtractMotion"
+								extract_tx = true
+								extract_ty = false
+								extract_tz = false
+								extract_rz = false
+								linear = false
+								quadratic = false
+								motion_type = "uniform"
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 29
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+						]
+					},
+					{
+						_class = "AnimFile"
+						name = "@turns"
+						source_filename = "models/creeps/ice_biome/diregull/@turns.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = true
+					},
+					{
+						_class = "AnimFile"
+						name = "@run_flying_right_alt"
+						source_filename = "models/creeps/ice_biome/diregull/@run_flying_right_alt.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = true
+						children = 
+						[
+							{
+								_class = "ExtractMotion"
+								extract_tx = true
+								extract_ty = false
+								extract_tz = false
+								extract_rz = false
+								linear = false
+								quadratic = false
+								motion_type = "uniform"
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 29
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 56
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 67
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 122
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 152
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 182
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 209
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+								event_frame = 64
+								event_keys = 
+								{
+									name = resource:"particles/units/heroes/hero_winter_wyvern/wyvern_flying_alt_wings.vpcf"
+									detach_from_owner = false
+									always_run = false
+									stop_on_seq_change = false
+									stop_immediately = false
+									use_layer_sequence = false
+									tags = null
+									attachment_point = "attach_wing_l"
+									attachment_type = "point_follow"
+									attachment_point_cp1 = "attach_wing_r"
+									attachment_type_cp1 = "point_follow"
+								}
+							},
+						]
+					},
+					{
+						_class = "AnimFile"
+						name = "@run_flying_alt"
+						source_filename = "models/creeps/ice_biome/diregull/@run_flying_alt.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = true
+						children = 
+						[
+							{
+								_class = "ExtractMotion"
+								extract_tx = true
+								extract_ty = false
+								extract_tz = false
+								extract_rz = false
+								linear = false
+								quadratic = false
+								motion_type = "uniform"
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 29
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 56
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 67
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 122
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 152
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 182
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 209
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+								event_frame = 64
+								event_keys = 
+								{
+									name = resource:"particles/units/heroes/hero_winter_wyvern/wyvern_flying_alt_wings.vpcf"
+									detach_from_owner = false
+									always_run = false
+									stop_on_seq_change = false
+									stop_immediately = false
+									use_layer_sequence = false
+									tags = null
+									attachment_point = "attach_wing_l"
+									attachment_type = "point_follow"
+									attachment_point_cp1 = "attach_wing_r"
+									attachment_type_cp1 = "point_follow"
+								}
+							},
+						]
+					},
+					{
+						_class = "AnimFile"
+						name = "@run_flying"
+						source_filename = "models/creeps/ice_biome/diregull/@run_flying.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = true
+						children = 
+						[
+							{
+								_class = "ExtractMotion"
+								extract_tx = true
+								extract_ty = false
+								extract_tz = false
+								extract_rz = false
+								linear = false
+								quadratic = false
+								motion_type = "uniform"
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 29
+								event_keys = 
+								{
+									name = "hero_winter_wyvern.wing_movement"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+						]
+					},
+					{
+						_class = "AnimFile"
+						name = "@turns_lookFrame_0"
+						source_filename = "models/creeps/ice_biome/diregull/@turns_lookFrame_0.dmx"
+						fade_in_time = 0.0
+						fade_out_time = 0.0
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = true
+					},
+					{
+						_class = "AnimFile"
+						name = "@turns_lookFrame_1"
+						source_filename = "models/creeps/ice_biome/diregull/@turns_lookFrame_1.dmx"
+						fade_in_time = 0.0
+						fade_out_time = 0.0
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = true
+					},
+					{
+						_class = "AnimFile"
+						name = "@turns_lookFrame_2"
+						source_filename = "models/creeps/ice_biome/diregull/@turns_lookFrame_2.dmx"
+						fade_in_time = 0.0
+						fade_out_time = 0.0
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = true
+					},
+					{
+						_class = "AnimFile"
+						name = "turns"
+						source_filename = "models/creeps/ice_biome/diregull/turns.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = true
+						worldSpace = false
+						hidden = false
+					},
+				]
+			},
+			{
+				_class = "HitboxSetList"
+				children = 
+				[
+					{
+						_class = "HitboxSet"
+						name = "default"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -0.901955, -7.420741, -12.234132 ]
+								hitbox_maxs = [ 53.993206, 7.478975, 12.180653 ]
+								name = "finger_R_R2C1"
+								parent_bone = "finger_R_R2C1"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 3.945735, -0.356285, -0.049503 ]
+								hitbox_maxs = [ 11.768713, 0.522178, 0.931281 ]
+								name = "finger_R_R2C1"
+								parent_bone = "finger_R_R2C1"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -9.824836, -1.889175, -3.038728 ]
+								hitbox_maxs = [ 12.401533, 2.041069, 3.523378 ]
+								name = "finger_R_R0C1"
+								parent_bone = "finger_R_R0C1"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 0.291681, -0.542049, -0.301348 ]
+								hitbox_maxs = [ 0.705087, -0.01608, 0.962899 ]
+								name = "finger_R_R2C2"
+								parent_bone = "finger_R_R2C2"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 4.787621, -1.082358, -0.631001 ]
+								hitbox_maxs = [ 5.110713, 0.585536, 1.023696 ]
+								name = "finger_R_R1C2"
+								parent_bone = "finger_R_R1C2"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -9.614502, -1.610288, -3.078702 ]
+								hitbox_maxs = [ 13.665715, 2.417431, 1.744976 ]
+								name = "finger_R_R0C2"
+								parent_bone = "finger_R_R0C2"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -7.08132, -6.756196, -11.819027 ]
+								hitbox_maxs = [ 87.923706, 8.143519, 12.595757 ]
+								name = "finger_R_R2C0"
+								parent_bone = "finger_R_R2C0"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -0.721346, -6.101186, -7.592127 ]
+								hitbox_maxs = [ 48.375641, 5.601202, 7.229178 ]
+								name = "finger_R_R1C0"
+								parent_bone = "finger_R_R1C0"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -9.141784, -2.729029, -3.113236 ]
+								hitbox_maxs = [ 14.936922, 3.284496, 2.789095 ]
+								name = "finger_R_R0C0"
+								parent_bone = "finger_R_R0C0"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -25.667118, -2.484211, -19.130667 ]
+								hitbox_maxs = [ 4.446879, 8.232224, 12.167437 ]
+								name = "wrist_R"
+								parent_bone = "wrist_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -61.517147, -3.166397, -5.40263 ]
+								hitbox_maxs = [ 2.717145, 5.643274, 7.01415 ]
+								name = "elbow_R"
+								parent_bone = "elbow_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -47.283142, -2.420143, -4.640399 ]
+								hitbox_maxs = [ 5.831818, 3.876702, 4.368621 ]
+								name = "bicep_R"
+								parent_bone = "bicep_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -2.86517, -2.975827, -2.752674 ]
+								hitbox_maxs = [ -0.274593, 1.475585, 2.824332 ]
+								name = "clavicle_R"
+								parent_bone = "clavicle_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -6.196398, -11.184921, -8.472269 ]
+								hitbox_maxs = [ 22.930822, 11.184914, 10.651017 ]
+								name = "head1"
+								parent_bone = "head1"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 1.505559, -1.797093, -1.861608 ]
+								hitbox_maxs = [ 3.566438, 1.91197, 1.861626 ]
+								name = "neck06"
+								parent_bone = "neck06"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -7.07906, -8.545156, -12.499619 ]
+								hitbox_maxs = [ 87.921501, 8.099966, 13.933273 ]
+								name = "finger_L_R2C0"
+								parent_bone = "finger_L_R2C0"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 2.739174, -3.897163, -7.148262 ]
+								hitbox_maxs = [ 47.781342, 5.903942, 10.527674 ]
+								name = "finger_L_R1C0"
+								parent_bone = "finger_L_R1C0"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -9.141871, -3.67752, -3.144375 ]
+								hitbox_maxs = [ 14.936853, 3.621188, 3.44439 ]
+								name = "finger_L_R0C0"
+								parent_bone = "finger_L_R0C0"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 0.291651, 0.111142, -0.328354 ]
+								hitbox_maxs = [ 0.705079, 0.610159, 0.948566 ]
+								name = "finger_L_R2C2"
+								parent_bone = "finger_L_R2C2"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 4.787572, -0.525427, -0.710103 ]
+								hitbox_maxs = [ 5.110652, 1.097864, 0.97984 ]
+								name = "finger_L_R1C2"
+								parent_bone = "finger_L_R1C2"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -9.53899, -3.513833, -3.228103 ]
+								hitbox_maxs = [ 13.649872, 1.752157, 1.497641 ]
+								name = "finger_L_R0C2"
+								parent_bone = "finger_L_R0C2"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -6.340393, -8.402472, -14.795877 ]
+								hitbox_maxs = [ 46.682545, 8.24265, 11.637013 ]
+								name = "finger_L_R2C1"
+								parent_bone = "finger_L_R2C1"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 3.945712, -0.306378, -0.113483 ]
+								hitbox_maxs = [ 11.768695, 0.676802, 0.865215 ]
+								name = "finger_L_R2C1"
+								parent_bone = "finger_L_R2C1"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -9.824795, -2.856815, -3.317693 ]
+								hitbox_maxs = [ 12.401589, 1.98303, 3.637292 ]
+								name = "finger_L_R0C1"
+								parent_bone = "finger_L_R0C1"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -4.446918, -8.235348, -12.165497 ]
+								hitbox_maxs = [ 25.666792, 2.483742, 19.131544 ]
+								name = "wrist_L"
+								parent_bone = "wrist_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -2.25043, -5.659833, -7.02978 ]
+								hitbox_maxs = [ 61.996933, 3.18292, 5.418119 ]
+								name = "elbow_L"
+								parent_bone = "elbow_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -5.857268, -3.876667, -4.368617 ]
+								hitbox_maxs = [ 47.257267, 2.419854, 4.640384 ]
+								name = "bicep_L"
+								parent_bone = "bicep_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 0.274637, -1.47547, -2.824122 ]
+								hitbox_maxs = [ 2.865059, 2.976666, 2.75276 ]
+								name = "clavicle_L"
+								parent_bone = "clavicle_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -2.911005, -14.518574, -7.239588 ]
+								hitbox_maxs = [ 13.896972, 10.893263, 6.605815 ]
+								name = "chest_fix"
+								parent_bone = "chest_fix"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -5.08945, -9.546288, -9.554163 ]
+								hitbox_maxs = [ 16.56649, 9.548414, 6.342405 ]
+								name = "spine1"
+								parent_bone = "spine1"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -10.80588, -7.472773, -7.992623 ]
+								hitbox_maxs = [ 14.967614, 7.096764, 2.492963 ]
+								name = "toeBase_R"
+								parent_bone = "toeBase_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -20.082895, -2.650842, -2.565673 ]
+								hitbox_maxs = [ -0.677105, 2.447864, 2.458946 ]
+								name = "ankle_R"
+								parent_bone = "ankle_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -18.031902, -2.246205, -2.05482 ]
+								hitbox_maxs = [ 0.151903, 2.795056, 2.939591 ]
+								name = "knee_R"
+								parent_bone = "knee_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -30.975765, -2.673308, -5.290615 ]
+								hitbox_maxs = [ -0.584235, 2.71707, 6.390157 ]
+								name = "thigh_R"
+								parent_bone = "thigh_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -2.784547, -4.353414, -3.937612 ]
+								hitbox_maxs = [ 34.315109, 4.211638, 3.938807 ]
+								name = "tail_R6C0"
+								parent_bone = "tail_R6C0"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -0.545143, -4.113678, -3.801891 ]
+								hitbox_maxs = [ 16.182533, 4.884366, 3.800753 ]
+								name = "tail_R5C0"
+								parent_bone = "tail_R5C0"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -1.234998, -5.37148, -3.912715 ]
+								hitbox_maxs = [ 19.347635, 5.618939, 3.912707 ]
+								name = "tail_R4C0"
+								parent_bone = "tail_R4C0"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -1.518288, -6.435873, -3.855275 ]
+								hitbox_maxs = [ 17.568354, 6.819649, 3.834952 ]
+								name = "tail_R3C0"
+								parent_bone = "tail_R3C0"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -0.399074, -6.709161, -4.64382 ]
+								hitbox_maxs = [ 17.629566, 6.561651, 4.643865 ]
+								name = "tail_R2C0"
+								parent_bone = "tail_R2C0"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -1.144826, -7.829444, -5.204515 ]
+								hitbox_maxs = [ 18.151779, 10.243887, 5.204528 ]
+								name = "tail_R1C0"
+								parent_bone = "tail_R1C0"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -0.478532, -11.808083, -6.92503 ]
+								hitbox_maxs = [ 17.17359, 13.285822, 6.927398 ]
+								name = "tail_R0C0"
+								parent_bone = "tail_R0C0"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -14.96761, -7.096771, -2.492963 ]
+								hitbox_maxs = [ 10.80588, 7.472764, 7.99262 ]
+								name = "toeBase_L"
+								parent_bone = "toeBase_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 0.734402, -2.447972, -2.458999 ]
+								hitbox_maxs = [ 20.140978, 2.650854, 2.565638 ]
+								name = "ankle_L"
+								parent_bone = "ankle_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -0.127581, -2.793422, -2.94009 ]
+								hitbox_maxs = [ 18.056864, 2.248439, 2.055814 ]
+								name = "knee_L"
+								parent_bone = "knee_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 0.636275, -2.717895, -6.39406 ]
+								hitbox_maxs = [ 31.026052, 2.673964, 5.296169 ]
+								name = "thigh_L"
+								parent_bone = "thigh_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -1.559227, -4.03926, -1.072361 ]
+								hitbox_maxs = [ 4.740906, 4.039251, 9.2732 ]
+								name = "hip0_0"
+								parent_bone = "hip0_0"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -2.969776, -7.770347, -4.204533 ]
+								hitbox_maxs = [ 10.098807, 7.620378, 11.094069 ]
+								name = "spine1_1"
+								parent_bone = "spine1_1"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -11.669518, -10.965184, -16.866985 ]
+								hitbox_maxs = [ 11.127657, 10.965176, 5.589036 ]
+								name = "root"
+								parent_bone = "root"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "hands"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -25.667118, -2.484211, -19.130667 ]
+								hitbox_maxs = [ 4.446879, 8.232224, 12.167437 ]
+								name = "wrist_R"
+								parent_bone = "wrist_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -4.446918, -8.235348, -12.165497 ]
+								hitbox_maxs = [ 25.666792, 2.483742, 19.131544 ]
+								name = "wrist_L"
+								parent_bone = "wrist_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "head"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -6.439343, -11.291038, -8.529432 ]
+								hitbox_maxs = [ 22.835682, 11.29103, 10.703154 ]
+								name = "head1"
+								parent_bone = "head1"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "feet"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -10.80588, -7.472773, -7.992623 ]
+								hitbox_maxs = [ 14.967614, 7.096764, 2.492963 ]
+								name = "toeBase_R"
+								parent_bone = "toeBase_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -14.96761, -7.096771, -2.492963 ]
+								hitbox_maxs = [ 10.80588, 7.472764, 7.99262 ]
+								name = "toeBase_L"
+								parent_bone = "toeBase_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "select_low"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -125.643684, -69.518784, -46.048958 ]
+								hitbox_maxs = [ 31.43116, 67.948792, 156.239716 ]
+								name = "root"
+								parent_bone = "root"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "select_high"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -78.959946, -28.4153, -44.262779 ]
+								hitbox_maxs = [ -18.544506, 28.4153, 133.0 ]
+								name = "root"
+								parent_bone = "root"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "Skeleton"
+				children = 
+				[
+					{
+						_class = "Bone"
+						name = "root"
+						origin = [ 42.331619, 0.0, 45.158478 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						do_not_discard = true
+						children = 
+						[
+							{
+								_class = "Bone"
+								name = "spine1"
+								origin = [ 13.689125, 0.0, -4.290714 ]
+								angles = [ 32.711845, -0.000006, -0.000011 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "clavicle_r"
+										origin = [ 10.316875, -8.23824, 0.219055 ]
+										angles = [ 40.21151, 60.657612, -90.000023 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "bicep_r"
+												origin = [ -9.076862, -0.00005, -0.000027 ]
+												angles = [ 7.77328, -28.806456, -172.21373 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "elbow_r"
+														origin = [ -41.893139, -0.000038, 0.000023 ]
+														angles = [ 89.683479, -179.995331, -179.995361 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "wrist_R"
+																origin = [ -59.660625, -0.000031, -0.000034 ]
+																angles = [ -28.029894, -9.684077, -32.293438 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "finger_R_R0C1"
+																		origin = [ -16.291245, 5.640247, -7.9771 ]
+																		angles = [ 57.964863, 125.308487, -40.94838 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "finger_R_R1C1"
+																				origin = [ 27.05513, -0.000071, 0.000427 ]
+																				angles = [ 11.60278, -1.303732, -6.464396 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "finger_R_R2C1"
+																						origin = [ 27.055626, -0.000172, 0.000748 ]
+																						angles = [ 14.233756, 0.86356, -7.409373 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "finger_R_R3C1"
+																								origin = [ 27.253454, -0.000393, 0.001068 ]
+																								angles = [ 3.630826, 1.345438, -1.738121 ]
+																								do_not_discard = true
+																							},
+																						]
+																					},
+																				]
+																			},
+																		]
+																	},
+																	{
+																		_class = "Bone"
+																		name = "finger_R_R0C2"
+																		origin = [ -12.171288, 5.738144, -7.87289 ]
+																		angles = [ 59.136993, 74.916168, -100.31382 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "finger_R_R1C2"
+																				origin = [ 22.541092, -0.000114, 0.000359 ]
+																				angles = [ 14.155883, -1.574547, -10.575067 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "finger_R_R2C2"
+																						origin = [ 21.449417, -0.000351, 0.000572 ]
+																						angles = [ 0.00128, -0.002028, -0.000942 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "finger_R_R3C2"
+																								origin = [ 10.945957, -0.000534, 0.000793 ]
+																								angles = [ 1.407348, 0.162343, -1.017807 ]
+																								do_not_discard = true
+																							},
+																						]
+																					},
+																				]
+																			},
+																		]
+																	},
+																	{
+																		_class = "Bone"
+																		name = "finger_R_R0C0"
+																		origin = [ -20.658997, 1.440563, -4.3722 ]
+																		angles = [ 44.435493, 156.421356, -8.147081 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "finger_R_R1C0"
+																				origin = [ 27.055885, -0.000024, 0.000427 ]
+																				angles = [ 20.073631, -5.811981, -7.718926 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "finger_R_R2C0"
+																						origin = [ 48.764931, -0.000082, 0.000916 ]
+																						angles = [ 21.305704, 1.465315, -7.017604 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "finger_R_R3C0"
+																								origin = [ 42.185936, -0.000362, 0.001511 ]
+																								angles = [ 4.464522, 0.020246, -1.395204 ]
+																								do_not_discard = true
+																							},
+																						]
+																					},
+																				]
+																			},
+																		]
+																	},
+																	{
+																		_class = "Bone"
+																		name = "membrane_R_R0C1"
+																		origin = [ -1.868538, 7.064053, -2.783581 ]
+																		angles = [ 43.465405, 41.040119, 33.29422 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "membrane_R_R1C1"
+																				origin = [ 19.94986, 0.00032, -0.000282 ]
+																				angles = [ 0.001865, -0.000451, 0.00137 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "membrane_R_R2C1"
+																						origin = [ 19.950066, 0.000488, -0.000435 ]
+																						angles = [ -0.000785, 0.001015, -0.0 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "membrane_R_R3C1"
+																								origin = [ 24.33378, 0.000694, -0.00058 ]
+																								angles = [ -0.733122, 0.194267, -0.552099 ]
+																								do_not_discard = true
+																							},
+																						]
+																					},
+																				]
+																			},
+																		]
+																	},
+																]
+															},
+															{
+																_class = "Bone"
+																name = "membrane_R_R0C0"
+																origin = [ 5.539167, -0.455437, -0.158226 ]
+																angles = [ 37.564056, -19.43725, -41.332123 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "membrane_R_R1C0"
+																		origin = [ 11.035559, -3.784065, 0.606969 ]
+																		angles = [ -2.977714, -18.925114, 22.713839 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "membrane_R_R2C0"
+																				origin = [ 23.344681, -0.000168, -0.000038 ]
+																				angles = [ 0.000003, 0.000002, -0.0 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "membrane_R_R3C0"
+																						origin = [ 23.344561, -0.00016, -0.000008 ]
+																						angles = [ -1.154546, -3.080052, -0.163976 ]
+																						do_not_discard = true
+																					},
+																				]
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+									{
+										_class = "Bone"
+										name = "neck01"
+										origin = [ 21.979755, 0.000002, -0.000008 ]
+										angles = [ -31.543282, 0.00079, -0.000329 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "neck02"
+												origin = [ 8.717819, -0.000002, -0.03389 ]
+												angles = [ 0.478346, -0.001001, 89.999916 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "neck03"
+														origin = [ 8.717796, -0.000015, 0.000001 ]
+														angles = [ -0.000494, 0.063618, 0.000045 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "neck04"
+																origin = [ 8.717796, -0.000002, 0.000003 ]
+																angles = [ -0.000262, 1.374906, -0.000463 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "neck05"
+																		origin = [ 8.717758, -0.000019, 0.000003 ]
+																		angles = [ 0.001015, 2.315488, 0.000447 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "neck06"
+																				origin = [ 8.71772, -0.000013, 0.000001 ]
+																				angles = [ 0.001163, 3.105385, -0.00003 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "neck07"
+																						origin = [ 8.717682, -0.000011, 0.000003 ]
+																						angles = [ -0.000616, 2.027544, -0.000009 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "neck08"
+																								origin = [ 8.717865, -0.000003, 0.000002 ]
+																								angles = [ 0.000005, 75.323021, -90.000008 ]
+																								do_not_discard = true
+																								children = 
+																								[
+																									{
+																										_class = "Bone"
+																										name = "head1"
+																										origin = [ 0.000061, -0.000002, -0.000763 ]
+																										angles = [ 83.414948, -0.004237, -0.003871 ]
+																										do_not_discard = true
+																										children = 
+																										[
+																											{
+																												_class = "Bone"
+																												name = "jaw"
+																												origin = [ -2.418472, 0.000004, 1.441269 ]
+																												angles = [ -0.000009, -0.000001, -0.000003 ]
+																												do_not_discard = true
+																											},
+																										]
+																									},
+																								]
+																							},
+																							{
+																								_class = "Bone"
+																								name = "hair_fix_r"
+																								origin = [ -129.460281, -13.15681, -0.001219 ]
+																								angles = [ -0.000491, -7.240042, -89.999886 ]
+																								do_not_discard = true
+																							},
+																							{
+																								_class = "Bone"
+																								name = "hair_fix_l"
+																								origin = [ -129.460281, -13.15681, -0.001219 ]
+																								angles = [ -0.000491, -7.240042, -89.999886 ]
+																								do_not_discard = true
+																							},
+																							{
+																								_class = "Bone"
+																								name = "neckFur_R_R0C3"
+																								origin = [ 1.464615, -2.628198, 7.86714 ]
+																								angles = [ -0.000003, -96.658524, 89.999992 ]
+																								do_not_discard = true
+																								children = 
+																								[
+																									{
+																										_class = "Bone"
+																										name = "neckFur_R_R1C3"
+																										origin = [ 3.646557, 0.000016, -0.000168 ]
+																										angles = [ 0.000001, 0.0, -0.000004 ]
+																										do_not_discard = true
+																									},
+																								]
+																							},
+																							{
+																								_class = "Bone"
+																								name = "neckFur_L_R0C3"
+																								origin = [ 1.4646, -2.628196, -8.102975 ]
+																								angles = [ -0.000003, -96.658524, 89.999992 ]
+																								do_not_discard = true
+																								children = 
+																								[
+																									{
+																										_class = "Bone"
+																										name = "neckFur_L_R1C3"
+																										origin = [ 3.646559, -0.00001, -0.000183 ]
+																										angles = [ 0.000001, 0.0, -0.000004 ]
+																										do_not_discard = true
+																									},
+																								]
+																							},
+																						]
+																					},
+																				]
+																			},
+																			{
+																				_class = "Bone"
+																				name = "neckfur_r_r0c2"
+																				origin = [ 14.647255, 0.806684, 7.867128 ]
+																				angles = [ -0.000015, -92.036362, 90.003273 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "neckFur_R_R1C2"
+																						origin = [ 2.161352, 0.000004, 0.000023 ]
+																						angles = [ 0.0, 0.00003, -0.000042 ]
+																						do_not_discard = true
+																					},
+																				]
+																			},
+																			{
+																				_class = "Bone"
+																				name = "neckfur_l_r0c2"
+																				origin = [ 14.647247, 0.80669, -8.102961 ]
+																				angles = [ -0.000015, -92.036362, 90.003273 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "neckFur_L_R1C2"
+																						origin = [ 2.161343, 0.000009, 0.000031 ]
+																						angles = [ 0.0, 0.00003, -0.000042 ]
+																						do_not_discard = true
+																					},
+																				]
+																			},
+																			{
+																				_class = "Bone"
+																				name = "neckFur_L_R0C1"
+																				origin = [ 9.03051, 1.006432, -8.102985 ]
+																				angles = [ -0.000043, -92.036339, 89.999992 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "neckFur_L_R1C1"
+																						origin = [ 2.161343, -0.000007, -0.000107 ]
+																						angles = [ 0.000001, 0.000005, -0.000003 ]
+																						do_not_discard = true
+																					},
+																				]
+																			},
+																			{
+																				_class = "Bone"
+																				name = "neckFur_R_R0C1"
+																				origin = [ 9.030518, 1.006437, 7.867134 ]
+																				angles = [ -0.000043, -92.036339, 89.999992 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "neckFur_R_R1C1"
+																						origin = [ 2.161341, 0.000002, -0.000107 ]
+																						angles = [ 0.000001, 0.000005, -0.000003 ]
+																						do_not_discard = true
+																					},
+																				]
+																			},
+																			{
+																				_class = "Bone"
+																				name = "spike01"
+																				origin = [ 8.17128, 8.272028, -0.000005 ]
+																				angles = [ -0.000043, -94.573685, -89.999992 ]
+																				do_not_discard = true
+																			},
+																		]
+																	},
+																	{
+																		_class = "Bone"
+																		name = "neckfur_l_r0c0"
+																		origin = [ 6.519974, 1.287008, -8.10297 ]
+																		angles = [ -0.000027, -88.972359, 89.999863 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "neckFur_L_R1C0"
+																				origin = [ 2.161285, -0.000007, -0.000031 ]
+																				angles = [ -0.000014, -0.00044, 0.000021 ]
+																				do_not_discard = true
+																			},
+																		]
+																	},
+																	{
+																		_class = "Bone"
+																		name = "neckfur_r_r0c0"
+																		origin = [ 6.519974, 1.287025, 7.867118 ]
+																		angles = [ -0.000027, -88.972359, 89.999863 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "neckFur_R_R1C0"
+																				origin = [ 2.161406, 0.000002, -0.000015 ]
+																				angles = [ -0.000014, -0.00044, 0.000021 ]
+																				do_not_discard = true
+																			},
+																		]
+																	},
+																]
+															},
+															{
+																_class = "Bone"
+																name = "spike02"
+																origin = [ 7.457794, 8.696924, -0.00001 ]
+																angles = [ -0.000053, -91.509735, -89.999992 ]
+																do_not_discard = true
+															},
+														]
+													},
+												]
+											},
+											{
+												_class = "Bone"
+												name = "spike03"
+												origin = [ 7.944786, 0.000013, 9.772926 ]
+												angles = [ 88.26844, -179.997391, -179.997391 ]
+												do_not_discard = true
+											},
+										]
+									},
+									{
+										_class = "Bone"
+										name = "clavicle_l"
+										origin = [ 10.316891, 8.23824, 0.219055 ]
+										angles = [ -40.211517, 119.342415, 90.000008 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "bicep_l"
+												origin = [ 9.076836, -0.000031, -0.000061 ]
+												angles = [ 7.773251, -28.806438, -172.21373 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "elbow_l"
+														origin = [ 41.893082, 0.000153, 0.000057 ]
+														angles = [ 89.683479, -179.995331, -179.995361 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "wrist_L"
+																origin = [ 59.660404, 0.000137, -0.000069 ]
+																angles = [ -28.029879, -9.684088, -32.293438 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "finger_L_R0C0"
+																		origin = [ 20.658508, -1.440357, 4.372555 ]
+																		angles = [ -44.435047, -23.57888, -110.090073 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "finger_L_R1C0"
+																				origin = [ 27.054947, -0.000122, -0.000008 ]
+																				angles = [ 17.185303, -15.617814, -4.110078 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "finger_L_R2C0"
+																						origin = [ 48.699692, -0.000092, 2.502022 ]
+																						angles = [ 8.731418, -17.935015, -10.655899 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "finger_L_R3C0"
+																								origin = [ 42.184956, 0.000061, 0.000107 ]
+																								angles = [ -0.000003, -0.000016, -0.00001 ]
+																								do_not_discard = true
+																							},
+																						]
+																					},
+																				]
+																			},
+																		]
+																	},
+																	{
+																		_class = "Bone"
+																		name = "finger_L_R0C2"
+																		origin = [ 12.171181, -5.738018, 7.873116 ]
+																		angles = [ -58.373474, -109.501282, -35.664421 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "finger_L_R1C2"
+																				origin = [ 22.520975, 0.531258, 0.786922 ]
+																				angles = [ 9.780409, -6.683042, -21.430836 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "finger_L_R2C2"
+																						origin = [ 21.449286, 0.000168, 0.000198 ]
+																						angles = [ -0.000001, -0.000002, 0.000004 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "finger_L_R3C2"
+																								origin = [ 10.945724, 0.000351, 0.000412 ]
+																								angles = [ -0.000001, -0.000002, 0.000002 ]
+																								do_not_discard = true
+																							},
+																						]
+																					},
+																				]
+																			},
+																		]
+																	},
+																	{
+																		_class = "Bone"
+																		name = "finger_L_R0C1"
+																		origin = [ 16.290802, -5.640072, 7.977013 ]
+																		angles = [ -57.965031, -54.691086, -86.259819 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "finger_L_R1C1"
+																				origin = [ 27.055023, -0.000015, 0.0 ]
+																				angles = [ 8.012059, -8.519622, -4.43737 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "finger_L_R2C1"
+																						origin = [ 27.055172, 0.000229, 0.000153 ]
+																						angles = [ 9.847939, -10.363485, -1.791512 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "finger_L_R3C1"
+																								origin = [ 27.253368, 0.000648, 0.00042 ]
+																								angles = [ -0.00001, -0.000009, 0.000005 ]
+																								do_not_discard = true
+																							},
+																						]
+																					},
+																				]
+																			},
+																		]
+																	},
+																	{
+																		_class = "Bone"
+																		name = "membrane_L_R0C0"
+																		origin = [ 1.868233, -7.063873, 2.783726 ]
+																		angles = [ -43.466084, -138.959442, -41.678062 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "membrane_L_R1C0"
+																				origin = [ 19.949974, 0.000008, 0.000008 ]
+																				angles = [ 0.000006, -0.000004, 0.000004 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "membrane_L_R2C0"
+																						origin = [ 19.950012, 0.000137, 0.000175 ]
+																						angles = [ 0.000003, -0.000006, 0.000001 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "membrane_L_R3C0"
+																								origin = [ 24.333439, 0.000244, 0.000252 ]
+																								angles = [ 0.000004, -0.000005, 0.0 ]
+																								do_not_discard = true
+																							},
+																						]
+																					},
+																				]
+																			},
+																		]
+																	},
+																]
+															},
+															{
+																_class = "Bone"
+																name = "membrane_L_R0C1"
+																origin = [ -5.539225, 0.45549, 0.15802 ]
+																angles = [ -64.200447, -118.234306, -74.213799 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "membrane_L_R1C1"
+																		origin = [ 3.593643, -5.471794, -9.675335 ]
+																		angles = [ 55.917351, -56.703007, -19.108482 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "membrane_L_R2C1"
+																				origin = [ 17.009136, 0.000374, -0.000111 ]
+																				angles = [ 0.0, -0.000007, 0.000015 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "membrane_L_R3C1"
+																						origin = [ 17.008867, -0.000214, -0.000141 ]
+																						angles = [ 0.000002, 0.000002, -0.0 ]
+																						do_not_discard = true
+																					},
+																				]
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+									{
+										_class = "Bone"
+										name = "chest_fix"
+										origin = [ 2.502802, 0.000001, -3.896683 ]
+										angles = [ 59.824989, -0.369289, -0.31925 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "chest_fix_drop"
+												origin = [ 17.330196, 0.000002, 0.000103 ]
+												angles = [ 0.000001, -0.0, -0.0 ]
+												do_not_discard = true
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "spine1_1"
+								origin = [ -12.366323, 0.0, 4.20174 ]
+								angles = [ -16.640909, 179.999985, -179.999985 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "hip0_0"
+										origin = [ 10.850611, -0.000001, -0.125359 ]
+										angles = [ 0.000003, -0.0, 0.0 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "thigh_R"
+												origin = [ 7.534356, -8.056616, 0.287357 ]
+												angles = [ 49.678776, 19.961758, 3.854889 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "knee_R"
+														origin = [ -32.668896, -0.000011, -0.000061 ]
+														angles = [ 56.727406, -179.999985, -179.999985 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "ankle_R"
+																origin = [ -18.885998, -0.000035, 0.000093 ]
+																angles = [ -58.007534, -166.473907, 167.102966 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "toeBase_R"
+																		origin = [ -22.233612, -0.000022, -0.000055 ]
+																		angles = [ 67.540367, -178.004913, -178.156097 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "toe_pinky_R"
+																				origin = [ 9.519388, -5.260883, -3.622357 ]
+																				angles = [ -0.00004, -9.752505, -179.999985 ]
+																				do_not_discard = true
+																			},
+																			{
+																				_class = "Bone"
+																				name = "toe_index_R"
+																				origin = [ 9.378843, 4.800017, -3.549188 ]
+																				angles = [ -0.000033, 9.429771, 179.999924 ]
+																				do_not_discard = true
+																			},
+																			{
+																				_class = "Bone"
+																				name = "back_toe5_0_B_R"
+																				origin = [ -4.324445, -2.953924, -0.433853 ]
+																				angles = [ -0.00003, 18.435696, -0.000014 ]
+																				do_not_discard = true
+																			},
+																			{
+																				_class = "Bone"
+																				name = "toe_bird_R"
+																				origin = [ 8.629238, -0.97256, -3.389773 ]
+																				angles = [ -0.000038, -0.752234, 179.999985 ]
+																				do_not_discard = true
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+											{
+												_class = "Bone"
+												name = "tail_R0C0"
+												origin = [ 12.669493, 0.000002, 8.230316 ]
+												angles = [ -30.952213, 0.073925, -90.037857 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "tail_R1C0"
+														origin = [ 16.800007, 0.000031, 0.000002 ]
+														angles = [ 0.00387, 0.891596, -0.0 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "tail_R2C0"
+																origin = [ 16.800011, 0.000011, 0.000001 ]
+																angles = [ 0.013618, 5.595885, 0.000068 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "tail_R3C0"
+																		origin = [ 16.800045, 0.000057, 0.000002 ]
+																		angles = [ 0.100191, 10.102602, -0.00176 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "tail_R4C0"
+																				origin = [ 16.800201, 0.000114, 0.000001 ]
+																				angles = [ 0.166137, 13.875092, -0.001402 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "tail_R5C0"
+																						origin = [ 16.800468, 0.000105, 0.000002 ]
+																						angles = [ -0.086315, 8.044815, -0.001646 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "tail_R6C0"
+																								origin = [ 16.800804, 0.000053, 0.000003 ]
+																								angles = [ -0.314809, 0.337234, -0.004784 ]
+																								do_not_discard = true
+																								children = 
+																								[
+																									{
+																										_class = "Bone"
+																										name = "tail_R7C0"
+																										origin = [ 16.801208, 0.000065, -0.000002 ]
+																										angles = [ 0.080911, -4.443802, 0.00001 ]
+																										do_not_discard = true
+																										children = 
+																										[
+																											{
+																												_class = "Bone"
+																												name = "tail_R8C0"
+																												origin = [ 16.801773, 0.000195, -0.0 ]
+																												angles = [ -0.0, -0.0, 0.0 ]
+																												do_not_discard = true
+																											},
+																										]
+																									},
+																								]
+																							},
+																						]
+																					},
+																				]
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+													{
+														_class = "Bone"
+														name = "spike07"
+														origin = [ -1.234159, 3.647186, -0.000001 ]
+														angles = [ 0.000002, 71.15551, 89.999992 ]
+														do_not_discard = true
+													},
+												]
+											},
+											{
+												_class = "Bone"
+												name = "thigh_L"
+												origin = [ 7.534345, 8.056614, 0.287357 ]
+												angles = [ -49.653309, 160.591064, -175.578979 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "knee_L"
+														origin = [ 32.6689, 0.000012, 0.000053 ]
+														angles = [ 56.764954, -179.999985, -179.999985 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "ankle_L"
+																origin = [ 18.886003, 0.000022, -0.000053 ]
+																angles = [ -58.003864, -166.808105, 166.742905 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "toeBase_L"
+																		origin = [ 22.233587, 0.000016, 0.000063 ]
+																		angles = [ 67.540436, -178.004913, -178.156097 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "toe_pinky_L"
+																				origin = [ -9.519367, 5.260873, 3.622362 ]
+																				angles = [ -0.000022, -9.752514, 0.000027 ]
+																				do_not_discard = true
+																			},
+																			{
+																				_class = "Bone"
+																				name = "toe_index_L"
+																				origin = [ -9.378828, -4.800018, 3.549188 ]
+																				angles = [ -0.000032, 9.429776, 0.000041 ]
+																				do_not_discard = true
+																			},
+																			{
+																				_class = "Bone"
+																				name = "back_toe4_0_B_L"
+																				origin = [ 4.324448, 2.953916, 0.433861 ]
+																				angles = [ -0.00003, 18.43569, 0.000019 ]
+																				do_not_discard = true
+																			},
+																			{
+																				_class = "Bone"
+																				name = "toe_bird_L"
+																				origin = [ -8.629215, 0.972556, 3.389777 ]
+																				angles = [ -0.000028, 0.000002, 0.000007 ]
+																				do_not_discard = true
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+											{
+												_class = "Bone"
+												name = "spike06"
+												origin = [ -3.09314, -0.000002, -6.770107 ]
+												angles = [ 57.328228, -0.000032, -0.000029 ]
+												do_not_discard = true
+											},
+										]
+									},
+								]
+							},
+						]
+					},
+				]
+			},
+		]
+	}
+}

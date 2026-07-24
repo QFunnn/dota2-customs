@@ -1,0 +1,129 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf63:version{a6e6a69e-52d3-4527-8b9c-ff3bb91aca3e} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 64
+	m_ConstantColor = [ 123, 13, 13, 255 ]
+	m_bScreenSpaceEffect = true
+	m_nBehaviorVersion = 4
+	m_BoundingBoxMin = [ -16384.0, -16384.0, -16384.0 ]
+	m_BoundingBoxMax = [ 16384.0, 16384.0, 16384.0 ]
+	m_flConstantRadius = 20.0
+	m_flCullRadius = -1.0
+	m_bShouldSort = false
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetControlPointPositions"
+			m_bUseWorldLocation = true
+			m_nCP1 = 6
+			m_nCP2 = 7
+			m_nCP3 = 8
+			m_nCP4 = 9
+			m_vecCP1Pos = [ -105.0, -105.0, 10.0 ]
+			m_vecCP2Pos = [ -105.0, 105.0, 10.0 ]
+			m_vecCP3Pos = [ 105.0, 105.0, 10.0 ]
+			m_vecCP4Pos = [ 105.0, -105.0, 10.0 ]
+			m_flOpStartFadeOutTime = 0.1
+			m_flOpEndFadeOutTime = 0.1
+		},
+		{
+			_class = "C_OP_SetControlPointPositions"
+			m_bUseWorldLocation = true
+			m_nCP1 = 10
+			m_nCP2 = 11
+			m_nCP3 = 11
+			m_nCP4 = 11
+			m_vecCP1Pos = [ -105.0, -105.0, 10.0 ]
+			m_vecCP2Pos = [ -105.0, -105.0, 10.0 ]
+			m_vecCP3Pos = [ -105.0, -105.0, 10.0 ]
+			m_flOpStartFadeOutTime = 0.1
+			m_flOpEndFadeOutTime = 0.1
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 48.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateSequentialPath"
+			m_flNumToAssign = 72.0
+			m_bCPPairs = true
+			m_PathParams = 
+			{
+				m_nStartControlPointNumber = 6
+				m_nEndControlPointNumber = 12
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+			m_nOutputField = 7
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_RemapCPtoScalar"
+			m_nCPInput = 1
+			m_nFieldOutput = 16
+			m_flOutputMax = 0.5
+		},
+		{
+			_class = "C_OP_RemapCPtoScalar"
+			m_nCPInput = 1
+			m_flOutputMin = 1.0
+			m_flOutputMax = 1.5
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+		{
+			_class = "C_OP_Spin"
+			m_nSpinRateDegrees = 24
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/particle_glow_04.vtex"
+				},
+			]
+		},
+	]
+}

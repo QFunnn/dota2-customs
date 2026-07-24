@@ -1,0 +1,246 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "BoneMarkupList"
+				children = [  ]
+				bone_cull_type = "None"
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						name = "fort_base_dummy_01"
+						filename = "models/custom_game/models/fort/fort_base_dummy_01_fort_base_dummy_01.dmx"
+					},
+				]
+			},
+			{
+				_class = "AttachmentList"
+				children = 
+				[
+					{
+						_class = "Attachment"
+						name = "fx_root"
+						ignore_rotation = false
+						parent_bone = "Root"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attack_hitloc"
+						ignore_rotation = false
+						parent_bone = "fort_base_central"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "follow_origin"
+						ignore_rotation = false
+						parent_bone = "fort_base_central"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+				]
+			},
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					{
+						_class = "AnimFile"
+						name = "Bindpose"
+						source_filename = "models/custom_game/models/fort/Bindpose.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "Bindpose"
+						activity_weight = 1
+					},
+					{
+						_class = "AnimFile"
+						name = "fort_base_dummy_01_idle"
+						source_filename = "models/custom_game/models/fort/fort_base_dummy_01_idle.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_IDLE"
+						activity_weight = 1
+					},
+				]
+			},
+			{
+				_class = "GameDataList"
+				children = 
+				[
+					{
+						_class = "GenericGameData"
+						name = "fx_fort_base_01"
+						game_class = "particle"
+						game_keys = 
+						{
+							name = resource:"particles/custom_game/fort_base/fx_fort_base_01.vpcf"
+							attachment_point = "follow_origin"
+							attachment_type = "point_follow"
+							attachment_offset = null
+						}
+					},
+				]
+			},
+			{
+				_class = "HitboxSetList"
+				children = 
+				[
+					{
+						_class = "HitboxSet"
+						name = "default"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -61.015823, -107.470673, -61.084225 ]
+								hitbox_maxs = [ 59.572388, 174.581329, 61.934681 ]
+								name = "fort_base_crystal_1"
+								parent_bone = "fort_base_crystal_1"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -39.892006, -76.83252, -42.26339 ]
+								hitbox_maxs = [ 36.257721, 92.128387, 33.986778 ]
+								name = "fort_base_crystal_2"
+								parent_bone = "fort_base_crystal_2"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -34.406372, -68.785202, -38.499298 ]
+								hitbox_maxs = [ 34.52124, 77.707642, 38.851303 ]
+								name = "fort_base_crystal_3"
+								parent_bone = "fort_base_crystal_3"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -42.481079, -72.709, -48.974518 ]
+								hitbox_maxs = [ 36.33577, 108.934387, 36.978249 ]
+								name = "fort_base_crystal_4"
+								parent_bone = "fort_base_crystal_4"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -339.098175, -3.779984, -339.205505 ]
+								hitbox_maxs = [ 339.098175, 143.559143, 339.205505 ]
+								name = "Root"
+								parent_bone = "Root"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -68.628662, -0.5, -69.013664 ]
+								hitbox_maxs = [ 69.608643, 9.559525, 69.22364 ]
+								name = "fort_base_central"
+								parent_bone = "fort_base_central"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "Skeleton"
+				children = 
+				[
+					{
+						_class = "Bone"
+						name = "Root"
+						origin = [ -0.0, 0.0, 0.0 ]
+						angles = [ -0.000003, 90.0, 90.0 ]
+						do_not_discard = true
+						children = 
+						[
+							{
+								_class = "Bone"
+								name = "fort_base_central"
+								origin = [ 0.0, 99.999741, 0.000006 ]
+								angles = [ 0.0, 0.0, 0.000003 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "fort_base_crystal_1"
+										origin = [ 0.0, 229.998505, 0.0 ]
+										angles = [ 0.0, 0.0, 0.0 ]
+										do_not_discard = true
+									},
+									{
+										_class = "Bone"
+										name = "fort_base_crystal_2"
+										origin = [ 180.364944, 133.399918, 69.034706 ]
+										angles = [ 2.262837, -18.470602, 9.455797 ]
+										do_not_discard = true
+									},
+									{
+										_class = "Bone"
+										name = "fort_base_crystal_3"
+										origin = [ -103.605362, 127.315979, 111.445457 ]
+										angles = [ -0.090753, -16.825426, 18.014259 ]
+										do_not_discard = true
+									},
+									{
+										_class = "Bone"
+										name = "fort_base_crystal_4"
+										origin = [ -4.297351, 152.829742, -155.009338 ]
+										angles = [ -0.240791, -1.078683, -14.890704 ]
+										do_not_discard = true
+									},
+								]
+							},
+						]
+					},
+				]
+			},
+		]
+	}
+}

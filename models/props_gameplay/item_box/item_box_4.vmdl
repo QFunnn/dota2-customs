@@ -1,0 +1,308 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "BoneMarkupList"
+				children = [  ]
+				bone_cull_type = "None"
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						name = "item_box"
+						filename = "models/props_gameplay/item_box/item_box_4_item_box.dmx"
+					},
+				]
+			},
+			{
+				_class = "AttachmentList"
+				children = 
+				[
+					{
+						_class = "Attachment"
+						name = "attach_crate"
+						ignore_rotation = false
+						parent_bone = "breakingcrate_joint1"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ 0.0, 0.0, -89.999992 ]
+						weight = 1.0
+					},
+				]
+			},
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					{
+						_class = "AnimFile"
+						name = "breakingcrate_idle"
+						source_filename = "models/props_gameplay/item_box/breakingcrate_idle.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_IDLE"
+						activity_weight = 1
+					},
+					{
+						_class = "AnimFile"
+						name = "breakingcrate_dest_break"
+						source_filename = "models/props_gameplay/item_box/breakingcrate_dest_break.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_DIE"
+						activity_weight = 1
+						children = 
+						[
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+								event_frame = 0
+								event_keys = 
+								{
+									name = resource:"particles/generic_gameplay/crate_destruction.vpcf"
+									detach_from_owner = false
+									always_run = false
+									stop_on_seq_change = false
+									stop_immediately = false
+									use_layer_sequence = false
+									tags = null
+									attachment_point = "attach_crate"
+									attachment_type = "point"
+									attachment_point_cp1 = null
+									attachment_type_cp1 = "point_follow"
+									aggregate = false
+								}
+							},
+						]
+					},
+					{
+						_class = "AnimFile"
+						name = "breakingcrate_dest_break_b"
+						source_filename = "models/props_gameplay/item_box/breakingcrate_dest_break_b.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_DIE"
+						activity_weight = 1
+						children = 
+						[
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+								event_frame = 0
+								event_keys = 
+								{
+									name = resource:"particles/generic_gameplay/crate_destruction.vpcf"
+									detach_from_owner = false
+									always_run = false
+									stop_on_seq_change = false
+									stop_immediately = false
+									use_layer_sequence = false
+									tags = null
+									attachment_point = "attach_crate"
+									attachment_type = "point"
+									attachment_point_cp1 = null
+									attachment_type_cp1 = "point_follow"
+									aggregate = false
+								}
+							},
+						]
+					},
+					{
+						_class = "AnimFile"
+						name = "breakingcrate_dest_break_c"
+						source_filename = "models/props_gameplay/item_box/breakingcrate_dest_break_c.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_DIE"
+						activity_weight = 1
+						children = 
+						[
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+								event_frame = 0
+								event_keys = 
+								{
+									name = resource:"particles/generic_gameplay/crate_destruction.vpcf"
+									detach_from_owner = false
+									always_run = false
+									stop_on_seq_change = false
+									stop_immediately = false
+									use_layer_sequence = false
+									tags = null
+									attachment_point = "attach_crate"
+									attachment_type = "point"
+									attachment_point_cp1 = null
+									attachment_type_cp1 = "point_follow"
+									aggregate = false
+								}
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "HitboxSetList"
+				children = 
+				[
+					{
+						_class = "HitboxSet"
+						name = "default"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -37.144081, -32.801991, -37.144089 ]
+								hitbox_maxs = [ 37.144081, 32.801991, 37.144089 ]
+								name = "select_low"
+								parent_bone = "breakingcrate_joint1"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -89.188133, -56.019821, -74.388657 ]
+								hitbox_maxs = [ 89.188133, 56.01981, 74.388657 ]
+								name = "select_high"
+								parent_bone = "breakingcrate_joint1"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "Skeleton"
+				children = 
+				[
+					{
+						_class = "Bone"
+						name = "breakingcrate_joint1"
+						origin = [ 0.0, 1.173031, 7.038193 ]
+						angles = [ 0.0, 90.0, 90.0 ]
+						do_not_discard = true
+					},
+					{
+						_class = "Bone"
+						name = "breakingcrate_joint2"
+						origin = [ 36.663132, -10.957788, 55.005096 ]
+						angles = [ 0.0, 90.0, 90.0 ]
+						do_not_discard = true
+					},
+					{
+						_class = "Bone"
+						name = "breakingcrate_joint3"
+						origin = [ 36.663132, -13.207147, 23.346697 ]
+						angles = [ 0.0, 90.0, 90.0 ]
+						do_not_discard = true
+					},
+					{
+						_class = "Bone"
+						name = "breakingcrate_joint4"
+						origin = [ 36.663132, 7.928213, 43.402203 ]
+						angles = [ 0.0, 90.0, 90.0 ]
+						do_not_discard = true
+					},
+					{
+						_class = "Bone"
+						name = "breakingcrate_joint5"
+						origin = [ -0.586517, 8.851897, 82.218918 ]
+						angles = [ 0.0, 90.0, 90.0 ]
+						do_not_discard = true
+					},
+					{
+						_class = "Bone"
+						name = "breakingcrate_joint6"
+						origin = [ 12.228676, 37.029701, 43.402203 ]
+						angles = [ 0.0, 90.0, 90.0 ]
+						do_not_discard = true
+					},
+					{
+						_class = "Bone"
+						name = "breakingcrate_joint7"
+						origin = [ -14.332276, 37.029701, 43.402203 ]
+						angles = [ 0.0, 90.0, 90.0 ]
+						do_not_discard = true
+					},
+					{
+						_class = "Bone"
+						name = "breakingcrate_joint8"
+						origin = [ -36.956383, 7.154971, 43.402203 ]
+						angles = [ 0.0, 90.0, 90.0 ]
+						do_not_discard = true
+					},
+					{
+						_class = "Bone"
+						name = "breakingcrate_joint9"
+						origin = [ -37.249641, -17.808056, 25.081072 ]
+						angles = [ 0.0, 90.0, 90.0 ]
+						do_not_discard = true
+					},
+					{
+						_class = "Bone"
+						name = "breakingcrate_joint10"
+						origin = [ -36.956383, -6.579392, 58.130394 ]
+						angles = [ 0.0, 90.0, 90.0 ]
+						do_not_discard = true
+					},
+					{
+						_class = "Bone"
+						name = "breakingcrate_joint11"
+						origin = [ -0.001432, -9.58193, 82.253387 ]
+						angles = [ 0.0, 90.0, 90.0 ]
+						do_not_discard = true
+					},
+					{
+						_class = "Bone"
+						name = "breakingcrate_joint12"
+						origin = [ -14.213156, -36.443184, 43.402203 ]
+						angles = [ 0.0, 90.0, 90.0 ]
+						do_not_discard = true
+					},
+					{
+						_class = "Bone"
+						name = "breakingcrate_joint13"
+						origin = [ 9.955393, -36.443184, 43.402203 ]
+						angles = [ 0.0, 90.0, 90.0 ]
+						do_not_discard = true
+					},
+				]
+			},
+		]
+	}
+}

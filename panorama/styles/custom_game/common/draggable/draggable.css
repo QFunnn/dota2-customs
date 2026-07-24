@@ -1,0 +1,66 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+#DragRoot
+{
+	width: 1000px;
+	height: 1000px;
+}
+
+#DragRoot > .Body
+{
+	align: center center;
+	flow-children: down;
+	margin-top: -15px;
+}
+
+#DragRoot > .Body > .Content
+{
+	align: center center;
+}
+
+#DragRoot #DragTip
+{
+	align: center top;
+	height: 30px;
+	padding: 4px;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.1s;
+	color: #fff;
+	font-size: 16px;
+	font-family: titleFont;
+	text-shadow: #000a 0px 2px 4px 6;
+}
+
+#DragRoot #DragTip .warning,#DragRoot #DragTip .yellow
+{
+	color: gradient(radial, 30% 30%, 0% 0%, 70% 70%, from(#f4ffd5), color-stop(0.3, #ffd64f), to(#ff7b00));
+	color: gradient(linear, 0% 0%, 0% 100%, from(#fffb00), color-stop(0, #fffb00), to(#ff5e00));
+	text-shadow: #330000 0px 3px 6px 6;
+}
+
+#DragRoot #DragTip .error,#DragRoot #DragTip .red
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#ffaace), color-stop(0.7, #fd5d5d), to(#ff0000));
+	text-shadow: #330000 0px 3px 6px 6;
+}
+
+#DragRoot #DragTip .pass,#DragRoot #DragTip .green
+{
+	color: greenyellow;
+}
+
+#DragRoot.HasTip #DragTip
+{
+	opacity: 1;
+}

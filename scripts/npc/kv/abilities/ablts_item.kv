@@ -1,0 +1,604 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"ablts_item"
+{
+    // _ItemName: 萌新之证/新手赐福
+    // _Description: 每秒金币+5，每秒经验+1，每秒杀敌+1，每秒木材+0.2，
+    // 唯一被动：强者之路
+    // 1.完成主线任务，金币挑战，木材挑战，经验挑战，宝物挑战获取大量资源
+    // 2.消耗木材抽取羁绊卡牌，凑齐羁绊，战力飞跃
+    // 3.提升等级获取技能点，构建强力技能组和，横扫战场
+    // 4.消耗金币升级成长武器，稳步提升尤为重要
+    "item_1"
+    {
+        "name"                              "item_1"
+        "id"                                "1120001"
+        "ItemLabel"                         "game_item"
+        "Enable"                            "1"
+        "Rarity"                            "5"
+        "ItemCost"                          "20000"
+        "ItemShared"                        "0"
+        "ItemStacked"                       "0"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/items/item_sx"
+        "Model"                             "models/props_gameplay/drop_item.vmdl"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityValues"
+        {
+            "sx_10600181"                   "5"
+            "sx_10600184"                   "1"
+            "sx_10600183"                   "1"
+            "sx_10600182"                   "0.2"
+        }
+    }
+
+    // _ItemName: 银月之晶
+    // _Description: 攻速+120%，主动：吞噬，使用后永久获得60%攻速
+    "item_2"
+    {
+        "name"                              "item_2"
+        "id"                                "1120002"
+        "ItemLabel"                         "game_item"
+        "Enable"                            "1"
+        "Rarity"                            "5"
+        "ItemCost"                          "20000"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "0"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/items/item_2"
+        "Model"                             "models/props_gameplay/drop_item.vmdl"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityValues"
+        {
+            "sx_10600081"                   "120"
+            "val"                           "60"
+        }
+    }
+
+    // _ItemName: 无名之剑
+    // _Description: 攻击力+100,杀敌1000进化为真无名之剑
+    "item_3"
+    {
+        "name"                              "item_3"
+        "id"                                "1120003"
+        "ItemLabel"                         "game_item"
+        "Enable"                            "1"
+        "Rarity"                            "3"
+        "ItemCost"                          "5000"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "0"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/items/item_3"
+        "Model"                             "models/props_gameplay/drop_item.vmdl"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityValues"
+        {
+            "sx_10600032"                   "100"
+            "val"                           "1000"
+        }
+    }
+
+    // _ItemName: 痛苦面具
+    // _Description: 攻击增幅+30%，护甲-50
+    "item_4"
+    {
+        "name"                              "item_4"
+        "id"                                "1120004"
+        "ItemLabel"                         "game_item"
+        "Enable"                            "1"
+        "Rarity"                            "5"
+        "ItemCost"                          "20000"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "0"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/items/item_sx"
+        "Model"                             "models/props_gameplay/drop_item.vmdl"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityValues"
+        {
+            "sx_10600034"                   "30"
+            "sx_10600074"                   "-50"
+        }
+    }
+
+    // _ItemName: 死亡之舞
+    // _Description: 杀敌攻击+0.5
+    "item_5"
+    {
+        "name"                              "item_5"
+        "id"                                "1120005"
+        "ItemLabel"                         "game_item"
+        "Enable"                            "1"
+        "Rarity"                            "5"
+        "ItemCost"                          "20000"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "0"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/items/item_sx"
+        "Model"                             "models/props_gameplay/drop_item.vmdl"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityValues"
+        {
+            "sx_10600190"                   "0.5"
+        }
+    }
+
+    // _ItemName: 领袖旗帜
+    // _Description: 每秒力量+1，每秒敏捷+1，每秒智力+1
+    "item_6"
+    {
+        "name"                              "item_6"
+        "id"                                "1120006"
+        "ItemLabel"                         "game_item"
+        "Enable"                            "1"
+        "Rarity"                            "5"
+        "ItemCost"                          "20000"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "0"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/items/item_sx"
+        "Model"                             "models/props_gameplay/drop_item.vmdl"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityValues"
+        {
+            "sx_10600173"                   "1"
+            "sx_10600174"                   "1"
+            "sx_10600175"                   "1"
+        }
+    }
+
+    // _ItemName: 掠夺之斧
+    // _Description: 攻速+100%，唯一被动：高级掠夺：击杀敌人额外获得5金币
+    "item_7"
+    {
+        "name"                              "item_7"
+        "id"                                "1120007"
+        "ItemLabel"                         "game_item"
+        "Enable"                            "1"
+        "Rarity"                            "5"
+        "ItemCost"                          "20000"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "0"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/items/item_7"
+        "Model"                             "models/props_gameplay/drop_item.vmdl"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityValues"
+        {
+            "sx_10600081"                   "100"
+            "val"                           "5"
+        }
+    }
+
+    // _ItemName: 精灵之弓
+    // _Description: 攻速+50%,多重数量+1,多重伤害+25%
+    "item_8"
+    {
+        "name"                              "item_8"
+        "id"                                "1120008"
+        "ItemLabel"                         "game_item"
+        "Enable"                            "1"
+        "Rarity"                            "5"
+        "ItemCost"                          "20000"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "0"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/items/item_sx"
+        "Model"                             "models/props_gameplay/drop_item.vmdl"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityValues"
+        {
+            "sx_10600081"                   "50"
+            "sx_10600130"                   "1"
+            "sx_10600131"                   "25"
+        }
+    }
+
+    // _ItemName: 远古战斧
+    // _Description: 攻击力+200，力量+200，攻击增幅+10%，力量增幅+10%
+    "item_9"
+    {
+        "name"                              "item_9"
+        "id"                                "1120009"
+        "ItemLabel"                         "game_item"
+        "Enable"                            "1"
+        "Rarity"                            "5"
+        "ItemCost"                          "20000"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "0"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/items/item_sx"
+        "Model"                             "models/props_gameplay/drop_item.vmdl"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityValues"
+        {
+            "sx_10600032"                   "200"
+            "sx_10600017"                   "200"
+            "sx_10600034"                   "10"
+            "sx_10600019"                   "10"
+        }
+    }
+
+    // _ItemName: 圣光之盾
+    // _Description: 生命恢复+10，护甲+10，格挡+10
+    // 唯一被动：每隔30秒，自身圣盾层数小于5时，获得1层圣盾
+    "item_10"
+    {
+        "name"                              "item_10"
+        "id"                                "1120010"
+        "ItemLabel"                         "game_item"
+        "Enable"                            "1"
+        "Rarity"                            "5"
+        "ItemCost"                          "20000"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "0"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/items/item_10"
+        "Model"                             "models/props_gameplay/drop_item.vmdl"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityValues"
+        {
+            "sx_10600057"                   "10"
+            "sx_10600074"                   "10"
+            "sx_10600267"                   "10"
+            "interval"                      "30"
+            "count"                         "5"
+            "val"                           "1"
+        }
+    }
+
+    // _ItemName: 亡者之书
+    // _Description: 技能急速+35，技能伤害+15%
+    "item_11"
+    {
+        "name"                              "item_11"
+        "id"                                "1120011"
+        "ItemLabel"                         "game_item"
+        "Enable"                            "1"
+        "Rarity"                            "5"
+        "ItemCost"                          "20000"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "0"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/items/item_sx"
+        "Model"                             "models/props_gameplay/drop_item.vmdl"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityValues"
+        {
+            "sx_10600101"                   "35"
+            "sx_10600155"                   "15"
+        }
+    }
+
+    // _ItemName: 灵风战刃
+    // _Description: 攻击力+100，唯一被动：破甲 无视护甲+10%，护甲穿透+50
+    "item_12"
+    {
+        "name"                              "item_12"
+        "id"                                "1120012"
+        "ItemLabel"                         "game_item"
+        "Enable"                            "1"
+        "Rarity"                            "5"
+        "ItemCost"                          "20000"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "0"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/items/item_12"
+        "Model"                             "models/props_gameplay/drop_item.vmdl"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityValues"
+        {
+            "sx_10600032"                   "100"
+            "val"                           "10"
+            "val1"                          "50"
+        }
+    }
+
+    // _ItemName: 远古军团之徽
+    // _Description: 全属性+500，力量增幅+25%，敏捷增幅+25%，智力增幅+25%，最终伤害+25%
+    "item_13"
+    {
+        "name"                              "item_13"
+        "id"                                "1120013"
+        "ItemLabel"                         "game_item"
+        "Enable"                            "1"
+        "Rarity"                            "6"
+        "ItemCost"                          "50000"
+        "ItemFormula"                       "item_8|item_9|item_10|item_11|item_12"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "0"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/items/item_13"
+        "Model"                             "models/props_gameplay/drop_item.vmdl"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityValues"
+        {
+            "sx_10600012"                   "500"
+            "sx_10600019"                   "25"
+            "sx_10600024"                   "25"
+            "sx_10600029"                   "25"
+            "sx_10600165"                   "25"
+            "val"                           "10"
+            "val1"                          "30"
+            "val2"                          "5"
+            "val3"                          "1"
+        }
+    }
+
+    // _ItemName: 巨神之甲
+    // _Description: 力量增幅+15%，每秒力量+0.6，杀敌力量+0.2
+    "item_14"
+    {
+        "name"                              "item_14"
+        "id"                                "1120014"
+        "ItemLabel"                         "game_item"
+        "Enable"                            "1"
+        "Rarity"                            "5"
+        "ItemCost"                          "20000"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "0"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/items/item_sx"
+        "Model"                             "models/props_gameplay/drop_item.vmdl"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityValues"
+        {
+            "sx_10600019"                   "15"
+            "sx_10600173"                   "0.6"
+            "sx_10600186"                   "0.2"
+        }
+    }
+
+    // _ItemName: 巨神之心
+    // _Description: 敏捷增幅+15%，每秒敏捷+0.6，杀敌敏捷+0.2
+    "item_15"
+    {
+        "name"                              "item_15"
+        "id"                                "1120015"
+        "ItemLabel"                         "game_item"
+        "Enable"                            "1"
+        "Rarity"                            "5"
+        "ItemCost"                          "20000"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "0"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/items/item_sx"
+        "Model"                             "models/props_gameplay/drop_item.vmdl"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityValues"
+        {
+            "sx_10600024"                   "15"
+            "sx_10600174"                   "0.6"
+            "sx_10600187"                   "0.2"
+        }
+    }
+
+    // _ItemName: 巨神之角
+    // _Description: 智力增幅+15%，每秒智力+0.6，杀敌智力+0.2
+    "item_16"
+    {
+        "name"                              "item_16"
+        "id"                                "1120016"
+        "ItemLabel"                         "game_item"
+        "Enable"                            "1"
+        "Rarity"                            "5"
+        "ItemCost"                          "20000"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "0"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/items/item_sx"
+        "Model"                             "models/props_gameplay/drop_item.vmdl"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityValues"
+        {
+            "sx_10600029"                   "15"
+            "sx_10600175"                   "0.6"
+            "sx_10600188"                   "0.2"
+        }
+    }
+
+    // _ItemName: 破败之剑
+    // _Description: 攻击力+100
+    "item_17"
+    {
+        "name"                              "item_17"
+        "id"                                "1120017"
+        "ItemLabel"                         "game_item"
+        "Enable"                            "1"
+        "Rarity"                            "1"
+        "ItemCost"                          "500"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "0"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/items/item_sx"
+        "Model"                             "models/props_gameplay/drop_item.vmdl"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityValues"
+        {
+            "sx_10600032"                   "10"
+        }
+    }
+
+    // _ItemName: 远古王者之剑
+    // _Description: 力量增幅+40%，敏捷增幅+40%，智力增幅+40%，每秒全属性+1，杀敌全属性+0.5，最终伤害+20%
+    "item_18"
+    {
+        "name"                              "item_18"
+        "id"                                "1120018"
+        "ItemLabel"                         "game_item"
+        "Enable"                            "1"
+        "Rarity"                            "6"
+        "ItemCost"                          "50000"
+        "ItemFormula"                       "item_14|item_15|item_16|item_17"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "0"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/items/item_sx"
+        "Model"                             "models/props_gameplay/drop_item.vmdl"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityValues"
+        {
+            "sx_10600019"                   "40"
+            "sx_10600024"                   "40"
+            "sx_10600029"                   "40"
+            "sx_10600172"                   "1"
+            "sx_10600185"                   "0.5"
+            "sx_10600165"                   "5"
+        }
+    }
+
+    // _ItemName: 真·无名之剑
+    // _Description: 攻击力+300，所有伤害+10%，最终伤害+5%
+    "item_19"
+    {
+        "name"                              "item_19"
+        "id"                                "1120019"
+        "ItemLabel"                         "game_item"
+        "Enable"                            "1"
+        "Rarity"                            "5"
+        "ItemCost"                          "20000"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "0"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/items/item_sx"
+        "Model"                             "models/props_gameplay/drop_item.vmdl"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityValues"
+        {
+            "sx_10600032"                   "300"
+            "sx_10600163"                   "10"
+            "sx_10600165"                   "5"
+        }
+    }
+
+    // _ItemName: 极寒泪滴
+    // _Description: 使用后获得200全属性，据说也是可以帮助某些兵器突破极限的无上至宝
+    "item_20"
+    {
+        "name"                              "item_20"
+        "id"                                "1120020"
+        "ItemLabel"                         "game_item"
+        "Enable"                            "1"
+        "Rarity"                            "5"
+        "ItemCost"                          "20000"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "0"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/items/item_20"
+        "Model"                             "models/props_gameplay/drop_item.vmdl"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityValues"
+        {
+            "val"                           "200"
+        }
+    }
+
+    // _ItemName: 远古龙渊之剑
+    // _Description: 攻击力+500，全属性+200，所有伤害+30%，最终伤害+15%，唯一被动：攻击时有10%的概率对目标500范围内的敌人造成600%攻击的自适应伤害，如果目标是精英或者BOSS，还会附带目标当前生命之1%的真实伤害
+    "item_21"
+    {
+        "name"                              "item_21"
+        "id"                                "1120021"
+        "ItemLabel"                         "game_item"
+        "Enable"                            "1"
+        "Rarity"                            "6"
+        "ItemCost"                          "50000"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "0"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/items/item_21"
+        "Model"                             "models/props_gameplay/drop_item.vmdl"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityValues"
+        {
+            "sx_10600032"                   "500"
+            "sx_10600012"                   "200"
+            "sx_10600163"                   "30"
+            "sx_10600165"                   "15"
+            "val"                           "10"
+            "val1"                          "500"
+            "val2"                          "600"
+            "val3"                          "1"
+        }
+    }
+
+    // _ItemName: 王者之冠
+    // _Description: 全属性+300，力量增幅+10%，敏捷增幅+10%，智力+10%，每秒木材+0.3，每秒金币+10
+    "item_22"
+    {
+        "name"                              "item_22"
+        "id"                                "1120022"
+        "ItemLabel"                         "game_item"
+        "Enable"                            "1"
+        "Rarity"                            "6"
+        "ItemCost"                          "50000"
+        "ItemShared"                        "1"
+        "ItemStacked"                       "0"
+        "ItemDropped"                       "1"
+        "ItemKillable"                      "0"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/items/item_sx"
+        "Model"                             "models/props_gameplay/drop_item.vmdl"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityValues"
+        {
+            "sx_10600012"                   "300"
+            "sx_10600019"                   "10"
+            "sx_10600024"                   "10"
+            "sx_10600029"                   "10"
+            "sx_10600182"                   "0.3"
+            "sx_10600181"                   "10"
+        }
+    }
+
+}

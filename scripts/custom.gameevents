@@ -1,0 +1,86 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+// No spaces in event names, max length 32
+// All strings are case sensitive
+//
+// valid data key types are:
+//   string : a zero terminated string
+//   bool   : unsigned int, 1 bit
+//   byte   : unsigned int, 8 bit
+//   short  : signed int, 16 bit
+//   long   : signed int, 32 bit
+//   float  : float, 32 bit
+//   uint64 : unsigned int 64 bit
+//   local  : any data, but not networked to clients
+//
+// following key names are reserved:
+//   local      : if set to 1, event is not networked to clients
+//   unreliable : networked, but unreliable
+//   suppress   : never fire this event
+//   time    : firing server time
+//   eventid    : holds the event ID
+
+"CustomEvents"
+{
+    "0"
+    {
+        "1"                     "string"
+    }
+    "core_player"
+    {
+        "1"                     "string"
+    }
+    "core_init_gameplay"
+    {
+        "play_count"            "short"
+    }
+    "attribute_update_client"
+    {
+        "entid"                 "short"
+        "json"                  "string"
+    }
+    "net_event_data"
+    {
+        "j"                     "string"
+        "r"                     "string"
+    }
+    "net_event_data_local"
+    {
+        "local"                 "1"
+        "j"                     "local"
+    }
+    "client_load"
+    {
+        "local"                 "1"
+        "path"                  "local"
+        "count"                 "local"
+        "load_count"            "local"
+    }
+    "client_load_finished"
+    {
+        "local"                 "1"
+    }
+    "js2lua"
+    {
+        "local"                 "1"
+        "key"                   "local"
+        "params"                "local"
+    }
+    "particle_s2c_local"
+    {
+        "local"                 "1"
+        "o"                     "string"
+    }
+    "ability_destroy"
+    {
+        "entid"                 "short"
+    }
+}

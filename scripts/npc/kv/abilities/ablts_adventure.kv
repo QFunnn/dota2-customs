@@ -1,0 +1,275 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"ablts_adventure"
+{
+    // _Name: 异次元药剂
+    // _Description: 获得生长合剂*5，小概率额外获得变异药剂*1
+    "adventure_1"
+    {
+        "name"                              "adventure_1"
+        "id"                                "1120001"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/adventure/adventure_1"
+        "Enable"                            "1"
+        "AbilityValues"
+        {
+            "val"                           "5"
+            "val1"                          "1"
+            "chance"                        "50"
+        }
+    }
+
+    // _Name: 贪吃虫
+    // _Description: 随机吞噬一个已学习的符文羁绊，如果当前没有可吞噬羁绊，则获得50木材
+    "adventure_2"
+    {
+        "name"                              "adventure_2"
+        "id"                                "1120002"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/adventure/adventure_2"
+        "Enable"                            "1"
+        "AbilityValues"
+        {
+            "val"                           "50"
+        }
+    }
+
+    // _Name: 异界勇士
+    // _Description: 召唤5个异界勇士协助你，继承100%的最大生命值和75%攻击力，持续60秒。
+    "adventure_3"
+    {
+        "name"                              "adventure_3"
+        "id"                                "1120003"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/adventure/adventure_3"
+        "Enable"                            "1"
+        "AbilityValues"
+        {
+            "count"                         "5"
+            "inherit_hp"                    "100"
+            "inherit_atk"                   "75"
+            "duration"                      "60"
+        }
+    }
+
+    // _Name: 狂暴之力
+    // _Description: 攻击速度+100%，冷却缩减+75%，持续时间：60秒。
+    "adventure_4"
+    {
+        "name"                              "adventure_4"
+        "id"                                "1120004"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/adventure/adventure_4"
+        "Enable"                            "1"
+        "AbilityValues"
+        {
+            "val"                           "100"
+            "val1"                          "900"
+            "duration"                      "60"
+        }
+    }
+
+    // _Name: 三相之力
+    // _Description: 全属性加成+40%，持续60秒
+    "adventure_5"
+    {
+        "name"                              "adventure_5"
+        "id"                                "1120005"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/adventure/adventure_5"
+        "Enable"                            "1"
+        "AbilityValues"
+        {
+            "val"                           "40"
+            "duration"                      "60"
+        }
+    }
+
+    // _Name: 羊羊大军
+    // _Description: 在卡牌栏位有空余的情况下，每20秒获得一张随机的【羊了羊】羁绊卡，最多获得6张（激活时立即获得一张）
+    "adventure_6"
+    {
+        "name"                              "adventure_6"
+        "id"                                "1120006"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/adventure/adventure_6"
+        "Enable"                            "1"
+        "AbilityValues"
+        {
+            "interval"                      "20"
+            "max_count"                     "6"
+        }
+    }
+
+    // _Name: 蔚蓝之力
+    // _Description: 永久提高5点法力值，且在随后60秒内提高50点法力回复和20%伤害减免
+    "adventure_7"
+    {
+        "name"                              "adventure_7"
+        "id"                                "1120007"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/adventure/adventure_7"
+        "Enable"                            "1"
+        "AbilityValues"
+        {
+            "val"                           "5"
+            "val1"                          "50"
+            "val2"                          "20"
+            "duration"                      "60"
+        }
+    }
+
+    // _Name: 成长果实
+    // _Description: 获得杀敌全属性+0.3，持续60秒
+    "adventure_8"
+    {
+        "name"                              "adventure_8"
+        "id"                                "1120008"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/adventure/adventure_8"
+        "Enable"                            "1"
+        "AbilityValues"
+        {
+            "val"                           "0.3"
+            "duration"                      "60"
+        }
+    }
+
+    // _Name: 美食时间
+    // _Description: 开启传送门30秒，传送成堆的香辣大龙虾，击杀可获得大量金币
+    "adventure_9"
+    {
+        "name"                              "adventure_9"
+        "id"                                "1120009"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/adventure/adventure_9"
+        "Enable"                            "1"
+        "AbilityValues"
+        {
+            "duration"                      "30"
+            "atk"                           "400"
+            "hp"                            "13000"
+            "armor"                         "15"
+            "kill_min_gold"                 "280"
+            "kill_max_gold"                 "320"
+            "kill_min_big_gold"             "560"
+            "kill_max_big_gold"             "640"
+            "val"                           "3"
+        }
+    }
+
+    // _Name: 古树世界
+    // _Description: 开启古树世界传送门30秒，击杀怪物可获得大量木材
+    "adventure_10"
+    {
+        "name"                              "adventure_10"
+        "id"                                "1120010"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/adventure/adventure_10"
+        "Enable"                            "1"
+        "AbilityValues"
+        {
+            "duration"                      "30"
+            "atk"                           "400"
+            "hp"                            "13000"
+            "armor"                         "15"
+            "kill_min_wood"                 "8"
+            "kill_max_wood"                 "12"
+            "kill_big_wood"                 "50"
+        }
+    }
+
+    // _Name: 土匪窝
+    // _Description: 开启土匪窝的传送门30秒，击杀强盗与土匪可获得大量杀敌数
+    "adventure_11"
+    {
+        "name"                              "adventure_11"
+        "id"                                "1120011"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/adventure/adventure_11"
+        "Enable"                            "1"
+        "AbilityValues"
+        {
+            "duration"                      "30"
+            "atk"                           "400"
+            "hp"                            "13000"
+            "armor"                         "15"
+            "kill_min_kill"                 "20"
+            "kill_max_kill"                 "40"
+            "kill_big_kill"                 "100"
+        }
+    }
+
+    // _Name: 异星世界
+    // _Description: 开启异星世界传送门30秒，击杀怪物可获得大量经验值
+    "adventure_12"
+    {
+        "name"                              "adventure_12"
+        "id"                                "1120012"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/adventure/adventure_12"
+        "Enable"                            "1"
+        "AbilityValues"
+        {
+            "duration"                      "30"
+            "atk"                           "400"
+            "hp"                            "13000"
+            "armor"                         "15"
+            "kill_min_exp"                  "60"
+            "kill_max_exp"                  "80"
+            "kill_min_big_exp"              "450"
+            "kill_max_big_exp"              "800"
+        }
+    }
+
+    // _Name: 魔法图书馆
+    // _Description: 开启魔法图书馆传送门30秒，击杀怪物可获得大量随机属性
+    "adventure_13"
+    {
+        "name"                              "adventure_13"
+        "id"                                "1120013"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/adventure/adventure_13"
+        "Enable"                            "1"
+        "AbilityValues"
+        {
+            "duration"                      "30"
+            "atk"                           "400"
+            "hp"                            "13000"
+            "armor"                         "15"
+            "val1"                          "30"
+            "val2"                          "3"
+        }
+    }
+
+    // _Name: 极其稀有·彩虹关
+    // _Description: 没有奶牛关，但是彩虹关
+    "adventure_14"
+    {
+        "name"                              "adventure_14"
+        "id"                                "1120014"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/adventure/adventure_14"
+        "Enable"                            "1"
+        "AbilityValues"
+        {
+            "duration"                      "30"
+            "atk"                           "400"
+            "hp"                            "13000"
+            "armor"                         "15"
+            "kill_min_gold"                 "480"
+            "kill_max_gold"                 "500"
+            "kill_min_wood"                 "30"
+            "kill_max_wood"                 "50"
+        }
+    }
+
+}

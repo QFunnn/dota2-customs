@@ -1,0 +1,390 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "BoneMarkupList"
+				children = [  ]
+				bone_cull_type = "None"
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						name = "ice_boss_egg_dest"
+						filename = "models/creeps/ice_boss/ice_boss_egg_dest_ice_boss_egg_dest.dmx"
+					},
+				]
+			},
+			{
+				_class = "AttachmentList"
+				children = 
+				[
+					{
+						_class = "Attachment"
+						name = "attach_hitloc"
+						ignore_rotation = false
+						parent_bone = "ice_boss_egg_joint11"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_egg"
+						ignore_rotation = false
+						parent_bone = "ice_boss_egg_joint6"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+				]
+			},
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					{
+						_class = "AnimFile"
+						name = "ice_boss_egg_dest"
+						source_filename = "models/creeps/ice_boss/ice_boss_egg_dest.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_IDLE"
+						activity_weight = 1
+					},
+					{
+						_class = "AnimFile"
+						name = "ice_boss_egg_dest_break_a"
+						source_filename = "models/creeps/ice_boss/ice_boss_egg_dest_break_a.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_DIE"
+						activity_weight = 1
+						children = 
+						[
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+								event_frame = 0
+								event_keys = 
+								{
+									name = resource:"particles/forest/egg_destruction.vpcf"
+									detach_from_owner = false
+									always_run = false
+									stop_on_seq_change = false
+									stop_immediately = false
+									use_layer_sequence = false
+									tags = null
+									attachment_point = "attach_egg"
+									attachment_type = "point"
+									attachment_point_cp1 = null
+									attachment_type_cp1 = "point_follow"
+								}
+							},
+						]
+					},
+					{
+						_class = "AnimFile"
+						name = "ice_boss_egg_dest_break_b"
+						source_filename = "models/creeps/ice_boss/ice_boss_egg_dest_break_b.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_DIE"
+						activity_weight = 1
+						children = 
+						[
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+								event_frame = 0
+								event_keys = 
+								{
+									name = resource:"particles/forest/egg_destruction.vpcf"
+									detach_from_owner = false
+									always_run = false
+									stop_on_seq_change = false
+									stop_immediately = false
+									use_layer_sequence = false
+									tags = null
+									attachment_point = "attach_egg"
+									attachment_type = "point"
+									attachment_point_cp1 = null
+									attachment_type_cp1 = "point_follow"
+								}
+							},
+						]
+					},
+					{
+						_class = "AnimFile"
+						name = "ice_boss_egg_dest_break_c"
+						source_filename = "models/creeps/ice_boss/ice_boss_egg_dest_break_c.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_DIE"
+						activity_weight = 1
+						children = 
+						[
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+								event_frame = 0
+								event_keys = 
+								{
+									name = resource:"particles/forest/egg_destruction.vpcf"
+									detach_from_owner = false
+									always_run = false
+									stop_on_seq_change = false
+									stop_immediately = false
+									use_layer_sequence = false
+									tags = null
+									attachment_point = "attach_egg"
+									attachment_type = "point"
+									attachment_point_cp1 = null
+									attachment_type_cp1 = "point_follow"
+								}
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "HitboxSetList"
+				children = 
+				[
+					{
+						_class = "HitboxSet"
+						name = "default"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -5.379091, -3.733227, -6.983604 ]
+								hitbox_maxs = [ 5.379091, 3.733231, 6.983604 ]
+								name = "ice_boss_egg_joint2"
+								parent_bone = "ice_boss_egg_joint2"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -2.331172, -2.111549, -2.051015 ]
+								hitbox_maxs = [ 2.331172, 2.111553, 2.051015 ]
+								name = "ice_boss_egg_joint3"
+								parent_bone = "ice_boss_egg_joint3"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -15.635221, -16.0853, -11.426432 ]
+								hitbox_maxs = [ 15.635221, 16.085304, 11.426432 ]
+								name = "ice_boss_egg_joint4"
+								parent_bone = "ice_boss_egg_joint4"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -16.328629, -16.78495, -18.073919 ]
+								hitbox_maxs = [ 16.328629, 16.78495, 18.073919 ]
+								name = "ice_boss_egg_joint5"
+								parent_bone = "ice_boss_egg_joint5"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -20.787392, -14.95472, -21.446838 ]
+								hitbox_maxs = [ 20.787392, 14.95472, 21.446838 ]
+								name = "ice_boss_egg_joint6"
+								parent_bone = "ice_boss_egg_joint6"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -19.623518, -19.56432, -10.997964 ]
+								hitbox_maxs = [ 19.623518, 19.56432, 10.997964 ]
+								name = "ice_boss_egg_joint7"
+								parent_bone = "ice_boss_egg_joint7"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -10.725697, -17.999763, -11.714899 ]
+								hitbox_maxs = [ 10.725697, 17.999763, 11.714899 ]
+								name = "ice_boss_egg_joint8"
+								parent_bone = "ice_boss_egg_joint8"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -11.838818, -18.243301, -16.389896 ]
+								hitbox_maxs = [ 11.838818, 18.243301, 16.389896 ]
+								name = "ice_boss_egg_joint9"
+								parent_bone = "ice_boss_egg_joint9"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -9.025944, -9.322918, -10.08086 ]
+								hitbox_maxs = [ 9.025944, 9.322918, 10.08086 ]
+								name = "ice_boss_egg_joint10"
+								parent_bone = "ice_boss_egg_joint10"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -11.59995, -13.239735, -12.013849 ]
+								hitbox_maxs = [ 11.59995, 13.239735, 12.013849 ]
+								name = "ice_boss_egg_joint11"
+								parent_bone = "ice_boss_egg_joint11"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -9.54563, -16.827965, -12.896095 ]
+								hitbox_maxs = [ 9.54563, 16.827965, 12.896095 ]
+								name = "ice_boss_egg_joint1"
+								parent_bone = "ice_boss_egg_joint1"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "Skeleton"
+				children = 
+				[
+					{
+						_class = "Bone"
+						name = "ice_boss_egg_joint1"
+						origin = [ -4.017388, -13.853842, 44.519787 ]
+						angles = [ 0.0, 90.0, 90.0 ]
+						do_not_discard = true
+					},
+					{
+						_class = "Bone"
+						name = "ice_boss_egg_joint2"
+						origin = [ 4.262941, -2.041234, 59.218788 ]
+						angles = [ 0.0, 90.0, 90.0 ]
+						do_not_discard = true
+					},
+					{
+						_class = "Bone"
+						name = "ice_boss_egg_joint3"
+						origin = [ 1.905528, -8.762912, 58.108086 ]
+						angles = [ 0.0, 90.0, 90.0 ]
+						do_not_discard = true
+					},
+					{
+						_class = "Bone"
+						name = "ice_boss_egg_joint4"
+						origin = [ 12.075445, -4.517406, 43.58799 ]
+						angles = [ 0.0, 90.0, 90.0 ]
+						do_not_discard = true
+					},
+					{
+						_class = "Bone"
+						name = "ice_boss_egg_joint5"
+						origin = [ 5.533451, -7.075738, 22.708313 ]
+						angles = [ 0.0, 90.0, 90.0 ]
+						do_not_discard = true
+					},
+					{
+						_class = "Bone"
+						name = "ice_boss_egg_joint6"
+						origin = [ -0.231193, 2.601269, 14.954716 ]
+						angles = [ 0.0, 90.0, 90.0 ]
+						do_not_discard = true
+					},
+					{
+						_class = "Bone"
+						name = "ice_boss_egg_joint7"
+						origin = [ -12.518025, -3.487723, 31.321981 ]
+						angles = [ 0.0, 90.0, 90.0 ]
+						do_not_discard = true
+					},
+					{
+						_class = "Bone"
+						name = "ice_boss_egg_joint8"
+						origin = [ 11.447178, 12.662962, 28.508839 ]
+						angles = [ 0.0, 90.0, 90.0 ]
+						do_not_discard = true
+					},
+					{
+						_class = "Bone"
+						name = "ice_boss_egg_joint9"
+						origin = [ -5.764362, 11.557763, 39.135029 ]
+						angles = [ 0.0, 90.0, 90.0 ]
+						do_not_discard = true
+					},
+					{
+						_class = "Bone"
+						name = "ice_boss_egg_joint10"
+						origin = [ -8.995516, -1.839162, 53.367702 ]
+						angles = [ 0.0, 90.0, 90.0 ]
+						do_not_discard = true
+					},
+					{
+						_class = "Bone"
+						name = "ice_boss_egg_joint11"
+						origin = [ 3.519489, 7.944961, 49.35791 ]
+						angles = [ 0.0, 90.0, 90.0 ]
+						do_not_discard = true
+					},
+				]
+			},
+		]
+	}
+}

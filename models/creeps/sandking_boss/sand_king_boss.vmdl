@@ -1,0 +1,1936 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "BoneMarkupList"
+				children = [  ]
+				bone_cull_type = "None"
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						name = "sand_king_model"
+						filename = "models/creeps/sandking_boss/sand_king_boss_sand_king_model.dmx"
+					},
+				]
+			},
+			{
+				_class = "AttachmentList"
+				children = 
+				[
+					{
+						_class = "Attachment"
+						name = "attach_attack1"
+						ignore_rotation = false
+						parent_bone = "wrist_L"
+						relative_origin = [ 14.076595, -6.701172, -1.429513 ]
+						relative_angles = [ 5.813852, 5.203465, 173.732285 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_hitloc"
+						ignore_rotation = false
+						parent_bone = "spine2"
+						relative_origin = [ 2.868626, 0.0, 0.850952 ]
+						relative_angles = [ 88.858414, -90.000679, -1.164047 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_tail"
+						ignore_rotation = false
+						parent_bone = "tail0_3"
+						relative_origin = [ 31.055649, -0.428858, 1.169342 ]
+						relative_angles = [ -1.516543, -1.334217, -89.964653 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_attack2"
+						ignore_rotation = false
+						parent_bone = "wrist_R"
+						relative_origin = [ -17.772818, 6.615059, 0.000006 ]
+						relative_angles = [ 0.000005, 0.000006, 0.000005 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_tail2"
+						ignore_rotation = false
+						parent_bone = "tail0_3"
+						relative_origin = [ -6.283829, -0.000001, -0.000015 ]
+						relative_angles = [ 0.0, 0.0, -90.489662 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_tail3"
+						ignore_rotation = false
+						parent_bone = "tail0_2"
+						relative_origin = [ 1.736145, 0.0, 0.0 ]
+						relative_angles = [ -0.000001, 0.0, -90.889893 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_tail4"
+						ignore_rotation = false
+						parent_bone = "tail0_1"
+						relative_origin = [ 8.906052, -0.000001, 0.000006 ]
+						relative_angles = [ 0.0, 0.0, -90.840019 ]
+						weight = 1.0
+					},
+				]
+			},
+			{
+				_class = "PoseParamList"
+				children = 
+				[
+					{
+						_class = "PoseParam"
+						name = "turn"
+						poseparam_min = -1.0
+						poseparam_max = 1.0
+						poseparam_looping = false
+						poseparam_loop = 0.0
+					},
+				]
+			},
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "sand_king_burrowstrike"
+								source_filename = "models/creeps/sandking_boss/sand_king_burrowstrike.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_OVERRIDE_ABILITY_1"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "sand_king_die"
+								source_filename = "models/creeps/sandking_boss/sand_king_die.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DIE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 28
+										event_keys = 
+										{
+											name = "BodyImpact_Common.Medium"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "sand_king_run_chase"
+								source_filename = "models/creeps/sandking_boss/sand_king_run_chase.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "burrow_in"
+								source_filename = "models/creeps/sandking_boss/burrow_in.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_SAND_KING_BURROW_IN"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "burrow_out"
+								source_filename = "models/creeps/sandking_boss/burrow_out.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_SAND_KING_BURROW_OUT"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "taunt_poundnpoint"
+								source_filename = "models/creeps/sandking_boss/taunt_poundnpoint.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_TAUNT"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "taunt_periscope"
+								source_filename = "models/creeps/sandking_boss/taunt_periscope.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_TAUNT"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "loadout_spawn"
+								source_filename = "models/creeps/sandking_boss/loadout_spawn.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_SPAWN"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "victory"
+								source_filename = "models/creeps/sandking_boss/victory.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_VICTORY"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "versus_epi"
+								source_filename = "models/creeps/sandking_boss/versus_epi.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_VERSUS"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "sand_king_attack_anim"
+								source_filename = "models/creeps/sandking_boss/sand_king_attack_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 18
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "sand_king_attack2_anim"
+								source_filename = "models/creeps/sandking_boss/sand_king_attack2_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 19
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "sand_king_attack3_anim"
+								source_filename = "models/creeps/sandking_boss/sand_king_attack3_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 18
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "sand_king_epicast_anim"
+								source_filename = "models/creeps/sandking_boss/sand_king_epicast_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_4"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "sand_storm_anim"
+								source_filename = "models/creeps/sandking_boss/sand_storm_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_OVERRIDE_ABILITY_2"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "sand_king_idle_anim"
+								source_filename = "models/creeps/sandking_boss/sand_king_idle_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "sand_king_run_injured_anim"
+								source_filename = "models/creeps/sandking_boss/sand_king_run_injured_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "spawn_anim"
+								source_filename = "models/creeps/sandking_boss/spawn_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_SPAWN"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "flail_anim"
+								source_filename = "models/creeps/sandking_boss/flail_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_FLAIL"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "stun_anim"
+								source_filename = "models/creeps/sandking_boss/stun_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DISABLED"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "sand_king_capture"
+								source_filename = "models/creeps/sandking_boss/sand_king_capture.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAPTURE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "sand_king_capture_teleport"
+								source_filename = "models/creeps/sandking_boss/sand_king_capture_teleport.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAPTURE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "swipe_left"
+								source_filename = "models/creeps/sandking_boss/swipe_left.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_5"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "swipe_right"
+								source_filename = "models/creeps/sandking_boss/swipe_right.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_6"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "periscope_slam_forward_v02"
+								source_filename = "models/creeps/sandking_boss/periscope_slam_forward_v02.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_7"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "periscope_slam"
+								source_filename = "models/creeps/sandking_boss/periscope_slam.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_ROT"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "periscope_slam_forward"
+								source_filename = "models/creeps/sandking_boss/periscope_slam_forward.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_7"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "tunnel_down"
+								source_filename = "models/creeps/sandking_boss/tunnel_down.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RAZE_1"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "tunnel_up_gesture"
+								source_filename = "models/creeps/sandking_boss/tunnel_up_gesture.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RAZE_2"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "periscope_idle"
+								source_filename = "models/creeps/sandking_boss/periscope_idle.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "run_left"
+								source_filename = "models/creeps/sandking_boss/run_left.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = false
+										extract_ty = true
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "run_back"
+								source_filename = "models/creeps/sandking_boss/run_back.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "run_right"
+								source_filename = "models/creeps/sandking_boss/run_right.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = false
+										extract_ty = true
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "tunnelup_intro"
+								source_filename = "models/creeps/sandking_boss/tunnelup_intro.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RAZE_3"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "epicenter"
+								source_filename = "models/creeps/sandking_boss/epicenter.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = true
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_OVERRIDE_ABILITY_4"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "sand_king_run_anim"
+								source_filename = "models/creeps/sandking_boss/sand_king_run_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 0
+										event_keys = 
+										{
+											name = "Hero_SandKing.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 8
+										event_keys = 
+										{
+											name = "Hero_SandKing.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimAddLayer"
+										anim_name = "turn"
+									},
+									{
+										_class = "AnimAddLayer"
+										anim_name = "turn"
+									},
+								]
+							},
+						]
+						name = "base"
+					},
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "burrow_out_lava"
+								source_filename = "models/creeps/sandking_boss/burrow_out_lava.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_SAND_KING_BURROW_OUT"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "burrow_in_lava"
+								source_filename = "models/creeps/sandking_boss/burrow_in_lava.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_SAND_KING_BURROW_IN"
+								activity_weight = 1
+							},
+						]
+						name = "item"
+					},
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "sand_king_run"
+								source_filename = "models/creeps/sandking_boss/sand_king_run.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN_STATUE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 0
+										event_keys = 
+										{
+											name = "Hero_SandKing.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 8
+										event_keys = 
+										{
+											name = "Hero_SandKing.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "sand_king_attack"
+								source_filename = "models/creeps/sandking_boss/sand_king_attack.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK_STATUE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 15
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "sand_king_attack2"
+								source_filename = "models/creeps/sandking_boss/sand_king_attack2.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK_STATUE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 15
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "sand_king_attack3"
+								source_filename = "models/creeps/sandking_boss/sand_king_attack3.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK_STATUE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 15
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "sand_king_epicast"
+								source_filename = "models/creeps/sandking_boss/sand_king_epicast.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST4_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "sand_storm"
+								source_filename = "models/creeps/sandking_boss/sand_storm.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST2_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "sand_king_idle"
+								source_filename = "models/creeps/sandking_boss/sand_king_idle.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "sand_king_run_injured"
+								source_filename = "models/creeps/sandking_boss/sand_king_run_injured.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN_STATUE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "sand_king_stun"
+								source_filename = "models/creeps/sandking_boss/sand_king_stun.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_STUN_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "flail"
+								source_filename = "models/creeps/sandking_boss/flail.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_FLAIL_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "stun"
+								source_filename = "models/creeps/sandking_boss/stun.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_STUN_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "spawn"
+								source_filename = "models/creeps/sandking_boss/spawn.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_SPAWN_STATUE"
+								activity_weight = 1
+							},
+						]
+						name = "effigy"
+					},
+					{
+						_class = "AnimBindPose"
+						name = "bindPose"
+					},
+					{
+						_class = "AnimFile"
+						name = "@epicenter"
+						source_filename = "models/creeps/sandking_boss/@epicenter.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = true
+					},
+					{
+						_class = "AnimFile"
+						name = "@turn"
+						source_filename = "models/creeps/sandking_boss/@turn.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = true
+					},
+					{
+						_class = "AnimFile"
+						name = "@sand_king_run_anim"
+						source_filename = "models/creeps/sandking_boss/@sand_king_run_anim.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = true
+						children = 
+						[
+							{
+								_class = "ExtractMotion"
+								extract_tx = true
+								extract_ty = false
+								extract_tz = false
+								extract_rz = false
+								linear = false
+								quadratic = false
+								motion_type = "uniform"
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 0
+								event_keys = 
+								{
+									name = "Hero_SandKing.Footsteps"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 8
+								event_keys = 
+								{
+									name = "Hero_SandKing.Footsteps"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+						]
+					},
+					{
+						_class = "AnimFile"
+						name = "@turn_lookFrame_0"
+						source_filename = "models/creeps/sandking_boss/@turn_lookFrame_0.dmx"
+						fade_in_time = 0.0
+						fade_out_time = 0.0
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = true
+					},
+					{
+						_class = "AnimFile"
+						name = "@turn_lookFrame_1"
+						source_filename = "models/creeps/sandking_boss/@turn_lookFrame_1.dmx"
+						fade_in_time = 0.0
+						fade_out_time = 0.0
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = true
+					},
+					{
+						_class = "AnimFile"
+						name = "@turn_lookFrame_2"
+						source_filename = "models/creeps/sandking_boss/@turn_lookFrame_2.dmx"
+						fade_in_time = 0.0
+						fade_out_time = 0.0
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = true
+					},
+					{
+						_class = "AnimFile"
+						name = "side_swipe_right"
+						source_filename = "models/creeps/sandking_boss/side_swipe_right.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+					},
+					{
+						_class = "AnimFile"
+						name = "turn"
+						source_filename = "models/creeps/sandking_boss/turn.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = true
+						worldSpace = false
+						hidden = false
+					},
+				]
+			},
+			{
+				_class = "HitboxSetList"
+				children = 
+				[
+					{
+						_class = "HitboxSet"
+						name = "default"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -4.179822, -12.530874, -40.235111 ]
+								hitbox_maxs = [ 22.621157, 12.530873, 40.328129 ]
+								name = "head"
+								parent_bone = "head"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -7.199812, -5.772882, -5.923875 ]
+								hitbox_maxs = [ 33.544788, 5.662358, 8.173592 ]
+								name = "elbow_L"
+								parent_bone = "elbow_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -6.77197, -6.861161, -6.470697 ]
+								hitbox_maxs = [ 34.473934, 7.427012, 11.272275 ]
+								name = "bicep_L"
+								parent_bone = "bicep_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -33.72897, -6.767056, -9.228655 ]
+								hitbox_maxs = [ 7.199812, 6.899141, 6.68854 ]
+								name = "elbow_R"
+								parent_bone = "elbow_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -34.473934, -8.199619, -9.959915 ]
+								hitbox_maxs = [ 6.77197, 7.328107, 5.717354 ]
+								name = "bicep_R"
+								parent_bone = "bicep_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -4.810112, -20.987455, -15.334178 ]
+								hitbox_maxs = [ 34.24905, 24.92547, 24.946741 ]
+								name = "spine3"
+								parent_bone = "spine3"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 13.039309, -23.171446, -21.087177 ]
+								hitbox_maxs = [ 46.73978, 23.171446, 24.444105 ]
+								name = "spine1"
+								parent_bone = "spine1"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -28.310301, -5.394626, -5.774352 ]
+								hitbox_maxs = [ 0.789701, 8.754259, 7.959761 ]
+								name = "quadHumerous_R"
+								parent_bone = "quadHumerous_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -31.631895, -9.751152, -6.014769 ]
+								hitbox_maxs = [ -0.673387, 7.603725, 5.873386 ]
+								name = "quadClavicle_R"
+								parent_bone = "quadClavicle_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -29.125311, -7.799209, -7.413766 ]
+								hitbox_maxs = [ 4.557901, 8.583381, 7.271075 ]
+								name = "quadKnee_R"
+								parent_bone = "quadKnee_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -32.066357, -6.634075, -5.861942 ]
+								hitbox_maxs = [ -3.99291, 9.195145, 6.175952 ]
+								name = "quadThigh_R"
+								parent_bone = "quadThigh_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -2.075618, -7.033141, -8.25342 ]
+								hitbox_maxs = [ 29.125311, 6.390598, 8.415388 ]
+								name = "quadKnee_A_L"
+								parent_bone = "quadKnee_A_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 3.304938, -9.782338, -6.443032 ]
+								hitbox_maxs = [ 31.378386, 6.286445, 5.602707 ]
+								name = "quadThigh_A_L"
+								parent_bone = "quadThigh_A_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -4.157806, -6.990864, -9.04748 ]
+								hitbox_maxs = [ 21.67038, 6.022626, 7.544401 ]
+								name = "quadHumerous_L"
+								parent_bone = "quadHumerous_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 0.77202, -7.058521, -7.523925 ]
+								hitbox_maxs = [ 30.157806, 6.200962, 6.004975 ]
+								name = "quadClavicle_L"
+								parent_bone = "quadClavicle_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -21.67038, -6.13734, -7.235166 ]
+								hitbox_maxs = [ 4.157806, 7.12402, 8.676636 ]
+								name = "quadHumerous_A_R"
+								parent_bone = "quadHumerous_A_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -31.773024, -7.969676, -6.706653 ]
+								hitbox_maxs = [ -0.198035, 7.994582, 6.754805 ]
+								name = "quadClavicle_A_R"
+								parent_bone = "quadClavicle_A_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -7.043879, -32.522747, -9.486426 ]
+								hitbox_maxs = [ 61.427891, 27.385988, 11.738888 ]
+								name = "tail0_3"
+								parent_bone = "tail0_3"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 1.368418, -16.258034, -11.096415 ]
+								hitbox_maxs = [ 46.270954, 16.258034, 10.418202 ]
+								name = "tail0_2"
+								parent_bone = "tail0_2"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -5.263999, -25.012558, -14.710588 ]
+								hitbox_maxs = [ 53.548069, 25.012558, 11.456522 ]
+								name = "tail0_1"
+								parent_bone = "tail0_1"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -0.789701, -8.37717, -9.327966 ]
+								hitbox_maxs = [ 28.310301, 5.162252, 6.766906 ]
+								name = "quadHumerous_A_L"
+								parent_bone = "quadHumerous_A_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 0.403914, -10.122606, -5.781178 ]
+								hitbox_maxs = [ 30.961426, 7.656119, 5.994695 ]
+								name = "quadClavicle_A_L"
+								parent_bone = "quadClavicle_A_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -85.941429, -32.5182, -22.013151 ]
+								hitbox_maxs = [ 23.147242, 32.5182, 18.168758 ]
+								name = "root"
+								parent_bone = "root"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "head"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -4.179822, -12.530874, -40.235111 ]
+								hitbox_maxs = [ 22.621157, 12.530873, 40.328129 ]
+								name = "head"
+								parent_bone = "head"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "hands"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -19.612785, -8.646156, -12.532264 ]
+								hitbox_maxs = [ 69.644203, 5.487066, 11.701396 ]
+								name = "wrist_L"
+								parent_bone = "wrist_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -69.54084, -7.425529, -10.443007 ]
+								hitbox_maxs = [ 19.826893, 12.090091, 11.716541 ]
+								name = "wrist_R"
+								parent_bone = "wrist_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "select_high"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -25.0, -20.0, -40.0 ]
+								hitbox_maxs = [ 15.0, 20.0, 50.0 ]
+								name = "root"
+								parent_bone = "root"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "feet"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -30.352842, -7.563221, -17.370703 ]
+								hitbox_maxs = [ 18.459972, 10.302718, 1.64113 ]
+								name = "quadElbow_R"
+								parent_bone = "quadElbow_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -33.947601, -9.822042, -16.716896 ]
+								hitbox_maxs = [ 25.129658, 9.611086, 4.694961 ]
+								name = "quadAnkle_R"
+								parent_bone = "quadAnkle_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -24.563129, -9.355323, -4.694961 ]
+								hitbox_maxs = [ 33.182278, 9.560666, 16.716896 ]
+								name = "quadAnkle_A_L"
+								parent_bone = "quadAnkle_A_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -18.137848, -6.895475, -3.463499 ]
+								hitbox_maxs = [ 31.608847, 7.227323, 13.430723 ]
+								name = "quadElbow_L"
+								parent_bone = "quadElbow_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -28.104929, -7.918854, -13.430723 ]
+								hitbox_maxs = [ 16.127224, 7.555254, 3.463499 ]
+								name = "quadElbow_A_R"
+								parent_bone = "quadElbow_A_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -18.922539, -10.431242, -1.64113 ]
+								hitbox_maxs = [ 31.113419, 7.657569, 17.370703 ]
+								name = "quadElbow_A_L"
+								parent_bone = "quadElbow_A_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "select_low"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -50.0, -40.0, -40.0 ]
+								hitbox_maxs = [ 35.0, 40.0, 60.0 ]
+								name = "root"
+								parent_bone = "root"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "Skeleton"
+				children = 
+				[
+					{
+						_class = "Bone"
+						name = "root"
+						origin = [ -6.779385, -0.0, 38.618031 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						do_not_discard = true
+						children = 
+						[
+							{
+								_class = "Bone"
+								name = "spine1"
+								origin = [ 4.292337, -0.0, 14.372746 ]
+								angles = [ -79.548576, -0.000014, 0.000019 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "spine2"
+										origin = [ 20.946438, 0.000001, -0.000006 ]
+										angles = [ -15.829456, 0.000001, -0.0 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "spine3"
+												origin = [ 27.071381, 0.000001, -0.000003 ]
+												angles = [ 15.477745, -0.000001, -0.0 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "neck1"
+														origin = [ 14.348564, 0.000001, 0.000008 ]
+														angles = [ 53.159706, -0.000007, -0.000003 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "head"
+																origin = [ 20.552818, 0.0, 0.000099 ]
+																angles = [ 30.533552, -0.000003, -0.000011 ]
+																do_not_discard = true
+															},
+														]
+													},
+													{
+														_class = "Bone"
+														name = "clavicle_L"
+														origin = [ 13.41893, 2.999998, 7.751095 ]
+														angles = [ 5.326434, 121.56179, 90.0 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "bicep_L"
+																origin = [ 25.099827, 0.000019, 0.000076 ]
+																angles = [ 3.890356, -14.360293, -179.201813 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "elbow_L"
+																		origin = [ 39.891647, -0.000035, -0.000229 ]
+																		angles = [ 76.009789, -179.999985, -179.999985 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "wrist_L"
+																				origin = [ 37.60775, -0.000045, 0.000071 ]
+																				angles = [ -59.813828, -166.205368, -97.640633 ]
+																				do_not_discard = true
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+													{
+														_class = "Bone"
+														name = "clavicle_R"
+														origin = [ 13.4189, -3.000003, 7.751085 ]
+														angles = [ -5.326426, 58.438217, -89.999977 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "bicep_R"
+																origin = [ -25.099857, -0.000013, -0.000053 ]
+																angles = [ 3.890362, -14.360299, -179.201813 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "elbow_R"
+																		origin = [ -39.89164, 0.000042, 0.000206 ]
+																		angles = [ 76.009758, 179.999924, 179.999878 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "wrist_R"
+																				origin = [ -37.607689, 0.000066, -0.000084 ]
+																				angles = [ -59.813828, -166.205429, -97.640633 ]
+																				do_not_discard = true
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "quadClavicle_R"
+								origin = [ -18.133329, -22.05904, -11.62509 ]
+								angles = [ -28.210577, 94.873016, -90.000008 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "quadHumerous_R"
+										origin = [ -28.337681, -1.509323, 0.120272 ]
+										angles = [ 4.041096, 66.748276, -84.10717 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "quadElbow_R"
+												origin = [ -28.12944, -0.000015, 0.000025 ]
+												angles = [ 87.48246, -179.99971, -179.999619 ]
+												do_not_discard = true
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "quadThigh_R"
+								origin = [ -37.752041, -25.499466, -12.314598 ]
+								angles = [ -24.456995, 51.00066, -89.999992 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "quadKnee_R"
+										origin = [ -31.001743, -0.657188, -0.685272 ]
+										angles = [ 3.327262, 70.452171, -79.298645 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "quadAnkle_R"
+												origin = [ -32.048119, -0.000015, 0.000088 ]
+												angles = [ 79.732887, -179.999924, -179.999924 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "quadToe_R"
+														origin = [ -45.089134, -0.000041, -0.000381 ]
+														angles = [ 53.782333, 0.337841, -106.340706 ]
+														do_not_discard = true
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "quadThigh_A_L"
+								origin = [ -37.994549, 26.443607, -12.027548 ]
+								angles = [ 24.456997, 128.999329, 90.0 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "quadKnee_A_L"
+										origin = [ 30.313782, 0.028976, 0.27957 ]
+										angles = [ 3.327258, 70.452156, -79.298645 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "quadAnkle_A_L"
+												origin = [ 32.048058, -0.000006, -0.000038 ]
+												angles = [ 79.732826, 179.999985, 179.999924 ]
+												do_not_discard = true
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "quadClavicle_L"
+								origin = [ 0.017553, 23.534145, -12.285843 ]
+								angles = [ 24.398548, 41.083603, 90.0 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "quadHumerous_L"
+										origin = [ 30.744797, -0.568069, -1.053217 ]
+										angles = [ -7.64923, 72.630272, -95.328445 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "quadElbow_L"
+												origin = [ 26.9795, -0.000021, 0.00001 ]
+												angles = [ 76.498894, 179.999954, 179.999908 ]
+												do_not_discard = true
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "quadClavicle_A_R"
+								origin = [ -1.930539, -23.103241, -12.237204 ]
+								angles = [ -24.398548, 138.916397, -89.999992 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "quadHumerous_A_R"
+										origin = [ -32.360039, -0.111198, 0.097824 ]
+										angles = [ -7.649236, 72.630287, -95.328468 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "quadElbow_A_R"
+												origin = [ -26.979559, -0.000004, -0.000019 ]
+												angles = [ 76.498886, 179.999924, 179.999924 ]
+												do_not_discard = true
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "tail0_0"
+								origin = [ -53.335125, -0.0, -7.656185 ]
+								angles = [ -0.000003, -179.999985, -179.999985 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "tail0_1"
+										origin = [ 43.704674, 0.0, 0.0 ]
+										angles = [ 0.505641, -0.0, -0.000007 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "tail0_2"
+												origin = [ 52.846451, 0.0, 0.0 ]
+												angles = [ 0.505646, -0.0, -0.0 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "tail0_3"
+														origin = [ 46.616104, 0.0, -0.000042 ]
+														angles = [ 0.505659, 0.000002, -0.000061 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "tail0_4"
+																origin = [ 61.384476, -0.000001, -0.000095 ]
+																angles = [ 0.0, 0.0, -0.0 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "tail0_6"
+																		origin = [ 14.323242, -0.000046, -14.7747 ]
+																		angles = [ 80.391533, -179.999191, -89.999168 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "tail0_7"
+																				origin = [ 12.928875, 0.002563, -0.000002 ]
+																				angles = [ 90.0, -165.963745, -165.963745 ]
+																				do_not_discard = true
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "quadClavicle_A_L"
+								origin = [ -17.831583, 23.091965, -11.077068 ]
+								angles = [ 28.210583, 85.127007, 90.000008 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "quadHumerous_A_L"
+										origin = [ 27.667141, 0.527664, -0.333124 ]
+										angles = [ 4.041065, 66.748268, -84.107147 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "quadElbow_A_L"
+												origin = [ 28.129166, -0.000048, 0.000021 ]
+												angles = [ 87.48246, 179.999847, 179.999985 ]
+												do_not_discard = true
+											},
+										]
+									},
+								]
+							},
+						]
+					},
+				]
+			},
+		]
+	}
+}

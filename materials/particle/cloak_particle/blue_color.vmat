@@ -1,0 +1,57 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"Layer0"
+{
+	"shader"	"hero.vfx"
+	"F_ADDITIVE_BLEND"	"1"
+	"F_ENABLE_CLOAK"	"1"
+	"g_flAmbientScale"	"10"
+	"g_flBloomScale"	"1"
+	"g_flBloomShift"	"1"
+	"g_flCloakIntensity"	"1"
+	"g_flCloakRefractAmount"	"0"
+	"g_flDiffuseModulationAmount"	"1"
+	"g_flEnvMapBlendToFull"	"1"
+	"g_flFresnelModulatesAlpha"	"0"
+	"g_flMaterialCloakFactor"	"1"
+	"g_flMetalnessBlendToFull"	"0"
+	"g_flReflectionsTintByBaseBlendToNone"	"0"
+	"g_flRimLightScale"	"100"
+	"g_flSelfIllumBlendToFull"	"1"
+	"g_flSpecularBlendToFull"	"1"
+	"g_flSpecularExponent"	"1"
+	"g_flSpecularExponentBlendToFull"	"0"
+	"g_flSpecularScale"	"1"
+	"g_flTexCoordRotation"	"0"
+	"g_flCloakBlurAmount"	"0.1"
+	"g_vBloomColor"	"[0.003922 0.003922 0.003922 0.000000]"
+	"g_vCloakColorTint"	"[0.000000 0.000000 0.000000 0.000000]"
+	"g_vRimLightColor"	"[0.968628 0.984314 1.000000 0.000000]"
+	"g_vSpecularColor"	"[0.941177 0.984314 1.000000 0.000000]"
+	"g_vTexCoordOffset"	"[0.000000 0.000000 0.000000 0.000000]"
+	"g_vTexCoordScale"	"[1.000000 1.000000 0.000000 0.000000]"
+	"TextureColor"	"[0.529412 0.807843 0.921569 1.000000]"
+	"TextureNormal"	"[0.501961 0.501961 1.000000 0.000000]"
+	"TextureTranslucency"	"materials/particle/cloak_particle/blue_color_vmat_g_tcolor_a19e4724.png"
+	"TextureFresnelWarpRim"	"materials/default/default_fresnelwarprim.tga"
+	"TextureFresnelWarpColor"	"materials/default/default_fresnelwarprim_47d3ab56-G.png"
+	"TextureFresnelWarpSpec"	"materials/default/default_fresnelwarprim_47d3ab56-B.png"
+	"Compiled Textures"
+	{
+		"g_tColor"	"materials/particle/cloak_particle/blue_color_vmat_g_tcolor_a19e4724.vtex"
+		"g_tFresnelWarp"	"materials/default/default_fresnelwarprim_tga_47d3ab56.vtex"
+		"g_tNormal"	"materials/particle/cloak_particle/blue_color_vmat_g_tnormal_5a28bd86.vtex"
+	}
+	"DynamicParams"
+	{
+		"g_flMaterialCloakFactor"	"return lerp(.275,.365,(.01*sin(0*time()))+.75);"
+	}
+}

@@ -1,0 +1,530 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"ablts_hero"
+{
+    // _AbltName: 普攻
+    // _Description: 射出一支箭矢，对命中目标造成【物系】物理伤害，开局自带该技能，不占用技能栏
+    // 伤害系数：100%攻击
+    // 攻击范围：1200
+    // 攻击间隔：1.5
+    "base_1"
+    {
+        "name"                              "base_1"
+        "id"                                "1020001"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/heroes/base_1"
+        "MaxLevel"                          "1"
+        "Tag"                               "None"
+        "DmgFactor"                         "2.5"
+        "PerDmgFactor"                      "2.5"
+        "AbilityTextureName"                "base_1"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "100"
+        }
+    }
+
+    // _AbltName: 奥术箭/暗影箭
+    // _Description: 射出一支奥术箭，对命中的敌人造成【能量】魔法伤害
+    // 伤害系数：80%攻击
+    // 穿透次数：1
+    // 冷却时间：2
+    "com_1"
+    {
+        "name"                              "com_1"
+        "id"                                "1020002"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/heroes/com_1"
+        "MaxLevel"                          "1"
+        "Tag"                               "Shadow"
+        "AbilityCooldown"                   "2"
+        "DmgFactor"                         "2.2"
+        "PerDmgFactor"                      "2.2"
+        "AbilityTextureName"                "com_1"
+        "AbilityCastAnimation"              "ACT_INVALID"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitTargetFlags"            "DOTA_UNIT_TARGET_FLAG_NONE"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "80"
+            "val"                           "1"
+            "width"                         "50"
+            "count"                         "1"
+            "extra_distance"                "500"
+        }
+    }
+
+    // _AbltName: 爆炎箭/烈焰箭
+    // _Description: 射出一支爆炎箭，命中敌人后会产生爆炸，造成【火系】物理伤害
+    // 伤害系数：220%攻击
+    // 范围伤害：180%攻击
+    // 伤害范围：220
+    // 冷却时间：6.2
+    "com_2"
+    {
+        "name"                              "com_2"
+        "id"                                "1020003"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/heroes/com_2"
+        "MaxLevel"                          "1"
+        "Tag"                               "Fire"
+        "AbilityCooldown"                   "6.2"
+        "DmgFactor"                         "2.4"
+        "PerDmgFactor"                      "2.4"
+        "AbilityTextureName"                "com_2"
+        "AbilityCastAnimation"              "ACT_INVALID"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitTargetFlags"            "DOTA_UNIT_TARGET_FLAG_NONE"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "280"
+            "dmg_factor_1"                  "240"
+            "radius"                        "220"
+            "width"                         "50"
+            "extra_distance"                "500"
+        }
+    }
+
+    // _AbltName: 寒冰箭/寒霜箭
+    // _Description: 射出一支寒冰箭，能穿透多名敌人，造成【冰系】魔法伤害，并附带微弱击退效果
+    // 伤害系数：140%攻击
+    // 穿透次数：4
+    // 冷却时间：4.1
+    "com_3"
+    {
+        "name"                              "com_3"
+        "id"                                "1020004"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/heroes/com_3"
+        "MaxLevel"                          "1"
+        "Tag"                               "Frost"
+        "AbilityCooldown"                   "4.1"
+        "DmgFactor"                         "2.4"
+        "PerDmgFactor"                      "2.4"
+        "AbilityTextureName"                "com_3"
+        "AbilityCastAnimation"              "ACT_INVALID"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitTargetFlags"            "DOTA_UNIT_TARGET_FLAG_NONE"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "180"
+            "val"                           "4"
+            "width"                         "50"
+            "knockback_distance"            "50"
+            "extra_distance"                "500"
+            "count"                         "1"
+        }
+    }
+
+    // _AbltName: 天雷
+    // _Description: 召唤1道天雷，打击一名敌人，造成【电系】魔法伤害，并附加1秒麻痹
+    // 伤害系数：120%攻击
+    // 伤害范围：50
+    // 冷却时间：3.8
+    "com_4"
+    {
+        "name"                              "com_4"
+        "id"                                "1020005"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/heroes/com_4"
+        "MaxLevel"                          "1"
+        "Tag"                               "Holy"
+        "AbilityCooldown"                   "3.8"
+        "DmgFactor"                         "2.3"
+        "PerDmgFactor"                      "2.3"
+        "AbilityTextureName"                "com_4"
+        "AbilityCastAnimation"              "ACT_INVALID"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitTargetFlags"            "DOTA_UNIT_TARGET_FLAG_NONE"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "170"
+            "radius"                        "50"
+            "duration"                      "1"
+        }
+    }
+
+    // _AbltName: 剑气
+    // _Description: 挥出1道剑气，持续期间对触碰的敌人造成【物系】物理伤害，并附带击退效果
+    // 伤害系数：180%攻击
+    // 伤害间隔：1
+    // 伤害范围：200
+    // 冷却时间：17.4
+    "com_5"
+    {
+        "name"                              "com_5"
+        "id"                                "1020006"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/heroes/com_5"
+        "MaxLevel"                          "1"
+        "Tag"                               "Physical"
+        "AbilityCooldown"                   "17.4"
+        "DmgFactor"                         "2.3"
+        "PerDmgFactor"                      "2.3"
+        "AbilityTextureName"                "com_5"
+        "AbilityCastAnimation"              "ACT_INVALID"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitTargetFlags"            "DOTA_UNIT_TARGET_FLAG_NONE"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "280"
+            "width"                         "200"
+            "knockback_distance"            "100"
+            "distance"                      "1800"
+            "speed"                         "200"
+        }
+    }
+
+    // _AbltName: 奥术激光/暗影激光
+    // _Description: 发射1道奥术激光，持续期间对触碰的敌人造成【能量】魔法伤害
+    // 伤害系数：65%攻击
+    // 持续时间：1.6
+    // 伤害间隔：0.2
+    // 伤害范围：50
+    // 冷却时间：7.5
+    "com_6"
+    {
+        "name"                              "com_6"
+        "id"                                "1020007"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/heroes/com_6"
+        "MaxLevel"                          "1"
+        "Tag"                               "Shadow"
+        "AbilityCooldown"                   "7.5"
+        "DmgFactor"                         "2.3"
+        "PerDmgFactor"                      "2.3"
+        "AbilityTextureName"                "com_6"
+        "AbilityCastAnimation"              "ACT_INVALID"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitTargetFlags"            "DOTA_UNIT_TARGET_FLAG_NONE"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "140"
+            "duration"                      "1.6"
+            "interval"                      "0.2"
+            "width"                         "50"
+            "distance"                      "1600"
+            "roll_speed"                    "1500"
+        }
+    }
+
+    // _AbltName: 奥术射线/暗影射线
+    // _Description: 发射1道奥术射线，锁定目标持续造成[能量]魔法伤害
+    // 伤害系数：45%攻击
+    // 持续时间：4.6
+    // 伤害间隔：0.2
+    // 冷却时间：10.3
+    "com_7"
+    {
+        "name"                              "com_7"
+        "id"                                "1020008"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/heroes/com_7"
+        "MaxLevel"                          "1"
+        "Tag"                               "Shadow"
+        "AbilityCooldown"                   "10.3"
+        "DmgFactor"                         "2.4"
+        "PerDmgFactor"                      "2.4"
+        "AbilityTextureName"                "com_7"
+        "AbilityCastAnimation"              "ACT_INVALID"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitTargetFlags"            "DOTA_UNIT_TARGET_FLAG_NONE"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "50"
+            "duration"                      "4.6"
+            "interval"                      "0.5"
+        }
+    }
+
+    // _AbltName: 冰霜新星
+    // _Description: 触发1次冰霜新星，对范围内敌人造成[冰系]魔法伤害
+    // 伤害系数：230%攻击
+    // 伤害范围：220
+    // 冷却时间：6.2
+    "com_8"
+    {
+        "name"                              "com_8"
+        "id"                                "1020009"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/heroes/com_8"
+        "MaxLevel"                          "1"
+        "Tag"                               "Frost"
+        "AbilityCooldown"                   "6.2"
+        "DmgFactor"                         "2.5"
+        "PerDmgFactor"                      "2.5"
+        "AbilityTextureName"                "com_8"
+        "AbilityCastAnimation"              "ACT_INVALID"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitTargetFlags"            "DOTA_UNIT_TARGET_FLAG_NONE"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "300"
+            "radius"                        "220"
+        }
+    }
+
+    // _AbltName: 闪电链
+    // _Description: 发射1道可弹射的闪电链，对命中敌人造成[电系]魔法伤害
+    // 伤害系数：160%攻击
+    // 伤害次数：5
+    // 冷却时间：6.1
+    "com_9"
+    {
+        "name"                              "com_9"
+        "id"                                "1020010"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/heroes/com_9"
+        "MaxLevel"                          "1"
+        "Tag"                               "Holy"
+        "AbilityCooldown"                   "6.1"
+        "DmgFactor"                         "2.4"
+        "PerDmgFactor"                      "2.4"
+        "AbilityTextureName"                "com_9"
+        "AbilityCastAnimation"              "ACT_INVALID"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitTargetFlags"            "DOTA_UNIT_TARGET_FLAG_NONE"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "200"
+            "count"                         "5"
+        }
+    }
+
+    // _AbltName: 地震
+    // _Description: 触发1次地震，延迟1秒后对范围内敌人造成物系】物理伤害，并附加1秒眩晕
+    // 伤害系数：280%攻击
+    // 伤害范围：230
+    // 冷却时间：7.7
+    "com_10"
+    {
+        "name"                              "com_10"
+        "id"                                "1020011"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/heroes/com_10"
+        "MaxLevel"                          "1"
+        "Tag"                               "Physical"
+        "AbilityCooldown"                   "7.7"
+        "DmgFactor"                         "2.5"
+        "PerDmgFactor"                      "2.5"
+        "AbilityTextureName"                "com_10"
+        "AbilityCastAnimation"              "ACT_INVALID"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitTargetFlags"            "DOTA_UNIT_TARGET_FLAG_NONE"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "300"
+            "radius"                        "230"
+            "stun_duration"                 "1"
+            "delay_time"                    "1"
+        }
+    }
+
+    // _AbltName: 龙卷风
+    // _Description: 召唤1阵龙卷风，持续期间对范围内的敌人造成[风系]魔法伤害，并附带牵引效果
+    // 伤害系数：70%攻击
+    // 持续时间：7.5
+    // 伤害间隔：0.3
+    // 伤害范围：200
+    // 冷却时间：17.1
+    "com_11"
+    {
+        "name"                              "com_11"
+        "id"                                "1020012"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/heroes/com_11"
+        "MaxLevel"                          "1"
+        "Tag"                               "Nature"
+        "AbilityCooldown"                   "17.1"
+        "DmgFactor"                         "2.3"
+        "PerDmgFactor"                      "2.3"
+        "AbilityTextureName"                "com_11"
+        "AbilityCastAnimation"              "ACT_INVALID"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitTargetFlags"            "DOTA_UNIT_TARGET_FLAG_NONE"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "180"
+            "duration"                      "7.5"
+            "interval"                      "0.3"
+            "radius"                        "200"
+        }
+    }
+
+    // _AbltName: 电磁网
+    // _Description: 发射1次扇形电磁网，对范围内的敌人造成[电系】魔法伤害
+    // 伤害系数：400%攻击
+    // 技能射程：880
+    // 冷却时间：13.5
+    "com_12"
+    {
+        "name"                              "com_12"
+        "id"                                "1020013"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/heroes/com_12"
+        "MaxLevel"                          "1"
+        "Tag"                               "Holy"
+        "AbilityCooldown"                   "13.5"
+        "DmgFactor"                         "2.4"
+        "PerDmgFactor"                      "2.4"
+        "AbilityTextureName"                "com_12"
+        "AbilityCastAnimation"              "ACT_INVALID"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitTargetFlags"            "DOTA_UNIT_TARGET_FLAG_NONE"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "500"
+            "radius"                        "1000"
+        }
+    }
+
+    // _AbltName: 陨石
+    // _Description: 召唤1颗陨石，落地后对范围内敌人造成物系物理伤害
+    // 伤害系数：200%攻击
+    // 伤害范围：200
+    // 冷却时间：4
+    "com_13"
+    {
+        "name"                              "com_13"
+        "id"                                "1020014"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/heroes/com_13"
+        "MaxLevel"                          "1"
+        "Tag"                               "Physical"
+        "AbilityCooldown"                   "4"
+        "DmgFactor"                         "2.4"
+        "PerDmgFactor"                      "2.4"
+        "AbilityTextureName"                "com_13"
+        "AbilityCastAnimation"              "ACT_INVALID"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitTargetFlags"            "DOTA_UNIT_TARGET_FLAG_NONE"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "280"
+            "radius"                        "200"
+            "val"                           "1"
+        }
+    }
+
+    // _AbltName: 飓风
+    // _Description: 发射1道飓风，能穿透多名敌人，造成[风系]魔法伤害，并附带击退效果
+    // 伤害系数：140%攻击
+    // 穿透次数：5
+    // 冷却时间：6.5
+    "com_14"
+    {
+        "name"                              "com_14"
+        "id"                                "1020015"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/heroes/com_14"
+        "MaxLevel"                          "1"
+        "Tag"                               "Nature"
+        "AbilityCooldown"                   "6.5"
+        "DmgFactor"                         "2.4"
+        "PerDmgFactor"                      "2.4"
+        "AbilityTextureName"                "com_14"
+        "AbilityCastAnimation"              "ACT_INVALID"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitTargetFlags"            "DOTA_UNIT_TARGET_FLAG_NONE"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "180"
+            "val"                           "5"
+            "width"                         "200"
+            "knockback_distance"            "50"
+            "speed"                         "700"
+            "distance"                      "1200"
+        }
+    }
+
+    // _AbltName: 火球
+    // _Description: 召唤1颗追踪敌人的火球，对触碰到的敌人造成[火系]物理伤害
+    // 伤害系数：100%攻击
+    // 持续时间：10
+    // 伤害间隔：0.5
+    // 伤害范围：150
+    // 冷却时间：12
+    "com_15"
+    {
+        "name"                              "com_15"
+        "id"                                "1020016"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/heroes/com_15"
+        "MaxLevel"                          "1"
+        "Tag"                               "Fire"
+        "AbilityCooldown"                   "12"
+        "DmgFactor"                         "2.2"
+        "PerDmgFactor"                      "2.2"
+        "AbilityTextureName"                "com_15"
+        "AbilityCastAnimation"              "ACT_INVALID"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitTargetFlags"            "DOTA_UNIT_TARGET_FLAG_NONE"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "120"
+            "duration"                      "10"
+            "interval"                      "0.5"
+            "radius"                        "150"
+            "count"                         "1"
+            "embrace_radius"                "500"
+            "rate_spd"                      "900"
+            "move_speed"                    "500"
+        }
+    }
+
+}

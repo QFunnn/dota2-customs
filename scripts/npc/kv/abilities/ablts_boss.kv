@@ -1,0 +1,1263 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"ablts_boss"
+{
+    // _AbltName: 冲刺
+    // _Description: 
+    "boss_1_1"
+    {
+        "name"                              "boss_1_1"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_1/boss_1_1"
+        "AbilityTextureName"                "morphling/crown_of_tears/morphling_waveform"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "1.5"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "20"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "4"
+            "distance"                      "2000"
+            "width"                         "300"
+            "speed"                         "3500"
+        }
+    }
+
+    // _AbltName: 怒吼
+    // _Description: 
+    "boss_1_2"
+    {
+        "name"                              "boss_1_2"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_1/boss_1_2"
+        "AbilityTextureName"                "queen_of_pain/arcana/queenofpain_sonic_wave_alt1"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "1.5"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "30"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "4"
+            "distance"                      "2000"
+            "start_width"                   "100"
+            "end_width"                     "600"
+            "knockback_duration"            "1"
+            "knockback_distance"            "800"
+            "speed"                         "1200"
+            "burn_duration"                 "2"
+            "burn_interval"                 "1"
+        }
+    }
+
+    // _AbltName: 裂地
+    // _Description: 
+    "boss_1_3"
+    {
+        "name"                              "boss_1_3"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_1/boss_1_3"
+        "AbilityTextureName"                "elder_titan_earth_splitter"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "1.5"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "40"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "4"
+            "duration"                      "15"
+            "speed"                         "1100"
+            "crack_distance"                "2400"
+            "crack_time"                    "2.7"
+            "min_count"                     "4"
+            "max_count"                     "8"
+            "crack_width"                   "120"
+        }
+    }
+
+    // _AbltName: 震击大地
+    // _Description: 
+    "boss_2_1"
+    {
+        "name"                              "boss_2_1"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_2/boss_2_1"
+        "AbilityTextureName"                "tiny/ti9_immortal/tiny_toss_immortal"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "1.5"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "20"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "4"
+            "radius"                        "350"
+            "interval"                      "0.6"
+            "stun_duration"                 "0.5"
+            "animation_time"                "1.8"
+        }
+    }
+
+    // _AbltName: 抓取
+    // _Description: 
+    "boss_2_2"
+    {
+        "name"                              "boss_2_2"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_2/boss_2_2"
+        "AbilityTextureName"                "tiny/ti9_immortal/tiny_tree_grab_immortal"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "1.5"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "20"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "4"
+            "radius"                        "300"
+            "speed"                         "2500"
+            "stun_duration"                 "2"
+            "knockback_duration"            "1"
+            "knockback_distance"            "275"
+            "knockback_height"              "150"
+        }
+    }
+
+    // _AbltName: 山崩
+    // _Description: 
+    "boss_2_3"
+    {
+        "name"                              "boss_2_3"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_2/boss_2_3"
+        "AbilityTextureName"                "tiny/ti9_immortal/tiny_avalanche_immortal"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "1.5"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "20"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "4"
+            "duration"                      "12"
+            "radius"                        "370"
+            "dmg_interval"                  "0.5"
+        }
+    }
+
+    // _AbltName: 踩踏
+    // _Description: 
+    "boss_3_1"
+    {
+        "name"                              "boss_3_1"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_3/boss_3_1"
+        "AbilityTextureName"                "abaddon_borrowed_time_alliance"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "1.5"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "20"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "4"
+            "height"                        "500"
+            "radius"                        "500"
+            "duration"                      "1"
+            "distance"                      "2000"
+            "speed"                         "1500"
+            "width"                         "150"
+        }
+    }
+
+    // _AbltName: 冲击
+    // _Description: 
+    "boss_3_2"
+    {
+        "name"                              "boss_3_2"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_3/boss_3_2"
+        "AbilityTextureName"                "abaddon_borrowed_time_alliance"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "1.5"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "20"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "4"
+            "distance"                      "3000"
+            "speed"                         "1500"
+            "width"                         "500"
+        }
+    }
+
+    // _AbltName: 冲锋
+    // _Description: 
+    "boss_4_1"
+    {
+        "name"                              "boss_4_1"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_4/boss_4_1"
+        "AbilityTextureName"                "primal_beast_onslaught_release"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "1.5"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "20"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "4"
+            "distance"                      "1500"
+            "speed"                         "1500"
+            "width"                         "250"
+        }
+    }
+
+    // _AbltName: 踏
+    // _Description: 
+    "boss_4_2"
+    {
+        "name"                              "boss_4_2"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_4/boss_4_2"
+        "AbilityTextureName"                "primal_beast_trample"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "1.5"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "20"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "4"
+            "radius"                        "525"
+            "distance"                      "70"
+            "duration"                      "10"
+        }
+    }
+
+    // _AbltName: 咤
+    // _Description: 
+    "boss_4_3"
+    {
+        "name"                              "boss_4_3"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_4/boss_4_3"
+        "AbilityTextureName"                "primal_beast_uproar_max"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "1.5"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "20"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "4"
+            "count"                         "10"
+            "distance"                      "1500"
+            "speed"                         "800"
+            "width"                         "100"
+        }
+    }
+
+    // _AbltName: 锤
+    // _Description: 
+    "boss_4_4"
+    {
+        "name"                              "boss_4_4"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_4/boss_4_4"
+        "AbilityTextureName"                "primal_beast_pulverize"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "1.5"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "20"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "4"
+            "height"                        "500"
+            "radius"                        "500"
+            "duration"                      "1"
+        }
+    }
+
+    // _AbltName: 领域
+    // _Description: 
+    "boss_5_1"
+    {
+        "name"                              "boss_5_1"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_5/boss_5_1"
+        "AbilityTextureName"                "lina_fiery_soul"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "1.5"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "2"
+            "distance"                      "2000"
+            "interval"                      "0.2"
+        }
+    }
+
+    // _AbltName: 炽焰
+    // _Description: 
+    "boss_5_2"
+    {
+        "name"                              "boss_5_2"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_5/boss_5_2"
+        "AbilityTextureName"                "lina_dragon_slave_alt1"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "1.5"
+        "AbilityCastAnimation"              "ACT_DOTA_CAST_ABILITY_1"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_MAGICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "20"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "10"
+            "width"                         "600"
+            "distance"                      "2000"
+            "speed"                         "1200"
+            "knockback"                     "1000"
+        }
+    }
+
+    // _AbltName: 炽羽
+    // _Description: 
+    "boss_5_3"
+    {
+        "name"                              "boss_5_3"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_5/boss_5_3"
+        "AbilityTextureName"                "phoenix_supernova"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "1.5"
+        "AbilityCastAnimation"              "ACT_DOTA_VICTORY"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_MAGICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "20"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "4"
+            "distance"                      "2000"
+            "inherite_hp_pct"               "20"
+            "inherite_hp_armor"             "20"
+            "radius"                        "1000"
+            "count"                         "4"
+            "duration"                      "6"
+            "range"                         "1000"
+        }
+    }
+
+    // _AbltName: 炽灭
+    // _Description: 
+    "boss_5_4"
+    {
+        "name"                              "boss_5_4"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_5/boss_5_4"
+        "AbilityTextureName"                "lina/lina_ti6_immortal/lina_laguna_blade"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "2"
+        "AbilityCastAnimation"              "ACT_DOTA_GENERIC_CHANNEL_1"
+        "AbilityChannelAnimation"           "ACT_DOTA_GENERIC_CHANNEL_1"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_MAGICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "15"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "0.5"
+            "count"                         "4"
+            "width"                         "100"
+            "distance"                      "2000"
+            "roll_speed"                    "900"
+            "change_interval"               "1.5"
+            "change_count"                  "4"
+        }
+    }
+
+    // _AbltName: 炽凰
+    // _Description: 
+    "boss_5_5"
+    {
+        "name"                              "boss_5_5"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_5/boss_5_5"
+        "AbilityTextureName"                "phoenix/phoenix_ti10_immortal_ability_icon/phoenix_ti10_immortal_icarus_dive"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "1.5"
+        "AbilityCastAnimation"              "ACT_DOTA_CAST_ABILITY_2"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_MAGICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "10"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "radius"                        "1000"
+            "inherite_attack_pct"           "60"
+            "duration"                      "5"
+        }
+    }
+
+    // _AbltName: 燎原烈火
+    // _Description: 
+    "boss_5_6"
+    {
+        "name"                              "boss_5_6"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_5/boss_5_6"
+        "AbilityTextureName"                "lina/lina_ti7_immortal/lina_light_strike_array"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "3"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_MAGICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "25"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "interval"                      "4"
+            "min_count"                     "4"
+            "max_count"                     "6"
+            "boom_interval"                 "2"
+            "dmg_factor"                    "20"
+            "knockback_duration"            "2"
+            "knockback_height"              "400"
+            "distance"                      "2000"
+        }
+    }
+
+    // _AbltName: 狼人 扑击
+    // _Description: 扑击
+    // 权重：50
+    // 技能描述：扑击正前方范围。
+    // 释放方式：自身为中心
+    // 伤害类型：物理
+    // 伤害：攻击 x 5
+    // 伤害范围：500
+    // 预警时间：2s
+    // 技能台词：扑！
+    // 动作表现：
+    // attack  普攻 明显抬起任意一只手a
+    "boss_6_1"
+    {
+        "name"                              "boss_6_1"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_6/boss_6_1"
+        "AbilityTextureName"                "alpha_wolf_critical_strike"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "1"
+        "AbilityCastAnimation"              "ACT_DOTA_CHANNEL_ABILITY_1"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_MAGICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "0.1"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "damage_factor"                 "4"
+            "range"                         "500"
+        }
+    }
+
+    // _AbltName: 狼人 扫尾
+    // _Description: 扫尾
+    // 权重：50
+    // 技能描述：对正后方范围进行扫尾攻击。
+    // 释放方式：自身为中心
+    // 伤害类型：物理
+    // 伤害：攻击 x 5
+    // 伤害范围：500
+    // 预警时间：2s
+    // 技能台词：扫！
+    // 动作表现：
+    // 明显抬起尾巴 向下砸
+    "boss_6_2"
+    {
+        "name"                              "boss_6_2"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_6/boss_6_2"
+        "AbilityTextureName"                "alpha_wolf_critical_strike"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "1"
+        "AbilityCastAnimation"              "ACT_DOTA_CAST_ABILITY_2"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_MAGICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "0.1"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "damage_factor"                 "4"
+            "range"                         "500"
+        }
+    }
+
+    // _AbltName: 狼人 旋转
+    // _Description: 旋转
+    // 权重：50
+    // 技能描述：开始旋转，对自身周围造成伤害且击退所有英雄。
+    // 释放方式：自身为中心
+    // 伤害类型：物理
+    // 原版参考：斧王被动（仅参考特效）
+    // 伤害：攻击力 x 5 
+    // 伤害范围：500
+    // 击退距离：800
+    // 预警时间：2s
+    // 技能台词：转！
+    // 动作表现：
+    // 转一圈
+    "boss_6_3"
+    {
+        "name"                              "boss_6_3"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_6/boss_6_3"
+        "AbilityTextureName"                "alpha_wolf_critical_strike"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "1.5"
+        "AbilityCastAnimation"              "ACT_DOTA_CAST_ABILITY_3"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_MAGICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "0.1"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "damage_factor"                 "6"
+            "range"                         "700"
+            "knockback"                     "800"
+            "knockback_duration"            "1"
+            "knockback_z"                   "500"
+        }
+    }
+
+    // _AbltName: 狼人 陨石
+    // _Description: 陨石
+    // 权重：50
+    // 技能描述：点名任意一个英雄，召唤一颗陨石持续跟随，最后砸向其位置。（陨石模型永久存在 用于后续机制）
+    // 释放方式：点名随机英雄脚下释放，且会跟随
+    // 预警类型：跟随预警
+    // 备注：任何boss的技能命中陨石 陨石会直接碎裂消失，英雄对陨石无任何伤害，陨石具有碰撞体积
+    // 原版参考：墓碑（仅参考特效，有陨石最好 没有就暂用墓碑代替）
+    // 伤害类型：混合伤害（一半物理 一半魔法）
+    // 伤害：攻击 x 8
+    // 伤害范围：500
+    // 跟随速度：200（指开始预警后，陨石会一直以这个速度跟随点名的英雄）
+    // 预警时间：3s
+    // 技能台词：陨石！
+    // 动作表现：
+    // cast2 howl 嚎叫 仰头动作
+    "boss_6_4"
+    {
+        "name"                              "boss_6_4"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_6/boss_6_4"
+        "AbilityTextureName"                "invoker_chaos_meteor"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "3"
+        "AnimationPlaybackRate"             "1"
+        "AbilityCastAnimation"              "ACT_DOTA_CAST_ABILITY_4"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_MAGICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "0.1"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "damage_factor"                 "4"
+            "range"                         "400"
+            "trace_speed"                   "300"
+            "meteor_fly_duration"           "1"
+        }
+    }
+
+    // _AbltName: 狼人 冲锋
+    // _Description: 冲锋
+    // 基础权重：50
+    // 权重提高条件：无
+    // 技能描述：随机点名任意一个英雄进行冲锋，在撞到陨石，英雄，或达到最大时间时才会停止冲锋。
+    // 释放方式：点名随机英雄
+    // 预警类型：无需预警，玩家头上有明显标识即可
+    // 备注：冲锋途中撞到陨石，才会停止下来 并且boss会晕眩，但如果冲撞撞到英雄后也会停止（非点名玩家也会）
+    // 原版参考：白牛撞
+    // 伤害类型：物理
+    // 伤害：攻击 x 5
+    // 伤害范围：200（指撞到目标的检测范围 200范围内有人则停止）
+    // 初始速度：300
+    // 额外速度：100
+    // 持续时间：6s
+    // 速度增加间隔：1s（指每隔1s在初始速度基础上增加一次额外速度）
+    // 晕眩时间：5s（boss和英雄的晕眩时间都走 同一个这个键值）
+    // 预警时间：3s
+    // 技能台词：冲！
+    // 动作表现：
+    // 同白牛 玩家头上明显标识
+    "boss_6_5"
+    {
+        "name"                              "boss_6_5"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_6/boss_6_5"
+        "AbilityTextureName"                "primal_beast_onslaught_release"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "1.5"
+        "AbilityCastAnimation"              "ACT_DOTA_CAST_ABILITY_5"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_MAGICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "0.1"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "damage_factor"                 "3"
+            "range"                         "100"
+            "speed"                         "1500"
+            "distance"                      "3000"
+            "stun_duration"                 "4"
+        }
+    }
+
+    // _AbltName: 狼人 旋风
+    // _Description: 旋风
+    // 基础权重：50
+    // 权重提高条件：根据场上陨石数量，权重=基础权重 * 场上已存在陨石数量
+    // 技能描述：召唤旋风对随机一个英雄进行持续跟随，只有在触碰到陨石或其他旋风时才会停止，旋风持续一段时间后会朝随机方向分裂
+    // 释放方式：点名随机英雄，且会跟随
+    // 预警类型：跟随预警（跟随风移动 预警范围为风的伤害范围）
+    // 备注：旋风只有在碰到陨石时，才会消失停止
+    // 原版参考：野怪枭兽的旋风
+    // 伤害类型：魔法
+    // 伤害：攻击 x 1
+    // 伤害间隔：1s
+    // 伤害范围：500（也指在这个范围内碰到陨石即消失）
+    // 初始速度：100
+    // 额外速度：50
+    // 速度增加间隔：2s（指每隔2s在初始速度基础上增加一次额外速度）
+    // 分裂距离：1000（朝随机方向分裂，避免分裂后就相撞）
+    // 分裂所需时间：10（每道本体风仅会分裂一次，分裂风不会再分裂）
+    // 预警时间：3s
+    // 技能台词：风！
+    "boss_6_6"
+    {
+        "name"                              "boss_6_6"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_6/boss_6_6"
+        "AbilityTextureName"                "tornado_tempest"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "3"
+        "AbilityCastAnimation"              "ACT_DOTA_CAST_ABILITY_4"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_MAGICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "0.1"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "damage_factor"                 "3"
+            "range"                         "300"
+            "speed"                         "100"
+            "speed_a"                       "25"
+            "dmg_interval"                  "0.5"
+            "cleave_time"                   "8"
+        }
+    }
+
+    // _AbltName: 狼人 怒火
+    // _Description: 怒击
+    // 基础权重：50
+    // 权重提高条件：无（因为这个技能容易打到人，只要基础权重配高点，别的技能权重没提高，这个技能的权重就会相对更高）
+    // 技能描述：转身至随机一名英雄的方向，释放持续型区域，造成范围伤害且附带晕眩。
+    // 释放方式：点名随机英雄 朝其方向释放 
+    // 预警类型：长方形预警
+    // 备注：只转身，预警 读条期间不会再变化方向，生成持续伤害区域
+    // 伤害类型：混合伤害（一半物理 一半魔法）
+    // 原版参考：双头龙大招
+    // 宽度：600
+    // 长度：2000
+    // 伤害：攻击力 x 3
+    // 伤害间隔：1s
+    // 晕眩时间：3s
+    // 持续时间：10s（指区域持续时间）
+    // 预警时间：2s
+    // 技能台词：怒！
+    // 动作表现：
+    // 身上明显特效，闪电 冰霜 火焰等等都行
+    "boss_6_7"
+    {
+        "name"                              "boss_6_7"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_6/boss_6_7"
+        "AbilityTextureName"                "phoenix_sun_ray"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "2"
+        "AbilityCastAnimation"              "ACT_DOTA_CAST_ABILITY_7"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_MAGICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "0.1"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "damage_factor"                 "3"
+            "distance"                      "3000"
+            "width"                         "400"
+            "dmg_interval"                  "0.5"
+            "duration"                      "8"
+            "stun_duration"                 "3"
+        }
+    }
+
+    // _AbltName: 狼人 末日降临
+    // _Description: 末日降临（转阶段技能）
+    // 权重：所有转阶段技能必定触发，之后不再特此说明
+    // 技能描述：在随机区域召唤陨石，之后召唤末日降临，造成全屏伤害，英雄躲在陨石后可免疫伤害。
+    // 释放方式：低于50%血强制释放，释放期间无敌，不会受到任何伤害
+    // 预警圈类型：全屏预警（指全屏都会有预警）
+    // 备注：以中间的boss方向为准，站在陨石后可免疫所有伤害，一个陨石可站多个人，技能释放完毕后会摧毁场上所有的陨石
+    // 原版参考：需要一个及其光污染的特效和屏幕震动，酷炫的那种 闪瞎眼，见下面附带的视频
+    // 伤害类型：混合伤害（一半物理 一半魔法）
+    // 召唤陨石：2（在随机区域召唤陨石，每个位置纯随机 可能差很远 也可能都很近）
+    // 伤害：攻击 x 30
+    // 伤害范围：全场（整个boss战区域）
+    // 预警时间：5s（此技能预警时间开始就开始走特效 巨大陨石缓缓掉落，最后时间到了立刻造成伤害且展示转场特效）
+    // 恢复时间：3s（指此技能释放完毕 后特效完全消失，且boss恢复到正常状态可被攻击后的时间）
+    // 技能台词：末日!
+    // 
+    // Buff附加：
+    // 每死亡一个英雄，为狼王附加一层“末日”，每层使狼王释放技能间隔-10%，持续时间永久
+    // 指整个转阶段过程中每击杀一个英雄，附加一层buff
+    // 
+    // 特效表现：
+    // boss瞬移到场地正中间
+    "boss_6_8"
+    {
+        "name"                              "boss_6_8"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_6/boss_6_8"
+        "AbilityTextureName"                "lycan_howl"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "6"
+        "AbilityCastAnimation"              "ACT_DOTA_CHANNEL_ABILITY_4"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_MAGICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "0.1"
+        "AbilityValues"
+        {
+            "damage_factor"                 "50"
+            "meteor_block_range"            "300"
+            "firing_hp_pct"                 "0.1"
+            "little_meteor_count"           "3"
+            "sub_ablt_interval_ptc"         "10"
+        }
+    }
+
+    // _AbltName: 蜘蛛 毒爆
+    // _Description: 毒爆
+    // 权重：50
+    // 朝随机一个英雄的位置处投放毒爆，击中会使目标附加“中毒”，且在目标周围孵化小蜘蛛。
+    "boss_7_1"
+    {
+        "name"                              "boss_7_1"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_7/boss_7_1"
+        "AbilityTextureName"                "broodmother_spawn_spiderlings"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "1.5"
+        "AbilityCastAnimation"              "ACT_DOTA_CAST_ABILITY_1"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_MAGICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "0.1"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "4"
+            "dmg_interval"                  "0.5"
+            "duration"                      "5"
+            "radius"                        "500"
+            "count"                         "2"
+            "inherite_attack_pct"           "50"
+            "inherite_hp_pct"               "1"
+            "inherite_armor_pct"            "1"
+            "inherite_attack_speed_pct"     "200"
+            "inherite_move_speed_pct"       "150"
+            "alive_duration"                "6"
+            "max_count"                     "8"
+        }
+    }
+
+    // _AbltName: 毒刃
+    // _Description: 
+    "boss_7_2"
+    {
+        "name"                              "boss_7_2"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_7/boss_7_2"
+        "AbilityTextureName"                "viper/ti8_immortal_tail/viper_nethertoxin_immortal"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "1.5"
+        "AbilityCastAnimation"              "ACT_DOTA_CAST_ABILITY_4"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_MAGICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "0.1"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "5"
+            "min_count"                     "4"
+            "max_count"                     "8"
+            "width"                         "200"
+            "distance"                      "3000"
+            "speed"                         "1000"
+            "count"                         "4"
+        }
+    }
+
+    // _AbltName: 织网
+    // _Description: 
+    "boss_7_3"
+    {
+        "name"                              "boss_7_3"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_7/boss_7_3"
+        "AbilityTextureName"                "broodmother/bm_2022_immortal/bm_2022_immortal_spin_web"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "1.5"
+        "AbilityCastAnimation"              "ACT_DOTA_CAST_ABILITY_2"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "0.1"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "reduce_move_speed_pct"         "40"
+            "radius"                        "300"
+            "duration"                      "8"
+        }
+    }
+
+    // _AbltName: 蛛纱
+    // _Description: 
+    "boss_7_4"
+    {
+        "name"                              "boss_7_4"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_7/boss_7_4"
+        "AbilityTextureName"                "broodmother_sticky_snare"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "1.5"
+        "AbilityCastAnimation"              "ACT_DOTA_CAST_ABILITY_4"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_MAGICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "0.1"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "3"
+            "dmg_interval"                  "0.5"
+            "root_duration"                 "4"
+            "egg_count"                     "1"
+            "distance"                      "900"
+            "duration"                      "10"
+            "width"                         "200"
+            "dealy"                         "1"
+        }
+    }
+
+    // _AbltName: 生蛋
+    // _Description: 
+    "boss_7_5"
+    {
+        "name"                              "boss_7_5"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_7/boss_7_5"
+        "AbilityTextureName"                "broodmother_spawn_spiderlings"
+        "MaxLevel"                          "1"
+        "AbilityChannelAnimation"           "ACT_DOTA_GENERIC_CHANNEL_1"
+        "AbilityChannelTime"                "2"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "0.1"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "egg_count"                     "3"
+            "radius"                        "1800"
+            "interval"                      "4"
+            "inherite_hp_pct"               "2"
+            "inherite_armor_pct"            "2"
+            "count"                         "2"
+        }
+    }
+
+    // _AbltName: 鬼毒肆虐
+    // _Description: 鬼毒施虐，持续施法，每个一段时间释放鬼毒，持续对某个地方造成伤害，并最后在该点产生一定数量的蜘蛛
+    "boss_7_6"
+    {
+        "name"                              "boss_7_6"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_7/boss_7_6"
+        "AbilityTextureName"                "broodmother_insatiable_hunger"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "3"
+        "AbilityChannelAnimation"           "ACT_DOTA_GENERIC_CHANNEL_1"
+        "AbilityChannelTime"                "50"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_MAGICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "0.1"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "3"
+            "dmg_interval"                  "0.5"
+            "dmg_duration"                  "3"
+            "count"                         "6"
+            "interval"                      "0.5"
+            "radius"                        "400"
+            "count_1"                       "1"
+            "vision_radius"                 "300"
+            "duration"                      "8"
+            "reduce_move_speed_pct"         "30"
+            "waring_time"                   "1.5"
+        }
+    }
+
+    // _AbltName: 魂击
+    // _Description: 内容 - Boss设计
+    "boss_8_1"
+    {
+        "name"                              "boss_8_1"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_8/boss_8_1"
+        "AbilityTextureName"                "nevermore_shadowraze3_demon"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "1.5"
+        "AbilityCastAnimation"              "ACT_DOTA_RAZE_1"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_MAGICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "20"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "8"
+            "count"                         "4"
+            "radius"                        "400"
+            "range"                         "1000"
+            "false_chance"                  "50"
+            "false_radius"                  "2000"
+        }
+    }
+
+    // _AbltName: 魂释
+    // _Description: 内容 - Boss设计
+    "boss_8_2"
+    {
+        "name"                              "boss_8_2"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_8/boss_8_2"
+        "AbilityTextureName"                "nevermore_shadowraze2_demon"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "1.5"
+        "AbilityCastAnimation"              "ACT_DOTA_RAZE_3"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_MAGICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "20"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "10"
+            "radius"                        "800"
+            "false_chance"                  "50"
+            "false_radius"                  "2000"
+        }
+    }
+
+    // _AbltName: 魂焰
+    // _Description: 内容 - Boss设计
+    "boss_8_3"
+    {
+        "name"                              "boss_8_3"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_8/boss_8_3"
+        "AbilityTextureName"                "nevermore_requiem_demon"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "1.5"
+        "AnimationPlaybackRate"             "0.85"
+        "AbilityCastAnimation"              "ACT_DOTA_CAST_ABILITY_6"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_MAGICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "20"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "6"
+            "count"                         "6"
+            "distance"                      "4000"
+            "speed"                         "600"
+            "width"                         "200"
+        }
+    }
+
+    // _AbltName: 魂影
+    // _Description: 内容 - Boss设计
+    "boss_8_4"
+    {
+        "name"                              "boss_8_4"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_8/boss_8_4"
+        "AbilityTextureName"                "nevermore_dark_lord"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "0.4"
+        "AbilityCastAnimation"              "ACT_DOTA_DEFEAT"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_MAGICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "20"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "10"
+            "atk_inherit_pct"               "60"
+            "move_speed_inherit_pct"        "200"
+            "duration"                      "6"
+            "radius"                        "500"
+            "delay_time"                    "1.5"
+            "false_chance"                  "50"
+            "false_radius"                  "2000"
+        }
+    }
+
+    // _AbltName: 魂之怒莲
+    // _Description: 内容 - Boss设计
+    "boss_8_5"
+    {
+        "name"                              "boss_8_5"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/boss/boss_8/boss_8_5"
+        "AbilityTextureName"                "nevermore_dark_lord_demon"
+        "MaxLevel"                          "1"
+        "AbilityCastPoint"                  "2"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_MAGICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "20"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "6"
+            "radius"                        "2000"
+            "count"                         "4"
+            "distance"                      "800"
+            "hp_inherit_pct"                "30"
+            "armor_inherit_pct"             "30"
+            "hp_regen_pct"                  "1"
+            "regen_interval"                "2"
+            "duration"                      "8"
+            "radius_1"                      "500"
+            "flower_count"                  "3"
+            "flower_dmg_factor"             "4"
+            "flower_dmg_interval"           "1"
+            "flower_dmg_radius"             "300"
+        }
+    }
+
+}

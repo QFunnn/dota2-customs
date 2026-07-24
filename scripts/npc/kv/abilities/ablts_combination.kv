@@ -1,0 +1,1328 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"ablts_combination"
+{
+    // _Name: 本源
+    // _Description: 金币+3000，木材+200，每秒全属性+0.2
+    "combination_1"
+    {
+        "name"                              "combination_1"
+        "id"                                "1110001"
+        "Enable"                            "1"
+        "CombinationList"                   "card_1|card_2|card_3"
+        "OperCardGroup"                     "card_4|card_5|card_6|card_7|card_9|card_10|card_11|card_34|card_35|card_36|card_39|card_40|card_85|card_86|card_87|card_91|card_92|card_93|card_110|card_127|card_145|card_146|card_147|card_181|card_182|card_183|card_237|card_265|card_315|card_335|card_355|card_371"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_1"
+        "AbilityValues"
+        {
+            "sx_10600172"                   "0.2"
+            "val"                           "3000"
+            "val1"                          "200"
+        }
+    }
+
+    // _Name: 成长之道
+    // _Description: 每秒木材+0.2，杀敌力量+0.1，杀敌敏捷+0.1，杀敌智力+0.1
+    "combination_2"
+    {
+        "name"                              "combination_2"
+        "id"                                "1110002"
+        "Enable"                            "1"
+        "CombinationList"                   "card_4|card_5|card_6|card_7"
+        "OperCardGroup"                     "card_142|card_143|card_144"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+            "sx_10600182"                   "0.2"
+            "sx_10600186"                   "0.1"
+            "sx_10600187"                   "0.1"
+            "sx_10600188"                   "0.1"
+        }
+    }
+
+    // _Name: 财富宝藏
+    // _Description: 每秒木材+0.4，每秒金币+10
+    "combination_3"
+    {
+        "name"                              "combination_3"
+        "id"                                "1110003"
+        "Enable"                            "1"
+        "CombinationList"                   "card_9|card_10|card_11"
+        "OperCardGroup"                     "card_12|card_13|card_14|card_15|card_16|card_17"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+            "sx_10600182"                   "0.4"
+            "sx_10600181"                   "10"
+        }
+    }
+
+    // _Name: 经济大师
+    // _Description: 随机吞噬4张可吞噬的卡牌
+    "combination_4"
+    {
+        "name"                              "combination_4"
+        "id"                                "1110004"
+        "Enable"                            "1"
+        "CombinationList"                   "card_12|card_13|card_14"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_4"
+        "AbilityValues"
+        {
+            "count"                         "4"
+        }
+    }
+
+    // _Name: 挑战达人
+    // _Description: 挑战伤害+15%，所有挑战冷却时间-10%
+    "combination_5"
+    {
+        "name"                              "combination_5"
+        "id"                                "1110005"
+        "Enable"                            "1"
+        "CombinationList"                   "card_15|card_16|card_17"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+            "sx_10600149"                   "15"
+            "sx_10600261"                   "10"
+        }
+    }
+
+    // _Name: 生命力
+    // _Description: 生命增幅+5%，护甲+5
+    "combination_6"
+    {
+        "name"                              "combination_6"
+        "id"                                "1110006"
+        "Enable"                            "1"
+        "CombinationList"                   "card_18|card_19|card_20"
+        "OperCardGroup"                     "card_21|card_22|card_23"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+            "sx_10600054"                   "5"
+            "sx_10600074"                   "5"
+        }
+    }
+
+    // _Name: 血契
+    // _Description: 生命值+500，血力，血敏，血智效果翻倍
+    "combination_7"
+    {
+        "name"                              "combination_7"
+        "id"                                "1110007"
+        "Enable"                            "1"
+        "CombinationList"                   "card_21|card_22|card_23"
+        "OperCardGroup"                     "card_24|card_25|card_26"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+            "sx_10600052"                   "500"
+        }
+    }
+
+    // _Name: 噬血
+    // _Description: 每损失35%最大生命值，就会触发一次回荡，对周围750范围内敌人造成500%生命值无视闪避的自适应伤害，击退敌人500距离，并附加3秒眩晕
+    "combination_8"
+    {
+        "name"                              "combination_8"
+        "id"                                "1110008"
+        "Enable"                            "1"
+        "CombinationList"                   "card_24|card_25|card_26"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_8"
+        "AbilityValues"
+        {
+            "val"                           "35"
+            "radius"                        "750"
+            "dmg_factor"                    "500"
+            "knockback_distance"            "500"
+            "stun_duration"                 "3"
+        }
+    }
+
+    // _Name: 守护
+    // _Description: 护甲增幅+10%，
+    // 受到的单次伤害不会超过最大生命值的35%
+    "combination_9"
+    {
+        "name"                              "combination_9"
+        "id"                                "1110009"
+        "Enable"                            "1"
+        "CombinationList"                   "card_27|card_28"
+        "OperCardGroup"                     "card_29|card_30"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_9"
+        "AbilityValues"
+        {
+            "sx_10600076"                   "10"
+            "val"                           "35"
+        }
+    }
+
+    // _Name: 狂化
+    // _Description: 每击杀200名敌人触发，全属性增幅+20%，攻速+50%，技能急速+30，持续10秒
+    "combination_10"
+    {
+        "name"                              "combination_10"
+        "id"                                "1110010"
+        "Enable"                            "1"
+        "CombinationList"                   "card_29|card_30"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_10"
+        "AbilityValues"
+        {
+            "val"                           "200"
+            "val1"                          "20"
+            "val2"                          "50"
+            "val3"                          "30"
+            "duration"                      "10"
+        }
+    }
+
+    // _Name: 杀神
+    // _Description: 最终力量+5%，每点力量额外提供0.1攻击力
+    "combination_11"
+    {
+        "name"                              "combination_11"
+        "id"                                "1110011"
+        "Enable"                            "1"
+        "CombinationList"                   "card_31|card_32|card_33"
+        "OperCardGroup"                     "card_472|card_473|card_474"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_11"
+        "AbilityValues"
+        {
+            "sx_10600020"                   "5"
+            "val"                           "0.1"
+        }
+    }
+
+    // _Name: 威压领域
+    // _Description: 每秒对周围1200范围内的敌人造成60%力量自适应伤害
+    "combination_12"
+    {
+        "name"                              "combination_12"
+        "id"                                "1110012"
+        "Enable"                            "1"
+        "CombinationList"                   "card_34|card_35|card_36"
+        "OperCardGroup"                     "card_37|card_38|card_18|card_19|card_20|card_27|card_28"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_12"
+        "AbilityValues"
+        {
+            "radius"                        "1200"
+            "dmg_factor"                    "60"
+        }
+    }
+
+    // _Name: 威压领域增强
+    // _Description: 威压领域额外附加30%生命值的自适应伤害，并且斗气场域每击杀1名敌人就会使力量+0.5
+    "combination_13"
+    {
+        "name"                              "combination_13"
+        "id"                                "1110013"
+        "Enable"                            "1"
+        "CombinationList"                   "card_37|card_38"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_13"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "30"
+            "val"                           "0.5"
+        }
+    }
+
+    // _Name: 暴击
+    // _Description: 物理暴击+4%，魔法暴击+4%
+    "combination_14"
+    {
+        "name"                              "combination_14"
+        "id"                                "1110014"
+        "Enable"                            "1"
+        "CombinationList"                   "card_39|card_40"
+        "OperCardGroup"                     "card_41|card_42"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+            "sx_10600119"                   "4"
+            "sx_10600121"                   "4"
+        }
+    }
+
+    // _Name: 狂热
+    // _Description: 造成的所有非暴击伤害降低20%，所有暴击伤害提高20%
+    "combination_15"
+    {
+        "name"                              "combination_15"
+        "id"                                "1110015"
+        "Enable"                            "1"
+        "CombinationList"                   "card_41|card_42"
+        "OperCardGroup"                     "card_44|card_45"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_15"
+        "AbilityValues"
+        {
+            "val1"                          "20"
+            "val2"                          "20"
+        }
+    }
+
+    // _Name: 处决
+    // _Description: 每溢出2%的物理暴击，卡牌致命攻击的触发概率提升1%
+    // 每溢出2%的魔法暴击，卡牌致命魔法的触发概率提升1%
+    // 每溢出2%的真伤暴击，卡牌致命真伤的触发概率提升1%
+    "combination_16"
+    {
+        "name"                              "combination_16"
+        "id"                                "1110016"
+        "Enable"                            "1"
+        "CombinationList"                   "card_44|card_45"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+            "val1"                          "2"
+            "val2"                          "1"
+        }
+    }
+
+    // _Name: 力量
+    // _Description: 杀敌力量+0.1，每秒力量+0.2，生命值+200
+    // 卡池中加入力量相关的基础卡牌
+    "combination_17"
+    {
+        "name"                              "combination_17"
+        "id"                                "1110017"
+        "Enable"                            "1"
+        "CombinationList"                   "card_47|card_48|card_49|card_142"
+        "OperCardGroup"                     "card_50|card_51|card_52|card_53"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+            "sx_10600186"                   "0.1"
+            "sx_10600173"                   "0.2"
+            "sx_10600052"                   "200"
+        }
+    }
+
+    // _Name: 狂战
+    // _Description: 当局每进化1次，就会使力量增幅+2%，每秒力量+0.2，生命值+100
+    "combination_18"
+    {
+        "name"                              "combination_18"
+        "id"                                "1110018"
+        "Enable"                            "1"
+        "CombinationList"                   "card_50|card_51|card_52|card_53"
+        "OperCardGroup"                     "card_31|card_32|card_33"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_18"
+        "AbilityValues"
+        {
+            "val"                           "1"
+            "val1"                          "2"
+            "val2"                          "0.2"
+            "val3"                          "100"
+        }
+    }
+
+    // _Name: 敏捷
+    // _Description: 杀敌敏捷+0.1，每秒敏捷+0.2，物理伤害+8%
+    // 卡池中加入敏捷相关的基础卡牌
+    "combination_19"
+    {
+        "name"                              "combination_19"
+        "id"                                "1110019"
+        "Enable"                            "1"
+        "CombinationList"                   "card_54|card_55|card_56|card_143"
+        "OperCardGroup"                     "card_57|card_58|card_59|card_60"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+            "sx_10600187"                   "0.1"
+            "sx_10600174"                   "0.2"
+            "sx_10600157"                   "8"
+        }
+    }
+
+    // _Name: 猎杀者
+    // _Description: 当局每进化1次，就会使敏捷增幅+2%，每秒敏捷+0.2，物理伤害+3%
+    "combination_20"
+    {
+        "name"                              "combination_20"
+        "id"                                "1110020"
+        "Enable"                            "1"
+        "CombinationList"                   "card_57|card_58|card_59|card_60"
+        "OperCardGroup"                     "card_61|card_62|card_63"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_20"
+        "AbilityValues"
+        {
+            "val"                           "1"
+            "val1"                          "2"
+            "val2"                          "0.2"
+            "val3"                          "3"
+        }
+    }
+
+    // _Name: 箭道
+    // _Description: 最终敏捷+5%，每点敏捷额外提供0.1攻击力
+    "combination_21"
+    {
+        "name"                              "combination_21"
+        "id"                                "1110021"
+        "Enable"                            "1"
+        "CombinationList"                   "card_61|card_62|card_63"
+        "OperCardGroup"                     "card_475|card_476|card_477"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_21"
+        "AbilityValues"
+        {
+            "sx_10600024"                   "5"
+            "val"                           "0.1"
+        }
+    }
+
+    // _Name: 智力
+    // _Description: 杀敌智力+0.1，每秒智力+0.2，魔法伤害+8%
+    // 卡池中加入智力相关的基础卡牌
+    "combination_22"
+    {
+        "name"                              "combination_22"
+        "id"                                "1110022"
+        "Enable"                            "1"
+        "CombinationList"                   "card_64|card_65|card_66|card_144"
+        "OperCardGroup"                     "card_67|card_68|card_69|card_70"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+            "sx_10600188"                   "0.1"
+            "sx_10600175"                   "0.2"
+            "sx_10600159"                   "8"
+        }
+    }
+
+    // _Name: 星轨
+    // _Description: 当局每进化1次，就会使智力增幅+2%，每秒智力+0.2，魔法伤害+3%
+    "combination_23"
+    {
+        "name"                              "combination_23"
+        "id"                                "1110023"
+        "Enable"                            "1"
+        "CombinationList"                   "card_67|card_68|card_69|card_70"
+        "OperCardGroup"                     "card_71|card_72|card_73"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_23"
+        "AbilityValues"
+        {
+            "val"                           "1"
+            "val1"                          "2"
+            "val2"                          "0.2"
+            "val3"                          "3"
+        }
+    }
+
+    // _Name: 法相
+    // _Description: 最终智力+5%，每点智力额外提供0.1攻击力
+    "combination_24"
+    {
+        "name"                              "combination_24"
+        "id"                                "1110024"
+        "Enable"                            "1"
+        "CombinationList"                   "card_71|card_72|card_73"
+        "OperCardGroup"                     "card_478|card_479|card_480"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_24"
+        "AbilityValues"
+        {
+            "sx_10600030"                   "5"
+            "val"                           "0.1"
+        }
+    }
+
+    // _Name: 散射
+    // _Description: 立即获得当前多重数量*50的敏捷，多重伤害超过100%时，每溢出1%转化为1%的普攻伤害
+    "combination_25"
+    {
+        "name"                              "combination_25"
+        "id"                                "1110025"
+        "Enable"                            "1"
+        "CombinationList"                   "card_74|card_75"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_25"
+        "AbilityValues"
+        {
+            "val"                           "50"
+            "val1"                          "100"
+            "val2"                          "1"
+            "val3"                          "1"
+        }
+    }
+
+    // _Name: 弹射
+    // _Description: 立即获得当前弹射数量*50的敏捷，弹射伤害超过100%时，每溢出1%转化为1%的普攻伤害
+    "combination_26"
+    {
+        "name"                              "combination_26"
+        "id"                                "1110026"
+        "Enable"                            "1"
+        "CombinationList"                   "card_76|card_77"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_26"
+        "AbilityValues"
+        {
+            "val"                           "50"
+            "val1"                          "100"
+            "val2"                          "1"
+            "val3"                          "1"
+        }
+    }
+
+    // _Name: 分裂
+    // _Description: 立即获得当前分裂数量*50的敏捷，分裂伤害超过100%时，每溢出1%转化为1%的普攻伤害
+    "combination_27"
+    {
+        "name"                              "combination_27"
+        "id"                                "1110027"
+        "Enable"                            "0"
+        "CombinationList"                   "card_78|card_79"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_27"
+        "AbilityValues"
+        {
+            "val"                           "50"
+            "val1"                          "100"
+            "val2"                          "1"
+            "val3"                          "1"
+        }
+    }
+
+    // _Name: 穿云
+    // _Description: 每有100攻击范围就会提高1%的普攻伤害
+    "combination_28"
+    {
+        "name"                              "combination_28"
+        "id"                                "1110028"
+        "Enable"                            "1"
+        "CombinationList"                   "card_80|card_81"
+        "OperCardGroup"                     "card_74|card_75|card_76|card_77"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_28"
+        "AbilityValues"
+        {
+            "val"                           "100"
+            "val1"                          "1"
+        }
+    }
+
+    // _Name: 无影
+    // _Description: 攻击有20%的概率提升100%攻速，持续5秒
+    "combination_29"
+    {
+        "name"                              "combination_29"
+        "id"                                "1110029"
+        "Enable"                            "1"
+        "CombinationList"                   "card_82|card_83|card_84"
+        "OperCardGroup"                     "card_80|card_81"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_29"
+        "AbilityValues"
+        {
+            "val"                           "20"
+            "val1"                          "100"
+            "val2"                          "5"
+        }
+    }
+
+    // _Name: 气机
+    // _Description: 穿云箭：每攻击15次，射出1支穿云箭，对直线敌人造成300%敏捷的自适应伤害
+    "combination_30"
+    {
+        "name"                              "combination_30"
+        "id"                                "1110030"
+        "Enable"                            "1"
+        "CombinationList"                   "card_85|card_86"
+        "OperCardGroup"                     "card_88|card_89"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_30"
+        "AbilityValues"
+        {
+            "val"                           "15"
+            "val1"                          "1"
+            "val2"                          "300"
+        }
+    }
+
+    // _Name: 极意
+    // _Description: 穿云箭所需的攻击次数降低5次
+    "combination_31"
+    {
+        "name"                              "combination_31"
+        "id"                                "1110031"
+        "Enable"                            "1"
+        "CombinationList"                   "card_88|card_89"
+        "OperCardGroup"                     "card_82|card_83|card_84"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+            "val"                           "5"
+        }
+    }
+
+    // _Name: 奥理
+    // _Description: 魔爆术：每隔18秒，触发1次魔爆术，对300范围内的敌人造成200%智力的自适应伤害
+    "combination_32"
+    {
+        "name"                              "combination_32"
+        "id"                                "1110032"
+        "Enable"                            "1"
+        "CombinationList"                   "card_91|card_92|card_93"
+        "OperCardGroup"                     "card_94|card_95"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_32"
+        "AbilityValues"
+        {
+            "val"                           "18"
+            "val1"                          "1"
+            "val2"                          "300"
+            "val3"                          "200"
+        }
+    }
+
+    // _Name: 爆裂
+    // _Description: 技能栏每拥有一个初始技能，魔爆术触发次数+1
+    "combination_33"
+    {
+        "name"                              "combination_33"
+        "id"                                "1110033"
+        "Enable"                            "1"
+        "CombinationList"                   "card_94|card_95"
+        "OperCardGroup"                     "card_99|card_100"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+            "val"                           "1"
+        }
+    }
+
+    // _Name: 流光
+    // _Description: 任意技能进入冷却时，有7%的概率立即重置该技能冷却
+    "combination_34"
+    {
+        "name"                              "combination_34"
+        "id"                                "1110034"
+        "Enable"                            "1"
+        "CombinationList"                   "card_96|card_97|card_98"
+        "OperCardGroup"                     "card_101|card_102|card_103|card_104|card_105|card_106|card_107|card_108|card_109"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_34"
+        "AbilityValues"
+        {
+            "val"                           "7"
+        }
+    }
+
+    // _Name: 法器
+    // _Description: 技能急速+10，当冷却缩减超过上限时，每溢出2点技能急速就会提升1%的技能伤害
+    "combination_35"
+    {
+        "name"                              "combination_35"
+        "id"                                "1110035"
+        "Enable"                            "1"
+        "CombinationList"                   "card_99|card_100"
+        "OperCardGroup"                     "card_96|card_97|card_98"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_35"
+        "AbilityValues"
+        {
+            "sx_10600101"                   "10"
+            "val"                           "2"
+            "val1"                          "1"
+        }
+    }
+
+    // _Name: 元素
+    // _Description: 元素相融：造成【物系】【电系】【风系】伤害时，当前伤害类型会受到另外2种15%的伤害增幅的加成
+    "combination_36"
+    {
+        "name"                              "combination_36"
+        "id"                                "1110036"
+        "Enable"                            "1"
+        "CombinationList"                   "card_101|card_102|card_103"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_36"
+        "AbilityValues"
+        {
+            "val"                           "2"
+            "val1"                          "15"
+        }
+    }
+
+    // _Name: 魔导
+    // _Description: 魔法互通：造成【能量】【火系】【冰系】伤害时，当前伤害类型会受到另外2种15%的伤害增幅的加成
+    "combination_37"
+    {
+        "name"                              "combination_37"
+        "id"                                "1110037"
+        "Enable"                            "1"
+        "CombinationList"                   "card_104|card_105|card_106"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_37"
+        "AbilityValues"
+        {
+            "val"                           "2"
+            "val1"                          "15"
+        }
+    }
+
+    // _Name: 禁术
+    // _Description: 受致命伤时激活护盾免疫所有伤害，使生命恢复加成+100%，法力恢复+10，持续6秒，冷却60秒，复活后会立即重置冷却
+    "combination_38"
+    {
+        "name"                              "combination_38"
+        "id"                                "1110038"
+        "Enable"                            "1"
+        "CombinationList"                   "card_107|card_108|card_109"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_38"
+        "AbilityValues"
+        {
+            "val"                           "100"
+            "val1"                          "10"
+            "val2"                          "6"
+            "val3"                          "60"
+        }
+    }
+
+    // _Name: 五色巨龙
+    // _Description: 将一张UR巨龙之魂置入卡牌栏
+    "combination_39"
+    {
+        "name"                              "combination_39"
+        "id"                                "1110039"
+        "Enable"                            "1"
+        "CombinationList"                   "card_121|card_122|card_123|card_124|card_125"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_39"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 齐天大圣
+    // _Description: 将一张UR齐天大圣置入卡牌栏
+    "combination_40"
+    {
+        "name"                              "combination_40"
+        "id"                                "1110040"
+        "Enable"                            "1"
+        "CombinationList"                   "card_127|card_128|card_129"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_40"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 大圣残躯
+    // _Description: 将一张SSR大圣残躯置入卡牌栏
+    "combination_41"
+    {
+        "name"                              "combination_41"
+        "id"                                "1110041"
+        "Enable"                            "1"
+        "CombinationList"                   "card_130|card_131|card_132|card_133|card_134|card_135"
+        "OperCardGroup"                     "card_136|card_137|card_138|card_139|card_140"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_41"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 大圣套装
+    // _Description: 将一张SSR大圣套装置入卡牌栏
+    "combination_42"
+    {
+        "name"                              "combination_42"
+        "id"                                "1110042"
+        "Enable"                            "1"
+        "CombinationList"                   "card_136|card_137|card_138|card_139|card_140"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_42"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 修仙
+    // _Description: 将一张N练气期置入卡牌栏，开启修仙卡组
+    "combination_43"
+    {
+        "name"                              "combination_43"
+        "id"                                "1110043"
+        "Enable"                            "1"
+        "CombinationList"                   "card_145|card_146|card_147"
+        "EvolveCard"                        "card_148"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_43"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 五行灵根
+    // _Description: 进入SSR化神期
+    "combination_44"
+    {
+        "name"                              "combination_44"
+        "id"                                "1110044"
+        "Enable"                            "1"
+        "CombinationList"                   "card_155|card_156|card_157|card_158|card_159"
+        "EvolveCard"                        "card_160"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_44"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 五极山
+    // _Description: 将一张UR元合五极山置入卡牌栏
+    "combination_45"
+    {
+        "name"                              "combination_45"
+        "id"                                "1110045"
+        "Enable"                            "1"
+        "CombinationList"                   "card_171|card_172|card_173|card_174|card_175"
+        "EvolveCard"                        "card_176"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_45"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 大乘期
+    // _Description: 进入EX大乘期
+    "combination_46"
+    {
+        "name"                              "combination_46"
+        "id"                                "1110046"
+        "Enable"                            "1"
+        "CombinationList"                   "card_177|card_178|card_179"
+        "EvolveCard"                        "card_180"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_46"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 刀刀
+    // _Description: 将一张N刀刀萌新置入卡牌栏，开启刀刀卡组
+    "combination_47"
+    {
+        "name"                              "combination_47"
+        "id"                                "1110047"
+        "Enable"                            "1"
+        "CombinationList"                   "card_181|card_182|card_183"
+        "EvolveCard"                        "card_184"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 风之杖
+    // _Description: 将一张SSR风神杖的合成卡牌SR风之杖置入卡牌栏
+    "combination_48"
+    {
+        "name"                              "combination_48"
+        "id"                                "1110048"
+        "Enable"                            "1"
+        "CombinationList"                   "card_188|card_189|card_190"
+        "EvolveCard"                        "card_192"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 风神杖
+    // _Description: 将一张SSR风神杖置入卡牌栏
+    "combination_49"
+    {
+        "name"                              "combination_49"
+        "id"                                "1110049"
+        "Enable"                            "1"
+        "CombinationList"                   "card_191|card_192|card_193"
+        "EvolveCard"                        "card_194"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 灵匣
+    // _Description: 将一张SSR绝刃的合成卡牌SR灵匣置入卡牌栏
+    "combination_50"
+    {
+        "name"                              "combination_50"
+        "id"                                "1110050"
+        "Enable"                            "1"
+        "CombinationList"                   "card_195|card_196|card_197"
+        "EvolveCard"                        "card_200"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 绝刃
+    // _Description: 将一张SSR绝刃置入卡牌栏
+    "combination_51"
+    {
+        "name"                              "combination_51"
+        "id"                                "1110051"
+        "Enable"                            "1"
+        "CombinationList"                   "card_198|card_199|card_200"
+        "EvolveCard"                        "card_201"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 旋涡
+    // _Description: 将一张SSR雷神之锤的合成卡牌SR漩涡置入卡牌栏
+    "combination_52"
+    {
+        "name"                              "combination_52"
+        "id"                                "1110052"
+        "Enable"                            "1"
+        "CombinationList"                   "card_202|card_203|card_204"
+        "EvolveCard"                        "card_207"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 雷神之锤
+    // _Description: 将一张SSR雷神之锤置入卡牌栏
+    "combination_53"
+    {
+        "name"                              "combination_53"
+        "id"                                "1110053"
+        "Enable"                            "1"
+        "CombinationList"                   "card_205|card_206|card_207"
+        "EvolveCard"                        "card_208"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 纷争面纱
+    // _Description: 将一张SSR希瓦的守护的合成卡牌SR纷争面纱置入卡牌栏
+    "combination_54"
+    {
+        "name"                              "combination_54"
+        "id"                                "1110054"
+        "Enable"                            "1"
+        "CombinationList"                   "card_209|card_210|card_211"
+        "EvolveCard"                        "card_213"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 希瓦的守护
+    // _Description: 将一张SSR希瓦的守护置入卡牌栏
+    "combination_55"
+    {
+        "name"                              "combination_55"
+        "id"                                "1110055"
+        "Enable"                            "1"
+        "CombinationList"                   "card_212|card_213|card_214"
+        "EvolveCard"                        "card_215"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 恐鳌戒指
+    // _Description: 将一张SSR龙心的合成卡牌SR恐鳌戒指置入卡牌栏
+    "combination_56"
+    {
+        "name"                              "combination_56"
+        "id"                                "1110056"
+        "Enable"                            "1"
+        "CombinationList"                   "card_216|card_217|card_218"
+        "EvolveCard"                        "card_221"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 龙心
+    // _Description: 将一张SSR龙心置入卡牌栏
+    "combination_57"
+    {
+        "name"                              "combination_57"
+        "id"                                "1110057"
+        "Enable"                            "1"
+        "CombinationList"                   "card_219|card_220|card_221"
+        "EvolveCard"                        "card_222"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 点金手
+    // _Description: 将一张SSR点金手置入卡牌栏
+    "combination_58"
+    {
+        "name"                              "combination_58"
+        "id"                                "1110058"
+        "Enable"                            "1"
+        "CombinationList"                   "card_223|card_224|card_225|card_226"
+        "EvolveCard"                        "card_227"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 三元重戟
+    // _Description: 将一张UR三元重戟置入卡牌栏
+    "combination_59"
+    {
+        "name"                              "combination_59"
+        "id"                                "1110059"
+        "Enable"                            "1"
+        "CombinationList"                   "card_228|card_229|card_230|card_231"
+        "EvolveCard"                        "card_232"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 圣剑
+    // _Description: 将一张UR圣剑置入卡牌栏
+    "combination_60"
+    {
+        "name"                              "combination_60"
+        "id"                                "1110060"
+        "Enable"                            "1"
+        "CombinationList"                   "card_233|card_234|card_235"
+        "EvolveCard"                        "card_236"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 肉身成圣
+    // _Description: 全属性增幅+10%，护甲+10，格挡+5
+    "combination_61"
+    {
+        "name"                              "combination_61"
+        "id"                                "1110061"
+        "Enable"                            "1"
+        "CombinationList"                   "card_330|card_331|card_332"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+            "sx_10600014"                   "10"
+            "sx_10600074"                   "10"
+            "sx_10600267"                   "5"
+        }
+    }
+
+    // _Name: 四大圣兽
+    // _Description: 将一张EX祖龙置入卡牌栏
+    "combination_62"
+    {
+        "name"                              "combination_62"
+        "id"                                "1110062"
+        "Enable"                            "1"
+        "CombinationList"                   "card_395|card_396|card_397|card_398"
+        "EvolveCard"                        "card_399"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 棍法
+    // _Description: 将一张SSR棍法大成置入卡牌栏
+    "combination_63"
+    {
+        "name"                              "combination_63"
+        "id"                                "1110063"
+        "Enable"                            "1"
+        "CombinationList"                   "card_406|card_407|card_408"
+        "EvolveCard"                        "card_421"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 根基
+    // _Description: 将一张SSR根基大成置入卡牌栏
+    "combination_64"
+    {
+        "name"                              "combination_64"
+        "id"                                "1110064"
+        "Enable"                            "1"
+        "CombinationList"                   "card_409|card_410|card_411"
+        "EvolveCard"                        "card_425"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 身法
+    // _Description: 将一张SSR身法大成置入卡牌栏
+    "combination_65"
+    {
+        "name"                              "combination_65"
+        "id"                                "1110065"
+        "Enable"                            "1"
+        "CombinationList"                   "card_412|card_413|card_414"
+        "EvolveCard"                        "card_424"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 术法
+    // _Description: 将一张SSR术法大成置入卡牌栏
+    "combination_66"
+    {
+        "name"                              "combination_66"
+        "id"                                "1110066"
+        "Enable"                            "1"
+        "CombinationList"                   "card_415|card_416|card_417"
+        "EvolveCard"                        "card_423"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 奇技
+    // _Description: 将一张SSR奇技大成置入卡牌栏
+    "combination_67"
+    {
+        "name"                              "combination_67"
+        "id"                                "1110067"
+        "Enable"                            "1"
+        "CombinationList"                   "card_418|card_419|card_420"
+        "EvolveCard"                        "card_422"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 大品天仙诀
+    // _Description: 将一张EX法天象地置入卡牌栏
+    "combination_68"
+    {
+        "name"                              "combination_68"
+        "id"                                "1110068"
+        "Enable"                            "1"
+        "CombinationList"                   "card_421|card_422|card_423|card_424|card_425"
+        "EvolveCard"                        "card_426"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 阿哈利姆神杖
+    // _Description: 将一张UR阿哈利姆神杖置入卡牌栏
+    "combination_69"
+    {
+        "name"                              "combination_69"
+        "id"                                "1110069"
+        "Enable"                            "1"
+        "CombinationList"                   "card_451|card_452|card_453|card_454"
+        "EvolveCard"                        "card_455"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 极
+    // _Description: 将一张UR极置入卡牌栏
+    "combination_70"
+    {
+        "name"                              "combination_70"
+        "id"                                "1110070"
+        "Enable"                            "1"
+        "CombinationList"                   "card_456|card_457|card_458|card_459"
+        "EvolveCard"                        "card_460"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 暗海猎手
+    // _Description: 将一张UR暗海猎手置入卡牌栏
+    "combination_71"
+    {
+        "name"                              "combination_71"
+        "id"                                "1110071"
+        "Enable"                            "1"
+        "CombinationList"                   "card_461|card_462|card_463|card_464"
+        "EvolveCard"                        "card_465"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 时间宝石
+    // _Description: 将一张UR时间宝石置入卡牌栏
+    "combination_72"
+    {
+        "name"                              "combination_72"
+        "id"                                "1110072"
+        "Enable"                            "1"
+        "CombinationList"                   "card_466|card_467|card_468|card_469"
+        "EvolveCard"                        "card_470"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _Name: 屠戮者
+    // _Description: 杀敌力量+0.2，造成的所有伤害，结算时x1.05
+    "combination_73"
+    {
+        "name"                              "combination_73"
+        "id"                                "1110073"
+        "Enable"                            "1"
+        "CombinationList"                   "card_472|card_473|card_474"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_73"
+        "AbilityValues"
+        {
+            "sx_10600186"                   "0.2"
+            "val"                           "1.05"
+        }
+    }
+
+    // _Name: 收割者
+    // _Description: 杀敌敏捷+0.2，造成的物理伤害，结算时x1.08
+    "combination_74"
+    {
+        "name"                              "combination_74"
+        "id"                                "1110074"
+        "Enable"                            "1"
+        "CombinationList"                   "card_475|card_476|card_477"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_74"
+        "AbilityValues"
+        {
+            "sx_10600187"                   "0.2"
+            "val"                           "1.08"
+        }
+    }
+
+    // _Name: 烟灭者
+    // _Description: 杀敌智力+0.2，造成的魔法伤害，结算时x1.08
+    "combination_75"
+    {
+        "name"                              "combination_75"
+        "id"                                "1110075"
+        "Enable"                            "1"
+        "CombinationList"                   "card_478|card_479|card_480"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_75"
+        "AbilityValues"
+        {
+            "sx_10600188"                   "0.2"
+            "val"                           "1.08"
+        }
+    }
+
+    // _Name: 藏宝图
+    // _Description: 将一张N开进码头置入卡牌栏,开启海盗卡组
+    "combination_76"
+    {
+        "name"                              "combination_76"
+        "id"                                "1110076"
+        "Enable"                            "1"
+        "CombinationList"                   "card_481|card_482|card_483"
+        "OperCardGroup"                     "card_489|card_490|card_491|card_495|card_496|card_497|card_499|card_500"
+        "EvolveCard"                        "card_484"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/combinations/combination_sx"
+        "AbilityValues"
+        {
+        }
+    }
+
+}

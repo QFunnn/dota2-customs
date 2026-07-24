@@ -1,0 +1,1253 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"ablts_talent"
+{
+    // _AbltName: 醉拳
+    // _Description: 物理暴击+5%，物理暴伤+10%，闪避+10%
+    "talent_1"
+    {
+        "name"                              "talent_1"
+        "id"                                "1120001"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_sx"
+        "AbilityValues"
+        {
+            "sx_10600119"                   "5"
+            "sx_10600125"                   "10"
+            "sx_10600107"                   "10"
+        }
+    }
+
+    // _AbltName: 蚀脑
+    // _Description: 将三维属性中较低的两项提高到与最高属性一致（基础属性）
+    "talent_2"
+    {
+        "name"                              "talent_2"
+        "id"                                "1120002"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_2"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _AbltName: 尖刺外壳
+    // _Description: 护甲+20，
+    // 受到伤害时对敌人造成【重击系】物理伤害
+    // 伤害：护甲 * 10
+    "talent_3"
+    {
+        "name"                              "talent_3"
+        "id"                                "1120003"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_3"
+        "AbilityValues"
+        {
+            "sx_10600074"                   "20"
+            "dmg_factor"                    "10"
+        }
+    }
+
+    // _AbltName: 傻福
+    // _Description: 提升高品质英雄出现的概率
+    "talent_4"
+    {
+        "name"                              "talent_4"
+        "id"                                "1120004"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_sx"
+        "AbilityValues"
+        {
+            "sx_10600264"                   "10"
+            "sx_10600265"                   "10"
+        }
+    }
+
+    // _AbltName: 灵魂形态
+    // _Description: 技能伤害+15%，技能急速+15
+    "talent_5"
+    {
+        "name"                              "talent_5"
+        "id"                                "1120005"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_sx"
+        "AbilityValues"
+        {
+            "sx_10600154"                   "15"
+            "sx_10600101"                   "15"
+        }
+    }
+
+    // _AbltName: 时之馈礼
+    // _Description: 400秒后获得英雄卡*1，木材+300
+    "talent_6"
+    {
+        "name"                              "talent_6"
+        "id"                                "1120006"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_6"
+        "AbilityValues"
+        {
+            "duration"                      "400"
+            "val"                           "1"
+            "val1"                          "300"
+        }
+    }
+
+    // _AbltName: 洗劫
+    // _Description: 每次攻击获得2金币，并恢复5生命
+    "talent_7"
+    {
+        "name"                              "talent_7"
+        "id"                                "1120007"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_7"
+        "AbilityValues"
+        {
+            "val"                           "2"
+            "val1"                          "5"
+        }
+    }
+
+    // _AbltName: 掠夺
+    // _Description: 攻击有10%的概率获得10金币
+    "talent_8"
+    {
+        "name"                              "talent_8"
+        "id"                                "1120008"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_8"
+        "AbilityValues"
+        {
+            "chance"                        "10"
+            "val"                           "10"
+        }
+    }
+
+    // _AbltName: 无影拳
+    // _Description: 召唤一个灰烬之灵残影，快速对500范围内的随机敌人发动最多7次攻击，每次攻击造成【烈焰系】物理伤害，该伤害可以触发普攻特效，
+    // 冷却时间：12s
+    // 魔法消耗：60
+    // 伤害：攻击 * 1
+    "talent_9"
+    {
+        "name"                              "talent_9"
+        "id"                                "1120009"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_9"
+        "AbilityCooldown"                   "12"
+        "AbilityValues"
+        {
+            "radius"                        "500"
+            "count"                         "7"
+            "dmg_factor"                    "1"
+        }
+    }
+
+    // _AbltName: 再装填
+    // _Description: 每隔25秒，重置所有初始技能冷却（不受冷却缩减影响），魔法消耗：100
+    "talent_10"
+    {
+        "name"                              "talent_10"
+        "id"                                "1120010"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_10"
+        "AbilityCooldown"                   "25"
+        "AbilityValues"
+        {
+        }
+    }
+
+    // _AbltName: 激流
+    // _Description: 每攻击8次触发一次激流，对300范围内的敌人造成【寒霜系】物理伤害，并且降低目标5%的护甲，持续3秒
+    // 伤害：敏捷 * 2
+    "talent_11"
+    {
+        "name"                              "talent_11"
+        "id"                                "1120011"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_11"
+        "AbilityValues"
+        {
+            "count"                         "8"
+            "radius"                        "300"
+            "val"                           "5"
+            "duration"                      "3"
+            "dmg_factor"                    "2"
+        }
+    }
+
+    // _AbltName: 寒霜爆发
+    // _Description: 对400范围内的敌人造成【寒霜系】魔法伤害，并附加1层冻伤，
+    // 冷却时间：13s
+    // 魔法消耗：110
+    // 伤害：智力 * 2.5
+    "talent_12"
+    {
+        "name"                              "talent_12"
+        "id"                                "1120012"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_12"
+        "AbilityCooldown"                   "13"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "2.5"
+            "radius"                        "400"
+            "count"                         "1"
+        }
+    }
+
+    // _AbltName: 烈火精灵
+    // _Description: 每秒向周围随机一个敌人发射1只烈火精灵，造成【烈焰系】魔法伤害
+    // 伤害：智力 * 1
+    "talent_13"
+    {
+        "name"                              "talent_13"
+        "id"                                "1120013"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_13"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "1"
+            "interval"                      "1"
+            "speed"                         "1000"
+        }
+    }
+
+    // _AbltName: 本命一击
+    // _Description: 物理暴击+10%，物理暴伤+30%
+    "talent_14"
+    {
+        "name"                              "talent_14"
+        "id"                                "1120014"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_sx"
+        "AbilityValues"
+        {
+            "sx_10600119"                   "10"
+            "sx_10600125"                   "30"
+        }
+    }
+
+    // _AbltName: 自然之怒
+    // _Description: 魔法暴击+10%，魔法暴伤+30%
+    "talent_15"
+    {
+        "name"                              "talent_15"
+        "id"                                "1120015"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_sx"
+        "AbilityValues"
+        {
+            "sx_10600121"                   "10"
+            "sx_10600127"                   "30"
+        }
+    }
+
+    // _AbltName: 天裔之杖
+    // _Description: 真伤暴击+10%，真伤暴伤+30%
+    "talent_16"
+    {
+        "name"                              "talent_16"
+        "id"                                "1120016"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_sx"
+        "AbilityValues"
+        {
+            "sx_10600123"                   "10"
+            "sx_10600129"                   "30"
+        }
+    }
+
+    // _AbltName: 沙尘暴
+    // _Description: 生成一阵沙尘暴，每秒对沙尘暴范围内的敌人造成100%智力的【自然系】魔法伤害，持续8秒，
+    // 冷却时间：30s
+    // 魔法消耗：85
+    // 伤害：智力  * 1
+    "talent_17"
+    {
+        "name"                              "talent_17"
+        "id"                                "1120017"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_17"
+        "AbilityCooldown"                   "30"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "1"
+            "radius"                        "800"
+            "interval"                      "1"
+            "duration"                      "8"
+        }
+    }
+
+    // _AbltName: 属性转换
+    // _Description: 获取该技能时，三维中数值最高的属性获得最终属性+20%，其余属性-10%
+    "talent_18"
+    {
+        "name"                              "talent_18"
+        "id"                                "1120018"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_18"
+        "AbilityValues"
+        {
+            "val"                           "20"
+            "val1"                          "10"
+        }
+    }
+
+    // _AbltName: 风暴之眼
+    // _Description: 强大的闪电风暴，每秒会向周围1000范围内随机敌人发射闪电，造成【圣光系】魔法，持续8秒，
+    // 冷却时间：20s
+    // 伤害：智力 * 0.7
+    "talent_19"
+    {
+        "name"                              "talent_19"
+        "id"                                "1120019"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_19"
+        "AbilityCooldown"                   "20"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "0.7"
+            "interval"                      "1"
+            "radius"                        "1000"
+            "duration"                      "8"
+        }
+    }
+
+    // _AbltName: 长大
+    // _Description: 每次进化获得：攻击力+50，护甲+5，所有伤害+1%
+    "talent_20"
+    {
+        "name"                              "talent_20"
+        "id"                                "1120020"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_20"
+        "AbilityValues"
+        {
+            "val"                           "50"
+            "val1"                          "5"
+            "val2"                          "1"
+        }
+    }
+
+    // _AbltName: 灼热之箭
+    // _Description: 攻击额外附加【烈焰系】物理伤害
+    // 伤害：敏捷 * 0.6
+    "talent_21"
+    {
+        "name"                              "talent_21"
+        "id"                                "1120021"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_21"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "0.6"
+        }
+    }
+
+    // _AbltName: 焦土
+    // _Description: 周围900范围内的所有敌人每秒受到【烈焰系】魔法伤害，并且降低10%的移速。
+    // 伤害：力量 * 0.5
+    "talent_22"
+    {
+        "name"                              "talent_22"
+        "id"                                "1120022"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_22"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "0.5"
+            "radius"                        "900"
+            "val"                           "10"
+        }
+    }
+
+    // _AbltName: 超声冲击波
+    // _Description: 每隔25秒，在身前制造强大的声波，击退敌人并造成自适应伤害，
+    // 冷却时间：25s
+    // 魔法消耗：250
+    // 伤害：攻击 * 9
+    "talent_23"
+    {
+        "name"                              "talent_23"
+        "id"                                "1120023"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_23"
+        "AbilityCooldown"                   "25"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "9"
+        }
+    }
+
+    // _AbltName: 锚击
+    // _Description: 攻击时有10%的概率对目标周围300范围内所有敌人造成【寒霜系】物理伤害，并且降低目标30%的攻击力，持续5秒
+    // 伤害：力量 * 2.5
+    "talent_24"
+    {
+        "name"                              "talent_24"
+        "id"                                "1120024"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_24"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "2.5"
+            "radius"                        "300"
+            "val"                           "10"
+            "val1"                          "30"
+            "duration"                      "5"
+        }
+    }
+
+    // _AbltName: 灵能之刃
+    // _Description: 攻击范围+100，普攻伤害+10%，穿透次数+2
+    "talent_25"
+    {
+        "name"                              "talent_25"
+        "id"                                "1120025"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_25"
+        "AbilityValues"
+        {
+            "sx_10600089"                   "100"
+            "sx_10600152"                   "10"
+            "val"                           "2"
+            "val1"                          "400"
+            "val2"                          "0.7"
+        }
+    }
+
+    // _AbltName: 冰封路径
+    // _Description: 对直线敌人造成【寒霜系】魔法伤害，并附加2秒冻结，
+    // 冷却时间：13s
+    // 魔法消耗：100
+    // 伤害：智力 * 3
+    "talent_26"
+    {
+        "name"                              "talent_26"
+        "id"                                "1120026"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_26"
+        "AbilityCooldown"                   "13"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "3"
+            "duration"                      "2"
+            "val"                           "1200"
+            "val1"                          "150"
+            "val2"                          "5"
+        }
+    }
+
+    // _AbltName: 热血战魂
+    // _Description: 持续攻击同一目标时会获得1层战魂，每层战魂提高10%攻速，2护甲，最高叠加12层，切换目标重新计数
+    "talent_27"
+    {
+        "name"                              "talent_27"
+        "id"                                "1120027"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_27"
+        "AbilityValues"
+        {
+            "val"                           "1"
+            "val1"                          "10"
+            "val2"                          "2"
+            "val3"                          "12"
+        }
+    }
+
+    // _AbltName: 圣光箭
+    // _Description: 攻击时有10%概率发射一根圣光箭矢，对命中的敌人造成【圣光系】物理伤害
+    // 伤害：敏捷 * 2
+    "talent_28"
+    {
+        "name"                              "talent_28"
+        "id"                                "1120028"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_28"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "2"
+            "val"                           "10"
+        }
+    }
+
+    // _AbltName: 皮糙肉厚
+    // _Description: 力量+200，力量增幅+20%
+    "talent_29"
+    {
+        "name"                              "talent_29"
+        "id"                                "1120029"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_sx"
+        "AbilityValues"
+        {
+            "sx_10600017"                   "200"
+            "sx_10600019"                   "20"
+        }
+    }
+
+    // _AbltName: 射手天赋
+    // _Description: 敏捷+200，敏捷增幅+20%
+    "talent_30"
+    {
+        "name"                              "talent_30"
+        "id"                                "1120030"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_sx"
+        "AbilityValues"
+        {
+            "sx_10600022"                   "200"
+            "sx_10600024"                   "20"
+        }
+    }
+
+    // _AbltName: 施虐之心
+    // _Description: 智力+200，智力增幅+20%
+    "talent_31"
+    {
+        "name"                              "talent_31"
+        "id"                                "1120031"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_sx"
+        "AbilityValues"
+        {
+            "sx_10600027"                   "200"
+            "sx_10600029"                   "20"
+        }
+    }
+
+    // _AbltName: 神枪在手
+    // _Description: 多重次数+2，多重伤害+20%
+    "talent_32"
+    {
+        "name"                              "talent_32"
+        "id"                                "1120032"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_sx"
+        "AbilityValues"
+        {
+            "sx_10600130"                   "2"
+            "sx_10600131"                   "20"
+        }
+    }
+
+    // _AbltName: 月刃
+    // _Description: 弹射次数+2，弹射伤害+20%
+    "talent_33"
+    {
+        "name"                              "talent_33"
+        "id"                                "1120033"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_sx"
+        "AbilityValues"
+        {
+            "sx_10600132"                   "2"
+            "sx_10600133"                   "20"
+        }
+    }
+
+    // _AbltName: 巨力挥舞
+    // _Description: 分裂次数+2，分裂伤害+20%
+    "talent_34"
+    {
+        "name"                              "talent_34"
+        "id"                                "1120034"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_sx"
+        "AbilityValues"
+        {
+            "sx_10600134"                   "2"
+            "sx_10600135"                   "20"
+        }
+    }
+
+    // _AbltName: 圣光洗礼
+    // _Description: 全属性+100，力量增幅+10%，敏捷增幅+10%，智力增幅+10%
+    "talent_35"
+    {
+        "name"                              "talent_35"
+        "id"                                "1120035"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_sx"
+        "AbilityValues"
+        {
+            "sx_10600012"                   "100"
+            "sx_10600019"                   "10"
+            "sx_10600024"                   "10"
+            "sx_10600029"                   "10"
+        }
+    }
+
+    // _AbltName: 瞄准
+    // _Description: 攻击范围+400
+    "talent_36"
+    {
+        "name"                              "talent_36"
+        "id"                                "1120036"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_sx"
+        "AbilityValues"
+        {
+            "sx_10600089"                   "400"
+        }
+    }
+
+    // _AbltName: 强力击
+    // _Description: 攻击有10%的概率触发强力箭矢，对直线敌人造成【自然系】物理伤害
+    // 伤害：敏捷 * 3
+    "talent_37"
+    {
+        "name"                              "talent_37"
+        "id"                                "1120037"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_37"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "3"
+            "val"                           "10"
+        }
+    }
+
+    // _AbltName: 黑洞
+    // _Description: 生成一个黑洞，对400范围内敌人每0.5秒造成【暗影系】魔法伤害，并且不断向中心拉扯目标，黑洞持续4秒，
+    // 冷却时间：25s
+    // 魔法消耗：300
+    // 伤害：智力 * 1.5
+    "talent_38"
+    {
+        "name"                              "talent_38"
+        "id"                                "1120038"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_38"
+        "AbilityCooldown"                   "25"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "1.5"
+            "radius"                        "400"
+            "val"                           "0.5"
+            "duration"                      "4"
+        }
+    }
+
+    // _AbltName: 极寒领域
+    // _Description: 生成800范围的领域，每秒对领域内的敌人造成【寒霜系】魔法伤害并附加50%减速，持续8秒，
+    // 冷却时间：30s
+    // 魔法消耗：200
+    // 伤害：智力 * 1.2
+    "talent_39"
+    {
+        "name"                              "talent_39"
+        "id"                                "1120039"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_39"
+        "AbilityCooldown"                   "30"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "1.2"
+            "radius"                        "800"
+            "val"                           "50"
+            "duration"                      "8"
+        }
+    }
+
+    // _AbltName: 炽魂
+    // _Description: 每次释放技能获得1层炽热，每层提供7%攻速，4技能急速，最高叠加10层，持续10秒
+    "talent_40"
+    {
+        "name"                              "talent_40"
+        "id"                                "1120040"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_40"
+        "AbilityValues"
+        {
+            "val"                           "1"
+            "val1"                          "7"
+            "val2"                          "4"
+            "val3"                          "10"
+            "duration"                      "10"
+        }
+    }
+
+    // _AbltName: 反击螺旋
+    // _Description: 每次受到攻击有10%的概率对周围900范围内的敌人造成【重击系】物理伤害
+    // 伤害：力量 * 1.2
+    "talent_41"
+    {
+        "name"                              "talent_41"
+        "id"                                "1120041"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_41"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "1.2"
+            "radius"                        "900"
+            "val"                           "10"
+        }
+    }
+
+    // _AbltName: 天命之雨
+    // _Description: 攻击真伤率+10%，法术真伤率+10%，每隔12秒，在目标位置释放天命之雨（6s)，持续对附加敌人造成【圣光系】真实伤害
+    // 冷却时间：12s
+    // 魔法消耗：100
+    // 伤害：攻击真伤 * 1.2
+    "talent_42"
+    {
+        "name"                              "talent_42"
+        "id"                                "1120042"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_42"
+        "AbilityCooldown"                   "12"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "1.2"
+            "duration"                      "6"
+            "radius"                        "650"
+        }
+    }
+
+    // _AbltName: 腐肉堆积
+    // _Description: 杀敌力量+0.4，最终力量+8%，最终生命+8%
+    "talent_43"
+    {
+        "name"                              "talent_43"
+        "id"                                "1120043"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_sx"
+        "AbilityValues"
+        {
+            "sx_10600186"                   "0.4"
+            "sx_10600020"                   "8"
+            "sx_10600055"                   "8"
+        }
+    }
+
+    // _AbltName: 能量转移
+    // _Description: 杀敌敏捷+0.4，攻速+100%，攻击间隔-0.1
+    "talent_44"
+    {
+        "name"                              "talent_44"
+        "id"                                "1120044"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_sx"
+        "AbilityValues"
+        {
+            "sx_10600187"                   "0.4"
+            "sx_10600081"                   "100"
+            "sx_10600083"                   "-0.1"
+        }
+    }
+
+    // _AbltName: 智慧之刃
+    // _Description: 杀敌智力+0.4，攻击附加150%智力的自适应伤害
+    "talent_45"
+    {
+        "name"                              "talent_45"
+        "id"                                "1120045"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_45"
+        "AbilityValues"
+        {
+            "sx_10600188"                   "0.4"
+            "val"                           "150"
+        }
+    }
+
+    // _AbltName: 支配死灵
+    // _Description: 杀敌攻击+0.4，每杀敌500增加1%的攻击增幅
+    "talent_46"
+    {
+        "name"                              "talent_46"
+        "id"                                "1120046"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_46"
+        "AbilityValues"
+        {
+            "sx_10600190"                   "0.4"
+            "val"                           "300"
+            "val1"                          "1"
+        }
+    }
+
+    // _AbltName: 太阳金辉
+    // _Description: 杀敌攻击真伤+0.2，每杀敌500增加0.5%的攻击真伤增幅
+    "talent_47"
+    {
+        "name"                              "talent_47"
+        "id"                                "1120047"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_47"
+        "AbilityValues"
+        {
+            "sx_10600191"                   "0.2"
+            "val"                           "500"
+            "val1"                          "0.5"
+        }
+    }
+
+    // _AbltName: 贪魔的贪婪
+    // _Description: 杀敌金币+30%，每秒木材+0.5
+    "talent_48"
+    {
+        "name"                              "talent_48"
+        "id"                                "1120048"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_sx"
+        "AbilityValues"
+        {
+            "sx_10600300"                   "30"
+            "sx_10600182"                   "0.5"
+        }
+    }
+
+    // _AbltName: 冰霜漩涡
+    // _Description: 在目标位置创造一个寒冰漩涡，每0.4秒对范围内的敌人造成【寒霜系】魔法伤害，并附加1层冻伤，寒冰漩涡持续2秒
+    // 冷却时间：16s
+    // 魔法消耗：100
+    // 伤害：攻击 * 0.5
+    "talent_49"
+    {
+        "name"                              "talent_49"
+        "id"                                "1120049"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_49"
+        "AbilityCooldown"                   "16"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "0.5"
+            "interval"                      "0.4"
+            "val"                           "1"
+            "duration"                      "2"
+            "radius"                        "275"
+        }
+    }
+
+    // _AbltName: 魔导天陨
+    // _Description: 发射14道魔导天陨照耀目标区域，对敌人造成【圣光系】真实伤害
+    // 冷却时间：18s
+    // 魔法消耗：100
+    // 伤害：攻击真伤 * 0.8
+    "talent_50"
+    {
+        "name"                              "talent_50"
+        "id"                                "1120050"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_50"
+        "AbilityCooldown"                   "18"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "0.8"
+            "val"                           "14"
+            "radius"                        "150"
+        }
+    }
+
+    // _AbltName: 源泉
+    // _Description: 力量+1，敏捷+1，智力+1
+    "talent_51"
+    {
+        "name"                              "talent_51"
+        "id"                                "1120051"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_sx"
+        "AbilityValues"
+        {
+            "sx_10600173"                   "1"
+            "sx_10600174"                   "1"
+            "sx_10600175"                   "1"
+        }
+    }
+
+    // _AbltName: 安可
+    // _Description: 每秒金币+10
+    "talent_52"
+    {
+        "name"                              "talent_52"
+        "id"                                "1120052"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_52"
+        "AbilityValues"
+        {
+            "sx_10600181"                   "10"
+        }
+    }
+
+    // _AbltName: 自然蔽护
+    // _Description: 每秒木材+1
+    "talent_53"
+    {
+        "name"                              "talent_53"
+        "id"                                "1120053"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_sx"
+        "AbilityValues"
+        {
+            "sx_10600182"                   "1"
+        }
+    }
+
+    // _AbltName: 虫巢思维
+    // _Description: 每次攻击经验+2
+    "talent_54"
+    {
+        "name"                              "talent_54"
+        "id"                                "1120054"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_54"
+        "AbilityValues"
+        {
+            "val"                           "2"
+        }
+    }
+
+    // _AbltName: 噬魂
+    // _Description: 杀敌力量+0.5
+    "talent_55"
+    {
+        "name"                              "talent_55"
+        "id"                                "1120055"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_sx"
+        "AbilityValues"
+        {
+            "sx_10600186"                   "0.5"
+        }
+    }
+
+    // _AbltName: 深渊旅人
+    // _Description: 杀敌敏捷+0.5
+    "talent_56"
+    {
+        "name"                              "talent_56"
+        "id"                                "1120056"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_sx"
+        "AbilityValues"
+        {
+            "sx_10600187"                   "0.5"
+        }
+    }
+
+    // _AbltName: 殁界神智
+    // _Description: 杀敌智力+0.5
+    "talent_57"
+    {
+        "name"                              "talent_57"
+        "id"                                "1120057"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_sx"
+        "AbilityValues"
+        {
+            "sx_10600188"                   "0.5"
+        }
+    }
+
+    // _AbltName: 灵魂碎片
+    // _Description: 杀敌攻击+0.5
+    "talent_58"
+    {
+        "name"                              "talent_58"
+        "id"                                "1120058"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_sx"
+        "AbilityValues"
+        {
+            "sx_10600190"                   "0.5"
+        }
+    }
+
+    // _AbltName: 灵魂打击
+    // _Description: 杀敌攻击真伤+0.1
+    "talent_59"
+    {
+        "name"                              "talent_59"
+        "id"                                "1120059"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_sx"
+        "AbilityValues"
+        {
+            "sx_10600191"                   "0.1"
+        }
+    }
+
+    // _AbltName: 鸡你太美
+    // _Description: 每秒经验+1
+    "talent_60"
+    {
+        "name"                              "talent_60"
+        "id"                                "1120060"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_sx"
+        "AbilityValues"
+        {
+            "sx_10600184"                   "1"
+        }
+    }
+
+    // _AbltName: 万象风压
+    // _Description: 万象风压：每隔17秒，召唤恐怖风压，每0.4秒击飞600范围内所有敌人并且造成200%智力的【自然系】魔法伤害
+    "talent_61"
+    {
+        "name"                              "talent_61"
+        "id"                                "1120061"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_61"
+        "AbilityCooldown"                   "17"
+        "AbilityValues"
+        {
+            "dmg_interval"                  "0.5"
+            "radius"                        "600"
+            "dmg_factor"                    "2"
+            "duration"                      "3"
+        }
+    }
+
+    // _AbltName: 疯狂生长
+    // _Description: 杀敌力量+0.15，杀敌敏捷+0.15，杀敌智力+0.15
+    "talent_62"
+    {
+        "name"                              "talent_62"
+        "id"                                "1120062"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_sx"
+        "AbilityValues"
+        {
+            "sx_10600186"                   "0.15"
+            "sx_10600187"                   "0.15"
+            "sx_10600188"                   "0.15"
+        }
+    }
+
+    // _AbltName: 元初之力
+    // _Description: 全系伤害+25%
+    "talent_63"
+    {
+        "name"                              "talent_63"
+        "id"                                "1120063"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_sx"
+        "AbilityValues"
+        {
+            "sx_10600218"                   "25"
+        }
+    }
+
+    // _AbltName: 盖亚之力
+    // _Description: 盖亚之力：每攻击10次，发出枚盖亚能量炮，对650范围内的敌人造成380%攻击的【暗影系】物理伤害
+    "talent_64"
+    {
+        "name"                              "talent_64"
+        "id"                                "1120064"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_64"
+        "AbilityValues"
+        {
+            "val"                           "10"
+            "val1"                          "650"
+            "val2"                          "380"
+        }
+    }
+
+    // _AbltName: 震击
+    // _Description: 生命值+1000，力量+200，护甲+15，格挡+15，死亡后获得1次满血复活的机会
+    // 震击：，攻击时10%概率对目标400范围内敌人造成260%生命值的自适应伤害，并附加2秒眩晕，
+    "talent_65"
+    {
+        "name"                              "talent_65"
+        "id"                                "1120065"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_65"
+        "AbilityValues"
+        {
+            "sx_10600052"                   "1000"
+            "sx_10600017"                   "200"
+            "sx_10600074"                   "15"
+            "sx_10600267"                   "15"
+            "val"                           "1"
+            "val1"                          "10"
+            "val2"                          "400"
+            "val3"                          "260"
+            "val4"                          "2"
+        }
+    }
+
+    // _AbltName: 雅琉琉炮
+    // _Description: 无视护甲+30%
+    // 雅琉琉炮：每攻击20次，发射一道激光，每0.2秒对范围内的敌人造成70%攻击的自适应伤害，并冻结目标，激光持续3秒，
+    "talent_66"
+    {
+        "name"                              "talent_66"
+        "id"                                "1120066"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_66"
+        "AbilityValues"
+        {
+            "sx_10600117"                   "30"
+            "val"                           "20"
+            "val1"                          "0.2"
+            "val2"                          "70"
+            "val3"                          "3"
+            "width"                         "50"
+            "distance"                      "1200"
+            "frozen_time"                   "1"
+        }
+    }
+
+    // _AbltName: 饥饿之寒
+    // _Description: 全属性+300
+    // 所有伤害+15%
+    // 饥饿之寒：每攻击7次，附加范围伤害，对目标500范围内的敌人造成300%全属性的自适应伤害，并附加1层冻伤
+    "talent_67"
+    {
+        "name"                              "talent_67"
+        "id"                                "1120067"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_67"
+        "AbilityValues"
+        {
+            "sx_10600012"                   "300"
+            "sx_10600163"                   "15"
+            "val"                           "7"
+            "val1"                          "500"
+            "val2"                          "300"
+            "val3"                          "1"
+        }
+    }
+
+    // _AbltName: 恩赐解脱
+    // _Description: 造成伤害时有3%的概率使此伤害提高10倍
+    "talent_68"
+    {
+        "name"                              "talent_68"
+        "id"                                "1120068"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_68"
+        "AbilityValues"
+        {
+            "val"                           "3"
+            "val1"                          "10"
+        }
+    }
+
+    // _AbltName: 超负荷
+    // _Description: 施放初始技能时产生电荷，攻击时发出电荷，对目标300范围内所有敌人造成100%攻击的[圣光系]魔法伤害
+    "talent_69"
+    {
+        "name"                              "talent_69"
+        "id"                                "1120069"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_69"
+        "AbilityValues"
+        {
+            "val"                           "300"
+            "val1"                          "100"
+        }
+    }
+
+    // _AbltName: 剑心犹在
+    // _Description: 造成物理伤害时，额外附加20%敏捷的伤害（不会额外跳字，直接作用于本次伤害的基础系数）
+    "talent_70"
+    {
+        "name"                              "talent_70"
+        "id"                                "1120070"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_70"
+        "AbilityValues"
+        {
+            "val"                           "20"
+        }
+    }
+
+    // _AbltName: 神之力量
+    // _Description: 造成任意伤害时，额外附加12%力量的伤害(不会额外跳字，直接作用于本次伤害的基础系数）
+    "talent_71"
+    {
+        "name"                              "talent_71"
+        "id"                                "1120071"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_71"
+        "AbilityValues"
+        {
+            "val"                           "12"
+        }
+    }
+
+    // _AbltName: 全知全能
+    // _Description: 魔法暴击+40%
+    // 每施放1次初始技能，都会使全属性+1
+    "talent_72"
+    {
+        "name"                              "talent_72"
+        "id"                                "1120072"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_72"
+        "AbilityValues"
+        {
+            "sx_10600121"                   "40"
+            "val"                           "1"
+            "val1"                          "1"
+        }
+    }
+
+    // _AbltName: 湮灭刀锋
+    // _Description: 物理暴击+40%
+    // 攻击有10%的概率对范围内的敌人造成500%攻击的自适应伤害
+    "talent_73"
+    {
+        "name"                              "talent_73"
+        "id"                                "1120073"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_73"
+        "AbilityValues"
+        {
+            "sx_10600119"                   "40"
+            "val"                           "10"
+            "val1"                          "500"
+            "val2"                          "500"
+        }
+    }
+
+    // _AbltName: 静电场
+    // _Description: 造成魔法伤害时，额外附加20%智力的伤害(不会额外跳字，直接作用于本次伤害的基础系数）
+    "talent_74"
+    {
+        "name"                              "talent_74"
+        "id"                                "1120074"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_74"
+        "AbilityValues"
+        {
+            "val"                           "20"
+        }
+    }
+
+    // _AbltName: 符文强化
+    // _Description: 杀敌攻击+0.4
+    // 每秒攻击+1
+    // 攻击增幅+40%
+    // 最终攻击+10%
+    "talent_75"
+    {
+        "name"                              "talent_75"
+        "id"                                "1120075"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/talent/talent_sx"
+        "AbilityValues"
+        {
+            "sx_10600190"                   "0.4"
+            "sx_10600177"                   "1"
+            "sx_10600034"                   "40"
+            "sx_10600035"                   "10"
+        }
+    }
+
+}

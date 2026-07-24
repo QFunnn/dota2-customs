@@ -1,0 +1,53 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/hud/notification/notification.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/service/service_common.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/sequence_actions.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/core/core.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/hud/notification/notification.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="CombatEventPlayerIcon">
+			<Panel class="CombatEventPlayerIcon" hittest="false" hittestchildren="false">
+				<DOTAAvatarImage id="PlayerAvatarImage" nocompendiumborder="true" hittest="false" hittestchildren="false" />
+			</Panel>
+		</snippet>
+		<snippet name="CombatEventItemIcon">
+			<Panel class="CombatEventItemIcon" hittest="false" hittestchildren="false">
+				<DOTAItemImage id="ItemImage" hittest="false" hittestchildren="false" />
+			</Panel>
+		</snippet>
+		<snippet name="Notification">
+			<Panel class="Notification" hittest="false" hittestchildren="false">
+				<Panel id="SlashContainer">
+					<Panel id="TeamColorBar" />
+				</Panel>
+				<Panel id="NotificationIcon" />
+				<Label id="NotificationLabel" class="NotificationListLabel" hittest="false" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="NotificationRoot" hittest="false">
+		<Panel id="SideNotificationRoot" hittest="false" />
+		<Panel id="TopNotificationRoot" hittest="false" />
+		<Panel id="BulletNotificationRoot" hittest="false" />
+		<Panel id="RewardNotificationRoot" hittest="false" />
+		<Panel id="SideRewardNotificationRoot" hittest="false" />
+		<Panel id="AddCardAnimationNotificationRoot" hittest="false" />
+		<Panel id="DevourCardAnimationNotificationRoot" hittest="false" />
+	</Panel>
+</root>

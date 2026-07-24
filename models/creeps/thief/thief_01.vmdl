@@ -1,0 +1,3257 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "BoneMarkupList"
+				children = [  ]
+				bone_cull_type = "None"
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						name = "thief_01_model"
+						filename = "models/creeps/thief/thief_01_thief_01_model.dmx"
+					},
+					{
+						_class = "RenderMeshFile"
+						name = "thief_01_model_lod1"
+						filename = "models/creeps/thief/thief_01_thief_01_model_lod11.dmx"
+					},
+				]
+			},
+			{
+				_class = "LODGroupList"
+				children = 
+				[
+					{
+						_class = "LODGroup"
+						switch_threshold = 0.0
+						mesh_references = 
+						[
+							{
+								mesh_name = "thief_01_model"
+							},
+						]
+					},
+					{
+						_class = "LODGroup"
+						switch_threshold = 1.0
+						mesh_references = 
+						[
+							{
+								mesh_name = "thief_01_model_lod1"
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "AttachmentList"
+				children = 
+				[
+					{
+						_class = "Attachment"
+						name = "attach_h1"
+						ignore_rotation = false
+						parent_bone = "rt_blade"
+						relative_origin = [ -0.000015, -26.000004, 30.000011 ]
+						relative_angles = [ 0.000001, 0.000004, -0.000003 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_attack1"
+						ignore_rotation = false
+						parent_bone = "rt_blade"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ 0.000001, 0.000004, -0.000003 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_h2"
+						ignore_rotation = false
+						parent_bone = "lf_blade"
+						relative_origin = [ 0.0, 25.999992, 30.000004 ]
+						relative_angles = [ -0.000001, 0.000004, -0.000004 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_attack2"
+						ignore_rotation = false
+						parent_bone = "lf_blade"
+						relative_origin = [ 0.0, -0.000008, 0.0 ]
+						relative_angles = [ -0.000001, 0.000004, -0.000004 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_hitloc"
+						ignore_rotation = false
+						parent_bone = "Spine_1"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+				]
+			},
+			{
+				_class = "WeightListList"
+				children = 
+				[
+					{
+						_class = "WeightList"
+						name = "upper_body"
+						weights = 
+						[
+							{
+								bone = "Root_0"
+								weight = 0.0
+							},
+							{
+								bone = "Spine_0"
+								weight = 1.0
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "PoseParamList"
+				children = 
+				[
+					{
+						_class = "PoseParam"
+						name = "turn"
+						poseparam_min = -1.0
+						poseparam_max = 1.0
+						poseparam_looping = false
+						poseparam_loop = 0.0
+					},
+				]
+			},
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "die"
+								source_filename = "models/creeps/thief/die.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DIE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 19
+										event_keys = 
+										{
+											name = "BodyImpact_Common.Light"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "die_dropA"
+								source_filename = "models/creeps/thief/die_dropA.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DIE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 19
+										event_keys = 
+										{
+											name = "BodyImpact_Common.Light"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "die_dropB"
+								source_filename = "models/creeps/thief/die_dropB.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DIE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 19
+										event_keys = 
+										{
+											name = "BodyImpact_Common.Light"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "portrait"
+								source_filename = "models/creeps/thief/portrait.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAPTURE"
+								activity_weight = 5
+							},
+							{
+								_class = "AnimFile"
+								name = "portrait1"
+								source_filename = "models/creeps/thief/portrait1.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAPTURE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "spawn"
+								source_filename = "models/creeps/thief/spawn.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_SPAWN"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "attack_injured"
+								source_filename = "models/creeps/thief/attack_injured.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "attack1_injured"
+								source_filename = "models/creeps/thief/attack1_injured.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 3
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "attack2_injured"
+								source_filename = "models/creeps/thief/attack2_injured.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 4
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "teleport_end"
+								source_filename = "models/creeps/thief/teleport_end.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_TELEPORT_END"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "loadout"
+								source_filename = "models/creeps/thief/loadout.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_LOADOUT"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "versus_blink"
+								source_filename = "models/creeps/thief/versus_blink.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_VERSUS"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "victory_anim"
+								source_filename = "models/creeps/thief/victory_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_VICTORY"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "attack_anim"
+								source_filename = "models/creeps/thief/attack_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "attack1_anim"
+								source_filename = "models/creeps/thief/attack1_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 3
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "attack2_anim"
+								source_filename = "models/creeps/thief/attack2_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 4
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "cast_anim"
+								source_filename = "models/creeps/thief/cast_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_4"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 1
+										event_keys = 
+										{
+											name = "Hero_Antimage.ManaVoidCast"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "flail_anim"
+								source_filename = "models/creeps/thief/flail_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_FLAIL"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "blink_anim"
+								source_filename = "models/creeps/thief/blink_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_2"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "idle_anim"
+								source_filename = "models/creeps/thief/idle_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "stun_anim"
+								source_filename = "models/creeps/thief/stun_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DISABLED"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "teleport_anim"
+								source_filename = "models/creeps/thief/teleport_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_TELEPORT"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "spawn_loadout_anim"
+								source_filename = "models/creeps/thief/spawn_loadout_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_SPAWN"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "idle_injured_anim"
+								source_filename = "models/creeps/thief/idle_injured_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "capture_teleport"
+								source_filename = "models/creeps/thief/capture_teleport.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAPTURE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "run_anim"
+								source_filename = "models/creeps/thief/run_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 12
+										event_keys = 
+										{
+											name = "Hero_Antimage.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 24
+										event_keys = 
+										{
+											name = "Hero_Antimage.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimAddLayer"
+										anim_name = "turns"
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "run_angry_anim"
+								source_filename = "models/creeps/thief/run_angry_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 12
+										event_keys = 
+										{
+											name = "Hero_Antimage.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 24
+										event_keys = 
+										{
+											name = "Hero_Antimage.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimAddLayer"
+										anim_name = "turns"
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "run_injured"
+								source_filename = "models/creeps/thief/run_injured.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 2
+										event_keys = 
+										{
+											name = "Hero_Antimage.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 13
+										event_keys = 
+										{
+											name = "Hero_Antimage.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimAddLayer"
+										anim_name = "turns"
+									},
+								]
+							},
+						]
+						name = "base"
+					},
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "basher_die_base"
+								source_filename = "models/creeps/thief/basher_die_base.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DIE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 19
+										event_keys = 
+										{
+											name = "BodyImpact_Common.Light"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "basher_die_dropA"
+								source_filename = "models/creeps/thief/basher_die_dropA.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DIE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 19
+										event_keys = 
+										{
+											name = "BodyImpact_Common.Light"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "basher_die_dropB"
+								source_filename = "models/creeps/thief/basher_die_dropB.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DIE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 19
+										event_keys = 
+										{
+											name = "BodyImpact_Common.Light"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "basher_die_dropC"
+								source_filename = "models/creeps/thief/basher_die_dropC.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DIE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 19
+										event_keys = 
+										{
+											name = "BodyImpact_Common.Light"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "basher_death_alt"
+								source_filename = "models/creeps/thief/basher_death_alt.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DIE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 30
+										event_keys = 
+										{
+											name = "BodyImpact_Common.Light"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "basher_death_alt_dropA"
+								source_filename = "models/creeps/thief/basher_death_alt_dropA.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DIE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 30
+										event_keys = 
+										{
+											name = "BodyImpact_Common.Light"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "basher_death_alt_dropB"
+								source_filename = "models/creeps/thief/basher_death_alt_dropB.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DIE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 30
+										event_keys = 
+										{
+											name = "BodyImpact_Common.Light"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "basher_spawn_loadout"
+								source_filename = "models/creeps/thief/basher_spawn_loadout.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_SPAWN"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_blink"
+								source_filename = "models/creeps/thief/slasher_blink.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_2"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_ultimate"
+								source_filename = "models/creeps/thief/slasher_ultimate.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_4"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 1
+										event_keys = 
+										{
+											name = "Hero_Antimage.ManaVoidCast"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_attack_injured"
+								source_filename = "models/creeps/thief/slasher_attack_injured.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_attack_injured_offhand"
+								source_filename = "models/creeps/thief/slasher_attack_injured_offhand.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_attack1_injured"
+								source_filename = "models/creeps/thief/slasher_attack1_injured.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 3
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_attack1_injured_offhand"
+								source_filename = "models/creeps/thief/slasher_attack1_injured_offhand.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 3
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_attack2_injured"
+								source_filename = "models/creeps/thief/slasher_attack2_injured.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 4
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_attack2_injured_offhand"
+								source_filename = "models/creeps/thief/slasher_attack2_injured_offhand.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 4
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_attack_base"
+								source_filename = "models/creeps/thief/slasher_attack_base.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_attack_base_offhand"
+								source_filename = "models/creeps/thief/slasher_attack_base_offhand.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_attack1"
+								source_filename = "models/creeps/thief/slasher_attack1.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 3
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_attack1_offhand"
+								source_filename = "models/creeps/thief/slasher_attack1_offhand.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 3
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_attack2"
+								source_filename = "models/creeps/thief/slasher_attack2.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 4
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_attack2_offhand"
+								source_filename = "models/creeps/thief/slasher_attack2_offhand.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 4
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_attack_alt01_injured"
+								source_filename = "models/creeps/thief/slasher_attack_alt01_injured.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 3
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_attack_alt02_injured"
+								source_filename = "models/creeps/thief/slasher_attack_alt02_injured.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 3
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_victory"
+								source_filename = "models/creeps/thief/slasher_victory.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_VICTORY"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_loadout"
+								source_filename = "models/creeps/thief/slasher_loadout.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_LOADOUT"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_idle_base"
+								source_filename = "models/creeps/thief/slasher_idle_base.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_idle_alt"
+								source_filename = "models/creeps/thief/slasher_idle_alt.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE_RARE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_death_base"
+								source_filename = "models/creeps/thief/slasher_death_base.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DIE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 19
+										event_keys = 
+										{
+											name = "BodyImpact_Common.Light"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_death_alt01"
+								source_filename = "models/creeps/thief/slasher_death_alt01.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DIE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 32
+										event_keys = 
+										{
+											name = "BodyImpact_Common.Light"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_death_alt01_dropA"
+								source_filename = "models/creeps/thief/slasher_death_alt01_dropA.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DIE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 32
+										event_keys = 
+										{
+											name = "BodyImpact_Common.Light"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_death_alt01_dropB"
+								source_filename = "models/creeps/thief/slasher_death_alt01_dropB.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DIE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 32
+										event_keys = 
+										{
+											name = "BodyImpact_Common.Light"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_death_alt01_dropC"
+								source_filename = "models/creeps/thief/slasher_death_alt01_dropC.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DIE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 32
+										event_keys = 
+										{
+											name = "BodyImpact_Common.Light"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "manta_attack_injured"
+								source_filename = "models/creeps/thief/manta_attack_injured.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "manta_attack1_injured"
+								source_filename = "models/creeps/thief/manta_attack1_injured.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 3
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "manta_attack2_injured"
+								source_filename = "models/creeps/thief/manta_attack2_injured.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 4
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "attack_manta_anim"
+								source_filename = "models/creeps/thief/attack_manta_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "attack_manta1_anim"
+								source_filename = "models/creeps/thief/attack_manta1_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "attack_manta2_anim"
+								source_filename = "models/creeps/thief/attack_manta2_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_attack_alt01_anim"
+								source_filename = "models/creeps/thief/slasher_attack_alt01_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 4
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_attack_alt02_anim"
+								source_filename = "models/creeps/thief/slasher_attack_alt02_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 4
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "taunt_magic_ends_here_anim"
+								source_filename = "models/creeps/thief/taunt_magic_ends_here_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_TAUNT"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_SPEECH"
+										event_frame = 0
+										event_keys = 
+										{
+											concept = "TLK_DOTA_TAUNT"
+											criteria = "taunt_type=magic_ends_here"
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "basher_loadout_anim"
+								source_filename = "models/creeps/thief/basher_loadout_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_LOADOUT"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "basher_bash_anim"
+								source_filename = "models/creeps/thief/basher_bash_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK_EVENT_BASH"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "basher_cast4_mana_void_anim"
+								source_filename = "models/creeps/thief/basher_cast4_mana_void_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_4"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 1
+										event_keys = 
+										{
+											name = "Hero_Antimage.ManaVoidCast"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 5
+										event_keys = 
+										{
+											name = resource:"particles/units/heroes/hero_antimage/am_basher_lightning.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_h1"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = "attach_h2"
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 9
+										event_keys = 
+										{
+											name = resource:"particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_manavoid_basher_cast.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_h1"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+								]
+							},
+						]
+						name = "item"
+					},
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "victory"
+								source_filename = "models/creeps/thief/victory.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_VICTORY_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "attack"
+								source_filename = "models/creeps/thief/attack.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK_STATUE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "attack1"
+								source_filename = "models/creeps/thief/attack1.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK_STATUE"
+								activity_weight = 3
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "attack2"
+								source_filename = "models/creeps/thief/attack2.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK_STATUE"
+								activity_weight = 4
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "cast"
+								source_filename = "models/creeps/thief/cast.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST4_STATUE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 1
+										event_keys = 
+										{
+											name = "Hero_Antimage.ManaVoidCast"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "flail"
+								source_filename = "models/creeps/thief/flail.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_FLAIL_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "blink"
+								source_filename = "models/creeps/thief/blink.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST2_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "attack_manta"
+								source_filename = "models/creeps/thief/attack_manta.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "attack_manta1"
+								source_filename = "models/creeps/thief/attack_manta1.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "attack_manta2"
+								source_filename = "models/creeps/thief/attack_manta2.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "idle"
+								source_filename = "models/creeps/thief/idle.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "run"
+								source_filename = "models/creeps/thief/run.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN_STATUE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 12
+										event_keys = 
+										{
+											name = "Hero_Antimage.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 24
+										event_keys = 
+										{
+											name = "Hero_Antimage.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "stun"
+								source_filename = "models/creeps/thief/stun.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_STUN_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "run_angry"
+								source_filename = "models/creeps/thief/run_angry.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN_STATUE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 12
+										event_keys = 
+										{
+											name = "Hero_Antimage.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 24
+										event_keys = 
+										{
+											name = "Hero_Antimage.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_attack_alt01"
+								source_filename = "models/creeps/thief/slasher_attack_alt01.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK_STATUE"
+								activity_weight = 4
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "slasher_attack_alt02"
+								source_filename = "models/creeps/thief/slasher_attack_alt02.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK_STATUE"
+								activity_weight = 4
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_DOTA_PLAY_SOUND_ATTACK"
+										event_frame = 9
+										event_keys = 
+										{
+											name = ""
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "teleport"
+								source_filename = "models/creeps/thief/teleport.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_TELEPORT_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "taunt_magic_ends_here"
+								source_filename = "models/creeps/thief/taunt_magic_ends_here.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_TAUNT_STATUE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_SPEECH"
+										event_frame = 0
+										event_keys = 
+										{
+											concept = "TLK_DOTA_TAUNT"
+											criteria = "taunt_type=magic_ends_here"
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "spawn_loadout"
+								source_filename = "models/creeps/thief/spawn_loadout.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_SPAWN_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "idle_injured"
+								source_filename = "models/creeps/thief/idle_injured.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "basher_loadout"
+								source_filename = "models/creeps/thief/basher_loadout.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_LOADOUT_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "basher_bash"
+								source_filename = "models/creeps/thief/basher_bash.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "basher_cast4_mana_void"
+								source_filename = "models/creeps/thief/basher_cast4_mana_void.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST4_STATUE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 1
+										event_keys = 
+										{
+											name = "Hero_Antimage.ManaVoidCast"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 5
+										event_keys = 
+										{
+											name = resource:"particles/units/heroes/hero_antimage/am_basher_lightning.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_h1"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = "attach_h2"
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 9
+										event_keys = 
+										{
+											name = resource:"particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_manavoid_basher_cast.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_h1"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+								]
+							},
+						]
+						name = "effigy"
+					},
+					{
+						_class = "AnimBindPose"
+						name = "bindPose"
+					},
+					{
+						_class = "AnimFile"
+						name = "@turns"
+						source_filename = "models/creeps/thief/@turns.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = true
+					},
+					{
+						_class = "AnimFile"
+						name = "@run_injured"
+						source_filename = "models/creeps/thief/@run_injured.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = true
+						children = 
+						[
+							{
+								_class = "ExtractMotion"
+								extract_tx = true
+								extract_ty = false
+								extract_tz = false
+								extract_rz = false
+								linear = false
+								quadratic = false
+								motion_type = "uniform"
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 2
+								event_keys = 
+								{
+									name = "Hero_Antimage.Footsteps"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 13
+								event_keys = 
+								{
+									name = "Hero_Antimage.Footsteps"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+						]
+					},
+					{
+						_class = "AnimFile"
+						name = "@run_anim"
+						source_filename = "models/creeps/thief/@run_anim.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = true
+						children = 
+						[
+							{
+								_class = "ExtractMotion"
+								extract_tx = true
+								extract_ty = false
+								extract_tz = false
+								extract_rz = false
+								linear = false
+								quadratic = false
+								motion_type = "uniform"
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 12
+								event_keys = 
+								{
+									name = "Hero_Antimage.Footsteps"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 24
+								event_keys = 
+								{
+									name = "Hero_Antimage.Footsteps"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+						]
+					},
+					{
+						_class = "AnimFile"
+						name = "@run_angry_anim"
+						source_filename = "models/creeps/thief/@run_angry_anim.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = true
+						children = 
+						[
+							{
+								_class = "ExtractMotion"
+								extract_tx = true
+								extract_ty = false
+								extract_tz = false
+								extract_rz = false
+								linear = false
+								quadratic = false
+								motion_type = "uniform"
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 12
+								event_keys = 
+								{
+									name = "Hero_Antimage.Footsteps"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 24
+								event_keys = 
+								{
+									name = "Hero_Antimage.Footsteps"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+						]
+					},
+					{
+						_class = "AnimFile"
+						name = "@turns_lookFrame_0"
+						source_filename = "models/creeps/thief/@turns_lookFrame_0.dmx"
+						fade_in_time = 0.0
+						fade_out_time = 0.0
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = true
+					},
+					{
+						_class = "AnimFile"
+						name = "@turns_lookFrame_1"
+						source_filename = "models/creeps/thief/@turns_lookFrame_1.dmx"
+						fade_in_time = 0.0
+						fade_out_time = 0.0
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = true
+					},
+					{
+						_class = "AnimFile"
+						name = "@turns_lookFrame_2"
+						source_filename = "models/creeps/thief/@turns_lookFrame_2.dmx"
+						fade_in_time = 0.0
+						fade_out_time = 0.0
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = true
+					},
+					{
+						_class = "AnimFile"
+						name = "turns"
+						source_filename = "models/creeps/thief/turns.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = true
+						worldSpace = false
+						hidden = false
+					},
+				]
+			},
+			{
+				_class = "HitboxSetList"
+				children = 
+				[
+					{
+						_class = "HitboxSet"
+						name = "default"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -43.622536, -9.551253, -6.937943 ]
+								hitbox_maxs = [ -2.337434, 10.839043, 12.859441 ]
+								name = "knee_R"
+								parent_bone = "knee_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -49.016403, -10.808314, -13.71911 ]
+								hitbox_maxs = [ -8.177256, 9.544421, 9.612686 ]
+								name = "thigh_R"
+								parent_bone = "thigh_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 1.696777, -10.839043, -12.859441 ]
+								hitbox_maxs = [ 41.704212, 9.551253, 6.937944 ]
+								name = "knee_L"
+								parent_bone = "knee_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 4.111595, -9.544421, -9.672843 ]
+								hitbox_maxs = [ 47.467358, 10.808314, 13.71911 ]
+								name = "thigh_L"
+								parent_bone = "thigh_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -33.736362, -6.586412, -6.95788 ]
+								hitbox_maxs = [ -0.118935, 9.329326, 8.331301 ]
+								name = "elbow_R"
+								parent_bone = "elbow_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -34.191936, -7.304518, -9.00699 ]
+								hitbox_maxs = [ 1.708979, 7.871907, 10.809937 ]
+								name = "bicep_R"
+								parent_bone = "bicep_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 0.584553, -9.329326, -8.331302 ]
+								hitbox_maxs = [ 33.699528, 6.586412, 6.95788 ]
+								name = "elbow_L"
+								parent_bone = "elbow_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -0.933912, -7.871907, -10.809937 ]
+								hitbox_maxs = [ 33.575615, 7.304518, 9.006991 ]
+								name = "bicep_L"
+								parent_bone = "bicep_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -2.213087, -14.0664, -17.721447 ]
+								hitbox_maxs = [ 18.891464, 14.0664, 17.168789 ]
+								name = "Spine_3"
+								parent_bone = "Spine_3"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -4.042709, -20.743401, -23.125664 ]
+								hitbox_maxs = [ 20.385353, 20.5665, 15.916003 ]
+								name = "Spine_1"
+								parent_bone = "Spine_1"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -10.960988, -20.967199, -19.898777 ]
+								hitbox_maxs = [ 14.664102, 21.7885, 13.821073 ]
+								name = "Spine_0"
+								parent_bone = "Spine_0"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -5.090918, -15.062, -13.160852 ]
+								hitbox_maxs = [ 0.311525, 12.1539, 4.676852 ]
+								name = "frontcloth2_1"
+								parent_bone = "frontcloth2_1"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 6.785008, -13.1386, -5.506427 ]
+								hitbox_maxs = [ 16.225101, 13.1386, 2.670173 ]
+								name = "frontcloth2_0"
+								parent_bone = "frontcloth2_0"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -0.686755, -11.2717, 11.052748 ]
+								hitbox_maxs = [ 3.853571, 11.2717, 21.245279 ]
+								name = "backcloth3_1"
+								parent_bone = "backcloth3_1"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 7.795931, -10.4924, -1.297407 ]
+								hitbox_maxs = [ 9.837722, 10.4924, 1.929656 ]
+								name = "backcloth3_0"
+								parent_bone = "backcloth3_0"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -3.290148, -8.651525, -25.883736 ]
+								hitbox_maxs = [ 17.134779, 40.268559, 11.534577 ]
+								name = "rightcloth0_2"
+								parent_bone = "rightcloth0_2"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 13.047245, -3.917013, -17.55238 ]
+								hitbox_maxs = [ 24.034727, 4.608963, 15.148274 ]
+								name = "rightcloth0_1"
+								parent_bone = "rightcloth0_1"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 2.193833, -2.43872, -11.343983 ]
+								hitbox_maxs = [ 15.844168, 8.082075, 7.723722 ]
+								name = "rightcloth0_0"
+								parent_bone = "rightcloth0_0"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -4.123539, -40.79863, -25.460846 ]
+								hitbox_maxs = [ 16.301388, 7.584114, 13.735913 ]
+								name = "leftcloth4_2"
+								parent_bone = "leftcloth4_2"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 8.591134, -2.023161, -13.117736 ]
+								hitbox_maxs = [ 23.994202, 3.93188, 15.141752 ]
+								name = "leftcloth4_1"
+								parent_bone = "leftcloth4_1"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 0.821393, -7.481315, -19.435429 ]
+								hitbox_maxs = [ 18.150694, 1.018597, 7.926174 ]
+								name = "leftcloth4_0"
+								parent_bone = "leftcloth4_0"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -11.649276, -19.990601, -20.466503 ]
+								hitbox_maxs = [ 20.328602, 19.990601, 7.959949 ]
+								name = "Root_0"
+								parent_bone = "Root_0"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "feet"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -26.161743, -6.456432, -5.466899 ]
+								hitbox_maxs = [ 4.878558, 6.620776, 9.560141 ]
+								name = "ankle_R"
+								parent_bone = "ankle_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -4.878558, -6.617746, -9.560141 ]
+								hitbox_maxs = [ 26.161743, 6.456432, 5.913489 ]
+								name = "ankle_L"
+								parent_bone = "ankle_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "hands"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -19.681889, -6.385649, -5.722865 ]
+								hitbox_maxs = [ 2.307659, 6.503588, 9.950706 ]
+								name = "wrist_R"
+								parent_bone = "wrist_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -0.42564, -6.503588, -9.950707 ]
+								hitbox_maxs = [ 19.681889, 6.385649, 5.722865 ]
+								name = "wrist_L"
+								parent_bone = "wrist_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "head"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -10.141351, -10.3802, -7.957791 ]
+								hitbox_maxs = [ 14.518396, 10.3802, 20.066734 ]
+								name = "Head_1"
+								parent_bone = "Head_1"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "select_high"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -31.60813, -29.0149, -33.468475 ]
+								hitbox_maxs = [ 27.321327, 28.837999, 17.312984 ]
+								name = "Spine_1"
+								parent_bone = "Spine_1"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -25.478672, -33.540607, -104.501762 ]
+								hitbox_maxs = [ 34.157997, 33.540607, -6.150013 ]
+								name = "Root_0"
+								parent_bone = "Root_0"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "select_low"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -71.532288, -84.301239, -105.216255 ]
+								hitbox_maxs = [ 77.724976, 84.301239, 52.574841 ]
+								name = "Root_0"
+								parent_bone = "Root_0"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "Skeleton"
+				children = 
+				[
+					{
+						_class = "Bone"
+						name = "Root_0"
+						origin = [ 5.737096, 0.0, 106.406052 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						do_not_discard = true
+						children = 
+						[
+							{
+								_class = "Bone"
+								name = "thigh_R"
+								origin = [ 1.854074, -11.548037, -6.767853 ]
+								angles = [ -85.962402, 41.159916, -24.494205 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "knee_R"
+										origin = [ -48.933216, 0.000008, 0.000002 ]
+										angles = [ 8.428762, 0.000006, -0.000001 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "ankle_R"
+												origin = [ -42.991314, 0.000006, -0.000002 ]
+												angles = [ -60.278015, 62.82103, -73.5158 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "toeBase_R"
+														origin = [ -14.835114, 0.000004, 0.0 ]
+														angles = [ -21.818674, 3.506083, 0.16849 ]
+														do_not_discard = true
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "thigh_L"
+								origin = [ 1.85408, 11.548046, -6.767776 ]
+								angles = [ 85.962357, 138.840317, 155.505951 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "knee_L"
+										origin = [ 48.933197, 0.00001, -0.000005 ]
+										angles = [ 8.428762, 0.000007, -0.000002 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "ankle_L"
+												origin = [ 42.991364, 0.000011, -0.00001 ]
+												angles = [ -60.278015, 62.821041, -73.5158 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "toeBase_L"
+														origin = [ 14.835157, 0.000044, 0.000031 ]
+														angles = [ -21.818684, 3.506086, 0.168493 ]
+														do_not_discard = true
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "Spine_0"
+								origin = [ -1.668397, -0.0, 12.681488 ]
+								angles = [ -72.836075, -179.999985, 179.999985 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "Spine_1"
+										origin = [ 13.801064, 0.000001, -0.000042 ]
+										angles = [ 5.525138, -0.0, -0.0 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "Spine_3"
+												origin = [ 14.989136, 0.000001, -0.00004 ]
+												angles = [ 38.404518, -0.000004, -0.000001 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "clavicle_R"
+														origin = [ 4.283478, -5.189459, 1.584404 ]
+														angles = [ -19.011887, 77.418411, -90.0 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "bicep_R"
+																origin = [ -17.345573, -0.000244, -0.000534 ]
+																angles = [ 40.257652, -8.232837, -104.359505 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "elbow_R"
+																		origin = [ -30.351517, 0.000511, -0.000206 ]
+																		angles = [ 25.252111, 0.000006, 0.000001 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "wrist_R"
+																				origin = [ -30.08226, 0.000626, 0.000035 ]
+																				angles = [ -1.710477, 10.673191, -4.041451 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "rt_blade"
+																						origin = [ -4.89875, 19.444016, -26.85762 ]
+																						angles = [ -11.031461, 18.196251, -22.689545 ]
+																						do_not_discard = true
+																					},
+																				]
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+													{
+														_class = "Bone"
+														name = "Head_0"
+														origin = [ 10.228943, 0.0, 0.000198 ]
+														angles = [ -16.310642, 0.000001, -0.0 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "Head_1"
+																origin = [ 10.567642, 0.0, 0.000118 ]
+																angles = [ 80.194519, -0.000009, 0.000285 ]
+																do_not_discard = true
+															},
+														]
+													},
+													{
+														_class = "Bone"
+														name = "clavicle_L"
+														origin = [ 4.283401, 5.189464, 1.584366 ]
+														angles = [ 19.011889, 102.581566, 89.999992 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "bicep_L"
+																origin = [ 17.345564, 0.000202, 0.000412 ]
+																angles = [ 40.257645, -8.232869, -104.359543 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "elbow_L"
+																		origin = [ 30.351555, -0.000435, 0.000156 ]
+																		angles = [ 25.252111, -0.000002, 0.000002 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "wrist_L"
+																				origin = [ 30.082306, -0.000473, -0.000031 ]
+																				angles = [ -1.710476, 10.673192, -4.041444 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "lf_blade"
+																						origin = [ 3.284111, -19.069717, 25.799011 ]
+																						angles = [ -10.138969, 17.884483, -23.367155 ]
+																						do_not_discard = true
+																					},
+																				]
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "frontcloth2_0"
+								origin = [ 18.693542, 0.0, -1.120163 ]
+								angles = [ 89.089142, -179.999802, -179.999802 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "frontcloth2_1"
+										origin = [ 16.134781, 0.000001, -0.000002 ]
+										angles = [ -80.648087, -179.999985, -179.999985 ]
+										do_not_discard = true
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "backcloth3_0"
+								origin = [ -10.771451, 0.0, 1.504608 ]
+								angles = [ 69.121696, -179.999985, -179.999985 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "backcloth3_1"
+										origin = [ 9.379158, 0.0, 0.000008 ]
+										angles = [ 74.959648, -0.000002, -0.000002 ]
+										do_not_discard = true
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "rightcloth0_0"
+								origin = [ -0.000009, -15.76072, 0.329964 ]
+								angles = [ 41.421745, -30.483212, -28.845053 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "rightcloth0_1"
+										origin = [ 14.213257, -0.000076, 0.000099 ]
+										angles = [ 77.105484, -0.000003, 0.000008 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "rightcloth0_2"
+												origin = [ 31.283646, -0.000141, -0.000078 ]
+												angles = [ -26.475185, -81.972633, 72.445686 ]
+												do_not_discard = true
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "leftcloth4_0"
+								origin = [ 0.00001, 15.623963, 0.40509 ]
+								angles = [ 42.129971, 27.794094, 30.241253 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "leftcloth4_1"
+										origin = [ 13.818432, 0.000031, 0.000038 ]
+										angles = [ 76.367409, -0.00003, -0.000014 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "leftcloth4_2"
+												origin = [ 31.69413, 0.000057, -0.000019 ]
+												angles = [ -23.560621, 79.051674, -64.175262 ]
+												do_not_discard = true
+											},
+										]
+									},
+								]
+							},
+						]
+					},
+				]
+			},
+		]
+	}
+}

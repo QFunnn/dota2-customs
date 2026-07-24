@@ -1,0 +1,1510 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+var global = this;
+(function (factory) {
+  typeof define === 'function' && define.amd ? define(factory) :
+  factory();
+})((function () { 'use strict';
+
+  const equalFn = (a, b) => a === b;
+  const $PROXY = Symbol("solid-proxy");
+  const SUPPORTS_PROXY = typeof Proxy === "function";
+  const signalOptions = {
+    equals: equalFn
+  };
+  let runEffects = runQueue;
+  const STALE = 1;
+  const PENDING = 2;
+  const UNOWNED = {
+    owned: null,
+    cleanups: null,
+    context: null,
+    owner: null
+  };
+  var Owner = null;
+  let Listener = null;
+  let Updates = null;
+  let Effects = null;
+  let ExecCount = 0;
+  function createRoot(fn, detachedOwner) {
+    const listener = Listener,
+      owner = Owner,
+      unowned = fn.length === 0,
+      current = owner ,
+      root = unowned ? UNOWNED : {
+        owned: null,
+        cleanups: null,
+        context: current ? current.context : null,
+        owner: current
+      },
+      updateFn = unowned ? fn : () => fn(() => untrack(() => cleanNode(root)));
+    Owner = root;
+    Listener = null;
+    try {
+      return runUpdates(updateFn, true);
+    } finally {
+      Listener = listener;
+      Owner = owner;
+    }
+  }
+  function createSignal(value, options) {
+    options = options ? Object.assign({}, signalOptions, options) : signalOptions;
+    const s = {
+      value,
+      observers: null,
+      observerSlots: null,
+      comparator: options.equals || undefined
+    };
+    const setter = value => {
+      if (typeof value === "function") {
+        value = value(s.value);
+      }
+      return writeSignal(s, value);
+    };
+    return [readSignal.bind(s), setter];
+  }
+  function createRenderEffect(fn, value, options) {
+    const c = createComputation(fn, value, false, STALE);
+    updateComputation(c);
+  }
+  function createMemo(fn, value, options) {
+    options = options ? Object.assign({}, signalOptions, options) : signalOptions;
+    const c = createComputation(fn, value, true, 0);
+    c.observers = null;
+    c.observerSlots = null;
+    c.comparator = options.equals || undefined;
+    updateComputation(c);
+    return readSignal.bind(c);
+  }
+  function untrack(fn) {
+    if (Listener === null) return fn();
+    const listener = Listener;
+    Listener = null;
+    try {
+      return fn();
+    } finally {
+      Listener = listener;
+    }
+  }
+  function onCleanup(fn) {
+    if (Owner === null) ;else if (Owner.cleanups === null) Owner.cleanups = [fn];else Owner.cleanups.push(fn);
+    return fn;
+  }
+  function readSignal() {
+    if (this.sources && (this.state)) {
+      if ((this.state) === STALE) updateComputation(this);else {
+        const updates = Updates;
+        Updates = null;
+        runUpdates(() => lookUpstream(this), false);
+        Updates = updates;
+      }
+    }
+    if (Listener) {
+      const sSlot = this.observers ? this.observers.length : 0;
+      if (!Listener.sources) {
+        Listener.sources = [this];
+        Listener.sourceSlots = [sSlot];
+      } else {
+        Listener.sources.push(this);
+        Listener.sourceSlots.push(sSlot);
+      }
+      if (!this.observers) {
+        this.observers = [Listener];
+        this.observerSlots = [Listener.sources.length - 1];
+      } else {
+        this.observers.push(Listener);
+        this.observerSlots.push(Listener.sources.length - 1);
+      }
+    }
+    return this.value;
+  }
+  function writeSignal(node, value, isComp) {
+    let current = node.value;
+    if (!node.comparator || !node.comparator(current, value)) {
+      node.value = value;
+      if (node.observers && node.observers.length) {
+        runUpdates(() => {
+          for (let i = 0; i < node.observers.length; i += 1) {
+            const o = node.observers[i];
+            if (!o.state) {
+              if (o.pure) Updates.push(o);else Effects.push(o);
+              if (o.observers) markDownstream(o);
+            }
+            o.state = STALE;
+          }
+          if (Updates.length > 10e5) {
+            Updates = [];
+            throw new Error();
+          }
+        }, false);
+      }
+    }
+    return value;
+  }
+  function updateComputation(node) {
+    if (!node.fn) return;
+    cleanNode(node);
+    const time = ExecCount;
+    runComputation(node, node.value, time);
+  }
+  function runComputation(node, value, time) {
+    let nextValue;
+    const owner = Owner,
+      listener = Listener;
+    Listener = Owner = node;
+    try {
+      nextValue = node.fn(value);
+    } catch (err) {
+      if (node.pure) {
+        {
+          node.state = STALE;
+          node.owned && node.owned.forEach(cleanNode);
+          node.owned = null;
+        }
+      }
+      node.updatedAt = time + 1;
+      return handleError(err);
+    } finally {
+      Listener = listener;
+      Owner = owner;
+    }
+    if (!node.updatedAt || node.updatedAt <= time) {
+      if (node.updatedAt != null && "observers" in node) {
+        writeSignal(node, nextValue);
+      } else node.value = nextValue;
+      node.updatedAt = time;
+    }
+  }
+  function createComputation(fn, init, pure, state = STALE, options) {
+    const c = {
+      fn,
+      state: state,
+      updatedAt: null,
+      owned: null,
+      sources: null,
+      sourceSlots: null,
+      cleanups: null,
+      value: init,
+      owner: Owner,
+      context: Owner ? Owner.context : null,
+      pure
+    };
+    if (Owner === null) ;else if (Owner !== UNOWNED) {
+      {
+        if (!Owner.owned) Owner.owned = [c];else Owner.owned.push(c);
+      }
+    }
+    return c;
+  }
+  function runTop(node) {
+    if ((node.state) === 0) return;
+    if ((node.state) === PENDING) return lookUpstream(node);
+    if (node.suspense && untrack(node.suspense.inFallback)) return node.suspense.effects.push(node);
+    const ancestors = [node];
+    while ((node = node.owner) && (!node.updatedAt || node.updatedAt < ExecCount)) {
+      if (node.state) ancestors.push(node);
+    }
+    for (let i = ancestors.length - 1; i >= 0; i--) {
+      node = ancestors[i];
+      if ((node.state) === STALE) {
+        updateComputation(node);
+      } else if ((node.state) === PENDING) {
+        const updates = Updates;
+        Updates = null;
+        runUpdates(() => lookUpstream(node, ancestors[0]), false);
+        Updates = updates;
+      }
+    }
+  }
+  function runUpdates(fn, init) {
+    if (Updates) return fn();
+    let wait = false;
+    if (!init) Updates = [];
+    if (Effects) wait = true;else Effects = [];
+    ExecCount++;
+    try {
+      const res = fn();
+      completeUpdates(wait);
+      return res;
+    } catch (err) {
+      if (!wait) Effects = null;
+      Updates = null;
+      handleError(err);
+    }
+  }
+  function completeUpdates(wait) {
+    if (Updates) {
+      runQueue(Updates);
+      Updates = null;
+    }
+    if (wait) return;
+    const e = Effects;
+    Effects = null;
+    if (e.length) runUpdates(() => runEffects(e), false);
+  }
+  function runQueue(queue) {
+    for (let i = 0; i < queue.length; i++) runTop(queue[i]);
+  }
+  function lookUpstream(node, ignore) {
+    node.state = 0;
+    for (let i = 0; i < node.sources.length; i += 1) {
+      const source = node.sources[i];
+      if (source.sources) {
+        const state = source.state;
+        if (state === STALE) {
+          if (source !== ignore && (!source.updatedAt || source.updatedAt < ExecCount)) runTop(source);
+        } else if (state === PENDING) lookUpstream(source, ignore);
+      }
+    }
+  }
+  function markDownstream(node) {
+    for (let i = 0; i < node.observers.length; i += 1) {
+      const o = node.observers[i];
+      if (!o.state) {
+        o.state = PENDING;
+        if (o.pure) Updates.push(o);else Effects.push(o);
+        o.observers && markDownstream(o);
+      }
+    }
+  }
+  function cleanNode(node) {
+    let i;
+    if (node.sources) {
+      while (node.sources.length) {
+        const source = node.sources.pop(),
+          index = node.sourceSlots.pop(),
+          obs = source.observers;
+        if (obs && obs.length) {
+          const n = obs.pop(),
+            s = source.observerSlots.pop();
+          if (index < obs.length) {
+            n.sourceSlots[s] = index;
+            obs[index] = n;
+            source.observerSlots[index] = s;
+          }
+        }
+      }
+    }
+    if (node.tOwned) {
+      for (i = node.tOwned.length - 1; i >= 0; i--) cleanNode(node.tOwned[i]);
+      delete node.tOwned;
+    }
+    if (node.owned) {
+      for (i = node.owned.length - 1; i >= 0; i--) cleanNode(node.owned[i]);
+      node.owned = null;
+    }
+    if (node.cleanups) {
+      for (i = node.cleanups.length - 1; i >= 0; i--) node.cleanups[i]();
+      node.cleanups = null;
+    }
+    node.state = 0;
+  }
+  function castError(err) {
+    if (typeof err == "object") return err;
+    return new Error(typeof err === "string" ? err : "Unknown error", {
+      cause: err
+    });
+  }
+  function handleError(err, owner = Owner) {
+    const error = castError(err);
+    throw error;
+  }
+
+  const FALLBACK = Symbol("fallback");
+  function dispose(d) {
+    for (let i = 0; i < d.length; i++) d[i]();
+  }
+  function mapArray(list, mapFn, options = {}) {
+    let items = [],
+      mapped = [],
+      disposers = [],
+      len = 0,
+      indexes = mapFn.length > 1 ? [] : null;
+    onCleanup(() => dispose(disposers));
+    return () => {
+      let newItems = list() || [],
+        newLen = newItems.length,
+        i,
+        j;
+      return untrack(() => {
+        let newIndices, newIndicesNext, temp, tempdisposers, tempIndexes, start, end, newEnd, item;
+        if (newLen === 0) {
+          if (len !== 0) {
+            dispose(disposers);
+            disposers = [];
+            items = [];
+            mapped = [];
+            len = 0;
+            indexes && (indexes = []);
+          }
+          if (options.fallback) {
+            items = [FALLBACK];
+            mapped[0] = createRoot(disposer => {
+              disposers[0] = disposer;
+              return options.fallback();
+            });
+            len = 1;
+          }
+        }
+        else if (len === 0) {
+          mapped = new Array(newLen);
+          for (j = 0; j < newLen; j++) {
+            items[j] = newItems[j];
+            mapped[j] = createRoot(mapper);
+          }
+          len = newLen;
+        } else {
+          temp = new Array(newLen);
+          tempdisposers = new Array(newLen);
+          indexes && (tempIndexes = new Array(newLen));
+          for (start = 0, end = Math.min(len, newLen); start < end && items[start] === newItems[start]; start++);
+          for (end = len - 1, newEnd = newLen - 1; end >= start && newEnd >= start && items[end] === newItems[newEnd]; end--, newEnd--) {
+            temp[newEnd] = mapped[end];
+            tempdisposers[newEnd] = disposers[end];
+            indexes && (tempIndexes[newEnd] = indexes[end]);
+          }
+          newIndices = new Map();
+          newIndicesNext = new Array(newEnd + 1);
+          for (j = newEnd; j >= start; j--) {
+            item = newItems[j];
+            i = newIndices.get(item);
+            newIndicesNext[j] = i === undefined ? -1 : i;
+            newIndices.set(item, j);
+          }
+          for (i = start; i <= end; i++) {
+            item = items[i];
+            j = newIndices.get(item);
+            if (j !== undefined && j !== -1) {
+              temp[j] = mapped[i];
+              tempdisposers[j] = disposers[i];
+              indexes && (tempIndexes[j] = indexes[i]);
+              j = newIndicesNext[j];
+              newIndices.set(item, j);
+            } else disposers[i]();
+          }
+          for (j = start; j < newLen; j++) {
+            if (j in temp) {
+              mapped[j] = temp[j];
+              disposers[j] = tempdisposers[j];
+              if (indexes) {
+                indexes[j] = tempIndexes[j];
+                indexes[j](j);
+              }
+            } else mapped[j] = createRoot(mapper);
+          }
+          mapped = mapped.slice(0, len = newLen);
+          items = newItems.slice(0);
+        }
+        return mapped;
+      });
+      function mapper(disposer) {
+        disposers[j] = disposer;
+        if (indexes) {
+          const [s, set] = createSignal(j);
+          indexes[j] = set;
+          return mapFn(newItems[j], s);
+        }
+        return mapFn(newItems[j]);
+      }
+    };
+  }
+  function createComponent$1(Comp, props) {
+    return untrack(() => Comp(props || {}));
+  }
+  function trueFn() {
+    return true;
+  }
+  const propTraps = {
+    get(_, property, receiver) {
+      if (property === $PROXY) return receiver;
+      return _.get(property);
+    },
+    has(_, property) {
+      if (property === $PROXY) return true;
+      return _.has(property);
+    },
+    set: trueFn,
+    deleteProperty: trueFn,
+    getOwnPropertyDescriptor(_, property) {
+      return {
+        configurable: true,
+        enumerable: true,
+        get() {
+          return _.get(property);
+        },
+        set: trueFn,
+        deleteProperty: trueFn
+      };
+    },
+    ownKeys(_) {
+      return _.keys();
+    }
+  };
+  function resolveSource(s) {
+    return !(s = typeof s === "function" ? s() : s) ? {} : s;
+  }
+  function resolveSources() {
+    for (let i = 0, length = this.length; i < length; ++i) {
+      const v = this[i]();
+      if (v !== undefined) return v;
+    }
+  }
+  function mergeProps(...sources) {
+    let proxy = false;
+    for (let i = 0; i < sources.length; i++) {
+      const s = sources[i];
+      proxy = proxy || !!s && $PROXY in s;
+      sources[i] = typeof s === "function" ? (proxy = true, createMemo(s)) : s;
+    }
+    if (SUPPORTS_PROXY && proxy) {
+      return new Proxy({
+        get(property) {
+          for (let i = sources.length - 1; i >= 0; i--) {
+            const v = resolveSource(sources[i])[property];
+            if (v !== undefined) return v;
+          }
+        },
+        has(property) {
+          for (let i = sources.length - 1; i >= 0; i--) {
+            if (property in resolveSource(sources[i])) return true;
+          }
+          return false;
+        },
+        keys() {
+          const keys = [];
+          for (let i = 0; i < sources.length; i++) keys.push(...Object.keys(resolveSource(sources[i])));
+          return [...new Set(keys)];
+        }
+      }, propTraps);
+    }
+    const sourcesMap = {};
+    const defined = Object.create(null);
+    for (let i = sources.length - 1; i >= 0; i--) {
+      const source = sources[i];
+      if (!source) continue;
+      const sourceKeys = Object.getOwnPropertyNames(source);
+      for (let i = sourceKeys.length - 1; i >= 0; i--) {
+        const key = sourceKeys[i];
+        if (key === "__proto__" || key === "constructor") continue;
+        const desc = Object.getOwnPropertyDescriptor(source, key);
+        if (!defined[key]) {
+          defined[key] = desc.get ? {
+            enumerable: true,
+            configurable: true,
+            get: resolveSources.bind(sourcesMap[key] = [desc.get.bind(source)])
+          } : desc.value !== undefined ? desc : undefined;
+        } else {
+          const sources = sourcesMap[key];
+          if (sources) {
+            if (desc.get) sources.push(desc.get.bind(source));else if (desc.value !== undefined) sources.push(() => desc.value);
+          }
+        }
+      }
+    }
+    const target = {};
+    const definedKeys = Object.keys(defined);
+    for (let i = definedKeys.length - 1; i >= 0; i--) {
+      const key = definedKeys[i],
+        desc = defined[key];
+      if (desc && desc.get) Object.defineProperty(target, key, desc);else target[key] = desc ? desc.value : undefined;
+    }
+    return target;
+  }
+  function splitProps(props, ...keys) {
+    if (SUPPORTS_PROXY && $PROXY in props) {
+      const blocked = new Set(keys.length > 1 ? keys.flat() : keys[0]);
+      const res = keys.map(k => {
+        return new Proxy({
+          get(property) {
+            return k.includes(property) ? props[property] : undefined;
+          },
+          has(property) {
+            return k.includes(property) && property in props;
+          },
+          keys() {
+            return k.filter(property => property in props);
+          }
+        }, propTraps);
+      });
+      res.push(new Proxy({
+        get(property) {
+          return blocked.has(property) ? undefined : props[property];
+        },
+        has(property) {
+          return blocked.has(property) ? false : property in props;
+        },
+        keys() {
+          return Object.keys(props).filter(k => !blocked.has(k));
+        }
+      }, propTraps));
+      return res;
+    }
+    const otherObject = {};
+    const objects = keys.map(() => ({}));
+    for (const propName of Object.getOwnPropertyNames(props)) {
+      const desc = Object.getOwnPropertyDescriptor(props, propName);
+      const isDefaultDesc = !desc.get && !desc.set && desc.enumerable && desc.writable && desc.configurable;
+      let blocked = false;
+      let objectIndex = 0;
+      for (const k of keys) {
+        if (k.includes(propName)) {
+          blocked = true;
+          isDefaultDesc ? objects[objectIndex][propName] = desc.value : Object.defineProperty(objects[objectIndex], propName, desc);
+        }
+        ++objectIndex;
+      }
+      if (!blocked) {
+        isDefaultDesc ? otherObject[propName] = desc.value : Object.defineProperty(otherObject, propName, desc);
+      }
+    }
+    return [...objects, otherObject];
+  }
+  function For(props) {
+    const fallback = "fallback" in props && {
+      fallback: () => props.fallback
+    };
+    return createMemo(mapArray(() => props.each, props.children, fallback || undefined));
+  }
+
+  const memo = fn => createMemo(() => fn());
+
+  function createRenderer$1({
+    createElement,
+    createTextNode,
+    isTextNode,
+    replaceText,
+    insertNode,
+    removeNode,
+    setProperty,
+    getParentNode,
+    getFirstChild,
+    getNextSibling
+  }) {
+    function insert(parent, accessor, marker, initial) {
+      if (marker !== undefined && !initial) initial = [];
+      if (typeof accessor !== "function") return insertExpression(parent, accessor, initial, marker);
+      createRenderEffect(current => insertExpression(parent, accessor(), current, marker), initial);
+    }
+    function insertExpression(parent, value, current, marker, unwrapArray) {
+      while (typeof current === "function") current = current();
+      if (value === current) return current;
+      const t = typeof value,
+        multi = marker !== undefined;
+      if (t === "string" || t === "number") {
+        if (t === "number") value = value.toString();
+        if (multi) {
+          let node = current[0];
+          if (node && isTextNode(node)) {
+            replaceText(node, value);
+          } else node = createTextNode(value);
+          current = cleanChildren(parent, current, marker, node);
+        } else {
+          if (current !== "" && typeof current === "string") {
+            replaceText(getFirstChild(parent), current = value);
+          } else {
+            cleanChildren(parent, current, marker, createTextNode(value));
+            current = value;
+          }
+        }
+      } else if (value == null || t === "boolean") {
+        current = cleanChildren(parent, current, marker);
+      } else if (t === "function") {
+        createRenderEffect(() => {
+          let v = value();
+          while (typeof v === "function") v = v();
+          current = insertExpression(parent, v, current, marker);
+        });
+        return () => current;
+      } else if (Array.isArray(value)) {
+        const array = [];
+        if (normalizeIncomingArray(array, value, unwrapArray)) {
+          createRenderEffect(() => current = insertExpression(parent, array, current, marker, true));
+          return () => current;
+        }
+        if (array.length === 0) {
+          const replacement = cleanChildren(parent, current, marker);
+          if (multi) return current = replacement;
+        } else {
+          if (Array.isArray(current)) {
+            if (current.length === 0) {
+              appendNodes(parent, array, marker);
+            } else reconcileArrays(parent, current, array);
+          } else if (current == null || current === "") {
+            appendNodes(parent, array);
+          } else {
+            reconcileArrays(parent, multi && current || [getFirstChild(parent)], array);
+          }
+        }
+        current = array;
+      } else {
+        if (Array.isArray(current)) {
+          if (multi) return current = cleanChildren(parent, current, marker, value);
+          cleanChildren(parent, current, null, value);
+        } else if (current == null || current === "" || !getFirstChild(parent)) {
+          insertNode(parent, value);
+        } else replaceNode(parent, value, getFirstChild(parent));
+        current = value;
+      }
+      return current;
+    }
+    function normalizeIncomingArray(normalized, array, unwrap) {
+      let dynamic = false;
+      for (let i = 0, len = array.length; i < len; i++) {
+        let item = array[i],
+          t;
+        if (item == null || item === true || item === false) ; else if (Array.isArray(item)) {
+          dynamic = normalizeIncomingArray(normalized, item) || dynamic;
+        } else if ((t = typeof item) === "string" || t === "number") {
+          normalized.push(createTextNode(item));
+        } else if (t === "function") {
+          if (unwrap) {
+            while (typeof item === "function") item = item();
+            dynamic = normalizeIncomingArray(normalized, Array.isArray(item) ? item : [item]) || dynamic;
+          } else {
+            normalized.push(item);
+            dynamic = true;
+          }
+        } else normalized.push(item);
+      }
+      return dynamic;
+    }
+    function reconcileArrays(parentNode, a, b) {
+      let bLength = b.length,
+        aEnd = a.length,
+        bEnd = bLength,
+        aStart = 0,
+        bStart = 0,
+        after = getNextSibling(a[aEnd - 1]),
+        map = null;
+      while (aStart < aEnd || bStart < bEnd) {
+        if (a[aStart] === b[bStart]) {
+          aStart++;
+          bStart++;
+          continue;
+        }
+        while (a[aEnd - 1] === b[bEnd - 1]) {
+          aEnd--;
+          bEnd--;
+        }
+        if (aEnd === aStart) {
+          const node = bEnd < bLength ? bStart ? getNextSibling(b[bStart - 1]) : b[bEnd - bStart] : after;
+          while (bStart < bEnd) insertNode(parentNode, b[bStart++], node);
+        } else if (bEnd === bStart) {
+          while (aStart < aEnd) {
+            if (!map || !map.has(a[aStart])) removeNode(parentNode, a[aStart]);
+            aStart++;
+          }
+        } else if (a[aStart] === b[bEnd - 1] && b[bStart] === a[aEnd - 1]) {
+          const node = getNextSibling(a[--aEnd]);
+          insertNode(parentNode, b[bStart++], getNextSibling(a[aStart++]));
+          insertNode(parentNode, b[--bEnd], node);
+          a[aEnd] = b[bEnd];
+        } else {
+          if (!map) {
+            map = new Map();
+            let i = bStart;
+            while (i < bEnd) map.set(b[i], i++);
+          }
+          const index = map.get(a[aStart]);
+          if (index != null) {
+            if (bStart < index && index < bEnd) {
+              let i = aStart,
+                sequence = 1,
+                t;
+              while (++i < aEnd && i < bEnd) {
+                if ((t = map.get(a[i])) == null || t !== index + sequence) break;
+                sequence++;
+              }
+              if (sequence > index - bStart) {
+                const node = a[aStart];
+                while (bStart < index) insertNode(parentNode, b[bStart++], node);
+              } else replaceNode(parentNode, b[bStart++], a[aStart++]);
+            } else aStart++;
+          } else removeNode(parentNode, a[aStart++]);
+        }
+      }
+    }
+    function cleanChildren(parent, current, marker, replacement) {
+      if (marker === undefined) {
+        let removed;
+        while (removed = getFirstChild(parent)) removeNode(parent, removed);
+        replacement && insertNode(parent, replacement);
+        return "";
+      }
+      const node = replacement || createTextNode("");
+      if (current.length) {
+        let inserted = false;
+        for (let i = current.length - 1; i >= 0; i--) {
+          const el = current[i];
+          if (node !== el) {
+            const isParent = getParentNode(el) === parent;
+            if (!inserted && !i) isParent ? replaceNode(parent, node, el) : insertNode(parent, node, marker);else isParent && removeNode(parent, el);
+          } else inserted = true;
+        }
+      } else insertNode(parent, node, marker);
+      return [node];
+    }
+    function appendNodes(parent, array, marker) {
+      for (let i = 0, len = array.length; i < len; i++) insertNode(parent, array[i], marker);
+    }
+    function replaceNode(parent, newNode, oldNode) {
+      insertNode(parent, newNode, oldNode);
+      removeNode(parent, oldNode);
+    }
+    function spreadExpression(node, props, prevProps = {}, skipChildren) {
+      props || (props = {});
+      if (!skipChildren) {
+        createRenderEffect(() => prevProps.children = insertExpression(node, props.children, prevProps.children));
+      }
+      createRenderEffect(() => props.ref && props.ref(node));
+      createRenderEffect(() => {
+        for (const prop in props) {
+          if (prop === "children" || prop === "ref") continue;
+          const value = props[prop];
+          if (value === prevProps[prop]) continue;
+          setProperty(node, prop, value, prevProps[prop]);
+          prevProps[prop] = value;
+        }
+      });
+      return prevProps;
+    }
+    return {
+      render(code, element) {
+        let disposer;
+        createRoot(dispose => {
+          disposer = dispose;
+          insert(element, code());
+        });
+        return disposer;
+      },
+      insert,
+      spread(node, accessor, skipChildren) {
+        if (typeof accessor === "function") {
+          createRenderEffect(current => spreadExpression(node, accessor(), current, skipChildren));
+        } else spreadExpression(node, accessor, undefined, skipChildren);
+      },
+      createElement,
+      createTextNode,
+      insertNode,
+      setProp(node, name, value, prev) {
+        setProperty(node, name, value, prev);
+        return value;
+      },
+      mergeProps,
+      effect: createRenderEffect,
+      memo,
+      createComponent: createComponent$1,
+      use(fn, element, arg) {
+        return untrack(() => fn(element, arg));
+      }
+    };
+  }
+
+  function createRenderer(options) {
+    const renderer = createRenderer$1(options);
+    renderer.mergeProps = mergeProps;
+    return renderer;
+  }
+
+  const StyleKeyAutoConvertToPixelList = [
+      'x',
+      'y',
+      'z',
+      'width',
+      'height',
+      'minHeight',
+      'maxHeight',
+      'minWidth',
+      'maxWidth',
+      'border-radius',
+      'borderRadius',
+      'fontSize',
+      'lineHeight',
+      'margin',
+      'marginBottom',
+      'marginLeft',
+      'marginRight',
+      'marginTop',
+      'padding',
+      'paddingBottom',
+      'paddingLeft',
+      'paddingRight',
+      'paddingTop'
+  ];
+
+  const hasOwn = Object.prototype.hasOwnProperty;
+  const nodeTrash = (function () {
+      let root = $.GetContextPanel();
+      while (root.GetParent()) {
+          root = root.GetParent();
+      }
+      return $.CreatePanel('Panel', root, '', {
+          style: 'visibility: collapse;'
+      });
+  })();
+  const { render: _render, effect, createComponent, createElement, insert, setProp} = createRenderer({
+      createElement(type, props, parent) {
+          return untrack(() => {
+              const [{ id, snippet, vars, dialogVariables, style, visible, enabled, checked, type: _type, }, _props] = splitProps(props, ['id', 'snippet', 'vars', 'dialogVariables', 'style', 'visible', 'enabled', 'checked', 'children', 'type']);
+              const styleIsString = typeof style === 'string';
+              if (styleIsString) {
+                  props.style = style;
+              }
+              if (type === 'GenericPanel') {
+                  type = _type;
+              }
+              const el = $.CreatePanel(type, parent || $.GetContextPanel(), id || '', { ..._props });
+              if (typeof visible === 'boolean') {
+                  el.visible = visible;
+              }
+              if (typeof enabled === 'boolean') {
+                  el.enabled = enabled;
+              }
+              if (typeof checked === 'boolean') {
+                  el.checked = checked;
+              }
+              if (type != 'TextEntry') {
+                  el.SetDisableFocusOnMouseDown(true);
+              }
+              if (!styleIsString) {
+                  applyStyles(el, style);
+              }
+              if (snippet) {
+                  el.BLoadLayoutSnippet(snippet);
+              }
+              if (vars) {
+                  setDialogVariables(el, vars, {});
+              }
+              if (dialogVariables) {
+                  setDialogVariables(el, dialogVariables, {});
+              }
+              if (props.text) {
+                  const lab = getLabelNode(el);
+                  if (lab) {
+                      lab.__solidText = props.text;
+                  }
+              }
+              return el;
+          });
+      },
+      createTextNode(value, parent) {
+          return;
+      },
+      replaceText(textNode, value) {
+          if (!textNode || !textNode.IsValid()) {
+              return;
+          }
+          setText(textNode, value);
+      },
+      isTextNode(node) {
+          if (!node || !node.IsValid()) {
+              return false;
+          }
+          return node.paneltype === 'Label';
+      },
+      insertNode(parent, node, anchor) {
+          if (!parent || !parent.IsValid() || !node || !node.IsValid()) {
+              return;
+          }
+          node.SetParent(parent);
+          if (anchor && anchor.IsValid()) {
+              parent.MoveChildBefore(node, anchor);
+          }
+      },
+      removeNode(parent, node) {
+          if (!parent || !parent.IsValid() || !node || !node.IsValid()) {
+              return;
+          }
+          node.SetParent(nodeTrash);
+          $.Schedule(0, () => {
+              if (node.GetParent() == nodeTrash) {
+                  node.DeleteAsync(0);
+              }
+          });
+      },
+      getParentNode(node) {
+          if (!node || !node.IsValid()) {
+              return;
+          }
+          const parent = node.GetParent();
+          if (parent) {
+              return parent;
+          }
+      },
+      getFirstChild(node) {
+          if (!node || !node.IsValid()) {
+              return;
+          }
+          const child = node.GetChild(0);
+          if (!child) {
+              return;
+          }
+          return child;
+      },
+      getNextSibling(node) {
+          if (!node || !node.IsValid()) {
+              return;
+          }
+          const parent = node.GetParent();
+          if (!parent) {
+              return;
+          }
+          const el = parent.GetChild(parent.GetChildIndex(node) + 1);
+          if (!el) {
+              return;
+          }
+          return el;
+      },
+      setProperty(node, name, value, prev) {
+          if (!node || !node.IsValid()) {
+              return;
+          }
+          if (name === 'id') {
+              return;
+          }
+          if (name === 'class' || name === 'className') {
+              applyClassNames(node, value || '', prev || '');
+          }
+          else if (name === 'text') {
+              setText(node, value);
+          }
+          else if (name === 'src' && node.SetImage) {
+              node.SetImage(value);
+          }
+          else if (name === 'classList') {
+              updateClassList(node, value, prev);
+          }
+          else if (name === 'style') {
+              applyStyles(node, value, prev);
+          }
+          else if (name === 'vars' || name === 'dialogVariables') {
+              setDialogVariables(node, value, prev);
+          }
+          else if (name === 'attrs') {
+              setAttributes(node, value);
+          }
+          else if (name === 'inputnamespace') {
+              node.SetInputNamespace(value || '');
+          }
+          else if (name === 'draggable') {
+              node.SetDraggable(value === true);
+          }
+          else if (name === 'acceptsfocus') {
+              node.SetAcceptsFocus(value === true);
+          }
+          else if (name.startsWith('data-')) {
+              setData(node, name.slice(5), value);
+          }
+          else if (name.startsWith('on')) {
+              setPanelEvent(node, name, value);
+          }
+          else {
+              if (hasOwn.call(node, name)) {
+                  node[name] = value;
+              }
+              else {
+                  node.SetAttributeString(name, String(value));
+              }
+          }
+      }
+  });
+  function render(code, container) {
+      if (container.__solidDisposer) {
+          container.__solidDisposer();
+          container.RemoveAndDeleteChildren();
+      }
+      Object.defineProperty(container, '__solidDisposer', {
+          configurable: true,
+          value: _render(code, container)
+      });
+      return container.__solidDisposer;
+  }
+  const splitClassName = /\s+/;
+  function applyClassNames(node, names, prev) {
+      const nameList = names.split(splitClassName);
+      const oldList = prev.split(splitClassName);
+      for (let i = oldList.length - 1; i >= 0; i--) {
+          const name = oldList[i];
+          if (nameList.includes(name)) {
+              continue;
+          }
+          else {
+              node.RemoveClass(name);
+          }
+      }
+      for (const name of nameList) {
+          node.AddClass(name);
+      }
+  }
+  function updateClassList(node, state, prev) {
+      state = state || {};
+      if (prev) {
+          for (const k in prev) {
+              if (state[k] === undefined) {
+                  node.RemoveClass(k);
+              }
+          }
+      }
+      for (const k in state) {
+          node.SetHasClass(k, state[k] === true);
+      }
+  }
+  function applyStyles(node, styles, prev) {
+      styles = styles || {};
+      prev = prev || {};
+      for (const k in prev) {
+          if (!hasOwn.call(styles, k)) {
+              node.style[k] = null;
+          }
+      }
+      for (const k in styles) {
+          if (typeof styles[k] === 'number') {
+              if (StyleKeyAutoConvertToPixelList.includes(k)) {
+                  node.style[k] = `${styles[k]}px`;
+                  continue;
+              }
+          }
+          node.style[k] = styles[k] === undefined ? null : styles[k];
+      }
+  }
+  function setPanelEvent(node, event, handle) {
+      if (!handle) {
+          node.ClearPanelEvent(event);
+          return;
+      }
+      let stack = new Error().stack;
+      node.SetPanelEvent(event, function () {
+          try {
+              handle(node);
+          }
+          catch (error) {
+              if (typeof error == 'string') {
+                  error += '\n' + stack;
+              }
+              throw error;
+          }
+      });
+  }
+  const PANORAMA_INVALID_DATE = 2 ** 52;
+  function setDialogVariables(node, vars, prev) {
+      prev = prev || {};
+      for (const key in prev) {
+          if (!vars[key]) {
+              const value = prev[key];
+              if (value != undefined) {
+                  if (typeof value === 'string') {
+                      node.SetDialogVariable(key, `[!s:${key}]`);
+                  }
+                  else if (typeof value === 'number') {
+                      node.SetDialogVariableInt(key, NaN);
+                  }
+                  else {
+                      node.SetDialogVariableTime(key, PANORAMA_INVALID_DATE);
+                  }
+              }
+          }
+      }
+      for (const key in vars) {
+          const value = vars[key];
+          if (value != undefined) {
+              if (typeof value === 'string') {
+                  if (value[0] === '#') {
+                      node.SetDialogVariableLocString(key, value);
+                  }
+                  else {
+                      node.SetDialogVariable(key, value);
+                  }
+              }
+              else if (typeof value === 'number') {
+                  node.SetDialogVariableInt(key, value);
+              }
+              else {
+                  node.SetDialogVariableTime(key, Math.floor(value.getTime() / 1000));
+              }
+          }
+      }
+  }
+  function setAttributes(node, attrs) {
+      for (const key in attrs) {
+          const value = attrs[key];
+          if (typeof value === 'number') {
+              node.SetAttributeInt(key, value);
+          }
+          else {
+              node.SetAttributeString(key, value);
+          }
+      }
+  }
+  function setData(node, key, v) {
+      if (!node.Data) {
+          const data = {};
+          Object.defineProperty(node, 'Data', {
+              configurable: true,
+              enumerable: true,
+              writable: true,
+              value: function () {
+                  return data;
+              }
+          });
+      }
+      node.Data()[key] = v;
+  }
+  function getLabelNode(node) {
+      let lab;
+      if (node.paneltype == 'Label') {
+          lab = node;
+      }
+      else if (node.paneltype == 'TextButton') {
+          lab = node.GetChild(0);
+      }
+      else if (node.paneltype == 'RadioButton') {
+          lab = node.GetChild(1);
+      }
+      return lab;
+  }
+  function setText(node, text) {
+      const lab = getLabelNode(node);
+      if (lab) {
+          if (lab.__solidText != text) {
+              lab.__solidText = text;
+              if (lab.html) {
+                  if (text[0] === '#') {
+                      lab.text = $.Localize(text, node);
+                  }
+                  else {
+                      lab.text = text;
+                  }
+              }
+              else {
+                  lab.SetAlreadyLocalizedText(text);
+              }
+          }
+      }
+  }
+
+  function GetTooltipParams(sTooltipName, pContext) {
+    let t = GameUI.CustomUIConfig()[sTooltipName];
+    if (pContext != undefined && t != undefined) {
+      t['context'] = pContext;
+    }
+    return t;
+  }
+  function TooltipArrowOffset() {
+    const pTooltipRow = $.GetContextPanel().GetParent();
+    if (pTooltipRow) {
+      let p = pTooltipRow.FindChild('LeftArrow');
+      let iOffsetX = -26 * $.GetContextPanel().actualuiscale_x * (1920 / Game.GetScreenWidth());
+      if (p) {
+        p.style.marginRight = iOffsetX - 2 + 'px';
+        p.style.backgroundImage = `url("file://{images}/custom_game/common/tooltip/arrow_left.png")`;
+        p.style.washColor = 'none';
+      }
+      p = pTooltipRow.FindChild('RightArrow');
+      if (p) {
+        p.style.marginLeft = iOffsetX + 2 + 'px';
+        p.style.backgroundImage = `url("file://{images}/custom_game/common/tooltip/arrow_right.png")`;
+        p.style.washColor = 'none';
+      }
+      const pTooltipContainer = pTooltipRow.GetParent();
+      if (pTooltipContainer) {
+        let iOffsetY = -26 * $.GetContextPanel().actualuiscale_y * (1080 / Game.GetScreenHeight()) + 0;
+        let p = pTooltipContainer.FindChild('TopArrow');
+        if (p) {
+          p.style.marginBottom = iOffsetY + 1 + 'px';
+          p.style.backgroundImage = `url("file://{images}/custom_game/common/tooltip/arrow_top.png")`;
+          p.style.washColor = 'none';
+        }
+        p = pTooltipContainer.FindChild('BottomArrow');
+        if (p) {
+          p.style.marginTop = iOffsetY + 1 + 'px';
+          p.style.backgroundImage = `url("file://{images}/custom_game/common/tooltip/arrow_bottom.png")`;
+          p.style.washColor = 'none';
+        }
+      }
+    }
+  }
+
+  /******************************************************************************
+  Copyright (c) Microsoft Corporation.
+
+  Permission to use, copy, modify, and/or distribute this software for any
+  purpose with or without fee is hereby granted.
+
+  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+  REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+  AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+  INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+  LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+  OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+  PERFORMANCE OF THIS SOFTWARE.
+  ***************************************************************************** */
+  /* global Reflect, Promise, SuppressedError, Symbol, Iterator */
+
+
+  function __setFunctionName(f, name, prefix) {
+      if (typeof name === "symbol") name = name.description ? "[".concat(name.description, "]") : "";
+      return Object.defineProperty(f, "name", { configurable: true, value: prefix ? "".concat(prefix, " ", name) : name });
+  }
+
+  var _a, _b, _c, _d, _e;
+  if (GameUI.CustomUIConfig().tools == undefined) GameUI.CustomUIConfig().tools = {};
+  ENV_NAME = $.GetContextPanel().layoutfile;
+  (_a = class extends GameUI.CustomUIConfig().tools.EventManager {}, __setFunctionName(_a, "EventManager"), _a.sEnvName = ENV_NAME, _a);
+  var NetEventData = (_b = class extends GameUI.CustomUIConfig().tools.NetEventData {}, __setFunctionName(_b, "NetEventData"), _b.sEnvName = ENV_NAME, _b);
+  (_c = class extends GameUI.CustomUIConfig().tools.Keybinds {}, __setFunctionName(_c, "Keybinds"), _c.sEnvName = ENV_NAME, _c);
+  (_d = class extends GameUI.CustomUIConfig().tools.Mousebinds {}, __setFunctionName(_d, "Mousebinds"), _d.sEnvName = ENV_NAME, _d);
+  GameUI.CustomUIConfig().tools.ParticleManager_s2c;
+  GameUI.CustomUIConfig().tools.AttributeSystem;
+  GameUI.CustomUIConfig().tools.AttributeKind;
+  var _Timer = (_e = class extends GameUI.CustomUIConfig().tools.Timer {}, __setFunctionName(_e, "_Timer"), _e.sEnvName = ENV_NAME, _e);
+  _Timer.Timer.bind(_Timer);
+  _Timer.GameTimer.bind(_Timer);
+  _Timer.StopTimer.bind(_Timer);
+  var _Player = GameUI.CustomUIConfig().tools.Player;
+  _Player.PlayerCount.bind(_Player);
+  _Player.PlayerHost.bind(_Player);
+  _Player.PlayerCount_NotDisconnected.bind(_Player);
+  _Player.PlayerCount_NotAbandoned.bind(_Player);
+  _Player.IsValidPlayer.bind(_Player);
+  _Player.IsFakePlayer.bind(_Player);
+  _Player.EachPlayer.bind(_Player);
+  _Player.RandomPlayer.bind(_Player);
+  _Player.FocusPlayer.bind(_Player);
+  _Player.IsPlayerDisconnected.bind(_Player);
+  _Player.IsPlayerAbandoned.bind(_Player);
+  _Player.Player_EntityToID.bind(_Player);
+  _Player.Player_IDToOrder.bind(_Player);
+  _Player.Player_OrderToID.bind(_Player);
+  _Player.Player_IDToAccount.bind(_Player);
+  _Player.Player_AccountToID.bind(_Player);
+  _Player.PlayerLanguage.bind(_Player);
+  GameUI.CustomUIConfig().tools.runlua;
+  GameUI.CustomUIConfig().tools.EntIndexToHScript;
+  GameUI.CustomUIConfig().tools.BuffToModifier;
+  GameUI.CustomUIConfig().tools.PolymerIDToDiyPolymer;
+  var AbilitiesKv = GameUI.CustomUIConfig()['AbilitiesKv'];
+  GameUI.CustomUIConfig()['HeroesKv'];
+  var UnitsKv = GameUI.CustomUIConfig()['UnitsKv'];
+  var ItemsKv = GameUI.CustomUIConfig()['ItemsKv'];
+  GameUI.CustomUIConfig()['WearableKv'];
+  GameUI.CustomUIConfig()['CustomHeroesKv'];
+  GameUI.CustomUIConfig()['GameItemsKv'];
+  (() => {
+    const tID2Kv = {};
+    for (const t of [AbilitiesKv, ItemsKv, UnitsKv]) {
+      for (const k in t) {
+        let t2 = t[k];
+        if (typeof t2 == 'object' && t2['id'] != undefined) {
+          tID2Kv[t2['id']] = t2;
+        }
+      }
+    }
+    return id => tID2Kv[id];
+  })();
+  GameUI.CustomUIConfig().tools.Request;
+  GameUI.CustomUIConfig().tools.UnregRequest;
+  GameUI.CustomUIConfig().tools.WindowManager;
+  GameUI.CustomUIConfig().UploadError;
+
+  function Round(fNumber, prec = 0) {
+    let i = Math.pow(10, prec);
+    return Math.round(fNumber * i) / i;
+  }
+
+  var Digit;
+  (function (Digit) {
+    Digit[Digit["K"] = 1] = "K";
+    Digit[Digit["M"] = 2] = "M";
+    Digit[Digit["G"] = 3] = "G";
+    Digit[Digit["T"] = 4] = "T";
+    Digit[Digit["P"] = 5] = "P";
+    Digit[Digit["E"] = 6] = "E";
+    Digit[Digit["Z"] = 7] = "Z";
+    Digit[Digit["Y"] = 8] = "Y";
+    Digit[Digit["R"] = 9] = "R";
+  })(Digit || (Digit = {}));
+  var DigitSchinese;
+  (function (DigitSchinese) {
+    DigitSchinese[DigitSchinese["万"] = 1] = "万";
+    DigitSchinese[DigitSchinese["亿"] = 2] = "亿";
+    DigitSchinese[DigitSchinese["兆"] = 3] = "兆";
+    DigitSchinese[DigitSchinese["京"] = 4] = "京";
+    DigitSchinese[DigitSchinese["垓"] = 5] = "垓";
+    DigitSchinese[DigitSchinese["秭"] = 6] = "秭";
+    DigitSchinese[DigitSchinese["穰"] = 7] = "穰";
+    DigitSchinese[DigitSchinese["沟"] = 8] = "沟";
+    DigitSchinese[DigitSchinese["涧"] = 9] = "涧";
+  })(DigitSchinese || (DigitSchinese = {}));
+  function FormatNumber(fNumber, prec = 2) {
+    let sSign = fNumber < 0 ? "-" : "";
+    fNumber = Round(Math.abs(fNumber), prec);
+    let sNumber = NumberToString(Math.abs(fNumber));
+    let a = sNumber.split(".");
+    let sInteger = a[0];
+    let sLanguage = $.Language().toLowerCase();
+    if (sLanguage == "schinese") {
+      let n = Math.floor((sInteger.length - 1) / 4);
+      if (n == 0) {
+        return sSign + NumberToString(Round(fNumber, prec));
+      }
+      sNumber = NumberToString(Round(fNumber / Math.pow(10000, n), prec));
+      let sDigit = DigitSchinese[n];
+      if (sDigit == undefined) {
+        sDigit = `e+${4 * n}`;
+      }
+      return sSign + sNumber + sDigit;
+    } else {
+      let n = Math.floor((sInteger.length - 1) / 3);
+      if (n == 0) {
+        return sSign + NumberToString(Round(fNumber, prec));
+      }
+      sNumber = NumberToString(Round(fNumber / Math.pow(1000, n), prec));
+      let sDigit = Digit[n];
+      if (sDigit == undefined) {
+        sDigit = `e+${3 * n}`;
+      }
+      return sSign + sNumber + sDigit;
+    }
+  }
+  function NumberToString(fNumber) {
+    let sNumber = String(fNumber);
+    if (sNumber.indexOf("e+") != -1) {
+      let s = sNumber.split("e+");
+      s[0] = s[0].replace(/\./g, "");
+      let n = finiteNumber(Number(s[1])) + 1;
+      for (let index = s[0].length; index < n; index++) {
+        s[0] += "0";
+      }
+      sNumber = s[0];
+    }
+    return sNumber;
+  }
+  function finiteNumber(i, defaultVar = 0) {
+    return isFinite(i) ? i : defaultVar;
+  }
+
+  $.GetContextPanel().ClearPanelEvent("ontooltiploaded");
+  $.GetContextPanel().SetPanelEvent('ontooltiploaded', () => {
+    var _a;
+    TooltipArrowOffset();
+    const {
+      pid
+    } = (_a = GetTooltipParams('damage_detail', $.GetContextPanel())) !== null && _a !== void 0 ? _a : {};
+    render(() => createComponent(DamageDetail, {
+      pid: pid
+    }), $.GetContextPanel());
+  });
+  const [getDamageTotalDetail, setDamageTotalDetail] = createSignal({});
+  const id = NetEventData.BindDo('damage_total_detail', '', (t, pid) => {
+    if (t == undefined) delete getDamageTotalDetail()[pid];else getDamageTotalDetail()[pid] = t;
+    setDamageTotalDetail(Object.assign({}, getDamageTotalDetail()));
+  });
+  onCleanup(() => {
+    NetEventData.Unbind(id, 'damage_total_detail');
+  });
+  function DamageDetail({
+    pid
+  }) {
+    const getDamageDetailList = createMemo(() => {
+      var _a;
+      return Object.keys((_a = getDamageTotalDetail()[pid]) !== null && _a !== void 0 ? _a : {}).sort((a, b) => {
+        return getDamageTotalDetail()[pid][b] - getDamageTotalDetail()[pid][a];
+      });
+    });
+    const getMaxDamage = createMemo(() => {
+      var _a;
+      return Math.max(...Object.values((_a = getDamageTotalDetail()[pid]) !== null && _a !== void 0 ? _a : {}));
+    });
+    const getTotalDamage = createMemo(() => {
+      var _a;
+      return Object.values((_a = getDamageTotalDetail()[pid]) !== null && _a !== void 0 ? _a : {}).reduce((prev, cur) => prev + cur, 0);
+    });
+    return (() => {
+      const _el$ = createElement("Panel", {
+          id: "DamageDetail"
+        }, null),
+        _el$2 = createElement("Panel", {
+          "class": "DamageDetailList"
+        }, _el$);
+      insert(_el$2, createComponent(For, {
+        get each() {
+          return getDamageDetailList();
+        },
+        children: (abltName, i) => {
+          const getDmgPct = createMemo(() => {
+            var _a;
+            return Math.round(getDamageTotalDetail()[pid][abltName] / Math.max((_a = getTotalDamage()) !== null && _a !== void 0 ? _a : 1, 1) * 100);
+          });
+          const getBarPct = createMemo(() => {
+            var _a;
+            return Math.round(getDamageTotalDetail()[pid][abltName] / Math.max((_a = getMaxDamage()) !== null && _a !== void 0 ? _a : 1, 1) * 100);
+          });
+          $.Msg('abltName = ', abltName, ' getDmgPct = ', getDmgPct(), ' getBarPct = ', getBarPct());
+          return (() => {
+            const _el$3 = createElement("Panel", {
+                "class": "DamageDetailRow"
+              }, null),
+              _el$4 = createElement("Image", {
+                "class": "DamageDetailIcon",
+                src: `file://{images}/spellicons/${abltName}.png`,
+                scaling: "stretch-to-fit-x-preserve-aspect"
+              }, _el$3),
+              _el$5 = createElement("Panel", {
+                "class": "DamageDetailValueBox"
+              }, _el$3),
+              _el$6 = createElement("Label", {
+                "class": "DamageDetailValue",
+                get text() {
+                  return FormatNumber(getDamageTotalDetail()[pid][abltName]);
+                }
+              }, _el$5),
+              _el$7 = createElement("Panel", {
+                "class": "BarBox"
+              }, _el$5),
+              _el$8 = createElement("Panel", {
+                "class": "Bar",
+                get style() {
+                  return {
+                    'width': getBarPct() + '%'
+                  };
+                }
+              }, _el$7),
+              _el$9 = createElement("Label", {
+                "class": "DamageDetailPct",
+                get text() {
+                  return getDmgPct() + '%';
+                }
+              }, _el$7);
+            setProp(_el$4, "src", `file://{images}/spellicons/${abltName}.png`);
+            effect(_p$ => {
+              const _v$ = FormatNumber(getDamageTotalDetail()[pid][abltName]),
+                _v$2 = {
+                  'width': getBarPct() + '%'
+                },
+                _v$3 = getDmgPct() + '%';
+              _v$ !== _p$._v$ && (_p$._v$ = setProp(_el$6, "text", _v$, _p$._v$));
+              _v$2 !== _p$._v$2 && (_p$._v$2 = setProp(_el$8, "style", _v$2, _p$._v$2));
+              _v$3 !== _p$._v$3 && (_p$._v$3 = setProp(_el$9, "text", _v$3, _p$._v$3));
+              return _p$;
+            }, {
+              _v$: undefined,
+              _v$2: undefined,
+              _v$3: undefined
+            });
+            return _el$3;
+          })();
+        }
+      }));
+      return _el$;
+    })();
+  }
+
+}));

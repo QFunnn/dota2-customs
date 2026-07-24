@@ -1,0 +1,1421 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "BoneMarkupList"
+				children = [  ]
+				bone_cull_type = "None"
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						name = "storegga"
+						filename = "models/creeps/ice_biome/storegga/storegga_storegga.dmx"
+					},
+				]
+			},
+			{
+				_class = "AttachmentList"
+				children = 
+				[
+					{
+						_class = "Attachment"
+						name = "attach_attack1"
+						ignore_rotation = false
+						parent_bone = "wrist_R"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ -0.000003, -0.000002, 0.000003 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_attack2"
+						ignore_rotation = false
+						parent_bone = "wrist_L"
+						relative_origin = [ 6.214804, 12.909409, -4.210747 ]
+						relative_angles = [ -0.000112, -0.000127, -0.000061 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_portrait"
+						ignore_rotation = false
+						parent_bone = "head"
+						relative_origin = [ 0.0, -0.0, 0.0 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_eye_r"
+						ignore_rotation = false
+						parent_bone = "head"
+						relative_origin = [ 18.5, -10.0, 11.000015 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_eye_l"
+						ignore_rotation = false
+						parent_bone = "head"
+						relative_origin = [ 18.5, 10.0, 11.000015 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_hitloc"
+						ignore_rotation = false
+						parent_bone = "spine3"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_bird"
+						ignore_rotation = false
+						parent_bone = "spine3"
+						relative_origin = [ 49.999996, 35.0, 30.0 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_attack1_2"
+						ignore_rotation = false
+						parent_bone = "wrist_R"
+						relative_origin = [ 35.513004, 53.69117, -22.560043 ]
+						relative_angles = [ 0.000009, 0.000003, 0.000009 ]
+						weight = 1.0
+					},
+				]
+			},
+			{
+				_class = "WeightListList"
+				children = 
+				[
+					{
+						_class = "WeightList"
+						name = "upperBody"
+						weights = 
+						[
+							{
+								bone = "root"
+								weight = 0.76
+							},
+							{
+								bone = "spine1"
+								weight = 0.86
+							},
+							{
+								bone = "spine2"
+								weight = 1.0
+							},
+							{
+								bone = "spine3"
+								weight = 1.0
+							},
+							{
+								bone = "thigh_r"
+								weight = 0.5
+							},
+							{
+								bone = "knee_r"
+								weight = 0.25
+							},
+							{
+								bone = "ankle_r"
+								weight = 0.0
+							},
+							{
+								bone = "thigh_L"
+								weight = 0.5
+							},
+							{
+								bone = "knee_L"
+								weight = 0.25
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "tiny_04_run"
+								source_filename = "models/creeps/ice_biome/storegga/tiny_04_run.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 4
+										event_keys = 
+										{
+											name = "Hero_Tiny.Footsteps3"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 14
+										event_keys = 
+										{
+											name = "Hero_Tiny.Footsteps3"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "tiny_04_idle"
+								source_filename = "models/creeps/ice_biome/storegga/tiny_04_idle.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE"
+								activity_weight = 3
+							},
+							{
+								_class = "AnimFile"
+								name = "tiny_04_idle_alt"
+								source_filename = "models/creeps/ice_biome/storegga/tiny_04_idle_alt.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE_RARE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "tiny_04_attack1"
+								source_filename = "models/creeps/ice_biome/storegga/tiny_04_attack1.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "tiny_04_attack_alt"
+								source_filename = "models/creeps/ice_biome/storegga/tiny_04_attack_alt.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "tiny_04_death"
+								source_filename = "models/creeps/ice_biome/storegga/tiny_04_death.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DIE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "tiny_04_stun"
+								source_filename = "models/creeps/ice_biome/storegga/tiny_04_stun.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DISABLED"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "tiny_4_flail"
+								source_filename = "models/creeps/ice_biome/storegga/tiny_4_flail.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_FLAIL"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "tiny_04_capture"
+								source_filename = "models/creeps/ice_biome/storegga/tiny_04_capture.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAPTURE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "tiny_04_attack1_tree"
+								source_filename = "models/creeps/ice_biome/storegga/tiny_04_attack1_tree.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "tiny_04_death_tree"
+								source_filename = "models/creeps/ice_biome/storegga/tiny_04_death_tree.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DIE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "tiny_04_run_tree"
+								source_filename = "models/creeps/ice_biome/storegga/tiny_04_run_tree.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 2
+										event_keys = 
+										{
+											name = "Hero_Tiny.Footsteps3"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 19
+										event_keys = 
+										{
+											name = "Hero_Tiny.Footsteps3"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "tiny_04_stun_tree"
+								source_filename = "models/creeps/ice_biome/storegga/tiny_04_stun_tree.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DISABLED"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "tiny_4_flail_tree"
+								source_filename = "models/creeps/ice_biome/storegga/tiny_4_flail_tree.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_FLAIL"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "tiny_04_idle_tree"
+								source_filename = "models/creeps/ice_biome/storegga/tiny_04_idle_tree.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "tiny_04_idle_alt_tree"
+								source_filename = "models/creeps/ice_biome/storegga/tiny_04_idle_alt_tree.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE_RARE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "tiny_04_tree_loadout_idle"
+								source_filename = "models/creeps/ice_biome/storegga/tiny_04_tree_loadout_idle.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_LOADOUT"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "tiny_04_victory"
+								source_filename = "models/creeps/ice_biome/storegga/tiny_04_victory.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_VICTORY"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "tiny_04_tree_victory"
+								source_filename = "models/creeps/ice_biome/storegga/tiny_04_tree_victory.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_VICTORY"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "tiny_04_teleport_capture_tree"
+								source_filename = "models/creeps/ice_biome/storegga/tiny_04_teleport_capture_tree.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAPTURE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "storegga_arm_slam"
+								source_filename = "models/creeps/ice_biome/storegga/storegga_arm_slam.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_7"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "storegga_grab"
+								source_filename = "models/creeps/ice_biome/storegga/storegga_grab.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_6"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "storegga_grab_throw"
+								source_filename = "models/creeps/ice_biome/storegga/storegga_grab_throw.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_5"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "storegga_avalanche_start"
+								source_filename = "models/creeps/ice_biome/storegga/storegga_avalanche_start.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_2"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "storegga_avalanche_channel"
+								source_filename = "models/creeps/ice_biome/storegga/storegga_avalanche_channel.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CHANNEL_ABILITY_1"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "storegga_avalanche_end"
+								source_filename = "models/creeps/ice_biome/storegga/storegga_avalanche_end.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_2_END"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "storegga_spawn"
+								source_filename = "models/creeps/ice_biome/storegga/storegga_spawn.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_SPAWN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 0
+										event_keys = 
+										{
+											name = resource:"particles/act_2/storegga_spawn.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_hitloc"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "tiny_04_avalanche"
+								source_filename = "models/creeps/ice_biome/storegga/tiny_04_avalanche.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_1"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "tiny_04_toss"
+								source_filename = "models/creeps/ice_biome/storegga/tiny_04_toss.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_TINY_TOSS"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "tiny_04_grow"
+								source_filename = "models/creeps/ice_biome/storegga/tiny_04_grow.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_TINY_GROWL"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "tiny_04_toss_tree"
+								source_filename = "models/creeps/ice_biome/storegga/tiny_04_toss_tree.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_TINY_TOSS"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "tiny_04_grow_tree"
+								source_filename = "models/creeps/ice_biome/storegga/tiny_04_grow_tree.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_TINY_GROWL"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "tiny_04_avalanche_alt_tree"
+								source_filename = "models/creeps/ice_biome/storegga/tiny_04_avalanche_alt_tree.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_1"
+								activity_weight = 1
+							},
+						]
+						name = "asset_sequences"
+					},
+					{
+						_class = "AnimBindPose"
+						name = "bindPose"
+					},
+					{
+						_class = "AnimFile"
+						name = "@tiny_04_avalanche"
+						source_filename = "models/creeps/ice_biome/storegga/@tiny_04_avalanche.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = true
+					},
+					{
+						_class = "AnimFile"
+						name = "@tiny_04_toss"
+						source_filename = "models/creeps/ice_biome/storegga/@tiny_04_toss.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = true
+					},
+					{
+						_class = "AnimFile"
+						name = "@tiny_04_grow"
+						source_filename = "models/creeps/ice_biome/storegga/@tiny_04_grow.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = true
+					},
+					{
+						_class = "AnimFile"
+						name = "@tiny_04_toss_tree"
+						source_filename = "models/creeps/ice_biome/storegga/@tiny_04_toss_tree.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = true
+					},
+					{
+						_class = "AnimFile"
+						name = "@tiny_04_grow_tree"
+						source_filename = "models/creeps/ice_biome/storegga/@tiny_04_grow_tree.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = true
+					},
+					{
+						_class = "AnimFile"
+						name = "@tiny_04_avalanche_alt_tree"
+						source_filename = "models/creeps/ice_biome/storegga/@tiny_04_avalanche_alt_tree.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = true
+					},
+				]
+			},
+			{
+				_class = "HitboxSetList"
+				children = 
+				[
+					{
+						_class = "HitboxSet"
+						name = "default"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -114.665443, -13.83128, -20.934179 ]
+								hitbox_maxs = [ -4.477275, 30.00181, 19.246632 ]
+								name = "elbow_R"
+								parent_bone = "elbow_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -73.26915, -17.856373, -15.864285 ]
+								hitbox_maxs = [ -12.327056, 6.693729, 11.442046 ]
+								name = "bicep_R"
+								parent_bone = "bicep_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -15.038693, -19.267351, -38.526958 ]
+								hitbox_maxs = [ 27.463264, 19.799263, 4.361923 ]
+								name = "clavicle_R"
+								parent_bone = "clavicle_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -6.268328, -10.904889, -21.000624 ]
+								hitbox_maxs = [ 25.248564, 15.69506, 12.855373 ]
+								name = "wrist_L"
+								parent_bone = "wrist_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -16.937273, -18.915728, -18.205696 ]
+								hitbox_maxs = [ 59.461472, 10.896266, 16.344133 ]
+								name = "elbow_L"
+								parent_bone = "elbow_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -9.029176, -23.946138, -20.531086 ]
+								hitbox_maxs = [ 48.514565, 7.654049, 15.790229 ]
+								name = "bicep_L"
+								parent_bone = "bicep_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 4.353358, 7.610876, 8.91166 ]
+								hitbox_maxs = [ 37.928288, 25.250835, 19.369492 ]
+								name = "clavicle_L"
+								parent_bone = "clavicle_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -17.791353, -18.668648, -13.287562 ]
+								hitbox_maxs = [ 30.884426, 20.349541, 31.552677 ]
+								name = "head"
+								parent_bone = "head"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -8.797664, -35.011787, -28.722622 ]
+								hitbox_maxs = [ 23.652149, 31.340706, 34.218159 ]
+								name = "neck1"
+								parent_bone = "neck1"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -23.886871, -60.763374, -29.656469 ]
+								hitbox_maxs = [ 62.536469, 53.728508, 55.57584 ]
+								name = "spine3"
+								parent_bone = "spine3"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -13.475964, -61.843269, -57.672955 ]
+								hitbox_maxs = [ 55.033215, 47.545692, 33.391453 ]
+								name = "spine2"
+								parent_bone = "spine2"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -19.56336, -37.49305, -30.366093 ]
+								hitbox_maxs = [ 12.948182, 20.44236, 16.619579 ]
+								name = "spine1"
+								parent_bone = "spine1"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -25.808989, -15.195721, -8.071104 ]
+								hitbox_maxs = [ 15.20573, 13.738809, 16.750652 ]
+								name = "ankle_R"
+								parent_bone = "ankle_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -31.438183, -17.470028, -14.514357 ]
+								hitbox_maxs = [ 5.086068, 12.3334, 19.228592 ]
+								name = "knee_R"
+								parent_bone = "knee_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -46.91787, -15.298895, -21.12155 ]
+								hitbox_maxs = [ 3.226502, 16.561672, 18.41766 ]
+								name = "thigh_R"
+								parent_bone = "thigh_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -5.716855, -18.408791, -26.54945 ]
+								hitbox_maxs = [ 42.769501, 30.961678, 22.054163 ]
+								name = "knee_L"
+								parent_bone = "knee_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -7.218657, -16.152353, -18.577778 ]
+								hitbox_maxs = [ 51.011276, 29.266064, 20.014669 ]
+								name = "thigh_L"
+								parent_bone = "thigh_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -33.181938, -24.450508, -16.204514 ]
+								hitbox_maxs = [ 28.099754, 31.931572, 25.705898 ]
+								name = "root"
+								parent_bone = "root"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "hands"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -114.665443, -15.384485, -20.934179 ]
+								hitbox_maxs = [ -4.477275, 28.448605, 19.246632 ]
+								name = "elbow_R"
+								parent_bone = "elbow_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -6.268328, -8.783369, -21.000624 ]
+								hitbox_maxs = [ 25.248564, 17.81658, 12.855373 ]
+								name = "wrist_L"
+								parent_bone = "wrist_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "head"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -17.791353, -18.668648, -13.287562 ]
+								hitbox_maxs = [ 30.884426, 20.349541, 31.552677 ]
+								name = "head"
+								parent_bone = "head"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "select_high"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 0.0, -15.0, -75.0 ]
+								hitbox_maxs = [ 30.0, 20.0, 50.0 ]
+								name = "root"
+								parent_bone = "root"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "feet"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -25.808989, -15.195721, -8.071104 ]
+								hitbox_maxs = [ 15.20573, 13.738809, 16.750652 ]
+								name = "ankle_R"
+								parent_bone = "ankle_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -5.716855, -18.408791, -26.54945 ]
+								hitbox_maxs = [ 42.769501, 30.961678, 22.054163 ]
+								name = "knee_L"
+								parent_bone = "knee_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "select_low"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -15.0, -30.0, -75.0 ]
+								hitbox_maxs = [ 50.0, 40.0, 70.0 ]
+								name = "root"
+								parent_bone = "root"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "Skeleton"
+				children = 
+				[
+					{
+						_class = "Bone"
+						name = "root"
+						origin = [ -25.236055, 1.759681, 78.116554 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						do_not_discard = true
+						children = 
+						[
+							{
+								_class = "Bone"
+								name = "spine1"
+								origin = [ -3.746101, -0.000001, 16.778252 ]
+								angles = [ -83.082306, -179.999939, 179.999939 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "spine2"
+										origin = [ 21.717461, 0.0, -0.000008 ]
+										angles = [ 16.574734, 0.000002, 0.000005 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "spine3"
+												origin = [ 28.739777, 0.000001, -0.000038 ]
+												angles = [ 48.997093, -0.000006, -0.000003 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "neck1"
+														origin = [ 54.521118, -0.0, -0.000122 ]
+														angles = [ 6.418993, -0.0, -0.0 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "head"
+																origin = [ 18.918945, -0.000002, -0.000198 ]
+																angles = [ 24.926891, -0.000003, -0.000011 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "jaw0_0"
+																		origin = [ 8.112469, -0.000001, -4.705551 ]
+																		angles = [ -0.000003, -0.0, 0.0 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "beard_lf"
+																				origin = [ 18.567085, 20.929554, -26.37355 ]
+																				angles = [ -9.902244, 109.036736, 89.727882 ]
+																				do_not_discard = true
+																			},
+																			{
+																				_class = "Bone"
+																				name = "beard_RT"
+																				origin = [ 16.626205, -14.249917, -24.108719 ]
+																				angles = [ 0.0, 90.0, 103.791992 ]
+																				do_not_discard = true
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+													{
+														_class = "Bone"
+														name = "clavicle_R"
+														origin = [ 7.853901, -21.062222, 27.923416 ]
+														angles = [ -7.075799, 115.64447, -93.919014 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "bicep_R"
+																origin = [ -37.615047, 4.365158, -6.151463 ]
+																angles = [ 44.338001, -55.603554, -155.051254 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "elbow_R"
+																		origin = [ -63.593304, -2.505196, -1.55188 ]
+																		angles = [ 29.501823, -0.000002, 0.00001 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "wrist_R"
+																				origin = [ -111.70031, -1.470757, -2.70303 ]
+																				angles = [ -8.523864, 8.485255, -32.57288 ]
+																				do_not_discard = true
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+													{
+														_class = "Bone"
+														name = "clavicle_L"
+														origin = [ 1.211143, 14.113153, 16.575256 ]
+														angles = [ 21.251951, 49.683029, 89.999992 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "bicep_L"
+																origin = [ 41.630787, -0.615204, -7.565727 ]
+																angles = [ 46.748558, -72.885994, 141.547821 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "elbow_L"
+																		origin = [ 56.924702, -1.312622, -10.313156 ]
+																		angles = [ 47.992496, 0.000009, -0.000011 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "wrist_L"
+																				origin = [ 51.730453, -3.037102, -5.593189 ]
+																				angles = [ -9.297232, 10.788298, 10.915289 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "index_0_L"
+																						origin = [ 21.689234, 4.100517, -17.07205 ]
+																						angles = [ 10.48584, 25.542627, 100.357552 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "index_1_L"
+																								origin = [ 8.67738, -0.000124, 0.000549 ]
+																								angles = [ 19.285309, -0.000009, 0.000012 ]
+																								do_not_discard = true
+																							},
+																						]
+																					},
+																					{
+																						_class = "Bone"
+																						name = "thumb_0_L"
+																						origin = [ 1.593882, 12.489235, -15.241323 ]
+																						angles = [ 45.612877, 56.067432, 43.604542 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "thumb_1_L"
+																								origin = [ 8.214592, -0.000488, 0.292171 ]
+																								angles = [ 6.275059, 0.000003, -0.000003 ]
+																								do_not_discard = true
+																							},
+																						]
+																					},
+																					{
+																						_class = "Bone"
+																						name = "mid_0_L"
+																						origin = [ 22.300215, -1.497864, 2.379557 ]
+																						angles = [ -17.811327, 14.524889, 87.844048 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "mid_1_L"
+																								origin = [ 10.639585, -0.000043, 0.000618 ]
+																								angles = [ 27.295938, -0.000011, -0.000007 ]
+																								do_not_discard = true
+																							},
+																						]
+																					},
+																				]
+																			},
+																		]
+																	},
+																]
+															},
+															{
+																_class = "Bone"
+																name = "shoulder_rock_JNT"
+																origin = [ 44.614994, 15.961624, 2.923611 ]
+																angles = [ -40.631226, -22.019451, -58.490269 ]
+																do_not_discard = true
+															},
+														]
+													},
+													{
+														_class = "Bone"
+														name = "mountain_A"
+														origin = [ 25.095642, -44.86874, 26.754639 ]
+														angles = [ 31.345875, -0.000003, -0.000011 ]
+														do_not_discard = true
+													},
+													{
+														_class = "Bone"
+														name = "mountain_B"
+														origin = [ 15.085335, -18.743822, 39.467789 ]
+														angles = [ 31.345875, -0.000003, -0.000011 ]
+														do_not_discard = true
+													},
+													{
+														_class = "Bone"
+														name = "mountain_C"
+														origin = [ 36.050903, -40.375965, 47.452026 ]
+														angles = [ 31.345875, -0.000003, -0.000011 ]
+														do_not_discard = true
+													},
+													{
+														_class = "Bone"
+														name = "mountain_D"
+														origin = [ 49.946442, -13.537847, 36.611282 ]
+														angles = [ 31.345875, -0.000003, -0.000011 ]
+														do_not_discard = true
+													},
+													{
+														_class = "Bone"
+														name = "mountain_E"
+														origin = [ 53.668137, -29.889593, 29.590118 ]
+														angles = [ 31.345875, -0.000003, -0.000011 ]
+														do_not_discard = true
+													},
+													{
+														_class = "Bone"
+														name = "mountain_F"
+														origin = [ 40.902473, -40.303673, 28.077118 ]
+														angles = [ 31.345875, -0.000003, -0.000011 ]
+														do_not_discard = true
+													},
+													{
+														_class = "Bone"
+														name = "mountain_G"
+														origin = [ 46.569511, -37.434517, 13.804947 ]
+														angles = [ 31.345875, -0.000003, -0.000011 ]
+														do_not_discard = true
+													},
+													{
+														_class = "Bone"
+														name = "mountain_H"
+														origin = [ 50.35511, 8.477193, 27.091614 ]
+														angles = [ 31.345875, -0.000003, -0.000011 ]
+														do_not_discard = true
+													},
+													{
+														_class = "Bone"
+														name = "mountain_I"
+														origin = [ 45.500427, 30.841896, 23.951859 ]
+														angles = [ 31.345875, -0.000003, -0.000011 ]
+														do_not_discard = true
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "thigh_r"
+								origin = [ 0.32954, -23.829018, -0.094627 ]
+								angles = [ -72.98835, 115.355827, -136.118484 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "knee_r"
+										origin = [ -41.540993, 0.000015, 0.0 ]
+										angles = [ 37.409733, -0.000008, -0.00001 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "ankle_r"
+												origin = [ -29.730473, 0.000004, 0.000013 ]
+												angles = [ -76.707268, -59.924419, 52.650715 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "toebase_r"
+														origin = [ -17.665565, 0.000015, 0.000026 ]
+														angles = [ 33.019505, 178.977386, 179.442688 ]
+														do_not_discard = true
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "thigh_L"
+								origin = [ 1.405613, 23.603477, 0.390327 ]
+								angles = [ 63.913383, 50.569588, 23.616312 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "knee_L"
+										origin = [ 45.582054, 0.000015, 0.000008 ]
+										angles = [ 31.996567, -0.000001, -0.000002 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "ankle_L"
+												origin = [ 37.506832, 0.000061, -0.000001 ]
+												angles = [ -0.000003, 0.000001, -0.0 ]
+												do_not_discard = true
+											},
+										]
+									},
+								]
+							},
+						]
+					},
+				]
+			},
+		]
+	}
+}

@@ -1,0 +1,150 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf63:version{a6e6a69e-52d3-4527-8b9c-ff3bb91aca3e} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 64
+	m_flCullRadius = -1.0
+	m_flConstantRadius = 40.0
+	m_ConstantColor = [ 123, 13, 13, 255 ]
+	m_bShouldSort = false
+	m_bScreenSpaceEffect = true
+	m_nBehaviorVersion = 5
+	m_BoundingBoxMin = [ -16384.0, -16384.0, -16384.0 ]
+	m_BoundingBoxMax = [ 16384.0, 16384.0, 16384.0 ]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetControlPointPositions"
+			m_bUseWorldLocation = true
+			m_nCP1 = 2
+			m_nCP2 = 3
+			m_nCP3 = 4
+			m_nCP4 = 5
+			m_vecCP1Pos = [ -105.0, -105.0, 10.0 ]
+			m_vecCP2Pos = [ -105.0, 105.0, 10.0 ]
+			m_vecCP3Pos = [ 105.0, 105.0, 10.0 ]
+			m_vecCP4Pos = [ 105.0, -105.0, 10.0 ]
+			m_flOpStartFadeOutTime = 0.1
+			m_flOpEndFadeOutTime = 0.1
+		},
+		{
+			_class = "C_OP_SetControlPointPositions"
+			m_bUseWorldLocation = true
+			m_nCP1 = 6
+			m_nCP2 = 7
+			m_nCP3 = 7
+			m_nCP4 = 7
+			m_vecCP1Pos = [ -105.0, -105.0, 10.0 ]
+			m_vecCP2Pos = [ -105.0, -105.0, 10.0 ]
+			m_vecCP3Pos = [ -105.0, -105.0, 10.0 ]
+			m_flOpStartFadeOutTime = 0.1
+			m_flOpEndFadeOutTime = 0.1
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 48.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateSequentialPath"
+			m_flNumToAssign = 72.0
+			m_bCPPairs = true
+			m_PathParams = 
+			{
+				m_nStartControlPointNumber = 2
+				m_nEndControlPointNumber = 8
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+			m_nOutputField = 7
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_RemapCPtoScalar"
+			m_nCPInput = 1
+			m_nFieldOutput = 16
+			m_flOutputMax = 0.5
+		},
+		{
+			_class = "C_OP_RemapCPtoScalar"
+			m_nCPInput = 1
+			m_flOutputMin = 1.0
+			m_flOutputMax = 1.5
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+		{
+			_class = "C_OP_Spin"
+			m_nSpinRateDegrees = 24
+		},
+		{
+			_class = "C_OP_FadeIn"
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/particle_glow_04.vtex"
+				},
+			]
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/boss/lina/b_4_1/screen_ad.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/lina/b_4_1/screen_ab.vpcf"
+		},
+	]
+}

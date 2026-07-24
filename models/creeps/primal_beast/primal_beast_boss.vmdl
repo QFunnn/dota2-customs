@@ -1,0 +1,5065 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "BoneMarkupList"
+				children = [  ]
+				bone_cull_type = "None"
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						name = "primal_beast_boss"
+						filename = "models/creeps/primal_beast/primal_beast_boss_primal_beast_boss.dmx"
+					},
+				]
+			},
+			{
+				_class = "LODGroupList"
+				children = 
+				[
+					{
+						_class = "LODGroup"
+						switch_threshold = 0.0
+						mesh_references = 
+						[
+							{
+								mesh_name = "primal_beast_boss"
+							},
+						]
+					},
+					{
+						_class = "LODGroup"
+						switch_threshold = 1.0
+						mesh_references = 
+						[
+							{
+								mesh_name = "primal_beast_boss"
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "AttachmentList"
+				children = 
+				[
+					{
+						_class = "Attachment"
+						name = "attach_hitloc"
+						ignore_rotation = false
+						parent_bone = "spine_2"
+						relative_origin = [ 0.000007, 0.000061, 0.000061 ]
+						relative_angles = [ -0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_foot_L"
+						ignore_rotation = false
+						parent_bone = "ball_L"
+						relative_origin = [ -0.00238, 0.002441, 0.003082 ]
+						relative_angles = [ 8.927238, 28.43996, -104.103394 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_foot_R"
+						ignore_rotation = false
+						parent_bone = "ball_R"
+						relative_origin = [ -0.000893, -0.001579, -0.001907 ]
+						relative_angles = [ 0.971548, -152.235626, -88.080307 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_attack2"
+						ignore_rotation = false
+						parent_bone = "hand_R"
+						relative_origin = [ 0.000824, -0.002319, 0.000145 ]
+						relative_angles = [ 0.0, -0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_attack1"
+						ignore_rotation = false
+						parent_bone = "hand_L"
+						relative_origin = [ 0.000397, 0.002563, 0.000534 ]
+						relative_angles = [ 0.0, 0.000002, -0.000002 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_pummel"
+						ignore_rotation = false
+						parent_bone = "hand_R"
+						relative_origin = [ -38.243622, -146.145676, 50.459305 ]
+						relative_angles = [ -27.733118, 172.154282, 178.344437 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_throw_attack"
+						ignore_rotation = false
+						parent_bone = "hand_R"
+						relative_origin = [ -106.079483, -73.887924, 26.581436 ]
+						relative_angles = [ -27.727058, 172.126572, 178.358292 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_mouth"
+						ignore_rotation = false
+						parent_bone = "tongue_end"
+						relative_origin = [ -0.004272, -0.001373, -0.004288 ]
+						relative_angles = [ -0.000002, -0.000005, 0.000017 ]
+						weight = 1.0
+					},
+				]
+			},
+			{
+				_class = "WeightListList"
+				children = 
+				[
+					{
+						_class = "WeightList"
+						name = "upper_body"
+						weights = 
+						[
+							{
+								bone = "spine_0"
+								weight = 1.0
+							},
+						]
+					},
+					{
+						_class = "WeightList"
+						name = "_empty_anim_weightlist"
+						weights = [  ]
+					},
+				]
+			},
+			{
+				_class = "PoseParamList"
+				children = 
+				[
+					{
+						_class = "PoseParam"
+						name = "turn"
+						poseparam_min = -1.0
+						poseparam_max = 1.0
+						poseparam_looping = false
+						poseparam_loop = 0.0
+					},
+					{
+						_class = "PoseParam"
+						name = "run_to_idle"
+						poseparam_min = 0.0
+						poseparam_max = 1.0
+						poseparam_looping = false
+						poseparam_loop = 0.0
+					},
+				]
+			},
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "@pb_turns_v2"
+								source_filename = "models/creeps/primal_beast/@pb_turns_v2.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+							},
+						]
+						name = "turns_group"
+					},
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "pb_idle"
+								source_filename = "models/creeps/primal_beast/pb_idle.dmx"
+								fade_in_time = 0.15
+								fade_out_time = 0.15
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimAddLayer"
+										anim_name = "run_to_idle_blend"
+									},
+								]
+							},
+						]
+						name = "idles"
+					},
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "@pb_boss_run_to_idle"
+								source_filename = "models/creeps/primal_beast/@pb_boss_run_to_idle.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+							},
+							{
+								_class = "AnimFile"
+								name = "@pb_boss_idle"
+								source_filename = "models/creeps/primal_beast/@pb_boss_idle.dmx"
+								fade_in_time = 0.15
+								fade_out_time = 0.15
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+							},
+						]
+						name = "run_to_idle_transition"
+					},
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "pb_boss_cast_throw_attack"
+								source_filename = "models/creeps/primal_beast/pb_boss_cast_throw_attack.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_1"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT_CFG"
+										event_frame = 52
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_attack_swipe_right_to_left.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = true
+											stop_immediately = true
+											use_layer_sequence = true
+											tags = ""
+											config = "absorigin"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 13
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack2"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 12
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.GroundPound"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+						]
+						name = "cast_throw_attack"
+					},
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "pb_boss_cast_rapid_vault"
+								source_filename = "models/creeps/primal_beast/pb_boss_cast_rapid_vault.dmx"
+								fade_in_time = 0.0
+								fade_out_time = 0.0
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_MK_SPRING_CAST"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 14
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack1"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 15
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack2"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 14
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.GroundPound"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 15
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.GroundPound"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "pb_boss_rapid_vault_soar"
+								source_filename = "models/creeps/primal_beast/pb_boss_rapid_vault_soar.dmx"
+								fade_in_time = 0.0
+								fade_out_time = 0.0
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_MK_SPRING_SOAR"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "pb_boss_rapid_vault_end"
+								source_filename = "models/creeps/primal_beast/pb_boss_rapid_vault_end.dmx"
+								fade_in_time = 0.0
+								fade_out_time = 0.1
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_MK_SPRING_END"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 13
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_extra_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = null
+											attachment_type = "absorigin"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 10
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Vault.Impact"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 11
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack1"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 12
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack2"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+								]
+							},
+						]
+						name = "cast_rapid_vault"
+					},
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "pb_run_onslaught"
+								source_filename = "models/creeps/primal_beast/pb_run_onslaught.dmx"
+								fade_in_time = 0.1
+								fade_out_time = 0.1
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 1
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 9
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 1
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_foot_R"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 9
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_foot_L"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "pb_boss_cast_onslaught"
+								source_filename = "models/creeps/primal_beast/pb_boss_cast_onslaught.dmx"
+								fade_in_time = 0.05
+								fade_out_time = 0.15
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_2"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 26
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack1"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 27
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack2"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 27
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.GroundPound"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 59
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack1"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 60
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack2"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 60
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.GroundPound"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT_CFG"
+										event_frame = 24
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_cast_fist_blur_right.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = true
+											stop_immediately = true
+											use_layer_sequence = true
+											tags = ""
+											config = "absorigin"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT_CFG"
+										event_frame = 58
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_cast_fist_blur_right.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = true
+											stop_immediately = true
+											use_layer_sequence = true
+											tags = ""
+											config = "absorigin"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT_CFG"
+										event_frame = 25
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_cast_fist_blur_left.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = true
+											stop_immediately = true
+											use_layer_sequence = true
+											tags = ""
+											config = "absorigin"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT_CFG"
+										event_frame = 59
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_cast_fist_blur_left.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = true
+											stop_immediately = true
+											use_layer_sequence = true
+											tags = ""
+											config = "absorigin"
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "pb_boss_run_onslaught_heavy_steps_override"
+								source_filename = "models/creeps/primal_beast/pb_boss_run_onslaught_heavy_steps_override.dmx"
+								fade_in_time = 0.15
+								fade_out_time = 0.15
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 1
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 9
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 1
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_foot_R"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 9
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_foot_L"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimAddLayer"
+										anim_name = "turn_blend"
+									},
+								]
+							},
+						]
+						name = "cast_onslaught"
+					},
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "pb_boss_cast_heavy_steps_roar"
+								source_filename = "models/creeps/primal_beast/pb_boss_cast_heavy_steps_roar.dmx"
+								fade_in_time = 0.05
+								fade_out_time = 0.1
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_3"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 6
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Roar.Start"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "pb_boss_walk_heavy_steps"
+								source_filename = "models/creeps/primal_beast/pb_boss_walk_heavy_steps.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 93
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack1"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 14
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack2"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 29
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack1"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 45
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack2"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 61
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack1"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 78
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack2"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 14
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.GroundPound"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 29
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.GroundPound"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 45
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.GroundPound"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 61
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.GroundPound"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 78
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.GroundPound"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "pb_boss_idle_heavy_steps"
+								source_filename = "models/creeps/primal_beast/pb_boss_idle_heavy_steps.dmx"
+								fade_in_time = 0.15
+								fade_out_time = 0.15
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimAddLayer"
+										anim_name = "heavy_steps_run_to_idle_blend"
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "pb_idle_rare_heavy_steps"
+								source_filename = "models/creeps/primal_beast/pb_idle_rare_heavy_steps.dmx"
+								fade_in_time = 0.15
+								fade_out_time = 0.15
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE_RARE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "@pb_heavy_steps_run_to_idle"
+								source_filename = "models/creeps/primal_beast/@pb_heavy_steps_run_to_idle.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+							},
+							{
+								_class = "AnimFile"
+								name = "@pb_idle_heavy_steps"
+								source_filename = "models/creeps/primal_beast/@pb_idle_heavy_steps.dmx"
+								fade_in_time = 0.15
+								fade_out_time = 0.15
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+							},
+							{
+								_class = "AnimFile"
+								name = "pb_idle_heavy_steps_injured"
+								source_filename = "models/creeps/primal_beast/pb_idle_heavy_steps_injured.dmx"
+								fade_in_time = 0.15
+								fade_out_time = 0.15
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimAddLayer"
+										anim_name = "heavy_steps_run_to_idle_blend"
+									},
+								]
+							},
+						]
+						name = "cast_heavy_steps"
+					},
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "pb_cast_boss_pummel"
+								source_filename = "models/creeps/primal_beast/pb_cast_boss_pummel.dmx"
+								fade_in_time = 0.1
+								fade_out_time = 0.0
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_5"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 0
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Roar.Start"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "pb_channel_pummel_v3"
+								source_filename = "models/creeps/primal_beast/pb_channel_pummel_v3.dmx"
+								fade_in_time = 0.0
+								fade_out_time = 0.0
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CHANNEL_ABILITY_5"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 0
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Pummel"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+						]
+						name = "cast_pummel"
+					},
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "pb_boss_cast_tectonic_shift"
+								source_filename = "models/creeps/primal_beast/pb_boss_cast_tectonic_shift.dmx"
+								fade_in_time = 0.1
+								fade_out_time = 0.1
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_6"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 77
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_medium.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack2"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 79
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.GroundPound"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 77
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_medium.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack1"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 79
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.GroundPound"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 5
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Roar.Start"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "pb_boss_cast_tectonic_shift_right"
+								source_filename = "models/creeps/primal_beast/pb_boss_cast_tectonic_shift_right.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 16
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack2"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 16
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.GroundPound"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "pb_boss_cast_tectonic_shift_right_wide"
+								source_filename = "models/creeps/primal_beast/pb_boss_cast_tectonic_shift_right_wide.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_SHUFFLE_R"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 16
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack2"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 16
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.GroundPound"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "pb_boss_cast_tectonic_shift_left"
+								source_filename = "models/creeps/primal_beast/pb_boss_cast_tectonic_shift_left.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 16
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack1"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 16
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.GroundPound"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "pb_boss_cast_tectonic_shift_left_wide"
+								source_filename = "models/creeps/primal_beast/pb_boss_cast_tectonic_shift_left_wide.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_SHUFFLE_L"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 16
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack1"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 16
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.GroundPound"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "pb_boss_cast_tectonic_idle"
+								source_filename = "models/creeps/primal_beast/pb_boss_cast_tectonic_idle.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE_IMPATIENT"
+								activity_weight = 1
+							},
+						]
+						name = "cast_tectonic_shift"
+					},
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "pb_cast_inhibition_roar"
+								source_filename = "models/creeps/primal_beast/pb_cast_inhibition_roar.dmx"
+								fade_in_time = 0.05
+								fade_out_time = 0.15
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_OVERRIDE_ABILITY_3"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 3
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Roar.Start"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+						]
+						name = "cast_inhibition"
+					},
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "pb_boss_walk"
+								source_filename = "models/creeps/primal_beast/pb_boss_walk.dmx"
+								fade_in_time = 0.15
+								fade_out_time = 0.15
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 1
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 18
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 1
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_footsteps.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = "run_suppress"
+											attachment_point = "attach_foot_R"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 18
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_footsteps.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = "run_suppress"
+											attachment_point = "attach_foot_L"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 32
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 49
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 32
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_footsteps.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = "run_suppress"
+											attachment_point = "attach_foot_R"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 49
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_footsteps.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = "run_suppress"
+											attachment_point = "attach_foot_L"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 64
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 81
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 64
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_footsteps.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = "run_suppress"
+											attachment_point = "attach_foot_R"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 81
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_footsteps.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = "run_suppress"
+											attachment_point = "attach_foot_L"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 96
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 113
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 96
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_footsteps.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = "run_suppress"
+											attachment_point = "attach_foot_R"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 113
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_footsteps.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = "run_suppress"
+											attachment_point = "attach_foot_L"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 128
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 145
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 128
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_footsteps.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = "run_suppress"
+											attachment_point = "attach_foot_R"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 145
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_footsteps.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = "run_suppress"
+											attachment_point = "attach_foot_L"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 160
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 177
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 160
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_footsteps.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = "run_suppress"
+											attachment_point = "attach_foot_R"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 177
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_footsteps.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = "run_suppress"
+											attachment_point = "attach_foot_L"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 192
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 209
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 192
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_footsteps.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = "run_suppress"
+											attachment_point = "attach_foot_R"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 209
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_footsteps.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = "run_suppress"
+											attachment_point = "attach_foot_L"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 224
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 241
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 224
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_footsteps.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = "run_suppress"
+											attachment_point = "attach_foot_R"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 241
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_footsteps.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = "run_suppress"
+											attachment_point = "attach_foot_L"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimAddLayer"
+										anim_name = "turn_blend"
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "pb_run_haste"
+								source_filename = "models/creeps/primal_beast/pb_run_haste.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 2
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 14
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 2
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_medium.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_foot_R"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 14
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_medium.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_foot_L"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimAddLayer"
+										anim_name = "turn_blend"
+									},
+								]
+							},
+						]
+						name = "mobility"
+					},
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "pb_boss_disabled"
+								source_filename = "models/creeps/primal_beast/pb_boss_disabled.dmx"
+								fade_in_time = 0.1
+								fade_out_time = 0.15
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DISABLED"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "pb_boss_capture"
+								source_filename = "models/creeps/primal_beast/pb_boss_capture.dmx"
+								fade_in_time = 0.15
+								fade_out_time = 0.15
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAPTURE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CLOTH_STIFFEN"
+										event_frame = 0
+										event_keys = 
+										{
+											Value = 1.0
+											Length = 16.566668
+											VertexSet = null
+											SpeedIn = 0.0
+											SpeedOut = 0.0
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "pb_boss_capture_alt"
+								source_filename = "models/creeps/primal_beast/pb_boss_capture_alt.dmx"
+								fade_in_time = 0.15
+								fade_out_time = 0.15
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAPTURE_RARE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CLOTH_STIFFEN"
+										event_frame = 0
+										event_keys = 
+										{
+											Value = 1.0
+											Length = 2.7
+											VertexSet = null
+											SpeedIn = 0.0
+											SpeedOut = 0.0
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "pb_boss_flail"
+								source_filename = "models/creeps/primal_beast/pb_boss_flail.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_FLAIL"
+								activity_weight = 1
+							},
+						]
+						name = "misc"
+					},
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "pb_boss_cast_roar_attack"
+								source_filename = "models/creeps/primal_beast/pb_boss_cast_roar_attack.dmx"
+								fade_in_time = 0.0
+								fade_out_time = 0.1
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_4"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 6
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_medium.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack1"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 7
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_medium.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack2"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 6
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.GroundPound"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 7
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.GroundPound"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 1
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Roar.Start"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+						]
+						name = "cast_roar_attack"
+					},
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "pb_boss_victory"
+								source_filename = "models/creeps/primal_beast/pb_boss_victory.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_VICTORY"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 21
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Roar.Start"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "pb_boss_spawn_intro"
+								source_filename = "models/creeps/primal_beast/pb_boss_spawn_intro.dmx"
+								fade_in_time = 0.0
+								fade_out_time = 0.3
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_SPAWN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 146
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Roar.Start"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 44
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_foot_R"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 46
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_foot_L"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 47
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_extra_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = ""
+											attachment_type = "absorigin"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 103
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack1"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 104
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack2"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 104
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.GroundPound"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 103
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.GroundPound"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 42
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Vault.Impact"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 83
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack1"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 85
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack2"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 85
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.GroundPound"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 83
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.GroundPound"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 44
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack1"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 46
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack2"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "pb_boss_roar_outro"
+								source_filename = "models/creeps/primal_beast/pb_boss_roar_outro.dmx"
+								fade_in_time = 0.1
+								fade_out_time = 0.1
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_OVERRIDE_ABILITY_4"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 12
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Roar.Start"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "pb_boss_defeat_outro"
+								source_filename = "models/creeps/primal_beast/pb_boss_defeat_outro.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DEFEAT"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 15
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Roar.Start"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 19
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack1"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 20
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack2"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 19
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.GroundPound"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 78
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack1"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 79
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack2"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 78
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.GroundPound"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 103
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_extra_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = null
+											attachment_type = "absorigin"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+								]
+							},
+						]
+						name = "intro_outro"
+					},
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "pb_boss_idle_injured"
+								source_filename = "models/creeps/primal_beast/pb_boss_idle_injured.dmx"
+								fade_in_time = 0.15
+								fade_out_time = 0.15
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimAddLayer"
+										anim_name = "run_to_idle_injured_blend"
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "pb_boss_idle_rare_injured"
+								source_filename = "models/creeps/primal_beast/pb_boss_idle_rare_injured.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE_RARE"
+								activity_weight = 1
+							},
+						]
+						name = "idles_injured"
+					},
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "@pb_boss_run_to_idle_injured"
+								source_filename = "models/creeps/primal_beast/@pb_boss_run_to_idle_injured.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+							},
+							{
+								_class = "AnimFile"
+								name = "@pb_boss_idle_injured"
+								source_filename = "models/creeps/primal_beast/@pb_boss_idle_injured.dmx"
+								fade_in_time = 0.15
+								fade_out_time = 0.15
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+							},
+						]
+						name = "run_to_idle_injured_transition"
+					},
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "pb_run_injured"
+								source_filename = "models/creeps/primal_beast/pb_run_injured.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 2
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 14
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 2
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_medium_no_flek.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_foot_R"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 14
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_medium_no_flek.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_foot_L"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 29
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 29
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_medium_no_flek.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack2"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimAddLayer"
+										anim_name = "turn_blend"
+									},
+								]
+							},
+						]
+						name = "mobility_injured"
+					},
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "pb_boss_cast_throw_attack_injured"
+								source_filename = "models/creeps/primal_beast/pb_boss_cast_throw_attack_injured.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_1"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT_CFG"
+										event_frame = 52
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_attack_swipe_right_to_left.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = true
+											stop_immediately = true
+											use_layer_sequence = true
+											tags = ""
+											config = "absorigin"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 13
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "attach_attack2"
+											attachment_type = "point"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 13
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.GroundPound"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "pb_boss_rapid_vault_end_injured"
+								source_filename = "models/creeps/primal_beast/pb_boss_rapid_vault_end_injured.dmx"
+								fade_in_time = 0.0
+								fade_out_time = 0.15
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_MK_SPRING_END"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 13
+										event_keys = 
+										{
+											name = resource:"particles/creatures/primal_beast/primal_beast_dust_impact_extra_large.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = null
+											attachment_type = "absorigin"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 8
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.GroundPound"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 10
+										event_keys = 
+										{
+											name = soundevent:"PrimalBeast_Boss.GroundPound"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+						]
+						name = "casts_injured"
+					},
+					{
+						_class = "AnimFile"
+						name = "run_to_idle_blend"
+						source_filename = "models/creeps/primal_beast/run_to_idle_blend.dmx"
+						fade_in_time = 0.1
+						fade_out_time = 0.1
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+					},
+					{
+						_class = "AnimFile"
+						name = "heavy_steps_run_to_idle_blend"
+						source_filename = "models/creeps/primal_beast/heavy_steps_run_to_idle_blend.dmx"
+						fade_in_time = 0.1
+						fade_out_time = 0.1
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+					},
+					{
+						_class = "AnimFile"
+						name = "run_to_idle_injured_blend"
+						source_filename = "models/creeps/primal_beast/run_to_idle_injured_blend.dmx"
+						fade_in_time = 0.1
+						fade_out_time = 0.1
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+					},
+				]
+			},
+			{
+				_class = "HitboxSetList"
+				children = 
+				[
+					{
+						_class = "HitboxSet"
+						name = "select_high"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -262.036987, -92.199387, -133.619781 ]
+								hitbox_maxs = [ 107.834015, 278.248718, 175.609039 ]
+								name = "pelvis"
+								parent_bone = "pelvis"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "select_low"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -268.521667, -285.470154, -261.48526 ]
+								hitbox_maxs = [ 144.641144, 390.017883, 242.314819 ]
+								name = "pelvis"
+								parent_bone = "pelvis"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "default"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -141.649109, -150.134171, -129.448669 ]
+								hitbox_maxs = [ 77.370544, 127.339432, 129.448334 ]
+								name = "pelvis"
+								parent_bone = "pelvis"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -85.351402, -100.018555, -117.823608 ]
+								hitbox_maxs = [ 113.290215, 137.257904, 117.823547 ]
+								name = "spine_0"
+								parent_bone = "spine_0"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -72.026222, -137.688934, -151.648773 ]
+								hitbox_maxs = [ 113.831085, 134.183929, 151.648819 ]
+								name = "spine_1"
+								parent_bone = "spine_1"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -82.381989, -153.056946, -155.357178 ]
+								hitbox_maxs = [ 144.55011, 171.009476, 155.357361 ]
+								name = "spine_2"
+								parent_bone = "spine_2"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -109.037544, -128.18222, -138.363983 ]
+								hitbox_maxs = [ 121.047455, 178.354263, 138.364883 ]
+								name = "spine_3"
+								parent_bone = "spine_3"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -131.228424, -92.514206, -89.349197 ]
+								hitbox_maxs = [ 44.937992, 94.476257, 119.657593 ]
+								name = "clavicle_R"
+								parent_bone = "clavicle_R"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -192.266937, -74.433983, -74.275497 ]
+								hitbox_maxs = [ 72.273849, 98.746361, 55.625916 ]
+								name = "arm_upper_R"
+								parent_bone = "arm_upper_R"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -145.496872, -118.941101, -68.511169 ]
+								hitbox_maxs = [ 73.025146, 43.573593, 43.379272 ]
+								name = "arm_lower_R"
+								parent_bone = "arm_lower_R"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -132.998367, -85.359421, -62.026932 ]
+								hitbox_maxs = [ 122.470078, 32.318054, 86.914543 ]
+								name = "hand_R"
+								parent_bone = "hand_R"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -68.967072, -20.765503, -43.671883 ]
+								hitbox_maxs = [ 78.814079, 36.807556, 45.091122 ]
+								name = "finger_ring_0_R"
+								parent_bone = "finger_ring_0_R"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -45.053169, -15.200195, -17.651176 ]
+								hitbox_maxs = [ 27.591446, 22.956787, 15.547699 ]
+								name = "finger_ring_1_R"
+								parent_bone = "finger_ring_1_R"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -73.93335, -33.855316, -45.283508 ]
+								hitbox_maxs = [ 50.93602, 53.707245, 57.607742 ]
+								name = "finger_thumb_0_R"
+								parent_bone = "finger_thumb_0_R"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -69.234634, -11.741943, -18.052673 ]
+								hitbox_maxs = [ 38.932419, 53.639145, 49.744537 ]
+								name = "finger_thumb_1_R"
+								parent_bone = "finger_thumb_1_R"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -73.127266, -29.124512, -50.712738 ]
+								hitbox_maxs = [ 58.365623, 36.887085, 47.888214 ]
+								name = "finger_index_0_R"
+								parent_bone = "finger_index_0_R"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -55.060295, -16.25354, -43.887878 ]
+								hitbox_maxs = [ 29.147041, 25.190887, 21.414581 ]
+								name = "finger_index_1_R"
+								parent_bone = "finger_index_1_R"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -77.738678, -13.646484, -51.344818 ]
+								hitbox_maxs = [ 76.062912, 48.453583, 46.571289 ]
+								name = "finger_middle_0_R"
+								parent_bone = "finger_middle_0_R"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -53.601685, -14.370636, -25.466583 ]
+								hitbox_maxs = [ 27.611328, 26.669769, 22.625183 ]
+								name = "finger_middle_1_R"
+								parent_bone = "finger_middle_1_R"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -62.100533, -24.182953, -47.166687 ]
+								hitbox_maxs = [ 62.40538, 25.776917, 34.836685 ]
+								name = "finger_pinky_0_R"
+								parent_bone = "finger_pinky_0_R"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -37.054573, -12.613983, -23.784615 ]
+								hitbox_maxs = [ 45.909698, 27.328217, 15.691803 ]
+								name = "finger_pinky_1_R"
+								parent_bone = "finger_pinky_1_R"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -44.937569, -94.476448, -119.656036 ]
+								hitbox_maxs = [ 131.229019, 92.514435, 89.350479 ]
+								name = "clavicle_L"
+								parent_bone = "clavicle_L"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -72.272629, -98.746826, -55.624542 ]
+								hitbox_maxs = [ 192.267059, 74.487305, 74.277557 ]
+								name = "arm_upper_L"
+								parent_bone = "arm_upper_L"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -73.02478, -43.573212, -43.377838 ]
+								hitbox_maxs = [ 145.49704, 118.941833, 68.512268 ]
+								name = "arm_lower_L"
+								parent_bone = "arm_lower_L"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -122.469376, -32.317566, -86.913849 ]
+								hitbox_maxs = [ 132.998611, 85.359497, 62.026909 ]
+								name = "hand_L"
+								parent_bone = "hand_L"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -62.404556, -25.777679, -34.837036 ]
+								hitbox_maxs = [ 62.101425, 24.182922, 47.166496 ]
+								name = "finger_pinky_0_L"
+								parent_bone = "finger_pinky_0_L"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -45.908356, -27.328888, -15.692417 ]
+								hitbox_maxs = [ 37.055824, 12.613647, 23.784241 ]
+								name = "finger_pinky_1_L"
+								parent_bone = "finger_pinky_1_L"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -76.060638, -48.45462, -46.570885 ]
+								hitbox_maxs = [ 77.740135, 13.646912, 51.345383 ]
+								name = "finger_middle_0_L"
+								parent_bone = "finger_middle_0_L"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -27.60828, -26.67038, -22.625549 ]
+								hitbox_maxs = [ 53.604111, 14.370911, 25.466431 ]
+								name = "finger_middle_1_L"
+								parent_bone = "finger_middle_1_L"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -58.363159, -36.887436, -47.887375 ]
+								hitbox_maxs = [ 73.128906, 29.124939, 50.713608 ]
+								name = "finger_index_0_L"
+								parent_bone = "finger_index_0_L"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -29.143627, -25.191193, -21.414185 ]
+								hitbox_maxs = [ 55.063187, 16.253769, 43.888351 ]
+								name = "finger_index_1_L"
+								parent_bone = "finger_index_1_L"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -78.812775, -36.808472, -45.091389 ]
+								hitbox_maxs = [ 68.968132, 20.765411, 43.671856 ]
+								name = "finger_ring_0_L"
+								parent_bone = "finger_ring_0_L"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -27.589592, -22.957428, -15.548492 ]
+								hitbox_maxs = [ 45.054863, 15.200043, 17.650551 ]
+								name = "finger_ring_1_L"
+								parent_bone = "finger_ring_1_L"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -50.932915, -53.707245, -57.606003 ]
+								hitbox_maxs = [ 73.936028, 33.856232, 45.285233 ]
+								name = "finger_thumb_0_L"
+								parent_bone = "finger_thumb_0_L"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -38.927589, -53.639099, -49.74263 ]
+								hitbox_maxs = [ 69.238724, 11.74292, 18.054367 ]
+								name = "finger_thumb_1_L"
+								parent_bone = "finger_thumb_1_L"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -94.861847, -95.157135, -118.104858 ]
+								hitbox_maxs = [ 144.658554, 162.098999, 118.106842 ]
+								name = "neck_0"
+								parent_bone = "neck_0"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -35.351074, -82.845688, -88.85556 ]
+								hitbox_maxs = [ 128.639725, 84.359482, 88.858612 ]
+								name = "neck_skin_0"
+								parent_bone = "neck_skin_0"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -64.357849, -132.406372, -76.617615 ]
+								hitbox_maxs = [ 69.873413, 102.410126, 76.621185 ]
+								name = "neck_skin_1"
+								parent_bone = "neck_skin_1"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -39.267929, -54.873993, -71.450378 ]
+								hitbox_maxs = [ 138.881592, 88.176392, 71.452881 ]
+								name = "head"
+								parent_bone = "head"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -20.479439, -110.031418, -75.081436 ]
+								hitbox_maxs = [ 210.288361, 57.276306, 74.403381 ]
+								name = "Jaw_0"
+								parent_bone = "Jaw_0"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -12.005737, -23.957855, -20.016663 ]
+								hitbox_maxs = [ 52.515656, 20.947998, 21.171936 ]
+								name = "tongue_0"
+								parent_bone = "tongue_0"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -162.33902, -105.255333, -50.509094 ]
+								hitbox_maxs = [ 54.546906, 86.085716, 61.322006 ]
+								name = "leg_upper_R"
+								parent_bone = "leg_upper_R"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -142.465118, -38.541107, -35.169678 ]
+								hitbox_maxs = [ 18.734215, 51.79039, 48.95015 ]
+								name = "leg_lower_R"
+								parent_bone = "leg_lower_R"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -106.360924, -64.812653, -48.918274 ]
+								hitbox_maxs = [ 28.409889, 33.151997, 41.232498 ]
+								name = "ankle_R"
+								parent_bone = "ankle_R"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -67.063454, -62.25494, -12.251698 ]
+								hitbox_maxs = [ 39.202995, 43.187016, 49.01421 ]
+								name = "Toe_D_0_R"
+								parent_bone = "Toe_D_0_R"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -65.565056, -35.503769, -52.216011 ]
+								hitbox_maxs = [ 61.75869, 30.326843, 49.062515 ]
+								name = "ball_R"
+								parent_bone = "ball_R"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -54.89278, -29.479271, -23.753044 ]
+								hitbox_maxs = [ 25.447102, 20.026779, 40.702843 ]
+								name = "Toe_A_0_R"
+								parent_bone = "Toe_A_0_R"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -51.202591, -28.893677, -34.123909 ]
+								hitbox_maxs = [ 38.355042, 22.806602, 20.402008 ]
+								name = "Toe_C_0_R"
+								parent_bone = "Toe_C_0_R"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -55.477165, -22.05101, -44.031921 ]
+								hitbox_maxs = [ 33.484337, 30.508911, 40.146759 ]
+								name = "Toe_B_0_R"
+								parent_bone = "Toe_B_0_R"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -54.546661, -86.085556, -61.322235 ]
+								hitbox_maxs = [ 162.339447, 105.25528, 50.50885 ]
+								name = "leg_upper_L"
+								parent_bone = "leg_upper_L"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -18.734131, -51.790283, -48.950241 ]
+								hitbox_maxs = [ 142.464874, 38.540886, 35.169281 ]
+								name = "leg_lower_L"
+								parent_bone = "leg_lower_L"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -28.40976, -33.151978, -41.23288 ]
+								hitbox_maxs = [ 106.360611, 64.812599, 48.918449 ]
+								name = "ankle_L"
+								parent_bone = "ankle_L"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -61.758629, -30.326805, -49.06311 ]
+								hitbox_maxs = [ 65.563187, 35.504234, 52.215851 ]
+								name = "ball_L"
+								parent_bone = "ball_L"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -38.354919, -22.82312, -20.226494 ]
+								hitbox_maxs = [ 51.202682, 28.941238, 33.8592 ]
+								name = "Toe_C_0_L"
+								parent_bone = "Toe_C_0_L"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -33.484428, -29.653488, -40.928986 ]
+								hitbox_maxs = [ 55.477051, 21.791367, 43.259308 ]
+								name = "Toe_B_0_L"
+								parent_bone = "Toe_B_0_L"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -25.447104, -20.0121, -40.688362 ]
+								hitbox_maxs = [ 54.892788, 29.476326, 23.768547 ]
+								name = "Toe_A_0_L"
+								parent_bone = "Toe_A_0_L"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -39.203072, -35.89706, -46.786568 ]
+								hitbox_maxs = [ 67.063332, 65.686462, 12.421555 ]
+								name = "Toe_D_0_L"
+								parent_bone = "Toe_D_0_L"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -81.953796, -96.572723, -105.586304 ]
+								hitbox_maxs = [ 190.726013, 77.990738, 105.586304 ]
+								name = "Tail_0"
+								parent_bone = "Tail_0"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -121.782448, -77.093658, -58.278412 ]
+								hitbox_maxs = [ 137.281616, 53.768051, 58.278168 ]
+								name = "Tail_1"
+								parent_bone = "Tail_1"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -149.92276, -76.501282, -53.619217 ]
+								hitbox_maxs = [ 136.693298, 45.278107, 50.366516 ]
+								name = "Tail_2"
+								parent_bone = "Tail_2"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -77.075836, -63.919067, -42.366318 ]
+								hitbox_maxs = [ 123.036377, 39.189636, 42.366379 ]
+								name = "Tail_3"
+								parent_bone = "Tail_3"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -64.718292, -56.996986, -62.334198 ]
+								hitbox_maxs = [ 112.626526, 32.98988, 62.334808 ]
+								name = "Tail_4"
+								parent_bone = "Tail_4"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -42.51297, -53.336609, -92.023041 ]
+								hitbox_maxs = [ 102.626099, 19.989151, 92.024414 ]
+								name = "Tail_5"
+								parent_bone = "Tail_5"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -33.877716, -42.199814, -44.28418 ]
+								hitbox_maxs = [ 29.355438, 23.038681, 32.18866 ]
+								name = "back_chain_end"
+								parent_bone = "back_chain_end"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -4.443604, -30.409317, -44.288704 ]
+								hitbox_maxs = [ 69.083237, 40.053635, 38.758747 ]
+								name = "leg_chain_1"
+								parent_bone = "leg_chain_1"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -4.444336, -31.741226, -44.288635 ]
+								hitbox_maxs = [ 69.082611, 40.053879, 38.758831 ]
+								name = "leg_chain_2"
+								parent_bone = "leg_chain_2"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -4.445374, -16.842255, -44.288563 ]
+								hitbox_maxs = [ 69.081665, 40.054352, 38.758953 ]
+								name = "leg_chain_3"
+								parent_bone = "leg_chain_3"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -4.447266, -34.16893, -44.288311 ]
+								hitbox_maxs = [ 69.079834, 40.055023, 38.759163 ]
+								name = "leg_chain_4"
+								parent_bone = "leg_chain_4"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -38.525543, -4.408356, -44.288277 ]
+								hitbox_maxs = [ 55.308716, 53.800446, 56.904045 ]
+								name = "leg_chain_5"
+								parent_bone = "leg_chain_5"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -83.859619, -92.077087, -44.286114 ]
+								hitbox_maxs = [ 42.122375, 23.036285, 38.761162 ]
+								name = "leg_chain_end"
+								parent_bone = "leg_chain_end"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "head"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -14.773438, -40.482758, -59.848633 ]
+								hitbox_maxs = [ 132.082214, 142.933807, 79.55307 ]
+								name = "head"
+								parent_bone = "head"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "hands"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -126.499786, -64.40271, -46.000114 ]
+								hitbox_maxs = [ 2.300934, 41.397949, 87.400513 ]
+								name = "hand_R"
+								parent_bone = "hand_R"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 2.300323, -41.397522, -87.40007 ]
+								hitbox_maxs = [ 126.501175, 64.402649, 46.000778 ]
+								name = "hand_L"
+								parent_bone = "hand_L"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "feet"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -101.200012, -27.599922, -52.899918 ]
+								hitbox_maxs = [ -4.599937, 27.600021, 29.900024 ]
+								name = "ankle_R"
+								parent_bone = "ankle_R"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -4.600006, -27.600021, -29.899948 ]
+								hitbox_maxs = [ 101.200035, 27.600155, 52.900108 ]
+								name = "ankle_L"
+								parent_bone = "ankle_L"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "Skeleton"
+				children = 
+				[
+					{
+						_class = "Bone"
+						name = "pelvis"
+						origin = [ -90.265961, 0.000003, 274.195435 ]
+						angles = [ -90.0, -90.0, 9.462321 ]
+						do_not_discard = true
+						children = 
+						[
+							{
+								_class = "Bone"
+								name = "spine_0"
+								origin = [ 23.110565, 14.683525, -0.000118 ]
+								angles = [ 0.000001, 58.705544, -0.000008 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "spine_1"
+										origin = [ 49.23745, 0.000244, -0.000086 ]
+										angles = [ 0.000002, 22.7356, 0.000001 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "spine_2"
+												origin = [ 44.13797, 0.000366, -0.000086 ]
+												angles = [ -0.000001, 13.035435, 0.000031 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "plate_C_0_L"
+														origin = [ 56.413338, -104.036377, 35.966789 ]
+														angles = [ -23.331236, -94.876129, 107.967545 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "back_chain_0"
+																origin = [ 43.745209, 3.260376, 12.79969 ]
+																angles = [ -22.422722, 115.708069, 149.601303 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "back_chain_1"
+																		origin = [ 47.207764, -0.001312, 0.000938 ]
+																		angles = [ -9.285297, -4.647428, 8.983835 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "back_chain_2"
+																				origin = [ 26.371887, -0.002136, 0.00193 ]
+																				angles = [ -2.152874, -3.621785, 2.331758 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "back_chain_3"
+																						origin = [ 21.817856, -0.002716, 0.002808 ]
+																						angles = [ -0.01796, -2.484799, 0.021197 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "back_chain_end"
+																								origin = [ 48.789597, -0.003571, 0.003555 ]
+																								angles = [ -4.539242, -22.913328, -173.646652 ]
+																								do_not_discard = true
+																							},
+																						]
+																					},
+																				]
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+													{
+														_class = "Bone"
+														name = "spine_3"
+														origin = [ 86.283386, 0.000671, 0.000038 ]
+														angles = [ 0.000005, 6.216381, -0.000095 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "neck_0"
+																origin = [ 69.458038, 0.000854, 0.000405 ]
+																angles = [ 0.000007, -8.90818, 0.000198 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "neck_skin_0"
+																		origin = [ 19.682465, 35.509705, 0.000861 ]
+																		angles = [ 0.000108, 80.898232, -179.999863 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "neck_skin_1"
+																				origin = [ 59.098495, -0.001556, 0.001582 ]
+																				angles = [ -0.000011, -3.659131, 0.000082 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "neck_skin_end"
+																						origin = [ 69.982407, -0.001785, 0.001766 ]
+																						angles = [ 0.000003, -0.000082, 0.00008 ]
+																						do_not_discard = true
+																					},
+																				]
+																			},
+																		]
+																	},
+																	{
+																		_class = "Bone"
+																		name = "head"
+																		origin = [ 56.456375, 0.001495, 0.000924 ]
+																		angles = [ 0.000016, 2.821882, -0.00043 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "Jaw_0"
+																				origin = [ -5.494522, 33.994812, 0.001471 ]
+																				angles = [ -0.000092, 14.318564, -179.999451 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "tongue_0"
+																						origin = [ 62.515244, 13.522308, 0.001456 ]
+																						angles = [ 0.00001, 4.834273, 0.000054 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "tongue_1"
+																								origin = [ 26.884583, -0.003052, 0.001822 ]
+																								angles = [ 0.000029, 7.282469, 0.000058 ]
+																								do_not_discard = true
+																								children = 
+																								[
+																									{
+																										_class = "Bone"
+																										name = "tongue_end"
+																										origin = [ 26.566956, -0.003204, 0.002127 ]
+																										angles = [ 0.000054, 9.898994, 0.000053 ]
+																										do_not_discard = true
+																									},
+																								]
+																							},
+																						]
+																					},
+																				]
+																			},
+																		]
+																	},
+																	{
+																		_class = "Bone"
+																		name = "plate_A_0_L"
+																		origin = [ 41.209412, -35.491302, 15.646434 ]
+																		angles = [ -16.873709, -78.021156, 101.485451 ]
+																		do_not_discard = true
+																	},
+																	{
+																		_class = "Bone"
+																		name = "plate_A_0_R"
+																		origin = [ 41.209473, -35.491394, -15.644467 ]
+																		angles = [ -16.873455, 101.978836, 101.485527 ]
+																		do_not_discard = true
+																	},
+																]
+															},
+															{
+																_class = "Bone"
+																name = "clavicle_R"
+																origin = [ 14.792439, 30.536346, -27.6192 ]
+																angles = [ -82.399193, 56.708881, 12.291656 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "arm_upper_R"
+																		origin = [ -61.820656, 0.000732, -0.000427 ]
+																		angles = [ -48.892986, -23.710907, 57.862282 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "arm_lower_R"
+																				origin = [ -192.266479, -0.000137, -0.000671 ]
+																				angles = [ 0.000075, 48.759953, -0.000144 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "hand_R"
+																						origin = [ -114.274033, -0.001358, -0.001282 ]
+																						angles = [ -7.283106, -12.385128, 72.801895 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "finger_ring_0_R"
+																								origin = [ -81.825394, 3.911682, 1.705406 ]
+																								angles = [ -8.481105, 7.087009, -179.720978 ]
+																								do_not_discard = true
+																								children = 
+																								[
+																									{
+																										_class = "Bone"
+																										name = "finger_ring_1_R"
+																										origin = [ -34.06189, 0.001465, 0.00058 ]
+																										angles = [ 1.272701, -9.990975, -0.968467 ]
+																										do_not_discard = true
+																										children = 
+																										[
+																											{
+																												_class = "Bone"
+																												name = "finger_ring_2_R"
+																												origin = [ -23.416687, 0.001831, 0.000484 ]
+																												angles = [ -3.032438, -6.483708, 3.66905 ]
+																												do_not_discard = true
+																											},
+																										]
+																									},
+																								]
+																							},
+																							{
+																								_class = "Bone"
+																								name = "finger_thumb_0_R"
+																								origin = [ -25.570995, -20.684692, 47.358688 ]
+																								angles = [ 40.843266, 46.33025, -86.573105 ]
+																								do_not_discard = true
+																								children = 
+																								[
+																									{
+																										_class = "Bone"
+																										name = "finger_thumb_1_R"
+																										origin = [ -28.02026, -0.000168, -0.002686 ]
+																										angles = [ -0.980941, -13.231363, 0.617167 ]
+																										do_not_discard = true
+																										children = 
+																										[
+																											{
+																												_class = "Bone"
+																												name = "finger_thumb_2_R"
+																												origin = [ -35.521805, -0.000519, -0.003555 ]
+																												angles = [ -2.082779, -8.01791, 3.285084 ]
+																												do_not_discard = true
+																											},
+																										]
+																									},
+																								]
+																							},
+																							{
+																								_class = "Bone"
+																								name = "finger_index_0_R"
+																								origin = [ -67.026779, -15.921997, 53.605347 ]
+																								angles = [ 26.673353, 10.975129, -131.191574 ]
+																								do_not_discard = true
+																								children = 
+																								[
+																									{
+																										_class = "Bone"
+																										name = "finger_index_1_R"
+																										origin = [ -36.206642, 0.000809, -0.001877 ]
+																										angles = [ -1.125972, -11.339864, 0.950546 ]
+																										do_not_discard = true
+																										children = 
+																										[
+																											{
+																												_class = "Bone"
+																												name = "finger_index_2_R"
+																												origin = [ -22.433807, 0.001053, -0.002625 ]
+																												angles = [ 0.075309, -7.839228, -0.113282 ]
+																												do_not_discard = true
+																											},
+																										]
+																									},
+																								]
+																							},
+																							{
+																								_class = "Bone"
+																								name = "finger_middle_0_R"
+																								origin = [ -72.887085, 11.013458, 33.755882 ]
+																								angles = [ 4.805579, 13.106155, -154.368927 ]
+																								do_not_discard = true
+																								children = 
+																								[
+																									{
+																										_class = "Bone"
+																										name = "finger_middle_1_R"
+																										origin = [ -43.765442, 0.00174, -0.000641 ]
+																										angles = [ -5.243275, -3.745522, 2.499217 ]
+																										do_not_discard = true
+																										children = 
+																										[
+																											{
+																												_class = "Bone"
+																												name = "finger_middle_2_R"
+																												origin = [ -25.457077, 0.001801, -0.001472 ]
+																												angles = [ -2.381428, -8.835169, 2.181491 ]
+																												do_not_discard = true
+																											},
+																										]
+																									},
+																								]
+																							},
+																							{
+																								_class = "Bone"
+																								name = "finger_pinky_0_R"
+																								origin = [ -69.001007, -2.119843, -23.183426 ]
+																								angles = [ -26.792082, 3.670249, 171.877792 ]
+																								do_not_discard = true
+																								children = 
+																								[
+																									{
+																										_class = "Bone"
+																										name = "finger_pinky_1_R"
+																										origin = [ -29.858147, 0.001221, 0.001083 ]
+																										angles = [ -5.500768, -9.239536, 3.076167 ]
+																										do_not_discard = true
+																										children = 
+																										[
+																											{
+																												_class = "Bone"
+																												name = "finger_pinky_2_R"
+																												origin = [ -17.454659, 0.001495, 0.000786 ]
+																												angles = [ 0.918458, -8.75755, -0.8755 ]
+																												do_not_discard = true
+																											},
+																										]
+																									},
+																								]
+																							},
+																							{
+																								_class = "Bone"
+																								name = "wrist_bot_armor_0"
+																								origin = [ -13.802242, 4.548126, -1.158638 ]
+																								angles = [ -14.185303, 122.444122, 172.965012 ]
+																								do_not_discard = true
+																							},
+																						]
+																					},
+																					{
+																						_class = "Bone"
+																						name = "arm_lower_helper_0_R"
+																						origin = [ -57.49987, -0.001312, -0.001099 ]
+																						angles = [ -0.000003, -0.000011, -0.00002 ]
+																						do_not_discard = true
+																					},
+																					{
+																						_class = "Bone"
+																						name = "wrist_mid_armor_0"
+																						origin = [ -95.059128, -3.64576, 12.361847 ]
+																						angles = [ -70.016945, 164.411804, 94.849243 ]
+																						do_not_discard = true
+																					},
+																				]
+																			},
+																			{
+																				_class = "Bone"
+																				name = "arm_upper_helper_0_R"
+																				origin = [ -101.200592, -0.000572, -0.000488 ]
+																				angles = [ -0.000011, 0.000075, 0.000054 ]
+																				do_not_discard = true
+																			},
+																			{
+																				_class = "Bone"
+																				name = "sh_armor_0"
+																				origin = [ -23.545059, -21.737198, 44.654572 ]
+																				angles = [ -67.778816, 92.401321, -165.455521 ]
+																				do_not_discard = true
+																			},
+																			{
+																				_class = "Bone"
+																				name = "ring_strap_0"
+																				origin = [ -32.046585, -14.950867, 58.670715 ]
+																				angles = [ 0.836321, 0.369894, -115.708824 ]
+																				do_not_discard = true
+																			},
+																		]
+																	},
+																]
+															},
+															{
+																_class = "Bone"
+																name = "clavicle_L"
+																origin = [ 14.79237, 30.536316, 27.620111 ]
+																angles = [ -82.39904, -123.290443, 12.290922 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "arm_upper_L"
+																		origin = [ 61.82111, -0.000702, 0.001923 ]
+																		angles = [ -48.892723, -23.711189, 57.862354 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "arm_lower_L"
+																				origin = [ 192.26709, 0.00132, 0.002502 ]
+																				angles = [ -0.000019, 48.760216, -0.000074 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "hand_L"
+																						origin = [ 114.274811, 0.001495, 0.00238 ]
+																						angles = [ -7.283102, -12.385123, 72.80188 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "finger_pinky_0_L"
+																								origin = [ 69.002281, 2.11969, 23.183945 ]
+																								angles = [ -26.792091, 3.670278, 171.877792 ]
+																								do_not_discard = true
+																								children = 
+																								[
+																									{
+																										_class = "Bone"
+																										name = "finger_pinky_1_L"
+																										origin = [ 29.859573, -0.001068, -0.000946 ]
+																										angles = [ -5.500779, -9.239547, 3.076139 ]
+																										do_not_discard = true
+																										children = 
+																										[
+																											{
+																												_class = "Bone"
+																												name = "finger_pinky_2_L"
+																												origin = [ 17.456345, -0.001465, -0.00106 ]
+																												angles = [ 0.918433, -8.757554, -0.875557 ]
+																												do_not_discard = true
+																											},
+																										]
+																									},
+																								]
+																							},
+																							{
+																								_class = "Bone"
+																								name = "finger_middle_0_L"
+																								origin = [ 72.888466, -11.013458, -33.755417 ]
+																								angles = [ 4.805433, 13.106411, -154.368958 ]
+																								do_not_discard = true
+																								children = 
+																								[
+																									{
+																										_class = "Bone"
+																										name = "finger_middle_1_L"
+																										origin = [ 43.768158, -0.001251, 0.000961 ]
+																										angles = [ -5.243252, -3.745622, 2.499218 ]
+																										do_not_discard = true
+																										children = 
+																										[
+																											{
+																												_class = "Bone"
+																												name = "finger_middle_2_L"
+																												origin = [ 25.460693, -0.001373, 0.001007 ]
+																												angles = [ -2.381393, -8.835288, 2.18141 ]
+																												do_not_discard = true
+																											},
+																										]
+																									},
+																								]
+																							},
+																							{
+																								_class = "Bone"
+																								name = "finger_index_0_L"
+																								origin = [ 67.028221, 15.922028, -53.604767 ]
+																								angles = [ 26.673326, 10.975121, -131.191589 ]
+																								do_not_discard = true
+																								children = 
+																								[
+																									{
+																										_class = "Bone"
+																										name = "finger_index_1_L"
+																										origin = [ 36.209679, -0.000443, 0.002167 ]
+																										angles = [ -1.125963, -11.339875, 0.950574 ]
+																										do_not_discard = true
+																										children = 
+																										[
+																											{
+																												_class = "Bone"
+																												name = "finger_index_2_L"
+																												origin = [ 22.438095, -0.000916, 0.002502 ]
+																												angles = [ 0.07531, -7.839246, -0.113238 ]
+																												do_not_discard = true
+																											},
+																										]
+																									},
+																								]
+																							},
+																							{
+																								_class = "Bone"
+																								name = "finger_ring_0_L"
+																								origin = [ 81.826668, -3.911682, -1.704948 ]
+																								angles = [ -8.481128, 7.08712, -179.720917 ]
+																								do_not_discard = true
+																								children = 
+																								[
+																									{
+																										_class = "Bone"
+																										name = "finger_ring_1_L"
+																										origin = [ 34.063744, -0.00116, -0.000542 ]
+																										angles = [ 1.272685, -9.990984, -0.96851 ]
+																										do_not_discard = true
+																										children = 
+																										[
+																											{
+																												_class = "Bone"
+																												name = "finger_ring_2_L"
+																												origin = [ 23.419083, -0.001434, -0.000946 ]
+																												angles = [ -3.032429, -6.483761, 3.669023 ]
+																												do_not_discard = true
+																											},
+																										]
+																									},
+																								]
+																							},
+																							{
+																								_class = "Bone"
+																								name = "finger_thumb_0_L"
+																								origin = [ 25.572311, 20.684723, -47.358147 ]
+																								angles = [ 40.843254, 46.330215, -86.573135 ]
+																								do_not_discard = true
+																								children = 
+																								[
+																									{
+																										_class = "Bone"
+																										name = "finger_thumb_1_L"
+																										origin = [ 28.023521, 0.000458, 0.003708 ]
+																										angles = [ -0.98095, -13.231365, 0.617192 ]
+																										do_not_discard = true
+																										children = 
+																										[
+																											{
+																												_class = "Bone"
+																												name = "finger_thumb_2_L"
+																												origin = [ 35.52673, 0.000832, 0.004486 ]
+																												angles = [ -2.082734, -8.018837, 3.28565 ]
+																												do_not_discard = true
+																											},
+																										]
+																									},
+																								]
+																							},
+																						]
+																					},
+																					{
+																						_class = "Bone"
+																						name = "arm_lower_helper_0_L"
+																						origin = [ 57.500568, 0.001389, 0.002411 ]
+																						angles = [ -0.0, -0.000026, -0.000031 ]
+																						do_not_discard = true
+																					},
+																				]
+																			},
+																			{
+																				_class = "Bone"
+																				name = "arm_upper_helper_0_L"
+																				origin = [ 101.201286, 0.00103, 0.002472 ]
+																				angles = [ -0.000001, -0.000091, -0.000018 ]
+																				do_not_discard = true
+																			},
+																		]
+																	},
+																]
+															},
+															{
+																_class = "Bone"
+																name = "plate_B_0_L"
+																origin = [ 48.641876, -80.045471, 30.899687 ]
+																angles = [ -12.095076, -84.405525, 106.329475 ]
+																do_not_discard = true
+															},
+															{
+																_class = "Bone"
+																name = "plate_B_0_R"
+																origin = [ 48.641853, -80.045441, -30.899218 ]
+																angles = [ -12.095217, 95.594429, 106.329399 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "plate_B_ring_0"
+																		origin = [ -3.938843, -10.790775, 5.835938 ]
+																		angles = [ 18.088511, 108.47538, -0.000095 ]
+																		do_not_discard = true
+																	},
+																]
+															},
+														]
+													},
+													{
+														_class = "Bone"
+														name = "plate_C_0_R"
+														origin = [ 56.413292, -104.036072, -35.966686 ]
+														angles = [ -23.331209, 85.123848, 107.967506 ]
+														do_not_discard = true
+													},
+												]
+											},
+											{
+												_class = "Bone"
+												name = "plate_D_0_R"
+												origin = [ 14.622065, -84.389526, -30.955078 ]
+												angles = [ -18.547659, 79.520607, 101.579987 ]
+												do_not_discard = true
+											},
+											{
+												_class = "Bone"
+												name = "plate_D_0_L"
+												origin = [ 14.622042, -84.389526, 30.954941 ]
+												angles = [ -18.547625, -100.479355, 101.579979 ]
+												do_not_discard = true
+											},
+										]
+									},
+									{
+										_class = "Bone"
+										name = "plate_E_0_R"
+										origin = [ 1.610756, -54.663483, -31.842947 ]
+										angles = [ -30.734184, 80.54892, 105.054962 ]
+										do_not_discard = true
+									},
+									{
+										_class = "Bone"
+										name = "plate_E_0_L"
+										origin = [ 1.610756, -54.663605, 31.842661 ]
+										angles = [ -30.734175, -99.451042, 105.054924 ]
+										do_not_discard = true
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "leg_upper_R"
+								origin = [ -62.52034, -24.014938, -43.129448 ]
+								angles = [ -29.892708, -42.215824, -16.434465 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "leg_lower_R"
+										origin = [ -143.66156, 0.000023, -0.000046 ]
+										angles = [ 1.397508, 83.128204, -0.342103 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "ankle_R"
+												origin = [ -110.299103, 0.000004, 0.000076 ]
+												angles = [ -1.937039, -78.082825, 170.378647 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "Toe_D_0_R"
+														origin = [ -0.674646, 14.692467, -19.147354 ]
+														angles = [ -32.273197, -6.790771, 40.602592 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "Toe_D_1_R"
+																origin = [ -28.59333, -0.000092, -0.00013 ]
+																angles = [ 6.307616, -17.166138, 1.776835 ]
+																do_not_discard = true
+															},
+														]
+													},
+													{
+														_class = "Bone"
+														name = "ball_R"
+														origin = [ -71.583786, 0.000067, -0.000168 ]
+														angles = [ 6.547513, 16.465551, 1.432357 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "Toe_A_0_R"
+																origin = [ -14.745941, -7.850601, -23.540695 ]
+																angles = [ -26.208332, 29.376074, -16.213205 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "Toe_A_1_R"
+																		origin = [ -23.821838, -0.000141, -0.000526 ]
+																		angles = [ 7.433951, -7.018986, 7.000056 ]
+																		do_not_discard = true
+																	},
+																]
+															},
+															{
+																_class = "Bone"
+																name = "Toe_C_0_R"
+																origin = [ -12.414482, -0.554987, 22.012901 ]
+																angles = [ 28.016832, 19.259279, -9.024679 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "Toe_C_1_R"
+																		origin = [ -23.133026, -0.000206, -0.000389 ]
+																		angles = [ -4.774923, -14.166548, -2.121487 ]
+																		do_not_discard = true
+																	},
+																]
+															},
+															{
+																_class = "Bone"
+																name = "Toe_B_0_R"
+																origin = [ -22.258942, -11.02885, -0.016731 ]
+																angles = [ 1.345958, 13.880981, -9.440528 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "Toe_B_1_R"
+																		origin = [ -25.53373, -0.000139, -0.000465 ]
+																		angles = [ 3.475232, -0.387117, 2.342034 ]
+																		do_not_discard = true
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+											{
+												_class = "Bone"
+												name = "leg_lower_helper_0_R"
+												origin = [ -50.599983, 0.000008, 0.000046 ]
+												angles = [ -0.000013, 0.000007, 0.000002 ]
+												do_not_discard = true
+											},
+										]
+									},
+									{
+										_class = "Bone"
+										name = "leg_upper_helper_0_R"
+										origin = [ -68.999855, -0.000008, -0.000031 ]
+										angles = [ -0.000003, 0.000005, 0.000007 ]
+										do_not_discard = true
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "leg_upper_L"
+								origin = [ -62.520432, -24.014885, 43.12928 ]
+								angles = [ -29.892717, 137.78418, -16.434381 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "leg_lower_L"
+										origin = [ 143.661804, 0.000076, -0.000351 ]
+										angles = [ 1.397583, 83.128189, -0.342087 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "ankle_L"
+												origin = [ 110.298965, -0.000088, -0.000336 ]
+												angles = [ -1.937065, -78.082787, 170.378586 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "ball_L"
+														origin = [ 71.583656, -0.000006, 0.000488 ]
+														angles = [ 6.547528, 16.465551, 1.432338 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "Toe_C_0_L"
+																origin = [ 12.414352, 0.555025, -22.012695 ]
+																angles = [ 28.016685, 19.259346, -7.840755 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "Toe_C_1_L"
+																		origin = [ 23.132584, 0.000229, 0.000542 ]
+																		angles = [ -5.063611, -14.067795, -2.53648 ]
+																		do_not_discard = true
+																	},
+																]
+															},
+															{
+																_class = "Bone"
+																name = "Toe_B_0_L"
+																origin = [ 22.258728, 11.028857, 0.01696 ]
+																angles = [ 1.345727, 13.88111, -12.280627 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "Toe_B_1_L"
+																		origin = [ 25.53363, 0.000172, 0.000641 ]
+																		angles = [ 3.490599, -0.214347, 2.456951 ]
+																		do_not_discard = true
+																	},
+																]
+															},
+															{
+																_class = "Bone"
+																name = "Toe_A_0_L"
+																origin = [ 14.745728, 7.850702, 23.540878 ]
+																angles = [ -26.2082, 29.376017, -16.123428 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "Toe_A_1_L"
+																		origin = [ 23.82165, 0.000139, 0.000648 ]
+																		angles = [ 7.422803, -7.030526, 7.664086 ]
+																		do_not_discard = true
+																	},
+																]
+															},
+														]
+													},
+													{
+														_class = "Bone"
+														name = "Toe_D_0_L"
+														origin = [ 0.674658, -14.692377, 19.147675 ]
+														angles = [ -32.27306, -6.79107, 30.664776 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "Toe_D_1_L"
+																origin = [ 28.59333, 0.00032, 0.000359 ]
+																angles = [ 9.140232, -15.870383, 3.77117 ]
+																do_not_discard = true
+															},
+														]
+													},
+												]
+											},
+											{
+												_class = "Bone"
+												name = "leg_chain_0"
+												origin = [ 108.900513, 37.488663, 36.799255 ]
+												angles = [ -68.268097, 49.900391, 9.184677 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "leg_chain_1"
+														origin = [ 21.693741, -0.598427, -3.700641 ]
+														angles = [ 0.000011, 2.915701, 0.000045 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "leg_chain_2"
+																origin = [ 44.805206, 0.000031, 0.000039 ]
+																angles = [ 0.0, -4.350329, 0.000047 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "leg_chain_3"
+																		origin = [ 27.702591, 0.000114, 0.000157 ]
+																		angles = [ 0.000002, 4.113704, 0.000065 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "leg_chain_4"
+																				origin = [ 43.476807, 0.000565, 0.000226 ]
+																				angles = [ 0.000003, -0.000016, 0.000082 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "leg_chain_5"
+																						origin = [ 71.159698, 0.001129, 0.000443 ]
+																						angles = [ -0.000002, -0.00002, 0.000092 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "leg_chain_end"
+																								origin = [ 43.541473, 109.561653, -4.377865 ]
+																								angles = [ -0.000003, -0.000015, 0.000078 ]
+																								do_not_discard = true
+																							},
+																						]
+																					},
+																				]
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+											{
+												_class = "Bone"
+												name = "leg_lower_helper_0_L"
+												origin = [ 50.60001, -0.000076, -0.000259 ]
+												angles = [ 0.000011, -0.000005, 0.000014 ]
+												do_not_discard = true
+											},
+										]
+									},
+									{
+										_class = "Bone"
+										name = "leg_upper_helper_0_L"
+										origin = [ 69.000053, 0.000092, -0.000229 ]
+										angles = [ -0.000003, 0.000024, -0.000025 ]
+										do_not_discard = true
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "Tail_0"
+								origin = [ -43.278671, -74.270683, -0.000123 ]
+								angles = [ -0.000014, -115.748917, 179.999924 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "Tail_1"
+										origin = [ 81.068451, 0.000183, -0.000044 ]
+										angles = [ 0.000012, -28.554171, -0.000221 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "Tail_2"
+												origin = [ 66.476608, 0.000168, -0.000028 ]
+												angles = [ 0.000024, -5.243207, 0.000184 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "Tail_3"
+														origin = [ 73.070648, 0.000168, -0.000027 ]
+														angles = [ 0.000009, -3.818759, 0.000078 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "Tail_4"
+																origin = [ 66.353333, 0.000259, 0.000141 ]
+																angles = [ 0.000001, -8.544138, 0.000055 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "Tail_5"
+																		origin = [ 66.315979, 0.000183, 0.000371 ]
+																		angles = [ -0.000004, -20.522179, 0.000084 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "Tail_end"
+																				origin = [ 91.904663, -0.000534, 0.000737 ]
+																				angles = [ -0.000002, -0.000022, 0.000044 ]
+																				do_not_discard = true
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "plate_F_0_L"
+								origin = [ 27.70575, -65.846169, 25.224754 ]
+								angles = [ -47.792118, -71.731506, 89.316772 ]
+								do_not_discard = true
+							},
+							{
+								_class = "Bone"
+								name = "plate_F_0_R"
+								origin = [ 27.705811, -65.846169, -25.224977 ]
+								angles = [ -47.79213, 108.268448, 89.316818 ]
+								do_not_discard = true
+							},
+						]
+					},
+				]
+			},
+		]
+	}
+}

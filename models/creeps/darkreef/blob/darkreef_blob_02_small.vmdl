@@ -1,0 +1,593 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "BoneMarkupList"
+				children = [  ]
+				bone_cull_type = "None"
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						name = "darkreef_blob_02_small"
+						filename = "models/creeps/darkreef/blob/darkreef_blob_02_small_darkreef_blob_02_small.dmx"
+					},
+				]
+			},
+			{
+				_class = "AttachmentList"
+				children = 
+				[
+					{
+						_class = "Attachment"
+						name = "attach_eye_r"
+						ignore_rotation = false
+						parent_bone = "spine0_0"
+						relative_origin = [ 20.0, -11.999998, -29.999996 ]
+						relative_angles = [ 89.980209, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_eye_l"
+						ignore_rotation = false
+						parent_bone = "spine0_0"
+						relative_origin = [ 20.0, 12.000002, -29.999996 ]
+						relative_angles = [ 89.980209, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_hitloc"
+						ignore_rotation = false
+						parent_bone = "root"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+				]
+			},
+			{
+				_class = "PoseParamList"
+				children = 
+				[
+					{
+						_class = "PoseParam"
+						name = "turn"
+						poseparam_min = -1.0
+						poseparam_max = 1.0
+						poseparam_looping = false
+						poseparam_loop = 0.0
+					},
+				]
+			},
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "stump_idle"
+								source_filename = "models/creeps/darkreef/blob/stump_idle.dmx"
+								fade_in_time = 0.6
+								fade_out_time = 0.6
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "stump_idle_headTurn"
+								source_filename = "models/creeps/darkreef/blob/stump_idle_headTurn.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE_RARE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "stump_die"
+								source_filename = "models/creeps/darkreef/blob/stump_die.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DIE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "stump_spawn"
+								source_filename = "models/creeps/darkreef/blob/stump_spawn.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_SPAWN"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "stump_attack_a"
+								source_filename = "models/creeps/darkreef/blob/stump_attack_a.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = true
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "stump_cast_jump"
+								source_filename = "models/creeps/darkreef/blob/stump_cast_jump.dmx"
+								fade_in_time = 0.6
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_1"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "stump_run"
+								source_filename = "models/creeps/darkreef/blob/stump_run.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+									{
+										_class = "AnimAddLayer"
+										anim_name = "stump_turns"
+									},
+								]
+							},
+						]
+						name = "asset_sequences"
+					},
+					{
+						_class = "AnimBindPose"
+						name = "bindPose"
+					},
+					{
+						_class = "AnimFile"
+						name = "@stump_run"
+						source_filename = "models/creeps/darkreef/blob/@stump_run.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = true
+						activity_name = "ACT_DOTA_RUN"
+						activity_weight = 1
+						children = 
+						[
+							{
+								_class = "ExtractMotion"
+								extract_tx = true
+								extract_ty = false
+								extract_tz = false
+								extract_rz = false
+								linear = false
+								quadratic = false
+								motion_type = "uniform"
+							},
+						]
+					},
+					{
+						_class = "AnimFile"
+						name = "@stump_turns"
+						source_filename = "models/creeps/darkreef/blob/@stump_turns.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = true
+					},
+					{
+						_class = "AnimFile"
+						name = "@stump_turns_lookFrame_0"
+						source_filename = "models/creeps/darkreef/blob/@stump_turns_lookFrame_0.dmx"
+						fade_in_time = 0.0
+						fade_out_time = 0.0
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = true
+					},
+					{
+						_class = "AnimFile"
+						name = "@stump_turns_lookFrame_1"
+						source_filename = "models/creeps/darkreef/blob/@stump_turns_lookFrame_1.dmx"
+						fade_in_time = 0.0
+						fade_out_time = 0.0
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = true
+					},
+					{
+						_class = "AnimFile"
+						name = "@stump_turns_lookFrame_2"
+						source_filename = "models/creeps/darkreef/blob/@stump_turns_lookFrame_2.dmx"
+						fade_in_time = 0.0
+						fade_out_time = 0.0
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = true
+					},
+					{
+						_class = "AnimFile"
+						name = "stump_turns"
+						source_filename = "models/creeps/darkreef/blob/stump_turns.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = true
+						worldSpace = false
+						hidden = false
+					},
+				]
+			},
+			{
+				_class = "HitboxSetList"
+				children = 
+				[
+					{
+						_class = "HitboxSet"
+						name = "select_low"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -50.818367, -45.918758, -24.96549 ]
+								hitbox_maxs = [ 47.836292, 49.043831, 45.04945 ]
+								name = "root"
+								parent_bone = "root"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "select_high"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -76.996727, -56.784264, -35.309219 ]
+								hitbox_maxs = [ 63.69685, 61.281681, 44.515537 ]
+								name = "root"
+								parent_bone = "root"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "Skeleton"
+				children = 
+				[
+					{
+						_class = "Bone"
+						name = "root"
+						origin = [ 0.0, 0.0, 24.225645 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						do_not_discard = true
+						children = 
+						[
+							{
+								_class = "Bone"
+								name = "spine0_0"
+								origin = [ -3.342061, 0.0, 14.513311 ]
+								angles = [ -82.277466, -45.642345, 45.381371 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "spine0_1"
+										origin = [ 47.625282, -0.00001, 0.000005 ]
+										angles = [ 10.71069, 53.55772, 11.680171 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "lock_R0C0"
+												origin = [ 34.229103, -0.000015, 0.000004 ]
+												angles = [ 29.219917, 82.015854, 87.658936 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "lock_R1C0"
+														origin = [ 1.798168, 0.007264, 0.118195 ]
+														angles = [ 1.935069, -0.119138, -1.842384 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "lock_R2C0"
+																origin = [ 9.195339, -0.000007, 0.0 ]
+																angles = [ 2.628294, -0.07722, -1.683535 ]
+																do_not_discard = true
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "SimpleBugLeg_base_L"
+								origin = [ 28.657551, 27.187698, 6.141743 ]
+								angles = [ 57.733295, 23.255114, 89.999962 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "SimpleBugLeg_0_L"
+										origin = [ 25.109987, 0.000004, -0.000004 ]
+										angles = [ -15.669482, 32.277744, 34.705265 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "SimpleBugLeg_1_L"
+												origin = [ 10.598789, 0.00001, -0.000046 ]
+												angles = [ 40.62571, 0.000002, 0.000007 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "SimpleBugLeg_2_L"
+														origin = [ 21.220257, 0.000021, 0.000012 ]
+														angles = [ 45.855759, -73.648895, -78.111015 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "SimpleBugLeg_3_L"
+																origin = [ 20.928837, 0.000027, 0.000381 ]
+																angles = [ -0.00002, 0.000003, 0.000006 ]
+																do_not_discard = true
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "SimpleBugLeg_base_R"
+								origin = [ 22.422239, -20.92412, 8.522295 ]
+								angles = [ -45.196686, 142.606018, -89.999992 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "SimpleBugLeg_0_R"
+										origin = [ -38.14492, -0.000023, 0.000002 ]
+										angles = [ -0.000027, 86.609413, -127.907768 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "SimpleBugLeg_1_R"
+												origin = [ -31.602203, -0.000031, 0.000025 ]
+												angles = [ 65.509308, -0.000007, -0.000008 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "SimpleBugLeg_2_R"
+														origin = [ -10.598854, -0.000027, -0.000114 ]
+														angles = [ 53.763184, 14.002452, -162.819763 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "SimpleBugLeg_3_R"
+																origin = [ -17.765743, 0.000095, 0.000275 ]
+																angles = [ -0.000003, -0.000004, 0.000001 ]
+																do_not_discard = true
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "SimpleBugLeg_base_A_L"
+								origin = [ -21.78091, 14.56435, 8.986647 ]
+								angles = [ 46.710327, 126.129143, 90.000031 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "SimpleBugLeg_0_A_L"
+										origin = [ 9.641529, -0.000015, 0.000002 ]
+										angles = [ -7.394652, 9.964876, 29.851809 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "SimpleBugLeg_1_A_L"
+												origin = [ 30.207573, 0.000017, -0.000032 ]
+												angles = [ 72.680336, 179.999985, 179.999954 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "SimpleBugLeg_2_A_L"
+														origin = [ 26.689342, 0.000038, 0.000088 ]
+														angles = [ -59.644791, -90.101852, -89.912109 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "SimpleBugLeg_3_A_L"
+																origin = [ 31.453581, -0.000156, 0.000122 ]
+																angles = [ -0.000013, -0.000003, 0.000006 ]
+																do_not_discard = true
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "SimpleBugLeg_base_A_R"
+								origin = [ -19.134991, -20.557404, 8.831636 ]
+								angles = [ -61.80283, 55.746334, -90.0 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "SimpleBugLeg_0_A_R"
+										origin = [ -18.480118, -0.000031, 0.000005 ]
+										angles = [ 0.000005, 32.046932, 90.000008 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "SimpleBugLeg_1_A_R"
+												origin = [ -17.634289, 0.000007, 0.000046 ]
+												angles = [ 33.165726, 0.000003, -0.000012 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "SimpleBugLeg_2_A_R"
+														origin = [ -10.598915, 0.000011, 0.000019 ]
+														angles = [ 36.046574, -44.043034, 121.317787 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "SimpleBugLeg_3_A_R"
+																origin = [ -17.796764, 0.0, 0.000221 ]
+																angles = [ -0.000005, -0.000011, 0.000007 ]
+																do_not_discard = true
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+						]
+					},
+				]
+			},
+		]
+	}
+}

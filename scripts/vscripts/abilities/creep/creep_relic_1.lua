@@ -1,0 +1,11 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+return decrypt("a9521ee9177bd68ea6fbde7cc5ca47bb09f4ad7ae7a416458daf6e79c8020ad6b020f7f35382aa91576c7238c6fa8e01afed9c97c13d5d1ec773160c05b15154b3eb45f6990926c292916479d4fd207e583a68ad1cca595dbb42385b7f6b61ff24afeae634987ca81bac3dc866eccf9d3c86dc66690c06b558042df275e24260660b4d5a57b96a05ac12799b98dde740319588820b1256fc949b92e71d5f1564076a30a193c718d3a2cec86004ef038f6c7171032d44d66c7567f85ecbb79f65f6a2b33bf04750ecd62f20cc1c2c1db0f2b248e9adb6612551dcecd4194bd694098ebf51dd4deba0dc76bf86988c9ff671d4875b99ad9d2ca57c1a0748964b151b9ac249a5bb3c29c0b71405fcf41338dd2fd30f1677e0211d55de86db58f05b","661ecf54949a4039b0e79177c749d229",'abilities/creep/creep_relic_1.lua',getfenv(1))

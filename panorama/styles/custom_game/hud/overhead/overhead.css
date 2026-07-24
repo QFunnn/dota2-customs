@@ -1,0 +1,1330 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.TipIcon
+{
+	width: 15px;
+	height: 15px;
+	background-image: url("s2r://panorama/images/status_icons/information_psd.vtex");
+	background-size: 100%;
+}
+
+.TipLabel
+{
+	padding-left: 20px;
+	color: #909090;
+	font-size: 15px;
+	text-shadow: 1px 1px 2px 1 #000;
+	background-image: url("s2r://panorama/images/status_icons/information_psd.vtex");
+	background-size: 15px 15px;
+	background-position: left center;
+	background-repeat: no-repeat;
+	background-img-opacity: 0.6;
+}
+
+.TipLabel.HasTooltip
+{
+	border-bottom: 1px solid #90909066;
+}
+
+@keyframes 'NewTagAnim'
+{
+	0%
+	{
+		box-shadow: 0 0 2px 0.5px rgba(255, 0, 0, 0.2);
+	}
+	
+	50%
+	{
+		box-shadow: 0 0 4px 1px rgba(255, 0, 0, 0.5);
+	}
+	
+	100%
+	{
+		box-shadow: 0 0 2px 0.5px rgba(255, 0, 0, 0.2);
+	}
+	
+}
+
+.NewTagIcon
+{
+	width: 9px;
+	height: width-percentage(100%);
+	align: right top;
+	margin: 10px;
+	background-color: #ff0000ee;
+	border: 1px solid #000;
+	border-radius: 50%;
+	animation-name: NewTagAnim;
+	animation-duration: 0.8s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.OverheadRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+.OverHead
+{
+	width: 100%;
+	height: 100%;
+}
+
+#PlayerHpBarBox
+{
+	width: 100%;
+	height: 100%;
+}
+
+#PlayerHpBarBox .PlayerHpBar
+{
+	overflow: noclip;
+}
+
+#PlayerHpBarBox .PlayerHpBar > .CosplayTitle_FX
+{
+	width: 600px;
+	height: 600px;
+	margin-bottom: -240px;
+	overflow: noclip;
+	horizontal-align: center;
+}
+
+#PlayerHpBarBox .PlayerHpBar > .Body
+{
+	flow-children: down;
+	align: center bottom;
+}
+
+#PlayerHpBarBox .PlayerHpBar > .Body > .PlayerDetial
+{
+	align: center top;
+	flow-children: right;
+}
+
+#PlayerHpBarBox .PlayerHpBar > .Body > .PlayerDetial > .PlayerAvatar
+{
+	width: 16px;
+	height: width-percentage(100%);
+	vertical-align: center;
+}
+
+#PlayerHpBarBox .PlayerHpBar > .Body > .PlayerDetial #TitlePanel
+{
+	margin: 2px;
+}
+
+#PlayerHpBarBox .PlayerHpBar > .Body > .PlayerDetial #TitlePanel > .TitleLabel
+{
+	align: center center;
+	color: #fff;
+	font-size: 16px;
+	text-shadow: #000 0px 0px 4px 4;
+}
+
+#PlayerHpBarBox .PlayerHpBar > .Body > .Body
+{
+	align: center top;
+	flow-children: right;
+}
+
+#PlayerHpBarBox .PlayerHpBar > .Body > .Body #HpMpPanel
+{
+	align: left center;
+	margin-left: 4px;
+	margin-right: 6px;
+}
+
+#PlayerHpBarBox .PlayerHpBar > .Body > .Body #HpMpPanel > .Body
+{
+	brightness: 1.5;
+	border-radius: 6px;
+	border: 1px solid #0008;
+	border-left: 2px solid #0008;
+	border-right: 2px solid #0008;
+	box-shadow: #0008 0px 0px 6px 0px;
+	background-color: #0008;
+	flow-children: down;
+}
+
+#PlayerHpBarBox .PlayerHpBar > .Body > .Body #HpMpPanel > .Body #HpBar
+{
+	width: 100px;
+	height: 10px;
+	border-bottom: 1px solid #0008;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#17200d), color-stop(0.2, #222e13), color-stop(0.5, #1e2911), to(#17200d));
+}
+
+#PlayerHpBarBox .PlayerHpBar > .Body > .Body #HpMpPanel > .Body #HpBar .BufferPanel
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 3px;
+	background-color: #fff7;
+	transform: translateX(0%);
+	transition-property: transform;
+	transition-duration: 0.45s;
+	transition-timing-function: ease-out;
+}
+
+#PlayerHpBarBox .PlayerHpBar > .Body > .Body #HpMpPanel > .Body #HpBar > .FG
+{
+	width: 100%;
+	height: 100%;
+	overflow: noclip;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#425d25), color-stop(0.2, #5BA539), color-stop(0.5, #4D9030), to(#425d25));
+	border-radius: 3px;
+	transform: translateX(0%);
+	transition-property: transform;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-out;
+}
+
+#PlayerHpBarBox .PlayerHpBar > .Body > .Body #HpMpPanel > .Body #HpBar DOTAScenePanel
+{
+	align: left bottom;
+	width: 100%;
+	height: 100%;
+}
+
+#PlayerHpBarBox .PlayerHpBar > .Body > .Body #HpMpPanel > .Body #MpBar
+{
+	width: 100px;
+	height: 5px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#101932), color-stop(0.2, #172447), color-stop(0.5, #162244), to(#101932));
+}
+
+#PlayerHpBarBox .PlayerHpBar > .Body > .Body #HpMpPanel > .Body #MpBar > .FG
+{
+	width: 100%;
+	height: 100%;
+	overflow: noclip;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2b4287), color-stop(0.2, #4165ce), color-stop(0.5, #4a73ea), to(#2b4287));
+	border-radius: 3px;
+	transform: translateX(0%);
+	transition-property: transform;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-out;
+}
+
+#PlayerHpBarBox .PlayerHpBar > .Body > .Body #HpMpPanel > .Body #MpBar DOTAScenePanel
+{
+	align: left bottom;
+	width: 100%;
+	height: 100%;
+	hue-rotation: 50deg;
+	opacity: 0.4;
+}
+
+#TowerOverhead
+{
+	width: 100%;
+	height: 100%;
+}
+
+#TowerOverhead #TowerDoorBar #UnitName
+{
+	margin-top: 3px;
+	horizontal-align: center;
+	font-family: title;
+	font-size: 42px;
+	color: gradient(linear, 0% 0%, 0% 150%, from(#f05f57), to(#400909));
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 3px 6px 3 #333333;
+}
+
+#TowerOverhead #TowerUnitBar
+{
+	width: 100px;
+	flow-children: down;
+}
+
+#TowerOverhead #TowerUnitBar #UnitName
+{
+	font-size: 12px;
+	horizontal-align: center;
+	margin-top: 3px;
+	color: #ffffffee;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 3px 3.7 #333333;
+}
+
+#TowerOverhead #TowerUnitBar #HpMpPanel
+{
+	align: left center;
+	margin-left: 4px;
+	margin-right: 6px;
+	margin-top: 3px;
+}
+
+#TowerOverhead #TowerUnitBar #HpMpPanel > .Body
+{
+	brightness: 1.5;
+	border: 1px solid #0008;
+	box-shadow: #0008 0px 0px 6px 0px;
+	background-color: #0008;
+	flow-children: down;
+}
+
+#TowerOverhead #TowerUnitBar #HpMpPanel > .Body #HpBar
+{
+	width: 100px;
+	height: 8px;
+	border-bottom: 1px solid #0008;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#17200d), color-stop(0.2, #222e13), color-stop(0.5, #1e2911), to(#17200d));
+}
+
+#TowerOverhead #TowerUnitBar #HpMpPanel > .Body #HpBar .BufferPanel
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 3px;
+	background-color: #fff7;
+	transform: translateX(0%);
+	transition-property: transform;
+	transition-duration: 0.45s;
+	transition-timing-function: ease-out;
+}
+
+#TowerOverhead #TowerUnitBar #HpMpPanel > .Body #HpBar > .FG
+{
+	width: 100%;
+	height: 100%;
+	overflow: noclip;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#425d25), color-stop(0.2, #5BA539), color-stop(0.5, #4D9030), to(#425d25));
+	hue-rotation: 240deg;
+	border-radius: 3px;
+	transform: translateX(0%);
+	transition-property: transform;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-out;
+}
+
+#TowerOverhead #TowerUnitBar #HpMpPanel > .Body #HpBar DOTAScenePanel
+{
+	align: left bottom;
+	width: 100%;
+	height: 100%;
+}
+
+#TowerOverhead #TowerPlayerBoxBar
+{
+	flow-children: down;
+}
+
+#TowerOverhead #TowerPlayerBoxBar #UnitName
+{
+	margin-top: 3px;
+	horizontal-align: center;
+	font-family: title;
+	font-size: 26px;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#f6e340), to(#c56c13));
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 3px 6px 3 #333333;
+}
+
+#TowerOverhead #TowerPlayerBoxBar #TitlePanel
+{
+	height: 45px;
+	align: center top;
+	padding: 10px;
+	margin-top: -5px;
+	flow-children: right;
+}
+
+#TowerOverhead #TowerPlayerBoxBar #TitlePanel Label
+{
+	align: left center;
+	margin-left: 5px;
+	color: white;
+	font-size: 20px;
+	text-shadow: 2px 2px 4px 4 #000a;
+	box-shadow: #fff3 0px 0px 8px 1px;
+}
+
+#NpcFountain
+{
+	width: 100%;
+	height: 100%;
+}
+
+#NpcFountain #NpcFountainHpBar
+{
+	flow-children: down;
+}
+
+#NpcFountain #NpcFountainHpBar > .Body
+{
+	margin-bottom: 70px;
+	flow-children: down;
+}
+
+#NpcFountain #NpcFountainHpBar > .Body > .Body
+{
+	align: center top;
+	flow-children: right;
+}
+
+#NpcFountain #NpcFountainHpBar > .Body > .Body #HpMpPanel
+{
+	align: left center;
+	margin-left: 4px;
+	margin-right: 6px;
+}
+
+#NpcFountain #NpcFountainHpBar > .Body > .Body #HpMpPanel > .Body
+{
+	brightness: 1.5;
+	border-radius: 6px;
+	border: 1px solid #0008;
+	border-left: 2px solid #0008;
+	border-right: 2px solid #0008;
+	box-shadow: #0008 0px 0px 6px 0px;
+	background-color: #0008;
+	flow-children: down;
+}
+
+#NpcFountain #NpcFountainHpBar > .Body > .Body #HpMpPanel > .Body #HpBar
+{
+	width: 300px;
+	height: 10px;
+	border-bottom: 1px solid #0008;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#17200d), color-stop(0.2, #222e13), color-stop(0.5, #1e2911), to(#17200d));
+}
+
+#NpcFountain #NpcFountainHpBar > .Body > .Body #HpMpPanel > .Body #HpBar .BufferPanel
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 3px;
+	background-color: #fff7;
+	transform: translateX(0%);
+	transition-property: transform;
+	transition-duration: 0.45s;
+	transition-timing-function: ease-out;
+}
+
+#NpcFountain #NpcFountainHpBar > .Body > .Body #HpMpPanel > .Body #HpBar > .FG
+{
+	width: 100%;
+	height: 100%;
+	overflow: noclip;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#425d25), color-stop(0.2, #5BA539), color-stop(0.5, #4D9030), to(#425d25));
+	border-radius: 3px;
+	transform: translateX(0%);
+	transition-property: transform;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-out;
+}
+
+#NpcFountain #NpcFountainHpBar > .Body > .Body #HpMpPanel > .Body #HpBar DOTAScenePanel
+{
+	align: left bottom;
+	width: 100%;
+	height: 100%;
+}
+
+#NpcNeutral
+{
+	width: 100%;
+	height: 100%;
+}
+
+#NpcNeutral .NeutralHpBar
+{
+	flow-children: down;
+}
+
+#NpcNeutral .NeutralHpBar > .Body
+{
+	align: center top;
+	flow-children: down;
+}
+
+#NpcNeutral .NeutralHpBar > .Body #HpMpPanel
+{
+	align: center top;
+	brightness: 10;
+	border-radius: 6px;
+	border: 1px solid #0008;
+	border-left: 2px solid #0008;
+	border-right: 2px solid #0008;
+	box-shadow: #0008 0px 0px 6px 0px;
+	background-color: #0008;
+	flow-children: down;
+}
+
+#NpcNeutral .NeutralHpBar > .Body #HpMpPanel > .Body
+{
+	flow-children: down;
+}
+
+#NpcNeutral .NeutralHpBar > .Body #HpMpPanel > .Body #HpBar
+{
+	width: 200px;
+	height: 8px;
+	border-bottom: 1px solid #0008;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#200d0d), color-stop(0.2, #2e1319), color-stop(0.5, #291111), to(#200d0f));
+}
+
+#NpcNeutral .NeutralHpBar > .Body #HpMpPanel > .Body #HpBar .BufferPanel
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 3px;
+	background-color: #fff7;
+	transform: translateX(0%);
+	transition-property: transform;
+	transition-duration: 0.45s;
+	transition-timing-function: ease-out;
+}
+
+#NpcNeutral .NeutralHpBar > .Body #HpMpPanel > .Body #HpBar > .FG
+{
+	width: 100%;
+	height: 100%;
+	overflow: noclip;
+	background-color: #670f12;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#673009), color-stop(0.2, #5a1111), color-stop(0.5, #5a0505), to(#2d0c15));
+	transform: translateX(0%);
+	transition-property: transform;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-out;
+}
+
+#NpcNeutral .NeutralHpBar #NameLabel
+{
+	height: 25px;
+	align: center top;
+	font-size: 21px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#8f07f7), color-stop(0.5, #cc41de), to(#D0A73C));
+	text-shadow: #000 0px 0px 3px 4;
+	font-weight: semi-bold;
+}
+
+#NpcChallenge
+{
+	width: 100%;
+	height: 100%;
+}
+
+#NpcChallenge .ChallengeHpBar
+{
+	flow-children: down;
+}
+
+#NpcChallenge .ChallengeHpBar > .Body
+{
+	flow-children: down;
+}
+
+#NpcChallenge .ChallengeHpBar > .Body #HpMpPanel
+{
+	align: center top;
+	brightness: 10;
+	border-radius: 6px;
+	border: 1px solid #0008;
+	border-left: 2px solid #0008;
+	border-right: 2px solid #0008;
+	box-shadow: #0008 0px 0px 6px 0px;
+	background-color: #0008;
+	flow-children: down;
+}
+
+#NpcChallenge .ChallengeHpBar > .Body #HpMpPanel > .Body
+{
+	flow-children: down;
+}
+
+#NpcChallenge .ChallengeHpBar > .Body #HpMpPanel > .Body #HpBar
+{
+	width: 150px;
+	height: 8px;
+	border-bottom: 1px solid #0008;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#200d0d), color-stop(0.2, #2e1319), color-stop(0.5, #291111), to(#200d0f));
+}
+
+#NpcChallenge .ChallengeHpBar > .Body #HpMpPanel > .Body #HpBar .BufferPanel
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 3px;
+	background-color: #fff7;
+	transform: translateX(0%);
+	transition-property: transform;
+	transition-duration: 0.45s;
+	transition-timing-function: ease-out;
+}
+
+#NpcChallenge .ChallengeHpBar > .Body #HpMpPanel > .Body #HpBar > .FG
+{
+	width: 100%;
+	height: 100%;
+	overflow: noclip;
+	background-color: #670f12;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#673009), color-stop(0.2, #5a1111), color-stop(0.5, #5a0505), to(#2d0c15));
+	transform: translateX(0%);
+	transition-property: transform;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-out;
+}
+
+#NpcChallenge .ChallengeHpBar > .Body > .Detial
+{
+	align: center top;
+	flow-children: right;
+}
+
+#NpcChallenge .ChallengeHpBar > .Body > .Detial > .PlayerAvatar
+{
+	width: 24px;
+	height: width-percentage(100%);
+	vertical-align: center;
+}
+
+#NpcChallenge .ChallengeHpBar > .Body > .Detial #NameLabel
+{
+	align: center center;
+	font-size: 18px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#8f07f7), color-stop(0.5, #cc41de), to(#D0A73C));
+	text-shadow: #000 0px 0px 3px 4;
+	font-weight: semi-bold;
+}
+
+#NpcChallenge .ChallengeHpBar > .Body .CountDown
+{
+	align: center top;
+}
+
+#NpcChallenge .ChallengeHpBar > .Body .CountDown Label
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 90% 90%, from(#fbc7dd), color-stop(0.5, #fd5d5d), to(#ff0000));
+	font-size: 36px;
+	font-weight: bold;
+	text-shadow: #000 2px 2px 4px 4;
+}
+
+#NpcMainChallenge
+{
+	width: 100%;
+	height: 100%;
+}
+
+#NpcMainChallenge .MainChallengeHpBar
+{
+	flow-children: down;
+}
+
+#NpcMainChallenge .MainChallengeHpBar > .Body
+{
+	flow-children: down;
+}
+
+#NpcMainChallenge .MainChallengeHpBar > .Body #HpMpPanel
+{
+	align: center top;
+	brightness: 10;
+	border-radius: 6px;
+	border: 1px solid #0008;
+	border-left: 2px solid #0008;
+	border-right: 2px solid #0008;
+	box-shadow: #0008 0px 0px 6px 0px;
+	background-color: #0008;
+	flow-children: down;
+}
+
+#NpcMainChallenge .MainChallengeHpBar > .Body #HpMpPanel > .Body
+{
+	flow-children: down;
+}
+
+#NpcMainChallenge .MainChallengeHpBar > .Body #HpMpPanel > .Body #HpBar
+{
+	width: 150px;
+	height: 8px;
+	border-bottom: 1px solid #0008;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#200d0d), color-stop(0.2, #2e1319), color-stop(0.5, #291111), to(#200d0f));
+}
+
+#NpcMainChallenge .MainChallengeHpBar > .Body #HpMpPanel > .Body #HpBar .BufferPanel
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 3px;
+	background-color: #fff7;
+	transform: translateX(0%);
+	transition-property: transform;
+	transition-duration: 0.45s;
+	transition-timing-function: ease-out;
+}
+
+#NpcMainChallenge .MainChallengeHpBar > .Body #HpMpPanel > .Body #HpBar > .FG
+{
+	width: 100%;
+	height: 100%;
+	overflow: noclip;
+	background-color: #670f12;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#673009), color-stop(0.2, #5a1111), color-stop(0.5, #5a0505), to(#2d0c15));
+	transform: translateX(0%);
+	transition-property: transform;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-out;
+}
+
+#NpcMainChallenge .MainChallengeHpBar > .Body > .Detial
+{
+	align: center top;
+	flow-children: right;
+}
+
+#NpcMainChallenge .MainChallengeHpBar > .Body > .Detial > .PlayerAvatar
+{
+	width: 24px;
+	height: width-percentage(100%);
+	vertical-align: center;
+}
+
+#NpcMainChallenge .MainChallengeHpBar > .Body > .Detial #NameLabel
+{
+	align: center center;
+	font-size: 18px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#8f07f7), color-stop(0.5, #cc41de), to(#D0A73C));
+	text-shadow: #000 0px 0px 3px 4;
+	font-weight: semi-bold;
+}
+
+#NpcMainChallenge .MainChallengeHpBar > .Body .CountDown
+{
+	align: center top;
+}
+
+#NpcMainChallenge .MainChallengeHpBar > .Body .CountDown Label
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 90% 90%, from(#fbc7dd), color-stop(0.5, #fd5d5d), to(#ff0000));
+	font-size: 36px;
+	font-weight: bold;
+	text-shadow: #000 2px 2px 4px 4;
+}
+
+#NpcAdventure
+{
+	width: 100%;
+	height: 100%;
+}
+
+#NpcAdventure .AdventureHpBar
+{
+	flow-children: down;
+}
+
+#NpcAdventure .AdventureHpBar > .Body
+{
+	flow-children: down;
+}
+
+#NpcAdventure .AdventureHpBar > .Body #HpMpPanel
+{
+	align: center top;
+	brightness: 10;
+	border-radius: 6px;
+	border: 1px solid #0008;
+	border-left: 2px solid #0008;
+	border-right: 2px solid #0008;
+	box-shadow: #0008 0px 0px 6px 0px;
+	background-color: #0008;
+	flow-children: down;
+}
+
+#NpcAdventure .AdventureHpBar > .Body #HpMpPanel > .Body
+{
+	flow-children: down;
+}
+
+#NpcAdventure .AdventureHpBar > .Body #HpMpPanel > .Body #HpBar
+{
+	width: 150px;
+	height: 8px;
+	border-bottom: 1px solid #0008;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#200d0d), color-stop(0.2, #2e1319), color-stop(0.5, #291111), to(#200d0f));
+}
+
+#NpcAdventure .AdventureHpBar > .Body #HpMpPanel > .Body #HpBar .BufferPanel
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 3px;
+	background-color: #fff7;
+	transform: translateX(0%);
+	transition-property: transform;
+	transition-duration: 0.45s;
+	transition-timing-function: ease-out;
+}
+
+#NpcAdventure .AdventureHpBar > .Body #HpMpPanel > .Body #HpBar > .FG
+{
+	width: 100%;
+	height: 100%;
+	overflow: noclip;
+	background-color: #670f12;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#673009), color-stop(0.2, #5a1111), color-stop(0.5, #5a0505), to(#2d0c15));
+	transform: translateX(0%);
+	transition-property: transform;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-out;
+}
+
+#NpcAdventure .AdventureHpBar > .Body > .Detial
+{
+	align: center top;
+	flow-children: right;
+}
+
+#NpcAdventure .AdventureHpBar > .Body > .Detial > .PlayerAvatar
+{
+	width: 24px;
+	height: width-percentage(100%);
+	vertical-align: center;
+}
+
+#NpcAdventure .AdventureHpBar > .Body > .Detial #NameLabel
+{
+	align: center center;
+	font-size: 18px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#8f07f7), color-stop(0.5, #cc41de), to(#D0A73C));
+	text-shadow: #000 0px 0px 3px 4;
+	font-weight: semi-bold;
+}
+
+#NpcAdventure .AdventureHpBar > .Body .CountDown
+{
+	align: center top;
+}
+
+#NpcAdventure .AdventureHpBar > .Body .CountDown Label
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 90% 90%, from(#fbc7dd), color-stop(0.5, #fd5d5d), to(#ff0000));
+	font-size: 36px;
+	font-weight: bold;
+	text-shadow: #000 2px 2px 4px 4;
+}
+
+#NpcArchiveChallenge
+{
+	width: 100%;
+	height: 100%;
+}
+
+#NpcArchiveChallenge .ArchiveChallengeHpBar
+{
+	flow-children: down;
+}
+
+#NpcArchiveChallenge .ArchiveChallengeHpBar > .Body
+{
+	flow-children: down;
+}
+
+#NpcArchiveChallenge .ArchiveChallengeHpBar > .Body #HpMpPanel
+{
+	align: center top;
+	brightness: 10;
+	border-radius: 6px;
+	border: 1px solid #0008;
+	border-left: 2px solid #0008;
+	border-right: 2px solid #0008;
+	box-shadow: #0008 0px 0px 6px 0px;
+	background-color: #0008;
+	flow-children: down;
+}
+
+#NpcArchiveChallenge .ArchiveChallengeHpBar > .Body #HpMpPanel > .Body
+{
+	flow-children: down;
+}
+
+#NpcArchiveChallenge .ArchiveChallengeHpBar > .Body #HpMpPanel > .Body #HpBar
+{
+	width: 150px;
+	height: 8px;
+	border-bottom: 1px solid #0008;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#200d0d), color-stop(0.2, #2e1319), color-stop(0.5, #291111), to(#200d0f));
+}
+
+#NpcArchiveChallenge .ArchiveChallengeHpBar > .Body #HpMpPanel > .Body #HpBar .BufferPanel
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 3px;
+	background-color: #fff7;
+	transform: translateX(0%);
+	transition-property: transform;
+	transition-duration: 0.45s;
+	transition-timing-function: ease-out;
+}
+
+#NpcArchiveChallenge .ArchiveChallengeHpBar > .Body #HpMpPanel > .Body #HpBar > .FG
+{
+	width: 100%;
+	height: 100%;
+	overflow: noclip;
+	background-color: #670f12;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#673009), color-stop(0.2, #5a1111), color-stop(0.5, #5a0505), to(#2d0c15));
+	transform: translateX(0%);
+	transition-property: transform;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-out;
+}
+
+#NpcArchiveChallenge .ArchiveChallengeHpBar > .Body > .Detial
+{
+	align: center top;
+	flow-children: right;
+}
+
+#NpcArchiveChallenge .ArchiveChallengeHpBar > .Body > .Detial > .PlayerAvatar
+{
+	width: 24px;
+	height: width-percentage(100%);
+	vertical-align: center;
+}
+
+#NpcArchiveChallenge .ArchiveChallengeHpBar > .Body > .Detial #NameLabel
+{
+	align: center center;
+	font-size: 18px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#8f07f7), color-stop(0.5, #cc41de), to(#D0A73C));
+	text-shadow: #000 0px 0px 3px 4;
+	font-weight: semi-bold;
+}
+
+#NpcArchiveChallenge .ArchiveChallengeHpBar > .Body .CountDown
+{
+	align: center top;
+}
+
+#NpcArchiveChallenge .ArchiveChallengeHpBar > .Body .CountDown Label
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 90% 90%, from(#fbc7dd), color-stop(0.5, #fd5d5d), to(#ff0000));
+	font-size: 36px;
+	font-weight: bold;
+	text-shadow: #000 2px 2px 4px 4;
+}
+
+#NpcBoss
+{
+	width: 100%;
+	height: 100%;
+}
+
+#NpcBoss .BossHpBar
+{
+	flow-children: down;
+}
+
+#NpcBoss .BossHpBar > .Body
+{
+	flow-children: down;
+}
+
+#NpcBoss .BossHpBar > .Body #HpMpPanel
+{
+	align: center top;
+	brightness: 10;
+	border-radius: 6px;
+	border: 1px solid #0008;
+	border-left: 2px solid #0008;
+	border-right: 2px solid #0008;
+	box-shadow: #0008 0px 0px 6px 0px;
+	background-color: #0008;
+	flow-children: down;
+}
+
+#NpcBoss .BossHpBar > .Body #HpMpPanel > .Body
+{
+	flow-children: down;
+}
+
+#NpcBoss .BossHpBar > .Body #HpMpPanel > .Body #HpBar
+{
+	width: 200px;
+	height: 8px;
+	border-bottom: 1px solid #0008;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#200d0d), color-stop(0.2, #2e1319), color-stop(0.5, #291111), to(#200d0f));
+}
+
+#NpcBoss .BossHpBar > .Body #HpMpPanel > .Body #HpBar .BufferPanel
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 3px;
+	background-color: #fff7;
+	transform: translateX(0%);
+	transition-property: transform;
+	transition-duration: 0.45s;
+	transition-timing-function: ease-out;
+}
+
+#NpcBoss .BossHpBar > .Body #HpMpPanel > .Body #HpBar > .FG
+{
+	width: 100%;
+	height: 100%;
+	overflow: noclip;
+	background-color: #670f12;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#673009), color-stop(0.2, #5a1111), color-stop(0.5, #5a0505), to(#2d0c15));
+	transform: translateX(0%);
+	transition-property: transform;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-out;
+}
+
+#NpcBoss .BossHpBar > .Body > .Detial
+{
+	align: center top;
+	flow-children: right;
+}
+
+#NpcBoss .BossHpBar > .Body > .Detial > .PlayerAvatar
+{
+	width: 24px;
+	height: width-percentage(100%);
+	vertical-align: center;
+}
+
+#NpcBoss .BossHpBar > .Body > .Detial #NameLabel
+{
+	align: center center;
+	font-size: 18px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#8f07f7), color-stop(0.5, #cc41de), to(#D0A73C));
+	text-shadow: #000 0px 0px 3px 4;
+	font-weight: semi-bold;
+}
+
+#NpcBoss .BossHpBar > .Body .CountDown
+{
+	align: center top;
+}
+
+#NpcBoss .BossHpBar > .Body .CountDown Label
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 90% 90%, from(#fbc7dd), color-stop(0.5, #fd5d5d), to(#ff0000));
+	font-size: 36px;
+	font-weight: bold;
+	text-shadow: #000 2px 2px 4px 4;
+}
+
+#NpcBossTreasure
+{
+	width: 100%;
+	height: 100%;
+}
+
+#NpcBossTreasure .BossTreasureHpBar
+{
+	flow-children: down;
+}
+
+#NpcBossTreasure .BossTreasureHpBar > .Body
+{
+	flow-children: down;
+}
+
+#NpcBossTreasure .BossTreasureHpBar > .Body #HpMpPanel
+{
+	align: center top;
+	brightness: 10;
+	border-radius: 6px;
+	border: 1px solid #0008;
+	border-left: 2px solid #0008;
+	border-right: 2px solid #0008;
+	box-shadow: #0008 0px 0px 6px 0px;
+	background-color: #0008;
+	flow-children: down;
+}
+
+#NpcBossTreasure .BossTreasureHpBar > .Body #HpMpPanel > .Body
+{
+	flow-children: down;
+}
+
+#NpcBossTreasure .BossTreasureHpBar > .Body #HpMpPanel > .Body #HpBar
+{
+	width: 200px;
+	height: 8px;
+	border-bottom: 1px solid #0008;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#200d0d), color-stop(0.2, #2e1319), color-stop(0.5, #291111), to(#200d0f));
+}
+
+#NpcBossTreasure .BossTreasureHpBar > .Body #HpMpPanel > .Body #HpBar .BufferPanel
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 3px;
+	background-color: #fff7;
+	transform: translateX(0%);
+	transition-property: transform;
+	transition-duration: 0.45s;
+	transition-timing-function: ease-out;
+}
+
+#NpcBossTreasure .BossTreasureHpBar > .Body #HpMpPanel > .Body #HpBar > .FG
+{
+	width: 100%;
+	height: 100%;
+	overflow: noclip;
+	background-color: #670f12;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#673009), color-stop(0.2, #5a1111), color-stop(0.5, #5a0505), to(#2d0c15));
+	transform: translateX(0%);
+	transition-property: transform;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-out;
+}
+
+#NpcBossTreasure .BossTreasureHpBar > .Body > .Detial
+{
+	align: center top;
+	flow-children: right;
+}
+
+#NpcBossTreasure .BossTreasureHpBar > .Body > .Detial > .PlayerAvatar
+{
+	width: 24px;
+	height: width-percentage(100%);
+	vertical-align: center;
+}
+
+#NpcBossTreasure .BossTreasureHpBar > .Body > .Detial #NameLabel
+{
+	align: center center;
+	font-size: 18px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#8f07f7), color-stop(0.5, #cc41de), to(#D0A73C));
+	text-shadow: #000 0px 0px 3px 4;
+	font-weight: semi-bold;
+}
+
+#NpcBossTreasure .BossTreasureHpBar > .Body .CountDown
+{
+	align: center top;
+}
+
+#NpcBossTreasure .BossTreasureHpBar > .Body .CountDown Label
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 90% 90%, from(#fbc7dd), color-stop(0.5, #fd5d5d), to(#ff0000));
+	font-size: 36px;
+	font-weight: bold;
+	text-shadow: #000 2px 2px 4px 4;
+}
+
+#NpcArchive
+{
+	width: 100%;
+	height: 100%;
+	visibility: collapse;
+}
+
+#NpcArchive.Show
+{
+	visibility: visible;
+}
+
+#NpcArchive > .NpcArchiveBar > .Body
+{
+	width: 150px;
+	height: 30px;
+	margin-bottom: 70px;
+}
+
+#NpcArchive > .NpcArchiveBar > .Body > .BG
+{
+	width: 100%;
+	height: 100%;
+	box-shadow: #00000080 0px 0px 4px 2;
+	border: 1px solid black;
+}
+
+#NpcArchive > .NpcArchiveBar > .Body > .Body
+{
+	width: 100%;
+	height: 100%;
+}
+
+#NpcArchive > .NpcArchiveBar > .Body > .Body #UnitName
+{
+	align: center center;
+	color: #fff;
+	font-size: 20px;
+	text-shadow: #000 0px 0px 4px 4;
+}
+
+#NpcRaidChallenge
+{
+	width: 100%;
+	height: 100%;
+	visibility: collapse;
+}
+
+#NpcRaidChallenge.Show
+{
+	visibility: visible;
+}
+
+#NpcRaidChallenge > .NpcRaidChallengeBar > .Body
+{
+	width: 150px;
+	height: 30px;
+	margin-bottom: 70px;
+}
+
+#NpcRaidChallenge > .NpcRaidChallengeBar > .Body > .BG
+{
+	width: 100%;
+	height: 100%;
+	box-shadow: #00000080 0px 0px 4px 2;
+	border: 1px solid black;
+}
+
+#NpcRaidChallenge > .NpcRaidChallengeBar > .Body > .Body
+{
+	width: 100%;
+	height: 100%;
+}
+
+#NpcRaidChallenge > .NpcRaidChallengeBar > .Body > .Body #UnitName
+{
+	align: center center;
+	color: #fff;
+	font-size: 20px;
+	text-shadow: #000 0px 0px 4px 4;
+}
+
+#NpcBoss5_6
+{
+	min-width: 400px;
+	horizontal-align: center;
+	margin-top: 230px;
+	background-color: #000000a0;
+	box-shadow: fill #000000aa 0px 0px 24px 0px;
+}
+
+#NpcBoss5_6 > .Body
+{
+	flow-children: right;
+}
+
+#NpcBoss5_6 > .Body DOTAParticleScenePanel
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_circle_sharp_png.vtex");
+}
+
+#NpcBoss5_6 > .Body DOTAScenePanel
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	brightness: 3;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_circle_sharp_png.vtex");
+}
+
+#NpcBoss5_6 > .Body .first DOTAScenePanel
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+}
+
+#NpcBoss5_6 > .Body .first Label
+{
+	font-size: 120px;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#ffbfbf), to(#fff));
+	text-shadow: 0px 0px 12px #ff000066;
+}
+
+#NpcBoss5_6 > .Body .boss_5_6_1 Label
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#fff024), to(#fff));
+	text-shadow: 0px 0px 12px #fff700c6;
+}
+
+#NpcBoss5_6 > .Body .boss_5_6_2 Label
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#f824ff), to(#fff));
+	text-shadow: 0px 0px 12px #ff00ffc6;
+}
+
+#NpcBoss5_6 > .Body .boss_5_6_3 Label
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#494649), to(#fff));
+	text-shadow: 0px 0px 12px #3a383ac6;
+}
+
+#NpcBoss5_6 > .Body .boss_5_6_4 Label
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#50ff24), to(#fff));
+	text-shadow: 0px 0px 12px #44ff00c6;
+}
+
+#NpcBoss5_6 > .Body Panel
+{
+	align: center center;
+	transition-property: position, opacity;
+	transition-duration: 0.5s;
+	transition-timing-function: ease-in-out;
+	animation-name: Boss_5_6ShowAnmt;
+	animation-duration: 1s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+#NpcBoss5_6 > .Body Panel.Hidden
+{
+	visibility: collapse;
+}
+
+@keyframes 'Boss_5_6ShowAnmt'
+{
+	0%
+	{
+		opacity: 1;
+		transform: translateX(100%);
+	}
+	
+	99%
+	{
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translateX(0);
+	}
+	
+}
+
+#NpcBoss5_6 > .Body Label
+{
+	font-size: 80px;
+	font-family: title;
+	text-shadow: 1px 1px 2px 0px #000;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#bfffea), to(#fff));
+	text-shadow: 0px 0px 12px #00FFAA66;
+	transition-property: font-size;
+	transition-duration: 0.5s;
+	transition-timing-function: ease-in-out;
+}

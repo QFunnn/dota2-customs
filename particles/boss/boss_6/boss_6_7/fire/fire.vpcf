@@ -1,0 +1,111 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf65:version{48e806a9-c210-4cd8-811a-38b5ef63b195} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 0
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 1
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1200.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 62
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_StopAfterCPDuration"
+			m_flDuration = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 2
+				m_nVectorComponent = 0
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 1.0
+			}
+		},
+		{
+			_class = "C_OP_SetCPOrientationToPointAtCP"
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/boss/boss_6/boss_6_7/fire/fireh.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_6/boss_6_7/fire/firek.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_6/boss_6_7/fire/fireg.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_6/boss_6_7/fire/firee.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_6/boss_6_7/fire/firef.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_6/boss_6_7/fire/fired.vpcf"
+			m_flDelay = 0.15
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_6/boss_6_7/fire/firei.vpcf"
+			m_flDelay = 0.15
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_6/boss_6_7/fire/firej.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_6/boss_6_7/fire/firel.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_6/boss_6_7/fire/firea.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_6/boss_6_7/fire/firec.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_6/boss_6_7/fire/fireb.vpcf"
+		},
+	]
+}

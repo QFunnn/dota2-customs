@@ -1,0 +1,743 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_summon"
+{
+    "npc_fountain"
+    {
+        "UnitName"                          "npc_fountain"
+        "Name"                              "泉水"
+        "BaseClass"                         "npc_dota_creature"
+        "Model"                             "models/custom_game/models/fort/fort_base_dummy_01.vmdl"
+        "ModelScale"                        "1"
+        "RingRadius"                        "250"
+        "HealthBarOffset"                   "500"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "Hp"                                "1000"
+        "StatusHealthRegen"                 "0.5"
+        "StatusMana"                        "0"
+        "StatusManaRegen"                   "0"
+        "AttackRate"                        "0"
+        "AttackAnimationPoint"              "0"
+        "AttackRange"                       "0"
+        "AttackAcquisitionRange"            "0"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_NO_ATTACK"
+    }
+    "npc_archive"
+    {
+        "UnitName"                          "npc_archive"
+        "Name"                              "存档NPC"
+        "BaseClass"                         "npc_dota_creature"
+        "Model"                             "models/heroes/crystal_maiden/crystal_maiden_arcana.vmdl"
+        "ModelScale"                        "1.2"
+        "RingRadius"                        "250"
+        "HealthBarOffset"                   "200"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "Hp"                                "1"
+        "StatusHealthRegen"                 "0"
+        "StatusMana"                        "0"
+        "StatusManaRegen"                   "0"
+        "AttackRate"                        "0"
+        "AttackAnimationPoint"              "0"
+        "AttackRange"                       "0"
+        "AttackAcquisitionRange"            "0"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_NO_ATTACK"
+        "Creature"
+        {
+            "AttachWearables"
+            {
+                "1"
+                {
+                    "ItemDef"               "13532"
+                }
+                "2"
+                {
+                    "ItemDef"               "7385"
+                }
+                "3"
+                {
+                    "ItemDef"               "41"
+                }
+                "4"
+                {
+                    "ItemDef"               "9205"
+                }
+                "5"
+                {
+                    "ItemDef"               "6686"
+                }
+            }
+        }
+    }
+    "summon_com_3"
+    {
+        "UnitName"                          "summon_com_3"
+        "Name"                              "骷髅士兵"
+        "BaseClass"                         "npc_dota_creature"
+        "vscripts"                          "ai/ai_summon"
+        "IsSummoned"                        "1"
+        "Model"                             "models/items/wraith_king/arcana/wk_arcana_skeleton.vmdl"
+        "ModelScale"                        "1.1"
+        "HealthBarOffset"                   "300"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "Hp"                                "1"
+        "AttackRate"                        "1"
+        "AttackAnimationPoint"              "0.56"
+        "AttackRange"                       "115"
+        "AttackAcquisitionRange"            "300"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_MELEE_ATTACK"
+        "SoundSet"                          "Creep_Good_Melee"
+        "HasInventory"                      "0"
+        "MinimapIcon"                       "minimap_creep"
+        "MinimapIconSize"                   "125"
+        "MovementTurnRate"                  "0.5"
+    }
+    "summon_com_7"
+    {
+        "UnitName"                          "summon_com_7"
+        "Name"                              "幽怨之影"
+        "BaseClass"                         "npc_dota_creature"
+        "vscripts"                          "ai/ai_summon"
+        "IsSummoned"                        "1"
+        "Model"                             "models/creeps/neutral_creeps/n_creep_ghost_b/n_creep_ghost_red.vmdl"
+        "ModelScale"                        "1.5"
+        "HealthBarOffset"                   "300"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "Hp"                                "1"
+        "AttackRate"                        "1"
+        "AttackAnimationPoint"              "0.43"
+        "AttackRange"                       "115"
+        "AttackAcquisitionRange"            "300"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_MELEE_ATTACK"
+        "SoundSet"                          "Creep_Good_Melee"
+        "HasInventory"                      "0"
+        "MinimapIcon"                       "minimap_creep"
+        "MinimapIconSize"                   "125"
+        "MovementTurnRate"                  "0.5"
+    }
+    "summon_item_drop_4"
+    {
+        "UnitName"                          "summon_item_drop_4"
+        "Name"                              "骷髅战士"
+        "BaseClass"                         "npc_dota_creature"
+        "vscripts"                          "ai/ai_summon"
+        "IsSummoned"                        "1"
+        "Model"                             "models/creeps/item_creeps/i_creep_necro_warrior/necro_warrior.vmdl"
+        "ModelScale"                        "0.7"
+        "HealthBarOffset"                   "300"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "Hp"                                "1"
+        "AttackRate"                        "1"
+        "AttackAnimationPoint"              "0.56"
+        "AttackRange"                       "115"
+        "AttackAcquisitionRange"            "300"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_MELEE_ATTACK"
+        "SoundSet"                          "Creep_Good_Melee"
+        "HasInventory"                      "0"
+        "MinimapIcon"                       "minimap_creep"
+        "MinimapIconSize"                   "125"
+        "MovementTurnRate"                  "0.5"
+    }
+    "summon_combination_36"
+    {
+        "UnitName"                          "summon_combination_36"
+        "Name"                              "巨狼"
+        "BaseClass"                         "npc_dota_creature"
+        "vscripts"                          "ai/ai_summon"
+        "IsSummoned"                        "1"
+        "Model"                             "models/items/lycan/ultimate/_ascension_of_the_hallowed_beast_form/_ascension_of_the_hallowed_beast_form.vmdl"
+        "ModelScale"                        "1"
+        "HealthBarOffset"                   "300"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "Hp"                                "1"
+        "AttackRate"                        "1"
+        "AttackAnimationPoint"              "0.56"
+        "AttackRange"                       "115"
+        "AttackAcquisitionRange"            "300"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_MELEE_ATTACK"
+        "SoundSet"                          "Creep_Good_Melee"
+        "HasInventory"                      "0"
+        "MinimapIcon"                       "minimap_creep"
+        "MinimapIconSize"                   "125"
+        "MovementTurnRate"                  "0.5"
+    }
+    "npc_tower_door"
+    {
+        "UnitName"                          "npc_tower_door"
+        "Name"                              "爬塔传送门"
+        "BaseClass"                         "npc_dota_creature"
+        "Model"                             "models/props_gameplay/team_portal/team_portal.vmdl"
+        "ModelScale"                        "1"
+        "HealthBarOffset"                   "300"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "Hp"                                "100"
+        "StatusHealthRegen"                 "0"
+        "StatusMana"                        "0"
+        "StatusManaRegen"                   "0"
+        "AttackRate"                        "0"
+        "AttackAnimationPoint"              "0"
+        "AttackRange"                       "0"
+        "AttackAcquisitionRange"            "0"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_NO_ATTACK"
+    }
+    "npc_tower_box"
+    {
+        "UnitName"                          "npc_tower_box"
+        "Name"                              "爬塔奖励宝箱"
+        "BaseClass"                         "npc_dota_creature"
+        "Model"                             "models/chest_treasure/chest_treasure.vmdl"
+        "ModelScale"                        "1"
+        "RingRadius"                        "64"
+        "HealthBarOffset"                   "200"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "Hp"                                "100"
+        "StatusHealthRegen"                 "0"
+        "StatusMana"                        "0"
+        "StatusManaRegen"                   "0"
+        "AttackRate"                        "0"
+        "AttackAnimationPoint"              "0"
+        "AttackRange"                       "0"
+        "AttackAcquisitionRange"            "0"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_NO_ATTACK"
+    }
+    "summon_com_45"
+    {
+        "UnitName"                          "summon_com_45"
+        "Name"                              "猴子"
+        "BaseClass"                         "npc_dota_creature"
+        "vscripts"                          "ai/ai_summon"
+        "IsSummoned"                        "1"
+        "Model"                             "models/heroes/monkey_king/monkey_king.vmdl"
+        "ModelScale"                        "0.81"
+        "HealthBarOffset"                   "300"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "Hp"                                "1"
+        "AttackRate"                        "1"
+        "AttackAnimationPoint"              "0.45"
+        "AttackRange"                       "500"
+        "AttackAcquisitionRange"            "800"
+        "ProjectileModel"                   "particles/econ/items/leshrac/leshrac_tormented_staff_retro/leshrac_base_attack_retro_tormented.vpcf"
+        "ProjectileSpeed"                   "1500"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_RANGED_ATTACK"
+        "SoundSet"                          "Creep_Good_Melee"
+        "HasInventory"                      "0"
+        "MinimapIcon"                       "minimap_creep"
+        "MinimapIconSize"                   "125"
+        "MovementTurnRate"                  "0.5"
+        "Creature"
+        {
+            "AttachWearables"
+            {
+                "1"
+                {
+                    "ItemDef"               "9212"
+                }
+                "2"
+                {
+                    "ItemDef"               "9050"
+                }
+                "3"
+                {
+                    "ItemDef"               "13008"
+                }
+                "4"
+                {
+                    "ItemDef"               "13545"
+                }
+            }
+        }
+    }
+    "summon_com_33"
+    {
+        "UnitName"                          "summon_com_33"
+        "Name"                              "小娜迦"
+        "BaseClass"                         "npc_dota_creature"
+        "vscripts"                          "ai/ai_summon"
+        "IsSummoned"                        "1"
+        "Model"                             "models/heroes/siren/siren.vmdl"
+        "ModelScale"                        "0.77"
+        "HealthBarOffset"                   "300"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "Hp"                                "1"
+        "AttackRate"                        "1"
+        "AttackAnimationPoint"              "0.56"
+        "AttackRange"                       "500"
+        "AttackAcquisitionRange"            "800"
+        "ProjectileModel"                   "particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_base_attack.vpcf"
+        "ProjectileSpeed"                   "1500"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_RANGED_ATTACK"
+        "SoundSet"                          "Creep_Good_Melee"
+        "HasInventory"                      "0"
+        "MinimapIcon"                       "minimap_creep"
+        "MinimapIconSize"                   "125"
+        "MovementTurnRate"                  "0.5"
+        "Creature"
+        {
+            "AttachWearables"
+            {
+                "1"
+                {
+                    "ItemDef"               "9485"
+                }
+                "2"
+                {
+                    "ItemDef"               "9486"
+                }
+                "3"
+                {
+                    "ItemDef"               "9487"
+                }
+                "4"
+                {
+                    "ItemDef"               "9488"
+                }
+                "5"
+                {
+                    "ItemDef"               "9489"
+                }
+            }
+        }
+    }
+    "summon_com_24"
+    {
+        "UnitName"                          "summon_com_24"
+        "Name"                              "豪猪"
+        "BaseClass"                         "npc_dota_creature"
+        "vscripts"                          "ai/ai_summon_24"
+        "IsSummoned"                        "1"
+        "Model"                             "models/items/beastmaster/mh_beastmaster_bone/mh_beastmaster_beast_boar.vmdl"
+        "ModelScale"                        "1"
+        "HealthBarOffset"                   "300"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "Hp"                                "1"
+        "AttackRate"                        "1"
+        "AttackAnimationPoint"              "0.56"
+        "AttackRange"                       "500"
+        "AttackAcquisitionRange"            "800"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_MELEE_ATTACK"
+        "SoundSet"                          "Creep_Good_Melee"
+        "HasInventory"                      "0"
+        "MinimapIcon"                       "minimap_creep"
+        "MinimapIconSize"                   "125"
+        "MovementTurnRate"                  "0.5"
+    }
+    "summon_com_46"
+    {
+        "UnitName"                          "summon_com_46"
+        "Name"                              "小骷髅"
+        "BaseClass"                         "npc_dota_creature"
+        "vscripts"                          "ai/ai_summon"
+        "IsSummoned"                        "1"
+        "Model"                             "models/items/wraith_king/frostivus_wraith_king/frostivus_wraith_king_skeleton.vmdl"
+        "ModelScale"                        "1"
+        "HealthBarOffset"                   "300"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "Hp"                                "1"
+        "AttackRate"                        "1"
+        "AttackAnimationPoint"              "0.56"
+        "AttackRange"                       "115"
+        "AttackAcquisitionRange"            "800"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_MELEE_ATTACK"
+        "SoundSet"                          "Creep_Good_Melee"
+        "HasInventory"                      "0"
+        "MinimapIcon"                       "minimap_creep"
+        "MinimapIconSize"                   "125"
+        "MovementTurnRate"                  "0.5"
+    }
+    "summon_adventure_3"
+    {
+        "UnitName"                          "summon_adventure_3"
+        "Name"                              "异界勇士"
+        "BaseClass"                         "npc_dota_creature"
+        "vscripts"                          "ai/ai_summon"
+        "IsSummoned"                        "1"
+        "Model"                             "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega_crystal.vmdl"
+        "ModelScale"                        "1"
+        "HealthBarOffset"                   "300"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "Hp"                                "1"
+        "AttackRate"                        "1"
+        "AttackAnimationPoint"              "0.56"
+        "AttackRange"                       "115"
+        "AttackAcquisitionRange"            "800"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_MELEE_ATTACK"
+        "SoundSet"                          "Creep_Good_Melee"
+        "HasInventory"                      "0"
+        "MinimapIcon"                       "minimap_creep"
+        "MinimapIconSize"                   "125"
+        "MovementTurnRate"                  "0.5"
+    }
+    "summon_com_11"
+    {
+        "UnitName"                          "summon_com_11"
+        "Name"                              "龙卷风"
+        "BaseClass"                         "npc_dota_creature"
+        "vscripts"                          "ai/ai_summon"
+        "IsSummoned"                        "1"
+        "Model"                             "models/development/invisiblebox.vmdl"
+        "ModelScale"                        "0.81"
+        "HealthBarOffset"                   "300"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "Hp"                                "1"
+        "AttackRate"                        "1"
+        "AttackAnimationPoint"              "0.45"
+        "AttackRange"                       "25"
+        "AttackAcquisitionRange"            "800"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_MELEE_ATTACK"
+        "SoundSet"                          "Creep_Good_Melee"
+        "HasInventory"                      "0"
+        "MinimapIcon"                       "minimap_creep"
+        "MinimapIconSize"                   "125"
+        "MovementTurnRate"                  "0.5"
+    }
+    "summon_boss_3_2"
+    {
+        "UnitName"                          "summon_boss_3_2"
+        "Name"                              "奔腾死骑"
+        "BaseClass"                         "npc_dota_creature"
+        "Model"                             "models/heroes/abaddon/abaddon.vmdl"
+        "ModelScale"                        "1.6"
+        "MovementSpeed"                     "300"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "Hp"                                "1"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_NO_ATTACK"
+        "Creature"
+        {
+            "AttachWearables"
+            {
+                "1"
+                {
+                    "ItemDef"               "9203"
+                }
+                "2"
+                {
+                    "ItemDef"               "9490"
+                }
+                "3"
+                {
+                    "ItemDef"               "9491"
+                }
+                "4"
+                {
+                    "ItemDef"               "9492"
+                }
+                "5"
+                {
+                    "ItemDef"               "9493"
+                }
+            }
+        }
+    }
+    "summon_boss_5_egg"
+    {
+        "UnitName"                          "summon_boss_5_egg"
+        "Name"                              "炽羽"
+        "BaseClass"                         "npc_dota_creature"
+        "Model"                             "models/items/phoenix/ultimate/blazing_wing_blazing_egg/blazing_wing_blazing_egg.vmdl"
+        "ModelScale"                        "1"
+        "HealthBarOffset"                   "110"
+        "BountyXP"                          "0"
+        "BountyGoldMin"                     "0"
+        "BountyGoldMax"                     "0"
+        "MovementSpeed"                     "0"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_NONE"
+        "StatusHealth"                      "100000000"
+        "Hp"                                "1"
+        "StatusHealthRegen"                 "0"
+        "StatusMana"                        "100"
+        "StatusManaRegen"                   "0"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_NO_ATTACK"
+        "SoundSet"                          "n_creep_Melee"
+        "GameSoundsFile"                    "soundevents/game_sounds_creeps.vsndevts"
+        "HasInventory"                      "0"
+        "MinimapIcon"                       "minimap_creep"
+        "MinimapIconSize"                   "125"
+        "MovementTurnRate"                  "0.5"
+    }
+    "summon_boss_5_phoenix"
+    {
+        "UnitName"                          "summon_boss_5_phoenix"
+        "Name"                              "炽凰"
+        "BaseClass"                         "npc_dota_creature"
+        "vscripts"                          "ai/ai_summon"
+        "IsSummoned"                        "1"
+        "Model"                             "models/heroes/phoenix/phoenix_bird.vmdl"
+        "ModelScale"                        "1"
+        "HealthBarOffset"                   "110"
+        "BountyXP"                          "0"
+        "BountyGoldMin"                     "0"
+        "BountyGoldMax"                     "0"
+        "MovementSpeed"                     "300"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "Hp"                                "1"
+        "StatusHealthRegen"                 "0"
+        "StatusMana"                        "100"
+        "StatusManaRegen"                   "0"
+        "AttackRate"                        "0.5"
+        "AttackAnimationPoint"              "0.3"
+        "AttackRange"                       "400"
+        "AttackAcquisitionRange"            "10000"
+        "ProjectileModel"                   "particles/boss/boss_5/base_attack/attack.vpcf"
+        "ProjectileSpeed"                   "1400"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_RANGED_ATTACK"
+        "SoundSet"                          "n_creep_Melee"
+        "GameSoundsFile"                    "soundevents/game_sounds_creeps.vsndevts"
+        "HasInventory"                      "0"
+        "MinimapIcon"                       "minimap_creep"
+        "MinimapIconSize"                   "125"
+        "MovementTurnRate"                  "0.5"
+        "Creature"
+        {
+            "AttachWearables"
+            {
+                "1"
+                {
+                    "ItemDef"               "14993"
+                }
+                "2"
+                {
+                    "ItemDef"               "592"
+                }
+            }
+        }
+    }
+    "summon_weapon_affix_15"
+    {
+        "UnitName"                          "summon_weapon_affix_15"
+        "Name"                              "骷髅弓箭手"
+        "BaseClass"                         "npc_dota_creature"
+        "vscripts"                          "ai/ai_summon"
+        "IsSummoned"                        "1"
+        "Model"                             "models/heroes/clinkz/clinkz_archer.vmdl"
+        "ModelScale"                        "1"
+        "HealthBarOffset"                   "300"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "Hp"                                "1"
+        "AttackRate"                        "1"
+        "AttackAnimationPoint"              "0.3"
+        "AttackRange"                       "500"
+        "AttackAcquisitionRange"            "800"
+        "ProjectileModel"                   "particles/units/heroes/hero_clinkz/clinkz_base_attack.vpcf"
+        "ProjectileSpeed"                   "900"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_RANGED_ATTACK"
+        "SoundSet"                          "Creep_Good_Melee"
+        "HasInventory"                      "0"
+        "MinimapIcon"                       "minimap_creep"
+        "MinimapIconSize"                   "125"
+        "MovementTurnRate"                  "0.5"
+    }
+    "nine_skin"
+    {
+        "UnitName"                          "nine_skin"
+        "Name"                              "挖矿皮肤"
+        "BaseClass"                         "npc_dota_creature"
+        "Model"                             "models/heroes/tidehunter/tidehunter.vmdl"
+        "ModelScale"                        "0.84"
+        "HealthBarOffset"                   "300"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "Hp"                                "1"
+        "AttackRate"                        "1.7"
+        "AttackAnimationPoint"              "0.6"
+        "AttackRange"                       "150"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_MELEE_ATTACK"
+        "SoundSet"                          "Hero_Tidehunter"
+        "GameSoundsFile"                    "soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
+        "MovementTurnRate"                  "0.5"
+        "Creature"
+        {
+            "AttachWearables"
+            {
+                "1"
+                {
+                    "ItemDef"               "34"
+                }
+                "2"
+                {
+                    "ItemDef"               "35"
+                }
+                "3"
+                {
+                    "ItemDef"               "36"
+                }
+                "4"
+                {
+                    "ItemDef"               "37"
+                }
+                "5"
+                {
+                    "ItemDef"               "582"
+                }
+                "6"
+                {
+                    "ItemDef"               "583"
+                }
+                "7"
+                {
+                    "ItemDef"               "735"
+                }
+            }
+        }
+    }
+    "summon_com_15"
+    {
+        "UnitName"                          "summon_com_15"
+        "Name"                              "火球"
+        "BaseClass"                         "npc_dota_creature"
+        "vscripts"                          "ai/ai_summon"
+        "IsSummoned"                        "1"
+        "Model"                             "models/development/invisiblebox.vmdl"
+        "ModelScale"                        "0.81"
+        "HealthBarOffset"                   "300"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "Hp"                                "1"
+        "AttackRate"                        "1"
+        "AttackAnimationPoint"              "0.45"
+        "AttackRange"                       "25"
+        "AttackAcquisitionRange"            "800"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_MELEE_ATTACK"
+        "SoundSet"                          "Creep_Good_Melee"
+        "HasInventory"                      "0"
+        "MinimapIcon"                       "minimap_creep"
+        "MinimapIconSize"                   "125"
+        "MovementTurnRate"                  "0.5"
+    }
+    "npc_raid_challenge"
+    {
+        "UnitName"                          "npc_raid_challenge"
+        "Name"                              "团本挑战-军团"
+        "BaseClass"                         "npc_dota_creature"
+        "Model"                             "models/heroes/legion_commander/legion_commander.vmdl"
+        "ModelScale"                        "1.5"
+        "RingRadius"                        "250"
+        "HealthBarOffset"                   "200"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "Hp"                                "1"
+        "StatusHealthRegen"                 "0"
+        "StatusMana"                        "0"
+        "StatusManaRegen"                   "0"
+        "AttackRate"                        "0"
+        "AttackAnimationPoint"              "0"
+        "AttackRange"                       "0"
+        "AttackAcquisitionRange"            "0"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_NO_ATTACK"
+        "Creature"
+        {
+            "AttachWearables"
+            {
+                "1"
+                {
+                    "ItemDef"               "13984"
+                }
+                "2"
+                {
+                    "ItemDef"               "13985"
+                }
+                "3"
+                {
+                    "ItemDef"               "13986"
+                }
+                "4"
+                {
+                    "ItemDef"               "13987"
+                }
+                "5"
+                {
+                    "ItemDef"               "13988"
+                }
+                "6"
+                {
+                    "ItemDef"               "13989"
+                }
+            }
+        }
+    }
+    "boss_8_3_summon"
+    {
+        "UnitName"                          "boss_8_3_summon"
+        "Name"                              "影魔"
+        "BaseClass"                         "npc_dota_creature"
+        "IsSummoned"                        "1"
+        "Model"                             "models/heroes/shadow_fiend/shadow_fiend_arcana.vmdl"
+        "ModelScale"                        "0.98"
+        "HealthBarOffset"                   "0"
+        "BountyXP"                          "0"
+        "BountyGoldMin"                     "0"
+        "BountyGoldMax"                     "0"
+        "MovementSpeed"                     "0"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "Hp"                                "1"
+        "StatusHealthRegen"                 "0"
+        "StatusMana"                        "100"
+        "StatusManaRegen"                   "0"
+        "AttackRate"                        "0.5"
+        "AttackAnimationPoint"              "0.5"
+        "AttackRange"                       "300"
+        "ProjectileModel"                   "particles/econ/items/shadow_fiend/sf_desolation/sf_base_attack_desolation_fire_arcana.vpcf"
+        "ProjectileSpeed"                   "1200"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_RANGED_ATTACK"
+        "SoundSet"                          "Hero_Nevermore"
+        "GameSoundsFile"                    "soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
+        "HasInventory"                      "0"
+        "MinimapIcon"                       "minimap_creep"
+        "MinimapIconSize"                   "125"
+        "MovementTurnRate"                  "0.5"
+        "Creature"
+        {
+            "AttachWearables"
+            {
+                "1"
+                {
+                    "ItemDef"               "34184"
+                }
+                "2"
+                {
+                    "ItemDef"               "509"
+                }
+                "3"
+                {
+                    "ItemDef"               "826"
+                }
+                "4"
+                {
+                    "ItemDef"               "9020"
+                }
+                "5"
+                {
+                    "ItemDef"               "8259"
+                }
+                "6"
+                {
+                    "ItemDef"               "6996"
+                }
+            }
+        }
+    }
+}

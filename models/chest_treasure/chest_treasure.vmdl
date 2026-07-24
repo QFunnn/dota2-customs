@@ -1,0 +1,177 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "BoneMarkupList"
+				children = [  ]
+				bone_cull_type = "None"
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						name = "chest_treasure"
+						filename = "models/chest_treasure/chest_treasure_chest_treasure.dmx"
+					},
+				]
+			},
+			{
+				_class = "AttachmentList"
+				children = 
+				[
+					{
+						_class = "Attachment"
+						name = "attach_hitloc"
+						ignore_rotation = false
+						parent_bone = "root"
+						relative_origin = [ 0.0, 65.0, 0.0 ]
+						relative_angles = [ 0.0, 0.0, -89.999992 ]
+						weight = 1.0
+					},
+				]
+			},
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					{
+						_class = "AnimFile"
+						name = "chest_treasure_idle"
+						source_filename = "models/chest_treasure/chest_treasure_idle.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_IDLE"
+						activity_weight = 1
+					},
+					{
+						_class = "AnimFile"
+						name = "chest_treasure_spawn"
+						source_filename = "models/chest_treasure/chest_treasure_spawn.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_SPAWN"
+						activity_weight = 1
+					},
+					{
+						_class = "AnimFile"
+						name = "chest_treasure_open"
+						source_filename = "models/chest_treasure/chest_treasure_open.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_DIE"
+						activity_weight = 1
+					},
+					{
+						_class = "AnimFile"
+						name = "chest_treasure_little_open_idel"
+						source_filename = "models/chest_treasure/chest_treasure_little_open_idel.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = false
+					},
+				]
+			},
+			{
+				_class = "HitboxSetList"
+				children = 
+				[
+					{
+						_class = "HitboxSet"
+						name = "default"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -70.0, -70.0, -70.0 ]
+								hitbox_maxs = [ 70.0, 70.0, 100.0 ]
+								name = "root"
+								parent_bone = "root"
+								surface_property = ""
+								translation_only = true
+								group_id = 0
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "Skeleton"
+				children = 
+				[
+					{
+						_class = "Bone"
+						name = "root"
+						origin = [ -0.0, -0.0, 0.0 ]
+						angles = [ -0.00001, -0.000013, 89.999962 ]
+						do_not_discard = true
+					},
+					{
+						_class = "Bone"
+						name = "chest_root"
+						origin = [ -0.0, -0.0, 0.0 ]
+						angles = [ -57.460457, -90.000023, 90.000038 ]
+						do_not_discard = true
+						children = 
+						[
+							{
+								_class = "Bone"
+								name = "chest_lock"
+								origin = [ 14.580458, 60.879478, -0.000002 ]
+								angles = [ -0.000007, -162.465424, 179.999939 ]
+								do_not_discard = true
+							},
+							{
+								_class = "Bone"
+								name = "chest_door"
+								origin = [ 77.741699, 0.000008, 0.000005 ]
+								angles = [ 0.000017, 59.624496, 179.999939 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "chest_hinge"
+										origin = [ 81.205856, 0.000183, -0.000025 ]
+										angles = [ 0.000008, -152.577972, -0.000008 ]
+										do_not_discard = true
+									},
+								]
+							},
+						]
+					},
+				]
+			},
+		]
+	}
+}

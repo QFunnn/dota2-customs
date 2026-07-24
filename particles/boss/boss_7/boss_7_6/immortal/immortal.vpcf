@@ -1,0 +1,130 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf65:version{48e806a9-c210-4cd8-811a-38b5ef63b195} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 1
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 0.0, 0.0, 512.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 512.0 ]
+		},
+		{
+			_class = "C_INIT_VelocityRandom"
+			m_LocalCoordinateSystemSpeedMin = [ 0.0, 0.0, -1000.0 ]
+			m_LocalCoordinateSystemSpeedMax = [ 0.0, 0.0, -1000.0 ]
+		},
+		{
+			_class = "C_INIT_LifespanFromVelocity"
+			m_flMaxTraceLength = 2048.0
+			m_CollisionGroupName = "DEBRIS"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/boss/boss_7/boss_7_6/immortal/immortals.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_7/boss_7_6/immortal/immortalj.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_7/boss_7_6/immortal/immortalm.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_7/boss_7_6/immortal/immortalh.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_7/boss_7_6/immortal/immortalf.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_7/boss_7_6/immortal/immortalq.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_7/boss_7_6/immortal/immortali.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_7/boss_7_6/immortal/immortald.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_7/boss_7_6/immortal/immortalg.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_7/boss_7_6/immortal/immortalk.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_7/boss_7_6/immortal/immortalr.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_7/boss_7_6/immortal/immortale.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_7/boss_7_6/immortal/immortall.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_7/boss_7_6/immortal/immortalb.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_7/boss_7_6/immortal/immortalo.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_7/boss_7_6/immortal/immortalp.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_7/boss_7_6/immortal/immortaln.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_7/boss_7_6/immortal/immortala.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_7/boss_7_6/immortal/immortalc.vpcf"
+		},
+	]
+}

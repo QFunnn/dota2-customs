@@ -1,0 +1,2113 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.TipIcon
+{
+	width: 15px;
+	height: 15px;
+	background-image: url("s2r://panorama/images/status_icons/information_psd.vtex");
+	background-size: 100%;
+}
+
+.TipLabel
+{
+	padding-left: 20px;
+	color: #909090;
+	font-size: 15px;
+	text-shadow: 1px 1px 2px 1 #000;
+	background-image: url("s2r://panorama/images/status_icons/information_psd.vtex");
+	background-size: 15px 15px;
+	background-position: left center;
+	background-repeat: no-repeat;
+	background-img-opacity: 0.6;
+}
+
+.TipLabel.HasTooltip
+{
+	border-bottom: 1px solid #90909066;
+}
+
+@keyframes 'NewTagAnim'
+{
+	0%
+	{
+		box-shadow: 0 0 2px 0.5px rgba(255, 0, 0, 0.2);
+	}
+	
+	50%
+	{
+		box-shadow: 0 0 4px 1px rgba(255, 0, 0, 0.5);
+	}
+	
+	100%
+	{
+		box-shadow: 0 0 2px 0.5px rgba(255, 0, 0, 0.2);
+	}
+	
+}
+
+.NewTagIcon
+{
+	width: 9px;
+	height: width-percentage(100%);
+	align: right top;
+	margin: 10px;
+	background-color: #ff0000ee;
+	border: 1px solid #000;
+	border-radius: 50%;
+	animation-name: NewTagAnim;
+	animation-duration: 0.8s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+#LoadingPanel
+{
+	width: 100%;
+	height: 100%;
+}
+
+#LoadingPanel > .BG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/loading/loading_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#LogoPanel
+{
+	width: 100%;
+	height: 100%;
+}
+
+#LogoPanel > .BG
+{
+	width: 1000px;
+	height: width-percentage(47.52964427%);
+	align: center bottom;
+	margin-bottom: 60px;
+}
+
+#TipContainer
+{
+	align: center bottom;
+	margin-bottom: 8px;
+	width: 660px;
+	height: 90px;
+}
+
+#TipContainer > .BG
+{
+	width: 100%;
+	height: 100%;
+}
+
+#TipContainer > .Body
+{
+	width: 100%;
+	height: 100%;
+	padding: 8px;
+}
+
+#TipContainer #TipText
+{
+	horizontal-align: center;
+	margin-right: 8px;
+	margin-left: 8px;
+	max-width: 500px;
+	height: 100%;
+	padding: 2px;
+}
+
+#TipContainer #TipLabel
+{
+	vertical-align: center;
+	color: #ffffff;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 6px 6 #0e0e0e;
+}
+
+#TipContainer #NextTip
+{
+	horizontal-align: right;
+	background-image: url("s2r://");
+}
+
+#TipContainer .TipButton
+{
+	vertical-align: center;
+	width: 18px;
+	height: 18px;
+	background-size: 80% 80%;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	wash-color: white;
+}
+
+#CommunityPanel
+{
+	width: 650px;
+	align: left bottom;
+	margin-bottom: 320px;
+	flow-children: up;
+}
+
+#CommunityPanel .Community
+{
+	margin: 5px 0px 5px 8px;
+	visibility: collapse;
+	flow-children: right;
+}
+
+#CommunityPanel .Community:hover
+{
+	brightness: 1.5;
+}
+
+#CommunityPanel .Community:hover:active
+{
+	brightness: 1;
+}
+
+#CommunityPanel .Community Image
+{
+	width: 40px;
+	height: 40px;
+	align: left center;
+}
+
+#CommunityPanel .Community Label
+{
+	align: left center;
+	margin-left: 10px;
+	color: #ffffff;
+	font-size: 20px;
+	border-bottom: 1px solid #ffffff;
+	text-shadow: 2px 2px 4px 2 #000;
+}
+
+.Language_schinese #CommunityPanel .QQGroup
+{
+	visibility: visible;
+}
+
+.Language_schinese #CommunityPanel .Discord
+{
+	visibility: visible;
+}
+
+.Language_english #CommunityPanel .Discord
+{
+	visibility: visible;
+}
+
+#ChatPanel
+{
+	width: 100%;
+	height: 100%;
+}
+
+.Yzy_ItemImage
+{
+	width: 100%;
+	height: 100%;
+}
+
+.Yzy_ItemImage:hover
+{
+	brightness: 1.5;
+}
+
+.Yzy_ItemImage:active
+{
+	brightness: 1;
+}
+
+.Yzy_ItemImage.Rarity_1 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/common/frame/frame_1_png.vtex");
+}
+
+.Yzy_ItemImage.Rarity_2 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/common/frame/frame_2_png.vtex");
+}
+
+.Yzy_ItemImage.Rarity_3 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/common/frame/frame_3_png.vtex");
+}
+
+.Yzy_ItemImage.Rarity_4 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/common/frame/frame_4_png.vtex");
+}
+
+.Yzy_ItemImage.Rarity_5 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/common/frame/frame_5_png.vtex");
+}
+
+.Yzy_ItemImage.Rarity_6 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/common/frame/frame_6_png.vtex");
+}
+
+.Yzy_ItemImage.Rarity_7 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/common/frame/frame_7_png.vtex");
+}
+
+.Yzy_ItemImage > .ItemImage
+{
+	width: 100%;
+	height: 100%;
+	padding: 7px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.Yzy_ItemImage > .BG
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.Yzy_Label
+{
+	font-size: 18px;
+	color: #ffffff;
+	text-shadow: #000 1px 1px 0px 4;
+}
+
+.Yzy_Label.Rarity_1
+{
+	color: #b0c3d9;
+}
+
+.Yzy_Label.Rarity_2
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 80% 80%, from(#f0ffd5), color-stop(0.5, #7eff67), to(#00c864));
+}
+
+.Yzy_Label.Rarity_3
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 80% 80%, from(#9bdddd), color-stop(0.7, #7189ff), to(#0077ff));
+}
+
+.Yzy_Label.Rarity_4
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 80% 80%, from(#fed5ff), color-stop(0.5, #cb8bff), to(#5900ff));
+}
+
+.Yzy_Label.Rarity_5
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 70% 70%, from(#f4ffd5), color-stop(0.3, #fff34f), to(#ffae00));
+}
+
+.Yzy_Label.Rarity_6
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 90% 90%, from(#fbc7dd), color-stop(0.5, #fd5d5d), to(#ff0000));
+}
+
+.Yzy_Label.Rarity_7
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 80% 80%, from(#ff6e7f), color-stop(0.2, #fd5dd0), to(#bfe9ff));
+}
+
+.Yzy_Loading
+{
+	align: center center;
+}
+
+.Yzy_Loading.Wave
+{
+	flow-children: right;
+}
+
+.Yzy_Loading.Wave Panel
+{
+	width: 6px;
+	height: 40px;
+	background-color: white;
+	margin: 0px 3px;
+	border-radius: 10px;
+	animation-name: Yzy_Loading_Wave;
+	animation-duration: 0.8s;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'Yzy_Loading_Wave'
+{
+	0%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	50%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+}
+
+.Yzy_Loading.Wave .WaveCol1
+{
+	animation-name: Yzy_Loading_Wave1;
+}
+
+@keyframes 'Yzy_Loading_Wave1'
+{
+	0%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	50%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+}
+
+.Yzy_Loading.Wave .WaveCol2
+{
+	animation-name: Yzy_Loading_Wave2;
+}
+
+@keyframes 'Yzy_Loading_Wave2'
+{
+	0%
+	{
+		transform: scale3d(1, 0.38268343, 1);
+	}
+	
+	12.5%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	62.5%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.38268343, 1);
+	}
+	
+}
+
+.Yzy_Loading.Wave .WaveCol3
+{
+	animation-name: Yzy_Loading_Wave3;
+}
+
+@keyframes 'Yzy_Loading_Wave3'
+{
+	0%
+	{
+		transform: scale3d(1, 0.70710678, 1);
+	}
+	
+	25%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	75%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.70710678, 1);
+	}
+	
+}
+
+.Yzy_Loading.Wave .WaveCol4
+{
+	animation-name: Yzy_Loading_Wave4;
+}
+
+@keyframes 'Yzy_Loading_Wave4'
+{
+	0%
+	{
+		transform: scale3d(1, 0.92387953, 1);
+	}
+	
+	37.5%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	87.5%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.92387953, 1);
+	}
+	
+}
+
+.Yzy_Loading.Wave .WaveCol5
+{
+	animation-name: Yzy_Loading_Wave5;
+}
+
+@keyframes 'Yzy_Loading_Wave5'
+{
+	0%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	50%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+}
+
+.Yzy_Loading.Wave .WaveCol6
+{
+	animation-name: Yzy_Loading_Wave6;
+}
+
+@keyframes 'Yzy_Loading_Wave6'
+{
+	0%
+	{
+		transform: scale3d(1, 0.92387953, 1);
+	}
+	
+	12.5%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	62.5%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.92387953, 1);
+	}
+	
+}
+
+.Yzy_Loading.Wave .WaveCol7
+{
+	animation-name: Yzy_Loading_Wave7;
+}
+
+@keyframes 'Yzy_Loading_Wave7'
+{
+	0%
+	{
+		transform: scale3d(1, 0.70710678, 1);
+	}
+	
+	25%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	75%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.70710678, 1);
+	}
+	
+}
+
+.Yzy_Loading.Wave .WaveCol8
+{
+	animation-name: Yzy_Loading_Wave8;
+}
+
+@keyframes 'Yzy_Loading_Wave8'
+{
+	0%
+	{
+		transform: scale3d(1, 0.38268343, 1);
+	}
+	
+	37.5%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	87.5%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.38268343, 1);
+	}
+	
+}
+
+.Yzy_Loading.Matrix
+{
+	width: 120px;
+	height: 120px;
+	flow-children: down;
+	transform: rotateZ(-90deg);
+}
+
+.Yzy_Loading.Matrix .Row
+{
+	background-color: white;
+	border-radius: 50%;
+	width: height-percentage(100%);
+	height: 100%;
+	margin: 5px;
+	animation-name: Yzy_Loading_Matrix;
+	animation-duration: 1.6s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'Yzy_Loading_Matrix'
+{
+	50%
+	{
+		transform: scale3d(0.5, 0.5, 1);
+	}
+	
+}
+
+.Yzy_Loading.Matrix .Row1
+{
+	width: 100%;
+	height: 25%;
+	flow-children: right;
+}
+
+.Yzy_Loading.Matrix .Row2
+{
+	width: 100%;
+	height: 25%;
+	flow-children: right;
+}
+
+.Yzy_Loading.Matrix .Row2 .Row
+{
+	animation-delay: 0.2s;
+}
+
+.Yzy_Loading.Matrix .Row3
+{
+	width: 100%;
+	height: 25%;
+	flow-children: right;
+}
+
+.Yzy_Loading.Matrix .Row3 .Row
+{
+	animation-delay: 0.4s;
+}
+
+.Yzy_Loading.Matrix .Row4
+{
+	width: 100%;
+	height: 25%;
+	flow-children: right;
+}
+
+.Yzy_Loading.Matrix .Row4 .Row
+{
+	animation-delay: 0.6s;
+}
+
+.Yzy_Loading.PointSpin
+{
+	width: 24px;
+	height: 24px;
+	transform: rotateZ(45deg);
+	animation-name: YzyLoading_PointSpin;
+	animation-duration: 1.2s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'YzyLoading_PointSpin'
+{
+	0%
+	{
+		transform: rotateZ(360deg);
+	}
+	
+	50%
+	{
+		transform: rotateZ(180deg);
+	}
+	
+	100%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+}
+
+.Yzy_Loading.PointSpin Panel
+{
+	width: 36%;
+	height: 36%;
+	border-radius: 50%;
+	background-color: white;
+}
+
+.Yzy_Loading.PointSpin > .Point1
+{
+	opacity: 1;
+}
+
+.Yzy_Loading.PointSpin > .Point2
+{
+	horizontal-align: right;
+	opacity: 0.7;
+}
+
+.Yzy_Loading.PointSpin > .Point3
+{
+	align: right bottom;
+	opacity: 0.4;
+}
+
+.Yzy_Loading.PointSpin > .Point4
+{
+	align: left bottom;
+	opacity: 0.1;
+}
+
+.Yzy_Loading.Circle
+{
+	width: 50px;
+	height: 50px;
+	align: center center;
+	background-image: url("s2r://panorama/images/status_icons/loadingthrobber_round_psd.vtex");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: contain;
+	animation-name: YzyLoading_Circle;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: reverse;
+}
+
+@keyframes 'YzyLoading_Circle'
+{
+	0%
+	{
+		transform: rotateZ(359.9deg);
+	}
+	
+	50%
+	{
+		transform: rotateZ(180deg);
+	}
+	
+	100%
+	{
+		transform: rotateZ(0.1deg);
+	}
+	
+}
+
+.Yzy_ProgressBar
+{
+	width: 320px;
+	height: 22px;
+	background-color: #2A284FFF;
+	padding: 5px;
+}
+
+.Yzy_ProgressBar > .Yzy_ProgressBar_Left
+{
+	height: 100%;
+	transition-property: position, width;
+	transition-duration: 0.6s;
+	background-color: #D5B661FF;
+	border-radius: 0px;
+}
+
+.Yzy_ProgressBar > .Yzy_ProgressBar_Right
+{
+	height: 100%;
+	horizontal-align: right;
+	background-color: #2A284FFF;
+	transition-property: position, width;
+	transition-duration: 0.6s;
+	z-index: -1;
+}
+
+.Yzy_Button
+{
+	width: 138px;
+	height: width-percentage(36.3%);
+	transition-property: brightness;
+	transition-duration: 0.05s;
+	saturation: 0.5;
+	brightness: 0.5;
+}
+
+.Yzy_Button:enabled
+{
+	saturation: 1;
+	brightness: 1;
+}
+
+.Yzy_Button:enabled:hover
+{
+	brightness: 1.5;
+}
+
+.Yzy_Button:enabled:hover:active
+{
+	brightness: 5.5;
+	sound: "ui_generic_button_click";
+}
+
+.Yzy_Button.Small
+{
+	width: 135px;
+	height: width-percentage(36.3%);
+}
+
+.Yzy_Button > .Image
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.Yzy_Button > .Text
+{
+	align: center center;
+	margin-bottom: 4px;
+	text-align: center;
+	color: #fff;
+	font-size: 22px;
+	text-shadow: 0px 2px 0px 1 #000000;
+	text-overflow: shrink;
+	transition-property: color, opacity;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.Yzy_Button.btn_grey > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_grey_png.vtex");
+}
+
+.Yzy_Button.btn_grey.Small > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_grey_s_png.vtex");
+}
+
+.Yzy_Button.btn_green > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_green_png.vtex");
+}
+
+.Yzy_Button.btn_green.Small > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_green_s_png.vtex");
+}
+
+.Yzy_Button.btn_blue > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_blue_png.vtex");
+}
+
+.Yzy_Button.btn_blue.Small > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_blue_s_png.vtex");
+}
+
+.Yzy_Button.btn_purple > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_purple_png.vtex");
+}
+
+.Yzy_Button.btn_purple.Small > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_purple_s_png.vtex");
+}
+
+.Yzy_Button.btn_golden > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_golden_png.vtex");
+}
+
+.Yzy_Button.btn_golden.Small > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_golden_png.vtex");
+}
+
+.Yzy_Button.btn_red > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_red_png.vtex");
+}
+
+.Yzy_Button.btn_red.Small > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_red_s_png.vtex");
+}
+
+.Yzy_Icon:hover
+{
+	brightness: 1.5;
+}
+
+.Yzy_Icon > .Icon
+{
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.Yzy_Icon.icon_gold > .Icon
+{
+	width: 33px;
+	height: width-percentage(109.09090909%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_gold_png.vtex");
+}
+
+.Yzy_Icon.icon_wood > .Icon
+{
+	width: 33px;
+	height: width-percentage(133.33333333%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_wood_png.vtex");
+}
+
+.Yzy_Icon.icon_kill > .Icon
+{
+	width: 36px;
+	height: width-percentage(102.77777778%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_kill_png.vtex");
+}
+
+.Yzy_Icon.icon_crystal > .Icon
+{
+	width: 25px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_crystal_png.vtex");
+}
+
+.Yzy_Icon.icon_lock > .Icon
+{
+	width: 43px;
+	height: width-percentage(137.20930233%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_lock_png.vtex");
+}
+
+.Yzy_Icon.icon_lock2 > .Icon
+{
+	width: 48px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_lock2_png.vtex");
+}
+
+.Yzy_Icon.icon_unlock2 > .Icon
+{
+	width: 48px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_unlocked2_png.vtex");
+}
+
+.Yzy_Icon.icon_equip_lock > .Icon
+{
+	width: 21px;
+	height: width-percentage(80.95238095%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_equip_lock_png.vtex");
+}
+
+.Yzy_Icon.icon_equip_wear > .Icon
+{
+	width: 52px;
+	height: width-percentage(101.92307692%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_equip_wear_png.vtex");
+}
+
+.Yzy_Icon.icon_arrow > .Icon
+{
+	width: 41px;
+	height: width-percentage(70.73170732%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_arrow_png.vtex");
+}
+
+.Yzy_Icon.icon_arrow_1 > .Icon
+{
+	width: 53px;
+	height: width-percentage(71.69811321%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_arrow_1_png.vtex");
+}
+
+.Yzy_Icon.icon_star > .Icon
+{
+	width: 64px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_star_png.vtex");
+}
+
+.Yzy_Icon.icon_tips > .Icon
+{
+	width: 37px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_tips_png.vtex");
+}
+
+.Yzy_Icon.icon_life > .Icon
+{
+	width: 128px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_life_png.vtex");
+}
+
+.Yzy_Icon.icon_y > .Icon
+{
+	width: 66px;
+	height: width-percentage(84.84848485%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_y_png.vtex");
+}
+
+.Yzy_Icon.icon_x > .Icon
+{
+	width: 54px;
+	height: width-percentage(88.88888889%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_x_png.vtex");
+}
+
+.Yzy_Icon.icon_up > .Icon
+{
+	width: 30px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_up_png.vtex");
+}
+
+.Yzy_Icon.icon_n > .Icon
+{
+	width: 57px;
+	height: width-percentage(63.15789474%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_n_png.vtex");
+}
+
+.Yzy_Icon.icon_r > .Icon
+{
+	width: 42px;
+	height: width-percentage(85.71428571%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_r_png.vtex");
+}
+
+.Yzy_Icon.icon_sr > .Icon
+{
+	width: 61px;
+	height: width-percentage(59.01639344%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_sr_png.vtex");
+}
+
+.Yzy_Icon.icon_ssr > .Icon
+{
+	width: 80px;
+	height: width-percentage(45%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_ssr_png.vtex");
+}
+
+.Yzy_Icon.icon_ur > .Icon
+{
+	width: 80px;
+	height: width-percentage(45%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_ur_png.vtex");
+}
+
+.Yzy_Icon.icon_new > .Icon
+{
+	width: 54px;
+	height: width-percentage(48.14814815%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_new_png.vtex");
+}
+
+.Yzy_Icon.icon_score > .Icon
+{
+	width: 22px;
+	height: width-percentage(127.27272727%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_score_png.vtex");
+}
+
+.Yzy_Icon.icon_wechat > .Icon
+{
+	width: 657px;
+	height: width-percentage(87.97564688%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_wechat_png.vtex");
+}
+
+.Yzy_Icon.icon_alipay > .Icon
+{
+	width: 120px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_alipay_png.vtex");
+}
+
+.Yzy_Icon.icon_destiny_star > .Icon
+{
+	width: 25px;
+	height: width-percentage(104%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_destiny_star_png.vtex");
+}
+
+.Yzy_Icon.icon_system_lock > .Icon
+{
+	width: 25px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/pings/ping_icon_retreat_psd.vtex");
+}
+
+.Yzy_Icon.icon_archive > .Icon
+{
+	width: 26px;
+	height: width-percentage(92.30769231%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_archive_png.vtex");
+}
+
+.Yzy_Icon.icon_archive_dis > .Icon
+{
+	width: 22px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_archive_dis_png.vtex");
+}
+
+.Yzy_IconButton
+{
+	transition-property: brightness;
+	transition-duration: 0.05s;
+}
+
+.Yzy_IconButton:disabled
+{
+	saturation: 0;
+	brightness: 0.8;
+}
+
+.Yzy_IconButton:enabled:hover
+{
+	brightness: 1.5;
+}
+
+.Yzy_IconButton:enabled:hover:active
+{
+	brightness: 5.5;
+	sound: "ui_generic_button_click";
+}
+
+.Yzy_IconButton > .Icon
+{
+	vertical-align: center;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.Yzy_IconButton > .Text
+{
+	vertical-align: center;
+}
+
+.Yzy_IconButton.icon_btn_close > .Icon
+{
+	width: 37px;
+	height: width-percentage(91.89189189%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_close_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_close_1 > .Icon
+{
+	width: 80px;
+	height: width-percentage(105%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_close_1_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_serch > .Icon
+{
+	width: 24px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_serch_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_tips > .Icon
+{
+	width: 42px;
+	height: width-percentage(100%);
+	background-image: url("s2r://");
+}
+
+.Yzy_IconButton.icon_btn_arrow > .Icon
+{
+	width: 32px;
+	height: width-percentage(125%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_arrow_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_filter01 > .Icon
+{
+	width: 22px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_filter01_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_filter02 > .Icon
+{
+	width: 22px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_filter02_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_add > .Icon
+{
+	width: 34px;
+	height: width-percentage(94.11764706%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_add_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_add_1 > .Icon
+{
+	width: 42px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_add_1_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_sub > .Icon
+{
+	width: 42px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_sub_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_lock > .Icon
+{
+	width: 28px;
+	height: width-percentage(121.42857143%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_lock_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_refresh > .Icon
+{
+	width: 40px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_refresh_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_arrange > .Icon
+{
+	width: 40px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_arrange_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_reset > .Icon
+{
+	width: 32px;
+	height: width-percentage(106.25%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_reset_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_query > .Icon
+{
+	width: 32px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_query_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_break > .Icon
+{
+	width: 32px;
+	height: width-percentage(106.25%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_break_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_cdk > .Icon
+{
+	width: 66px;
+	height: width-percentage(57.57575758%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_cdk_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_overview > .Icon
+{
+	width: 30px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_overview_png.vtex");
+}
+
+.Yzy_IconRarity
+{
+	width: 300px;
+	height: width-percentage(60%);
+}
+
+.Yzy_IconRarity.1
+{
+	background-image: url("s2r://");
+	background-size: 100%;
+}
+
+.Yzy_IconRarity.2
+{
+	background-image: url("s2r://panorama/images/custom_game/common/icon_rarity/icon_rarity_2_png.vtex");
+	background-size: 100%;
+}
+
+.Yzy_IconRarity.3
+{
+	background-image: url("s2r://panorama/images/custom_game/common/icon_rarity/icon_rarity_3_png.vtex");
+	background-size: 100%;
+}
+
+.Yzy_IconRarity.4
+{
+	background-image: url("s2r://panorama/images/custom_game/common/icon_rarity/icon_rarity_4_png.vtex");
+	background-size: 100%;
+}
+
+.Yzy_IconRarity.5
+{
+	background-image: url("s2r://panorama/images/custom_game/common/icon_rarity/icon_rarity_5_png.vtex");
+	background-size: 100%;
+}
+
+.Yzy_IconRarity.6
+{
+	background-image: url("s2r://panorama/images/custom_game/common/icon_rarity/icon_rarity_6_png.vtex");
+	background-size: 100%;
+}
+
+.Yzy_Attribute
+{
+	flow-children: right;
+}
+
+.Yzy_Attribute Label
+{
+	vertical-align: center;
+	margin: 1px;
+	font-size: 16px;
+	color: #fff;
+	text-shadow: #000 1px 1px 4px 3;
+}
+
+.Yzy_Attribute > .Value
+{
+	color: #34ec1a;
+	font-weight: semi-bold;
+	margin: 2px;
+}
+
+.Yzy_Attribute .AbilityValues,.Yzy_Attribute .NumberValues
+{
+	color: #00ff00;
+	font-weight: semi-bold;
+}
+
+.Yzy_Attribute .GameplayValues.CurLvl
+{
+	color: #00ff00;
+	font-weight: semi-bold;
+}
+
+.Yzy_Description
+{
+	font-size: 16px;
+	color: #fff;
+	text-shadow: #000 0px 0px 4px 2;
+}
+
+.Yzy_Description .AbilityValues
+{
+	color: #00ff00;
+	font-weight: semi-bold;
+}
+
+.Yzy_Description .GameplayValues.CurLvl
+{
+	color: #00ff00;
+	font-weight: semi-bold;
+}
+
+.Yzy_ServiceItem
+{
+	width: 96px;
+	height: width-percentage(100%);
+}
+
+.Yzy_ServiceItem.Rarity_1 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/service/item_rarity_bg/item_rarity_bg_1_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.Yzy_ServiceItem.Rarity_2 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/service/item_rarity_bg/item_rarity_bg_2_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.Yzy_ServiceItem.Rarity_3 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/service/item_rarity_bg/item_rarity_bg_3_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.Yzy_ServiceItem.Rarity_4 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/service/item_rarity_bg/item_rarity_bg_4_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.Yzy_ServiceItem.Rarity_5 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/service/item_rarity_bg/item_rarity_bg_5_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.Yzy_ServiceItem.Rarity_6 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/service/item_rarity_bg/item_rarity_bg_6_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.Yzy_ServiceItem.Rarity_7 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/service/item_rarity_bg/item_rarity_bg_7_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.Yzy_ServiceItem > .BG
+{
+	width: 100%;
+	height: 100%;
+}
+
+.Yzy_ServiceItem #ItemImage
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+}
+
+.Yzy_ServiceItem #ItemCount
+{
+	align: right bottom;
+	color: white;
+	font-size: 14px;
+	margin-right: 4px;
+	margin-bottom: 4px;
+	text-shadow: #000 1px 1px 1px 2;
+}
+
+.Yzy_ServiceItemName
+{
+	text-overflow: shrink;
+	color: #FFEFDA;
+	font-size: 20px;
+	text-shadow: 0px 0px 2px 2 #000000;
+}
+
+.Yzy_ServiceAssetCost
+{
+	align: center center;
+	flow-children: right-wrap;
+}
+
+.Yzy_ServiceAssetCost .AssetCostRow
+{
+	margin: 0px 5px;
+	flow-children: right;
+}
+
+.Yzy_ServiceAssetCost .AssetCostRow #ItemImage
+{
+	width: 30px;
+	height: 30px;
+	align: center center;
+}
+
+.Yzy_ServiceAssetCost .AssetCostRow #ItemCount
+{
+	align: center center;
+	color: white;
+	font-size: 18px;
+	text-shadow: #000 0px 0px 4px 2;
+}
+
+.Yzy_ServiceTokenImage
+{
+	width: 50px;
+	height: width-percentage(100%);
+	align: center center;
+	img-shadow: 0px 0px 2px 1 #000000;
+}
+
+.NotificationRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#SideNotificationRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#SideNotificationRoot #SideNotification
+{
+	width: 1200px;
+	height: 230px;
+	align: left top;
+	margin-top: 600px;
+	transform: scaleY(-1);
+	overflow: noclip clip;
+}
+
+#SideNotificationRoot #SideNotification > VerticalScrollBar
+{
+	width: 2px;
+	horizontal-align: left;
+}
+
+#SideNotificationRoot #SideNotification > VerticalScrollBar > #ScrollThumb
+{
+	border: 0px solid #0000;
+}
+
+#SideNotificationRoot #SideNotification.RevealCollapsed
+{
+	overflow: noclip scroll;
+}
+
+#SideNotificationRoot #SideNotification.RevealCollapsed > .Body .ToastPanel
+{
+	opacity: 1;
+	visibility: visible;
+	transform: translateX(0px);
+	transition-duration: 0s;
+}
+
+#SideNotificationRoot #SideNotification.RevealCollapsed > .Body .ToastPanel.Collapse
+{
+	visibility: visible;
+}
+
+#SideNotificationRoot #SideNotification > .Body
+{
+	width: 100%;
+	flow-children: down;
+	overflow: noclip noclip;
+	transform: scaleY(-1);
+}
+
+#SideNotificationRoot #SideNotification > .Body .ToastPanel
+{
+	margin: 2px 2px 2px 2px;
+	horizontal-align: left;
+	flow-children: right;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(0, 0, 0, 0.5)), color-stop(0.3, #000c), to(#0000));
+	opacity: 0;
+	transform: translateX(-150px);
+	transition-property: opacity, transform;
+	transition-duration: 0.2s;
+	animation-name: AnimToastPanel;
+	animation-duration: 0.41s;
+}
+
+@keyframes 'AnimToastPanel'
+{
+	0%
+	{
+		opacity: 0;
+	}
+	
+	50%
+	{
+		opacity: 0.5;
+	}
+	
+	100%
+	{
+		opacity: 1;
+	}
+	
+}
+
+#SideNotificationRoot #SideNotification > .Body .ToastPanel.ToastVisible
+{
+	opacity: 1;
+	transform: none;
+}
+
+#SideNotificationRoot #SideNotification > .Body .ToastPanel.Collapse
+{
+	visibility: collapse;
+	transition-duration: 0s;
+}
+
+#SideNotificationRoot #SideNotification > .Body .ToastPanel.AthenaUnderAttack .MsgLabel
+{
+	color: #FF5F5F;
+}
+
+#SideNotificationRoot #SideNotification > .Body .ToastPanel .MsgLabel
+{
+	align: left center;
+	font-family: title;
+	color: white;
+	font-size: 20px;
+	text-shadow: #000a 2px 1px 1px 2;
+	text-overflow: shrink;
+}
+
+#SideNotificationRoot #SideNotification > .Body .ToastPanel > .PlayerPanel
+{
+	flow-children: right;
+	height: 30px;
+}
+
+#SideNotificationRoot #SideNotification > .Body .ToastPanel > .MsgItemImage
+{
+	width: height-percentage(100%);
+	height: 100%;
+	border: 1px solid black;
+}
+
+#TopNotificationRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#TopNotificationRoot #TopNotification
+{
+	width: 100%;
+	height: 100%;
+}
+
+#TopNotificationRoot #TopNotification #TopNotificationPanel
+{
+	width: 719px;
+	height: 223px;
+	margin-top: 70px;
+	align: center top;
+}
+
+#TopNotificationRoot #TopNotification #TopNotificationPanel #TopNotificationParticle
+{
+	width: 1438px;
+	height: 446px;
+	align: center center;
+	margin: -111.5px -359.5px;
+	overflow: noclip;
+}
+
+#TopNotificationRoot #TopNotification #TopNotificationPanel #TopNotificationTitle
+{
+	margin-left: -470px;
+	align: center center;
+	font-size: 48px;
+	color: gradient(linear, 0% 70%, 0% 100%, from(#FFFCC5), to(#FFF6ED));
+	text-shadow: 0px 0px 6px 4 black;
+	text-align: center;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-in-out;
+}
+
+#TopNotificationRoot #TopNotification #TopNotificationPanel #TopNotificationTitle.PopOut
+{
+	opacity: 1;
+	animation-name: TopTitlePopOut;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+@keyframes 'TopTitlePopOut'
+{
+	0%
+	{
+		pre-transform-scale2d: 0.8;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 1.2;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+#TopNotificationRoot #TopNotification #TopNotificationPanel #TopNotificationText
+{
+	margin-left: 230px;
+	margin-right: 80px;
+	align: left center;
+	animation-name: none;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-in-out;
+}
+
+#TopNotificationRoot #TopNotification #TopNotificationPanel #TopNotificationText.PopOut
+{
+	opacity: 1;
+	animation-name: TopTextPopOut;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+@keyframes 'TopTextPopOut'
+{
+	0%
+	{
+		clip: rect(0%, 0%, 100%, 0%);
+	}
+	
+	100%
+	{
+		clip: rect(0%, 100%, 100%, 0%);
+	}
+	
+}
+
+#TopNotificationRoot #TopNotification #TopNotificationPanel #TopNotificationText #MsgContainer
+{
+	flow-children: right;
+}
+
+#TopNotificationRoot #TopNotification #TopNotificationPanel #TopNotificationText #MsgContainer .MsgLabel
+{
+	align: left center;
+	font-family: title;
+	color: white;
+	font-size: 20px;
+	text-shadow: #000a 2px 1px 1px 2;
+	text-overflow: shrink;
+}
+
+#TopNotificationRoot #TopNotification #TopNotificationPanel #TopNotificationText #MsgContainer > .PlayerPanel
+{
+	flow-children: right;
+	height: 30px;
+}
+
+#TopNotificationRoot #TopNotification #TopNotificationPanel #TopNotificationText #MsgContainer > .MsgItemImage
+{
+	width: height-percentage(100%);
+	height: 100%;
+	border: 1px solid black;
+}
+
+#BulletNotificationRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#BulletNotificationRoot #BulletNotification
+{
+	width: 100%;
+	height: 45%;
+	margin-top: 15%;
+	overflow: noclip;
+}
+
+#BulletNotificationRoot #BulletNotification #BulletNotificationPanel
+{
+	min-width: 400px;
+	height: 55px;
+	margin-top: 30px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#000000), color-stop(0.5, #000a), to(#00000000));
+	opacity: 1;
+	animation-name: BulletNotificationShowAnmt;
+	animation-duration: 15s;
+	animation-timing-function: linear;
+	animation-iteration-count: 1;
+}
+
+@keyframes 'BulletNotificationShowAnmt'
+{
+	0%
+	{
+		opacity: 1;
+		transform: translateX(100%);
+	}
+	
+	99%
+	{
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translateX(-100%);
+	}
+	
+}
+
+#BulletNotificationRoot #BulletNotification #BulletNotificationPanel #BulletNotificationText
+{
+	margin-left: 80px;
+	align: left center;
+	animation-name: none;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-in-out;
+}
+
+#BulletNotificationRoot #BulletNotification #BulletNotificationPanel #BulletNotificationText.PopOut
+{
+	opacity: 1;
+	animation-name: BulletTextPopOut;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+@keyframes 'BulletTextPopOut'
+{
+	0%
+	{
+		clip: rect(0%, 0%, 100%, 0%);
+	}
+	
+	100%
+	{
+		clip: rect(0%, 100%, 100%, 0%);
+	}
+	
+}
+
+#BulletNotificationRoot #BulletNotification #BulletNotificationPanel #BulletNotificationText #MsgContainer
+{
+	flow-children: right;
+}
+
+#BulletNotificationRoot #BulletNotification #BulletNotificationPanel #BulletNotificationText #MsgContainer .MsgLabel
+{
+	align: left center;
+	font-family: title;
+	color: white;
+	font-size: 20px;
+	text-shadow: #000a 2px 1px 1px 2;
+	text-overflow: shrink;
+}
+
+#BulletNotificationRoot #BulletNotification #BulletNotificationPanel #BulletNotificationText #MsgContainer > .PlayerPanel
+{
+	flow-children: right;
+	height: 30px;
+}
+
+#BulletNotificationRoot #BulletNotification #BulletNotificationPanel #BulletNotificationText #MsgContainer > .MsgItemImage
+{
+	width: height-percentage(100%);
+	height: 100%;
+	border: 1px solid black;
+}
+
+#RewardNotificationRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#RewardNotificationRoot #RewardNotification
+{
+	width: 100%;
+	height: 50%;
+	align: center top;
+	margin-top: 50%;
+	margin-bottom: 200px;
+	flow-children: down;
+}
+
+#RewardNotificationRoot #RewardNotification .MsgPanel
+{
+	width: 400px;
+	height: 50px;
+	align: center top;
+	margin: 5px 0px;
+	transition-property: position;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in;
+	animation-name: ShowAnmt;
+	animation-duration: 0.2s;
+	animation-timing-function: ease-out;
+}
+
+@keyframes 'ShowAnmt'
+{
+	0%
+	{
+		brightness: 2;
+		transform: scaleY(0.5) translateX(-100px);
+		opacity-brush: gradient(linear, 0% 0%, 100% 0%, from(#fff0), color-stop(0.45, #fff0), color-stop(0.5, #fff6), color-stop(0.55, #fff0), to(#fff0));
+	}
+	
+	100%
+	{
+		brightness: 1;
+		transform: scaleY(1) translateX(0px);
+		opacity-brush: gradient(linear, 0% 0%, 100% 0%, from(#fff), color-stop(0.45, #fff), color-stop(0.5, #fff), color-stop(0.55, #fff), to(#fff));
+	}
+	
+}
+
+#RewardNotificationRoot #RewardNotification .MsgPanel.Disable
+{
+	opacity: 0;
+	animation-name: HideAnmtHide;
+	animation-duration: 0.2s;
+	animation-timing-function: ease-in;
+}
+
+@keyframes 'HideAnmtHide'
+{
+	0%
+	{
+		transform: scaleY(1) translateX(0px);
+		opacity: 1;
+		opacity-brush: gradient(linear, 0% 0%, 100% 0%, from(#fff), color-stop(0.45, #fff), color-stop(0.5, #fff), color-stop(0.55, #fff), to(#fff));
+	}
+	
+	100%
+	{
+		transform: scaleY(0) translateX(100px);
+		opacity: 0.1;
+		opacity-brush: gradient(linear, 0% 0%, 100% 0%, from(#fff0), color-stop(0.45, #fff0), color-stop(0.5, #fff0), color-stop(0.55, #fff0), to(#fff0));
+	}
+	
+}
+
+#RewardNotificationRoot #RewardNotification .MsgPanel > .Body
+{
+	align: center center;
+	flow-children: right;
+}
+
+#RewardNotificationRoot #RewardNotification .MsgPanel > .Body .Yzy_ServiceItem
+{
+	width: 40px;
+}
+
+#RewardNotificationRoot #RewardNotification .MsgPanel > .Body .Yzy_ServiceItem #ItemCount
+{
+	font-size: 12px;
+}
+
+#SideRewardNotificationRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#SideRewardNotificationRoot #SideRewardNotification
+{
+	overflow: clip clip;
+	align: right bottom;
+	margin-bottom: 265px;
+	transform: scaleY(-1);
+	max-height: 526px;
+	opacity-mask: url("s2r://panorama/images/custom_game/masks/message_mask_png.vtex");
+	padding-bottom: 20px;
+}
+
+#SideRewardNotificationRoot #SideRewardNotification > VerticalScrollBar
+{
+	opacity: 0;
+}
+
+#SideRewardNotificationRoot #SideRewardNotification #SideRewardNotificationWrapper
+{
+	overflow: noclip noclip;
+}
+
+#SideRewardNotificationRoot #SideRewardNotification #SideRewardNotificationWrapper > .Body
+{
+	flow-children: down;
+	overflow: noclip noclip;
+	transform: scaleY(-1);
+}
+
+#SideRewardNotificationRoot #SideRewardNotification #SideRewardNotificationWrapper > .Body .ToastPanel
+{
+	transition-property: transform, position;
+	transition-duration: 0.15s;
+	transform: translateX(316px);
+	margin: 4px 0px;
+}
+
+#SideRewardNotificationRoot #SideRewardNotification #SideRewardNotificationWrapper > .Body .ToastPanel.Collapse
+{
+	transform: translateX(316px);
+}
+
+#SideRewardNotificationRoot #SideRewardNotification #SideRewardNotificationWrapper > .Body .ToastPanel.ToastVisible
+{
+	transform: translateX(0px);
+}
+
+#SideRewardNotificationRoot #SideRewardNotification #SideRewardNotificationWrapper > .Body .ToastPanel.ItemRow
+{
+	width: 316px;
+	height: 72px;
+	background-image: url("s2r://panorama/images/custom_game/common/receive_msg/mgs_bg_1_png.vtex");
+	background-size: 100%;
+}
+
+#SideRewardNotificationRoot #SideRewardNotification #SideRewardNotificationWrapper > .Body .ToastPanel.ItemRow.Rarity_1
+{
+	background-image: url("s2r://panorama/images/custom_game/common/receive_msg/mgs_bg_1_png.vtex");
+}
+
+#SideRewardNotificationRoot #SideRewardNotification #SideRewardNotificationWrapper > .Body .ToastPanel.ItemRow.Rarity_2
+{
+	background-image: url("s2r://panorama/images/custom_game/common/receive_msg/mgs_bg_2_png.vtex");
+}
+
+#SideRewardNotificationRoot #SideRewardNotification #SideRewardNotificationWrapper > .Body .ToastPanel.ItemRow.Rarity_3
+{
+	background-image: url("s2r://panorama/images/custom_game/common/receive_msg/mgs_bg_3_png.vtex");
+}
+
+#SideRewardNotificationRoot #SideRewardNotification #SideRewardNotificationWrapper > .Body .ToastPanel.ItemRow.Rarity_4
+{
+	background-image: url("s2r://panorama/images/custom_game/common/receive_msg/mgs_bg_4_png.vtex");
+}
+
+#SideRewardNotificationRoot #SideRewardNotification #SideRewardNotificationWrapper > .Body .ToastPanel.ItemRow.Rarity_5
+{
+	background-image: url("s2r://panorama/images/custom_game/common/receive_msg/mgs_bg_5_png.vtex");
+}
+
+#SideRewardNotificationRoot #SideRewardNotification #SideRewardNotificationWrapper > .Body .ToastPanel.ItemRow.Rarity_6
+{
+	background-image: url("s2r://panorama/images/custom_game/common/receive_msg/mgs_bg_6_png.vtex");
+}
+
+#SideRewardNotificationRoot #SideRewardNotification #SideRewardNotificationWrapper > .Body .ToastPanel.ItemRow .Yzy_ServiceItem
+{
+	width: 50px;
+	height: width-percentage(100%);
+	margin-left: 40px;
+	vertical-align: center;
+}
+
+#SideRewardNotificationRoot #SideRewardNotification #SideRewardNotificationWrapper > .Body .ToastPanel.ItemRow .Yzy_ServiceItemName
+{
+	width: 100%;
+	margin-left: 110px;
+	align: left center;
+}
+
+#AddCardAnimationNotificationRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#AddCardAnimationNotificationRoot #AddCardAnimationNotification
+{
+	width: 100%;
+	height: 100%;
+}
+
+#AddCardAnimationNotificationRoot #AddCardAnimationNotification #AddCardAnimationPanel
+{
+	width: 100%;
+	height: 100%;
+}
+
+#DevourCardAnimationNotificationRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#DevourCardAnimationNotificationRoot #DevourCardAnimationNotification
+{
+	width: 100%;
+	height: 100%;
+}
+
+#DevourCardAnimationNotificationRoot #DevourCardAnimationNotification #DevourCardAnimationPanel
+{
+	width: 100%;
+	height: 100%;
+}
+
+.FlyAni
+{
+	opacity: 1;
+	transition-timing-function: ease-out;
+	transition-property: pre-transform-scale2d, position, transition-duration, opacity;
+}

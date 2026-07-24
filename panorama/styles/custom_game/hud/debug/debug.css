@@ -1,0 +1,3691 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.BTViewRoot
+{
+	width: 100%;
+	height: 100%;
+	align: center top;
+	overflow: clip;
+}
+
+.BTView
+{
+	width: 500px;
+	height: 500px;
+	background-color: #0008;
+	border: 1px solid #000a;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#8dc0f211), color-stop(0.004, #0e1318cc), color-stop(0.5, #212e3bcc), to(#0e1318dd));
+	box-shadow: fill #000000aa 0px 0px 12px 0px;
+}
+
+.BTView > .Hander
+{
+	width: 100%;
+	height: 25px;
+	z-index: 100;
+	background-color: #f3f3f3;
+}
+
+.BTView > .Hander #BTIcon
+{
+	align: left center;
+	width: 16px;
+	height: 16px;
+	margin-left: 4px;
+	background-image: url("s2r://");
+	background-size: 100%;
+	img-shadow: 0px 0px 1px 1 #000;
+}
+
+.BTView > .Hander #BTTitle
+{
+	align: left center;
+	margin-left: 24px;
+	color: #000;
+	font-size: 14px;
+}
+
+.BTView > .Hander #BTCloseBtn
+{
+	align: right center;
+	height: 100%;
+	padding: 0px 20px;
+	background-image: url("s2r://panorama/images/control_icons/x_close_grey_psd.vtex");
+	background-size: 16px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.BTView > .Hander #BTCloseBtn:hover
+{
+	background-color: #c42b1c;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+}
+
+.BTView .LineBox
+{
+	width: 100%;
+	height: 100%;
+}
+
+.BTView > .Body
+{
+	align: center center;
+	overflow: noclip;
+	transition-property: pre-transform-scale2d;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-out;
+}
+
+.BTView .BoxSide
+{
+	height: 3px;
+	width: 3px;
+	z-index: 101;
+}
+
+.BTView .BoxSide:hover
+{
+	background-color: #b0b0b066;
+}
+
+.BTView #RightSide
+{
+	align: right center;
+	height: 100%;
+	margin-right: -1px;
+}
+
+.BTView #BottomSide
+{
+	align: center bottom;
+	width: 100%;
+	margin-bottom: -1px;
+}
+
+.BTView #LeftSide
+{
+	align: left center;
+	height: 100%;
+	margin-left: -1px;
+}
+
+.BTView.FullScreen .BoxSide
+{
+	visibility: collapse;
+}
+
+.BTView:not(.Alive) #BTTitle
+{
+	color: red;
+}
+
+.BTNodePanel
+{
+	align: center top;
+	flow-children: down;
+}
+
+.BTNodePanel #BTHeadLine
+{
+	align: center top;
+	margin-top: 30px;
+	margin-bottom: -10px;
+}
+
+.BTNodePanel #BTTailLine
+{
+	align: center top;
+	margin-bottom: 30px;
+	margin-top: -10px;
+}
+
+.BTNodePanel #BTBox
+{
+	align: center top;
+	padding: 10px;
+	wash-color: #000a;
+	opacity: 0.5;
+}
+
+.BTNodePanel #BTBox > .BG
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 140%, from(#b9e2dc3d), color-stop(0.1, #77ADA422), color-stop(0.3, #aae2d924), color-stop(0.7, #c7ece632), color-stop(0.8, #aae2d924), to(#77ADA405));
+	border: 1px solid white;
+	border-radius: 8px;
+	border-brush: gradient(linear, 0% 0%, 15% 150%, from(#77ADA422), color-stop(0.3, #aae2d934), color-stop(0.5, #ebfffcab), color-stop(0.6, #aae2d934), to(#77ADA411));
+	box-shadow: 2px 2px 4px #000a;
+}
+
+.BTNodePanel #BTBox > .Body
+{
+	width: 150px;
+	min-height: 60px;
+	padding: 8px 8px 4px 8px;
+	flow-children: down;
+}
+
+.BTNodePanel #BTBox > #BTTypeIcon
+{
+	align: left center;
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	z-index: 1;
+	overflow: noclip;
+}
+
+.BTNodePanel #BTBox > #BTTypeIcon Image
+{
+	align: left top;
+	width: 24px;
+	height: width-percentage(100%);
+	margin-left: -8px;
+	margin-top: 2px;
+}
+
+.BTNodePanel #BTName
+{
+	align: center center;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	text-shadow: 2px 2px 4px 2 black;
+	text-overflow: shrink;
+	text-align: center;
+}
+
+.BTNodePanel #BTEvaluate
+{
+	align: center top;
+	margin-top: 2px;
+	font-size: 18px;
+	font-weight: semi-bold;
+	text-shadow: 2px 2px 4px 2 black;
+}
+
+.BTNodePanel #BTStatus
+{
+	align: center top;
+	margin-top: 2px;
+	font-size: 18px;
+	font-weight: semi-bold;
+	text-shadow: 2px 2px 4px 2 black;
+}
+
+.BTNodePanel #BTChildrenBox
+{
+	align: center top;
+	margin-left: -3px;
+	flow-children: right;
+}
+
+.BTNodePanel #BTChildrenBox > Panel
+{
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.BTNodePanel.Activated > #BTBox
+{
+	opacity: 1;
+	brightness: 1.5;
+	wash-color: none;
+}
+
+.BTNodePanel.Type_Precondition > #BTBox > .BG
+{
+	saturation: 0;
+	wash-color: #ff9437;
+}
+
+.BTNodePanel.Type_Control > #BTBox > .BG
+{
+	saturation: 0;
+	wash-color: #a938ff;
+}
+
+.BTNodePanel.Type_Precondition.Success > #BTBox > .BG
+{
+	saturation: 0;
+	wash-color: #37ff37;
+}
+
+.BTNodePanel.Fail > #BTBox > .BG
+{
+	saturation: 0;
+	wash-color: #ff2424;
+}
+
+.BTLine
+{
+	height: 4px;
+	background-color: #aaa3;
+	opacity: 0.5;
+}
+
+.BTLine.Activated
+{
+	opacity: 1;
+	background-color: #fff;
+}
+
+#UIHelperRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#UIHelperPanel
+{
+	width: 100%;
+	height: 100%;
+}
+
+#UIHelperPanel #CutoffLinePanel
+{
+	width: 100%;
+	height: 100%;
+}
+
+#UIHelperPanel #CutoffLinePanel > Panel
+{
+	width: 100%;
+	height: 100%;
+}
+
+#UIHelperPanel #CutoffLinePanel > .XLineBox
+{
+	flow-children: right;
+}
+
+#UIHelperPanel #CutoffLinePanel > .XLineBox > Panel
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	border-left: 0.5px dashed #fffa;
+	border-right: 0.5px dashed #fffa;
+}
+
+#UIHelperPanel #CutoffLinePanel > .YLineBox
+{
+	flow-children: down;
+}
+
+#UIHelperPanel #CutoffLinePanel > .YLineBox > Panel
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	border-top: 0.5px dashed #fffa;
+	border-bottom: 0.5px dashed #fffa;
+}
+
+#UIHelperPanel #VernierPanel
+{
+	width: 100%;
+	height: 100%;
+}
+
+#UIHelperPanel #VernierPanel > .XLien
+{
+	width: 1px;
+	height: 100%;
+	background-color: #f00a;
+}
+
+#UIHelperPanel #VernierPanel > .YLien
+{
+	width: 100%;
+	height: 1px;
+	background-color: #f00a;
+}
+
+#UIHelperPanel #VernierPanel #ControlPanel
+{
+	width: 200px;
+	height: 200px;
+	margin-left: -100px;
+	margin-top: -100px;
+}
+
+#UIHelperPanel #VernierPanel #ControlPanel > Button
+{
+	width: 16px;
+	height: 16px;
+	align: center center;
+	border-radius: 50%;
+	background-color: #f00a;
+}
+
+#UIHelperPanel #VernierPanel #ControlPanel > Button:hover
+{
+	background-color: #f009;
+}
+
+#UIHelperPanel #VernierPanel #ControlPanel > Label
+{
+	color: #fff;
+	font-size: 12px;
+	text-shadow: 0px 0px 2px 4 #000;
+}
+
+#UIHelperPanel #VernierPanel #ControlPanel .TopLabel
+{
+	align: center center;
+	margin-top: -25px;
+}
+
+#UIHelperPanel #VernierPanel #ControlPanel .RightLabel
+{
+	align: right center;
+	width: 50%;
+	padding-left: 20px;
+}
+
+#UIHelperPanel #VernierPanel #ControlPanel .BottomLabel
+{
+	align: center center;
+	margin-top: 50px;
+}
+
+#UIHelperPanel #VernierPanel #ControlPanel .LeftLabel
+{
+	align: left center;
+	width: 50%;
+	padding-right: 20px;
+	text-align: right;
+}
+
+.GameplayItem DOTAItemImage
+{
+	width: 88px;
+	height: 88px;
+}
+
+.GameplayItem Image
+{
+	width: 88px;
+	height: 88px;
+}
+
+.GameplayItem > .ActiveIcon
+{
+	width: 19px;
+	height: 20px;
+	align: center center;
+	background-image: url("s2r://");
+	background-size: 100%;
+	wash-color: #20f320;
+	transition-property: opacity;
+	transition-duration: 0.1s;
+}
+
+.GameplayItem.CastHelper_Active
+{
+	brightness: 1.5;
+}
+
+.GameplayItem.CastHelper_Disable
+{
+	brightness: 0.1;
+}
+
+#WindowRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#WindowRoot > .WindowBox
+{
+	width: 100%;
+	height: 100%;
+	overflow: clip;
+}
+
+.Window
+{
+	background-color: #0008;
+	border: 1px solid #000a;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#8dc0f211), color-stop(0.004, #0e1318cc), color-stop(0.5, #212e3bcc), to(#0e1318dd));
+	box-shadow: fill #000000aa 0px 0px 12px 0px;
+}
+
+.Window > .Header
+{
+	width: 100%;
+	height: 25px;
+	z-index: 100;
+	background-color: #f3f3f3;
+}
+
+.Window > .Header #WindowTitle
+{
+	align: left center;
+	margin-left: 24px;
+	color: #000;
+	font-size: 14px;
+}
+
+.Window > .Header #WindowCloseBtn
+{
+	align: right center;
+	height: 100%;
+	padding: 0px 20px;
+	background-image: url("s2r://panorama/images/control_icons/x_close_grey_psd.vtex");
+	background-size: 16px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.Window > .Header #WindowCloseBtn:hover
+{
+	background-color: #c42b1c;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+}
+
+.Window .LineBox
+{
+	width: 100%;
+	height: 100%;
+}
+
+.Window > .Body
+{
+	width: 100%;
+	height: 100%;
+	margin-top: 25px;
+}
+
+.Window .BoxSide
+{
+	height: 3px;
+	width: 3px;
+	z-index: 101;
+}
+
+.Window .BoxSide:hover
+{
+	background-color: #b0b0b066;
+}
+
+.Window #RightSide
+{
+	align: right center;
+	height: 100%;
+	margin-right: -1px;
+}
+
+.Window #BottomSide
+{
+	align: center bottom;
+	width: 100%;
+	margin-bottom: -1px;
+}
+
+.Window #LeftSide
+{
+	align: left center;
+	height: 100%;
+	margin-left: -1px;
+}
+
+.Window.FullScreen .BoxSide
+{
+	visibility: collapse;
+}
+
+.Window:not(.Alive) #BTTitle
+{
+	color: red;
+}
+
+#Window_NetFlow
+{
+	width: 500px;
+	height: 250px;
+}
+
+.NetFlowPanel
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+}
+
+.NetFlowPanel > .Header
+{
+	width: 100%;
+	height: 50px;
+	flow-children: right;
+	background-color: #fff1;
+}
+
+.NetFlowPanel > .Header Label
+{
+	height: 100%;
+	align: left center;
+	border: 1px solid #666;
+	padding-left: 20px;
+	padding-top: 15px;
+}
+
+.NetFlowPanel > .Header Label:hover
+{
+	background-color: #fff1;
+	brightness: 1.5;
+}
+
+.NetFlowPanel > .Header Label:hover:active
+{
+	brightness: 1;
+}
+
+.NetFlowPanel > .Body
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	overflow: clip scroll;
+}
+
+.NetFlowPanel .EventCol
+{
+	width: fill-parent-flow(1);
+}
+
+.NetFlowPanel .Time5Col
+{
+	width: fill-parent-flow(1);
+}
+
+.NetFlowPanel .TotalCol
+{
+	width: fill-parent-flow(1);
+}
+
+.NetFlowRow
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.NetFlowRow > .Header
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.NetFlowRow > .Header > .EventCol
+{
+	flow-children: right;
+}
+
+.NetFlowRow > .Header > .EventCol #EventDetailBtn
+{
+	width: 12px;
+	height: 12px;
+	align: left center;
+	margin-left: 5px;
+	background-image: url("s2r://panorama/images/control_icons/expand_collapse_png.vtex");
+	background-size: contain;
+	wash-color: #888888;
+	transform: rotateZ(-90deg);
+}
+
+.NetFlowRow > .Header > .EventCol:hover
+{
+	brightness: 1.5;
+}
+
+.NetFlowRow > .Header > .EventCol:active
+{
+	brightness: 1;
+}
+
+.NetFlowRow #NetFlowDataBox
+{
+	width: 100%;
+	min-height: 100px;
+	max-height: 300px;
+	margin: 5px 15px;
+	padding: 5px;
+	flow-children: down;
+	overflow: clip scroll;
+	background-color: #000c;
+	border: 1px solid #444;
+}
+
+.NetFlowRow #NetFlowDataBox .NetFlowDataRow
+{
+	width: 100%;
+	min-height: 50px;
+	border-bottom: 1px solid #888;
+	flow-children: right;
+}
+
+.NetFlowRow #NetFlowDataBox .NetFlowDataRow #TimeLabel
+{
+	width: 100px;
+	align: left center;
+}
+
+.NetFlowRow #NetFlowDataBox .NetFlowDataRow #DataText
+{
+	width: 100%;
+}
+
+.NetFlowRow #NetFlowDataBox .NetFlowDataRow #DataText:hover
+{
+	color: #ccc;
+}
+
+#Window_NetTable
+{
+	width: 500px;
+	height: 250px;
+}
+
+.NetTablePanel
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+}
+
+.NetTablePanel > .Header
+{
+	width: 100%;
+	height: 50px;
+	flow-children: right;
+	background-color: #fff1;
+}
+
+.NetTablePanel > .Header Label
+{
+	height: 100%;
+	align: left center;
+	border: 1px solid #666;
+	padding-left: 20px;
+	padding-top: 15px;
+}
+
+.NetTablePanel > .Header Label:hover
+{
+	background-color: #fff1;
+	brightness: 1.5;
+}
+
+.NetTablePanel > .Header Label:hover:active
+{
+	brightness: 1;
+}
+
+.NetTablePanel > .Body
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	overflow: clip scroll;
+}
+
+.NetTablePanel .TableNameCol
+{
+	width: fill-parent-flow(1);
+}
+
+.NetTablePanel .DataLenCol
+{
+	width: fill-parent-flow(0.5);
+}
+
+.NetTablePanel .DataMaxCol
+{
+	width: fill-parent-flow(0.5);
+}
+
+.NetTablePanel .DataIncreaseCol
+{
+	width: fill-parent-flow(0.5);
+}
+
+.NetTablePanel .DataIncreaseCol.Increase
+{
+	color: red;
+}
+
+.NetTablePanel .DataIncreaseCol.Decrease
+{
+	color: yellowgreen;
+}
+
+.NetTablePanel .DataClientCol
+{
+	width: fill-parent-flow(0.5);
+}
+
+.NetTableRow
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.NetTableRow > .Header
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.NetTableRow > .Header > .TableNameCol
+{
+	flow-children: right;
+}
+
+.NetTableRow > .Header > .TableNameCol #DetailBtn
+{
+	width: 12px;
+	height: 12px;
+	align: left center;
+	margin-left: 5px;
+	background-image: url("s2r://panorama/images/control_icons/expand_collapse_png.vtex");
+	background-size: contain;
+	wash-color: #888888;
+	transform: rotateZ(-90deg);
+}
+
+.NetTableRow > .Header > .TableNameCol:hover
+{
+	brightness: 1.5;
+}
+
+.NetTableRow > .Header > .TableNameCol:active
+{
+	brightness: 1;
+}
+
+.NetTableRow #NettableDataBox
+{
+	width: 100%;
+	min-height: 100px;
+	max-height: 300px;
+	margin: 5px 15px;
+	padding: 5px;
+	flow-children: down;
+	overflow: clip scroll;
+	background-color: #000c;
+	border: 1px solid #444;
+}
+
+.NetTableRow #NettableDataBox .NettableDataRow
+{
+	width: 100%;
+	min-height: 50px;
+	border-bottom: 1px solid #888;
+	flow-children: right;
+}
+
+.NetTableRow #NettableDataBox .NettableDataRow #NameLabel
+{
+	width: fill-parent-flow(1);
+}
+
+.NetTableRow #NettableDataBox .NettableDataRow.IsMax .DataLenCol
+{
+	color: red;
+}
+
+.NetTableRow.ET .TableNameCol Label
+{
+	color: greenyellow;
+}
+
+.NetTableRow.NT .TableNameCol Label
+{
+	color: skyblue;
+}
+
+.NetTableRow.IsMax > .Header .DataLenCol
+{
+	color: red;
+}
+
+#Window_Timer
+{
+	width: 800px;
+	height: 250px;
+}
+
+.TimerPanel
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+}
+
+.TimerPanel > .Header
+{
+	width: 100%;
+	height: 50px;
+	flow-children: right;
+	background-color: #fff1;
+}
+
+.TimerPanel > .Header Label
+{
+	height: 100%;
+	align: left center;
+	border: 1px solid #666;
+	padding-left: 20px;
+	padding-top: 15px;
+}
+
+.TimerPanel > .Header Label:hover
+{
+	background-color: #fff1;
+	brightness: 1.5;
+}
+
+.TimerPanel > .Header Label:hover:active
+{
+	brightness: 1;
+}
+
+.TimerPanel > .Body
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	overflow: clip scroll;
+}
+
+.TimerPanel > .Body .NameCol
+{
+	margin-left: 5px;
+}
+
+.TimerPanel > .Body .NameCol #PauseBtn
+{
+	color: yellowgreen;
+}
+
+.TimerPanel > .Body .NameCol #PauseBtn.Pause
+{
+	color: red;
+}
+
+.TimerPanel > .Body .NameCol #PauseBtn:hover
+{
+	text-decoration: underline;
+}
+
+.TimerPanel > .Body .NameCol #NameLabel
+{
+	margin-left: 50px;
+}
+
+.TimerPanel > .Body .NameCol #NameLabel:hover
+{
+	text-decoration: underline;
+}
+
+.TimerPanel .NameCol
+{
+	width: fill-parent-flow(1);
+}
+
+.TimerPanel .SpendCol
+{
+	width: fill-parent-flow(0.3);
+}
+
+.TimerPanel .SpendMaxCol
+{
+	width: fill-parent-flow(0.3);
+}
+
+.TimerPanel .OncSecSpendCol
+{
+	width: fill-parent-flow(0.3);
+}
+
+.TimerPanel .DelayCol
+{
+	width: fill-parent-flow(0.3);
+}
+
+.TimerPanel .EnvCol
+{
+	width: fill-parent-flow(1);
+}
+
+.TimerPanel .Row
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.TimerPanel .Row > .Header
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.TimerPanel .Row:hover
+{
+	background-color: #fff1;
+}
+
+.DebugCodeRoot
+{
+	width: 800px;
+	height: 250px;
+}
+
+.DebugCodeRoot .DebugCodePanel
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+}
+
+.DebugCodeRoot .DebugCodePanel #Input
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	border: 1px solid red;
+}
+
+.DebugCodeRoot .DebugCodePanel #Input #InputText
+{
+	width: 100%;
+	height: 100%;
+	background-color: #0000;
+	overflow: clip scroll;
+}
+
+.DebugCodeRoot .DebugCodePanel #Output
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	border: 1px solid gold;
+}
+
+.DebugCodeRoot .DebugCodePanel #Output #OutputText
+{
+	width: 100%;
+	height: 100%;
+	background-color: #0000;
+	text-overflow: shrink;
+	white-space: normal;
+	overflow: clip scroll;
+}
+
+.DebugCodeRoot .DebugCodePanel #BtnBox
+{
+	align: center top;
+	flow-children: right;
+}
+
+.DebugCodeRoot .DebugCodePanel TextButton
+{
+	width: 100px;
+	height: 30px;
+	padding: 5px;
+	margin: 0px 5px;
+	background-color: #888;
+}
+
+.DebugCodeRoot .DebugCodePanel TextButton Label
+{
+	align: center center;
+}
+
+.TipIcon
+{
+	width: 15px;
+	height: 15px;
+	background-image: url("s2r://panorama/images/status_icons/information_psd.vtex");
+	background-size: 100%;
+}
+
+.TipLabel
+{
+	padding-left: 20px;
+	color: #909090;
+	font-size: 15px;
+	text-shadow: 1px 1px 2px 1 #000;
+	background-image: url("s2r://panorama/images/status_icons/information_psd.vtex");
+	background-size: 15px 15px;
+	background-position: left center;
+	background-repeat: no-repeat;
+	background-img-opacity: 0.6;
+}
+
+.TipLabel.HasTooltip
+{
+	border-bottom: 1px solid #90909066;
+}
+
+@keyframes 'NewTagAnim'
+{
+	0%
+	{
+		box-shadow: 0 0 2px 0.5px rgba(255, 0, 0, 0.2);
+	}
+	
+	50%
+	{
+		box-shadow: 0 0 4px 1px rgba(255, 0, 0, 0.5);
+	}
+	
+	100%
+	{
+		box-shadow: 0 0 2px 0.5px rgba(255, 0, 0, 0.2);
+	}
+	
+}
+
+.NewTagIcon
+{
+	width: 9px;
+	height: width-percentage(100%);
+	align: right top;
+	margin: 10px;
+	background-color: #ff0000ee;
+	border: 1px solid #000;
+	border-radius: 50%;
+	animation-name: NewTagAnim;
+	animation-duration: 0.8s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+#LoadingPanel
+{
+	width: 100%;
+	height: 100%;
+}
+
+#LoadingPanel > .BG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/loading/loading_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#LogoPanel
+{
+	width: 100%;
+	height: 100%;
+}
+
+#LogoPanel > .BG
+{
+	width: 1000px;
+	height: width-percentage(47.52964427%);
+	align: center bottom;
+	margin-bottom: 60px;
+}
+
+#TipContainer
+{
+	align: center bottom;
+	margin-bottom: 8px;
+	width: 660px;
+	height: 90px;
+}
+
+#TipContainer > .BG
+{
+	width: 100%;
+	height: 100%;
+}
+
+#TipContainer > .Body
+{
+	width: 100%;
+	height: 100%;
+	padding: 8px;
+}
+
+#TipContainer #TipText
+{
+	horizontal-align: center;
+	margin-right: 8px;
+	margin-left: 8px;
+	max-width: 500px;
+	height: 100%;
+	padding: 2px;
+}
+
+#TipContainer #TipLabel
+{
+	vertical-align: center;
+	color: #ffffff;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 6px 6 #0e0e0e;
+}
+
+#TipContainer #NextTip
+{
+	horizontal-align: right;
+	background-image: url("s2r://");
+}
+
+#TipContainer .TipButton
+{
+	vertical-align: center;
+	width: 18px;
+	height: 18px;
+	background-size: 80% 80%;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	wash-color: white;
+}
+
+#CommunityPanel
+{
+	width: 650px;
+	align: left bottom;
+	margin-bottom: 320px;
+	flow-children: up;
+}
+
+#CommunityPanel .Community
+{
+	margin: 5px 0px 5px 8px;
+	visibility: collapse;
+	flow-children: right;
+}
+
+#CommunityPanel .Community:hover
+{
+	brightness: 1.5;
+}
+
+#CommunityPanel .Community:hover:active
+{
+	brightness: 1;
+}
+
+#CommunityPanel .Community Image
+{
+	width: 40px;
+	height: 40px;
+	align: left center;
+}
+
+#CommunityPanel .Community Label
+{
+	align: left center;
+	margin-left: 10px;
+	color: #ffffff;
+	font-size: 20px;
+	border-bottom: 1px solid #ffffff;
+	text-shadow: 2px 2px 4px 2 #000;
+}
+
+.Language_schinese #CommunityPanel .QQGroup
+{
+	visibility: visible;
+}
+
+.Language_schinese #CommunityPanel .Discord
+{
+	visibility: visible;
+}
+
+.Language_english #CommunityPanel .Discord
+{
+	visibility: visible;
+}
+
+#ChatPanel
+{
+	width: 100%;
+	height: 100%;
+}
+
+.Yzy_ItemImage
+{
+	width: 100%;
+	height: 100%;
+}
+
+.Yzy_ItemImage:hover
+{
+	brightness: 1.5;
+}
+
+.Yzy_ItemImage:active
+{
+	brightness: 1;
+}
+
+.Yzy_ItemImage.Rarity_1 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/common/frame/frame_1_png.vtex");
+}
+
+.Yzy_ItemImage.Rarity_2 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/common/frame/frame_2_png.vtex");
+}
+
+.Yzy_ItemImage.Rarity_3 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/common/frame/frame_3_png.vtex");
+}
+
+.Yzy_ItemImage.Rarity_4 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/common/frame/frame_4_png.vtex");
+}
+
+.Yzy_ItemImage.Rarity_5 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/common/frame/frame_5_png.vtex");
+}
+
+.Yzy_ItemImage.Rarity_6 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/common/frame/frame_6_png.vtex");
+}
+
+.Yzy_ItemImage.Rarity_7 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/common/frame/frame_7_png.vtex");
+}
+
+.Yzy_ItemImage > .ItemImage
+{
+	width: 100%;
+	height: 100%;
+	padding: 7px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.Yzy_ItemImage > .BG
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.Yzy_Label
+{
+	font-size: 18px;
+	color: #ffffff;
+	text-shadow: #000 1px 1px 0px 4;
+}
+
+.Yzy_Label.Rarity_1
+{
+	color: #b0c3d9;
+}
+
+.Yzy_Label.Rarity_2
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 80% 80%, from(#f0ffd5), color-stop(0.5, #7eff67), to(#00c864));
+}
+
+.Yzy_Label.Rarity_3
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 80% 80%, from(#9bdddd), color-stop(0.7, #7189ff), to(#0077ff));
+}
+
+.Yzy_Label.Rarity_4
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 80% 80%, from(#fed5ff), color-stop(0.5, #cb8bff), to(#5900ff));
+}
+
+.Yzy_Label.Rarity_5
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 70% 70%, from(#f4ffd5), color-stop(0.3, #fff34f), to(#ffae00));
+}
+
+.Yzy_Label.Rarity_6
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 90% 90%, from(#fbc7dd), color-stop(0.5, #fd5d5d), to(#ff0000));
+}
+
+.Yzy_Label.Rarity_7
+{
+	color: gradient(radial, 50% 35%, 0% 0%, 80% 80%, from(#ff6e7f), color-stop(0.2, #fd5dd0), to(#bfe9ff));
+}
+
+.Yzy_Loading
+{
+	align: center center;
+}
+
+.Yzy_Loading.Wave
+{
+	flow-children: right;
+}
+
+.Yzy_Loading.Wave Panel
+{
+	width: 6px;
+	height: 40px;
+	background-color: white;
+	margin: 0px 3px;
+	border-radius: 10px;
+	animation-name: Yzy_Loading_Wave;
+	animation-duration: 0.8s;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'Yzy_Loading_Wave'
+{
+	0%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	50%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+}
+
+.Yzy_Loading.Wave .WaveCol1
+{
+	animation-name: Yzy_Loading_Wave1;
+}
+
+@keyframes 'Yzy_Loading_Wave1'
+{
+	0%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	50%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+}
+
+.Yzy_Loading.Wave .WaveCol2
+{
+	animation-name: Yzy_Loading_Wave2;
+}
+
+@keyframes 'Yzy_Loading_Wave2'
+{
+	0%
+	{
+		transform: scale3d(1, 0.38268343, 1);
+	}
+	
+	12.5%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	62.5%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.38268343, 1);
+	}
+	
+}
+
+.Yzy_Loading.Wave .WaveCol3
+{
+	animation-name: Yzy_Loading_Wave3;
+}
+
+@keyframes 'Yzy_Loading_Wave3'
+{
+	0%
+	{
+		transform: scale3d(1, 0.70710678, 1);
+	}
+	
+	25%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	75%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.70710678, 1);
+	}
+	
+}
+
+.Yzy_Loading.Wave .WaveCol4
+{
+	animation-name: Yzy_Loading_Wave4;
+}
+
+@keyframes 'Yzy_Loading_Wave4'
+{
+	0%
+	{
+		transform: scale3d(1, 0.92387953, 1);
+	}
+	
+	37.5%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	87.5%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.92387953, 1);
+	}
+	
+}
+
+.Yzy_Loading.Wave .WaveCol5
+{
+	animation-name: Yzy_Loading_Wave5;
+}
+
+@keyframes 'Yzy_Loading_Wave5'
+{
+	0%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	50%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+}
+
+.Yzy_Loading.Wave .WaveCol6
+{
+	animation-name: Yzy_Loading_Wave6;
+}
+
+@keyframes 'Yzy_Loading_Wave6'
+{
+	0%
+	{
+		transform: scale3d(1, 0.92387953, 1);
+	}
+	
+	12.5%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	62.5%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.92387953, 1);
+	}
+	
+}
+
+.Yzy_Loading.Wave .WaveCol7
+{
+	animation-name: Yzy_Loading_Wave7;
+}
+
+@keyframes 'Yzy_Loading_Wave7'
+{
+	0%
+	{
+		transform: scale3d(1, 0.70710678, 1);
+	}
+	
+	25%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	75%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.70710678, 1);
+	}
+	
+}
+
+.Yzy_Loading.Wave .WaveCol8
+{
+	animation-name: Yzy_Loading_Wave8;
+}
+
+@keyframes 'Yzy_Loading_Wave8'
+{
+	0%
+	{
+		transform: scale3d(1, 0.38268343, 1);
+	}
+	
+	37.5%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	87.5%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.38268343, 1);
+	}
+	
+}
+
+.Yzy_Loading.Matrix
+{
+	width: 120px;
+	height: 120px;
+	flow-children: down;
+	transform: rotateZ(-90deg);
+}
+
+.Yzy_Loading.Matrix .Row
+{
+	background-color: white;
+	border-radius: 50%;
+	width: height-percentage(100%);
+	height: 100%;
+	margin: 5px;
+	animation-name: Yzy_Loading_Matrix;
+	animation-duration: 1.6s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'Yzy_Loading_Matrix'
+{
+	50%
+	{
+		transform: scale3d(0.5, 0.5, 1);
+	}
+	
+}
+
+.Yzy_Loading.Matrix .Row1
+{
+	width: 100%;
+	height: 25%;
+	flow-children: right;
+}
+
+.Yzy_Loading.Matrix .Row2
+{
+	width: 100%;
+	height: 25%;
+	flow-children: right;
+}
+
+.Yzy_Loading.Matrix .Row2 .Row
+{
+	animation-delay: 0.2s;
+}
+
+.Yzy_Loading.Matrix .Row3
+{
+	width: 100%;
+	height: 25%;
+	flow-children: right;
+}
+
+.Yzy_Loading.Matrix .Row3 .Row
+{
+	animation-delay: 0.4s;
+}
+
+.Yzy_Loading.Matrix .Row4
+{
+	width: 100%;
+	height: 25%;
+	flow-children: right;
+}
+
+.Yzy_Loading.Matrix .Row4 .Row
+{
+	animation-delay: 0.6s;
+}
+
+.Yzy_Loading.PointSpin
+{
+	width: 24px;
+	height: 24px;
+	transform: rotateZ(45deg);
+	animation-name: YzyLoading_PointSpin;
+	animation-duration: 1.2s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'YzyLoading_PointSpin'
+{
+	0%
+	{
+		transform: rotateZ(360deg);
+	}
+	
+	50%
+	{
+		transform: rotateZ(180deg);
+	}
+	
+	100%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+}
+
+.Yzy_Loading.PointSpin Panel
+{
+	width: 36%;
+	height: 36%;
+	border-radius: 50%;
+	background-color: white;
+}
+
+.Yzy_Loading.PointSpin > .Point1
+{
+	opacity: 1;
+}
+
+.Yzy_Loading.PointSpin > .Point2
+{
+	horizontal-align: right;
+	opacity: 0.7;
+}
+
+.Yzy_Loading.PointSpin > .Point3
+{
+	align: right bottom;
+	opacity: 0.4;
+}
+
+.Yzy_Loading.PointSpin > .Point4
+{
+	align: left bottom;
+	opacity: 0.1;
+}
+
+.Yzy_Loading.Circle
+{
+	width: 50px;
+	height: 50px;
+	align: center center;
+	background-image: url("s2r://panorama/images/status_icons/loadingthrobber_round_psd.vtex");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: contain;
+	animation-name: YzyLoading_Circle;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: reverse;
+}
+
+@keyframes 'YzyLoading_Circle'
+{
+	0%
+	{
+		transform: rotateZ(359.9deg);
+	}
+	
+	50%
+	{
+		transform: rotateZ(180deg);
+	}
+	
+	100%
+	{
+		transform: rotateZ(0.1deg);
+	}
+	
+}
+
+.Yzy_ProgressBar
+{
+	width: 320px;
+	height: 22px;
+	background-color: #2A284FFF;
+	padding: 5px;
+}
+
+.Yzy_ProgressBar > .Yzy_ProgressBar_Left
+{
+	height: 100%;
+	transition-property: position, width;
+	transition-duration: 0.6s;
+	background-color: #D5B661FF;
+	border-radius: 0px;
+}
+
+.Yzy_ProgressBar > .Yzy_ProgressBar_Right
+{
+	height: 100%;
+	horizontal-align: right;
+	background-color: #2A284FFF;
+	transition-property: position, width;
+	transition-duration: 0.6s;
+	z-index: -1;
+}
+
+.Yzy_Button
+{
+	width: 138px;
+	height: width-percentage(36.3%);
+	transition-property: brightness;
+	transition-duration: 0.05s;
+	saturation: 0.5;
+	brightness: 0.5;
+}
+
+.Yzy_Button:enabled
+{
+	saturation: 1;
+	brightness: 1;
+}
+
+.Yzy_Button:enabled:hover
+{
+	brightness: 1.5;
+}
+
+.Yzy_Button:enabled:hover:active
+{
+	brightness: 5.5;
+	sound: "ui_generic_button_click";
+}
+
+.Yzy_Button.Small
+{
+	width: 135px;
+	height: width-percentage(36.3%);
+}
+
+.Yzy_Button > .Image
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.Yzy_Button > .Text
+{
+	align: center center;
+	margin-bottom: 4px;
+	text-align: center;
+	color: #fff;
+	font-size: 22px;
+	text-shadow: 0px 2px 0px 1 #000000;
+	text-overflow: shrink;
+	transition-property: color, opacity;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.Yzy_Button.btn_grey > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_grey_png.vtex");
+}
+
+.Yzy_Button.btn_grey.Small > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_grey_s_png.vtex");
+}
+
+.Yzy_Button.btn_green > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_green_png.vtex");
+}
+
+.Yzy_Button.btn_green.Small > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_green_s_png.vtex");
+}
+
+.Yzy_Button.btn_blue > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_blue_png.vtex");
+}
+
+.Yzy_Button.btn_blue.Small > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_blue_s_png.vtex");
+}
+
+.Yzy_Button.btn_purple > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_purple_png.vtex");
+}
+
+.Yzy_Button.btn_purple.Small > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_purple_s_png.vtex");
+}
+
+.Yzy_Button.btn_golden > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_golden_png.vtex");
+}
+
+.Yzy_Button.btn_golden.Small > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_golden_png.vtex");
+}
+
+.Yzy_Button.btn_red > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_red_png.vtex");
+}
+
+.Yzy_Button.btn_red.Small > .Image
+{
+	background-image: url("s2r://panorama/images/custom_game/common/button/btn_red_s_png.vtex");
+}
+
+.Yzy_Icon:hover
+{
+	brightness: 1.5;
+}
+
+.Yzy_Icon > .Icon
+{
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.Yzy_Icon.icon_gold > .Icon
+{
+	width: 33px;
+	height: width-percentage(109.09090909%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_gold_png.vtex");
+}
+
+.Yzy_Icon.icon_wood > .Icon
+{
+	width: 33px;
+	height: width-percentage(133.33333333%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_wood_png.vtex");
+}
+
+.Yzy_Icon.icon_kill > .Icon
+{
+	width: 36px;
+	height: width-percentage(102.77777778%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_kill_png.vtex");
+}
+
+.Yzy_Icon.icon_crystal > .Icon
+{
+	width: 25px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_crystal_png.vtex");
+}
+
+.Yzy_Icon.icon_lock > .Icon
+{
+	width: 43px;
+	height: width-percentage(137.20930233%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_lock_png.vtex");
+}
+
+.Yzy_Icon.icon_lock2 > .Icon
+{
+	width: 48px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_lock2_png.vtex");
+}
+
+.Yzy_Icon.icon_unlock2 > .Icon
+{
+	width: 48px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_unlocked2_png.vtex");
+}
+
+.Yzy_Icon.icon_equip_lock > .Icon
+{
+	width: 21px;
+	height: width-percentage(80.95238095%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_equip_lock_png.vtex");
+}
+
+.Yzy_Icon.icon_equip_wear > .Icon
+{
+	width: 52px;
+	height: width-percentage(101.92307692%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_equip_wear_png.vtex");
+}
+
+.Yzy_Icon.icon_arrow > .Icon
+{
+	width: 41px;
+	height: width-percentage(70.73170732%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_arrow_png.vtex");
+}
+
+.Yzy_Icon.icon_arrow_1 > .Icon
+{
+	width: 53px;
+	height: width-percentage(71.69811321%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_arrow_1_png.vtex");
+}
+
+.Yzy_Icon.icon_star > .Icon
+{
+	width: 64px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_star_png.vtex");
+}
+
+.Yzy_Icon.icon_tips > .Icon
+{
+	width: 37px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_tips_png.vtex");
+}
+
+.Yzy_Icon.icon_life > .Icon
+{
+	width: 128px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_life_png.vtex");
+}
+
+.Yzy_Icon.icon_y > .Icon
+{
+	width: 66px;
+	height: width-percentage(84.84848485%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_y_png.vtex");
+}
+
+.Yzy_Icon.icon_x > .Icon
+{
+	width: 54px;
+	height: width-percentage(88.88888889%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_x_png.vtex");
+}
+
+.Yzy_Icon.icon_up > .Icon
+{
+	width: 30px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_up_png.vtex");
+}
+
+.Yzy_Icon.icon_n > .Icon
+{
+	width: 57px;
+	height: width-percentage(63.15789474%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_n_png.vtex");
+}
+
+.Yzy_Icon.icon_r > .Icon
+{
+	width: 42px;
+	height: width-percentage(85.71428571%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_r_png.vtex");
+}
+
+.Yzy_Icon.icon_sr > .Icon
+{
+	width: 61px;
+	height: width-percentage(59.01639344%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_sr_png.vtex");
+}
+
+.Yzy_Icon.icon_ssr > .Icon
+{
+	width: 80px;
+	height: width-percentage(45%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_ssr_png.vtex");
+}
+
+.Yzy_Icon.icon_ur > .Icon
+{
+	width: 80px;
+	height: width-percentage(45%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_ur_png.vtex");
+}
+
+.Yzy_Icon.icon_new > .Icon
+{
+	width: 54px;
+	height: width-percentage(48.14814815%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_new_png.vtex");
+}
+
+.Yzy_Icon.icon_score > .Icon
+{
+	width: 22px;
+	height: width-percentage(127.27272727%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_score_png.vtex");
+}
+
+.Yzy_Icon.icon_wechat > .Icon
+{
+	width: 657px;
+	height: width-percentage(87.97564688%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_wechat_png.vtex");
+}
+
+.Yzy_Icon.icon_alipay > .Icon
+{
+	width: 120px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_alipay_png.vtex");
+}
+
+.Yzy_Icon.icon_destiny_star > .Icon
+{
+	width: 25px;
+	height: width-percentage(104%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_destiny_star_png.vtex");
+}
+
+.Yzy_Icon.icon_system_lock > .Icon
+{
+	width: 25px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/pings/ping_icon_retreat_psd.vtex");
+}
+
+.Yzy_Icon.icon_archive > .Icon
+{
+	width: 26px;
+	height: width-percentage(92.30769231%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_archive_png.vtex");
+}
+
+.Yzy_Icon.icon_archive_dis > .Icon
+{
+	width: 22px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon/icon_archive_dis_png.vtex");
+}
+
+.Yzy_IconButton
+{
+	transition-property: brightness;
+	transition-duration: 0.05s;
+}
+
+.Yzy_IconButton:disabled
+{
+	saturation: 0;
+	brightness: 0.8;
+}
+
+.Yzy_IconButton:enabled:hover
+{
+	brightness: 1.5;
+}
+
+.Yzy_IconButton:enabled:hover:active
+{
+	brightness: 5.5;
+	sound: "ui_generic_button_click";
+}
+
+.Yzy_IconButton > .Icon
+{
+	vertical-align: center;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.Yzy_IconButton > .Text
+{
+	vertical-align: center;
+}
+
+.Yzy_IconButton.icon_btn_close > .Icon
+{
+	width: 37px;
+	height: width-percentage(91.89189189%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_close_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_close_1 > .Icon
+{
+	width: 80px;
+	height: width-percentage(105%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_close_1_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_serch > .Icon
+{
+	width: 24px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_serch_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_tips > .Icon
+{
+	width: 42px;
+	height: width-percentage(100%);
+	background-image: url("s2r://");
+}
+
+.Yzy_IconButton.icon_btn_arrow > .Icon
+{
+	width: 32px;
+	height: width-percentage(125%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_arrow_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_filter01 > .Icon
+{
+	width: 22px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_filter01_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_filter02 > .Icon
+{
+	width: 22px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_filter02_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_add > .Icon
+{
+	width: 34px;
+	height: width-percentage(94.11764706%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_add_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_add_1 > .Icon
+{
+	width: 42px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_add_1_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_sub > .Icon
+{
+	width: 42px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_sub_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_lock > .Icon
+{
+	width: 28px;
+	height: width-percentage(121.42857143%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_lock_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_refresh > .Icon
+{
+	width: 40px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_refresh_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_arrange > .Icon
+{
+	width: 40px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_arrange_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_reset > .Icon
+{
+	width: 32px;
+	height: width-percentage(106.25%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_reset_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_query > .Icon
+{
+	width: 32px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_query_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_break > .Icon
+{
+	width: 32px;
+	height: width-percentage(106.25%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_break_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_cdk > .Icon
+{
+	width: 66px;
+	height: width-percentage(57.57575758%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_cdk_png.vtex");
+}
+
+.Yzy_IconButton.icon_btn_overview > .Icon
+{
+	width: 30px;
+	height: width-percentage(100%);
+	background-image: url("s2r://panorama/images/custom_game/common/icon_button/icon_btn_overview_png.vtex");
+}
+
+.Yzy_IconRarity
+{
+	width: 300px;
+	height: width-percentage(60%);
+}
+
+.Yzy_IconRarity.1
+{
+	background-image: url("s2r://");
+	background-size: 100%;
+}
+
+.Yzy_IconRarity.2
+{
+	background-image: url("s2r://panorama/images/custom_game/common/icon_rarity/icon_rarity_2_png.vtex");
+	background-size: 100%;
+}
+
+.Yzy_IconRarity.3
+{
+	background-image: url("s2r://panorama/images/custom_game/common/icon_rarity/icon_rarity_3_png.vtex");
+	background-size: 100%;
+}
+
+.Yzy_IconRarity.4
+{
+	background-image: url("s2r://panorama/images/custom_game/common/icon_rarity/icon_rarity_4_png.vtex");
+	background-size: 100%;
+}
+
+.Yzy_IconRarity.5
+{
+	background-image: url("s2r://panorama/images/custom_game/common/icon_rarity/icon_rarity_5_png.vtex");
+	background-size: 100%;
+}
+
+.Yzy_IconRarity.6
+{
+	background-image: url("s2r://panorama/images/custom_game/common/icon_rarity/icon_rarity_6_png.vtex");
+	background-size: 100%;
+}
+
+.Yzy_Attribute
+{
+	flow-children: right;
+}
+
+.Yzy_Attribute Label
+{
+	vertical-align: center;
+	margin: 1px;
+	font-size: 16px;
+	color: #fff;
+	text-shadow: #000 1px 1px 4px 3;
+}
+
+.Yzy_Attribute > .Value
+{
+	color: #34ec1a;
+	font-weight: semi-bold;
+	margin: 2px;
+}
+
+.Yzy_Attribute .AbilityValues,.Yzy_Attribute .NumberValues
+{
+	color: #00ff00;
+	font-weight: semi-bold;
+}
+
+.Yzy_Attribute .GameplayValues.CurLvl
+{
+	color: #00ff00;
+	font-weight: semi-bold;
+}
+
+.Yzy_Description
+{
+	font-size: 16px;
+	color: #fff;
+	text-shadow: #000 0px 0px 4px 2;
+}
+
+.Yzy_Description .AbilityValues
+{
+	color: #00ff00;
+	font-weight: semi-bold;
+}
+
+.Yzy_Description .GameplayValues.CurLvl
+{
+	color: #00ff00;
+	font-weight: semi-bold;
+}
+
+.Yzy_ServiceItem
+{
+	width: 96px;
+	height: width-percentage(100%);
+}
+
+.Yzy_ServiceItem.Rarity_1 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/service/item_rarity_bg/item_rarity_bg_1_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.Yzy_ServiceItem.Rarity_2 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/service/item_rarity_bg/item_rarity_bg_2_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.Yzy_ServiceItem.Rarity_3 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/service/item_rarity_bg/item_rarity_bg_3_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.Yzy_ServiceItem.Rarity_4 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/service/item_rarity_bg/item_rarity_bg_4_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.Yzy_ServiceItem.Rarity_5 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/service/item_rarity_bg/item_rarity_bg_5_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.Yzy_ServiceItem.Rarity_6 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/service/item_rarity_bg/item_rarity_bg_6_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.Yzy_ServiceItem.Rarity_7 > .BG
+{
+	background-image: url("s2r://panorama/images/custom_game/service/item_rarity_bg/item_rarity_bg_7_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.Yzy_ServiceItem > .BG
+{
+	width: 100%;
+	height: 100%;
+}
+
+.Yzy_ServiceItem #ItemImage
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+}
+
+.Yzy_ServiceItem #ItemCount
+{
+	align: right bottom;
+	color: white;
+	font-size: 14px;
+	margin-right: 4px;
+	margin-bottom: 4px;
+	text-shadow: #000 1px 1px 1px 2;
+}
+
+.Yzy_ServiceItemName
+{
+	text-overflow: shrink;
+	color: #FFEFDA;
+	font-size: 20px;
+	text-shadow: 0px 0px 2px 2 #000000;
+}
+
+.Yzy_ServiceAssetCost
+{
+	align: center center;
+	flow-children: right-wrap;
+}
+
+.Yzy_ServiceAssetCost .AssetCostRow
+{
+	margin: 0px 5px;
+	flow-children: right;
+}
+
+.Yzy_ServiceAssetCost .AssetCostRow #ItemImage
+{
+	width: 30px;
+	height: 30px;
+	align: center center;
+}
+
+.Yzy_ServiceAssetCost .AssetCostRow #ItemCount
+{
+	align: center center;
+	color: white;
+	font-size: 18px;
+	text-shadow: #000 0px 0px 4px 2;
+}
+
+.Yzy_ServiceTokenImage
+{
+	width: 50px;
+	height: width-percentage(100%);
+	align: center center;
+	img-shadow: 0px 0px 2px 1 #000000;
+}
+
+.DebugRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#DebugBodyRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+.Debug
+{
+	transform: translateX(0%) translateY(-100px);
+	vertical-align: top;
+	horizontal-align: left;
+	flow-children: right;
+	padding-top: 150px;
+	padding-bottom: 10px;
+	transition-property: background-color, transform;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.Debug > .Body
+{
+	width: 244px;
+	flow-children: down;
+	background-color: gradient(linear, 0% 0%, 70% 0%, from(#111111), to(#222222));
+	box-shadow: #000000AA 2px 2px 8px;
+	overflow: squish scroll;
+}
+
+.Minimized .Debug
+{
+	transform: translateX(-244px) translateY(-100px);
+}
+
+#DebugSlideThumb
+{
+	width: 40px;
+	height: 200px;
+	vertical-align: middle;
+}
+
+#DebugSlideThumb > Button
+{
+	width: 25px;
+	height: 120px;
+	vertical-align: middle;
+	transform: translateX(0px);
+	background-color: gradient(linear, 0% 0%, 70% 0%, from(#111111), to(#3b3b3b));
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 12px;
+	box-shadow: #000000AA 1px 1px 6px;
+	transition-property: background-color;
+	transition-delay: 0s;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+#DebugSlideThumb > Button:hover
+{
+	background-color: gradient(linear, 0% 0%, 70% 0%, from(#181818), to(#474747));
+}
+
+#DebugSlideThumb > Button:hover .RightArrowButtonIcon
+{
+	transform: translateX(-4px);
+	wash-color: white;
+}
+
+.Minimized #DebugSlideThumb > Button:hover .RightArrowButtonIcon
+{
+	transform: translateX(6px) rotateZ(180deg);
+	wash-color: white;
+}
+
+.RightArrowButtonIcon
+{
+	width: 16px;
+	height: 16px;
+	vertical-align: middle;
+	horizontal-align: right;
+	background-image: url("s2r://");
+	background-size: contain;
+	background-repeat: no-repeat;
+	wash-color: #D0D0D0;
+	transform: translateX(-1px);
+	transition-property: transform, wash-color;
+	transition-delay: 0s;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.Minimized .RightArrowButtonIcon
+{
+	transform: rotateZ(180deg) translateX(-8px);
+}
+
+.Category
+{
+	width: 100%;
+	flow-children: down;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2d2f31), to(hsv-transform(#2d2f31, 0, 1, 0.4)));
+	box-shadow: fill #00000011 1px 1px 8px 1px;
+	margin: 6px 12px;
+}
+
+.Category.Spread
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#4a4d51), to(hsv-transform(#36393c, 0, 1, 0.4)));
+}
+
+.Category.Spread .CategoryHeader
+{
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_right_png.vtex");
+	brightness: 0.3;
+}
+
+.Category.Spread .CategoryButtonContainer
+{
+	visibility: collapse;
+}
+
+.Category.Spread:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2d2f31), to(hsv-transform(#2d2f31, 0, 1, 0.4)));
+}
+
+.Category.Spread:hover .CategoryHeader
+{
+	brightness: 1;
+}
+
+.CategoryHeader
+{
+	width: 100%;
+	font-size: 15px;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	padding: 6px;
+	padding-left: 25px;
+	background-image: url("s2r://panorama/images/control_icons/expand_collapse_png.vtex");
+	background-size: 15px;
+	background-repeat: no-repeat;
+	background-position: 6px 60%;
+}
+
+.CategoryHeader:hover
+{
+	background-color: #fff1;
+}
+
+.CategoryButtonContainer
+{
+	flow-children: down;
+	width: 100%;
+	padding: 3px 6px 3px 6px;
+}
+
+.CategoryButtonContainer .Row
+{
+	flow-children: right;
+	width: 100%;
+	margin: 3px 0px;
+}
+
+.CategoryButtonContainer .LeftButton
+{
+	margin-right: 3px;
+}
+
+.CategoryButtonContainer .RightButton
+{
+	margin-left: 3px;
+}
+
+.CategoryButton
+{
+	background-color: #3e4144;
+	border: 1px solid #4e5155;
+	height: 30px;
+	width: fill-parent-flow(1);
+	transition-property: background-color, border, color;
+	transition-duration: 0.15s;
+	transition-timing-function: linear;
+}
+
+.CategoryButton Label
+{
+	horizontal-align: center;
+	vertical-align: middle;
+	color: #D8DADE;
+	font-size: 16px;
+	font-family: defaultFont;
+	font-weight: normal;
+	text-overflow: shrink;
+	letter-spacing: 1px;
+	text-align: center;
+}
+
+.CategoryButton:hover
+{
+	background-color: gradient(linear, 0% 0%, 70% 0%, from(#676b70), to(#3e4144));
+	border: 1px solid #686b70;
+}
+
+.CategoryButton:hover Label
+{
+	color: #FFF;
+}
+
+.CategoryButton:active
+{
+	background-color: #7E94B1;
+	pre-transform-scale2d: 1.02;
+}
+
+ToggleButton.CategoryButton
+{
+	flow-children: right;
+	padding: 1px 4px;
+	color: white;
+	transition-property: background-color, box-shadow, color;
+	transition-duration: 0.25s;
+	transition-timing-function: ease-in-out;
+	letter-spacing: 1px;
+	width: fill-parent-flow(1);
+}
+
+RadioButton.CategoryButton
+{
+	padding: 1px 4px 1px 8px;
+	border-radius: 16px;
+	saturation: 0.5;
+	brightness: 0.5;
+	transition-property: saturation, brightness;
+	transition-duration: 0.1s;
+}
+
+RadioButton.CategoryButton > .RadioBox
+{
+	align: left center;
+}
+
+RadioButton.CategoryButton > Label
+{
+	margin-left: 0px;
+}
+
+RadioButton.CategoryButton:selected
+{
+	brightness: 1;
+	saturation: 1;
+}
+
+.CategoryButton.TextEntryButton
+{
+	flow-children: right;
+}
+
+.CategoryButton.TextEntryButton TextEntry
+{
+	width: fill-parent-flow(1);
+	padding: 3px 7px 3px 7px;
+}
+
+.CategoryButton.TextEntryButton Label
+{
+	width: 50%;
+}
+
+.TextEntryRow
+{
+	height: 30px;
+	width: fill-parent-flow(1);
+}
+
+.CategoryPickerArrowButton
+{
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_right_png.vtex");
+	background-size: 12px 18px;
+	background-repeat: no-repeat;
+	background-position: 97% center;
+	wash-color: #D8DADE;
+}
+
+.CategorySlider
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.CategorySlider .CategorySliderKV
+{
+	width: 40%;
+	align: left center;
+	flow-children: right;
+}
+
+.CategorySlider .CategorySliderKV .CategorySliderKey
+{
+	align: center center;
+}
+
+.CategorySlider .CategorySliderKV .CategorySliderVal
+{
+	align: center center;
+	text-overflow: shrink;
+}
+
+.CategorySlider .CategorySliderKV Label
+{
+	font-size: 16px;
+}
+
+.CategorySlider Slider
+{
+	align: right center;
+	margin: 0px;
+	margin-left: 6px;
+	ui-scale: 65%;
+}
+
+.ValueSpinRow Button
+{
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_right_png.vtex");
+	background-size: 12px 18px;
+	background-repeat: no-repeat;
+	background-position: center;
+	wash-color: #D8DADE;
+}
+
+.ValueSpinRow .LeftButton
+{
+	pre-transform-scale2d: -1;
+}
+
+.ValueSpinRow Label
+{
+	width: 50%;
+	align: center center;
+	text-align: center;
+}
+
+#UnitAttributePanel
+{
+	align: left top;
+	margin-left: 300px;
+	margin-top: 100px;
+	flow-children: down;
+}
+
+#UnitAttributePanel #SwitchBtnBox
+{
+	flow-children: right;
+}
+
+#UnitAttributePanel #SwitchBtnBox TabButton
+{
+	margin: 0px 10px;
+	padding: 5px;
+	background-color: #000a;
+}
+
+#UnitAttributePanel #SwitchBtnBox TabButton Label
+{
+	color: white;
+}
+
+#UnitAttributePanel #SwitchBtnBox TabButton:selected
+{
+	box-shadow: #ffffff 0px 0px 4px 1px;
+}
+
+#UnitAttributePanel #SwitchContentBox
+{
+	margin-top: 20px;
+}
+
+#UnitAttributePanel #SwitchContentBox TabContents
+{
+	visibility: collapse;
+}
+
+#UnitAttributePanel #SwitchContentBox TabContents:selected
+{
+	visibility: visible;
+}
+
+.UnitAttributeCtrl #AttributeCtrlBox
+{
+	width: 864px;
+	height: 666px;
+	padding: 5px;
+	background-color: #000c;
+	flow-children: down;
+}
+
+.UnitAttributeCtrl #AttributeCtrlBox > #AttributeCtrlBoxHeader
+{
+	width: 100%;
+	background-color: #171c1c;
+	padding: 3px;
+	flow-children: right;
+}
+
+.UnitAttributeCtrl #AttributeCtrlBox > #AttributeCtrlBoxHeader Label
+{
+	vertical-align: center;
+}
+
+.UnitAttributeCtrl #AttributeCtrlBox > #AttributeCtrlBoxHeader TextEntry
+{
+	width: 260px;
+}
+
+.UnitAttributeCtrl #AttributeCtrlBox > #AttributeCtrlBoxContent
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right-wrap;
+	overflow: squish scroll;
+}
+
+.UnitAttributeCtrl #AttributeCtrlBox > #AttributeCtrlBoxContent VerticalScrollBar
+{
+	width: 22px;
+	background-color: #171c1c;
+}
+
+.UnitAttributeCtrl #AttributeCtrlBox > #AttributeCtrlBoxContent VerticalScrollBar:hover
+{
+	brightness: 1.5;
+}
+
+.UnitAttributeCtrl #AttributeCtrlBox > #AttributeCtrlBoxContent .AttributeCtrlSon
+{
+	width: 100%;
+	margin: 2px 0px;
+}
+
+.UnitAttributeCtrl #AttributeCtrlBox > #AttributeCtrlBoxContent .AttributeCtrlSon.InSearch > .Body
+{
+	background-color: #346363;
+}
+
+.UnitAttributeCtrl #AttributeCtrlBox > #AttributeCtrlBoxContent .AttributeCtrlSon.InSearch > .Body > .Header
+{
+	background-color: #346363;
+}
+
+.UnitAttributeCtrl #AttributeCtrlBox > #AttributeCtrlBoxContent .AttributeCtrlSon > .Body
+{
+	width: fill-parent-flow(1);
+	flow-children: right;
+}
+
+.UnitAttributeCtrl #AttributeCtrlBox > #AttributeCtrlBoxContent .AttributeCtrlSon > .Body:hover
+{
+	background-color: #8c8c8c7a;
+	brightness: 1.5;
+}
+
+.UnitAttributeCtrl #AttributeCtrlBox > #AttributeCtrlBoxContent .AttributeCtrlSon > .Body > .Header
+{
+	align: left center;
+	height: 30px;
+	padding: 4px;
+	background-color: #000a;
+	flow-children: right;
+	tooltip-position: top;
+}
+
+.UnitAttributeCtrl #AttributeCtrlBox > #AttributeCtrlBoxContent .AttributeCtrlSon > .Body > .Header #OpenStateImg
+{
+	width: 15px;
+	height: 15px;
+	align: left center;
+	margin-right: 4px;
+}
+
+.UnitAttributeCtrl #AttributeCtrlBox > #AttributeCtrlBoxContent .AttributeCtrlSon > .Body > .Header #AttributeName
+{
+	height: 25px;
+	align: left bottom;
+	margin-right: 5px;
+	text-overflow: shrink;
+}
+
+.UnitAttributeCtrl #AttributeCtrlBox > #AttributeCtrlBoxContent .AttributeCtrlSon > .Body > .Header #AttributeVal
+{
+	align: left bottom;
+	margin-right: 5px;
+	color: white;
+}
+
+.UnitAttributeCtrl #AttributeCtrlBox > #AttributeCtrlBoxContent .AttributeCtrlSon > .Body #Modifier
+{
+	align: left center;
+	width: 100px;
+	height: 30px;
+	margin-left: 10px;
+	padding-left: 20px;
+}
+
+.UnitAttributeCtrl #AttributeCtrlBox > #AttributeCtrlBoxContent .AttributeCtrlSon > .Body #Modifier > TextEntry
+{
+	padding-top: 4px;
+	padding-bottom: 2px;
+}
+
+.UnitAttributeCtrl #AttributeCtrlBox > #AttributeCtrlBoxContent .AttributeCtrlSon > .Body #AttributeInfoButton
+{
+	width: 16px;
+	height: width-percentage(100%);
+	align: left center;
+	background-image: url("s2r://panorama/images/control_icons/comment_psd.vtex");
+	background-size: 100%;
+	background-img-opacity: 0.5;
+}
+
+.UnitAttributeCtrl #AttributeCtrlBox > #AttributeCtrlBoxContent .AttributeCtrlSon > .Body #AttributeInfoButton:hover
+{
+	background-img-opacity: 1;
+}
+
+.UnitAttributeCtrl #AttributeCtrlBox > #AttributeCtrlBoxContent .AttributeCtrlSon > .Body #AttributeInfoButton:hover:active
+{
+	background-img-opacity: 0.5;
+}
+
+.UnitAttributeCtrl #AttributeCtrlBox > #AttributeCtrlBoxContent .AttributeCtrlSon #SonBox
+{
+	margin-top: 35px;
+	width: 100%;
+	flow-children: down;
+	margin-left: 30px;
+}
+
+.UnitAttributeCtrl #AttributeCtrlBox > #AttributeCtrlBoxContent .AttributeCtrlSon.Showing > .Body > .Header #OpenStateImg
+{
+	pre-transform-rotate2d: 90deg;
+}
+
+.UnitAttributeCtrl #AttributeCtrlBox > #AttributeCtrlBoxContent .AttributeCtrlSon.HasSon > .Body > .Header:hover
+{
+	brightness: 1.5;
+	background-color: #666a;
+}
+
+#UnitBuffAttributes
+{
+	width: 1000px;
+	height: 620px;
+	padding: 10px;
+	background-color: #000c;
+	flow-children: right-wrap;
+	overflow: squish scroll;
+}
+
+#UnitBuffAttributes .AttributeInfo
+{
+	width: 300px;
+	height: 200px;
+	padding: 5px;
+	margin: 5px;
+	background-color: #fff2;
+	flow-children: down;
+}
+
+#UnitBuffAttributes .AttributeInfo #Title
+{
+	align: center top;
+	color: white;
+	font-size: 24px;
+}
+
+#UnitBuffAttributes .AttributeInfo #AttributeBox
+{
+	flow-children: down;
+	overflow: squish scroll;
+}
+
+#UnitBuffAttributes .AttributeInfo #AttributeBox .AttributeLabel
+{
+	color: #ccc;
+	font-size: 14px;
+}
+
+#UnitBuffAttributes .AttributeInfo #AttributeBox .AttributeLabel .Val
+{
+	color: #fff;
+	font-size: 18px;
+}
+
+#UnitBuffAttributes .AttributeInfo.Debuff
+{
+	background-color: #f001;
+}
+
+#Debug_WearableHeroGroup_Box
+{
+	width: 55%;
+	height: 100%;
+	align: right top;
+	flow-children: right-wrap;
+}
+
+#Debug_WearableHeroGroup_Box #Debug_WearableHeroGroup_Body
+{
+	width: 500px;
+	height: 300px;
+}
+
+#DummyOverHeadRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#DummyOverHeadRoot #DummyOverHead
+{
+	width: 100%;
+	height: 100%;
+}
+
+#DummyOverHeadRoot #DummyBar
+{
+	width: 200px;
+	height: 150px;
+	flow-children: down;
+}
+
+#DummyOverHeadRoot #DummyBar #UnitName
+{
+	margin-bottom: 10px;
+}
+
+#DummyOverHeadRoot #DummyBar #UnitName > .BG
+{
+	align: center center;
+	height: 100%;
+	width: height-percentage(400%);
+	background-image: url("s2r://");
+	background-size: 100%;
+}
+
+#DummyOverHeadRoot #DummyBar #UnitName > .NameLabel
+{
+	align: center center;
+	padding: 10px;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#C9A33F), to(#D8C06C));
+	font-size: 24px;
+	text-shadow: 2px 2px 4px 4 #000a;
+}
+
+#DummyOverHeadRoot #DummyBar #Bar
+{
+	horizontal-align: center;
+	width: 200px;
+	height: 8px;
+	margin-bottom: 2px;
+}
+
+#DummyOverHeadRoot #DummyBar #TestRecord
+{
+	width: 200px;
+	flow-children: down;
+}
+
+#DummyOverHeadRoot #DummyBar #TestRecord #TestRecordCountdownBar
+{
+	width: 100%;
+	height: 4px;
+	opacity: 0;
+}
+
+#DummyOverHeadRoot #DummyBar #TestRecord #TestRecordCountdownBar .ProgressBarLeft
+{
+	background-color: #cccccc;
+}
+
+#DummyOverHeadRoot #DummyBar #TestRecord #TestRecordCountdownBar.ShowCountdown
+{
+	opacity: 1;
+}
+
+#DummyOverHeadRoot #DummyBar #TestRecord .TestRecordRow
+{
+	width: 100%;
+	flow-children: right;
+}
+
+#DummyOverHeadRoot #DummyBar #TestRecord .TestRecordRowLeft
+{
+	width: 50px;
+	text-overflow: shrink;
+}
+
+#DummyOverHeadRoot #DummyBar #TestRecord .TestRecordRowRight
+{
+	horizontal-align: right;
+	text-overflow: shrink;
+	text-align: right;
+}
+
+#DummyOverHeadRoot #DummyBar #TestRecord Label
+{
+	height: 20px;
+	color: white;
+	text-shadow: 0px 0px 2px 3 #000000;
+	font-size: 20px;
+}
+
+#DummyOverHeadRoot #HealthProgress
+{
+	width: 200px;
+	height: 150px;
+	border-radius: 0px;
+	border-width: 1px;
+	border-top-width: 0px;
+	background-color: #000000ff;
+	box-shadow: #00000066 0px 0px 2px 0px;
+}
+
+#DummyOverHeadRoot #HealthProgress #HealthProgress_Left
+{
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#425d25), color-stop(0.2, #5BA539), color-stop(0.5, #4D9030), to(#425d25));
+}
+
+#DummyOverHeadRoot #HealthProgress #HealthProgress_Loss
+{
+	height: 100%;
+	background-color: white;
+	transition-property: width;
+	transition-duration: 0.3s;
+	transition-timing-function: ease;
+}
+
+#SelectionBoxs
+{
+	vertical-align: center;
+	margin-left: 280px;
+	background-color: #000c;
+	opacity: 0;
+	transform: translateX(-60px) translateY(-100px);
+	transition-property: opacity, transform;
+	transition-duration: 0.2s;
+}
+
+#SelectionBoxs.Show
+{
+	opacity: 1;
+	transform: translateX(0px) translateY(-100px);
+}
+
+#SelectionBoxs > .Body
+{
+	flow-children: down;
+	width: 864px;
+	height: 620px;
+}
+
+#SelectionBoxs > .Body > .Hander
+{
+	flow-children: right;
+	width: 100%;
+	height: 15%;
+	background-color: #242d39;
+	padding: 16px 16px 2px 16px;
+	z-index: 10;
+}
+
+#SelectionBoxs > .Body > .Hander > .TitleLabel
+{
+	text-align: left;
+	text-overflow: shrink;
+	font-size: 22px;
+	color: #bfd2ee;
+	vertical-align: middle;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+#SelectionBoxs > .Body > .Hander TextEntry
+{
+	align: right center;
+}
+
+#SelectionBoxs > .Body > .Body
+{
+	width: 100%;
+	height: 100%;
+}
+
+#SelectionBoxs > .Body > .Body .SelectionBox
+{
+	overflow: squish scroll;
+}
+
+#HeroBox
+{
+	flow-children: right;
+	width: 100%;
+	height: 60px;
+	margin: 0px;
+	margin-bottom: 0px;
+}
+
+#HeroBox > .Hero3DPanel
+{
+	height: 100%;
+	width: height-percentage(177.77%);
+}
+
+#HeroBox #HeroDemoHeroName
+{
+	height: 22px;
+	width: fill-parent-flow(1);
+	margin-top: 24px;
+	color: white;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-overflow: shrink;
+	text-align: center;
+}
+
+#HeroBox #PlayerHeroPickerButton
+{
+	height: 100%;
+	width: 24px;
+	margin-top: 18px;
+	margin-bottom: 6px;
+	margin-right: 12px;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_right_png.vtex");
+	background-size: 14px 20px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: #3e4752;
+	transition-property: brightness;
+	transition-duration: 0.2s;
+}
+
+#HeroBox #PlayerHeroPickerButton:hover
+{
+	brightness: 2;
+}
+
+#HeroBox #PlayerHeroPickerButton:active
+{
+	brightness: 1.5;
+}
+
+#HeroSelectionBox
+{
+	width: 100%;
+	height: 100%;
+	padding: 16px;
+	flow-children: right-wrap;
+}
+
+#HeroSelectionBox .HeroOption
+{
+	padding: 10px;
+	flow-children: down;
+}
+
+#HeroSelectionBox .HeroOption .Hero3DPanel
+{
+	width: 120px;
+	height: 150px;
+	overflow: clip;
+	border: 1px solid black;
+	box-shadow: 4px 4px 12px #00000090;
+	transition-property: background-color, brightness;
+	transition-duration: 0.12s;
+	transition-timing-function: ease-in-out;
+}
+
+#HeroSelectionBox .HeroOption > Label
+{
+	align: center top;
+	margin-top: 8px;
+	color: gray;
+	font-size: 14px;
+	text-shadow: 4px 2px 2px 6 #000000;
+}
+
+#HeroSelectionBox .HeroOption:hover
+{
+	brightness: 2;
+}
+
+#HeroSelectionBox .HeroOption:hover .Hero3DPanel
+{
+	background-color: gradient(linear, 30% 30%, 30% 100%, from(#a7b5bb11), to(#00000090));
+}
+
+#ShopItemSelectionBox
+{
+	width: 100%;
+	height: 100%;
+	padding: 16px;
+	flow-children: right-wrap;
+}
+
+#ShopItemSelectionBox .AbilityOption
+{
+	padding: 10px;
+	flow-children: down;
+}
+
+#ShopItemSelectionBox .AbilityOption .ShopItemImagePanel
+{
+	margin: 1px;
+}
+
+#ShopItemSelectionBox .AbilityOption .ShopItemImagePanel > .Yzy_ItemImage
+{
+	width: 64px;
+	height: 64px;
+	background-size: 100%;
+	transition-property: brightness, saturation;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+#ShopItemSelectionBox .AbilityOption > Label
+{
+	width: 100%;
+	height: 20px;
+	align: center top;
+	margin-top: 8px;
+	font-size: 14px;
+	text-shadow: 2px 2px 2px 4 #000000;
+	text-overflow: shrink;
+	text-align: center;
+}
+
+#ShopItemSelectionBox .AbilityOption:hover
+{
+	brightness: 2;
+}
+
+#ShopItemSelectionBox .AbilityOption:hover Image,#ShopItemSelectionBox .AbilityOption:hover DOTAAbilityImage
+{
+	pre-transform-scale2d: 1.05;
+}
+
+#ConsumableSelectionBox
+{
+	width: 100%;
+	height: 100%;
+	padding: 16px;
+	flow-children: right-wrap;
+}
+
+#ConsumableSelectionBox .AbilityOption
+{
+	padding: 10px;
+	flow-children: down;
+}
+
+#ConsumableSelectionBox .AbilityOption .ConsumableImagePanel
+{
+	margin: 1px;
+}
+
+#ConsumableSelectionBox .AbilityOption .ConsumableImagePanel .Yzy_ItemImage
+{
+	width: 64px;
+	height: 64px;
+	background-size: 100%;
+	transition-property: brightness, saturation;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+#ConsumableSelectionBox .AbilityOption > Label
+{
+	width: 100%;
+	height: 20px;
+	align: center top;
+	margin-top: 8px;
+	font-size: 14px;
+	text-shadow: 2px 2px 2px 4 #000000;
+	text-overflow: shrink;
+	text-align: center;
+}
+
+#ConsumableSelectionBox .AbilityOption:hover
+{
+	brightness: 2;
+}
+
+#ConsumableSelectionBox .AbilityOption:hover Image,#ConsumableSelectionBox .AbilityOption:hover DOTAAbilityImage
+{
+	pre-transform-scale2d: 1.05;
+}
+
+#CardSelectionBox
+{
+	width: 100%;
+	height: 100%;
+	padding: 16px;
+	flow-children: right-wrap;
+}
+
+#CardSelectionBox .AbilityOption
+{
+	padding: 10px;
+	flow-children: down;
+}
+
+#CardSelectionBox .AbilityOption.HasCard
+{
+	saturation: 0.5;
+	brightness: 0.3;
+}
+
+#CardSelectionBox .AbilityOption > .Yzy_ItemImage
+{
+	width: 64px;
+	height: 64px;
+	margin: 3px;
+}
+
+#CardSelectionBox .AbilityOption > Label
+{
+	width: 100%;
+	height: 20px;
+	align: center top;
+	margin-top: 8px;
+	font-size: 14px;
+	text-shadow: 2px 2px 2px 4 #000000;
+	text-overflow: shrink;
+	text-align: center;
+}
+
+#CardSelectionBox .AbilityOption:hover
+{
+	brightness: 2;
+}
+
+#RelicSelectionBox
+{
+	width: 100%;
+	height: 100%;
+	padding: 16px;
+	flow-children: right-wrap;
+}
+
+#RelicSelectionBox .AbilityOption
+{
+	padding: 10px;
+	flow-children: down;
+}
+
+#RelicSelectionBox .AbilityOption.Has
+{
+	saturation: 0.5;
+	brightness: 0.3;
+}
+
+#RelicSelectionBox .AbilityOption .RelicImagePanel
+{
+	width: 64px;
+	height: 64px;
+	border: 1px solid black;
+	box-shadow: 4px 4px 12px #00000090;
+}
+
+#RelicSelectionBox .AbilityOption .RelicImagePanel Image
+{
+	width: 100%;
+	height: 100%;
+	margin: 1px;
+}
+
+#RelicSelectionBox .AbilityOption > Label
+{
+	width: 100%;
+	height: 20px;
+	align: center top;
+	margin-top: 8px;
+	font-size: 14px;
+	text-shadow: 2px 2px 2px 4 #000000;
+	text-overflow: shrink;
+	text-align: center;
+}
+
+#RelicSelectionBox .AbilityOption:hover
+{
+	brightness: 2;
+}
+
+#ItemSelectionBox
+{
+	width: 100%;
+	height: 100%;
+	padding: 16px;
+	flow-children: right-wrap;
+}
+
+#ItemSelectionBox .ItemOption
+{
+	padding: 10px;
+	flow-children: down;
+}
+
+#ItemSelectionBox .ItemOption > .Yzy_ItemImage
+{
+	width: 64px;
+	height: 64px;
+	background-size: 100%;
+	transition-property: brightness, saturation;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+#ItemSelectionBox .ItemOption > Label
+{
+	width: 100%;
+	height: 20px;
+	align: center top;
+	margin-top: 8px;
+	font-size: 14px;
+	text-shadow: 2px 2px 2px 4 #000000;
+	text-overflow: shrink;
+	text-align: center;
+}
+
+#BG_FX
+{
+	width: 500px;
+	height: 500px;
+	align: center center;
+	background-color: #000;
+}

@@ -1,0 +1,429 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_boss"
+{
+    // _Description: 路径喷射火球
+    "npc_boss_1"
+    {
+        "UnitName"                          "npc_boss_1"
+        "id"                                "1041000"
+        "Name"                              "狂暴巨猩"
+        "BaseClass"                         "npc_dota_creature"
+        "vscripts"                          "ai/ai_boss_1"
+        "Hp"                                "1"
+        "Atk"                               "1"
+        "Armor"                             "1"
+        "Level"                             "1"
+        "Model"                             "models/items/lone_druid/true_form/tarzan_and_kingkong_trueform/tarzan_and_kingkong_trueform.vmdl"
+        "ModelScale"                        "1.5"
+        "UnitLabel"                         "boss"
+        "UnitType"                          "boss"
+        "HealthBarOffset"                   "300"
+        "MovementSpeed"                     "400"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_MELEE_ATTACK"
+        "AttackDamage"                      "0"
+        "AttackRate"                        "1.6"
+        "BaseAttackSpeed"                   "200"
+        "AttackAnimationPoint"              "0.7"
+        "AttackRange"                       "120"
+        "AttackAcquisitionRange"            "1200"
+        "SoundSet"                          "Creep_Bad_Melee"
+        "GameSoundsFile"                    "soundevents/game_sounds_creeps.vsndevts"
+        "Ability1"                          "boss_1"
+        "Ability2"                          "boss_1_1"
+        "Ability3"                          "boss_1_2"
+        "Ability4"                          "boss_1_3"
+        "MinimapIcon"                       "minimap_creep"
+        "MinimapIconSize"                   "125"
+    }
+    // _Description: 定点喷毒，类似老奶奶大招
+    "npc_boss_2"
+    {
+        "UnitName"                          "npc_boss_2"
+        "id"                                "1041001"
+        "Name"                              "冰原巨人"
+        "BaseClass"                         "npc_dota_creature"
+        "vscripts"                          "ai/ai_boss_2"
+        "Hp"                                "1"
+        "Atk"                               "1"
+        "Armor"                             "1"
+        "Level"                             "1"
+        "Model"                             "models/creeps/ice_biome/storegga/storegga.vmdl"
+        "ModelScale"                        "2"
+        "UnitLabel"                         "boss"
+        "UnitType"                          "boss"
+        "HealthBarOffset"                   "500"
+        "MovementSpeed"                     "400"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_MELEE_ATTACK"
+        "AttackDamage"                      "0"
+        "AttackRate"                        "2.5"
+        "BaseAttackSpeed"                   "200"
+        "AttackAnimationPoint"              "1"
+        "AttackRange"                       "450"
+        "AttackAcquisitionRange"            "1200"
+        "SoundSet"                          "Creep_Bad_Melee"
+        "GameSoundsFile"                    "soundevents/game_sounds_creeps.vsndevts"
+        "Ability1"                          "boss_2"
+        "Ability2"                          "boss_2_1"
+        "Ability3"                          "boss_2_2"
+        "Ability4"                          "boss_2_3"
+    }
+    // _Description: 一个跳跃乍砸地，一个路径推波
+    "npc_boss_3"
+    {
+        "UnitName"                          "npc_boss_3"
+        "id"                                "1041002"
+        "Name"                              "亡灵骑士"
+        "BaseClass"                         "npc_dota_creature"
+        "vscripts"                          "ai/ai_boss_3"
+        "Hp"                                "1"
+        "Atk"                               "1"
+        "Armor"                             "1"
+        "Level"                             "1"
+        "Model"                             "models/heroes/abaddon/abaddon.vmdl"
+        "ModelScale"                        "1.78"
+        "UnitLabel"                         "boss"
+        "UnitType"                          "boss"
+        "HealthBarOffset"                   "300"
+        "MovementSpeed"                     "400"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_MELEE_ATTACK"
+        "AttackDamage"                      "0"
+        "AttackRate"                        "1.6"
+        "BaseAttackSpeed"                   "200"
+        "AttackAnimationPoint"              "0.7"
+        "AttackRange"                       "120"
+        "AttackAcquisitionRange"            "1200"
+        "SoundSet"                          "Creep_Bad_Melee"
+        "GameSoundsFile"                    "soundevents/game_sounds_creeps.vsndevts"
+        "Ability1"                          "boss_3"
+        "Ability2"                          "boss_3_1"
+        "Ability3"                          "boss_3_2"
+        "Creature"
+        {
+            "AttachWearables"
+            {
+                "1"
+                {
+                    "ItemDef"               "13457"
+                }
+                "2"
+                {
+                    "ItemDef"               "13458"
+                }
+                "3"
+                {
+                    "ItemDef"               "13459"
+                }
+                "4"
+                {
+                    "ItemDef"               "13460"
+                }
+                "5"
+                {
+                    "ItemDef"               "13461"
+                }
+            }
+        }
+    }
+    // _Description: 一个目标地点砸陨石范围爆战，一个自身周围范围踩踏，一个持续点名追踪延迟范围爆战
+    "npc_boss_4"
+    {
+        "UnitName"                          "npc_boss_4"
+        "id"                                "1041003"
+        "Name"                              "朱殷巨兽"
+        "BaseClass"                         "npc_dota_creature"
+        "vscripts"                          "ai/ai_boss_4"
+        "Hp"                                "1"
+        "Atk"                               "1"
+        "Armor"                             "1"
+        "Level"                             "1"
+        "Model"                             "models/heroes/primal_beast/primal_beast_base.vmdl"
+        "ModelScale"                        "1.93"
+        "UnitLabel"                         "boss"
+        "UnitType"                          "boss"
+        "HealthBarOffset"                   "300"
+        "MovementSpeed"                     "400"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_MELEE_ATTACK"
+        "AttackDamage"                      "0"
+        "AttackRate"                        "1.6"
+        "BaseAttackSpeed"                   "200"
+        "AttackAnimationPoint"              "0.7"
+        "AttackRange"                       "120"
+        "AttackAcquisitionRange"            "1200"
+        "SoundSet"                          "Creep_Bad_Melee"
+        "GameSoundsFile"                    "soundevents/game_sounds_creeps.vsndevts"
+        "Ability1"                          "boss_4"
+        "Ability2"                          "boss_4_1"
+        "Ability3"                          "boss_4_2"
+        "Ability4"                          "boss_4_3"
+        "Ability5"                          "boss_4_4"
+        "Creature"
+        {
+            "AttachWearables"
+            {
+                "1"
+                {
+                    "ItemDef"               "26770"
+                }
+                "2"
+                {
+                    "ItemDef"               "26771"
+                }
+                "3"
+                {
+                    "ItemDef"               "26772"
+                }
+                "4"
+                {
+                    "ItemDef"               "26795"
+                }
+            }
+        }
+    }
+    // _Description: 
+    "npc_boss_5"
+    {
+        "UnitName"                          "npc_boss_5"
+        "id"                                "1041004"
+        "Name"                              "火女"
+        "BaseClass"                         "npc_dota_creature"
+        "vscripts"                          "ai/ai_boss_5"
+        "Hp"                                "1"
+        "Atk"                               "1"
+        "Armor"                             "1"
+        "Level"                             "1"
+        "Model"                             "models/heroes/lina/lina.vmdl"
+        "ModelScale"                        "2"
+        "UnitLabel"                         "boss"
+        "UnitType"                          "boss"
+        "HealthBarOffset"                   "300"
+        "MovementSpeed"                     "400"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_RANGED_ATTACK"
+        "AttackDamage"                      "0"
+        "AttackRate"                        "2"
+        "BaseAttackSpeed"                   "200"
+        "AttackAnimationPoint"              "0.65"
+        "AttackRange"                       "1000"
+        "AttackAcquisitionRange"            "1200"
+        "ProjectileModel"                   "particles/boss/boss_5/base_attack/attack.vpcf"
+        "ProjectileSpeed"                   "1400"
+        "SoundSet"                          "Creep_Bad_Melee"
+        "GameSoundsFile"                    "soundevents/game_sounds_creeps.vsndevts"
+        "Ability1"                          "boss_5_1"
+        "Ability2"                          "boss_5_2"
+        "Ability3"                          "boss_5_3"
+        "Ability4"                          "boss_5_4"
+        "Ability5"                          "boss_5_5"
+        "Ability6"                          "boss_5_6"
+        "Creature"
+        {
+            "AttachWearables"
+            {
+                "1"
+                {
+                    "ItemDef"               "4794"
+                }
+                "2"
+                {
+                    "ItemDef"               "7741"
+                }
+                "3"
+                {
+                    "ItemDef"               "8003"
+                }
+                "4"
+                {
+                    "ItemDef"               "14248"
+                }
+                "5"
+                {
+                    "ItemDef"               "14250"
+                }
+            }
+        }
+    }
+    // _Description: 
+    "npc_boss_6"
+    {
+        "UnitName"                          "npc_boss_6"
+        "id"                                "1041005"
+        "Name"                              "狼"
+        "BaseClass"                         "npc_dota_creature"
+        "vscripts"                          "ai/ai_boss_6"
+        "Hp"                                "840000"
+        "Atk"                               "2450"
+        "Armor"                             "30"
+        "Level"                             "1"
+        "Model"                             "models/boss/boss_1/boss_1.vmdl"
+        "ModelScale"                        "1.9"
+        "UnitLabel"                         "boss"
+        "UnitType"                          "boss"
+        "HealthBarOffset"                   "300"
+        "MovementSpeed"                     "400"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_NO_ATTACK"
+        "AttackDamage"                      "0"
+        "AttackRate"                        "1.5"
+        "BaseAttackSpeed"                   "200"
+        "AttackAnimationPoint"              "0.38"
+        "AttackRange"                       "1000"
+        "AttackAcquisitionRange"            "1200"
+        "SoundSet"                          "Creep_Bad_Melee"
+        "GameSoundsFile"                    "soundevents/game_sounds_creeps.vsndevts"
+        "Ability1"                          "boss_6_1"
+        "Ability2"                          "boss_6_2"
+        "Ability3"                          "boss_6_3"
+        "Ability4"                          "boss_6_4"
+        "Ability5"                          "boss_6_5"
+        "Ability6"                          "boss_6_7"
+        "Ability7"                          "boss_6_8"
+    }
+    // _Description: 
+    "npc_boss_7"
+    {
+        "UnitName"                          "npc_boss_7"
+        "id"                                "1041006"
+        "Name"                              "毒蛛王"
+        "BaseClass"                         "npc_dota_creature"
+        "vscripts"                          "ai/ai_boss_7"
+        "Hp"                                "21000000"
+        "Atk"                               "11200"
+        "Armor"                             "40"
+        "Level"                             "1"
+        "Model"                             "models/heroes/broodmother/broodmother.vmdl"
+        "ModelScale"                        "2.2"
+        "UnitLabel"                         "boss"
+        "UnitType"                          "boss"
+        "HealthBarOffset"                   "300"
+        "MovementSpeed"                     "400"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_MELEE_ATTACK"
+        "AttackDamage"                      "0"
+        "AttackRate"                        "1.5"
+        "BaseAttackSpeed"                   "200"
+        "AttackAnimationPoint"              "0.38"
+        "AttackRange"                       "1000"
+        "AttackAcquisitionRange"            "1200"
+        "SoundSet"                          "Creep_Bad_Melee"
+        "GameSoundsFile"                    "soundevents/game_sounds_creeps.vsndevts"
+        "Ability1"                          "boss_7_1"
+        "Ability2"                          "boss_7_2"
+        "Ability3"                          "boss_7_3"
+        "Ability4"                          "boss_7_4"
+        "Ability5"                          "boss_7_5"
+        "Ability6"                          "boss_7_6"
+        "Creature"
+        {
+            "AttachWearables"
+            {
+                "1"
+                {
+                    "ItemDef"               "8295"
+                }
+                "2"
+                {
+                    "ItemDef"               "8303"
+                }
+                "3"
+                {
+                    "ItemDef"               "9090"
+                }
+                "4"
+                {
+                    "ItemDef"               "9091"
+                }
+                "5"
+                {
+                    "ItemDef"               "8296"
+                }
+            }
+        }
+    }
+    // _Description: 
+    "npc_boss_8"
+    {
+        "UnitName"                          "npc_boss_8"
+        "id"                                "1041007"
+        "Name"                              "影魔"
+        "BaseClass"                         "npc_dota_creature"
+        "vscripts"                          "ai/ai_boss_8"
+        "Hp"                                "1"
+        "Atk"                               "1"
+        "Armor"                             "1"
+        "Level"                             "1"
+        "Model"                             "models/heroes/shadow_fiend/shadow_fiend_arcana.vmdl"
+        "ModelScale"                        "2.5"
+        "UnitLabel"                         "boss"
+        "UnitType"                          "boss"
+        "HealthBarOffset"                   "300"
+        "MovementSpeed"                     "400"
+        "MovementCapabilities"              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "StatusHealth"                      "100000000"
+        "AttackCapabilities"                "DOTA_UNIT_CAP_RANGED_ATTACK"
+        "AttackDamage"                      "0"
+        "AttackRate"                        "1.6"
+        "BaseAttackSpeed"                   "200"
+        "AttackAnimationPoint"              "0.5"
+        "AttackRange"                       "1000"
+        "AttackAcquisitionRange"            "1200"
+        "ProjectileModel"                   "particles/boss/boss_8/attack_arcana.vpcf"
+        "ProjectileSpeed"                   "1200"
+        "SoundSet"                          "Creep_Bad_Melee"
+        "GameSoundsFile"                    "soundevents/game_sounds_creeps.vsndevts"
+        "Ability1"                          "boss_8_1"
+        "Ability2"                          "boss_8_2"
+        "Ability3"                          "boss_8_3"
+        "Ability4"                          "boss_8_4"
+        "Ability5"                          "boss_8_5"
+        "Creature"
+        {
+            "AttachWearables"
+            {
+                "1"
+                {
+                    "ItemDef"               "34184"
+                }
+                "2"
+                {
+                    "ItemDef"               "509"
+                }
+                "3"
+                {
+                    "ItemDef"               "826"
+                }
+                "4"
+                {
+                    "ItemDef"               "9020"
+                }
+                "5"
+                {
+                    "ItemDef"               "8259"
+                }
+                "6"
+                {
+                    "ItemDef"               "6996"
+                }
+            }
+        }
+    }
+}

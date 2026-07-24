@@ -1,0 +1,749 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"ablts_creep"
+{
+    // _AbltName: 毁灭阴影
+    // _Description: 
+    "creep_43_1"
+    {
+        "name"                              "creep_43_1"
+        "id"                                "1050001"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/creep_43_1"
+        "AbilityTextureName"                "phoenix_icarus_dive"
+        "MaxLevel"                          "1"
+        "AbilityCastRange"                  "700"
+        "AbilityCastPoint"                  "1.5"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "10"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "10"
+            "duration"                      "5"
+            "interval"                      "0.5"
+            "radius"                        "150"
+        }
+    }
+
+    // _AbltName: 毁灭声波
+    // _Description: 
+    "creep_43_2"
+    {
+        "name"                              "creep_43_2"
+        "id"                                "1050002"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/creep_43_2"
+        "AbilityTextureName"                "dragon_knight_breathe_fire"
+        "MaxLevel"                          "1"
+        "AbilityCastRange"                  "800"
+        "AbilityCastPoint"                  "1.5"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "12"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "10"
+            "duration"                      "5"
+            "interval"                      "0.5"
+            "width"                         "150"
+            "distance"                      "1500"
+            "speed"                         "1000"
+        }
+    }
+
+    // _AbltName: 魂之挽歌
+    // _Description: 
+    "creep_43_3"
+    {
+        "name"                              "creep_43_3"
+        "id"                                "1050003"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/creep_43_3"
+        "AbilityTextureName"                "batrider_flamebreak"
+        "MaxLevel"                          "1"
+        "AbilityCastRange"                  "900"
+        "AbilityCastPoint"                  "1.5"
+        "AnimationPlaybackRate"             "1"
+        "AbilityCastAnimation"              "ACT_DOTA_CAST_ABILITY_6"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "15"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "10"
+            "radius"                        "900"
+        }
+    }
+
+    // _AbltName: 冲击波
+    // _Description: 
+    "creep_44_1"
+    {
+        "name"                              "creep_44_1"
+        "id"                                "1050004"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/creep_44_1"
+        "AbilityTextureName"                "death_prophet_carrion_swarm"
+        "MaxLevel"                          "1"
+        "AbilityCastRange"                  "600"
+        "AbilityCastPoint"                  "1"
+        "AbilityCastAnimation"              "ACT_INVALID"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "12"
+        "Weight"                            "50"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "10"
+            "width"                         "150"
+            "distance"                      "1500"
+            "speed"                         "1200"
+        }
+    }
+
+    // _AbltName: 吸蓝
+    // _Description: 
+    "creep_com_1"
+    {
+        "name"                              "creep_com_1"
+        "id"                                "1050005"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/creep_com_1"
+        "AbilityTextureName"                "terrorblade_sunder"
+        "MaxLevel"                          "1"
+        "AbilityCastRange"                  "1000"
+        "AbilityCastPoint"                  "0"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "20"
+        "AbilityValues"
+        {
+            "reduce_mana_pct"               "80"
+        }
+    }
+
+    // _AbltName: 滚石
+    // _Description: 
+    "creep_com_2"
+    {
+        "name"                              "creep_com_2"
+        "id"                                "1050006"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/creep_com_2"
+        "AbilityTextureName"                "tiny_toss"
+        "MaxLevel"                          "1"
+        "AbilityCastRange"                  "1000"
+        "AbilityCastPoint"                  "1"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "15"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "10"
+            "width"                         "150"
+            "distance"                      "1500"
+            "speed"                         "1300"
+            "stun_duration"                 "3"
+        }
+    }
+
+    // _AbltName: 跳跃-踩踏
+    // _Description: 
+    "creep_com_3"
+    {
+        "name"                              "creep_com_3"
+        "id"                                "1050007"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/creep_com_3"
+        "AbilityTextureName"                "ringmaster_tame_the_beasts_crack"
+        "MaxLevel"                          "1"
+        "AbilityCastRange"                  "4000"
+        "AbilityCastPoint"                  "2"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityCooldown"                   "10"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "10"
+            "radius"                        "400"
+            "duration"                      "1"
+            "height"                        "500"
+        }
+    }
+
+    // _AbltName: 主线挑战怪1
+    // _Description: 
+    "creep_main_1"
+    {
+        "name"                              "creep_main_1"
+        "id"                                "1050008"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/creep_main_1"
+        "AbilityTextureName"                "spectre/spectre_arcana/spectre_dispersion_arcana_alt"
+        "MaxLevel"                          "1"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityValues"
+        {
+            "val"                           "50"
+        }
+    }
+
+    // _AbltName: 主线挑战怪2
+    // _Description: 
+    "creep_main_2"
+    {
+        "name"                              "creep_main_2"
+        "id"                                "1050009"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/creep_main_2"
+        "AbilityTextureName"                "largo_song_good_vibrations_rhythm"
+        "MaxLevel"                          "1"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityValues"
+        {
+            "val"                           "25"
+        }
+    }
+
+    // _AbltName: 主线挑战怪3
+    // _Description: 
+    "creep_main_3"
+    {
+        "name"                              "creep_main_3"
+        "id"                                "1050010"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/creep_main_3"
+        "AbilityTextureName"                "largo_song_good_vibrations"
+        "MaxLevel"                          "1"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityValues"
+        {
+            "val"                           "25"
+        }
+    }
+
+    // _AbltName: 主线挑战怪4
+    // _Description: 
+    "creep_main_4"
+    {
+        "name"                              "creep_main_4"
+        "id"                                "1050011"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/creep_main_4"
+        "AbilityTextureName"                "blue_dragonspawn_sorcerer_evasion"
+        "MaxLevel"                          "1"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityValues"
+        {
+            "val"                           "50"
+            "val1"                          "30"
+        }
+    }
+
+    // _AbltName: 主线挑战怪5
+    // _Description: 
+    "creep_main_5"
+    {
+        "name"                              "creep_main_5"
+        "id"                                "1050012"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/creep_main_5"
+        "AbilityTextureName"                "lich_frost_shield"
+        "MaxLevel"                          "1"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityValues"
+        {
+            "val"                           "50"
+            "val1"                          "20"
+        }
+    }
+
+    // _AbltName: 主线挑战怪6
+    // _Description: 
+    "creep_main_6"
+    {
+        "name"                              "creep_main_6"
+        "id"                                "1050013"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/creep_main_6"
+        "AbilityTextureName"                "lich_frost_aura"
+        "MaxLevel"                          "1"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityValues"
+        {
+            "val"                           "50"
+            "val1"                          "20"
+        }
+    }
+
+    // _AbltName: 主线挑战怪7
+    // _Description: 
+    "creep_main_7"
+    {
+        "name"                              "creep_main_7"
+        "id"                                "1050014"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/creep_main_7"
+        "AbilityTextureName"                "lich_frost_shield"
+        "MaxLevel"                          "1"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityValues"
+        {
+            "val"                           "50"
+            "val1"                          "20"
+        }
+    }
+
+    // _AbltName: 主线挑战怪8
+    // _Description: 
+    "creep_main_8"
+    {
+        "name"                              "creep_main_8"
+        "id"                                "1050015"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/creep_main_8"
+        "AbilityTextureName"                "lich_frost_aura"
+        "MaxLevel"                          "1"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityValues"
+        {
+            "val"                           "50"
+            "val1"                          "20"
+        }
+    }
+
+    // _AbltName: 主线精英挑战怪1
+    // _Description: 
+    "elite_main_1"
+    {
+        "name"                              "elite_main_1"
+        "id"                                "1050016"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/elite_main_1"
+        "AbilityTextureName"                "lich_frost_aura"
+        "MaxLevel"                          "1"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityValues"
+        {
+            "val"                           "50"
+            "val1"                          "30"
+        }
+    }
+
+    // _AbltName: 主线精英挑战怪2
+    // _Description: 
+    "elite_main_2"
+    {
+        "name"                              "elite_main_2"
+        "id"                                "1050017"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/elite_main_2"
+        "AbilityTextureName"                "lich_frost_aura"
+        "MaxLevel"                          "1"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityValues"
+        {
+            "val"                           "50"
+            "val1"                          "30"
+        }
+    }
+
+    // _AbltName: 主线精英挑战怪3
+    // _Description: 
+    "elite_main_3"
+    {
+        "name"                              "elite_main_3"
+        "id"                                "1050018"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/elite_main_3"
+        "AbilityTextureName"                "lich_frost_aura"
+        "MaxLevel"                          "1"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityValues"
+        {
+            "val"                           "50"
+            "val1"                          "30"
+        }
+    }
+
+    // _AbltName: 主线精英挑战怪4
+    // _Description: 
+    "elite_main_4"
+    {
+        "name"                              "elite_main_4"
+        "id"                                "1050019"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/elite_main_4"
+        "AbilityTextureName"                "lich_frost_aura"
+        "MaxLevel"                          "1"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityValues"
+        {
+            "val"                           "50"
+            "val1"                          "30"
+        }
+    }
+
+    // _AbltName: 主线精英挑战怪5
+    // _Description: 
+    "elite_main_5"
+    {
+        "name"                              "elite_main_5"
+        "id"                                "1050020"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/elite_main_5"
+        "AbilityTextureName"                "lich_frost_aura"
+        "MaxLevel"                          "1"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityValues"
+        {
+            "val"                           "70"
+            "val1"                          "40"
+        }
+    }
+
+    // _AbltName: 主线BOSS挑战怪1
+    // _Description: 
+    "boss_main_1"
+    {
+        "name"                              "boss_main_1"
+        "id"                                "1050021"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/boss_main_1"
+        "AbilityTextureName"                "lich_frost_aura"
+        "MaxLevel"                          "1"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityValues"
+        {
+            "val"                           "70"
+            "val1"                          "50"
+        }
+    }
+
+    // _AbltName: 主线BOSS挑战怪2
+    // _Description: 
+    "boss_main_2"
+    {
+        "name"                              "boss_main_2"
+        "id"                                "1050022"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/boss_main_2"
+        "AbilityTextureName"                "lich_frost_aura"
+        "MaxLevel"                          "1"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityValues"
+        {
+            "val"                           "70"
+            "val1"                          "50"
+        }
+    }
+
+    // _AbltName: 主线BOSS挑战怪3
+    // _Description: 
+    "boss_main_3"
+    {
+        "name"                              "boss_main_3"
+        "id"                                "1050023"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/boss_main_3"
+        "AbilityTextureName"                "lich_frost_aura"
+        "MaxLevel"                          "1"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityValues"
+        {
+            "val"                           "70"
+            "val1"                          "50"
+        }
+    }
+
+    // _AbltName: 主线BOSS挑战怪4
+    // _Description: 
+    "boss_main_4"
+    {
+        "name"                              "boss_main_4"
+        "id"                                "1050024"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/boss_main_4"
+        "AbilityTextureName"                "lich_frost_aura"
+        "MaxLevel"                          "1"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityValues"
+        {
+            "val"                           "70"
+            "val1"                          "50"
+        }
+    }
+
+    // _AbltName: 主线BOSS挑战怪5
+    // _Description: 
+    "boss_main_5"
+    {
+        "name"                              "boss_main_5"
+        "id"                                "1050025"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/boss_main_5"
+        "AbilityTextureName"                "lich_frost_aura"
+        "MaxLevel"                          "1"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityValues"
+        {
+            "val"                           "90"
+            "val1"                          "60"
+        }
+    }
+
+    // _AbltName: 狂暴巨猩
+    // _Description: 
+    "boss_1_ablts"
+    {
+        "name"                              "boss_1_ablts"
+        "id"                                "1050026"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/boss_1_ablts"
+        "AbilityTextureName"                "lich_frost_aura"
+        "MaxLevel"                          "1"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityValues"
+        {
+            "val"                           "80"
+            "val1"                          "80"
+            "val2"                          "40"
+        }
+    }
+
+    // _AbltName: 冰原巨人
+    // _Description: 
+    "boss_2_ablts"
+    {
+        "name"                              "boss_2_ablts"
+        "id"                                "1050027"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/boss_2_ablts"
+        "AbilityTextureName"                "lich_frost_aura"
+        "MaxLevel"                          "1"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityValues"
+        {
+            "val"                           "80"
+            "val1"                          "80"
+            "val2"                          "40"
+        }
+    }
+
+    // _AbltName: 亡灵骑士
+    // _Description: 
+    "boss_3_ablts"
+    {
+        "name"                              "boss_3_ablts"
+        "id"                                "1050028"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/boss_3_ablts"
+        "AbilityTextureName"                "lich_frost_aura"
+        "MaxLevel"                          "1"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityValues"
+        {
+            "val"                           "80"
+            "val1"                          "80"
+            "val2"                          "40"
+        }
+    }
+
+    // _AbltName: 朱殷巨兽
+    // _Description: 
+    "boss_4_ablts"
+    {
+        "name"                              "boss_4_ablts"
+        "id"                                "1050029"
+        "BaseClass"                         "ability_lua"
+        "ScriptFile"                        "abilities/creep/boss_4_ablts"
+        "AbilityTextureName"                "lich_frost_aura"
+        "MaxLevel"                          "1"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityType"                       "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+        "AnimationIgnoresModelScale"        "1"
+        "AbilityValues"
+        {
+            "val"                           "80"
+            "val1"                          "80"
+        }
+    }
+
+}

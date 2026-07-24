@@ -1,0 +1,2495 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "BoneMarkupList"
+				children = [  ]
+				bone_cull_type = "None"
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						name = "nerubian_assassin_model"
+						filename = "models/creeps/nyx_swarm/nyx_swarm_nerubian_assassin_model.dmx"
+					},
+					{
+						_class = "RenderMeshFile"
+						name = "nerubian_assassin_lod_model"
+						filename = "models/creeps/nyx_swarm/nyx_swarm_nerubian_assassin_lod_model1.dmx"
+					},
+				]
+			},
+			{
+				_class = "BodyGroupList"
+				children = 
+				[
+					{
+						_class = "BodyGroup"
+						name = "default"
+						children = 
+						[
+							{
+								_class = "BodyGroupChoice"
+								meshes = [  ]
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "AttachmentList"
+				children = 
+				[
+					{
+						_class = "Attachment"
+						name = "attach_attack2"
+						ignore_rotation = false
+						parent_bone = "ArachnidLeg_3_C_L1"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ 66.850998, 88.500023, -39.970016 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_mouth"
+						ignore_rotation = false
+						parent_bone = "jaw1_0"
+						relative_origin = [ 8.538, 0.0, 0.233002 ]
+						relative_angles = [ 0.0, 0.0, 90.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_attack1"
+						ignore_rotation = false
+						parent_bone = "ArachnidLeg_3_C_R1"
+						relative_origin = [ -0.000002, 0.0, 0.0 ]
+						relative_angles = [ 66.850952, -88.499977, -140.03006 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_hitloc"
+						ignore_rotation = false
+						parent_bone = "spine2"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ -0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+				]
+			},
+			{
+				_class = "PoseParamList"
+				children = 
+				[
+					{
+						_class = "PoseParam"
+						name = "turn"
+						poseparam_min = -1.0
+						poseparam_max = 1.0
+						poseparam_looping = false
+						poseparam_loop = 0.0
+					},
+				]
+			},
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "cast5_burrow"
+								source_filename = "models/creeps/nyx_swarm/cast5_burrow.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_4"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "cast5_burrow_end"
+								source_filename = "models/creeps/nyx_swarm/cast5_burrow_end.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_BURROW_END"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "death"
+								source_filename = "models/creeps/nyx_swarm/death.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DIE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 25
+										event_keys = 
+										{
+											name = "BodyImpact_Common.Medium"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 25
+										event_keys = 
+										{
+											name = "WeaponImpact_Common.Heavy"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "teleport_end"
+								source_filename = "models/creeps/nyx_swarm/teleport_end.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_TELEPORT_END"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "injured_attack"
+								source_filename = "models/creeps/nyx_swarm/injured_attack.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "vendetta_attack"
+								source_filename = "models/creeps/nyx_swarm/vendetta_attack.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "portrait"
+								source_filename = "models/creeps/nyx_swarm/portrait.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAPTURE"
+								activity_weight = 10
+							},
+							{
+								_class = "AnimFile"
+								name = "burrowed_idle"
+								source_filename = "models/creeps/nyx_swarm/burrowed_idle.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "burrowed_idle_dupe"
+								source_filename = "models/creeps/nyx_swarm/burrowed_idle_dupe.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE_RARE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "burrowed_impale"
+								source_filename = "models/creeps/nyx_swarm/burrowed_impale.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_1"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "burrowed_mana_burn"
+								source_filename = "models/creeps/nyx_swarm/burrowed_mana_burn.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_2"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "burrowed_spiked_carapace"
+								source_filename = "models/creeps/nyx_swarm/burrowed_spiked_carapace.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_3"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "burrowed_stun"
+								source_filename = "models/creeps/nyx_swarm/burrowed_stun.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DISABLED"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "burrowed_flail"
+								source_filename = "models/creeps/nyx_swarm/burrowed_flail.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_FLAIL"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "victory"
+								source_filename = "models/creeps/nyx_swarm/victory.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_VICTORY"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "loadout"
+								source_filename = "models/creeps/nyx_swarm/loadout.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_LOADOUT"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "spawn_loadout"
+								source_filename = "models/creeps/nyx_swarm/spawn_loadout.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_SPAWN"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "attack_anim"
+								source_filename = "models/creeps/nyx_swarm/attack_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "impale_anim"
+								source_filename = "models/creeps/nyx_swarm/impale_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_1"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "spiked_carapace_anim"
+								source_filename = "models/creeps/nyx_swarm/spiked_carapace_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_3"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "attack1_anim"
+								source_filename = "models/creeps/nyx_swarm/attack1_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "attack2_anim"
+								source_filename = "models/creeps/nyx_swarm/attack2_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "idle_anim"
+								source_filename = "models/creeps/nyx_swarm/idle_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "mana_burn_anim"
+								source_filename = "models/creeps/nyx_swarm/mana_burn_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_2"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "stun_anim"
+								source_filename = "models/creeps/nyx_swarm/stun_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_DISABLED"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "spawn_anim"
+								source_filename = "models/creeps/nyx_swarm/spawn_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_SPAWN"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "flail_anim"
+								source_filename = "models/creeps/nyx_swarm/flail_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_FLAIL"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "injured_idle_anim"
+								source_filename = "models/creeps/nyx_swarm/injured_idle_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "idleMix3_anim"
+								source_filename = "models/creeps/nyx_swarm/idleMix3_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE_RARE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "versus_tpend"
+								source_filename = "models/creeps/nyx_swarm/versus_tpend.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_VERSUS"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "run_anim"
+								source_filename = "models/creeps/nyx_swarm/run_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 7
+										event_keys = 
+										{
+											name = "Hero_NyxAssassin.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 13
+										event_keys = 
+										{
+											name = "Hero_NyxAssassin.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 18
+										event_keys = 
+										{
+											name = "Hero_NyxAssassin.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 0
+										event_keys = 
+										{
+											name = "Hero_NyxAssassin.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 5
+										event_keys = 
+										{
+											name = "Hero_NyxAssassin.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 9
+										event_keys = 
+										{
+											name = "Hero_NyxAssassin.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 22
+										event_keys = 
+										{
+											name = "Hero_NyxAssassin.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimAddLayer"
+										anim_name = "turns"
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "run_injured_anim"
+								source_filename = "models/creeps/nyx_swarm/run_injured_anim.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 0
+										event_keys = 
+										{
+											name = "Hero_NyxAssassin.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 6
+										event_keys = 
+										{
+											name = "Hero_NyxAssassin.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 9
+										event_keys = 
+										{
+											name = "Hero_NyxAssassin.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 13
+										event_keys = 
+										{
+											name = "Hero_NyxAssassin.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 19
+										event_keys = 
+										{
+											name = "Hero_NyxAssassin.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 23
+										event_keys = 
+										{
+											name = "Hero_NyxAssassin.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 31
+										event_keys = 
+										{
+											name = "Hero_NyxAssassin.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 37
+										event_keys = 
+										{
+											name = "Hero_NyxAssassin.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 43
+										event_keys = 
+										{
+											name = "Hero_NyxAssassin.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 47
+										event_keys = 
+										{
+											name = "Hero_NyxAssassin.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimAddLayer"
+										anim_name = "turns"
+									},
+								]
+							},
+						]
+						name = "base"
+					},
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "shards_loadout"
+								source_filename = "models/creeps/nyx_swarm/shards_loadout.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_LOADOUT"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "shades_portrait"
+								source_filename = "models/creeps/nyx_swarm/shades_portrait.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAPTURE"
+								activity_weight = 1
+							},
+						]
+						name = "item"
+					},
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "run"
+								source_filename = "models/creeps/nyx_swarm/run.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN_STATUE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 7
+										event_keys = 
+										{
+											name = "Hero_NyxAssassin.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 13
+										event_keys = 
+										{
+											name = "Hero_NyxAssassin.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 18
+										event_keys = 
+										{
+											name = "Hero_NyxAssassin.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 24
+										event_keys = 
+										{
+											name = "Hero_NyxAssassin.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 5
+										event_keys = 
+										{
+											name = "Hero_NyxAssassin.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_PLAYSOUND"
+										event_frame = 9
+										event_keys = 
+										{
+											name = "Hero_NyxAssassin.Footsteps"
+											stop_on_seq_change = false
+											use_layer_sequence = false
+											tags = null
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "attack"
+								source_filename = "models/creeps/nyx_swarm/attack.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "impale"
+								source_filename = "models/creeps/nyx_swarm/impale.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST1_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "spiked_carapace"
+								source_filename = "models/creeps/nyx_swarm/spiked_carapace.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST3_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "attack1"
+								source_filename = "models/creeps/nyx_swarm/attack1.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "attack2"
+								source_filename = "models/creeps/nyx_swarm/attack2.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_ATTACK_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "idle"
+								source_filename = "models/creeps/nyx_swarm/idle.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "mana_burn"
+								source_filename = "models/creeps/nyx_swarm/mana_burn.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST2_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "stun"
+								source_filename = "models/creeps/nyx_swarm/stun.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_STUN_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "spawn"
+								source_filename = "models/creeps/nyx_swarm/spawn.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_SPAWN_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "flail"
+								source_filename = "models/creeps/nyx_swarm/flail.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_FLAIL_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "injured_idle"
+								source_filename = "models/creeps/nyx_swarm/injured_idle.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE_STATUE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "run_injured"
+								source_filename = "models/creeps/nyx_swarm/run_injured.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_RUN_STATUE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = false
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										motion_type = "uniform"
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "idleMix3"
+								source_filename = "models/creeps/nyx_swarm/idleMix3.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE_STATUE"
+								activity_weight = 1
+							},
+						]
+						name = "effigy"
+					},
+					{
+						_class = "AnimBindPose"
+						name = "bindPose"
+					},
+					{
+						_class = "AnimFile"
+						name = "@turns"
+						source_filename = "models/creeps/nyx_swarm/@turns.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = true
+					},
+					{
+						_class = "AnimFile"
+						name = "@run"
+						source_filename = "models/creeps/nyx_swarm/@run.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = true
+						children = 
+						[
+							{
+								_class = "ExtractMotion"
+								extract_tx = true
+								extract_ty = false
+								extract_tz = false
+								extract_rz = false
+								linear = false
+								quadratic = false
+								motion_type = "uniform"
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 7
+								event_keys = 
+								{
+									name = "Hero_NyxAssassin.Footsteps"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 13
+								event_keys = 
+								{
+									name = "Hero_NyxAssassin.Footsteps"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 18
+								event_keys = 
+								{
+									name = "Hero_NyxAssassin.Footsteps"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 0
+								event_keys = 
+								{
+									name = "Hero_NyxAssassin.Footsteps"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 5
+								event_keys = 
+								{
+									name = "Hero_NyxAssassin.Footsteps"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 9
+								event_keys = 
+								{
+									name = "Hero_NyxAssassin.Footsteps"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 22
+								event_keys = 
+								{
+									name = "Hero_NyxAssassin.Footsteps"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+						]
+					},
+					{
+						_class = "AnimFile"
+						name = "@run_injured"
+						source_filename = "models/creeps/nyx_swarm/@run_injured.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = true
+						children = 
+						[
+							{
+								_class = "ExtractMotion"
+								extract_tx = true
+								extract_ty = false
+								extract_tz = false
+								extract_rz = false
+								linear = false
+								quadratic = false
+								motion_type = "uniform"
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 0
+								event_keys = 
+								{
+									name = "Hero_NyxAssassin.Footsteps"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 6
+								event_keys = 
+								{
+									name = "Hero_NyxAssassin.Footsteps"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 9
+								event_keys = 
+								{
+									name = "Hero_NyxAssassin.Footsteps"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 13
+								event_keys = 
+								{
+									name = "Hero_NyxAssassin.Footsteps"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 19
+								event_keys = 
+								{
+									name = "Hero_NyxAssassin.Footsteps"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 23
+								event_keys = 
+								{
+									name = "Hero_NyxAssassin.Footsteps"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 31
+								event_keys = 
+								{
+									name = "Hero_NyxAssassin.Footsteps"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 37
+								event_keys = 
+								{
+									name = "Hero_NyxAssassin.Footsteps"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 43
+								event_keys = 
+								{
+									name = "Hero_NyxAssassin.Footsteps"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 47
+								event_keys = 
+								{
+									name = "Hero_NyxAssassin.Footsteps"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = null
+								}
+							},
+						]
+					},
+					{
+						_class = "AnimFile"
+						name = "@turns_lookFrame_0"
+						source_filename = "models/creeps/nyx_swarm/@turns_lookFrame_0.dmx"
+						fade_in_time = 0.0
+						fade_out_time = 0.0
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = true
+					},
+					{
+						_class = "AnimFile"
+						name = "@turns_lookFrame_1"
+						source_filename = "models/creeps/nyx_swarm/@turns_lookFrame_1.dmx"
+						fade_in_time = 0.0
+						fade_out_time = 0.0
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = true
+					},
+					{
+						_class = "AnimFile"
+						name = "@turns_lookFrame_2"
+						source_filename = "models/creeps/nyx_swarm/@turns_lookFrame_2.dmx"
+						fade_in_time = 0.0
+						fade_out_time = 0.0
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = true
+					},
+					{
+						_class = "AnimFile"
+						name = "turns"
+						source_filename = "models/creeps/nyx_swarm/turns.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = true
+						worldSpace = false
+						hidden = false
+					},
+				]
+			},
+			{
+				_class = "HitboxSetList"
+				children = 
+				[
+					{
+						_class = "HitboxSet"
+						name = "default"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 8.230835, -7.065757, -1.5225 ]
+								hitbox_maxs = [ 51.038246, 3.541593, 16.72263 ]
+								name = "ArachnidLeg_3_C_L"
+								parent_bone = "ArachnidLeg_3_C_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -12.058924, -10.939869, -8.760823 ]
+								hitbox_maxs = [ 40.398514, 2.970515, 13.972861 ]
+								name = "ArachnidLeg_2_C_L"
+								parent_bone = "ArachnidLeg_2_C_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -3.532901, -4.826302, -6.839307 ]
+								hitbox_maxs = [ 14.535106, 7.08455, 4.742666 ]
+								name = "ArachnidLeg_1_C_L"
+								parent_bone = "ArachnidLeg_1_C_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -11.088875, -6.577015, -10.427859 ]
+								hitbox_maxs = [ 36.533485, 7.947336, 4.692529 ]
+								name = "ArachnidLeg_0_C_L"
+								parent_bone = "ArachnidLeg_0_C_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -8.10915, -11.707132, -11.365519 ]
+								hitbox_maxs = [ 39.320187, 10.033702, 13.612448 ]
+								name = "ArachnidLeg_base_C_L"
+								parent_bone = "ArachnidLeg_base_C_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 8.2315, -3.445142, -1.5225 ]
+								hitbox_maxs = [ 51.038502, 7.161859, 16.7225 ]
+								name = "ArachnidLeg_3_C_R"
+								parent_bone = "ArachnidLeg_3_C_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -10.73084, -2.212946, -3.810953 ]
+								hitbox_maxs = [ 31.625687, 11.140718, 14.813903 ]
+								name = "ArachnidLeg_2_C_R"
+								parent_bone = "ArachnidLeg_2_C_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -3.532901, -7.084554, -6.839309 ]
+								hitbox_maxs = [ 14.535107, 4.826301, 4.742675 ]
+								name = "ArachnidLeg_1_C_R"
+								parent_bone = "ArachnidLeg_1_C_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -11.088874, -7.947337, -10.427855 ]
+								hitbox_maxs = [ 37.430035, 6.577012, 4.692534 ]
+								name = "ArachnidLeg_0_C_R"
+								parent_bone = "ArachnidLeg_0_C_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -7.581563, -10.033703, -11.365519 ]
+								hitbox_maxs = [ 41.275116, 11.707132, 13.612449 ]
+								name = "ArachnidLeg_base_C_R"
+								parent_bone = "ArachnidLeg_base_C_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -27.927338, -20.227961, -0.134121 ]
+								hitbox_maxs = [ 23.383938, 20.227961, 33.821568 ]
+								name = "spine3"
+								parent_bone = "spine3"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 15.831591, -19.47113, -23.012373 ]
+								hitbox_maxs = [ 32.092297, 19.47113, 12.646359 ]
+								name = "spine1"
+								parent_bone = "spine1"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 0.087912, -9.365078, -3.123197 ]
+								hitbox_maxs = [ 42.596077, 5.305619, 13.669398 ]
+								name = "ArachnidLeg_2_A_L"
+								parent_bone = "ArachnidLeg_2_A_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -3.897463, -3.102289, -7.341495 ]
+								hitbox_maxs = [ 31.577616, 6.728073, 4.659355 ]
+								name = "ArachnidLeg_1_A_L"
+								parent_bone = "ArachnidLeg_1_A_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -53.973137, -17.470606, -6.188529 ]
+								hitbox_maxs = [ 6.451384, 17.470606, 27.236822 ]
+								name = "tail0_0"
+								parent_bone = "tail0_0"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -33.390549, -5.829988, -2.846702 ]
+								hitbox_maxs = [ 2.222685, 4.716636, 10.893474 ]
+								name = "ArachnidLeg_2_R"
+								parent_bone = "ArachnidLeg_2_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -23.646336, -5.786289, -5.420076 ]
+								hitbox_maxs = [ 6.486242, 5.081513, 2.654872 ]
+								name = "ArachnidLeg_1_R"
+								parent_bone = "ArachnidLeg_1_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 2.836202, -7.140314, -3.222136 ]
+								hitbox_maxs = [ 37.03223, 4.387943, 10.034113 ]
+								name = "ArachnidLeg_2_B_L"
+								parent_bone = "ArachnidLeg_2_B_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -3.747084, -4.805879, -6.172531 ]
+								hitbox_maxs = [ 31.935888, 6.982253, 4.689895 ]
+								name = "ArachnidLeg_1_B_L"
+								parent_bone = "ArachnidLeg_1_B_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -37.03223, -7.140314, -3.222136 ]
+								hitbox_maxs = [ -2.836202, 4.387943, 10.034113 ]
+								name = "ArachnidLeg_2_B_R"
+								parent_bone = "ArachnidLeg_2_B_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -30.08609, -7.063178, -4.777207 ]
+								hitbox_maxs = [ 4.652884, 4.886805, 3.425734 ]
+								name = "ArachnidLeg_1_B_R"
+								parent_bone = "ArachnidLeg_1_B_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -2.222685, -5.829988, -2.846702 ]
+								hitbox_maxs = [ 33.390549, 4.716636, 10.893474 ]
+								name = "ArachnidLeg_2_L"
+								parent_bone = "ArachnidLeg_2_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -8.881996, -4.483011, -6.630528 ]
+								hitbox_maxs = [ 25.329111, 5.187787, 6.532275 ]
+								name = "ArachnidLeg_1_L"
+								parent_bone = "ArachnidLeg_1_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -42.596077, -9.365078, -3.123197 ]
+								hitbox_maxs = [ -0.087912, 5.305619, 13.669398 ]
+								name = "ArachnidLeg_2_A_R"
+								parent_bone = "ArachnidLeg_2_A_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -34.155067, -8.116472, -4.399981 ]
+								hitbox_maxs = [ 5.393658, 4.490688, 7.082119 ]
+								name = "ArachnidLeg_1_A_R"
+								parent_bone = "ArachnidLeg_1_A_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -9.783198, -18.327686, -6.345389 ]
+								hitbox_maxs = [ 30.295605, 18.327686, 31.540474 ]
+								name = "root"
+								parent_bone = "root"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "hands"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 8.230835, -7.065757, -1.5225 ]
+								hitbox_maxs = [ 51.038246, 3.541593, 16.72263 ]
+								name = "ArachnidLeg_3_C_L"
+								parent_bone = "ArachnidLeg_3_C_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 8.2315, -3.445142, -1.5225 ]
+								hitbox_maxs = [ 51.038502, 7.161859, 16.7225 ]
+								name = "ArachnidLeg_3_C_R"
+								parent_bone = "ArachnidLeg_3_C_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "head"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -2.295474, -9.859627, -14.916411 ]
+								hitbox_maxs = [ 19.753506, 9.859627, 15.593224 ]
+								name = "head"
+								parent_bone = "head"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "feet"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 0.087912, -9.365078, -3.123197 ]
+								hitbox_maxs = [ 42.596077, 5.305619, 13.669398 ]
+								name = "ArachnidLeg_2_A_L"
+								parent_bone = "ArachnidLeg_2_A_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -33.390549, -5.829988, -2.846702 ]
+								hitbox_maxs = [ 2.222685, 4.716636, 10.893474 ]
+								name = "ArachnidLeg_2_R"
+								parent_bone = "ArachnidLeg_2_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ 2.836202, -7.140314, -3.222136 ]
+								hitbox_maxs = [ 37.03223, 4.387943, 10.034113 ]
+								name = "ArachnidLeg_2_B_L"
+								parent_bone = "ArachnidLeg_2_B_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -37.03223, -7.140314, -3.222136 ]
+								hitbox_maxs = [ -2.836202, 4.387943, 10.034113 ]
+								name = "ArachnidLeg_2_B_R"
+								parent_bone = "ArachnidLeg_2_B_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -2.222685, -5.829988, -2.846702 ]
+								hitbox_maxs = [ 33.390549, 4.716636, 10.893474 ]
+								name = "ArachnidLeg_2_L"
+								parent_bone = "ArachnidLeg_2_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -42.596077, -9.365078, -3.123197 ]
+								hitbox_maxs = [ -0.087912, 5.305619, 13.669398 ]
+								name = "ArachnidLeg_2_A_R"
+								parent_bone = "ArachnidLeg_2_A_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "select_low"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -61.015434, -77.486244, -37.483204 ]
+								hitbox_maxs = [ 96.699188, 77.647171, 86.650406 ]
+								name = "root"
+								parent_bone = "root"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "select_high"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -20.349104, -34.864239, -37.157139 ]
+								hitbox_maxs = [ 55.619823, 34.654327, 53.952065 ]
+								name = "root"
+								parent_bone = "root"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "Skeleton"
+				children = 
+				[
+					{
+						_class = "Bone"
+						name = "root"
+						origin = [ -18.424145, -0.0, 35.9935 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						do_not_discard = true
+						children = 
+						[
+							{
+								_class = "Bone"
+								name = "spine1"
+								origin = [ 15.224366, 0.0, 16.116718 ]
+								angles = [ -84.963821, -179.999985, 179.999985 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "spine2"
+										origin = [ 21.104477, 0.000001, 0.000004 ]
+										angles = [ 26.301317, -0.000002, -0.000001 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "spine3"
+												origin = [ 16.238998, 0.000001, -0.000021 ]
+												angles = [ 54.093494, -0.000001, -0.000012 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "ArachnidLeg_base_C_L"
+														origin = [ -2.647114, 20.639973, -6.820129 ]
+														angles = [ 77.861534, 38.372406, -5.839027 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "ArachnidLeg_0_C_L"
+																origin = [ 39.511597, -0.000007, 0.000103 ]
+																angles = [ -69.096306, -134.315231, 106.909035 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "ArachnidLeg_1_C_L"
+																		origin = [ 36.323128, 0.0, -0.000013 ]
+																		angles = [ 28.379576, -11.22456, -16.117783 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "ArachnidLeg_2_C_L"
+																				origin = [ 13.921417, 0.000003, -0.000008 ]
+																				angles = [ 58.491844, 18.633005, -7.316502 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "ArachnidLeg_3_C_L"
+																						origin = [ 26.651234, -0.000011, 0.000015 ]
+																						angles = [ 51.674473, 8.463739, 3.139958 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "ArachnidLeg_3_C_L1"
+																								origin = [ 47.950565, -0.000401, 0.000778 ]
+																								angles = [ 0.00001, 0.000002, -0.000003 ]
+																								do_not_discard = true
+																							},
+																						]
+																					},
+																				]
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+													{
+														_class = "Bone"
+														name = "neck1"
+														origin = [ 8.794098, -0.0, 0.000084 ]
+														angles = [ 15.375671, 0.000006, 0.000538 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "head"
+																origin = [ 8.630651, -0.000001, 0.000175 ]
+																angles = [ -0.734373, 0.0, -0.000533 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "jaw1_0"
+																		origin = [ 3.063457, 0.0, -5.087372 ]
+																		angles = [ 0.0, 0.0, 0.0 ]
+																		do_not_discard = true
+																	},
+																]
+															},
+														]
+													},
+													{
+														_class = "Bone"
+														name = "ArachnidLeg_base_C_R"
+														origin = [ -2.647118, -20.639967, -6.820122 ]
+														angles = [ 77.861549, -38.372383, 5.839069 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "ArachnidLeg_0_C_R"
+																origin = [ 39.511597, 0.000001, 0.000061 ]
+																angles = [ -69.096321, 134.315292, -106.909073 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "ArachnidLeg_1_C_R"
+																		origin = [ 36.323128, -0.000002, 0.000006 ]
+																		angles = [ 28.37956, 11.224549, 16.117794 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "ArachnidLeg_2_C_R"
+																				origin = [ 13.921417, 0.000005, -0.000008 ]
+																				angles = [ 58.491844, -18.633045, 7.316455 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "ArachnidLeg_3_C_R"
+																						origin = [ 26.651226, 0.000008, 0.000008 ]
+																						angles = [ 51.67445, -8.46371, -3.139943 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "ArachnidLeg_3_C_R1"
+																								origin = [ 47.950523, 0.000351, 0.000748 ]
+																								angles = [ 0.000019, -0.0, 0.000009 ]
+																								do_not_discard = true
+																							},
+																						]
+																					},
+																				]
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+													{
+														_class = "Bone"
+														name = "cloth6_r0c0"
+														origin = [ 17.237, 14.296865, -20.354706 ]
+														angles = [ 77.345345, 168.900131, 110.086609 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "cloth6_r1c0"
+																origin = [ 2.663162, 0.000008, -0.000021 ]
+																angles = [ 3.436993, -0.000001, -0.000003 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "cloth6_R2C0"
+																		origin = [ 16.77179, 0.051292, 0.017496 ]
+																		angles = [ 0.000006, 0.000022, 0.000067 ]
+																		do_not_discard = true
+																	},
+																]
+															},
+														]
+													},
+													{
+														_class = "Bone"
+														name = "cloth2_r0c0"
+														origin = [ -17.192736, 22.795626, 22.300423 ]
+														angles = [ 70.664658, 175.086151, 132.166367 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "cloth2_r1c0"
+																origin = [ 2.250763, -0.000046, 0.000025 ]
+																angles = [ -1.412194, -3.883714, 0.047892 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "cloth2_R2C0"
+																		origin = [ 9.387589, -0.023087, 0.04181 ]
+																		angles = [ 0.000015, 0.000015, 0.000128 ]
+																		do_not_discard = true
+																	},
+																]
+															},
+														]
+													},
+													{
+														_class = "Bone"
+														name = "cloth5_r0c0"
+														origin = [ 16.674892, -13.945081, -20.892609 ]
+														angles = [ 76.205048, -160.495377, 68.98291 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "cloth5_r1c0"
+																origin = [ 2.042328, 0.000007, 0.000044 ]
+																angles = [ -6.058733, -1.072387, 0.056753 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "cloth5_R2C0"
+																		origin = [ 17.653229, -0.049618, -0.119919 ]
+																		angles = [ 0.000027, -0.000014, -0.000005 ]
+																		do_not_discard = true
+																	},
+																]
+															},
+														]
+													},
+													{
+														_class = "Bone"
+														name = "cloth1_r0c0"
+														origin = [ -8.87085, 27.711437, 19.880196 ]
+														angles = [ 75.465279, -153.166504, 112.271164 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "cloth1_r1c0"
+																origin = [ 1.92334, 0.000002, 0.000002 ]
+																angles = [ -8.891777, 2.170246, 0.473511 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "cloth1_R2C0"
+																		origin = [ 17.924294, 0.021164, 0.04285 ]
+																		angles = [ -0.00001, -0.00001, -1.081843 ]
+																		do_not_discard = true
+																	},
+																]
+															},
+														]
+													},
+													{
+														_class = "Bone"
+														name = "cloth3_r0c0"
+														origin = [ -16.620798, -22.375124, 22.332367 ]
+														angles = [ 76.659332, 177.867386, 151.223358 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "cloth3_R1C0"
+																origin = [ 1.921112, 0.000016, 0.000048 ]
+																angles = [ 3.913352, -0.000001, 0.00003 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "cloth3_R2C0"
+																		origin = [ 8.796585, 0.003017, 0.051247 ]
+																		angles = [ 0.0, 0.000007, -6.125546 ]
+																		do_not_discard = true
+																	},
+																]
+															},
+														]
+													},
+													{
+														_class = "Bone"
+														name = "cloth4_r0c0"
+														origin = [ -8.382998, -26.204027, 18.830002 ]
+														angles = [ 69.437706, -143.252563, 163.231094 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "cloth4_R1C0"
+																origin = [ 2.224358, 0.000006, 0.000034 ]
+																angles = [ -7.890854, 4.58971, -0.31666 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "cloth4_R2C0"
+																		origin = [ 16.298935, 0.088055, 0.197876 ]
+																		angles = [ 0.0, 0.0, -0.0 ]
+																		do_not_discard = true
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "ArachnidLeg_base_A_L"
+								origin = [ -10.541584, 9.89621, -5.385664 ]
+								angles = [ 33.04015, 90.023888, 90.000008 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "ArachnidLeg_0_A_L"
+										origin = [ 20.273609, -0.000017, 0.000019 ]
+										angles = [ 2.004174, 101.003838, -83.58358 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "ArachnidLeg_1_A_L"
+												origin = [ 43.517342, -0.000002, -0.00001 ]
+												angles = [ 67.058197, -179.999985, 179.999985 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "ArachnidLeg_2_A_L"
+														origin = [ 31.203873, 0.000019, 0.000092 ]
+														angles = [ 21.040056, -23.569492, -50.546997 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "ArachnidLeg_3_A_L"
+																origin = [ 43.310577, -0.000111, 0.000198 ]
+																angles = [ -0.000005, -0.000007, 0.000003 ]
+																do_not_discard = true
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "tail0_0"
+								origin = [ -15.983868, -0.0, 17.218193 ]
+								angles = [ -0.000003, 0.0, -0.000003 ]
+								do_not_discard = true
+							},
+							{
+								_class = "Bone"
+								name = "ArachnidLeg_base_R"
+								origin = [ 9.587084, -12.542628, -11.739351 ]
+								angles = [ -22.032639, 109.495651, -90.000008 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "ArachnidLeg_0_R"
+										origin = [ -12.747582, -0.00001, 0.000003 ]
+										angles = [ 0.608674, 83.438271, -89.941559 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "ArachnidLeg_1_R"
+												origin = [ -30.272297, -0.000004, 0.000009 ]
+												angles = [ 77.354706, -179.999954, 179.999985 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "ArachnidLeg_2_R"
+														origin = [ -24.794567, -0.00002, -0.000137 ]
+														angles = [ 21.999477, -17.229774, 140.379425 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "ArachnidLeg_3_R"
+																origin = [ -34.025917, -0.000095, 0.000191 ]
+																angles = [ 0.000003, 0.000006, -0.000008 ]
+																do_not_discard = true
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "ArachnidLeg_base_B_L"
+								origin = [ -26.695408, 7.909083, 4.056446 ]
+								angles = [ 62.226921, 139.21582, 89.999992 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "ArachnidLeg_0_B_L"
+										origin = [ 15.880783, -0.000008, 0.0 ]
+										angles = [ -8.044689, 124.442703, -94.792053 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "ArachnidLeg_1_B_L"
+												origin = [ 33.685394, 0.000021, 0.000006 ]
+												angles = [ 65.439751, -179.999924, -179.999985 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "ArachnidLeg_2_B_L"
+														origin = [ 27.087231, 0.000023, 0.000061 ]
+														angles = [ 14.506083, -16.805756, -50.329826 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "ArachnidLeg_3_B_L"
+																origin = [ 37.021423, -0.000072, 0.000137 ]
+																angles = [ -0.000002, 0.000001, 0.000004 ]
+																do_not_discard = true
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "ArachnidLeg_base_B_R"
+								origin = [ -26.695435, -7.909084, 4.056458 ]
+								angles = [ -62.226929, 40.784149, -89.999939 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "ArachnidLeg_0_B_R"
+										origin = [ -15.880789, -0.000046, 0.000019 ]
+										angles = [ -8.044662, 124.442696, -94.792053 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "ArachnidLeg_1_B_R"
+												origin = [ -33.685524, -0.000071, 0.00005 ]
+												angles = [ 65.439751, -179.999924, -179.999985 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "ArachnidLeg_2_B_R"
+														origin = [ -27.087288, -0.000095, -0.000214 ]
+														angles = [ 14.506082, -16.805771, 129.670166 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "ArachnidLeg_3_B_R"
+																origin = [ -37.021507, -0.000137, 0.00029 ]
+																angles = [ 0.000004, 0.000006, 0.000004 ]
+																do_not_discard = true
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "ArachnidLeg_base_L"
+								origin = [ 9.58709, 12.542621, -11.739363 ]
+								angles = [ 22.032633, 70.504333, 89.999977 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "ArachnidLeg_0_L"
+										origin = [ 12.747557, -0.000021, 0.000011 ]
+										angles = [ 0.608694, 83.438271, -89.941566 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "ArachnidLeg_1_L"
+												origin = [ 30.272131, -0.000021, 0.000019 ]
+												angles = [ 77.354736, -179.999939, -179.999924 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "ArachnidLeg_2_L"
+														origin = [ 24.794415, -0.000012, -0.000042 ]
+														angles = [ 21.999483, -17.229767, -39.620575 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "ArachnidLeg_3_L"
+																origin = [ 34.025742, -0.000008, 0.000031 ]
+																angles = [ -0.000002, 0.000002, -0.000014 ]
+																do_not_discard = true
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "ArachnidLeg_base_A_R"
+								origin = [ -10.541574, -9.896206, -5.385675 ]
+								angles = [ -33.04015, 89.976082, -89.999992 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "ArachnidLeg_0_A_R"
+										origin = [ -20.273598, 0.000025, -0.000027 ]
+										angles = [ 2.004198, 101.00383, -83.583511 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "ArachnidLeg_1_A_R"
+												origin = [ -43.517281, 0.000023, -0.000021 ]
+												angles = [ 67.058197, 179.999985, 179.999985 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "ArachnidLeg_2_A_R"
+														origin = [ -31.203817, 0.000031, 0.000053 ]
+														angles = [ 21.040079, -23.569513, 129.452972 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "ArachnidLeg_3_A_R"
+																origin = [ -43.310421, -0.000023, -0.000015 ]
+																angles = [ -0.0, -0.0, -0.000009 ]
+																do_not_discard = true
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+						]
+					},
+				]
+			},
+		]
+	}
+}

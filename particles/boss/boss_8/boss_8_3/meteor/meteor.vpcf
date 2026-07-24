@@ -1,0 +1,274 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf65:version{48e806a9-c210-4cd8-811a-38b5ef63b195} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_flConstantRadius = 1.5
+	m_bShouldSort = false
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 2
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 1.0, 1.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 5.939329, 5.939329, 90.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 60
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 50.0, 255.0, 50.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 61
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 62
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_vecDistanceBiasAbs = [ 0.0, 0.0, 2.0 ]
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.2
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_VelocityFromCP"
+			m_velocityInput = 
+			{
+				m_nType = "PVEC_TYPE_CP_VALUE"
+				m_nControlPoint = 1
+			}
+			m_transformInput = 
+			{
+				m_nType = "PT_TYPE_INVALID"
+			}
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.0001
+		},
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_SetControlPointsToParticle"
+			m_bSetOrientation = true
+			m_nFirstControlPoint = 3
+		},
+		{
+			_class = "C_OP_MovementPlaceOnGround"
+			m_nRefCP1 = 3
+			m_CollisionGroupName = "DEBRIS"
+			m_flMaxTraceLength = 1024.0
+			m_flOffset = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_nMapType = "PF_MAP_TYPE_DIRECT"
+				m_flLiteralValue = 135.0
+				m_nControlPoint = 0
+				m_nScalarAttribute = 3
+				m_nVectorAttribute = 6
+				m_nVectorComponent = 0
+				m_flRandomMin = 0.0
+				m_flRandomMax = 1.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_flLOD0 = 0.0
+				m_flLOD1 = 0.0
+				m_flLOD2 = 0.0
+				m_flLOD3 = 0.0
+				m_flNoiseOutputMin = 0.0
+				m_flNoiseOutputMax = 1.0
+				m_flNoiseScale = 0.1
+				m_vecNoiseOffsetRate = [ 0.0, 0.0, 0.0 ]
+				m_flNoiseOffset = 0.0
+				m_nNoiseOctaves = 1
+				m_nNoiseTurbulence = "PF_NOISE_TURB_NONE"
+				m_nNoiseType = "PF_NOISE_TYPE_PERLIN"
+				m_nNoiseModifier = "PF_NOISE_MODIFIER_NONE"
+				m_flNoiseTurbulenceScale = 1.0
+				m_flNoiseTurbulenceMix = 0.5
+				m_flNoiseImgPreviewScale = 1.0
+				m_bNoiseImgPreviewLive = true
+				m_nInputMode = "PF_INPUT_MODE_CLAMPED"
+				m_flMultFactor = 1.0
+				m_flInput0 = 0.0
+				m_flInput1 = 1.0
+				m_flOutput0 = 0.0
+				m_flOutput1 = 1.0
+				m_nBiasType = "PF_BIAS_TYPE_STANDARD"
+				m_flBiasParameter = 0.0
+				m_Curve = 
+				{
+					m_spline = [  ]
+					m_tangents = [  ]
+					m_vDomainMins = [ 0.0, 0.0 ]
+					m_vDomainMaxs = [ 0.0, 0.0 ]
+				}
+			}
+		},
+		{
+			_class = "C_OP_RemapTransformOrientationToYaw"
+			m_TransformInput = 
+			{
+				m_nControlPoint = 3
+			}
+		},
+		{
+			_class = "C_OP_SpinUpdate"
+		},
+		{
+			_class = "C_OP_RemapSpeed"
+			m_flInputMax = 4000.0
+			m_nFieldOutput = 5
+			m_flOutputMax = -32.0
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_bOrientZ = true
+			m_flAnimationRate = 0.0
+			m_bSuppressTint = true
+			m_ModelList = 
+			[
+				{
+					m_model = resource:"models/particle/meteor.vmdl"
+				},
+			]
+			m_bAnimated = true
+			m_nLOD = 1
+			m_bForceLoopingAnimation = true
+			m_hOverrideMaterial = resource:"materials/models/particle/boulder_molten_color.vmat"
+			m_modelInput = 
+			{
+			}
+		},
+		{
+			_class = "C_OP_RenderScreenShake"
+			m_flDurationScale = 2.0
+			m_nFilterCP = -1
+			m_flAmplitudeScale = 32.0
+			m_flFrequencyScale = 32.0
+			m_flRadiusScale = 300.0
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/boss/boss_8/boss_8_3/meteor/meteorr.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_8/boss_8_3/meteor/meteorl.vpcf"
+		},
+		{
+			m_bEndCap = true
+			m_ChildRef = resource:"particles/boss/boss_8/boss_8_3/meteor/meteorc.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_8/boss_8_3/meteor/meteore.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_8/boss_8_3/meteor/meteora.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_8/boss_8_3/meteor/meteorf.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_8/boss_8_3/meteor/meteorp.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_8/boss_8_3/meteor/meteorb.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_8/boss_8_3/meteor/meteord.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_8/boss_8_3/meteor/meteoro.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_8/boss_8_3/meteor/meteorm.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_8/boss_8_3/meteor/meteork.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_8/boss_8_3/meteor/meteorh.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_8/boss_8_3/meteor/meteori.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_8/boss_8_3/meteor/meteorg.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_8/boss_8_3/meteor/meteorn.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_8/boss_8_3/meteor/meteorj.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_8/boss_8_3/meteor/meteors.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/boss/boss_8/boss_8_3/meteor/meteorq.vpcf"
+		},
+	]
+}

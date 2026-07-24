@@ -1,0 +1,4224 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"ablts_affix"
+{
+    // _AbltName: 强化箭矢
+    // _Description: 基础普攻伤害+50%，前置：【普攻】
+    "ablt_affix_1"
+    {
+        "name"                              "ablt_affix_1"
+        "id"                                "1150001"
+        "AmpAblt"                           "base_1"
+        "Enable"                            "1"
+        "Tag"                               "None"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "MaxCount"                          "3"
+        "Init"                              "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600306"                   "50"
+        }
+    }
+
+    // _AbltName: 多重箭
+    // _Description: 多重数量+1，前置：【普攻】
+    "ablt_affix_2"
+    {
+        "name"                              "ablt_affix_2"
+        "id"                                "1150002"
+        "AmpAblt"                           "base_1"
+        "Enable"                            "1"
+        "Tag"                               "None"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "MaxCount"                          "2"
+        "Init"                              "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600130"                   "1"
+        }
+    }
+
+    // _AbltName: 弹射箭
+    // _Description: 弹射次数+1，前置：【普攻】
+    "ablt_affix_3"
+    {
+        "name"                              "ablt_affix_3"
+        "id"                                "1150003"
+        "AmpAblt"                           "base_1"
+        "Enable"                            "1"
+        "Tag"                               "None"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "MaxCount"                          "2"
+        "Init"                              "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600132"                   "1"
+        }
+    }
+
+    // _AbltName: 攻速提升
+    // _Description: 攻速+60%，前置：【普攻】
+    "ablt_affix_4"
+    {
+        "name"                              "ablt_affix_4"
+        "id"                                "1150004"
+        "AmpAblt"                           "base_1"
+        "Enable"                            "1"
+        "Tag"                               "None"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "MaxCount"                          "2"
+        "Init"                              "1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600081"                   "60"
+        }
+    }
+
+    // _AbltName: 急速射击
+    // _Description: 攻速+120%，前置：【攻速提升x2】
+    "ablt_affix_5"
+    {
+        "name"                              "ablt_affix_5"
+        "id"                                "1150005"
+        "AmpAblt"                           "base_1"
+        "Enable"                            "1"
+        "Tag"                               "None"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_4=2"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600081"                   "120"
+        }
+    }
+
+    // _AbltName: 多重增伤
+    // _Description: 多重伤害+30%，前置：【多重箭】
+    "ablt_affix_6"
+    {
+        "name"                              "ablt_affix_6"
+        "id"                                "1150006"
+        "AmpAblt"                           "base_1"
+        "Enable"                            "1"
+        "Tag"                               "None"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "MaxCount"                          "2"
+        "UnlockGroup"                       "ablt_affix_2=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600131"                   "30"
+        }
+    }
+
+    // _AbltName: 弹射增伤
+    // _Description: 弹射伤害+30%，前置：【弹射箭】
+    "ablt_affix_7"
+    {
+        "name"                              "ablt_affix_7"
+        "id"                                "1150007"
+        "AmpAblt"                           "base_1"
+        "Enable"                            "1"
+        "Tag"                               "None"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "MaxCount"                          "2"
+        "UnlockGroup"                       "ablt_affix_3=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600133"                   "30"
+        }
+    }
+
+    // _AbltName: 超速射击
+    // _Description: 攻击间隔-0.15，前置：【攻速提升x2]
+    "ablt_affix_8"
+    {
+        "name"                              "ablt_affix_8"
+        "id"                                "1150008"
+        "AmpAblt"                           "base_1"
+        "AmpAbltLevel"                      "2"
+        "Enable"                            "1"
+        "Tag"                               "None"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_4=2"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600083"                   "-0.15"
+        }
+    }
+
+    // _AbltName: 奥术箭矢/暗影箭矢
+    // _Description: 获得能量附魔，攻击范围+200，伤害类型改为【能量】物理伤害，前置：【普攻】，【奥术箭】，排斥：【神箭手】，【火焰箭矢】，【冰霜箭矢】，【闪电箭矢】，【疾风箭矢】
+    "ablt_affix_9"
+    {
+        "name"                              "ablt_affix_9"
+        "id"                                "1150009"
+        "AmpAblt"                           "base_1"
+        "AmpAbltLevel"                      "5"
+        "Enable"                            "1"
+        "Tag"                               "None"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_1=1"
+        "RepelGroup"                        "ablt_affix_15|ablt_affix_10|ablt_affix_11|ablt_affix_12|ablt_affix_13"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_9"
+        "AbilityValues"
+        {
+            "sx_10600089"                   "200"
+        }
+    }
+
+    // _AbltName: 火焰箭矢/烈焰箭矢
+    // _Description: 获得火系附魔，基础普攻伤害+50%，伤害类型改为【火系】物理伤害，前置：【普攻】，【爆炎箭】，排斥：【神箭手】，【奥术箭矢】，【冰霜箭矢】，【闪电箭矢】，【疾风箭矢】
+    "ablt_affix_10"
+    {
+        "name"                              "ablt_affix_10"
+        "id"                                "1150010"
+        "AmpAblt"                           "base_1"
+        "AmpAbltLevel"                      "5"
+        "Enable"                            "1"
+        "Tag"                               "None"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_2=1"
+        "RepelGroup"                        "ablt_affix_15|ablt_affix_9|ablt_affix_11|ablt_affix_12|ablt_affix_13"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_10"
+        "AbilityValues"
+        {
+            "sx_10600306"                   "50"
+        }
+    }
+
+    // _AbltName: 冰霜箭矢/寒霜箭矢
+    // _Description: 获得冰系附魔，多重数量+1，伤害类型改为【冰系】物理伤害，前置：【普攻】，【寒冰箭】，排斥：【神箭手】，【奥术箭矢】，【火焰箭矢】，【闪电箭矢】，【疾风箭矢】
+    "ablt_affix_11"
+    {
+        "name"                              "ablt_affix_11"
+        "id"                                "1150011"
+        "AmpAblt"                           "base_1"
+        "AmpAbltLevel"                      "5"
+        "Enable"                            "1"
+        "Tag"                               "None"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_3=1"
+        "RepelGroup"                        "ablt_affix_15|ablt_affix_9|ablt_affix_10|ablt_affix_12|ablt_affix_13"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_11"
+        "AbilityValues"
+        {
+            "sx_10600130"                   "1"
+        }
+    }
+
+    // _AbltName: 闪电箭矢/圣光箭矢
+    // _Description: 获得电系附魔，弹射次数+1，伤害类型改为【电系】物理伤害，前置：【普攻】，【天雷】，排斥：【神箭手】，【奥术箭矢】，【火焰箭矢】，【冰霜箭矢】，【疾风箭矢】
+    "ablt_affix_12"
+    {
+        "name"                              "ablt_affix_12"
+        "id"                                "1150012"
+        "AmpAblt"                           "base_1"
+        "AmpAbltLevel"                      "5"
+        "Enable"                            "1"
+        "Tag"                               "None"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_4=1"
+        "RepelGroup"                        "ablt_affix_15|ablt_affix_9|ablt_affix_10|ablt_affix_11|ablt_affix_13"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_12"
+        "AbilityValues"
+        {
+            "sx_10600132"                   "1"
+        }
+    }
+
+    // _AbltName: 疾风箭矢/自然箭矢
+    // _Description: 获得风系附魔，攻速+60%，伤害类型改为【风系】物理伤害，前置：【普攻】，【飓风】，排斥：【神箭手】，【奥术箭矢】，【火焰箭矢】，【冰霜箭矢】，【闪电箭矢】
+    "ablt_affix_13"
+    {
+        "name"                              "ablt_affix_13"
+        "id"                                "1150013"
+        "AmpAblt"                           "base_1"
+        "AmpAbltLevel"                      "5"
+        "Enable"                            "1"
+        "Tag"                               "None"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "RepelGroup"                        "ablt_affix_15|ablt_affix_9|ablt_affix_10|ablt_affix_11|ablt_affix_12"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_13"
+        "AbilityValues"
+        {
+            "sx_10600081"                   "60"
+        }
+    }
+
+    // _AbltName: 破甲强弩
+    // _Description: 基础普攻伤害+50%命中敌人后降低目标15%的护甲，持续5秒，前置：【强化箭矢x2】
+    "ablt_affix_14"
+    {
+        "name"                              "ablt_affix_14"
+        "id"                                "1150014"
+        "AmpAblt"                           "base_1"
+        "AmpAbltLevel"                      "20"
+        "Enable"                            "1"
+        "Tag"                               "None"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_1=2"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_14"
+        "AbilityValues"
+        {
+            "sx_10600306"                   "50"
+            "val"                           "15"
+            "val1"                          "5"
+        }
+    }
+
+    // _AbltName: 神箭手
+    // _Description: 多重数量+1，弹射次数+1，普攻额外附加80%攻击的【物系】物理伤害，前置：【多重箭】，【攻速提升】，排斥：【奥术箭矢】，【火焰箭矢】，【冰霜箭矢】，【闪电箭矢】，【疾风箭矢】
+    "ablt_affix_15"
+    {
+        "name"                              "ablt_affix_15"
+        "id"                                "1150015"
+        "AmpAblt"                           "base_1"
+        "AmpAbltLevel"                      "13"
+        "Enable"                            "1"
+        "Tag"                               "None"
+        "Rarity"                            "4"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_2=1|ablt_affix_4=1"
+        "RepelGroup"                        "ablt_affix_9|ablt_affix_10|ablt_affix_11|ablt_affix_12|ablt_affix_13"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_15"
+        "AbilityValues"
+        {
+            "sx_10600130"                   "1"
+            "sx_10600132"                   "1"
+            "val"                           "120"
+        }
+    }
+
+    // _AbltName: 奥能喷发
+    // _Description: 攻击时有10%的概率触发奥能喷发：对目标造成300%攻击的【能量】物理伤害，并击飞1秒，前置：【普攻】，【奥术箭】
+    "ablt_affix_16"
+    {
+        "name"                              "ablt_affix_16"
+        "id"                                "1150016"
+        "AmpAblt"                           "base_1"
+        "AmpAbltLevel"                      "10"
+        "Enable"                            "1"
+        "Tag"                               "None"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_1=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_16"
+        "AbilityValues"
+        {
+            "chance"                        "10"
+            "dmg_factor"                    "500"
+            "stun_duration"                 "1"
+        }
+    }
+
+    // _AbltName: 火焰爆炸
+    // _Description: 攻击时有10%的概率触发火焰爆炸：对目标450范围内所有敌人造成180%攻击的【火系】物理伤害，前置：【普攻】，【爆炎箭】
+    "ablt_affix_17"
+    {
+        "name"                              "ablt_affix_17"
+        "id"                                "1150017"
+        "AmpAblt"                           "base_1"
+        "AmpAbltLevel"                      "10"
+        "Enable"                            "1"
+        "Tag"                               "None"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_2=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_17"
+        "AbilityValues"
+        {
+            "chance"                        "10"
+            "dmg_factor"                    "250"
+            "radius"                        "450"
+        }
+    }
+
+    // _AbltName: 贯穿冰箭
+    // _Description: 攻击时有10%的概率触发贯穿冰箭：发射一支强穿透的冰箭，对直线敌人造成200%攻击的【冰系】物理伤害，前置：【普攻】，【寒冰箭】
+    "ablt_affix_18"
+    {
+        "name"                              "ablt_affix_18"
+        "id"                                "1150018"
+        "AmpAblt"                           "base_1"
+        "AmpAbltLevel"                      "10"
+        "Enable"                            "1"
+        "Tag"                               "None"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_3=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_18"
+        "AbilityValues"
+        {
+            "chance"                        "10"
+            "dmg_factor"                    "300"
+            "width"                         "150"
+            "speed"                         "1500"
+            "distance"                      "1500"
+        }
+    }
+
+    // _AbltName: 连环闪电
+    // _Description: 攻击时有10%的概率触发闪电跃迁：发射一道可以弹射7次的闪电，每次造成200%攻击的【电系】物理伤害，前置：【普攻】，【天雷】
+    "ablt_affix_19"
+    {
+        "name"                              "ablt_affix_19"
+        "id"                                "1150019"
+        "AmpAblt"                           "base_1"
+        "AmpAbltLevel"                      "10"
+        "Enable"                            "1"
+        "Tag"                               "None"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_4=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_19"
+        "AbilityValues"
+        {
+            "chance"                        "10"
+            "dmg_factor"                    "300"
+            "count"                         "7"
+        }
+    }
+
+    // _AbltName: 狂风之力
+    // _Description: 攻击时有10%的概率触发狂风之力：攻速+120%，攻击间隔-0.05，持续5秒，冷却8秒，前置：【普攻】，【飓风】
+    "ablt_affix_20"
+    {
+        "name"                              "ablt_affix_20"
+        "id"                                "1150020"
+        "AmpAblt"                           "base_1"
+        "AmpAbltLevel"                      "10"
+        "Enable"                            "1"
+        "Tag"                               "None"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_14=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_20"
+        "AbilityValues"
+        {
+            "chance"                        "10"
+            "val"                           "120"
+            "val1"                          "-0.1"
+            "duration"                      "5"
+            "cooldown"                      "8"
+        }
+    }
+
+    // _AbltName: 真实分裂
+    // _Description: 将多重箭转换为真实箭，每3多重数量转换为1真实箭，真实箭可以触发所有攻击特效与触发效果，前置：【多重箭x2】
+    "ablt_affix_21"
+    {
+        "name"                              "ablt_affix_21"
+        "id"                                "1150021"
+        "AmpAblt"                           "base_1"
+        "AmpAbltLevel"                      "23"
+        "Enable"                            "1"
+        "Tag"                               "None"
+        "Rarity"                            "4"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_2=2"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "val"                           "3"
+            "val1"                          "1"
+        }
+    }
+
+    // _AbltName: 箭矢增幅
+    // _Description: 奥术箭伤害+40%，前置：【奥术箭】
+    "ablt_affix_22"
+    {
+        "name"                              "ablt_affix_22"
+        "id"                                "1150022"
+        "AmpAblt"                           "com_1"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "MaxCount"                          "3"
+        "UnlockGroup"                       "com_1=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600308"                   "40"
+        }
+    }
+
+    // _AbltName: 箭矢齐射
+    // _Description: 奥术箭数量+1，伤害-20%，前置：【奥术箭】
+    "ablt_affix_23"
+    {
+        "name"                              "ablt_affix_23"
+        "id"                                "1150023"
+        "AmpAblt"                           "com_1"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "MaxCount"                          "2"
+        "UnlockGroup"                       "com_1=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_23"
+        "AbilityValues"
+        {
+            "sx_10600307"                   "1"
+            "val"                           "-20"
+        }
+    }
+
+    // _AbltName: 箭矢连发
+    // _Description: 奥术箭额外释放1次，伤害-30%，前置：【箭矢增幅】
+    "ablt_affix_24"
+    {
+        "name"                              "ablt_affix_24"
+        "id"                                "1150024"
+        "AmpAblt"                           "com_1"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_22=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_24"
+        "AbilityValues"
+        {
+            "val"                           "1"
+            "val1"                          "-30"
+        }
+    }
+
+    // _AbltName: 次级扩散
+    // _Description: 次级箭数量+2，前置：【次级箭】
+    "ablt_affix_25"
+    {
+        "name"                              "ablt_affix_25"
+        "id"                                "1150025"
+        "AmpAblt"                           "com_1"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_34=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600312"                   "2"
+        }
+    }
+
+    // _AbltName: 次级爆炸
+    // _Description: 次级箭命中敌人后爆炸，对150范围内敌人造成50%攻击的【能量】魔法伤害，前置：【爆炸箭矢】，【次级箭】
+    "ablt_affix_26"
+    {
+        "name"                              "ablt_affix_26"
+        "id"                                "1150026"
+        "AmpAblt"                           "com_1"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_32=1|ablt_affix_34=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_26"
+        "AbilityValues"
+        {
+            "radius"                        "150"
+            "dmg_factor"                    "50"
+        }
+    }
+
+    // _AbltName: 爆炸增伤
+    // _Description: 爆炸箭矢伤害+60%，前置：【爆炸箭矢】
+    "ablt_affix_27"
+    {
+        "name"                              "ablt_affix_27"
+        "id"                                "1150027"
+        "AmpAblt"                           "com_1"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_32=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600310"                   "60"
+        }
+    }
+
+    // _AbltName: 爆炸扩散
+    // _Description: 爆炸箭矢范围+80%，前置：【爆炸箭矢】
+    "ablt_affix_28"
+    {
+        "name"                              "ablt_affix_28"
+        "id"                                "1150028"
+        "AmpAblt"                           "com_1"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_32=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600311"                   "80"
+        }
+    }
+
+    // _AbltName: 次级增伤
+    // _Description: 次级箭伤害+80%，前置：【次级箭】
+    "ablt_affix_29"
+    {
+        "name"                              "ablt_affix_29"
+        "id"                                "1150029"
+        "AmpAblt"                           "com_1"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_34=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600313"                   "80"
+        }
+    }
+
+    // _AbltName: 贯通箭矢
+    // _Description: 奥术箭伤害+20%，穿透+1，前置：【奥术箭】，【寒冰箭】
+    "ablt_affix_30"
+    {
+        "name"                              "ablt_affix_30"
+        "id"                                "1150030"
+        "AmpAblt"                           "com_1"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_1=1|com_3=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600308"                   "20"
+            "sx_10600255"                   "1"
+        }
+    }
+
+    // _AbltName: 蓄力射击
+    // _Description: 奥术箭伤害+100%，穿透+2，冷却缩减-50%，爆炸箭矢伤害+100%，前置：【贯通箭矢*2】排斥：【火焰射击】
+    "ablt_affix_31"
+    {
+        "name"                              "ablt_affix_31"
+        "id"                                "1150031"
+        "AmpAblt"                           "com_1"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_30=2"
+        "RepelGroup"                        "ablt_affix_33"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600308"                   "100"
+            "sx_10600255"                   "2"
+            "sx_10600310"                   "100"
+            "sx_10600309"                   "-50"
+        }
+    }
+
+    // _AbltName: 爆炸箭矢
+    // _Description: 奥术箭命中敌人后爆炸，对180范围内敌人造成75%攻击的【能量】魔法伤害，前置：【奥术箭】，【爆炎箭】
+    "ablt_affix_32"
+    {
+        "name"                              "ablt_affix_32"
+        "id"                                "1150032"
+        "AmpAblt"                           "com_1"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "4"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_1=1|com_2=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_32"
+        "AbilityValues"
+        {
+            "radius"                        "180"
+            "dmg_factor"                    "75"
+        }
+    }
+
+    // _AbltName: 火焰射击
+    // _Description: 奥术箭命中敌人后，附加3秒燃烧，前置：【爆炸箭矢】，【火箭增幅】排斥：【次级箭】
+    "ablt_affix_33"
+    {
+        "name"                              "ablt_affix_33"
+        "id"                                "1150033"
+        "AmpAblt"                           "com_1"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_32=1|ablt_affix_37=1"
+        "RepelGroup"                        "ablt_affix_34"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_33"
+        "AbilityValues"
+        {
+            "duration"                      "3"
+        }
+    }
+
+    // _AbltName: 次级箭
+    // _Description: 奥术箭首次命中后，分裂出2个可以造成75%攻击【能量】魔法伤害的次级箭，前置：【箭矢增幅】
+    "ablt_affix_34"
+    {
+        "name"                              "ablt_affix_34"
+        "id"                                "1150034"
+        "AmpAblt"                           "com_1"
+        "AmpAbltLevel"                      "2"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_22=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_34"
+        "AbilityValues"
+        {
+            "count"                         "2"
+            "dmg_factor"                    "75"
+        }
+    }
+
+    // _AbltName: 强力箭矢
+    // _Description: 奥术箭伤害+70%，前置：【箭矢增幅x2】
+    "ablt_affix_35"
+    {
+        "name"                              "ablt_affix_35"
+        "id"                                "1150035"
+        "AmpAblt"                           "com_1"
+        "AmpAbltLevel"                      "13"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_22=2"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600308"                   "80"
+        }
+    }
+
+    // _AbltName: 急速抽箭
+    // _Description: 奥术箭冷却缩减+30%，前置：【箭矢增幅】，【强化箭矢】，排斥：【爆炸箭矢】
+    "ablt_affix_36"
+    {
+        "name"                              "ablt_affix_36"
+        "id"                                "1150036"
+        "AmpAblt"                           "com_1"
+        "AmpAbltLevel"                      "23"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_22=1|ablt_affix_35=1"
+        "RepelGroup"                        "ablt_affix_32"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600309"                   "30"
+        }
+    }
+
+    // _AbltName: 火箭增幅
+    // _Description: 爆炎箭命中伤害+50%，前置：【爆炎箭】
+    "ablt_affix_37"
+    {
+        "name"                              "ablt_affix_37"
+        "id"                                "1150037"
+        "AmpAblt"                           "com_2"
+        "Enable"                            "1"
+        "Tag"                               "Fire"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "MaxCount"                          "3"
+        "UnlockGroup"                       "com_2=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600316"                   "60"
+        }
+    }
+
+    // _AbltName: 火箭爆破
+    // _Description: 爆炎箭爆炸伤害+50%，前置：【爆炎箭】
+    "ablt_affix_38"
+    {
+        "name"                              "ablt_affix_38"
+        "id"                                "1150038"
+        "AmpAblt"                           "com_2"
+        "Enable"                            "1"
+        "Tag"                               "Fire"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "MaxCount"                          "3"
+        "UnlockGroup"                       "com_2=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600317"                   "60"
+        }
+    }
+
+    // _AbltName: 连珠火箭
+    // _Description: 爆炎箭额外释放1次，伤害-20%，前置：【爆炎箭】排斥：【炎爆术】
+    "ablt_affix_39"
+    {
+        "name"                              "ablt_affix_39"
+        "id"                                "1150039"
+        "AmpAblt"                           "com_2"
+        "Enable"                            "1"
+        "Tag"                               "Fire"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "MaxCount"                          "2"
+        "UnlockGroup"                       "com_2=1"
+        "RepelGroup"                        "ablt_affix_48"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_39"
+        "AbilityValues"
+        {
+            "val"                           "1"
+            "val1"                          "-20"
+        }
+    }
+
+    // _AbltName: 爆炸扩散
+    // _Description: 爆炎箭爆炸范围+80%，前置：【火箭爆破】
+    "ablt_affix_40"
+    {
+        "name"                              "ablt_affix_40"
+        "id"                                "1150040"
+        "AmpAblt"                           "com_2"
+        "Enable"                            "1"
+        "Tag"                               "Fire"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_38=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600319"                   "80"
+        }
+    }
+
+    // _AbltName: 爆燃火箭
+    // _Description: 爆炎箭爆炸附加6秒燃烧，前置：【火箭爆破】
+    "ablt_affix_41"
+    {
+        "name"                              "ablt_affix_41"
+        "id"                                "1150041"
+        "AmpAblt"                           "com_2"
+        "Enable"                            "1"
+        "Tag"                               "Fire"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_38=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "duration"                      "6"
+        }
+    }
+
+    // _AbltName: 猛烈燃烧
+    // _Description: 烧然伤害+150%，前置：【爆燃火箭】
+    "ablt_affix_42"
+    {
+        "name"                              "ablt_affix_42"
+        "id"                                "1150042"
+        "AmpAblt"                           "com_2"
+        "Enable"                            "1"
+        "Tag"                               "Fire"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_41=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600256"                   "200"
+        }
+    }
+
+    // _AbltName: 火箭精通
+    // _Description: 爆炎箭伤害x1.2，冷却缩减+10%，前置：【火箭增幅】，【爆炸扩散】
+    "ablt_affix_43"
+    {
+        "name"                              "ablt_affix_43"
+        "id"                                "1150043"
+        "AmpAblt"                           "com_2"
+        "Enable"                            "1"
+        "Tag"                               "Fire"
+        "Rarity"                            "4"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_37=1|ablt_affix_40=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600320"                   "10"
+            "dmg_factor"                    "1.4"
+        }
+    }
+
+    // _AbltName: 渗透火焰
+    // _Description: 炎爆术穿透+2，前置：【炎爆术】
+    "ablt_affix_44"
+    {
+        "name"                              "ablt_affix_44"
+        "id"                                "1150044"
+        "AmpAblt"                           "com_2"
+        "Enable"                            "1"
+        "Tag"                               "Fire"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "MaxCount"                          "2"
+        "UnlockGroup"                       "ablt_affix_48=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600321"                   "2"
+        }
+    }
+
+    // _AbltName: 火花
+    // _Description: 爆炎箭首次命中后，释放3个可以造成180%攻击【火系】物理伤害的火花，前置：【火箭增幅】
+    "ablt_affix_45"
+    {
+        "name"                              "ablt_affix_45"
+        "id"                                "1150045"
+        "AmpAblt"                           "com_2"
+        "AmpAbltLevel"                      "2"
+        "Enable"                            "1"
+        "Tag"                               "Fire"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_37=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_45"
+        "AbilityValues"
+        {
+            "val"                           "3"
+            "dmg_factor"                    "300"
+        }
+    }
+
+    // _AbltName: 传火
+    // _Description: 具有燃烧状态的敌人死亡时发生爆炸，对240范围内敌人造成200%攻击的【火系】物理伤害，前置：【爆燃火箭】
+    "ablt_affix_46"
+    {
+        "name"                              "ablt_affix_46"
+        "id"                                "1150046"
+        "AmpAblt"                           "com_2"
+        "AmpAbltLevel"                      "5"
+        "Enable"                            "1"
+        "Tag"                               "Fire"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_41=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_46"
+        "AbilityValues"
+        {
+            "radius"                        "240"
+            "dmg_factor"                    "500"
+        }
+    }
+
+    // _AbltName: 超连珠火箭
+    // _Description: 爆炎箭额外释放2次，伤害-30%，前置：【连珠火箭x2】
+    "ablt_affix_47"
+    {
+        "name"                              "ablt_affix_47"
+        "id"                                "1150047"
+        "AmpAblt"                           "com_2"
+        "AmpAbltLevel"                      "10"
+        "Enable"                            "1"
+        "Tag"                               "Fire"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_39=2"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600318"                   "-30"
+            "val"                           "2"
+        }
+    }
+
+    // _AbltName: 炎爆术
+    // _Description: 爆炎箭进阶为炎爆术，现在可穿透目标，且穿透+2，前置：【爆炸扩散】排斥：【连珠火箭】
+    "ablt_affix_48"
+    {
+        "name"                              "ablt_affix_48"
+        "id"                                "1150048"
+        "AmpAblt"                           "com_2"
+        "AmpAbltLevel"                      "13"
+        "Enable"                            "1"
+        "Tag"                               "Fire"
+        "Rarity"                            "4"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_40=1"
+        "RepelGroup"                        "ablt_affix_39"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600255"                   "2"
+            "sx_10600317"                   "120"
+            "width"                         "100"
+            "distance"                      "1800"
+        }
+    }
+
+    // _AbltName: 冰箭增幅
+    // _Description: 寒冰箭伤害+40%，前置：【寒冰箭】
+    "ablt_affix_49"
+    {
+        "name"                              "ablt_affix_49"
+        "id"                                "1150049"
+        "AmpAblt"                           "com_3"
+        "Enable"                            "1"
+        "Tag"                               "Frost"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "MaxCount"                          "3"
+        "UnlockGroup"                       "com_3=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600322"                   "40"
+        }
+    }
+
+    // _AbltName: 极寒冰箭
+    // _Description: 寒冰箭伤害+20%，命中后附加1秒冻结，前置：【寒冰箭】
+    "ablt_affix_50"
+    {
+        "name"                              "ablt_affix_50"
+        "id"                                "1150050"
+        "AmpAblt"                           "com_3"
+        "Enable"                            "1"
+        "Tag"                               "Frost"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_3=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_50"
+        "AbilityValues"
+        {
+            "sx_10600322"                   "20"
+            "duration"                      "1"
+        }
+    }
+
+    // _AbltName: 冰箭贯穿
+    // _Description: 寒冰箭伤害+20%，穿透+2，前置：【寒冰箭】
+    "ablt_affix_51"
+    {
+        "name"                              "ablt_affix_51"
+        "id"                                "1150051"
+        "AmpAblt"                           "com_3"
+        "Enable"                            "1"
+        "Tag"                               "Frost"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "MaxCount"                          "2"
+        "UnlockGroup"                       "com_3=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600322"                   "20"
+            "sx_10600255"                   "2"
+        }
+    }
+
+    // _AbltName: 冰箭冲击
+    // _Description: 寒冰箭击退效果+50%，穿透+2，前置：【寒冰箭】
+    "ablt_affix_52"
+    {
+        "name"                              "ablt_affix_52"
+        "id"                                "1150052"
+        "AmpAblt"                           "com_3"
+        "Enable"                            "1"
+        "Tag"                               "Frost"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_3=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600255"                   "2"
+            "val"                           "50"
+        }
+    }
+
+    // _AbltName: 冰箭连发
+    // _Description: 寒冰箭额外释放1次，伤害-20%，前置：【寒冰箭】排斥：【冰箭齐射】
+    "ablt_affix_53"
+    {
+        "name"                              "ablt_affix_53"
+        "id"                                "1150053"
+        "AmpAblt"                           "com_3"
+        "Enable"                            "1"
+        "Tag"                               "Frost"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_3=1"
+        "RepelGroup"                        "ablt_affix_60"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_53"
+        "AbilityValues"
+        {
+            "val"                           "1"
+            "val1"                          "-20"
+        }
+    }
+
+    // _AbltName: 小冰箭
+    // _Description: 寒冰箭首次命中后，分裂出3个穿透2可以造成120%攻击【冰系】魔法伤害的小冰箭，前置：【寒冰箭】
+    "ablt_affix_54"
+    {
+        "name"                              "ablt_affix_54"
+        "id"                                "1150054"
+        "AmpAblt"                           "com_3"
+        "Enable"                            "1"
+        "Tag"                               "Frost"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_3=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_54"
+        "AbilityValues"
+        {
+            "sx_10600324"                   "3"
+            "val"                           "2"
+            "dmg_factor"                    "300"
+            "radius"                        "800"
+            "width"                         "100"
+            "distance"                      "1000"
+        }
+    }
+
+    // _AbltName: 重冰箭
+    // _Description: 寒冰箭弹道速度-40%，伤害+70%，穿透+1，前置：【冰箭贯穿】
+    "ablt_affix_55"
+    {
+        "name"                              "ablt_affix_55"
+        "id"                                "1150055"
+        "AmpAblt"                           "com_3"
+        "Enable"                            "1"
+        "Tag"                               "Frost"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_51=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600325"                   "-40"
+            "sx_10600322"                   "80"
+            "sx_10600255"                   "1"
+        }
+    }
+
+    // _AbltName: 蚀骨之寒
+    // _Description: 寒冰箭命中后附加10秒冻伤，可叠加5层，前置：【极寒冰箭】【冰箭贯穿】排斥：【三菱冰箭】
+    "ablt_affix_56"
+    {
+        "name"                              "ablt_affix_56"
+        "id"                                "1150056"
+        "AmpAblt"                           "com_3"
+        "Enable"                            "1"
+        "Tag"                               "Frost"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_50=1|ablt_affix_51=1"
+        "RepelGroup"                        "ablt_affix_59"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "duration"                      "10"
+            "val"                           "5"
+        }
+    }
+
+    // _AbltName: 冰片增伤
+    // _Description: 小冰箭伤害+60%，前置：【小冰箭】
+    "ablt_affix_57"
+    {
+        "name"                              "ablt_affix_57"
+        "id"                                "1150057"
+        "AmpAblt"                           "com_3"
+        "Enable"                            "1"
+        "Tag"                               "Frost"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "MaxCount"                          "2"
+        "UnlockGroup"                       "ablt_affix_54=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600326"                   "100"
+        }
+    }
+
+    // _AbltName: 蚀骨冰棱
+    // _Description: 寒霜箭分裂数量+1，前置：【小冰箭】
+    "ablt_affix_58"
+    {
+        "name"                              "ablt_affix_58"
+        "id"                                "1150058"
+        "AmpAblt"                           "com_3"
+        "Enable"                            "1"
+        "Tag"                               "Frost"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_54=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600324"                   "3"
+        }
+    }
+
+    // _AbltName: 三棱冰箭
+    // _Description: 寒冰箭进阶为三棱冰箭，每次命中目标都会分裂出1个附加所有强化效果的寒冰箭，前置：【极寒冰箭】，【冰箭贯穿】，【冰箭增幅】
+    "ablt_affix_59"
+    {
+        "name"                              "ablt_affix_59"
+        "id"                                "1150059"
+        "AmpAblt"                           "com_3"
+        "AmpAbltLevel"                      "10"
+        "Enable"                            "1"
+        "Tag"                               "Frost"
+        "Rarity"                            "4"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_50=1|ablt_affix_51=1|ablt_affix_49=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "val"                           "1"
+        }
+    }
+
+    // _AbltName: 冰箭齐射
+    // _Description: 寒冰箭数量+1，伤害+40%，前置：【极寒冰箭】，排斥：【冰箭贯穿】
+    "ablt_affix_60"
+    {
+        "name"                              "ablt_affix_60"
+        "id"                                "1150060"
+        "AmpAblt"                           "com_3"
+        "AmpAbltLevel"                      "13"
+        "Enable"                            "1"
+        "Tag"                               "Frost"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_50=1"
+        "RepelGroup"                        "ablt_affix_53"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600323"                   "1"
+            "sx_10600322"                   "40"
+        }
+    }
+
+    // _AbltName: 雷击增幅
+    // _Description: 天雷伤害+40%，前置：【天雷】
+    "ablt_affix_61"
+    {
+        "name"                              "ablt_affix_61"
+        "id"                                "1150061"
+        "AmpAblt"                           "com_4"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "MaxCount"                          "3"
+        "UnlockGroup"                       "com_4=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600327"                   "40"
+        }
+    }
+
+    // _AbltName: 高压雷击
+    // _Description: 天雷伤害+25%，麻痹时间+0.2秒，前置：【天雷】
+    "ablt_affix_62"
+    {
+        "name"                              "ablt_affix_62"
+        "id"                                "1150062"
+        "AmpAblt"                           "com_4"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_4=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600327"                   "25"
+            "duration"                      "0.2"
+        }
+    }
+
+    // _AbltName: 连续雷击
+    // _Description: 天雷额外释放1次，伤害-20%，前置：【天雷】
+    "ablt_affix_63"
+    {
+        "name"                              "ablt_affix_63"
+        "id"                                "1150063"
+        "AmpAblt"                           "com_4"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "MaxCount"                          "3"
+        "UnlockGroup"                       "com_4=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_63"
+        "AbilityValues"
+        {
+            "val"                           "1"
+            "val1"                          "-20"
+        }
+    }
+
+    // _AbltName: 磁暴增幅
+    // _Description: 磁暴伤害+50%，前置：【磁暴】
+    "ablt_affix_64"
+    {
+        "name"                              "ablt_affix_64"
+        "id"                                "1150064"
+        "AmpAblt"                           "com_4"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "MaxCount"                          "2"
+        "UnlockGroup"                       "ablt_affix_71=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600328"                   "50"
+        }
+    }
+
+    // _AbltName: 磁暴扩张
+    // _Description: 磁暴范围+80%，前置：【磁暴】
+    "ablt_affix_65"
+    {
+        "name"                              "ablt_affix_65"
+        "id"                                "1150065"
+        "AmpAblt"                           "com_4"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_71=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600329"                   "80"
+        }
+    }
+
+    // _AbltName: 电磁场
+    // _Description: 磁暴范围内生成持续3秒的电磁场，每秒造成50%攻击的【电系】魔法伤害，附加1秒减速，前置：【磁暴】
+    "ablt_affix_66"
+    {
+        "name"                              "ablt_affix_66"
+        "id"                                "1150066"
+        "AmpAblt"                           "com_4"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_71=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_66"
+        "AbilityValues"
+        {
+            "duration"                      "3"
+            "dmg_factor"                    "100"
+            "val"                           "1"
+            "val1"                          "-30"
+        }
+    }
+
+    // _AbltName: 稳定电场
+    // _Description: 电磁场持续时间+3秒，前置：【电磁场】
+    "ablt_affix_67"
+    {
+        "name"                              "ablt_affix_67"
+        "id"                                "1150067"
+        "AmpAblt"                           "com_4"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_66=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "duration"                      "3"
+        }
+    }
+
+    // _AbltName: 高压电场
+    // _Description: 电磁场伤害+150%，前置：【电磁场】
+    "ablt_affix_68"
+    {
+        "name"                              "ablt_affix_68"
+        "id"                                "1150068"
+        "AmpAblt"                           "com_4"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_66=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600330"                   "200"
+        }
+    }
+
+    // _AbltName: 闪电球
+    // _Description: 天雷命中后向6个方向释放穿透5可以造成50%攻击【电系】魔法伤害的闪电球，前置：【雷击增幅】，【高压雷击】
+    "ablt_affix_69"
+    {
+        "name"                              "ablt_affix_69"
+        "id"                                "1150069"
+        "AmpAblt"                           "com_4"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_61=1|ablt_affix_62=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_69"
+        "AbilityValues"
+        {
+            "count"                         "6"
+            "dmg_factor"                    "150"
+            "val"                           "5"
+            "speed"                         "300"
+            "distance"                      "1000"
+            "width"                         "100"
+        }
+    }
+
+    // _AbltName: 高压电球
+    // _Description: 闪电球伤害+40%，并附加0.2秒麻痹，前置：【闪电球】
+    "ablt_affix_70"
+    {
+        "name"                              "ablt_affix_70"
+        "id"                                "1150070"
+        "AmpAblt"                           "com_4"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_69=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600331"                   "40"
+            "duration"                      "0.2"
+        }
+    }
+
+    // _AbltName: 磁暴
+    // _Description: 天雷命中后产生爆炸，对220范围内敌人造成100%攻击的【电系】魔法伤害，前置：【天雷】
+    "ablt_affix_71"
+    {
+        "name"                              "ablt_affix_71"
+        "id"                                "1150071"
+        "AmpAblt"                           "com_4"
+        "AmpAbltLevel"                      "2"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_4=1"
+        "RepelGroup"                        "ablt_affix_73"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "radius"                        "220"
+            "dmg_factor"                    "100"
+        }
+    }
+
+    // _AbltName: 雷电制裁
+    // _Description: 天雷伤害+80%，天雷击杀敌人时，对400范围内一名随机敌人再释放一次天雷（仅继承雷击增幅效果）前置：【雷击增幅】
+    "ablt_affix_72"
+    {
+        "name"                              "ablt_affix_72"
+        "id"                                "1150072"
+        "AmpAblt"                           "com_4"
+        "AmpAbltLevel"                      "5"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "4"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_61=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600327"                   "100"
+            "radius"                        "400"
+        }
+    }
+
+    // _AbltName: 审判之雷
+    // _Description: 天雷进阶为审判之雷，伤害+120%，前置：【高压雷击】，【雷电制裁】，排斥：【磁暴】
+    "ablt_affix_73"
+    {
+        "name"                              "ablt_affix_73"
+        "id"                                "1150073"
+        "AmpAblt"                           "com_4"
+        "AmpAbltLevel"                      "20"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "4"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_62=1|ablt_affix_72=1"
+        "RepelGroup"                        "ablt_affix_71"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600327"                   "150"
+        }
+    }
+
+    // _AbltName: 剑气增幅
+    // _Description: 剑气伤害+40%，前置：【剑气】
+    "ablt_affix_74"
+    {
+        "name"                              "ablt_affix_74"
+        "id"                                "1150074"
+        "AmpAblt"                           "com_5"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "MaxCount"                          "3"
+        "UnlockGroup"                       "com_5=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600332"                   "40"
+        }
+    }
+
+    // _AbltName: 致残剑气
+    // _Description: 剑气伤害+20%,剑气附加6秒减速，前置：【剑气】
+    "ablt_affix_75"
+    {
+        "name"                              "ablt_affix_75"
+        "id"                                "1150075"
+        "AmpAblt"                           "com_5"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_5=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600332"                   "20"
+            "duration"                      "6"
+            "val"                           "30"
+        }
+    }
+
+    // _AbltName: 重创
+    // _Description: 剑气命中的敌人在6秒内受到伤害+20%，前置：【剑气】
+    "ablt_affix_76"
+    {
+        "name"                              "ablt_affix_76"
+        "id"                                "1150076"
+        "AmpAblt"                           "com_5"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_5=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_76"
+        "AbilityValues"
+        {
+            "duration"                      "6"
+            "val"                           "20"
+        }
+    }
+
+    // _AbltName: 疾行剑气
+    // _Description: 剑气弹道速度+40%，冷却缩减+20%，前置：【剑气】
+    "ablt_affix_77"
+    {
+        "name"                              "ablt_affix_77"
+        "id"                                "1150077"
+        "AmpAblt"                           "com_5"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_5=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600333"                   "40"
+            "sx_10600335"                   "20"
+        }
+    }
+
+    // _AbltName: 剑气冲击
+    // _Description: 剑气击退效果+30%，命中时20%概率附加1秒眩晕，前置：【剑气】
+    "ablt_affix_78"
+    {
+        "name"                              "ablt_affix_78"
+        "id"                                "1150078"
+        "AmpAblt"                           "com_5"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_5=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "duration"                      "1"
+            "val"                           "30"
+            "val1"                          "20"
+        }
+    }
+
+    // _AbltName: 巨型剑气
+    // _Description: 剑气大小+60%，前置：【剑气增幅】
+    "ablt_affix_79"
+    {
+        "name"                              "ablt_affix_79"
+        "id"                                "1150079"
+        "AmpAblt"                           "com_5"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_74=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600334"                   "60"
+        }
+    }
+
+    // _AbltName: 连续剑气
+    // _Description: 剑气额外释放1次，伤害-20%，前置：【剑气增幅】
+    "ablt_affix_80"
+    {
+        "name"                              "ablt_affix_80"
+        "id"                                "1150080"
+        "AmpAblt"                           "com_5"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "MaxCount"                          "2"
+        "UnlockGroup"                       "ablt_affix_74=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_80"
+        "AbilityValues"
+        {
+            "val"                           "1"
+            "val1"                          "-20"
+        }
+    }
+
+    // _AbltName: 碎冰
+    // _Description: 剑气命中冻结的敌人，伤害+200%，前置：【剑气】，【冰霜新星】，【极寒冰箭】排斥：【烈焰斩】
+    "ablt_affix_81"
+    {
+        "name"                              "ablt_affix_81"
+        "id"                                "1150081"
+        "AmpAblt"                           "com_5"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_5=1|ablt_affix_50=1"
+        "RepelGroup"                        "ablt_affix_84"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "val"                           "300"
+        }
+    }
+
+    // _AbltName: 湮灭斩
+    // _Description: 剑气进阶为湮灭斩，伤害，大小，速度+60%，伤害频率翻倍且无法被拦截，前置：【巨型剑气】，【疾行剑气】，【剑气冲击】
+    "ablt_affix_82"
+    {
+        "name"                              "ablt_affix_82"
+        "id"                                "1150082"
+        "AmpAblt"                           "com_5"
+        "AmpAbltLevel"                      "2"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "4"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_79=1|ablt_affix_77=1|ablt_affix_78=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600332"                   "60"
+            "sx_10600334"                   "60"
+            "sx_10600333"                   "60"
+        }
+    }
+
+    // _AbltName: 剑气爆发
+    // _Description: 敌人进入自身周围400范围时，立即释放5道剑气，冷却45秒，前置：【致残剑气】，【巨型剑气】
+    "ablt_affix_83"
+    {
+        "name"                              "ablt_affix_83"
+        "id"                                "1150083"
+        "AmpAblt"                           "com_5"
+        "AmpAbltLevel"                      "10"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_75=1|ablt_affix_79=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_83"
+        "AbilityValues"
+        {
+            "radius"                        "400"
+            "val"                           "5"
+            "cooldown"                      "45"
+        }
+    }
+
+    // _AbltName: 烈焰斩
+    // _Description: 剑气命中后附加3秒燃烧，前置：【爆炎箭】，【巨型剑气】排斥：【碎冰】
+    "ablt_affix_84"
+    {
+        "name"                              "ablt_affix_84"
+        "id"                                "1150084"
+        "AmpAblt"                           "com_5"
+        "AmpAbltLevel"                      "13"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_2=1|ablt_affix_79=1"
+        "RepelGroup"                        "ablt_affix_81"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_84"
+        "AbilityValues"
+        {
+            "duration"                      "3"
+        }
+    }
+
+    // _AbltName: 剑气连斩
+    // _Description: 剑气额外释放2次，伤害-30%，前置：【连续剑气x2】
+    "ablt_affix_85"
+    {
+        "name"                              "ablt_affix_85"
+        "id"                                "1150085"
+        "AmpAblt"                           "com_5"
+        "AmpAbltLevel"                      "20"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_80=2"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600332"                   "-30"
+            "val"                           "2"
+        }
+    }
+
+    // _AbltName: 激光增幅
+    // _Description: 奥术激光伤害+40%，前置：【奥术激光】
+    "ablt_affix_86"
+    {
+        "name"                              "ablt_affix_86"
+        "id"                                "1150086"
+        "AmpAblt"                           "com_6"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "MaxCount"                          "3"
+        "UnlockGroup"                       "com_6=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600336"                   "40"
+        }
+    }
+
+    // _AbltName: 稳定光线
+    // _Description: 奥术激光持续时间+60%，前置：【奥术激光】
+    "ablt_affix_87"
+    {
+        "name"                              "ablt_affix_87"
+        "id"                                "1150087"
+        "AmpAblt"                           "com_6"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "MaxCount"                          "2"
+        "UnlockGroup"                       "com_6=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600337"                   "60"
+        }
+    }
+
+    // _AbltName: 激光超载
+    // _Description: 奥术激光伤害频率翻倍，冷却缩减-50%，前置：【奥术激光】
+    "ablt_affix_88"
+    {
+        "name"                              "ablt_affix_88"
+        "id"                                "1150088"
+        "AmpAblt"                           "com_6"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_6=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600338"                   "-20"
+        }
+    }
+
+    // _AbltName: 衰弱光线
+    // _Description: 奥术激光命中的敌人在1秒内降低80%移速，前置：【奥术激光】
+    "ablt_affix_89"
+    {
+        "name"                              "ablt_affix_89"
+        "id"                                "1150089"
+        "AmpAblt"                           "com_6"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_6=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "duration"                      "1"
+            "val"                           "80"
+        }
+    }
+
+    // _AbltName: 瓦解光线
+    // _Description: 奥术激光中的敌人在5秒内受到的伤害+25%，前置：【奥术激光】
+    "ablt_affix_90"
+    {
+        "name"                              "ablt_affix_90"
+        "id"                                "1150090"
+        "AmpAblt"                           "com_6"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_6=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "duration"                      "5"
+            "val"                           "25"
+        }
+    }
+
+    // _AbltName: 高能脉冲
+    // _Description: 奥术激光范围+150%，前置：【激光增幅】
+    "ablt_affix_91"
+    {
+        "name"                              "ablt_affix_91"
+        "id"                                "1150091"
+        "AmpAblt"                           "com_6"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_86=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600339"                   "150"
+        }
+    }
+
+    // _AbltName: 奥术增幅a
+    // _Description: 奥术箭，奥术激光伤害+50%，前置：【奥术箭】，【奥术激光】
+    "ablt_affix_92"
+    {
+        "name"                              "ablt_affix_92"
+        "id"                                "1150092"
+        "AmpAblt"                           "com_6"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_1=1|com_6=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600308"                   "50"
+            "sx_10600336"                   "50"
+        }
+    }
+
+    // _AbltName: 激光闪射
+    // _Description: 奥术激光持续期间，每0.5秒释放一道可以造成250%攻击【能量】魔法伤害的脉冲射线，前置：【激光增幅】，【激光超载】
+    "ablt_affix_93"
+    {
+        "name"                              "ablt_affix_93"
+        "id"                                "1150093"
+        "AmpAblt"                           "com_6"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_86=1|ablt_affix_88=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "interval"                      "0.5"
+            "dmg_factor"                    "250"
+        }
+    }
+
+    // _AbltName: 奥能洪流
+    // _Description: 奥术激光进阶为奥术洪流，范围+150%，伤害+150%，前置：【激光超载】，【高能脉冲】，排斥：【奥能扫射】
+    "ablt_affix_94"
+    {
+        "name"                              "ablt_affix_94"
+        "id"                                "1150094"
+        "AmpAblt"                           "com_6"
+        "AmpAbltLevel"                      "10"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "4"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_88=1|ablt_affix_91=1"
+        "RepelGroup"                        "ablt_affix_95"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600339"                   "150"
+            "sx_10600336"                   "150"
+        }
+    }
+
+    // _AbltName: 奥能扫射
+    // _Description: 奥术激光进阶为扫射激光，伤害-20%，释放方式改为扫过战场，前置：【激光超载】，【衰弱光线】，【高能脉冲】，排斥：【奥能洪流】
+    "ablt_affix_95"
+    {
+        "name"                              "ablt_affix_95"
+        "id"                                "1150095"
+        "AmpAblt"                           "com_6"
+        "AmpAbltLevel"                      "20"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "4"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_88=1|ablt_affix_89=1|ablt_affix_91=1"
+        "RepelGroup"                        "ablt_affix_94"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600336"                   "-20"
+        }
+    }
+
+    // _AbltName: 射线增幅
+    // _Description: 奥术射线伤害+40%
+    // 前置：[奥术射线]
+    "ablt_affix_96"
+    {
+        "name"                              "ablt_affix_96"
+        "id"                                "1150096"
+        "AmpAblt"                           "com_7"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "MaxCount"                          "3"
+        "UnlockGroup"                       "com_7=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600340"                   "40"
+        }
+    }
+
+    // _AbltName: 射线延续
+    // _Description: 奥术射线持续时间+75%
+    // 前置：[奥术射线]
+    "ablt_affix_97"
+    {
+        "name"                              "ablt_affix_97"
+        "id"                                "1150097"
+        "AmpAblt"                           "com_7"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "MaxCount"                          "2"
+        "UnlockGroup"                       "com_7=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600341"                   "75"
+        }
+    }
+
+    // _AbltName: 焦点
+    // _Description: 奥术射线持续期间会使目标受到的伤害提高20% 
+    // 前置：[奥术射线]
+    "ablt_affix_98"
+    {
+        "name"                              "ablt_affix_98"
+        "id"                                "1150098"
+        "AmpAblt"                           "com_7"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_7=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "val"                           "20"
+        }
+    }
+
+    // _AbltName: 奥术增幅β
+    // _Description: 奥术箭，奥术射线伤害+50%
+    // 前置：[奥术箭]］、[奥术射线]
+    "ablt_affix_99"
+    {
+        "name"                              "ablt_affix_99"
+        "id"                                "1150099"
+        "AmpAblt"                           "com_7"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_1=1|com_7=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600308"                   "50"
+            "sx_10600340"                   "50"
+        }
+    }
+
+    // _AbltName: 制导箭失
+    // _Description: 奥术射线持续期间每0.2向周围随机敌人发射一支从天而降的无强化奥术箭
+    // 前置：[奥术箭]、[焦点]
+    "ablt_affix_100"
+    {
+        "name"                              "ablt_affix_100"
+        "id"                                "1150100"
+        "AmpAblt"                           "com_7"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "4"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_1=1|ablt_affix_98=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_100"
+        "AbilityValues"
+        {
+            "interval"                      "0.2"
+            "radius"                        "400"
+        }
+    }
+
+    // _AbltName: 焦点爆破
+    // _Description: 奥术射线会在目标位置发生爆炸，对200范围内敌人造成70%攻击的[能量]魔法伤害
+    // 前置：[焦点]
+    "ablt_affix_101"
+    {
+        "name"                              "ablt_affix_101"
+        "id"                                "1150101"
+        "AmpAblt"                           "com_7"
+        "AmpAbltLevel"                      "2"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_98=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_101"
+        "AbilityValues"
+        {
+            "radius"                        "220"
+            "dmg_factor"                    "75"
+        }
+    }
+
+    // _AbltName: 多重射线
+    // _Description: 奥术射线初始目标数+1
+    // 前置：[射线增幅］、［射线延续]
+    "ablt_affix_102"
+    {
+        "name"                              "ablt_affix_102"
+        "id"                                "1150102"
+        "AmpAblt"                           "com_7"
+        "AmpAbltLevel"                      "5"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "MaxCount"                          "3"
+        "UnlockGroup"                       "ablt_affix_96=1|ablt_affix_97=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600342"                   "1"
+        }
+    }
+
+    // _AbltName: 调焦
+    // _Description: 奥术射线持续期间伤害会不断提高，每0.2秒提高5%，最高提升100%
+    // 前置：[焦点]
+    "ablt_affix_103"
+    {
+        "name"                              "ablt_affix_103"
+        "id"                                "1150103"
+        "AmpAblt"                           "com_7"
+        "AmpAbltLevel"                      "13"
+        "Enable"                            "1"
+        "Tag"                               "Shadow"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_98=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "interval"                      "0.2"
+            "val"                           "5"
+            "val1"                          "120"
+        }
+    }
+
+    // _AbltName: 新星增幅
+    // _Description: 冰霜新星伤害+40%
+    // 前置：[冰霜新星]
+    "ablt_affix_104"
+    {
+        "name"                              "ablt_affix_104"
+        "id"                                "1150104"
+        "AmpAblt"                           "com_8"
+        "Enable"                            "1"
+        "Tag"                               "Frost"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "MaxCount"                          "3"
+        "UnlockGroup"                       "com_8=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600343"                   "40"
+        }
+    }
+
+    // _AbltName: 连环霜爆
+    // _Description: 冰霜新星额外释放1次
+    // 前置：[冰霜新星]
+    "ablt_affix_105"
+    {
+        "name"                              "ablt_affix_105"
+        "id"                                "1150105"
+        "AmpAblt"                           "com_8"
+        "Enable"                            "1"
+        "Tag"                               "Frost"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "MaxCount"                          "2"
+        "UnlockGroup"                       "com_8=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "val"                           "1"
+        }
+    }
+
+    // _AbltName: 极寒新星
+    // _Description: 冰霜新星伤害+20%，并附加1秒冻结
+    // 前置：[冰霜新星]
+    "ablt_affix_106"
+    {
+        "name"                              "ablt_affix_106"
+        "id"                                "1150106"
+        "AmpAblt"                           "com_8"
+        "Enable"                            "1"
+        "Tag"                               "Frost"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_8=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600343"                   "20"
+            "duration"                      "1"
+        }
+    }
+
+    // _AbltName: 寒霜之心
+    // _Description: 冰霜新星额外造成一次350%攻击的[冰系]魔法伤害前置：[新星增幅]、[极寒新星]
+    "ablt_affix_107"
+    {
+        "name"                              "ablt_affix_107"
+        "id"                                "1150107"
+        "AmpAblt"                           "com_8"
+        "Enable"                            "1"
+        "Tag"                               "Frost"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_104=1|ablt_affix_106=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "500"
+        }
+    }
+
+    // _AbltName: 绝对零度
+    // _Description: 冰霜新星的冻结持续时间提升50%
+    // 前置：[极寒新星]
+    "ablt_affix_108"
+    {
+        "name"                              "ablt_affix_108"
+        "id"                                "1150108"
+        "AmpAblt"                           "com_8"
+        "Enable"                            "1"
+        "Tag"                               "Frost"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_106=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "val"                           "50"
+        }
+    }
+
+    // _AbltName: 新星扩张
+    // _Description: 冰霜新星范围+100%
+    // 前置：[新星增幅]
+    "ablt_affix_109"
+    {
+        "name"                              "ablt_affix_109"
+        "id"                                "1150109"
+        "AmpAblt"                           "com_8"
+        "Enable"                            "1"
+        "Tag"                               "Frost"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_104=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600344"                   "100"
+        }
+    }
+
+    // _AbltName: 小冰片
+    // _Description: 冰霜新星结束后分裂出2个穿透2可以造成150%攻击[冰系]魔法伤害的小冰片
+    // 前置：[寒冰箭］、[冰霜新星]
+    "ablt_affix_110"
+    {
+        "name"                              "ablt_affix_110"
+        "id"                                "1150110"
+        "AmpAblt"                           "com_8"
+        "AmpAbltLevel"                      "2"
+        "Enable"                            "1"
+        "Tag"                               "Frost"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_3=1|com_8=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_110"
+        "AbilityValues"
+        {
+            "val"                           "2"
+            "val1"                          "2"
+            "dmg_factor"                    "300"
+            "distance"                      "1000"
+            "width"                         "100"
+        }
+    }
+
+    // _AbltName: 冰片飞溅
+    // _Description: 小冰片数量+2
+    // 前置：[小冰片]
+    "ablt_affix_111"
+    {
+        "name"                              "ablt_affix_111"
+        "id"                                "1150111"
+        "AmpAblt"                           "com_8"
+        "AmpAbltLevel"                      "10"
+        "Enable"                            "1"
+        "Tag"                               "Frost"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_110=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600345"                   "2"
+        }
+    }
+
+    // _AbltName: 刺骨寒霜
+    // _Description: 冰霜新星伤害+80%，寒霜箭伤害+80%
+    // 前置：［极寒新星]
+    "ablt_affix_112"
+    {
+        "name"                              "ablt_affix_112"
+        "id"                                "1150112"
+        "AmpAblt"                           "com_8"
+        "AmpAbltLevel"                      "13"
+        "Enable"                            "1"
+        "Tag"                               "Frost"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_106=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600343"                   "80"
+            "sx_10600322"                   "80"
+        }
+    }
+
+    // _AbltName: 冷冻场
+    // _Description: 冰霜新星会生成持续5秒的冷冻场，每秒造成100%攻击的[冰系]魔法伤害并附加1层冻伤
+    // 前置：[寒霜之心]
+    "ablt_affix_113"
+    {
+        "name"                              "ablt_affix_113"
+        "id"                                "1150113"
+        "AmpAblt"                           "com_8"
+        "AmpAbltLevel"                      "20"
+        "Enable"                            "1"
+        "Tag"                               "Frost"
+        "Rarity"                            "4"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_107=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "duration"                      "5"
+            "dmg_factor"                    "200"
+            "val"                           "1"
+        }
+    }
+
+    // _AbltName: 极寒精通
+    // _Description: 寒冰箭，冰霜新星冷却缩减+25%
+    // 前置：[寒冰箭]、[冰霜新星]
+    "ablt_affix_114"
+    {
+        "name"                              "ablt_affix_114"
+        "id"                                "1150114"
+        "AmpAblt"                           "com_8"
+        "AmpAbltLevel"                      "23"
+        "Enable"                            "1"
+        "Tag"                               "Frost"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_3=1|com_8=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600347"                   "25"
+            "sx_10600346"                   "25"
+        }
+    }
+
+    // _AbltName: 闪电增幅
+    // _Description: 闪电链伤害+40%
+    // 前置：[闪电链]
+    "ablt_affix_115"
+    {
+        "name"                              "ablt_affix_115"
+        "id"                                "1150115"
+        "AmpAblt"                           "com_9"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "MaxCount"                          "3"
+        "UnlockGroup"                       "com_9=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600348"                   "40"
+        }
+    }
+
+    // _AbltName: 交叉闪电
+    // _Description: 闪电链初始目标+1，伤害-20%
+    // 前置：[闪电链]
+    "ablt_affix_116"
+    {
+        "name"                              "ablt_affix_116"
+        "id"                                "1150116"
+        "AmpAblt"                           "com_9"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "MaxCount"                          "2"
+        "UnlockGroup"                       "com_9=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_116"
+        "AbilityValues"
+        {
+            "sx_10600349"                   "1"
+            "val"                           "-20"
+        }
+    }
+
+    // _AbltName: 高压闪电
+    // _Description: 闪电链伤害+20%，0.5秒麻痹
+    // 前置：[闪电链]
+    "ablt_affix_117"
+    {
+        "name"                              "ablt_affix_117"
+        "id"                                "1150117"
+        "AmpAblt"                           "com_9"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_9=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600348"                   "20"
+            "duration"                      "0.5"
+        }
+    }
+
+    // _AbltName: 闪电延续
+    // _Description: 闪电链伤害+20%，弹射次数+2
+    // 前置：[闪电链]
+    "ablt_affix_118"
+    {
+        "name"                              "ablt_affix_118"
+        "id"                                "1150118"
+        "AmpAblt"                           "com_9"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "MaxCount"                          "2"
+        "UnlockGroup"                       "com_9=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600348"                   "20"
+            "sx_10600132"                   "2"
+        }
+    }
+
+    // _AbltName: 离子扩散
+    // _Description: 离子爆破伤害范围+100%
+    // 前置：[离子爆破]
+    "ablt_affix_119"
+    {
+        "name"                              "ablt_affix_119"
+        "id"                                "1150119"
+        "AmpAblt"                           "com_9"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_121=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600350"                   "100"
+        }
+    }
+
+    // _AbltName: 离子电压
+    // _Description: 离子爆破伤害+40%，附加0.5秒麻痹
+    // 前置：[离子爆破]
+    "ablt_affix_120"
+    {
+        "name"                              "ablt_affix_120"
+        "id"                                "1150120"
+        "AmpAblt"                           "com_9"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_121=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600351"                   "50"
+            "duration"                      "0.5"
+        }
+    }
+
+    // _AbltName: 离子爆破
+    // _Description: 闪电链每次命中都会产生爆炸，对150范围内敌人造成100%攻击的[电系]魔法伤害
+    // 前置：[高压闪电]
+    "ablt_affix_121"
+    {
+        "name"                              "ablt_affix_121"
+        "id"                                "1150121"
+        "AmpAblt"                           "com_9"
+        "AmpAbltLevel"                      "2"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_117=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "radius"                        "170"
+            "dmg_factor"                    "180"
+        }
+    }
+
+    // _AbltName: 交感电击
+    // _Description: 闪电链命中麻痹状态的敌人时，会对600范围内的一名敌人进发1道电流造成150%攻击的[电系]魔法伤害前置：[高压闪电]
+    "ablt_affix_122"
+    {
+        "name"                              "ablt_affix_122"
+        "id"                                "1150122"
+        "AmpAblt"                           "com_9"
+        "AmpAbltLevel"                      "5"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_117=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "radius"                        "600"
+            "dmg_factor"                    "300"
+            "val"                           "1"
+        }
+    }
+
+    // _AbltName: 雷电增幅
+    // _Description: 天雷、闪电链伤害+50%
+    // 前置：[天雷]］、[闪电链]
+    "ablt_affix_123"
+    {
+        "name"                              "ablt_affix_123"
+        "id"                                "1150123"
+        "AmpAblt"                           "com_9"
+        "AmpAbltLevel"                      "13"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "MaxCount"                          "2"
+        "UnlockGroup"                       "com_4=1|com_9=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600327"                   "50"
+            "sx_10600348"                   "50"
+        }
+    }
+
+    // _AbltName: 永动电流
+    // _Description: 闪电链每次弹射时有20%的概率分裂出一个继承所有强化的闪电链（弹射次数继承剩余次数）
+    // 前置：[高压闪电]、[闪电增幅]］、[闪电延续]
+    "ablt_affix_124"
+    {
+        "name"                              "ablt_affix_124"
+        "id"                                "1150124"
+        "AmpAblt"                           "com_9"
+        "AmpAbltLevel"                      "20"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "4"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_115=1|ablt_affix_117=1|ablt_affix_118=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "chance"                        "20"
+        }
+    }
+
+    // _AbltName: 雷电精通
+    // _Description: 天雷、闪电链冷却缩减+20%
+    // 前置：[天雷]、[闪电链]
+    "ablt_affix_125"
+    {
+        "name"                              "ablt_affix_125"
+        "id"                                "1150125"
+        "AmpAblt"                           "com_9"
+        "AmpAbltLevel"                      "23"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_4=1|com_9=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600353"                   "20"
+            "sx_10600352"                   "20"
+        }
+    }
+
+    // _AbltName: 地震增幅
+    // _Description: 地震伤害+40%
+    // 前置：[地震]
+    "ablt_affix_126"
+    {
+        "name"                              "ablt_affix_126"
+        "id"                                "1150126"
+        "AmpAblt"                           "com_10"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "MaxCount"                          "3"
+        "UnlockGroup"                       "com_10=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600354"                   "40"
+        }
+    }
+
+    // _AbltName: 地震重击
+    // _Description: 地震伤害+20%，眩晕时间+0.3秒
+    // 前置：[地震]
+    "ablt_affix_127"
+    {
+        "name"                              "ablt_affix_127"
+        "id"                                "1150127"
+        "AmpAblt"                           "com_10"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_10=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600354"                   "20"
+            "duration"                      "0.3"
+        }
+    }
+
+    // _AbltName: 地震连击
+    // _Description: 地震额外释放1次
+    // 前置：[地震]
+    "ablt_affix_128"
+    {
+        "name"                              "ablt_affix_128"
+        "id"                                "1150128"
+        "AmpAblt"                           "com_10"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "MaxCount"                          "2"
+        "UnlockGroup"                       "com_10=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "val"                           "1"
+        }
+    }
+
+    // _AbltName: 强震
+    // _Description: 地震范围+80%
+    // 前置：[地震]
+    "ablt_affix_129"
+    {
+        "name"                              "ablt_affix_129"
+        "id"                                "1150129"
+        "AmpAblt"                           "com_10"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_10=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600355"                   "80"
+        }
+    }
+
+    // _AbltName: 地震速击
+    // _Description: 地震伤害+20%，速度+50%
+    // 前置：[地震]
+    "ablt_affix_130"
+    {
+        "name"                              "ablt_affix_130"
+        "id"                                "1150130"
+        "AmpAblt"                           "com_10"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_10=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600354"                   "20"
+            "val"                           "50"
+        }
+    }
+
+    // _AbltName: 精准打击
+    // _Description: 地震中心区域伤害翻倍
+    // 前置：[地震]
+    "ablt_affix_131"
+    {
+        "name"                              "ablt_affix_131"
+        "id"                                "1150131"
+        "AmpAblt"                           "com_10"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_10=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "distance"                      "100"
+        }
+    }
+
+    // _AbltName: 地震狂轰
+    // _Description: 地震额外释放2次
+    // 前置：[地震连击x2]
+    "ablt_affix_132"
+    {
+        "name"                              "ablt_affix_132"
+        "id"                                "1150132"
+        "AmpAblt"                           "com_10"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_128=2"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "val"                           "2"
+        }
+    }
+
+    // _AbltName: 余煜延续
+    // _Description: 余炬持续时间+5秒
+    // 前置：[爆燃地震]
+    "ablt_affix_133"
+    {
+        "name"                              "ablt_affix_133"
+        "id"                                "1150133"
+        "AmpAblt"                           "com_10"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_135=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "duration"                      "5"
+        }
+    }
+
+    // _AbltName: 高温余煜
+    // _Description: 余烬伤害+60%
+    // 前置：[爆燃地震]
+    "ablt_affix_134"
+    {
+        "name"                              "ablt_affix_134"
+        "id"                                "1150134"
+        "AmpAblt"                           "com_10"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "MaxCount"                          "2"
+        "UnlockGroup"                       "ablt_affix_135=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600356"                   "60"
+        }
+    }
+
+    // _AbltName: 爆燃地震
+    // _Description: 地震进阶为爆燃地震额外造成300%攻击的[火系]伤害，并且残留持续5秒的余炬，每秒造成200%攻击的[火系]魔法伤害
+    // 前置：[爆炎箭］、[精准打击]、[地震增幅]
+    "ablt_affix_135"
+    {
+        "name"                              "ablt_affix_135"
+        "id"                                "1150135"
+        "AmpAblt"                           "com_10"
+        "AmpAbltLevel"                      "2"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "4"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_2=1|ablt_affix_131=1|ablt_affix_126=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_135"
+        "AbilityValues"
+        {
+            "dmg_factor1"                   "400"
+            "duration"                      "5"
+            "dmg_factor2"                   "500"
+        }
+    }
+
+    // _AbltName: 末日地震
+    // _Description: 地震结束后会在范围内触发一次回荡，造成400%攻击的[物系]物理伤害
+    // 前置：［地震增幅]］、[地震连击]
+    "ablt_affix_136"
+    {
+        "name"                              "ablt_affix_136"
+        "id"                                "1150136"
+        "AmpAblt"                           "com_10"
+        "AmpAbltLevel"                      "13"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_126=1|ablt_affix_128=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_136"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "500"
+        }
+    }
+
+    // _AbltName: 龙卷增幅
+    // _Description: 龙卷风伤害+40%
+    // 前置：[龙卷风]
+    "ablt_affix_137"
+    {
+        "name"                              "ablt_affix_137"
+        "id"                                "1150137"
+        "AmpAblt"                           "com_11"
+        "Enable"                            "1"
+        "Tag"                               "Nature"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "MaxCount"                          "3"
+        "UnlockGroup"                       "com_11=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600357"                   "40"
+        }
+    }
+
+    // _AbltName: 龙卷延续
+    // _Description: 龙卷风持续时间+80%
+    // 前置：[龙卷风]
+    "ablt_affix_138"
+    {
+        "name"                              "ablt_affix_138"
+        "id"                                "1150138"
+        "AmpAblt"                           "com_11"
+        "Enable"                            "1"
+        "Tag"                               "Nature"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_11=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600358"                   "80"
+        }
+    }
+
+    // _AbltName: 强袭龙卷
+    // _Description: 龙卷风移动速度+40%，持续时间+30%
+    // 前置：[龙卷风]
+    "ablt_affix_139"
+    {
+        "name"                              "ablt_affix_139"
+        "id"                                "1150139"
+        "AmpAblt"                           "com_11"
+        "Enable"                            "1"
+        "Tag"                               "Nature"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_11=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600360"                   "40"
+            "sx_10600358"                   "30"
+        }
+    }
+
+    // _AbltName: 强力龙卷
+    // _Description: 龙卷风牵引|力度+50%
+    // 前置：[龙卷风]
+    "ablt_affix_140"
+    {
+        "name"                              "ablt_affix_140"
+        "id"                                "1150140"
+        "AmpAblt"                           "com_11"
+        "Enable"                            "1"
+        "Tag"                               "Nature"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_11=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "val"                           "50"
+        }
+    }
+
+    // _AbltName: 龙卷扩张
+    // _Description: 龙卷风范围+60%
+    // 前置：[龙卷增幅]
+    "ablt_affix_141"
+    {
+        "name"                              "ablt_affix_141"
+        "id"                                "1150141"
+        "AmpAblt"                           "com_11"
+        "Enable"                            "1"
+        "Tag"                               "Nature"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_137=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600359"                   "60"
+        }
+    }
+
+    // _AbltName: 风暴汇聚
+    // _Description: 龙卷风结束时，会在原地生成一个持续5秒的龙卷风前置：[龙卷延续]、[强袭龙卷]
+    "ablt_affix_142"
+    {
+        "name"                              "ablt_affix_142"
+        "id"                                "1150142"
+        "AmpAblt"                           "com_11"
+        "AmpAbltLevel"                      "2"
+        "Enable"                            "1"
+        "Tag"                               "Nature"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_138=1|ablt_affix_139=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_142"
+        "AbilityValues"
+        {
+            "duration"                      "5"
+        }
+    }
+
+    // _AbltName: 闪电龙卷
+    // _Description: 龙卷风进阶为闪电龙卷造成伤害时附带100%攻击的[电系]魔法伤害
+    // 前置：[闪电链]、[龙卷延续］、[龙卷扩张]
+    // 排斥：[双重龙卷]
+    "ablt_affix_143"
+    {
+        "name"                              "ablt_affix_143"
+        "id"                                "1150143"
+        "AmpAblt"                           "com_11"
+        "AmpAbltLevel"                      "10"
+        "Enable"                            "1"
+        "Tag"                               "Nature"
+        "Rarity"                            "4"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_9=1|ablt_affix_138=1|ablt_affix_141=1"
+        "RepelGroup"                        "ablt_affix_144"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "dmg_factor"                    "250"
+        }
+    }
+
+    // _AbltName: 双重龙卷
+    // _Description: 龙卷风持续时间减半，同时释放2个龙卷风
+    // 前置：[龙卷延续]、[龙卷扩张]
+    // 排斥：[闪电龙卷]
+    "ablt_affix_144"
+    {
+        "name"                              "ablt_affix_144"
+        "id"                                "1150144"
+        "AmpAblt"                           "com_11"
+        "AmpAbltLevel"                      "13"
+        "Enable"                            "1"
+        "Tag"                               "Nature"
+        "Rarity"                            "4"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_138=1|ablt_affix_141=1"
+        "RepelGroup"                        "ablt_affix_143"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "val"                           "2"
+        }
+    }
+
+    // _AbltName: 龙卷风暴
+    // _Description: 双重龙卷不再降低持续时间，龙卷风伤害+30%
+    // 前置：[双重龙卷]
+    "ablt_affix_145"
+    {
+        "name"                              "ablt_affix_145"
+        "id"                                "1150145"
+        "AmpAblt"                           "com_11"
+        "AmpAbltLevel"                      "23"
+        "Enable"                            "1"
+        "Tag"                               "Nature"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_144=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600357"                   "30"
+        }
+    }
+
+    // _AbltName: 电磁增幅
+    // _Description: 电磁网伤害+40%
+    // 前置：[电磁网]
+    "ablt_affix_146"
+    {
+        "name"                              "ablt_affix_146"
+        "id"                                "1150146"
+        "AmpAblt"                           "com_12"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "MaxCount"                          "3"
+        "UnlockGroup"                       "com_12=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600361"                   "40"
+        }
+    }
+
+    // _AbltName: 高频电网
+    // _Description: 电磁网额外释放1次，伤害-30%
+    // 前置：[电磁网]
+    "ablt_affix_147"
+    {
+        "name"                              "ablt_affix_147"
+        "id"                                "1150147"
+        "AmpAblt"                           "com_12"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_12=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600361"                   "-30"
+            "val"                           "1"
+        }
+    }
+
+    // _AbltName: 电网扩张
+    // _Description: 电磁网范围+80%
+    // 前置：［电磁网]
+    "ablt_affix_148"
+    {
+        "name"                              "ablt_affix_148"
+        "id"                                "1150148"
+        "AmpAblt"                           "com_12"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_12=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600362"                   "80"
+        }
+    }
+
+    // _AbltName: 跃迁电流
+    // _Description: 电磁网命中的敌人会产生1道跃迁电流，对500范围内随机一名敌人造成150%攻击的[电系]魔法伤害
+    // 前置：[闪电链]、[电磁网]
+    "ablt_affix_149"
+    {
+        "name"                              "ablt_affix_149"
+        "id"                                "1150149"
+        "AmpAblt"                           "com_12"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_9=1|com_12=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_149"
+        "AbilityValues"
+        {
+            "radius"                        "500"
+            "dmg_factor"                    "300"
+        }
+    }
+
+    // _AbltName: 电能激荡
+    // _Description: 跃迁电流可以弹射2次
+    // 前置：[跃迁电流]
+    "ablt_affix_150"
+    {
+        "name"                              "ablt_affix_150"
+        "id"                                "1150150"
+        "AmpAblt"                           "com_12"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_149=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "val"                           "2"
+        }
+    }
+
+    // _AbltName: 抗拒电网
+    // _Description: 电磁网伤害+20%，附加轻微击退
+    // 前置：[电磁网]
+    "ablt_affix_151"
+    {
+        "name"                              "ablt_affix_151"
+        "id"                                "1150151"
+        "AmpAblt"                           "com_12"
+        "AmpAbltLevel"                      "2"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_12=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600361"                   "20"
+            "distance"                      "30"
+            "duration"                      "0.3"
+        }
+    }
+
+    // _AbltName: 电网过载
+    // _Description: 电磁网伤害+20%，额外释放1次，冷却缩减20%
+    // 前置：[高频电网]
+    "ablt_affix_152"
+    {
+        "name"                              "ablt_affix_152"
+        "id"                                "1150152"
+        "AmpAblt"                           "com_12"
+        "AmpAbltLevel"                      "5"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_147=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600361"                   "20"
+            "sx_10600363"                   "20"
+            "val"                           "1"
+        }
+    }
+
+    // _AbltName: 高压电网
+    // _Description: 电磁网伤害+20%，使敌人麻痹1秒
+    // 前置：[电磁网]
+    "ablt_affix_153"
+    {
+        "name"                              "ablt_affix_153"
+        "id"                                "1150153"
+        "AmpAblt"                           "com_12"
+        "AmpAbltLevel"                      "13"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_12=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600361"                   "20"
+            "duration"                      "1"
+        }
+    }
+
+    // _AbltName: 超过载
+    // _Description: 电磁网伤害+80%，额外释放1次，冷却缩减10%
+    // 前置：[电网过载]
+    "ablt_affix_154"
+    {
+        "name"                              "ablt_affix_154"
+        "id"                                "1150154"
+        "AmpAblt"                           "com_12"
+        "AmpAbltLevel"                      "23"
+        "Enable"                            "1"
+        "Tag"                               "Holy"
+        "Rarity"                            "4"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_152=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600361"                   "100"
+            "sx_10600363"                   "10"
+            "val"                           "1"
+        }
+    }
+
+    // _AbltName: 陨石增幅
+    // _Description: 陨石伤害+40%
+    // 前置：[陨石]
+    "ablt_affix_155"
+    {
+        "name"                              "ablt_affix_155"
+        "id"                                "1150155"
+        "AmpAblt"                           "com_13"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "MaxCount"                          "3"
+        "UnlockGroup"                       "com_13=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600364"                   "40"
+        }
+    }
+
+    // _AbltName: 陨石坠落
+    // _Description: 陨石冷却缩减+20%
+    // 前置：[陨石]
+    "ablt_affix_156"
+    {
+        "name"                              "ablt_affix_156"
+        "id"                                "1150156"
+        "AmpAblt"                           "com_13"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "MaxCount"                          "2"
+        "UnlockGroup"                       "com_13=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600365"                   "20"
+        }
+    }
+
+    // _AbltName: 陨石连击
+    // _Description: 陨石额外释放1次
+    // 前置：[【陨石]
+    "ablt_affix_157"
+    {
+        "name"                              "ablt_affix_157"
+        "id"                                "1150157"
+        "AmpAblt"                           "com_13"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "MaxCount"                          "2"
+        "UnlockGroup"                       "com_13=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "val"                           "1"
+        }
+    }
+
+    // _AbltName: 陨石爆破
+    // _Description: 陨石伤害范围+100%
+    // 前置：[陨石]
+    "ablt_affix_158"
+    {
+        "name"                              "ablt_affix_158"
+        "id"                                "1150158"
+        "AmpAblt"                           "com_13"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_13=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600366"                   "100"
+        }
+    }
+
+    // _AbltName: 星落
+    // _Description: 陨石伤害×2，冷却缩减-30%
+    // 前置：[毁灭陨石]
+    "ablt_affix_159"
+    {
+        "name"                              "ablt_affix_159"
+        "id"                                "1150159"
+        "AmpAblt"                           "com_13"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "4"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_163=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600365"                   "-20"
+            "val"                           "2.5"
+        }
+    }
+
+    // _AbltName: 多重进射
+    // _Description: 陨石碎片数量+2
+    // 前置：[陨石碎片]
+    "ablt_affix_160"
+    {
+        "name"                              "ablt_affix_160"
+        "id"                                "1150160"
+        "AmpAblt"                           "com_13"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_164=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600368"                   "1"
+        }
+    }
+
+    // _AbltName: 多重陨石
+    // _Description: 陨石数量+1，伤害-20%
+    // 前置：[陨石]
+    "ablt_affix_161"
+    {
+        "name"                              "ablt_affix_161"
+        "id"                                "1150161"
+        "AmpAblt"                           "com_13"
+        "AmpAbltLevel"                      "2"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_13=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600367"                   "1"
+            "sx_10600364"                   "-20"
+        }
+    }
+
+    // _AbltName: 震撼陨石
+    // _Description: 陨石造成伤害时附加0.5秒眩晕
+    // 前置：[陨石]
+    "ablt_affix_162"
+    {
+        "name"                              "ablt_affix_162"
+        "id"                                "1150162"
+        "AmpAblt"                           "com_13"
+        "AmpAbltLevel"                      "5"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_13=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "duration"                      "0.5"
+        }
+    }
+
+    // _AbltName: 毁灭陨石
+    // _Description: 陨石伤害+100%
+    // 前置：[陨石增幅]
+    "ablt_affix_163"
+    {
+        "name"                              "ablt_affix_163"
+        "id"                                "1150163"
+        "AmpAblt"                           "com_13"
+        "AmpAbltLevel"                      "10"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_155=2"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600364"                   "200"
+        }
+    }
+
+    // _AbltName: 陨石碎片
+    // _Description: 陨石落地后进射出2个陨石碎片，碎片落地后对250范围内所有敌人造成150%攻击的物系]物理伤
+    // 前置：[陨石增幅]
+    "ablt_affix_164"
+    {
+        "name"                              "ablt_affix_164"
+        "id"                                "1150164"
+        "AmpAblt"                           "com_13"
+        "AmpAbltLevel"                      "13"
+        "Enable"                            "1"
+        "Tag"                               "Physical"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_155=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_164"
+        "AbilityValues"
+        {
+            "val"                           "2"
+            "radius"                        "250"
+            "dmg_factor"                    "400"
+        }
+    }
+
+    // _AbltName: 火球增幅
+    // _Description: 火球伤害+50%
+    // 前置：[火球]
+    "ablt_affix_165"
+    {
+        "name"                              "ablt_affix_165"
+        "id"                                "1150165"
+        "AmpAblt"                           "com_15"
+        "Enable"                            "1"
+        "Tag"                               "Fire"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "MaxCount"                          "3"
+        "UnlockGroup"                       "com_15=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600369"                   "50"
+        }
+    }
+
+    // _AbltName: 火球延续
+    // _Description: 火球持续时间+60%
+    // 前置：[火球]
+    "ablt_affix_166"
+    {
+        "name"                              "ablt_affix_166"
+        "id"                                "1150166"
+        "AmpAblt"                           "com_15"
+        "Enable"                            "1"
+        "Tag"                               "Fire"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_15=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600370"                   "60"
+        }
+    }
+
+    // _AbltName: 巨化火球
+    // _Description: 火球体积+60%
+    // 前置：[火球]
+    "ablt_affix_167"
+    {
+        "name"                              "ablt_affix_167"
+        "id"                                "1150167"
+        "AmpAblt"                           "com_15"
+        "Enable"                            "1"
+        "Tag"                               "Fire"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_15=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600371"                   "60"
+        }
+    }
+
+    // _AbltName: 火球加速
+    // _Description: 火球移动速度+50%
+    // 前置：[火球]
+    "ablt_affix_168"
+    {
+        "name"                              "ablt_affix_168"
+        "id"                                "1150168"
+        "AmpAblt"                           "com_15"
+        "Enable"                            "1"
+        "Tag"                               "Fire"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_15=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600372"                   "50"
+        }
+    }
+
+    // _AbltName: 多重火球
+    // _Description: 火球数量+1，伤害-20%
+    // 前置：[火球]
+    "ablt_affix_169"
+    {
+        "name"                              "ablt_affix_169"
+        "id"                                "1150169"
+        "AmpAblt"                           "com_15"
+        "Enable"                            "1"
+        "Tag"                               "Fire"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "MaxCount"                          "2"
+        "UnlockGroup"                       "com_15=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_169"
+        "AbilityValues"
+        {
+            "sx_10600373"                   "1"
+            "val"                           "-20"
+        }
+    }
+
+    // _AbltName: 烈焰火球
+    // _Description: 火球命中后敌人后，附加3秒燃烧
+    // 前置：[火球]
+    "ablt_affix_170"
+    {
+        "name"                              "ablt_affix_170"
+        "id"                                "1150170"
+        "AmpAblt"                           "com_15"
+        "Enable"                            "1"
+        "Tag"                               "Fire"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_15=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "duration"                      "3"
+        }
+    }
+
+    // _AbltName: 火焰飞弹
+    // _Description: 火球持续期间每1秒会发射一颗火焰飞弹，造成150%攻击的[火系]物理伤害
+    // 前置：[烈焰火球]
+    "ablt_affix_171"
+    {
+        "name"                              "ablt_affix_171"
+        "id"                                "1150171"
+        "AmpAblt"                           "com_15"
+        "Enable"                            "1"
+        "Tag"                               "Fire"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_170=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_171"
+        "AbilityValues"
+        {
+            "interval"                      "1"
+            "dmg_factor"                    "300"
+            "spd"                           "1000"
+        }
+    }
+
+    // _AbltName: 疾行火球
+    // _Description: 火球移动速度+100%
+    // 前置：[火球延续]、[火球增幅］、[火球加速]
+    // 排斥：[高频火球]
+    "ablt_affix_172"
+    {
+        "name"                              "ablt_affix_172"
+        "id"                                "1150172"
+        "AmpAblt"                           "com_15"
+        "AmpAbltLevel"                      "2"
+        "Enable"                            "1"
+        "Tag"                               "Fire"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_165=1|ablt_affix_166=1|ablt_affix_168=1"
+        "RepelGroup"                        "ablt_affix_173"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600372"                   "100"
+        }
+    }
+
+    // _AbltName: 高频火球
+    // _Description: 火球弹道速度-80%，伤害频率翻倍
+    // 前置：[火球延续]、[巨化火球]、[火球增幅]
+    // 排斥：[火球加速]、[火球外旋]
+    "ablt_affix_173"
+    {
+        "name"                              "ablt_affix_173"
+        "id"                                "1150173"
+        "AmpAblt"                           "com_15"
+        "AmpAbltLevel"                      "13"
+        "Enable"                            "1"
+        "Tag"                               "Fire"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_165=1|ablt_affix_166=1|ablt_affix_167=1"
+        "RepelGroup"                        "ablt_affix_168|ablt_affix_172"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "val"                           "-80"
+        }
+    }
+
+    // _AbltName: 乾蓝冰焰
+    // _Description: 火球进阶为乾蓝冰焰，命中燃烧状态的敌人会将燃烧转化为持续10秒的燃霜，可叠加3层
+    // 前置：[爆炎箭］、[寒冰箭]、[火球]
+    // 排斥：[烈焰火球]
+    "ablt_affix_174"
+    {
+        "name"                              "ablt_affix_174"
+        "id"                                "1150174"
+        "AmpAblt"                           "com_15"
+        "AmpAbltLevel"                      "23"
+        "Enable"                            "1"
+        "Tag"                               "Fire"
+        "Rarity"                            "4"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_2=1|com_3=1|com_15=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "duration"                      "10"
+            "val"                           "3"
+        }
+    }
+
+    // _AbltName: 飓风增幅
+    // _Description: 飓风伤害+40%
+    // 前置：[飓风]
+    "ablt_affix_175"
+    {
+        "name"                              "ablt_affix_175"
+        "id"                                "1150175"
+        "AmpAblt"                           "com_14"
+        "Enable"                            "1"
+        "Tag"                               "Nature"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "MaxCount"                          "3"
+        "UnlockGroup"                       "com_14=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600375"                   "40"
+        }
+    }
+
+    // _AbltName: 多重飓风
+    // _Description: 飓风额外释放1次，伤害-20%
+    // 前置：[飓风]
+    "ablt_affix_176"
+    {
+        "name"                              "ablt_affix_176"
+        "id"                                "1150176"
+        "AmpAblt"                           "com_14"
+        "Enable"                            "1"
+        "Tag"                               "Nature"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "MaxCount"                          "2"
+        "UnlockGroup"                       "com_14=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_176"
+        "AbilityValues"
+        {
+            "val"                           "1"
+            "val1"                          "-20"
+        }
+    }
+
+    // _AbltName: 贯通之风
+    // _Description: 飓风穿透+6
+    // 前置：[飓风]
+    "ablt_affix_177"
+    {
+        "name"                              "ablt_affix_177"
+        "id"                                "1150177"
+        "AmpAblt"                           "com_14"
+        "Enable"                            "1"
+        "Tag"                               "Nature"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "MaxCount"                          "2"
+        "UnlockGroup"                       "com_14=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "val"                           "6"
+        }
+    }
+
+    // _AbltName: 强袭飓风
+    // _Description: 飓风伤害+20%，击退效果+30%
+    // 前置：[飓风]
+    // 排斥：[真空]
+    "ablt_affix_178"
+    {
+        "name"                              "ablt_affix_178"
+        "id"                                "1150178"
+        "AmpAblt"                           "com_14"
+        "Enable"                            "1"
+        "Tag"                               "Nature"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_14=1"
+        "RepelGroup"                        "ablt_affix_184"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600375"                   "20"
+            "val"                           "30"
+        }
+    }
+
+    // _AbltName: 风阻
+    // _Description: 飓风伤害+20%，附加3秒减速
+    // 前置：[飓风]
+    "ablt_affix_179"
+    {
+        "name"                              "ablt_affix_179"
+        "id"                                "1150179"
+        "AmpAblt"                           "com_14"
+        "Enable"                            "1"
+        "Tag"                               "Nature"
+        "Rarity"                            "1"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_14=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600375"                   "20"
+            "duration"                      "3"
+            "val"                           "30"
+        }
+    }
+
+    // _AbltName: 风暴加剧
+    // _Description: 小飓风数量+1
+    // 前置：[小飓风]
+    "ablt_affix_180"
+    {
+        "name"                              "ablt_affix_180"
+        "id"                                "1150180"
+        "AmpAblt"                           "com_14"
+        "Enable"                            "1"
+        "Tag"                               "Nature"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "MaxCount"                          "2"
+        "UnlockGroup"                       "ablt_affix_185=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600376"                   "1"
+        }
+    }
+
+    // _AbltName: 真空塌陷
+    // _Description: 真空伤害+50%，并附加0.5秒眩晕
+    // 前置：[真空]
+    "ablt_affix_181"
+    {
+        "name"                              "ablt_affix_181"
+        "id"                                "1150181"
+        "AmpAblt"                           "com_14"
+        "Enable"                            "1"
+        "Tag"                               "Nature"
+        "Rarity"                            "2"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_184=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600377"                   "80"
+            "duration"                      "0.5"
+        }
+    }
+
+    // _AbltName: 多重风暴
+    // _Description: 飓风额外释放2次，伤害-30%
+    // 前置：[多重飓风x2]
+    "ablt_affix_182"
+    {
+        "name"                              "ablt_affix_182"
+        "id"                                "1150182"
+        "AmpAblt"                           "com_14"
+        "Enable"                            "1"
+        "Tag"                               "Nature"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "ablt_affix_176=2"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_sx"
+        "AbilityValues"
+        {
+            "sx_10600375"                   "-30"
+            "val"                           "2"
+        }
+    }
+
+    // _AbltName: 小龙卷
+    // _Description: 飓风在命中首个敌人的位置生成一个持续5秒的小龙卷，每0.5秒对150范围内的敌人造成50%攻击的
+    // [风系]魔法伤害
+    // 前置：[龙卷风]、[飓风]
+    "ablt_affix_183"
+    {
+        "name"                              "ablt_affix_183"
+        "id"                                "1150183"
+        "AmpAblt"                           "com_14"
+        "AmpAbltLevel"                      "2"
+        "Enable"                            "1"
+        "Tag"                               "Nature"
+        "Rarity"                            "4"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_11=1|com_14=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_183"
+        "AbilityValues"
+        {
+            "duration"                      "3"
+            "interval"                      "0.1"
+            "radius"                        "200"
+            "dmg_factor"                    "200"
+        }
+    }
+
+    // _AbltName: 真空
+    // _Description: 飓风命中敌人时牵引180范围内的敌人，并且造成80%攻击的[风系]魔法伤害
+    // 前置：[飓风]
+    // 排斥：[强袭飓风]
+    "ablt_affix_184"
+    {
+        "name"                              "ablt_affix_184"
+        "id"                                "1150184"
+        "AmpAblt"                           "com_14"
+        "AmpAbltLevel"                      "10"
+        "Enable"                            "1"
+        "Tag"                               "Nature"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_14=1"
+        "RepelGroup"                        "ablt_affix_178"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_184"
+        "AbilityValues"
+        {
+            "radius"                        "200"
+            "dmg_factor"                    "150"
+        }
+    }
+
+    // _AbltName: 小飓风
+    // _Description: 飓风每次命中敌人时生成1个穿透2可以造成100%攻击[风系]魔法伤害的小飓风
+    // 前置：[飓风]
+    "ablt_affix_185"
+    {
+        "name"                              "ablt_affix_185"
+        "id"                                "1150185"
+        "AmpAblt"                           "com_14"
+        "AmpAbltLevel"                      "13"
+        "Enable"                            "1"
+        "Tag"                               "Nature"
+        "Rarity"                            "3"
+        "Weight"                            "1"
+        "IsOnly"                            "1"
+        "UnlockGroup"                       "com_14=1"
+        "BaseClass"                         "item_datadriven"
+        "ScriptFile"                        "abilities/ablt_affix/ablt_affix_185"
+        "AbilityValues"
+        {
+            "val"                           "1"
+            "val1"                          "2"
+            "dmg_factor"                    "250"
+            "width"                         "100"
+            "speed"                         "900"
+            "distance"                      "1200"
+        }
+    }
+
+}
