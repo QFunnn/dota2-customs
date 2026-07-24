@@ -1,0 +1,54 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/settings/settings.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/settings/settings.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="settings_category">
+			<Panel class="SettingsCategory">
+				<Label class="CategoryName" text="{s:category_name}" />
+			</Panel>
+		</snippet>
+		<snippet name="settings_checkbox">
+			<Panel class="SettingEntry SettingCheckbox">
+				<ToggleButton class="CheckBox">
+					<Label class="CheckBoxLabel" text="{s:setting_name}" />
+				</ToggleButton>
+				<Image id="SettingLock" src="s2r://panorama/images/custom_game/collection/battle_pass/lock_png.vtex" />
+			</Panel>
+		</snippet>
+		<snippet name="settings_slider">
+			<Panel class="SettingEntry SettingSliderContainer">
+				<Image id="SettingLock" src="s2r://panorama/images/custom_game/collection/battle_pass/lock_png.vtex" />
+				<Panel class="SliderLabels">
+					<Label id="SliderTitle" text="{s:setting_name}" />
+					<Label id="SliderValue" text="{d:value}" />
+				</Panel>
+				<Slider id="SettingsSlider" direction="horizontal" class="HorizontalSlider" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="SettingsPanel" hittest="false">
+		<Panel class="SettingsHeaderContainer">
+			<Label class="SettingsHeader" text="#settings_header" />
+			<Button class="CloseButton" id="CloseButton" onactivate="ToggleSettings()" />
+		</Panel>
+		<Panel class="OverlayShadow" />
+		<Panel id="SettingsContainer" />
+	</Panel>
+</root>

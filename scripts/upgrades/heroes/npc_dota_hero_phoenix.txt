@@ -1,0 +1,191 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_phoenix"
+{
+	"phoenix_dying_light"
+	{
+		"damage_pct"
+		{
+			"value" "0.75"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"radius" "30"
+			}
+		}
+	}
+	"phoenix_icarus_dive"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"linked_special_values"
+			{
+				"hp_cost_perc"
+				{
+					"value" "-1.5"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target"			"1.5"
+					"multiplicative_base_value"		"15"
+				}
+			}
+		}
+		"damage_per_second"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+		}
+		"dash_length"
+		{
+			"value" "100"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"linked_special_values"
+			{
+				"dash_width" "30"
+				"hit_radius" "30"
+				"burn_duration" "1"
+			}
+		}
+	}
+	"phoenix_fire_spirits"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"linked_special_values"
+			{
+				"hp_cost_perc"
+				{
+					"value" "-2"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target"			"2"
+					"multiplicative_base_value"		"20"
+				}
+				"radius"
+				{
+					"value" "40"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target"			"600"
+					"multiplicative_base_value"		"200"
+				}
+			}
+			"linked_abilities"
+			{
+				"phoenix_launch_fire_spirit"
+				{
+					"radius"
+					{
+						"value" "40"
+						"operator" "OP_MULTIPLY"
+
+						"multiplicative_target"			"600"
+						"multiplicative_base_value"		"200"
+					}
+				}
+			}
+		}
+		"damage_per_second"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"attackspeed_slow" "-15"
+			}
+			"linked_abilities"
+			{
+				"phoenix_launch_fire_spirit"
+				{
+					"damage_per_second" "30"
+					"attackspeed_slow" "-15"
+				}
+			}
+		}
+	}
+	"phoenix_sun_ray"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"linked_special_values"
+			{
+				"hp_cost_perc_per_second"
+				{
+					"value" "-0.48"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target"			"0.6"
+					"multiplicative_base_value"		"6"
+				}
+			}
+		}
+		"hp_perc_damage"
+		{
+			"value" "0.6"
+			"operator" "OP_MULTIPLY"
+
+			"multiplicative_target"			"25"
+			"multiplicative_base_value"		"7.75"
+			"linked_special_values"
+			{
+				"base_damage" "4"
+				"base_heal" "2"
+				"hp_perc_heal"
+				{
+					"value" "0.2"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target"			"8"
+					"multiplicative_base_value"		"2"
+				}
+			}
+		}
+		"radius"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"phoenix_supernova"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "7"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"aura_radius"
+		{
+			"value" "60"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"linked_special_values"
+			{
+				"max_hero_attacks" "2"
+				"max_hero_attacks_scepter" "2"
+			}
+		}
+		"damage_per_sec"
+		{
+			"value" "22"
+			"operator" "OP_ADD"
+		}
+	}
+}

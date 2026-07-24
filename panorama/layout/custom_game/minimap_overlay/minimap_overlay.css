@@ -1,0 +1,432 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.MapOverlayRoot
+{
+	flow-children: right;
+	vertical-align: bottom;
+	z-index: -1;
+}
+
+.CustomEndGameSimulate .MapOverlayRoot
+{
+	opacity: 0;
+}
+
+.HUDFlipped .MapOverlayRoot
+{
+	horizontal-align: right;
+	flow-children: left;
+}
+
+.MapContainer
+{
+	flow-children: down;
+}
+
+#MapOverlay
+{
+	height: 244px;
+	width: 244px;
+	background-image: url("s2r://panorama/images/custom_game/minimap_overlay_base_png.vtex");
+	background-size: 100%;
+	vertical-align: bottom;
+}
+
+.MapOverlay_Top
+{
+	height: 90px;
+	width: 244px;
+	background-image: url("s2r://panorama/images/custom_game/minimap_overlay_top_png.vtex");
+	background-size: 100%;
+	margin-bottom: -20px;
+	z-index: 1;
+}
+
+.MinimapExtraLarge #MapOverlay
+{
+	height: 280px;
+	width: 280px;
+}
+
+.MinimapExtraLarge .MapOverlay_Top
+{
+	height: 105px;
+	width: 280px;
+}
+
+.HUDFlipped #MapOverlay,.HUDFlipped .MapOverlay_Top
+{
+	transform: scaleX(-1);
+}
+
+#MinimapContainer
+{
+	vertical-align: bottom;
+}
+
+.IsLocalPlayerSpectating #MinimapContainer
+{
+	visibility: collapse;
+}
+
+#CollectionButton
+{
+	width: 35px;
+	height: 35px;
+	wash-color: #e2b205;
+	background-image: url("s2r://panorama/images/custom_game/inventory_png.vtex");
+	background-size: 24px;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	vertical-align: bottom;
+	border-radius: 50%;
+	border-width: 2px;
+	border-style: solid;
+	border-color: white;
+	margin: 0 0 112px 7px;
+	transition-property: brightness;
+	transition-duration: 0.15s;
+	opacity-brush: gradient(linear, 0% 0%, 0% 100%, from(#ffffffff), to(#ffffff6b));
+}
+
+.HUDFlipped #CollectionButton
+{
+	margin: 0 7px 112px 7px;
+}
+
+#CollectionButton:hover
+{
+	brightness: 1.9;
+}
+
+#CollectionButton:active
+{
+	brightness: 0.7;
+	sound: "General.ButtonClick";
+}
+
+#CollectionHighlight
+{
+	border-radius: 50%;
+	color: white;
+	background-color: rgb(204, 10, 49);
+	width: 20px;
+	height: 20px;
+	text-align: center;
+	font-weight: bold;
+	padding: -1px;
+	vertical-align: bottom;
+	margin: 0 0 134px 28px;
+	transition-property: transform;
+	transition-duration: 0.15s;
+	opacity-brush: gradient(linear, 0% 0%, 0% 100%, from(#ffffffff), to(#9e9e9e));
+}
+
+.CollectionSeen #CollectionHighlight
+{
+	transform: scale3d(0, 0, 1);
+}
+
+.Map_BP_Container
+{
+	width: 100%;
+	background-color: grey;
+	margin: 0 5px 0 0;
+	background-image: url("s2r://panorama/images/custom_game/backgrounds/sub_bg_1_no_border_png.vtex");
+	background-size: 100%;
+	flow-children: down;
+	box-shadow: black 0 0 4px 0;
+	height: fit-children;
+	transition: height 0.15s ease-in-out 0s;
+	padding: 10px 10px 0 10px;
+}
+
+.HUDFlipped .Map_BP_Container
+{
+	margin: 0 0 0 5px;
+}
+
+.CustomBPEnds .Map_BP_Container,.BSpectator .Map_BP_Container,.BItemsHiddenManually .Map_BP_Container
+{
+	visibility: collapse;
+}
+
+.CustomBPEnds .MapOverlayRoot.PlayerSub_0:not(.BItemsHiddenManually) .Map_BP_Container.BPEnds_Map_Container,.CustomBPEnds .MapOverlayRoot.PlayerSub_1:not(.BItemsHiddenManually) .Map_BP_Container.BPEnds_Map_Container
+{
+	visibility: visible;
+}
+
+.CustomBPEnds .MapOverlayRoot.PlayerSub_0:not(.BItemsHiddenManually) .BPEnds_Map_Container .Map_BPC_ActionButton,.CustomBPEnds .MapOverlayRoot.PlayerSub_1:not(.BItemsHiddenManually) .BPEnds_Map_Container .Map_BPC_ActionButton
+{
+	animation-name: golden_glow;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.BPEnds_Map_Container .Map_BPC_NoItems
+{
+	margin-top: 7px;
+}
+
+@keyframes 'golden_glow'
+{
+	0%
+	{
+		box-shadow: 0 0 3px 0 #df9724;
+	}
+	
+	50%
+	{
+		box-shadow: 0 0 10px 0 #fec48e;
+	}
+	
+	100%
+	{
+		box-shadow: 0 0 3px 0 #df9724;
+	}
+	
+}
+
+.Map_BPC_Header
+{
+	horizontal-align: center;
+	text-align: center;
+	text-transform: uppercase;
+	margin-top: 11px;
+	font-family: titleFont;
+	font-weight: semi-bold;
+	font-size: 20px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#df9724), to(#fee1b8));
+	text-shadow: black 0px 1px 3px 2;
+}
+
+#Map_BPC_List
+{
+	flow-children: down;
+	padding: -3px 10px 10px 10px;
+}
+
+.Map_BPC_NoItems
+{
+	color: #e3e3e3;
+	text-shadow: black 0px 1px 3px 3;
+	text-transform: uppercase;
+	padding-bottom: 10px;
+	horizontal-align: center;
+	text-align: center;
+}
+
+.BHasItems .Map_BPC_NoItems
+{
+	visibility: collapse;
+}
+
+.Map_BP_Item
+{
+	flow-children: right;
+	margin-top: 10px;
+}
+
+#Map_BP_I_Image
+{
+	width: 50px;
+	height: 50px;
+	margin: 2px;
+}
+
+#Map_BP_I_Text
+{
+	align: center center;
+	max-width: 100%;
+	color: #e3e3e3;
+	text-shadow: black 0px 1px 3px 3;
+	margin-left: 10px;
+}
+
+.Map_BPC_ActionButton
+{
+	min-width: 140px;
+	max-width: 100%;
+	padding: 0 10px;
+	min-height: 42px;
+	horizontal-align: center;
+	margin-bottom: 10px;
+	background-image: url("s2r://panorama/images/custom_game/collection/button_confirm_png.vtex");
+	background-size: 100%;
+	box-shadow: rgba(0, 0, 0, 0.8) 0px 1px 5px -1px;
+	transition: brightness 0.1s ease-in-out 0s;
+}
+
+.Map_BPC_ActionButton:hover
+{
+	brightness: 1.5;
+}
+
+.Map_BPC_ActionButton:active
+{
+	brightness: 0.8;
+	sound: "General.ButtonClick";
+}
+
+.Map_BPC_ActionButton Label
+{
+	align: center center;
+	text-align: center;
+	text-transform: uppercase;
+	margin-top: 1px;
+	color: #e1e7ef;
+	text-shadow: black 0px 1px 3px 2;
+}
+
+.BP_OrbConsumable
+{
+	width: 32px;
+	height: 32px;
+	vertical-align: bottom;
+	border-radius: 50px;
+	background-size: 32px;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	transition: brightness 0.1s ease-in-out 0s;
+}
+
+.BP_OrbConsumable:hover
+{
+	brightness: 1.5;
+}
+
+.BP_OrbConsumable:active
+{
+	brightness: 0.5;
+	background-size: 30px;
+}
+
+#BP_OrbConsumable_Rare
+{
+	margin: 0 0 56px 11px;
+	background-image: url("s2r://panorama/images/custom_game/map_orb_rare_png.vtex");
+}
+
+#BP_OrbConsumable_Epic
+{
+	margin: 0 0 14px 11px;
+	background-image: url("s2r://panorama/images/custom_game/map_orb_epic_png.vtex");
+}
+
+.HUDFlipped #BP_OrbConsumable_Rare
+{
+	margin: 0 0 56px 6px;
+}
+
+.HUDFlipped #BP_OrbConsumable_Epic
+{
+	margin: 0 0 14px 6px;
+}
+
+#BP_Orbs_Confirms_Root
+{
+	background-image: url("s2r://panorama/images/custom_game/minimap_orbs_bg_png.vtex");
+	background-size: 100%;
+	box-shadow: black 0 0 4px 0;
+	vertical-align: bottom;
+	margin: 0 0 55px 20px;
+	flow-children: right;
+}
+
+.BP_Orb_C
+{
+	flow-children: down;
+	padding: 10px;
+	width: 200px;
+	visibility: collapse;
+	transition: visibility 0.1s ease-in-out 0s;
+}
+
+.BShowMapOrbs_epic .BP_Orb_Epic,.BShowMapOrbs_rare .BP_Orb_Rare
+{
+	visibility: visible;
+}
+
+.BP_Orb_C_Header
+{
+	flow-children: right;
+}
+
+.BP_Orb_C_Image
+{
+	width: 61px;
+	height: 61px;
+	border-radius: 5px;
+	box-shadow: black 0 0 4px -1px;
+	border: 1px solid rgba(136, 136, 136, 0.3);
+}
+
+.BP_Orb_C_Desc
+{
+	margin-left: 10px;
+	color: #e6e9f1;
+	text-shadow: rgba(0, 0, 0, 0.6) 0 1px 1px 2;
+}
+
+.BP_Orb_C_Count
+{
+	width: 100%;
+	text-align: center;
+	margin: 5px 0;
+	color: #ccd4da;
+	text-shadow: rgba(0, 0, 0, 0.6) 0 1px 1px 2;
+	font-style: italic;
+	saturation: 0;
+	wash-color: #9b9b9b;
+}
+
+.BHasOrbs_rare .BP_Orb_Rare .BP_Orb_C_Count,.BHasOrbs_epic .BP_Orb_Epic .BP_Orb_C_Count
+{
+	saturation: 1;
+	wash-color: transparent;
+}
+
+.CustomBPEnds .MapOverlayRoot:not(.BHasOrbs_rare) .BP_Orb_Rare .BP_Orb_C_Button,.CustomBPEnds .MapOverlayRoot:not(.BHasOrbs_epic) .BP_Orb_Epic .BP_Orb_C_Button
+{
+	visibility: collapse;
+}
+
+.BP_Orb_C_Button
+{
+	width: 100%;
+	background-image: url("s2r://panorama/images/custom_game/collection/button_active_png.vtex");
+	background-size: 100%;
+	padding: 8px;
+	transition: brightness 0.1s ease-in-out 0s;
+}
+
+.BP_Orb_C_Button:hover
+{
+	brightness: 1.5;
+}
+
+.BP_Orb_C_Button:active
+{
+	brightness: 0.6;
+}
+
+.BP_Orb_C_Button Label
+{
+	align: center center;
+	text-align: center;
+	text-transform: uppercase;
+	color: white;
+	text-shadow: rgba(0, 0, 0, 0.9) 0 1px 1px 2;
+	margin-top: 1px;
+}

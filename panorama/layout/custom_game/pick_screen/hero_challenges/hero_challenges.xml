@@ -1,0 +1,79 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/pick_screen/hero_challenges/hero_challenges.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/pick_screen/hero_challenges/hero_challenges_const.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/pick_screen/hero_challenges/hero_challenges.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="Challenge_Border">
+			<Panel class="Challenge_Border">
+				<Image src="s2r://panorama/images/custom_game/hero_challenges_icon_png.vtex" />
+			</Panel>
+		</snippet>
+		<snippet name="CustomChallengeDesc">
+			<Panel class="CustomChallengeDesc">
+				<Panel class="CC_D_Content">
+					<Panel class="CC_D_HeaderRoot">
+						<Panel class="CC_D_HeaderIcon" />
+						<Label text="#custom_hero_challenges_header" />
+					</Panel>
+					<Panel class="CC_D_Details">
+						<Panel class="CC_D_Icon" />
+						<Label class="CC_D_Desc" text="{s:challenge_desc}" html="true" />
+					</Panel>
+				</Panel>
+				<Panel class="CC_D_Overlay" />
+			</Panel>
+		</snippet>
+		<snippet name="CC_List_Entity">
+			<Panel class="CC_List_Entity">
+				<Panel class="CC_L_Content">
+					<Panel class="CC_D_Icon" />
+					<Panel class="CC_L_E_HeroIcon_Container">
+						<Image id="CC_L_E_HeroIcon" />
+						<Image id="CC_L_E_HeroIcon_Completed" src="s2r://panorama/images/custom_game/ban_line_png.vtex" />
+					</Panel>
+					<Label class="CC_D_Desc" text="{s:challenge_desc}" html="true" />
+					<Label class="CC_L_E_Done" text="Completed!" />
+					<Panel class="CC_L_E_Separator" />
+					<Panel id="CC_L_E_RewardsContainer" />
+				</Panel>
+				<Panel class="CC_L_Overlay" />
+			</Panel>
+		</snippet>
+		<snippet name="CC_Reward">
+			<Panel class="CC_Reward">
+				<Panel class="CC_Reward_Border CI_Background">
+					<Image id="CC_Reward_Icon" />
+					<Image class="CC_Reward_Done" src="s2r://panorama/images/custom_game/ban_line_png.vtex" />
+				</Panel>
+				<Label class="CC_Reward_Amount" text="x{d:reward_amount}" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel hittest="false">
+		<Panel id="TempChallengesContainer" hittest="false" />
+		<Panel id="CC_List">
+			<Panel class="CC_L_HeaderRoot">
+				<Panel class="CC_L_Header_Icon" />
+				<Label class="CC_L_Header_Text" text="#custom_hero_challenges_list_header" />
+			</Panel>
+			<Panel id="CC_L_Container" />
+		</Panel>
+	</Panel>
+</root>

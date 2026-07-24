@@ -1,0 +1,588 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.Custom_TopBarRoot
+{
+	align: center top;
+	flow-children: down;
+}
+
+.CustomEndGameSimulate .Custom_TopBarRoot,.BShowCustomMatchDetailsOT3 .Custom_TopBarRoot
+{
+	opacity: 0;
+}
+
+.hideTop
+{
+	transform: translateY(-100%);
+	transition: transform 1s ease-in-out 2s;
+}
+
+#TopBar_TeamsList
+{
+	align: center top;
+	flow-children: right;
+}
+
+.FullSize
+{
+	width: 100%;
+	height: 100%;
+}
+
+.TopBar_Team
+{
+	margin: 0px 8px 0px 8px;
+	transition: position 0.5s ease-in-out 0s;
+}
+
+.TeamInfo
+{
+	min-width: 260px;
+	background-image: url("s2r://panorama/images/custom_game/top_bar/team_bg_filler_png.vtex");
+	background-size: 100% 40px;
+	background-repeat: no-repeat;
+}
+
+.AspectRatio16x10 .TeamInfo
+{
+	background-size: 100% 35px;
+}
+
+.AspectRatio4x3 .TeamInfo
+{
+	background-size: 100% 31px;
+}
+
+.ot3_necropolis_ffa .TopBar_Team:not(.LocalTeam) .TeamInfo
+{
+	min-width: 120px;
+}
+
+.ot3_necropolis_ffa .TopBar_Team:not(.LocalTeam) .TeamGoalData,.ot3_necropolis_ffa .TopBar_Team:not(.LocalTeam) .TeamTimerData
+{
+	visibility: collapse;
+}
+
+.Team_BG
+{
+	width: 100%;
+	height: 43px;
+}
+
+.LocalTeam .TeamTimerData,.Spectator .TeamTimerData
+{
+	transform: translateY(0px);
+}
+
+.LocalTeam .TeamGoalData,.Spectator .TeamGoalData
+{
+	transform: translateY(0px);
+}
+
+.TeamStats
+{
+	flow-children: right;
+	horizontal-align: center;
+	height: 50px;
+	width: fit-children;
+}
+
+#TeamLogo
+{
+	width: 32px;
+	height: 32px;
+	margin: 2px 0px 0px 0px;
+	horizontal-align: left;
+}
+
+#TeamLogo_Icon
+{
+	wash-color: #222222;
+}
+
+#TeamScore
+{
+	padding-top: 0px;
+	text-align: center;
+	vertical-align: center;
+	font-size: 28px;
+	color: white;
+	font-weight: bold;
+	font-family: "Reaver";
+	text-shadow: black 0px 0px 1px 2;
+	margin: -1px 0px 0px 0px;
+}
+
+.TopBarUnderPanel
+{
+	flow-children: none;
+	width: 100%;
+	margin-top: 40px;
+}
+
+.AspectRatio16x10 .TopBarUnderPanel
+{
+	margin-top: 35px;
+}
+
+.AspectRatio4x3 .TopBarUnderPanel
+{
+	margin-top: 31px;
+}
+
+.TeamCenterData
+{
+	flow-children: right;
+	horizontal-align: center;
+	height: 40px;
+	width: 110px;
+	background-image: url("s2r://panorama/images/custom_game/top_bar/top_bar_score_center_png.vtex");
+	background-position: center bottom;
+	background-size: 100% 125%;
+}
+
+.BLeader .TeamCenterData
+{
+	background-image: url("s2r://panorama/images/custom_game/top_bar/top_bar_score_center_gold_png.vtex");
+}
+
+.TeamTimerData
+{
+	width: 50%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/top_bar/top_bar_score_bg_left_png.vtex");
+	background-position: left bottom;
+	z-index: -2;
+	transform: translateY(-25px);
+}
+
+.BLeader .TeamTimerData
+{
+	background-image: url("s2r://panorama/images/custom_game/top_bar/top_bar_score_bg_left_gold_png.vtex");
+}
+
+.TeamGoalData
+{
+	width: 50%;
+	height: 100%;
+	horizontal-align: right;
+	background-image: url("s2r://panorama/images/custom_game/top_bar/top_bar_score_bg_right_png.vtex");
+	background-position: right bottom;
+	transform: translateY(-25px);
+	z-index: -2;
+}
+
+.BLeader .TeamGoalData
+{
+	background-image: url("s2r://panorama/images/custom_game/top_bar/top_bar_score_bg_right_gold_png.vtex");
+}
+
+.TeamPlayers
+{
+	flow-children: right;
+	horizontal-align: center;
+	z-index: 2;
+}
+
+.VerticalHeroSeparator
+{
+	width: 1px;
+	height: 34px;
+	background-color: black;
+}
+
+.AspectRatio16x10 .VerticalHeroSeparator
+{
+	height: 29px;
+}
+
+.AspectRatio4x3 .VerticalHeroSeparator
+{
+	height: 25px;
+}
+
+#TeamColor
+{
+	width: 100%;
+	height: 6px;
+	background-color: #0ed78b;
+	margin-top: 34px;
+}
+
+.AspectRatio16x10 #TeamColor
+{
+	margin-top: 29px;
+}
+
+.AspectRatio4x3 #TeamColor
+{
+	margin-top: 25px;
+}
+
+.TeamColor_Overlay
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from(black), color-stop(0.2, transparent), color-stop(0.8, transparent), to(black) );
+}
+
+#PlayersList
+{
+	flow-children: right;
+}
+
+#KillsToWin
+{
+	width: 100%;
+	color: #ea0000;
+	text-shadow: black 0px 0px 2px 2;
+	font-size: 15px;
+	margin-top: 80px;
+	horizontal-align: center;
+	text-align: center;
+	animation-name: shake_text;
+	animation-duration: 0.7s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	visibility: collapse;
+}
+
+.LocalTeam #KillsToWin
+{
+	margin-top: 110px;
+}
+
+.NearToWin #KillsToWin
+{
+	visibility: visible;
+}
+
+@keyframes 'shake_text'
+{
+	0%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+	25%
+	{
+		transform: rotateZ(-6deg);
+	}
+	
+	50%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+	75%
+	{
+		transform: rotateZ(6deg);
+	}
+	
+	100%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+}
+
+.TopBar_Player
+{
+	flow-children: down;
+}
+
+.HeroImage_Wrap
+{
+	flow-children: right;
+}
+
+#HeroImageRoot
+{
+	width: 61px;
+	height: 34px;
+	background-size: 100%;
+}
+
+.AspectRatio16x10 #HeroImageRoot
+{
+	width: 50px;
+	height: 29px;
+}
+
+.AspectRatio4x3 #HeroImageRoot
+{
+	width: 42px;
+	height: 25px;
+}
+
+.Abandoneded #HeroImage
+{
+	saturation: 0;
+	wash-color: #9e9e9e;
+}
+
+.HeroDied #HeroImage
+{
+	saturation: 0;
+	wash-color: #9e9e9e;
+}
+
+.PlayerShadow
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from(#000), color-stop(0.03, rgba(0, 0, 0, 0.58)), color-stop(0.1, #0000), color-stop(0.91, #0000), color-stop(0.95, rgba(0, 0, 0, 0.28)), to(#000a) );
+}
+
+.DeadOverlay
+{
+	box-shadow: inset rgba(0, 0, 0, 0.95) 0px 0px 0px 0px;
+	transition: box-shadow 0.1s ease-in-out 0s;
+}
+
+.HeroDied .DeadOverlay
+{
+	box-shadow: inset rgba(0, 0, 0, 0.95) -1px -2px 11px -2px;
+	transform: translateY(0%);
+}
+
+#DisconnectState
+{
+	width: 100%;
+	height: 20px;
+	align: center center;
+	visibility: collapse;
+}
+
+.Disconnected #DisconnectState,.Abandoneded #DisconnectState
+{
+	visibility: visible;
+}
+
+#RespawnTime
+{
+	width: 64px;
+	height: 20px;
+	horizontal-align: center;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	text-align: right;
+	color: white;
+	font-weight: bold;
+	font-size: 16px;
+	padding-right: 8px;
+	font-family: monospaceNumbersFont;
+	transform: translateY(-100%);
+	transition: transform 0.1s ease-in-out 0s;
+	z-index: 1;
+}
+
+.HeroDied #RespawnTime
+{
+	transform: translateY(0%);
+}
+
+#SecondFlag
+{
+	margin-top: 65px;
+	width: 60px;
+	horizontal-align: center;
+}
+
+.GoalInfo
+{
+	horizontal-align: center;
+	margin-top: 0px;
+	padding: 0px 18px;
+	height: 38px;
+	flow-children: right;
+	background-image: url("s2r://panorama/images/custom_game/top_bar/goal_logo_png.vtex");
+	background-position: bottom;
+	background-size: 100% 42px;
+	z-index: -1;
+}
+
+#ScoreGoal
+{
+	width: 250px;
+	height: 42px;
+	margin-top: 70px;
+	flow-children: none;
+	horizontal-align: center;
+	z-index: -1;
+}
+
+.IsLocalPlayerSpectating .ot3_necropolis_ffa #ScoreGoal
+{
+	width: fit-children;
+	height: fit-children;
+}
+
+#ScoreGoal Label
+{
+	text-transform: uppercase;
+}
+
+#Goal_Header
+{
+	font-size: 16px;
+	color: white;
+	text-shadow: rgba(0, 0, 0, 0.8) 0px 1px 2px 3;
+	font-weight: bold;
+	vertical-align: center;
+	text-align: center;
+}
+
+#Goal_Value
+{
+	font-size: 16px;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#cd7513), color-stop(0.5, #fdf781), to(#cd7513));
+	text-shadow: rgba(0, 0, 0, 0.8) 0px 1px 2px 3;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: center;
+	transition-property: pre-transform-scale2d;
+}
+
+.UpdateKL #Goal_Value,.OrbProgressionGoalShake_Common #OP_Label_Common,.OrbProgressionGoalShake_Rare #OP_Label_Rare
+{
+	animation-name: shake_kl;
+	animation-duration: 0.15s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'shake_kl'
+{
+	0%
+	{
+		transform: rotateZ(0deg);
+		pre-transform-scale2d: 1;
+	}
+	
+	25%
+	{
+		transform: rotateZ(-6deg);
+		pre-transform-scale2d: 3;
+	}
+	
+	50%
+	{
+		transform: rotateZ(0deg);
+		pre-transform-scale2d: 4;
+	}
+	
+	75%
+	{
+		transform: rotateZ(6deg);
+		pre-transform-scale2d: 3;
+	}
+	
+	100%
+	{
+		transform: rotateZ(0deg);
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+#GameTime
+{
+	horizontal-align: left;
+	height: 33px;
+	padding: 5px 55px 8px 20px;
+	color: white;
+	text-shadow: rgba(0, 0, 0, 0.5) 2px 1px 2px 2;
+	margin: 3px 0px 0px 20px;
+	background-image: url("s2r://panorama/images/custom_game/top_bar/goal_logo_dark_png.vtex");
+	background-position: bottom;
+	background-size: 100% 42px;
+	z-index: -2;
+	font-size: 16px;
+}
+
+.IsLocalPlayerSpectating .ot3_necropolis_ffa #GameTime
+{
+	min-width: 70px;
+	text-align: center;
+	margin: 33px 0 0 0px;
+	padding: 4px 15px;
+	horizontal-align: center;
+}
+
+#GameTime:hover
+{
+	color: red;
+}
+
+#TopBar_Tip
+{
+	width: 56px;
+	horizontal-align: center;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#523e1c), to(#1a2128));
+	height: 21px;
+	vertical-align: center;
+	border-top: 1px solid #ffffff11;
+	padding: 0 10px 0 25px;
+	background-image: url("s2r://panorama/images/custom_game/collection/currency_icon_small_png.vtex");
+	background-size: 15px;
+	background-position: 10% 50%;
+	background-repeat: no-repeat;
+	margin-top: 5px;
+	opacity: 0;
+	transition-property: opacity, box-shadow;
+	transition-duration: 0.15s;
+}
+
+.AspectRatio16x10 #TopBar_Tip
+{
+	width: 45px;
+}
+
+.AspectRatio4x3 #TopBar_Tip
+{
+	width: 36px;
+}
+
+.LocalPlayer #TopBar_Tip
+{
+	visibility: collapse;
+}
+
+.TipsBlock #TopBar_Tip
+{
+	saturation: 0;
+	brightness: 1.2;
+}
+
+#DotaHud:not(.TipsBlock) #TopBar_Tip:hover
+{
+	brightness: 1.5;
+}
+
+#DotaHud:not(.TipsBlock) #TopBar_Tip:active
+{
+	brightness: 0.8;
+}
+
+.BAltPressed #TopBar_Tip
+{
+	opacity: 1;
+	box-shadow: black 0 0 3px 0px;
+}
+
+#TopBar_Tip Label
+{
+	color: #f9d014;
+	align: center center;
+	text-align: center;
+	text-shadow: black 0px 0px 1px 2;
+	font-size: 15px;
+	text-overflow: shrink;
+}

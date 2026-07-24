@@ -1,0 +1,109 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_razor"
+{
+	"razor_unstable_current"
+	{
+		//Doesn't work anymore
+		//"movespeed_pct"
+		//{
+		//	"value" "0.4"
+		//	"operator" "OP_ADD"
+		//}
+	}
+	"razor_plasma_field"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"damage_max"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"damage_min" "20"
+			}
+		}
+		"radius"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"speed" "31.8"
+			}
+		}
+	}
+	"razor_static_link"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"linked_special_values"
+			{
+				"drain_length" "1"
+			}
+		}
+		"drain_rate"
+		{
+			"value" "7"
+			"operator" "OP_ADD"
+		}
+	}
+	"razor_storm_surge"
+	{
+		"strike_pct_chance"
+		{
+			"value" "2"
+			"operator" "OP_ADD"
+		}
+		"strike_damage"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+
+			"talents"
+			{
+				"special_bonus_unique_razor_storm_surge_damage_and_slow"	"x1.3"
+			}
+		}
+		"strike_internal_cd"
+		{
+			"value" "-0.1"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+	}
+	"razor_eye_of_the_storm"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"radius"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"damage"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+		}
+	}
+}

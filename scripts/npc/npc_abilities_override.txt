@@ -1,0 +1,1310 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"Version"       "1"
+
+	// Early purchase for aghs shard
+	"item_aghanims_shard"	{	"ItemInitialStockTime"	"120"	}
+
+	// Remove Dagon
+	"item_dagon"			{	"ItemPurchasable"	"0"	}
+	"item_dagon_1"			{	"ItemPurchasable"	"0"	}
+	"item_dagon_2"			{	"ItemPurchasable"	"0"	}
+	"item_dagon_3"			{	"ItemPurchasable"	"0"	}
+	"item_dagon_4"			{	"ItemPurchasable"	"0"	}
+	"item_dagon_5"			{	"ItemPurchasable"	"0"	}
+	"item_recipe_dagon"		{	"ItemPurchasable"	"0"	}
+
+	// Remove Rapier
+	"item_rapier"			{	"ItemPurchasable"	"0"	}
+
+	// Remove items luafied
+	"item_recipe_hand_of_midas"				{	"ItemPurchasable"	"0"	}
+	"item_hand_of_midas"					{	"ItemPurchasable"	"0"	}
+	"item_recipe_helm_of_the_dominator"		{	"ItemPurchasable"	"0"	}
+	"item_helm_of_the_dominator"			{	"ItemPurchasable"	"0"	}
+	"item_helm_of_the_overlord"				{	"ItemPurchasable"	"0"	}
+	"item_recipe_helm_of_the_overlord"		{	"ItemPurchasable"	"0"	}
+
+	// Modified items
+
+	"item_ward_sentry"
+	{
+		"ItemStockTime"					"140"
+	}
+
+	"item_gem"
+	{
+		"ItemStockTime"					"300.0"
+	}
+
+	"item_smoke_of_deceit"
+	{
+		"ItemStockTime"					"105.0"
+		"AbilityValues"
+		{
+			"duration"				"45.0"
+		}
+	}
+
+	"item_black_king_bar"
+	{
+		"AbilityCooldown"				"45"
+
+		"AbilityValues"
+		{
+			"duration"				"6"
+		}
+	}
+
+	"item_enhancement_wise"
+	{
+		"AbilityValues"
+		{
+			"bonus_xpm"					"4000"
+		}
+	}
+
+	// Treant buff
+	"treant_living_armor"
+	{
+		"AbilityValues"
+		{
+			"heal_per_second"
+			{
+				"value"		"8 14 20 26"
+				"special_bonus_unique_treant_8"			"+8"
+			}
+		}
+	}
+
+	// Added special values for gamemode interactions
+	"brewmaster_primal_split"
+	{
+		"AbilityCooldown"				"85 80 75"
+
+		"AbilityValues"
+		{
+			"brewling_added_health"	"0"
+		}
+	}
+
+	// High cooldown ability changes
+	"lone_druid_spirit_bear"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"								"40"
+				"special_bonus_unique_lone_druid_2"	"-10"
+			}
+		}
+	}
+
+	"visage_summon_familiars"
+	{
+		"AbilityCooldown" 				"40"
+	}
+
+	"dragon_knight_elder_dragon_form"
+	{
+		"AbilityCooldown"				"60"
+
+		"AbilityValues"
+		{
+			"duration"					"36"
+		}
+	}
+
+	"night_stalker_darkness"
+	{
+		"AbilityValues"
+		{
+			"duration"
+			{
+				"value"			"15"
+				"special_bonus_unique_night_stalker_7"	"+2.5"
+			}
+			"AbilityCooldown"
+			{
+				"value"									"60"
+				"special_bonus_unique_night_stalker"	"-20"
+			}
+		}
+	}
+
+	"terrorblade_metamorphosis"
+	{
+		"AbilityValues"
+		{
+			"duration"
+			{
+				"value"				"25 25 25 25"
+				"special_bonus_unique_terrorblade_3"	"+15"
+			}
+			"AbilityCooldown"
+			{
+				"value"				"60.0"
+				"special_bonus_unique_terrorblade_metamorphosis_cooldown"		"-5"
+			}
+		}
+	}
+
+	"sven_gods_strength"
+	{
+		"AbilityDuration"				"18"
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"							"60"
+				"special_bonus_unique_sven_3"	"-7"
+			}
+		}
+	}
+
+	"undying_flesh_golem"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"					"60"
+			}
+			"duration"					"20"
+		}
+	}
+
+	"death_prophet_exorcism"
+	{
+		"AbilityCooldown"				"60"
+		"AbilityDuration"				"20"
+
+		"AbilityValues"
+		{
+			"ghost_spawn_rate"			"0.1"
+			"duration_increase_per_kill"
+			{
+				"value"			"0"
+				"special_bonus_unique_death_prophet_exorcism_duration_on_kill"			"+3.2"
+			}
+		}
+	}
+
+	"lycan_shapeshift"
+	{
+		"AbilityValues"
+		{
+			"duration"
+			{
+				"value"				"17"
+				"special_bonus_unique_lycan_1"	"+5"
+			}
+			"kill_duration_extension"
+			{
+				"value"				"0"
+				"special_bonus_facet_lycan_pack_leader"			"+3.5"
+			}
+			"AbilityCooldown"
+			{
+				"value"							"60"
+				"special_bonus_unique_lycan_8"	"-10"
+			}
+		}
+	}
+
+	"lycan_wolf_bite"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"							"60"
+				"special_bonus_unique_lycan_8"	"-10"
+			}
+		}
+	}
+
+	"doom_bringer_doom"
+	{
+		"AbilityValues"
+		{
+			"duration"
+			{
+				"value"								"10 11 12"
+				"special_bonus_facet_doom_bringer_impending_doom"	"+0"		// this is needed for facet tooltip to recognize that it's modifying this value
+				"dynamic_value"										"true"
+			}
+			"AbilityCooldown"
+			{
+				"value"								"110 100 90"
+			}
+			"upgrade_interval"
+			{
+				"value"												"0.0"
+				"special_bonus_facet_doom_bringer_impending_doom"	"=2.22"
+			}
+		}
+	}
+
+	"treant_overgrowth"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"						"90 85 80"
+			}
+		}
+	}
+
+	"lion_finger_of_death"
+	{
+		"AbilityCooldown"				"90.0 70.0 50.0"
+	}
+
+	"warlock_rain_of_chaos"
+	{
+		"AbilityCooldown"				""
+
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"					"120"
+				"special_bonus_unique_warlock_chaos_offering_cdr_custom"	"-30"
+			}
+		}
+	}
+
+	"phoenix_supernova"
+	{
+		"AbilityCooldown"				"80"
+	}
+
+	"necrolyte_reapers_scythe"
+	{
+		"AbilityCooldown"				"90"
+	}
+
+	"earthshaker_echo_slam"
+	{
+		"AbilityCooldown"				"120 105 90"
+	}
+
+	"sandking_epicenter"
+	{
+		"AbilityCooldown"				"100 90 80"
+	}
+
+	"snapfire_mortimer_kisses"
+	{
+		"AbilityCooldown"				"100 90 80"
+	}
+
+	"faceless_void_chronosphere"
+	{
+		"AbilityCooldown"				"120 115 110"
+	}
+
+	"faceless_void_time_zone"
+	{
+		"AbilityCooldown"				"100 95 90"
+	}
+
+	"obsidian_destroyer_sanity_eclipse"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"										"120 110 100"
+				"special_bonus_unique_outworld_devourer_5"	"-40"
+			}
+		}
+	}
+
+	"juggernaut_omni_slash"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"				
+			{
+				"value"			"95"
+				"special_bonus_unique_juggernaut_omnislash_cooldown"			"-12"
+			}
+		}
+	}
+
+	"tidehunter_ravage"
+	{
+		"AbilityCooldown" 				"105"
+	}
+
+	"magnataur_reverse_polarity"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"						"95"
+				"special_bonus_facet_magnataur_reverse_reverse_polarity"		"=80"
+			}
+		}
+	}
+
+	"enigma_black_hole"
+	{
+		"AbilityCooldown"				"150 135 120"
+	}
+
+	"zuus_thundergods_wrath"
+	{
+		"AbilityCooldown"				"100"
+
+		"AbilityValues"
+		{
+			"grow_kill_amp"
+			{
+				"value"						"0"
+				"special_bonus_facet_zuus_divine_rampage"	"5"
+			}
+		}
+	}
+
+	// OT3 hero nerfs
+	"abaddon_borrowed_time"
+	{
+		"AbilityValues"
+		{
+			"ally_threshold_scepter"
+			{
+				"value"								"750"
+				"RequiresScepter"					"1"
+			}
+		}
+	}
+
+	"abaddon_the_quickening"
+	{
+		"AbilityValues"
+		{
+			"cooldown_reduction_heroes"		"3.0"
+		}
+	}
+
+	"arc_warden_spark_wraith"
+	{
+		"AbilityValues"
+		{
+			"duration"									"15"
+			"scepter_duration"
+			{
+				"value"									"5"
+				"RequiresScepter"						"1"
+			}
+		}
+	}
+
+	"ember_spirit_fire_remnant"
+	{
+		"AbilityValues"
+		{
+			"duration"				"15"
+		}
+	}
+
+	"mirana_arrow"
+	{
+		"AbilityCastRange"		"2000"
+
+		"AbilityValues"
+		{
+			"arrow_range"		"2000"
+		}
+	}
+
+	"windrunner_powershot"
+	{
+		"AbilityCastRange"				"2000"
+		"AbilityValues"
+		{
+			"arrow_range"			"2000"
+		}
+	}
+
+	"invoker_tornado"
+	{
+		"AbilityValues"
+		{
+			"travel_distance"
+			{
+				"value"					"1500 1800 2000 2000 2000 2000 2000 2000"
+				"levelkey"				"wexlevel"
+			}
+		}
+	}
+
+	"tidehunter_gush"
+	{
+		"AbilityValues"
+		{
+			"cast_range_scepter"
+			{
+				"special_bonus_scepter"		"2000"
+			}
+		}
+	}
+
+	"hoodwink_sharpshooter"
+	{
+		"AbilityCastRange"				"2000"
+		"AbilityValues"
+		{
+			"arrow_range"		"2000"
+		}
+	}
+
+	"snapfire_mortimer_kisses"
+	{
+		"AbilityCastRange"				"2000"
+		"AbilityValues"
+		{
+			"min_range"				"400"
+		}
+	}
+
+	"storm_spirit_ball_lightning"
+	{
+		"AbilityValues"
+		{
+			"ball_lightning_travel_cost_base"	"20"
+			"ball_lightning_travel_cost_percent"	"1.3"
+		}
+	}
+
+	"nyx_assassin_burrow"
+	{
+		"AbilityValues"
+		{
+			"health_regen_rate"		"1"
+			"mana_regen_rate"		"1"
+			"damage_reduction"			"0"
+		}
+	}
+
+	"lion_to_hell_and_back"
+	{
+		"AbilityValues"
+		{
+			"duration"					"30"
+		}
+	}
+
+	"spectre_dispersion"
+	{
+		"AbilityValues"
+		{
+			"damage_reflection_pct"
+			{
+				"value"		"10 12 14 16"
+				"special_bonus_unique_spectre_5"		"+4"
+			}
+		}
+	}
+
+	"snapfire_lil_shredder"
+	{
+		"AbilityValues"
+		{
+			"damage_pct"
+			{
+				"value"	"35"
+				"special_bonus_unique_snapfire_6"	"+35"
+			}
+			"extra_targets"
+			{
+				"special_bonus_unique_snapfire_8"	"=1"
+			}
+		}
+	}
+
+	"rattletrap_overclocking"
+	{
+		"AbilityValues"
+		{
+			"rocket_flare_cooldown"				"6"
+		}
+	}
+
+	"skywrath_mage_ancient_seal"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"								"14"
+				"special_bonus_unique_skywrath"		"-4"
+			}
+		}
+	}
+
+	"skywrath_mage_mystic_flare"
+	{
+		"AbilityValues"
+		{
+			"damage"
+			{
+				"value"			"640 960 1280"
+				"special_bonus_unique_skywrath_5" "+320"
+			}
+		}
+	}
+
+	"leshrac_split_earth"
+	{
+		"AbilityValues"
+		{
+			"shard_max_count"
+			{
+				"special_bonus_shard"		"1"
+			}
+		}
+	}
+
+	"leshrac_pulse_nova"
+	{
+		"AbilityValues"
+		{
+			"damage"
+			{
+				"value"			"60 97.5 135"
+				"special_bonus_unique_leshrac_3" "+25"
+			}
+		}
+	}
+
+	"silencer_brain_drain"
+	{
+		"HasShardUpgrade"				"0"
+
+		"AbilityValues"
+		{
+			"permanent_int_steal_amount"
+			{
+				"value"						"1"
+				"special_bonus_shard"		"+0"
+			}
+		}
+	}
+
+	"silencer_glaives_of_wisdom"
+	{
+		"HasShardUpgrade"				"1"
+
+		"AbilityValues"
+		{
+			"int_steal"
+			{
+				"value"		"1 1 1 1 1"
+				"special_bonus_shard"		"+1"
+			}
+		}
+	}
+
+	"invoker_sun_strike"
+	{
+		"AbilityValues"
+		{
+			"cataclysm_count"
+			{
+				"value"					"0"
+				"special_bonus_scepter_3"	"+1"
+			}
+			"cataclysm_min_range"
+			{
+				"value"					"0"
+			}
+			"cataclysm_max_range"
+			{
+				"value"					"0"
+			}
+		}
+	}
+
+	"nevermore_dark_lord"
+	{
+		"AbilityValues"
+		{
+			"kill_buff_duration"
+			{
+				"value"						"0"
+				"special_bonus_facet_nevermore_lasting_presence"	"+10"
+			}
+		}
+	}
+
+	"dark_willow_shadow_realm"
+	{
+		"AbilityCooldown"				"22 20 18 16"
+	}
+
+	"ursa_overpower"
+	{
+		"AbilityValues"
+		{
+			"max_attacks"
+			{
+				"value"			"2 3 4 5"
+				"special_bonus_unique_ursa_7" "+3"
+			}
+		}
+	}
+
+	"elder_titan_ancestral_spirit"
+	{
+		"AbilityValues"
+		{
+			"scepter_magic_immune_per_hero"
+			{
+				"special_bonus_scepter"		"1.5"
+			}
+		}
+	}
+
+	"life_stealer_infest"
+	{
+		"AbilityValues"
+		{
+			"dot_damage_as_pct_of_damage_dealt"
+			{
+				"value"					"0"
+				"special_bonus_shard"	"+15.0"
+				"DamageTypeTooltip"		"DAMAGE_TYPE_MAGICAL"
+			}
+		}
+	}
+
+	"tusk_snowball"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"							"21 19 17 15"
+				"special_bonus_unique_tusk_6"	"-6"
+			}
+		}
+	}
+
+	"phantom_assassin_blur"
+	{
+		"AbilityValues"
+		{
+			"fade_duration"			"0.4"
+		}
+	}
+
+	// OT3 hero buffs/changes
+
+	// Only affects the talent visually
+	"furion_force_of_nature"
+	{
+		"AbilityValues"
+		{
+			"max_treants"
+			{
+				"value"							"2"
+				"special_bonus_unique_furion_2"	"+2"
+			}
+		}
+	}
+
+	"lich_chain_frost"
+	{
+		"AbilityCooldown"				"" // "100.0 80.0 60.0"
+
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"		"100.0 80.0 60.0"
+				"special_bonus_unique_lich_chain_frost_cdr_custom"	"-20"
+			}
+			"jumps"
+			{
+				"value"		"10 10 10"
+				"special_bonus_unique_lich_5" "+40"
+			}
+			"has_unlimited_jumps"
+			{
+				"special_bonus_unique_lich_5" "0"
+			}
+		}
+	}
+
+	"broodmother_insatiable_hunger"
+	{
+		"AbilityValues"
+		{
+			"base_attack_time"
+			{
+				"value"		"1.7"
+				"special_bonus_unique_broodmother_1"		"-0.3"
+			}
+		}
+	}
+
+	"tusk_walrus_kick"
+	{
+		"AbilityValues"
+		{
+			"push_length"				"1000"
+		}
+	}
+
+	"lich_ice_spire"
+	{
+		"AbilityValues"
+		{
+			"added_health"	"0"
+		}
+	}
+
+	"monkey_king_tree_dance"
+	{
+		"AbilityValues"
+		{
+			"spring_leap_speed"			"1950"
+		}
+	}
+
+	"monkey_king_primal_spring"
+	{
+		"AbilityCastRange"				"1500"
+	}
+
+	"venomancer_venomous_gale"
+	{
+		"AbilityValues"
+		{
+			"num_created_wards_tooltip"
+			{
+				"value"												"0"
+				"special_bonus_shard"		"+1"	// NOTE: tooltip only
+			}
+		}
+	}
+
+	"ancient_apparition_chilling_touch"
+	{
+		"AbilityValues"
+		{
+			"attack_range_bonus"
+			{
+				"value"				"60 120 180 240"
+				"special_bonus_unique_ancient_apparition_7"		"+160"
+			}
+		}
+	}
+
+	// OT3 hero changes to reduce lag
+	"phantom_lancer_juxtapose"
+	{
+		"AbilityValues"
+		{
+			"max_illusions"
+			{
+				"value"						"3 4 5"
+			}
+			"illusion_damage_out_pct"
+			{
+				"value"							"-70"
+				"CalculateSpellDamageTooltip"	"0"
+			}
+			"tooltip_illusion_damage"
+			{
+				"value"							"30"
+				"CalculateSpellDamageTooltip"	"0"
+			}
+			"illusion_damage_in_pct"
+			{
+				"value"							"200"
+				"CalculateSpellDamageTooltip"	"0"
+				"special_bonus_unique_phantom_lancer_juxtapose_damage_in"	"-35"
+			}
+			"tooltip_total_illusion_damage_in_pct"
+			{
+				"value"							"300"
+				"CalculateSpellDamageTooltip"	"0"
+				"special_bonus_unique_phantom_lancer_juxtapose_damage_in"	"-35"
+			}
+		}
+	}
+	
+	"phantom_lancer_illusory_armaments"
+	{
+		"AbilityValues"
+		{
+			"outgoing_floor"
+			{
+				"value"			"30"
+				"hero_levelup"	"2"	
+				"levelup_interval" "3"
+			}
+		}
+	}
+
+	"skeleton_king_reincarnation"
+	{
+		"AbilityValues"
+		{
+			"shard_skeleton_count"
+			{
+				"value"						"0"
+				"special_bonus_facet_skeleton_king_facet_bone_guard" "1 1 2"
+			}
+			"AbilityCooldown"
+			{
+				"value"							"150 125 100"
+				"special_bonus_scepter"			"-15"
+			}
+		}
+	}
+
+	"skeleton_king_vampiric_spirit"
+	{
+		"AbilityValues"
+		{
+			"scepter_aura_radius"
+			{
+				"special_bonus_scepter"			"+600"
+				"affected_by_aoe_increase"	"1"
+			}
+		}
+	}
+
+	"skeleton_king_bone_guard"
+	{
+		"AbilityValues"
+		{
+			"max_skeleton_charges"		"1 2 3 4"
+			"min_skeleton_spawn"
+			{
+				"value"					"0"
+				"special_bonus_unique_wraith_king_facet_3" "+3"
+			}
+			"spawn_interval"			"0.5"
+			"gold_bounty"						"10"
+			"xp_bounty"						"10"
+
+			"skeleton_damage_tooltip"
+			{
+				"value"							"68 78 88 98"
+				"CalculateSpellDamageTooltip"	"0"
+			}
+			"skeleton_health"				"350"
+
+			"auto_charge_interval"			"10"
+		}
+	}
+
+	"special_bonus_unique_wraith_king_6"
+	{
+		"AbilityValues"
+		{
+			"value"
+			{
+				"value"					"70"
+				"ad_linked_abilities"	"skeleton_king_vampiric_aura"
+			}
+		}
+	}
+
+	"warpine_raider_seed_shot"
+	{
+		"MaxLevel"		"1"
+	}
+
+	"ability_lamp_use"
+	{
+		"AbilityValues"
+		{
+			"inactive_duration"		"20"
+		}
+	}
+
+	"weaver_geminate_attack_lua"
+	{
+		// General
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/heroes/weaver/geminate_attack.lua"
+		"AbilityTextureName"			"weaver_geminate_attack"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+
+		"MaxLevel"						"4"
+		"RequiredLevel"					"1"
+
+		"AbilityCooldown"				"9 7 5 3"
+
+		"AbilityValues"
+		{
+			"delay"					"0.25"
+			"tooltip_attack"
+			{
+				"value"							"1"
+				"special_bonus_unique_weaver_5"	"+1"
+			}
+			"bonus_damage"
+			{
+				"value"		"20 35 50 65"
+				"special_bonus_unique_weaver_2"		"+70"
+			}
+		}
+
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+	}
+
+
+	"weaver_shukuchi"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/heroes/weaver/weaver_shukuchi"
+		"AbilityTextureName"			"weaver_shukuchi"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilitySound"					"Hero_Weaver.Shukuchi"
+		"HasShardUpgrade"				"1"
+
+		"AbilityCastPoint"				"0 0 0 0"
+		"AbilityManaCost"				"65"
+
+		"AbilityValues"
+		{
+			"damage"
+			{
+				"value"										"100 130 160 190"
+				"special_bonus_unique_weaver_1"				"+60"
+			}
+			"speed"					"200 230 260 290"
+			"min_movespeed_override"
+			{
+				"value"									"550"
+				"special_bonus_facet_weaver_skitterstep"				"+50"
+				"RequiresFacet"						"weaver_skitterstep"
+			}
+			"radius"
+			{
+				"value"		"175 175 175 175"
+				"affected_by_aoe_increase"	"1"
+			}
+			"fade_time"				"0.25"
+			"duration"				"4.0 4.0 4.0 4.0"
+			"AbilityCooldown"
+			{
+				"value"								"15 12 9 6"
+				"special_bonus_unique_weaver_6"		"-3"
+			}
+			"geminate_attack_mark_duration"
+			{
+				"value"									"0"
+				"special_bonus_shard"					"+4.6"
+			}
+			"shukuchi_attack_mark_radius"
+			{
+				"value"									"0"
+				"special_bonus_shard"					"+1200"
+			}
+			"shukuchi_attack_delay"
+			{
+				"value"									"0"
+				"special_bonus_shard"					"+0.2"
+			}
+
+			"slow_duration"
+			{
+				"value"									"0"
+				"special_bonus_facet_weaver_skitterstep"				"+0.2"
+			}
+			"slow_percent"
+			{
+				"value"												"0"
+				"special_bonus_facet_weaver_skitterstep"		"+100"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
+	}
+
+	"sniper_keen_scope"
+	{
+		"DependentOnAbility"			"sniper_assassinate_lua"
+
+		"AbilityValues"
+		{
+			"bonus_damage_for_range"
+			{
+				"value"						"0.75"
+				"hero_levelup"				"+0.025"
+			}
+		}
+	}
+
+	"sniper_shrapnel"
+	{
+		"AbilityValues"
+		{
+			"AbilityChargeRestoreTime"
+			{
+				"value"				"20" // Vanilla: 35 (7.37d)
+				"special_bonus_unique_sniper_2" "-10" // Vanilla: -30 (7.37d)
+			}
+		}
+	}
+
+	"rubick_might_and_magus"
+	{
+		"AbilityValues"
+		{
+			"magic_resist_pct"				"25"
+			"magic_resist_pct_tooltip"		"0.25"
+		}
+	}
+
+	"pugna_oblivion_savant"
+	{
+		"BaseClass"				"ability_lua"
+		"ScriptFile"			"abilities/heroes/pugna/pugna_oblivion_savant"
+	}
+
+	//"winter_wyvern_eldwurm_scholar"
+	//{
+	//	"BaseClass"				"ability_lua"
+	//	"ScriptFile"			"abilities/heroes/winter_wyvern/winter_wyvern_eldwurm_scholar"
+	//
+	//	"AbilityValues"
+	//	{
+	//		"exp_per_orb"		"50"
+	//	}
+	//}
+	
+	"item_eldwurms_edda"
+	{
+		"AbilityCooldown"				"150"
+	}
+
+	//"primal_beast_colossal"
+	//{
+	//	"BaseClass"				"ability_lua"
+	//	"ScriptFile"			"abilities/heroes/primal_beast/primal_beast_colossal"
+	//
+	//	"AbilityValues"
+	//	{
+	//		"damage_reduction"		"10"
+	//	}
+	//}
+
+	"centaur_rawhide"
+	{
+		"AbilityValues"
+		{
+			"health_per_upgrade"		"35"
+			"upgrade_rate"				"40.0"
+		}
+	}
+
+	"enchantress_forest_freebie"
+	{
+		"BaseClass"				"ability_lua"
+		"ScriptFile"			"abilities/heroes/enchantress/enchantress_forest_freebie"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SKIP_FOR_KEYBINDS"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"						"1"
+		"Innate"						"1"
+		"IsBreakable"					"1"
+
+		"AbilityValues"
+		{
+			"heal_per_orb"			"100"
+		}
+	}
+
+	"witch_doctor_gris_gris"
+	{
+		"AbilityValues"
+		{
+			"death_gold_lost_reduction_pct_tooltip"		"100"
+			"gold_tick_interval_tooltip"		"1"
+		}
+	}
+
+	"invoker_mastermind"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/heroes/invoker/invoker_mastermind"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_INNATE_UI | DOTA_ABILITY_BEHAVIOR_SKIP_FOR_KEYBINDS"
+		"MaxLevel"						"1"
+		"Innate"						"1"
+		"AbilityValues"
+		{
+			"xp_gain"					"15"
+		}
+	}
+
+	"lycan_apex_predator"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/heroes/lycan/lycan_apex_predator"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_SKIP_FOR_KEYBINDS"
+		"MaxLevel"						"1"
+		"Innate"						"1"
+		"AbilityValues"
+		{
+			"damage_amp"
+			{
+				"value"					"0"
+				"hero_levelup"			"1"
+			}
+		}
+	}
+
+	"undying_ceaseless_dirge"
+	{
+		"AbilityCooldown"				"0"
+
+		"AbilityValues"
+		{
+			"respawn_delay"				"2.0"
+		}
+	}
+
+	"marci_special_delivery"
+	{
+		"BaseClass"			"ability_lua"
+		"ScriptFile"		"abilities/heroes/marci/marci_special_delivery.lua"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SKIP_FOR_KEYBINDS"
+		"MaxLevel"						"1"
+		"Innate"						"1"
+
+		"AbilityValues"
+		{
+			"fountain_buff_duration"			"5"
+		}
+	}
+
+	"earth_spirit_stone_caller"
+	{
+		"AbilityValues"
+		{
+			"AbilityChargeRestoreTime"
+			{
+				"value"							"4"
+			}
+		}
+	}
+
+	"mars_spear"
+	{
+		"AbilityValues"
+		{
+			"max_impale_targets"
+			{
+				"value"		"1"
+				"special_bonus_shard"	"+1"
+				"special_bonus_facet_mars_spear"	"+1"
+			}
+		}
+	}
+
+	"bristleback_warpath"
+	{
+		"AbilityValues"
+		{
+			"AbilityManaCost"
+			{
+				"value"									"0"
+			}
+			"damage_per_stack"
+			{
+				"value"					"15 20 25"
+				"special_bonus_facet_bristleback_berserk"	"=5"
+				"special_bonus_unique_bristleback_3"	"+18"
+			}
+			"aspd_per_stack"
+			{
+				"value"					"0"
+				"special_bonus_facet_bristleback_berserk"	"=10 =15 =20"
+			}
+			"move_speed_per_stack"		"2 2.5 3"
+			"stack_duration"				"16.0 18.0 20.0"
+			"max_stacks"					"8 10 12"
+			"active_bonus_attack_percent"
+			{
+				"value"									"0"
+				"special_bonus_facet_bristleback_seeing_red"				"30"
+			}
+			"active_bonus_movement_percent"
+			{
+				"value"									"0"
+				"special_bonus_facet_bristleback_seeing_red"				"30"
+			}
+			"active_duration"
+			{
+				"value"				"0"
+				"special_bonus_facet_bristleback_seeing_red"				"4 5 6"
+			}
+			"active_view_angle_restriction"	"0"
+		}
+	}
+
+	"techies_sticky_bomb"
+	{
+		"AbilityValues"
+		{
+			"radius"
+			{
+				"value"			"300"
+				"special_bonus_unique_techies_ot3" "+250"
+				"affected_by_aoe_increase"	"1"
+			}
+			"explosion_radius"
+			{
+				"value"				"350"
+				"special_bonus_unique_techies_ot3" "+250"
+				"affected_by_aoe_increase"	"1"
+			}
+		}
+	}
+
+	"vengefulspirit_command_aura"
+	{
+		"AbilityValues"
+		{
+			"scepter_debuff_duration"
+			{
+				"special_bonus_scepter" "=10"
+			}
+		}
+	}
+}

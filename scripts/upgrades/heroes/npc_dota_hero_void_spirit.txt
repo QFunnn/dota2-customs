@@ -1,0 +1,115 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_void_spirit"
+{
+	"void_spirit_aether_remnant"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"impact_damage"
+		{
+			"value" "80"
+			"operator" "OP_ADD"
+		}
+		"remnant_watch_distance"
+		{
+			"value" "65"
+			"operator" "OP_ADD"
+			"max_count" "6"
+			"linked_special_values"
+			{
+				"pull_destination" "5"
+			}
+		}
+	}
+	"void_spirit_dissimilate"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"AbilityDamage" // tooltip only
+		{
+			"value" "90"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"damage" "90"
+			}
+		}
+	}
+	"void_spirit_resonant_pulse"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"radius"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"base_absorb_amount"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"talents"
+			{
+				"special_bonus_unique_void_spirit_resonant_pulse_barrier"		"x1.2"
+			}
+			"linked_special_values"
+			{
+				"absorb_per_hero_hit"
+				{
+					"value" "40"
+					"operator" "OP_ADD"
+					"talents"
+					{
+						"special_bonus_unique_void_spirit_resonant_pulse_barrier"		"x1.2"
+					}
+				}
+			}
+		}
+		"damage"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+		}
+	}
+	"void_spirit_astral_step"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"radius"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"pop_damage"
+		{
+			"value" "55"
+			"operator" "OP_ADD"
+		}
+	}
+}

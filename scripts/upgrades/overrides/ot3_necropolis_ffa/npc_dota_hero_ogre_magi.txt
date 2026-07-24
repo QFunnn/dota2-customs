@@ -1,0 +1,103 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_ogre_magi"
+{
+	"ogre_magi_fireblast"
+	{
+		"fireblast_damage"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+			"linked_abilities"
+			{
+				"ogre_magi_unrefined_fireblast"
+				{
+					"base_damage"    "20"
+				}
+			}
+		}
+	}
+	"ogre_magi_unrefined_fireblast"
+	{
+		"str_multiplier"
+		{
+			"value" "0.15"
+			"operator" "OP_ADD"
+		}
+	}
+	"ogre_magi_ignite"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "15"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"burn_damage"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+		}
+		"projectile_speed"
+		{
+			"value" "250"
+			"operator" "OP_ADD"
+			"max_count" "4"
+		}
+	}
+	"ogre_magi_smash"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "15"
+			"operator" "OP_MULTIPLY"
+		}
+		"damage"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+		}
+	}
+	"ogre_magi_bloodlust"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"bonus_movement_speed"
+		{
+			"value" "3.5"
+			"operator" "OP_ADD"
+		}
+		"bonus_attack_speed"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"self_bonus" "20"
+			}
+		}
+	}
+	"ogre_magi_multicast"
+	{
+		"strength_for_one_pct"
+		{
+			"value" "-0.5"
+			"operator" "OP_MULTIPLY"
+
+			"multiplicative_target"			"0"
+			"multiplicative_base_value"		"16"
+		}
+	}
+}

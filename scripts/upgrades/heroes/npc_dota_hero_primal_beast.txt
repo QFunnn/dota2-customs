@@ -1,0 +1,116 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_primal_beast"
+{
+	"primal_beast_onslaught"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"knockback_damage"
+		{
+			"value" "65"
+			"operator" "OP_ADD"
+		}
+		"knockback_radius"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"primal_beast_trample"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "7"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"effect_radius"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"base_damage"
+		{
+			"value" "8"
+			"operator" "OP_ADD"
+		}
+	}
+	"primal_beast_uproar"
+	{
+		"bonus_damage_per_stack"
+		{
+			"value" "2"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"projectile_damage" "6"
+			}
+		}
+		"roared_bonus_armor"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+		}
+	}
+	"primal_beast_pulverize"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "3"
+			"linked_abilities"
+			{
+				"primal_beast_rock_throw"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"damage"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"linked_abilities"
+			{
+				"primal_beast_rock_throw"
+				{
+					"base_damage" "40"
+				}
+			}
+		}
+		"splash_radius"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_abilities"
+			{
+				"primal_beast_rock_throw"
+				{
+					"impact_radius" "25"
+					"fragment_impact_radius" "25"
+				}
+			}
+		}
+	}
+}

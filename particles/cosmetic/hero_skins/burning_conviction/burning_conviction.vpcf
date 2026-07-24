@@ -1,0 +1,71 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf45:version{73c3d623-a141-4df2-b548-41dd786e6300} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_nInitialParticles = 1
+	m_flConstantRadius = 0.0
+	m_ConstantColor = [ 0, 0, 0, 255 ]
+	m_nConstantSequenceNumber = 1
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_StatusEffect"
+			m_flDetail2Scale = 2.0
+			m_flColorWarpIntensity = 0.7
+			m_flDetail2BlendFactor = 0.8
+			m_nDetail2Combo = "DETAIL_2_COMBO_CROSSFADE"
+			m_flEnvMapIntensity = 1.0
+			m_flAmbientScale = 2.0
+			m_flRimLightScale = 10.0
+			m_flSpecularScale = 5.0
+			m_flSpecularExponent = 10.0
+			m_flSpecularExponentBlendToFull = 1.0
+			m_flSpecularBlendToFull = 0.5
+			m_flReflectionsTintByBaseBlendToNone = 0.0
+			m_flMetalnessBlendToFull = 0.3
+			m_flSelfIllumBlendToFull = 0.0
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_nFieldOutput = 22
+			m_ColorMax = [ 255, 0, 0 ]
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMax = [ 255, 69, 0 ]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_EndCapTimedDecay"
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderStatusEffect"
+			m_pTextureColorWarp = resource:"materials/models/heroes/statuseffects/colorwarp_goldenglow_colorwarp3d_z000_tga_d96643b4.vtex"
+			m_pTextureDetail2 = resource:"materials/models/heroes/statuseffects/shadow_shackle.vtex"
+			m_pTextureFresnelColorWarp = resource:"materials/models/heroes/statuseffects/colorwarp_spectre_arcana_illusion_alt1.vtex"
+		},
+	]
+}

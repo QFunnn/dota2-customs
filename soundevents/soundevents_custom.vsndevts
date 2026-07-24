@@ -1,0 +1,113 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	custom.smart_random = 
+	{
+		type = "dota_limit_speakers_ui"
+		vsnd_files = 
+		[
+			"sounds/ui/menu/pick_set_fav.vsnd",
+		]
+		volume = "1.2"
+	}
+	custom.common_orb = 
+	{
+		type = "dota_limit_speakers_ui"
+		vsnd_files = 
+		[
+			"sounds/ui/compendium_points.vsnd",
+		]
+		volume = "1.0"
+	}
+	custom.rare_orb = 
+	{
+		type = "dota_limit_speakers_ui"
+		vsnd_files = 
+		[
+			"sounds/ui/compendium_levelup.vsnd",
+		]
+		volume = "1.0"
+	}
+	custom.epic_orb = 
+	{
+		type = "dota_limit_speakers_ui"
+		vsnd_files = 
+		[
+			"sounds/ui/badge_levelup.vsnd",
+		]
+		volume = "1.0"
+	}
+	custom.upgrade_selected = 
+	{
+		type = "dota_update_vo_clamped"
+		volume = 0.1
+		pitch = 1.3
+		pitch_rand_min = -0.02
+		pitch_rand_max = 0.02
+		vsnd_files = "sounds/ui/ui_message_popup_fast_01.vsnd"
+		vsnd_duration = 1.807211
+	}
+	custom.reroll = 
+	{
+		type = "dota_update_vo_clamped"
+		volume = 1.0
+		pitch = 1.0
+		pitch_rand_min = -0.01
+		pitch_rand_max = 0.01
+		vsnd_files = "sounds/ui/economy/underdraft_reroll.vsnd"
+		vsnd_duration = 1.807211
+	}
+	custom.orb_capture_start = 
+	{
+		type = "dota_src1_3d"
+		volume = "0.5"
+		pitch = "1.00"
+		limiter_on = "4.0"
+		limiter_max = "4.0"
+		soundlevel = "95.0"
+		distance_max = "2500"
+		volume_fade_in = 1.5
+		volume_fade_out = 0.5
+		vsnd_files = 
+		[
+			"sounds/ambient/shrine_recharge_lp.vsnd",
+		]
+	}
+	custom.orb_capture_finish = 
+	{
+		type = "dota_src1_3d"
+		volume = "0.5"
+		pitch = "1.00"
+		limiter_on = "4.0"
+		limiter_max = "4.0"
+		soundlevel = "95.0"
+		distance_max = "2500"
+		vsnd_files = 
+		[
+			"sounds/addons/dungeon/plus_one.vsnd",
+		]
+	}
+	custom.orb_capture_finish_epic = 
+	{
+		type = "dota_src1_3d"
+		volume = "1.0"
+		pitch = "1.00"
+		limiter_on = "4.0"
+		limiter_max = "4.0"
+		soundlevel = "95.0"
+		distance_max = "5000"
+		vsnd_files = 
+		[
+			"sounds/addons/dungeon/boss_bar.vsnd",
+		]
+	}
+}

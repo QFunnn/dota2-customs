@@ -1,0 +1,81 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/mail/mail.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/item_tooltip/item_tooltip.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/cosmetics/cosmetics_rarities.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/cosmetics/cosmetics.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/chat_wheel/chat_wheel_colors_style.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/mail/mail.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="mail_entry">
+			<Panel class="MailEntry">
+				<Panel class="MailIcon" />
+				<Label class="MailTopic" text="{s:topic}" />
+				<Panel class="MailReadStatus" />
+			</Panel>
+		</snippet>
+		<snippet name="attachment">
+			<Panel class="CI_Item">
+				<Panel class="CI_Background">
+					<Image id="CI_Item_Image" />
+					<Label class="CI_Item_Count" text="x{d:count}" />
+					<Panel class="CI_ChatWheel_PhraseContainer">
+						<Image id="CI_ChatWheel_SoundButton" src="s2r://panorama/images/hud/reborn/icon_scoreboard_mute_sound_psd.vtex" />
+						<Label id="CI_ChatWheel_Phrase" text="{s:chat_wheel_phrase}" html="true" />
+					</Panel>
+					<Panel class="CI_ChatWheel_ColorContainer">
+						<Image src="s2r://panorama/images/custom_game/collection/chat_wheel/color_hover_png.vtex" />
+						<Label id="CI_ChatWheel_Color" text="{s:chat_wheel_color}" />
+					</Panel>
+					<Panel id="CI_ChatWheel_EmojiContainer" />
+					<Label class="AttachmentClaimedLabel" text="#claimed" />
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="Mail" hittest="false">
+		<Panel class="Mail_Background" />
+		<Panel class="Mail_Image" />
+		<Label class="MailHeader" text="#mail_header" />
+		<TextButton class="C_CloseButton" onactivate="SetMailPanelState(false)" text="#close" />
+		<Panel class="Mail_ContentWrap">
+			<Panel class="MailContainer">
+				<Panel class="OverlayShadow" hittest="false" />
+				<Panel id="MailList" />
+				<Panel id="ActiveMailTab">
+					<Panel class="MailTopicContainer">
+						<Label class="MailTopic MailTopicOnTab" text="{s:topic}" />
+						<Panel class="MailDetails">
+							<Label class="MailSource" text="#mail_source" html="true" />
+							<Label class="MailDate" text="{s:created_at}" />
+						</Panel>
+					</Panel>
+					<Label class="MailText" text="{s:text_content}" html="true" />
+					<Panel id="MailAttachments" />
+					<Panel class="MailButtons">
+						<Button class="MailButton" id="MailButton" onactivate="MailButtonPressed()">
+							<Label class="MailButtonLabel" text="{s:label}" />
+						</Button>
+					</Panel>
+				</Panel>
+				<Label class="NoMailsHint" text="#no_mails_hint" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

@@ -1,0 +1,113 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/upgrades_panel/upgrades_panel.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/scripts/upgrades_shared.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/upgrades_panel/upgrades_panel.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="Upgrade">
+			<Button class="Upgrade">
+				<Panel class="UpgradeWrap">
+					<Panel class="UpgradeContainer_Root">
+						<Panel id="UpgradeContainer">
+							<DOTAAbilityImage id="Upgrade_Image">
+								<Panel class="Upgrade_Image_Shadow" />
+								<Panel class="MinRariryFlag" />
+							</DOTAAbilityImage>
+							<Panel id="VerticalAlign">
+								<Label id="Upgrade_Ability_Name" html="true" text="{s:main_ability_name}" />
+								<Label id="Upgrade_Desc" html="true" text="{s:base_value_desc}" />
+								<Label id="UpgradeCounter" text="#upgrade_count" html="true" />
+								<Panel id="UpgradeCounter_Progress_Root" />
+								<Label id="UpgradeLevels" text="#upgrade_levels" html="true" />
+							</Panel>
+						</Panel>
+					</Panel>
+					<DOTAScenePanel id="Upgrade_Trinket_FX" hittest="false" map="ui/trinket_upgrades_glow" camera="camera_1" particleonly="true" />
+					<Button id="FavoriteUpgradeButton" onactivate="">
+						<Panel class="StarBorder" />
+						<Panel class="StarColor" />
+					</Button>
+					<Panel class="LockedOverlay">
+						<Panel>
+							<Panel class="LockedOverlay_Icon" />
+							<Label class="LockedOverlay_Text_Sub_1" text="#locked_upgrade_by_supp_level_1" html="true" />
+							<Label class="LockedOverlay_Text_Sub_2" text="#locked_upgrade_by_supp_level_2" html="true" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel id="AdditionalValues_Container" />
+			</Button>
+		</snippet>
+		<snippet name="AdditionalValue">
+			<Panel class="AdditionalValue">
+				<Image src="s2r://panorama/images/custom_game/upgrades/link_icon_png.vtex" />
+				<DOTAAbilityImage id="LinkedAbilityImage" />
+				<Label text="{s:value}" html="true" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="Upgrades_Root" hittest="false">
+		<Panel class="Upgrades_ControlButtons">
+			<ToggleButton id="ToggleButtoon_GenericFromSub" checked="false" onactivate="ToggleGenericFromSub()" text="#upgrades_panel_generic_toggler" onmouseover="DOTAShowTitleTextTooltip(#settings_entry_generic_from_subscription, #settings_entry_tooltip_generic_from_subscription)" onmouseout="DOTAHideTitleTextTooltip()" />
+			<Button id="Later_Button" onactivate="ToggleUpgradesVisibility()">
+				<Panel id="Later_Arrow" />
+				<Label text="#upgrades_later" />
+				<Label class="Later_UpgradesCount" text="({d:upgrades_count})" />
+			</Button>
+		</Panel>
+		<Panel id="Upgrades_Wrap">
+			<Panel class="Upgrades_Header__Wrap">
+				<Panel id="Upgrades_Header" hittest="false">
+					<DOTAScenePanel id="common_particle_effect" class="ui_fx" map="ui/common_orb_ambient" particleonly="true" hittest="false" />
+					<DOTAScenePanel id="rare_particle_effect" class="ui_fx" map="ui/rare_orb_ambient" particleonly="true" hittest="false" />
+					<DOTAScenePanel id="epic_particle_effect" class="ui_fx" map="ui/epic_orb_ambient" particleonly="true" hittest="false" />
+					<Panel id="Upgrades_Header_Icon" />
+					<Label id="Upgrades_Header_Text" text="Hi" />
+				</Panel>
+				<Panel id="RerollButton" hittest="true" onactivate="Reroll()" onmouseover="DOTAShowTextTooltip(#reroll_tooltip)" onmouseout="DOTAHideTextTooltip()">
+					<Panel>
+						<Panel id="RerollButton_Icon" />
+						<Label id="RerollButton_Label" text="2x" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="Upgrades_Container__Wrap">
+				<Panel class="Upgrades_Container__Background" />
+				<Panel id="Upgrades_Container" />
+			</Panel>
+		</Panel>
+		<Panel class="AutoSelect">
+			<Panel class="AS_Hide" onactivate="MinimizeAutoSelect()">
+				<Image src="s2r://panorama/images/custom_game/upgrades/double_arrow_png.vtex" />
+			</Panel>
+			<Panel class="AS_Content_Container">
+				<Panel class="AS_Timer_Background">
+					<Panel id="AS_Timer" />
+				</Panel>
+				<Panel class="AS_Content">
+					<ToggleButton id="AS_Toggle" text="#auto_select_header" html="true" onactivate="ToggleAutoSelectFavirites()" onmouseover="DOTAShowTextTooltip(#settings_entry_tooltip_auto_select_favorites)" onmouseout="DOTAHideTextTooltip()" />
+					<TextButton class="AS_Button" text="#auto_select_minus" onactivate="UpdateAutoSelectTime(&apos;-&apos;)" />
+					<Label class="AS_CurrentValue" text="#auto_select_current_time" />
+					<TextButton class="AS_Button" text="#auto_select_plus" onactivate="UpdateAutoSelectTime(&apos;+&apos;)" />
+					<Image class="AS_StarImage" src="s2r://panorama/images/custom_game/upgrades/favorite_star_8_png.vtex" />
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

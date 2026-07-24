@@ -1,0 +1,106 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_bounty_hunter"
+{
+	"bounty_hunter_shuriken_toss"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "12"
+			"operator" "OP_MULTIPLY"
+		}
+		"bonus_damage"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+		}
+		"bounce_aoe"
+		{
+			"value" "300"
+			"operator" "OP_ADD"
+			"max_count" "4"
+			"linked_special_values"
+			{
+				"slow_duration" "0.25"
+			}
+		}
+	}
+	"bounty_hunter_jinada"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "20"
+			"operator" "OP_MULTIPLY"
+			"linked_special_values"
+			{
+				"gold_steal" "25"
+			}
+		}
+		"bonus_damage"
+		{
+			"value" "80"
+			"operator" "OP_ADD"
+		}
+	}
+	"bounty_hunter_wind_walk"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "4"
+			"linked_special_values"
+			{
+				"stun_duration" "0.25"
+			}
+			"linked_abilities"
+			{
+				"bounty_hunter_wind_walk_ally"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "10"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"bonus_move_speed_pct"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+			"max_count" "8"
+		}
+	}
+	"bounty_hunter_track"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "12"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"target_damage_amp"
+		{
+			"value" "3.5"
+			"operator" "OP_ADD"
+		}
+		"bonus_gold_self"
+		{
+			"value" "55"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"bonus_gold" "25"
+			}
+		}
+	}
+}

@@ -1,0 +1,82 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/battle_pass/battle_pass_precache.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/battle_pass/battle_pass.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/cosmetics/cosmetics_rarities.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/const.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/battle_pass/battle_pass.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="BP_Item">
+			<Panel class="BP_Item">
+				<Panel class="BP_ItemBorder CI_Background">
+					<Image id="BP_ItemImage">
+						<Label class="BP_Item_Count" text="x{d:count}" />
+					</Image>
+				</Panel>
+				<Image class="BP_Lock" src="s2r://panorama/images/custom_game/collection/battle_pass/lock_png.vtex" />
+				<Image class="BP_Tick" src="s2r://panorama/images/custom_game/collection/battle_pass/tick_png.vtex" />
+			</Panel>
+		</snippet>
+		<snippet name="BP_Level">
+			<Panel class="BP_Level">
+				<Label text="{d:level}" />
+			</Panel>
+		</snippet>
+		<snippet name="BP_Level_Progress">
+			<Panel class="BP_Level_Progress" />
+		</snippet>
+	</snippets>
+	<Panel class="BattlePass" hittest="false">
+		<Panel id="BP_Core">
+			<Panel class="BP_Flag">
+				<Image class="BP_Flag_Logo" src="s2r://panorama/images/custom_game/collection/battle_pass/bp_logo_png.vtex" />
+				<Image class="BP_Flag_Lock" src="s2r://panorama/images/custom_game/collection/battle_pass/lock_png.vtex" />
+				<Button class="BP_FullButton" onactivate="UnlockFullBP()">
+					<Label text="{s:unlock_bp_button_text}" html="true" />
+				</Button>
+				<Panel class="BP_CurrentLevelWrap">
+					<Label class="BP_CurrentLevelHeader" text="#bp_level" />
+					<Label class="BP_CurrentLevel" text="{s:bp_level}" />
+				</Panel>
+			</Panel>
+			<Panel class="BP_Content_Wrap">
+				<Panel class="BP_Content" onmouseover="SetBPContentFocus(true)" onmouseout="SetBPContentFocus(false)">
+					<Panel id="BP_Items_Extend" onactivate="PurchaseBPCheck()" onmouseover="HideLockLine()" onmouseout="ShowLockLine()" />
+					<Panel id="BP_Items_Core" />
+					<Panel id="BP_Levels_Progress_Container_BG" />
+					<Panel id="BP_Levels_Progress_Wrap">
+						<Panel id="BP_Levels_Progress_Container" />
+						<Panel id="BP_Levels_Progress_ProgressColor" />
+					</Panel>
+					<Panel id="BP_Levels_Root" />
+				</Panel>
+				<Panel id="BP_Second_Line_Closed" hittest="false" hittestchildren="false">
+					<Panel />
+					<Label text="#bp_second_line_closed_line" html="true" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="BP_Foot">
+			<Label class="BP_TimeRemaining" text="#bp_time_remaining" html="true" />
+			<Button id="BP_RedeemAll" onactivate="RedeemAllRewards()">
+				<Label text="#bp_redeem_all" />
+			</Button>
+		</Panel>
+	</Panel>
+</root>

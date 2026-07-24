@@ -1,0 +1,578 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"GenericUpgrades"
+{
+	// "class" supports "modifier" and "ability" - defaults to "modifier"
+
+	// "path" is needed only for "modifier" class (as a path to added modifier, to be linked afterwards)
+	// defaults to "game/upgrades/generic_upgrades/"
+
+	// "modifier_type" is optional param, passed to LinkLuaModifier (in case you need to make generic upgrade that uses motion controllers)
+
+	// FILENAME SHOULD BE COMPOSED AS FOLLOWS: {Class}_{Upgrade Name}_upgrade
+	// For example: modifier_generic_damage_upgrade, ability_generic_rune_creation_upgrade
+
+	// optional params
+	// "ignore_clones"		"1" -- will not be shared to meepo clones (but NOT spirit bear)
+	// "ignore_bear"		"1" -- will not be shared to Spirit Bear
+	// "ignore_illusions"	"1" -- will not be shared to any kind of illusion
+	// "max_count"			"10" -- will not happen more than N times
+	// "disabled"			"1"	-- disable upgrade from appearing
+	// "operator"		"OP_MULTIPLY"	// OP_ADD is default
+
+	// "multiplicative_target"	"100" // towards which value to calculate multiplicatively - only effective when operator is OP_MULTIPLY
+	// defaults to 100
+
+	// "multiplicative_base_value"	"10" // which value to use as a base for multiplicative calculations
+	// defaults to 0 for generics and special value for abilities (if exists)
+
+	// "talents"		{} // talents affecting calculations
+
+	"generic_manaburn"
+	{
+		"rarity"						"common"
+
+		"specials"
+		{
+			"fixed_burned_as_damage"	"1"
+			"mana_burned"				"15" // per-upgrade
+
+			"fixed_mana_burned_illusion_pct"	"20"
+		}
+	}
+	"generic_slow_resistance"
+	{
+		"rarity"						"common"
+
+		"specials"
+		{
+			"slow_res"					"7"
+		}
+	}
+	"generic_all_attributes"
+	{
+		"rarity"		"common"
+		"specials"
+		{
+			"attributes"		"3"
+		}
+	}
+	"generic_primary_attribute"
+	{
+		"rarity"			"common"
+		"specials"
+		{
+			"attributes"		"6"
+		}
+
+		"disabled_for_universal"	"1"
+	}
+	"generic_secondary_attributes"
+	{
+		"rarity"			"common"
+		"specials"
+		{
+			"attributes"		"6"
+		}
+
+		"disabled_for_universal"	"1"
+	}
+	"generic_armor"
+	{
+		"rarity"		"common"
+		"specials"
+		{
+			"armor"		"3"
+		}
+	}
+	"generic_magic_resistance"
+	{
+		"rarity"		"common"
+		"operator"		"OP_MULTIPLY"
+
+		// "multiplicative_base_value"		"25"
+
+		"specials"
+		{
+			"magic_resistance"		"6"
+		}
+	}
+	"generic_attack_speed"
+	{
+		"rarity"		"common"
+		"specials"
+		{
+			"attack_speed"		"20"
+		}
+	}
+	"generic_spell_amp"
+	{
+		"rarity"		"common"
+		"specials"
+		{
+			"spell_amp"		"4"
+		}
+	}
+	"generic_movement_speed"
+	{
+		"rarity"		"common"
+		"specials"
+		{
+			"movement_speed"		"15"
+		}
+	}
+	"generic_status_resistance"
+	{
+		"rarity"		"common"
+		"operator"		"OP_MULTIPLY"
+		"specials"
+		{
+			"status_resistance"		"6"
+		}
+	}
+	// ----------------------------------------------------
+	// Generic Rares
+	// ----------------------------------------------------
+	"generic_health_percentage"
+	{
+		"rarity"		"rare"
+		"specials"
+		{
+			"health_percentage"		"8"
+		}
+	}
+	"generic_status_res_on_disable"
+	{
+		"rarity"		"rare"
+
+		"max_count"		"4"
+
+		"specials"
+		{
+			"status_res_per_stack"			"5"
+
+			"fixed_stack_duration"			"3" // seconds, independent
+		}
+	}
+	"generic_universal_shield"
+	{
+		"rarity"		"rare"
+		"specials"
+		{
+			"shield_capacity"				"500"
+			// do not scale with upgrades
+			"fixed_combat_cd"				"10"
+			"fixed_regeneration_rate"		"20"	// 20% per second
+			"fixed_tickrate"				"0.25"
+		}
+	}
+	"generic_damage"
+	{
+		"rarity"		"rare"
+		"specials"
+		{
+			"damage"		"30"
+		}
+	}
+	"generic_armor_shred"
+	{
+		"rarity"						"rare"
+
+		"specials"
+		{
+			"fixed_duration"			"5"
+			"armor_shred"				"2" // per-upgrade
+		}
+	}
+	"generic_cleave"
+	{
+		"rarity"						"rare"
+
+		"ignore_clones"					"1"
+		"ignore_illusions"				"1"
+
+		"attack_capability"				"DOTA_UNIT_CAP_MELEE_ATTACK"
+
+		"specials"
+		{
+			"fixed_cleave_distance"		"650"
+			"fixed_cleave_width"		"350"
+
+			"cleave_damage"				"40" // per-upgrade
+		}
+	}
+	"generic_universal_lifesteal"
+	{
+		"rarity"		"rare"
+		"specials"
+		{
+			"lifesteal"		"4" // per upgrade, any damage instance
+		}
+	}
+	// "generic_neutral_item_stats"
+	// {
+	// 	"rarity"		"rare"
+
+	// 	"max_count"		"5"
+
+	// 	"specials"
+	// 	{
+	// 		"neutral_item_stats"		"20"
+	// 	}
+	// }
+	"generic_heal_amp"
+	{
+		"rarity"		"rare"
+		"operator"		"OP_MULTIPLY"
+		"max_count"		"5"
+		"specials"
+		{
+			"heal_amp"		"12"
+		}
+	}
+	"generic_magic_resistance_reduction"
+	{
+		"rarity"		"rare"
+		"specials"
+		{
+			"fixed_duration"					"5"
+			// NOTE: reduction is int, any float here will get rounded
+			"magic_resistance_reduction"		"7" // per upgrade
+		}
+	}
+	// ----------------------------------------------------
+	// Generic Epics
+	// ----------------------------------------------------
+	"generic_burning_aura"
+	{
+		"rarity"						"epic"
+
+		"ignore_illusions"				"1"
+		// "ignore_clones"					"1"
+
+		"specials"
+		{
+			"fixed_burn_radius"			"650"
+			"fixed_burn_interval"		"1"
+
+			"burn_damage"				"60" // per-upgrade
+		}
+	}
+	"generic_critical_strike"
+	{
+		"rarity"						"epic"
+
+		"specials"
+		{
+			"fixed_crit_chance"			"22"
+			"fixed_crit_damage_base"	"100"
+			"crit_damage_bonus"			"100" // per-upgrade
+		}
+	}
+	"generic_flying_movement"
+	{
+		"rarity"						"epic"
+
+		"max_count"						"1"
+
+		"specials"
+		{}
+	}
+	"generic_all_attributes_per_level"
+	{
+		"rarity"			"epic"
+		"specials"
+		{
+			"attributes_gain"		"0.5"
+		}
+	}
+	"generic_primary_attribute_per_level"
+	{
+		"rarity"			"epic"
+		"specials"
+		{
+			"attribute_gain"		"1.0"
+		}
+
+		"disabled_for_universal"	"1"
+	}
+	"generic_secondary_attributes_per_level"
+	{
+		"rarity"			"epic"
+		"specials"
+		{
+			"attributes_gain"		"1.0"
+		}
+
+		"disabled_for_universal"	"1"
+	}
+	"generic_reach"
+	{
+		"rarity"		"epic"
+		"specials"
+		{
+			"cast_range"		"105"
+			"range_increase_melee"		"50"
+			"range_increase_ranged"		"70"
+		}
+	}
+	"generic_auto_rune"
+	{
+		"rarity"				"epic"
+		"ignore_illusions"		"1"
+		"max_count"				"1"
+		"specials"
+		{
+			"interval"			"40"
+			"rune_duration"		"15"
+		}
+	}
+	"generic_item_cdr"
+	{
+		"rarity"		"epic"
+		"max_count"		"2"
+		"operator"		"OP_MULTIPLY"
+		"specials"
+		{
+			"cooldown_reduction"		"15"
+		}
+	}
+
+	// ----------------------------------------------------
+	// Disabled (any rarity)
+	// ----------------------------------------------------
+	"generic_base_attack_damage_pct"
+	{
+		"disabled"						"1"
+		"rarity"							"rare"
+
+		"specials"
+		{
+			"base_attack_damage_pct"		"10"
+		}
+	}
+	"generic_attack_projectile_speed"
+	{
+		"disabled"						"1"
+		"rarity"						"rare"
+
+		"attack_capability"				"DOTA_UNIT_CAP_RANGED_ATTACK"
+
+		"specials"
+		{
+			"projectile_speed"			"400"
+		}
+	}
+	"generic_physical_shield"
+	{
+		"disabled"		"1"
+		"rarity"		"rare"
+		"specials"
+		{
+			"shield_capacity"		"500"
+
+			// do not scale with upgrades
+			"fixed_combat_cd"				"10"
+			"fixed_regeneration_rate"		"20"	// 20% per second
+			"fixed_tickrate"				"0.25"
+		}
+	}
+	"generic_magical_shield"
+	{
+		"disabled"		"1"
+		"rarity"		"rare"
+		"specials"
+		{
+			"shield_capacity"		"500"
+
+			// do not scale with upgrades
+			"fixed_combat_cd"				"10"
+			"fixed_regeneration_rate"		"20"	// 20% per second
+			"fixed_tickrate"				"0.25"
+		}
+	}
+	"generic_magic_attack_damage"
+	{
+		"disabled"			"1"
+		"rarity"						"common"
+
+		"specials"
+		{
+			"magic_attack_damage"		"12"
+		}
+	}
+	"generic_primary_attribute_increase"
+	{
+		"disabled"			"1"
+
+		"rarity"						"epic"
+
+		"ignore_clones"		"1"
+		"ignore_illusions"	"1"
+
+		"specials"
+		{
+			"attribute_increase"		"15"
+		}
+	}
+	"generic_secondary_attribute_increase"
+	{
+		"disabled"			"1"
+
+		"rarity"						"epic"
+
+		"ignore_clones"		"1"
+		"ignore_illusions"	"1"
+
+		"specials"
+		{
+			"attribute_increase"		"15"
+		}
+	}
+	"generic_common_stat_boost"
+	{
+		"disabled"		"1"
+
+		"rarity"		"epic"
+		"specials"
+		{
+			"common_generic_stat_boost"		"1"
+		}
+	}
+	"generic_rare_stat_boost"
+	{
+		"disabled"		"1"
+
+		"rarity"		"epic"
+		"specials"
+		{
+			"rare_generic_stat_boost"		"60"
+		}
+	}
+	"generic_evasion"
+	{
+		"disabled"		"1"
+
+		"rarity"		"common"
+		"operator"		"OP_MULTIPLY"
+		"specials"
+		{
+			"evasion"		"10"
+		}
+	}
+	"generic_health_regen"
+	{
+		"disabled"		"1"
+
+		"rarity"		"common"
+		"specials"
+		{
+			"health_regen"		"10"
+		}
+	}
+	"generic_mana_regen"
+	{
+		"disabled"		"1"
+
+		"rarity"		"common"
+		"specials"
+		{
+			"mana_regen"		"4"
+		}
+	}
+	"generic_vision_radius"
+	{
+		"disabled"			"1"
+
+		"rarity"		"common"
+
+		"specials"
+		{
+			"day_vision"	"180"
+			"night_vision"	"80"
+		}
+	}
+	"generic_gpm"
+	{
+		"disabled"		"1"
+
+		"rarity"		"rare"
+		"specials"
+		{
+			"gpm"		"180"
+		}
+	}
+	"generic_base_attack_time"
+	{
+		"disabled"		"1"
+
+		"rarity"		"rare"
+		"max_count"		"4"
+		"specials"
+		{
+			"base_attack_time"		"-0.1"
+		}
+	}
+	"generic_health_and_mana_on_kill"
+	{
+		"disabled"			"1"
+		"rarity"		"rare"
+
+		"ignore_clones"		"1"
+		"ignore_illusions"	"1"
+
+		"specials"
+		{
+			// flat heath and mana
+			"health_gained"		"220"
+			"mana_gained"		"110"
+		}
+	}
+	"generic_lifesteal"
+	{
+		"disabled"		"1"
+		"rarity"		"rare"
+		"specials"
+		{
+			"lifesteal"		"8"
+		}
+	}
+	"generic_spell_lifesteal"
+	{
+		"disabled"		"1"
+		"rarity"		"rare"
+		"specials"
+		{
+			"spell_lifesteal"		"6"
+		}
+	}
+	"generic_cast_range"
+	{
+		"disabled"		"1"
+
+		"rarity"		"epic"
+		"specials"
+		{
+			"cast_range"		"125"
+		}
+	}
+	"generic_attack_range"
+	{
+		"disabled"		"1"
+
+		"rarity"		"epic"
+		"specials"
+		{
+			"range_increase_melee"		"60"
+			"range_increase_ranged"		"80"
+		}
+	}
+}

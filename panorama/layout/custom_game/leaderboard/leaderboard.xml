@@ -1,0 +1,135 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/leaderboard/leaderboard.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/item_tooltip/item_tooltip.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/cosmetics/cosmetics_rarities.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/leaderboard/leaderboard_const.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/leaderboard/leaderboard.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="LB_MapOption">
+			<Button class="LB_MapOption">
+				<Panel class="LB_MapOption_Overlay" />
+				<Label text="{s:map_name}" />
+			</Button>
+		</snippet>
+		<snippet name="LB_Table">
+			<Panel class="LB_Table" />
+		</snippet>
+		<snippet name="LB_Player">
+			<Panel class="LB_Player">
+				<Panel class="LB_Player_Rank_Container">
+					<Label class="LB_Player_Rank" text="{d:rank}" />
+				</Panel>
+				<DOTAAvatarImage id="LB_Player_Avatar" steamid="0" class="RankPlayerAvatar" />
+				<DOTAUserName id="LB_Player_Name" class="HiddenElementUntilPlayerLoaded" />
+				<Panel class="LB_Rating_Container HiddenElementUntilPlayerLoaded">
+					<Label class="LB_Player_Rating" text="{d:rating}" />
+					<Panel id="LB_Player_RewardsByPlace" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="LB_RewardsListForMap">
+			<Panel class="LB_RewardsListForMap" />
+		</snippet>
+		<snippet name="LB_Rewards_Line">
+			<Panel class="LB_Rewards_Line">
+				<Label class="LB_RL_MMR_Value" text="{s:mmr_value}" />
+				<Panel id="LB_RL_ItemsContainer" />
+			</Panel>
+		</snippet>
+		<snippet name="CI_Item">
+			<Panel class="CI_Item">
+				<Panel class="CI_Background">
+					<Image id="CI_Item_Image">
+						<Label class="CI_Item_Count" text="x{d:count}" />
+					</Image>
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="Custom_Leaderboard" hittest="false">
+		<Panel class="Custom_Leaderboard_Main">
+			<Panel class="LB_Header_Cotnainer">
+				<Label class="LB_Header_Text" text="#leaderboard" />
+				<Button class="LB_Header_CloseButton" onactivate="CloseLeaderboard()" />
+			</Panel>
+			<Panel class="LB_SeasonReset_Container">
+				<Label class="LB_SeasonReset_NumberHeader" text="#leaderboard_season_reset_number_header" html="true" />
+				<Panel class="LB_SeasonReset_Date_Container">
+					<Panel class="LB_SeasonReset_Date">
+						<Label class="LB_SeasonReset_Date_Value" text="{s:season_reset_days}" />
+						<Label class="LB_SeasonReset_Date_Name" text="#leaderboard_season_reset_days" />
+					</Panel>
+					<Panel class="LB_SeasonReset_Date">
+						<Label class="LB_SeasonReset_Date_Value" text="{s:season_reset_hours}" />
+						<Label class="LB_SeasonReset_Date_Name" text="#leaderboard_season_reset_hours" />
+					</Panel>
+					<Panel class="LB_SeasonReset_Date">
+						<Label class="LB_SeasonReset_Date_Value" text="{s:season_reset_mins}" />
+						<Label class="LB_SeasonReset_Date_Name" text="#leaderboard_season_reset_mins" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="LB_Content">
+				<Panel id="LB_MapsContainer" />
+				<Panel class="LB_LocalInfo LocalRank0">
+					<Panel class="LB_LI_RatingDetails">
+						<Panel class="LB_LI_Background_Container">
+							<Panel class="LB_LI_Background">
+								<DOTAAvatarImage class="LB_LI_Avatar" steamid="local" />
+								<DOTAUserName class="LB_LI_Name" steamid="local" />
+							</Panel>
+							<Panel class="LB_LI_Progress_Container">
+								<ProgressBar id="LB_LI_Progress" value="0.65" />
+							</Panel>
+						</Panel>
+						<Panel class="LB_LI_Rating_Container">
+							<Label class="LB_LI_Rating_Value" text="{d:local_rating_by_map}" />
+							<Panel class="LB_LI_Rating_Icon" />
+						</Panel>
+					</Panel>
+					<Panel class="LB_LI_RewardsDetails">
+						<Label class="LB_LI_CurrentReward_Label LB_LI_CurrentReward_Entity" text="#leaderboard_my_rewards" />
+						<Image id="LB_LI_CurrentReward" class="LB_LI_RewardImage LB_LI_CurrentReward_Entity" />
+						<Image class="LB_LI_Arrow" />
+						<Image id="LB_LI_NextReward" class="LB_LI_RewardImage LB_LI_NextReward_Entity" />
+						<Label class="LB_LI_NextReward_Entity" text="#leaderboard_next_rewards" html="true" />
+					</Panel>
+					<TextButton class="LB_LI_Rewards_FullDetailsButton" onactivate="ToggleRewardsDetails()" text="#leaderboard_toggle_rewards_details" />
+				</Panel>
+				<Panel class="LB_TablesRoot">
+					<Panel class="LB_Tables_Header">
+						<Label text="#leaderboard_tables_header" html="true" />
+					</Panel>
+					<Panel class="LB_Tables_Container_Wrap">
+						<Panel id="LB_Tables_Container" />
+						<Panel class="LB_Tables_Overlay" hittest="false" />
+					</Panel>
+					<Panel class="LB_Tables_Foot">
+						<Label text="#leaderboard_tables_foot" html="true" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="LB_FullRewardsDetails_Container">
+			<Label class="LB_FRD_Header" text="#leaderboard_header_rewards" />
+			<Panel id="LB_FRD_List" />
+		</Panel>
+	</Panel>
+</root>

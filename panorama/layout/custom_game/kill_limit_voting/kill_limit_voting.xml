@@ -1,0 +1,41 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/kill_limit_voting/kill_limit_voting.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/kill_limit_voting/kill_limit_voting.vjs_c" />
+	</scripts>
+	<Panel class="KL_Voting_Root" hittest="false">
+		<Label class="KL_Voting_Header" text="KILL LIMIT VOTING" />
+		<Panel class="KL_Buttons">
+			<Button class="KL_Button_Increase" onactivate="IncreaseKillLimit()" onmouseover="DOTAShowTextTooltip(#time_extended)" onmouseout="DOTAHideTextTooltip()">
+				<DOTAScenePanel hittest="false" map="scenes/hud/levelupburst" camera="camera_1" />
+				<Label text="+{d:kill_limit_inc}" />
+			</Button>
+			<Panel class="KL_Tokens_Root">
+				<Button class="KL_Button_Increase" onactivate="IncreaseKillLimitByToken()" onmouseover="DOTAShowTextTooltip(#time_extended)" onmouseout="DOTAHideTextTooltip()">
+					<DOTAScenePanel hittest="false" map="scenes/hud/levelupburst" camera="camera_1" />
+					<Label text="+{d:kill_limit_inc_token}" />
+				</Button>
+				<Label class="KL_Token_Text" text="#kl_voting_token_cost" />
+				<Label class="KL_Token_Count" text="#kl_voting_token_count" />
+			</Panel>
+			<Button onactivate="HideKillLimitVoting()" onmouseover="DOTAShowTextTooltip(#time_extended_cancel)" onmouseout="DOTAHideTextTooltip()">
+				<Label text="X" />
+			</Button>
+		</Panel>
+	</Panel>
+</root>

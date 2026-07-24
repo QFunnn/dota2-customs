@@ -1,0 +1,113 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_puck"
+{
+	"puck_puckish"
+	{
+		"mana_and_health_restore_pct"
+		{
+			"value" "1.5"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"puck_illusory_orb"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"radius"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"orb_vision" "40"
+			}
+		}
+		"damage"
+		{
+			"value" "70"
+			"operator" "OP_ADD"
+		}
+		"damage_over_time_pct"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"puck_waning_rift"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"max_distance" "30"
+			}
+		}
+		"damage"
+		{
+			"value" "60"
+			"operator" "OP_ADD"
+		}
+	}
+	"puck_phase_shift"
+	{
+		"shard_attack_range_bonus"
+		{
+			"value" "80"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+	}
+	"puck_dream_coil"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+		}
+		"coil_initial_damage"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"coil_break_damage" "45"
+				"attack_rate_pct" "5"
+			}
+		}
+		"coil_radius"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"max_count" "4"
+			"linked_special_values"
+			{
+				"coil_duration" "1"
+			}
+		}
+	}
+}

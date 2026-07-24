@@ -1,0 +1,100 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_skywrath_mage"
+{
+	"skywrath_mage_shield_of_the_scion"
+	{
+		"damage_barrier"
+		{
+			"value" "4"
+			"operator" "OP_ADD"
+		}
+	}
+	"skywrath_mage_arcane_bolt"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"bolt_speed"
+		{
+			"value" "70"
+			"operator" "OP_ADD"
+			"max_count" "7"
+		}
+		"bolt_damage"
+		{
+			"value" "13"
+			"operator" "OP_ADD"
+		}
+	}
+	"skywrath_mage_concussive_shot"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "5"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"speed" "70"
+			}
+		}
+		"slow_radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"damage"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+		}
+	}
+	"skywrath_mage_ancient_seal"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "7"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"resist_debuff"
+		{
+			"value" "-2.5"
+			"operator" "OP_ADD"
+			"max_count" "6"
+		}
+	}
+	"skywrath_mage_mystic_flare"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"radius"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"damage"
+		{
+			"value" "70"
+			"operator" "OP_ADD"
+		}
+	}
+}

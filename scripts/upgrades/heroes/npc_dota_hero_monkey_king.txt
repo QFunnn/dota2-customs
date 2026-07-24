@@ -1,0 +1,119 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_monkey_king"
+{
+	"monkey_king_boundless_strike"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"strike_crit_mult"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+		}
+		"strike_radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"strike_cast_range" "50"
+			}
+		}
+	}
+	"monkey_king_primal_spring"
+	{
+		"impact_damage"
+		{
+			"value" "85"
+			"operator" "OP_ADD"
+			"linked_abilities"
+			{
+				"monkey_king_tree_dance"
+				{
+					"impact_damage_tooltip" "85"
+				}
+			}
+		}
+		"impact_radius"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"max_count" "8"
+			"linked_abilities"
+			{
+				"monkey_king_tree_dance"
+				{
+					"perched_jump_distance" "50"
+					"ground_jump_distance" "50"
+					"give_up_distance" "50"
+					"perched_day_vision" "105"
+					"perched_night_vision" "75"
+				}
+				"monkey_king_boundless_strike"
+				{
+					"spring_channel_pct" "5"
+				}
+			}
+		}
+	}
+	"monkey_king_jingu_mastery"
+	{
+		"required_hits"
+		{
+			"value" "-0.5"
+			"operator" "OP_ADD"
+			"min_rarity" "rare"
+			"max_count" "2"
+		}
+		"bonus_damage"
+		{
+			"value" "45"
+			"operator" "OP_ADD"
+		}
+		"lifesteal"
+		{
+			"value" "15"
+			"operator" "OP_ADD"
+		}
+	}
+	"monkey_king_wukongs_command"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"linked_special_values"
+			{
+				"scepter_spawn_duration" "1"
+			}
+		}
+		"attack_speed"
+		{
+			"value" "-0.1"
+			"operator" "OP_MULTIPLY"
+
+			"multiplicative_target"			"0.12"
+			"multiplicative_base_value"		"1.2"
+		}
+		"bonus_armor"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+	}
+}

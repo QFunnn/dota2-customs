@@ -1,0 +1,185 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_keeper_of_the_light"
+{
+	"keeper_of_the_light_illuminate_custom"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "9"
+			"operator" "OP_MULTIPLY"
+			"linked_special_values"
+			{
+				"max_channel_time"
+				{
+					"value" "-0.27"
+					"operator" "OP_MULTIPLY"
+					
+					"multiplicative_target"			"0"
+					"multiplicative_base_value"		"3"
+				}
+			}
+			"linked_abilities"
+			{
+				"keeper_of_the_light_spirit_form_illuminate"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "9"
+						"operator" "OP_MULTIPLY"
+					}
+					"max_channel_time"
+					{
+						"value" "-0.27"
+						"operator" "OP_MULTIPLY"
+					
+						"multiplicative_target"			"0"
+						"multiplicative_base_value"		"3"
+					}
+				}
+				"keeper_of_the_light_will_o_wisp"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "9"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"total_damage"
+		{
+			"value" "65"
+			"operator" "OP_ADD"
+			"linked_abilities"
+			{
+				"keeper_of_the_light_spirit_form_illuminate"
+				{
+					"total_damage" "65"
+				}
+				"keeper_of_the_light_will_o_wisp"
+				{
+					"wisp_damage" "20"
+				}
+			}
+		}
+		"radius"
+		{
+			"value" "45"
+			"operator" "OP_ADD"
+			"max_count" "8"
+			"linked_special_values"
+			{
+				"channel_vision_radius" "45"
+				"vision_radius" "45"
+			}
+			"linked_abilities"
+			{
+				"keeper_of_the_light_spirit_form_illuminate"
+				{
+					"radius" "45"
+					"channel_vision_radius" "45"
+					"vision_radius" "45"
+				}
+				"keeper_of_the_light_will_o_wisp"
+				{
+					"radius" "30"
+				}
+			}
+		}
+	}
+	"keeper_of_the_light_blinding_light"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "9"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"damage"
+		{
+			"value" "95"
+			"operator" "OP_ADD"
+		}
+		"radius"
+		{
+			"value" "45"
+			"operator" "OP_ADD"
+			"max_count" "8"
+			"linked_special_values"
+			{
+				"knockback_distance" "45"
+				"duration" "0.6"
+				"miss_rate" "3"
+			}
+		}
+	}
+	"keeper_of_the_light_spirit_form"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"linked_special_values"
+			{
+				"duration"
+				{
+					"value" "4"
+					"operator" "OP_ADD"
+				}
+			}
+			"linked_abilities"
+			{
+				"keeper_of_the_light_radiant_bind"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "10"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"cast_range"
+		{
+			"value" "80"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"linked_abilities"
+			{
+				"keeper_of_the_light_radiant_bind"
+				{
+					"slow"
+					{
+						"value" "2"
+						"operator" "OP_ADD"
+					}
+				}
+			}
+		}
+		"illuminate_heal"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+			"linked_abilities"
+			{
+				"keeper_of_the_light_radiant_bind"
+				{
+					"magic_resistance"
+					{
+						"value" "4"
+						"operator" "OP_ADD"
+					}
+				}
+			}
+		}
+	}
+}

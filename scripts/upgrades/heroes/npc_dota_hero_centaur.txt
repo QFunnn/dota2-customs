@@ -1,0 +1,116 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_centaur"
+{
+	"centaur_horsepower"
+	{
+		// Doesn't work anymore
+		//"strength_to_movement_pct"
+		//{
+		//	"value" "10"
+		//	"operator" "OP_ADD"
+		//}
+	}
+	"centaur_hoof_stomp"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "7"
+		}
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"stomp_damage"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+		}
+	}
+	"centaur_double_edge"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"edge_damage"
+		{
+			"value" "45"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"strength_damage" "25"
+			}
+		}
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"centaur_return"
+	{
+		"return_damage"
+		{
+			"value" "15"
+			"operator" "OP_ADD"
+		}
+		"return_damage_str"
+		{
+			"value" "6"
+			"operator" "OP_ADD"
+		}
+	}
+	"centaur_stampede"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			"linked_abilities"
+			{
+				"centaur_work_horse"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+				"centaur_mount"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"duration"
+		{
+			"value" "0.7"
+			"operator" "OP_ADD"
+		}
+		"strength_damage"
+		{
+			"value" "0.5"
+			"operator" "OP_ADD"
+		}
+	}
+}

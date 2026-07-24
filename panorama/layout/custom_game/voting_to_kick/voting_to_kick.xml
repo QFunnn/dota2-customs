@@ -1,0 +1,69 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/voting_to_kick/voting_to_kick.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/voting_to_kick/voting_to_kick.vjs_c" />
+	</scripts>
+	<Panel hittest="false" class="VotingToKickRoot">
+		<Panel id="VotingToKickReasonPanel">
+			<Panel class="VotingToKickReasonHeadPanel">
+				<Label class="VotingToKickReasonClose" onactivate="VotingToKickHideReason()" />
+				<Panel class="VotingToKickReasonHeadPanelTextGrid">
+					<Label id="VotingToKickReasonHeadPanelText" html="true" text="#voting_to_kick_choose_reason_tooltip" />
+				</Panel>
+			</Panel>
+			<Panel class="VotingToKickReasonsList">
+				<Panel class="VotingToKickReason" onactivate="VotingToKickInitVoting(&apos;feeding&apos;)">
+					<Image class="VotingToKickReasonIcon" src="s2r://panorama/layout/custom_game/voting_to_kick/reason_feeding_png.vtex" />
+					<Label class="VotingToKickReasonButton" text="#voting_to_kick_reason_feeding" />
+				</Panel>
+				<Panel class="VotingToKickReason" onactivate="VotingToKickInitVoting(&apos;ability_abuse&apos;)">
+					<Image class="VotingToKickReasonIcon" src="s2r://panorama/layout/custom_game/voting_to_kick/reason_ability_abuse_png.vtex" />
+					<Label class="VotingToKickReasonButton" text="#voting_to_kick_reason_ability_abuse" />
+				</Panel>
+				<Panel class="VotingToKickReason" onactivate="VotingToKickInitVoting(&apos;hateful_talk&apos;)">
+					<Image class="VotingToKickReasonIcon" src="s2r://panorama/layout/custom_game/voting_to_kick/reason_hateful_talk_png.vtex" />
+					<Label class="VotingToKickReasonButton" text="#voting_to_kick_reason_hateful_talk" />
+				</Panel>
+				<Panel class="VotingToKickReason" onactivate="VotingToKickInitVoting(&apos;afk&apos;)">
+					<Image class="VotingToKickReasonIcon" src="s2r://panorama/layout/custom_game/voting_to_kick/reason_afk_png.vtex" />
+					<Label class="VotingToKickReasonButton" text="#voting_to_kick_reason_afk" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="VotingToKickVoting">
+			<Panel class="VotingToKickVotingHeadPanel">
+				<Label id="VotingToKickVotingHeadText" html="true" text="#voting_to_kick_tooltip" />
+			</Panel>
+			<Panel class="VotingToKickVotingReasonPanel">
+				<Label id="VotingToKickVotingReasonText" text="#voting_to_kick_reason_tooltip" />
+			</Panel>
+			<Panel id="VotingToKickModelPanel" hittest="false" />
+			<Label id="VotingToKickKDA" html="true" text="#voting_to_kick_kda_tooltip" />
+			<Panel class="VotingToKickVotingButtons">
+				<Label class="VotingToKickVotingButton" id="VotingToKickVotingYes" text="#voting_to_kick_yes" onactivate="VotingToKickVoteYes()" />
+				<Label class="VotingToKickVotingButton" id="VotingToKickVotingNo" text="#voting_to_kick_no" onactivate="VotingToKickVoteNo()" />
+			</Panel>
+			<Button id="ReportButton" onactivate="ReportVoting()" onmouseover="DOTAShowTextTooltip(#report_voting_hint)" onmouseout="DOTAHideTextTooltip()">
+				<Label text="Report Voting" />
+			</Button>
+		</Panel>
+		<Button id="HideVotingWrap" onactivate="ToggleVotingPanel()" onmouseover="HideVotingHint()" onmouseout="DOTAHideTextTooltip()">
+			<Button id="HideVotingArrowIcon" />
+		</Button>
+	</Panel>
+</root>

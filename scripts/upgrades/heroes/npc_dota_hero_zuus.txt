@@ -1,0 +1,125 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_zuus"
+{
+	"zuus_static_field"
+	{
+		"damage_health_pct"
+		{
+			"value" "0.4"
+			"operator" "OP_MULTIPLY"
+
+			"multiplicative_target"			"10"
+			"multiplicative_base_value"		"4.95"
+		}
+	}
+	"zuus_arc_lightning"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"arc_damage"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+		}
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"jump_count" "2"
+			}
+		}
+	}
+	"zuus_lightning_hands"
+	{
+		"attack_speed_bonus"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"arc_lightning_damage_pct" "5"
+			}
+		}
+	}
+	"zuus_lightning_bolt"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "7"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			"linked_abilities"
+			{
+				"zuus_cloud"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "7"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"damage"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+		}
+	}
+	"zuus_heavenly_jump"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "7"
+			"operator" "OP_MULTIPLY"
+			"linked_special_values"
+			{
+				"hop_distance" "40"
+			}
+		}
+		"targets"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+			"max_count" "8"
+			"linked_special_values"
+			{
+				"range" "50"
+			}
+		}
+		"damage"
+		{
+			"value" "75"
+			"operator" "OP_ADD"
+		}
+	}
+	"zuus_thundergods_wrath"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "7"
+			"operator" "OP_MULTIPLY"
+		}
+		"damage"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+		}
+	}
+}

@@ -1,0 +1,145 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_terrorblade"
+{
+	"terrorblade_reflection_lua"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "8"
+			"linked_abilities"
+			{
+				"terrorblade_terror_wave"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"illusion_outgoing_tooltip"
+		{
+			"value" "16"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"illusion_outgoing_damage" "16"
+			}
+		}
+		"range"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"terrorblade_conjure_image"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"illusion_outgoing_damage"
+		{
+			"value" "11"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"illusion_outgoing_tooltip" "11"
+			}
+		}
+		"illusion_incoming_damage"
+		{
+			"value" "-30"
+			"operator" "OP_MULTIPLY"
+			
+			"multiplicative_target"	"-50"
+			"multiplicative_base_value"	"150"
+			
+			"linked_special_values"
+			{
+				"illusion_incoming_damage_total_tooltip"
+				{
+					"value" "-30"
+				
+					"operator" "OP_MULTIPLY"
+					"multiplicative_target" "50"
+					"multiplicative_base_value"	"250"
+				}
+			}
+		}
+	}
+	"terrorblade_metamorphosis"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"linked_abilities"
+			{
+				"terrorblade_demon_zeal"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+					"berserk_bonus_movement_speed" "20"
+				}
+			}
+		}
+		"bonus_damage"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"linked_abilities"
+			{
+				"terrorblade_demon_zeal"
+				{
+					"berserk_bonus_attack_speed" "20"
+				}
+			}
+		}
+		"tooltip_attack_range"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"bonus_range" "20"
+				"metamorph_aura_tooltip" "60"
+			}
+			"linked_abilities"
+			{
+				"terrorblade_dark_unity"
+				{
+					"radius" "60"
+				}
+			}
+		}
+	}
+	"terrorblade_sunder"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+	}
+}

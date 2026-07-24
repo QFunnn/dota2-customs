@@ -1,0 +1,140 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_hoodwink"
+{
+	"hoodwink_mistwoods_wayfarer"
+	{
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"redirect_chance" "6.5"
+			}
+		}
+	}
+	"hoodwink_acorn_shot"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+		}
+		"acorn_shot_damage"
+		{
+			"value" "24"
+			"operator" "OP_ADD"
+		}
+		"bounce_count"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+			"max_count" "3"
+		}
+		"bounce_range"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"hoodwink_bushwhack"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "8"
+			"linked_abilities"
+			{
+				"hoodwink_hunters_boomerang"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "10"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"trap_radius"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_abilities"
+			{
+				"hoodwink_hunters_boomerang"
+				{
+					"radius" "40"
+				}
+			}
+		}
+		"total_damage"
+		{
+			"value" "95"
+			"operator" "OP_ADD"
+			"linked_abilities"
+			{
+				"hoodwink_hunters_boomerang"
+				{
+					"damage" "45"
+					"spell_amp" "3.5"
+				}
+			}
+		}
+	}
+	"hoodwink_scurry"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"movement_speed_pct" "6.5"
+			}
+		}
+	}
+	"hoodwink_sharpshooter"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"linked_abilities"
+			{
+				"hoodwink_decoy"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "10"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"max_damage"
+		{
+			"value" "240"
+			"operator" "OP_ADD"
+		}
+		"max_charge_time"
+		{
+			"value" "-0.5"
+			"operator" "OP_ADD"
+			"max_count" "4"
+		}
+	}
+}

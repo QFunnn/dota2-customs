@@ -1,0 +1,125 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_skeleton_king"
+{
+	"skeleton_king_vampiric_spirit"
+	{
+		"vampiric_aura"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+		}
+		"scepter_attack_speed"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+			"requires_scepter" "1"
+			"linked_special_values"
+			{
+				"scepter_move_speed_pct"
+				{
+					"value" "3"
+					"operator" "OP_ADD"
+					"requires_scepter" "1"
+				}
+			}
+		}
+	}
+	"skeleton_king_hellfire_blast"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+			"linked_special_values"
+			{
+				"blast_speed" "100"
+			}
+		}
+		"blast_dot_duration"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+			"max_count" "3"
+		}
+		"blast_dot_damage"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+			"talents"
+			{
+				"special_bonus_unique_wraith_king_3"	"x1.25"
+			}
+		}
+		"damage"
+		{
+			"value" "100"
+			"operator" "OP_ADD"
+			"talents"
+			{
+				"special_bonus_unique_wraith_king_3"	"x1.25"
+			}
+		}
+	}
+	"skeleton_king_bone_guard"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "6"
+			"operator" "OP_MULTIPLY"
+
+			"linked_special_values"
+			{
+				"auto_charge_interval"
+				{
+					"value" "-0.6"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target"			"0"
+					"multiplicative_base_value"		"10"
+				}
+			}
+		}
+		"skeleton_health"
+		{
+			"value" "75"
+			"operator" "OP_ADD"
+		}
+		"skeleton_damage_tooltip"
+		{
+			"value"	"12"
+			"operator" "OP_ADD"
+		}
+	}
+	"skeleton_king_mortal_strike"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+		}
+		"crit_mult"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+		}
+	}
+	"skeleton_king_reincarnation"
+	{
+		"slow_radius"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"max_count" "8"
+		}
+	}
+}

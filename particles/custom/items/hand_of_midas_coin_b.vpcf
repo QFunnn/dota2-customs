@@ -1,0 +1,152 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf37:version{f9a1c8c4-159b-4786-b740-4d1a118c8f46} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 128
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_ModelList = 
+			[
+				{
+					m_model = resource:"models/particle/coin.vmdl"
+				},
+			]
+			m_bAnimated = true
+			m_nLOD = 1
+			m_bForceLoopingAnimation = true
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_Gravity = [ 0.0, 0.0, -40.0 ]
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.125
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 0.125
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_RampScalarLinear"
+			m_RateMax = 12.0
+			m_RateMin = -12.0
+			m_nField = 4
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomRadius"
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+		},
+		{
+			_class = "C_INIT_RandomAlpha"
+			m_nAlphaMax = 224
+			m_nAlphaMin = 218
+		},
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMax = 0.75
+			m_fLifetimeMin = 0.75
+		},
+		{
+			_class = "C_INIT_CreateOnModel"
+			m_vecHitBoxScale = 
+			{
+				m_nType = "PVEC_TYPE_LITERAL"
+				m_vLiteralValue = [ 1.5, 1.5, 1.5 ]
+			}
+		},
+		{
+			_class = "C_INIT_InitialVelocityNoise"
+			m_vecOutputMax = [ 132.0, 132.0, 132.0 ]
+			m_vecOutputMin = [ -132.0, -132.0, -132.0 ]
+			m_flNoiseScaleLoc = 5.0
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmissionDuration = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.6
+			}
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 16.0
+			}
+		},
+	]
+	m_ForceGenerators = 
+	[
+		{
+			_class = "C_OP_RandomForce"
+			m_MaxForce = [ 300.0, 300.0, 300.0 ]
+			m_MinForce = [ -300.0, -300.0, -300.0 ]
+		},
+	]
+	m_Constraints = 
+	[
+		{
+			_class = "C_OP_ConstrainDistanceToPath"
+			m_flTravelTime = 1.0
+			m_flMaxDistance1 = 2.0
+			m_flMaxDistanceMid = 64.0
+			m_flMaxDistance0 = 96.0
+			m_PathParameters = 
+			{
+				m_nEndControlPointNumber = 1
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/custom/items/hand_of_midas_coin_coinglow_2.vpcf"
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 5
+}

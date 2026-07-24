@@ -1,0 +1,71 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/subscription/subscription_precache.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/subscription/subscription.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/collection.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/const.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/subscription/subscription.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="C_Subscription">
+			<Panel class="C_Subscription">
+				<Button id="CS_MainPanel">
+					<Panel class="CS_Logo" />
+					<Panel class="CS_NameRoot">
+						<Label class="CS_MainPanel_Name" text="{s:sub_name}" />
+						<Label class="CS_Advantages" text="#sub_details" />
+					</Panel>
+					<Panel class="CS_ButtonsRoot">
+						<Button class="CS_CancelSubscription" onactivate="CancelSubscription()">
+							<Label text="#cancel" />
+						</Button>
+						<Button id="BC_ConfPurchaseButton">
+							<Label text="{s:sub_unlock_state}" />
+						</Button>
+					</Panel>
+				</Button>
+				<Panel class="C_BonusesRoot">
+					<Panel id="BC_Content" />
+				</Panel>
+				<Panel class="CS_ActivatedSubscription_Info">
+					<Panel class="CS_AS_Type_Info">
+						<Label class="CS_AS_Type" text="{s:subsription_purchasing_type}" />
+						<Label class="CS_AS_Manage" text="#subscription_manage" onactivate="OpenManageSubscription()" />
+					</Panel>
+					<Label class="CS_AS_Date" text="#subscription_start_time" />
+				</Panel>
+				<Label class="CS_Error" text="#subscription_error" onactivate="OpenResolveErrorsSubscription" html="true" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="Collection_Subscriptions_Root" hittest="false">
+		<Panel class="CS_ContentRoot">
+			<Panel class="CS_Header_Root">
+				<Panel class="CS_Header">
+					<Label class="CS_Header_UnsubHeader" text="#subscription_header_unsub" />
+					<Label class="CS_Header_SubHeader" text="#subscription_header_sub_h1" />
+					<Label class="CS_Header_SubHeader SubType" text="{s:sub_state_text}" />
+					<Label class="CS_Header_SubHeader DefaultSub" text="#subscription_header_sub_h2" />
+					<Label class="CS_Header_SubHeader TrialSub" text="#subscription_header_sub_trial" />
+					<Label class="CS_Header_SubHeader Auto" text="#subscription_header_sub_h2_auto" html="true" />
+				</Panel>
+			</Panel>
+			<Panel id="CS_SubscriptionPanels" />
+		</Panel>
+	</Panel>
+</root>

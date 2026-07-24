@@ -1,0 +1,456 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.Mail
+{
+	align: center center;
+	width: 940px;
+	height: 850px;
+	opacity: 0;
+	transition-property: opacity, transform;
+	transition-duration: 0.15s;
+	margin-bottom: 250px;
+	padding: 0 20px 20px 20px;
+	transform: translateY(-30px);
+}
+
+.Mail.visible
+{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+.Mail_Background
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/leaderboards_background_1_png.vtex");
+	background-size: 100%;
+	box-shadow: black 0px 0px 15px -2px;
+	margin-top: 280px;
+}
+
+.Mail_Image
+{
+	width: 420px;
+	height: 174px;
+	horizontal-align: right;
+	margin: 160px 25px 0 0;
+	background-image: url("s2r://panorama/images/custom_game/mail/rex-ann-img_png.vtex");
+	background-size: 100%;
+}
+
+.Mail_ContentWrap
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	background-color: black;
+	margin: 330px 15px 15px 15px;
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/leaderboards_background_2_png.vtex");
+	background-size: 100%;
+	box-shadow: black 0px 0px 15px -2px;
+}
+
+.MailHeaderContainer
+{
+	width: 100%;
+	height: 40px;
+	background-color: white;
+	background-image: url("s2r://panorama/images/custom_game/backgrounds/wide_bg_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.MailHeader
+{
+	horizontal-align: center;
+	margin-top: 287px;
+	text-align: center;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#e78741), to(#ffc261));
+	font-size: 30px;
+	text-transform: uppercase;
+	text-shadow: black 1px 1px 0 2;
+	font-weight: bold;
+}
+
+.C_CloseButton
+{
+	horizontal-align: right;
+	margin: 288px 12px 0 0;
+	wash-color: #92a4bd;
+}
+
+.C_CloseButton:hover
+{
+	brightness: 1.8;
+	transition: brightness 0.1s ease-in-out 0s;
+}
+
+.C_CloseButton:active
+{
+	brightness: 1.2;
+	sound: "General.ButtonClick";
+}
+
+.C_CloseButton Label
+{
+	color: white;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+	background-size: 16px;
+	background-repeat: no-repeat;
+	background-position: 0% 50%;
+	padding-left: 18px;
+	font-size: 16;
+	padding-top: 1px;
+	text-transform: uppercase;
+}
+
+.MailContainer
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+}
+
+.no_mails .MailContainer
+{
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+.OverlayShadow
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from(rgba(0, 0, 0, 0.8)), color-stop(0.35, transparent), to(transparent) );
+	vertical-align: top;
+	z-index: 10;
+}
+
+#MailList
+{
+	height: 100%;
+	width: 250px;
+	flow-children: down;
+}
+
+#ActiveMailTab
+{
+	height: 100%;
+	width: 100%;
+	padding: 5px;
+	background-color: rgba(0, 0, 0, 0.6);
+	flow-children: down;
+}
+
+.no_mails #ActiveMailTab,.no_mails #MailList
+{
+	visibility: collapse;
+}
+
+.MailEntry
+{
+	width: 100%;
+	height: 50px;
+	flow-children: right;
+	transition-property: position;
+	transition-duration: 0.2s;
+	padding: 2px 10px;
+}
+
+.MailEntry:hover:not(.selected)
+{
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.selected
+{
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+.MailIcon
+{
+	vertical-align: center;
+	width: 40px;
+	height: 40px;
+	background-image: url("s2r://panorama/images/custom_game/mail/mail_png.vtex");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.selected .MailIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/mail/mail_gold_png.vtex");
+}
+
+.MailTopic
+{
+	color: white;
+	align: left center;
+	font-size: 18px;
+	text-overflow: clip;
+	width: fill-parent-flow(1);
+	text-overflow: shrink;
+	text-shadow: black 0px 2px 0px 0px;
+}
+
+.MailReadStatus
+{
+	align: right center;
+	width: 30px;
+	height: 30px;
+	background-image: url("s2r://panorama/images/custom_game/mail/announce_png.vtex");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.selected .MailReadStatus
+{
+	background-image: url("s2r://panorama/images/custom_game/mail/announce_gold_png.vtex");
+}
+
+.is_claimed .MailReadStatus
+{
+	visibility: collapse;
+	opacity: 0;
+}
+
+.MailTopicContainer
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.MailTopicOnTab
+{
+	margin-top: 4px;
+	font-size: 28px;
+	align: center center;
+	text-align: center;
+	margin: 0px 10px;
+	padding: 5px 0;
+	font-weight: semi-bold;
+	border-bottom: 2px solid gray;
+}
+
+.MailDetails
+{
+	width: 100%;
+	margin: 0 20px;
+	padding: 5px;
+	border-bottom: 1px solid rgba(113, 113, 113, 0.2);
+}
+
+.MailSource
+{
+	horizontal-align: left;
+	color: #c0c2ca;
+}
+
+.MailDate
+{
+	horizontal-align: right;
+	color: #c0c2ca;
+}
+
+.MailText
+{
+	margin: 10px 20px 5px 20px;
+	padding: 5px;
+	font-size: 18px;
+}
+
+.MailHighlight
+{
+	color: #b694ff;
+	text-decoration: underline;
+}
+
+.MailHint
+{
+	padding-top: 4px;
+	padding-bottom: 4px;
+	color: gray;
+	font-size: 15px;
+}
+
+#MailAttachments
+{
+	padding: 5px 25px 10px 20px;
+	flow-children: right;
+	width: 100%;
+}
+
+.MailAttachment
+{
+	margin: 10px;
+	width: 100px;
+	height: 100px;
+	background-image: url("s2r://panorama/images/custom_game/mail/mail_reward_bg_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	box-shadow: fill rgba(0, 0, 0, 0.5) 0px 1px 5px 3px;
+	tooltip-position: bottom;
+}
+
+.AttachmentContent
+{
+	width: 100%;
+	height: 100%;
+	transition-property: saturation;
+	transition-duration: 0.3s;
+}
+
+.AttachmentClaimed
+{
+	width: 20px;
+	height: 20px;
+	align: right bottom;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.3s;
+}
+
+.is_claimed .AttachmentClaimed
+{
+	opacity: 1;
+}
+
+.is_claimed .MailAttachment
+{
+	background-image: url("s2r://panorama/images/custom_game/mail/mail_reward_bg_obtained_png.vtex");
+}
+
+.is_claimed .AttachmentContent
+{
+	saturation: 0.5;
+}
+
+.AttachmentImage
+{
+	align: center top;
+	margin-top: 5px;
+	width: 70px;
+	height: 70px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.AttachmentCount
+{
+	align: center bottom;
+	color: white;
+	font-size: 16px;
+}
+
+.single .AttachmentCount
+{
+	visibility: collapse;
+}
+
+.MailButtons
+{
+	align: center bottom;
+	margin-bottom: 10px;
+}
+
+.MailButton
+{
+	background-image: url("s2r://panorama/images/custom_game/backgrounds/button_bg_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	width: 150px;
+	height: 40px;
+	transition-property: brightness;
+	transition-duration: 0.15s;
+}
+
+.MailButton:hover
+{
+	brightness: 1.5;
+}
+
+.is_claimed .MailButton
+{
+	background-image: url("s2r://panorama/images/custom_game/backgrounds/button_bg_red_png.vtex");
+}
+
+.MailButtonLabel
+{
+	text-transform: uppercase;
+	font-size: 18px;
+	color: white;
+	align: center center;
+	text-align: center;
+}
+
+.no_mails #ActiveMailTab
+{
+	opacity: 0;
+}
+
+.NoMailsHint
+{
+	font-size: 30px;
+	align: center center;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.5s;
+	width: 100%;
+	text-align: center;
+	color: #bbbbff;
+	text-shadow: black 0px 2px 3px 2;
+	text-transform: uppercase;
+}
+
+.no_mails .NoMailsHint
+{
+	opacity: 1;
+}
+
+#MailAttachments .CI_Item .CI_Background
+{
+	width: 85px;
+	height: 85px;
+}
+
+#MailAttachments .CI_Item:not(.single) .CI_Item_Count
+{
+	visibility: visible;
+}
+
+#MailAttachments .currency #CI_Item_Image
+{
+	padding: 5px;
+}
+
+.is_claimed #CI_Item_Image,.is_claimed .CI_ChatWheel_PhraseContainer,.is_claimed .CI_ChatWheel_ColorContainer,.is_claimed #CI_ChatWheel_EmojiContainer
+{
+	saturation: 0.2;
+}
+
+.AttachmentClaimedLabel
+{
+	align: center center;
+	background-color: rgba(0, 0, 0, 0.98);
+	width: 100%;
+	text-align: center;
+	font-size: 16px;
+	font-style: italic;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#f39e35), to(#fbca60));
+	visibility: collapse;
+	height: 19px;
+	text-overflow: shrink;
+}
+
+.is_claimed .AttachmentClaimedLabel
+{
+	visibility: visible;
+}

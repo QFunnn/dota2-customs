@@ -1,0 +1,92 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/styles/custom_loading_screen.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/custom_loading_screen/custom_loading_screen.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/custom_loading_screen/custom_loading_screen_utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/custom_loading_screen/custom_loading_screen.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="LS_Player">
+			<Panel class="LS_Player">
+				<Panel class="LS_Player_Overlay" />
+				<Panel class="LS_Player_LoadingState" />
+				<Panel id="LS_PlayerInfo">
+					<DOTAAvatarImage steamid="local" />
+					<DOTAUserName steamid="local" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="LS_Bullet">
+			<Panel class="LS_Bullet">
+				<Image class="Bullet_BG" src="s2r://panorama/images/custom_game/team_selection/bullet_bg_png.vtex" />
+				<Image class="Bullet_Active" src="s2r://panorama/images/custom_game/team_selection/bullet_active_png.vtex" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="OverthrowLoadingRoot">
+		<Image id="Background" scaling="stretch-to-cover-preserve-aspect" src="s2r://panorama/images/custom_game/loading_screen/background_png.vtex" />
+		<Panel id="Contents">
+			<Image id="PrimalBeast" scaling="stretch-to-fit-preserve-aspect" src="s2r://panorama/images/custom_game/loading_screen/primal_beast_png.vtex" />
+			<Image id="Luna" scaling="stretch-to-fit-preserve-aspect" src="s2r://panorama/images/custom_game/loading_screen/luna_png.vtex" />
+			<Image id="Orb" scaling="stretch-to-fit-preserve-aspect" src="s2r://panorama/images/custom_game/loading_screen/orb_png.vtex" />
+			<Image id="Dawnbreaker" scaling="stretch-to-fit-preserve-aspect" src="s2r://panorama/images/custom_game/loading_screen/dawnbreaker_png.vtex" />
+		</Panel>
+		<Panel class="LS_Tips_Root">
+			<Panel id="LS_Tips_WebContainer">
+				<Movie id="LS_VideoHint" src="file://{resources}/videos/custom_game/epic.webm" volume="0" controls="none" repeat="true" autoplay="onload" />
+				<Panel id="LS_Hint_DescRoot">
+					<Label id="LS_Hint_Desc_Header" text="{s:hint_desc_header}" />
+					<Label id="LS_Hint_Desc_Text" text="{s:hint_desc_text}" />
+				</Panel>
+			</Panel>
+			<Image class="LS_Tips_Logo" src="s2r://panorama/images/custom_game/team_selection/ts_logo_png.vtex" />
+			<Panel id="LS_Tips_Bullets" />
+			<Button class="LS_Tips_Arrow" id="LS_Tips_Left" onactivate="PrevHint()">
+				<Image src="s2r://panorama/images/custom_game/team_selection/ts_hint_arrow_png.vtex" />
+			</Button>
+			<Button class="LS_Tips_Arrow" id="LS_Tips_Right" onactivate="NextHint()">
+				<Image src="s2r://panorama/images/custom_game/team_selection/ts_hint_arrow_right_png.vtex" />
+			</Button>
+			<Label id="LS_StartTimer_Header" text="#ls_hint_text_header_players_loading" html="true" />
+			<Label id="LS_StartTimer_Timer" text="#ls_hint_text_header_timer" html="true" />
+		</Panel>
+		<Panel id="LoadingPlayers_Root">
+			<Panel id="LoadingPlayers_Root_Header">
+				<Label id="LoadingPlayers_Root_Text" text="#LoadingScreenPlayersInfo" />
+			</Panel>
+			<Panel id="LoadingPlayers_List" />
+		</Panel>
+		<Panel class="HostOptions" id="HostOptions">
+			<ToggleButton id="tournament_mode" class="CheckBox" checked="false" text="#tournament_mode" onactivate="ToggleHostOption(&apos;tournament_mode&apos;)" />
+			<ToggleButton id="fill_with_bots" class="CheckBox" checked="false" text="#fill_with_bots" onactivate="ToggleHostOption(&apos;fill_with_bots&apos;)" />
+		</Panel>
+		<Button class="LS_DiscordButton" onactivate="$.DispatchEvent(&apos;ExternalBrowserGoToURL&apos;, &apos;https://discord.gg/SsYFjqFXJS&apos;)">
+			<Image src="s2r://panorama/images/custom_game/discord_logo_png.vtex" />
+		</Button>
+		<Panel class="LS_WeekendsEventBanner">
+			<Panel class="LS_WEB_Header_Container">
+				<Panel class="LS_WEB_Header_Flag" />
+				<Label class="LS_WEB_Header" text="{s:weekend_event_header}" />
+			</Panel>
+			<Label class="LS_WEB_Desc_1" text="#ls_weekend_banner_descirption_1" />
+			<Label class="LS_WEB_Desc_2" text="#ls_weekend_banner_descirption_2" html="true" />
+			<Label class="LS_WEB_Date" text="#ls_weekend_banner_date" />
+			<Panel class="LS_WeekendsEventBanner_Orb" />
+		</Panel>
+		<Panel class="LS_SocialPage_1" />
+	</Panel>
+</root>

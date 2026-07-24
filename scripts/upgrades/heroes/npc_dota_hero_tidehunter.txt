@@ -1,0 +1,127 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_tidehunter"
+{
+	"tidehunter_leviathans_catch"
+	{
+		//"fish_health_bonus"
+		//{
+		//	"value" "0.6"
+		//	"operator" "OP_ADD"
+		//	"linked_special_values"
+		//	{
+		//		"fish_attack_range" "0.4"
+		//		"fish_damage_block" "0.2"
+		//	}
+		//}
+	}
+	"tidehunter_gush"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"gush_damage"
+		{
+			"value" "55"
+			"operator" "OP_ADD"
+		}
+		"negative_armor"
+		{
+			"value" "1.5"
+			"operator" "OP_ADD"
+			"min_rarity" "rare"
+		}
+	}
+	"tidehunter_kraken_shell"
+	{
+		"damage_reduction"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+		}
+	}
+	"tidehunter_anchor_smash"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"attack_damage"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+		}
+		"damage_reduction"
+		{
+			"value" "-5"
+			"operator" "OP_ADD"
+			"max_count" "8"
+		}
+		"additional_range"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"tidehunter_ravage"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"linked_abilities"
+			{
+				"tidehunter_dead_in_the_water"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"damage"
+		{
+			"value" "125"
+			"operator" "OP_ADD"
+			"linked_abilities"
+			{
+				"tidehunter_dead_in_the_water"
+				{
+					"damage" "75"
+				}
+			}
+		}
+		"radius"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"max_count" "8"
+			"linked_special_values"
+			{
+				"speed" "29"
+			}
+			"linked_abilities"
+			{
+				"tidehunter_dead_in_the_water"
+				{
+					"attacks_to_destroy" "1"
+					"chain_length" "-20"
+				}
+			}
+		}
+	}
+}

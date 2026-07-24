@@ -1,0 +1,92 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_rubick"
+{
+	"rubick_curiosity"
+	{
+		"curiosity_attack_damage"
+		{
+			"value" "0.5"
+			"operator" "OP_ADD"
+		}
+	}
+	"rubick_telekinesis"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "8"
+		}
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_abilities"
+			{
+				"rubick_telekinesis_land"
+				{
+					"radius" "30"
+				}
+			}
+		}
+	}
+	"rubick_fade_bolt"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"damage"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+		}
+		"jump_damage_reduction_pct"
+		{
+			"value" "-6"
+			"operator" "OP_ADD"
+			"max_count" "1"
+		}
+		"damage_reduction"
+		{
+			"value" "6"
+			"operator" "OP_ADD"
+			"max_count" "4"
+		}
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"rubick_arcane_supremacy"
+	{
+		"cast_range"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+		"spell_amp"
+		{
+			"value" "8"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"rubick_spell_steal"
+	{
+	}
+}

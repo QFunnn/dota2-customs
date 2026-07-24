@@ -1,0 +1,119 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_disruptor"
+{
+	"disruptor_thunder_strike"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"shard_radius" "30"
+			}
+		}
+		"strike_damage"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+			
+			"linked_special_values"
+			{
+				"shard_attack_speed_bonus" "10"
+			}
+		}
+		"strikes"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"strike_interval"
+				{
+					"value" "-0.1"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target"			"0"
+					"multiplicative_base_value"		"1"
+				}
+			}
+		}
+	}
+	"disruptor_glimpse"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"damage_to_distance_pct"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"max_damage" "140"
+			}
+		}
+	}
+	"disruptor_kinetic_field"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "12"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"formation_time"
+		{
+			"value" "-0.1"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+	}
+	"disruptor_kinetic_fence"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "12"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+	}
+	"disruptor_static_storm"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"damage_max"
+		{
+			"value" "70"
+			"operator" "OP_ADD"
+		}
+		"pulses"
+		{
+			"value" "4"
+			"operator" "OP_ADD"
+		}
+	}
+}

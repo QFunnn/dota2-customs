@@ -1,0 +1,97 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_abaddon"
+{
+	"abaddon_withering_mist"
+	{
+		"heal_reduction_pct"
+		{
+			"value" "3"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"hp_threshold_pct" "3"
+			}
+		}
+	}
+	"abaddon_death_coil"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "7"
+			"operator" "OP_MULTIPLY"
+		}
+		"self_damage"
+		{
+			"value" "-8"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"linked_special_values"
+			{
+				"self_damage_enemy_target"
+				{
+					"value" "-8"
+					"operator" "OP_ADD"
+				}
+			}
+		}
+		"damage_heal"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+		}
+		"missile_speed"
+		{
+			"value" "130"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+	}
+	"abaddon_aphotic_shield"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "6"
+			"operator" "OP_MULTIPLY"
+		}
+		"damage_absorb"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+		}
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"abaddon_frostmourne"
+	{
+		"curse_slow"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+		"curse_attack_speed"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+		}
+		"curse_dps"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+		}
+	}
+}

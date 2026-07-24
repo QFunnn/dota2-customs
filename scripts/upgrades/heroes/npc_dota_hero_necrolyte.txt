@@ -1,0 +1,124 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_necrolyte"
+{
+	"necrolyte_sadist"
+	{
+		"regen"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+		}
+	}
+	"necrolyte_death_pulse"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"linked_abilities"
+			{
+				"necrolyte_death_seeker"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"area_of_effect"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"heal"
+		{
+			"value" "18"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"AbilityDamage" "28" // tooltip only
+				"damage" "28"
+			}
+		}
+	}
+	"necrolyte_ghost_shroud"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"slow_aoe"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"bonus_damage"
+		{
+			"value" "2"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"heal_bonus"
+				{
+					"value" "1.5"
+					"operator" "OP_ADD"
+				}
+			}
+		}
+	}
+	"necrolyte_heartstopper_aura"
+	{
+		"aura_radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"aura_damage"
+		{
+			"value" "0.2"
+			"operator" "OP_MULTIPLY"
+
+			"multiplicative_target"			"12.5"
+			"multiplicative_base_value"		"2.9"
+		}
+	}
+	"necrolyte_reapers_scythe"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "7"
+			"operator" "OP_MULTIPLY"
+		}
+		"damage_per_health"
+		{
+			"value" "0.1"
+			"operator" "OP_ADD"
+		}
+		"hp_per_kill"
+		{
+			"value" "2"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"mana_per_kill" "1"
+			}
+		}
+	}
+}

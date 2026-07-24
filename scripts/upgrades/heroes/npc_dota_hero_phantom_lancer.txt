@@ -1,0 +1,145 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_phantom_lancer"
+{
+	"phantom_lancer_illusory_armaments"
+	{
+		"outgoing_floor"
+		{
+			"value" "4"
+			"operator" "OP_ADD"
+		}
+	}
+	"phantom_lancer_spirit_lance"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "14"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"lance_damage"
+		{
+			"value" "60"
+			"operator" "OP_ADD"
+		}
+		"tooltip_illusion_total_damage_in_pct"
+		{
+			"value" "-100"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			
+			"multiplicative_target"	"80"
+			"multiplicative_base_value"	"400"
+			
+			"linked_special_values"
+			{
+				"illusion_damage_in_pct"
+				{
+					"value" "-100"
+					"operator" "OP_MULTIPLY"
+					
+					"multiplicative_target" "-20"
+					"multiplicative_base_value"	"300"
+				}
+			}
+		}
+	}
+	"phantom_lancer_doppelwalk"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "12"
+			"operator" "OP_MULTIPLY"
+			"max_count" "4"
+		}
+		"illusion_1_damage_in_pct"
+		{
+			"value" "-15"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			"multiplicative_target"	"-80"
+			"multiplicative_base_value"	"0"
+			
+			"linked_special_values"
+			{
+				"illusion_2_damage_in_pct"
+				{
+					"value" "-90"
+					"operator" "OP_MULTIPLY"
+					
+					"multiplicative_target" "20"
+					"multiplicative_base_value"	"500"
+				}
+			}
+		}
+	}
+	"phantom_lancer_phantom_edge"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "12"
+			"operator" "OP_MULTIPLY"
+		}
+		"min_distance"
+		{
+			"value" "-10"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"linked_special_values"
+			{
+				"max_distance" "110"
+				"bonus_speed" "100"
+			}
+		}
+		"evasion"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"max_count" "1"
+		}
+	}
+	"phantom_lancer_juxtapose"
+	{
+		"proc_chance_pct"
+		{
+			"value" "12.5"
+			"operator" "OP_ADD"
+			"max_count" "4"
+		}
+		"illusion_proc_chance_pct"
+		{
+			"value" "3"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"tooltip_total_illusion_damage_in_pct"
+		{
+			"value" "-40"
+			"operator" "OP_MULTIPLY"
+			
+			"multiplicative_target"	"53"
+			"multiplicative_base_value"	"265"
+			
+			"linked_special_values"
+			{
+				"illusion_damage_in_pct"
+				{
+					"value" "-40"
+				
+					"operator" "OP_MULTIPLY"
+					"multiplicative_target" "-47"
+					"multiplicative_base_value"	"165"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,386 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.Custom_ChatWheel
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+
+.Custom_ChatWheel.Show
+{
+	opacity: 1;
+}
+
+.CW_WheelBG
+{
+	width: 128px;
+	height: 128px;
+	background-image: url("s2r://panorama/images/chat_wheel/circle_bg_png.vtex"), url("s2r://panorama/images/chat_wheel/circle_bg2_png.vtex"), url("s2r://panorama/images/chat_wheel/circle_png.vtex");
+	background-size: 100%;
+	align: center center;
+	margin-top: 11px;
+	margin-left: 4px;
+}
+
+.CW_WheelPointer
+{
+	width: 128px;
+	height: 128px;
+	background-image: url("s2r://panorama/images/chat_wheel/circle_pointer_png.vtex");
+	background-size: 100%;
+	align: center center;
+	margin-left: 3px;
+}
+
+#CW_HeroImage
+{
+	height: 40px;
+	width: 40px;
+}
+
+#CW_Arrow
+{
+	height: 46px;
+	width: 174px;
+	background-image: url("s2r://panorama/images/chat_wheel/arrow_psd.vtex");
+	align: center center;
+	background-repeat: no-repeat;
+	background-position: right center;
+	brightness: 2;
+}
+
+.BNoFocusPhrase #CW_Arrow
+{
+	opacity: 0;
+}
+
+.FocusPhrase_0 #CW_Arrow
+{
+	transform: rotateZ(270deg);
+}
+
+.FocusPhrase_1 #CW_Arrow
+{
+	transform: rotateZ(315deg);
+}
+
+.FocusPhrase_2 #CW_Arrow
+{
+	transform: rotateZ(0deg);
+}
+
+.FocusPhrase_3 #CW_Arrow
+{
+	transform: rotateZ(45deg);
+}
+
+.FocusPhrase_4 #CW_Arrow
+{
+	transform: rotateZ(90deg);
+}
+
+.FocusPhrase_5 #CW_Arrow
+{
+	transform: rotateZ(135deg);
+}
+
+.FocusPhrase_6 #CW_Arrow
+{
+	transform: rotateZ(180deg);
+}
+
+.FocusPhrase_7 #CW_Arrow
+{
+	transform: rotateZ(225deg);
+}
+
+.CW_PhrasesContainer
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+}
+
+#CW_PhrasesContainer_Center
+{
+	align: center center;
+}
+
+.CW_PhrasesContainer_SidesCotnainer
+{
+	align: center center;
+	flow-children: right;
+}
+
+#CW_PhrasesContainer_Left,#CW_PhrasesContainer_Right
+{
+	width: fill-parent-flow(1);
+	padding: 90px;
+	height: 355px;
+}
+
+#CW_PhrasesContainer_Left > Panel
+{
+	horizontal-align: right;
+}
+
+.CW_PhrasesContainer_CenterSeparator
+{
+	width: 0px;
+	height: 10px;
+	vertical-align: center;
+}
+
+.CW_Phrase
+{
+	flow-children: right;
+	pre-transform-scale2d: 1;
+	height: 55px;
+	transition-property: pre-transform-scale2d;
+	transition-duration: 0.1s;
+}
+
+.CW_Phrase > Panel
+{
+	height: 100%;
+	flow-children: right;
+}
+
+.CW_Phrase:hover
+{
+	pre-transform-scale2d: 1.2;
+}
+
+.CW_LineIcon
+{
+	height: 33px;
+	width: 33px;
+	vertical-align: center;
+	background-size: 21px;
+	background-position: 50%;
+	background-repeat: no-repeat;
+}
+
+.BFolder .CW_LineIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/manage_icon_png.vtex");
+}
+
+.BSound .CW_LineIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/scoreboard/icon_mute_voice_png.vtex");
+	background-size: 25px;
+}
+
+.BSound.BMutedFavorite .CW_LineIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/scoreboard/icon_mute_voice_off_png.vtex");
+}
+
+.BFavorite .CW_LineIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/chat_wheel/favorite_star_8_png.vtex");
+	background-size: 27px;
+}
+
+#CW_HeroIcon
+{
+	height: 26px;
+	width: 26px;
+	vertical-align: center;
+	visibility: collapse;
+	wash-color: rgba(255, 0, 0, 0.3);
+}
+
+.BMutedFavorite #CW_HeroIcon
+{
+	visibility: visible;
+}
+
+#CW_Phrase_Text
+{
+	vertical-align: middle;
+	font-size: 26px;
+	font-weight: bold;
+	margin-left: 3px;
+}
+
+.CW_SubChannel
+{
+	font-size: 26px;
+	font-weight: bold;
+}
+
+.CW_DefaultColor
+{
+	color: white;
+}
+
+.BAddedToFavorite #CW_Phrase_Text
+{
+	animation-name: blick;
+	animation-duration: 0.7s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+@keyframes 'blick'
+{
+	0%
+	{
+		color: white;
+	}
+	
+	50%
+	{
+		color: gradient(linear, 0% 100%, 0% 0%, from(#ff9000), to(#f4d800));
+		text-shadow: #f4d800 0 0 5px 0;
+	}
+	
+	100%
+	{
+		color: white;
+	}
+	
+}
+
+#Phrase_0
+{
+	margin-bottom: 230px;
+	margin-left: 0px;
+	horizontal-align: center;
+	vertical-align: center;
+	padding: 0 65px;
+}
+
+#Phrase_2
+{
+	margin-top: 60px;
+	margin-left: 25px;
+}
+
+#Phrase_3
+{
+	margin-top: 120px;
+}
+
+#Phrase_4
+{
+	margin-top: 230px;
+	vertical-align: center;
+	horizontal-align: center;
+	padding: 0 30px;
+}
+
+#Phrase_5
+{
+	margin-top: 120px;
+}
+
+#Phrase_6
+{
+	margin-top: 60px;
+	margin-right: 25px;
+}
+
+.CW_Hint
+{
+	align: center center;
+	margin-top: 350px;
+	flow-children: right;
+	background-color: rgba(0, 0, 0, 0.75);
+	border-radius: 15px;
+	padding: 8px 20px;
+	visibility: collapse;
+}
+
+.BCanAddFavorite .CW_Hint,.BCanRemoveFavorite .CW_Hint,.BEmptyFavorits .CW_Hint,.BFavoriteRing .CW_Hint
+{
+	visibility: visible;
+}
+
+.CW_Hint_Icon
+{
+	width: 50px;
+	height: 50px;
+	background-image: url("s2r://panorama/images/custom_game/top_menu/collection2_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+	margin-top: 1px;
+}
+
+.Collection_FX
+{
+	width: 100%;
+	height: 100%;
+	padding: 2px;
+	align: center center;
+	transition-property: opacity;
+	transition-duration: 0.15s;
+}
+
+.CW_Hint_TextContainer
+{
+	vertical-align: center;
+	margin-left: 5px;
+	flow-children: down;
+}
+
+.CW_Hint_TextContainer > Label
+{
+	color: white;
+	font-size: 20px;
+	visibility: collapse;
+}
+
+.CW_Hint_TextContainer Image
+{
+	height: 24px;
+}
+
+.BCanAddFavorite .CW_Hint_AddFavorite,.BCanRemoveFavorite .CW_Hint_RemoveFavorite,.BEmptyFavorits .CW_Hint_EmptyFavorites,.BFavoriteRing .CW_Hint_FavoritesCollection
+{
+	visibility: visible;
+}
+
+#CW_EmojiContainer
+{
+	width: 32px;
+	height: 32px;
+	vertical-align: center;
+	margin-left: 3px;
+	visibility: collapse;
+}
+
+#CW_EmojiContainer DOTAEmoticon
+{
+	width: 100%;
+	height: 100%;
+	texture-sampling: point;
+}
+
+.BFavoriteRing #CW_EmojiContainer
+{
+	visibility: visible;
+}
+
+.CW_Hint_FavoritesCollection
+{
+	text-align: center;
+}
+
+.CW_Gold
+{
+	color: #ffca3d;
+}

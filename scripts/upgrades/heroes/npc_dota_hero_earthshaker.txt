@@ -1,0 +1,107 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_earthshaker"
+{
+	"earthshaker_slugger"
+	{
+		"projectile_body_damage_hero"
+		{
+			"value" "150"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"projectile_body_damage_creep" "30"
+			}
+		}
+	}
+	"earthshaker_fissure"
+	{
+		"fissure_radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"fissure_damage"
+		{
+			"value" "55"
+			"operator" "OP_ADD"
+		}
+	}
+	"earthshaker_enchant_totem"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"totem_damage_percentage"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+		}
+		"scepter_cleave_pct"
+		{
+			"value" "6"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"scepter_cleave_distance" "35"
+				"scepter_cleave_ending_width" "30"
+				"scepter_cleave_starting_width" "30"
+			}
+		}
+	}
+	"earthshaker_aftershock"
+	{
+		"aftershock_damage"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+		}
+		"aftershock_range"
+		{
+			"value" "15"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"earthshaker_echo_slam"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"echo_slam_damage_range"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"echo_slam_echo_search_range" "30"
+				"echo_slam_echo_range" "30"
+			}
+		}
+		"echo_slam_echo_damage"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"echo_slam_initial_damage" "60"
+			}
+		}
+	}
+}

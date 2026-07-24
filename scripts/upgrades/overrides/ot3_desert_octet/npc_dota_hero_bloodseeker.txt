@@ -1,0 +1,53 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_bloodseeker"
+{
+	"bloodseeker_bloodrage"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+	}
+	"bloodseeker_blood_bath"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "4"
+			"operator" "OP_MULTIPLY"
+			"max_count" "8"
+			"linked_special_values"
+			{
+				"delay"
+				{
+					"value" "-0.104"
+					"operator" "OP_MULTIPLY"
+		
+					"multiplicative_target"			"0.26"
+					"multiplicative_base_value"		"2.6"
+				}
+			}
+		}
+		"radius"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"damage"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+		}
+	}
+}

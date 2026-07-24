@@ -1,0 +1,126 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/collection_precache.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/collection.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/chat_wheel/chat_wheel_colors_style.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/const.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/config.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/collection.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="CurrencyButton">
+			<Button class="CurrencyButton">
+				<Label class="Value" text="{s:value}" />
+				<Image id="Icon" />
+				<Image id="ActiveButton" />
+			</Button>
+		</snippet>
+		<snippet name="Tab">
+			<Button class="Tab">
+				<Panel class="Overlay" />
+				<Panel class="TabInfo">
+					<Image id="Icon" src="s2r://panorama/images/custom_game/collection/tab_icon_battle_pass_png.vtex" />
+					<Label text="{s:tab_name}" />
+				</Panel>
+				<Image class="Tab_Flag" src="s2r://panorama/images/custom_game/collection/cosmetics/flag_png.vtex" />
+			</Button>
+		</snippet>
+		<snippet name="C_SubscriptionConf">
+			<Panel class="C_SubscriptionConf" onactivate="">
+				<Panel class="BC_Wrap">
+					<Panel class="BC_Icon" />
+					<Label class="BC_Header" text="{s:sub_name}" />
+					<Panel id="BC_Content" />
+					<Button id="BC_ConfPurchaseButton">
+						<Label text="{s:sub_unlock_state}" />
+					</Button>
+				</Panel>
+				<Label class="BC_Close" text="#close" onactivate="GameUI.Collection.CloseSubPanels()" />
+			</Panel>
+		</snippet>
+		<snippet name="C_CurrencyBundle">
+			<Button class="C_CurrencyBundle">
+				<Panel class="CB_Background">
+					<Image id="CB_Image" />
+					<Panel class="CB_List_Wrap">
+						<Panel id="CB_List" />
+						<Label class="CB_PopularLabel" text="Popular" />
+					</Panel>
+					<Button class="CB_Button">
+						<Label text="#donation_button" />
+					</Button>
+				</Panel>
+				<Label class="CB_Bonus" text="{d:bonus}% Bonus" />
+			</Button>
+		</snippet>
+	</snippets>
+	<Panel class="Collection_Root" hittest="false">
+		<Panel class="Collection_Wrap">
+			<Image class="C_Glow" src="s2r://panorama/images/custom_game/collection/glow_png.vtex">
+				<Label text="Collection" />
+			</Image>
+			<Panel class="C_Wrap" onactivate="">
+				<Panel class="C_TopBar">
+					<Panel class="C_PlayerInfoRoot">
+						<DOTAAvatarImage id="C_PlayerAvatar" steamid="local" />
+						<Panel>
+							<DOTAUserName id="C_PlayerName" steamid="local" />
+							<Label class="C_PlayerSubscriptionState" text="{s:sub_state_text} {s:sub_state_duration}" />
+						</Panel>
+					</Panel>
+					<Panel id="C_TopBar_ButtonsRoot" />
+				</Panel>
+				<Panel class="C_MainPanelShadow">
+					<Panel class="C_SubscriptionButtonsRoot">
+						<Button class="C_SubscriptionButton C_SubscriptionButton_1" onactivate="ToggleSubscriptionPurchasing(1)">
+							<Image src="s2r://panorama/images/custom_game/collection/sub_1_png.vtex" />
+							<Label class="C_SubscriptionButton_Header" text="#sub_1" />
+							<Label class="C_SubscriptionButton_Desc" text="#sub_details" />
+						</Button>
+						<Button class="C_SubscriptionButton C_SubscriptionButton_2" onactivate="ToggleSubscriptionPurchasing(2)">
+							<Image src="s2r://panorama/images/custom_game/collection/sub_2_png.vtex" />
+							<Label class="C_SubscriptionButton_Header" text="#sub_2" />
+							<Label class="C_SubscriptionButton_Desc" text="#sub_details" />
+						</Button>
+					</Panel>
+					<Panel class="C_Content_Root">
+						<Panel id="C_Tabs" />
+						<Panel id="C_Content" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="C_SubPanels">
+				<Panel id="C_PayCurrency" onactivate="">
+					<Panel class="C_PayCurrency_Header_Wrap">
+						<Label class="C_PayCurrency_Close" text="#Close" onactivate="GameUI.Collection.CloseSubPanels()" />
+						<Label class="C_SubPanel_Header Header1" text="#pay_currency_header" />
+						<Label class="C_SubPanel_Header Header2" text="#pay_currency_header_2" />
+						<Label class="C_SubPanel_Header HalloweenHeader" text="#pay_currency_header_halloween_event" html="true" />
+					</Panel>
+					<Label class="C_PayCurrency_TopHint" html="true" text="#donation_hint_1" />
+					<Label class="C_PayCurrency_TopHint Hint2" html="true" text="#donation_hint_count" />
+					<Panel id="C_PayCurrency_Content" />
+					<Label class="C_PayCurrency_BottomHint Hint2" text="#currency_shop_hint_2" html="true" />
+				</Panel>
+				<Panel id="PaySubscriptionConf_Root" onactivate="" />
+			</Panel>
+			<Button class="CloseCollection" onactivate="ToggleCollectionShow()" />
+		</Panel>
+		<Panel id="C_AdditionalPanels" hittest="false" hittest-children="false" />
+	</Panel>
+</root>

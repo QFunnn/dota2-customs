@@ -1,0 +1,103 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_life_stealer"
+{
+	"life_stealer_ghoul_frenzy"
+	{
+		"attack_speed_bonus"
+		{
+			"value" "21"
+			"operator" "OP_ADD"
+		}
+	}
+	"life_stealer_rage"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "5"
+			"operator" "OP_MULTIPLY"
+			"max_count" "6"
+		}
+		"movespeed_bonus"
+		{
+			"value" "6"
+			"operator" "OP_ADD"
+		}
+	}
+	"life_stealer_open_wounds"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"heal_percent"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+		}
+	}
+	"life_stealer_feast"
+	{
+		"hp_leech_percent"
+		{
+			"value" "0.15"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"hp_damage_percent" "0.15"
+			}
+		}
+		"bonus_hp_per_hero"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"bonus_hp_per_creep" "5"
+			}
+		}
+	}
+	"life_stealer_infest"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"radius"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"max_count" "8"
+		}
+		"damage"
+		{
+			"value" "80"
+			"operator" "OP_ADD"
+		}
+		"bonus_movement_speed"
+		{
+			"value" "4"
+			"operator" "OP_ADD"
+		}
+		"bonus_health"
+		{
+			"value"			"125"
+			"talents"
+			{
+				"special_bonus_unique_lifestealer_infest_target_bonus"	"x1.15"
+			}
+			"operator" "OP_ADD"
+		}
+	}
+}

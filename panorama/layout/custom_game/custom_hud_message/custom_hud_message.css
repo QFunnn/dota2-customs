@@ -1,0 +1,88 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.Custom_HudMessagesRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#Custom_HudMessageContainer
+{
+	flow-children: down;
+	align: center center;
+	margin-bottom: 400px;
+	visibility: collapse;
+}
+
+#Custom_HudMessageContainer.Show
+{
+	visibility: visible;
+}
+
+#Custom_HudMessageContainer.Init
+{
+	animation-name: text_size;
+	animation-duration: 0.3s;
+	animation-timing-function: linear;
+	animation-iteration-count: 1;
+}
+
+@keyframes 'text_size'
+{
+	0%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 1.2;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+#Custom_HudText
+{
+	background-color: rgba(111, 0, 0, 0.8);
+	color: white;
+	font-size: 30px;
+	padding: 11px 10px 8px 10px;
+	border-radius: 5px;
+	horizontal-align: center;
+	text-align: center;
+	max-width: 1600px;
+}
+
+#Custom_HudTextClose
+{
+	horizontal-align: center;
+	background-color: rgba(111, 0, 0, 0.8);
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	padding: 2px 15px;
+	text-decoration: underline;
+	font-style: italic;
+	font-size: 15px;
+	color: #c6c6c6;
+	text-align: center;
+}
+
+#Custom_HudTextClose:hover
+{
+	color: white;
+}

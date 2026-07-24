@@ -1,0 +1,46 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_weaver"
+{
+	"weaver_the_swarm"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "7"
+			"operator" "OP_MULTIPLY"
+			"max_count" "9"
+		}
+		"damage"
+		{
+			"value" "6"
+			"operator" "OP_ADD"
+		}
+		"attack_rate"
+		{
+			"value" "-0.04"
+			"operator" "OP_MULTIPLY"
+			
+			"multiplicative_target"			"0.07"
+			"multiplicative_base_value"		"0.7"
+		}
+		"duration"
+		{
+			"value" "2"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"count" "2"
+				"spawn_radius" "20"
+			}
+		}
+	}
+}

@@ -1,0 +1,53 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/season_reset_notification/season_reset_notification.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/cosmetics/cosmetics_rarities.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/season_reset_notification/season_reset_notification.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="reset_reward">
+			<Panel class="ResetReward">
+				<Panel class="RewardBorder CI_Background">
+					<Image id="ResetRewardIcon">
+						<Label class="ResetRewardAmount" text="{d:reward_amount}" />
+					</Image>
+				</Panel>
+				<Label class="ResetRewardName" text="{s:reward_name}" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="SeasonResetContainer">
+		<Image class="SeasonResetImage" src="s2r://panorama/images/custom_game/leaderboard/leaderboards_trophy_png.vtex" />
+		<Panel class="SeasonResetNotification" hittest="false">
+			<Label class="SeasonResetHeader" text="#season_reset_header" />
+			<Label class="SeasonResetDescription" html="true" text="#season_reset_description" />
+			<Panel class="NewRatingContainer">
+				<Label text="#season_reset_new_rating" html="true" />
+				<Label class="NewRatingHeader_MapName" text="{s:map}" html="true" />
+				<Label text=": " html="true" />
+				<Panel class="NewRatingWrap">
+					<Label id="LocalPlayerRating" text="{d:new_rating}" />
+				</Panel>
+			</Panel>
+			<Panel id="ResetRewardsContainer" />
+			<Button class="SR_Confirm" onactivate="SetStatus(false)">
+				<Label class="SR_ConfirmLabel" text="#confirm" />
+			</Button>
+		</Panel>
+	</Panel>
+</root>

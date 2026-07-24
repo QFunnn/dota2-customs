@@ -1,0 +1,1186 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.Collection_ChatWheel_Root
+{
+	width: 100%;
+	height: 100%;
+	horizontal-align: center;
+}
+
+.CW_ContentRoot
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+}
+
+.CW_Wheel
+{
+	width: 550px;
+	height: 100%;
+	background-color: rgba(41, 41, 41, 0.08);
+	padding: 2px 5px 2px 5px;
+}
+
+.CW_Wheel_Wrap
+{
+	width: 100%;
+	height: 100%;
+	margin-top: 12px;
+}
+
+.CW_Buttons
+{
+	width: 100%;
+	flow-children: down;
+	vertical-align: center;
+	padding-top: -17px;
+}
+
+.CW_BasicHint
+{
+	align: center top;
+	width: 450px;
+}
+
+.CW_BasicHint Label
+{
+	color: white;
+	text-align: center;
+	background-image: url("s2r://panorama/images/custom_game/collection/chat_wheel/mouse_drag_png.vtex");
+	background-size: 40px 22px;
+	background-repeat: no-repeat;
+	background-position: 0 3px;
+	padding-left: 38px;
+	margin-left: -25px;
+	font-weight: lighter;
+}
+
+.Language_russian .CW_BasicHint Label
+{
+	font-size: 15px;
+}
+
+.CW_BindHint
+{
+	align: center bottom;
+	flow-children: right;
+}
+
+.CW_BindHint_KeyContainer
+{
+	padding: 2px 25px 2px 25px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3f485a), to(#2b2c35));
+	border: 2px solid white;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#474955), to(#444450));
+	margin-left: 10px;
+	border-radius: 3px;
+}
+
+.CW_BindHint Label
+{
+	color: white;
+	text-align: center;
+	font-weight: lighter;
+	vertical-align: center;
+}
+
+.CW_BindHint_KeyContainer Label
+{
+	font-weight: bold;
+}
+
+.CW_B_Inline
+{
+	width: 100%;
+	flow-children: right;
+	margin-top: 16px;
+}
+
+.CW_B_Inline > Panel
+{
+	horizontal-align: center;
+}
+
+.Line2,.Line4
+{
+	margin-right: 30px;
+	margin-left: 30px;
+}
+
+.CW_Button
+{
+	width: 180px;
+	height: 54px;
+}
+
+.CW_Button_ContentWrap
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 25px;
+	padding: 0 6px;
+	box-shadow: 0 2px 16px -1px rgba(0, 0, 0, 0.4);
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#49555b), to(#30373b));
+	border: 2px solid white;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#647075), to(#485156));
+}
+
+.CW_Button_ContentWrap > Panel
+{
+	align: center center;
+	flow-children: right;
+}
+
+.DragSource .CW_Button_ContentWrap
+{
+	box-shadow: hollow rgba(255, 255, 103, 0.7) 0 0 4px 2;
+	opacity: 0.3;
+}
+
+.OnChatWheelComponentDragged .CW_Button_ContentWrap
+{
+	box-shadow: hollow #ffff67 0 0 4px 2;
+}
+
+.OnChatWheelComponentDragged .CW_Button_ContentWrap
+{
+	brightness: 1.5;
+}
+
+#CW_Button_Line
+{
+	align: center center;
+	text-align: center;
+	text-overflow: shrink;
+	min-width: 1px;
+	max-width: 128px;
+	background-color: transparent;
+}
+
+.CW_DefaultWhite
+{
+	color: white;
+}
+
+#CW_Button_Emoji_Icon_Container
+{
+	vertical-align: center;
+	margin-left: 3px;
+}
+
+.CW_Button_ColorIndicator
+{
+	width: 18px;
+	height: 18px;
+	horizontal-align: right;
+	background-image: url("s2r://panorama/images/custom_game/collection/chat_wheel/color_hover_png.vtex");
+	background-size: 100%;
+	visibility: collapse;
+}
+
+.BHasNonDefaultColor .CW_Button_ColorIndicator
+{
+	visibility: visible;
+}
+
+.CW_Filler
+{
+	width: fill-parent-flow(1);
+}
+
+.CW_RightSide
+{
+	width: 100%;
+	height: 100%;
+}
+
+.CW_AvailableContent
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	background-color: #121620;
+}
+
+.CW_AC_TabButtons
+{
+	horizontal-align: center;
+	flow-children: right;
+	padding-left: -4px;
+	margin: 5px;
+	width: 100%;
+	height: 36px;
+}
+
+.CW_AC_TabButtons .RadioBox
+{
+	visibility: collapse;
+}
+
+.CW_AC_TabButtons RadioButton
+{
+	padding: 2px 4px;
+	margin-left: 4px;
+	background-color: #1a1b1f;
+	width: fill-parent-flow(1);
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/collection/chat_wheel/tab_button_png.vtex");
+	background-size: 100%;
+}
+
+.CW_AC_TabButtons RadioButton:hover
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/chat_wheel/tab_button_hover_png.vtex"), url("s2r://panorama/images/custom_game/collection/chat_wheel/tab_button_png.vtex");
+}
+
+.CW_AC_TabButtons RadioButton:selected
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/chat_wheel/tab_button_selected_png.vtex");
+}
+
+.CW_AC_TabButtons RadioButton Label
+{
+	align: center center;
+	padding-left: 28px;
+	background-size: 20px;
+	background-repeat: no-repeat;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#6c8d9f), to(#b4d8ef));
+	text-shadow: black 0 1px 1px 2;
+	transition-duration: 0s;
+	img-shadow: black 0 1px 2 2px;
+	text-overflow: shrink;
+}
+
+.CW_AC_TabButtons RadioButton:hover Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#d1eefe), to(#e2f3ff));
+}
+
+#CW_AC_B_DefaultSounds Label
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/chat_wheel/default_png.vtex");
+}
+
+#CW_AC_B_DefaultSounds:hover Label
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/chat_wheel/default_hover_png.vtex"), url("s2r://panorama/images/custom_game/collection/chat_wheel/default_png.vtex");
+}
+
+#CW_AC_B_DefaultSounds:selected Label
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/chat_wheel/default_selected_png.vtex");
+}
+
+#CW_AC_B_HeroesSounds Label
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/chat_wheel/heroes_png.vtex");
+}
+
+#CW_AC_B_HeroesSounds:hover Label
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/chat_wheel/heroes_hover_png.vtex"), url("s2r://panorama/images/custom_game/collection/chat_wheel/heroes_png.vtex");
+}
+
+#CW_AC_B_HeroesSounds:selected Label
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/chat_wheel/heroes_selected_png.vtex");
+}
+
+#CW_AC_B_NewSounds Label
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/chat_wheel/new_png.vtex");
+}
+
+#CW_AC_B_NewSounds:hover Label
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/chat_wheel/new_hover_png.vtex"), url("s2r://panorama/images/custom_game/collection/chat_wheel/new_png.vtex");
+}
+
+#CW_AC_B_NewSounds:selected Label
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/chat_wheel/new_selected_png.vtex");
+}
+
+#CW_AC_B_Emojies Label
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/chat_wheel/emoji_png.vtex");
+}
+
+#CW_AC_B_Emojies:hover Label
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/chat_wheel/emoji_hover_png.vtex"), url("s2r://");
+}
+
+#CW_AC_B_Emojies:selected Label
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/chat_wheel/emoji_selected_png.vtex");
+}
+
+#CW_AC_B_Colors Label
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/chat_wheel/color_png.vtex");
+}
+
+#CW_AC_B_Colors:hover Label
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/chat_wheel/color_hover_png.vtex"), url("s2r://panorama/images/custom_game/collection/chat_wheel/color_png.vtex");
+}
+
+#CW_AC_B_Colors:selected Label
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/chat_wheel/color_selected_png.vtex");
+}
+
+.CW_AC_TabButtons RadioButton:selected Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#ed9215), to(#f8ca78));
+}
+
+.CW_AC_Content
+{
+	width: 100%;
+	height: 100%;
+}
+
+.CW_AC_Content > Panel
+{
+	width: 100%;
+	height: 100%;
+	visibility: collapse;
+}
+
+#CW_AC_SoundsRoot_Default
+{
+	flow-children: down;
+}
+
+#CW_AC_SoundsRoot_Heroes
+{
+	flow-children: down;
+}
+
+#CW_AC_SoundsRoot_New
+{
+	flow-children: down;
+}
+
+#CW_AC_SearchSounds
+{
+	width: 100%;
+	height: 30px;
+}
+
+.CW_AC_Sounds
+{
+	width: 100%;
+	flow-children: down;
+	padding: 0px 5px 5px 5px;
+	overflow: squish scroll;
+}
+
+#CW_AC_EmojiesRoot,#CW_AC_ColorsRoot
+{
+	overflow: squish scroll;
+	margin-top: 9px;
+	padding-bottom: 10px;
+}
+
+.CW_SoundsGroup
+{
+	flow-children: down;
+	margin-top: 2px;
+	width: 100%;
+	padding: 4px;
+	border-radius: 3px;
+}
+
+#CW_SG_Header_Wrap
+{
+	flow-children: right;
+}
+
+#CW_SG_HeaderIcon
+{
+	width: 32px;
+	height: 32px;
+	margin-right: 2px;
+	texture-sampling: point;
+	visibility: collapse;
+}
+
+#CW_AC_SoundsRoot_Heroes #CW_SG_HeaderIcon
+{
+	visibility: visible;
+}
+
+#CW_SG_Header
+{
+	border-radius: 10px;
+	padding: 1px 5px;
+	vertical-align: center;
+}
+
+#CW_SG_Header Label
+{
+	vertical-align: center;
+	font-family: titleFont;
+	font-weight: semi-bold;
+	text-transform: uppercase;
+	color: #c6d3d7;
+	letter-spacing: 1px;
+}
+
+#CW_SG_Container
+{
+	flow-children: down;
+	border-top: 1px solid #333334;
+	width: 100%;
+	margin-top: 3px;
+	margin-left: 4px;
+	padding-top: 5px;
+}
+
+.CW_Phrase
+{
+	border-radius: 5px;
+	padding: 1px 5px 1px 2px;
+	margin-top: 2px;
+	flow-children: right;
+}
+
+.BDraggablePanel
+{
+	background-color: #1a1b1f;
+}
+
+.CW_Phrase Image
+{
+	height: 18px;
+	width: 12px;
+	margin-right: 3px;
+	vertical-align: center;
+}
+
+#CW_Phrase_Preview
+{
+	width: 21px;
+	height: 21px;
+	margin-right: 3px;
+	background-image: url("s2r://panorama/images/hud/reborn/icon_scoreboard_mute_sound_psd.vtex");
+	background-size: 100%;
+	vertical-align: center;
+}
+
+#CW_Phrase_Preview:hover
+{
+	brightness: 1.5;
+}
+
+#CW_Phrase_Preview:active
+{
+	brightness: 0.7;
+	pre-transform-scale2d: 0.92;
+}
+
+.BDraggablePanel #CW_Phrase_Preview,#CW_AC_SoundsRoot_Heroes #CW_Phrase_Preview
+{
+	visibility: collapse;
+}
+
+#CW_AC_Emojies,#CW_AC_Colors
+{
+	flow-children: down;
+	horizontal-align: center;
+	margin-top: 3px;
+}
+
+.CW_Emoji,.CW_Color
+{
+	flow-children: down;
+}
+
+.CW_Emoji_Wrap,.CW_Color_Name_Wrap
+{
+	width: 87px;
+	border: 2px solid white;
+	border-brush: gradient( linear, 100% 100%, 0% 0%, from(#5789c6), color-stop(0.42, #264265), color-stop(0.58, #264265), to(#5789c6) );
+	transition-property: border-brush;
+	transition-duration: 0.1s;
+	padding: 4px 0;
+}
+
+.CW_Color_Name_Wrap
+{
+	width: 135px;
+}
+
+.CW_Emoji:hover .CW_Emoji_Wrap,.CW_Color:hover .CW_Color_Name_Wrap
+{
+	border-brush: gradient( linear, 100% 100%, 0% 0%, from(#575643), color-stop(0.42, #f2b87b), color-stop(0.58, #f2b87b), to(#706f5e) );
+}
+
+#CW_Emoji_Icon_Container
+{
+	width: 38px;
+	height: 38px;
+	align: center center;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#2f373b), to(#49565c));
+	border-radius: 3px;
+	padding: 5px;
+}
+
+.CW_Emoji #CW_Open,.CW_Color #CW_Open
+{
+	width: 100%;
+	margin: 0;
+	border-radius: 0;
+	border: 0px solid transparent;
+	padding: 5px 0 4px 0;
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/action_button_png.vtex");
+	background-size: 100%;
+}
+
+.CW_Emoji:hover #CW_Open,.CW_Color:hover #CW_Open
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/action_button_hover_png.vtex"), url("s2r://panorama/images/custom_game/collection/cosmetics/action_button_png.vtex");
+}
+
+.CW_Emoji #CW_Open .CW_Open_Icon,.CW_Color #CW_Open .CW_Open_Icon
+{
+	margin-bottom: 0px;
+	margin-top: 1px;
+}
+
+#CW_Open
+{
+	vertical-align: center;
+	flow-children: right;
+	border: 1px solid #52525f;
+	border-radius: 3px;
+	padding: 1px 3px 0px 3px;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#26262f), to(#3c4a5f));
+	visibility: collapse;
+	margin-right: 3px;
+}
+
+.CW_Phrase #CW_Open
+{
+	min-width: 75px;
+}
+
+.CW_Phrase #CW_Open Label
+{
+	margin-right: 3px;
+	horizontal-align: center;
+	text-align: center;
+	font-family: monospaceNumbersFont;
+}
+
+.CW_Phrase #CW_Open:hover
+{
+	brightness: 1.5;
+}
+
+.CW_Color.BClosed #CW_Open:active,.CW_Emoji.BClosed #CW_Open:active,.CW_Phrase #CW_Open:active
+{
+	brightness: 0.7;
+}
+
+#CW_Open > Panel
+{
+	flow-children: right;
+	align: center center;
+}
+
+#CW_Open .CW_Open_Icon
+{
+	width: 18px;
+	height: 18px;
+	background-image: url("s2r://panorama/images/custom_game/collection/currency_icon_small_png.vtex");
+	background-size: 100%;
+	margin-bottom: 1px;
+}
+
+#CW_Open Label
+{
+	margin-left: 3px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#ed9215), to(#f8ca78));
+	text-shadow: black 0 0 1px 2;
+}
+
+.CW_Emoji #CW_Open,.CW_Color #CW_Open,.BClosed #CW_Open
+{
+	visibility: visible;
+}
+
+.CW_Emoji:not(.BClosed) #CW_Open .CW_Open_Icon,.CW_Color:not(.BClosed) #CW_Open .CW_Open_Icon
+{
+	visibility: collapse;
+}
+
+.CW_Emoji:not(.BClosed) #CW_Open Label,.CW_Color:not(.BClosed) #CW_Open Label
+{
+	color: #f5bd61;
+	margin: 0;
+}
+
+.Language_russian .CW_Emoji:not(.BClosed) #CW_Open Label,.Language_russian .CW_Color:not(.BClosed) #CW_Open Label
+{
+	font-size: 14px;
+	margin: 2px 0 3px 0;
+}
+
+.BDraggablePanel #CW_Open
+{
+	visibility: collapse;
+}
+
+#CW_AC_SoundsRoot_New .CW_Source_TREASURE.BClosed #CW_Open
+{
+	padding-top: 0;
+}
+
+#CW_AC_SoundsRoot_New .CW_Source_TREASURE.BClosed #CW_Open .CW_Open_Icon
+{
+	width: 19px;
+	height: 19px;
+}
+
+.CW_Source_TREASURE.BClosed #CW_Open Label
+{
+	visibility: collapse;
+}
+
+.CW_Source_TREASURE.BClosed #CW_Open .CW_Open_Icon
+{
+	margin: 2px 24px 1px 24px;
+	opacity-mask: url("s2r://panorama/images/custom_game/collection/chat_wheel/treasure_icon_png.vtex");
+	background-image: none;
+	background-color: gradient(linear, 0% 125%, 0% 0%, from(#ed9215), to(#f8ca78));
+	brightness: 1.2;
+	horizontal-align: center;
+}
+
+.CW_Color_Name_SolidBackground
+{
+	width: 100%;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#2f373b), to(#49565c));
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#21272a), to(#3c464b));
+	margin: 2px 6px;
+	border-radius: 3px;
+}
+
+.CW_Color_Name_SolidBackground > Panel
+{
+	width: 100%;
+}
+
+#CW_Color_Name
+{
+	align: center center;
+	border-radius: 3px;
+	text-align: center;
+	padding: 4px 2px;
+	background-color: transparent;
+}
+
+#CW_Color_Name,#CW_Color_Name Label
+{
+	height: 29px;
+	text-overflow: shrink;
+}
+
+.CW_DefaultShadow
+{
+	text-shadow: black 0 1px 2px 1;
+}
+
+.BActiveContent_DEFAULT_SOUNDS #CW_AC_SoundsRoot_Default,.BActiveContent_HEROES_SOUNDS #CW_AC_SoundsRoot_Heroes,.BActiveContent_NEW_SOUNDS #CW_AC_SoundsRoot_New,.BActiveContent_EMOJIES #CW_AC_EmojiesRoot,.BActiveContent_COLORS #CW_AC_ColorsRoot
+{
+	visibility: visible;
+}
+
+.CW_AC_Search
+{
+	width: 100%;
+	margin: 0 5px;
+	background-color: #212633;
+	background-color: #272932;
+	visibility: collapse;
+}
+
+.BActiveContent_DEFAULT_SOUNDS .CW_AC_Search,.BActiveContent_HEROES_SOUNDS .CW_AC_Search,.BActiveContent_NEW_SOUNDS .CW_AC_Search
+{
+	visibility: visible;
+}
+
+.CW_AC_Search_Clear
+{
+	box-shadow: black 0 0px 5px -1px;
+	box-shadow: black 0 0px 7px -1px;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#293143), to(#343f55));
+	background-color: #272932;
+	padding: 4px 8px;
+	align: right center;
+	margin-right: 5px;
+	border-radius: 3px;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.15s;
+	max-width: 120px;
+}
+
+.BSearchInputFocus .CW_AC_Search_Clear
+{
+	opacity: 1;
+}
+
+.CW_AC_Search_Clear Label
+{
+	background-image: url("s2r://panorama/images/custom_game/import_dota/x_close_png_png.vtex");
+	background-size: 13px;
+	background-repeat: no-repeat;
+	background-position: 0 3px;
+	padding: 1px 0 0 16px;
+	text-transform: uppercase;
+	color: white;
+	font-size: 14px;
+	wash-color: #aabbe1;
+}
+
+.CW_AC_TextEntry
+{
+	width: 100%;
+	margin: 0 120px 0 40px;
+	height: 24px;
+	padding: 0 5px;
+	color: #aabbe1;
+	text-shadow: black 0 0px 1px 2;
+	background-color: none;
+	align: center center;
+	border: 0px solid transparent;
+	font-weight: lighter;
+}
+
+.CW_AC_TextEntry:focus
+{
+	color: #ffb284;
+	text-decoration: underline;
+}
+
+.CW_AC_Search_PlaceHolder
+{
+	background-color: #212633;
+	background-color: #272932;
+	width: 100%;
+	padding: 8px 11px;
+	horizontal-align: center;
+	transition-property: opacity;
+	transition-duration: 0.15s;
+	vertical-align: center;
+}
+
+.BSearchInputFocus .CW_AC_Search_PlaceHolder
+{
+	opacity: 0;
+}
+
+.CW_AC_Search_PlaceHolder Label
+{
+	color: white;
+	wash-color: #aabbe1;
+	text-shadow: black 0 0px 1px 2;
+	padding-left: 20px;
+	background-image: url("s2r://");
+	background-size: 15px;
+	background-repeat: no-repeat;
+	background-position: 0% 50%;
+	horizontal-align: center;
+	text-align: center;
+	font-weight: lighter;
+	transition-property: wash-color;
+	transition-duration: 0.15s;
+}
+
+.CW_AC_Search_PlaceHolder:hover Label
+{
+	wash-color: #c3d6ff;
+}
+
+.CW_AC_Search_PlaceHolder:active Label
+{
+	wash-color: #91a1c3;
+}
+
+.CW_Lines
+{
+	width: 100%;
+	height: 100%;
+}
+
+.CW_Line
+{
+	height: 3px;
+	width: 45px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#242b31), color-stop(0.5, #475459), to(#242b31));
+	align: center center;
+}
+
+.CW_Line_1
+{
+	transform: rotateZ(90deg);
+	margin-bottom: 160px;
+	width: 75px;
+}
+
+.CW_Line_2
+{
+	transform: rotateZ(-45deg);
+	margin-bottom: 95px;
+	margin-left: 95px;
+}
+
+.CW_Line_3
+{
+	width: 48px;
+	margin-left: 135px;
+}
+
+.CW_Line_4
+{
+	transform: rotateZ(45deg);
+	margin-top: 95px;
+	margin-left: 95px;
+}
+
+.CW_Line_5
+{
+	transform: rotateZ(90deg);
+	margin-top: 160px;
+	width: 75px;
+}
+
+.CW_Line_6
+{
+	transform: rotateZ(-45deg);
+	margin-top: 95px;
+	margin-right: 95px;
+}
+
+.CW_Line_7
+{
+	margin-right: 135px;
+	width: 48px;
+}
+
+.CW_Line_8
+{
+	transform: rotateZ(45deg);
+	margin-bottom: 95px;
+	margin-right: 95px;
+}
+
+.CW_CircleLogo
+{
+	align: center center;
+	width: 91px;
+	height: 91px;
+	background-image: url("s2r://panorama/images/custom_game/collection/chat_wheel/chat_wheel_icon_png.vtex");
+	background-size: 100%;
+}
+
+.CW_TypeHint_Toggle_Wrap
+{
+	width: 100%;
+	padding: 0 14px;
+	flow-children: right;
+}
+
+.CW_TypeHint
+{
+	align: left center;
+	width: fill-parent-flow(1);
+	margin-top: 6px;
+	visibility: collapse;
+}
+
+.Language_russian .CW_TypeHint
+{
+	font-size: 14px;
+}
+
+.Language_russian #CW_ToggleHidden Label
+{
+	font-size: 16px;
+	margin-top: -2px;
+}
+
+.BActiveContent_EMOJIES .CW_TypeHint,.BActiveContent_COLORS .CW_TypeHint
+{
+	visibility: visible;
+}
+
+#CW_ToggleHidden
+{
+	align: right top;
+	margin-top: 4px;
+}
+
+.BActiveContent_DEFAULT_SOUNDS #CW_ToggleHidden,.BActiveContent_HEROES_SOUNDS #CW_ToggleHidden
+{
+	visibility: collapse;
+}
+
+.BHideLocked .CW_SoundsGroup:not(.BHasOwnedContent),.BHideLocked .CW_SoundsGroup .BClosed
+{
+	width: 0px;
+	height: 0px;
+	margin: 0px;
+}
+
+.BHideLocked .BClosed
+{
+	visibility: collapse;
+}
+
+.CW_RemoveContent
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(18, 22, 32, 0.99)), to(rgba(18, 22, 32, 1))), gradient( radial, 50% 2%, 0% 0%, 50% 32%, from(rgba(197, 48, 48, 0.25)), color-stop(0.5, rgba(197, 48, 48, 0.07)), to(transparent) );
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.15s;
+}
+
+.CW_RemoveContentHeader
+{
+	color: #eeeeee;
+	align: center top;
+	font-size: 35px;
+	font-weight: semi-bold;
+	margin-top: 22px;
+}
+
+.CW_RemoveContent_Wrap
+{
+	width: 100%;
+	height: 100%;
+	margin-top: 40px;
+}
+
+.BStartChatWheelDrag_Remove .CW_RemoveContent
+{
+	opacity: 1;
+}
+
+.CW_RemoveLogo
+{
+	align: center center;
+	width: 91px;
+	height: 91px;
+	background-image: url("s2r://panorama/images/custom_game/collection/chat_wheel/remove_content_icon_png.vtex");
+	background-size: 100%;
+}
+
+#CW_RemoveContent_Zones
+{
+	width: 100%;
+	height: 100%;
+}
+
+.CW_RemoveZone
+{
+	flow-children: down;
+	align: center center;
+	saturation: 0;
+	wash-color: #959595;
+}
+
+#CW_RemoveZone_ALL,.BStartChatWheelDrag_Remove_Sounds #CW_RemoveZone_SOUNDS,.BStartChatWheelDrag_Remove_Colors #CW_RemoveZone_COLORS,.BStartChatWheelDrag_Remove_Emojies #CW_RemoveZone_EMOJIES
+{
+	saturation: 1;
+	wash-color: transparent;
+}
+
+.CW_RemoveZone .CW_Button
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2f3335), to(#202324));
+	border: 2px solid white;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#ff4343), to(#631111));
+	border-radius: 25px;
+}
+
+.CW_RemoveZone .CW_Button > Panel
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 23px;
+	background-size: 34px;
+	background-position: 50%;
+	img-shadow: black 0 1px 1 2px;
+	background-repeat: no-repeat;
+	box-shadow: inset transparent 0 0 0px 0;
+	margin: -2px;
+}
+
+#CW_RemoveZone_ALL:not(.OnChatWheelFavoriteDragged) .CW_Button > Panel,.BStartChatWheelDrag_Remove_Sounds #CW_RemoveZone_SOUNDS:not(.OnChatWheelFavoriteDragged) .CW_Button > Panel,.BStartChatWheelDrag_Remove_Colors #CW_RemoveZone_COLORS:not(.OnChatWheelFavoriteDragged) .CW_Button > Panel,.BStartChatWheelDrag_Remove_Emojies #CW_RemoveZone_EMOJIES:not(.OnChatWheelFavoriteDragged) .CW_Button > Panel
+{
+	animation-name: remove-animation;
+	animation-duration: 1.1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'remove-animation'
+{
+	0%
+	{
+		box-shadow: inset #631111 0 0 3px 0;
+	}
+	
+	50%
+	{
+		box-shadow: inset #ff4343 0 0 8px 8;
+	}
+	
+	100%
+	{
+		box-shadow: inset #631111 0 0 3px 0;
+	}
+	
+}
+
+.CW_RemoveZone Label
+{
+	align: center center;
+	color: #ff9292;
+	letter-spacing: 1px;
+	margin: 2px 0;
+}
+
+#CW_RemoveZone_SOUNDS .CW_Button > Panel
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/chat_wheel/default_remove_png.vtex");
+}
+
+#CW_RemoveZone_EMOJIES .CW_Button > Panel
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/chat_wheel/emoji_remove_png.vtex");
+}
+
+#CW_RemoveZone_COLORS .CW_Button > Panel
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/chat_wheel/color_remove_png.vtex");
+}
+
+#CW_RemoveZone_ALL .CW_Button > Panel
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/chat_wheel/all_remove_png.vtex");
+}
+
+#CW_RemoveZone_ALL.OnChatWheelFavoriteDragged .CW_Button > Panel,.BStartChatWheelDrag_Remove_Sounds #CW_RemoveZone_SOUNDS.OnChatWheelFavoriteDragged .CW_Button > Panel,.BStartChatWheelDrag_Remove_Colors #CW_RemoveZone_COLORS.OnChatWheelFavoriteDragged .CW_Button > Panel,.BStartChatWheelDrag_Remove_Emojies #CW_RemoveZone_EMOJIES.OnChatWheelFavoriteDragged .CW_Button > Panel
+{
+	box-shadow: inset rgba(255, 67, 67, 0.64) 0 0 10px 15;
+}
+
+#CW_RemoveZone_SOUNDS
+{
+	margin-bottom: 230px;
+}
+
+#CW_RemoveZone_EMOJIES
+{
+	margin-right: 320px;
+}
+
+#CW_RemoveZone_COLORS
+{
+	margin-left: 320px;
+}
+
+#CW_RemoveZone_ALL
+{
+	margin-top: 230px;
+}
+
+#CW_RemoveZone_EMOJIES
+{
+	margin-bottom: 23px;
+	margin-right: 320px;
+}
+
+#CW_RemoveZone_COLORS
+{
+	margin-left: 320px;
+	margin-bottom: 23px;
+}
+
+#CW_RemoveZone_ALL
+{
+	margin-top: 230px;
+}
+
+.CW_Green
+{
+	color: #9affcb;
+}
+
+.CW_Red
+{
+	color: #ff9f9f;
+}
+
+.CW_Blue
+{
+	color: #cbe2ff;
+}
+
+.CW_Phrase_Line
+{
+	color: #e2e2e2;
+}
+
+.CW_Gold
+{
+	color: #ffca3d;
+}
+
+.CW_Phrase .CW_Phrase_Line
+{
+	vertical-align: center;
+}
+
+.CW_Source_NONE.BClosed
+{
+	width: 0px;
+	height: 0px;
+	margin: 0;
+	padding: 0;
+}
+
+#CW_AC_Emojies > Panel,#CW_AC_Colors > Panel
+{
+	visibility: collapse;
+}
+
+#CW_AC_Emojies .BHasOwnedContent,#CW_AC_Emojies .BHasNonOtherContent
+{
+	visibility: visible;
+}
+
+#CW_AC_Colors .BHasOwnedContent,#CW_AC_Colors .BHasNonOtherContent
+{
+	visibility: visible;
+}

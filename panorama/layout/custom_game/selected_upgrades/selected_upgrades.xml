@@ -1,0 +1,97 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/selected_upgrades/selected_upgrades.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/scripts/upgrades_shared.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/selected_upgrades/selected_upgrades.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="Upgrade">
+			<Button class="Upgrade">
+				<DOTAAbilityImage class="PressScaleAnimation" />
+				<Panel class="AbiltiyBorder PressScaleAnimation" />
+				<Label class="PressScaleAnimation" text="{d:total_u_count}" />
+			</Button>
+		</snippet>
+		<snippet name="AU_Upgrades_List">
+			<Panel class="AU_Upgrades_List">
+				<Panel class="AU_Upgrades_Header">
+					<Label class="Total_Upgrades_Count" text="{d:total_u_count}" />
+					<Label class="Upgrade_Header" text="{s:ability_name}" />
+				</Panel>
+				<Panel id="Upgrades_Lines" />
+			</Panel>
+		</snippet>
+		<snippet name="Upgrade_Line">
+			<Panel class="Upgrade_Line">
+				<Panel class="Upgrade_Count_Container">
+					<Panel>
+						<Label text="{d:upgrades_count}" />
+						<Label class="Upgrade_Count_Limit" text="/" />
+						<Label class="Upgrade_Count_Limit" text="{s:u_max_count}" />
+					</Panel>
+				</Panel>
+				<Panel class="Upgrade_Tree" />
+				<DOTAAbilityImage id="LinkedAbilityImage" />
+				<DOTAAbilityImage id="GenericIconImage" scaling="stretch-to-fit-y-preserve-aspect">
+					<Panel />
+				</DOTAAbilityImage>
+				<Label class="Upgrade_Name" text="{s:special_name}" html="true" />
+				<Label class="Upgrade_Value" text="{s:total_value}" />
+			</Panel>
+		</snippet>
+		<snippet name="UpgradesLinesContainer">
+			<Panel class="UpgradesLinesContainer">
+				<Panel class="ULC_Content">
+					<Panel id="ULC_Main" />
+					<Panel id="ULC_Linked" />
+				</Panel>
+				<Button id="FavoriteUpgradeButton" onactivate="">
+					<Panel class="StarBorder" />
+					<Panel class="StarColor" />
+				</Button>
+				<Panel class="FavoriteBorder" hittest="false" />
+			</Panel>
+		</snippet>
+		<snippet name="GenericRariryContainer">
+			<Panel class="GenericRariryContainer">
+				<Panel id="GRC_Header_Root">
+					<Label class="GRC_Header" text="{s:grc_header_rarity}" />
+					<Panel class="GRC_Minimize" />
+				</Panel>
+				<Panel id="GRC_Container" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="Upgrades_Root">
+		<Panel id="Upgrades_Wrap">
+			<Panel id="Upgrades_List_Details" onactivate="" />
+			<Panel id="AvailableUpgrades_List" onactivate="">
+				<Panel id="AU_Header">
+					<Label text="#selected_upgrades_tooltip" />
+				</Panel>
+				<Panel id="AU_ButtonsContainer">
+					<Panel id="AU_List_Line1" />
+					<Panel id="AU_List_Line2" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Button id="Upgrades_Button" onactivate="ShowDefaultSelectedUpgrades()">
+			<Panel />
+		</Button>
+	</Panel>
+</root>

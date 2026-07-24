@@ -1,0 +1,161 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_earth_spirit"
+{
+	"earth_spirit_stone_caller"
+	{
+		"attack_damage_per_stone"
+		{
+			"value" "1.5"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"attack_damage_per_stone_used" "4.5"
+			}
+		}
+	}
+	"earth_spirit_boulder_smash"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "9"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			"linked_abilities"
+			{
+				"earth_spirit_petrify"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "9"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"radius"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"rock_search_aoe" "30"
+				"AbilityCastRange" "30"
+			}
+			"linked_abilities"
+			{
+				"earth_spirit_petrify"
+				{
+					"aoe" "40"
+				}
+			}
+		}
+		"rock_damage"
+		{
+			"value" "45"
+			"operator" "OP_ADD"
+			"linked_abilities"
+			{
+				"earth_spirit_petrify"
+				{
+					"damage" "45"
+				}
+			}
+		}
+	}
+	"earth_spirit_rolling_boulder"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "6"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+			"linked_special_values"
+			{
+				"speed" "100"
+				"rock_speed" "160"
+				"delay" "-0.1"
+			}
+		}
+		"damage"
+		{
+			"value" "60"
+			"operator" "OP_ADD"
+		}
+	}
+	"earth_spirit_geomagnetic_grip"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			"linked_abilities"
+			{
+				"earth_spirit_stone_caller"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"radius"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"rock_damage"
+		{
+			"value" "75"
+			"operator" "OP_ADD"
+		}
+	}
+	"earth_spirit_magnetize"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "6"
+			"operator" "OP_MULTIPLY"
+		}
+		"cast_radius"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"rock_search_radius" "20"
+				"rock_explosion_radius" "20"
+			}
+			"linked_abilities"
+			{
+				"earth_spirit_stone_caller"
+				{
+					"vision_radius" "35"
+				}
+			}
+		}
+		"damage_per_second"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+			"talents"
+			{
+				"special_bonus_unique_earth_spirit_8"		"x1.25"
+			}
+		}
+	}
+}

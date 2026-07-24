@@ -1,0 +1,122 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_slark"
+{
+	"slark_essence_shift"
+	{
+		"agi_gain"
+		{
+			"value" "0.25"
+			"operator" "OP_ADD"
+			"min_rarity" "epic"
+		}
+	}
+	"slark_dark_pact"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+			"linked_special_values"
+			{
+				"delay" "-0.2"
+			}
+		}
+		"radius"
+		{
+			"value" "70"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"linked_special_values"
+			{
+				"self_damage_pct" "-6"
+			}
+		}
+		"total_damage"
+		{
+			"value" "85"
+			"operator" "OP_ADD"
+		}
+	}
+	"slark_pounce"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"leash_duration"
+		{
+			"value" "0.25"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"linked_special_values"
+			{
+				"leash_radius" "-50"
+			}
+		}
+		"essence_stacks"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+			"max_count" "6"
+		}
+	}
+	"slark_saltwater_shiv"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "12"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"regen_steal"
+		{
+			"value" "2"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"ms_steal" "2"
+			}
+		}
+	}
+	"slark_shadow_dance"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "6"
+			"operator" "OP_MULTIPLY"
+			"max_count" "6"
+			"linked_abilities"
+			{
+				"slark_depth_shroud"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "6"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"bonus_movement_speed"
+		{
+			"value" "6"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"bonus_regen" "30"
+			}
+		}
+	}
+}

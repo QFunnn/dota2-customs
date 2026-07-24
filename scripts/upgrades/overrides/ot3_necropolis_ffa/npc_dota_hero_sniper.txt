@@ -1,0 +1,97 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_sniper"
+{
+	"sniper_shrapnel"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "15"
+			"operator" "OP_MULTIPLY"
+		}
+		"radius"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"max_count" "8"
+		}
+		"shrapnel_damage"
+		{
+			"value" "18"
+			"operator" "OP_ADD"
+			"talents"
+			{
+				"special_bonus_unique_sniper_shrapnel_damage"		"x1.3"
+			}
+		}
+	}
+	"sniper_headshot"
+	{
+		"proc_chance"
+		{
+			"value" "6"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"damage"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+		}
+	}
+	"sniper_take_aim"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "14"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"slow"
+		{
+			"value" "-13"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+	}
+	"sniper_concussive_grenade"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "15"
+			"operator" "OP_MULTIPLY"
+		}
+		"radius"
+		{
+			"value" "80"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+		"damage"
+		{
+			"value" "100"
+			"operator" "OP_ADD"
+		}
+	}
+	"sniper_assassinate_lua"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "12"
+			"operator" "OP_MULTIPLY"
+		}
+		"damage"
+		{
+			"value" "100"
+			"operator" "OP_ADD"
+		}
+	}
+}

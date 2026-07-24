@@ -1,0 +1,128 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_venomancer"
+{
+	"venomancer_poison_sting"
+	{
+		"damage"
+		{
+			"value" "15"
+			"operator" "OP_ADD"
+		}
+	}
+	"venomancer_venomous_gale"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"strike_damage"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"tick_damage" "25"
+			}
+		}
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+	}
+	"venomancer_snakebite"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+		}
+		"base_damage"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"tick_damage"
+				{
+					"value" "16"
+					"operator" "OP_ADD"
+				}
+			}
+		}
+	}
+	"venomancer_plague_ward_custom"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "8"
+		}
+		"ward_damage_tooltip"
+		{
+			"value"			"15"
+
+			"talents"
+			{
+				"special_bonus_unique_venomancer"	"x2.5"
+			}
+
+			"operator" "OP_ADD"
+		}
+		"ward_hp_tooltip"
+		{
+			"value"		"60"
+			"talents"
+			{
+				"special_bonus_unique_venomancer"	"x2.5"
+			}
+
+			"operator" "OP_ADD"
+		}
+	}
+	"venomancer_noxious_plague"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"multiplicative_target"	"85"
+		}
+		"debuff_radius"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"impact_damage"
+		{
+			"value" "60"
+			"operator" "OP_ADD"
+
+			"linked_special_values"
+			{
+				"damage_per_second"
+				{
+					"value" "0.5"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target"			"10"
+					"multiplicative_base_value"		"4"
+				}
+			}
+		}
+	}
+}

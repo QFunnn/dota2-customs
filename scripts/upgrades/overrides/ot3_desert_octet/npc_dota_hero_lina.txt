@@ -1,0 +1,107 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_lina"
+{
+	"lina_dragon_slave"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"dragon_slave_damage"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+		}
+		"dragon_slave_width_end"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"dragon_slave_width_initial" "40"
+			}
+		}
+	}
+	"lina_light_strike_array"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"light_strike_array_aoe"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"light_strike_array_damage"
+		{
+			"value" "45"
+			"operator" "OP_ADD"
+		}
+	}
+	"lina_fiery_soul"
+	{
+		"fiery_soul_attack_speed_bonus"
+		{
+			"value" "6"
+			"operator" "OP_ADD"
+			//"linked_special_values"			// needs a complete rewrite of all the spells, not worth the time yet
+			//{
+			//	"shard_bonus_spell_damage" "3"
+			//}
+			"linked_abilities"
+			{
+				"lina_flame_cloak"
+				{
+					"spell_amp" "4"
+				}
+			}
+		}
+		"fiery_soul_move_speed_bonus"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+			"linked_abilities"
+			{
+				"lina_flame_cloak"
+				{
+					"magic_resistance"
+					{
+						"value" "5"
+						"operator" "OP_MULTIPLY"
+
+						"multiplicative_target"			"100"
+						"multiplicative_base_value"		"35"
+					}
+				}
+			}
+		}
+	}
+	"lina_laguna_blade"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"damage"
+		{
+			"value" "115"
+			"operator" "OP_ADD"
+		}
+	}
+}

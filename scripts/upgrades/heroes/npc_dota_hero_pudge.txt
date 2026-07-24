@@ -1,0 +1,110 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_pudge"
+{
+	"pudge_innate_graft_flesh"
+	{
+		"flesh_heap_strength_buff_amount"
+		{
+			"value" "0.2"
+			"operator" "OP_ADD"
+		}
+	}
+	"pudge_meat_hook"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"damage"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"distance_to_damage" "2"
+			}
+		}
+		"hook_speed"
+		{
+			"value" "200"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+	}
+	"pudge_rot"
+	{
+		"rot_radius"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"rot_damage"
+		{
+			"value" "8"
+			"operator" "OP_ADD"
+		}
+		"scepter_rot_regen_reduction_pct"
+		{
+			"value" "3"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"requires_scepter" "1"
+		}
+	}
+	"pudge_flesh_heap"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "9"
+		}
+		"damage_block"
+		{
+			"value" "3"
+			"talents"
+			{
+				"special_bonus_unique_pudge_1"	"x1.5"
+			}
+			"operator" "OP_ADD"
+		}
+	}
+	"pudge_dismember"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"strength_damage"
+		{
+			"value"	"0.1"
+			"operator" "OP_ADD"
+			"talents"
+			{
+				"special_bonus_unique_pudge_3"	"x1.5"
+			}
+		}
+		"dismember_damage"
+		{
+			"value"	"15"
+			"operator" "OP_ADD"
+			"talents"
+			{
+				"special_bonus_unique_pudge_3"	"x1.5"
+			}
+		}
+	}
+}

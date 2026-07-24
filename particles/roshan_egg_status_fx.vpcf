@@ -1,0 +1,98 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf45:version{73c3d623-a141-4df2-b548-41dd786e6300} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_nInitialParticles = 1
+	m_flConstantRadius = 0.0
+	m_ConstantColor = [ 0, 0, 0, 255 ]
+	m_nConstantSequenceNumber = 1
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_StatusEffect"
+			m_flDetail2Scale = 0.0
+			m_flColorWarpIntensity = 20.0
+			m_flAmbientScale = 0.0
+			m_flRimLightScale = 0.0
+			m_flSpecularScale = 0.0
+			m_flSpecularExponent = 10.0
+			m_flSpecularExponentBlendToFull = 1.0
+			m_flSpecularBlendToFull = 1.0
+			m_flMetalnessBlendToFull = 0.5
+			m_specularColor = [ 255, 255, 255 ]
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.1
+			}
+			m_nOutputField = 7
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_OscillateVectorSimple"
+			m_flOpStartFadeOutTime = 0.2
+			m_flOpEndFadeOutTime = 0.2
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+			m_nField = 15
+			m_Rate = [ 0.0, -5.0, 0.0 ]
+			m_Frequency = [ 0.0, 0.25, 0.0 ]
+			m_flOscAdd = 0.75
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+			m_nField = 7
+			m_Rate = -1.0
+		},
+		{
+			_class = "C_OP_RampScalarSplineSimple"
+			m_nField = 4
+			m_Rate = 4.0
+			m_flEndTime = 0.25
+			m_bEaseOut = true
+		},
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderStatusEffect"
+			m_pTextureDetail2 = resource:"materials/models/heroes/statuseffects/mossy_stone_status.vtex"
+			m_pTextureColorWarp = resource:"materials/models/heroes/statuseffects/colorwarp_desat_stone_mix.vtex"
+		},
+	]
+}

@@ -1,0 +1,87 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_bane"
+{
+	"bane_enfeeble"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+		}
+		"enfeeble_tick_damage"
+		{
+			"value" "8"
+			"operator" "OP_ADD"
+		}
+	}
+	"bane_brain_sap"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "7"
+			"operator" "OP_MULTIPLY"
+		}
+		"brain_sap_damage"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+		}
+		"shard_radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"shard_secondary_target_heal_pct" "2.5"
+			}
+		}
+	}
+	"bane_nightmare"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "3"
+		}
+		"walk_speed"
+		{
+			"value" "25"
+			"max_count" "3"
+		}
+	}
+	"bane_fiends_grip"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"fiend_grip_damage"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+		}
+		"fiend_grip_mana_drain"
+		{
+			"value" "0.5"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"linked_special_values"
+			{
+				"scepter_incoming_illusion_damage" "-20"
+			}
+		}
+	}
+}

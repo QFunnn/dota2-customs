@@ -1,0 +1,380 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.VotingToKickRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#VotingToKickReasonPanel
+{
+	width: 560px;
+	height: 165px;
+	flow-children: down;
+	horizontal-align: right;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/import_dota/item_purchase_bg_psd_png.vtex");
+	background-size: cover;
+	transform: translatex(1000px);
+	transition-property: transform;
+	transition-duration: 0.3s;
+}
+
+.ShowReason #VotingToKickReasonPanel
+{
+	transform: translatex(0px);
+}
+
+.VotingToKickReasonHeadPanel
+{
+	width: 100%;
+	height: 35px;
+	background-color: rgba(20, 20, 20, 0.9);
+}
+
+.VotingToKickReasonHeadPanelTextGrid
+{
+	color: white;
+	font-size: 30px;
+	height: 100%;
+	text-overflow: shrink;
+	text-shadow: 1px -1px 2px 2 #000000ff;
+	horizontal-align: center;
+	max-width: 95%;
+	vertical-align: center;
+}
+
+#VotingToKickReasonHeadPanelText
+{
+	color: white;
+	font-size: 30px;
+	text-overflow: shrink;
+	text-shadow: 1px -1px 2px 2 #000000ff;
+}
+
+.VotingToKickReasonClose
+{
+	horizontal-align: right;
+	width: 18px;
+	height: 18px;
+	background-size: 100%;
+	margin: 2px;
+	background-image: url("s2r://panorama/images/custom_game/import_dota/x_close_png_png.vtex");
+}
+
+.VotingToKickReasonClose:hover
+{
+	wash-color: red;
+}
+
+.VotingToKickReasonsList
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right-wrap;
+}
+
+.VotingToKickReason
+{
+	width: 120px;
+	height: 110px;
+	background-color: rgba(20, 20, 20, 0.9);
+	flow-children: down;
+	margin-left: 15px;
+	margin-top: 10px;
+}
+
+.VotingToKickReason:hover
+{
+	box-shadow: inset 0 0 5px rgba(220, 20, 20, 0.5);
+}
+
+.VotingToKickReason:hover .VotingToKickReasonButton
+{
+	color: rgb(187, 240, 209);
+}
+
+.VotingToKickReasonIcon
+{
+	horizontal-align: center;
+	margin-top: 6px;
+	width: 60px;
+	height: 60px;
+}
+
+.VotingToKickReasonButton
+{
+	font-size: 22px;
+	height: 30px;
+	width: 100%;
+	text-align: center;
+	color: white;
+	background-image: url("s2r://panorama/images/custom_game/import_dota/shop_launcher_button_psd_png.vtex");
+	background-size: 100%;
+	text-shadow: 1px -1px 2px 2 #000000ff;
+	padding-top: 2px;
+	padding-right: 2px;
+	padding-left: 2px;
+	margin: 4px;
+	margin-top: 8px;
+	text-overflow: shrink;
+}
+
+#VotingToKickVoting
+{
+	flow-children: down;
+	width: 250px;
+	horizontal-align: right;
+	margin-top: 300px;
+	background-image: url("s2r://panorama/images/custom_game/import_dota/item_purchase_bg_psd_png.vtex");
+	background-size: cover;
+	transform: translatex(1000px);
+	transition: opacity 0.2s ease-in-out 0s, transform 0.3s ease-in-out 0s;
+	opacity: 1;
+}
+
+.ShowVoting:not(.BHideVoting) #VotingToKickVoting
+{
+	transform: translatex(0px);
+}
+
+#VotingToKickVoting.Hide
+{
+	opacity: 0;
+}
+
+.VotingToKickVotingHeadPanel
+{
+	width: 100%;
+	height: 40px;
+	background-color: rgba(30, 30, 30, 0.9);
+}
+
+#VotingToKickVotingHeadText
+{
+	margin-top: 7px;
+	color: white;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	font-size: 22px;
+	text-shadow: 1px -1px 2px 2 #000000ff;
+	text-overflow: shrink;
+}
+
+.VotingToKickVotingButtons
+{
+	flow-children: right;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.BHideVotingButtons .VotingToKickVotingButtons,.BHideVotingButtons #ReportButton
+{
+	visibility: collapse;
+}
+
+.BPlayerVoted .VotingToKickVotingButtons
+{
+	visibility: collapse;
+}
+
+.VotingToKickRoot:not(.ShowVoting) .VotingToKickVotingButton
+{
+	visibility: collapse;
+}
+
+.BPlayerReported #ReportButton
+{
+	visibility: collapse;
+}
+
+.VotingToKickVotingButton
+{
+	font-size: 22px;
+	height: 30px;
+	width: 80px;
+	text-align: center;
+	color: white;
+	background-image: url("s2r://panorama/images/custom_game/ability_selection/button_bg_reroll_png.vtex");
+	background-size: 100%;
+	text-shadow: 1px -1px 2px 2 #000000ff;
+	padding: 2px 2px 0px 2px;
+	margin: 5px 15px 4px 15px;
+	text-overflow: shrink;
+	box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 2px 1px;
+}
+
+#VotingToKickVotingYes:hover
+{
+	color: rgb(0, 255, 0);
+}
+
+#VotingToKickVotingNo:hover
+{
+	color: rgb(255, 0, 0);
+}
+
+.VotingToKickVotingReasonPanel
+{
+	width: 100%;
+	height: 35px;
+	background-color: rgba(50, 50, 50, 0.9);
+}
+
+#VotingToKickVotingReasonText
+{
+	margin-top: 4px;
+	color: white;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	font-size: 22px;
+	text-shadow: 1px -1px 2px 2 #000000ff;
+	text-overflow: shrink;
+}
+
+#VotingToKickCountdown
+{
+	horizontal-align: right;
+	vertical-align: bottom;
+	height: 5px;
+	width: 100%;
+	background-color: white;
+	transition-property: width;
+	transition-duration: 40s;
+}
+
+#VotingToKickCountdown.Active
+{
+	width: 0%;
+}
+
+.VotingToKickProgress
+{
+	flow-children: right;
+	height: 15px;
+	margin-top: 3px;
+}
+
+#VotingToKickVotesCount
+{
+	color: rgb(220, 20, 20);
+	text-align: center;
+	height: 100%;
+	font-size: 22px;
+	text-align: center;
+	text-shadow: 1px -1px 2px 2 #000000ff;
+	text-overflow: shrink;
+}
+
+#VotingToKickKDA
+{
+	width: 100%;
+	text-align: center;
+	margin-top: 4px;
+	text-shadow: 1px -1px 2px 2 #000000ff;
+	color: rgb(240, 240, 240);
+	font-size: 19px;
+}
+
+#HideVotingWrap
+{
+	width: 35px;
+	height: 25px;
+	horizontal-align: right;
+	margin-right: 3px;
+	padding-left: 5px;
+	transition: transform 0.2s ease-in-out 0s;
+	margin-top: 385px;
+	opacity: 0;
+}
+
+.BHideVoting #HideVotingWrap
+{
+	transform: rotateY(180deg);
+}
+
+#HideVotingArrowIcon
+{
+	width: 25px;
+	height: 25px;
+	background-image: url("s2r://panorama/images/custom_game/import_dota/arrow_solid_right_png_png.vtex");
+	background-size: 100%;
+	wash-color: #e3e3e3;
+	transition: brightness 0.2s ease-in-out 0s, transform 0.2s ease-in-out 0s;
+}
+
+#HideVotingWrap:hover #HideVotingArrowIcon
+{
+	brightness: 2;
+	transform: translatex(5px);
+}
+
+.BHideVoting #HideVotingArrowIcon
+{
+	wash-color: #ffffff;
+}
+
+.ShowVoting #HideVotingWrap
+{
+	opacity: 1;
+}
+
+#ReportButton
+{
+	background-image: url("s2r://panorama/images/custom_game/ability_selection/button_bg_close_png.vtex");
+	background-size: 100%;
+	horizontal-align: center;
+	width: 187px;
+	padding: 4px 15px;
+	box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 2px 1px;
+	margin-top: 3px;
+	margin-bottom: 8px;
+}
+
+#ReportButton Label
+{
+	align: center center;
+	text-align: center;
+	width: 100%;
+	height: 21px;
+	margin-top: 1px;
+	text-transform: uppercase;
+	text-overflow: shrink;
+	color: white;
+	text-shadow: black 0px 0px 3px 2;
+}
+
+#ReportButton:hover Label
+{
+	color: rgb(255, 71, 58);
+}
+
+#ReportButton:active Label
+{
+	pre-transform-scale2d: 0.95;
+}
+
+#VotingToKickModelPanel
+{
+	width: 210px;
+	height: 210px;
+	horizontal-align: center;
+}
+
+#VotingToKickVotingHeroModel
+{
+	width: 100%;
+	height: 100%;
+}

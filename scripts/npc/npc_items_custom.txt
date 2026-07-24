@@ -1,0 +1,123 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+#base "items/vanilla_items_custom.txt"
+#base "items/secret_shop_overrides.txt"
+#base "items/orbs.txt"
+
+"DOTAAbilities"
+{
+	"item_rapier"						"REMOVED"
+	"item_recipe_rapier"				"REMOVED"
+
+	// Gold coin pickup
+	"item_gold_coin"
+	{
+		"BaseClass"						"item_bag_of_gold"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"Model"							"models/props_gameplay/gold_coin001.vmdl"
+		"AbilityTextureName"			"gold_coins"
+		"ItemKillable"					"0"
+
+		"AbilityCastRange"				"100"
+		"AbilityCastPoint"				"0.0"
+
+		"ItemCost"						"99999"
+		"ItemPurchasable"				"0"
+		"ItemShopTags"					"consumable"
+		"ItemQuality"					"consumable"
+		"ItemStackable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"0"
+		"ItemKillable"					"0"
+		"ItemCastOnPickup"				"1"
+	}
+
+	"item_infused_raindrop"
+	{
+		"ItemStockInitial"				"5"
+		"ItemStockMax"					"5"
+		"ItemInitialStockTime"			"0"
+	}
+
+	"item_boots_of_bearing"
+	{
+		"AbilityValues"
+		{
+			"recharge_time"			"15"
+		}
+	}
+
+	"item_burning_aura_source"
+	{
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"item_radiance"
+
+		"ItemPurchasable"				"0"
+		"ShouldBeSuggested"				"0"
+		"ItemSellable"					"0"
+		"ItemCost"						"99999"
+
+		// just so lucky shot doesn't proc on this
+		"AbilityCooldown"				"0"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ITEM "
+	}
+
+	"item_grisgris"
+	{
+		"AbilityValues"
+		{
+			"death_gold_lost_reduction_pct"					"100"
+			"gold_tick_interval"							"1"
+		}
+	}
+
+	"item_madstone_bundle"
+	{
+		"AbilityValues"
+		{
+			"madstone_primary"			"1"
+			"madstone_secondary"		"0"
+			"turbo_madstone_primary"	"1"
+			"turbo_madstone_secondary"	"0"
+			"die_time"					"20"
+		}
+	}
+
+	"item_enhancement_greedy"
+	{
+		"AbilityValues"
+		{
+			"bonus_gpm"			"225 300"
+		}
+	}
+
+	"item_refresher"
+	{
+		"AbilityCooldown"				"75"
+
+		"AbilityValues"
+		{
+			"cooldown_duration"		"75"
+		}
+	}
+
+	"item_precache_dummy"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"abilities/items/precache_dummy.lua"
+
+		"ItemPurchasable"				"0"
+		"ItemCost"						"0"
+	}
+}

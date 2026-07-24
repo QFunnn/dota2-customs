@@ -1,0 +1,111 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_leshrac"
+{
+	"leshrac_split_earth"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"damage"
+		{
+			"value" "45"
+			"operator" "OP_ADD"
+		}
+	}
+	"leshrac_diabolic_edict"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "6"
+		}
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"damage"
+		{
+			"value" "2"
+			"operator" "OP_ADD"
+		}
+	}
+	"leshrac_lightning_storm"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+			"linked_abilities"
+			{
+				"leshrac_greater_lightning_storm"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"damage"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+		}
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_abilities"
+			{
+				"leshrac_greater_lightning_storm"
+				{
+					"radius" "30"
+				}
+			}
+		}
+		"jump_count"
+		{
+			"value" "2"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+	}
+	"leshrac_pulse_nova"
+	{
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"damage"
+		{
+			"value" "7"
+			"operator" "OP_ADD"
+		}
+	}
+}

@@ -1,0 +1,180 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf37:version{f9a1c8c4-159b-4786-b740-4d1a118c8f46} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 128
+	m_nConstantSequenceNumber1 = 7
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_flStartFadeSize = 1.0
+			m_flEndFadeSize = 1.4
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/smoke3/smoke3b.vtex"
+					m_nTextureChannels = "SPRITECARD_TEXTURE_CHANNEL_MIX_A"
+				},
+				{
+					m_hTexture = resource:"materials/particle/smoke3/smoke3b.vtex"
+					m_TextureControls = 
+					{
+						m_flZoomScale = 
+						{
+							m_nType = "PF_TYPE_LITERAL"
+							m_flLiteralValue = 4.0
+						}
+					}
+					m_nTextureChannels = "SPRITECARD_TEXTURE_CHANNEL_MIX_RGB"
+				},
+			]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_Gravity = [ 0.0, 0.0, 250.0 ]
+			m_fDrag = 0.15
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flBias = 0.3
+			m_flEndScale = 8.0
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 0.05
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.9
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade = [ 101, 111, 107, 255 ]
+			m_flFadeStartTime = 0.001
+			m_flFadeEndTime = 0.5
+		},
+		{
+			_class = "C_OP_PositionLock"
+			m_bLockRot = true
+			m_nControlPointNumber = 1
+			m_flStartTime_max = -2.0
+			m_flStartTime_min = -2.0
+			m_flEndTime_min = 0.1
+			m_flEndTime_max = 0.1
+		},
+		{
+			_class = "C_OP_VectorNoise"
+			m_nFieldOutput = 0
+			m_vecOutputMin = [ -1.0, -1.0, -1.0 ]
+			m_bAdditive = true
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMax = 1.2
+			m_fLifetimeMin = 0.8
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMax = 16.0
+			m_flRadiusMin = 8.0
+		},
+		{
+			_class = "C_INIT_CreateWithinSphere"
+			m_nControlPointNumber = 1
+			m_fSpeedMax = 8.0
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMax = [ 153, 171, 168, 255 ]
+			m_ColorMin = [ 183, 207, 198, 255 ]
+		},
+		{
+			_class = "C_INIT_RandomSequence"
+			m_nSequenceMax = 5
+			m_nSequenceMin = 2
+		},
+		{
+			_class = "C_INIT_RandomAlpha"
+			m_nAlphaMax = 64
+			m_nAlphaMin = 32
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+		},
+		{
+			_class = "C_INIT_InitialVelocityNoise"
+			m_flNoiseScale = 3.0
+			m_flNoiseScaleLoc = 4.0
+			m_vecOutputMin = [ -154.0, -34.0, 12.0 ]
+			m_vecOutputMax = [ -284.0, 34.0, 34.0 ]
+			m_bLocalSpace = true
+		},
+		{
+			_class = "C_INIT_RandomYawFlip"
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flOpStartFadeOutTime = 0.2
+			m_flOpEndFadeOutTime = 0.2
+			m_flOpFadeOscillatePeriod = 0.6
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 40.0
+			}
+		},
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 32.0
+			}
+		},
+	]
+	m_ForceGenerators = 
+	[
+		{
+			_class = "C_OP_AttractToControlPoint"
+			m_fForceAmount = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = -300.0
+			}
+			m_fFalloffPower = 0.05
+			m_nControlPointNumber = 1
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/instanced/pudge_desert_sequence/shot3b2/gyro_ambient_smokestack_sparks_instanced.vpcf"
+			m_bDisableChild = true
+		},
+	]
+	m_nBehaviorVersion = 4
+	m_nFirstMultipleOverride_BackwardCompat = 7
+}

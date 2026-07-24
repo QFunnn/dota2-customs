@@ -1,0 +1,95 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_pudge"
+{
+	"pudge_meat_hook"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "11"
+			"operator" "OP_MULTIPLY"
+		}
+		"damage"
+		{
+			"value" "65"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"distance_to_damage" "2.5"
+			}
+		}
+		"hook_speed"
+		{
+			"value" "250"
+			"operator" "OP_ADD"
+			"max_count" "4"
+		}
+	}
+	"pudge_rot"
+	{
+		"rot_radius"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"rot_damage"
+		{
+			"value" "9"
+			"operator" "OP_ADD"
+		}
+	}
+	"pudge_flesh_heap"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "9"
+		}
+		"damage_block"
+		{
+			"value" "3.5"
+			"talents"
+			{
+				"special_bonus_unique_pudge_1"	"x1.5"
+			}
+			"operator" "OP_ADD"
+		}
+	}
+	"pudge_dismember"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "12"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"strength_damage"
+		{
+			"value"	"0.12"
+			"operator" "OP_ADD"
+			"talents"
+			{
+				"special_bonus_unique_pudge_3"	"x1.5"
+			}
+		}
+		"dismember_damage"
+		{
+			"value"	"20"
+			"operator" "OP_ADD"
+			"talents"
+			{
+				"special_bonus_unique_pudge_3"	"x1.5"
+			}
+		}
+	}
+}

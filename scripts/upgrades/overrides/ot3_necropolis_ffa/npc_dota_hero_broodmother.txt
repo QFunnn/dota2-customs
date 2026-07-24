@@ -1,0 +1,121 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_broodmother"
+{
+	"broodmother_insatiable_hunger"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "7"
+		}
+		"bonus_damage"
+		{
+			"value" "12"
+			"operator" "OP_ADD"
+		}
+		"lifesteal_pct"
+		{
+			"value" "12"
+			"operator" "OP_ADD"
+		}
+	}
+	"broodmother_spin_web"
+	{
+		"bonus_movespeed"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+	}
+	"broodmother_incapacitating_bite"
+	{
+		"miss_chance"
+		{
+			"value" "5"
+			"operator" "OP_MULTIPLY"
+			"max_count" "2"
+		}
+		"attack_damage"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+		}
+		"bonus_movespeed"
+		{
+			"value" "-4"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+	}
+	"broodmother_spawn_spiderlings"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"linked_abilities"
+			{
+				"broodmother_sticky_snare"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "10"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"damage"
+		{
+			"value" "75"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"damage_bonus" "2.5"
+			}
+			"linked_abilities"
+			{
+				"broodmother_sticky_snare"
+				{
+					"damage_per_second" "15"
+				}
+				"broodmother_buff_spiderling_lua"
+				{
+					"buff_damage" "0.5"
+				}
+			}
+		}
+		"tooltip_spiderling_hp"
+		{
+			"value" "150"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"hp_bonus" "150"
+			}
+			"linked_abilities"
+			{
+				"broodmother_sticky_snare"
+				{
+					"width" "30"
+				}
+				"broodmother_buff_spiderling_lua"
+				{
+					"buff_hp" "30"
+				}
+			}
+		}
+	}
+}

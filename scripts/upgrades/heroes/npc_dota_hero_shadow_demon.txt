@@ -1,0 +1,160 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_shadow_demon"
+{
+	"shadow_demon_menace"
+	{
+		"stack"
+		{
+			"value" "1.5"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"shadow_demon_disruption"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "5"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			
+			"linked_special_values"
+			{
+				"illusion_incoming_damage"
+				{
+					"value" "-25"
+					"operator" "OP_MULTIPLY"
+					
+					"multiplicative_target"	"-40"
+					"multiplicative_base_value"	"200"
+				}
+				"tooltip_total_illusion_incoming_damage"
+				{
+					"value" "-25"
+				
+					"operator" "OP_MULTIPLY"
+					"multiplicative_target" "60"
+					"multiplicative_base_value"	"300"
+				}
+			}
+		}
+		"illusion_outgoing_damage"
+		{
+			"value" "8"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"illusion_outgoing_tooltip" "8"
+			}
+		}
+	}
+	"shadow_demon_disseminate"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"damage_reflection_pct"
+		{
+			"value" "3.5"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"radius"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"shadow_demon_shadow_poison"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"linked_special_values"
+			{
+				"speed" "100"
+			}
+		}
+		"stack_damage"
+		{
+			"value" "15"
+			"operator" "OP_ADD"
+			"talents"
+			{
+				"special_bonus_unique_shadow_demon_4"		"x1.15"
+			}
+			"linked_special_values"
+			{
+				"hit_damage"
+				{
+					"value" "15"
+					"operator" "OP_ADD"
+					"talents"
+					{
+						"special_bonus_unique_shadow_demon_4"		"x1.15"
+					}
+				}
+				"bonus_stack_damage"
+				{
+					"value" "12"
+					"operator" "OP_ADD"
+					"talents"
+					{
+						"special_bonus_unique_shadow_demon_4"		"x1.15"
+					}
+				}
+			}
+		}
+		"radius"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"shadow_demon_demonic_purge"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"linked_abilities"
+			{
+				"shadow_demon_demonic_cleanse"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"purge_damage"
+		{
+			"value" "150"
+			"operator" "OP_ADD"
+			"linked_abilities"
+			{
+				"shadow_demon_demonic_cleanse"
+				{
+					"purge_damage" "150"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,57 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/chat_wheel/chat_wheel.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/chat_wheel/chat_wheel_colors_style.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/chat_wheel/chat_wheel_const.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/chat_wheel/chat_wheel.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="CW_Phrase">
+			<Panel class="CW_Phrase">
+				<Panel>
+					<Panel class="CW_LineIcon" />
+					<Image id="CW_HeroIcon" />
+					<Label class="CW_DefaultColor" id="CW_Phrase_Text" text="{s:phrase_text}" />
+					<Panel id="CW_EmojiContainer" />
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="Custom_ChatWheel" hittest="false">
+		<Panel class="CW_WheelBG" />
+		<Panel class="CW_WheelPointer" />
+		<Image id="CW_HeroImage" />
+		<Image id="CW_Arrow" />
+		<Panel class="CW_PhrasesContainer" hittest="false">
+			<Panel id="CW_PhrasesContainer_Center" />
+			<Panel class="CW_PhrasesContainer_SidesCotnainer" hittest="false">
+				<Panel id="CW_PhrasesContainer_Left" hittest="false" />
+				<Panel class="CW_PhrasesContainer_CenterSeparator" />
+				<Panel id="CW_PhrasesContainer_Right" hittest="false" />
+			</Panel>
+		</Panel>
+		<Panel class="CW_Hint">
+			<Panel class="CW_Hint_Icon">
+				<DOTAParticleScenePanel class="Collection_FX" particleName="particles/ui/collection_border.vpcf" particleonly="true" lookAt="0 -1 0" cameraOrigin="0 0 -50" fov="110" hittest="false" />
+			</Panel>
+			<Panel class="CW_Hint_TextContainer">
+				<Label class="CW_Hint_FavoritesCollection" text="#chat_wheel_ring_hint" html="true" onactivate="GameUI.Collection.OpenSpecificTab(&apos;chat_wheel&apos;)" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

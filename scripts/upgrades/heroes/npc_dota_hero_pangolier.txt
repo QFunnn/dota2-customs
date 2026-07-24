@@ -1,0 +1,136 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_pangolier"
+{
+	"pangolier_fortune_favors_the_bold"
+	{
+		"chance_reduce"
+		{
+			"value" "-4"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"pangolier_swashbuckle"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "15"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"damage"
+		{
+			"value" "16"
+			"operator" "OP_ADD"
+		}
+		"start_radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"end_radius" "30"
+			}
+		}
+	}
+	"pangolier_shield_crash"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"damage"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"hero_shield" "40"
+			}
+		}
+		"radius"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"pangolier_lucky_shot"
+	{
+		"chance_pct"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"armor"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+			"min_rarity" "rare"
+			"linked_special_values"
+			{
+				"attack_slow" "15"
+			}
+		}
+	}
+	"pangolier_gyroshell"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "7"
+			"linked_abilities"
+			{
+				"pangolier_rollup"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "10"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"forward_move_speed"
+		{
+			"value" "55"
+			"operator" "OP_ADD"
+			"max_count" "3"
+			"linked_special_values"
+			{
+				"turn_rate" "12"
+				"turn_rate_boosted" "16.5"
+				"hit_radius" "20"
+			}
+			"linked_abilities"
+			{
+				"pangolier_rollup"
+				{
+					"forward_move_speed" "60"
+					"turn_rate" "27.5"
+					"turn_rate_boosted" "27.5"
+					"hit_radius" "20"
+				}
+			}
+		}
+		"damage_pct"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+		}
+	}
+}

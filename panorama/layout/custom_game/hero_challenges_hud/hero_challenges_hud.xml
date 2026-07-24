@@ -1,0 +1,35 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/hero_challenges_hud/hero_challenges_hud.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/pick_screen/hero_challenges/hero_challenges_const.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/hero_challenges_hud/hero_challenges_hud.vjs_c" />
+	</scripts>
+	<Panel class="CustomChallenge_HudRoot" hittest="true" onactivate="PingChallengeProgress()">
+		<Button class="CC_H_SlideButton" onactivate="ToggleMinimizeChallenge()">
+			<Panel class="CC_H_SlideIcon" />
+			<Panel class="CC_H_DiffIcon" />
+		</Button>
+		<Panel class="CC_H_Content">
+			<Label class="CC_H_Header" text="#custom_hero_challenges_header" />
+			<Panel class="CC_H_Details">
+				<Panel class="CC_H_Icon" />
+				<Label class="CC_H_Desc" text="{s:challenge_desc}" html="true" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

@@ -1,0 +1,129 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_tiny"
+{
+	"tiny_insurmountable"
+	{
+		//"str_to_slow_resist_pct"
+		//{
+		//	"value" "4"
+		//	"operator" "OP_ADD"
+		//	"max_count" "10"
+		//	"linked_special_values"
+		//	{
+		//		"str_to_status_resist_pct" "2"
+		//	}
+		//}
+	}
+	"tiny_avalanche"
+	{
+		"radius"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"avalanche_damage"
+		{
+			"value" "45"
+			"operator" "OP_ADD"
+		}
+	}
+	"tiny_toss"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"radius"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"grab_radius" "35"
+			}
+		}
+		"toss_damage"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+		}
+	}
+	"tiny_tree_grab"
+	{
+		"bonus_damage"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+		}
+		"splash_range"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"splash_width" "40"
+			}
+			"linked_abilities"
+			{
+				"tiny_tree_channel"
+				{
+					"splash_radius" "40"
+					"tree_grab_radius" "40"
+				}
+				"tiny_toss_tree"
+				{
+					"splash_radius" "40"
+				}
+			}
+		}
+		"splash_pct"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+			"linked_abilities"
+			{
+				"tiny_tree_channel"
+				{
+					"splash_pct" "25"
+				}
+				"tiny_toss_tree"
+				{
+					"splash_pct" "25"
+				}
+			}
+		}
+	}
+	"tiny_grow"
+	{
+		"bonus_armor"
+		{
+			"value" "4"
+			"operator" "OP_ADD"
+		}
+		"bonus_damage"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+		}
+		"attack_speed_reduction"
+		{
+			"value" "6.75"
+			"operator" "OP_ADD"
+			"max_count" "4"
+		}
+	}
+}

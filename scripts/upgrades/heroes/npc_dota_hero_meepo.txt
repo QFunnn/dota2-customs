@@ -1,0 +1,120 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_meepo"
+{
+	"meepo_geomancy"
+	{
+		"tree_regen"
+		{
+			"value" "2"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"dirt_move_speed" "1"
+			}
+		}
+	}
+	"meepo_earthbind"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "13"
+			"operator" "OP_MULTIPLY"
+			"max_count" "3"
+		}
+		"radius"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"max_count" "8"
+			"linked_special_values"
+			{
+				"megameepo_net_offset" "33.33"
+			}
+		}
+		"speed"
+		{
+			"value" "250"
+			"operator" "OP_ADD"
+			"max_count" "4"
+		}
+	}
+	"meepo_poof"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+		}
+		"radius"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"poof_damage"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+		}
+	}
+	"meepo_ransack"
+	{
+		"health_steal_heroes"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"health_steal_creeps" "10"
+			}
+		}
+	}
+	"meepo_petrify"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "4"
+		}
+		"hp_restore"
+		{
+			"value" "15"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+	}
+	"meepo_megameepo"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "12"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+			
+			"linked_abilities"
+			{
+				"meepo_megameepo_fling"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "12"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+	}
+	"meepo_divided_we_stand"
+	{
+	}
+}

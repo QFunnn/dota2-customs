@@ -1,0 +1,124 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_magnataur"
+{
+	"magnataur_shockwave"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"shock_damage"
+		{
+			"value" "45"
+			"operator" "OP_ADD"
+		}
+		"shock_width"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"magnataur_empower"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+			"linked_special_values"
+			{
+				"empower_duration" "10"
+			}
+		}
+		"bonus_damage_pct"
+		{
+			"value" "6"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"cleave_damage_pct" "6"
+				"self_multiplier"
+				{
+					"value" "20"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target"			"150"
+					"multiplicative_base_value"		"30"
+				}
+			}
+		}
+	}
+	"magnataur_skewer"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "7"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+			"linked_abilities"
+			{
+				"magnataur_horn_toss"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "14"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"damage_distance_pct"
+		{
+			"value" "7.5"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"tree_hit_damage" "13"
+				"cliff_hit_damage" "50"
+			}
+		}
+		"skewer_damage"
+		{
+			"value" "90"
+			"operator" "OP_ADD"
+			"linked_abilities"
+			{
+				"magnataur_horn_toss"
+				{
+					"damage" "90"
+				}
+			}
+		}
+	}
+	"magnataur_reverse_polarity"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"pull_radius"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"polarity_damage"
+		{
+			"value" "225"
+			"operator" "OP_ADD"
+		}
+	}
+}

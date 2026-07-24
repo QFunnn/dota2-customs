@@ -1,0 +1,124 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_naga_siren"
+{
+	"naga_siren_eelskin"
+	{
+		"evasion_per_naga"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"naga_siren_mirror_image"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "14"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"outgoing_damage"
+		{
+			"value" "7"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"outgoing_damage_tooltip" "7"
+			}
+		}
+		"incoming_damage"
+		{
+			"value" "-35"
+			"operator" "OP_MULTIPLY"
+			
+			"multiplicative_target"	"-45"
+			"multiplicative_base_value"	"175"
+			
+			"linked_special_values"
+			{
+				"tooltip_incoming_damage_total_pct"
+				{
+					"value" "-35"
+					"operator" "OP_MULTIPLY"
+					
+					"multiplicative_target" "55"
+					"multiplicative_base_value"	"275"
+				}
+			}
+		}
+	}
+	"naga_siren_ensnare"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "18"
+			"operator" "OP_MULTIPLY"
+			"max_count" "4"
+			"linked_abilities"
+			{
+				"naga_siren_reel_in"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "18"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+	}
+	"naga_siren_reel_in"
+	{
+		"pull_strength"
+		{
+			"value" "100"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"linked_special_values"
+			{
+				"radius" "280"
+			}
+		}
+	}
+	"naga_siren_rip_tide"
+	{
+		"hits"
+		{
+			"value" "-0.5"
+			"operator" "OP_ADD"
+			"max_count" "6"
+			"min_rarity" "rare"
+		}
+		"armor_reduction"
+		{
+			"value" "-1.75"
+			"operator" "OP_ADD"
+			"min_rarity" "rare"
+		}
+		"damage"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+			"talents"
+			{
+				"special_bonus_unique_naga_siren_2"		"x1.3"
+			}
+		}
+		"radius"
+		{
+			"value" "65"
+			"operator" "OP_ADD"
+			"max_count" "6"
+		}
+	}
+}

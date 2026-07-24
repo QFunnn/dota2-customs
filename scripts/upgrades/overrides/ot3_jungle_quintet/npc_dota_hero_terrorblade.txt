@@ -1,0 +1,101 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_terrorblade"
+{
+	"terrorblade_conjure_image"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "6"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"illusion_outgoing_damage"
+		{
+			"value" "8"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"illusion_outgoing_tooltip" "8"
+			}
+		}
+		"illusion_incoming_damage"
+		{
+			"value" "-22.5"
+			"operator" "OP_MULTIPLY"
+			
+			"multiplicative_target"	"-50"
+			"multiplicative_base_value"	"150"
+			
+			"linked_special_values"
+			{
+				"illusion_incoming_damage_total_tooltip"
+				{
+					"value" "-22.5"
+				
+					"operator" "OP_MULTIPLY"
+					"multiplicative_target" "50"
+					"multiplicative_base_value"	"250"
+				}
+			}
+		}
+	}
+	"terrorblade_metamorphosis"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "7"
+			"operator" "OP_MULTIPLY"
+			"linked_abilities"
+			{
+				"terrorblade_demon_zeal"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "7"
+						"operator" "OP_MULTIPLY"
+					}
+					"berserk_bonus_movement_speed" "20"
+				}
+			}
+		}
+		"bonus_damage"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+			"linked_abilities"
+			{
+				"terrorblade_demon_zeal"
+				{
+					"berserk_bonus_attack_speed" "20"
+				}
+			}
+		}
+		"tooltip_attack_range"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"bonus_range" "20"
+				"metamorph_aura_tooltip" "40"
+			}
+			"linked_abilities"
+			{
+				"terrorblade_dark_unity"
+				{
+					"radius" "40"
+				}
+			}
+		}
+	}
+}

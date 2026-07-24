@@ -1,0 +1,142 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_beastmaster"
+{
+	"beastmaster_inner_beast"
+	{
+		"bonus_attack_speed"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+		}
+	}
+	"beastmaster_wild_axes"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "14"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"min_throw_duration"
+				{
+					"value" "-0.028"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target"			"0.04"
+					"multiplicative_base_value"		"0.4"
+				}
+				"max_throw_duration"
+				{
+					"value" "-0.07"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target"			"0.1"
+					"multiplicative_base_value"		"1"
+				}
+			}
+		}
+		"axe_damage"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+		}
+		"radius"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"max_count" "8"
+			"linked_special_values"
+			{
+				"spread" "50"
+			}
+		}
+	}
+	"beastmaster_summon_razorback"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "14"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"boar_total_damage_tooltip"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"boar_base_damage" "35"
+				"boar_base_max_health" "350"
+			}
+		}
+	}
+	"beastmaster_summon_raptor"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "14"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"dive_damage"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"hawk_base_max_health"
+				{
+					"value" "175"
+					"operator" "OP_ADD"
+				}
+			}
+		}
+		"hawk_count"
+		{
+			"value" "0.5"
+			"operator" "OP_ADD"
+			"max_count"	"6"
+			"min_rarity" "rare"
+		}
+	}
+	"beastmaster_primal_roar"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "16"
+			"operator" "OP_MULTIPLY"
+			"max_count" "7"
+		}
+		"damage_radius"
+		{
+			"value" "80"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"linked_special_values"
+			{
+				"slow_duration" "1"
+				"movement_speed" "6"
+				"movement_speed_duration" "1"
+			}
+		}
+		"damage"
+		{
+			"value" "175"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"side_damage" "175"
+			}
+		}
+	}
+}

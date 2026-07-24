@@ -1,0 +1,73 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/toasts/toasts.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/toasts/toasts.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="toast">
+			<Panel class="Toast">
+				<Panel class="ToastWrap">
+					<Image id="ToastImage" />
+					<Panel class="ToastContent">
+						<Label class="ToastHeader" html="true" text="{s:toast_header}" />
+						<Label class="ToastDescription" html="true" text="{s:toast_description}" />
+					</Panel>
+				</Panel>
+				<Button id="CloseButton" />
+			</Panel>
+		</snippet>
+		<snippet name="player_tip">
+			<Panel class="Toast">
+				<Panel class="PlayerContainer TipSource">
+					<Image class="HeroImage" heroimagestyle="landscape" />
+					<DOTAUserName class="UserName" />
+				</Panel>
+				<Panel class="TipValueContainer">
+					<Label class="TipText" text="#DOTA_TipNotification" />
+					<Panel class="TipCurrencyContainer">
+						<Image class="CurrencyIcon" src="s2r://panorama/images/custom_game/collection/currency_icon_small_png.vtex" />
+						<Label class="CurrencyValue" text="{d:value}" />
+					</Panel>
+				</Panel>
+				<Panel class="PlayerContainer TipTarget">
+					<Image class="HeroImage" heroimagestyle="landscape" />
+					<DOTAUserName class="UserName" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="sub_trial_available">
+			<Panel class="Toast">
+				<Panel class="ToastWrap">
+					<Image id="ToastImage" />
+					<Panel class="ToastContent">
+						<Label class="ToastDescription" html="true" text="#tip_trial_available" />
+					</Panel>
+				</Panel>
+				<Panel class="TipButtonsWrap">
+					<Button class="TipButton" id="AcceptButton">
+						<Label text="#tip_accept_trial" />
+					</Button>
+					<Button class="TipButton" id="DeclineButton">
+						<Label text="#tip_decline_trial" />
+					</Button>
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="ToastsContainer" hittest="false" />
+</root>

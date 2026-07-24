@@ -1,0 +1,90 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_winter_wyvern"
+{
+	"winter_wyvern_arctic_burn"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "8"
+			"linked_special_values"
+			{
+				"movement_scepter" "6.25"
+				"mana_cost_scepter" "-2.5"
+			}
+		}
+	}
+	"winter_wyvern_splinter_blast"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "12"
+			"operator" "OP_MULTIPLY"
+			"max_count" "6"
+		}
+		"split_radius"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"damage"
+		{
+			"value" "70"
+			"operator" "OP_ADD"
+		}
+	}
+	"winter_wyvern_cold_embrace"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "9"
+			"operator" "OP_MULTIPLY"
+			"max_count" "7"
+		}
+		"heal_additive"
+		{
+			"value" "70"
+			"operator" "OP_ADD"
+		}
+		"heal_percentage"
+		{
+			"value" "1.4"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"winter_wyvern_winters_curse"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "12"
+			"operator" "OP_MULTIPLY"
+		}
+		"radius"
+		{
+			"value" "70"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"linked_special_values"
+			{
+				"damage_reduction" "-20"
+			}
+		}
+		"bonus_attack_speed"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+		}
+	}
+}

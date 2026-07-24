@@ -1,0 +1,424 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+#CTM_Lines
+{
+	flow-children: down;
+	margin: 3px;
+}
+
+#CTM_Lines > Panel
+{
+	flow-children: right;
+}
+
+.CTM_DefultButton
+{
+	width: 35px;
+	height: 35px;
+	margin: 4px 0 0 4px;
+	background-image: url("s2r://panorama/images/custom_game/top_menu/bg_png.vtex");
+	background-size: 100%;
+	img-shadow: black 0 1px 1px 2;
+	opacity: 1;
+	wash-color: transparent;
+}
+
+.CTM_DefultButton:hover
+{
+	wash-color: white;
+	opacity: 1;
+}
+
+.CTM_DefultButton > Panel
+{
+	width: 100%;
+	height: 100%;
+	background-size: 38px;
+	background-position: 50%;
+	img-shadow: black 0 1px 1px 2;
+	background-repeat: no-repeat;
+}
+
+.CTM_DefultButton:hover > Panel
+{
+	background-size: 40px;
+	brightness: 1.5;
+}
+
+.CTM_DefultButton:active > Panel
+{
+	background-size: 36px;
+	brightness: 0.7;
+}
+
+#CTM_ReturnToDashboard > Panel
+{
+	background-image: url("s2r://panorama/images/custom_game/top_menu/arrow_png.vtex");
+}
+
+#CTM_Settings > Panel
+{
+	background-image: url("s2r://panorama/images/custom_game/top_menu/settings_png.vtex");
+	img-shadow: black 0 1px 4px 1;
+}
+
+#CTM_Scoreboard > Panel
+{
+	background-image: url("s2r://panorama/images/custom_game/top_menu/scoreboard_png.vtex");
+	background-image: url("s2r://panorama/images/custom_game/top_menu/scoreboard2_png.vtex");
+	img-shadow: black 0 1px 1px 1;
+	background-size: 35px;
+}
+
+#CTM_Collection > Panel
+{
+	background-image: url("s2r://panorama/images/custom_game/top_menu/collection_png.vtex");
+	background-image: url("s2r://panorama/images/custom_game/top_menu/collection2_png.vtex");
+}
+
+#CTM_Mail > Panel
+{
+	background-image: url("s2r://panorama/images/custom_game/top_menu/mail_png.vtex");
+	img-shadow: black 0 1px 4px 2;
+}
+
+#CTM_Leaderboard > Panel
+{
+	background-image: url("s2r://panorama/images/custom_game/top_menu/leaderboard_png.vtex");
+}
+
+#CTM_Feedback > Panel
+{
+	background-image: url("s2r://panorama/images/custom_game/top_menu/feedback_png.vtex");
+	img-shadow: black 0 1px 4px 2;
+}
+
+#CTM_Promo
+{
+	background-image: url("s2r://panorama/images/custom_game/top_menu/bg_purple_png.vtex");
+}
+
+#CTM_Promo > Panel
+{
+	background-image: url("s2r://panorama/images/custom_game/top_menu/promo_png.vtex");
+	background-image: url("s2r://panorama/images/custom_game/top_menu/promo2_png.vtex");
+	img-shadow: black 0 1px 1px 1;
+}
+
+#CTM_CustomSettings > Panel
+{
+	background-image: url("s2r://panorama/images/custom_game/top_menu/custom_settings_png.vtex");
+	img-shadow: black 0 1px 1px 1;
+}
+
+.BNeedClaimPromoTask #CTM_Promo > Panel,.BHasCustomNewMails #CTM_Mail > Panel
+{
+	animation-duration: 1.5s;
+	animation-iteration-count: infinite;
+	animation-name: promo_shake;
+}
+
+#PromoEventsButton
+{
+	padding: 10px;
+	margin: -6px 0 0 -5px;
+}
+
+.PE_TB_Background
+{
+	width: 31px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/custom_game/promo_events/button_bg_png.vtex");
+	background-size: 100%;
+	transition-property: box-shadow;
+	transition-duration: 0.15s;
+	box-shadow: transparent 0 0 0 0;
+	tooltip-position: bottom;
+}
+
+.PE_TB_Background_Hover
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/promo_events/button_bg_hover_png.vtex");
+	background-size: 100%;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.15s;
+}
+
+.PE_TB_Background:hover .PE_TB_Background_Hover
+{
+	opacity: 0.4;
+}
+
+.PE_TB_Background:active
+{
+	brightness: 0.5;
+}
+
+.BNeedClaimPromoTask .PE_TB_Background
+{
+	box-shadow: rgba(255, 198, 81, 0.5) 0 0 4px -1px;
+}
+
+.PE_TB_Flag
+{
+	width: 31px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/custom_game/promo_events/button_banner_png.vtex");
+	background-size: 100%;
+	animation-duration: 1.5s;
+	animation-iteration-count: infinite;
+	img-shadow: black 0 0 2px 0;
+}
+
+.BNeedClaimPromoTask .PE_TB_Flag
+{
+	animation-name: promo_shake;
+}
+
+@keyframes 'promo_shake'
+{
+	0%
+	{
+		pre-transform-scale2d: 1;
+		transform: rotateZ(0deg);
+	}
+	
+	10%
+	{
+		pre-transform-scale2d: 1.2;
+		transform: rotateZ(0deg);
+	}
+	
+	20%
+	{
+		pre-transform-scale2d: 1.2;
+		transform: rotateZ(0deg);
+	}
+	
+	30%
+	{
+		pre-transform-scale2d: 1.2;
+		transform: rotateZ(-15deg);
+	}
+	
+	40%
+	{
+		pre-transform-scale2d: 1.2;
+		transform: rotateZ(15deg);
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 1.2;
+		transform: rotateZ(-15deg);
+	}
+	
+	60%
+	{
+		pre-transform-scale2d: 1.2;
+		transform: rotateZ(15deg);
+	}
+	
+	70%
+	{
+		pre-transform-scale2d: 1.2;
+		transform: rotateZ(-15deg);
+	}
+	
+	80%
+	{
+		pre-transform-scale2d: 1.2;
+		transform: rotateZ(0deg);
+	}
+	
+	90%
+	{
+		pre-transform-scale2d: 1.2;
+		transform: rotateZ(0deg);
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1;
+		transform: rotateZ(0deg);
+	}
+	
+}
+
+.PE_TB_Flag_FX
+{
+	width: 100%;
+	height: width-percentage(100%);
+	margin-top: 1px;
+	margin: 1px 1px 0 1px;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.15s;
+}
+
+.PE_TB_Background_FX
+{
+	width: 100%;
+	height: 48px;
+	margin: 25px -9px 0 -6px;
+	z-index: -1;
+	vertical-align: bottom;
+	transform: rotateZ(180deg);
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.15s;
+}
+
+.BNeedClaimPromoTask .PE_TB_Flag_FX,.BNeedClaimPromoTask .PE_TB_Background_FX
+{
+	opacity: 1;
+}
+
+.Collection_FX
+{
+	width: 100%;
+	height: 100%;
+	margin: 0 1px 0 1px;
+	transition-property: opacity;
+	transition-duration: 0.15s;
+}
+
+.CTM_Banner_ChatWheel
+{
+	margin: 42px 0 0 196px;
+}
+
+.CTM_Banner_NewMail
+{
+	margin: 80px 0 0 36px;
+	margin: 73px 0 0 34px;
+}
+
+.CTM_Banner_NewMail .CTM_Banner_Header
+{
+	width: 300px;
+}
+
+.CTB_Banner_Arrow
+{
+	width: 60px;
+	height: 60px;
+	background-color: #212528;
+	transform: rotateZ(180deg);
+	opacity-brush: gradient( linear, 0% 100%, 50% 0%, from(transparent), color-stop(0.4, transparent), color-stop(0.4, white), to(white) ), gradient( linear, 100% 0%, 0% 50%, from(transparent), color-stop(0.4, transparent), color-stop(0.4, white), to(white) );
+	margin: 6px;
+}
+
+.CTB_Banner_Arrow.Shadow
+{
+	background-color: black;
+	margin: 0;
+}
+
+.CTM_Banner_Content
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#272d2f), to(#393f41));
+	flow-children: down;
+	border: 2px solid black;
+	margin: 25px;
+}
+
+.CTM_Banner_Header
+{
+	width: 500px;
+	background-color: rgba(0, 0, 0, 0.6);
+	padding: 10px 5px;
+}
+
+.CTM_Banner_Header > Panel
+{
+	flow-children: right;
+	align: center center;
+}
+
+.CTM_Banner_Header Label
+{
+	vertical-align: center;
+	text-align: center;
+	margin: 0 10px;
+}
+
+.CTM_Banner_Close
+{
+	width: 25px;
+	height: 25px;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+	background-size: 100%;
+	align: right center;
+	wash-color: #626c8d;
+	transition-property: transform, width, height, wash-color, pre-transform-scale2d;
+	transition-duration: 0.15s, 0.15s, 0.15s, 0.15s, 0.1s;
+	img-shadow: black 0 0 2px 1;
+}
+
+.CTM_Banner_Close:active
+{
+	pre-transform-scale2d: 0.85;
+}
+
+.CTM_Banner_Close:hover
+{
+	wash-color: #8b99c8;
+}
+
+.CTM_Banner_Header DOTAEmoticon
+{
+	margin: 0 2px;
+}
+
+.CTM_Banner_Text
+{
+	width: 100%;
+	margin: 10px 50px;
+	text-align: center;
+	color: white;
+	letter-spacing: 0.5px;
+}
+
+.CTM_Banner_Button
+{
+	horizontal-align: center;
+	padding: 5px 25px;
+	background-image: url("s2r://panorama/images/custom_game/collection/chat_wheel/tab_button_png.vtex");
+	background-size: 100%;
+	margin-bottom: 10px;
+}
+
+.CTM_Banner_Button:hover
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/chat_wheel/tab_button_hover_png.vtex"), url("s2r://panorama/images/custom_game/collection/chat_wheel/tab_button_png.vtex");
+}
+
+.CTM_Banner_Button:active
+{
+	pre-transform-scale2d: 0.95;
+	brightness: 0.5;
+}
+
+.CTM_Banner_Button Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#ed9215), to(#f8ca78));
+}
+
+.BClose_ChatWheelNewPromo .CTM_Banner_ChatWheel,.BClose_NewMail .CTM_Banner_NewMail
+{
+	visibility: collapse;
+}

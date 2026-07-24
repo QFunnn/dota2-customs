@@ -1,0 +1,115 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_bristleback"
+{
+	"bristleback_viscous_nasal_goo"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			"linked_abilities"
+			{
+				"bristleback_hairball"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"base_armor"
+		{
+			"value" "0.3"
+			"operator" "OP_ADD"
+			"min_rarity" "rare"
+			"linked_special_values"
+			{
+				"armor_per_stack" "0.5"
+			}
+		}
+		"stack_limit"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+			"max_count" "4"
+		}
+	}
+	"bristleback_quill_spray"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "9"
+			"operator" "OP_MULTIPLY"
+		}
+		"radius"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"quill_base_damage"
+		{
+			"value" "6"
+			"operator" "OP_ADD"
+		}
+	}
+	"bristleback_bristleback"
+	{
+		"side_damage_reduction"
+		{
+			"value" "3"
+			"operator" "OP_MULTIPLY"
+
+			"multiplicative_target"			"100"
+			"multiplicative_base_value"		"24"
+		}
+		"back_damage_reduction"
+		{
+			"value" "3"
+			"operator" "OP_MULTIPLY"
+
+			"multiplicative_target"			"100"
+			"multiplicative_base_value"		"48"
+		}
+	}
+	"bristleback_hairball"
+	{
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"bristleback_warpath"
+	{
+		"damage_per_stack"
+		{
+			"value" "4"
+			"operator" "OP_ADD"
+		}
+		"move_speed_per_stack"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+		}
+		"max_stacks"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+	}
+}

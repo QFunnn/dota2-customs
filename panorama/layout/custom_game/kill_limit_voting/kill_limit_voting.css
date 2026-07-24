@@ -1,0 +1,145 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.KL_Voting_Root
+{
+	align: center center;
+	flow-children: down;
+	box-shadow: black 0 0 0px 0;
+	padding: 20px 30px;
+	background-image: url("s2r://panorama/images/custom_game/kill_limit_bg_png.vtex");
+	background-size: 100%;
+	transition-property: transform, opacity, box-shadow;
+	transition-duration: 0.1s;
+	transform: translateY(-20px);
+	opacity: 0;
+}
+
+.KL_Voting_Root.Show
+{
+	transform: translateY(0px);
+	opacity: 1;
+	box-shadow: black 0 0 10px 4;
+}
+
+.KL_Voting_Header
+{
+	max-width: 100%;
+	text-align: center;
+	font-size: 30px;
+	horizontal-align: center;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#ffc816), to(#fefffe));
+	text-shadow: black 0px 1px 4px 3;
+	font-family: titleFont;
+	font-weight: semi-bold;
+	letter-spacing: 1px;
+}
+
+.KL_Buttons
+{
+	flow-children: right;
+	horizontal-align: center;
+	padding-left: -25px;
+}
+
+Button
+{
+	width: 130px;
+	height: 150px;
+	margin-top: 18px;
+	background-image: url("s2r://panorama/images/custom_game/kill_limit_button_red_png.vtex");
+	background-size: 100%;
+	img-shadow: black 0px 2px 3px 0;
+	transition: brightness 0.1s ease-in-out 0s;
+	margin-left: 25px;
+}
+
+Button:hover
+{
+	brightness: 1.5;
+}
+
+Button:active
+{
+	brightness: 0.7;
+	sound: "General.ButtonClick";
+}
+
+Button:active Label
+{
+	pre-transform-scale2d: 0.9;
+}
+
+.KL_Button_Increase
+{
+	background-image: url("s2r://panorama/images/custom_game/kill_limit_button_gold_png.vtex");
+}
+
+Button Label
+{
+	align: center center;
+	text-align: center;
+	text-shadow: black 0px 2px 4px 4;
+	font-size: 65px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#da0900), to(white));
+	margin-bottom: 2px;
+	transition: pre-transform-scale2d 0.1s ease-in-out 0s;
+}
+
+.KL_Button_Increase Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#ffc816), to(white));
+}
+
+DOTAScenePanel
+{
+	width: 100%;
+	height: 100%;
+	opacity-mask: url("s2r://panorama/images/custom_game/kill_limit_button_gold_png.vtex");
+	margin-bottom: 7px;
+}
+
+.KL_Tokens_Root
+{
+	flow-children: down;
+	margin-left: 25px;
+	visibility: collapse;
+}
+
+.BGGTokensOwned .KL_Tokens_Root
+{
+	visibility: visible;
+}
+
+.KL_Tokens_Root .KL_Button_Increase
+{
+	horizontal-align: center;
+	margin-left: 0;
+}
+
+.KL_Tokens_Root > Label
+{
+	horizontal-align: center;
+	text-align: center;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#f69600), to(#fad8a1));
+	text-shadow: black 0px 1px 4px 3;
+}
+
+.KL_Token_Text
+{
+	padding: 6px 30px 0 0;
+	background-image: url("s2r://panorama/images/custom_game/collection/bp_gg_token_icon_png.vtex");
+	height: 30px;
+	background-size: 30px;
+	background-repeat: no-repeat;
+	background-position: right;
+}

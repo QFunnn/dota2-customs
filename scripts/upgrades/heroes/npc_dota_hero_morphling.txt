@@ -1,0 +1,147 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_morphling"
+{
+	"morphling_ebb_and_flow"
+	{
+		"attack_range_per_agi"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"move_speed_per_agi" "4"
+			}
+		}
+		"cast_range_per_str"
+		{
+			"value" "6"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"slow_resist_per_str" "2"
+			}
+		}
+	}
+	"morphling_waveform"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"damage"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+		}
+		"width"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"max_count" "8"
+		}
+	}
+	"morphling_adaptive_strike_agi"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "7"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+			"linked_abilities"
+			{
+				"morphling_adaptive_strike_str"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "7"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"damage_base"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+		}
+		"damage_max"
+		{
+			"value" "0.2"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"damage_min" "0.2"
+			}
+		}
+		"knockback_max"
+		{
+			"value" "70"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"linked_special_values"
+			{
+				"knockback_min" "10"
+			}
+		}
+	}
+	"morphling_morph_agi"
+	{
+		"morph_rate"
+		{
+			"value" "2"
+			"operator" "OP_ADD"
+			"linked_abilities"
+			{
+				"morphling_morph_str"
+				{
+					"morph_rate"
+					{
+						"value" "2"
+						"operator" "OP_ADD"
+					}
+				}
+			}
+		}
+	}
+	"morphling_replicate"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"linked_special_values"
+			{
+				"scepter_illusion_outgoing" "20"
+			}
+		}
+		"duration"
+		{
+			"value" "3"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"scepter_illusion_incoming"
+				{
+					"value" "-45"
+					"operator" "OP_MULTIPLY"
+					
+					"multiplicative_target" "60"
+					"multiplicative_base_value" "300"
+				}
+			}
+		}
+	}
+}

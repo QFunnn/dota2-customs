@@ -1,0 +1,1378 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+#C_Content .Custom_Cosmetics
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+	margin: 5px 7px 10px 7px;
+}
+
+#CC_Tabs
+{
+	flow-children: down;
+	padding-top: -2px;
+	overflow: scroll;
+	padding-right: 5px;
+}
+
+VerticalScrollBar
+{
+	width: 5px;
+	margin: 3px 0;
+}
+
+#ScrollThumb
+{
+	background-color: #5f5e6a;
+}
+
+.Cosmetic_Tab
+{
+	width: 180px;
+	height: 50px;
+	margin: 5px 3px 3px 3px;
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/tab_bg_png.vtex");
+	background-size: 100%;
+	box-shadow: black 0px 0px 3px 2;
+	transition: brightness 0.15s ease-in-out 0s;
+}
+
+.CT_ActiveOverlay
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/tab_bg_active_png.vtex");
+	background-size: 100%;
+	opacity: 0;
+	transition: opacity 0.15s ease-in-out 0s;
+}
+
+.Cosmetic_Tab.BActive .CT_ActiveOverlay
+{
+	opacity: 1;
+}
+
+.CT_Root
+{
+	align: center center;
+	flow-children: right;
+	padding: 0 5px;
+}
+
+#CT_Icon
+{
+	height: 21px;
+	width: height-percentage(100%);
+	background-size: 0%;
+	vertical-align: center;
+}
+
+#CT_Icon > Panel
+{
+	width: 100%;
+	height: 100%;
+	background-color: #d1d6fa;
+}
+
+.Cosmetic_Tab.BActive #CT_Icon
+{
+	background-size: 100%;
+}
+
+.Cosmetic_Tab:not(.BActive):hover
+{
+	brightness: 1.5;
+}
+
+.Cosmetic_Tab:not(.BActive):active
+{
+	brightness: 0.85;
+}
+
+.Cosmetic_Tab.BActive #CT_Icon > Panel
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#a0b3d0), to(white));
+}
+
+#CC_Tab_TREASURES #CT_Icon
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/icons/tab_icon_treasures_shadow_png.vtex");
+}
+
+#CC_Tab_TREASURES #CT_Icon > Panel
+{
+	opacity-mask: url("s2r://panorama/images/custom_game/collection/cosmetics/icons/tab_icon_treasures_png.vtex");
+}
+
+#CC_Tab_AURA #CT_Icon
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/icons/tab_icon_auras_shadow_png.vtex");
+}
+
+#CC_Tab_AURA #CT_Icon > Panel
+{
+	opacity-mask: url("s2r://panorama/images/custom_game/collection/cosmetics/icons/tab_icon_auras_png.vtex");
+}
+
+#CC_Tab_PET #CT_Icon
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/icons/tab_icon_pets_shadow_png.vtex");
+}
+
+#CC_Tab_PET #CT_Icon > Panel
+{
+	opacity-mask: url("s2r://panorama/images/custom_game/collection/cosmetics/icons/tab_icon_pets_png.vtex");
+}
+
+#CC_Tab_KILL_EFFECT #CT_Icon
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/icons/tab_icon_kill_effects_shadow_png.vtex");
+}
+
+#CC_Tab_KILL_EFFECT #CT_Icon > Panel
+{
+	opacity-mask: url("s2r://panorama/images/custom_game/collection/cosmetics/icons/tab_icon_kill_effects_png.vtex");
+}
+
+#CC_Tab_COSMETIC_SKILL #CT_Icon
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/icons/tab_icon_cosmetic_abilities_shadow_png.vtex");
+}
+
+#CC_Tab_COSMETIC_SKILL #CT_Icon > Panel
+{
+	opacity-mask: url("s2r://panorama/images/custom_game/collection/cosmetics/icons/tab_icon_cosmetic_abilities_png.vtex");
+}
+
+#CC_Tab_HIGH_FIVE #CT_Icon
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/icons/tab_icon_high_five_shadow_png.vtex");
+}
+
+#CC_Tab_HIGH_FIVE #CT_Icon > Panel
+{
+	opacity-mask: url("s2r://panorama/images/custom_game/collection/cosmetics/icons/tab_icon_high_five_png.vtex");
+}
+
+#CC_Tab_SPRAY #CT_Icon
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/icons/tab_icon_spray_shadow_png.vtex");
+}
+
+#CC_Tab_SPRAY #CT_Icon > Panel
+{
+	opacity-mask: url("s2r://panorama/images/custom_game/collection/cosmetics/icons/tab_icon_spray_png.vtex");
+}
+
+#CC_Tab_HERO_EFFECT #CT_Icon
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/icons/tab_icon_hero_effect_shadow_png.vtex");
+}
+
+#CC_Tab_HERO_EFFECT #CT_Icon > Panel
+{
+	opacity-mask: url("s2r://panorama/images/custom_game/collection/cosmetics/icons/tab_icon_hero_effect_png.vtex");
+}
+
+#CC_Tab_MISC #CT_Icon
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/icons/tab_icon_special_shadow_png.vtex");
+}
+
+#CC_Tab_MISC #CT_Icon > Panel
+{
+	opacity-mask: url("s2r://panorama/images/custom_game/collection/cosmetics/icons/tab_icon_special_png.vtex");
+}
+
+#CC_Tab_VOICE_LINE #CT_Icon
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/icons/tab_icon_voice_shadow_png.vtex");
+}
+
+#CC_Tab_VOICE_LINE #CT_Icon > Panel
+{
+	opacity-mask: url("s2r://panorama/images/custom_game/collection/cosmetics/icons/tab_icon_voice_png.vtex");
+}
+
+.CT_Root > Label
+{
+	text-align: center;
+	margin-left: 5px;
+	color: #cfd4f8;
+	text-shadow: black 0px 1px 3px 2;
+	vertical-align: bottom;
+}
+
+.CC_MainPanel
+{
+	width: 100%;
+	height: 100%;
+	margin: 3px 4px 3px 5px;
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/cosmetic_content_bg_png.vtex");
+	background-size: 100%;
+	box-shadow: rgba(0, 0, 0, 0.8) 0px 0px 3px 2;
+	flow-children: down;
+}
+
+.CC_HeaderRoot
+{
+	width: 100%;
+	flow-children: right;
+	padding: 10px 15px 0 15px;
+}
+
+@define BlackBackground: rgba(0, 0, 0, 0.6);
+#CC_SortingText
+{
+	color: #b4c0ec;
+	text-align: right;
+	vertical-align: center;
+	text-shadow: rgba(0, 0, 0, 0.75) 0px 1px 3px 2;
+}
+
+#CC_SortingOptions
+{
+	vertical-align: center;
+	margin-left: 15px;
+	width: 200px;
+	height: 34px;
+	margin-right: 10px;
+	background-size: 27px 27px;
+	background-position: right 33px 35%;
+	padding: 0px 0px;
+	background-color: #2b2b39;
+	border: 2px solid transparent;
+	border-radius: 3px;
+	box-shadow: inset 0px 0px 10px -3px rgba(0, 0, 0, 0.5);
+}
+
+#CC_SortingOptions.DropDownMenuVisible
+{
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+#CC_SortingOptions Label,#OnlyOwnedItems Label
+{
+	vertical-align: center;
+	color: #d9e1ff;
+	text-shadow: rgba(0, 0, 0, 0.75) 0px 1px 3px 2;
+	transition: color 0.15s ease-in-out 0s;
+}
+
+#CC_SortingOptions:hover
+{
+	background-color: #272737;
+}
+
+#CC_SortingOptions:hover Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#a0b3d0), to(white));
+}
+
+#CC_SortingOptions:active
+{
+	background-color: #232332;
+	box-shadow: inset 0px 0px 10px -3px rgba(0, 0, 0, 0.75);
+}
+
+#CC_SortingOptions:focus:hover
+{
+	background-color: #272737;
+}
+
+#CC_SortingOptionsDropDownMenu
+{
+	width: 200px;
+	background-color: transparent;
+	box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+}
+
+#CC_SortingOptionsDropDownMenu Label
+{
+	background-color: #2b2b39;
+	padding-left: 8px;
+	border-top: 0px solid black;
+	color: #8f98ad;
+	box-shadow: inset 0px 0px 10px -3px rgba(0, 0, 0, 0.2);
+	transition: box-shadow 0.1s ease-in-out 0s;
+}
+
+#CC_SortingOptionsDropDownMenu Label:hover
+{
+	background-color: #272737;
+	color: #b4c1db;
+	box-shadow: inset 0px 0px 10px -3px rgba(0, 0, 0, 0.5);
+}
+
+#CC_SortingOptionsDropDownMenu Label:active
+{
+	background-color: #232332;
+}
+
+#CC_SortingOptionsDropDownMenu Label:focus
+{
+	background-color: #232332;
+	color: #b4c1db;
+}
+
+#OnlyOwnedItems
+{
+	align: right center;
+}
+
+#OnlyOwnedItems:active
+{
+	sound: "Shop.PanelDown";
+}
+
+#OnlyOwnedItems:selected Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#a0b3d0), to(white));
+}
+
+#OnlyOwnedItems:selected Panel
+{
+	box-shadow: #a0b2e6 0px 0px 4px 0px;
+}
+
+#OnlyOwnedItems .TickBox
+{
+	box-shadow: transparent 0 0 0 0;
+	width: 21px;
+	height: 21px;
+	background-color: #2b2b39;
+	border: 2px solid #2b2b39;
+	border-radius: 3px;
+	box-shadow: inset 0px 0px 8px -3px rgba(0, 0, 0, 0.5);
+}
+
+#OnlyOwnedItems:hover .TickBox
+{
+	background-color: #323246;
+	box-shadow: inset 0px 0px 8px -3px rgba(0, 0, 0, 0.75);
+}
+
+#OnlyOwnedItems:selected .TickBox
+{
+	border: 3px solid #2b2b39;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#a0b3d0), to(white));
+	box-shadow: inset 0px 0px 8px -3px rgba(0, 0, 0, 0.5);
+}
+
+#OnlyOwnedItems:selected:hover .TickBox
+{
+	border: 4px solid #2b2b39;
+}
+
+#CC_ContentRoot
+{
+	height: 100%;
+	width: 100%;
+}
+
+.Cosmetic_Content
+{
+	visibility: collapse;
+	flow-children: right-wrap;
+	overflow: squish scroll;
+	height: 100%;
+	margin-top: 5px;
+	padding: 8px 10px 0 0;
+}
+
+.Cosmetic_Content VerticalScrollBar
+{
+	margin: 0 0 5px 0;
+}
+
+.Cosmetic_Content.BActive
+{
+	visibility: visible;
+}
+
+#CC_Content_TREASURES
+{
+	padding-left: 42px;
+}
+
+.Cosmetic_Item
+{
+	width: 120px;
+	height: 160px;
+	margin: 0 0 8px 14px;
+	flow-children: down;
+	box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 4px 1px;
+}
+
+.NoSource:not(.BOwned),.BHidden:not(.BOwned),.BHiddenOwned
+{
+	visibility: collapse;
+}
+
+#CC_ContentRoot.BShowOwnedItemsOnly > Panel:not(.TREASURES) .Cosmetic_Item:not(.BOwned)
+{
+	visibility: collapse;
+}
+
+.Cosmetic_Item.RedGlow,.Cosmetic_Item.BNewItem,.Cosmetic_Item.HighlightFocus
+{
+	animation-name: new_item_glow;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'new_item_glow'
+{
+	0%
+	{
+		box-shadow: #d80f00 0px 0px 3px 0px;
+	}
+	
+	50%
+	{
+		box-shadow: #d80f00 0px 0px 10px 0px;
+	}
+	
+	100%
+	{
+		box-shadow: #d80f00 0px 0px 3px 0px;
+	}
+	
+}
+
+.Cosmetic_Item.TREASURES
+{
+	width: 200px;
+	height: 170px;
+	margin: 0 0 11px 14px;
+}
+
+.CI_Background
+{
+	width: 100%;
+	height: width-percentage(100%);
+	padding: 2px;
+}
+
+.Cosmetic_Item.TREASURES .CI_Background,#CI_PayByCurrency.TREASURES .CI_Background
+{
+	height: 130px;
+}
+
+#CI_Image,#CI_PayByCurrency_Item,#CI_Treasure_Preview_Item,#CI_ItemUseChecker_Item
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#23242b), to(#1a1b1f));
+}
+
+#CI_Details
+{
+	width: 21px;
+	height: 21px;
+	background-image: url("s2r://panorama/images/hud/reborn/icon_inspect_psd.vtex");
+	background-size: 100%;
+	margin: 5px;
+	visibility: collapse;
+}
+
+#CI_Details:hover
+{
+	brightness: 1.5;
+}
+
+#CI_Details:active
+{
+	brightness: 0.5;
+	margin: 6px;
+	width: 19px;
+	height: 19px;
+}
+
+.CI_Count
+{
+	text-align: center;
+	font-weight: lighter;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from(transparent), color-stop(0.5, rgba(0, 0, 0, 0.76)), to(rgba(0, 0, 0, 0.96)) );
+	padding: 0 5px 0 10px;
+	min-width: 35px;
+	text-align: right;
+	align: right top;
+	text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 3px 2;
+	color: #bccee2;
+	visibility: collapse;
+}
+
+.TREASURES .BConsumables.BOwned .CI_Count
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#e88b16), to(#f9c459));
+}
+
+.BConsumables .CI_Count,.BManyItems .CI_Count
+{
+	visibility: visible;
+}
+
+.CI_Name
+{
+	vertical-align: bottom;
+	width: 100%;
+	text-align: center;
+	padding: 3px 2px;
+	background-color: rgba(0, 0, 0, 0.9);
+	visibility: collapse;
+}
+
+.TREASURES .CI_Name,.TREASURES #CI_Details
+{
+	visibility: visible;
+}
+
+#CI_ActionButton
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/action_button_unavailable_png.vtex");
+	background-size: 100%;
+}
+
+#CI_ActionButton.BUnlockBy_currency Label
+{
+	padding-left: 25px;
+	background-image: url("s2r://panorama/images/custom_game/collection/currency_icon_small_png.vtex");
+	background-size: 21px 21px;
+	background-repeat: no-repeat;
+	text-shadow: black 0px 1px 3px 2;
+	img-shadow: 0px 0px 5px 3 black;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#6e7579), to(#c4d2d9));
+}
+
+.Cosmetic_Item.BAvailable #CI_ActionButton.BUnlockBy_currency Label,.Cosmetic_Item.BOwned #CI_ActionButton.BUnlockBy_currency Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#f58907), to(#f9d64b));
+}
+
+#CI_ActionButton.BUnlockBy_subscription_tier Label,#CI_ActionButton.BUnlockBy_treasure Label
+{
+	text-transform: uppercase;
+	font-size: 16px;
+	margin-top: 2px;
+	width: 100%;
+}
+
+#CI_ActionButton.BUnlockBy_subscription_tier Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#4680ad), to(#c4d2ad));
+}
+
+#CI_ActionButton.BUnlockBy_subscription_tier.SubTier_2 Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#df9724), to(#fee1b8));
+}
+
+#CI_ActionButton.BUnlockBy_treasure Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#f58d0b), to(#f7c055));
+}
+
+.Cosmetic_Item.BAvailable.BOwned.TREASURES #CI_ActionButton Label
+{
+	background-size: 0%;
+	padding: 0px;
+	font-size: 18px;
+}
+
+.Cosmetic_Item.BOwned.PASSIVE #CI_ActionButton Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#ffc913), to(#ffdc99));
+	text-shadow: black 0px 1px 3px 2;
+}
+
+.Cosmetic_Item.BOwned.CONSUMABLE:not(.TREASURES) #CI_ActionButton Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#ffffff), to(#d6ceea));
+	text-shadow: black 0px 1px 3px 2;
+}
+
+.Cosmetic_Item.BOwned.BEquipable #CI_ActionButton Label
+{
+	background-size: 0%;
+	padding: 0px;
+	font-size: 18px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#ffd163), to(#fffff1));
+}
+
+.Cosmetic_Item.BOwned.BEquipable.BEquipped #CI_ActionButton Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#1ea529), to(#9eff85));
+}
+
+.Cosmetic_Item.BOwned.BEquipable.BEquipped #CI_ActionButton
+{
+	box-shadow: inset rgba(0, 140, 16, 0.3) 0px 0px 10px -4px;
+}
+
+.Cosmetic_Item.BAvailable #CI_ActionButton,.Cosmetic_Item.BOwned #CI_ActionButton
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/action_button_png.vtex");
+}
+
+.CI_ActionButtonOverlay
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+	opacity: 0;
+	transition: opacity 0.1s ease-in-out 0s;
+}
+
+.CI_ActionButtonOverlay.Hover
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/action_button_hover_png.vtex");
+}
+
+.CI_ActionButtonOverlay.Active
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/action_button_active_png.vtex");
+}
+
+.Cosmetic_Item.BAvailable:not(.PASSIVE) #CI_ActionButton:hover .Hover,.Cosmetic_Item.BOwned:not(.PASSIVE) #CI_ActionButton:hover .Hover
+{
+	opacity: 1;
+}
+
+.Cosmetic_Item.BAvailable:not(.PASSIVE) #CI_ActionButton:active .Active,.Cosmetic_Item.BOwned:not(.PASSIVE) #CI_ActionButton:active .Active
+{
+	opacity: 1;
+}
+
+.Cosmetic_Item.BOwned:not(.PASSIVE) #CI_ActionButton:active .Active
+{
+	sound: "General.ButtonClick";
+}
+
+.Cosmetic_Item.BOwned.BEquipable:not(.PASSIVE) #CI_ActionButton:active .Active
+{
+	sound: "ui.inv_equip";
+}
+
+.Cosmetic_Item.BOwned.BEquipable.BEquipped:not(.PASSIVE) #CI_ActionButton:active .Active
+{
+	sound: "ui.inv_unequip";
+}
+
+#CI_ActionButton Label
+{
+	align: center center;
+	text-align: center;
+	text-shadow: black 0px 1px 3px 2;
+	text-overflow: shrink;
+}
+
+#CI_PayByCurrency,#CI_Treasure_Preview,#CI_ItemUseCheckerConfirm
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/currency_shop/currency_shop_bg_png.vtex");
+	background-size: 100%;
+	flow-children: down;
+	align: center center;
+}
+
+#CI_PayByCurrency
+{
+	width: 475px;
+}
+
+#CI_PayByCurrency_Item
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#23242b), to(#1a1b1f));
+}
+
+.CI_ItemDetailedDescription
+{
+	text-align: center;
+	margin: 10px 40px 0 40px;
+	background-color: rgba(0, 0, 0, 0.6);
+	padding: 10px;
+	visibility: collapse;
+}
+
+.BItemHasDetailedDescription .CI_ItemDetailedDescription
+{
+	visibility: visible;
+}
+
+.CI_PayByCurrency_ButtonsCountRoot
+{
+	flow-children: right;
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/tab_bg_png.vtex");
+	background-size: 100%;
+	padding: 5px 6px;
+	horizontal-align: center;
+	margin-top: 17px;
+	visibility: collapse;
+}
+
+.double_mmr_token .CI_PayByCurrency_ButtonsCountRoot,.bp_reroll .CI_PayByCurrency_ButtonsCountRoot,.bp_breathtaking_benefaction .CI_PayByCurrency_ButtonsCountRoot,.bp_legendary_lagresse .CI_PayByCurrency_ButtonsCountRoot,.bp_gg_token .CI_PayByCurrency_ButtonsCountRoot,.BConsumables .CI_PayByCurrency_ButtonsCountRoot,.double_mmr_token .ItemQuantityHint,.bp_reroll .ItemQuantityHint,.bp_breathtaking_benefaction .ItemQuantityHint,.bp_legendary_lagresse .ItemQuantityHint,.bp_gg_token .ItemQuantityHint,.BConsumables .ItemQuantityHint
+{
+	visibility: visible;
+}
+
+.CI_PayByCurrency_ButtonsCountRoot Label
+{
+	text-align: center;
+	vertical-align: center;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#e88b16), to(#f7da3e));
+	text-shadow: rgba(0, 0, 0, 0.7) 0px 1px 2px 2;
+}
+
+.CI_PayByCurrency_ButtonsCountRoot > Label
+{
+	font-size: 23px;
+	min-width: 77px;
+}
+
+.CI_PayByCurrency_ButtonsCountRoot Button
+{
+	width: 41px;
+	height: 41px;
+	background-color: #0c2a96;
+	padding-top: -1px;
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/item_count_bg_png.vtex");
+	background-size: 100%;
+	transition-property: brightness;
+	transition-duration: 0.1s;
+}
+
+.CI_PayByCurrency_ButtonsCountRoot Button.Block
+{
+	saturation: 0;
+	wash-color: #cdcdcd;
+}
+
+.CI_PayByCurrency_ButtonsCountRoot Button:not(.Block):hover
+{
+	brightness: 1.45;
+}
+
+.CI_PayByCurrency_ButtonsCountRoot Button:not(.Block):active
+{
+	brightness: 0.8;
+	width: 39px;
+	height: 39px;
+	margin: 1px;
+	sound: "General.ButtonClick";
+}
+
+.CI_PayByCurrency_ButtonsCountRoot Button Label
+{
+	align: center center;
+	font-size: 29px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#e88b16), to(#f7da3e));
+	text-shadow: rgba(0, 0, 0, 0.7) 0px 1px 2px 2;
+}
+
+.CI_PayByCurrency_PriceRoot
+{
+	horizontal-align: center;
+	margin-top: 17px;
+}
+
+.CI_PayByCurrency_PriceRoot > Panel
+{
+	flow-children: right;
+	padding: 0px 100px;
+}
+
+.CI_PayByCurrency_PriceRoot > Panel Image
+{
+	width: 37px;
+	height: 37px;
+	img-shadow: 0px 0px 3px 2 black;
+}
+
+.CI_PayByCurrency_PriceRoot > Panel Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#f58907), to(#f9d64b));
+	text-shadow: rgba(0, 0, 0, 0.7) 0px 1px 2px 2;
+	font-size: 23px;
+	vertical-align: center;
+	margin-left: 5px;
+}
+
+.CI_PayByCurrency_PriceRoot_Background
+{
+	width: 100%;
+	height: 25px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(transparent), color-stop(0.6, #41476c), to(transparent));
+	vertical-align: center;
+}
+
+.CI_PayByCurrency_ButtonsConfirmRoot,.CI_Treasure_Preview_ButtonsRoot,.CI_ItemUseChecker_ButtonsRoot
+{
+	flow-children: right;
+	horizontal-align: center;
+	padding-left: -25px;
+	margin: 17px 0 23px 0;
+}
+
+.CI_PayByCurrency_ButtonsConfirmRoot Button,.CI_Treasure_Preview_ButtonsRoot Button,.CI_ItemUseChecker_ButtonsRoot Button
+{
+	width: 140px;
+	height: 42px;
+	margin-left: 25px;
+	background-color: #0d570d;
+	background-size: 100%;
+	box-shadow: rgba(0, 0, 0, 0.8) 0px 1px 5px -1px;
+	transition: brightness 0.1s ease-in-out 0s;
+}
+
+.CI_PayByCurrency_ButtonsConfirmRoot Button:hover,.CI_Treasure_Preview_ButtonsRoot Button:hover,.CI_ItemUseChecker_ButtonsRoot Button:hover
+{
+	brightness: 1.5;
+}
+
+.CI_PayByCurrency_ButtonsConfirmRoot Button:active,.CI_Treasure_Preview_ButtonsRoot Button:active,.CI_ItemUseChecker_ButtonsRoot Button:active
+{
+	brightness: 0.8;
+	sound: "General.ButtonClick";
+}
+
+.CI_Treasure_Preview_ButtonsRoot Button Label,.CI_PayByCurrency_ButtonsConfirmRoot Button Label,.CI_ItemUseChecker_ButtonsRoot Button Label
+{
+	align: center center;
+	text-align: center;
+	text-transform: uppercase;
+	margin-top: 1px;
+	color: #e1e7ef;
+	text-shadow: black 0px 1px 3px 2;
+}
+
+#CI_PayByCurrency_ConfirmButton,#CI_Treasure_Preview_ConfirmButton,#CI_Treasure_Preview_WheelButton_Start,#CI_Treasure_Preview_WheelButton_Accept,#CI_Treasure_Preview_WheelButton_Skip,#CI_ItemUseChecker_ConfirmButton
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/button_confirm_png.vtex");
+}
+
+#CI_PayByCurrency_CancelButton,#CI_Treasure_Preview_CancelButton,#CI_ItemUseChecker_CancelButton
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/button_cancel_png.vtex");
+}
+
+#CI_PayByCurrency_CancelButton:active,#CI_Treasure_Preview_CancelButton:active
+{
+	sound: "ui.click_back";
+}
+
+#CI_PayByCurrency .CI_Background
+{
+	width: 120px;
+	horizontal-align: center;
+	margin-top: 5px;
+}
+
+#CI_PayByCurrency.TREASURES .CI_Background
+{
+	width: 200px;
+}
+
+#CI_Treasure_Preview
+{
+	width: 952px;
+	width: 924px;
+}
+
+.CI_BackgroundWrap
+{
+	horizontal-align: center;
+}
+
+#CI_Treasure_Preview .CI_PreviewHeaderItem .CI_Background
+{
+	height: 130px;
+	width: 200px;
+}
+
+#CI_Treasure_Preview_List
+{
+	width: 100%;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#0b0b11), to(rgba(21, 21, 31, 0.8)));
+	margin: 15px;
+	padding-right: 15px;
+	horizontal-align: center;
+	max-height: 380px;
+	overflow: squish scroll;
+}
+
+#CI_Treasure_Preview_List > Panel
+{
+	flow-children: right-wrap;
+	max-width: 100%;
+	padding-top: 8px;
+	visibility: collapse;
+	horizontal-align: center;
+}
+
+#CI_Treasure_Preview_List > Panel.Show
+{
+	visibility: visible;
+}
+
+.CI_Treasure_Preview_ButtonsRoot
+{
+	margin: 0 0 15px 0;
+}
+
+#CI_Treasure_Preview_List .Cosmetic_Item,#CI_Wheel_List .Cosmetic_Item
+{
+	height: 120px;
+}
+
+#CI_Treasure_Preview_List .Cosmetic_Item:not(.BOwned) #CI_Image,.CI_ChatWheel_Preview_State.NotOwned
+{
+	saturation: 0;
+	wash-color: #dadada;
+}
+
+#CI_Treasure_Preview_WheelButton_Start,#CI_Treasure_Preview_WheelButton_Accept,#CI_Treasure_Preview_WheelButton_Skip
+{
+	visibility: collapse;
+}
+
+.BWheelGame:not(.BWheelGameProcess) #CI_Treasure_Preview_WheelButton_Start,.BWheelGame:not(.BWheelGameProcess) #CI_Treasure_Preview_WheelButton_Accept
+{
+	visibility: visible;
+}
+
+.BWheelGame #CI_Treasure_Preview_ConfirmButton,.BWheelGame #CI_Treasure_Preview_CancelButton
+{
+	visibility: collapse;
+}
+
+.BWheelGameProcess #CI_Treasure_Preview_WheelButton_Skip
+{
+	visibility: visible;
+}
+
+.BWheelGame #CI_Treasure_Preview_List
+{
+	visibility: collapse;
+}
+
+#CI_Treasure_WheelGame
+{
+	width: 100%;
+	height: 200px;
+	overflow: clip;
+	visibility: collapse;
+}
+
+.BWheelGame #CI_Treasure_WheelGame
+{
+	visibility: visible;
+}
+
+.CI_Treasure_Wheel_Border
+{
+	horizontal-align: center;
+	height: 180px;
+	width: 180px;
+	vertical-align: center;
+	margin-top: -7px;
+}
+
+.CI_Treasure_Wheel_Arrow
+{
+	horizontal-align: center;
+	margin-top: 13px;
+}
+
+.BWheelGameProcess .CI_Treasure_Wheel_Arrow
+{
+	animation-name: arrow_spin;
+	animation-duration: 0.2s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'arrow_spin'
+{
+	0%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+	50%
+	{
+		transform: rotateZ(40deg);
+	}
+	
+	100%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+}
+
+#CI_Wheel_List
+{
+	width: 100%;
+	flow-children: right;
+	vertical-align: center;
+	padding-left: -14px;
+	overflow: clip clip;
+	opacity-mask: url("s2r://panorama/images/custom_game/collection/cosmetics/spin_mask_png.vtex");
+}
+
+#CI_Wheel_List #CI_ActionButton
+{
+	visibility: collapse;
+}
+
+#CI_Wheel_List .Cosmetic_Item
+{
+	transition-property: transform;
+	transition-duration: 5s;
+}
+
+.BWheelGameEnd .Cosmetic_Item:not(.BPrize)
+{
+	saturation: 0;
+	wash-color: #dadada;
+}
+
+.NoTreasures #CI_Treasure_Preview_WheelButton_Start
+{
+	saturation: 0;
+}
+
+.NoTreasures #CI_Treasure_Preview_WheelButton_Start:hover
+{
+	brightness: 1;
+}
+
+.NoTreasures #CI_Treasure_Preview_WheelButton_Start:active
+{
+	sound: "";
+}
+
+.CI_Wheel_RewardInfo_Root
+{
+	flow-children: down;
+	horizontal-align: center;
+	margin-bottom: 15px;
+	visibility: collapse;
+}
+
+.BWheelGameEnd .CI_Wheel_RewardInfo_Root
+{
+	visibility: visible;
+}
+
+.CI_Wheel_RewardInfo_NameRoot,.CI_Wheel_RewardInfo_DuplicateRoot
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.CI_Wheel_RewardInfo_NameRoot > Label
+{
+	font-size: 30px;
+}
+
+.CI_Wheel_RewardInfo_NameRoot > Label,.CI_Wheel_RewardInfo_DuplicateRoot > Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#cdcdcd), to(#f5f5f5));
+	text-shadow: 0px 2px 4px 3 rgba(0, 0, 0, 0.4);
+}
+
+#CI_Wheel_RewardInfo_Name,#CI_Wheel_DuplicateCurrency
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#fba211), to(#fff27b));
+	margin: 0 3px;
+}
+
+#CI_Wheel_DuplicateCurrency
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/currency_icon_small_png.vtex");
+	background-size: 20px;
+	background-repeat: no-repeat;
+	background-position: 100% 0;
+	padding-right: 23px;
+}
+
+.CI_Wheel_RewardInfo_DuplicateRoot
+{
+	visibility: collapse;
+}
+
+.BWheelGameDuplicate .CI_Wheel_RewardInfo_DuplicateRoot
+{
+	visibility: visible;
+}
+
+.CT_NewItemsCount
+{
+	width: 23px;
+	height: 31px;
+	text-align: center;
+	text-overflow: shrink;
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/flag_png.vtex");
+	background-size: 100%;
+	font-family: monospaceNumbersFont;
+	visibility: collapse;
+	padding-top: 2px;
+	margin: 1px 5px 0 0;
+	horizontal-align: right;
+	color: #d0d4f8;
+}
+
+.BHasNewItems .CT_NewItemsCount
+{
+	visibility: visible;
+}
+
+#CI_ItemUseCheckerConfirm
+{
+	padding: 0 18px;
+}
+
+#CI_ItemUseCheckerConfirm .CI_Background
+{
+	height: 120px;
+	width: 120px;
+	horizontal-align: center;
+}
+
+.CI_ItemUseChecker_Desc
+{
+	width: 260px;
+	text-align: center;
+	horizontal-align: center;
+	margin-top: 10px;
+	color: #d0d4f8;
+	text-shadow: black 0px 1px 2px 2;
+}
+
+.CI_EquippedItemFlag
+{
+	width: 20px;
+	height: 20px;
+	horizontal-align: right;
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/item_equipped_png.vtex");
+	background-size: 100%;
+	brightness: 2;
+	visibility: collapse;
+}
+
+.BEquipped .CI_EquippedItemFlag
+{
+	visibility: visible;
+}
+
+.CI_Treasure_Wheel_Arrow_FX
+{
+	width: 100%;
+	height: 100%;
+	margin-bottom: 110px;
+	visibility: collapse;
+}
+
+.BWheelGameProcess .CI_Treasure_Wheel_Arrow_FX
+{
+	visibility: visible;
+}
+
+.ItemQuantityHint
+{
+	flow-children: right;
+	padding-left: -4px;
+	horizontal-align: center;
+	margin-top: 6px;
+	visibility: collapse;
+}
+
+.ItemQuantityHint Label
+{
+	background-color: #222827;
+	margin-left: 4px;
+	padding: 1px 4px 0 4px;
+	font-size: 15px;
+	text-align: center;
+	color: #b7b2c6;
+	text-shadow: black 0 1px 0 2;
+	border: 1px solid black;
+	border-radius: 3px;
+	transition-property: color, background-color, box-shadow;
+	transition-duration: 0.1s;
+	box-shadow: rgba(254, 225, 184, 0.15) 0 0 0 0;
+}
+
+.ShiftPressed .ItemQuantityHint .Shift,.AltPressed .ItemQuantityHint .Alt,.CtrlPressed .ItemQuantityHint .Ctrl
+{
+	color: gradient(linear, 0% 110%, 0% 0%, from(#df9724), to(#fee1b8));
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#20213c), to(#333753));
+	box-shadow: rgba(254, 225, 184, 0.15) 0 0 2px -1;
+}
+
+.CI_ChatWheelContent_Phrase,#CI_ChatWheelContent_Color,#CI_ChatWheelContent_Emoji
+{
+	margin-top: 10px;
+	flow-children: right;
+	align: center center;
+}
+
+.CI_ChatWheelContent_Phrase Label
+{
+	color: white;
+}
+
+.CI_ChatWheelContent_Phrase Label,#CI_ChatWheelContent_Color Label
+{
+	font-size: 24px;
+}
+
+.CI_ChatWheelContent_Phrase Image
+{
+	height: 27px;
+	width: 19px;
+	margin-right: 6px;
+	vertical-align: center;
+}
+
+.CI_ChatWheelContent_Phrase #CI_ChatWheel_SoundButton
+{
+	width: 27px;
+}
+
+.CI_ChatWheelContent_Phrase,#CI_ChatWheelContent_Color,#CI_ChatWheelContent_Emoji
+{
+	visibility: collapse;
+}
+
+.BChatWheel_Phrase .CI_ChatWheelContent_Phrase,.BChatWheel_Color #CI_ChatWheelContent_Color,.BChatWheel_Emoji #CI_ChatWheelContent_Emoji
+{
+	visibility: visible;
+}
+
+#CI_PayByCurrency:not(.BChatWheel_None) .CI_Background
+{
+	visibility: collapse;
+}
+
+.CI_ChatWheel_PhraseContainer,.CI_ChatWheel_ColorContainer,#CI_ChatWheel_EmojiContainer
+{
+	align: center top;
+	visibility: collapse;
+	margin: 8px 3px 0 3px;
+	height: 77px;
+}
+
+#CI_Treasure_WheelGame .CI_ChatWheel_PhraseContainer,#CI_Treasure_WheelGame .CI_ChatWheel_ColorContainer,#CI_Treasure_WheelGame #CI_ChatWheel_EmojiContainer
+{
+	margin: 20px 3px 0 3px;
+}
+
+.CI_ChatWheel_PhraseContainer,.CI_ChatWheel_ColorContainer
+{
+	flow-children: down;
+}
+
+.CI_ChatWheel_PhraseContainer Image,.CI_ChatWheel_ColorContainer Image
+{
+	width: 21px;
+	height: 21px;
+	horizontal-align: center;
+	margin-bottom: 4px;
+}
+
+#CI_ChatWheel_Phrase
+{
+	text-overflow: shrink;
+	text-align: center;
+	color: white;
+}
+
+#CI_ChatWheel_Color
+{
+	align: center top;
+	text-align: center;
+	padding: 5px;
+	text-overflow: shrink;
+}
+
+#CI_ChatWheel_Color Label
+{
+	text-overflow: shrink;
+}
+
+#CI_ChatWheel_EmojiContainer DOTAEmoticon
+{
+	margin: 8px;
+}
+
+.BChatWheel_Phrase .CI_Background,.BChatWheel_Color .CI_Background,.BChatWheel_Emoji .CI_Background
+{
+	width: 100%;
+	height: 100%;
+}
+
+.BChatWheel_Phrase .CI_ChatWheel_PhraseContainer,.BChatWheel_Color .CI_ChatWheel_ColorContainer,.BChatWheel_Emoji #CI_ChatWheel_EmojiContainer
+{
+	visibility: visible;
+}
+
+#CI_ChatWheel_SoundButton:hover
+{
+	brightness: 1.5;
+}
+
+#CI_ChatWheel_SoundButton:active
+{
+	brightness: 0.7;
+	pre-transform-scale2d: 0.92;
+}
+
+.CI_ChatWheel_ColorContainer
+{
+	width: 100%;
+	padding: 0 5px;
+}
+
+#CI_Treasure_Preview_List .Cosmetic_Item.BChatWheel_Color:not(.BOwned) #CI_Image
+{
+	saturation: 1;
+	wash-color: transparent;
+}
+
+.CI_ChatWheel_Preview_State
+{
+	align: center bottom;
+	margin: 3px;
+	color: #f5bd61;
+	text-shadow: black 0 0 1px 2;
+	width: 100%;
+	height: 25px;
+	text-align: center;
+	padding: 2px 0;
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/action_button_png.vtex");
+	background-size: 100%;
+	img-shadow: black 0 1px 1px 2;
+	visibility: collapse;
+}
+
+#CI_Treasure_Preview_List .BChatWheelContent.BOwned .CI_ChatWheel_Preview_State.Owned,#CI_Treasure_Preview_List .BChatWheelContent:not(.BOwned) .CI_ChatWheel_Preview_State.NotOwned
+{
+	visibility: visible;
+}

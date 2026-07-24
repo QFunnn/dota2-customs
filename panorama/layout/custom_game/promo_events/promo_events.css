@@ -1,0 +1,578 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.PromoEvents_CustomRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+.PromoEvents_Custom
+{
+	flow-children: down;
+	width: 1150px;
+	height: 565px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/collection/base_bg_png.vtex");
+	background-size: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 80%, from(#3f496d), to(#1d2133));
+	padding: 10px;
+	opacity: 0;
+	transform: translateY(-30px);
+	transition-property: opacity, transform;
+	transition-duration: 0.15s;
+}
+
+.Show .PromoEvents_Custom
+{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+.PromoEvents_Header
+{
+	width: 100%;
+	margin-bottom: 6px;
+}
+
+.PE_HeaderContent
+{
+	flow-children: down;
+	horizontal-align: center;
+}
+
+.PE_HeaderText
+{
+	font-size: 24px;
+	color: gradient(linear, 0% 96%, 0% 0%, from(#ff892d), to(#ffce86));
+	text-shadow: black 0 2px 0 2px;
+	text-transform: uppercase;
+	font-weight: semi-bold;
+	horizontal-align: center;
+	text-align: center;
+}
+
+.PE_HeaderHint
+{
+	horizontal-align: center;
+	text-align: center;
+	color: #ffffff;
+	margin-top: 0px;
+	text-shadow: black 0 2px 0 2px;
+}
+
+.PE_Close
+{
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+	background-size: 18px;
+	background-repeat: no-repeat;
+	background-position: 0% 50%;
+	padding-left: 21px;
+	wash-color: #98a4ce;
+	horizontal-align: right;
+	margin: 2px;
+}
+
+.PE_Close:hover
+{
+	brightness: 1.5;
+}
+
+.PE_Close:active
+{
+	brightness: 0.7;
+}
+
+.PE_Close Label
+{
+	text-transform: uppercase;
+	color: white;
+	font-weight: lighter;
+}
+
+.PromoEvents_Content
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	flow-children: right;
+	visibility: collapse;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#181820), to(#23222d));
+	box-shadow: rgba(0, 0, 0, 0.8) 0 1px 6px 0;
+}
+
+.BHaveAvailableTasks .PromoEvents_Content
+{
+	visibility: visible;
+}
+
+.PE_GamesList_Wrap
+{
+	background-color: gradient(radial, 0% 0%, 0% 0%, 140% 120%, from(#412d25), color-stop(0.5, #24222c), to(#413434));
+	height: 100%;
+	flow-children: down;
+	border-right: 1px solid rgba(0, 0, 0, 0.6);
+}
+
+#PE_GamesList_Container
+{
+	horizontal-align: center;
+	max-height: 100%;
+	flow-children: down;
+	padding: 0 13px 8px 14px;
+	overflow: squish scroll;
+}
+
+.PromoGame
+{
+	width: 170px;
+	height: 112px;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#17181e), to(#1f223b));
+	border: 1px solid white;
+	margin-top: 8px;
+	border-radius: 3px;
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#1d2759), to(#434d84));
+}
+
+.PromoGame.Activated
+{
+	background-color: gradient(linear, 0% 120%, 0% 0%, from(#312119), to(#20223b));
+}
+
+#PG_BG_Image
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	margin-top: 28px;
+	pre-transform-scale2d: 1.8;
+	opacity: 0.015;
+}
+
+.Game_overthrow_3 #PG_BG_Image
+{
+	margin-left: 6px;
+}
+
+.Game_12v12 #PG_BG_Image
+{
+	opacity: 0.035;
+}
+
+.PG_Content
+{
+	flow-children: down;
+	width: 100%;
+	height: 100%;
+}
+
+.PromoGame:hover
+{
+	brightness: 1.5;
+}
+
+.PromoGame:active
+{
+	brightness: 0.7;
+}
+
+.PG_NameRoot
+{
+	height: 21px;
+	width: 100%;
+	padding: 2px;
+	margin-top: 6px;
+	background-image: url("s2r://panorama/images/custom_game/promo_events/game_name_bg_idle_png.vtex");
+	background-size: 100%;
+	img-shadow: black 0 1px 3px 1;
+}
+
+.PromoGame.Activated .PG_NameRoot
+{
+	background-image: url("s2r://panorama/images/custom_game/promo_events/game_name_bg_active_png.vtex");
+}
+
+.PG_Name
+{
+	height: 100%;
+	height: 21px;
+	text-transform: uppercase;
+	color: gradient(linear, 0% 0%, 100% 0%, from(#fffee0), to(#fdb177));
+	font-size: 14px;
+	vertical-align: center;
+	text-shadow: black 0 1px 2px 2;
+	width: 123px;
+	text-overflow: shrink;
+	padding-left: 2px;
+}
+
+.PromoGame.Activated .PG_Name
+{
+	color: gradient(linear, 0% 0%, 100% 0%, from(#fffee0), to(#fab57b));
+}
+
+.PG_Progress
+{
+	color: #fde4af;
+	horizontal-align: right;
+	font-size: 14px;
+	text-shadow: black 0 1px 2px 2;
+	width: 25px;
+	text-align: center;
+	height: 18px;
+	text-overflow: shrink;
+}
+
+#PG_Image
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+}
+
+#PG_LinkButton
+{
+	width: 16px;
+	height: 16px;
+	opacity-mask: url("s2r://panorama/images/custom_game/promo_events/manage_icon_png.vtex");
+	align: right bottom;
+	margin: 6px;
+	background-color: gradient(linear, 0% 120%, 0% 0%, from(#7b7baa), to(#d2ceff));
+	visibility: collapse;
+}
+
+.BGameHasLink #PG_LinkButton
+{
+	visibility: visible;
+}
+
+#PG_LinkButton:hover
+{
+	brightness: 2;
+}
+
+#PE_TasksList
+{
+	flow-children: right;
+	width: 100%;
+	flow-children: down;
+	padding-top: -10px;
+	padding: -2px 14px 8px 13px;
+	overflow: squish scroll;
+}
+
+#VerticalScrollBar
+{
+	layout-position: fixed;
+	width: 8px;
+	margin: 8px 2px 8px 0;
+}
+
+#ScrollThumb
+{
+	background-color: #465065;
+}
+
+.PE_NoTasks
+{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+.BHaveAvailableTasks .PE_NoTasks
+{
+	visibility: collapse;
+}
+
+.PE_NoTasks Label
+{
+	align: center center;
+	text-align: center;
+	font-size: 30px;
+	text-transform: uppercase;
+	color: #bbbbff;
+	text-shadow: black 0px 2px 3px 2;
+}
+
+.PromoTask
+{
+	width: 100%;
+	height: 78px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#341f00), color-stop(0.2, #0e121e), to(#0e121e));
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#1b191f), to(#1e1f32)), gradient(radial, 100% 100%, 0% 0%, 70% 80%, from(rgba(52, 31, 0, 0.1)), to(transparent));
+	margin-top: 10px;
+	flow-children: right;
+	border: 1px solid white;
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#273267), to(#434e84));
+	box-shadow: rgba(0, 0, 0, 0.8) 0 3px 4px -2px;
+	border-radius: 3px;
+}
+
+.PromoTask.BTaskDone:not(.BTaskClaimed):hover
+{
+	brightness: 1.5;
+}
+
+.PromoTask.BTaskDone:not(.BTaskClaimed):active
+{
+	brightness: 0.7;
+}
+
+.BTaskClaimed
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#341f00), color-stop(0.35, #171d33), to(#171d33));
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#1c1b21), to(#282935));
+	border-brush: gradient(linear, 0% 0%, 100% 0%, from(#503000), color-stop(0.35, #171d33), to(#171d33));
+	border-brush: transparent;
+}
+
+#PT_Icon
+{
+	width: 100px;
+	height: 60px;
+	vertical-align: center;
+	margin-left: 5px;
+}
+
+.PT_DescriptionContainer
+{
+	flow-children: down;
+	vertical-align: center;
+	width: 450px;
+	margin-left: 10px;
+}
+
+.PT_D_GameAndTime
+{
+	flow-children: right;
+}
+
+.PT_D_GameName
+{
+	color: gradient(linear, 0% 96%, 0% 0%, from(#ff892d), to(#ffce86));
+	color: gradient(linear, 0% 96%, 0% 0%, from(#ee6506), to(#f1c13b));
+	font-size: 20px;
+}
+
+.PT_D_TimeRemaining
+{
+	font-size: 15px;
+	color: #9295c9;
+	background-color: #232840;
+	padding: 0px 3px -1px 3px;
+	border-radius: 4px;
+	vertical-align: center;
+	margin-left: 5px;
+	border: 1px solid transparent;
+	border: 1px solid #555380;
+}
+
+.BTimeExpired .PT_D_TimeRemaining
+{
+	color: #ff7b7e;
+	background-color: #232323;
+	border: 1px solid #555380;
+}
+
+.PT_ObjectiveContainer
+{
+	flow-children: right;
+	margin-top: 0px;
+}
+
+.PT_Objective
+{
+	color: white;
+	font-size: 18px;
+}
+
+.PT_Progress
+{
+	color: #ffce86;
+	text-align: center;
+}
+
+.BTaskClaimed .PT_Objective,.BTaskClaimed .PT_Progress
+{
+	color: #a9a9a9;
+}
+
+.PT_RewardContainer
+{
+	horizontal-align: right;
+	vertical-align: center;
+}
+
+.PT_R_BGLine_Claim
+{
+	vertical-align: center;
+	width: 100%;
+	height: 60px;
+	background-color: gradient(linear, 0% 0%, 150% 0%, from(transparent), to(#87562a));
+	visibility: collapse;
+}
+
+.BTaskDone:not(.BTaskClaimed) .PT_R_BGLine_Claim
+{
+	visibility: visible;
+}
+
+.PT_R_BGLine
+{
+	vertical-align: center;
+	width: 100%;
+	height: 34px;
+}
+
+.BTaskDone:not(.BTaskClaimed) .PT_R_BGLine
+{
+	background-color: gradient(linear, 0% 0%, 350% 0%, from(transparent), to(#a55926));
+}
+
+.PT_R_BGLine_FX
+{
+	width: 100px;
+	height: 100px;
+	width: 100%;
+	height: 100%;
+	opacity-brush: gradient( linear, 0% 0%, 100% 0%, from(#ffffff00), color-stop(0.5, rgba(255, 255, 255, 0.6)), to(rgba(255, 255, 255, 0.7)) );
+	opacity: 0.5;
+	visibility: collapse;
+}
+
+.BTaskDone:not(.BTaskClaimed) .PT_R_BGLine_FX
+{
+	visibility: visible;
+}
+
+.PT_R_Content
+{
+	flow-children: right;
+	vertical-align: center;
+}
+
+.PT_R_ClaimState
+{
+	vertical-align: center;
+	margin-left: 30px;
+	text-transform: uppercase;
+	color: #b5b7ef;
+	text-shadow: black 0 0 2px 2;
+	visibility: collapse;
+	font-weight: semi-bold;
+	font-style: italic;
+}
+
+.BTaskDone .PT_R_ClaimState
+{
+	visibility: visible;
+}
+
+.BTaskDone:not(.BTaskClaimed) .PT_R_ClaimState
+{
+	color: gradient(linear, 0% 96%, 0% 0%, from(#e3930e), to(#f1c13b));
+}
+
+#PT_Rewards
+{
+	flow-children: right;
+	padding-left: -5px;
+	margin: 0 5px;
+}
+
+.PromoReward
+{
+	width: 52px;
+	margin-left: 5px;
+}
+
+.PromoReward.TREASURES
+{
+	width: 72px;
+}
+
+.PR_Border
+{
+	width: 100%;
+	height: width-percentage(100%);
+	padding: 2px;
+	box-shadow: black 0 0 3px 1;
+}
+
+.BTaskClaimed .PR_Border
+{
+	saturation: 0.3;
+	wash-color: rgb(167, 167, 167);
+}
+
+.PromoReward.TREASURES .PR_Border
+{
+	height: 52px;
+}
+
+.PR_CheckImage
+{
+	align: center center;
+	width: 34px;
+	height: 30px;
+	visibility: collapse;
+}
+
+.BTaskClaimed .PR_CheckImage
+{
+	visibility: visible;
+}
+
+#PR_Icon
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#23242b), to(#1a1b1f));
+	width: 100%;
+	height: 100%;
+	background-position: 50%;
+	background-repeat: no-repeat;
+}
+
+.Reward_currency #PR_Icon
+{
+	background-size: 40px;
+	background-image: url("s2r://panorama/images/custom_game/collection/currency_icon_png.vtex");
+}
+
+.PR_Count
+{
+	text-align: center;
+	font-size: 15px;
+	font-weight: lighter;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from(transparent), color-stop(0.5, rgba(0, 0, 0, 0.76)), to(rgba(0, 0, 0, 0.96)) );
+	padding: 0 5px 0 10px;
+	min-width: 35px;
+	text-align: right;
+	align: right bottom;
+	text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 3px 2;
+	color: #bccee2;
+	max-width: 100%;
+	text-overflow: shrink;
+	height: 18px;
+}
+
+.BGameFilterActivated .PromoTask
+{
+	visibility: collapse;
+}
+
+.BActiveGame_12v12 .PromoTask.Game_12v12,.BActiveGame_overthrow_3 .PromoTask.Game_overthrow_3,.BActiveGame_custom_hero_clash .PromoTask.Game_custom_hero_clash,.BActiveGame_ar_custom_game_template .PromoTask.Game_ar_custom_game_template,.BActiveGame_angel_arena_classic .PromoTask.Game_angel_arena_classic
+{
+	visibility: visible;
+}
+
+.PromoGame.Activated,.BTaskDone:not(.BTaskClaimed)
+{
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#9c4f0d), to(#dab741));
+}

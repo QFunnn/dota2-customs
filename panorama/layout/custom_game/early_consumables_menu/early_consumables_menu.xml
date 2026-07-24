@@ -1,0 +1,94 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/early_consumables_menu/early_consumables_menu.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/early_consumables_menu/early_consumables_menu_const.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/early_consumables_menu/early_consumables_menu.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="EC_Footer_Item">
+			<Button class="EC_Footer_Item" onmouseover="DOTAShowTextTooltip(#early_consumables_more_hint)" onmouseout="DOTAHideTextTooltip()">
+				<Panel class="EC_FI_ImageContainer">
+					<Panel />
+					<Image id="EC_FI_Image" />
+				</Panel>
+				<Label text="{s:items_count}x" />
+			</Button>
+		</snippet>
+	</snippets>
+	<Panel class="EarlyConsumables_Root" hittest="false">
+		<Panel class="EC_TopBorder" />
+		<Panel class="EC_ContentWrap">
+			<Button class="EC_Close" onactivate="CloseMenu()">
+				<Panel class="EC_Close_Background">
+					<Panel class="EC_Close_Background_Hover" />
+				</Panel>
+				<Panel class="EC_Close_Icon" />
+			</Button>
+			<Panel class="EC_Content">
+				<Panel class="EC_KillLimit">
+					<Panel class="EC_Content_Entry">
+						<Panel>
+							<Label class="EC_Content_Header" text="#kill_voting_header" />
+							<Panel class="EC_Content_Buttons">
+								<Button class="EC_Content_Button" onactivate="KL_Vote(&apos;Default&apos;)">
+									<Panel class="EC_Content_Button_Background" />
+									<Label class="EC_Content_Button_Value" text="+{s:default_kl_value}" />
+									<Panel class="EC_Content_Button_Hint_Container">
+										<Label class="EC_Content_Button_Hint" text="#kill_voting_hint_default" />
+										<Panel class="EC_Content_OptionUsed" />
+									</Panel>
+								</Button>
+								<Button class="EC_Content_Button Token" onactivate="KL_Vote(&apos;Token&apos;)">
+									<Panel class="EC_Content_Button_Background" />
+									<Label class="EC_Content_Button_Value" text="+{s:token_kl_value}" />
+									<Panel class="EC_Content_Button_Hint_Container">
+										<Label class="EC_Content_Button_Hint" text="#kill_voting_hint_token" />
+										<Panel class="EC_Content_OptionUsed" />
+									</Panel>
+								</Button>
+							</Panel>
+							<Label class="EC_Content_Description" text="#kill_voting_description" html="true" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="EC_ContentSeparator" />
+				<Panel class="EC_DoubleMmrTokens">
+					<Panel class="EC_Content_Entry">
+						<Panel>
+							<Label class="EC_Content_Header" text="#double_mmr_token_header" />
+							<Panel class="EC_Content_Buttons">
+								<Button class="EC_Content_Button Token" onactivate="DoubleRankRequest()">
+									<Panel class="EC_Content_Button_Background" />
+									<Label class="EC_Content_Button_Value" />
+									<Panel class="EC_Content_Button_Hint_Container">
+										<Label class="EC_Content_Button_Hint" text="#double_mmr_token_hint" />
+										<Panel class="EC_Content_OptionUsed" />
+									</Panel>
+								</Button>
+							</Panel>
+							<Label class="EC_Content_Description" text="#double_mmr_description" html="true" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="EC_KL_Footer">
+			<Panel />
+		</Panel>
+	</Panel>
+</root>

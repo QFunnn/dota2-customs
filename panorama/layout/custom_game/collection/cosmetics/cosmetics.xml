@@ -1,0 +1,191 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/cosmetics/cosmetics_precache.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/cosmetics/cosmetics_rarities.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/cosmetics/cosmetics.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/chat_wheel/chat_wheel_colors_style.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/const.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/cosmetics/cosmetics_const.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/chat_wheel/chat_wheel_const.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/cosmetics/cosmetics.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="Cosmetic_Tab">
+			<Button class="Cosmetic_Tab">
+				<Panel class="CT_ActiveOverlay" />
+				<Panel class="CT_Root">
+					<Panel id="CT_Icon">
+						<Panel />
+					</Panel>
+					<Label text="{s:tab_name}" html="true" />
+				</Panel>
+				<Label class="CT_NewItemsCount" text="{d:new_items_count}" />
+			</Button>
+		</snippet>
+		<snippet name="Cosmetic_Content">
+			<Panel class="Cosmetic_Content" />
+		</snippet>
+		<snippet name="Cosmetic_Item">
+			<Panel class="Cosmetic_Item">
+				<Panel class="CI_Background">
+					<Image id="CI_Image">
+						<Button id="CI_Details" />
+						<Label class="CI_Count" text="{d:item_count}" />
+						<Label class="CI_Name" text="{s:item_name}" html="true" />
+						<Panel class="CI_ChatWheel_PhraseContainer">
+							<Image id="CI_ChatWheel_SoundButton" src="s2r://panorama/images/hud/reborn/icon_scoreboard_mute_sound_psd.vtex" />
+							<Label id="CI_ChatWheel_Phrase" text="{s:chat_wheel_phrase}" html="true" />
+						</Panel>
+						<Panel class="CI_ChatWheel_ColorContainer">
+							<Image src="s2r://panorama/images/custom_game/collection/chat_wheel/color_hover_png.vtex" />
+							<Label id="CI_ChatWheel_Color" text="{s:chat_wheel_color}" />
+						</Panel>
+						<Panel id="CI_ChatWheel_EmojiContainer" />
+						<Panel class="CI_EquippedItemFlag" />
+						<Label class="CI_ChatWheel_Preview_State Owned" text="#item_owned" />
+						<Label class="CI_ChatWheel_Preview_State NotOwned" text="#item_not_owned" />
+					</Image>
+				</Panel>
+				<Button id="CI_ActionButton">
+					<Panel class="CI_ActionButtonOverlay Hover" />
+					<Panel class="CI_ActionButtonOverlay Active" />
+					<Label text="Action" />
+				</Button>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="Custom_Cosmetics" hittest="false">
+		<Panel id="CC_Tabs" />
+		<Panel class="CC_MainPanel">
+			<Panel class="CC_HeaderRoot">
+				<Label id="CC_SortingText" text="#sort_by" />
+				<DropDown id="CC_SortingOptions" acceptinput="false">
+					<Label id="sort_default" text="#cc_sort_default" onactivate="SortItems(&apos;default&apos;)" />
+					<Label id="sort_rarity_up" text="#cc_sort_rarity_up" onactivate="SortItems(&apos;rarity_up&apos;)" />
+					<Label id="sort_rarity_down" text="#cc_sort_rarity_down" onactivate="SortItems(&apos;rarity_down&apos;)" />
+				</DropDown>
+				<ToggleButton id="OnlyOwnedItems" checked="false" text="#cosmetic_show_owned_items_only" onactivate="ShowOnlyOwnedItems()" />
+			</Panel>
+			<Panel id="CC_ContentRoot" />
+		</Panel>
+		<Panel id="CI_PayByCurrency" onactivate="">
+			<Label class="C_SubPanel_Header" text="#confirm_your_purchase" />
+			<Panel class="CI_Background">
+				<Image id="CI_PayByCurrency_Item" />
+			</Panel>
+			<Panel class="CI_ChatWheelContent_Phrase">
+				<Image src="s2r://panorama/images/control_icons/chat_wheel_icon_png.vtex" />
+				<Image id="CI_ChatWheel_SoundButton" src="s2r://panorama/images/hud/reborn/icon_scoreboard_mute_sound_psd.vtex" />
+				<Label text="{s:chat_wheel_phrase}" />
+			</Panel>
+			<Panel id="CI_ChatWheelContent_Color">
+				<Label id="CI_ChatWheelContent_ColorLabel" text="{s:chat_wheel_color}" />
+			</Panel>
+			<Panel id="CI_ChatWheelContent_Emoji" />
+			<Label class="CI_ItemDetailedDescription" text="{s:detailed_desc}" html="true" />
+			<Panel class="CI_PayByCurrency_ButtonsCountRoot">
+				<Button id="Dec" onactivate="PurchasingByCurrencyUpdate(-1)">
+					<Label text="-" />
+				</Button>
+				<Label text="{d:items_count}" />
+				<Button id="Inc" onactivate="PurchasingByCurrencyUpdate(+1)">
+					<Label text="+" />
+				</Button>
+			</Panel>
+			<Panel class="ItemQuantityHint">
+				<Label class="Shift" text="SHIFT x5" />
+				<Label class="Alt" text="ALT x10" />
+				<Label class="Ctrl" text="CTRL x50" />
+			</Panel>
+			<Panel class="CI_PayByCurrency_PriceRoot">
+				<Panel class="CI_PayByCurrency_PriceRoot_Background" />
+				<Panel>
+					<Image src="s2r://panorama/images/custom_game/collection/currency_icon_png.vtex" />
+					<Label text="{s:currency}" />
+				</Panel>
+			</Panel>
+			<Panel class="CI_PayByCurrency_ButtonsConfirmRoot">
+				<Button id="CI_PayByCurrency_ConfirmButton" onactivate="GameUI.Cosmetics.BuyItems()">
+					<Label text="#confirm" />
+				</Button>
+				<Button id="CI_PayByCurrency_CancelButton" onactivate="GameUI.Collection.CloseSubPanels()">
+					<Label text="#cancel" />
+				</Button>
+			</Panel>
+		</Panel>
+		<Panel id="CI_Treasure_Preview" onactivate="">
+			<Label class="C_SubPanel_Header" text="{s:treasure_name}" html="true" />
+			<Panel class="CI_BackgroundWrap CI_PreviewHeaderItem">
+				<Panel class="CI_Background">
+					<Image id="CI_Treasure_Preview_Item" />
+				</Panel>
+			</Panel>
+			<Panel id="CI_Treasure_Preview_List" />
+			<Panel id="CI_Treasure_WheelGame">
+				<Panel id="CI_Wheel_List" />
+				<Image class="CI_Treasure_Wheel_Border" src="s2r://panorama/images/custom_game/collection/cosmetics/spin_border_png.vtex" hittest="false" />
+				<DOTAScenePanel class="CI_Treasure_Wheel_Arrow_FX" camera="camera_arrow" particleonly="false" map="collection/spin_glow" hittest="false" />
+				<Image class="CI_Treasure_Wheel_Arrow" src="s2r://panorama/images/custom_game/collection/cosmetics/spin_arrow_png.vtex" hittest="false" />
+			</Panel>
+			<Panel class="CI_Wheel_RewardInfo_Root">
+				<Panel class="CI_Wheel_RewardInfo_NameRoot">
+					<Label text="#wheel_received" />
+					<Label id="CI_Wheel_RewardInfo_Name" text="{s:prize_item_name}" />
+					<Label text="!" />
+				</Panel>
+				<Panel class="CI_Wheel_RewardInfo_DuplicateRoot">
+					<Label text="#duplicate_item_info" />
+					<Label id="CI_Wheel_DuplicateCurrency" text="{s:prize_duplicate_currency}" />
+					<Label text="#duplicate_item_back" />
+				</Panel>
+			</Panel>
+			<Panel class="CI_Treasure_Preview_ButtonsRoot">
+				<Button id="CI_Treasure_Preview_ConfirmButton">
+					<Label text="#open_treasure" />
+				</Button>
+				<Button id="CI_Treasure_Preview_CancelButton" onactivate="GameUI.Collection.CloseSubPanels()">
+					<Label text="#cancel" />
+				</Button>
+				<Button id="CI_Treasure_Preview_WheelButton_Start" onactivate="OpenMoreTreasure()">
+					<Label text="#open_more_treasures" />
+				</Button>
+				<Button id="CI_Treasure_Preview_WheelButton_Accept" onactivate="GameUI.Collection.CloseSubPanels()">
+					<Label text="#accept" />
+				</Button>
+				<Button id="CI_Treasure_Preview_WheelButton_Skip" onactivate="SkipTreasureOpening()">
+					<Label text="#skip_wheel_treasure" />
+				</Button>
+			</Panel>
+		</Panel>
+		<Panel id="CI_ItemUseCheckerConfirm" onactivate="">
+			<Label class="C_SubPanel_Header" text="#item_consumable_use_confirm" />
+			<Panel class="CI_Background">
+				<Image id="CI_ItemUseChecker_Item" />
+			</Panel>
+			<Label class="CI_ItemUseChecker_Desc" text="{s:item_use_checker_text}" html="true" />
+			<Panel class="CI_ItemUseChecker_ButtonsRoot">
+				<Button id="CI_ItemUseChecker_CancelButton" onactivate="CancelConsumeItem()">
+					<Label text="#cancel" />
+				</Button>
+				<Button id="CI_ItemUseChecker_ConfirmButton" onactivate="ConfirmConsumeItem()">
+					<Label text="#confirm" />
+				</Button>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

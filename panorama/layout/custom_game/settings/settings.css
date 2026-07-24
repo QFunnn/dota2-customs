@@ -1,0 +1,195 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.SettingsPanel
+{
+	align: center center;
+	width: 500px;
+	height: fit-children;
+	max-height: 800px;
+	overflow: squish scroll;
+	flow-children: down;
+	background-image: url("s2r://panorama/images/custom_game/backgrounds/patchnotes_background_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	box-shadow: fill transparent 0px 1px 4px 3px;
+	border: 1px solid black;
+	transition-property: opacity, transform, box-shadow;
+	transition-duration: 0.2s, 0.3s, 0.2s;
+	opacity: 0;
+	transform: translateY(-50px);
+}
+
+.SettingsOpen
+{
+	opacity: 1;
+	box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 4px 3px;
+	transform: translateY(0px);
+}
+
+.SettingsHeaderContainer
+{
+	width: 100%;
+	height: 35px;
+	background-image: url("s2r://panorama/images/custom_game/backgrounds/wide_bg_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.SettingsHeader
+{
+	font-size: 20px;
+	font-family: titleFont;
+	align: center center;
+	text-transform: uppercase;
+	color: white;
+	text-shadow: rgba(0, 0, 0, 0.7) 0px 1px 2px 3;
+}
+
+.CloseButton
+{
+	wash-color: rgb(65, 61, 61);
+}
+
+#CloseButton
+{
+	horizontal-align: right;
+	vertical-align: center;
+	width: 25px;
+	height: 25px;
+}
+
+.OverlayShadow
+{
+	width: 100%;
+	height: 50px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from(rgba(0, 0, 0, 0.8)), color-stop(0.35, transparent), to(transparent) );
+}
+
+#SettingsContainer
+{
+	margin-top: -45px;
+	flow-children: down;
+	width: 100%;
+	height: fit-children;
+	margin-bottom: 10px;
+}
+
+.SettingsCategory
+{
+	flow-children: down;
+	width: 100%;
+	height: fit-children;
+	margin: 5px 15px 5px 15px;
+}
+
+.CategoryName
+{
+	width: 100%;
+	font-weight: thin;
+	font-size: 20px;
+	color: #9baff9;
+	text-transform: uppercase;
+	text-shadow: rgba(0, 0, 0, 0.7) 0px 1px 2px 2;
+	border-bottom: 2px solid #525657;
+	margin-bottom: 5px;
+	padding-bottom: 2px;
+}
+
+.SettingEntry
+{
+	margin-top: 2px;
+	margin-bottom: 2px;
+	width: 100%;
+}
+
+.SettingSliderContainer
+{
+	width: 100%;
+	flow-children: down;
+	padding: 1px 4px;
+}
+
+.SliderLabels
+{
+	width: 100%;
+	height: 25px;
+}
+
+#SettingsSlider
+{
+	width: 100%;
+}
+
+#SliderTitle,#SliderValue
+{
+	vertical-align: bottom;
+	font-size: 16px;
+	letter-spacing: 1px;
+	transition-property: color;
+	transition-duration: 0.2s;
+}
+
+#SliderValue
+{
+	horizontal-align: right;
+}
+
+.SettingSliderContainer:hover #SliderTitle
+{
+	color: #d2d6d1;
+}
+
+.SettingSliderContainer:hover #SliderValue
+{
+	color: #d2d6d1;
+}
+
+.CheckBoxLabel,#SliderTitle,#SliderValue
+{
+	text-shadow: rgba(0, 0, 0, 0.7) 0px 1px 2px 2;
+}
+
+.CheckBox
+{
+	vertical-align: center;
+}
+
+.SettingEntry.is_locked .CheckBox:enabled:hover Label,.SettingEntry.is_locked .CheckBox:enabled:hover Label Label
+{
+	color: #333333;
+}
+
+#SettingLock
+{
+	horizontal-align: right;
+	opacity: 0;
+	visibility: collapse;
+}
+
+.is_locked #SettingLock
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+.is_locked Label
+{
+	color: #333333;
+}
+
+.is_locked .TickBox,.is_locked .CheckBox:hover .TickBox
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#222222), to(#333333));
+	border: 3px solid #000000;
+	box-shadow: #33333377 0px 0px 8px 0px;
+}

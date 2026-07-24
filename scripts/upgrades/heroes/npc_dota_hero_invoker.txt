@@ -1,0 +1,307 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_invoker"
+{
+	"invoker_cold_snap"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+
+			"linked_special_values"
+			{
+				"duration" "1"
+			}
+			"linked_abilities"
+			{
+				"invoker_ice_wall"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "10"
+						"operator" "OP_MULTIPLY"
+					}
+					"wall_width"
+					{
+						"value" "30"
+						"operator" "OP_ADD"
+					}
+				}
+			}
+		}
+		"freeze_damage"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+			"linked_abilities"
+			{
+				"invoker_ice_wall"
+				{
+					"damage_per_second" "25"
+				}
+			}
+		}
+	}
+	"invoker_tornado"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "6"
+			"operator" "OP_MULTIPLY"
+			"max_count" "8"
+			
+			"linked_special_values"
+			{
+				"area_of_effect" "35"
+				"vision_distance" "35"
+			}
+			
+			"linked_abilities"
+			{
+				"invoker_emp"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+					"area_of_effect" "35"
+				}
+			}
+		}
+		"base_damage"
+		{
+			"value" "85"
+			"operator" "OP_ADD"
+			
+			"linked_abilities"
+			{
+				"invoker_emp"
+				{
+					"mana_burned" "110"
+				}
+			}
+		}
+	}
+	"invoker_chaos_meteor"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			
+			"linked_abilities"
+			{
+				"invoker_deafening_blast"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+					"radius_start"
+					{
+						"value" "45"
+						"operator" "OP_MULTIPLY"
+
+						"multiplicative_target"			"575"
+						"multiplicative_base_value"		"175"
+					}
+					"radius_end"
+					{
+						"value" "45"
+						"operator" "OP_MULTIPLY"
+
+						"multiplicative_target"			"625"
+						"multiplicative_base_value"		"225"
+					}
+				}
+			}
+		}
+		"main_damage"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			
+			"linked_special_values"
+			{
+				"burn_dps"
+				{
+					"value"			"8"
+					"operator"		"OP_ADD"
+				}
+			}
+			
+			"linked_abilities"
+			{
+				"invoker_deafening_blast"
+				{
+					"damage"
+					{
+						"value" "85"
+						"operator" "OP_ADD"
+					}
+				}
+			}
+		}
+	}
+	"invoker_alacrity"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+
+			"linked_special_values"
+			{
+				"duration" "1"
+			}
+			
+			"linked_abilities"
+			{
+				"invoker_forge_spirit"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+					"spirit_armor" "2"
+					"spirit_hp" "250"
+				}
+			}
+		}
+		"bonus_damage"
+		{
+			"value" "12"
+			"operator" "OP_ADD"
+
+			"linked_special_values"
+			{
+				"bonus_attack_speed" "12"
+			}
+			
+			"linked_abilities"
+			{
+				"invoker_forge_spirit"
+				{
+					"spirit_damage"
+					{
+						"value" "30"
+						"operator" "OP_ADD"
+					}
+				}
+			}
+		}
+	}
+	"invoker_sun_strike"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			
+			"linked_abilities"
+			{
+				"invoker_ghost_walk"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+					"area_of_effect"
+					{
+						"value" "20"
+						"operator" "OP_ADD"
+					}
+				}
+			}
+		}
+		"damage"
+		{
+			"value" "80"
+			"operator" "OP_ADD"
+			
+			"linked_abilities"
+			{
+				"invoker_ghost_walk"
+				{
+					"health_regen"
+					{
+						"value" "18"
+						"operator" "OP_ADD"
+					}
+					"mana_regen"
+					{
+						"value" "8"
+						"operator" "OP_ADD"
+					}
+				}
+			}
+		}
+	}
+	"invoker_quas"
+	{
+		"hp_regen_per_instance"
+		{
+			"value"			"3"
+			"operator" "OP_ADD"
+			"talents"
+			{
+				"special_bonus_unique_invoker_13"	"x2"
+			}
+			
+			"linked_abilities"
+			{
+				"invoker_wex"
+				{
+					"move_speed_per_instance"
+					{
+						"value"		"1.8"
+						"operator" "OP_ADD"
+
+						"talents"
+						{
+							"special_bonus_unique_invoker_13"	"x2"
+						}
+					}
+					"attack_speed_per_instance"
+					{
+						"value"		"3"
+						"operator" "OP_ADD"
+
+						"talents"
+						{
+							"special_bonus_unique_invoker_13"	"x2"
+						}
+					}
+				}
+				"invoker_exort"
+				{
+					"bonus_damage_per_instance"
+					{
+						"value"		"6"
+						"operator" "OP_ADD"
+
+						"talents"
+						{
+							"special_bonus_unique_invoker_13"	"x2"
+						}
+					}
+				}
+			}
+		}
+	}
+}

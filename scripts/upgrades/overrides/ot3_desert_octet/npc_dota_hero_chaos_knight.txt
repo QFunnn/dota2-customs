@@ -1,0 +1,107 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_chaos_knight"
+{
+	"chaos_knight_chaos_bolt"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "6"
+			"operator" "OP_MULTIPLY"
+			"max_count" "4"
+			"linked_special_values"
+			{
+				"chaos_bolt_speed" "125"
+			}
+		}
+		"damage_max"
+		{
+			"value" "95"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"damage_min" "45"
+			}
+		}
+	}
+	"chaos_knight_reality_rift"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+		}
+		"armor_reduction"
+		{
+			"value" "2"
+			"operator" "OP_ADD"
+			"min_rarity" "rare"
+		}
+	}
+	"chaos_knight_chaos_strike"
+	{
+		"chance"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"crit_max"
+		{
+			"value" "15"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"lifesteal"
+		{
+			"value" "14"
+			"operator" "OP_ADD"
+		}
+	}
+	"chaos_knight_phantasm"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "9"
+			"operator" "OP_MULTIPLY"
+			"max_count" "9"
+		}
+		"outgoing_damage"
+		{
+			"value" "12"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"outgoing_damage_tooltip" "12"
+			}
+		}
+		"incoming_damage"
+		{
+			"value" "-20"
+			"operator" "OP_MULTIPLY"
+
+			"multiplicative_target"			"-55"
+			"multiplicative_base_value"		"125"
+
+			"linked_special_values"
+			{
+				"incoming_damage_tooltip"
+				{
+					"value" "-20"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target" "45"
+					"multiplicative_base_value" "225"
+				}
+			}
+		}
+	}
+}

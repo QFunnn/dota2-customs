@@ -1,0 +1,119 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_enigma"
+{
+	"enigma_malefice"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "8"
+		}
+		"stun_instances"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+		"damage"
+		{
+			"value" "22"
+			"operator" "OP_ADD"
+		}
+	}
+	"enigma_demonic_conversion"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"eidelon_max_health"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+
+			"linked_special_values"
+			{
+				"eidolon_magic_resist"
+				{
+					"value" "3"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target"			"100"
+					"multiplicative_base_value"		"60"
+				}
+			}
+		}
+		"eidelon_base_damage"
+		{
+			"value" "18"
+			"operator" "OP_ADD"
+		}
+	}
+	"enigma_midnight_pulse"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "7"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"radius"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"base_damage"
+		{
+			"value" "13"
+			"operator" "OP_ADD"
+		}
+	}
+	"enigma_black_hole"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "7"
+			"operator" "OP_MULTIPLY"
+		}
+		"damage"
+		{
+			"value" "45"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"scepter_pct_damage"
+				{
+					"value" "0.7"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target"			"20"
+					"multiplicative_base_value"		"4"
+				}
+			}
+		}
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"vision_radius" "30"
+				"scepter_radius" "30"
+			}
+		}
+	}
+}

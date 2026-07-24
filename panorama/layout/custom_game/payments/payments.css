@@ -1,0 +1,1122 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.PaymentContainer
+{
+	width: 100%;
+	height: 100%;
+	transition-property: background-color;
+	transition-duration: 0.15s;
+}
+
+.fade
+{
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+.PaymentWindow
+{
+	align: center center;
+	width: 476px;
+	background-image: url("s2r://panorama/images/custom_game/collection/currency_shop/currency_shop_bg_png.vtex");
+	background-size: 100%;
+	flow-children: down;
+	opacity: 0;
+	transform: translateY(-30px);
+	transition-property: transform, opacity, box-shadow;
+	transition-duration: 0.15s;
+	padding: 15px 20px 20px 20px;
+}
+
+.PaymentWindow.visible
+{
+	box-shadow: black 0px 1px 5px 0px;
+}
+
+.visible
+{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+.HeaderContainer
+{
+	width: 100%;
+	height: 30px;
+}
+
+.Payment_Close
+{
+	horizontal-align: right;
+	text-transform: uppercase;
+	font-size: 14px;
+	color: #ccc5b2;
+	text-shadow: black 0px 1px 3px 2;
+	transition: color 0.15s ease-in-out 0s;
+	margin-top: 2px;
+}
+
+.Payment_Close:hover
+{
+	color: #e4e5e6;
+}
+
+.Payment_Close:active
+{
+	sound: "General.ButtonClick";
+}
+
+.Header
+{
+	horizontal-align: center;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 20px;
+	font-weight: semi-bold;
+	text-shadow: rgba(0, 0, 0, 0.5) 0px 1px 2px 3;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#e97f15), to(#f3c872));
+}
+
+.ItemDetails
+{
+	horizontal-align: center;
+	flow-children: right;
+	margin-top: 6px;
+}
+
+#ItemImage
+{
+	width: 113px;
+	height: 120px;
+	background-image: url("s2r://panorama/images/custom_game/mail/mail_reward_bg_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	box-shadow: rgba(0, 0, 0, 0.8) 0px 0px 3px 1px;
+}
+
+.ItemDescriptionContainer
+{
+	flow-children: down;
+	width: 220px;
+	margin-left: 16px;
+}
+
+.ItemName
+{
+	width: 100%;
+	height: 25px;
+	font-size: 20px;
+	color: white;
+	margin-bottom: 4px;
+	text-shadow: black 0px 0px 4px 2;
+	text-overflow: shrink;
+}
+
+.ItemDescription
+{
+	width: 100%;
+	text-align: left;
+	font-size: 16px;
+	text-shadow: black 0px 1px 0px 2;
+	font-weight: lighter;
+	color: #c9d2f6;
+}
+
+.ItemDescription.Donate
+{
+	margin: 5px 0;
+	text-align: center;
+}
+
+.ItemDescription.Donate2
+{
+	margin: 0 0 5px 0;
+}
+
+.ItemPriceContainer
+{
+	horizontal-align: center;
+	flow-children: right;
+	background-color: rgba(0, 0, 0, 0.6);
+	padding: 9px 9px 8px 9px;
+	border-radius: 3px;
+	margin-top: 10px;
+}
+
+.ItemPricePrefix
+{
+	vertical-align: center;
+	color: #c8cce8;
+	text-shadow: rgb(0, 0, 0) 0px 0px 2px 2;
+	text-transform: uppercase;
+}
+
+.ItemPrice
+{
+	horizontal-align: right;
+	color: gradient(linear, 0% 110%, 0% 0%, from(#df9724), to(#fee1b8));
+	text-shadow: rgb(0, 0, 0) 0px 0px 2px 2;
+	margin-left: 10px;
+	visibility: collapse;
+	min-width: 60px;
+	text-align: right;
+}
+
+.PaymentModeSelection
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.PaymentMethodsContainer
+{
+	align: center center;
+	flow-children: down;
+}
+
+.PaymentMethodsContainer > Panel
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-top: 10px;
+	padding-left: -10px;
+}
+
+.PaymentMethod
+{
+	width: 118px;
+	height: 53px;
+	margin-left: 10px;
+	padding: 5px;
+	background-image: url("s2r://panorama/images/custom_game/collection/button_base_png.vtex");
+	background-size: 100%;
+	transition-property: box-shadow;
+	transition-duration: 0.2s;
+}
+
+.PaymentMethod > Image
+{
+	width: 100%;
+	height: 100%;
+	background-color: white;
+}
+
+.PaymentType_payment #patreon
+{
+	visibility: collapse;
+}
+
+.PaymentType_subscription #wechat_pay,.PaymentType_subscription #alipay
+{
+	visibility: collapse;
+}
+
+.PaymentMethod:hover
+{
+	brightness: 1.5;
+}
+
+.PaymentMethod:hover Image
+{
+	brightness: 0.7;
+}
+
+.PaymentMethod:active
+{
+	padding: 6px;
+	brightness: 0.7;
+}
+
+.PaymentProcessHint,.BonusItemsByPurchase_HintDuration,.BonusItemsByPurchase_HintGiftCode
+{
+	align: center center;
+	text-align: center;
+	font-size: 16px;
+	font-weight: lighter;
+	color: #bdc3eb;
+}
+
+.hidden
+{
+	visibility: collapse;
+}
+
+#HTMLViewer
+{
+	width: 1200px;
+	height: 800px;
+	align: center center;
+	background-color: #444;
+	background-image: url("s2r://panorama/images/custom_game/backgrounds/patchnotes_background_png.vtex");
+	background-size: 100%;
+	box-shadow: black 0px 0px 20px 0px;
+	transition-property: opacity;
+	transition-duration: 0.5s;
+}
+
+#HTMLViewer > .Payment_Close
+{
+	margin-top: 10px;
+}
+
+#HTMLViewerContent
+{
+	width: 1100px;
+	height: 800px;
+	align: center center;
+}
+
+#HTML_Loading
+{
+	align: center center;
+	flow-children: down;
+	transition-property: opacity;
+	transition-duration: 0.5s;
+	z-index: 10;
+}
+
+#HTML_Loading > .Spinner
+{
+	align: center center;
+	margin-top: 10px;
+}
+
+.PaymentMessage
+{
+	align: center center;
+	text-align: center;
+	color: white;
+	font-size: 24px;
+}
+
+#HTML_Content
+{
+	width: 100%;
+	height: 100%;
+	transition-property: opacity;
+	transition-duration: 0.5s;
+}
+
+.closed
+{
+	visibility: collapse;
+	opacity: 0;
+}
+
+.ready #HTML_Loading
+{
+	opacity: 0;
+}
+
+.ItemQuantityContainer
+{
+	flow-children: right;
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/tab_bg_png.vtex");
+	background-size: 100%;
+	padding: 3px 4px;
+	horizontal-align: center;
+	margin-top: 12px;
+}
+
+.ItemQuantityHint
+{
+	flow-children: right;
+	padding-left: -4px;
+	horizontal-align: center;
+	margin-top: 6px;
+}
+
+.ItemQuantityHint Label
+{
+	background-color: #222827;
+	margin-left: 4px;
+	padding: 1px 4px 0 4px;
+	font-size: 15px;
+	text-align: center;
+	color: #b7b2c6;
+	text-shadow: black 0 1px 0 2;
+	border: 1px solid black;
+	border-radius: 3px;
+	transition-property: color, background-color, box-shadow;
+	transition-duration: 0.1s;
+	box-shadow: rgba(254, 225, 184, 0.15) 0 0 0 0;
+}
+
+.ShiftPressed .ItemQuantityHint .Shift,.AltPressed .ItemQuantityHint .Alt,.CtrlPressed .ItemQuantityHint .Ctrl
+{
+	color: gradient(linear, 0% 110%, 0% 0%, from(#df9724), to(#fee1b8));
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#20213c), to(#333753));
+	box-shadow: rgba(254, 225, 184, 0.15) 0 0 2px -1;
+}
+
+.PaymentType_subscription .ItemQuantityContainer,.count_disabled .ItemQuantityContainer,.PaymentType_subscription .ItemQuantityHint,.count_disabled .ItemQuantityHint
+{
+	visibility: collapse;
+}
+
+.ItemQuantityContainer Label
+{
+	text-align: center;
+	vertical-align: center;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#e88b16), to(#f7da3e));
+	text-shadow: rgba(0, 0, 0, 0.7) 0px 1px 2px 2;
+}
+
+.ItemQuantityContainer > Label
+{
+	font-size: 23px;
+	min-width: 77px;
+}
+
+.ItemQuantityContainer Button
+{
+	width: 34px;
+	height: 34px;
+	padding-top: -1px;
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/item_count_bg_png.vtex");
+	background-size: 100%;
+	transition-property: brightness;
+	transition-duration: 0.1s;
+}
+
+.ItemQuantityContainer Button.blocked
+{
+	saturation: 0;
+	wash-color: #cdcdcd;
+}
+
+.ItemQuantityContainer Button:not(.blocked):hover
+{
+	brightness: 1.45;
+}
+
+.ItemQuantityContainer Button:not(.blocked):active
+{
+	brightness: 0.8;
+	pre-transform-scale2d: 0.95;
+	sound: "General.ButtonClick";
+}
+
+.ItemQuantityContainer Button Label
+{
+	align: center center;
+	font-size: 29px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#e88b16), to(#f7da3e));
+	text-shadow: rgba(0, 0, 0, 0.7) 0px 1px 2px 2;
+}
+
+#GiftCodeCheckbox
+{
+	horizontal-align: center;
+	margin-top: 10px;
+	visibility: collapse;
+}
+
+.PaymentType_payment #GiftCodeCheckbox
+{
+	visibility: visible;
+}
+
+.gift_codes_disabled #GiftCodeCheckbox
+{
+	visibility: collapse;
+}
+
+#GiftCodeCheckbox Label
+{
+	color: #d9e1ff;
+	text-shadow: rgba(0, 0, 0, 0.75) 0px 1px 3px 2;
+	transition: color 0.15s ease-in-out 0s;
+	padding-top: -2px;
+	font-weight: lighter;
+}
+
+#GiftCodeCheckbox:active
+{
+	sound: "Shop.PanelDown";
+}
+
+#GiftCodeCheckbox:selected Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#a0b3d0), to(white));
+}
+
+#GiftCodeCheckbox:selected Panel
+{
+	box-shadow: #a0b2e6 0px 0px 4px 0px;
+}
+
+#GiftCodeCheckbox .TickBox
+{
+	box-shadow: transparent 0 0 0 0;
+	width: 21px;
+	height: 21px;
+	background-color: #2b2b39;
+	border: 2px solid #2b2b39;
+	border-radius: 3px;
+	box-shadow: inset 0px 0px 8px -3px rgba(0, 0, 0, 0.5);
+}
+
+#GiftCodeCheckbox:hover .TickBox
+{
+	background-color: #323246;
+	box-shadow: inset 0px 0px 8px -3px rgba(0, 0, 0, 0.75);
+}
+
+#GiftCodeCheckbox:selected .TickBox
+{
+	border: 3px solid #2b2b39;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#a0b3d0), to(white));
+	box-shadow: inset 0px 0px 8px -3px rgba(0, 0, 0, 0.5);
+}
+
+#GiftCodeCheckbox:selected:hover .TickBox
+{
+	border: 4px solid #2b2b39;
+}
+
+.PaymentMenthodHeader
+{
+	horizontal-align: center;
+	text-align: center;
+	margin-top: 10px;
+	text-transform: uppercase;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#706dad), to(#b6badf));
+	text-shadow: black 0px 0px 3px 2;
+}
+
+.TypeOfPayment
+{
+	flow-children: right;
+	margin-top: 10px;
+	visibility: collapse;
+}
+
+.TypeOfPayment > Label
+{
+	font-size: 14px;
+	font-style: italic;
+	color: #b7b9e0;
+	vertical-align: center;
+	width: 54px;
+}
+
+.TypeOfPayment > Button
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/tab_bg_png.vtex");
+	background-size: 100%;
+	margin-left: 5px;
+	width: 153px;
+	height: 40px;
+	transition-property: background-image, brightness;
+	transition-duration: 0.15s;
+}
+
+.TypeOfPayment > Button:hover
+{
+	brightness: 1.7;
+}
+
+.PaymentContainer.PaymentType_subscription .Button_PaymentType_Reccuring,.PaymentContainer.PaymentType_payment .Button_PaymentType_OneTime
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/tab_bg_active_2_png.vtex");
+}
+
+.TypeOfPayment > Button:active
+{
+	brightness: 0.7;
+	sound: "Tutorial.TaskProgress";
+}
+
+.TypeOfPayment > Button > Label
+{
+	align: center center;
+	text-align: center;
+	color: #edf1f7;
+	text-shadow: rgba(0, 0, 0, 0.7) 0px 1px 3px 2;
+}
+
+.PaymentContainer.PaymentType_subscription .Button_PaymentType_Reccuring > Label,.PaymentContainer.PaymentType_payment .Button_PaymentType_OneTime > Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#db9d40), to(#e6cdaf));
+}
+
+.Button_PaymentType_OneTime
+{
+	tooltip-position: left;
+}
+
+.only_xsolla #patreon,.only_xsolla #wechat_pay,.only_xsolla #alipay,.only_xsolla #stripe
+{
+	visibility: collapse;
+}
+
+.only_stripe #patreon,.only_stripe #wechat_pay,.only_stripe #alipay,.only_stripe #xsolla
+{
+	visibility: collapse;
+}
+
+.CurrencyType
+{
+	flow-children: right;
+	margin-top: 10px;
+	visibility: collapse;
+}
+
+.CurrencyType > Label
+{
+	font-size: 14px;
+	font-style: italic;
+	color: #b7b9e0;
+	vertical-align: center;
+	width: 54px;
+}
+
+.CurrencyType > Button
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/tab_bg_png.vtex");
+	background-size: 100%;
+	margin-left: 5px;
+	width: 153px;
+	height: 40px;
+	transition-property: background-image, brightness;
+	transition-duration: 0.15s;
+}
+
+.CurrencyType > Button:hover
+{
+	brightness: 1.7;
+}
+
+.CurrencyType_Currency .Button_CurrencyType_Currency,.CurrencyType_Money .Button_CurrencyType_Money
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/tab_bg_active_2_png.vtex");
+}
+
+.CurrencyType > Button:active
+{
+	brightness: 0.7;
+	sound: "Tutorial.TaskProgress";
+}
+
+.CurrencyType > Button > Label
+{
+	align: center center;
+	text-align: center;
+	color: #edf1f7;
+	text-shadow: rgba(0, 0, 0, 0.7) 0px 1px 3px 2;
+}
+
+.CurrencyType_Currency .Button_CurrencyType_Currency > Label,.CurrencyType_Money .Button_CurrencyType_Money > Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#db9d40), to(#e6cdaf));
+}
+
+.Button_CurrencyType_Currency > Label
+{
+	padding-left: 25px;
+	background-image: url("s2r://panorama/images/custom_game/collection/currency_icon_small_png.vtex");
+	background-size: 21px;
+	background-repeat: no-repeat;
+}
+
+.CurrencyType_Money #ItemPrice
+{
+	visibility: visible;
+}
+
+.CurrencyType_Currency .ItemQuantityHint,.CurrencyType_Currency .ItemQuantityContainer,.CurrencyType_Currency .PaymentMenthodHeader,.CurrencyType_Currency .PaymentModeSelection,.CurrencyType_Currency #GiftCodeCheckbox,.CurrencyType_Currency .ItemPriceContainer
+{
+	visibility: collapse;
+}
+
+.CurrencyPaymentConfirm
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/button_bg2_png.vtex");
+	background-size: 100%;
+	padding: 8px 21px 8px 20px;
+	horizontal-align: center;
+	margin-top: 10px;
+	visibility: collapse;
+}
+
+.BNotEnoughCurrencyForPurchase .CurrencyPaymentConfirm
+{
+	saturation: 0;
+	wash-color: #cacaca;
+}
+
+.CurrencyType_Currency .CurrencyPaymentConfirm
+{
+	visibility: visible;
+}
+
+.PaymentWindow:not(.BNotEnoughCurrencyForPurchase) .CurrencyPaymentConfirm:hover
+{
+	brightness: 1.1;
+	background-image: url("s2r://panorama/images/custom_game/collection/button_bg2_hover_png.vtex"), url("s2r://panorama/images/custom_game/collection/button_bg2_png.vtex");
+}
+
+.PaymentWindow:not(.BNotEnoughCurrencyForPurchase) .CurrencyPaymentConfirm:active
+{
+	brightness: 0.7;
+	pre-transform-scale2d: 0.95;
+}
+
+.CurrencyPaymentConfirm Label
+{
+	font-size: 22px;
+	text-transform: uppercase;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#fdb748), to(#e6cdaf));
+	text-shadow: 0px 2px 3px 2 rgba(0, 0, 0, 0.5);
+	padding-left: 28px;
+	background-image: url("s2r://panorama/images/custom_game/collection/currency_icon_small_png.vtex");
+	background-size: 23px;
+	background-position: 0% 50%;
+	background-repeat: no-repeat;
+	min-width: 92px;
+	text-align: center;
+}
+
+.SubSliderDurationContainer
+{
+	horizontal-align: center;
+	flow-children: down;
+	visibility: collapse;
+	margin-bottom: -6px;
+}
+
+#SubDurationValueText
+{
+	margin-top: 8px;
+	font-size: 18px;
+	font-weight: lighter;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#e1b079), to(#dbcdb3));
+	text-shadow: rgba(0, 0, 0, 0.8) 0 1px 2px 2;
+	width: 100%;
+	text-align: center;
+	visibility: collapse;
+}
+
+.SemiBold
+{
+	font-weight: semi-bold;
+}
+
+.SubSliderWrap
+{
+	flow-children: right;
+	margin-top: 7px;
+}
+
+.SliderButton
+{
+	width: 45px;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#554c4b), to(#383a4f)), gradient( linear, 0% 100%, 0% 0%, from(rgba(0, 0, 0, 0.1)), color-stop(0.11, rgba(0, 0, 0, 0.1)), color-stop(0.1, transparent), color-stop(0.91, transparent), color-stop(0.9, rgba(0, 0, 0, 0.4)), to(rgba(0, 0, 0, 0.4)) );
+	border: 1px solid white;
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#5e5755), to(#3d4059));
+	height: 26px;
+	box-shadow: rgba(0, 0, 0, 0.9) 0 0 7px -2px;
+	vertical-align: center;
+	z-index: -1;
+}
+
+.SliderButton:hover
+{
+	brightness: 1.3;
+}
+
+.SliderButton:active
+{
+	brightness: 0.7;
+}
+
+.SliderButton Label
+{
+	color: #dcc2ab;
+	font-size: 28px;
+	text-shadow: rgba(0, 0, 0, 0.9) 0 1px 2px 2;
+	align: center center;
+	padding-top: -5px;
+	font-family: monospaceNumbersFont;
+}
+
+.SliderButton.Minus
+{
+	border-bottom-left-radius: 15px;
+	border-top-left-radius: 15px;
+	margin-right: -15px;
+	padding-right: 10px;
+}
+
+.SliderButton.Plus
+{
+	border-bottom-right-radius: 15px;
+	border-top-right-radius: 15px;
+	margin-left: -15px;
+	padding-left: 10px;
+}
+
+.BonusItemsByPurchase_Container
+{
+	visibility: collapse;
+	width: 100%;
+	flow-children: down;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#16141c), to(#262941));
+	border: 1px solid white;
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#483e39), color-stop(0.5, #524e56), to(#483e39));
+	margin-top: 10px;
+}
+
+.forced_gift_code .BonusItemsByPurchase_Container
+{
+	margin-top: 0px;
+}
+
+.show_sub_bonus_items .CurrencyType_Currency .SubSliderDurationContainer,.show_sub_bonus_items .CurrencyType_Currency .BonusItemsByPurchase_HintDuration,.show_sub_bonus_items #SubDurationValueText,.show_sub_bonus_items .BonusItemsByPurchase_Container
+{
+	visibility: visible;
+}
+
+.BonusItemsByPurchase_Header
+{
+	width: 100%;
+	background-color: gradient(radial, 50% 50%, 0% 0%, 30% 100%, from(#483e39), to(#2a2b42));
+	padding: 4px;
+}
+
+.BonusItemsByPurchase_Header Label
+{
+	text-align: center;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/custom_game/collection/icon_gift_png.vtex");
+	background-size: 16px;
+	img-shadow: black 0 1px 4px 1;
+	background-position: 0% 3px;
+	background-repeat: no-repeat;
+	padding-left: 22px;
+	font-size: 20px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#edbd56), to(#fff0d1));
+	text-shadow: rgba(0, 0, 0, 0.8) 0 1px 2px 2;
+}
+
+#BonusItemsByPurchase
+{
+	flow-children: down;
+	width: 100%;
+	padding: 0 8px 10px 8px;
+}
+
+.BonusItem
+{
+	flow-children: right;
+	width: 100%;
+	margin-top: 5px;
+}
+
+.BonusItem_IconRoot
+{
+	flow-children: down;
+	width: 40px;
+}
+
+.BonusItem_IconRoot.TREASURES
+{
+	width: 123px;
+}
+
+.BonusItem_Border
+{
+	width: 100%;
+	height: width-percentage(100%);
+	padding: 1px;
+	border-radius: 4px;
+}
+
+.BonusItem_IconRoot.TREASURES .BonusItem_Border
+{
+	height: 80px;
+}
+
+#BonusItem_Icon
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#23242b), to(#1a1b1f));
+	width: 100%;
+	height: 100%;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	border-radius: 3px;
+}
+
+.Reward_currency #BonusItem_Icon
+{
+	background-size: 60px;
+	background-image: url("s2r://panorama/images/custom_game/collection/currency_icon_240_png.vtex");
+}
+
+.BonusItem_NameCount_Container
+{
+	flow-children: right;
+	width: 100%;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#25263c), to(#1f1e2e));
+	box-shadow: rgba(0, 0, 0, 0.5) 0 0 5px 0;
+	vertical-align: center;
+	padding-top: 1px;
+}
+
+.BonusItem_Name
+{
+	width: fill-parent-flow(1);
+	padding: 3px 0 3px 7px;
+	font-weight: lighter;
+	color: #bcbdd9;
+	text-shadow: black 0px 1px 3px 2;
+	text-overflow: clip;
+	padding-right: -24px;
+	z-index: -1;
+}
+
+.Reward_currency .MVP_Reward_Name
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#f58907), to(#f9d64b));
+}
+
+.BonusItem_Count
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/flag_png.vtex");
+	background-size: 100%;
+	text-align: center;
+	font-size: 17px;
+	font-weight: lighter;
+	min-width: 35px;
+	padding: 1px 4px 0 10px;
+	text-align: right;
+	color: #bccee2;
+	align: right center;
+	font-weight: semi-bold;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#e1b079), to(#dbcdb3));
+	text-shadow: rgba(0, 0, 0, 0.7) 0px 1px 2px 3;
+}
+
+#ItemCountSlider
+{
+	height: 26px;
+	width: 310px;
+}
+
+#ItemCountSlider .SliderNotch
+{
+	visibility: collapse;
+}
+
+#ItemCountSlider .SliderThumb
+{
+	width: 26px;
+	height: 26px;
+	border-radius: 50%;
+	opacity-mask: url("s2r://panorama/images/custom_game/circle_mask_png.vtex");
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#bb6c21), to(#f9d471)), gradient( radial, 50% 38%, 0% 0%, 50% 50%, from(transparent), color-stop(0.6, transparent), color-stop(0.85, rgba(0, 0, 0, 0.4)), to(rgba(0, 0, 0, 0.4)) ), gradient( radial, 50% 67%, 0% 0%, 50% 50%, from(transparent), color-stop(0.6, transparent), color-stop(0.95, rgba(255, 255, 255, 0.15)), to(rgba(255, 255, 255, 0.15)) );
+	box-shadow: rgba(0, 0, 0, 0.76) 0 2px 2px 0;
+	border: 3px solid white;
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#393a60), to(#6166a1));
+	z-index: 101;
+	margin-left: -11px;
+}
+
+#ItemCountSlider
+{
+	padding-left: 11px;
+	padding-right: -11px;
+}
+
+#ItemCountSlider #SliderTrackProgress
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#e07a00), to(#f3a91e));
+	height: 22px;
+	box-shadow: none;
+	margin-left: 1px;
+	border-bottom-left-radius: 15px;
+	border-top-left-radius: 15px;
+	box-shadow: inset rgba(0, 0, 0, 0.6) 0 0 4px -1px;
+	margin-left: -4px;
+}
+
+.SliderTest
+{
+	width: 10px;
+	height: 10px;
+	horizontal-align: right;
+}
+
+#ItemCountSlider #SliderTrack
+{
+	height: 26px;
+	border-radius: 15px;
+	margin: 0;
+	border: 0px solid transparent;
+	box-shadow: none;
+	border-bottom-left-radius: 15px;
+	padding-right: 11px;
+	background-color: transparent;
+}
+
+.ItemCountSlider_Border
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 15px;
+	z-index: 100;
+	border: 2px solid white;
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#2e2d43), to(#363c57));
+	margin-left: -11px;
+}
+
+.ItemCountSlider_BG
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 15px;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#282943), to(#2c304b));
+	margin-left: -11px;
+	box-shadow: inset rgba(0, 0, 0, 0.7) 0 0 3px 0;
+}
+
+.BonusItemsByPurchase_HintDuration,.BonusItemsByPurchase_HintGiftCode
+{
+	margin-top: 4px;
+	visibility: collapse;
+}
+
+.SliderMinMaxValuesContainer
+{
+	width: 100%;
+	padding: 3px 34px 0 38px;
+}
+
+.SliderMinMaxValuesContainer Label
+{
+	font-size: 16px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#e1b079), to(#dbcdb3));
+	text-shadow: rgba(0, 0, 0, 0.8) 0 1px 2px 2;
+}
+
+.SliderMax
+{
+	horizontal-align: right;
+}
+
+.show_sub_bonus_items.forced_gift_code .BonusItemsByPurchase_HintGiftCode,.show_sub_bonus_items.gift_code_selected_manually .BonusItemsByPurchase_HintGiftCode
+{
+	visibility: visible;
+}
+
+.CurrencyType_Hint,.Button_CurrencyType_Money
+{
+	visibility: collapse;
+}
+
+.BHasPrice .CurrencyType_Hint,.BHasPrice .Button_CurrencyType_Money
+{
+	visibility: visible;
+}
+
+#PaymentWindow:not(.BHasPrice) .CurrencyType
+{
+	horizontal-align: center;
+	padding-left: -5px;
+}
+
+.NotEnoughCurrencyButton
+{
+	horizontal-align: center;
+	max-width: 100%;
+	visibility: collapse;
+	text-align: center;
+	line-height: 23px;
+	font-weight: lighter;
+	color: #8095bc;
+	font-style: italic;
+}
+
+.BNotEnoughCurrencyForPurchase .NotEnoughCurrencyButton
+{
+	visibility: visible;
+}
+
+.NotEnoughCurrencyButton:hover
+{
+	brightness: 1.3;
+}
+
+.NotEnoughCurrencyButton:active
+{
+	brightness: 0.7;
+}
+
+#SubDurationWarning
+{
+	width: 100%;
+	margin-top: 12px;
+	text-align: left;
+	font-size: 16px;
+	background-color: rgba(0, 0, 0, 0.6);
+	padding: 15px;
+	text-overflow: shrink;
+	color: #d4d4d4;
+	visibility: collapse;
+	color: #ff3838;
+}
+
+.CurrentSub_1.Product_subscription_tier_2 #SubDurationWarning
+{
+	visibility: visible;
+}
+
+.Payments_Separator
+{
+	width: 100%;
+	height: 2px;
+	background-color: gradient( linear, 100% 0%, 0% 0%, from(transparent), color-stop(0.2, #b6badf), color-stop(0.8, #b6badf), to(transparent) );
+	opacity: 0.2;
+}
+
+.PaymentMethodsContainer .Payments_CompactSize
+{
+	horizontal-align: center;
+}
+
+.Payments_CompactSize .PaymentMethod
+{
+	width: 53px;
+}
+
+.CurrencyDetailsBlock
+{
+	flow-children: down;
+	width: 100%;
+}
+
+.DonationInfo,.CurrencyType_Money .DonationInfoHidden
+{
+	visibility: collapse;
+}
+
+.CurrencyType_Money .DonationInfo
+{
+	visibility: visible;
+}
+
+.CurrencySpan
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#ed9215), to(#f8ca78));
+	font-weight: semi-bold;
+}

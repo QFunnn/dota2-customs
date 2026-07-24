@@ -1,0 +1,97 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/top_menu/top_menu.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/chat_wheel/chat_wheel_colors_style.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/top_menu/top_menu.vjs_c" />
+	</scripts>
+	<Panel class="CustomTopMenu_Root" hittest="false">
+		<Panel id="CTM_Lines">
+			<Panel class="CTM_Line1">
+				<Button id="CTM_ReturnToDashboard" class="CTM_DefultButton" onactivate="DOTAHUDShowDashboard();" onmouseover="DOTAShowTextTooltip(#DOTA_HUD_BackToDashboard)" onmouseout="DOTAHideTextTooltip()">
+					<Panel />
+				</Button>
+				<Button id="CTM_Settings" class="CTM_DefultButton" onactivate="DOTAShowSettingsRebornPopup();" onmouseover="DOTAShowTextTooltip(#DOTA_HUD_Settings)" onmouseout="DOTAHideTextTooltip()">
+					<Panel />
+				</Button>
+				<Button id="CTM_Scoreboard" class="CTM_DefultButton" onactivate="DOTAHUDToggleScoreboard();" onmouseover="DOTAShowTextTooltip(#DOTA_HUD_Scoreboard)" onmouseout="DOTAHideTextTooltip()">
+					<Panel />
+				</Button>
+				<Button id="CTM_CustomSettings" class="CTM_DefultButton" onactivate="GameUI.ToggleSettings();" onmouseover="DOTAShowTextTooltip(#settings_top_menu_hint)" onmouseout="DOTAHideTextTooltip()">
+					<Panel />
+				</Button>
+				<Button id="CTM_Collection" class="CTM_DefultButton" onactivate="GameUI.Custom_ToggleCollection();" onmouseover="DOTAShowTextTooltip(#open_collection)" onmouseout="DOTAHideTextTooltip()">
+					<Panel />
+					<DOTAParticleScenePanel class="Collection_FX" particleName="particles/ui/collection_border.vpcf" particleonly="true" lookAt="0 -1 0" cameraOrigin="0 0 -50" fov="110" hittest="false" />
+				</Button>
+			</Panel>
+			<Panel class="CTM_Line2">
+				<Button id="CTM_Mail" class="CTM_DefultButton" onactivate="GameUI.ToggleMailPanel();" onmouseover="DOTAShowTextTooltip(#open_mail)" onmouseout="DOTAHideTextTooltip()">
+					<Panel />
+				</Button>
+				<Button id="CTM_Leaderboard" class="CTM_DefultButton" onactivate="GameUI.ToggleLeaderboard();" onmouseover="DOTAShowTextTooltip(#leaderboard_top_menu_hint)" onmouseout="DOTAHideTextTooltip()">
+					<Panel />
+				</Button>
+				<Button id="CTM_Feedback" class="CTM_DefultButton" onactivate="GameUI.ToggleFeedback();" onmouseover="DOTAShowTextTooltip(#feedback_top_menu_hint)" onmouseout="DOTAHideTextTooltip()">
+					<Panel />
+				</Button>
+				<Button id="CTM_Promo" class="CTM_DefultButton" onactivate="GameUI.ToggleCustomPromoEvents(true);" onmouseover="DOTAShowTextTooltip(#promo_events_top_menu_hint)" onmouseout="DOTAHideTextTooltip()">
+					<Panel />
+					<DOTAParticleScenePanel class="PE_TB_Flag_FX" particleName="particles/ui/promo_event_border.vpcf" particleonly="true" lookAt="0 -1 0" cameraOrigin="0 0 -50" fov="110" hittest="false" />
+				</Button>
+			</Panel>
+		</Panel>
+		<Panel class="CTM_Banners" hittest="false">
+			<Panel class="CTM_Banner CTM_Banner_ChatWheel">
+				<Panel class="CTB_Banner_Arrow Shadow" />
+				<Panel class="CTM_Banner_Content">
+					<Panel class="CTM_Banner_Header">
+						<Panel>
+							<DOTAEmoticon emoticonid="4" />
+							<DOTAEmoticon emoticonid="24" />
+							<DOTAEmoticon emoticonid="131" />
+							<Label class="rainbow" text="Lakad Matatag!" />
+							<DOTAEmoticon emoticonid="127" />
+							<DOTAEmoticon emoticonid="256" />
+							<DOTAEmoticon emoticonid="15" />
+						</Panel>
+						<Button class="CTM_Banner_Close" onactivate="CloseChatWheelBanner()" />
+					</Panel>
+					<Label class="CTM_Banner_Text" text="#chat_wheel_new_promo" />
+					<TextButton class="CTM_Banner_Button" text="#try_it_now" onactivate="OpenChatWheelTab()" />
+				</Panel>
+				<Panel class="CTB_Banner_Arrow" />
+			</Panel>
+			<Panel class="CTM_Banner CTM_Banner_NewMail">
+				<Panel class="CTB_Banner_Arrow Shadow" />
+				<Panel class="CTM_Banner_Content">
+					<Panel class="CTM_Banner_Header">
+						<Panel>
+							<DOTAEmoticon emoticonid="131" />
+							<Label class="color_bounty_hunter" text="#new_mail_banner" />
+							<DOTAEmoticon emoticonid="131" />
+						</Panel>
+						<Button class="CTM_Banner_Close" onactivate="CloseMailBanner()" />
+					</Panel>
+					<Label class="CTM_Banner_Text" text="#new_mail_banner_desc" />
+					<TextButton class="CTM_Banner_Button" text="#click_to_open_2" onactivate="GameUI.ToggleMailPanel()" />
+				</Panel>
+				<Panel class="CTB_Banner_Arrow" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

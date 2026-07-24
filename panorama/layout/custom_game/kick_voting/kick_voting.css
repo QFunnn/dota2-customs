@@ -1,0 +1,532 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.KickVoting
+{
+	align: right center;
+	padding-left: 5px;
+}
+
+.KickVoting > Panel
+{
+	horizontal-align: right;
+	transform: translateX(75px);
+	transition-property: transform, opacity;
+	transition-duration: 0.15s;
+	transition-delay: 0.15s;
+	opacity: 0;
+}
+
+#KV_Reasons
+{
+	flow-children: down;
+}
+
+.BShowReasons #KV_Reasons,.BShowProcess #KV_VotingProcess,.BShowNotification #KV_Notification
+{
+	transform: translateX(0px);
+	opacity: 1;
+	transition-delay: 0s;
+}
+
+.KV_Header
+{
+	height: 42px;
+	width: 100%;
+	background-color: rgba(19, 23, 28, 0.99);
+	padding: 0 10px;
+}
+
+.KV_Header_Icon
+{
+	width: 30px;
+	height: 30px;
+	vertical-align: center;
+	wash-color: #bfc3e2;
+}
+
+.KV_Header_Target
+{
+	vertical-align: center;
+	margin: 1px 25px 0 33px;
+	height: 21px;
+	color: #899ce2;
+	font-weight: lighter;
+}
+
+.NormalText
+{
+	font-weight: normal;
+	brightness: 1.2;
+}
+
+.KV_Reasons_Content,.KV_VP_Content,.KV_N_Content
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(rgba(0, 0, 0, 0.9)), to(rgba(0, 0, 0, 0.92)));
+	flow-children: down;
+	padding: 6px 20px 10px 20px;
+	box-shadow: inset black 0 9px 8px -11px;
+}
+
+.KV_Reasons_Content
+{
+	padding: 6px 20px 20px 20px;
+}
+
+.KV_Reasons_ShortDesc,.KV_VP_Reason,.KV_N_Reason,.KV_VP_I_Header
+{
+	color: #899ce2;
+	horizontal-align: center;
+	text-align: center;
+	font-weight: lighter;
+}
+
+#KV_Reasons_Container
+{
+	width: 267px;
+	margin-top: 5px;
+}
+
+.KV_Header_Close
+{
+	width: 23px;
+	height: 23px;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/import_dota/x_close_png_png.vtex");
+	background-repeat: no-repeat;
+	horizontal-align: right;
+	wash-color: #899ce2;
+	vertical-align: center;
+}
+
+.KV_Header_Close:hover
+{
+	wash-color: #bcbfff;
+}
+
+.KV_Header_Close:active
+{
+	wash-color: #798bca;
+	pre-transform-scale2d: 0.9;
+}
+
+.KV_Reason
+{
+	width: 130px;
+	border: 2px solid white;
+	border-radius: 3px;
+	height: 129px;
+}
+
+.KV_Reason.feeding
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#292221), to(#0f101e));
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#2a2135), to(#262c41));
+}
+
+.KV_Reason.feeding:hover
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#292221), to(#262847));
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#53578d), to(#7c85ab));
+}
+
+.KV_Reason.ability_abuse
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#2a1c21), to(#0f101e));
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#291a35), to(#262c41));
+}
+
+.KV_Reason.ability_abuse:hover
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#2a1c21), to(#262847));
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#684085), to(#7c85ab));
+}
+
+.KV_Reason.toxicity
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#232c21), to(#0f101e));
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#212a35), to(#262c41));
+}
+
+.KV_Reason.toxicity:hover
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#232c21), to(#262847));
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#264952), to(#7c85ab));
+}
+
+.KV_Reason.afk
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#162c34), to(#0f101e));
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#152948), to(#262c41));
+}
+
+.KV_Reason.afk:hover
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#162c34), to(#262847));
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#224f82), to(#7c85ab));
+}
+
+#KV_R_Image
+{
+	width: 110px;
+	height: 82px;
+	horizontal-align: center;
+	margin-top: 10px;
+}
+
+.KV_Reason:active #KV_R_Image
+{
+	pre-transform-scale2d: 0.85;
+}
+
+.KV_R_Name
+{
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.55);
+	margin: 4px 4px 3px 4px;
+	padding: 2px 0 1px 0;
+	text-align: center;
+	color: rgb(209, 209, 209);
+	text-shadow: black 0 1px 1px 2px;
+	border: 1px solid white;
+	border-radius: 2px;
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#121223), to(#252839));
+	font-size: 18px;
+	text-overflow: shrink;
+	max-height: 38px;
+	vertical-align: bottom;
+}
+
+.KV_Reason:hover .KV_R_Name
+{
+	brightness: 1.4;
+	background-color: rgba(16, 16, 16, 0.55);
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#1f1f3d), to(#363a53));
+}
+
+#KV_VotingProcess
+{
+	flow-children: right;
+	padding-left: 5px;
+}
+
+.BShowProcess.BHideVotingProcess #KV_VotingProcess
+{
+	transform: translateX(302px);
+}
+
+.KV_VP_ToggleHide
+{
+	width: 38px;
+	height: 42px;
+	vertical-align: center;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#435074), to(#191a26));
+	box-shadow: hollow black 0 0 3px 2;
+	border: 2px solid white;
+	border-brush: gradient( linear, 0% 100%, 0% 0%, from(transparent), color-stop(0.93, transparent), to(rgb(105, 122, 169)) ), gradient(linear, 100% 0%, 0% 0%, from(transparent), color-stop(0.95, transparent), to(rgba(0, 0, 0, 0.6))), gradient(linear, 0% 0%, 0% 100%, from(transparent), color-stop(0.95, transparent), to(rgba(0, 0, 0, 0.6)));
+	tooltip-position: left;
+	transition-property: opacity, box-shadow;
+	transition-duration: 0.1s;
+}
+
+.BShowProcess.BHideVotingProcess .KV_VP_ToggleHide
+{
+	opacity: 0.5;
+	box-shadow: hollow rgba(0, 0, 0, 0.8) 0 0 3px 2;
+}
+
+.KV_VP_ToggleHide Panel
+{
+	align: center center;
+	width: 23px;
+	height: 23px;
+	background-image: url("s2r://panorama/images/control_icons/arrow_double_psd.vtex");
+	background-size: 100%;
+	wash-color: #d6d6d6;
+	transition-property: transform;
+	transition-duration: 0.1s;
+}
+
+.BShowProcess.BHideVotingProcess .KV_VP_ToggleHide Panel
+{
+	transform: rotateY(180deg);
+}
+
+.KV_VP_ToggleHide:hover,.BShowProcess.BHideVotingProcess .KV_VP_ToggleHide:hover
+{
+	brightness: 1.3;
+	opacity: 1;
+	box-shadow: hollow black 0 0 3px 2;
+}
+
+.KV_VP_ToggleHide:active
+{
+	brightness: 0.8;
+}
+
+.KV_VP_ToggleHide:hover Panel
+{
+	transform: translateX(3px);
+}
+
+.BShowProcess.BHideVotingProcess .KV_VP_ToggleHide:hover Panel
+{
+	transform: translateX(3px) rotateY(180deg);
+	opacity: 1;
+}
+
+.KV_VP_ToggleHide:active Panel
+{
+	pre-transform-scale2d: 0.9;
+}
+
+.KV_VP_Reason
+{
+	z-index: 1;
+	width: 100%;
+	text-shadow: black 0 1px 3px 3;
+}
+
+#KV_VP_TargetModelContainer
+{
+	height: 300px;
+	width: 262px;
+	horizontal-align: center;
+	margin-top: -30px;
+}
+
+#KV_VP_TargetModelContainer DOTAScenePanel
+{
+	width: 100%;
+	height: 100%;
+	opacity-mask: url("s2r://panorama/images/custom_game/kick_voting/hero_mask_png.vtex");
+}
+
+.KV_VP_Wrap
+{
+	flow-children: down;
+}
+
+.KV_VP_KDA
+{
+	color: #899ce2;
+	horizontal-align: center;
+	text-align: center;
+	margin: 5px 0 3px 0;
+}
+
+.KV_VP_Timer_Background
+{
+	width: 262px;
+	height: 24px;
+	background-color: #414143;
+	border-radius: 3px;
+	box-shadow: black 0 2px 3px -1px;
+}
+
+.KV_VP_Timer_Shadow
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from(rgba(0, 0, 0, 0.85)), color-stop(0.3, transparent), color-stop(0.7, transparent), to(rgba(0, 0, 0, 0.85)) );
+	border-top: 1px solid #161617;
+	border-bottom: 1px solid #161617;
+	border-radius: 3px;
+}
+
+#KV_VP_Timer
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#401b84), to(#709cf3));
+	border-top: 1px solid #161617;
+	border-left: 1px solid #161617;
+	border-radius: 3px;
+}
+
+#KV_VP_Timer_Text
+{
+	color: #dae1ff;
+	text-shadow: black 0 1px 2 3px;
+	align: center center;
+	text-align: center;
+}
+
+#KV_VP_CurrentVotes
+{
+	flow-children: right;
+	horizontal-align: center;
+	padding-left: -2px;
+	margin-top: 4px;
+	visibility: collapse;
+}
+
+#KV_VP_CurrentVotes Panel
+{
+	height: 6px;
+	width: 20px;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#484848), to(#666666));
+	border: 1px solid #2b2e44;
+	margin-left: 2px;
+	border-radius: 2px;
+	box-shadow: black 0 2px 3px -1px;
+}
+
+#KV_VP_CurrentVotes .BVoteYes
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#0e4926), to(#29ff83));
+	border: 1px solid #174543;
+}
+
+#KV_VP_CurrentVotes .BVoteNo
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#761414), to(#ff2626));
+	border: 1px solid #42182f;
+}
+
+.KV_VP_Buttons
+{
+	horizontal-align: center;
+	flow-children: right;
+	padding-left: -10px;
+	margin-top: 10px;
+}
+
+.BHideVotingButtons .KV_VP_Buttons,.BHideVotingButtons #KV_VP_Button_Report,.BLocalPlayerVoted .KV_VP_Buttons
+{
+	visibility: collapse;
+}
+
+.KV_VP_Buttons TextButton
+{
+	width: 110px;
+	background-size: 100%;
+	margin-left: 10px;
+	padding: 1px 3px;
+	border-radius: 3px;
+	box-shadow: rgba(0, 0, 0, 0.8) 0 2px 3px -1px;
+}
+
+.KV_VP_Buttons TextButton Label,#KV_VP_Button_Report Label
+{
+	align: center center;
+	text-align: center;
+	text-shadow: black 0 1px 1px 2;
+}
+
+.KV_VP_Y
+{
+	background-image: url("s2r://panorama/images/custom_game/kick_voting/button_yes_png.vtex");
+}
+
+.KV_VP_Y Label
+{
+	color: #e4fff1;
+}
+
+.KV_VP_N
+{
+	background-image: url("s2r://panorama/images/custom_game/kick_voting/button_no_png.vtex");
+}
+
+.KV_VP_N Label
+{
+	color: #ffe3e6;
+}
+
+#KV_VP_Button_Report
+{
+	width: 200px;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/custom_game/kick_voting/button_report_png.vtex");
+	padding: 1px 3px;
+	border-radius: 3px;
+	box-shadow: rgba(0, 0, 0, 0.8) 0 2px 3px -1px;
+	border: 1px solid white;
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(transparent), to(rgba(255, 255, 255, 0.06)));
+	margin-top: 10px;
+}
+
+#KV_VP_Button_Report Label
+{
+	background-image: url("s2r://panorama/images/custom_game/kick_voting/report_icon_png.vtex");
+	background-size: 15px 13px;
+	background-position: 0% 50%;
+	img-shadow: black 0 1px 2px 1;
+	background-repeat: no-repeat;
+	padding-left: 19px;
+	color: #e9e9e9;
+}
+
+.KV_VP_Buttons TextButton:hover,#KV_VP_Button_Report:hover
+{
+	brightness: 1.4;
+}
+
+.KV_VP_Buttons TextButton:active,#KV_VP_Button_Report:active
+{
+	brightness: 0.75;
+	pre-transform-scale2d: 0.97;
+}
+
+#KV_Notification
+{
+	flow-children: down;
+}
+
+.KV_N_Content
+{
+	width: 302px;
+}
+
+.KV_N_PlayerContainer
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-bottom: 2px;
+}
+
+#KV_N_HeroIcon,#KV_VP_I_HeroIcon
+{
+	width: 21px;
+	height: 21px;
+}
+
+.KV_N_PlayerName,.KV_VP_I_PlayerName
+{
+	margin-left: 4px;
+}
+
+#KV_VP_Initiator
+{
+	width: 100%;
+	margin-top: 8px;
+}
+
+#KV_VP_Initiator > Panel
+{
+	max-width: 100%;
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.KV_VP_I_Header
+{
+	horizontal-align: center;
+}
+
+.KV_VP_I_Content
+{
+	max-width: 100%;
+	flow-children: right;
+	margin-left: 4px;
+}

@@ -1,0 +1,97 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_omniknight"
+{
+	"omniknight_degen_aura"
+	{
+		"speed_bonus"
+		{
+			"value" "4"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+	}
+	"omniknight_purification"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "7"
+			"operator" "OP_MULTIPLY"
+		}
+		"heal"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+		}
+		"radius"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"omniknight_martyr"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "5"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"base_hpregen"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+		}
+	}
+	"omniknight_hammer_of_purity"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "15"
+			"operator" "OP_MULTIPLY"
+		}
+		"base_damage"
+		{
+			"value" "8"
+			"operator" "OP_ADD"
+		}
+		"bonus_damage"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+		}
+	}
+	"omniknight_guardian_angel"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"radius"
+		{
+			"value" "60"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"linked_special_values"
+			{
+				"heal_and_regen_amp"
+				{
+					"value" "10"
+					"operator" "OP_ADD"
+					"requires_scepter" "1"
+				}
+			}
+		}
+	}
+}

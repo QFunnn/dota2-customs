@@ -1,0 +1,127 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_enchantress"
+{
+	"enchantress_impetus"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"linked_abilities"
+			{
+				"enchantress_bunny_hop"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"distance_damage_pct"
+		{
+			"value" "1.2"
+			"operator" "OP_ADD"
+		}
+		"distance_cap"
+		{
+			"value" "200"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_abilities"
+			{
+				"enchantress_bunny_hop"
+				{
+					"hop_distance" "75"
+				}
+			}
+		}
+	}
+	"enchantress_enchant_custom"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"linked_abilities"
+			{
+				"enchantress_little_friends"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"enchant_health"
+		{
+			"value" "1000"
+			"operator" "OP_ADD"
+		}
+		"enchant_damage"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"linked_abilities"
+			{
+				"enchantress_little_friends"
+				{
+					"bonus_attack_speed" "50"
+				}
+			}
+		}
+		"bonus_creep_level"
+		{
+			"value"			"0.5"
+
+			"min_rarity"	"rare"
+			"max_count"		"2"
+		}
+	}
+	"enchantress_natures_attendants"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "7"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"heal"
+		{
+			"value" "2.5"
+			"operator" "OP_ADD"
+		}
+		"radius"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"wisp_count"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+	}
+	"enchantress_untouchable"
+	{
+		"slow_attack_speed"
+		{
+			"value" "-15"
+			"operator" "OP_ADD"
+		}
+	}
+}

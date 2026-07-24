@@ -1,0 +1,109 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_luna"
+{
+	"luna_lunar_blessing"
+	{
+		"bonus_damage"
+		{
+			"value" "15"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"self_bonus_damage" "30"
+			}
+		}
+	}
+	"luna_lucent_beam"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "9"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"beam_damage"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+		}
+	}
+	"luna_lunar_orbit"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "9"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"rotating_glaives_movement_radius"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"rotating_glaives_hit_radius" "20"
+			}
+		}
+		"rotating_glaives_collision_damage"
+		{
+			"value"	"5"
+			"operator" "OP_ADD"
+			"talents"
+			{
+				"special_bonus_unique_luna_lunar_orbit_speed_damage"		"x1.5"
+			}
+		}
+		"rotating_glaives_damage_reduction"
+		{
+			"value" "4"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"luna_moon_glaive"
+	{
+		"range"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"bounces"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+			"max_count" "6"
+		}
+		"damage_reduction_percent"
+		{
+			"value" "-3.75"
+			"operator" "OP_ADD"
+			"max_count" "8"
+		}
+	}
+	"luna_eclipse"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "9"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"radius"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+}

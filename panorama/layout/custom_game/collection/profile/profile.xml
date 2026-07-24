@@ -1,0 +1,205 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/profile/profile.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/scripts/backend_cache.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/const.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/leaderboard/leaderboard_const.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/profile/profile.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="C_Profile_Button">
+			<Button class="C_Profile_Button">
+				<Panel class="C_Profile_Button_Overlay" />
+				<Label text="{s:map_name}" />
+			</Button>
+		</snippet>
+		<snippet name="C_Profile_GS_Entity">
+			<Panel class="C_Profile_GS_Entity">
+				<Panel>
+					<Panel class="C_Profile_GS_E_Rating_Container">
+						<Label class="C_Profile_GS_E_RatingValue" text="{d:rating}" html="true" />
+						<Panel class="C_Profile_GS_E_RatingIcon" />
+					</Panel>
+				</Panel>
+				<Panel>
+					<Label text="#profile_stats_matches" />
+					<Panel class="C_Profile_GS_E_Matches_Container">
+						<Label class="C_Profile_GS_E_Matches_Total" text="#profile_stats_matches_total" html="true" />
+						<Label class="C_Profile_GS_E_Matches_Victories" text="#profile_stats_matches_victories" html="true" />
+						<Label class="C_Profile_GS_E_Matches_Defeats" text="#profile_stats_matches_defeats" html="true" />
+					</Panel>
+				</Panel>
+				<Panel>
+					<Label text="#profile_stats_streaks" />
+					<Panel class="C_Profile_GS_E_Streaks_Container">
+						<Label class="C_Profile_GS_E_Streaks_Current" text="#profile_stats_streaks_current" html="true" />
+						<Label class="C_Profile_GS_E_Streaks_Max" text="#profile_stats_streaks_max" html="true" />
+					</Panel>
+				</Panel>
+				<Panel>
+					<Panel class="C_Profile_GS_E_KDA_Container">
+						<Label id="C_Profile_GS_E_KDA_K" text="#profile_stats_streaks_kills" html="true" onmouseover="DOTAShowTextTooltip(#profile_hint_kills_avg)" onmouseout="DOTAHideTextTooltip()" />
+						<Label id="C_Profile_GS_E_KDA_D" text="#profile_stats_streaks_deaths" html="true" onmouseover="DOTAShowTextTooltip(#profile_hint_deaths_avg)" onmouseout="DOTAHideTextTooltip()" />
+						<Label id="C_Profile_GS_E_KDA_A" text="#profile_stats_streaks_assists" html="true" onmouseover="DOTAShowTextTooltip(#profile_hint_assists_avg)" onmouseout="DOTAHideTextTooltip()" />
+					</Panel>
+				</Panel>
+				<Panel>
+					<Panel class="C_Profile_GS_E_MVP_Container">
+						<Label class="C_Profile_GS_E_MVP_Total" text="#profile_stats_mvp" html="true" />
+						<Label class="C_Profile_GS_E_KDA_RunnerUp" text="#profile_stats_runner_up" html="true" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="C_Profile_LatestMatches_Entity">
+			<Panel class="C_Profile_LatestMatches_Entity" />
+		</snippet>
+		<snippet name="C_Profile_Match">
+			<Panel class="C_Profile_Match">
+				<Panel class="C_Profile_M_CommonInfo">
+					<DOTAHeroImage id="C_Profile_M_HeroImage" />
+					<Label class="C_Profile_M_HeroName" text="{s:hero_name}" />
+					<Panel class="C_Profile_KDA_Stats_Container">
+						<Label class="C_Profile_KDA_Stats" text="{d:kills}" onmouseover="DOTAShowTextTooltip(#profile_hint_kills)" onmouseout="DOTAHideTextTooltip()" />
+						<Label class="C_Profile_KDA_Stats_Separator" text="/" />
+						<Label class="C_Profile_KDA_Stats" text="{d:deaths}" onmouseover="DOTAShowTextTooltip(#profile_hint_deaths)" onmouseout="DOTAHideTextTooltip()" />
+						<Label class="C_Profile_KDA_Stats_Separator" text="/" />
+						<Label class="C_Profile_KDA_Stats" text="{d:assists}" onmouseover="DOTAShowTextTooltip(#profile_hint_assists)" onmouseout="DOTAHideTextTooltip()" />
+					</Panel>
+					<Label class="C_Profile_Place" text="{d:place}{s:place_prefix}" />
+					<Label class="C_Profile_RatingChange" text="{s:rating_change}" />
+					<Panel class="C_Profile_MVP_Status" />
+					<Label class="C_Profile_FullRevealHint" text="#profile_match_show" />
+				</Panel>
+				<Panel class="C_Profile_M_FullInfo" />
+			</Panel>
+		</snippet>
+		<snippet name="C_ProfileFullMatch">
+			<Panel class="C_ProfileFullMatch">
+				<Label class="C_ProfileFullMatch_Header" text="#profile_match_details_header" />
+				<Panel class="C_ProfileFullMatch_Loading_Container">
+					<Panel class="C_ProfileFullMatch_Loading_Icon" />
+					<Label class="C_ProfileFullMatch_Loading_Text" text="#profile_match_loading" />
+				</Panel>
+				<Panel class="C_Profile_M_FI_Content">
+					<Panel id="C_Profile_M_FI_Teams" />
+					<Panel class="C_Profile_M_FI_Teams_PlayerDetails_Wrap">
+						<Panel class="C_Profile_M_FI_Headers">
+							<Label class="C_Profile_M_FI_H_RatingChange" text="#custom_end_rating" />
+							<Label class="C_Profile_M_FI_H_Kills" text="#custom_end_screen_legend_kills" />
+							<Label class="C_Profile_M_FI_H_Deaths" text="#custom_end_screen_legend_deaths" />
+							<Label class="C_Profile_M_FI_H_Assists" text="#custom_end_screen_legend_assists" />
+							<Label class="C_Profile_M_FI_H_Networth" text="#custom_end_networth" html="true" />
+							<Label class="C_Profile_M_FI_H_DamageDealt" text="#custom_end_hero_damage" html="true" />
+							<Label class="C_Profile_M_FI_H_DamageTaken" text="#custom_end_damage_taken" html="true" />
+							<Label class="C_Profile_M_FI_H_Healing" text="#custom_end_heal" html="true" />
+							<Label class="C_Profile_M_FI_H_Stuns" text="#custom_end_stuns" />
+						</Panel>
+						<Panel id="C_Profile_M_FI_Teams_PlayerDetails" />
+					</Panel>
+				</Panel>
+				<Panel class="C_Profile_M_FI_Foot">
+					<Panel class="C_Profile_M_FI_BaseInfo">
+						<Label class="C_Profile_M_FI_BI_MatchInfo NeedFullLoad" text="#profile_match_start_date" html="true" />
+						<Label class="C_Profile_M_FI_BI_MatchInfo NeedFullLoad" text="#profile_match_start_duration" html="true" />
+						<Label class="C_Profile_M_FI_BI_MatchInfo" text="#profile_match_start_match_id" html="true" />
+					</Panel>
+					<Button class="C_Profile_M_FI_Close" onactivate="CloseCustomMatchDetails()">
+						<Label text="#close" />
+					</Button>
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="C_Profile_Team">
+			<Panel class="C_Profile_Team">
+				<Panel class="C_Profile_BTI_StatContainer">
+					<Panel class="C_Profile_BTI_LogoContainer">
+						<Image id="C_Profile_BTI_Logo_Color" src="s2r://panorama/images/custom_game/end_game/team_logo_color_png.vtex" />
+						<Image id="C_Profile_BTI_Logo" />
+					</Panel>
+					<Panel class="C_Profile_BTI_Score">
+						<Label text="{d:team_score}" />
+					</Panel>
+				</Panel>
+				<Panel id="C_Profile_Team_PlayersContainer" />
+			</Panel>
+		</snippet>
+		<snippet name="C_Profile_Player_BasicInfo">
+			<Panel class="C_Profile_Player_BasicInfo">
+				<DOTAHeroImage id="C_Profile_P_HeroImage" />
+				<Panel class="C_Profile_P_NameAndHero">
+					<DOTAUserName id="C_Profile_P_PlayerName" />
+					<Label class="C_Profile_P_HeroName" text="{s:hero_name}" html="true" />
+				</Panel>
+				<Panel id="C_Profile_P_MVP_Status" onmouseout="DOTAHideTextTooltip()" />
+			</Panel>
+		</snippet>
+		<snippet name="C_Profile_Player_DetailsInfo">
+			<Panel class="C_Profile_Player_DetailsInfo">
+				<Panel id="C_Profile_RatingContainer" class="C_Profile_StatContainer">
+					<Label text="{s:rating_operator} {d:rating_change}" />
+				</Panel>
+				<Panel id="C_Profile_KillsContainer" class="C_Profile_StatContainer">
+					<Label text="{d:kills}" />
+				</Panel>
+				<Panel id="C_Profile_DeathsContainer" class="C_Profile_StatContainer">
+					<Label text="{d:deaths}" />
+				</Panel>
+				<Panel id="C_Profile_AssistsContainer" class="C_Profile_StatContainer">
+					<Label text="{d:assists}" />
+				</Panel>
+				<Panel id="C_Profile_Networth" class="C_Profile_StatContainer">
+					<Label text="{d:networth}" />
+				</Panel>
+				<Panel id="C_Profile_HeroDamage" class="C_Profile_StatContainer">
+					<Label text="{d:hero_damage}" />
+				</Panel>
+				<Panel id="C_Profile_DamageTaken" class="C_Profile_StatContainer">
+					<Label text="{d:damage_taken}" />
+				</Panel>
+				<Panel id="C_Profile_Heal" class="C_Profile_StatContainer">
+					<Label text="{d:healing}" />
+				</Panel>
+				<Panel id="C_Profile_Stuns" class="C_Profile_StatContainer">
+					<Label text="#custom_end_stuns_seconds" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="C_Profile_Player">
+			<Panel class="C_Profile_Player" />
+		</snippet>
+	</snippets>
+	<Panel class="C_Profile_Root" hittest="false">
+		<Panel class="C_Profile_Buttons_Root">
+			<Panel id="C_Profile_Buttons" />
+		</Panel>
+		<Panel class="C_Profile_Content">
+			<Panel class="C_Profile_GlobalStats_Root">
+				<Label class="C_Profile_GS_Header" text="#profile_header_stats_by_map" />
+				<Panel id="C_Profile_GS_Container" />
+			</Panel>
+			<Panel class="C_Profile_LatestMatches_Root">
+				<Label class="C_Profile_LM_Header" text="#profile_header_latest_matches" />
+				<Panel class="C_Profile_HeadersContainer" />
+				<Panel id="C_Profile_LM_Container" />
+			</Panel>
+		</Panel>
+		<Panel id="C_Profile_FullMatchesContainer" onactivate="" />
+		<Panel id="C_Profile_FullMatchesContainer_Temp" hittest="false" />
+	</Panel>
+</root>

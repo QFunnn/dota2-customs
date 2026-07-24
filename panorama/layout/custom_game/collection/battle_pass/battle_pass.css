@@ -1,0 +1,528 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+#C_Content > .BattlePass
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	margin-bottom: 4px;
+}
+
+#BP_Core
+{
+	flow-children: right;
+}
+
+.BP_Foot
+{
+	width: 100%;
+	vertical-align: bottom;
+	padding: 0px 12px;
+}
+
+#BP_RedeemAll
+{
+	horizontal-align: right;
+	padding: 3px 20px;
+	background-image: url("s2r://panorama/images/custom_game/collection/battle_pass/redeem_button_bg_png.vtex");
+	background-size: 100%;
+	border-radius: 2px;
+	box-shadow: rgba(0, 0, 0, 0.79) 0px 1px 3px 2;
+	transition: brightness 0.1s ease-in-out 0s;
+}
+
+.BHasItemsForRedeem #BP_RedeemAll
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/button_active_png.vtex");
+}
+
+#BP_RedeemAll:hover
+{
+	brightness: 1.5;
+}
+
+#BP_RedeemAll:active
+{
+	brightness: 0.8;
+	pre-transform-scale2d: 0.99;
+}
+
+#BP_RedeemAll Label
+{
+	text-transform: uppercase;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#b8b8b8), to(#ffffff));
+	font-size: 16px;
+	text-shadow: black 0 1px 2px 2;
+}
+
+.BP_TimeRemaining
+{
+	font-size: 17px;
+	vertical-align: bottom;
+}
+
+.BP_Flag
+{
+	width: 135px;
+	height: 410px;
+	background-image: url("s2r://panorama/images/custom_game/collection/battle_pass/bp_flag_v2_png.vtex");
+	background-size: 100%;
+}
+
+.BattlePass.BAvailableTier_1 .BP_Flag
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/battle_pass/bp_flag_v3_png.vtex");
+}
+
+.BP_Flag_Logo
+{
+	width: 105px;
+	height: 115px;
+	horizontal-align: center;
+	margin: 55px 1px 0 0;
+}
+
+.BattlePass:not(.BAvailableTier_1) .BP_Flag_Logo
+{
+	saturation: 0.2;
+	brightness: 0.6;
+	wash-color: #ffffff;
+}
+
+.BP_Flag_Lock
+{
+	height: 25px;
+	width: 26px;
+	margin: 54px 0 0 87px;
+}
+
+.BattlePass.BAvailableTier_1 .BP_Flag_Lock
+{
+	visibility: collapse;
+}
+
+.BP_FullButton
+{
+	width: 100%;
+	height: 50px;
+	margin-top: 150px;
+	background-image: url("s2r://panorama/images/custom_game/collection/battle_pass/bp_full_button_png.vtex");
+	background-size: 100%;
+	transition: brightness 0.15s ease-in-out 0s;
+}
+
+.BattlePass:not(.BattlePassFullRewardsUnlocked) .BP_FullButton:hover
+{
+	brightness: 1.5;
+}
+
+.BattlePass:not(.BattlePassFullRewardsUnlocked) .BP_FullButton:active
+{
+	brightness: 0.7;
+	sound: "General.ButtonClick";
+}
+
+.BP_FullButton Label
+{
+	text-align: center;
+	align: center center;
+	text-transform: uppercase;
+	padding: 5px 5px;
+	text-overflow: shrink;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#da8a4d), to(#fbce84));
+	text-shadow: rgba(0, 0, 0, 0.9) 0px 1px 3px 2;
+}
+
+.BP_CurrentLevelWrap
+{
+	flow-children: right;
+	align: center bottom;
+	margin-bottom: 13px;
+	max-width: 100%;
+	padding: 0px 15px;
+}
+
+.BP_CurrentLevelWrap Label
+{
+	vertical-align: center;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#da8a4d), to(#fbce84));
+	text-shadow: rgba(0, 0, 0, 0.9) 0px 1px 3px 2;
+}
+
+.BP_LevelHeader
+{
+	margin-top: 2px;
+	font-size: 15px;
+}
+
+.BP_CurrentLevel
+{
+	margin-left: 5px;
+	font-size: 27px;
+	text-overflow: shrink;
+	font-weight: semi-bold;
+}
+
+.BP_Content
+{
+	height: 100%;
+	margin-left: -10px;
+	padding-left: -48px;
+	z-index: -1;
+	overflow: scroll clip;
+	opacity-mask: url("s2r://panorama/images/custom_game/collection/battle_pass/bp_content_opacity_mask_png.vtex");
+}
+
+#BP_Items_Extend,#BP_Items_Core
+{
+	height: 50%;
+	padding: 0 0 15px 55px;
+	flow-children: right;
+}
+
+#BP_Items_Core
+{
+	vertical-align: bottom;
+	padding: 15px 0 0 55px;
+}
+
+#BP_Levels_Root
+{
+	vertical-align: center;
+	padding-left: 20px;
+}
+
+#BP_Levels_Progress_Wrap
+{
+	vertical-align: center;
+}
+
+#BP_Levels_Progress_Container_BG,#BP_Levels_Progress_Container
+{
+	vertical-align: center;
+	flow-children: right;
+	padding-left: 55px;
+	border-top: 2px solid rgba(91, 85, 65, 0.7);
+	border-bottom: 2px solid rgba(91, 85, 65, 0.7);
+}
+
+#BP_Levels_Progress_Container_BG
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#19191c), to(#323638));
+}
+
+#BP_Levels_Progress_Container
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#deb773), to(#d3793d));
+}
+
+.BP_Level_Progress
+{
+	height: 8px;
+	border-radius: 0px;
+	overflow: clip;
+	vertical-align: center;
+}
+
+.BP_Item
+{
+	width: 116px;
+	height: 175px;
+	margin-left: 10px;
+	background-image: url("s2r://panorama/images/custom_game/collection/battle_pass/bp_item_bg_base_png.vtex");
+	background-size: 100%;
+	opacity: 0;
+}
+
+.BP_Item.BAvailable:not(.BOwned)
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/battle_pass/bp_item_bg_base_2_png.vtex");
+}
+
+.BP_Item.BFullEmptyLevel
+{
+	opacity: 1;
+	width: 5px;
+	background-image: none;
+	background-color: gradient(radial, 50% 50%, 0% 0%, 40% 43%, from(#5c6077), to(transparent));
+	box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 3px -3px;
+}
+
+#BP_Items_Extend .BP_Item.BFullEmptyLevel
+{
+	background-image: none;
+	background-color: gradient(radial, 50% 50%, 0% 0%, 40% 43%, from(#655137), to(transparent));
+	box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 3px -3px;
+}
+
+.BP_Item.BFullEmptyLevel .BP_ItemBorder
+{
+	visibility: collapse;
+}
+
+.BP_Item.BFilled
+{
+	opacity: 1;
+}
+
+#BP_Items_Extend .BP_Item
+{
+	vertical-align: bottom;
+	background-image: url("s2r://panorama/images/custom_game/collection/battle_pass/bp_item_bg_gold_png.vtex");
+}
+
+#BP_Items_Extend .BP_Item.BAvailable:not(.BOwned)
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/battle_pass/bp_item_bg_gold_2_png.vtex");
+}
+
+.BP_ItemBorder
+{
+	align: center center;
+	width: 70px;
+	height: 70px;
+	border-radius: 5px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#496887), to(#2e3a5e));
+	visibility: visible;
+}
+
+.BAvailable.COMMON .BP_ItemBorder
+{
+	box-shadow: rgb(204, 221, 255) 0px 0px 20px -7px;
+}
+
+.BAvailable.UNCOMMON .BP_ItemBorder
+{
+	box-shadow: rgb(109, 182, 255) 0px 0px 20px -7px;
+}
+
+.BAvailable.RARE .BP_ItemBorder
+{
+	box-shadow: rgb(89, 107, 255) 0px 0px 20px -7px;
+}
+
+.BAvailable.MYTHICAL .BP_ItemBorder
+{
+	box-shadow: rgb(139, 79, 255) 0px 0px 20px -7px;
+}
+
+.BAvailable.LEGENDARY .BP_ItemBorder
+{
+	box-shadow: rgb(236, 52, 255) 0px 0px 20px -7px;
+}
+
+.BAvailable.IMMORTAL .BP_ItemBorder
+{
+	box-shadow: rgb(255, 188, 73) 0px 0px 20px -7px;
+}
+
+.BAvailable.ARCANA .BP_ItemBorder
+{
+	box-shadow: rgb(198, 255, 103) 0px 0px 20px -7px;
+}
+
+.BAvailable.UNIQUE .BP_ItemBorder
+{
+	box-shadow: rgb(255, 67, 65) 0px 0px 20px -7px;
+}
+
+#BP_ItemImage
+{
+	width: 100%;
+	height: 100%;
+	margin: 2px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#21232b), to(#30323e));
+	border-radius: 4px;
+}
+
+.BHasCurrencyRewards:not(.BHasItemsRewards) #BP_ItemImage
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/currency_icon_png.vtex");
+	background-size: 51px;
+	background-repeat: no-repeat;
+	background-position: 50%;
+}
+
+.BP_Lock
+{
+	height: 20px;
+	width: 21px;
+	margin: 44px 0 0 80px;
+	opacity: 0;
+}
+
+.BattlePass:not(.BAvailableTier_1) #BP_Items_Extend .BP_Item:not(.BOwned) .BP_Lock
+{
+	opacity: 1;
+}
+
+.BattlePass:not(.BAvailableTier_1) #BP_Items_Extend
+{
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.BattlePass:not(.BAvailableTier_1) #BP_Items_Extend .BP_Item
+{
+	opacity: 0.4;
+	background-color: rgba(0, 0, 0, 0.5);
+	saturation: 0;
+	wash-color: rgba(0, 0, 0, 0.51);
+}
+
+.BP_Item.BOwned .BP_ItemBorder
+{
+	saturation: 0;
+	wash-color: #cecece;
+}
+
+.BP_Tick
+{
+	height: 20px;
+	width: 20px;
+	margin: 44px 0 0 81px;
+	opacity: 0;
+	pre-transform-scale2d: 3;
+	transition-property: pre-transform-scale2d, opacity;
+	transition-duration: 0.15s;
+}
+
+.BOwned .BP_Tick
+{
+	opacity: 1;
+	pre-transform-scale2d: 1;
+}
+
+.BP_Content HorizontalScrollBar
+{
+	margin-left: 20px;
+	height: 8px;
+	box-shadow: 0px 0px 0px 0px transparent;
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.BP_Content #ScrollThumb
+{
+	height: 100%;
+	margin: 0px;
+	border: 0px solid transparent;
+	background-color: #4f4f4f;
+}
+
+#BP_Levels_Root
+{
+	flow-children: right;
+	vertical-align: center;
+}
+
+.BP_Level
+{
+	width: 44px;
+	height: 44px;
+	background-image: url("s2r://panorama/images/custom_game/collection/battle_pass/level_bg_2_png.vtex");
+	background-size: 100%;
+	margin-left: 82px;
+	padding: 0px 7px;
+	saturation: 0.8;
+}
+
+.BP_Level.BLevelReached
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/battle_pass/level_bg_png.vtex");
+	saturation: 1;
+}
+
+.BP_Level Label
+{
+	margin-top: 1px;
+	align: center center;
+	text-align: center;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#f3f3f3), to(#b3b3b3));
+	text-overflow: shrink;
+	font-family: monospaceNumbersFont;
+}
+
+.BP_Level.BLevelReached Label
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#d5cdb9), to(#c2a662));
+}
+
+.BP_Item_Count
+{
+	text-align: center;
+	font-size: 17px;
+	font-weight: lighter;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from(transparent), color-stop(0.5, rgba(0, 0, 0, 0.76)), to(rgba(0, 0, 0, 0.96)) );
+	padding: 0 5px 0 10px;
+	min-width: 35px;
+	text-align: right;
+	align: right bottom;
+	text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 3px 2;
+	color: #bccee2;
+	visibility: collapse;
+}
+
+.BManyItems .BP_Item_Count
+{
+	visibility: visible;
+}
+
+.BP_Content_Wrap
+{
+	height: 100%;
+}
+
+#BP_Second_Line_Closed
+{
+	background-color: rgba(0, 0, 0, 0.92);
+	width: 100%;
+	height: 48px;
+	margin-top: 77px;
+	transition-property: opacity, transform;
+	transition-duration: 0.15s;
+	padding: 3px 0;
+	opacity-mask: url("s2r://panorama/images/custom_game/collection/battle_pass/bp_content_opacity_mask_png.vtex");
+}
+
+.BAvailableTier_1 #BP_Second_Line_Closed
+{
+	visibility: collapse;
+}
+
+#BP_Second_Line_Closed > Panel
+{
+	border-top: 2px solid white;
+	border-bottom: 2px solid white;
+	border-brush: gradient( linear, 0% 0%, 100% 0%, from(rgba(238, 182, 0, 0.1)), color-stop(0.5, transparent), to(rgba(238, 182, 0, 0.1)) );
+	height: 100%;
+	width: 100%;
+}
+
+#BP_Second_Line_Closed > Label
+{
+	align: center center;
+	text-align: center;
+	text-transform: uppercase;
+	color: #fffcfe;
+	font-size: 24px;
+	padding-left: 24px;
+	background-image: url("s2r://panorama/images/custom_game/lock_icon_png.vtex");
+	background-size: 18px;
+	background-position: 0% 4px;
+	background-repeat: no-repeat;
+}
+
+.BHideUnlockLine #BP_Second_Line_Closed
+{
+	opacity: 0;
+	transform: scaleY(0.1);
+}

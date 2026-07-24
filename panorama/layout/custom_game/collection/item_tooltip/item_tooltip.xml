@@ -1,0 +1,55 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/item_tooltip/item_tooltip.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/cosmetics/cosmetics_rarities.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/item_tooltip/item_tooltip.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="CI_Item">
+			<Panel class="CI_Item">
+				<Panel class="CI_Background">
+					<Image id="CI_Item_Image">
+						<Label class="CI_Item_Count" text="x{d:count}" />
+					</Image>
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="CustomItem_Tooltip" hittest="false" hittestchildren="false" ontooltiploaded="UpdateTooltip()">
+		<Panel class="CI_HeaderInfo">
+			<Label id="CI_Name" html="true" text="{s:item_name}" />
+			<Label id="CI_RarityOverlay" />
+			<Panel id="CI_MainInfo">
+				<Label id="CI_RarityName" html="true" text="{s:item_rarity_text}" />
+			</Panel>
+		</Panel>
+		<Panel id="CI_SourceName_Root">
+			<Label class="CI_Separator" />
+			<Label id="CI_SourceName_Line" />
+			<Label id="CI_SourceName" html="true" text="#item_source" />
+		</Panel>
+		<Label class="CI_Separator CI_Separator_Bundle" />
+		<Panel id="CI_Items_List" />
+		<Panel id="CI_SourceBorder" class="CI_Background">
+			<Image id="CI_SourceImage" />
+		</Panel>
+		<Label id="CI_SourceValue" html="true" text="{s:source_value}" />
+		<Label class="CI_Separator" />
+		<Label id="CI_Description" text="{s:item_description}" html="true" />
+	</Panel>
+</root>

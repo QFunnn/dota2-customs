@@ -1,0 +1,253 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.HeroSelectOverlayRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#HeroSelectTeamsContainer
+{
+	width: 100%;
+	horizontal-align: center;
+	margin-top: 32px;
+	flow-children: down;
+	z-index: -2;
+}
+
+.CustomUIState_PregameStrategy #HeroSelectTeamsContainer
+{
+	margin-top: -1px;
+}
+
+.AspectRatio4x3 #HeroSelectTeamsContainer
+{
+	margin-left: 50px;
+}
+
+#HeroSelectTeamsContainer > Panel
+{
+	width: 100%;
+	flow-children: right;
+	margin-bottom: 3px;
+}
+
+#TeamColor_Select
+{
+	width: 100%;
+	height: 5px;
+}
+
+#TimerPanel
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-left: 200px;
+	margin-bottom: 75px;
+}
+
+#CustomUIContainer_PregameStrategy #TimerPanel
+{
+	visibility: collapse;
+}
+
+#Timer
+{
+	horizontal-align: center;
+	font-size: 48px;
+	color: #cccccc;
+	margin-top: 5px;
+	width: 70px;
+	text-align: center;
+	margin-left: 3px;
+	margin-right: 3px;
+	margin-top: 5px;
+}
+
+#TimerBg
+{
+	wash-color: #222222;
+}
+
+#TimerBg,#TimerRing
+{
+	horizontal-align: center;
+	width: 70px;
+	height: 70px;
+}
+
+#TimerLabel
+{
+	font-size: 25px;
+	color: #cccccc;
+	vertical-align: center;
+	text-align: center;
+	text-transform: uppercase;
+	margin-top: 70px;
+}
+
+.HeroSelectTeamRoot
+{
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.AspectRatio4x3 .HeroSelectTeamRoot
+{
+	margin-left: 3px;
+	margin-right: 3px;
+}
+
+.HeroSelectTeamRoot.no_players
+{
+	visibility: collapse;
+}
+
+#PlayersContainer
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.local_player_team #PlayerPortraitsOverlay
+{
+	width: 90px;
+	height: 50px;
+}
+
+.EndSpacer
+{
+	width: fill-parent-flow(1);
+}
+
+.HeroSelectPlayerRoot
+{
+	margin-right: -4px;
+	margin-left: -4px;
+	flow-children: down;
+}
+
+#TeamHeader
+{
+	width: 100%;
+	height: 52px;
+}
+
+#TeamHeaderAndPlayers
+{
+	horizontal-align: center;
+}
+
+#TeamHeaderLogoName
+{
+	width: 100%;
+	flow-children: down;
+}
+
+#TeamGradient
+{
+	width: 100%;
+	height: 35px;
+	margin-top: 50px;
+}
+
+#TeamLogo
+{
+	vertical-align: top;
+	margin-top: 2px;
+	horizontal-align: center;
+}
+
+#PlayerPortrait
+{
+	width: 75px;
+	height: 45px;
+	opacity-mask: url("s2r://panorama/images/custom_game/import_dota/topbar_heroslant_left_psd_png.vtex");
+}
+
+.AspectRatio4x3 #PlayerPortrait
+{
+	width: 84px;
+}
+
+.PlayerPortraitOverlay
+{
+	height: 100%;
+	width: 100%;
+	background-color: gradient( radial, 50% 30%, 0% 0%, 45% 100%, from(#00000000), color-stop(0.6, #00000000), to(#000000bb) );
+	border-bottom: 5px solid white;
+	box-shadow: inset #000000af 0px -6px 3px 0px;
+}
+
+.PortraitBorderGradient
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from(black), color-stop(0.5, rgba(255, 255, 255, 0.055)), color-stop(0.8, rgba(255, 255, 255, 0.048)), to(black) );
+	z-index: 5;
+	vertical-align: bottom;
+	height: 5px;
+	width: 100%;
+}
+
+#PlayerName
+{
+	font-size: 12px;
+	text-align: center;
+	horizontal-align: center;
+	vertical-align: center;
+	width: 64px;
+	height: 25px;
+	text-overflow: clip;
+	text-shadow: black 0px 0px 2px 2;
+	z-index: 1;
+}
+
+#PlayerName.NoParty
+{
+	color: white;
+}
+
+.Supporter1 #PlayerName
+{
+	color: #70ea72;
+	font-weight: bold;
+}
+
+.Supporter2 #PlayerName
+{
+	color: #ea70e8;
+	font-weight: bold;
+}
+
+#PlayerStreak
+{
+	visibility: collapse;
+	color: white;
+	background-color: rgba(0, 0, 0, 0.6);
+	font-size: 15px;
+	text-align: center;
+	horizontal-align: center;
+	vertical-align: center;
+	width: 100%;
+	text-overflow: shrink;
+	margin: 0 5px;
+}
+
+.has_stats #PlayerStreak
+{
+	visibility: visible;
+}
+
+.HeroSelectPlayerRoot.hero_highlighted #PlayerPortrait
+{
+	saturation: 0;
+}

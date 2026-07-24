@@ -1,0 +1,151 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_shredder"
+{
+	"shredder_whirling_death"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+			"linked_abilities"
+			{
+				"shredder_flamethrower"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "10"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"whirling_radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_abilities"
+			{
+				"shredder_flamethrower"
+				{
+					"width" "30"
+					"length" "30"
+				}
+			}
+		}
+		"whirling_damage"
+		{
+			"value" "21"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"tree_damage_scale" "3"
+			}
+			"linked_abilities"
+			{
+				"shredder_flamethrower"
+				{
+					"damage_per_second" "7"
+				}
+			}
+		}
+	}
+	"shredder_timber_chain"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "11"
+			"operator" "OP_MULTIPLY"
+		}
+		"radius"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"chain_radius" "40"
+			}
+		}
+		"damage"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+		}
+	}
+	"shredder_reactive_armor"
+	{
+		"bonus_armor"
+		{
+			"value" "0.07"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"cooldown_and_manacost"
+				{
+					"value" "8"
+					"operator" "OP_MULTIPLY"
+					"multiplicative_target"	"80"
+				}
+			}
+		}
+		"bonus_hp_regen"
+		{
+			"value" "0.2"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"radius"
+				{
+					"value" "30"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target"		"900"
+					"multiplicative_base_value"	"600"
+				}
+				"explosion_radius"
+				{
+					"value" "30"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target"		"900"
+					"multiplicative_base_value"	"600"
+				}
+			}
+		}
+	}
+	"shredder_chakram"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "11"
+			"operator" "OP_MULTIPLY"
+		}
+		"radius"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"pass_damage"
+		{
+			"value" "8"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"damage_per_second" "4"
+				"speed" "25"
+			}
+		}
+	}
+}

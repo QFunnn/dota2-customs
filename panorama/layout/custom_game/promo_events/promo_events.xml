@@ -1,0 +1,94 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/promo_events/promo_events.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/cosmetics/cosmetics_rarities.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/promo_events/promo_events_const.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/promo_events/promo_events.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="PromoReward">
+			<Panel class="PromoReward">
+				<Panel class="PR_Border CI_Background">
+					<Image id="PR_Icon">
+						<Label class="PR_Count" text="{d:reward_amount}" />
+					</Image>
+				</Panel>
+				<Image class="PR_CheckImage" src="s2r://panorama/images/custom_game/promo_events/golden_check_png.vtex" />
+			</Panel>
+		</snippet>
+		<snippet name="PromoGame">
+			<Button class="PromoGame">
+				<Image id="PG_BG_Image" />
+				<Panel class="PG_Content">
+					<Panel class="PG_NameRoot">
+						<Label class="PG_Name" text="{s:game_name}" />
+						<Label class="PG_Progress" text="{s:claimed_tasks}/{s:total_tasks}" />
+					</Panel>
+					<Image id="PG_Image">
+						<Button id="PG_LinkButton" onmouseover="DOTAShowTextTooltip(#promo_events_open_game_hint)" onmouseout="DOTAHideTextTooltip()" />
+					</Image>
+				</Panel>
+			</Button>
+		</snippet>
+		<snippet name="PromoTask">
+			<Button class="PromoTask">
+				<Image id="PT_Icon" />
+				<Panel class="PT_DescriptionContainer">
+					<Panel class="PT_D_GameAndTime">
+						<Label class="PT_D_GameName" text="{s:game_name}" />
+						<Label class="PT_D_TimeRemaining" text="{s:task_time_basic}" />
+					</Panel>
+					<Panel class="PT_ObjectiveContainer">
+						<Label class="PT_Objective" text="{s:objective}" />
+						<Label class="PT_Progress" text=" ( {s:progress}/{s:goal} )" />
+					</Panel>
+				</Panel>
+				<Panel class="PT_RewardContainer">
+					<Panel class="PT_R_BGLine_Claim" />
+					<Panel class="PT_R_BGLine" text="{s:claim_state}">
+						<DOTAScenePanel class="PT_R_BGLine_FX" map="ui/event_golden_glow" camera="bg_glow2" hittest="false" />
+					</Panel>
+					<Panel class="PT_R_Content">
+						<Label class="PT_R_ClaimState" text="{s:claim_state}" />
+						<Panel id="PT_Rewards" />
+					</Panel>
+				</Panel>
+			</Button>
+		</snippet>
+	</snippets>
+	<Panel hittest="false" class="PromoEvents_CustomRoot">
+		<Panel hittest="false" class="PromoEvents_Custom">
+			<Panel class="PromoEvents_Header">
+				<Panel class="PE_HeaderContent">
+					<Label class="PE_HeaderText" text="#promo_events_header" />
+					<Label class="PE_HeaderHint" text="#promo_events_games_header" />
+				</Panel>
+				<TextButton class="PE_Close" text="#close" onactivate="GameUI.ToggleCustomPromoEvents()" />
+			</Panel>
+			<Panel class="PromoEvents_Content">
+				<Panel class="PE_GamesList_Wrap">
+					<Panel id="PE_GamesList_Container" />
+				</Panel>
+				<Panel id="PE_TasksList" />
+			</Panel>
+			<Panel class="PE_NoTasks">
+				<Label text="#promo_events_no_tasks" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

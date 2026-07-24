@@ -1,0 +1,198 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/gift_codes/gift_codes_precache.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/gift_codes/gift_codes.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/cosmetics/cosmetics_rarities.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/cosmetics/cosmetics.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/chat_wheel/chat_wheel_colors_style.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/const.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/chat_wheel/chat_wheel_const.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/gift_codes/gift_codes.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="GiftCodeEntity">
+			<Panel class="GiftCodeEntity">
+				<Panel class="GCE_Icon" />
+				<Label class="GCE_Name" text="{s:product_name}" />
+				<Panel class="GCE_Code">
+					<Label id="GCE_Code_Value" text="{s:code}" />
+					<Panel class="GCE_CodeButtons">
+						<Button id="GCE_Hide">
+							<Label text="#gift_code_hide" />
+						</Button>
+						<Button id="GCE_Reveal">
+							<Label text="#gift_code_reveal" />
+						</Button>
+					</Panel>
+				</Panel>
+				<Panel class="GCE_Status">
+					<Label class="GCE_Status_Claimed" text="#gift_code_status_claimed" />
+					<Label class="GCE_Status_Available" text="#gift_code_status_available" />
+				</Panel>
+				<Panel class="GCE_ActionButton">
+					<Panel class="GCE_Redeemer_Root">
+						<Label text="#gift_code_claimed_by" />
+						<DOTAUserName id="GCE_Redeemer" />
+					</Panel>
+					<Button id="GCE_Reclaim">
+						<Label text="#gift_code_reclaim" />
+					</Button>
+					<Button id="GCE_Send">
+						<Label text="#gift_code_send" />
+					</Button>
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="GC_Player">
+			<Button class="GC_Player">
+				<Panel class="GC_Player_Separator" />
+				<Panel class="GC_Player_Content">
+					<DOTAAvatarImage id="GC_P_Avatar" hittest="false" />
+					<Panel class="GC_P_Info">
+						<DOTAUserName id="GC_P_Name" hittest="false" />
+						<Label class="GC_P_HeroName" text="{s:hero_name}" />
+					</Panel>
+				</Panel>
+				<Panel class="GC_Player_Mouseover_Label" />
+			</Button>
+		</snippet>
+		<snippet name="GC_Unwrap_Product">
+			<Panel class="GC_Unwrap_Product">
+				<Panel class="GC_UP_Border CI_Background">
+					<Image id="GC_UP_Image">
+						<Label class="GC_UP_Count" text="x{s:gc_up_count}" />
+					</Image>
+					<Panel class="CI_ChatWheel_PhraseContainer">
+						<Image id="CI_ChatWheel_SoundButton" src="s2r://panorama/images/hud/reborn/icon_scoreboard_mute_sound_psd.vtex" />
+						<Label id="CI_ChatWheel_Phrase" text="{s:chat_wheel_phrase}" html="true" />
+					</Panel>
+					<Panel class="CI_ChatWheel_ColorContainer">
+						<Image src="s2r://panorama/images/custom_game/collection/chat_wheel/color_hover_png.vtex" />
+						<Label id="CI_ChatWheel_Color" text="{s:chat_wheel_color}" />
+					</Panel>
+					<Panel id="CI_ChatWheel_EmojiContainer" />
+				</Panel>
+				<Label class="GC_UP_Name" text="{s:filler_name}" html="true" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="GiftCodes_Root" hittest="false">
+		<Panel class="GC_MainPanel">
+			<Panel class="GC_Redeem_Root">
+				<Panel class="GC_R_LabelRoot">
+					<Label text="#gift_code_redeem_header" />
+					<Panel class="GC_R_TextEntry_Root">
+						<Label id="GC_R_State" text="{s:gc_redeem_state}" />
+						<TextEntry id="GC_R_TextEntry" placeholder="XXXX-XXXX-XXXX-XXXX-XXXX" ontextentrychange="HideIncorrectCode()" />
+					</Panel>
+				</Panel>
+				<Button id="GC_R_Button" onactivate="RedeemNewCode()">
+					<Label text="#gift_code_redeem" />
+				</Button>
+			</Panel>
+			<Panel id="GC_Headers">
+				<Label class="GC_H_Item" text="#gift_code_header_item" />
+				<Panel class="GC_H_GiftCode_Root">
+					<Label class="GC_H_GiftCode" text="#gift_code_header_gift_code" />
+					<Label class="GC_H_GiftCode_Hint" text="#gift_code_header_gift_code_hint" />
+				</Panel>
+				<Label class="GC_H_Status" text="#gift_code_header_status" />
+				<Label class="GC_H_Refresh" text="#gift_code_header_refresh" onactivate="GameUI.GetGiftCodes()" />
+			</Panel>
+			<Panel id="GC_List" />
+		</Panel>
+		<Panel class="GC_Hints" hittest="false">
+			<Panel class="GC_Hint Buy" hittest="false">
+				<Panel class="GC_Hint_Root" hittest="false">
+					<Panel class="GC_Hint_Line">
+						<Panel class="GC_Icon" />
+						<Label text="#gift_code_hint_how_to_buy_1" html="true" />
+					</Panel>
+					<Panel class="GC_Hint_Line">
+						<Panel class="GC_Icon" />
+						<Label text="#gift_code_hint_how_to_buy_2" html="true" />
+					</Panel>
+					<Panel class="GC_Hint_Line">
+						<Panel class="GC_Icon" />
+						<Label text="#gift_code_hint_how_to_buy_3" html="true" />
+					</Panel>
+					<Panel class="GC_Hint_Line Info">
+						<Panel class="GC_Icon" />
+						<Label text="#gift_code_hint_how_to_buy_4" html="true" />
+					</Panel>
+				</Panel>
+				<Panel class="GC_FH_Label" onmouseover="ToggleHint(&apos;Buy&apos;)" onmouseout="ToggleHint(&apos;Buy&apos;)">
+					<Panel>
+						<Panel class="GC_FH_Icon" />
+						<Label text="#gift_code_hint_how_to_buy" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="GC_Hint Gift" hittest="false">
+				<Panel class="GC_Hint_Root" hittest="false">
+					<Panel class="GC_Hint_Line">
+						<Panel class="GC_Icon" />
+						<Label text="#gift_code_hint_how_to_gift_1" html="true" />
+					</Panel>
+					<Panel class="GC_Hint_Line">
+						<Panel class="GC_Icon" />
+						<Label text="#gift_code_hint_how_to_gift_2" html="true" />
+					</Panel>
+					<Panel class="GC_Hint_Line">
+						<Panel class="GC_Icon" />
+						<Label text="#gift_code_hint_how_to_gift_3" html="true" />
+					</Panel>
+					<Panel class="GC_Hint_Line Info">
+						<Panel class="GC_Icon" />
+						<Label text="#gift_code_hint_how_to_gift_4" html="true" />
+					</Panel>
+				</Panel>
+				<Panel class="GC_FH_Label" onmouseover="ToggleHint(&apos;Gift&apos;)" onmouseout="ToggleHint(&apos;Gift&apos;)">
+					<Panel>
+						<Panel class="GC_FH_Icon" />
+						<Label text="#gift_code_hint_how_to_gift" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="GC_Unwrap" onactivate="">
+			<Label class="C_SubPanel_Header" text="#gift_code_unwrap" />
+			<Panel id="GC_U_Content_List" />
+			<Button id="GC_U_Confirm" onactivate="GameUI.Collection.CloseSubPanels()">
+				<Label text="#confirm" />
+			</Button>
+		</Panel>
+		<Panel id="GC_SendPlayers_Root">
+			<Panel class="GC_SP_Header_Root">
+				<Label class="GC_SP_List_Header" text="#gift_code_header_select_player" />
+				<Label class="GC_SP_List_Header_Desc" text="#gift_code_header_select_player_description" html="true" />
+			</Panel>
+			<Panel class="GC_SP_List_Wrap">
+				<Panel id="GC_SP_List" />
+				<Panel class="GC_SP_List_Shadow" hittest="false" />
+			</Panel>
+			<Panel class="GC_SP_Button_Root">
+				<Label class="GC_SP_Notify" text="#gift_code_notify_unreversed" />
+				<Button class="GC_SP_Button" onactivate="SendGiftCodeToPlayer()">
+					<Label text="#gift_code_send" />
+				</Button>
+			</Panel>
+		</Panel>
+		<Panel id="GC_SendPlayers_Arrow" />
+	</Panel>
+</root>

@@ -1,0 +1,287 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.ToastsContainer
+{
+	width: fit-children;
+	height: 600px;
+	align: right center;
+	flow-children: down;
+	overflow: noclip scroll;
+}
+
+.Toast
+{
+	horizontal-align: right;
+	min-height: 80px;
+	padding: 5px 10px;
+	margin-bottom: 10px;
+	background-image: url("s2r://panorama/images/custom_game/backgrounds/wide_transparent_bg_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	box-shadow: fill rgba(0, 0, 0, 0.5) 0px 1px 5px 0px;
+	border: 1px solid black;
+	flow-children: right;
+	transform: translateX(200px);
+	opacity: 0;
+	transition-property: transform, opacity, position;
+	transition-duration: 0.25s, 0.2s, 0.15s;
+}
+
+.ToastWrap
+{
+	flow-children: right;
+	width: fit-children;
+	min-height: 100px;
+	max-width: 335px;
+}
+
+.Active
+{
+	transform: translateX(0px);
+	opacity: 1;
+}
+
+#ToastImage
+{
+	margin-right: 10px;
+	width: 80px;
+	height: 80px;
+	box-shadow: rgb(0, 0, 0) 0px 1px 5px 0px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/mail/mail_reward_bg_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.ToastContent
+{
+	flow-children: down;
+}
+
+.ToastHeader
+{
+	margin-top: 5px;
+	margin-bottom: 2px;
+	font-family: titleFont;
+	font-size: 26px;
+	height: 30px;
+	text-overflow: shrink;
+	color: white;
+	text-shadow: 2px 2px 0px 2 #000000;
+	margin-right: 24px;
+}
+
+.ToastDescription
+{
+	width: 280px;
+	font-size: 16px;
+	text-shadow: 1px 1px 0px 1 #000000;
+}
+
+.ToastHighlight
+{
+	color: #b694ff;
+	text-decoration: underline;
+}
+
+.ToastHint
+{
+	color: gray;
+	font-size: 14px;
+}
+
+.ToastGoldenGradientText
+{
+	color: gradient(linear, 0% 96%, 0% 0%, from(#f0d03c), to(#f89447));
+}
+
+.ToastHighlightItalic
+{
+	color: #b694ff;
+	text-decoration: underline;
+	font-style: italic;
+}
+
+.payment_fail #ToastImage
+{
+	saturation: 0;
+	background-image: url("s2r://panorama/images/custom_game/mail/mail_reward_bg_obtained_png.vtex");
+}
+
+#CloseButton
+{
+	height: 18px;
+	width: 18px;
+	margin-top: 4px;
+	align: right top;
+	wash-color: white;
+	background-image: url("s2r://panorama/images/custom_game/import_dota/x_close_png_png.vtex");
+	background-size: 100%;
+	brightness: 0.5;
+}
+
+#CloseButton:hover
+{
+	brightness: 1;
+}
+
+#CloseButton:active
+{
+	brightness: 0.2;
+	pre-transform-scale2d: 0.9;
+}
+
+.player_tip
+{
+	width: fit-children;
+	flow-children: right;
+}
+
+.PlayerContainer
+{
+	vertical-align: center;
+	width: 100px;
+	flow-children: down;
+}
+
+.HeroImage
+{
+	height: 57px;
+	width: 106px;
+	border: 1px solid black;
+}
+
+.UserName
+{
+	width: 105px;
+	height: 19px;
+	margin: 2px 0 0 1px;
+	font-weight: semi-bold;
+	horizontal-align: center;
+	text-align: center;
+}
+
+.UserName Label
+{
+	font-size: 15px;
+	text-align: center;
+	horizontal-align: center;
+	text-shadow: 0px 1px 2px 2 #000000;
+}
+
+.TipValueContainer
+{
+	width: 90px;
+	flow-children: down;
+	margin-top: 4px;
+}
+
+.TipText
+{
+	horizontal-align: center;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#f3cd75), to(#f0e7c7));
+	letter-spacing: 1px;
+	text-align: center;
+	text-transform: uppercase;
+	text-shadow: 0px 1px 2px 2 rgba(0, 0, 0, 0.6);
+}
+
+.TipCurrencyContainer
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin: 3px 0px 0px -2px;
+}
+
+.CurrencyIcon
+{
+	width: 25px;
+	height: 25px;
+	vertical-align: center;
+	img-shadow: 0px 0px 3px 2 black;
+}
+
+.CurrencyValue
+{
+	horizontal-align: center;
+	text-align: center;
+	font-size: 21px;
+	margin-left: 4px;
+	color: white;
+	text-shadow: 0px 1px 2px 2 #000000;
+}
+
+.sub_trial_available
+{
+	flow-children: down;
+}
+
+.sub_trial_available .ToastContent
+{
+	vertical-align: center;
+}
+
+.sub_trial_available .ToastDescription
+{
+	text-align: center;
+}
+
+.TipButtonsWrap
+{
+	align: center bottom;
+	flow-children: right;
+	margin-bottom: 2px;
+}
+
+.TipButton
+{
+	width: 150px;
+	padding: 8px 10px 6px 10px;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	box-shadow: fill rgba(0, 0, 0, 0.5) 0px 1px 5px 0px;
+	margin-left: 10px;
+	margin-right: 10px;
+	transition: brightness 0.1s ease-in-out 0s;
+}
+
+.TipButton:hover
+{
+	brightness: 1.6;
+}
+
+.TipButton:active
+{
+	brightness: 0.8;
+	sound: "General.ButtonClick";
+}
+
+.TipButton > Label
+{
+	align: center center;
+	text-align: center;
+	color: white;
+	text-transform: uppercase;
+	font-size: 16px;
+	text-shadow: 1px 1px 2px 2 #000000;
+}
+
+#AcceptButton
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/button_confirm_png.vtex");
+}
+
+#DeclineButton
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/button_cancel_png.vtex");
+}

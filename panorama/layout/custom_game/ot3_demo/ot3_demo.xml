@@ -1,0 +1,232 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/ot3_demo/ot3_demo.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/ot3_demo/ot3_demo.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/scripts/upgrades_shared.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/ot3_demo/demo_orb_upgrades.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="DevAbilityConfig">
+			<Panel class="DevAbilityConfig">
+				<Panel class="DevAbility_Header">
+					<DOTAAbilityImage id="DevAbilityImage" />
+					<Label class="DevAbilityName" text="{s:ability_name_header}" />
+				</Panel>
+				<Panel id="DevAbilitySpecials" />
+			</Panel>
+		</snippet>
+		<snippet name="LinkedSpecial">
+			<Panel class="LinkedSpecial">
+				<Image class="LS_Icon" src="s2r://panorama/images/custom_game/upgrades/link_icon_png.vtex" />
+				<DOTAAbilityImage id="LinkedAbilityImage" />
+				<Label class="LS_SpecialName" text="{s:special_name}" html="true" />
+				<Label id="LS_Value" text="{s:base_value} x &lt;a class=&apos;UpgradesCount&apos;&gt;{d:upgrades_count}&lt;/a&gt; = {s:total_value}" html="true" />
+			</Panel>
+		</snippet>
+		<snippet name="DevAbilitySpecial">
+			<Panel class="DevAbilitySpecial">
+				<Panel class="DevAbilitySpecial_Basic">
+					<Label class="DevAbilitySpecialName" text="{s:special_name}" html="true" />
+					<Label id="DevAbilitySpecialParams" class="DevAbilitySpecialParams" text="{s:base_value} x &lt;a class=&apos;UpgradesCount&apos;&gt;{d:upgrades_count}&lt;/a&gt; = {s:total_value}" html="true" />
+					<Button id="DevAbilityDecrement" class="DevAbilitySpecialButton">
+						<Label class="DevAbilitySpecialButtonContent" text="-" />
+					</Button>
+					<Button id="DevAbilityIncrement" class="DevAbilitySpecialButton">
+						<Label class="DevAbilitySpecialButtonContent" text="+" />
+					</Button>
+				</Panel>
+				<Panel id="DevAbilitySpecial_Linked" />
+			</Panel>
+		</snippet>
+		<snippet name="DevGenericSpecial">
+			<Panel class="DevAbilitySpecial">
+				<Panel class="DevAbilitySpecial_Basic">
+					<Label class="DevAbilitySpecialName" text="{s:special_name}" />
+					<Label id="DevAbilitySpecialParams" class="DevAbilitySpecialParams" text="{s:base_value} x &lt;a class=&apos;UpgradesCount&apos;&gt;{d:upgrades_count}&lt;/a&gt; = {s:total_value}" html="true" />
+					<Button id="DevAbilityDecrement" class="DevAbilitySpecialButton">
+						<Label class="DevAbilitySpecialButtonContent" text="-" />
+					</Button>
+					<Button id="DevAbilityIncrement" class="DevAbilitySpecialButton">
+						<Label class="DevAbilitySpecialButtonContent" text="+" />
+					</Button>
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="enemy_team_option">
+			<Panel class="DemoEnemyTeamOption" hittest="true">
+				<Image class="DemoTeamIcon" hittest="true" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel hittest="false" class="DemoHudRoot">
+		<Panel id="DemoSelectHeroContainer" acceptsfocus="true">
+			<DOTAUIHeroPicker id="HeroPicker" />
+			<Button id="CancelButton" class="CloseButton" onactivate="ToggleHeroPicker(false)" />
+		</Panel>
+		<Panel id="DevAbilityKVs">
+			<Label id="OrbTip" text="#DemoOrbTooltip" />
+			<Panel id="OrbHeroContainer" class="OrbContainer" />
+			<Panel id="OrbGenericContainer" class="OrbContainer" />
+		</Panel>
+		<Panel class="ControlPanel" hittest="false">
+			<Panel class="ControlPanelContainer">
+				<Panel id="Header">
+					<Panel class="HeroDemoTextContainer">
+						<Label id="HeroDemoHeroName" text="{s:selected_hero_name}" />
+					</Panel>
+				</Panel>
+				<Panel id="SpawnUnitsCategory" class="Category">
+					<Label class="CategoryHeader" text="#SpawnUnits_ButtonCategory" />
+					<Panel class="CategoryButtonContainer">
+						<Panel id="SpawnHeroButton" class="Row DemoButton" onactivate="ToggleHeroPicker()">
+							<DOTAHeroImage id="HeroPickerImage" class="HeroImage" heroimagestyle="landscape" />
+							<Label id="SpawnHeroName" text="{s:spawn_hero_name}" />
+							<Panel class="HeroPickerArrow" />
+						</Panel>
+						<Panel class="Row">
+							<Button id="ChangeHeroButton" class="DemoButton" onactivate="ChangeHero()">
+								<Label text="#ChangeHero_Button" />
+							</Button>
+						</Panel>
+						<Panel class="Row">
+							<Button id="SpawnAllyButton" class="DemoButton LeftButton" onactivate="SpawnAllyHero()">
+								<Label text="#Ally_Button" />
+							</Button>
+							<Button id="SpawnEnemyButton" class="DemoButton RightButton" onactivate="SpawnEnemyHero()">
+								<Label text="#Enemy_Button" />
+							</Button>
+							<DropDown id="EnemyTeamSelector" class="DemoDropDown" menuclass="EnemyDropDownMenu" oninputsubmit="ChangeCurrentEnemyTeam()" onmouseout="UIHideTextTooltip()" onmouseover="UIShowTextTooltip(#DemoChangeEnemyTeam)" hittest="true" />
+						</Panel>
+						<Panel class="HorizontalRule" />
+						<Panel class="Row">
+							<Button class="DemoButton" onactivate="SimpleServerEvent(&apos;Demo:spawn_dummy&apos;)">
+								<Label text="#DummyTarget_Button" />
+							</Button>
+						</Panel>
+						<Panel class="Row">
+							<Button class="RuneButton" onactivate="RequestSpawnRune(DOTA_RUNES.DOTA_RUNE_DOUBLEDAMAGE)" onmouseover="MouseOverRune(&apos;RuneEmoticonDoubleDamage&apos;, &apos;#DOTA_HUD_Rune_DoubleDamage&apos;)" onmouseout="MouseOutRune(&apos;RuneEmoticonDoubleDamage&apos;)">
+								<DOTAEmoticon id="RuneEmoticonDoubleDamage" alias="doubledamage" animating="false" />
+							</Button>
+							<Panel class="FillWidth" />
+							<Button class="RuneButton" onactivate="RequestSpawnRune(DOTA_RUNES.DOTA_RUNE_HASTE)" onmouseover="MouseOverRune(&apos;RuneEmoticonHaste&apos;, &apos;#DOTA_HUD_Rune_Haste&apos;)" onmouseout="MouseOutRune(&apos;RuneEmoticonHaste&apos;)">
+								<DOTAEmoticon id="RuneEmoticonHaste" alias="haste" animating="false" />
+							</Button>
+							<Panel class="FillWidth" />
+							<Button class="RuneButton" onactivate="RequestSpawnRune(DOTA_RUNES.DOTA_RUNE_ILLUSION)" onmouseover="MouseOverRune(&apos;RuneEmoticonIllusion&apos;, &apos;#DOTA_HUD_Rune_Illusion&apos;)" onmouseout="MouseOutRune(&apos;RuneEmoticonIllusion&apos;)">
+								<DOTAEmoticon id="RuneEmoticonIllusion" alias="illusion" animating="false" />
+							</Button>
+							<Panel class="FillWidth" />
+							<Button class="RuneButton" onactivate="RequestSpawnRune(DOTA_RUNES.DOTA_RUNE_INVISIBILITY)" onmouseover="MouseOverRune(&apos;RuneEmoticonInvisibility&apos;, &apos;#DOTA_HUD_Rune_Invisibility&apos;)" onmouseout="MouseOutRune(&apos;RuneEmoticonInvisibility&apos;)">
+								<DOTAEmoticon id="RuneEmoticonInvisibility" alias="invisibility" animating="false" />
+							</Button>
+							<Panel class="FillWidth" />
+							<Button class="RuneButton" onactivate="RequestSpawnRune(DOTA_RUNES.DOTA_RUNE_REGENERATION)" onmouseover="MouseOverRune(&apos;RuneEmoticonRegeneration&apos;, &apos;#DOTA_HUD_Rune_Regeneration&apos;)" onmouseout="MouseOutRune(&apos;RuneEmoticonRegeneration&apos;)">
+								<DOTAEmoticon id="RuneEmoticonRegeneration" alias="regeneration" animating="false" />
+							</Button>
+							<Panel class="FillWidth" />
+							<Button class="RuneButton" onactivate="RequestSpawnRune(DOTA_RUNES.DOTA_RUNE_ARCANE)" onmouseover="MouseOverRune(&apos;RuneEmoticonArcane&apos;, &apos;#DOTA_HUD_Rune_Arcane&apos;)" onmouseout="MouseOutRune(&apos;RuneEmoticonArcane&apos;)">
+								<DOTAEmoticon id="RuneEmoticonArcane" alias="arcane_rune" animating="false" />
+							</Button>
+							<Panel class="FillWidth" />
+							<Button class="RuneButton" acceptsjoyfocus="true" onactivate="RequestSpawnRune(DOTA_RUNES.DOTA_RUNE_SHIELD)" onmouseover="MouseOverRune(&apos;RuneEmoticonShield&apos;, &apos;#DOTA_HUD_Rune_Shield&apos;)" onmouseout="MouseOutRune(&apos;RuneEmoticonShield&apos;)">
+								<DOTAEmoticon id="RuneEmoticonShield" alias="shield_rune" animating="false" />
+							</Button>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel id="EditUnitsCategory" class="Category">
+					<Label class="CategoryHeader" text="#EditUnits_ButtonCategory" />
+					<Panel class="CategoryButtonContainer">
+						<Panel class="Row">
+							<Button id="LevelUpSelectedHeroesButton" class="DemoButton LeftButton" onactivate="LevelUpSelectedHeroes()">
+								<Label text="#LevelUpSelectedHeroes_Button" />
+							</Button>
+							<Button class="DemoButton RightButton" onactivate="MaxLevelUpSelectedHeroes()">
+								<Label text="#MaxLevelUpSelectedHeroes_Button" />
+							</Button>
+						</Panel>
+						<Panel class="Row">
+							<Button class="DemoButton LeftButton" onactivate="ScepterSelectedHeroes()">
+								<Label text="#ScepterSelectedHeroes_Button" />
+							</Button>
+							<Button class="DemoButton RightButton" onactivate="ShardSelectedHeroes()">
+								<Label text="#ShardSelectedHeroes_Button" />
+							</Button>
+						</Panel>
+						<Panel class="Row">
+							<Button class="DemoButton LeftButton" onactivate="ToggleInvulnerabilityState(true)">
+								<Label text="#InvulnOn_Button" />
+							</Button>
+							<Button class="DemoButton RightButton" onactivate="ToggleInvulnerabilityState(false)">
+								<Label text="#InvulnOff_Button" />
+							</Button>
+						</Panel>
+						<Panel class="Row">
+							<Button class="DemoButton LeftButton" onactivate="ResetSelectedHeroes()">
+								<Label text="#Reset_Button" />
+							</Button>
+							<Button class="DemoButton RightButton" onactivate="RemoveSelectedHeroes()">
+								<Label text="#RemoveSpawns_Button" />
+							</Button>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel id="OT3DevCategory" class="Category">
+					<Label class="CategoryHeader" text="#OT3Dev_ButtonCategory" />
+					<Panel class="CategoryButtonContainer">
+						<Panel class="Row">
+							<Button id="LevelUpSelectedHeroesButton" class="DemoButton LeftButton" onactivate="ToggleTestUI(&apos;UpgradesHero&apos;)">
+								<Label text="#OT3Dev_Hero_Button" />
+							</Button>
+							<Button class="DemoButton RightButton" onactivate="ToggleTestUI(&apos;UpgradesGeneric&apos;)">
+								<Label text="#OT3Dev_Generic_Button" />
+							</Button>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel id="GlobalCategory" class="Category">
+					<Label class="CategoryHeader" text="#Global_ButtonCategory" />
+					<Panel class="CategoryButtonContainer">
+						<Panel class="Row">
+							<ToggleButton id="FreeSpellsButton" class="DemoToggleButton" onactivate="SimpleServerEvent(&apos;Demo:toggle_free_spells&apos;)">
+								<Label text="#FreeSpells_Button" />
+							</ToggleButton>
+							<Button id="RefreshButton" onactivate="SimpleServerEvent(&apos;Demo:refresh_all_players&apos;)" onmouseover="UIShowTextTooltip( #Refresh_Button )" onmouseout="UIHideTextTooltip()">
+								<Panel class="RefreshIcon" />
+							</Button>
+						</Panel>
+						<Panel class="Row">
+							<ToggleButton id="TowersButton" class="DemoToggleButton" onactivate="SimpleServerEvent(&apos;Demo:toggle_towers&apos;)">
+								<Label text="#DemoToggleTowers" />
+							</ToggleButton>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel id="Footer">
+					<TextButton class="DemoButton LeftButton PauseButton" text="#PauseDemo_Button" onactivate="SimpleServerEvent(&apos;Demo:toggle_pause&apos;)" />
+					<TextButton class="DemoButton RightButton QuitButton" text="#QuitDemo_Button" onactivate="SimpleServerEvent(&apos;Demo:leave&apos;, true)" />
+				</Panel>
+			</Panel>
+			<Panel id="ControlPanelSlideThumbContainer" require-composition-layer="true">
+				<Button id="ControlPanelSlideThumb" onactivate="SlideThumbActivate()">
+					<Panel class="RightArrowButtonIcon" />
+				</Button>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

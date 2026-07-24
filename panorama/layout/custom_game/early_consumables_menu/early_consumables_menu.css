@@ -1,0 +1,434 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.EarlyConsumables_Root
+{
+	align: center center;
+	flow-children: down;
+	transition-property: opacity, transform;
+	transition-duration: 0.15s;
+	opacity: 0;
+	transform: translateY(-40px);
+}
+
+.EarlyConsumables_Root.Show
+{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+.EC_TopBorder
+{
+	width: 100%;
+	margin: 0 10px;
+	height: 10px;
+	background-color: rgba(28, 30, 31, 0.95);
+	border-top: 2px solid #7a6b8d;
+	border-right: 2px solid #7a6b8d;
+	border-left: 2px solid #7a6b8d;
+}
+
+.EC_Close
+{
+	width: 80px;
+	height: 80px;
+	z-index: 1;
+	horizontal-align: right;
+	margin: 2px;
+}
+
+.EC_Close_Icon
+{
+	width: 22px;
+	height: 22px;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+	background-size: 100%;
+	align: right top;
+	margin: 7px 7px 0 0;
+	wash-color: #7a6b8d;
+	transition-property: transform, width, height, wash-color, pre-transform-scale2d;
+	transition-duration: 0.15s, 0.15s, 0.15s, 0.15s, 0.1s;
+	img-shadow: black 0 0 2px 1;
+}
+
+.EC_Close:active .EC_Close_Icon
+{
+	pre-transform-scale2d: 0.85;
+}
+
+.EC_Close:hover .EC_Close_Icon
+{
+	width: 25px;
+	height: 25px;
+	wash-color: #907fa7;
+}
+
+.EC_Close_Background
+{
+	background-color: transparent;
+	border: 2px solid #7a6b8d;
+	transform: rotateZ(45deg) translateX(60px) translateY(-80px);
+	transition-property: transform;
+	transition-duration: 0.15s;
+	width: 180px;
+	height: 180px;
+	overflow: noclip;
+	margin: -55px;
+}
+
+.EC_Close:hover .EC_Close_Background
+{
+	transform: rotateZ(45deg) translateX(50px) translateY(-80px);
+}
+
+.EC_Close_Background_Hover
+{
+	width: 180px;
+	height: 180px;
+	margin: -55px;
+	background-color: #344047;
+	transform: rotateZ(45deg) translateX(75px) translateY(290px);
+	transition-property: transform, background-color;
+	transition-duration: 0.15s, 0.1s;
+}
+
+.EC_Close:hover .EC_Close_Background_Hover
+{
+	transform: rotateZ(45deg) translateX(81px) translateY(225px);
+}
+
+.EC_Close:active .EC_Close_Background_Hover
+{
+	background-color: #283339;
+	transform: rotateZ(45deg) translateX(81px) translateY(230px);
+}
+
+.EC_Content
+{
+	flow-children: right;
+	height: 315px;
+	background-color: gradient(linear, 0% 50%, 0% 0%, from(rgba(28, 30, 31, 0.993)), to(rgba(28, 30, 31, 0.95)));
+	border: 2px solid white;
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#3a3146), to(#7a6b8d));
+	padding: 0 25px;
+}
+
+.EC_Content > Panel
+{
+	height: 100%;
+	flow-children: down;
+}
+
+.EC_KillLimit
+{
+	width: 330px;
+}
+
+.EC_DoubleMmrTokens
+{
+	width: 250px;
+}
+
+.EC_Content_Entry
+{
+	height: fill-parent-flow(1);
+	width: 100%;
+}
+
+.EC_Content_Entry > Panel
+{
+	flow-children: down;
+	align: center center;
+}
+
+.EC_Content_Header
+{
+	text-transform: uppercase;
+	font-size: 23px;
+	font-family: titleFont;
+	font-weight: lighter;
+	background-image: url("s2r://panorama/images/custom_game/early_consumables_menu/kl_icon_png.vtex");
+	background-size: 24px;
+	background-repeat: no-repeat;
+	background-position: 0% 3px;
+	padding-left: 30px;
+	min-height: 33px;
+	color: white;
+	wash-color: #aab7bf;
+	horizontal-align: center;
+}
+
+.EC_DoubleMmrTokens .EC_Content_Header
+{
+	background-image: url("s2r://panorama/images/custom_game/early_consumables_menu/double_mmr_icon_png.vtex");
+}
+
+.EC_Content_Buttons
+{
+	margin-top: 35px;
+	flow-children: right;
+	padding-left: -25px;
+	horizontal-align: center;
+}
+
+.EC_Content_Button
+{
+	margin-left: 25px;
+}
+
+.EC_DoubleMmrTokens .EC_Content_Button
+{
+	margin-top: -10px;
+}
+
+.EC_Content_Button_Background
+{
+	width: 110px;
+	height: 57px;
+	background-image: url("s2r://panorama/images/custom_game/early_consumables_menu/button_hexagon_png.vtex");
+	background-size: 100%;
+	margin-top: 17px;
+	transition-property: transform, brightness;
+	transition-duration: 0.1s;
+}
+
+.EC_DoubleMmrTokens .EC_Content_Button_Background
+{
+	margin-top: 27px;
+}
+
+.EC_Content_Button.Token .EC_Content_Button_Background
+{
+	background-image: url("s2r://panorama/images/custom_game/early_consumables_menu/button_hexagon_gold_png.vtex");
+}
+
+.EarlyConsumables_Root:not(.BLocalPlayerHas_bp_gg_token) .EC_KillLimit .EC_Content_Button.Token,.EarlyConsumables_Root:not(.BLocalPlayerHas_double_mmr_token) .EC_DoubleMmrTokens .EC_Content_Button.Token,.BPlayerVotedKL .EC_KillLimit .EC_Content_Button_Hint,.BPlayerUsedDoubleMMR .EC_DoubleMmrTokens .EC_Content_Button_Hint,.BPlayerVotedKL .EC_KillLimit .EC_Content_Button_Background,.BPlayerVotedKL .EC_KillLimit .EC_Content_Button_Value,.BPlayerUsedDoubleMMR .EC_DoubleMmrTokens .EC_Content_Button.Token .EC_Content_Button_Background,.BPlayerUsedDoubleMMR .EC_DoubleMmrTokens .EC_Content_Button.Token .EC_Content_Button_Value
+{
+	saturation: 0;
+	wash-color: #cbcbcb;
+}
+
+.EC_Content_Button:not(.Token):hover .EC_Content_Button_Background,.BLocalPlayerHas_bp_gg_token .EC_KillLimit .EC_Content_Button.Token:hover .EC_Content_Button_Background,.BLocalPlayerHas_double_mmr_token .EC_DoubleMmrTokens .EC_Content_Button.Token:hover .EC_Content_Button_Background
+{
+	brightness: 1.7;
+}
+
+.EC_Content_Button:not(.Token):active .EC_Content_Button_Background,.BLocalPlayerHas_bp_gg_token .EC_KillLimit .EC_Content_Button.Token:active .EC_Content_Button_Background,.BLocalPlayerHas_double_mmr_token .EC_DoubleMmrTokens .EC_Content_Button.Token:active .EC_Content_Button_Background
+{
+	brightness: 0.6;
+	transform: translateY(3px);
+}
+
+.EC_Content_Button_Value
+{
+	font-size: 41px;
+	font-family: titleFont;
+	font-weight: semi-bold;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#dda038), to(#eecd5e));
+	text-shadow: black 0 3px 0 0;
+	horizontal-align: center;
+	text-align: center;
+}
+
+.EC_DoubleMmrTokens .EC_Content_Button_Value
+{
+	width: 70px;
+	height: 70px;
+	background-image: url("s2r://panorama/images/custom_game/early_consumables_menu/double_mmr_token_hr_png.vtex");
+	background-size: 100%;
+}
+
+.EC_Content_Button:not(.Token):hover .EC_Content_Button_Value,.EarlyConsumables_Root.BLocalPlayerHas_bp_gg_token .EC_KillLimit .EC_Content_Button.Token:hover .EC_Content_Button_Value,.EarlyConsumables_Root.BLocalPlayerHas_double_mmr_token .EC_DoubleMmrTokens .EC_Content_Button.Token:hover .EC_Content_Button_Value
+{
+	animation-name: shake_text;
+	animation-duration: 0.4s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'shake_text'
+{
+	0%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+	25%
+	{
+		transform: rotateZ(-6deg);
+	}
+	
+	50%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+	75%
+	{
+		transform: rotateZ(6deg);
+	}
+	
+	100%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+}
+
+.EC_Content_Button_Hint_Container
+{
+	horizontal-align: center;
+}
+
+.EC_Content_Button_Hint
+{
+	margin-top: 74px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#dea23a), to(#eece5f));
+	font-size: 23px;
+	horizontal-align: center;
+	text-align: center;
+	text-shadow: black 0 3px 0 0;
+	padding: 10px 0;
+}
+
+.EC_Content_Button.Token .EC_Content_Button_Hint
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/bp_gg_token_icon_png.vtex");
+	background-size: 42px;
+	background-position: 0% 50%;
+	background-repeat: no-repeat;
+	padding-left: 43px;
+}
+
+.EC_DoubleMmrTokens .EC_Content_Button.Token .EC_Content_Button_Hint
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/double_mmr_token_icon_png.vtex");
+}
+
+.EC_DoubleMmrTokens .EC_Content_Button_Hint
+{
+	margin-top: 84px;
+}
+
+.EC_Content_OptionUsed
+{
+	width: 27px;
+	height: 21px;
+	align: right bottom;
+	margin: 0 -15px 23px 15px;
+	background-image: url("s2r://panorama/images/custom_game/early_consumables_menu/tick_png.vtex");
+	background-size: 15px 13px;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#1c2224), to(#434f55));
+	border: 2px solid #1a2022;
+	border-radius: 10px;
+	visibility: collapse;
+}
+
+.EC_Content_Button.Token .EC_Content_OptionUsed
+{
+	align: left bottom;
+	margin: 0 0 23px 21px;
+}
+
+.PlayerKLVoteType_1 .EC_KillLimit .EC_Content_Button:not(.Token) .EC_Content_OptionUsed,.PlayerKLVoteType_2 .EC_KillLimit .EC_Content_Button.Token .EC_Content_OptionUsed,.BPlayerUsedDoubleMMR .EC_DoubleMmrTokens .EC_Content_Button.Token .EC_Content_OptionUsed
+{
+	visibility: visible;
+}
+
+.EC_Content_Description
+{
+	horizontal-align: center;
+	text-align: center;
+	margin-top: 15px;
+	font-family: titleFont;
+	font-weight: lighter;
+	color: #aab7bf;
+}
+
+#EC_KL_Footer
+{
+	height: 55px;
+	width: 100%;
+	background-color: rgba(25, 25, 28, 0.99);
+	margin: 0 10px;
+	border-right: 2px solid white;
+	border-bottom: 2px solid white;
+	border-left: 2px solid white;
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#352c3f), to(#3a3146));
+	flow-children: right;
+	padding-left: 8px;
+}
+
+.EC_Footer_Item
+{
+	margin-left: -8px;
+}
+
+.EC_Footer_Item:hover
+{
+	brightness: 1.5;
+}
+
+.EC_Footer_Item:active
+{
+	brightness: 0.7;
+}
+
+#EC_KL_Footer > Panel
+{
+	flow-children: right;
+	align: center center;
+}
+
+.EC_FI_ImageContainer
+{
+	align: center center;
+}
+
+.EC_FI_ImageContainer Panel
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#342a3f), to(#726285));
+	height: 40px;
+	width: 35px;
+	opacity-mask: url("s2r://panorama/images/custom_game/early_consumables_menu/hexagon_transparent_png.vtex");
+	align: center center;
+	margin-top: 6px;
+}
+
+#EC_FI_Image
+{
+	align: center center;
+	width: 32px;
+	height: 32px;
+	margin-top: 6px;
+}
+
+.EC_Footer_Item Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#fad773), to(#fad773));
+	text-shadow: black 0 2px 0 0;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#1c2224), to(#434f55));
+	padding: 0px 2px;
+	border-radius: 10px;
+	border: 2px solid #1a2022;
+	margin-left: 40px;
+}
+
+.EC_ContentSeparator
+{
+	width: 2px;
+	height: 100%;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from(transparent), color-stop(0.05, transparent), color-stop(0.3, rgba(52, 50, 61, 0.6)), color-stop(0.5, rgba(86, 83, 101, 0.7)), color-stop(0.7, rgba(52, 50, 61, 0.6)), color-stop(0.95, transparent), to(transparent) );
+	margin: 0 25px;
+}

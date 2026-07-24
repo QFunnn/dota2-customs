@@ -1,0 +1,82 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/hud/hud_reborn.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/minimap_overlay/minimap_overlay.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/cosmetics/cosmetics_rarities.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/minimap_overlay/minimap_overlay.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="Map_BP_Item">
+			<Panel class="Map_BP_Item">
+				<Panel class="CI_Background">
+					<Image id="Map_BP_I_Image" />
+				</Panel>
+				<Label id="Map_BP_I_Text" text="{s:item_count_and_name}" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="MapOverlayRoot" hittest="false">
+		<Panel class="MapContainer" hittest="false">
+			<Panel class="MapOverlay_Top" hittest="false" />
+			<Panel class="Map_BP_Container">
+				<Label class="Map_BPC_Header" text="#map_bp_active_buffs" />
+				<Panel id="Map_BPC_List" />
+				<Label class="Map_BPC_NoItems" text="#map_bp_no_items" />
+				<Button class="Map_BPC_ActionButton" onactivate="GameUI.Collection.OpenSpecificTab(&apos;battle_pass&apos;)">
+					<Label text="#map_bp_open_bp" />
+				</Button>
+			</Panel>
+			<Panel class="Map_BP_Container BPEnds_Map_Container">
+				<Label class="Map_BPC_Header" text="#map_container_support" />
+				<Label class="Map_BPC_NoItems" text="#map_container_support_desc" html="true" />
+				<Button class="Map_BPC_ActionButton" onactivate="OpenSubscriptionsTabsForSupport()">
+					<Label text="#map_bp_open_subs" />
+				</Button>
+			</Panel>
+			<Panel id="MapOverlay" hittest="false" />
+		</Panel>
+		<Panel id="MinimapContainer" hittest="false">
+			<Button id="CollectionButton" onactivate="OpenCollection()" />
+			<Label id="CollectionHighlight" text="!" />
+			<Button class="BP_OrbConsumable" id="BP_OrbConsumable_Rare" onactivate="ToggleMapOrbs(&apos;rare&apos;)" />
+			<Button class="BP_OrbConsumable" id="BP_OrbConsumable_Epic" onactivate="ToggleMapOrbs(&apos;epic&apos;)" />
+		</Panel>
+		<Panel id="BP_Orbs_Confirms_Root">
+			<Panel class="BP_Orb_C BP_Orb_Rare">
+				<Panel class="BP_Orb_C_Header">
+					<Image class="BP_Orb_C_Image" src="s2r://panorama/images/custom_game/collection/cosmetics/items/misc/bp_legendary_lagresse_png.vtex" />
+					<Label class="BP_Orb_C_Desc" text="#map_orb_desc_rare" html="true" />
+				</Panel>
+				<Label class="BP_Orb_C_Count" text="#map_orb_remaining_rare" html="true" />
+				<Button class="BP_Orb_C_Button" onactivate="GiftOrbToTeams(&apos;rare&apos;)">
+					<Label text="{s:map_orb_rare_action_button_text}" />
+				</Button>
+			</Panel>
+			<Panel class="BP_Orb_C BP_Orb_Epic">
+				<Panel class="BP_Orb_C_Header">
+					<Image class="BP_Orb_C_Image" src="s2r://panorama/images/custom_game/collection/cosmetics/items/misc/bp_breathtaking_benefaction_png.vtex" />
+					<Label class="BP_Orb_C_Desc" text="#map_orb_desc_epic" html="true" />
+				</Panel>
+				<Label class="BP_Orb_C_Count" text="#map_orb_remaining_epic" html="true" />
+				<Button class="BP_Orb_C_Button" onactivate="GiftOrbToTeams(&apos;epic&apos;)">
+					<Label text="{s:map_orb_epic_action_button_text}" />
+				</Button>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

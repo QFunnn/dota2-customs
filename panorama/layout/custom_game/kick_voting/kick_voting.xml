@@ -1,0 +1,93 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/kick_voting/kick_voting.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/kick_voting/kick_voting_const.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/kick_voting/kick_voting.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="KV_Reason">
+			<Button class="KV_Reason">
+				<Image id="KV_R_Image" />
+				<Label class="KV_R_Name" text="{s:reason_name}" html="true" />
+			</Button>
+		</snippet>
+	</snippets>
+	<Panel class="KickVoting" hittest="false">
+		<Panel id="KV_Reasons">
+			<Panel class="KV_Header">
+				<Image class="KV_Header_Icon" src="s2r://panorama/images/custom_game/scoreboard/icon_kick_transparent_bg_png.vtex" />
+				<Label class="KV_Header_Target" text="#kick_voting_target" html="true" />
+				<Button class="KV_Header_Close" onactivate="CloseReasons()" />
+			</Panel>
+			<Panel class="KV_Reasons_Content">
+				<Label class="KV_Reasons_ShortDesc" text="#kick_voting_choose_reason" />
+				<Panel id="KV_Reasons_Container" />
+			</Panel>
+		</Panel>
+		<Panel id="KV_VotingProcess">
+			<Button class="KV_VP_ToggleHide" onactivate="ToggleVotingProcessView()" onmouseover="DOTAShowTextTooltip(#kick_voting_process_toggle_view)" onmouseout="DOTAHideTextTooltip()">
+				<Panel />
+			</Button>
+			<Panel class="KV_VP_Wrap">
+				<Panel class="KV_Header">
+					<Image class="KV_Header_Icon" src="s2r://panorama/images/custom_game/scoreboard/icon_kick_transparent_bg_png.vtex" />
+					<Label class="KV_Header_Target" text="#kick_voting_target" html="true" />
+				</Panel>
+				<Panel class="KV_VP_Content">
+					<Label class="KV_VP_Reason" text="#kick_voting_reason" html="true" />
+					<Panel id="KV_VP_TargetModelContainer" />
+					<Label class="KV_VP_KDA" text="#kick_voting_process_kda" html="true" />
+					<Panel class="KV_VP_Timer_Background">
+						<Panel class="KV_VP_Timer_Shadow" />
+						<Panel id="KV_VP_Timer" />
+						<Label id="KV_VP_Timer_Text" text="#kick_voting_process_timer" />
+					</Panel>
+					<Panel id="KV_VP_CurrentVotes" />
+					<Panel class="KV_VP_Buttons">
+						<TextButton class="KV_VP_Y" text="#kick_voting_process_yes" onactivate="KV_VoteYes()" />
+						<TextButton class="KV_VP_N" text="#kick_voting_process_no" onactivate="KV_VoteNo()" />
+					</Panel>
+					<TextButton id="KV_VP_Button_Report" text="#kick_voting_process_report" onmouseover="DOTAShowTextTooltip(#kick_voting_process_report_hint)" onmouseout="DOTAHideTextTooltip()" onactivate="KV_Report()" />
+					<Panel id="KV_VP_Initiator">
+						<Panel>
+							<Label class="KV_VP_I_Header" text="#kick_voting_initiator" html="true" />
+							<Panel class="KV_VP_I_Content">
+								<Image id="KV_VP_I_HeroIcon" />
+								<Label class="KV_VP_I_PlayerName" html="true" text="&lt;font color=&apos;{s:player_color}&apos;&gt;{s:player_name}&lt;/font&gt;" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="KV_Notification">
+			<Panel class="KV_Header">
+				<Image class="KV_Header_Icon" src="s2r://panorama/images/custom_game/scoreboard/icon_kick_transparent_bg_png.vtex" />
+				<Label class="KV_Header_Target" text="#kick_voting_player_kicked" html="true" />
+				<Button class="KV_Header_Close" onactivate="CloseNotification(0)" />
+			</Panel>
+			<Panel class="KV_N_Content">
+				<Panel class="KV_N_PlayerContainer">
+					<Image id="KV_N_HeroIcon" />
+					<Label class="KV_N_PlayerName" text="&lt;font color=&apos;{s:player_color}&apos;&gt;{s:player_name}&lt;/font&gt;" html="true" />
+				</Panel>
+				<Label class="KV_N_Reason" text="#kick_voting_reason" html="true" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

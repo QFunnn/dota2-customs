@@ -1,0 +1,97 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_witch_doctor"
+{
+	"witch_doctor_paralyzing_cask"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"bounces_tooltip"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"bounces" "1"
+				"bounce_range" "20"
+			}
+		}
+		"base_damage"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+		}
+	}
+	"witch_doctor_voodoo_restoration"
+	{
+		"radius"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"heal"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+		}
+	}
+	"witch_doctor_maledict"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"bonus_damage"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"witch_doctor_death_ward"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			"linked_abilities"
+			{
+				"witch_doctor_voodoo_switcheroo"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"damage"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+		}
+	}
+}

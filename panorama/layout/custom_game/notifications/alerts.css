@@ -1,0 +1,70 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+#Alert
+{
+	width: 450px;
+	margin: 110px 0 0 60px;
+	opacity: 0;
+	transition-property: opacity, transform;
+	transition-duration: 0.15s;
+	transform: translateY(-10px);
+}
+
+.CustomEndGameSimulate #Alert.Show
+{
+	opacity: 0;
+}
+
+#Alert.Show
+{
+	transform: translateY(0px);
+	opacity: 1;
+}
+
+#Alert
+{
+	flow-children: down;
+}
+
+#Alert Label
+{
+	horizontal-align: center;
+	text-align: center;
+	text-transform: uppercase;
+	font-family: titleFont;
+	font-weight: semi-bold;
+	text-shadow: black 0px 0px 3px 2;
+	visibility: collapse;
+}
+
+#Alert_Header
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#b31100), to(#ff1b00));
+	font-size: 45px;
+}
+
+.BType_header #Alert_Header
+{
+	visibility: visible;
+}
+
+#Alert_Desc
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#bbbbbb), to(white));
+	font-size: 20px;
+}
+
+.BType_desc #Alert_Desc
+{
+	visibility: visible;
+}

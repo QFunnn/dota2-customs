@@ -1,0 +1,149 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_furion"
+{
+	"furion_spirit_of_the_forest"
+	{
+		"damage_per_tree_pct"
+		{
+			"value" "1.5"
+			"operator" "OP_ADD"
+		}
+		"radius_base"
+		{
+			"value" "90"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+	}
+	"furion_sprout"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "13"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			"linked_abilities"
+			{
+				"furion_curse_of_the_forest"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "13"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"sprout_damage"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"linked_abilities"
+			{
+				"furion_curse_of_the_forest"
+				{
+					"damage_per_tree" "1.5"
+				}
+			}
+		}
+		"sprout_damage_radius"
+		{
+			"value" "80"
+			"operator" "OP_ADD"
+			"max_count"	"5"
+			"linked_special_values"
+			{
+				"vision_range"
+				{
+					"value" "80"
+					"operator" "OP_ADD"
+				}
+			}
+			"linked_abilities"
+			{
+				"furion_curse_of_the_forest"
+				{
+					"radius"
+					{
+						"value" "80"
+						"operator" "OP_ADD"
+					}
+					"range"
+					{
+						"value" "80"
+						"operator" "OP_ADD"
+					}
+				}
+			}
+		}
+	}
+	"furion_teleportation"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "15"
+			"operator" "OP_MULTIPLY"
+			"linked_special_values"
+			{
+				"barrier" "110"
+			}
+		}
+	}
+	"furion_force_of_nature_custom"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "13"
+			"operator" "OP_MULTIPLY"
+			"max_count" "7"
+		}
+		"treant_damage"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+
+			"talents"
+			{
+				"special_bonus_unique_furion"	"x3"
+			}
+		}
+		"treant_hp"
+		{
+			"value" "300"
+			"operator" "OP_ADD"
+
+			"talents"
+			{
+				"special_bonus_unique_furion"	"x3"
+			}
+
+			"linked_special_values"
+			{
+				"treant_movespeed"		"20"
+			}
+		}
+	}
+	"furion_wrath_of_nature"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "15"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"damage"
+		{
+			"value" "55"
+			"operator" "OP_ADD"
+		}
+	}
+}

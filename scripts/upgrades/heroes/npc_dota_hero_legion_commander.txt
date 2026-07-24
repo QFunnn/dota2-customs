@@ -1,0 +1,95 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_legion_commander"
+{
+	"legion_commander_overwhelming_odds"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+		}
+		"radius"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"damage"
+		{
+			"value" "24"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"damage_per_unit" "12"
+				"damage_per_hero" "12"
+			}
+		}
+		"bonus_attack_speed"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+		}
+		"shield_per_damage_pct"
+		{
+			"value" "7"
+			"operator" "OP_ADD"
+			"requires_shard" "1"
+		}
+	}
+	"legion_commander_press_the_attack"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"move_speed"
+		{
+			"value" "6"
+			"operator" "OP_ADD"
+		}
+		"hp_regen"
+		{
+			"value" "18"
+			"operator" "OP_ADD"
+		}
+	}
+	"legion_commander_moment_of_courage"
+	{
+		"trigger_attacks"
+		{
+			"value" "-0.5"
+			"operator" "OP_ADD"
+			"min_rarity" "rare"
+			"max_count" "4"
+		}
+		"hp_leech_percent"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+		}
+	}
+	"legion_commander_duel"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"reward_damage"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+		}
+	}
+}

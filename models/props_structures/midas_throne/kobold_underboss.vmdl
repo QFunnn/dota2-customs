@@ -1,0 +1,1285 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "BoneMarkupList"
+				children = [  ]
+				bone_cull_type = "None"
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						name = "kobold_underboss"
+						filename = "models/props_structures/midas_throne/kobold_underboss_kobold_underboss.dmx"
+					},
+				]
+			},
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "overboss_throne_idle"
+								source_filename = "models/props_structures/midas_throne/overboss_throne_idle.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE"
+								activity_weight = 0
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 0
+										event_keys = 
+										{
+											name = resource:"particles/overboss_chalice_fizz.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "bubbles"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_STOP_PARTICLE_EFFECT"
+										event_frame = 52
+										event_keys = 
+										{
+											name = resource:"particles/overboss_chalice_fizz.vpcf"
+											stop_instantly = false
+											play_endcap = false
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "overboss_throne_idle_cheers"
+								source_filename = "models/props_structures/midas_throne/overboss_throne_idle_cheers.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE_RARE"
+								activity_weight = 0
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 0
+										event_keys = 
+										{
+											name = resource:"particles/overboss_chalice_fizz.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "bubbles"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_STOP_PARTICLE_EFFECT"
+										event_frame = 65
+										event_keys = 
+										{
+											name = resource:"particles/overboss_chalice_fizz.vpcf"
+											stop_instantly = false
+											play_endcap = false
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 14
+										event_keys = 
+										{
+											name = resource:"particles/overboss_chalice_splash.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "splash"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "overboss_throne_idle_hiccup"
+								source_filename = "models/props_structures/midas_throne/overboss_throne_idle_hiccup.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE_RARE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 0
+										event_keys = 
+										{
+											name = resource:"particles/overboss_chalice_fizz.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "bubbles"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_STOP_PARTICLE_EFFECT"
+										event_frame = 65
+										event_keys = 
+										{
+											name = resource:"particles/overboss_chalice_fizz.vpcf"
+											stop_instantly = false
+											play_endcap = false
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "overboss_throne_idle_long"
+								source_filename = "models/props_structures/midas_throne/overboss_throne_idle_long.dmx"
+								fade_in_time = 0.1
+								fade_out_time = 0.1
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE_RARE"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 0
+										event_keys = 
+										{
+											name = resource:"particles/overboss_chalice_fizz.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "bubbles"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_STOP_PARTICLE_EFFECT"
+										event_frame = 182
+										event_keys = 
+										{
+											name = resource:"particles/overboss_chalice_fizz.vpcf"
+											stop_instantly = false
+											play_endcap = false
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "overboss_throne_throw_coin"
+								source_filename = "models/props_structures/midas_throne/overboss_throne_throw_coin.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_1"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 0
+										event_keys = 
+										{
+											name = resource:"particles/overboss_chalice_fizz.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "bubbles"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_STOP_PARTICLE_EFFECT"
+										event_frame = 71
+										event_keys = 
+										{
+											name = resource:"particles/overboss_chalice_fizz.vpcf"
+											stop_instantly = false
+											play_endcap = false
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "overboss_throne_idle_and_cheers"
+								source_filename = "models/props_structures/midas_throne/overboss_throne_idle_and_cheers.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 0
+										event_keys = 
+										{
+											name = resource:"particles/overboss_chalice_fizz.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "bubbles"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_STOP_PARTICLE_EFFECT"
+										event_frame = 111
+										event_keys = 
+										{
+											name = resource:"particles/overboss_chalice_fizz.vpcf"
+											stop_instantly = false
+											play_endcap = false
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "overboss_throne_idle_and_hiccup"
+								source_filename = "models/props_structures/midas_throne/overboss_throne_idle_and_hiccup.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 0
+										event_keys = 
+										{
+											name = resource:"particles/overboss_chalice_fizz.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "bubbles"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_STOP_PARTICLE_EFFECT"
+										event_frame = 111
+										event_keys = 
+										{
+											name = resource:"particles/overboss_chalice_fizz.vpcf"
+											stop_instantly = false
+											play_endcap = false
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "overboss_throne_throw_coin_long"
+								source_filename = "models/props_structures/midas_throne/overboss_throne_throw_coin_long.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_2"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 0
+										event_keys = 
+										{
+											name = resource:"particles/overboss_chalice_fizz.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "bubbles"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_STOP_PARTICLE_EFFECT"
+										event_frame = 109
+										event_keys = 
+										{
+											name = resource:"particles/overboss_chalice_fizz.vpcf"
+											stop_instantly = false
+											play_endcap = false
+										}
+									},
+								]
+							},
+							{
+								_class = "AnimFile"
+								name = "overboss_throne_victory"
+								source_filename = "models/props_structures/midas_throne/overboss_throne_victory.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAST_ABILITY_3"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT"
+										event_frame = 0
+										event_keys = 
+										{
+											name = resource:"particles/overboss_chalice_fizz.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											attachment_point = "bubbles"
+											attachment_type = "point_follow"
+											attachment_point_cp1 = null
+											attachment_type_cp1 = "point_follow"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_STOP_PARTICLE_EFFECT"
+										event_frame = 475
+										event_keys = 
+										{
+											name = resource:"particles/overboss_chalice_fizz.vpcf"
+											stop_instantly = false
+											play_endcap = false
+										}
+									},
+								]
+							},
+						]
+						name = "kobold_underboss"
+					},
+				]
+			},
+			{
+				_class = "Skeleton"
+				children = 
+				[
+					{
+						_class = "Bone"
+						name = "Origin_JNT"
+						origin = [ 0.0, 0.0, 0.0 ]
+						angles = [ 0.0, 90.0, 90.0 ]
+						do_not_discard = true
+						children = 
+						[
+							{
+								_class = "Bone"
+								name = "Root_JNT"
+								origin = [ 0.0, 55.19117, -2.239681 ]
+								angles = [ 0.0, 0.0, 0.0 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "Spine0_JNT"
+										origin = [ 0.0, 3.382492, -3.783542 ]
+										angles = [ -10.518725, 90.0, 90.0 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "Spine1_JNT"
+												origin = [ 7.191692, 0.000013, 0.0 ]
+												angles = [ -0.000001, -16.069553, 0.000002 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "Spine2_JNT"
+														origin = [ 15.480209, 0.000002, 0.0 ]
+														angles = [ 0.000001, -4.594337, 0.000003 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "Spine3_JNT"
+																origin = [ 13.088928, 0.000002, 0.0 ]
+																angles = [ 0.000001, 28.326685, 0.000003 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "Neck0_JNT"
+																		origin = [ 17.971443, -0.000084, 0.000001 ]
+																		angles = [ -0.0, 13.016588, 0.000003 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "Head0_JNT"
+																				origin = [ 8.010399, -0.000267, 0.000001 ]
+																				angles = [ -0.000001, -17.835077, 0.000003 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "Mouth0_JNT"
+																						origin = [ 7.06279, 8.176744, 0.0 ]
+																						angles = [ 0.000004, 125.058151, -179.999985 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "RtBeard0_JNT"
+																								origin = [ 28.961739, 4.476234, 2.914292 ]
+																								angles = [ -8.550888, -17.190695, -105.031204 ]
+																								do_not_discard = true
+																								children = 
+																								[
+																									{
+																										_class = "Bone"
+																										name = "RtBeard1_JNT"
+																										origin = [ 8.46981, -0.000435, 0.000908 ]
+																										angles = [ 0.000001, 21.550558, 0.000005 ]
+																										do_not_discard = true
+																									},
+																								]
+																							},
+																							{
+																								_class = "Bone"
+																								name = "LfBeard0_JNT"
+																								origin = [ 28.967186, 4.384438, -2.667905 ]
+																								angles = [ 7.280412, -14.131569, 99.723488 ]
+																								do_not_discard = true
+																								children = 
+																								[
+																									{
+																										_class = "Bone"
+																										name = "LfBeard1_JNT"
+																										origin = [ 10.764931, -0.000319, -0.000931 ]
+																										angles = [ -0.000005, 12.509516, 0.000003 ]
+																										do_not_discard = true
+																									},
+																								]
+																							},
+																							{
+																								_class = "Bone"
+																								name = "Tongue0_JNT"
+																								origin = [ 7.369263, -11.951172, 0.107761 ]
+																								angles = [ 0.000002, 81.837784, -179.999985 ]
+																								do_not_discard = true
+																								children = 
+																								[
+																									{
+																										_class = "Bone"
+																										name = "Tongue1_JNT"
+																										origin = [ 9.158524, -0.001167, -0.000001 ]
+																										angles = [ -0.000001, 36.992916, -0.000009 ]
+																										do_not_discard = true
+																										children = 
+																										[
+																											{
+																												_class = "Bone"
+																												name = "Tongue2_JNT"
+																												origin = [ 8.843185, -0.001968, -0.000002 ]
+																												angles = [ -0.000007, 1.724594, 0.000075 ]
+																												do_not_discard = true
+																												children = 
+																												[
+																													{
+																														_class = "Bone"
+																														name = "Tongue3_JNT"
+																														origin = [ 3.838621, -0.002457, -0.000002 ]
+																														angles = [ -0.000009, -8.437286, -0.000064 ]
+																														do_not_discard = true
+																													},
+																												]
+																											},
+																										]
+																									},
+																								]
+																							},
+																						]
+																					},
+																					{
+																						_class = "Bone"
+																						name = "LfEar0_JNT"
+																						origin = [ 7.808479, 2.31337, 8.811689 ]
+																						angles = [ -54.87318, -75.355415, 61.990829 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "LfEar1_JNT"
+																								origin = [ 11.300911, 0.000151, -0.001045 ]
+																								angles = [ 7.327974, 13.383408, -0.604062 ]
+																								do_not_discard = true
+																							},
+																						]
+																					},
+																					{
+																						_class = "Bone"
+																						name = "LfNostril0_JNT"
+																						origin = [ 8.346077, 30.404762, 3.147868 ]
+																						angles = [ -72.109459, 49.117565, -155.395386 ]
+																						do_not_discard = true
+																					},
+																					{
+																						_class = "Bone"
+																						name = "RtNostril0_JNT"
+																						origin = [ 8.345833, 30.404869, -3.147865 ]
+																						angles = [ -72.109467, -130.882462, -155.395355 ]
+																						do_not_discard = true
+																					},
+																					{
+																						_class = "Bone"
+																						name = "RtEar0_JNT"
+																						origin = [ 7.808922, 2.313271, -8.811689 ]
+																						angles = [ -54.873154, 104.644585, 61.99081 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "RtEar1_JNT"
+																								origin = [ -11.300838, -0.00016, 0.00071 ]
+																								angles = [ 7.327987, 13.383408, -0.604061 ]
+																								do_not_discard = true
+																							},
+																						]
+																					},
+																					{
+																						_class = "Bone"
+																						name = "LfEye0_JNT"
+																						origin = [ 9.109856, 13.064796, 5.607395 ]
+																						angles = [ -18.784424, 72.549217, -178.662292 ]
+																						do_not_discard = true
+																					},
+																					{
+																						_class = "Bone"
+																						name = "RtEye0_JNT"
+																						origin = [ 9.109993, 13.064786, -5.607402 ]
+																						angles = [ -18.784431, -107.450768, -178.662292 ]
+																						do_not_discard = true
+																					},
+																				]
+																			},
+																			{
+																				_class = "Bone"
+																				name = "NeckHelper0_JNT"
+																				origin = [ 4.583923, 19.681522, -0.0 ]
+																				angles = [ 0.000002, 83.50029, -0.000008 ]
+																				do_not_discard = true
+																			},
+																			{
+																				_class = "Bone"
+																				name = "Necklace0_JNT"
+																				origin = [ 2.381027, 3.147232, 0.328908 ]
+																				angles = [ 60.067249, 101.291183, -85.353111 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "Necklace1_JNT"
+																						origin = [ 18.998474, 0.00034, -0.000542 ]
+																						angles = [ 1.749494, -67.717903, -177.98381 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "Necklace2_JNT"
+																								origin = [ 20.858768, -0.000017, 0.000778 ]
+																								angles = [ 5.105118, 8.30374, -8.300439 ]
+																								do_not_discard = true
+																								children = 
+																								[
+																									{
+																										_class = "Bone"
+																										name = "Necklace3_JNT"
+																										origin = [ 23.86335, -0.000097, 0.000999 ]
+																										angles = [ 15.04851, 22.598932, -15.360532 ]
+																										do_not_discard = true
+																										children = 
+																										[
+																											{
+																												_class = "Bone"
+																												name = "Necklace4_JNT"
+																												origin = [ 20.808455, -0.000328, 0.001114 ]
+																												angles = [ -18.495022, 105.478287, -21.03841 ]
+																												do_not_discard = true
+																												children = 
+																												[
+																													{
+																														_class = "Bone"
+																														name = "Necklace5_JNT"
+																														origin = [ 27.191082, -0.000019, 0.001442 ]
+																														angles = [ -2.034589, 42.552944, -6.604134 ]
+																														do_not_discard = true
+																														children = 
+																														[
+																															{
+																																_class = "Bone"
+																																name = "Necklace6_JNT"
+																																origin = [ 32.417274, -0.000729, 0.00161 ]
+																																angles = [ 2.240225, 5.111998, 4.231382 ]
+																																do_not_discard = true
+																															},
+																														]
+																													},
+																												]
+																											},
+																											{
+																												_class = "Bone"
+																												name = "NecklaceInnerB0_JNT"
+																												origin = [ 7.922138, 14.019224, 8.039658 ]
+																												angles = [ -5.952197, 122.463356, -27.016682 ]
+																												do_not_discard = true
+																											},
+																										]
+																									},
+																									{
+																										_class = "Bone"
+																										name = "NecklaceInnerA0_JNT"
+																										origin = [ 16.541592, 14.953826, 4.579033 ]
+																										angles = [ 1.351295, 136.57016, -3.074043 ]
+																										do_not_discard = true
+																									},
+																								]
+																							},
+																						]
+																					},
+																				]
+																			},
+																		]
+																	},
+																	{
+																		_class = "Bone"
+																		name = "LfArm0_JNT"
+																		origin = [ 10.381523, 5.215019, 13.982788 ]
+																		angles = [ -59.575722, -56.112251, 33.902065 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "LfArm1_JNT"
+																				origin = [ 7.560017, -1.334591, 6.41803 ]
+																				angles = [ -69.562035, 17.310301, -5.473011 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "LfArm2_JNT"
+																						origin = [ 23.627745, -0.366114, 0.615967 ]
+																						angles = [ 0.000009, 23.928562, -0.000008 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "LfArm3_JNT"
+																								origin = [ 22.329569, -0.343359, 0.835892 ]
+																								angles = [ 0.000007, 0.000002, -0.000001 ]
+																								do_not_discard = true
+																								children = 
+																								[
+																									{
+																										_class = "Bone"
+																										name = "LfDigitA0_JNT"
+																										origin = [ 1.751467, 4.940954, 1.964584 ]
+																										angles = [ -28.977781, 45.61824, 106.78299 ]
+																										do_not_discard = true
+																										children = 
+																										[
+																											{
+																												_class = "Bone"
+																												name = "LfDigitA1_JNT"
+																												origin = [ 5.370583, -0.001282, 0.000113 ]
+																												angles = [ 0.000006, 26.573557, -0.000011 ]
+																												do_not_discard = true
+																											},
+																										]
+																									},
+																									{
+																										_class = "Bone"
+																										name = "LfDigitB0_JNT"
+																										origin = [ 6.780079, 4.171942, 2.939705 ]
+																										angles = [ -36.697384, 21.45141, 86.907104 ]
+																										do_not_discard = true
+																										children = 
+																										[
+																											{
+																												_class = "Bone"
+																												name = "LfDigitB1_JNT"
+																												origin = [ 4.711281, -0.001091, -0.000357 ]
+																												angles = [ -0.000012, 23.218521, 0.000012 ]
+																												do_not_discard = true
+																											},
+																										]
+																									},
+																									{
+																										_class = "Bone"
+																										name = "LfDigitC0_JNT"
+																										origin = [ 6.984685, -1.910205, 3.646492 ]
+																										angles = [ -42.847004, 7.262135, 70.266838 ]
+																										do_not_discard = true
+																										children = 
+																										[
+																											{
+																												_class = "Bone"
+																												name = "LfDigitC1_JNT"
+																												origin = [ 5.234921, -0.000771, -0.000484 ]
+																												angles = [ -0.000009, 34.338871, 0.000004 ]
+																												do_not_discard = true
+																											},
+																										]
+																									},
+																								]
+																							},
+																							{
+																								_class = "Bone"
+																								name = "LfWrist0_JNT"
+																								origin = [ 11.164666, -0.171597, 0.417549 ]
+																								angles = [ 0.000007, 0.000002, -0.000001 ]
+																								do_not_discard = true
+																							},
+																						]
+																					},
+																					{
+																						_class = "Bone"
+																						name = "LfBangle0_JNT"
+																						origin = [ 23.712803, -1.187129, 0.77507 ]
+																						angles = [ -15.560075, 177.805679, 174.634506 ]
+																						do_not_discard = true
+																					},
+																				]
+																			},
+																			{
+																				_class = "Bone"
+																				name = "LfDeltoid0_JNT"
+																				origin = [ 7.560017, -1.334591, 6.41803 ]
+																				angles = [ -69.562035, 17.310301, -5.473011 ]
+																				do_not_discard = true
+																			},
+																		]
+																	},
+																	{
+																		_class = "Bone"
+																		name = "RtArm0_JNT"
+																		origin = [ 10.381203, 5.215122, -13.982824 ]
+																		angles = [ -59.575706, 123.887703, 33.902088 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "RtArm1_JNT"
+																				origin = [ -7.560101, 1.334559, -6.417664 ]
+																				angles = [ -69.562035, 17.310274, -5.472988 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "RtArm2_JNT"
+																						origin = [ -23.627829, 0.366111, -0.61599 ]
+																						angles = [ 0.000005, 23.928551, 0.00001 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "RtArm3_JNT"
+																								origin = [ -22.329556, 0.343395, -0.836052 ]
+																								angles = [ -0.000007, -0.000003, -0.000002 ]
+																								do_not_discard = true
+																								children = 
+																								[
+																									{
+																										_class = "Bone"
+																										name = "RtDigitA0_JNT"
+																										origin = [ -1.751495, -4.940899, -1.964745 ]
+																										angles = [ -28.977804, 45.618259, 106.782967 ]
+																										do_not_discard = true
+																										children = 
+																										[
+																											{
+																												_class = "Bone"
+																												name = "RtDigitA1_JNT"
+																												origin = [ -5.370651, 0.001015, -0.000055 ]
+																												angles = [ -0.000008, 26.573561, 0.000011 ]
+																												do_not_discard = true
+																											},
+																										]
+																									},
+																									{
+																										_class = "Bone"
+																										name = "RtDigitB0_JNT"
+																										origin = [ -6.780074, -4.171894, -2.939903 ]
+																										angles = [ -36.697357, 21.45142, 86.907059 ]
+																										do_not_discard = true
+																										children = 
+																										[
+																											{
+																												_class = "Bone"
+																												name = "RtDigitB1_JNT"
+																												origin = [ -4.711426, 0.000771, 0.000286 ]
+																												angles = [ -0.000005, 23.218531, 0.000007 ]
+																												do_not_discard = true
+																											},
+																										]
+																									},
+																									{
+																										_class = "Bone"
+																										name = "RtDigitC0_JNT"
+																										origin = [ -6.984674, 1.91023, -3.646675 ]
+																										angles = [ -42.847004, 7.262145, 70.26683 ]
+																										do_not_discard = true
+																										children = 
+																										[
+																											{
+																												_class = "Bone"
+																												name = "RtDigitC1_JNT"
+																												origin = [ -5.234989, 0.000572, 0.000435 ]
+																												angles = [ -0.000005, 34.338863, 0.000008 ]
+																												do_not_discard = true
+																											},
+																										]
+																									},
+																									{
+																										_class = "Bone"
+																										name = "Chalice0_JNT"
+																										origin = [ -3.042093, 16.239479, -85.042175 ]
+																										angles = [ -44.978531, -29.918398, -171.150406 ]
+																										do_not_discard = true
+																										children = 
+																										[
+																											{
+																												_class = "Bone"
+																												name = "LiquidRoot_JNT"
+																												origin = [ 49.039368, -0.000012, 0.000016 ]
+																												angles = [ 0.000008, -89.999992, -0.000003 ]
+																												do_not_discard = true
+																												children = 
+																												[
+																													{
+																														_class = "Bone"
+																														name = "LiquidA0_JNT"
+																														origin = [ 16.156067, 0.000729, -0.000003 ]
+																														angles = [ -89.980209, 0.000002, -0.000007 ]
+																														do_not_discard = true
+																													},
+																													{
+																														_class = "Bone"
+																														name = "LiquidB0_JNT"
+																														origin = [ -0.000009, 0.00074, 16.156059 ]
+																														angles = [ -0.000007, -0.000005, -0.000006 ]
+																														do_not_discard = true
+																													},
+																													{
+																														_class = "Bone"
+																														name = "LiquidC0_JNT"
+																														origin = [ -16.156086, 0.000736, -0.000023 ]
+																														angles = [ -0.000007, -0.000005, -0.000006 ]
+																														do_not_discard = true
+																													},
+																													{
+																														_class = "Bone"
+																														name = "LiquidD0_JNT"
+																														origin = [ -0.000005, 0.00074, -16.156082 ]
+																														angles = [ -0.000007, -0.000005, -0.000006 ]
+																														do_not_discard = true
+																													},
+																												]
+																											},
+																										]
+																									},
+																								]
+																							},
+																							{
+																								_class = "Bone"
+																								name = "RtWrist0_JNT"
+																								origin = [ -11.164702, 0.171642, -0.417755 ]
+																								angles = [ -0.000007, -0.000003, -0.000002 ]
+																								do_not_discard = true
+																							},
+																						]
+																					},
+																					{
+																						_class = "Bone"
+																						name = "RtBangle0_JNT"
+																						origin = [ -23.712856, 1.187122, -0.775017 ]
+																						angles = [ -15.560072, 177.805679, 174.634506 ]
+																						do_not_discard = true
+																					},
+																				]
+																			},
+																			{
+																				_class = "Bone"
+																				name = "RtDeltoid0_JNT"
+																				origin = [ -7.560101, 1.334559, -6.417664 ]
+																				angles = [ -69.562035, 17.310274, -5.472988 ]
+																				do_not_discard = true
+																			},
+																		]
+																	},
+																]
+															},
+															{
+																_class = "Bone"
+																name = "LfBreast0_JNT"
+																origin = [ 0.092201, 27.165207, 21.023964 ]
+																angles = [ -41.322685, 116.456703, 169.04567 ]
+																do_not_discard = true
+															},
+															{
+																_class = "Bone"
+																name = "RtBreast0_JNT"
+																origin = [ 0.092155, 27.165173, -21.023968 ]
+																angles = [ -41.322685, -63.543308, 169.04567 ]
+																do_not_discard = true
+															},
+														]
+													},
+													{
+														_class = "Bone"
+														name = "BellyHelperB0_JNT"
+														origin = [ 1.554054, 33.858521, 0.0 ]
+														angles = [ 0.000006, 88.512878, 0.000031 ]
+														do_not_discard = true
+													},
+												]
+											},
+										]
+									},
+									{
+										_class = "Bone"
+										name = "BellyHelperA0_JNT"
+										origin = [ 0.462442, -2.63496, 24.037735 ]
+										angles = [ -68.884705, -59.2757, -119.679199 ]
+										do_not_discard = true
+									},
+									{
+										_class = "Bone"
+										name = "LfLeg0_JNT"
+										origin = [ 23.966253, -10.721172, 13.786545 ]
+										angles = [ -11.675211, -92.769379, -99.575317 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "LfLeg1_JNT"
+												origin = [ 24.405109, 0.0, -0.000002 ]
+												angles = [ -0.000004, 44.824017, 0.000005 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "LfLeg2_JNT"
+														origin = [ 19.653122, -0.0, 0.000008 ]
+														angles = [ -1.875315, -32.311523, -170.88002 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "LfLeg3_JNT"
+																origin = [ 3.987414, 0.000015, -0.000044 ]
+																angles = [ -5.268926, 43.260822, -2.029238 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "LfToeA0_JNT"
+																		origin = [ 7.001026, 1.559127, -1.053295 ]
+																		angles = [ -4.352885, 7.36764, -7.818597 ]
+																		do_not_discard = true
+																	},
+																	{
+																		_class = "Bone"
+																		name = "LfToeB0_JNT"
+																		origin = [ 3.380098, 0.61215, -6.985273 ]
+																		angles = [ 14.116549, -7.067007, 7.615747 ]
+																		do_not_discard = true
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+									{
+										_class = "Bone"
+										name = "LfHip0_JNT"
+										origin = [ 23.966253, -10.721172, 13.786545 ]
+										angles = [ -11.675211, -92.769379, -99.575317 ]
+										do_not_discard = true
+									},
+									{
+										_class = "Bone"
+										name = "RtLeg0_JNT"
+										origin = [ -23.966282, -10.721214, 13.78657 ]
+										angles = [ 11.675211, 92.769379, 80.424637 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "RtLeg1_JNT"
+												origin = [ -24.405041, -0.000004, 0.000038 ]
+												angles = [ 0.000001, 44.824017, 0.000005 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "RtLeg2_JNT"
+														origin = [ -19.653149, 0.000002, -0.00001 ]
+														angles = [ -1.875318, -32.311535, -170.88002 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "RtLeg3_JNT"
+																origin = [ -3.987419, -0.000005, -0.000011 ]
+																angles = [ -5.268939, 43.260818, -2.029243 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "RtToeA0_JNT"
+																		origin = [ -7.000978, -1.559102, 1.053333 ]
+																		angles = [ -4.352889, 7.367639, -7.818588 ]
+																		do_not_discard = true
+																	},
+																	{
+																		_class = "Bone"
+																		name = "RtToeB0_JNT"
+																		origin = [ -3.380082, -0.612145, 6.985224 ]
+																		angles = [ 14.116554, -7.066998, 7.615751 ]
+																		do_not_discard = true
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+									{
+										_class = "Bone"
+										name = "RtHip0_JNT"
+										origin = [ -23.966282, -10.721214, 13.78657 ]
+										angles = [ 11.675211, 92.769379, 80.424637 ]
+										do_not_discard = true
+									},
+									{
+										_class = "Bone"
+										name = "Tail0_JNT"
+										origin = [ 0.0, -10.623219, -16.7512 ]
+										angles = [ 80.054733, -90.0, 89.999939 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "Tail1_JNT"
+												origin = [ 16.601479, -0.000015, -0.000001 ]
+												angles = [ 0.000007, -3.270785, -0.000061 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "Tail2_JNT"
+														origin = [ 15.757395, -0.000072, 0.000002 ]
+														angles = [ -0.000063, 32.557625, 0.00009 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "Tail3_JNT"
+																origin = [ 5.857361, -0.000217, 0.000001 ]
+																angles = [ 0.000002, 10.421245, 0.0 ]
+																do_not_discard = true
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+									{
+										_class = "Bone"
+										name = "FrontLoincloth0_JNT"
+										origin = [ 0.0, -28.474222, 30.418139 ]
+										angles = [ 4.118186, -90.0, 90.0 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "FrontLoincloth1_JNT"
+												origin = [ 14.97246, -0.000023, -0.000001 ]
+												angles = [ 0.000001, -1.164686, 0.000002 ]
+												do_not_discard = true
+											},
+										]
+									},
+									{
+										_class = "Bone"
+										name = "LfLoincloth0_JNT"
+										origin = [ 18.294279, -7.98605, -10.957109 ]
+										angles = [ 6.42877, -94.244698, -39.988281 ]
+										do_not_discard = true
+									},
+									{
+										_class = "Bone"
+										name = "RtLoincloth0_JNT"
+										origin = [ -17.502918, -6.828423, -11.15237 ]
+										angles = [ 7.93581, -86.246353, -136.61908 ]
+										do_not_discard = true
+									},
+								]
+							},
+						]
+					},
+				]
+			},
+		]
+	}
+}

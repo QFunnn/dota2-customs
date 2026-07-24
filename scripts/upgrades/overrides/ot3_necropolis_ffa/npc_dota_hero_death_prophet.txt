@@ -1,0 +1,48 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_death_prophet"
+{
+	"death_prophet_carrion_swarm"
+	{
+		"damage"
+		{
+			"value" "45"
+			"operator" "OP_ADD"
+		}
+	}
+	"death_prophet_spirit_siphon"
+	{
+		"damage"
+		{
+			"value" "15"
+			"operator" "OP_ADD"
+		}
+	}
+	"death_prophet_exorcism"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "6"
+			"operator" "OP_MULTIPLY"
+		}
+		"average_damage"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"max_damage" "5"
+				"min_damage" "5"
+				"scepter_spirit_bonus_damage" "3"
+			}
+		}
+	}
+}

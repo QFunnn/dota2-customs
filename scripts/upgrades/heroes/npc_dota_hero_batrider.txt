@@ -1,0 +1,104 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_batrider"
+{
+	"batrider_smoldering_resin"
+	{
+		// Doesn't work anymore
+		//"tick_attack_damage_pct"
+		//{
+		//	"value" "5"
+		//	"operator" "OP_ADD"
+		//	"max_count" "10"
+		//}
+	}
+	"batrider_sticky_napalm"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+		}
+		"damage"
+		{
+			"value" "3"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"application_damage" "3"
+			}
+		}
+		"radius"
+		{
+			"value" "55"
+			"operator" "OP_ADD"
+			"max_count" "7"
+		}
+	}
+	"batrider_flamebreak"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "8"
+		}
+		"damage_impact"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"damage_per_second" "12"
+			}
+		}
+		"explosion_radius"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"batrider_firefly"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "13"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"damage_per_second"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+		}
+		"radius"
+		{
+			"value" "55"
+			"operator" "OP_ADD"
+			"max_count" "7"
+		}
+	}
+	"batrider_flaming_lasso"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "12"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"damage"
+		{
+			"value" "250"
+			"operator" "OP_ADD"
+		}
+	}
+}

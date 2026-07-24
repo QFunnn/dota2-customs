@@ -1,0 +1,116 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_treant"
+{
+	"treant_natures_grasp"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "16"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"damage_per_second"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+		}
+		"latch_range"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"latch_vision" "40"
+			}
+		}
+	}
+	"treant_leech_seed"
+	{
+		"radius"
+		{
+			"value" "75"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"projectile_speed" "52"
+			}
+			"linked_abilities"
+			{
+				"treant_natures_guise"
+				{
+					"radius" "50"
+				}
+			}
+		}
+	}
+	"treant_living_armor"
+	{
+		"heal_per_second"
+		{
+			"value" "18"
+			"operator" "OP_ADD"
+		}
+	}
+	"treant_overgrowth"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "15"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"bloom_duration" "1"
+			}
+			"linked_abilities"
+			{
+				"treant_eyes_in_the_forest"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "15"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"radius"
+		{
+			"value" "80"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"linked_special_values"
+			{
+				"splash_radius" "80"
+			}
+			"linked_abilities"
+			{
+				"treant_eyes_in_the_forest"
+				{
+					"AbilityCastRange" "80"
+					"vision_aoe" "80"
+				}
+			}
+		}
+		"damage"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"splash_pct" "20"
+			}
+		}
+	}
+}

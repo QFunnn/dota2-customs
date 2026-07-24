@@ -1,0 +1,108 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_crystal_maiden"
+{
+	"crystal_maiden_glacial_guard"
+	{
+		"mana_multiplier"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+		}
+	}
+	"crystal_maiden_crystal_nova"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "7"
+			"operator" "OP_MULTIPLY"
+		}
+		"radius"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"nova_damage"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+		}
+	}
+	"crystal_maiden_frostbite"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "4"
+
+			"linked_abilities"
+			{
+				"crystal_maiden_crystal_clone"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+					"frostbite_radius" "100"
+					"hop_distance" "150"
+				}
+			}
+		}
+		"damage_per_second"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"creep_damage_per_second" "30"
+			}
+		}
+	}
+	"crystal_maiden_brilliance_aura"
+	{
+		"base_mana_regen"
+		{
+			"value" "2"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"proximity_mana_regen_tooltip" "6"
+			}
+		}
+	}
+	"crystal_maiden_freezing_field"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"damage"
+		{
+			"value" "45"
+			"operator" "OP_ADD"
+		}
+		"movespeed_slow"
+		{
+			"value" "-6"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"attack_slow" "-20"
+				"shard_self_movement_speed_slow_pct" "7.5"
+			}
+		}
+	}
+}

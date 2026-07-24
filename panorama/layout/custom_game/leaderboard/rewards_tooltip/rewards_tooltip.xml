@@ -1,0 +1,38 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/item_tooltip/item_tooltip.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/leaderboard/rewards_tooltip/rewards_tooltip.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/cosmetics/cosmetics_rarities.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/leaderboard/rewards_tooltip/rewards_tooltip.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="CI_Item">
+			<Panel class="CI_Item">
+				<Panel class="CI_Background">
+					<Image id="CI_Item_Image">
+						<Label class="CI_Item_Count" text="x{d:count}" />
+					</Image>
+				</Panel>
+				<Panel class="CI_Name_LB_Container">
+					<Label class="CI_Name" text="{s:reward_name}" />
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="LB_CustomItem_Tooltip" hittest="false" hittestchildren="false" ontooltiploaded="UpdateTooltip()" />
+</root>

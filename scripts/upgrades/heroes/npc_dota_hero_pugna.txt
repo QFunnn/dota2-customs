@@ -1,0 +1,73 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_pugna"
+{
+	"pugna_nether_blast"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"delay"
+		{
+			"value" "-0.15"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"blast_damage"
+		{
+			"value" "65"
+			"operator" "OP_ADD"
+		}
+	}
+	"pugna_decrepify"
+	{
+		"bonus_heal_amp_pct_allies"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+		}
+		"bonus_spell_damage_pct"
+		{
+			"value" "-5"
+			"operator" "OP_ADD"
+			"max_count" "6"
+		}
+	}
+	"pugna_nether_ward"
+	{
+		"mana_multiplier"
+		{
+			"value" "0.15"
+			"operator" "OP_ADD"
+		}
+	}
+	"pugna_life_drain"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"health_drain"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+		}
+	}
+}

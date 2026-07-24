@@ -1,0 +1,124 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_lone_druid"
+{
+	"lone_druid_spirit_bear"
+	{
+		"bear_bat"
+		{
+			"value" "-0.17"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			"multiplicative_target"			"0.15"
+			"multiplicative_base_value"		"1.5"
+		}
+		"bear_hp"
+		{
+			"value" "450"
+			"operator" "OP_ADD"
+		}
+	}
+	"lone_druid_entangle"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "12"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"active_radius"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"damage"
+		{
+			"value" "45"
+			"operator" "OP_ADD"
+		}
+	}
+	"lone_druid_spirit_link"
+	{
+		"bonus_movement_speed_druid"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"bonus_movement_speed_bear" "40"
+			}
+		}
+		"lifesteal_percent"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+		}
+	}
+	"lone_druid_savage_roar"
+	{
+		"bonus_speed"
+		{
+			"value" "-15"
+			"operator" "OP_ADD"
+			"max_count" "7"
+			"linked_special_values"
+			{
+				"shard_movement_speed_pct" "15"
+				"shard_attack_speed" "45"
+			}
+			"linked_abilities"
+			{
+				"lone_druid_savage_roar_bear"
+				{
+					"bonus_speed" "-15"
+				}
+			}
+		}
+		"radius"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"shard_radius" "100"
+				"shard_duration" "1"
+			}
+			"linked_abilities"
+			{
+				"lone_druid_savage_roar_bear"
+				{
+					"radius" "35"
+				}
+			}
+		}
+	}
+	"lone_druid_true_form"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "17"
+			"operator" "OP_MULTIPLY"
+			"max_count" "4"
+		}
+		"bonus_hp"
+		{
+			"value" "500"
+			"operator" "OP_ADD"
+		}
+		"bonus_attack_damage"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+		}
+	}
+}

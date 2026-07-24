@@ -1,0 +1,98 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf45:version{73c3d623-a141-4df2-b548-41dd786e6300} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nBehaviorVersion = 12
+	m_nMaxParticles = 0
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 60
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 204.0, 182.0, 16.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 61
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 62
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.058274, -0.078431, -0.2 ]
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_hitboxSetName = "default"
+			}
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetSingleControlPointPosition"
+			m_nCP1 = 60
+			m_vecCP1Pos = [ 230.0, 160.0, 0.0 ]
+			m_bUseWorldLocation = true
+		},
+		{
+			_class = "C_OP_SetSingleControlPointPosition"
+			m_nCP1 = 61
+			m_vecCP1Pos = [ 1.0, 0.0, 0.0 ]
+			m_bUseWorldLocation = true
+		},
+		{
+			_class = "C_OP_HSVShiftToCP"
+			m_DefaultHSVColor = [ 255, 136, 0 ]
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/blue_drop_glow.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/blue_drop_ring.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/blue_drop_drop_glow.vpcf"
+			m_flDelay = 0.25
+		},
+		{
+			m_ChildRef = resource:"particles/blue_drop_drop_flash.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/blue_drop_spiral.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/blue_drop_beam2.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/blue_drop_magic.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/blue_drop_beam.vpcf"
+		},
+	]
+}

@@ -1,0 +1,955 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.C_Profile_Root
+{
+	width: 100%;
+	height: 100%;
+	padding: 5px 20px;
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/cosmetic_content_bg_png.vtex");
+	background-size: 100%;
+	box-shadow: rgba(0, 0, 0, 0.79) 0px 0px 3px 0;
+	flow-children: down;
+}
+
+.C_Profile_Content
+{
+	flow-children: right;
+	height: 100%;
+}
+
+.C_Profile_Buttons_Root
+{
+	width: 100%;
+}
+
+#C_Profile_Buttons
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.C_Profile_Button
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/map_button_png.vtex");
+	background-size: 100%;
+	min-width: 85px;
+	margin-left: 6px;
+	transition: brightness 0.1s ease-in-out 0s;
+}
+
+.C_Profile_Button_Overlay
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/map_button_active_png.vtex");
+	background-size: 100%;
+	opacity: 0;
+	transition-property: opacity, brightness;
+	transition-duration: 0.1s;
+}
+
+.C_Profile_Button:hover .C_Profile_Button_Overlay
+{
+	opacity: 0.3;
+}
+
+.C_Profile_Button:active,.C_Profile_Button.Activated:active .C_Profile_Button_Overlay
+{
+	brightness: 0.7;
+}
+
+.C_Profile_Button.Activated .C_Profile_Button_Overlay
+{
+	opacity: 1;
+	brightness: 1.3;
+}
+
+.C_Profile_Button.Activated:hover
+{
+	brightness: 1.3;
+}
+
+.C_Profile_Button Label
+{
+	margin: 10px 8px;
+	align: center center;
+	text-align: center;
+	text-transform: uppercase;
+	color: #c9cacf;
+	text-shadow: black 1px 1px 0 2;
+	transition: white 0.1s ease-in-out 0s;
+}
+
+.C_Profile_Button.Activated Label
+{
+	color: white;
+}
+
+.C_Profile_GlobalStats_Root
+{
+	height: 100%;
+	width: 400px;
+	flow-children: down;
+}
+
+.C_Profile_GS_Header,.C_Profile_LM_Header
+{
+	color: #c3c4e1;
+	width: 100%;
+	text-align: center;
+	padding: 5px;
+	font-size: 24px;
+	font-weight: semi-bold;
+	text-shadow: 0 0 2px 2 black;
+	text-transform: uppercase;
+}
+
+#C_Profile_GS_Container
+{
+	width: 100%;
+	height: 100%;
+}
+
+.C_Profile_GS_Entity
+{
+	flow-children: down;
+	horizontal-align: center;
+	width: 100%;
+	padding-top: -4px;
+	visibility: collapse;
+}
+
+.C_Profile_GS_Entity.Activated
+{
+	visibility: visible;
+}
+
+.C_Profile_GS_Entity > Panel
+{
+	flow-children: down;
+	width: 100%;
+	margin-top: 4px;
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+.C_Profile_GS_Entity > Panel > Label
+{
+	width: 100%;
+	text-align: center;
+	font-size: 18px;
+	text-transform: uppercase;
+	padding: 3px;
+	color: #c3c4e1;
+}
+
+.C_Profile_GS_E_Matches_Container,.C_Profile_GS_E_Streaks_Container,.C_Profile_GS_E_KDA_Container,.C_Profile_GS_E_MVP_Container
+{
+	flow-children: right;
+	padding-left: -10px;
+	horizontal-align: center;
+	padding-bottom: 6px;
+}
+
+.C_Profile_GS_E_KDA_Container,.C_Profile_GS_E_MVP_Container
+{
+	padding-top: 6px;
+}
+
+.C_Profile_GS_E_Matches_Container Label,.C_Profile_GS_E_Streaks_Container Label,.C_Profile_GS_E_KDA_Container Label,.C_Profile_GS_E_MVP_Container Label
+{
+	text-align: center;
+	text-transform: uppercase;
+	margin-left: 10px;
+	padding: 2px 10px 0px 10px;
+	border: 2px solid white;
+	width: 120px;
+	height: 43px;
+	font-size: 16px;
+	text-overflow: shrink;
+}
+
+.C_Profile_GS_E_Matches_Total
+{
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#616167), to(#abacb4));
+	color: #d4cee0;
+}
+
+.C_Profile_GS_E_Matches_Victories
+{
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#47674b), to(#9db49d));
+	color: gradient(linear, 0% 100%, 0% 0%, from(#40c13e), to(#a9f0a3));
+}
+
+.C_Profile_GS_E_Matches_Defeats
+{
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#67403b), to(#b49794));
+	color: gradient(linear, 0% 100%, 0% 0%, from(#c1433d), to(#f09292));
+}
+
+.C_Profile_GS_E_Rating_Container
+{
+	flow-children: right;
+	horizontal-align: center;
+	padding: 5px;
+}
+
+.C_Profile_GS_E_RatingValue
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#efa45d), to(#fee7a9));
+	text-shadow: black 1px 1px 0 2;
+	font-size: 23px;
+	vertical-align: center;
+	font-weight: semi-bold;
+}
+
+.C_Profile_GS_E_RatingIcon
+{
+	height: 40px;
+	width: 60px;
+	background-size: 60px;
+	background-repeat: no-repeat;
+	background-position: 0 -5px;
+	img-shadow: black 0 0 3px 2;
+	margin-left: 5px;
+}
+
+.C_Profile_GS_E_Rank_-1 .C_Profile_GS_E_RatingIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/rank_-1_png.vtex");
+	width: 40px;
+	background-position: -10px 0px;
+}
+
+.C_Profile_GS_E_Rank_0 .C_Profile_GS_E_RatingIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/rank_0_png.vtex");
+	width: 40px;
+	background-position: -10px 0px;
+}
+
+.C_Profile_GS_E_Rank_1 .C_Profile_GS_E_RatingIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/rank_1_png.vtex");
+	background-position: 0 -4px;
+}
+
+.C_Profile_GS_E_Rank_2 .C_Profile_GS_E_RatingIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/rank_2_png.vtex");
+}
+
+.C_Profile_GS_E_Rank_3 .C_Profile_GS_E_RatingIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/rank_3_png.vtex");
+}
+
+.C_Profile_GS_E_Rank_4 .C_Profile_GS_E_RatingIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/rank_4_png.vtex");
+	background-position: 0 -8px;
+}
+
+.C_Profile_GS_E_Rank_5 .C_Profile_GS_E_RatingIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/rank_5_png.vtex");
+	background-position: 0 -13px;
+}
+
+.C_Profile_GS_E_Streaks_Current
+{
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#616167), to(#abacb4));
+	color: #d4cee0;
+}
+
+.C_Profile_GS_E_Streaks_Max
+{
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#ac7642), to(#a89970));
+	color: gradient(linear, 0% 100%, 0% 0%, from(#cc8c4f), to(#edd79e));
+}
+
+.C_Profile_GS_E_KDA_Container > Label
+{
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#616167), to(#abacb4));
+}
+
+#C_Profile_GS_E_KDA_K
+{
+	color: #d4cee0;
+}
+
+#C_Profile_GS_E_KDA_D
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#c1433d), to(#f09292));
+}
+
+#C_Profile_GS_E_KDA_A
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#40c13e), to(#a9f0a3));
+}
+
+.C_Profile_GS_E_KDA_RunnerUp
+{
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#616167), to(#abacb4));
+	color: #d4cee0;
+}
+
+.C_Profile_GS_E_MVP_Total
+{
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#ac7642), to(#a89970));
+	color: gradient(linear, 0% 100%, 0% 0%, from(#cc8c4f), to(#edd79e));
+}
+
+.C_Profile_LatestMatches_Root
+{
+	width: fill-parent-flow(1);
+	flow-children: down;
+	margin-bottom: 14px;
+}
+
+#C_Profile_LM_Container
+{
+	width: 100%;
+}
+
+.C_Profile_LatestMatches_Entity
+{
+	flow-children: down;
+	padding-top: -4px;
+	width: 100%;
+	overflow: squish scroll;
+	visibility: collapse;
+	horizontal-align: center;
+}
+
+.C_Profile_LatestMatches_Entity.Activated
+{
+	visibility: visible;
+}
+
+.C_Profile_Match
+{
+	flow-children: down;
+	width: 100%;
+	margin: 0 10px;
+	margin-top: 4px;
+	background-color: rgba(0, 0, 0, 0.6);
+	padding: 4px;
+	transition-property: box-shadow, background-color;
+	transition-duration: 0.15s;
+	box-shadow: inset transparent 0 0 0px 0;
+}
+
+.C_Profile_Match:hover
+{
+	box-shadow: inset #d4b531 0 0 1px 0;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(40, 40, 40, 0.8)), to(rgba(0, 0, 0, 0.8)));
+}
+
+.C_Profile_M_CommonInfo
+{
+	flow-children: right;
+}
+
+.C_Profile_M_CommonInfo Label
+{
+	vertical-align: center;
+	color: #c3c4e1;
+}
+
+#C_Profile_M_HeroImage
+{
+	height: 35px;
+	width: 62px;
+	border: 1px solid black;
+}
+
+.C_Profile_M_HeroName
+{
+	width: 196px;
+	padding-left: 5px;
+}
+
+.C_Profile_M_CommonInfo .C_Profile_Place
+{
+	width: 65px;
+	text-align: center;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#83838c), to(#c6c5d0));
+}
+
+.Place_1 .C_Profile_M_CommonInfo .C_Profile_Place
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#e19e46), to(#ffff55));
+}
+
+.Place_2 .C_Profile_M_CommonInfo .C_Profile_Place
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#adbedc), to(#f0efff));
+}
+
+.Place_3 .C_Profile_M_CommonInfo .C_Profile_Place
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#bd7338), to(#ecb18c));
+}
+
+.C_Profile_MVP_Status,#C_Profile_P_MVP_Status
+{
+	height: 23px;
+	background-image: url("s2r://panorama/images/hud/player_mvp_crown_png.vtex");
+	background-size: 27px 23px;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	vertical-align: center;
+	opacity: 0;
+	width: 51px;
+}
+
+#C_Profile_P_MVP_Status
+{
+	margin-left: 4px;
+}
+
+#C_Profile_P_MVP_Status
+{
+	width: 27px;
+	horizontal-align: right;
+	margin-right: 5px;
+}
+
+.MVP_State_1 .C_Profile_MVP_Status,.MVP_Player_State_1 #C_Profile_P_MVP_Status
+{
+	opacity: 1;
+}
+
+.MVP_State_2 .C_Profile_MVP_Status,.MVP_State_3 .C_Profile_MVP_Status,.MVP_Player_State_2 #C_Profile_P_MVP_Status,.MVP_Player_State_3 #C_Profile_P_MVP_Status
+{
+	opacity: 1;
+	saturation: 0;
+}
+
+.C_Profile_RatingChange
+{
+	width: 67px;
+	text-align: center;
+	vertical-align: center;
+	color: black;
+}
+
+.C_Profile_M_CommonInfo .C_Profile_RatingChange
+{
+	text-shadow: black 0 0px 0 2;
+}
+
+.MmrInc .C_Profile_M_CommonInfo .C_Profile_RatingChange
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#00a600), to(#00ff00));
+}
+
+.MmrDec .C_Profile_M_CommonInfo .C_Profile_RatingChange
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#c6150f), to(#e04136));
+}
+
+.C_Profile_P_RatingChange
+{
+	width: 53px;
+}
+
+.C_Profile_M_CommonInfo .C_Profile_FullRevealHint
+{
+	font-size: 16px;
+	text-overflow: shrink;
+	text-align: right;
+	padding-right: 5px;
+	width: fill-parent-flow(1);
+	color: #444c6e;
+	color: #90a1e9;
+	transition: color 0.15s ease-in-out 0s;
+	background-image: url("s2r://panorama/images/custom_game/end_game/eg_button_bg_png.vtex");
+	background-size: 100%;
+	margin-left: 30px;
+	padding: 5px;
+	text-align: center;
+	color: #f6f6f6;
+	text-shadow: black 0px 0px 3px 2;
+}
+
+.C_Profile_Match:hover .C_Profile_M_CommonInfo .C_Profile_FullRevealHint
+{
+	brightness: 1.3;
+	box-shadow: black 0 0 4px 0;
+}
+
+.C_ProfileFullMatch
+{
+	flow-children: down;
+	visibility: collapse;
+	min-width: 1000px;
+}
+
+.C_ProfileFullMatch.Activated
+{
+	visibility: visible;
+}
+
+.C_Profile_M_FI_Foot
+{
+	width: 100%;
+	margin-top: 12px;
+}
+
+.C_Profile_M_FI_BaseInfo
+{
+	flow-children: down;
+	margin-left: 4px;
+}
+
+.C_Profile_M_FI_BI_MatchInfo
+{
+	color: #355872;
+	font-weight: lighter;
+	text-shadow: rgba(0, 0, 0, 0.6) 1px 1px 1px 2;
+}
+
+.C_ProfileFullMatch.Activated:not(.BFullLoaded) .C_Profile_M_FI_BI_MatchInfo.NeedFullLoad
+{
+	opacity: 0;
+}
+
+.C_Profile_M_FI_BI_MatchInfo_Value
+{
+	color: #5d86bf;
+}
+
+.C_Profile_M_FI_Close
+{
+	padding: 3px 34px;
+	height: 40px;
+	horizontal-align: right;
+	vertical-align: bottom;
+	background-image: url("s2r://panorama/images/custom_game/end_game/eg_button_bg_png.vtex");
+	background-size: 100%;
+	margin-bottom: 3px;
+}
+
+.C_Profile_M_FI_Close:hover
+{
+	brightness: 1.5;
+}
+
+.C_Profile_M_FI_Close:active
+{
+	brightness: 0.8;
+	sound: "General.ButtonClick";
+}
+
+.C_Profile_M_FI_Close Label
+{
+	align: center center;
+	text-align: center;
+	text-transform: uppercase;
+	color: #f6f6f6;
+	text-shadow: black 0px 0px 3px 2;
+}
+
+.C_Profile_M_FI_Headers
+{
+	flow-children: right;
+	height: 46px;
+}
+
+.C_Profile_M_FI_Headers > Label
+{
+	padding-top: 5px;
+	align: center bottom;
+	text-align: center;
+	font-size: 18px;
+	color: #90999b;
+	text-transform: uppercase;
+	text-overflow: shrink;
+	text-shadow: black 0px 1px 1px 2;
+}
+
+.C_Profile_M_FI_Content
+{
+	flow-children: right;
+	visibility: collapse;
+}
+
+.C_ProfileFullMatch.Activated.BFullLoaded .C_Profile_M_FI_Content
+{
+	visibility: visible;
+}
+
+#C_Profile_M_FI_Teams
+{
+	flow-children: down;
+	padding: 41px 5px 8px 4px;
+}
+
+.C_Profile_M_FI_Teams_PlayerDetails_Wrap
+{
+	overflow: scroll clip;
+	flow-children: down;
+	padding: 0 4px 8px 0;
+	background-color: #161616;
+	z-index: -1;
+	margin-left: -5px;
+}
+
+.C_Profile_M_FI_Teams_PlayerDetails_Wrap HorizontalScrollBar
+{
+	height: 8px;
+	box-shadow: transparent 0 0 0 0;
+}
+
+.C_Profile_M_FI_Teams_PlayerDetails_Wrap #ScrollThumb
+{
+	background-color: #5c6a69;
+}
+
+#C_Profile_M_FI_Teams_PlayerDetails
+{
+	flow-children: down;
+	padding-top: -5px;
+}
+
+#C_Profile_M_FI_Teams_PlayerDetails > Panel
+{
+	flow-children: down;
+	margin-top: 5px;
+	padding-top: -1px;
+}
+
+.C_Profile_Team
+{
+	flow-children: right;
+	margin-top: 5px;
+	box-shadow: hollow black 0 0 3px 0;
+}
+
+.C_Profile_BTI_StatContainer
+{
+	flow-children: down;
+	height: 100%;
+}
+
+.C_Profile_BTI_LogoContainer
+{
+	width: 57px;
+	height: 35px;
+	padding: 4px 16px;
+	background-color: #0f1113;
+}
+
+#C_Profile_BTI_Logo
+{
+	wash-color: black;
+}
+
+.C_Profile_BTI_Score
+{
+	width: 100%;
+	height: 100%;
+	margin-top: 1px;
+	background-color: #0f1113;
+}
+
+.C_Profile_BTI_Score Label
+{
+	align: center center;
+	text-align: center;
+	text-shadow: black 1px 0px 2px 3;
+	color: #f4f5f5;
+	letter-spacing: 1px;
+	font-size: 30px;
+	text-overflow: shrink;
+	font-weight: semi-bold;
+}
+
+.TeamPlace_1 .C_Profile_BTI_Score Label
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#f78e0c), color-stop(0.6, #f7c90c), to(#f78e0c));
+}
+
+#C_Profile_Team_PlayersContainer
+{
+	flow-children: down;
+	padding-top: -1px;
+}
+
+.C_Profile_Player_BasicInfo
+{
+	margin-top: 1px;
+	flow-children: right;
+	background-color: #0f1113;
+	width: 305px;
+}
+
+.C_Profile_Player_BasicInfo.BLocalPlayer
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from(#292e33), color-stop(0.4, #1d2023), color-stop(0.6, #1d2023), to(#292e33) );
+}
+
+.C_Profile_Player_DetailsInfo
+{
+	flow-children: right;
+	background-color: #101010;
+	height: 35px;
+	margin-top: 1px;
+}
+
+.C_Profile_Player_DetailsInfo.BLocalPlayer
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from(#2c3232), color-stop(0.4, #4d5656), color-stop(0.6, #4d5656), to(#2c3232) );
+}
+
+#C_Profile_P_HeroImage
+{
+	height: 35px;
+	width: 62px;
+	border: 1px solid black;
+}
+
+.C_Profile_P_NameAndHero
+{
+	height: 100%;
+	margin: 1px 0 2px 4px;
+	flow-children: down;
+}
+
+#C_Profile_P_PlayerName
+{
+	margin-top: -1px;
+}
+
+#C_Profile_P_PlayerName Label
+{
+	font-size: 14px;
+}
+
+.C_Profile_P_HeroName
+{
+	color: #9aa19a;
+	font-weight: lighter;
+	font-size: 15px;
+}
+
+.BLocalPlayer .C_Profile_P_HeroName
+{
+	color: white;
+}
+
+#C_Profile_FullMatchesContainer
+{
+	padding: 4px 8px 4px 4px;
+	padding: 10px;
+	background-image: url("s2r://panorama/images/custom_game/end_game/fade_bg_low_png.vtex");
+	background-size: 100%;
+	box-shadow: black 0 0 4px 0;
+	align: center center;
+	visibility: collapse;
+}
+
+#C_Profile_FullMatchesContainer.Show
+{
+	visibility: visible;
+}
+
+.C_Profile_StatContainer
+{
+	height: 100%;
+}
+
+.C_Profile_StatContainer Label:not(.C_Profile_KillEntity_Count)
+{
+	align: center center;
+	text-align: center;
+	text-overflow: shrink;
+	height: 24px;
+	font-size: 20px;
+	font-weight: lighter;
+	text-shadow: black 0 0 3px 2;
+}
+
+.BLocalPlayer .C_Profile_StatContainer Label:not(.C_Profile_KillEntity_Count)
+{
+	font-weight: semi-bold;
+	color: white;
+}
+
+#C_Profile_RatingContainer Label
+{
+	font-size: 18px;
+	height: 21px;
+	text-shadow: black 0 0px 0 2;
+	width: 100%;
+	text-align: center;
+}
+
+.MmrInc #C_Profile_RatingContainer Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#00a600), to(#00ff00));
+}
+
+.ot3_jungle_quintet .TeamPlace_2 .MmrInc #C_Profile_RatingContainer Label,.ot3_desert_octet .TeamPlace_2 .MmrInc #C_Profile_RatingContainer Label,.ot3_gardens_duo .TeamPlace_3 .MmrInc #C_Profile_RatingContainer Label,.ot3_necropolis_ffa .TeamPlace_4 .MmrInc #C_Profile_RatingContainer Label,.ot3_necropolis_ffa .TeamPlace_5 .MmrInc #C_Profile_RatingContainer Label
+{
+	color: #68c461;
+}
+
+.MmrDec #C_Profile_RatingContainer Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#c6150f), to(#e04136));
+}
+
+.ot3_jungle_quintet .TeamPlace_2 .MmrDec #C_Profile_RatingContainer Label,.ot3_desert_octet .TeamPlace_3 .MmrDec #C_Profile_RatingContainer Label,.ot3_gardens_duo .TeamPlace_3 .MmrDec #C_Profile_RatingContainer Label,.ot3_necropolis_ffa .TeamPlace_4 .MmrDec #C_Profile_RatingContainer Label,.ot3_necropolis_ffa .TeamPlace_5 .MmrDec #C_Profile_RatingContainer Label
+{
+	color: #ee685f;
+}
+
+#C_Profile_P_PlayerName
+{
+	width: 200px;
+}
+
+#C_Profile_RatingContainer,.C_Profile_M_FI_H_RatingChange
+{
+	width: 83px;
+}
+
+.C_Profile_M_FI_H_Kills,.C_Profile_M_FI_H_Deaths,.C_Profile_M_FI_H_Assists,#C_Profile_KillsContainer,#C_Profile_DeathsContainer,#C_Profile_AssistsContainer
+{
+	width: 50px;
+}
+
+.C_Profile_M_FI_Headers .C_Profile_M_FI_H_Networth,#C_Profile_Networth
+{
+	width: 140px;
+	color: #d4b531;
+}
+
+#C_Profile_Networth Label
+{
+	color: #d4b531;
+}
+
+.C_Profile_M_FI_H_DamageDealt,#C_Profile_HeroDamage
+{
+	width: 180px;
+}
+
+.C_Profile_M_FI_H_DamageTaken,#C_Profile_DamageTaken
+{
+	width: 180px;
+}
+
+.C_Profile_M_FI_H_Healing,#C_Profile_Heal
+{
+	width: 180px;
+}
+
+.C_Profile_M_FI_H_Stuns,#C_Profile_Stuns
+{
+	width: 150px;
+}
+
+.C_ProfileFullMatch_Header
+{
+	width: 100%;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 35px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#5d86bf), to(#6fb7ff));
+	text-shadow: black 1px 1px 1px 2;
+	margin-bottom: 5px;
+}
+
+.C_Profile_KDA_Stats_Container
+{
+	flow-children: right;
+	vertical-align: center;
+}
+
+.C_Profile_KDA_Stats
+{
+	width: 30px;
+	text-align: center;
+}
+
+.C_ProfileFullMatch_Loading_Container
+{
+	flow-children: right;
+	align: center center;
+	padding: 100px 0;
+}
+
+.C_ProfileFullMatch.BFullLoaded .C_ProfileFullMatch_Loading_Container
+{
+	visibility: collapse;
+}
+
+.C_ProfileFullMatch_Loading_Icon
+{
+	width: 25px;
+	height: 25px;
+	background-image: url("s2r://panorama/images/status_icons/loadingthrobber_round_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+	wash-color: #5d86bf;
+}
+
+.C_ProfileFullMatch.Activated:not(.BFullLoaded) .C_ProfileFullMatch_Loading_Icon
+{
+	animation-name: rotating;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'rotating'
+{
+	0%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+	25%
+	{
+		transform: rotateZ(90deg);
+	}
+	
+	50%
+	{
+		transform: rotateZ(180deg);
+	}
+	
+	75%
+	{
+		transform: rotateZ(270deg);
+	}
+	
+	100%
+	{
+		transform: rotateZ(360deg);
+	}
+	
+}
+
+.C_ProfileFullMatch_Loading_Text
+{
+	text-align: center;
+	font-size: 27px;
+	margin: 1px 0 0 8px;
+	font-weight: lighter;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#5d86bf), to(#6fb7ff));
+	vertical-align: center;
+}

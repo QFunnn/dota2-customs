@@ -1,0 +1,62 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_troll_warlord"
+{
+	"troll_warlord_whirling_axes_ranged"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"linked_abilities"
+			{
+				"troll_warlord_whirling_axes_melee"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"axe_damage"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+			"linked_abilities"
+			{
+				"troll_warlord_whirling_axes_melee"
+				{
+					"damage" "40"
+				}
+			}
+		}
+		"axe_spread"
+		{
+			"value" "4"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"axe_width" "5"
+			}
+			"linked_abilities"
+			{
+				"troll_warlord_whirling_axes_melee"
+				{
+					"max_range" "30"
+					"hit_radius" "30"
+				}
+			}
+		}
+	}
+}

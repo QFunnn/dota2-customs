@@ -1,0 +1,112 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_queenofpain"
+{
+	"queenofpain_shadow_strike"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "6"
+			"operator" "OP_MULTIPLY"
+			"linked_special_values"
+			{
+				"damage_interval"
+				{
+					"value" "-0.12"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target"	"0.2"
+					"multiplicative_base_value"	"2"
+				}
+			}
+		}
+		"strike_damage"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"duration_damage" "10"
+				"duration_heal" "5"
+			}
+		}
+		"aoe_radius"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"requires_scepter" "1"
+		}
+	}
+	"queenofpain_blink"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "6"
+		}
+		"shard_aoe"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"shard_damage"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+		}
+	}
+	"queenofpain_scream_of_pain"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+		}
+		"area_of_effect"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"damage"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+		}
+	}
+	"queenofpain_sonic_wave"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"damage"
+		{
+			"value" "70"
+			"operator" "OP_ADD"
+		}
+		"final_aoe"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"knockback_distance" "35"
+				"starting_aoe" "10"
+			}
+		}
+	}
+}

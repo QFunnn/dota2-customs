@@ -1,0 +1,96 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf59:version{6cf97bfa-52a0-441a-87f0-856fb7aaa129} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetControlPointPositions"
+			m_bOrient = true
+			m_vecCP4Pos = [ 0.0, 0.0, 128.0 ]
+			m_vecCP3Pos = [ 0.0, 0.0, 128.0 ]
+			m_vecCP2Pos = [ 0.0, 0.0, 128.0 ]
+			m_vecCP1Pos = [ 0.0, 0.0, 128.0 ]
+		},
+		{
+			_class = "C_OP_SetControlPointOrientation"
+			m_vecRotationB = [ 0.0, -90.0, 80.0 ]
+			m_vecRotation = [ 0.0, -90.0, 80.0 ]
+		},
+		{
+			_class = "C_OP_SetControlPointOrientation"
+			m_nCP = 2
+			m_vecRotation = [ 90.0, -30.0, 150.0 ]
+			m_vecRotationB = [ 90.0, -30.0, 150.0 ]
+		},
+		{
+			_class = "C_OP_SetControlPointOrientation"
+			m_nCP = 3
+			m_vecRotation = [ 0.0, 80.0, -20.0 ]
+			m_vecRotationB = [ 0.0, 80.0, -20.0 ]
+		},
+		{
+			_class = "C_OP_SetControlPointOrientation"
+			m_nCP = 4
+			m_vecRotation = [ 70.0, -40.0, -150.0 ]
+			m_vecRotationB = [ 70.0, -40.0, -150.0 ]
+		},
+		{
+			_class = "C_OP_SetParentControlPointsToChildCP"
+			m_bSetOrientation = true
+			m_nFirstSourcePoint = 1
+			m_nNumControlPoints = 6
+			m_nChildControlPoint = 1
+		},
+		{
+			_class = "C_OP_SetSingleControlPointPosition"
+			m_vecCP1Pos = [ 5.75, 4.3, -12.0 ]
+			m_nCP1 = 7
+		},
+		{
+			_class = "C_OP_SetSingleControlPointPosition"
+			m_nCP1 = 8
+			m_vecCP1Pos = [ 5.75, -4.5, -12.0 ]
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/cosmetic/auras/season_6/season_6_top_10l0.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/cosmetic/auras/season_6/season_6_top_10l0.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/cosmetic/auras/season_6/season_6_top_10l0.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/cosmetic/auras/season_6/season_6_top_10l0.vpcf"
+		},
+	]
+}

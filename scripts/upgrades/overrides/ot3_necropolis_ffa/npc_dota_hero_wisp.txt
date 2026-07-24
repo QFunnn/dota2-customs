@@ -1,0 +1,117 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_wisp"
+{
+	"wisp_tether"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"linked_special_values"
+			{
+				"damage" "15"
+			}
+		}
+		"movespeed"
+		{
+			"value" "4"
+			"operator" "OP_ADD"
+		}
+		"tether_heal_amp"
+		{
+			"value" "8"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"wisp_spirits"
+	{
+		"max_range"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"max_count" "8"
+		}
+		"hero_damage"
+		{
+			"value" "15"
+			"operator" "OP_ADD"
+			"talents"
+			{
+				"special_bonus_unique_wisp"		"x1.5"
+			}
+			"linked_special_values"
+			{
+				"creep_damage"
+				{
+					"value" "5"
+					"operator" "OP_ADD"
+					"talents"
+					{
+						"special_bonus_unique_wisp"		"x1.5"
+					}
+				}
+			}
+		}
+		"explode_radius"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"hit_radius" "35"
+				"hero_hit_radius" "35"
+			}
+		}
+	}
+	"wisp_overcharge"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "11"
+			"operator" "OP_MULTIPLY"
+			"max_count" "7"
+		}
+		"bonus_attack_speed"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+		}
+		"bonus_spell_amp"
+		{
+			"value" "4"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"hp_regen"
+		{
+			"value" "0.15"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"wisp_relocate"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "11"
+			"operator" "OP_MULTIPLY"
+		}
+		"cast_delay"
+		{
+			"value" "-0.9"
+			"operator" "OP_ADD"
+			"max_count" "1"
+		}
+	}
+}

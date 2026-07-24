@@ -1,0 +1,160 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_treant"
+{
+	"treant_natures_grasp"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "12"
+			"operator" "OP_MULTIPLY"
+			"max_count" "7"
+		}
+		"damage_per_second"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+		}
+		"latch_range"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"latch_vision" "35"
+			}
+		}
+	}
+	"treant_leech_seed"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "12"
+			"operator" "OP_MULTIPLY"
+			"max_count"	"5"
+			"linked_abilities"
+			{
+				"treant_natures_guise"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "12"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"flat_heal"
+		{
+			"value" "22.5"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"leech_heal" "10"
+				"leech_damage" "40"
+			}
+			"linked_abilities"
+			{
+				"treant_natures_guise"
+				{
+					"movement_bonus" "8"
+				}
+			}
+		}
+		"radius"
+		{
+			"value" "60"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"projectile_speed" "41"
+			}
+			"linked_abilities"
+			{
+				"treant_natures_guise"
+				{
+					"radius" "40"
+				}
+			}
+		}
+	}
+	"treant_living_armor"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "12"
+			"operator" "OP_MULTIPLY"
+		}
+		"heal_per_second"
+		{
+			"value" "15"
+			"operator" "OP_ADD"
+		}
+		"damage_block_base"
+		{
+			"value" "15"
+			"operator" "OP_ADD"
+		}
+	}
+	"treant_overgrowth"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "13"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"bloom_duration" "1"
+			}
+			"linked_abilities"
+			{
+				"treant_eyes_in_the_forest"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "13"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"radius"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"max_count" "8"
+			"linked_special_values"
+			{
+				"splash_radius" "50"
+			}
+			"linked_abilities"
+			{
+				"treant_eyes_in_the_forest"
+				{
+					"AbilityCastRange" "50"
+					"vision_aoe" "50"
+				}
+			}
+		}
+		"damage"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"splash_pct" "15"
+			}
+		}
+	}
+}

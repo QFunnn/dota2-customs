@@ -1,0 +1,116 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/scoreboard/scoreboard.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/party_highlighter/party_highlighter.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/party_highlighter/party_highlighter.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/scoreboard/scoreboard.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="Scoreboard_Team">
+			<Panel class="Scoreboard_Team">
+				<Panel class="Team_BG" />
+				<Panel class="TeamInfo">
+					<Panel id="TeamColor">
+						<Panel class="TeamColor_Overlay FullSize" />
+					</Panel>
+					<Panel id="TeamStats">
+						<Panel>
+							<Panel class="TeamLogo">
+								<Image id="TeamLogo_Color" src="s2r://panorama/images/custom_game/end_game/team_logo_color_png.vtex" />
+								<Image id="TeamLogo_Icon" />
+							</Panel>
+							<Label id="Team_OrbsCount" text="{d:orbs_count}" onmouseover="DOTAShowTitleTextTooltip(#end_game_orbs_count_header, #end_game_orbs_count)" onmouseout="DOTAHideTitleTextTooltip()" />
+						</Panel>
+					</Panel>
+					<Panel id="PlayersList" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="Scoreboard_Player">
+			<Panel class="Scoreboard_Player">
+				<Image id="HeroImageRoot">
+					<Image id="HeroImage" class="FullSize" />
+					<Panel class="PlayerShadow FullSize" />
+					<Image id="DisconnectState" src="s2r://panorama/images/custom_game/icon_disconnect_png.vtex" />
+				</Image>
+				<Panel id="UltimateState" />
+				<Panel id="PlayerInfo">
+					<Label id="PlayerName" text="{s:player_name}" />
+					<Label id="HeroNameAndLevel" text="#custom_scoreboard_hero_name_and_desc" />
+				</Panel>
+				<Panel class="Scoreboard_Stat KDA_Stat">
+					<Label text="{i:kills}" />
+				</Panel>
+				<Panel class="Scoreboard_Stat KDA_Stat">
+					<Label text="{i:deaths}" />
+				</Panel>
+				<Panel class="Scoreboard_Stat KDA_Stat">
+					<Label text="{i:assists}" />
+				</Panel>
+				<Panel class="Scoreboard_Stat Rank_Stat">
+					<Label text="{i:rank}" />
+				</Panel>
+				<Panel class="Scoreboard_Stat Scoreboard_RadialEntity">
+					<DOTAItemImage id="NeutralItem" scaling="stretch-to-fit-y-preserve-aspect" />
+				</Panel>
+				<Panel class="Scoreboard_Stat Scoreboard_RadialEntity HideForLocalPlayer">
+					<Button id="MuteButton_Voice" onmouseover="DOTAShowTextTooltip(#Scoreboard_Mute_Voice)" onmouseout="DOTAHideTextTooltip()" />
+				</Panel>
+				<Panel class="Scoreboard_Stat Scoreboard_RadialEntity HideForLocalPlayer">
+					<Button id="MuteButton_Text" onmouseover="DOTAShowTextTooltip(#Scoreboard_Mute_Text)" onmouseout="DOTAHideTextTooltip()" />
+				</Panel>
+				<Panel class="Scoreboard_Stat Scoreboard_RadialEntity">
+					<Button id="UpgradesForSpectators" />
+				</Panel>
+				<Panel class="Scoreboard_Stat DisableHelp">
+					<ToggleButton id="DisableHelpButton" onmouseover="DOTAShowTextTooltip(#Scoreboard_DisableHelp)" onmouseout="DOTAHideTextTooltip()" />
+				</Panel>
+				<Panel class="Scoreboard_Stat TeammateGold">
+					<Label text="{s:player_gold}" />
+				</Panel>
+				<Button id="Tip" class="Scoreboard_Stat" onmouseover="DOTAShowTextTooltip(#Scoreboard_tip_hint)" onmouseout="DOTAHideTextTooltip()">
+					<Label text="+++" />
+				</Button>
+				<Button id="Kick" onmouseover="DOTAShowTextTooltip(#Scoreboard_kick_hint)" onmouseout="DOTAHideTextTooltip()" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="Custom_ScoreboardRoot" hittest="false">
+		<Panel id="Scoreboard_HeadersRoot">
+			<Panel class="Scoreboard_Header SH_Score">
+				<Label text="" />
+			</Panel>
+			<Panel class="Scoreboard_Header SH_Player">
+				<Label text="Player" />
+			</Panel>
+			<Panel class="Scoreboard_Header SH_K">
+				<Label text="K" />
+			</Panel>
+			<Panel class="Scoreboard_Header SH_D">
+				<Label text="D" />
+			</Panel>
+			<Panel class="Scoreboard_Header SH_A">
+				<Label text="A" />
+			</Panel>
+			<Panel class="Scoreboard_Header SH_R">
+				<Label text="#leaderboard_rank" />
+			</Panel>
+		</Panel>
+		<Panel id="Scoreboard_TeamsList" />
+	</Panel>
+</root>

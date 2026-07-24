@@ -1,0 +1,163 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/payments/payments.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/cosmetics/cosmetics_rarities.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/payments/payments_const.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/payments/payments.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="BonusItem">
+			<Panel class="BonusItem">
+				<Panel class="BonusItem_IconRoot">
+					<Panel class="BonusItem_Border CI_Background">
+						<Image id="BonusItem_Icon" />
+					</Panel>
+				</Panel>
+				<Panel class="BonusItem_NameCount_Container">
+					<Label class="BonusItem_Name" text="{s:item_name}" />
+					<Label class="BonusItem_Count" text="x{d:item_count}" />
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="PaymentContainer" hittest="false">
+		<Panel class="PaymentWindow" id="PaymentWindow" onactivate="">
+			<Panel class="HeaderContainer">
+				<Label class="Header" text="#payment_window_header" />
+				<Label text="#close" class="Payment_Close" onactivate="ClosePaymentWindow()" />
+			</Panel>
+			<Panel class="ItemDetails">
+				<Image id="ItemImage" />
+				<Panel class="ItemDescriptionContainer">
+					<Label class="ItemName DonationInfoHidden" text="{s:item_name}" />
+					<Label class="ItemDescription DonationInfoHidden" html="true" text="{s:item_description}" />
+					<Label class="ItemDescription DonationInfo" html="true" text="#donation_hint_1" />
+				</Panel>
+			</Panel>
+			<Panel class="CurrencyType">
+				<Label class="CurrencyType_Hint" text="#currency_type_payment" />
+				<Button class="Button_CurrencyType_Money" onactivate="ChangeCurrencyType(&apos;Money&apos;)">
+					<Label text="#base_price" />
+				</Button>
+				<Button class="Button_CurrencyType_Currency" onactivate="ChangeCurrencyType(&apos;Currency&apos;)">
+					<Label text="#currency" />
+				</Button>
+			</Panel>
+			<Panel class="TypeOfPayment">
+				<Label text="#type_payment" />
+				<Button class="Button_PaymentType_OneTime" onactivate="SetPaymentMode(&apos;payment&apos;)" onmouseover="DOTAShowTextTooltip(#payment_window_one_time_hint)" onmouseout="DOTAHideTextTooltip()">
+					<Label text="#type_payment_one_time" />
+				</Button>
+				<Button class="Button_PaymentType_Reccuring" onactivate="SetPaymentMode(&apos;subscription&apos;)" onmouseover="DOTAShowTextTooltip(#payment_window_subscription_hint)" onmouseout="DOTAHideTextTooltip()">
+					<Label text="#type_payment_reccuring" />
+				</Button>
+			</Panel>
+			<Label id="SubDurationValueText" text="#supporter_duration_donate" html="true" />
+			<Panel class="SubSliderDurationContainer">
+				<Panel class="SubSliderWrap">
+					<TextButton class="SliderButton Minus" text="-" onactivate="ModifySubDuration(-1)" />
+					<SlottedSlider id="ItemCountSlider" class="HorizontalSlider" direction="horizontal" notches="30" onvaluechanged="OnCurrencySubDurationChanged()">
+						<Panel class="ItemCountSlider_Border" />
+						<Panel class="ItemCountSlider_BG" />
+					</SlottedSlider>
+					<TextButton class="SliderButton Plus" text="+" onactivate="ModifySubDuration(+1)" />
+				</Panel>
+				<Panel class="SliderMinMaxValuesContainer">
+					<Label class="SliderMin" text="1" />
+					<Label class="SliderMax" text="30" />
+				</Panel>
+			</Panel>
+			<Panel class="BonusItemsByPurchase_Container">
+				<Panel class="BonusItemsByPurchase_Header">
+					<Label text="#donate_bonus_items" />
+				</Panel>
+				<Panel id="BonusItemsByPurchase" />
+			</Panel>
+			<Label class="BonusItemsByPurchase_HintDuration" text="#donate_bonus_items_duration_hint" html="true" />
+			<Label class="BonusItemsByPurchase_HintGiftCode" text="#forced_gift_code_bonus_items_hint" html="true" />
+			<Panel class="ItemQuantityContainer">
+				<Button id="Dec" onactivate="ModifyQuantity(-1)">
+					<Label text="-" />
+				</Button>
+				<Label text="{d:quantity}" />
+				<Button id="Inc" onactivate="ModifyQuantity(+1)">
+					<Label text="+" />
+				</Button>
+			</Panel>
+			<Panel class="ItemQuantityHint">
+				<Label class="Shift" text="SHIFT x5" />
+				<Label class="Alt" text="ALT x10" />
+				<Label class="Ctrl" text="CTRL x50" />
+			</Panel>
+			<Panel class="CurrencyDetailsBlock DonationInfo">
+				<Panel class="Payments_Separator" style="margin-top: 10px;" />
+				<Label class="ItemDescription Donate" html="true" text="#donation_hint_2" />
+				<Label class="ItemDescription Donate Donate2" html="true" text="#donation_hint_3" />
+				<Panel class="Payments_Separator" />
+			</Panel>
+			<ToggleButton id="GiftCodeCheckbox" onmouseover="DOTAShowTextTooltip(#payment_window_gift_code_hint)" onmouseout="DOTAHideTextTooltip()" onactivate="SetGiftCodeCheckboxStatus()" text="#payment_window_gift_code_checkbox" />
+			<Panel class="ItemPriceContainer">
+				<Label class="ItemPricePrefix" text="#payment_window_total" />
+				<Label class="ItemPrice" id="ItemPrice" text="#base_price" />
+			</Panel>
+			<TextButton class="CurrencyPaymentConfirm" text="{d:current_currency_price}" onactivate="PurchaseItemByCurrency()" />
+			<Label class="NotEnoughCurrencyButton" text="#not_enough_glory_hint" html="true" onactivate="OpenGloryShop()" />
+			<Label id="SubDurationWarning" text="#sub_duration_warning" html="true" />
+			<Label class="PaymentMenthodHeader" text="#payment_window_method_header" />
+			<Panel class="PaymentModeSelection">
+				<Panel class="PaymentMethodsContainer">
+					<Panel class="Payments_FullSize">
+						<Button class="PaymentMethod" id="card" onactivate="RequestPaymentUrlWithMethod(&apos;card&apos;)">
+							<Image src="s2r://panorama/images/custom_game/payments/payment_card_png.vtex" />
+						</Button>
+						<Button class="PaymentMethod" id="wechat_pay" onactivate="RequestPaymentUrlWithMethod(&apos;wechat_pay&apos;)">
+							<Image src="s2r://panorama/images/custom_game/payments/payment_wechat_png.vtex" />
+						</Button>
+					</Panel>
+					<Panel class="Payments_Separator" />
+					<Panel class="Payments_CompactSize">
+						<Button class="PaymentMethod" id="ru_card" onactivate="RequestPaymentUrlWithMethod(&apos;sberpay_ru&apos;, &apos;payssion&apos;)">
+							<Image src="s2r://panorama/images/custom_game/payments/bankcard_ru_png.vtex" />
+						</Button>
+						<Button class="PaymentMethod" id="ru_sber" onactivate="RequestPaymentUrlWithMethod(&apos;card_ru&apos;, &apos;payssion&apos;)">
+							<Image src="s2r://panorama/images/custom_game/payments/sberbank_ru_png.vtex" />
+						</Button>
+						<Button class="PaymentMethod" id="ru_tinkoff" onactivate="RequestPaymentUrlWithMethod(&apos;tbank_ru&apos;, &apos;payssion&apos;)">
+							<Image src="s2r://panorama/images/custom_game/payments/tinkoff_ru_png.vtex" />
+						</Button>
+						<Button class="PaymentMethod" id="ru_yoomoney" onactivate="RequestPaymentUrlWithMethod(&apos;yoomoney_ru&apos;, &apos;payssion&apos;)">
+							<Image src="s2r://panorama/images/custom_game/payments/yoomoney_ru_png.vtex" />
+						</Button>
+					</Panel>
+					<Panel />
+				</Panel>
+				<Label class="PaymentProcessHint" text="#payment_process_hint" />
+			</Panel>
+		</Panel>
+		<Panel id="HTMLViewer" onactivate="">
+			<Panel id="HTMLViewerContent">
+				<Panel id="HTML_Loading">
+					<Label class="PaymentMessage" text="#html_loading" />
+					<Panel class="Spinner" />
+				</Panel>
+				<HTML id="HTML_Content" acceptsinput="true" hittest="true" />
+			</Panel>
+			<Label text="#close" class="Payment_Close" onactivate="SetHTMLViewerStatus(&apos;closed&apos;)" />
+		</Panel>
+	</Panel>
+</root>

@@ -1,0 +1,173 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_brewmaster"
+{
+	"brewmaster_cinder_brew"
+	{
+		"total_ignite_damage"
+		{
+			"value" "70"
+			"operator" "OP_ADD"
+			"talents"
+			{
+				"special_bonus_unique_brewmaster_5"	"x1.4"
+			}
+		}
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"barrel_impact_damage"
+		{
+			"value" "70"
+			"operator" "OP_ADD"
+		}
+	}
+	"brewmaster_drunken_brawler"
+	{
+		"armor"
+		{
+			"value" "0.25"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"magic_resist"
+				{
+					"value" "0.5"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target"			"100"
+					"multiplicative_base_value"		"20"
+				}
+			}
+			"linked_abilities"
+			{
+				"brewmaster_earth_hurl_boulder"
+				{
+					"damage" "40"
+					"speed" "40"
+				}
+			}
+		}
+		"crit_chance"
+		{
+			"value" "4"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"crit_multiplier" "20"
+				"attack_speed" "10"
+			}
+			"linked_abilities"
+			{
+				"brewmaster_fire_permanent_immolation"
+				{
+					"damage" "30"
+					"radius"
+					{
+						"value" "40"
+						"operator" "OP_MULTIPLY"
+
+						"multiplicative_target"			"620"
+						"multiplicative_base_value"		"220"
+					}
+				}
+			}
+		}
+		"dodge_chance"
+		{
+			"value" "6"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"bonus_move_speed" "6"
+			}
+			"linked_abilities"
+			{
+				"brewmaster_storm_dispel_magic"
+				{
+					"damage" "400"
+					"radius"
+					{
+						"value" "45"
+						"operator" "OP_MULTIPLY"
+
+						"multiplicative_target"			"1000"
+						"multiplicative_base_value"		"600"
+					}
+				}
+				"brewmaster_storm_wind_walk"
+				{
+					"bonus_damage" "110"
+					"bonus_movement_speeed" "30"
+				}
+			}
+		}
+	}
+	"brewmaster_primal_split"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			
+			"linked_abilities"
+			{
+				"brewmaster_earth_hurl_boulder"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+				"brewmaster_storm_dispel_magic"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+				"brewmaster_storm_cyclone"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+				"brewmaster_storm_wind_walk"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"brewling_added_health"
+		{
+			"value"	"300"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"tooltip_earth_brewling_hp" "300"
+				"tooltip_storm_brewling_hp" "300"
+				"tooltip_fire_brewling_hp" "300"
+			}
+		}
+	}
+}

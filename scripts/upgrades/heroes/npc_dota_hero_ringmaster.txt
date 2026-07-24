@@ -1,0 +1,155 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_ringmaster"
+{
+	"ringmaster_tame_the_beasts"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "11"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"damage_min"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+
+			"linked_special_values"
+			{
+				"damage_max"
+				{
+					"value"	"120"
+				}
+			}
+		}
+		"start_width"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "10"
+
+			"linked_special_values"
+			{
+				"end_width"
+				{
+					"value"	"35"
+				}
+			}
+		}
+	}
+	"ringmaster_the_box"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"multiplicative_target"	"76.67"
+
+			"linked_special_values"
+			{
+				"explosion_damage"
+				{
+					"value"	"50"
+				}
+			}
+		}
+		"magic_resist"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+			"max_count"	"4"
+		}
+		"leash_radius" // TODO: fix this not updating AbilityCastRange indicator
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+
+			"linked_special_values"
+			{
+				"move_speed"
+				{
+					"value"	"4"
+				}
+				"explosion_radius"
+				{
+					"value"	"30"
+				}
+			}
+		}
+	}
+	"ringmaster_impalement"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "12"
+			"operator" "OP_MULTIPLY"
+		}
+		"damage_impact"
+		{
+			"value" "75"
+			"operator" "OP_ADD"
+
+			"linked_special_values"
+			{
+				"bleed_health_pct"
+				{
+					"value"	"0.5"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target"			"10"
+					"multiplicative_base_value"		"5"
+				}
+			}
+		}
+		// Truly one of the upgrades of all time
+		// "slow_duration"
+		// {
+		// 	"value" "0.2"
+		// 	"operator" "OP_ADD"
+		// }
+		// Would've been cool but its a boolean not a number sadly
+		// "dagger_pass_through"
+		// {
+		// 	"value" "1"
+		// 	"operator" "OP_ADD"
+		// 	"min_rarity" "epic"
+		// }
+	}
+	"ringmaster_wheel"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "11"
+			"operator" "OP_MULTIPLY"
+		}
+		"mesmerize_radius"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"aura_damage"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+
+			"linked_special_values"
+			{
+				"explosion_damage"
+				{
+					"value"	"150"
+				}
+			}
+		}
+	}
+}

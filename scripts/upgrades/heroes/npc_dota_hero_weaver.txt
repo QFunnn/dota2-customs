@@ -1,0 +1,104 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_weaver"
+{
+	"weaver_threads_of_fate"
+	{
+		"damage_per_thread_hero"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+		}
+		"slow_duration"
+		{
+			"value" "0.45"
+			"operator" "OP_ADD"
+			"max_count" "4"
+		}
+	}
+	"weaver_the_swarm"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "8"
+		}
+		"damage"
+		{
+			"value" "7"
+			"operator" "OP_ADD"
+		}
+		"attack_rate"
+		{
+			"value" "-0.05"
+			"operator" "OP_MULTIPLY"
+			
+			"multiplicative_target"			"0.075"
+			"multiplicative_base_value"		"0.75"
+		}
+		"duration"
+		{
+			"value" "2"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"count" "2"
+				"spawn_radius" "20"
+			}
+		}
+	}
+	"weaver_shukuchi"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"damage"
+		{
+			"value" "85"
+			"operator" "OP_ADD"
+		}
+		"radius"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"shukuchi_attack_mark_radius" "40"
+			}
+		}
+	}
+	"weaver_geminate_attack_lua"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"bonus_damage"
+		{
+			"value" "55"
+			"operator" "OP_ADD"
+		}
+	}
+	"weaver_time_lapse"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+	}
+}

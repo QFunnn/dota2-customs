@@ -1,0 +1,262 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.SeasonResetContainer
+{
+	align: center center;
+	flow-children: down;
+	margin-bottom: 200px;
+	opacity: 0;
+	visibility: collapse;
+}
+
+.SeasonResetImage
+{
+	width: 400px;
+	height: 200px;
+	align: center center;
+}
+
+.SeasonResetNotification
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/season_reset_bg_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	box-shadow: fill rgba(0, 0, 0, 0.5) 0px 1px 5px 3px;
+	border: 1px solid black;
+	flow-children: down;
+	padding: 10px 20px 20px 20px;
+}
+
+.visible
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+.SeasonResetHeader
+{
+	align: center top;
+	margin-bottom: 10px;
+	text-transform: uppercase;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#e97f15), to(#f3c872));
+	font-size: 30px;
+	font-weight: semi-bold;
+	text-shadow: 2px 2px 0px 2 #000000;
+}
+
+.SeasonResetDescription
+{
+	align: center center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align: center;
+	color: #dfe1f4;
+	text-shadow: 0 0 4px 2 black;
+	font-size: 18px;
+}
+
+.ResetRatingValue
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#df9724), to(#fee1b8));
+}
+
+.NextSeasonDate
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#df9724), to(#fee1b8));
+}
+
+.NewRatingContainer
+{
+	align: center center;
+	flow-children: right;
+	margin-top: 10px;
+}
+
+.NewRatingContainer > Label
+{
+	font-size: 20px;
+	color: #dfe1f4;
+	text-shadow: 0 0 4px 2 black;
+	vertical-align: center;
+	margin-bottom: 1px;
+}
+
+.NewRatingContainer .NewRatingHeader_MapName
+{
+	background-color: rgb(21, 22, 26);
+	border: 1px solid #6e747d;
+	border-radius: 3px;
+	text-align: center;
+	font-weight: lighter;
+	padding: 1px 10px;
+	margin: 0 2px;
+	color: #cbc9d6;
+	font-size: 18px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#dcdeff), to(#959da8));
+}
+
+.NewRatingWrap
+{
+	align: center center;
+	width: 94px;
+	height: 29px;
+	background-size: 100%;
+}
+
+.ot3_necropolis_ffa .NewRatingWrap
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/leaderboards_cup_ffa_png.vtex");
+}
+
+.ot3_gardens_duo .NewRatingWrap
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/leaderboards_cup_duos_png.vtex");
+}
+
+.ot3_jungle_quintet .NewRatingWrap
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/leaderboards_cup_x5_png.vtex");
+}
+
+.ot3_desert_octet .NewRatingWrap
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/leaderboards_cup_x8_png.vtex");
+}
+
+#LocalPlayerRating
+{
+	width: 52px;
+	height: 22px;
+	text-align: center;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#e19e46), to(#ffcf3e));
+	font-size: 18px;
+	text-shadow: 0px 0px 2px 1 rgba(0, 0, 0, 1);
+	transition: height 0.2s ease-in-out 0s, width 0.2s ease-in-out 0s;
+	text-overflow: shrink;
+	align: right center;
+	margin-left: 0px;
+	margin-top: 4px;
+	margin-right: 7px;
+}
+
+.SR_Confirm
+{
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/custom_game/collection/button_confirm_png.vtex");
+	background-size: 100%;
+	box-shadow: rgba(0, 0, 0, 0.8) 0px 1px 5px -1px;
+	transition: brightness 0.1s ease-in-out 0s;
+	padding: 9px 30px;
+	margin-top: 10px;
+}
+
+.SR_Confirm:hover:not(.Cooldown)
+{
+	brightness: 1.5;
+}
+
+.SR_Confirm:active:not(.Cooldown)
+{
+	brightness: 0.8;
+	sound: "General.ButtonClick";
+}
+
+.SR_ConfirmLabel
+{
+	align: center center;
+	text-align: center;
+	text-transform: uppercase;
+	margin-top: 1px;
+	color: #f6f0e6;
+	text-shadow: black 0px 1px 3px 2;
+}
+
+#ResetRewardsContainer
+{
+	margin-top: 10px;
+	horizontal-align: center;
+	flow-children: right;
+	padding-right: 20px;
+}
+
+.ResetReward
+{
+	flow-children: down;
+	width: 120px;
+	margin: 20px 0 0 20px;
+}
+
+.ResetReward.TREASURES
+{
+	width: 185px;
+}
+
+.RewardBorder
+{
+	width: 100%;
+	height: width-percentage(100%);
+	padding: 2px;
+	box-shadow: black 0 0 3px 1;
+}
+
+.ResetReward.TREASURES .RewardBorder
+{
+	height: 120px;
+}
+
+#ResetRewardIcon
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#23242b), to(#1a1b1f));
+	width: 100%;
+	height: 100%;
+	background-position: 50%;
+	background-repeat: no-repeat;
+}
+
+.Reward_currency #ResetRewardIcon
+{
+	background-size: 90px;
+	background-image: url("s2r://panorama/images/custom_game/collection/currency_icon_240_png.vtex");
+}
+
+.ResetRewardAmount
+{
+	text-align: center;
+	font-size: 17px;
+	font-weight: lighter;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from(transparent), color-stop(0.5, rgba(0, 0, 0, 0.76)), to(rgba(0, 0, 0, 0.96)) );
+	padding: 0 5px 0 10px;
+	min-width: 35px;
+	text-align: right;
+	align: right bottom;
+	text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 3px 2;
+	color: #bccee2;
+}
+
+.ResetRewardName
+{
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.6);
+	text-align: center;
+	padding: 6px 3px 4px 3px;
+	text-transform: uppercase;
+	font-size: 16px;
+	color: #ebebeb;
+	text-shadow: black 0px 1px 3px 2;
+	text-overflow: shrink;
+}
+
+.Reward_currency .ResetRewardName
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#f58907), to(#f9d64b));
+}

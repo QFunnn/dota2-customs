@@ -1,0 +1,117 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_death_prophet"
+{
+	"death_prophet_witchcraft"
+	{
+		"movement_speed_pct"
+		{
+			"value" "4"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"cooldown_reduction_pct" "2"
+			}
+		}
+	}
+	"death_prophet_carrion_swarm"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"damage"
+		{
+			"value" "60"
+			"operator" "OP_ADD"
+		}
+		"end_radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"range" "40"
+				"start_radius" "30"
+			}
+		}
+	}
+	"death_prophet_silence"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"death_prophet_spirit_siphon"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"damage"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+		}
+		"haunt_duration"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+			"max_count" "4"
+			"linked_special_values"
+			{
+				"siphon_buffer" "30"
+			}
+		}
+	}
+	"death_prophet_exorcism"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"average_damage"
+		{
+			"value" "7"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"max_damage" "7"
+				"min_damage" "7"
+				"spirits" "1"
+				"ghost_spawn_rate"
+				{
+					"value" "-0.0031"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target"			"0"
+					"multiplicative_base_value"		"0.1"
+				}
+				"scepter_spirit_bonus_damage" "5"
+			}
+		}
+	}
+}

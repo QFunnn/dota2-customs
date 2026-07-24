@@ -1,0 +1,135 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_bloodseeker"
+{
+	"bloodseeker_sanguivore"
+	{
+		"half_bonus_aoe"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"bloodseeker_bloodrage"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "9"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"attack_speed"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+		}
+		"spell_amp"
+		{
+			"value" "4"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"damage_pct"
+				{
+					"value" "-0.05"
+					"operator" "OP_MULTIPLY"
+		
+					"multiplicative_target"			"0"
+					"multiplicative_base_value"		"0.5"
+				}
+			}
+		}
+	}
+	"bloodseeker_blood_bath"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "5"
+			"operator" "OP_MULTIPLY"
+			"max_count" "8"
+			"linked_special_values"
+			{
+				"delay"
+				{
+					"value" "-0.13"
+					"operator" "OP_MULTIPLY"
+		
+					"multiplicative_target"			"0.26"
+					"multiplicative_base_value"		"2.6"
+				}
+			}
+		}
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"damage"
+		{
+			"value" "45"
+			"operator" "OP_ADD"
+		}
+	}
+	"bloodseeker_thirst"
+	{
+		"max_bonus_pct"
+		{
+			"value" "2"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"visibility_threshold_pct" "2"
+				"invis_threshold_pct" "2"
+			}
+			"linked_abilities"
+			{
+				"bloodseeker_blood_mist"
+				{
+					"radius" "20"
+				}
+			}
+		}
+		"bonus_movement_speed"
+		{
+			"value" "5.25"
+			"operator" "OP_ADD"
+			"max_count" "8"
+		}
+	}
+	"bloodseeker_rupture"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"movement_damage_pct"
+		{
+			"value" "8"
+			"operator" "OP_ADD"
+			
+			"linked_special_values"
+			{
+				"hp_pct"
+				{
+					"value" "1.5"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target"			"50"
+					"multiplicative_base_value"		"15"
+				}
+			}
+		}
+	}
+}

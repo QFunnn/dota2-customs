@@ -1,0 +1,110 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_tusk"
+{
+	"tusk_bitter_chill"
+	{
+		"attack_speed_slow"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+		}
+	}
+	"tusk_ice_shards"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "18"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"shard_damage"
+		{
+			"value" "90"
+			"operator" "OP_ADD"
+		}
+		"shard_speed"
+		{
+			"value" "300"
+			"operator" "OP_ADD"
+			"max_count" "4"
+		}
+	}
+	"tusk_snowball"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "4"
+		}
+		"snowball_damage"
+		{
+			"value" "80"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"snowball_damage_bonus" "25"
+			}
+		}
+		"snowball_speed"
+		{
+			"value" "130"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"linked_special_values"
+			{
+				"snowball_grab_radius" "80"
+			}
+		}
+	}
+	"tusk_tag_team"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "12"
+			"operator" "OP_MULTIPLY"
+			"max_count" "8"
+		}
+		"bonus_damage"
+		{
+			"value" "15"
+			"operator" "OP_ADD"
+		}
+		"radius"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"max_count"	"8"
+		}
+	}
+	"tusk_walrus_punch"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "11"
+			"operator" "OP_MULTIPLY"
+			"max_count" "8"
+		}
+		"crit_multiplier"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"linked_abilities"
+			{
+				"tusk_walrus_kick"
+				{
+					"damage" "55"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,144 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_dawnbreaker"
+{
+	"dawnbreaker_break_of_dawn"
+	{
+		"max_dmg_pct"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+		}
+	}
+	"dawnbreaker_fire_wreath"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"swipe_radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"smash_radius" "30"
+			}
+		}
+		"swipe_damage"
+		{
+			"value" "15"
+			"operator" "OP_ADD"
+		}
+	}
+	"dawnbreaker_celestial_hammer"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"projectile_speed" "150"
+			}
+		}
+		"hammer_damage"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"talents"
+			{
+				"special_bonus_unique_dawnbreaker_celestial_hammer_damage"		"x1.4"
+			}
+			"linked_special_values"
+			{
+				"burn_damage"
+				{
+					"value" "11"
+					"operator" "OP_ADD"
+					"talents"
+					{
+						"special_bonus_unique_dawnbreaker_celestial_hammer_damage"		"x1.4"
+					}
+				}
+			}
+		}
+		"flare_radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"flare_debuff_duration" "1"
+				"projectile_radius" "30"
+				"hammer_aoe_radius" "30"
+			}
+		}
+	}
+	"dawnbreaker_luminosity"
+	{
+		"heal_pct"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"allied_healing_pct" "5"
+				"heal_radius" "100"
+			}
+		}
+		"bonus_damage"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+		}
+	}
+	"dawnbreaker_solar_guardian"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"airtime_scepter_movement_speed" "40"
+			}
+		}
+		"radius"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"max_count" "8"
+			"linked_special_values"
+			{
+				"max_offset_distance" "50"
+				"miss_rate" "5"
+			}
+		}
+		"base_damage"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"land_damage" "70"
+				"base_heal" "40"
+			}
+		}
+	}
+}

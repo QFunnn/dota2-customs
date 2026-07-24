@@ -1,0 +1,420 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.Challenge_Border
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from(rgba(236, 201, 56, 0.4)), color-stop(0.4, transparent), to(transparent) );
+	margin: 4px;
+	margin-top: 8px;
+	border: 2px solid white;
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#e3ca59), to(transparent));
+	box-shadow: hollow rgba(255, 203, 84, 0.8) 0 0 6px -1px;
+}
+
+.Challenge_Border Image
+{
+	width: 20px;
+	height: 20px;
+	vertical-align: bottom;
+	margin-bottom: 4px;
+	img-shadow: black 0 0 3px 2;
+}
+
+.CustomChallengeDesc
+{
+	width: 100%;
+	margin: 430px 0px 0 0px;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(rgba(0, 0, 0, 0.15)), to(#423626));
+	border: 1px solid white;
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#e3ca59), to(transparent));
+	visibility: collapse;
+}
+
+.CC_D_Content
+{
+	flow-children: down;
+	width: 100%;
+	padding: 7px 20px;
+}
+
+#StrategyScreen .CC_D_Content
+{
+	width: fit-children;
+	horizontal-align: center;
+}
+
+.CC_D_Overlay
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 130% 0%, from(rgba(0, 0, 0, 0.95)), to(transparent));
+	visibility: collapse;
+}
+
+.BChallengeCompleted .CC_D_Overlay
+{
+	visibility: visible;
+}
+
+.CustomChallengeDesc.Show
+{
+	visibility: visible;
+}
+
+#StrategyScreen .CustomChallengeDesc:not(.BChallengeCompleted)
+{
+	visibility: visible;
+	vertical-align: bottom;
+	vertical-align: top;
+	padding: 7px 40px;
+	background-color: rgba(0, 0, 0, 0.9);
+	margin: 0 0 8px 144px;
+	margin: 0 2px 0px 0;
+	width: 200px;
+	opacity: 0;
+	transition-delay: 0.95s;
+	transition-property: opacity;
+	transition-duration: 0.4s;
+}
+
+.StrategyVisible #StrategyScreen .CustomChallengeDesc:not(.BChallengeCompleted)
+{
+	opacity: 1;
+	transition-delay: 0s;
+}
+
+.CC_D_HeaderRoot
+{
+	flow-children: right;
+}
+
+.CC_D_HeaderIcon
+{
+	height: 30px;
+	width: 33px;
+	background-image: url("s2r://panorama/images/custom_game/hero_challenges_icon_png.vtex");
+	background-size: 30px 30px;
+	background-position: 50%;
+	background-repeat: no-repeat;
+}
+
+.CC_D_HeaderRoot > Label
+{
+	vertical-align: center;
+	font-size: 25px;
+	color: rgb(246, 246, 246);
+	text-shadow: black 0 1px 0 2;
+	margin-left: 8px;
+	font-weight: lighter;
+}
+
+.CC_D_HeaderRoot > Image
+{
+	vertical-align: center;
+	width: 30px;
+	height: 30px;
+}
+
+.CC_D_Details
+{
+	flow-children: right;
+	margin-top: 7px;
+}
+
+.CC_D_Icon
+{
+	width: 34px;
+	height: 25px;
+	background-image: url("s2r://panorama/images/custom_game/hero_challenges_diff_1_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+}
+
+.CustomChallengeDiff_2 .CC_D_Icon
+{
+	background-image: url("s2r://panorama/images/custom_game/hero_challenges_diff_2_png.vtex");
+}
+
+.CustomChallengeDiff_3 .CC_D_Icon
+{
+	background-image: url("s2r://panorama/images/custom_game/hero_challenges_diff_3_png.vtex");
+}
+
+.BChallengeCompleted .CC_D_Icon
+{
+	background-image: url("s2r://panorama/images/custom_game/hero_challenges_tick_completed_png.vtex");
+}
+
+.BLocked .CC_D_Icon
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/battle_pass/lock_png.vtex");
+	background-size: 25px;
+	background-position: 50%;
+	background-repeat: no-repeat;
+}
+
+.CC_D_Desc
+{
+	vertical-align: center;
+	margin-left: 8px;
+	font-weight: lighter;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#ffd168), to(#ffea91));
+	text-shadow: black 0 1px 2px 1;
+}
+
+#CC_List
+{
+	width: 700px;
+	height: 210px;
+	flow-children: down;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(rgba(0, 0, 0, 0.15)), to(#423626));
+	margin: 855px 0 0 130px;
+	border-top: 2px solid #b68b42;
+}
+
+.ot3_demo #CC_List
+{
+	visibility: collapse;
+}
+
+.StrategyVisible #CC_List
+{
+	visibility: collapse;
+}
+
+.CC_L_HeaderRoot
+{
+	flow-children: right;
+	margin: 10px;
+}
+
+.CC_L_Header_Icon
+{
+	height: 30px;
+	width: 33px;
+	background-image: url("s2r://panorama/images/custom_game/hero_challenges_icon_png.vtex");
+	background-size: 30px 30px;
+	background-position: 50%;
+	background-repeat: no-repeat;
+}
+
+.CC_L_Header_Text
+{
+	vertical-align: center;
+	font-size: 25px;
+	color: rgb(246, 246, 246);
+	text-shadow: black 0 1px 0 2;
+	margin-left: 9px;
+	text-transform: uppercase;
+	font-weight: lighter;
+}
+
+#CC_L_Container
+{
+	flow-children: down;
+	padding-top: -10px;
+}
+
+.CC_List_Entity
+{
+	margin-top: 2px;
+}
+
+.CC_L_Content
+{
+	flow-children: right;
+	padding: 4px 10px;
+}
+
+.CC_L_Overlay
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(0, 0, 0, 0.9)), to(transparent));
+	visibility: collapse;
+}
+
+.BChallengeCompleted .CC_L_Overlay
+{
+	visibility: visible;
+}
+
+.CC_L_E_HeroIcon_Container
+{
+	width: 32px;
+	height: 32px;
+	margin-left: 8px;
+}
+
+.BLocked .CC_L_E_HeroIcon_Container
+{
+	width: 0px;
+}
+
+#CC_L_E_HeroIcon
+{
+	width: 100%;
+	height: 100%;
+}
+
+.BChallengeCompleted #CC_L_E_HeroIcon
+{
+	saturation: 0;
+}
+
+#CC_L_E_HeroIcon_Completed
+{
+	width: 100%;
+	height: 100%;
+	margin-left: 2px;
+	wash-color: #fd0000;
+	visibility: collapse;
+}
+
+.BChallengeCompleted #CC_L_E_HeroIcon_Completed
+{
+	visibility: visible;
+}
+
+.BChallengeCompleted .CC_D_Desc
+{
+	saturation: 0;
+	wash-color: #c2c2c2;
+}
+
+.BLocked .CC_D_Desc
+{
+	margin-left: 5px;
+	color: #f6f6f6;
+	font-style: italic;
+}
+
+.CC_L_E_Done
+{
+	vertical-align: center;
+	font-weight: semi-bold;
+	font-style: italic;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#ffd168), to(#ffea91));
+	text-shadow: black 0 1px 2px 1;
+	text-overflow: clip;
+	margin-left: 8px;
+	visibility: collapse;
+}
+
+.TextSub_1
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#4680ad), to(#c4d2ad));
+	font-weight: semi-bold;
+}
+
+.TextSub_2
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#df9724), to(#fee1b8));
+	font-weight: semi-bold;
+}
+
+.CC_L_E_Separator
+{
+	vertical-align: center;
+	height: 2px;
+	width: fill-parent-flow(1);
+	background-color: gradient( linear, 0% 0%, 100% 100%, from(transparent), color-stop(0.45, rgba(230, 192, 109, 0.7)), color-stop(0.55, rgba(230, 192, 109, 0.7)), to(transparent) );
+	margin-top: 1px;
+}
+
+.BLocked .CC_L_E_Separator
+{
+	visibility: collapse;
+}
+
+#CC_L_E_RewardsContainer
+{
+	flow-children: right-wrap;
+	padding-left: 3px;
+	horizontal-align: right;
+}
+
+.CC_Reward
+{
+	flow-children: right;
+	margin-left: 2px;
+}
+
+.CC_Reward_Border
+{
+	width: 30px;
+	height: width-percentage(100%);
+	padding: 2px;
+	box-shadow: black 0 0 2px -1px;
+}
+
+.CC_Reward.TREASURES .CC_Reward_Border
+{
+	height: 30px;
+	width: 38px;
+}
+
+#CC_Reward_Icon
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#23242b), to(#1a1b1f));
+	width: 100%;
+	height: 100%;
+	background-position: 50%;
+	background-repeat: no-repeat;
+}
+
+.Reward_currency #CC_Reward_Icon
+{
+	background-size: 20px;
+	background-image: url("s2r://panorama/images/custom_game/collection/currency_icon_small_png.vtex");
+}
+
+.BChallengeCompleted #CC_Reward_Icon
+{
+	saturation: 0.7;
+}
+
+.CC_Reward_Amount
+{
+	text-align: center;
+	font-size: 17px;
+	font-weight: lighter;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from(rgba(0, 0, 0, 0.96)), color-stop(0.5, rgba(0, 0, 0, 0.76)), to(transparent) );
+	padding: 0 2px 0 0;
+	min-width: 35px;
+	align: right bottom;
+	text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 3px 2;
+	color: #bccee2;
+	margin: 0 0 1px -1px;
+}
+
+.Reward_currency .CC_Reward_Name
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#f58907), to(#f9d64b));
+}
+
+.CC_Reward_Done
+{
+	width: 24px;
+	height: 24px;
+	align: center center;
+	wash-color: #fd0000;
+	visibility: collapse;
+	opacity: 0.8;
+}
+
+.BChallengeCompleted .CC_Reward_Done
+{
+	visibility: visible;
+}

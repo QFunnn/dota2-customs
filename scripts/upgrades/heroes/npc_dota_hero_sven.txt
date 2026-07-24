@@ -1,0 +1,124 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_sven"
+{
+	"sven_wrath_of_god"
+	{
+		"bonus_damage_per_str"
+		{
+			"value" "0.1"
+			"operator" "OP_ADD"
+		}
+	}
+	"sven_storm_bolt"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "7"
+			"operator" "OP_MULTIPLY"
+			"max_count" "8"
+			"linked_special_values"
+			{
+				"bolt_speed"
+				{
+					"value" "75"
+					"operator" "OP_ADD"
+				}
+			}
+		}
+		"bolt_aoe"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"vision_radius" "30"
+			}
+		}
+		"AbilityDamage" // tooltip only
+		{
+			"value" "70"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"damage" "70"
+				"scepter_bonus_damage" "70" // scepter alt-cast doesn't use the damage upgrade
+			}
+		}
+	}
+	"sven_great_cleave"
+	{
+		"cleave_distance"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"max_count" "8"
+			"linked_special_values"
+			{
+				"cleave_starting_width" "15"
+				"cleave_ending_width" "50"
+			}
+		}
+		"great_cleave_damage"
+		{
+			"value" "22"
+			"operator" "OP_ADD"
+		}
+	}
+	"sven_warcry"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "12"
+			"operator" "OP_MULTIPLY"
+		}
+		"movespeed"
+		{
+			"value" "6"
+			"operator" "OP_ADD"
+		}
+		"bonus_armor"
+		{
+			"value" "3"
+			"operator" "OP_ADD"
+		}
+		"base_barrier_amount"
+		{
+			"value" "125"
+			"operator" "OP_ADD"
+		}
+	}
+	"sven_gods_strength"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"linked_special_values"
+			{
+				"bonus_slow_resistance"
+				{
+					"value" "5"
+					"operator" "OP_MULTIPLY"
+					
+					"multiplicative_target"			"100"
+					"multiplicative_base_value"		"60"
+				}
+			}
+		}
+		"gods_strength_damage"
+		{
+			"value" "22"
+			"operator" "OP_ADD"
+		}
+	}
+}

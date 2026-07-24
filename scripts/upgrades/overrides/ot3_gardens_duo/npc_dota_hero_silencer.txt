@@ -1,0 +1,82 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_silencer"
+{
+	"silencer_curse_of_the_silent"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "15"
+			"operator" "OP_MULTIPLY"
+			"max_count" "4"
+		}
+		"damage"
+		{
+			"value" "8"
+			"operator" "OP_ADD"
+		}
+		"application_damage"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+		}
+		"radius"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"max_count" "8"
+		}
+		"movespeed"
+		{
+			"value" "-6"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+	}
+	"silencer_glaives_of_wisdom"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"linked_special_values"
+			{
+				"intellect_damage_pct" "2.5"
+			}
+		}
+		"bounce_range"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"requires_shard" "1"
+		}
+	}
+	"silencer_last_word"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "14"
+			"operator" "OP_MULTIPLY"
+			"max_count" "4"
+		}
+		"damage"
+		{
+			"value" "95"
+			"operator" "OP_ADD"
+		}
+		"int_multiplier"
+		{
+			"value" "0.6"
+			"operator" "OP_ADD"
+		}
+	}
+}

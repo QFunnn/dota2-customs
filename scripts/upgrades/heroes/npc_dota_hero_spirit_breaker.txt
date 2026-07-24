@@ -1,0 +1,129 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_spirit_breaker"
+{
+	"spirit_breaker_bull_rush"
+	{
+		"hero_movespeed_percent"
+		{
+			"value" "2"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"creep_movespeed_percent" "1"
+			}
+		}
+	}
+	"spirit_breaker_charge_of_darkness"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"movement_speed"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"bash_radius"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"max_count" "8"
+		}
+	}
+	"spirit_breaker_bulldoze"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"linked_abilities"
+			{
+				"spirit_breaker_planar_pocket"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"movement_speed"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_abilities"
+			{
+				"spirit_breaker_planar_pocket"
+				{
+					"radius" "40"
+				}
+			}
+		}
+		"status_resistance"
+		{
+			"value" "3"
+			"operator" "OP_MULTIPLY"
+
+			"multiplicative_target"			"100"
+			"multiplicative_base_value"		"70"
+			
+			"linked_abilities"
+			{
+				"spirit_breaker_planar_pocket"
+				{
+					"magic_resistance"
+					{
+						"value" "5"
+						"operator" "OP_MULTIPLY"
+
+						"multiplicative_target"			"100"
+						"multiplicative_base_value"		"40"
+					}
+				}
+			}
+		}
+	}
+	"spirit_breaker_greater_bash"
+	{
+		"chance_pct"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+			"max_count" "3"
+		}
+		"damage"
+		{
+			"value" "3.5"
+			"operator" "OP_ADD"
+		}
+	}
+	"spirit_breaker_nether_strike"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "12"
+			"operator" "OP_MULTIPLY"
+		}
+		"damage"
+		{
+			"value" "150"
+			"operator" "OP_ADD"
+		}
+	}
+}

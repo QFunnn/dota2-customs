@@ -1,0 +1,655 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.Upgrades_Root
+{
+	transform: translateY(20px);
+	opacity: 0;
+	transition-property: opacity, transform;
+	transition-duration: 0.15s;
+	vertical-align: bottom;
+}
+
+.Upgrades_Root.BottomView
+{
+	transform: translateY(-20px);
+}
+
+.Upgrades_Root.BottomView
+{
+	vertical-align: top;
+}
+
+.ShowSelectedUpgradesList .Upgrades_Root
+{
+	transform: translateY(0px);
+	opacity: 1;
+}
+
+#Upgrades_Wrap
+{
+	width: 440px;
+}
+
+.npc_dota_hero_invoker #Upgrades_Wrap
+{
+	width: 540px;
+}
+
+#Upgrades_Data
+{
+	flow-children: down;
+}
+
+.BottomView #Upgrades_Data
+{
+	flow-children: up;
+}
+
+#AvailableUpgrades_List
+{
+	flow-children: down;
+	horizontal-align: center;
+	padding: 2px;
+	vertical-align: bottom;
+	background-color: #19181c;
+	box-shadow: rgba(0, 0, 0, 1) 0px 0px 4px 0px;
+	width: 100%;
+}
+
+#AU_Header
+{
+	width: 100%;
+	height: 30px;
+	background-color: #252129;
+}
+
+#AU_Header Label
+{
+	text-transform: uppercase;
+	color: #949296;
+	align: center center;
+	text-align: center;
+	margin-top: 1px;
+}
+
+#AU_ButtonsContainer
+{
+	flow-children: down;
+	horizontal-align: center;
+}
+
+#AU_List_Line1,#AU_List_Line2
+{
+	flow-children: right;
+	padding-right: 6px;
+	margin: 5px 0;
+	horizontal-align: center;
+}
+
+.Upgrade
+{
+	margin-left: 6px;
+	transition-property: brightness, transform;
+	transition-duration: 0.15s;
+	visibility: collapse;
+}
+
+.Upgrade.BAbilityHasUpgrades
+{
+	visibility: visible;
+}
+
+.Upgrade:hover DOTAAbilityImage
+{
+	brightness: 2;
+}
+
+.PressScaleAnimation
+{
+	transition-property: brightness, transform;
+	transition-duration: 0.15s;
+}
+
+.Upgrade:active .PressScaleAnimation
+{
+	brightness: 0.3;
+	transform: scale3d(0.9, 0.9, 0.9);
+}
+
+.Upgrade Label
+{
+	background-color: #252129;
+	border: 2px solid rgba(0, 0, 0, 0.85);
+	color: #c7c7c7;
+	text-align: center;
+	horizontal-align: center;
+	width: 34px;
+	height: 25px;
+	border-radius: 2px;
+	text-overflow: shrink;
+}
+
+.Upgrade.Active Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#d0ac2f), to(#ffe200));
+}
+
+.Upgrade DOTAAbilityImage
+{
+	height: 55px;
+	width: 55px;
+	margin-top: 9px;
+}
+
+.AbiltiyBorder
+{
+	height: 55px;
+	width: 55px;
+	vertical-align: bottom;
+	background-image: url("s2r://panorama/images/hud/reborn/ability_bevel_psd.vtex");
+	background-size: 100%;
+}
+
+.Upgrade.Active .AbiltiyBorder
+{
+	wash-color: gold;
+	brightness: 4;
+}
+
+.AU_Upgrades_List
+{
+	flow-children: down;
+	padding: 12px 0 12px 12px;
+	opacity: 0;
+	height: 0px;
+	width: 100%;
+	max-height: 660px;
+}
+
+.LinesApplied_2 .AU_Upgrades_List
+{
+	max-height: 600px;
+}
+
+.AU_Upgrades_List.Show
+{
+	opacity: 1;
+	height: fit-children;
+}
+
+.AU_Upgrades_Header
+{
+	flow-children: right;
+}
+
+.Upgrade_Header
+{
+	color: #e6e6e6;
+	font-size: 20px;
+	text-transform: uppercase;
+	margin-left: 5px;
+}
+
+.FavoriteBorder
+{
+	width: 100%;
+	height: 100%;
+	border: 4px solid rgba(255, 255, 255, 0.5);
+	border-brush: gradient(linear, 0% 0%, 50% 300%, from(#fecd00), to(#fa9000));
+	visibility: collapse;
+	saturation: 1.1;
+	contrast: 1.4;
+}
+
+.BFavorite .FavoriteBorder
+{
+	visibility: visible;
+}
+
+#Upgrades_Lines
+{
+	flow-children: down;
+	margin-top: 4px;
+	overflow: clip scroll;
+	padding-top: 0px;
+	width: 100%;
+	padding-right: 12px;
+}
+
+.Upgrade_Line
+{
+	flow-children: right;
+	width: 100%;
+}
+
+#LinkedAbilityImage
+{
+	width: 22px;
+	height: 22px;
+	margin-right: 3px;
+	visibility: collapse;
+}
+
+.BLinkedAbility #LinkedAbilityImage
+{
+	visibility: visible;
+}
+
+.Total_Upgrades_Count
+{
+	min-width: 30px;
+	height: 100%;
+	text-align: center;
+	font-size: 20px;
+	color: #e6e6e6;
+}
+
+.Upgrade_Count_Container
+{
+	min-width: 30px;
+	height: 27px;
+	background-color: rgb(21, 22, 26);
+	border: 1px solid #757b85;
+	border-radius: 3px;
+	padding: 2px 4px;
+	vertical-align: center;
+}
+
+.BFullUpgrade .Upgrade_Count_Container
+{
+	border: 1px solid #fba211;
+	box-shadow: 0 0 1px 0 #fba211;
+}
+
+.BFullUpgrade .Upgrade_Count_Container Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#fba211), to(#fff27b));
+}
+
+.Upgrade_Count_Container Panel
+{
+	align: center center;
+	flow-children: right;
+}
+
+.Upgrade_Count_Container Label
+{
+	text-align: center;
+	font-size: 17px;
+	color: #e6e6e6;
+	font-family: monospaceNumbersFont;
+}
+
+.Upgrade_Count_Limit
+{
+	visibility: collapse;
+	margin-left: -2px;
+}
+
+.BHasMaxCountUpgrades .Upgrade_Count_Limit
+{
+	visibility: visible;
+}
+
+.BLinked .Upgrade_Count_Container
+{
+	visibility: collapse;
+}
+
+.Upgrade_Tree
+{
+	visibility: collapse;
+	height: 22px;
+	width: 30px;
+	background-image: url("s2r://panorama/images/custom_game/upgrades/upgrades_tree_png.vtex");
+	background-size: 100%;
+	wash-color: #b4bbd6;
+}
+
+.LastUpgradeLine .Upgrade_Tree
+{
+	background-image: url("s2r://panorama/images/custom_game/upgrades/upgrades_tree_end_png.vtex");
+}
+
+.BLinked .Upgrade_Tree
+{
+	visibility: visible;
+}
+
+.Upgrade_Name
+{
+	color: #6e87a8;
+	text-transform: uppercase;
+	vertical-align: center;
+	color: #ffffff;
+	text-shadow: rgba(0, 0, 0, 0.336) 0px 0px 10px 5;
+	font-weight: lighter;
+	margin-left: 5px;
+	max-width: 280px;
+	text-overflow: clip;
+}
+
+.BLinked .Upgrade_Name
+{
+	margin-left: 0px;
+}
+
+#Upgrades_List_generic .Upgrade_Name,#Upgrades_List_generic .Upgrade_Value
+{
+	font-size: 16px;
+	margin-top: 4px;
+	margin-bottom: 3px;
+}
+
+.Upgrade_Value
+{
+	color: #474e59;
+	margin: 0 3px;
+	vertical-align: center;
+	color: #858585;
+	text-shadow: rgba(0, 0, 0, 0.336) 0px 0px 10px 5;
+	font-weight: semi-bold;
+	text-overflow: shrink;
+}
+
+.BHasUpgrades .Upgrade_Value
+{
+	color: white;
+}
+
+#Upgrades_List_generic .GenericRariryContainer:not(.BShowAllUpgrades) .UpgradesLinesContainer:not(.BHasUpgrades)
+{
+	visibility: collapse;
+	margin: 0;
+}
+
+#Upgrades_List_generic .Upgrade_Value
+{
+	visibility: collapse;
+}
+
+#Upgrades_List_generic .FavoriteBorder
+{
+	border-top: 2px solid rgba(255, 255, 255, 0.5);
+	border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+	border-right: 3px solid rgba(255, 255, 255, 0.5);
+	border-left: 3px solid rgba(255, 255, 255, 0.5);
+}
+
+#Upgrades_List_generic .UpgradesLinesContainer
+{
+	padding: 0;
+}
+
+#Upgrades_Button
+{
+	width: 58px;
+	height: 58px;
+	vertical-align: bottom;
+	margin: 0 1px 26px 0;
+	visibility: collapse;
+	background-image: url("s2r://panorama/images/custom_game/orb_png.vtex");
+	background-size: 100%;
+	saturation: 0;
+	wash-color: #b4b4b4;
+	contrast: 1.3;
+	transition-property: wash-color, saturation, brightness, contrast;
+	transition-duration: 0.15s;
+}
+
+#Upgrades_Button.Visible,.IsLocalPlayerSpectating #Upgrades_Button
+{
+	visibility: visible;
+}
+
+#Upgrades_Button:hover,.ShowSelectedUpgradesList #Upgrades_Button
+{
+	saturation: 1;
+	wash-color: transparent;
+	contrast: 1;
+}
+
+.ShowSelectedUpgradesList #Upgrades_Button:hover
+{
+	brightness: 1.25;
+}
+
+#Upgrades_Button:active,.ShowSelectedUpgradesList #Upgrades_Button:active
+{
+	brightness: 0.4;
+}
+
+#FavoriteUpgradeButton
+{
+	width: 21px;
+	height: 21px;
+	horizontal-align: right;
+	margin: 5px;
+}
+
+#FavoriteUpgradeButton:active
+{
+	pre-transform-scale2d: 0.9;
+}
+
+#FavoriteUpgradeButton > Panel
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+}
+
+.StarBorder,.StarColor
+{
+	transition: background-image 0.1s ease-in-out 0s;
+}
+
+.StarColor
+{
+	opacity: 0.25;
+	transition: opacity 0.1s ease-in-out 0s, brightness 0.1s ease-in-out 0s;
+	background-image: url("s2r://panorama/images/custom_game/upgrades/favorite_star_off_png.vtex");
+	brightness: 1.3;
+}
+
+#FavoriteUpgradeButton:hover .StarColor,.BFavorite #FavoriteUpgradeButton .StarColor
+{
+	opacity: 1;
+	brightness: 1.5;
+}
+
+.StarBorder
+{
+	background-image: url("s2r://panorama/images/custom_game/upgrades/favorite_star_border_png.vtex");
+}
+
+.BFavorite #FavoriteUpgradeButton .StarColor
+{
+	background-image: url("s2r://panorama/images/custom_game/upgrades/favorite_star_8_png.vtex");
+}
+
+#Upgrades_List_Details
+{
+	width: 100%;
+	margin-bottom: 136px;
+	background-color: #19171c;
+	box-shadow: rgba(0, 0, 0, 1) 0px 0px 4px 0px;
+}
+
+.LinesApplied_2 #Upgrades_List_Details
+{
+	margin-bottom: 200px;
+}
+
+.BottomView #Upgrades_List_Details
+{
+	margin-bottom: 0px;
+	margin-top: 136px;
+}
+
+.LinesApplied_2.BottomView #Upgrades_List_Details,.LinesApplied_2.BottomView #Upgrades_List_Detail
+{
+	margin-bottom: 0px;
+	margin-top: 200px;
+}
+
+.BottomView #AvailableUpgrades_List
+{
+	vertical-align: top;
+}
+
+.UpgradesLinesContainer
+{
+	width: 100%;
+}
+
+.UpgradesLinesContainer
+{
+	width: 100%;
+	margin-top: 5px;
+	background-image: url("s2r://panorama/images/custom_game/upgrades/upgrade_bg_common_lod0_png.vtex");
+	background-size: 100%;
+	background-img-opacity: 0.5;
+	transition: background-image 0.05s ease-in-out 0s;
+}
+
+.UpgradesLinesContainer.MinRarity_2
+{
+	background-image: url("s2r://panorama/images/custom_game/upgrades/upgrade_bg_rare_lod0_png.vtex");
+}
+
+.UpgradesLinesContainer.MinRarity_4
+{
+	background-image: url("s2r://panorama/images/custom_game/upgrades/upgrade_bg_epic_lod0_png.vtex");
+}
+
+.ULC_Content
+{
+	flow-children: down;
+	vertical-align: center;
+	width: 100%;
+	margin: 10px 26px 10px 10px;
+}
+
+#Upgrades_List_generic .ULC_Content
+{
+	margin: 0 26px 0 6px;
+}
+
+#ULC_Main,#ULC_Linked
+{
+	width: 100%;
+	flow-children: down;
+}
+
+#Upgrades_List_generic #Upgrades_Lines
+{
+	padding-top: -10px;
+}
+
+.GenericRariryContainer
+{
+	width: 100%;
+	flow-children: down;
+	margin-top: 15px;
+}
+
+#GRC_Header_Root
+{
+	width: 100%;
+	flow-children: right;
+	background-color: gradient(linear, 0% 100%, 100% 100%, from(#4f515f), to(#151619));
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#8e8e8e), to(#f2f2f2));
+	padding: 5px;
+	border: 1px solid white;
+}
+
+#GRC_Header_Root:hover
+{
+	brightness: 1.5;
+}
+
+#GRC_Rarity_2 #GRC_Header_Root
+{
+	background-color: gradient(linear, 0% 100%, 100% 100%, from(#2d4863), to(#11151c));
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#2848cb), to(#7a9cd6));
+}
+
+#GRC_Rarity_4 #GRC_Header_Root
+{
+	background-color: gradient(linear, 0% 100%, 100% 100%, from(#54395f), to(#180919));
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#be1fcb), to(#cc72d6));
+}
+
+.GRC_Header
+{
+	text-transform: uppercase;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#d6d6d6), to(white));
+	text-shadow: rgb(0, 0, 0) 0 0 4px 3;
+}
+
+#GRC_Rarity_2 .GRC_Header
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#5654d6), to(#a5b7ff));
+}
+
+#GRC_Rarity_4 .GRC_Header
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#b532d6), to(#ffa8f6));
+}
+
+.GRC_Minimize
+{
+	height: 100%;
+	width: height-percentage(100%);
+	align: right center;
+	background-image: url("s2r://panorama/images/custom_game/demo/control_icons/single_arrow_left_png_png.vtex");
+	background-size: 10px 20px;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	transform: rotateZ(-90deg);
+	wash-color: #29c527;
+}
+
+.BShowAllUpgrades .GRC_Minimize
+{
+	transform: rotateZ(90deg);
+	wash-color: #d42318;
+}
+
+#GRC_Container
+{
+	flow-children: down;
+	width: 100%;
+}
+
+#GenericIconImage
+{
+	width: 40px;
+	height: 40px;
+	visibility: collapse;
+	margin: 4px 3px;
+	vertical-align: center;
+}
+
+#GenericIconImage > Panel
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from(black), color-stop(0.04, rgba(0, 0, 0, 0.9)), color-stop(0.08, transparent), color-stop(0.92, transparent), color-stop(0.96, rgba(0, 0, 0, 0.9)), to(black) ), gradient( linear, 0% 0%, 0% 100%, from(black), color-stop(0.04, rgba(0, 0, 0, 0.9)), color-stop(0.08, transparent), color-stop(0.92, transparent), color-stop(0.96, rgba(0, 0, 0, 0.9)), to(black) ), gradient( radial, 50% 50%, 0% 0%, 60% 60%, from(transparent), color-stop(0.8, transparent), to(rgba(0, 0, 0, 0.87)) );
+}
+
+#Upgrades_List_generic #GenericIconImage
+{
+	visibility: visible;
+}

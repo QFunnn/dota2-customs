@@ -1,0 +1,205 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/chat_wheel/chat_wheel_precache.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/chat_wheel/chat_wheel.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/chat_wheel/chat_wheel_colors_style.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/collection.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/const.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/chat_wheel/chat_wheel_const.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/chat_wheel/components/chat_wheel_dnd.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/chat_wheel/components/chat_wheel_phrase.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/chat_wheel/components/chat_wheel_favorite.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/chat_wheel/components/chat_wheel_color.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/chat_wheel/components/chat_wheel_emoji.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/chat_wheel/components/chat_wheel_remove_zone.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/chat_wheel/chat_wheel.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="CW_SoundsGroup">
+			<Panel class="CW_SoundsGroup">
+				<Panel id="CW_SG_Header_Wrap">
+					<Image id="CW_SG_HeaderIcon" />
+					<TextButton id="CW_SG_Header" text="{s:cw_group_header}" />
+				</Panel>
+				<Panel id="CW_SG_Container" />
+			</Panel>
+		</snippet>
+		<snippet name="CW_Phrase">
+			<Panel class="CW_Phrase">
+				<Button id="CW_Open">
+					<Panel class="CW_Open_Icon" />
+					<Label text="{s:open_price}" />
+				</Button>
+				<Image src="s2r://panorama/images/control_icons/chat_wheel_icon_png.vtex" />
+				<Button id="CW_Phrase_Preview" />
+				<Label class="CW_Phrase_Line" text="{s:cw_phrase_line}" />
+			</Panel>
+		</snippet>
+		<snippet name="CW_Color">
+			<Panel class="CW_Color">
+				<Panel class="CW_Color_Name_Wrap">
+					<Panel class="CW_Color_Name_SolidBackground">
+						<Panel>
+							<Label class="CW_DefaultShadow" id="CW_Color_Name" text="{s:cw_color}" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Button id="CW_Open">
+					<Panel>
+						<Panel class="CW_Open_Icon" />
+						<Label text="{s:open_price}" />
+					</Panel>
+				</Button>
+			</Panel>
+		</snippet>
+		<snippet name="CW_Emoji">
+			<Panel class="CW_Emoji">
+				<Panel class="CW_Emoji_Wrap">
+					<Panel id="CW_Emoji_Icon_Container" />
+				</Panel>
+				<Button id="CW_Open">
+					<Panel>
+						<Panel class="CW_Open_Icon" />
+						<Label text="{s:open_price}" />
+					</Panel>
+				</Button>
+			</Panel>
+		</snippet>
+		<snippet name="CW_Button">
+			<Button class="CW_Button">
+				<Panel class="CW_Button_ContentWrap">
+					<Panel>
+						<Label id="CW_Button_Line" text="{s:phrase_line}" />
+						<Panel id="CW_Button_Emoji_Icon_Container" />
+					</Panel>
+				</Panel>
+				<Panel class="CW_Button_ColorIndicator" />
+			</Button>
+		</snippet>
+		<snippet name="CW_RemoveZone">
+			<Panel class="CW_RemoveZone">
+				<Label text="{s:remove_type_content}" />
+				<Panel class="CW_Button">
+					<Panel />
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="Collection_ChatWheel_Root" hittest="false">
+		<Panel class="CW_ContentRoot">
+			<Panel class="CW_Wheel">
+				<Panel class="CW_Wheel_Wrap">
+					<Panel class="CW_Lines" hittest="false" hittest-children="false">
+						<Panel class="CW_Line CW_Line_1" />
+						<Panel class="CW_Line CW_Line_2" />
+						<Panel class="CW_Line CW_Line_3" />
+						<Panel class="CW_Line CW_Line_4" />
+						<Panel class="CW_Line CW_Line_5" />
+						<Panel class="CW_Line CW_Line_6" />
+						<Panel class="CW_Line CW_Line_7" />
+						<Panel class="CW_Line CW_Line_8" />
+					</Panel>
+					<Panel class="CW_CircleLogo" />
+					<Panel class="CW_Buttons">
+						<Panel class="CW_B_Inline Line1">
+							<Panel id="CW_FavoriteSlot_1" />
+						</Panel>
+						<Panel class="CW_B_Inline Line2">
+							<Panel id="CW_FavoriteSlot_8" />
+							<Panel class="CW_Filler" />
+							<Panel id="CW_FavoriteSlot_2" />
+						</Panel>
+						<Panel class="CW_B_Inline Line3">
+							<Panel id="CW_FavoriteSlot_7" />
+							<Panel class="CW_Filler" />
+							<Panel id="CW_FavoriteSlot_3" />
+						</Panel>
+						<Panel class="CW_B_Inline Line4">
+							<Panel id="CW_FavoriteSlot_6" />
+							<Panel class="CW_Filler" />
+							<Panel id="CW_FavoriteSlot_4" />
+						</Panel>
+						<Panel class="CW_B_Inline Line5">
+							<Panel id="CW_FavoriteSlot_5" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="CW_BasicHint">
+					<Label text="#chat_wheel_basic_hint" html="true" />
+				</Panel>
+				<Panel class="CW_BindHint">
+					<Label text="#chat_wheel_bind_hint" html="true" />
+					<Panel class="CW_BindHint_KeyContainer">
+						<Label text="L" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="CW_RightSide">
+				<Panel class="CW_AvailableContent">
+					<Panel class="CW_AC_TabButtons">
+						<RadioButton id="CW_AC_B_DefaultSounds" text="#chat_wheel_default" onactivate="ActivateAvailabeContent(W_TYPE.DEFAULT_SOUNDS)" />
+						<RadioButton id="CW_AC_B_HeroesSounds" text="#chat_wheel_heroes" onactivate="ActivateAvailabeContent(W_TYPE.HEROES_SOUNDS)" />
+						<RadioButton id="CW_AC_B_NewSounds" text="#chat_wheel_new" onactivate="ActivateAvailabeContent(W_TYPE.NEW_SOUNDS)" />
+						<RadioButton id="CW_AC_B_Emojies" text="#chat_wheel_emoji" onactivate="ActivateAvailabeContent(W_TYPE.EMOJIES)" />
+						<RadioButton id="CW_AC_B_Colors" text="#chat_wheel_color" onactivate="ActivateAvailabeContent(W_TYPE.COLORS)" />
+					</Panel>
+					<Panel class="CW_AC_Search" onactivate="FocusSearchInput()">
+						<TextButton class="CW_AC_Search_Clear" text="#perk_clear" onactivate="DropSearchInput()" />
+						<TextEntry class="CW_AC_TextEntry" id="CW_AC_Search_Entry" placeholder=" " ontextentrychange="UpdateSoundSearch()" onblur="OnSearchBlur()" />
+						<TextButton class="CW_AC_Search_PlaceHolder" text="{s:search_sound_hint}" />
+					</Panel>
+					<Panel class="CW_TypeHint_Toggle_Wrap">
+						<Label class="CW_TypeHint" text="{s:type_hint}" />
+						<ToggleButton id="CW_ToggleHidden" checked="false" text="#chat_wheel_toggle_hidden" onactivate="ToggleHiddenContent()" />
+					</Panel>
+					<Panel class="CW_AC_Content">
+						<Panel id="CW_AC_SoundsRoot_Default">
+							<Panel class="CW_AC_Sounds" />
+						</Panel>
+						<Panel id="CW_AC_SoundsRoot_Heroes">
+							<Panel class="CW_AC_Sounds" />
+						</Panel>
+						<Panel id="CW_AC_SoundsRoot_New">
+							<Panel class="CW_AC_Sounds" />
+						</Panel>
+						<Panel id="CW_AC_EmojiesRoot">
+							<Panel id="CW_AC_Emojies" />
+						</Panel>
+						<Panel id="CW_AC_ColorsRoot">
+							<Panel id="CW_AC_Colors" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="CW_RemoveContent">
+					<Label class="CW_RemoveContentHeader" text="#chat_wheel_remove_drop_header" />
+					<Panel class="CW_RemoveContent_Wrap">
+						<Panel class="CW_Lines" hittest="false" hittest-children="false">
+							<Panel class="CW_Line CW_Line_1" />
+							<Panel class="CW_Line CW_Line_3" />
+							<Panel class="CW_Line CW_Line_5" />
+							<Panel class="CW_Line CW_Line_7" />
+						</Panel>
+						<Panel class="CW_RemoveLogo" />
+						<Panel id="CW_RemoveContent_Zones" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="CW_TempContainer" />
+	</Panel>
+</root>

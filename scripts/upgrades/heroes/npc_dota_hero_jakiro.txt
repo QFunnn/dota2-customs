@@ -1,0 +1,131 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_jakiro"
+{
+	"jakiro_double_trouble"
+	{
+		"attack_damage_reduction"
+		{
+			"value" "-5"
+			"operator" "OP_ADD"
+		}
+	}
+	"jakiro_dual_breath"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "12"
+			"operator" "OP_MULTIPLY"
+		}
+		"burn_damage"
+		{
+			"value"	"12"
+			"operator" "OP_ADD"
+			"talents"
+			{
+				"special_bonus_unique_jakiro_2"	"x2"
+			}
+		}
+		"end_radius"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"max_count" "8"
+			"linked_special_values"
+			{
+				"start_radius" "50"
+			}
+		}
+	}
+	"jakiro_ice_path"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "3"
+		}
+		"damage"
+		{
+			"value" "55"
+			"operator" "OP_ADD"
+		}
+		"path_radius"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+	}
+	"jakiro_liquid_fire"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "15"
+			"operator" "OP_MULTIPLY"
+			"linked_abilities"
+			{
+				"jakiro_liquid_ice"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "15"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"radius"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"slow_attack_speed_pct" "-20"
+			}
+			"linked_abilities"
+			{
+				"jakiro_liquid_ice"
+				{
+					"bonus_instance_damage_from_other_abilities" "15"
+					"movement_slow" "3"
+				}
+			}
+		}
+		"damage"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+			"linked_abilities"
+			{
+				"jakiro_liquid_ice"
+				{
+					"damage" "60"
+				}
+			}
+		}
+	}
+	"jakiro_macropyre"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"damage"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+		}
+	}
+}

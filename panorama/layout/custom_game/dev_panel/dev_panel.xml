@@ -1,0 +1,58 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/dev_panel/dev_panel.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/dev_panel/dev_panel.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="DevAbilityConfig">
+			<Panel class="DevAbilityConfig">
+				<DOTAAbilityImage class="DevAbilityImage" />
+				<Label class="DevAbilityName" />
+				<Panel class="DevAbilitySpecials" />
+			</Panel>
+		</snippet>
+		<snippet name="DevAbilitySpecial">
+			<Panel class="DevAbilitySpecial">
+				<Label class="DevAbilitySpecialName" text="{s:special_name}" />
+				<Label id="DevAbilitySpecialParams" class="DevAbilitySpecialParams" text="{s:base_value} x {d:upgrades_count} = {s:total_value}" />
+				<Button class="DevAbilitySpecialButton DevAbilityDecrement">
+					<Label class="DevAbilitySpecialButtonContent" text="-" />
+				</Button>
+				<Button class="DevAbilitySpecialButton DevAbilityIncrement">
+					<Label class="DevAbilitySpecialButtonContent" text="+" />
+				</Button>
+			</Panel>
+		</snippet>
+		<snippet name="DevGenericSpecial">
+			<Panel class="DevAbilitySpecial">
+				<Label class="DevAbilitySpecialName" text="{s:special_name}" />
+				<Label id="DevAbilitySpecialParams" class="DevAbilitySpecialParams" text="{s:base_value} x {s:boost_value} x {d:upgrades_count} = {s:total_value}" />
+				<Button class="DevAbilitySpecialButton DevAbilityDecrement">
+					<Label class="DevAbilitySpecialButtonContent" text="-" />
+				</Button>
+				<Button class="DevAbilitySpecialButton DevAbilityIncrement">
+					<Label class="DevAbilitySpecialButtonContent" text="+" />
+				</Button>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="DevRoot">
+		<Panel id="DevAbilityKVs" />
+		<Button id="HideDevKVs" onactivate="ToggleDevPanelVisible()" />
+	</Panel>
+</root>

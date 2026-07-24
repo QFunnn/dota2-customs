@@ -1,0 +1,111 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf37:version{f9a1c8c4-159b-4786-b740-4d1a118c8f46} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_bDisableZBuffering = true
+			m_nOrientationType = "PARTICLE_ORIENTATION_WORLD_Z_ALIGNED"
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/particle_square_gradient_2.vtex"
+				},
+			]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_FadeAndKill"
+			m_flStartAlpha = 0.0
+		},
+		{
+			_class = "C_OP_Orient2DRelToCP"
+			m_flRotOffset = 180.0
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_flOpStartFadeOutTime = 0.3
+			m_flOpEndFadeOutTime = 0.3
+			m_Gravity = [ 0.0, 0.0, -400.0 ]
+		},
+		{
+			_class = "C_OP_PositionLock"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndScale = 0.5
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMin = 0.5
+			m_fLifetimeMax = 0.5
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMax = 20.0
+			m_flRadiusMin = 20.0
+		},
+		{
+			_class = "C_INIT_CreateFromParentParticles"
+		},
+		{
+			_class = "C_INIT_RandomAlpha"
+			m_nAlphaMin = 100
+			m_nAlphaMax = 100
+		},
+		{
+			_class = "C_INIT_VelocityRandom"
+			m_LocalCoordinateSystemSpeedMin = [ 0.0, 0.0, 64.0 ]
+			m_LocalCoordinateSystemSpeedMax = [ 0.0, 0.0, 64.0 ]
+		},
+		{
+			_class = "C_INIT_InheritFromParentParticles"
+			m_nFieldOutput = 6
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 255.0, 255.0, 255.0 ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 4
+}

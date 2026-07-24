@@ -1,0 +1,167 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_dark_seer"
+{
+	"dark_seer_aggrandize"
+	{
+		"int_to_atkspd"
+		{
+			"value" "0.5"
+			"operator" "OP_ADD"
+		}
+	}
+	"dark_seer_vacuum"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"damage"
+		{
+			"value" "75"
+			"operator" "OP_ADD"
+		}
+	}
+	"dark_seer_ion_shell"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+		}
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"damage_per_second"
+		{
+			"value" "15"
+			"operator" "OP_ADD"
+		}
+	}
+	"dark_seer_surge"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "6"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"duration" "0.3"
+				"trail_duration"
+				{
+					"value"		"0.3"
+					"requires_shard"		"1"
+				}
+				"trail_radius"
+				{
+					"value"		"30"
+					"requires_shard"		"1"
+				}
+			}
+		}
+		"trail_damage"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+			"linked_abilities"
+			{
+				"dark_seer_normal_punch"
+				{
+					"max_damage" "70"
+				}
+			}
+		}
+	}
+	"dark_seer_wall_of_replica_lua"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			"linked_abilities"
+			{
+				"dark_seer_normal_punch"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"replica_damage_outgoing"
+		{
+			"value" "12"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"tooltip_outgoing" "12"
+				"wall_damage" "20"
+			}
+			"linked_abilities"
+			{
+				// link to vanilla hidden ability for Normal Punch illusions to work with
+				"dark_seer_wall_of_replica"
+				{
+					"replica_damage_outgoing"	"12"
+					"tooltip_outgoing"			"12"
+				}
+			}
+		}
+		"replica_damage_incoming"
+		{
+			"value" "-20"
+			"operator" "OP_MULTIPLY"
+
+			"multiplicative_target"	"-60"
+			"multiplicative_base_value"	"100"
+
+			"linked_special_values"
+			{
+				"tooltip_replica_total_damage_incoming"
+				{
+					"value" "-20"
+					"operator" "OP_MULTIPLY"
+					
+					"multiplicative_target" "40"
+					"multiplicative_base_value"	"200"
+				}
+			}
+			"linked_abilities"
+			{
+				"dark_seer_wall_of_replica"
+				{
+					"replica_damage_incoming"
+					{
+						"value" "-20"
+						"operator" "OP_MULTIPLY"
+
+						"multiplicative_target"	"-60"
+						"multiplicative_base_value"	"100"
+					}
+				}
+			}
+		}
+	}
+}

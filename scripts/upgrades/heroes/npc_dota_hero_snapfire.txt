@@ -1,0 +1,120 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_snapfire"
+{
+	"snapfire_boomstick"
+	{
+		"damage_amp_max"
+		{
+			"value" "4"
+			"operator" "OP_ADD"
+		}
+	}
+	"snapfire_scatterblast"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+		}
+		"damage"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+		}
+	}
+	"snapfire_firesnap_cookie"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "12"
+			"operator" "OP_MULTIPLY"
+			"max_count" "7"
+		}
+		"impact_radius"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"max_count" "8"
+		}
+		"impact_damage"
+		{
+			"value" "80"
+			"operator" "OP_ADD"
+		}
+	}
+	"snapfire_lil_shredder"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "7"
+			"operator" "OP_MULTIPLY"
+		}
+		"damage"
+		{
+			"value" "12"
+			"operator" "OP_ADD"
+		}
+	}
+	"snapfire_mortimer_kisses"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"linked_abilities"
+			{
+				"snapfire_gobble_up"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "10"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"impact_radius"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"burn_ground_duration" "0.35"
+			}
+			"linked_abilities"
+			{
+				"snapfire_spit_creep"
+				{
+					"impact_radius" "35"
+					"burn_ground_duration" "0.35"
+				}
+			}
+		}
+		"damage_per_impact"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"burn_damage" "15"
+			}
+			"linked_abilities"
+			{
+				"snapfire_spit_creep"
+				{
+					"burn_damage" "15"
+				}
+			}
+		}
+	}
+}

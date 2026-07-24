@@ -1,0 +1,1254 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+#LoadingPlayers_Root
+{
+	flow-children: down;
+	width: 1510px;
+	min-height: 135px;
+	horizontal-align: center;
+	visibility: collapse;
+	margin-top: 560px;
+}
+
+.ot3_jungle_quintet #LoadingPlayers_Root
+{
+	width: 760px;
+}
+
+.ot3_necropolis_ffa #LoadingPlayers_Root
+{
+	width: 1010px;
+}
+
+.ot3_gardens_duo #LoadingPlayers_Root
+{
+	width: 1260px;
+}
+
+.BLoadingState #LoadingPlayers_Root
+{
+	visibility: visible;
+}
+
+#LoadingPlayers_Root_Header
+{
+	width: 100%;
+	height: 48px;
+	background-image: url("s2r://panorama/images/custom_game/team_selection/ts_header_bg_loading_png.vtex");
+	background-size: 100%;
+}
+
+.ot3_jungle_quintet #LoadingPlayers_Root_Header
+{
+	background-image: url("s2r://panorama/images/custom_game/team_selection/ts_header_bg_2_png.vtex");
+}
+
+#LoadingPlayers_List
+{
+	flow-children: right-wrap;
+	padding-bottom: 10px;
+	background-image: url("s2r://panorama/images/custom_game/team_selection/ts_loading_solid_bg_png.vtex");
+	background-size: 100%;
+	width: 100%;
+}
+
+@define default_team_width: 240px;
+.LS_Player
+{
+	width: default_team_width;
+	height: 65px;
+	background-image: url("s2r://panorama/images/custom_game/team_selection/ts_player_bg_2_png.vtex");
+	background-size: 100%;
+	margin: 10px 0 0 10px;
+}
+
+.LS_Player.BState_Loaded
+{
+	background-image: url("s2r://panorama/images/custom_game/team_selection/ts_player_bg_png.vtex");
+}
+
+.LS_Player.BLocalPlayer
+{
+	background-image: url("s2r://panorama/images/custom_game/team_selection/ts_player_bg_local_png.vtex");
+}
+
+.LS_Player_Overlay
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0.5;
+}
+
+.BState_Loaded .LS_Player_Overlay
+{
+	background-color: gradient(linear, 0% 0%, 400% 0%, from(transparent), to(#6bb95b));
+}
+
+.BState_Failed .LS_Player_Overlay
+{
+	background-color: gradient(linear, 0% 0%, 400% 0%, from(transparent), to(#b24949));
+}
+
+.LS_Player_LoadingState
+{
+	width: 4px;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from(#424242), color-stop(0.2, #acacac), color-stop(0.8, #acacac), to(#424242) );
+	horizontal-align: right;
+}
+
+.BState_Loaded .LS_Player_LoadingState
+{
+	background-color: #6bb95b;
+}
+
+.BState_Failed .LS_Player_LoadingState
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from(#942929), color-stop(0.2, #b24949), color-stop(0.8, #b24949), to(#942929) );
+}
+
+#LS_PlayerInfo
+{
+	flow-children: right;
+	vertical-align: center;
+	padding: 0 10px;
+}
+
+#LS_PlayerInfo DOTAAvatarImage
+{
+	width: 44px;
+	height: 44px;
+	box-shadow: rgba(0, 0, 0, 0.7) 0px 1px 3px 1;
+	vertical-align: center;
+}
+
+#LS_PlayerInfo DOTAUserName
+{
+	vertical-align: center;
+	margin-left: 10px;
+}
+
+#LS_PlayerInfo DOTAUserName Label
+{
+	text-shadow: rgba(0, 0, 0, 0.9) 0px 1px 2px 2;
+	overflow: clip;
+}
+
+.LS_Tips_Root
+{
+	horizontal-align: center;
+}
+
+.LS_Tips_Root
+{
+	width: 800px;
+	background-image: url("s2r://panorama/images/custom_game/team_selection/ts_hint_bg_png.vtex");
+	background-size: 600px 425px;
+	background-position: 50% 100%;
+	background-repeat: no-repeat;
+}
+
+.AspectRatio4x3 .LS_Tips_Root
+{
+	margin-left: 170px;
+}
+
+#LS_Tips_WebContainer
+{
+	width: 580px;
+	height: 340px;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#060608), to(#1c1f34));
+	horizontal-align: center;
+	margin-top: 135px;
+	margin-bottom: 75px;
+	background-size: 100%;
+}
+
+.Content_tournament
+{
+	background-image: url("s2r://panorama/images/custom_game/tournament_1_png.vtex");
+}
+
+#LS_VideoHint
+{
+	width: 100%;
+	height: 100%;
+}
+
+.BImage #LS_VideoHint
+{
+	visibility: collapse;
+}
+
+#LS_Hint_DescRoot
+{
+	width: 100%;
+	background-image: url("s2r://panorama/images/custom_game/team_selection/ts_hint_text_bg_png.vtex");
+	background-size: 100%;
+	vertical-align: bottom;
+	padding: 8px 100px;
+	flow-children: down;
+	transition-property: opacity, transform;
+	transition-duration: 0.15s;
+}
+
+.BHideDescription #LS_Hint_Desc_Text
+{
+	visibility: collapse;
+}
+
+#LS_Tips_WebContainer:not(.BIgnoreHover):hover #LS_Hint_DescRoot
+{
+	opacity: 0;
+	transform: translateY(10px);
+}
+
+#LS_Tips_WebContainer.BClickable:hover
+{
+	brightness: 1.2;
+}
+
+#LS_Tips_WebContainer.BClickable:hover #LS_Hint_Desc_Header
+{
+	brightness: 1.5;
+}
+
+#LS_Hint_DescRoot Label
+{
+	horizontal-align: center;
+	text-align: center;
+	text-shadow: rgba(0, 0, 0, 0.5) 0 0 2px 3;
+}
+
+#LS_Hint_Desc_Header
+{
+	font-size: 25px;
+	text-transform: uppercase;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#ff920a), to(#ffc83c));
+}
+
+#LS_Hint_Desc_Text
+{
+	color: white;
+	font-size: 19px;
+	letter-spacing: 1px;
+}
+
+.LS_Tips_Logo
+{
+	width: 400px;
+	height: 178px;
+	horizontal-align: center;
+}
+
+#LS_Tips_Bullets
+{
+	flow-children: right;
+	align: center bottom;
+	margin-bottom: 53px;
+	padding-left: -4px;
+}
+
+.LS_Bullet
+{
+	width: 17px;
+	height: 17px;
+	margin-left: 4px;
+}
+
+.Bullet_Active
+{
+	opacity: 0;
+}
+
+.Active .Bullet_Active
+{
+	opacity: 1;
+}
+
+.Active .Bullet_BG
+{
+	opacity: 0;
+}
+
+.LS_Tips_Arrow
+{
+	height: 60px;
+	width: 120px;
+	background-image: url("s2r://panorama/images/custom_game/team_selection/ts_hint_arrow_bg_png.vtex");
+	background-size: 100%;
+	vertical-align: bottom;
+	margin: 0 0 52px 100px;
+}
+
+.LS_Tips_Arrow Image
+{
+	width: 30px;
+	height: 45px;
+	margin: 7px 0 0 30px;
+	transition-property: transform, brightness, contrast;
+	transition-duration: 0.1s;
+	brightness: 0.5;
+}
+
+.LS_Tips_Arrow:hover Image
+{
+	transform: translateX(-5px);
+	brightness: 1;
+}
+
+.LS_Tips_Arrow:active Image
+{
+	transform: translateX(-10px) scaleX(0.97) scaleY(0.97);
+}
+
+.LS_Tips_Arrow
+{
+	height: 60px;
+	width: 120px;
+	background-image: url("s2r://panorama/images/custom_game/team_selection/ts_hint_arrow_bg_png.vtex");
+	background-size: 100%;
+	vertical-align: bottom;
+	margin: 0 0 52px 100px;
+}
+
+.LS_Tips_Arrow Image
+{
+	width: 30px;
+	height: 45px;
+	margin: 7px 0 0 30px;
+	transition-property: transform, brightness, contrast;
+	transition-duration: 0.1s;
+	brightness: 0.5;
+}
+
+.LS_Tips_Arrow:hover Image
+{
+	transform: translateX(-5px);
+	brightness: 1;
+}
+
+.LS_Tips_Arrow:active Image
+{
+	transform: translateX(-10px) scaleX(0.97) scaleY(0.97);
+}
+
+#LS_Tips_Right
+{
+	horizontal-align: right;
+	background-image: url("s2r://panorama/images/custom_game/team_selection/ts_hint_arrow_bg_right_png.vtex");
+	margin: 0 100px 52px 0;
+}
+
+#LS_Tips_Right Image
+{
+	horizontal-align: right;
+	margin: 7px 30px 0 0;
+}
+
+#LS_Tips_Right:hover Image
+{
+	transform: translateX(5px);
+}
+
+#LS_Tips_Right:active Image
+{
+	transform: translateX(10px) scaleX(0.97) scaleY(0.97);
+}
+
+.BFirstHint #LS_Tips_Left
+{
+	visibility: collapse;
+}
+
+.BLastHint #LS_Tips_Right
+{
+	visibility: collapse;
+}
+
+#LS_StartTimer_Header
+{
+	align: center bottom;
+	text-align: center;
+	font-size: 16px;
+	margin-bottom: 29px;
+	color: #eeeeee;
+	text-shadow: black 0 0 1px 2;
+	visibility: collapse;
+}
+
+#LS_StartTimer_Timer
+{
+	align: center bottom;
+	text-align: center;
+	font-size: 27px;
+	margin-bottom: 1px;
+	color: #eeeeee;
+	text-shadow: black 0 0 1px 2;
+	visibility: collapse;
+}
+
+.BGameLoading #LS_StartTimer_Header,.BGameLoading #LS_StartTimer_Timer,.BGameLaunch #LS_StartTimer_Header,.BGameLaunch #LS_StartTimer_Timer
+{
+	visibility: visible;
+}
+
+#LoadingPlayers_Root_Text
+{
+	width: 200px;
+	align: center center;
+	text-align: center;
+	max-height: 46px;
+	text-overflow: shrink;
+	text-shadow: black 0px 1px 1px 2;
+	font-weight: semi-bold;
+	font-family: titleFont;
+	letter-spacing: 1px;
+	font-size: 21px;
+	text-transform: uppercase;
+	color: gradient(linear, 0% 200%, 0% 0%, from(#55954b), to(#7aee65));
+}
+
+.HostOptions
+{
+	align: left top;
+	flow-children: down;
+	visibility: collapse;
+	opacity: 0;
+	margin: 60px 0 0 13px;
+}
+
+.host_options_enabled .HostOptions
+{
+	visibility: visible;
+	opacity: 1;
+}
+
+.Banner_BP
+{
+	margin: 105px 0 0 180px;
+}
+
+.Banner_BP Image
+{
+	width: 440px;
+	height: 250px;
+}
+
+.Banner_BP_Root_1
+{
+	flow-children: down;
+}
+
+.Banner_BP_Text_1,.Banner_BP_Text_2
+{
+	width: 282px;
+	height: 39px;
+	margin: 24px 0 0 104px;
+	font-size: 32px;
+	font-weight: semi-bold;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#ffc092), to(#ff8b37));
+	text-align: center;
+	text-overflow: shrink;
+	letter-spacing: 1px;
+}
+
+.Banner_BP_Text_2
+{
+	font-size: 25px;
+	height: 31px;
+	margin-top: -7px;
+	letter-spacing: 0px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#ba4e00), to(#fe7b1c));
+	text-shadow: 0 1px 6px 4 rgba(0, 0, 0, 0.5);
+}
+
+.Banner_BP_Root_2
+{
+	width: 195px;
+	height: 65px;
+	margin: 110px 0 0 80px;
+}
+
+.Banner_BP_Text_3
+{
+	max-width: 100%;
+	max-height: 100%;
+	vertical-align: center;
+	color: white;
+	font-size: 24px;
+	text-shadow: 0 1px 3px 2 rgba(0, 0, 0, 0.7);
+	text-overflow: shrink;
+}
+
+.Banner_500k
+{
+	horizontal-align: right;
+	margin: 57px 235px 0 0;
+}
+
+.Banner_500k Image
+{
+	width: 400px;
+	height: 226px;
+}
+
+.Banner_500k_Root_1
+{
+	flow-children: down;
+	width: 340px;
+	max-height: 226px;
+	margin-top: 54px;
+	horizontal-align: center;
+}
+
+.Banner_500k_Text_1,.Banner_500k_Text_2,.Banner_500k_Text_4,.Banner_500k_Text_5
+{
+	horizontal-align: center;
+	text-align: center;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#a0a0a0), color-stop(0.2, white), to(white));
+	font-size: 50px;
+	max-width: 100%;
+	height: 67px;
+	text-overflow: shrink;
+	font-weight: semi-bold;
+	background-color: gradient( radial, 50% 50%, 0% 0%, 50% 50%, from(rgba(0, 0, 0, 0.9)), color-stop(0.5, rgba(0, 0, 0, 0.9)), to(transparent) );
+	padding: 5px 40px;
+	text-shadow: -1px 1px 0px 2 #c7a1e3;
+}
+
+.Banner_500k_Text_2
+{
+	font-size: 30px;
+	height: 46px;
+	margin-top: -23px;
+}
+
+.Banner_500k_Text_3
+{
+	width: 310px;
+	font-size: 20px;
+	height: 25px;
+	text-overflow: shrink;
+	margin-top: 153px;
+	horizontal-align: center;
+	text-align: center;
+	color: #673dae;
+	font-weight: semi-bold;
+}
+
+.Banner_500k:hover
+{
+	brightness: 1.15;
+}
+
+.Banner_500k:active
+{
+	brightness: 0.95;
+}
+
+.Banner_500k:hover .Banner_500k_Text_3
+{
+	text-shadow: 0 0 3px 2 #fee7ff;
+}
+
+.Banner_500k:active .Banner_500k_Text_3
+{
+	pre-transform-scale2d: 0.95;
+	color: #714eae;
+	text-shadow: 0 0 0px 0 transparent;
+}
+
+.Banner_500k_Root_2
+{
+	flow-children: down;
+	margin-top: 177px;
+}
+
+.Banner_500k_Text_4
+{
+	font-size: 23px;
+	width: 400px;
+	height: fit-children;
+	background-color-opacity: 0.7;
+}
+
+.Banner_500k_Text_5
+{
+	font-size: 15px;
+	height: 29px;
+	font-style: italic;
+	background-color-opacity: 0.7;
+	margin-top: -10px;
+}
+
+.Banner_Halloween
+{
+	margin: 53px 0 0 100px;
+}
+
+.Banner_Halloween Image
+{
+	width: 529px;
+	height: 302px;
+}
+
+.Banner_Halloween_Desc_Root
+{
+	width: 265px;
+	margin: 95px 0 0 228px;
+}
+
+.Banner_Halloween_Desc
+{
+	align: center center;
+	flow-children: down;
+}
+
+.Banner_Halloween_Header
+{
+	text-align: center;
+	text-transform: uppercase;
+	font-family: titleFont;
+	font-weight: bold;
+	font-size: 40px;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 8px 1 rgba(212, 103, 25, 0.33);
+	color: gradient(linear, 0% 100%, 0% 0%, from(#f16c00), to(#ff4600));
+}
+
+.Banner_Halloween_Details
+{
+	color: white;
+	text-shadow: black 0 0 3px 2;
+	font-size: 18px;
+}
+
+.Banner_Halloween_Footer
+{
+	horizontal-align: center;
+	text-align: center;
+	margin-top: 5px;
+	color: white;
+	text-shadow: black 0 0 3px 2;
+	font-size: 16px;
+}
+
+.QR1_Root
+{
+	flow-children: down;
+	background-color: rgba(0, 0, 0, 0.8);
+	padding: 8px;
+	margin: 30px 0 0 949px;
+	horizontal-align: center;
+	border: 1px solid black;
+	visibility: collapse;
+}
+
+.AspectRatio4x3 .QR1_Root
+{
+	margin: 30px 0 0 1097px;
+}
+
+.Language_schinese .QR1_Root,.Language_tchinese .QR1_Root
+{
+	visibility: visible;
+}
+
+.QR1_Root Label
+{
+	horizontal-align: center;
+	text-align: center;
+	color: white;
+	text-shadow: #5fcaf7 0 0 3px 1;
+	font-size: 23px;
+}
+
+.QR1_Root Panel
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.QR1_Root Image
+{
+	width: 130px;
+	height: 130px;
+	horizontal-align: center;
+	margin-top: 8px;
+	box-shadow: #5fcaf7 0 0 4px -3;
+}
+
+.QR1_Root .Link Label
+{
+	color: #c2c8ff;
+	text-decoration: underline;
+}
+
+.QR1_Root .Link:hover
+{
+	brightness: 2;
+}
+
+.QR1_Root .Link:active
+{
+	brightness: 0.5;
+}
+
+.LS_DiscordButton
+{
+	flow-children: right;
+	margin: 95px 0 0 580px;
+	horizontal-align: center;
+	padding: 10px;
+}
+
+.LS_DiscordButton:hover
+{
+	brightness: 1.5;
+}
+
+.LS_DiscordButton:active
+{
+	brightness: 0.8;
+	sound: "General.ButtonClick";
+}
+
+.LS_DiscordButton Image
+{
+	height: 65px;
+	width: 65px;
+	img-shadow: black 0 0 5px 3;
+}
+
+.LS_WeekendsEventBanner
+{
+	align: center top;
+	margin-left: 1200px;
+	width: 450px;
+	height: 209px;
+	background-image: url("s2r://panorama/images/custom_game/weekends_event_banner_1_png.vtex");
+	background-size: 100%;
+	margin-top: 100px;
+	visibility: collapse;
+}
+
+.BShowWeekendsEvent .LS_WeekendsEventBanner
+{
+	visibility: visible;
+}
+
+.LS_WeekendsEventBanner_Orb
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/weekends_event_banner_2_png.vtex");
+	background-size: 100%;
+	saturation: 0.3;
+	wash-color: #bababa;
+	contrast: 1.15;
+	brightness: 0.8;
+}
+
+.BWeekendsEventActive .LS_WeekendsEventBanner_Orb
+{
+	saturation: 1;
+	wash-color: transparent;
+	contrast: 1;
+	brightness: 1;
+}
+
+.LS_WEB_Desc_1,.LS_WEB_Desc_2
+{
+	text-transform: uppercase;
+	transform: skew(-10deg);
+	font-size: 34px;
+	font-weight: semi-bold;
+	horizontal-align: right;
+	margin: 60px 110px 0 0;
+	color: gradient(linear, 0% 120%, 0% 0%, from(#bc79ee), to(#dedef0));
+	text-shadow: rgba(0, 0, 0, 0.6) 0 2px 2px 2;
+}
+
+.LS_WEB_Desc_2
+{
+	margin: 92px 85px 0 0;
+}
+
+.WeekendsEpicFont
+{
+	font-weight: bold;
+	color: gradient( linear, 0% 100%, 0% 0%, from(#cf60fa), color-stop(0.2, #fdf4fe), color-stop(0.5, #eba5f6), color-stop(0.6, #e069ee), to(#fdf4fe) );
+}
+
+.LS_WEB_Date
+{
+	align: right bottom;
+	margin: 0 58px 39px 0;
+	color: gradient(linear, 0% 120%, 0% 0%, from(#240742), to(#8e56c6));
+	font-weight: bold;
+	font-style: italic;
+	font-size: 17px;
+	width: 185px;
+	text-align: right;
+	height: 20px;
+	text-overflow: shrink;
+}
+
+.LS_WEB_Header_Container
+{
+	flow-children: right;
+	transform: skew(-10deg);
+	padding: 0 5px;
+	margin: 24px 0 0 170px;
+}
+
+.LS_WEB_Header_Flag
+{
+	height: 100%;
+	width: 4px;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#ad3acb), to(#602984));
+}
+
+.LS_WEB_Header
+{
+	text-transform: uppercase;
+	color: gradient(linear, 0% 0%, 100% 0%, from(#eccdff), to(#da9eff));
+	font-weight: semi-bold;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#3e2264), color-stop(0.5, #3e2264), to(transparent));
+	font-size: 20px;
+	padding-left: 3px;
+}
+
+.LS_SocialPage_1
+{
+	width: 156px;
+	height: 372px;
+	background-image: url("s2r://panorama/images/custom_game/loading_screen/social_links_1_png.vtex");
+	background-size: 100%;
+	horizontal-align: center;
+	margin: 125px 800px 0 0;
+	img-shadow: black 0 0 4px 2;
+	visibility: collapse;
+}
+
+.Language_schinese .LS_SocialPage_1,.Language_tchinese .LS_SocialPage_1
+{
+	visibility: visible;
+}
+
+.Promo_10v10
+{
+	height: 270px;
+	width: 270px;
+	background-image: url("s2r://panorama/images/custom_game/10v10_promo_png.vtex");
+	background-size: 100%;
+	align: center top;
+	margin: 105px 900px 0 0;
+}
+
+.Language_schinese .Promo_10v10
+{
+	margin: 105px 1200px 0 0;
+}
+
+.Promo_10v10:hover
+{
+	brightness: 1.3;
+}
+
+.Promo_10v10:active
+{
+	brightness: 0.7;
+}
+
+.Promo_10v10_Hint
+{
+	align: center bottom;
+	text-align: center;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#ffbb22), to(#ffffcf));
+	text-shadow: black 0 0 3px 4;
+}
+
+.Promo_10v10_Text_p1
+{
+	width: 100%;
+	text-align: center;
+	color: gradient(linear, 0% 0%, 100% 0%, from(#efae2c), to(#ffef87));
+	text-transform: uppercase;
+	font-size: 17px;
+	text-shadow: black 0 0 3px 3;
+	transform: rotateZ(-45deg);
+	margin: 69px 110px 0 0;
+	letter-spacing: 1px;
+}
+
+.Promo_10v10_Text_p2
+{
+	width: 100%;
+	vertical-align: bottom;
+	text-align: center;
+	color: gradient(linear, 0% 0%, 100% 0%, from(#eeb315), to(#fff22b));
+	text-transform: uppercase;
+	font-size: 15px;
+	text-shadow: black 0 0 3px 3;
+	transform: rotateZ(-45deg);
+	margin: 0 0 69px 115px;
+}
+
+.WeaklyTournaments_Banner
+{
+	width: 335px;
+	background-image: url("s2r://panorama/images/custom_game/loading_screen/weekly_tournaments_banner_png.vtex");
+	background-size: 100% 145px;
+	background-repeat: no-repeat;
+	text-align: center;
+	padding-top: 125px;
+	text-transform: uppercase;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#ff9f23), to(#ffeb83));
+	font-weight: semi-bold;
+	text-shadow: black 0 0 3px 4;
+	font-size: 20px;
+	align: center top;
+	margin: 107px 960px 0 0;
+	transition-property: saturation, brightness;
+	transition-duration: 0.1s;
+	margin: 107px 1460px 0 0;
+}
+
+.WeaklyTournaments_Banner:hover
+{
+	brightness: 1.3;
+	saturation: 1.05;
+}
+
+.Language_schinese .WeaklyTournaments_Banner,.Language_tchinese .WeaklyTournaments_Banner
+{
+	visibility: collapse;
+}
+
+.Banner_ServerErrors
+{
+	flow-children: right;
+	width: 600px;
+	background-color: rgba(0, 0, 0, 0.9);
+	margin: 125px 0 0 30px;
+}
+
+.Banner_SE_Bevel
+{
+	height: 100%;
+	width: 4px;
+	background-color: #c5341a;
+}
+
+.Banner_SE_Content
+{
+	flow-children: down;
+	width: 100%;
+}
+
+.Banner_SE_Header
+{
+	text-transform: uppercase;
+	font-size: 24px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#c5341a), to(rgba(197, 52, 26, 0.4)));
+	width: 100%;
+	padding: 3px 8px 2px 7px;
+	color: white;
+	font-weight: lighter;
+}
+
+.Banner_SE_Description
+{
+	font-size: 15px;
+	color: #d3d3d3;
+	padding: 3px 8px 2px 8px;
+}
+
+.Banner_Christmas
+{
+	margin: 100px 0 0 125px;
+}
+
+.Banner_Christmas Image
+{
+	width: 465px;
+	height: 322px;
+}
+
+.Banner_Christmas_Root_1
+{
+	flow-children: down;
+	width: 340px;
+	horizontal-align: center;
+	margin-top: 195px;
+}
+
+.Banner_Christmas_Text_1,.Banner_Christmas_Text_2,.Banner_Christmas_Text_4,.Banner_Christmas_Text_5
+{
+	horizontal-align: center;
+	text-align: center;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#54a83e), color-stop(0.2, #6fe450), to(#6fe450));
+	font-size: 50px;
+	max-width: 100%;
+	height: 67px;
+	text-overflow: shrink;
+	font-weight: semi-bold;
+	background-color: gradient( radial, 50% 50%, 0% 0%, 50% 50%, from(rgba(0, 0, 0, 0.9)), color-stop(0.5, rgba(0, 0, 0, 0.9)), to(transparent) );
+	padding: 5px 40px;
+	text-shadow: -1px 1px 0px 2 #3f4016;
+	text-overflow: shrink;
+}
+
+.Banner_Christmas_Text_1
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#5dba43), color-stop(0.2, #7dff5a), to(#7dff5a));
+}
+
+.Banner_Christmas_Text_2
+{
+	font-size: 30px;
+	height: 46px;
+	margin-top: -23px;
+}
+
+.Banner_Christmas_Text_3
+{
+	width: 310px;
+	font-size: 20px;
+	height: 25px;
+	text-overflow: shrink;
+	margin-top: 260px;
+	horizontal-align: center;
+	text-align: center;
+	color: #ff2121;
+	font-weight: semi-bold;
+	text-shadow: black 0 1px 1px 2;
+}
+
+.Banner_Christmas:hover
+{
+	brightness: 1.15;
+}
+
+.Banner_Christmas:active
+{
+	brightness: 0.95;
+}
+
+.Banner_Christmas:hover .Banner_Christmas_Text_3
+{
+	text-shadow: #869525 0 1px 1px 2;
+}
+
+.Banner_Christmas:active .Banner_Christmas_Text_3
+{
+	pre-transform-scale2d: 0.95;
+	color: #71a700;
+	text-shadow: 0 0 0px 0 transparent;
+}
+
+.Banner_Christmas_Root_2
+{
+	flow-children: down;
+	margin-top: 290px;
+	horizontal-align: center;
+}
+
+.Banner_Christmas_Text_4
+{
+	font-size: 23px;
+	width: 400px;
+	height: fit-children;
+	background-color-opacity: 0.7;
+}
+
+.Banner_Christmas_Text_5
+{
+	font-size: 15px;
+	height: 29px;
+	font-style: italic;
+	background-color-opacity: 0.7;
+	margin-top: -10px;
+}
+
+#Banner_Tournament_FFA
+{
+	align: center top;
+	margin: 110px 1200px 0 0;
+	flow-children: down;
+	transition-property: brightness;
+	transition-duration: 0.07s;
+}
+
+#Banner_Tournament_FFA:hover
+{
+	brightness: 1.5;
+}
+
+#Banner_Tournament_FFA:active
+{
+	brightness: 0.7;
+}
+
+.Banner_Tournament_Background
+{
+	width: 478px;
+	height: 259px;
+	background-image: url("s2r://panorama/images/custom_game/ffa_tournament_banner_png.vtex");
+	background-size: 100%;
+}
+
+.Banner_Tournament_FFA_Header
+{
+	text-transform: uppercase;
+	align: center bottom;
+	margin-bottom: 47px;
+	font-size: 34px;
+	font-weight: semi-bold;
+	color: gradient(linear, 0% 110%, 0% 0%, from(#b98268), to(#f4e3b4));
+	text-shadow: black 0 2px 0px 2;
+	text-align: center;
+}
+
+.Banner_Tournament_FFA_Description
+{
+	text-transform: uppercase;
+	align: center bottom;
+	margin-bottom: 16px;
+	font-size: 18px;
+	text-align: center;
+	color: white;
+	text-shadow: black 0 1px 0px 2;
+}
+
+.Banner_Tournament_FFA_ClickDetails
+{
+	width: 100%;
+	font-size: 16px;
+	text-align: center;
+	margin-top: -9px;
+	color: #f4e3b4;
+	font-style: italic;
+	text-decoration: underline;
+	text-shadow: black 0 1px 0px 2;
+}
+
+.Banner_PeakOnline
+{
+	margin: 100px 0 0 125px;
+}
+
+.Banner_PeakOnline Image
+{
+	width: 465px;
+	height: 322px;
+}
+
+.Banner_PeakOnline_Root_1
+{
+	flow-children: down;
+	width: 340px;
+	horizontal-align: center;
+	margin-top: 195px;
+}
+
+.Banner_PeakOnline_Text_1,.Banner_PeakOnline_Text_2,.Banner_PeakOnline_Text_4,.Banner_PeakOnline_Text_5
+{
+	horizontal-align: center;
+	text-align: center;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#a8a535), color-stop(0.2, #e4bb2a), to(#ffc900));
+	font-size: 50px;
+	max-width: 100%;
+	height: 67px;
+	text-overflow: shrink;
+	font-weight: semi-bold;
+	background-color: gradient( radial, 50% 50%, 0% 0%, 50% 50%, from(rgba(0, 0, 0, 0.9)), color-stop(0.5, rgba(0, 0, 0, 0.9)), to(transparent) );
+	padding: 5px 40px;
+	text-shadow: -1px 1px 0px 2 #3f4016;
+	text-overflow: shrink;
+}
+
+.Banner_PeakOnline_Text_1
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#a8a535), color-stop(0.2, #e4bb2a), to(#ffc900));
+	text-shadow: -1px 1px 3px 2 #000000;
+}
+
+.Banner_PeakOnline_Text_2
+{
+	font-size: 30px;
+	height: 46px;
+	margin-top: -23px;
+}
+
+.Banner_PeakOnline_Text_3
+{
+	width: 310px;
+	font-size: 20px;
+	height: 25px;
+	text-overflow: shrink;
+	margin-top: 260px;
+	horizontal-align: center;
+	text-align: center;
+	color: #ff003c;
+	font-weight: semi-bold;
+	text-shadow: black 0 1px 1px 2;
+}
+
+.Banner_PeakOnline:hover
+{
+	brightness: 1.15;
+}
+
+.Banner_PeakOnline:active
+{
+	brightness: 0.95;
+}
+
+.Banner_PeakOnline:hover .Banner_PeakOnline_Text_3
+{
+	text-shadow: #869525 0 1px 1px 2;
+}
+
+.Banner_PeakOnline:active .Banner_PeakOnline_Text_3
+{
+	pre-transform-scale2d: 0.95;
+	color: #71a700;
+	text-shadow: 0 0 0px 0 transparent;
+}
+
+.Banner_PeakOnline_Root_2
+{
+	flow-children: down;
+	margin-top: 290px;
+	horizontal-align: center;
+}
+
+.Banner_PeakOnline_Text_4
+{
+	font-size: 23px;
+	width: 400px;
+	height: fit-children;
+	background-color-opacity: 0.7;
+}
+
+.Banner_PeakOnline_Text_5
+{
+	font-size: 15px;
+	height: 29px;
+	font-style: italic;
+	background-color-opacity: 0.7;
+	margin-top: -10px;
+}

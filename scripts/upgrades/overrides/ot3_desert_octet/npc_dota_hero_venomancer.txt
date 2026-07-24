@@ -1,0 +1,45 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_venomancer"
+{
+	"venomancer_noxious_plague"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "7"
+			"operator" "OP_MULTIPLY"
+			"multiplicative_target"	"85"
+		}
+		"debuff_radius"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"impact_damage"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+
+			"linked_special_values"
+			{
+				"damage_per_second"
+				{
+					"value" "0.4"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target"			"10"
+					"multiplicative_base_value"		"4"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,80 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_marci"
+{
+	"marci_grapple"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "20"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+			"linked_special_values"
+			{
+				"movement_slow_pct" "10"
+				"throw_distance_behind" "50"
+				"landing_radius" "80"
+			}
+		}
+		"impact_damage"
+		{
+			"value" "130"
+			"operator" "OP_ADD"
+		}
+	}
+	"marci_companion_run"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"ally_movespeed_pct" "6"
+			}
+		}
+		"landing_radius"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"max_count" "8"
+			"linked_special_values"
+			{
+				"max_jump_distance" "60"
+			}
+		}
+		"impact_damage"
+		{
+			"value" "120"
+			"operator" "OP_ADD"
+		}
+	}
+	"marci_unleash"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"time_between_flurries"
+		{
+			"value" "-0.25"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+		"pulse_damage"
+		{
+			"value" "60"
+			"operator" "OP_ADD"
+		}
+	}
+}

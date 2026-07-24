@@ -1,0 +1,68 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf58:version{9bada39c-a931-42d0-abdd-e5c1b13d37a6} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_nInitialParticles = 1
+	m_flConstantRadius = 0.0
+	m_ConstantColor = [ 0, 0, 0, 255 ]
+	m_nConstantSequenceNumber = 1
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_StatusEffect"
+			m_flDetail2Scale = 1.0
+			m_flColorWarpIntensity = 1.0
+			m_flDetail2BlendFactor = 1.0
+			m_nDetail2Combo = "DETAIL_2_COMBO_ADD"
+			m_flEnvMapIntensity = 0.2
+			m_flAmbientScale = 1.5
+			m_flRimLightScale = 0.0
+			m_flSpecularScale = 2.0
+			m_flDiffuseWarpBlendToFull = 1.0
+			m_flSpecularExponent = 10.0
+			m_flSpecularExponentBlendToFull = 0.7
+			m_flSpecularBlendToFull = 0.5
+			m_flReflectionsTintByBaseBlendToNone = 1.0
+			m_flMetalnessBlendToFull = 0.25
+			m_rimLightColor = [ 255, 0, 255 ]
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMax = [ 206, 206, 206 ]
+			m_ColorMin = [ 223, 69, 222 ]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_EndCapTimedDecay"
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderStatusEffect"
+			m_pTextureDetail2 = resource:"materials/particle/electrical/electrical_cracks_color_tga_b55badd3.vtex"
+			m_pTextureColorWarp = resource:"materials/models/heroes/statuseffects/colorwarp_electrical.vtex"
+			m_pTextureFresnelWarp = resource:"materials/models/heroes/statuseffects/colorwarp_frosty_effigy_dire_2d.vtex"
+		},
+	]
+}

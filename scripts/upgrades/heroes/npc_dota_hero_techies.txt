@@ -1,0 +1,127 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_techies"
+{
+	"techies_mutually_assured_destruction"
+	{
+		"base_damage"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"max_mana_pct_as_damage" "5"
+			}
+		}
+	}
+	"techies_sticky_bomb"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"explosion_radius" "30"
+				"countdown" "-0.15"
+			}
+		}
+		"damage"
+		{
+			"value" "55"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"speed" "50"
+			}
+		}
+	}
+	"techies_reactive_tazer"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "7"
+			"operator" "OP_MULTIPLY"
+			"linked_special_values"
+			{
+				"bonus_ms" "3"
+			}
+		}
+		"damage"
+		{
+			"value" "70"
+			"operator" "OP_ADD"
+		}
+		"explosion_radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"techies_suicide"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"damage"
+		{
+			"value" "90"
+			"operator" "OP_ADD"
+		}
+	}
+	"techies_land_mines"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "5"
+			"operator" "OP_MULTIPLY"
+			"linked_abilities"
+			{
+				"techies_minefield_sign"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "5"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"damage"
+		{
+			"value" "70"
+			"operator" "OP_ADD"
+			"linked_abilities"
+			{
+				"techies_minefield_sign"
+				{
+					"scepter_move_damage" "30"
+				}
+			}
+		}
+	}
+}

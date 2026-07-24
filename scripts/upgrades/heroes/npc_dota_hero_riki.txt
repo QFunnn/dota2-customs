@@ -1,0 +1,101 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_riki"
+{
+	"riki_innate_backstab"
+	{
+		"damage_multiplier"
+		{
+			"value" "0.15"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"backstab_angle"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+			"max_count" "4"
+		}
+	}
+	"riki_smoke_screen"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "3"
+		}
+		"miss_rate"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+	}
+	"riki_blink_strike"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"bonus_damage"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+		}
+		"slow"
+		{
+			"value" "0.2"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+	}
+	"riki_tricks_of_the_trade"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"attack_damage"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+		}
+	}
+	"riki_backstab"
+	{
+		"fade_delay"
+		{
+			"value" "-0.15"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+		"bonus_xp_kill"
+		{
+			"value" "130"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"linked_special_values"
+			{
+				"bonus_xp_assist" "65"
+			}
+		}
+	}
+}

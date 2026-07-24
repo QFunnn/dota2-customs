@@ -1,0 +1,46 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/scripts/innates_auto_generated.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/tooltip_extender/tooltip_extender_pregen.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/tooltip_extender/tooltip_extender_const.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/tooltip_extender/tooltip_extender.vjs_c" />
+	</scripts>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/tooltip_extender/tooltip_extender.vcss_c" />
+	</styles>
+	<snippets>
+		<snippet name="TEB_AbilityHint">
+			<Panel class="TEB_AbilityHint TooltipExtenderBlock">
+				<Panel class="TEB_HeaderContainer">
+					<Image class="TEB_Header_DefaultIcon" src="s2r://panorama/images/custom_game/tooltip_extender/info_icon_png.vtex" />
+					<Image class="TEB_Header_SkullIcon" src="s2r://" />
+					<Label text="{s:te_header}" />
+					<Label class="TEB_CustomGameName" text="#addon_game_name" />
+				</Panel>
+				<Label class="TEB_Description AOEScalingHint" text="{s:aoe_scaling_hint}" html="true" />
+				<Label class="TEB_Description CustomAbilityLabel" text="#custom_ability_hint_IsCustomAbility" />
+				<Label class="TEB_Description DetailsLabel" text="{s:te_custom_hint}" html="true" />
+				<Label class="TEB_Description BossItemDrop" text="#custom_ability_hint_BossDrop_description" html="true" />
+				<Label class="TEB_Description ShiftInsta" text="#custom_ability_hint_ShiftInsta" html="true" />
+				<Label class="TEB_Description RescaledSpellAmp" text="{s:spell_amp_tune_hint}" html="true" />
+				<Label class="TEB_Description InnateDetails" text="{s:extender_hint}" html="true" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel style="visibility: collapse;">
+		<Panel id="TE_TempContainer" />
+		<Label id="TE_TempLabel" hittest="false" style="visibility: collapse;" />
+	</Panel>
+</root>

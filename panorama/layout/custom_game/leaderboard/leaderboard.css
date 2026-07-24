@@ -1,0 +1,799 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.Custom_Leaderboard
+{
+	flow-children: right;
+	vertical-align: center;
+	opacity: 0;
+	transform: translateX(-100px);
+	transition-property: opacity, transform;
+	transition-duration: 0.15s;
+	padding: 4px 0;
+}
+
+.Custom_Leaderboard.Show
+{
+	opacity: 1;
+	transform: translateX(0px);
+}
+
+.Custom_Leaderboard_Main
+{
+	background-color: #272f42;
+	background-image: url("s2r://panorama/images/custom_game/backgrounds/background_2_png.vtex");
+	background-size: 100%;
+	min-width: 378px;
+	flow-children: down;
+	box-shadow: black 0 0 4px 0;
+}
+
+.LB_Header_Cotnainer
+{
+	width: 100%;
+	padding: 6px;
+}
+
+.LB_Header_Text
+{
+	align: center center;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 30px;
+	font-weight: semi-bold;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#e78741), to(#ffc261));
+	text-shadow: black 1px 1px 0 2;
+}
+
+.LB_Header_CloseButton
+{
+	width: 20px;
+	height: 20px;
+	horizontal-align: right;
+	background-image: url("s2r://panorama/images/custom_game/import_dota/x_close_png_png.vtex");
+	background-size: 100%;
+	wash-color: #7e93b0;
+}
+
+.LB_Header_CloseButton:hover
+{
+	brightness: 2;
+}
+
+.LB_Header_CloseButton:active
+{
+	width: 18px;
+	height: 18px;
+	margin: 1px;
+}
+
+.LB_SeasonReset_Container
+{
+	padding: 5px 10px;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.9);
+	background-color: gradient( linear, 0% 0%, 0% 100%, from(rgba(0, 0, 0, 0.95)), color-stop(0.2, rgba(0, 0, 0, 0.6)), to(rgba(0, 0, 0, 0.6)) );
+}
+
+.LB_SeasonReset_NumberHeader
+{
+	text-transform: uppercase;
+	vertical-align: center;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#eea05a), to(#fee7a8));
+	text-shadow: black 1px 1px 0 2;
+}
+
+.LB_SeasonReset_Date_Container
+{
+	flow-children: right;
+	padding-left: -10px;
+	horizontal-align: right;
+}
+
+.LB_SeasonReset_Date
+{
+	flow-children: down;
+	margin-left: 5px;
+	width: 35px;
+}
+
+.LB_SeasonReset_Date Label
+{
+	color: #d6dbe4;
+	horizontal-align: center;
+	text-align: center;
+	width: 100%;
+	text-shadow: black 1px 1px 0 2;
+	font-family: monospaceNumbersFont;
+}
+
+.LB_SeasonReset_Date_Value
+{
+	font-size: 20px;
+	font-weight: semi-bold;
+}
+
+.LB_SeasonReset_Date_Name
+{
+	font-size: 12px;
+}
+
+.LB_Content
+{
+	flow-children: down;
+	margin: 10px;
+}
+
+#LB_MapsContainer
+{
+	flow-children: right;
+	horizontal-align: center;
+	padding-left: -6px;
+}
+
+.LB_MapOption
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/map_button_png.vtex");
+	background-size: 100%;
+	min-width: 85px;
+	margin-left: 6px;
+	transition: brightness 0.1s ease-in-out 0s;
+}
+
+.LB_MapOption_Overlay
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/map_button_active_png.vtex");
+	background-size: 100%;
+	opacity: 0;
+	transition-property: opacity, brightness;
+	transition-duration: 0.1s;
+}
+
+.LB_MapOption:hover .LB_MapOption_Overlay
+{
+	opacity: 0.3;
+}
+
+.LB_MapOption:active,.LB_MapOption.Activated:active .LB_MapOption_Overlay
+{
+	brightness: 0.7;
+}
+
+.LB_MapOption.Activated .LB_MapOption_Overlay
+{
+	opacity: 1;
+	brightness: 1.3;
+}
+
+.LB_MapOption.Activated:hover
+{
+	brightness: 1.3;
+}
+
+.LB_MapOption Label
+{
+	margin: 10px 8px;
+	align: center center;
+	text-align: center;
+	text-transform: uppercase;
+	color: #c9cacf;
+	text-shadow: black 1px 1px 0 2;
+	transition: white 0.1s ease-in-out 0s;
+}
+
+.LB_MapOption.Activated Label
+{
+	color: white;
+}
+
+.LB_LocalInfo
+{
+	width: 100%;
+	flow-children: down;
+	margin: 5px 0 10px 0;
+}
+
+.LB_LI_RatingDetails
+{
+	width: 100%;
+}
+
+.LB_LI_Background_Container
+{
+	flow-children: down;
+	width: 100%;
+	margin-top: 5px;
+}
+
+.LB_LI_Background
+{
+	width: 100%;
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/local_info_bg_png.vtex");
+	background-size: 100%;
+	flow-children: right;
+}
+
+.LB_LI_Avatar
+{
+	width: 42px;
+	height: 42px;
+	border: 3px solid #1a1a1c;
+	border-radius: 4px;
+	margin: 4px 6px;
+	box-shadow: black 0 1px 2px 1;
+}
+
+.LB_LI_Name
+{
+	width: 100%;
+	margin-right: 139px;
+	vertical-align: center;
+	margin-top: 1px;
+}
+
+.LB_LI_Name Label
+{
+	text-overflow: shrink;
+}
+
+.LB_LI_Progress_Container
+{
+	width: 100%;
+	background-color: #1a1a1c;
+	padding: 4px 5px;
+}
+
+#LB_LI_Progress
+{
+	width: 100%;
+	border-radius: 3px;
+	height: 5px;
+	background-color: #42496d;
+	overflow: clip;
+}
+
+#LB_LI_Progress_Left
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#e67c17), to(#f68451));
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+
+.LB_LI_Rating_Container
+{
+	flow-children: right;
+	horizontal-align: right;
+	margin-right: 5px;
+}
+
+.LB_LI_Rating_Icon
+{
+	height: 54px;
+	width: 54px;
+	background-size: 100%;
+	margin: 5px 0 -5px 0;
+}
+
+.LocalRank_-1 .LB_LI_Rating_Icon
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/rank_-1_png.vtex");
+}
+
+.LocalRank_0 .LB_LI_Rating_Icon
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/rank_0_png.vtex");
+}
+
+.LocalRank_1 .LB_LI_Rating_Icon
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/rank_1_png.vtex");
+}
+
+.LocalRank_2 .LB_LI_Rating_Icon
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/rank_2_png.vtex");
+}
+
+.LocalRank_3 .LB_LI_Rating_Icon
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/rank_3_png.vtex");
+}
+
+.LocalRank_4 .LB_LI_Rating_Icon
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/rank_4_png.vtex");
+}
+
+.LocalRank_5 .LB_LI_Rating_Icon
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/rank_5_png.vtex");
+	margin: 0;
+}
+
+.LB_LI_Rating_Value
+{
+	vertical-align: center;
+	margin: 9px 5px 0 0;
+	font-size: 24px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#efa45d), to(#fee7a9));
+	text-shadow: black 1px 1px 0 2;
+	font-weight: semi-bold;
+}
+
+.LB_LI_RewardsDetails
+{
+	flow-children: right;
+	padding: 5px 0 3px 0;
+	horizontal-align: center;
+}
+
+.LB_LI_RewardsDetails Label
+{
+	text-transform: uppercase;
+	font-size: 15px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#eea05a), to(#fee7a8));
+	text-shadow: rgba(0, 0, 0, 0.9) 1px 1px 0 2;
+	font-weight: semi-bold;
+	margin: 0 5px;
+	vertical-align: center;
+	width: 115px;
+}
+
+.LB_LI_CurrentReward_Label
+{
+	text-align: right;
+}
+
+.LB_LI_RewardsDetails .LB_ThinText
+{
+	font-weight: thin;
+}
+
+.LB_LI_RewardImage
+{
+	width: 40px;
+	height: 40px;
+	border-radius: 4px;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#3d3e4b), to(#24252c));
+	box-shadow: black 0 1px 2px 1;
+	border: 2px solid white;
+	background-image: url("s2r://panorama/images/custom_game/collection/cosmetics/items/bundle_icon_png.vtex");
+	background-size: 100%;
+}
+
+.LB_LI_RewardImage:hover
+{
+	brightness: 1.5;
+}
+
+#LB_LI_CurrentReward
+{
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#74421c), to(#d3b364));
+}
+
+#LB_LI_NextReward
+{
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#262834), to(#54667f));
+}
+
+.LB_LI_CurrentReward_Entity,.LB_LI_NextReward_Entity
+{
+	visibility: collapse;
+}
+
+.BCurrentRewardsAvailable .LB_LI_CurrentReward_Entity,.BNextRewardsAvailable .LB_LI_NextReward_Entity
+{
+	visibility: visible;
+}
+
+.LB_LI_Arrow
+{
+	width: 16px;
+	height: 16px;
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/arrow_png.vtex");
+	background-size: 100%;
+	img-shadow: black 0 1px 0 2;
+	vertical-align: center;
+	margin: 0 10px;
+	visibility: collapse;
+}
+
+.BCurrentRewardsAvailable.BNextRewardsAvailable .LB_LI_Arrow
+{
+	visibility: visible;
+}
+
+.LB_TablesRoot
+{
+	flow-children: down;
+	width: 100%;
+	box-shadow: hollow #000000 0 0 5px 1px;
+}
+
+.LB_Tables_Header,.LB_Tables_Foot
+{
+	background-color: #141622;
+	width: 100%;
+	padding: 8px 8px 7px 8px;
+}
+
+.LB_Tables_Header
+{
+	padding: 10px 8px 9px 8px;
+}
+
+.LB_Tables_Header Label,.LB_Tables_Foot Label
+{
+	font-size: 16px;
+	color: #cdcdcf;
+}
+
+.LB_Tables_Header .LB_GoldenText
+{
+	color: #f3b570;
+}
+
+.LB_Tables_Container_Wrap
+{
+	width: 100%;
+}
+
+#LB_Tables_Container
+{
+	width: 100%;
+	height: 400px;
+}
+
+.LB_Tables_Overlay
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from(rgba(0, 0, 0, 0.9)), color-stop(0.05, transparent), color-stop(0.95, transparent), to(rgba(0, 0, 0, 0.7)) );
+}
+
+.LB_Table
+{
+	flow-children: down;
+	overflow: squish scroll;
+	width: 100%;
+	opacity: 0;
+	transform: translateY(100%);
+	transition-property: opacity, transform;
+	transition-duration: 0.12s;
+	transition-delay: 0.12s;
+}
+
+.LB_Table.Activated
+{
+	opacity: 1;
+	transform: translateY(0px);
+	transition-delay: 0s;
+}
+
+.LB_Table #ScrollThumb
+{
+	background-color: #5c6376;
+}
+
+.LB_Player
+{
+	flow-children: right;
+	padding: 5px;
+	width: 100%;
+}
+
+.LB_Player.DarkBG
+{
+	background-color: rgba(10, 10, 10, 0.7);
+}
+
+.LB_Player.LocalPlayer
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#a74c01), to(#cc7401));
+}
+
+.LB_Player_Rank_Container
+{
+	width: 32px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/leaderboards_icon_top0_png.vtex");
+	background-size: 100%;
+	img-shadow: black 0 0 1px 2;
+	vertical-align: center;
+}
+
+.Rank_1 .LB_Player_Rank_Container
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/leaderboards_icon_top1_png.vtex");
+}
+
+.Rank_2 .LB_Player_Rank_Container
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/leaderboards_icon_top2_png.vtex");
+}
+
+.Rank_3 .LB_Player_Rank_Container
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/leaderboards_icon_top3_png.vtex");
+}
+
+.LB_Player_Rank_Container Label
+{
+	align: center center;
+	text-align: center;
+	font-family: monospaceNumbersFont;
+	width: 20px;
+	text-overflow: shrink;
+	text-shadow: black 0 1px 1px 2;
+	color: #a0a2a7;
+}
+
+.Rank_1 .LB_Player_Rank_Container Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#e19e46), to(#ffff55));
+}
+
+.Rank_2 .LB_Player_Rank_Container Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#adbedc), to(#f0efff));
+}
+
+.Rank_3 .LB_Player_Rank_Container Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#9b5b30), to(#d29c7a));
+	color: #ffb278;
+}
+
+#LB_Player_Avatar
+{
+	width: 34px;
+	height: 34px;
+	margin: 0 10px;
+	border: 2px solid #1a1a1c;
+	box-shadow: rgba(0, 0, 0, 0.8) 0 0 2px 1px;
+	border-radius: 3px;
+}
+
+#LB_Player_Name
+{
+	vertical-align: center;
+	max-width: 170px;
+}
+
+.HiddenElementUntilPlayerLoaded
+{
+	opacity: 0;
+}
+
+.BPlayerLoaded .HiddenElementUntilPlayerLoaded
+{
+	opacity: 1;
+}
+
+.LB_Rating_Container
+{
+	margin-right: 8px;
+	align: right center;
+	flow-children: right;
+}
+
+.LB_Player_Rating
+{
+	vertical-align: center;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#ce822b), to(#f8eb7b));
+	text-shadow: rgba(0, 0, 0, 0.7) 0 1px 1px 2;
+}
+
+.LocalPlayer .LB_Player_Rating
+{
+	color: white;
+}
+
+#LB_Player_RewardsByPlace
+{
+	width: 32px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/treasure_silver_x64_png.vtex");
+	background-size: 100%;
+	margin-left: 3px;
+}
+
+.Top10 #LB_Player_RewardsByPlace
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/treasure_golden_x64_png.vtex");
+}
+
+.LB_LI_Rewards_FullDetailsButton
+{
+	width: 100%;
+	transition: brightness 0.1s ease-in-out 0s;
+}
+
+.LB_LI_Rewards_FullDetailsButton Label
+{
+	align: center center;
+	text-align: center;
+	text-decoration: underline;
+	font-style: italic;
+	font-size: 14px;
+	color: #b2b7be;
+}
+
+.LB_LI_Rewards_FullDetailsButton:hover
+{
+	brightness: 2;
+}
+
+.LB_LI_Rewards_FullDetailsButton:active
+{
+	brightness: 0.7;
+}
+
+#LB_FullRewardsDetails_Container
+{
+	flow-children: down;
+	vertical-align: bottom;
+	background-color: #272f42;
+	background-image: url("s2r://panorama/images/custom_game/backgrounds/background_2_png.vtex");
+	background-size: 100%;
+	z-index: -1;
+	opacity: 0;
+	transform: translateX(-60px);
+	transition-property: opacity, transform, box-shadow;
+	transition-duration: 0.15s;
+	box-shadow: transparent 0 0 0 0;
+}
+
+.BShowFullRewardsDetails #LB_FullRewardsDetails_Container
+{
+	opacity: 1;
+	transform: translateX(0px);
+	box-shadow: black 0 0 4px 0;
+}
+
+.LB_FRD_Header
+{
+	text-transform: uppercase;
+	text-align: center;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#efa45d), to(#fee7a9));
+	text-shadow: black 1px 1px 0 2;
+	background-color: rgba(0, 0, 0, 0.83);
+	width: 100%;
+	padding: 10px;
+}
+
+#LB_FRD_List
+{
+	margin: 0 10px 10px 10px;
+}
+
+.LB_RewardsListForMap
+{
+	flow-children: down;
+	opacity: 0;
+}
+
+.LB_RewardsListForMap.Activated
+{
+	opacity: 1;
+}
+
+.LB_Rewards_Line
+{
+	flow-children: down;
+	box-shadow: rgba(0, 0, 0, 0.6) 0 0 3px 1px;
+	margin-top: 10px;
+	border-radius: 2px;
+	border: 2px solid white;
+	border-brush: gradient(radial, 10% 10%, 0% 0%, 100% 100%, from(#46607b), to(#30303a));
+}
+
+.LB_Rewards_Line.Activated
+{
+	border-brush: gradient(radial, 10% 10%, 0% 0%, 100% 100%, from(#aa6f2f), to(#3a3335));
+}
+
+.LB_Rewards_Line.RewardRank_0,.RewardRank_0 #LB_RL_ItemsContainer
+{
+	width: 100%;
+}
+
+.LB_RL_MMR_Value
+{
+	width: 100%;
+	text-align: right;
+	vertical-align: center;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#efa45d), to(#fee7a9));
+	text-shadow: black 1px 1px 0 2;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#46607b), color-stop(0.5, #22293d), to(#1a1a29));
+	padding: 7px 10px 0px 10px;
+	height: 34px;
+	background-size: 60px;
+	background-repeat: no-repeat;
+	background-position: 5px -5px;
+	img-shadow: black 0 0 3px 2;
+}
+
+.LB_Rewards_Line.Activated .LB_RL_MMR_Value
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#b8681b), color-stop(0.5, #48292b), to(#251e28));
+}
+
+.RewardRank_0 .LB_RL_MMR_Value
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/rank_0_png.vtex");
+}
+
+.RewardRank_1 .LB_RL_MMR_Value
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/rank_1_png.vtex");
+	background-position: 5px -4px;
+}
+
+.RewardRank_2 .LB_RL_MMR_Value
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/rank_2_png.vtex");
+	background-position: 5px -4px;
+}
+
+.RewardRank_3 .LB_RL_MMR_Value
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/rank_3_png.vtex");
+}
+
+.RewardRank_4 .LB_RL_MMR_Value
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/rank_4_png.vtex");
+	background-position: 5px -8px;
+}
+
+.RewardRank_5 .LB_RL_MMR_Value
+{
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/rank_5_png.vtex");
+	background-position: 5px -13px;
+	font-weight: semi-bold;
+}
+
+#LB_RL_ItemsContainer
+{
+	flow-children: right;
+	padding-left: -5px;
+	background-color: gradient(radial, 10% 10%, 0% 0%, 100% 100%, from(#161930), to(#202233));
+	padding: 5px 8px 5px 3px;
+	box-shadow: inset rgba(0, 0, 0, 0.45) 0 0 7px -1px;
+}
+
+.LB_Rewards_Line .CI_Item .CI_Background
+{
+	width: 55px;
+	height: 55px;
+	box-shadow: black 0 1px 2px 1;
+}
+
+.LB_Rewards_Line .CI_Item.TREASURES .CI_Background
+{
+	width: 90px;
+}
+
+.LB_Rewards_Line .CI_Item_Count
+{
+	font-size: 14px;
+	padding: 0 3px 0 5px;
+	height: 16px;
+}
+
+.LB_Rewards_Line #BundleItem_currency #CI_Item_Image
+{
+	background-size: 43px;
+}

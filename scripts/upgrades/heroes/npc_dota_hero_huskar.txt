@@ -1,0 +1,101 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_huskar"
+{
+	"huskar_inner_fire"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "7"
+		}
+		"damage"
+		{
+			"value" "55"
+			"operator" "OP_ADD"
+		}
+		"radius"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"knockback_distance" "30"
+			}
+		}
+	}
+	"huskar_burning_spear"
+	{
+		"max_health_cost"
+		{
+			"value" "-0.4"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+		"burn_damage"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+		}
+	}
+	"huskar_berserkers_blood"
+	{
+		"maximum_attack_speed"
+		{
+			"value" "55"
+			"operator" "OP_ADD"
+		}
+		"maximum_health_regen"
+		{
+			"value" "12"
+			"operator" "OP_ADD"
+		}
+		"maximum_magic_resist"
+		{
+			"value" "9"
+			"operator" "OP_MULTIPLY"
+
+			"multiplicative_target"			"100"
+			"multiplicative_base_value"		"30"
+		}
+	}
+	"huskar_life_break"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"health_damage"
+		{
+			"value" "0.09"
+			"operator" "OP_ADD"
+			"max_count" "4"
+			"linked_special_values"
+			{
+				"tooltip_health_damage" "9"
+			}
+		}
+		"movespeed"
+		{
+			"value" "-10"
+			"operator" "OP_ADD"
+			"max_count" "4"
+			"linked_special_values"
+			{
+				"attack_speed" "25"
+			}
+		}
+	}
+}

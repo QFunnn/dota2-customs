@@ -1,0 +1,166 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"item_recipe_helm_of_the_dominator_custom"
+	{
+		"BaseClass"                     "item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.vmdl"
+		"AbilityTextureName" 			"item_recipe_helm_of_the_dominator"
+
+		"ItemCost"						"1125"
+
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_helm_of_the_dominator_custom"
+
+		"ItemRequirements"
+		{
+			"01"						"item_helm_of_iron_will;item_crown"
+		}
+	}
+
+	"item_helm_of_the_dominator_custom"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"abilities/items/helm_of_the_dominator"
+		"AbilityTextureName"			"item_helm_of_the_dominator"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS | DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0"
+		"AbilityCooldown"				"45"
+
+		"MaxUpgradeLevel"				"2"
+		"ItemBaseLevel"					"1"
+
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"hotd;helm of the dominator"
+
+		"AbilityValues"
+		{
+			"bonus_stats"			"6"
+			"bonus_armor"			"6"
+			"bonus_regen"			"6"
+			"health_min"			"1000"
+			"speed_base"			"370"
+			"bounty_gold"			"100"
+			"creep_bonus_damage"	"25"
+			"creep_bonus_hp_regen"	"12"
+			"creep_bonus_mp_regen"	"4"
+			"creep_bonus_armor"		"4"
+			"model_scale"			"0"
+			"count_limit"			"1"
+		}
+	}
+
+	"item_recipe_helm_of_the_overlord_custom"
+	{
+		"BaseClass"                     "item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.vmdl"
+		"AbilityTextureName" 			"item_recipe_helm_of_the_overlord"
+
+		"ItemCost"						"300"
+
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_helm_of_the_overlord_custom"
+
+		"ItemRequirements"
+		{
+			"01"						"item_helm_of_the_dominator_custom;item_ultimate_orb"
+		}
+	}
+
+	"item_helm_of_the_overlord_custom"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"abilities/items/helm_of_the_dominator"
+		"AbilityTextureName"			"item_helm_of_the_overlord"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS | DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0"
+		"AbilityCooldown"				"40"
+
+		"MaxUpgradeLevel"				"2"
+		"ItemBaseLevel"					"2"
+
+		"ItemShopTags"					"damage;armor;unique;hard_to_tag"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"hoto;helm of the overlord"
+		"ShouldBeSuggested"				"1"
+
+		"AbilityValues"
+		{
+			"bonus_stats"			"21"
+			"bonus_armor"			"7"
+			"bonus_regen"			"7"
+			"health_min"			"1900"
+			"speed_base"			"380"
+			"bounty_gold"			"250"
+			"creep_bonus_damage"			"70"
+			"creep_bonus_hp_regen"			"12"
+			"creep_bonus_mp_regen"			"4"
+			"creep_bonus_armor"			"7"
+			"model_scale"			"20"
+			"count_limit"			"1"
+
+			// "armor_aura"		"3.0"
+			// "mana_regen_aura"		"2"
+			// "lifesteal_aura"			"20"
+			// "creep_lifesteal_reduction_pct"	"50"
+			// "damage_aura"			"18"
+			// "aura_radius"	"1200"
+		}
+	}
+
+	"item_giants_ring_custom"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"item_giants_ring"
+		"ScriptFile"					"abilities/items/giants_ring"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemCost"						"8000"
+		"ItemSellable"					"1"
+		"ItemPurchasable"				"0"
+		"ItemIsActiveNeutral"				"1"
+		"Model"							"models/props_gameplay/neutral_box.vmdl"
+
+		"AbilityValues"
+		{
+			"bonus_strength"			"35"
+			"movement_speed"			"50"
+			"model_scale"				"60"
+			"pct_str_damage_per_second"	"100"
+			"damage_radius"				"100"
+		}
+	}
+
+	"item_tpscroll"
+	{
+		"AbilityManaCost"				"15"
+	}
+
+	"item_aeon_disk"
+	{
+		"AbilityCooldown"				"45.0"
+
+		"AbilityValues"
+		{
+			"cooldown_duration"		"45.0"
+		}
+	}
+}

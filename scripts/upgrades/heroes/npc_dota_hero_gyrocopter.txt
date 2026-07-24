@@ -1,0 +1,104 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_gyrocopter"
+{
+	"gyrocopter_rocket_barrage"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_abilities"
+			{
+				"gyrocopter_homing_missile"
+				{
+					"shard_radius" "35"
+				}
+			}
+		}
+		"rocket_damage"
+		{
+			"value" "4"
+			"operator" "OP_ADD"
+		}
+	}
+	"gyrocopter_homing_missile"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"hit_damage"
+		{
+			"value" "55"
+			"operator" "OP_ADD"
+		}
+	}
+	"gyrocopter_flak_cannon"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"radius"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"max_attacks"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"gyrocopter_side_gunner_spawn_ability"
+	{
+		"sidegunner_fire_rate"
+		{
+			"value" "-0.1"
+			"operator" "OP_MULTIPLY"
+			"requires_scepter"		"1"
+
+			"multiplicative_target"			"0.13"
+			"multiplicative_base_value"		"1.3"
+		}
+	}
+	"gyrocopter_call_down"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"damage"
+		{
+			"value" "100"
+			"operator" "OP_ADD"
+		}
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+}

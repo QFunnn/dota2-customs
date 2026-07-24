@@ -1,0 +1,98 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_dazzle"
+{
+	"dazzle_innate_weave"
+	{
+		"armor_change"
+		{
+			"value" "0.3"
+			"operator" "OP_ADD"
+			"min_rarity" "rare"
+		}
+		"ally_heal"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+			"requires_shard" "1"
+		}
+	}
+	"dazzle_poison_touch"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "14"
+			"operator" "OP_MULTIPLY"
+		}
+		"damage"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+		}
+		"start_radius"
+		{
+			"value" "80"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"linked_special_values"
+			{
+				"end_radius" "80"
+			}
+		}
+	}
+	"dazzle_shallow_grave"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "14"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"heal_amplify"
+		{
+			"value" "12"
+			"operator" "OP_ADD"
+		}
+	}
+	"dazzle_shadow_wave"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "12"
+			"operator" "OP_MULTIPLY"
+		}
+		"tooltip_max_targets_inc_dazzle"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"linked_special_values"
+			{
+				"max_targets" "1"
+				"bounce_radius" "80"
+				"damage_radius" "80"
+			}
+		}
+		"damage"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+		}
+	}
+	"dazzle_nothl_projection"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "14"
+			"operator" "OP_MULTIPLY"
+		}
+	}
+}

@@ -1,0 +1,125 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_sand_king"
+{
+	"sandking_burrowstrike"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "8"
+		}
+		"burrow_width"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"damage"
+		{
+			"value" "65"
+			"operator" "OP_ADD"
+		}
+	}
+	"sandking_sand_storm"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"sand_storm_radius" "40"
+			}
+		}
+		"sand_storm_damage"
+		{
+			"value" "15"
+			"operator" "OP_ADD"
+		}
+	}
+	"sandking_scorpion_strike"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"linked_abilities"
+			{
+				"sandking_caustic_finale"
+				{
+					"caustic_finale_damage_pct"
+					{
+						"value" "1.5"
+						"operator" "OP_MULTIPLY"
+						
+						"multiplicative_target"			"100"
+						"multiplicative_base_value"		"15"
+					}
+				}
+			}
+		}
+		"attack_damage"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"linked_abilities"
+			{
+				"sandking_caustic_finale"
+				{
+					"caustic_finale_damage_flat" "35"
+				}
+			}
+		}
+		"radius"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"inner_radius" "10"
+			}
+			"linked_abilities"
+			{
+				"sandking_caustic_finale"
+				{
+					"caustic_finale_radius" "25"
+				}
+			}
+		}
+	}
+	"sandking_epicenter"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "7"
+			"operator" "OP_MULTIPLY"
+		}
+		"epicenter_radius_base"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"shard_radius" "40"
+			}
+		}
+		"epicenter_damage"
+		{
+			"value" "12"
+			"operator" "OP_ADD"
+		}
+	}
+}

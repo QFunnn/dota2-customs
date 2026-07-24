@@ -1,0 +1,97 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_phantom_assassin"
+{
+	"phantom_assassin_blur"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"active_movespeed_bonus" "3"
+			}
+		}
+	}
+	"phantom_assassin_stifling_dagger"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"duration"
+		{
+			"value" "0.4"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"linked_special_values"
+			{
+				"move_slow" "-10"
+			}
+		}
+		"base_damage"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+		}
+	}
+	"phantom_assassin_phantom_strike"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"bonus_attack_speed"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+		}
+		"duration"
+		{
+			"value" "0.3"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+	}
+	"phantom_assassin_immaterial"
+	{
+		"evasion"
+		{
+			"value" "3"
+			"operator" "OP_ADD"
+			"max_count" "8"
+		}
+	}
+	"phantom_assassin_coup_de_grace"
+	{
+		"crit_chance"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"dagger_crit_chance" "2"
+			}
+		}
+		"crit_bonus"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+}

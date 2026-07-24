@@ -1,0 +1,1005 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+@import url("s2r://panorama/layout/custom_game/collection/masteries/masteries.vcss_c");
+@import url("s2r://panorama/layout/custom_game/collection/profile/profile.vcss_c");
+.Collection_Root
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition-property: opacity, transform;
+	transition-duration: 0.15s;
+	transform: translateY(-30px);
+}
+
+.Collection_Wrap
+{
+	align: center center;
+	margin-top: -120px;
+}
+
+.Collection_Root.Show
+{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+.C_Wrap
+{
+	min-width: 1200px;
+	background-image: url("s2r://panorama/images/custom_game/collection/base_bg_png.vtex");
+	background-size: 100%;
+	flow-children: down;
+	margin: 199px 13px 0 0;
+	box-shadow: rgba(0, 0, 0, 0.9) 0px 0px 5px 2;
+}
+
+.C_Glow
+{
+	horizontal-align: center;
+	height: 200px;
+	width: 700px;
+}
+
+.C_Glow Label
+{
+	align: center bottom;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 28px;
+	font-weight: bold;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#dc6a08), to(#ffed10));
+	text-shadow: 0px 0px 3px 3 rgba(0, 0, 0, 0.6);
+	letter-spacing: 1px;
+	margin-bottom: 4px;
+}
+
+@define top_bar_height: 74px;
+.C_TopBar
+{
+	height: top_bar_height;
+	width: 100%;
+}
+
+.C_PlayerInfoRoot
+{
+	height: 100%;
+	width: 450px;
+	margin: 7px 0px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from(rgba(21, 21, 21, 0.95)), color-stop(0.5, rgba(0, 0, 0, 0.7)), to(transparent) );
+	flow-children: right;
+}
+
+.C_PlayerInfoRoot Panel
+{
+	flow-children: down;
+	vertical-align: center;
+	margin-left: 6px;
+}
+
+#C_PlayerAvatar
+{
+	height: 100%;
+	width: height-percentage(100%);
+	margin-left: 20px;
+}
+
+.C_PlayerSubscriptionState
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/sub_1_png.vtex");
+	background-size: 32px 100%;
+	padding: 5px 0 0 40px;
+	height: 28px;
+	background-repeat: no-repeat;
+	font-style: italic;
+}
+
+.SubTier_0:not(.SubTier_1) .C_PlayerSubscriptionState
+{
+	saturation: 0;
+	contrast: 1.1;
+	wash-color: #e1e1e1;
+}
+
+.SubTier_1 .C_PlayerSubscriptionState
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#4680ad), to(#c4d2ad));
+	text-shadow: 0px 0px 2px 2 black;
+}
+
+.SubTier_2 .C_PlayerSubscriptionState
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/sub_2_png.vtex");
+	color: gradient(linear, 0% 100%, 0% 0%, from(#df9724), to(#fee1b8));
+	text-shadow: 0px 0px 2px 2 black;
+}
+
+.C_MainPanelShadow
+{
+	flow-children: down;
+	background-image: url("s2r://panorama/images/custom_game/collection/base_bg_shadow_png.vtex");
+	background-size: 100%;
+	background-color: rgba(0, 0, 0, 0.3);
+	width: 100%;
+}
+
+.C_SubscriptionButtonsRoot
+{
+	height: 65px;
+	flow-children: right;
+	horizontal-align: center;
+	padding-left: -12px;
+}
+
+.BShowSubscriptionPurchasingConf .C_SubscriptionButtonsRoot
+{
+	opacity: 0;
+}
+
+.C_SubscriptionButton
+{
+	height: 53px;
+	width: 450px;
+	vertical-align: center;
+	flow-children: right;
+	margin-left: 12px;
+	background-image: url("s2r://panorama/images/custom_game/collection/subscription_label_1_png.vtex");
+	background-size: 100%;
+	margin-top: 3px;
+	transition: brightness 0.15s ease-in-out 0s;
+}
+
+.C_SubscriptionButton_2
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/subscription_label_2_png.vtex");
+}
+
+.C_SubscriptionButton Image
+{
+	height: 100%;
+	width: 38px;
+	margin: 10px 0 10px 20px;
+}
+
+.Collection_Root .C_SubscriptionButton_1:hover,.Collection_Root .C_SubscriptionButton_2:hover
+{
+	brightness: 1.7;
+}
+
+.Collection_Root .C_SubscriptionButton_1:active,.Collection_Root .C_SubscriptionButton_2:active
+{
+	brightness: 0.8;
+	sound: "Item.DropGemShop";
+}
+
+.C_SubscriptionButton_Header
+{
+	width: 235px;
+	height: 29px;
+	vertical-align: center;
+	text-transform: uppercase;
+	font-size: 24px;
+	font-weight: semi-bold;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#4680ad), to(#c4d2ad));
+	text-shadow: #181428 0px 0px 3px 3;
+	margin-left: 5px;
+	text-overflow: shrink;
+}
+
+.C_SubscriptionButton_2 .C_SubscriptionButton_Header
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#df9724), to(#fee1b8));
+}
+
+.C_SubscriptionButton_Desc
+{
+	vertical-align: center;
+	color: #ccc5b2;
+	text-transform: uppercase;
+	width: 100%;
+	margin-right: 20px;
+	height: 20px;
+	text-overflow: shrink;
+	font-size: 17px;
+	text-align: right;
+	transition-property: text-shadow, color;
+	transition-duration: 0.15s;
+}
+
+.Collection_Root:not(.SubTier_1) .C_SubscriptionButton_1:hover .C_SubscriptionButton_Desc
+{
+	color: #e0d8c4;
+	text-shadow: #71809a 0px 0px 3px 2;
+}
+
+.Collection_Root:not(.SubTier_2) .C_SubscriptionButton_2:hover .C_SubscriptionButton_Desc
+{
+	text-shadow: #b77f07 0px 0px 3px 2;
+}
+
+.C_Content_Root
+{
+	margin: 0 15px 8px 15px;
+	background-image: url("s2r://panorama/images/custom_game/collection/base_bg_2_png.vtex");
+	background-size: 100%;
+	flow-children: down;
+	width: 100%;
+}
+
+#C_Tabs
+{
+	flow-children: right;
+	padding-right: 10px;
+	horizontal-align: center;
+}
+
+.Tab
+{
+	width: 218px;
+	height: 54px;
+	margin: 8px 0 0 10px;
+	background-image: url("s2r://panorama/images/custom_game/collection/button_base_png.vtex");
+	background-size: 100%;
+	transition-property: brightness, background-size;
+	transition-duration: 0.15s;
+}
+
+.Tab.Hide
+{
+	visibility: collapse;
+}
+
+.Tab.BActive
+{
+	background-size: 0%;
+}
+
+.Tab:not(.BActive):hover
+{
+	brightness: 1.7;
+}
+
+.Tab:not(.BActive):active
+{
+	brightness: 0.7;
+}
+
+.Tab:not(.BActive):active .Overlay
+{
+	brightness: 0.7;
+	opacity: 0.1;
+}
+
+.Tab.BActive .Overlay
+{
+	opacity: 1;
+}
+
+.Tab_Flag
+{
+	horizontal-align: right;
+	margin: 2px 4px;
+	width: 23px;
+	height: 31px;
+	visibility: collapse;
+}
+
+.BShowFlag .Tab_Flag
+{
+	visibility: visible;
+}
+
+.Overlay
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/collection/button_active_png.vtex");
+	background-size: 100%;
+	transition: opacity 0.15s ease-in-out 0s;
+	opacity: 0;
+}
+
+.TabInfo
+{
+	flow-children: right;
+	max-width: 100%;
+	align: center center;
+}
+
+.TabInfo Image
+{
+	width: 22px;
+	height: 22px;
+	img-shadow: 0px 0px 3px 2 black;
+}
+
+.TabInfo Label
+{
+	text-transform: uppercase;
+	font-weight: semi-bold;
+	font-size: 20px;
+	margin-left: 5px;
+	text-shadow: rgba(0, 0, 0, 0.7) 0px 1px 2px 3;
+}
+
+#Tab_battle_pass Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#f4e4bb), to(#fed37b));
+}
+
+#Tab_cosmetics Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#a692b9), to(#ceb6e3));
+}
+
+#Tab_gift_codes Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#b78094), to(#efbccd));
+}
+
+#Tab_subscription Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#a99963), to(#e0d097));
+}
+
+#Tab_profile Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#8f9db5), to(white));
+}
+
+#C_Content
+{
+	width: 100%;
+	height: 450px;
+}
+
+#C_Content > Panel
+{
+	visibility: collapse;
+	margin: 8px 10px 10px 10px;
+}
+
+#C_Content > Panel.BActive
+{
+	visibility: visible;
+}
+
+#C_TopBar_ButtonsRoot
+{
+	flow-children: right;
+	align: right center;
+	padding-left: -10px;
+	margin-right: 30px;
+}
+
+.CurrencyButton
+{
+	height: 50px;
+	margin-left: 10px;
+}
+
+.CurrencyButton:hover #Icon,.CurrencyButton:hover #ActiveButton
+{
+	brightness: 1.8;
+}
+
+.CurrencyButton:hover .Value
+{
+	brightness: 1.2;
+}
+
+.CurrencyButton:active #ActiveButton
+{
+	brightness: 0.5;
+	sound: "Item.DropGemShop";
+}
+
+.CurrencyButton .Value
+{
+	height: 36px;
+	padding: 7px 38px 6px 38px;
+	vertical-align: center;
+	text-align: center;
+	margin: 0px 15px;
+	background-image: url("s2r://panorama/images/custom_game/collection/button_bg_png.vtex");
+	background-size: 100%;
+	font-size: 20px;
+	min-width: 110px;
+	transition: brightness 0.15s ease-in-out 0s;
+}
+
+.CurrencyButton #Icon
+{
+	height: 50px;
+	width: height-percentage(100%);
+	vertical-align: center;
+	transition: brightness 0.15s ease-in-out 0s;
+}
+
+.CurrencyButton #ActiveButton
+{
+	width: height-percentage(100%);
+	horizontal-align: right;
+	transition: brightness 0.15s ease-in-out 0s;
+}
+
+.Currency_currency Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#e88b16), to(#f9c459));
+}
+
+.CloseCollection
+{
+	width: 38px;
+	height: 38px;
+	horizontal-align: right;
+	background-image: url("s2r://panorama/images/custom_game/collection/close_button_png.vtex");
+	background-size: 100%;
+	transition: brightness 0.1s ease-in-out 0s;
+	margin-top: 185px;
+}
+
+.CloseCollection:hover
+{
+	brightness: 1.6;
+}
+
+.CloseCollection:active
+{
+	brightness: 0.8;
+	sound: "General.ButtonClick";
+}
+
+#C_SubPanels
+{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.9);
+	margin: 199px 13px 0 0;
+	transition: opacity 0.15s ease-in-out 0s;
+	opacity: 0;
+}
+
+.BShowSubPanel #C_SubPanels
+{
+	opacity: 1;
+}
+
+#C_SubPanels > Panel
+{
+	opacity: 0;
+	transition-property: transform, opacity;
+	transition-duration: 0.15s;
+	transform: translateY(-20px);
+}
+
+#C_SubPanels > Panel.Show
+{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+#PaySubscriptionConf_Root
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-top: 75px;
+}
+
+.C_SubscriptionConf
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/sub_bg_1_png.vtex");
+	background-size: 100%;
+	width: 390px;
+}
+
+.C_SubscriptionConf.BC_Tier_2
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/sub_bg_2_png.vtex");
+}
+
+.BC_Wrap
+{
+	flow-children: down;
+	horizontal-align: center;
+}
+
+.BC_Icon
+{
+	width: 120px;
+	height: 105px;
+	background-image: url("s2r://panorama/images/custom_game/collection/sub_1_png.vtex");
+	background-size: 100%;
+	horizontal-align: center;
+	margin-top: 20px;
+}
+
+.BC_Tier_2 .BC_Icon
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/sub_2_png.vtex");
+}
+
+.BC_Header
+{
+	horizontal-align: center;
+	text-align: center;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#4680ad), to(#c4d2ad));
+	font-size: 20px;
+	text-transform: uppercase;
+	font-weight: semi-bold;
+	text-shadow: black 0px 0px 3px 2;
+}
+
+.BC_Tier_2 .BC_Header
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#df9724), to(#fee1b8));
+}
+
+#BC_Content
+{
+	flow-children: down;
+	padding-top: -4px;
+	margin: 15px 30px;
+}
+
+#BC_Content Label
+{
+	horizontal-align: center;
+	text-align: center;
+	text-transform: uppercase;
+	color: #9fa6bd;
+	margin-top: 5px;
+	text-shadow: black 0px 0px 3px 2;
+	font-size: 16px;
+}
+
+#BC_Content .Content_currency
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#e88b16), to(#f9c459));
+	padding-right: 25px;
+	background-image: url("s2r://panorama/images/custom_game/collection/currency_icon_small_png.vtex");
+	background-size: 19px;
+	background-position: 100% 0;
+	background-repeat: no-repeat;
+}
+
+#BC_Content .Content_consumable_rerolls
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#b96d0b), to(#edd835));
+	padding-right: 25px;
+	background-image: url("s2r://panorama/images/custom_game/random_mini_png.vtex");
+	background-size: 19px;
+	background-position: 100% 0;
+	background-repeat: no-repeat;
+}
+
+#BC_Content .Content_legendary_lagresses
+{
+	color: #4cd2e4;
+	padding-right: 25px;
+	background-image: url("s2r://panorama/images/custom_game/orb_rare_mini_png.vtex");
+	background-size: 19px;
+	background-position: 100% 0;
+	background-repeat: no-repeat;
+}
+
+#BC_Content .Content_breathtaking_benefactions
+{
+	color: #f630d3;
+	padding-right: 25px;
+	background-image: url("s2r://panorama/images/custom_game/orb_epic_mini_png.vtex");
+	background-size: 19px;
+	background-position: 100% 0;
+	background-repeat: no-repeat;
+}
+
+#BC_ConfPurchaseButton
+{
+	padding: 14px 30px 15px 30px;
+	background-color: #0a0e1c;
+	horizontal-align: center;
+	margin-bottom: 30px;
+	background-image: url("s2r://panorama/images/custom_game/collection/sub_button_1_png.vtex");
+	background-size: 100%;
+	transition: brightness 0.1s ease-in-out 0s;
+}
+
+.BC_Tier_2 #BC_ConfPurchaseButton
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/sub_button_2_png.vtex");
+}
+
+.Collection_Root .BC_Tier_1 #BC_ConfPurchaseButton:hover,.Collection_Root .BC_Tier_2 #BC_ConfPurchaseButton:hover
+{
+	brightness: 1.5;
+}
+
+.Collection_Root .BC_Tier_1 #BC_ConfPurchaseButton:active,.Collection_Root .BC_Tier_2 #BC_ConfPurchaseButton:active
+{
+	brightness: 0.8;
+	sound: "Item.DropGemShop";
+}
+
+#BC_ConfPurchaseButton Label
+{
+	color: #eeeeee;
+	font-weight: semi-bold;
+	text-shadow: rgba(0, 0, 0, 0.9) 0px 1px 3px 3;
+}
+
+.BC_Close
+{
+	horizontal-align: right;
+	margin: 20px;
+	text-transform: uppercase;
+	font-size: 16px;
+	color: #ccc5b2;
+	text-shadow: black 0px 1px 3px 2;
+	transition: color 0.15s ease-in-out 0s;
+}
+
+.BC_Close:hover
+{
+	color: #e4e5e6;
+}
+
+.BC_Close:active
+{
+	sound: "General.ButtonClick";
+}
+
+#C_PayCurrency
+{
+	flow-children: down;
+	background-image: url("s2r://panorama/images/custom_game/collection/currency_shop/currency_shop_bg_png.vtex");
+	background-size: 100%;
+	box-shadow: black 0px 0px 10px 0;
+	align: center center;
+	width: 695px;
+}
+
+.C_PayCurrency_Header_Wrap
+{
+	width: 100%;
+}
+
+.C_SubPanel_Header
+{
+	horizontal-align: center;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 20px;
+	font-weight: semi-bold;
+	text-shadow: rgba(0, 0, 0, 0.5) 0px 1px 2px 3;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#e97f15), to(#f3c872));
+	margin: 15px 0;
+}
+
+#C_PayCurrency .C_SubPanel_Header
+{
+	visibility: collapse;
+}
+
+#C_PayCurrency .C_SubPanel_Header.Header2,.BProPlayer #C_PayCurrency .C_SubPanel_Header.Header1
+{
+	visibility: visible;
+}
+
+.BProPlayer #C_PayCurrency .C_SubPanel_Header.Header2
+{
+	visibility: collapse;
+}
+
+.HalloweenHeader
+{
+	visibility: collapse;
+}
+
+.BHalloweenEvent .HalloweenHeader
+{
+	visibility: visible;
+}
+
+.BHalloweenEvent .C_SubPanel_Header:not(.HalloweenHeader)
+{
+	visibility: collapse;
+}
+
+.C_PayCurrency_Close
+{
+	text-transform: uppercase;
+	font-size: 15px;
+	color: #ccc5b2;
+	text-shadow: black 0px 1px 3px 2;
+	horizontal-align: right;
+	margin: 15px 15px 0 0;
+	transition: color 0.1s ease-in-out 0s;
+}
+
+.C_PayCurrency_Close:hover
+{
+	color: white;
+}
+
+.C_PayCurrency_Close:active
+{
+	sound: "General.ButtonClick";
+}
+
+#C_PayCurrency_Content
+{
+	flow-children: down;
+	padding: 5px 20px 20px 0;
+	visibility: collapse;
+}
+
+.BProPlayer #C_PayCurrency_Content
+{
+	visibility: visible;
+}
+
+#C_PayCurrency_Content > Panel
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.C_CurrencyBundle
+{
+	margin-left: 20px;
+	width: 205px;
+}
+
+.CB_Background
+{
+	margin-top: 13px;
+	width: 100%;
+	background-color: #0d570d;
+	padding: 3px;
+	border: 2px solid #4a4b56;
+	background-color: #191c29;
+	border-radius: 4px;
+	box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 10px 3;
+}
+
+.CB_Bonus
+{
+	padding: 4px 15px 3px 15px;
+	margin-right: 3px;
+	background-image: url("s2r://panorama/images/custom_game/collection/currency_shop/bonus_bg_png.vtex");
+	background-size: 100%;
+	horizontal-align: right;
+	color: #fffbe5;
+	font-size: 16px;
+	text-shadow: rgba(0, 0, 0, 0.7) 0px 1px 2px 3;
+	visibility: collapse;
+}
+
+.BHasBonus .CB_Bonus
+{
+	visibility: visible;
+}
+
+#CB_Image
+{
+	width: 110px;
+	height: 115px;
+	horizontal-align: right;
+	margin-top: -8px;
+	visibility: collapse;
+}
+
+.CB_List_Wrap
+{
+	flow-children: down;
+}
+
+#CB_List
+{
+	flow-children: down;
+	padding-top: -4px;
+	margin: 5px;
+	visibility: collapse;
+}
+
+#CB_List Label
+{
+	padding-left: 25px;
+	background-size: 21px;
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	margin-top: 4px;
+	text-align: center;
+}
+
+#CB_List .CB_Currency_currency
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#e88b16), to(#f9c459));
+	background-image: url("s2r://panorama/images/custom_game/collection/currency_icon_png.vtex");
+}
+
+#CB_List .CB_Currency_consumable_rerolls
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#b96d0b), to(#edd835));
+	background-image: url("s2r://panorama/images/custom_game/random_mini_png.vtex");
+}
+
+.BHalloweenEvent #CB_List .CB_Currency_currency:not(.HalloweenLine),.BHalloweenEvent #CB_List .CB_Currency_consumable_rerolls:not(.HalloweenLine)
+{
+	font-size: 16px;
+	line-height: 21px;
+	saturation: 0.97;
+	padding-left: 23px;
+}
+
+.CB_Currency_Overline
+{
+	width: 100%;
+	height: 2px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#ae0700), to(#ff0000));
+	vertical-align: center;
+	transform: rotateZ(16deg);
+	box-shadow: black 0 0 3px 1;
+}
+
+#CB_List .HalloweenLine
+{
+	padding-left: 24px;
+	background-size: 0%;
+	font-size: 20px;
+	margin-top: 0px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#f16c00), to(#ff4600));
+	font-family: titleFont;
+	font-weight: semi-bold;
+	padding-left: 23px;
+	text-shadow: rgba(0, 0, 0, 0.7) 0px 0px 2px 2;
+}
+
+.HalloweenText
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#f16c00), to(#ff4600));
+}
+
+.CB_PopularLabel
+{
+	color: #fbb977;
+	background-image: url("s2r://panorama/images/custom_game/collection/currency_shop/popular_bg_png.vtex");
+	background-size: 100%;
+	margin-left: -10px;
+	padding: 4px 20px 5px 9px;
+	text-shadow: rgba(0, 0, 0, 0.6) 0px 1px 2px 3;
+	visibility: collapse;
+}
+
+.BPopular .CB_PopularLabel
+{
+	visibility: visible;
+}
+
+.BHalloweenEvent .BPopular .CB_PopularLabel
+{
+	visibility: collapse;
+}
+
+.CB_Button
+{
+	width: 100%;
+	height: 41px;
+	background-image: url("s2r://panorama/images/custom_game/collection/button_active_png.vtex");
+	background-size: 100%;
+	transition: brightness 0.1s ease-in-out 0s;
+}
+
+.CB_Button:hover
+{
+	brightness: 1.5;
+}
+
+.CB_Button:active
+{
+	brightness: 0.7;
+	sound: "collection.buy_currency";
+}
+
+.CB_Button Label
+{
+	align: center center;
+	text-align: center;
+	color: white;
+	margin-top: 2px;
+	font-weight: semi-bold;
+	text-shadow: black 0px 1px 1px 3;
+}
+
+VerticalScrollBar
+{
+	width: 5px;
+}
+
+#ScrollThumb
+{
+	background-color: #5f5e6a;
+}
+
+#C_AdditionalPanels
+{
+	width: 100%;
+	height: 100%;
+}
+
+.SubTier_2 .C_SubscriptionConf.BC_Tier_1 #BC_ConfPurchaseButton,.SubTier_2 .C_Subscription.BC_Tier_1 #BC_ConfPurchaseButton
+{
+	opacity: 0;
+}
+
+.C_PayCurrency_BottomHint
+{
+	horizontal-align: center;
+	text-align: center;
+	color: #8095bc;
+	font-style: italic;
+	font-size: 18px;
+	margin: 7px 20px 12px 20px;
+	width: 100%;
+	text-shadow: black 0px 1px 1px 2;
+	visibility: collapse;
+}
+
+.C_PayCurrency_BottomHint.Hint2
+{
+	margin-top: 0;
+	visibility: visible;
+}
+
+.BProPlayer .C_PayCurrency_BottomHint
+{
+	visibility: visible;
+}
+
+.BProPlayer .C_PayCurrency_BottomHint.Hint2
+{
+	visibility: collapse;
+}
+
+.C_PayCurrency_TopHint
+{
+	horizontal-align: center;
+	text-align: center;
+	color: #8095bc;
+	font-style: italic;
+	font-size: 18px;
+	margin: 0 20px;
+	width: 100%;
+	text-shadow: black 0px 1px 1px 2;
+	visibility: collapse;
+}
+
+.C_PayCurrency_TopHint.Hint2
+{
+	margin-top: 10px;
+}
+
+.BProPlayer .C_PayCurrency_TopHint
+{
+	visibility: visible;
+}
+
+#CI_ChatWheelContent_Color .CW_SubChannel
+{
+	font-size: 24px;
+}
+
+#CI_ChatWheel_Color Label
+{
+	text-overflow: shrink;
+}

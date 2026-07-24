@@ -1,0 +1,548 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.Custom_ScoreboardRoot
+{
+	flow-children: down;
+	margin: 115px 0px 0px 0px;
+	padding: 7px 0px 0px 0px;
+	opacity: 0;
+	background-image: url("s2r://panorama/images/custom_game/backgrounds/background_1_png.vtex");
+	background-size: 100% 100%;
+}
+
+.Custom_ScoreboardRoot.Show
+{
+	opacity: 1;
+}
+
+#Scoreboard_TeamsList
+{
+	flow-children: down;
+	padding-top: 0px;
+	background-size: 100%;
+}
+
+.FullSize
+{
+	width: 100%;
+	height: 100%;
+}
+
+.Scoreboard_Team
+{
+	border-bottom: 7px solid rgb(25, 25, 25);
+}
+
+.TeamInfo
+{
+	flow-children: right;
+}
+
+#TeamColor
+{
+	width: 8px;
+	height: 100%;
+	z-index: 100;
+}
+
+#TeamStats
+{
+	height: 100%;
+	background-color: gradient( linear, 100% 0%, 0% 0%, from(rgba(62, 210, 151, 0.25)), color-stop(0.8, transparent), to(transparent) );
+	padding: 5px;
+}
+
+.PlayersCount1 #TeamStats,.PlayersCount2 #TeamStats
+{
+	padding: 3px 5px;
+}
+
+.TeamLogo Image
+{
+	align: center center;
+}
+
+.TeamLogo
+{
+	width: 33px;
+	height: 35px;
+	horizontal-align: center;
+}
+
+.PlayersCount1 .TeamLogo,.PlayersCount2 .TeamLogo
+{
+	width: 26px;
+	height: 29px;
+	vertical-align: center;
+}
+
+#TeamLogo_Icon
+{
+	wash-color: black;
+}
+
+#TeamStats > Panel > Label
+{
+	margin-top: 15px;
+	align: center center;
+	text-align: center;
+	text-shadow: black 1px 0px 2px 3;
+	color: #f4f5f5;
+	letter-spacing: 1px;
+	font-size: 30px;
+	text-overflow: shrink;
+	font-weight: semi-bold;
+	background-size: 37px;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	background-img-opacity: 0.4;
+	width: 35px;
+	height: 35px;
+	font-family: monospaceNumbersFont;
+}
+
+.PlayersCount1 #TeamStats > Panel > Label
+{
+	margin-top: 0px;
+	background-size: 30px;
+	width: 30px;
+	margin-left: 4px;
+}
+
+.PlayersCount2 #TeamStats > Panel > Label
+{
+	margin-top: 5px;
+	background-size: 30px;
+	width: 30px;
+	height: 30px;
+}
+
+.TeamLogo_Color
+{
+	img-shadow: black 0 0 40px 200px;
+}
+
+#TeamStats > Panel
+{
+	flow-children: down;
+	vertical-align: center;
+}
+
+.PlayersCount1 #TeamStats > Panel
+{
+	flow-children: right;
+}
+
+#TeamScore
+{
+	text-align: center;
+	width: 24px;
+	text-overflow: shrink;
+	color: white;
+	font-weight: semi-bold;
+	text-shadow: black 0px 0px 1px 2;
+	margin: 5px 2px 0px -2px;
+	font-size: 21px;
+}
+
+#Team_OrbsCount
+{
+	background-image: url("s2r://panorama/images/custom_game/map_orb_epic_png.vtex");
+}
+
+#PlayersList
+{
+	padding: 0px 0px 0px 0px;
+	flow-children: down;
+}
+
+.Scoreboard_Player
+{
+	flow-children: right;
+	margin: 1px;
+	background-color: gradient(linear, 100% 25%, 25% 100%, from(rgba(0, 0, 0, 0)), to(rgba(15, 10, 19, 0.748)));
+}
+
+#HeroImageRoot
+{
+	width: 60px;
+	height: 34px;
+	border: 1px solid black;
+	margin-bottom: 1px;
+}
+
+.Abandoneded #HeroImage
+{
+	saturation: 0;
+	wash-color: #9e9e9e;
+}
+
+#DisconnectState
+{
+	width: 100%;
+	height: 20px;
+	align: center center;
+	visibility: collapse;
+}
+
+.Disconnected #DisconnectState,.Abandoneded #DisconnectState
+{
+	visibility: visible;
+}
+
+.PlayerShadow
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from(#0e0e0e), color-stop(0.01, #0e0e0e), color-stop(0.1, #0000), color-stop(0.91, #0000), color-stop(0.95, rgba(0, 0, 0, 0.28)), to(#000a) );
+}
+
+#UltimateState
+{
+	width: 21px;
+	height: 21px;
+	background-image: url("s2r://panorama/images/hud/reborn/ult_cooldown_psd.vtex");
+	background-size: 100%;
+	vertical-align: center;
+	margin: 0px 0px 1px -9px;
+	z-index: 100;
+	opacity: 0;
+}
+
+.LocalTeam #UltimateState,.IsLocalPlayerSpectating #UltimateState
+{
+	opacity: 1;
+}
+
+.UltReady #UltimateState
+{
+	background-image: url("s2r://panorama/images/hud/reborn/ult_ready_psd.vtex");
+}
+
+.UltNoMana #UltimateState
+{
+	background-image: url("s2r://panorama/images/hud/reborn/ult_no_mana_psd.vtex");
+}
+
+#PlayerInfo
+{
+	width: 170px;
+	height: 100%;
+	margin: 0px;
+}
+
+#PlayerName
+{
+	font-size: 14px;
+	font-weight: bold;
+	margin: 2px 2px 0px 9px;
+	height: 18px;
+	width: 100%;
+}
+
+#PlayerName.NoParty
+{
+	color: #e8e8e8;
+}
+
+#HeroNameAndLevel
+{
+	margin: 0px 2px 2px 9px;
+	font-size: 13px;
+	text-shadow: 2px 2px 2px black;
+	color: #999999;
+	vertical-align: bottom;
+	height: 15px;
+	width: 100%;
+}
+
+.Scoreboard_Stat
+{
+	height: 100%;
+	margin: 0px 0px 1px 1px;
+}
+
+.KDA_Stat
+{
+	width: 27px;
+}
+
+.Rank_Stat
+{
+	width: 39px;
+	margin-left: 10px;
+}
+
+.Scoreboard_Stat:not(.TeammateGold) Label
+{
+	align: center center;
+	text-align: center;
+	color: white;
+	text-shadow: black 0px 0px 1px 2;
+	text-overflow: shrink;
+	margin-top: 1px;
+}
+
+.TeammateGold
+{
+	width: 70px;
+	opacity: 0;
+}
+
+.TeammateGold Label
+{
+	align: center center;
+	text-align: center;
+	color: #d7a60c;
+	text-shadow: 1px -1px 2px 2 rgba(0, 0, 0, 0.4);
+	max-height: 100%;
+	max-width: 100%;
+	margin-top: 5px;
+	font-weight: bold;
+	font-family: monospaceNumbersFont;
+}
+
+.LocalTeam .TeammateGold
+{
+	opacity: 1;
+}
+
+.IsLocalPlayerSpectating .TeammateGold
+{
+	opacity: 1;
+}
+
+.Scoreboard_RadialEntity
+{
+	margin: 0px;
+}
+
+.Scoreboard_RadialEntity DOTAItemImage,.Scoreboard_RadialEntity Button
+{
+	width: 25px;
+	height: 25px;
+	border-radius: 50px;
+	vertical-align: center;
+	margin: 0px 4px;
+	margin-left: 12px;
+}
+
+#MuteButton_Voice,#MuteButton_Text
+{
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/import_dota/icon_scoreboard_mute_sound_png.vtex");
+	background-position: 50%;
+	background-repeat: no-repeat;
+	margin-left: 4px;
+}
+
+#MuteButton_Text
+{
+	background-image: url("s2r://panorama/images/custom_game/import_dota/icon_scoreboard_mute_text_png.vtex");
+}
+
+#MuteButton_Voice:active,#MuteButton_Text:active
+{
+	background-size: 95%;
+	brightness: 1.5;
+}
+
+.BPlayerMuted_Voice #MuteButton_Voice
+{
+	background-image: url("s2r://panorama/images/custom_game/import_dota/icon_scoreboard_mute_sound_on_png.vtex");
+}
+
+.BPlayerMuted_Text #MuteButton_Text
+{
+	background-image: url("s2r://panorama/images/custom_game/import_dota/icon_scoreboard_mute_text_on_png.vtex");
+}
+
+#UpgradesForSpectators
+{
+	background-image: url("s2r://panorama/images/custom_game/orb_png.vtex");
+	background-size: 100%;
+	margin-left: 4px;
+	transition: saturation 0.1s ease-in-out 0s;
+	saturation: 0.7;
+	visibility: collapse;
+}
+
+.IsLocalPlayerSpectating #UpgradesForSpectators
+{
+	visibility: visible;
+}
+
+#UpgradesForSpectators:hover
+{
+	saturation: 1;
+}
+
+.DisableHelp
+{
+	opacity: 0;
+}
+
+.LocalTeam .DisableHelp
+{
+	opacity: 1;
+}
+
+.IsLocalPlayerSpectating .DisableHelp
+{
+	visibility: collapse;
+}
+
+.Scoreboard_Player.LocalPlayer .DisableHelp ToggleButton,.Scoreboard_Player.LocalPlayer #MuteButton
+{
+	opacity: 0;
+}
+
+.DisableHelp ToggleButton
+{
+	vertical-align: center;
+	margin: 0px 4px 0px 4px;
+}
+
+#Scoreboard_HeadersRoot
+{
+	width: 100%;
+	margin: 0px 0px 0px 0px;
+	padding: 4px 4px 0px 0px;
+	flow-children: right;
+	background-color: rgba(38, 38, 38, 0.95);
+}
+
+.Scoreboard_Header Label
+{
+	text-shadow: black 1px 1px 1px 0;
+	text-transform: uppercase;
+	font-size: 16px;
+	color: #ffffff;
+	text-align: left;
+	align: left center;
+}
+
+.SH_Score
+{
+	width: 136px;
+}
+
+.PlayersCount1 .SH_Score
+{
+	width: 161px;
+}
+
+.PlayersCount2 .SH_Score
+{
+	width: 131px;
+}
+
+.SH_Player
+{
+	width: 170px;
+}
+
+.SH_K,.SH_D,.SH_A
+{
+	width: 28px;
+}
+
+#Tip
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#523e1c), to(#1a2128));
+	padding: 0 10px;
+	height: 21px;
+	margin-right: 5px;
+	vertical-align: center;
+	border-top: 1px solid #ffffff11;
+	box-shadow: black 0 0 3px 0px;
+	padding-left: 25px;
+	background-image: url("s2r://panorama/images/custom_game/collection/currency_icon_small_png.vtex");
+	background-size: 17px;
+	background-position: 10% 50%;
+	background-repeat: no-repeat;
+}
+
+.LocalPlayer #Tip,.IsLocalPlayerSpectating #Tip
+{
+	visibility: collapse;
+}
+
+.TipsBlock #Tip
+{
+	saturation: 0;
+	brightness: 1.2;
+}
+
+#DotaHud:not(.TipsBlock) #Tip:hover
+{
+	brightness: 1.5;
+}
+
+#DotaHud:not(.TipsBlock) #Tip:active
+{
+	brightness: 0.8;
+}
+
+#Tip Label
+{
+	color: #f9d014;
+	margin-top: 0px;
+}
+
+#Kick
+{
+	width: 24px;
+	height: 24px;
+	background-image: url("s2r://panorama/images/custom_game/kick_icon_png.vtex");
+	background-size: 100%;
+	background-position: 50%;
+	opacity-mask: url("s2r://panorama/images/custom_game/circle_mask_png.vtex");
+	background-color: black;
+	border: 1px solid #7b0b00;
+	border-radius: 50%;
+	opacity: 0;
+	vertical-align: center;
+	margin-right: 2px;
+}
+
+.BKickVotingEnabled .LocalTeam .Scoreboard_Player:not(.LocalPlayer) #Kick
+{
+	opacity: 1;
+}
+
+.Custom_ScoreboardRoot:not(.BKickVotingEnabled) #Kick
+{
+	visibility: collapse;
+}
+
+#Kick:hover
+{
+	brightness: 1.5;
+}
+
+#Kick:active
+{
+	brightness: 0.8;
+	pre-transform-scale2d: 0.9;
+}
+
+#NeutralItem
+{
+	border: 1px solid white;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#1a1a1a), to(#000000));
+	box-shadow: 0 0 2px 0 #111414;
+}
+
+.LocalPlayer .HideForLocalPlayer
+{
+	opacity: 0;
+}

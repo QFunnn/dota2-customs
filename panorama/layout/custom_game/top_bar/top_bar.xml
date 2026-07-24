@@ -1,0 +1,108 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/top_bar/top_bar.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/top_bar/orbs_progress.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/top_bar/top_bar.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/top_bar/orbs_progress.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="TopBar_Team">
+			<Panel class="TopBar_Team">
+				<Panel class="Team_BG" />
+				<Panel class="TeamInfo">
+					<Panel class="TeamPlayers">
+						<Panel class="VerticalHeroSeparator" />
+						<Panel id="PlayersList" />
+					</Panel>
+					<Panel id="TeamColor">
+						<Panel class="TeamColor_Overlay FullSize" />
+					</Panel>
+					<Panel class="TopBarUnderPanel">
+						<Panel class="TeamCenterData">
+							<Panel class="TeamStats">
+								<Panel id="TeamLogo">
+									<Image class="FullSize" src="s2r://panorama/images/custom_game/team_icons/team_shield_border_01_psd.vtex" />
+									<Image class="FullSize" id="TeamLogo_Color" src="s2r://panorama/images/custom_game/team_icons/team_shield_color_01_psd.vtex" />
+									<Image class="FullSize" id="TeamLogo_Icon" />
+								</Panel>
+								<Label id="TeamScore" text="{s:team_score}" />
+							</Panel>
+						</Panel>
+						<Panel class="TeamTimerData" id="common_progress">
+							<Panel id="OrbsProgress_ContainersRoot">
+								<Panel class="OrbsProgress_Container">
+									<Panel class="OrbsProgress_Bar_Root Left">
+										<ProgressBar class="OrbsProgress_Bar" id="OrbsProgress_Bar_Common" hittest="false" value="0" onmouseover="DOTAShowTextTooltip(&apos;#orbs_hint_common&apos;)" onmouseout="DOTAHideTextTooltip()">
+											<Panel id="OrbsProgress_Bar_Common_Left">
+												<DOTAScenePanel map="ui/bar_burner_common" camera="CAMERA_COMMON" hittest="false" particleonly="true" />
+											</Panel>
+											<Panel class="Shadow" />
+										</ProgressBar>
+										<Label id="OP_Label_Common" class="OrbsProgress_Label" text="{s:value}%" />
+									</Panel>
+									<Image src="s2r://panorama/images/status_icons/information_psd.vtex" onmouseover="DOTAShowTextTooltip(&apos;#orbs_hint_common&apos;)" onmouseout="DOTAHideTextTooltip()" />
+								</Panel>
+							</Panel>
+						</Panel>
+						<Panel class="TeamGoalData">
+							<Panel class="OrbsProgress_Container" id="rare_progress">
+								<Panel class="OrbsProgress_Bar_Root Right">
+									<ProgressBar class="OrbsProgress_Bar" id="OrbsProgress_Bar_Rare" hittest="false" value="0" onmouseover="DOTAShowTextTooltip(&apos;#orbs_hint_rare&apos;)" onmouseout="DOTAHideTextTooltip()">
+										<Panel id="OrbsProgress_Bar_Rare_Left">
+											<DOTAScenePanel map="ui/bar_burner_common" camera="CAMERA_RARE" hittest="false" particleonly="true" />
+										</Panel>
+										<Panel class="Shadow" />
+									</ProgressBar>
+									<Label id="OP_Label_Rare" class="OrbsProgress_Label" text="{s:current}/{s:max}" />
+								</Panel>
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Label id="KillsToWin" text="#kills_to_win" />
+			</Panel>
+		</snippet>
+		<snippet name="TopBar_Player">
+			<Panel class="TopBar_Player">
+				<Panel class="HeroImage_Wrap">
+					<Panel id="HeroImageRoot">
+						<Label id="RespawnTime" text="{s:respawn_time}" />
+						<Image id="HeroImage" class="FullSize" />
+						<Panel class="PlayerShadow FullSize" />
+						<Panel class="DeadOverlay FullSize" />
+						<Image id="DisconnectState" src="s2r://panorama/images/custom_game/icon_disconnect_png.vtex" />
+					</Panel>
+					<Panel class="VerticalHeroSeparator" />
+				</Panel>
+				<Button id="TopBar_Tip">
+					<Label text="+++" />
+				</Button>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="Custom_TopBarRoot" hittest="false">
+		<Panel id="TopBar_TeamsList" class="hideTop" />
+		<Panel id="ScoreGoal" class="hideTop">
+			<Panel class="GoalInfo">
+				<Label id="Goal_Header" text="#kills_goal" />
+				<Label id="Goal_Value" text="{s:kill_goal}" />
+			</Panel>
+			<Label id="GameTime" text="{s:game_time}" onmouseover="ShowTimeLimit()" onmouseout="HideTimeLimit()" />
+		</Panel>
+	</Panel>
+</root>

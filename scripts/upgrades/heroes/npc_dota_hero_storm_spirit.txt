@@ -1,0 +1,110 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_storm_spirit"
+{
+	"storm_spirit_static_remnant"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"static_remnant_damage_radius"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"static_remnant_radius" "25"
+			}
+		}
+		"static_remnant_damage"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+		}
+		"AbilityCastRange"
+		{
+			"value" "120"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"linked_special_values"
+			{
+				"static_remnant_travel_speed" "45"
+			}
+		}
+	}
+	"storm_spirit_electric_vortex"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"electric_vortex_pull_distance"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"linked_special_values"
+			{
+				"radius_scepter" "20"
+			}
+		}
+	}
+	"storm_spirit_overload"
+	{
+		"overload_aoe"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"shard_activation_radius" "75"
+			}
+		}
+		"overload_damage"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+		}
+		"overload_attack_slow"
+		{
+			"value" "-25"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"shard_attack_speed_bonus" "15"
+			}
+		}
+	}
+	"storm_spirit_ball_lightning"
+	{
+		"ball_lightning_aoe"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"ball_lightning_vision_radius" "30"
+			}
+		}
+		"damage"
+		{
+			"value" "4"
+			"operator" "OP_ADD"
+		}
+	}
+}

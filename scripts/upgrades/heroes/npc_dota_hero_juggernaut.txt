@@ -1,0 +1,106 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_juggernaut"
+{
+	"juggernaut_blade_fury"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "6"
+		}
+		"blade_fury_radius"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"blade_fury_damage"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+		}
+	}
+	"juggernaut_healing_ward"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"healing_ward_heal_amount"
+		{
+			"value" "0.75"
+			"operator" "OP_ADD"
+		}
+		"healing_ward_aura_radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"juggernaut_blade_dance"
+	{
+		"blade_dance_crit_chance"
+		{
+			"value" "4"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"blade_dance_crit_mult"
+		{
+			"value" "8"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"juggernaut_omni_slash"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			"linked_abilities"
+			{
+				"juggernaut_swift_slash"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"duration"
+		{
+			"value" "0.5"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"linked_abilities"
+			{
+				"juggernaut_swift_slash"
+				{
+					"duration" "0.1"
+				}
+			}
+		}
+		"omni_slash_radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+}

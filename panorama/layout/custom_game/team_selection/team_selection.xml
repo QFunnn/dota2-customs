@@ -1,0 +1,76 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1413b34 · 2026-07-24 17:22:14 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/team_selection/team_selection.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/team_selection/team_selection.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="TS_Team">
+			<Button class="TS_Team" onactivate="OnJoinTeamPressed()">
+				<Panel class="TS_Team_Header">
+					<Panel id="TS_Team_Header_Overlay" />
+					<Label text="{s:team_name}" />
+				</Panel>
+				<Panel class="TS_Team_Players_Root">
+					<Panel id="TS_Team_Players_Overlay" />
+					<Panel id="TS_Team_Players_List" />
+				</Panel>
+			</Button>
+		</snippet>
+		<snippet name="TS_Player">
+			<Button class="TS_Player">
+				<Panel class="TS_Player_Overlay" />
+				<Panel class="TS_Player_LoadingState" />
+				<Label class="TS_EmptyPlayer" text="#team_selection_empty_slot" />
+				<Panel id="TS_PlayerInfo">
+					<DOTAAvatarImage steamid="local" />
+					<DOTAUserName steamid="local" />
+				</Panel>
+			</Button>
+		</snippet>
+	</snippets>
+	<Panel class="TeamSelection_Root" hittest="false">
+		<Panel class="TS_Base">
+			<Panel id="TS_TeamsRoot" />
+			<Panel class="TS_BottomButtons">
+				<Button class="TS_Button_Lock BHostElement" onactivate="LockAndStart()">
+					<Label text="#team_selection_lock" />
+				</Button>
+				<Panel class="TeamUnlockButtons">
+					<Button class="TS_Button_Unlock" onactivate="UnlockTeams()">
+						<Label text="#team_selection_unlock" />
+					</Button>
+					<Button class="TS_Button_Auto" onactivate="AutoAssign()">
+						<Label text="#team_selection_auto" />
+					</Button>
+				</Panel>
+				<Button class="TS_Button_Shuffle BHostElement" onactivate="ShuffleTeams()">
+					<Image src="s2r://panorama/images/control_icons/shuffle_psd.vtex" />
+					<Label text="#team_selection_shuffle" />
+				</Button>
+			</Panel>
+		</Panel>
+		<Panel id="UnassignedPlayerPanel" hittest="true">
+			<Panel id="UnassignedPlayersHeader">
+				<Label text="#custom_game_team_select_unassigned_players" />
+			</Panel>
+			<Button id="UnassignedPlayersButton" onactivate="OnLeaveTeamPressed()">
+				<Panel id="UnassignedPlayersContainer" />
+			</Button>
+		</Panel>
+	</Panel>
+</root>
