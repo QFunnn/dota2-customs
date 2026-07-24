@@ -12,6 +12,18 @@ apply_watermark() {
   done < <(find "$dir" -type f -not -path "$dir/.git/*" -print0)
 }
 
+run_decrypt() {
+  local dir="$1" script="$2" path
+
+  [[ -n "$script" ]] || return 0
+
+  path="$GITHUB_WORKSPACE/decrypts/$script"
+  [[ -f "$path" ]] || { echo "Decrypt script not found: $path"; exit 1; }
+
+  echo "-- decrypt: $script"
+  ( cd "$dir" && bash "$path" "$dir" )
+}
+
 main() {
   local MOD_DIR CONTENT VPK OUT PUBLISH
 
@@ -41,6 +53,8 @@ main() {
   fi
 
   [[ -n "$(ls -A "$OUT")" ]] || { echo "Extraction empty"; exit 1; }
+
+  run_decrypt "$OUT" "$DECRYPT_SCRIPT"
 
   apply_watermark "$OUT" "$WATERMARK"
 
