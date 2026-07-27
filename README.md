@@ -15,3 +15,8 @@
 | Dota 1x6 | [`2836965027`](https://steamcommunity.com/sharedfiles/filedetails/?id=2836965027) | [`dota-1x6`](../../tree/dota-1x6) |
 | Overthrow 3.0 | [`2760533777`](https://steamcommunity.com/sharedfiles/filedetails/?id=2760533777) | [`overthrow-3-0`](../../tree/overthrow-3-0) |
 | Emberfall | [`2331812965`](https://steamcommunity.com/sharedfiles/filedetails/?id=2331812965) | [`emberfall`](../../tree/emberfall) |
+| Dota Auto Chess | [`1613886175`](https://steamcommunity.com/sharedfiles/filedetails/?id=1613886175) | [`dota-auto-chess`](../../tree/dota-auto-chess) |
+
+
+
+
