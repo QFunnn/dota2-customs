@@ -16,7 +16,7 @@
 | Overthrow 3.0 | [`2760533777`](https://steamcommunity.com/sharedfiles/filedetails/?id=2760533777) | [`overthrow-3-0`](../../tree/overthrow-3-0) |
 | Emberfall | [`2331812965`](https://steamcommunity.com/sharedfiles/filedetails/?id=2331812965) | [`emberfall`](../../tree/emberfall) |
 | Dota Auto Chess | [`1613886175`](https://steamcommunity.com/sharedfiles/filedetails/?id=1613886175) | [`dota-auto-chess`](../../tree/dota-auto-chess) |
-| Boss Survival Adventure | [`1571786267`](https://steamcommunity.com/sharedfiles/filedetails/?id=1571786267) | [`dota-auto-chess`](../../tree/boss-survival-adventure) |
+| Boss Survival Adventure | [`1571786267`](https://steamcommunity.com/sharedfiles/filedetails/?id=1571786267) | [`boss-survival-adventure`](../../tree/boss-survival-adventure) |
 
 
 
