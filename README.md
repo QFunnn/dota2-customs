@@ -17,6 +17,7 @@
 | Emberfall | [`2331812965`](https://steamcommunity.com/sharedfiles/filedetails/?id=2331812965) | [`emberfall`](../../tree/emberfall) |
 | Dota Auto Chess | [`1613886175`](https://steamcommunity.com/sharedfiles/filedetails/?id=1613886175) | [`dota-auto-chess`](../../tree/dota-auto-chess) |
 | Boss Survival Adventure | [`1571786267`](https://steamcommunity.com/sharedfiles/filedetails/?id=1571786267) | [`boss-survival-adventure`](../../tree/boss-survival-adventure) |
+| Bless ARAM | [`2841152696`](https://steamcommunity.com/sharedfiles/filedetails/?id=2841152696) | [`bless-aram`](../../tree/bless-aram) |
 
 
 
